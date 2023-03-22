@@ -1,0 +1,85 @@
+name: Doubutsunomori (Japanese)
+sha1: 3ee1f866eb08c0ce57a30e09f0c8b0a16a760c8f
+options:
+  basename: af
+  target_path: baserom_uncompressed.jp.z64
+  ld_script_path: linker_scripts/jp/af.ld
+  base_path: .
+  compiler: IDO
+  find_file_boundaries: True
+  header_encoding: ASCII
+  platform: n64
+
+  undefined_funcs_auto_path: linker_scripts/jp/auto/undefined_funcs_auto.ld
+  undefined_syms_auto_path: linker_scripts/jp/auto/undefined_syms_auto.ld
+
+  symbol_addrs_path:
+    - linker_scripts/jp/symbol_addrs_boot.txt
+    - linker_scripts/jp/symbol_addrs_libultra.txt
+    - linker_scripts/jp/symbol_addrs_code.txt
+    - linker_scripts/jp/ignored_addresses.txt
+  reloc_addrs_path:
+    - relocs/reloc_addrs.jp.txt
+
+  asm_path: asm/jp
+  src_path: src
+  asset_path: bin/jp
+
+  build_path: build
+
+  extensions_path: tools/splat_ext
+  mips_abi_float_regs: o32
+
+  do_c_func_detection: True
+  o_as_suffix: True
+  gfx_ucode: f3dex2
+  mnemonic_ljust: 12
+  rom_address_padding: True
+  dump_symbols: True
+  # generated_c_preamble: |
+  #   #include "libultra.h"
+  #   #include "include_asm.h"
+  #   #include "macros_defines.h"
+  #   #include "unknown_structs.h"
+  asm_inc_header: ""
+  use_legacy_include_asm: False
+  create_asm_dependencies: True
+  # string_encoding: SHIFT-JIS
+  asm_function_macro: glabel
+  asm_jtbl_label_macro: jlabel
+  asm_data_macro: dlabel
+  include_macro_inc: False
+  libultra_symbols: True
+  hardware_regs: True
+  auto_all_sections: []
+segments:
+  - name: header
+    type: header
+    start: 0x0
+
+  - name: boot
+    type: bin
+    start: 0x40
+
+  - name: entry
+    type: code
+    start: 0x1000
+    vram: 0x80025C00
+    subsegments:
+      - [0x1000, hasm]
+
+  - name: main
+    type: code
+    start: 0x1060
+    vram: 0x80025C60
+    follows_vram: entry
+    bss_size: 0x5D50
+    subsegments:
+      - [0x1060, asm]
+      - [0x16F40, data]
+      - { start: 0x19D40, type: bss, vram: 0x8003E940 }
+
+  - type: bin
+    start: 0x19D40
+    follows_vram: main
+  - [0x1914000]
