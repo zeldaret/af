@@ -1,9 +1,9 @@
 name: Doubutsunomori (Japanese)
 sha1: 3ee1f866eb08c0ce57a30e09f0c8b0a16a760c8f
 options:
-  basename: af
+  basename: animalforest
   target_path: baserom_uncompressed.jp.z64
-  ld_script_path: linker_scripts/jp/af.ld
+  ld_script_path: linker_scripts/jp/animalforest.ld
   base_path: .
   compiler: IDO
   find_file_boundaries: True
@@ -241,7 +241,7 @@ segments:
 
       - [0x016D60, asm, boot/016D60]
 
-      - [0x016F40, data, name: boot/016F40]
+      - [0x016F40, data, boot/016F40]
       - { start: 0x019D40, type: bss, vram: 0x8003E940, name: boot/8003E940 }
 
   - name: dmadata

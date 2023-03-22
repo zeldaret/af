@@ -1,0 +1,17 @@
+{
+    "search.useIgnoreFiles": false,
+    "search.exclude": {
+        "**/.git": true,
+        "build/**": true,
+        "expected/**": true,
+        "ctx.c": true,
+    },
+    "files.associations": {
+        "*.C": "c",
+        "*.h": "c",
+        "*.s": "n64asm",
+        "*.txt": "plaintext",
+        "*.inc": "n64asm",
+        "typeinfo": "c"
+    }
+}
