@@ -57,194 +57,212 @@ segments:
     type: header
     start: 0x0
 
-  - name: boot
+  - name: ipl3
     type: bin
     start: 0x40
 
   - name: entry
     type: code
-    start: 0x1000
+    start: 0x001000
     vram: 0x80025C00
     subsegments:
       - [0x1000, hasm]
 
-  - name: main
+  - name: boot
     type: code
-    start: 0x1060
+    start: 0x001060
     vram: 0x80025C60
     follows_vram: entry
     bss_size: 0x5D50
     subsegments:
-      - [0x1060, asm]
+      - [0x001060, asm, boot/001060]
 
       # libultra
-      - [0x008F20, asm, sendmesg] # c
-      - [0x009070, asm, pfsfreeblocks] # c
-      - [0x009210, asm, stopthread] # c
-      - [0x0092D0, asm, flashreadid] # c
-      - [0x0093A0, asm, recvmesg] # c
-      - [0x0094E0, hasm, setintmask]
-      - [0x009580, hasm, getintmask]
-      - [0x0095E0, asm, scale] # c
-      - [0x009690, asm, sinf] # c
-      - [0x009850, asm, sins] # c
-      - [0x0098C0, asm, sptask] # c
-      - [0x009B80, asm, destroythread] # c
-      - [0x009C90, asm, ll] # c
-      - [0x009F50, hasm, exceptasm]
-      - [0x00A880, asm, thread] # c
-      - [0x00A8C0, hasm, bzero]
-      - [0x00A960, asm, controller] # c
-      - [0x00AC40, asm]
-      - [0x00AD00, asm, flashsectorerase] # c
-      - [0x00AE50, asm, createthread] # c
-      - [0x00AFA0, asm, contreaddata] # c
-      - [0x00B180, asm, virtualtophysical] # c
-      - [0x00B200, hasm, writebackdcache]
-      - [0x00B280, asm, initialize] # c
-      - [0x00B5D0, asm]
-      - [0x00B630, hasm, setsr]
-      - [0x00B640, hasm, getsr]
-      - [0x00B650, asm]
-      - [0x00B690, asm, perspective] # c
-      - [0x00B920, asm, sprawdma] # c
-      - [0x00B9B0, asm, sirawdma] # c
-      - [0x00BA60, asm, epilinkhandle] # c
-      - [0x00BAB0, asm, viblack] # c
-      - [0x00BB20, asm]
-#       - [0x00BB20, asm, sirawread] # ambiguous # c
-#       - [0x00BB20, asm, sprawread] # ambiguous # c
-      - [0x00BB70, asm, getthreadid] # c
-      - [0x00BB90, asm, sptaskyield] # c
-      - [0x00BBB0, asm, pfsreadwritefile] # c
-      - [0x00C000, asm, pfsgetstatus] # c
-      - [0x00C230, asm]
-      - [0x00C240, asm, mtxidentf] # c
-      - [0x00C290, asm, visetmode] # c
-      - [0x00C2F0, asm, flashinit] # c
-      - [0x00C3E0, asm, lookat] # c
-      - [0x00C700, asm, motor] # c
-      - [0x00CAD0, asm, pfsallocatefile] # c
-      - [0x00CF50, asm, stoptimer] # c
-      - [0x00D040, hasm, probetlb]
-      - [0x00D100, asm, pimgr] # c
-      - [0x00D270, asm]
-      - [0x00D340, asm, devmgr] # c
-      - [0x00D750, asm, pirawdma] # c
-      - [0x00D820, asm, contpfs] # c
-      - [0x00E3A0, hasm, getcount]
-      - [0x00E3B0, asm]
-      - [0x00E3C0, asm, mtxl2f] # c
-      - [0x00E430, asm, flashreadstatus] # c
-      - [0x00E4C0, asm, getmemsize] # c
-      - [0x00E5E0, asm, pfssearchfile] # c
-      - [0x00E7B0, asm, seteventmesg] # c
-      - [0x00E870, hasm, sqrtf]
-      - [0x00E880, asm, afterprenmi] # c
-      - [0x00E8A0, asm, contquery] # c
-      - [0x00E940, asm, lookathil] # c
-      - [0x00F1C0, asm, xprintf] # c
-      - [0x00FEA0, hasm, unmaptlball]
-      - [0x00FEF0, asm, epidma] # c
-      - [0x00FF90, asm, string] # c
-      - [0x010030, hasm, invaldcache]
-      - [0x0100E0, hasm, invalicache]
-      - [0x010160, asm, createmesgqueue] # c
-      - [0x010190, asm, pfsrepairid] # c
-      - [0x0101F0, asm, timerintr] # c
-      - [0x010620, asm, sp] # c
-      - [0x010650, asm, si] # c
-      - [0x010680, asm, mtxident] # c
-      - [0x0106D0, asm, jammesg] # c
-      - [0x010820, asm, setthreadpri] # c
-      - [0x010900, asm, getthreadpri] # c
-      - [0x010920, asm, epirawread] # c
-      - [0x010A80, asm, viswapbuf] # c
-      - [0x010AD0, asm, position] # c
-      - [0x010CE0, asm, epirawdma] # c
-      - [0x010EC0, asm, sptaskyielded] # c
-      - [0x010F20, hasm, bcmp]
-      - [0x011040, asm, gettime] # c
-      - [0x0110D0, asm, rotate] # c
-      - [0x0112A0, asm, setglobalintmask] # c
-      - [0x0112F0, asm, aisetfreq] # c
-      - [0x011440, asm]
-      - [0x011460, asm, normalize] # c
-      - [0x0114C0, hasm, setcompare]
-      - [0x0114D0, asm, aigetstat] # c
-      - [0x0114E0, hasm, bcopy]
-      - [0x0117F0, asm, resetglobalintmask] # c
-      - [0x011850, asm, pfsdeletefile] # c
-      - [0x011AC0, asm, ortho] # c
-      - [0x011C80, asm, gbpakinit] # c
-      - [0x011EB0, asm, vi] # c
-      - [0x011FD0, asm, viswapcontext] # c
-      - [0x0122D0, hasm, interrupt]
-      - [0x012360, asm, pigetcmdq] # c
-      - [0x012390, asm, cosf] # c
-      - [0x012500, asm]
-      - [0x012550, asm, visetspecial] # c
-      - [0x0126B0, asm, coss] # c
-      - [0x0126E0, asm, flashwritearray] # c
-      - [0x012840, asm, flashallerase] # c
-      - [0x012980, asm, flashclearstatus] # c
-      - [0x0129D0, asm, visetevent] # c
-      - [0x012A30, asm, pfsisplug] # c
-      - [0x012D20, asm, flashwritebuffer] # c
-      - [0x012DB0, asm, pfsnumfiles] # c
-      - [0x012EE0, asm, cartrominit] # c
-      - [0x013040, asm, us2dex] # c
-      - [0x0131C0, asm, pfsselectbank] # c
-      - [0x013240, asm, contsetch] # c
-      - [0x0132A0, hasm, setfpccsr]
-      - [0x0132B0, hasm, getfpccsr]
-      - [0x0132C0, asm, pfsfilestate] # c
-      - [0x0134A0, asm, pfsinitpak] # c
-      - [0x0137B0, asm, pfschecker] # c
-      - [0x014160, asm, aigetlen] # c
-      - [0x014170, asm]
-      - [0x0141C0, hasm, maptlbrdb]
-      - [0x014220, asm, yieldthread] # c
-      - [0x014270, asm]
-      - [0x014280, asm, translate] # c
-      - [0x014350, hasm, getcause]
-      - [0x014360, asm, contramwrite] # c
-      - [0x0145B0, asm, contramread] # c
-      - [0x0147E0, asm, crc] # c
-      - [0x014950, asm, epirawwrite] # c
-      - [0x014AB0, asm, settimer] # c
-      - [0x014C40, asm, xldtob] # c
-      - [0x015750, asm, ldiv] # c
-      - [0x0158E0, asm, xlitob] # c
-      - [0x015B80, asm]
-#       - [0x015B80, asm, sirawwrite] # ambiguous # c
-#       - [0x015B80, asm, sprawwrite] # ambiguous # c
-      - [0x015BD0, asm, spsetstat] # c
-      - [0x015BE0, asm, spgetstat] # c
-      - [0x015BF0, asm]
-      - [0x015C00, asm, vimgr] # c
-      - [0x015F10, asm]
-      - [0x015F20, hasm, writebackdcacheall]
-      - [0x015F50, asm]
-      - [0x015F60, asm, mtxf2l] # c
-      - [0x015FD0, asm, startthread] # c
-      - [0x016120, asm, llcvt] # c
-      - [0x016330, asm, visetyscale] # c
-      - [0x016380, asm, visetxscale] # c
-      - [0x016490, asm, conteepread] # c
-      - [0x0166F0, asm, conteepwrite] # c
-      - [0x016B10, asm]
-      - [0x016B50, asm, spsetpc] # c
-      - [0x016B80, asm, flashreadarray] # c
-      - [0x016D20, asm, flashgetaddr] # c
-      - [0x016D50, hasm, setwatchlo]
+      - [0x008F20, asm, libultra/sendmesg] # c
+      - [0x009070, asm, libultra/pfsfreeblocks] # c
+      - [0x009210, asm, libultra/stopthread] # c
+      - [0x0092D0, asm, libultra/flashreadid] # c
+      - [0x0093A0, asm, libultra/recvmesg] # c
+      - [0x0094E0, hasm, libultra/setintmask]
+      - [0x009580, hasm, libultra/getintmask]
+      - [0x0095E0, asm, libultra/scale] # c
+      - [0x009690, asm, libultra/sinf] # c
+      - [0x009850, asm, libultra/sins] # c
+      - [0x0098C0, asm, libultra/sptask] # c
+      - [0x009B80, asm, libultra/destroythread] # c
+      - [0x009C90, asm, libultra/ll] # c
+      - [0x009F50, hasm, libultra/exceptasm]
+      - [0x00A880, asm, libultra/thread] # c
+      - [0x00A8C0, hasm, libultra/bzero]
+      - [0x00A960, asm, libultra/controller] # c
+      - [0x00AC40, asm, boot/00AC40]
+      - [0x00AD00, asm, libultra/flashsectorerase] # c
+      - [0x00AE50, asm, libultra/createthread] # c
+      - [0x00AFA0, asm, libultra/contreaddata] # c
+      - [0x00B180, asm, libultra/virtualtophysical] # c
+      - [0x00B200, hasm, libultra/writebackdcache]
+      - [0x00B280, asm, libultra/initialize] # c
+      - [0x00B5D0, asm, boot/00B5D0]
+      - [0x00B630, hasm, libultra/setsr]
+      - [0x00B640, hasm, libultra/getsr]
+      - [0x00B650, asm, boot/00B650]
+      - [0x00B690, asm, libultra/perspective] # c
+      - [0x00B920, asm, libultra/sprawdma] # c
+      - [0x00B9B0, asm, libultra/sirawdma] # c
+      - [0x00BA60, asm, libultra/epilinkhandle] # c
+      - [0x00BAB0, asm, libultra/viblack] # c
+      - [0x00BB20, asm, boot/00BB20]
+#       - [0x00BB20, asm, libultra/sirawread] # ambiguous # c
+#       - [0x00BB20, asm, libultra/sprawread] # ambiguous # c
+      - [0x00BB70, asm, libultra/getthreadid] # c
+      - [0x00BB90, asm, libultra/sptaskyield] # c
+      - [0x00BBB0, asm, libultra/pfsreadwritefile] # c
+      - [0x00C000, asm, libultra/pfsgetstatus] # c
+      - [0x00C230, asm, boot/00C230]
+      - [0x00C240, asm, libultra/mtxidentf] # c
+      - [0x00C290, asm, libultra/visetmode] # c
+      - [0x00C2F0, asm, libultra/flashinit] # c
+      - [0x00C3E0, asm, libultra/lookat] # c
+      - [0x00C700, asm, libultra/motor] # c
+      - [0x00CAD0, asm, libultra/pfsallocatefile] # c
+      - [0x00CF50, asm, libultra/stoptimer] # c
+      - [0x00D040, hasm, libultra/probetlb]
+      - [0x00D100, asm, libultra/pimgr] # c
+      - [0x00D270, asm, boot/00D270]
+      - [0x00D340, asm, libultra/devmgr] # c
+      - [0x00D750, asm, libultra/pirawdma] # c
+      - [0x00D820, asm, libultra/contpfs] # c
+      - [0x00E3A0, hasm, libultra/getcount]
+      - [0x00E3B0, asm, boot/00E3B0]
+      - [0x00E3C0, asm, libultra/mtxl2f] # c
+      - [0x00E430, asm, libultra/flashreadstatus] # c
+      - [0x00E4C0, asm, libultra/getmemsize] # c
+      - [0x00E5E0, asm, libultra/pfssearchfile] # c
+      - [0x00E7B0, asm, libultra/seteventmesg] # c
+      - [0x00E870, hasm, libultra/sqrtf]
+      - [0x00E880, asm, libultra/afterprenmi] # c
+      - [0x00E8A0, asm, libultra/contquery] # c
+      - [0x00E940, asm, libultra/lookathil] # c
+      - [0x00F1C0, asm, libultra/xprintf] # c
+      - [0x00FEA0, hasm, libultra/unmaptlball]
+      - [0x00FEF0, asm, libultra/epidma] # c
+      - [0x00FF90, asm, libultra/string] # c
+      - [0x010030, hasm, libultra/invaldcache]
+      - [0x0100E0, hasm, libultra/invalicache]
+      - [0x010160, asm, libultra/createmesgqueue] # c
+      - [0x010190, asm, libultra/pfsrepairid] # c
+      - [0x0101F0, asm, libultra/timerintr] # c
+      - [0x010620, asm, libultra/sp] # c
+      - [0x010650, asm, libultra/si] # c
+      - [0x010680, asm, libultra/mtxident] # c
+      - [0x0106D0, asm, libultra/jammesg] # c
+      - [0x010820, asm, libultra/setthreadpri] # c
+      - [0x010900, asm, libultra/getthreadpri] # c
+      - [0x010920, asm, libultra/epirawread] # c
+      - [0x010A80, asm, libultra/viswapbuf] # c
+      - [0x010AD0, asm, libultra/position] # c
+      - [0x010CE0, asm, libultra/epirawdma] # c
+      - [0x010EC0, asm, libultra/sptaskyielded] # c
+      - [0x010F20, hasm, libultra/bcmp]
+      - [0x011040, asm, libultra/gettime] # c
+      - [0x0110D0, asm, libultra/rotate] # c
+      - [0x0112A0, asm, libultra/setglobalintmask] # c
+      - [0x0112F0, asm, libultra/aisetfreq] # c
+      - [0x011440, asm, boot/011440]
+      - [0x011460, asm, libultra/normalize] # c
+      - [0x0114C0, hasm, libultra/setcompare]
+      - [0x0114D0, asm, libultra/aigetstat] # c
+      - [0x0114E0, hasm, libultra/bcopy]
+      - [0x0117F0, asm, libultra/resetglobalintmask] # c
+      - [0x011850, asm, libultra/pfsdeletefile] # c
+      - [0x011AC0, asm, libultra/ortho] # c
+      - [0x011C80, asm, libultra/gbpakinit] # c
+      - [0x011EB0, asm, libultra/vi] # c
+      - [0x011FD0, asm, libultra/viswapcontext] # c
+      - [0x0122D0, hasm, libultra/interrupt]
+      - [0x012360, asm, libultra/pigetcmdq] # c
+      - [0x012390, asm, libultra/cosf] # c
+      - [0x012500, asm, boot/012500]
+      - [0x012550, asm, libultra/visetspecial] # c
+      - [0x0126B0, asm, libultra/coss] # c
+      - [0x0126E0, asm, libultra/flashwritearray] # c
+      - [0x012840, asm, libultra/flashallerase] # c
+      - [0x012980, asm, libultra/flashclearstatus] # c
+      - [0x0129D0, asm, libultra/visetevent] # c
+      - [0x012A30, asm, libultra/pfsisplug] # c
+      - [0x012D20, asm, libultra/flashwritebuffer] # c
+      - [0x012DB0, asm, libultra/pfsnumfiles] # c
+      - [0x012EE0, asm, libultra/cartrominit] # c
+      - [0x013040, asm, libultra/us2dex] # c
+      - [0x0131C0, asm, libultra/pfsselectbank] # c
+      - [0x013240, asm, libultra/contsetch] # c
+      - [0x0132A0, hasm, libultra/setfpccsr]
+      - [0x0132B0, hasm, libultra/getfpccsr]
+      - [0x0132C0, asm, libultra/pfsfilestate] # c
+      - [0x0134A0, asm, libultra/pfsinitpak] # c
+      - [0x0137B0, asm, libultra/pfschecker] # c
+      - [0x014160, asm, libultra/aigetlen] # c
+      - [0x014170, asm, boot/014170]
+      - [0x0141C0, hasm, libultra/maptlbrdb]
+      - [0x014220, asm, libultra/yieldthread] # c
+      - [0x014270, asm, boot/014270]
+      - [0x014280, asm, libultra/translate] # c
+      - [0x014350, hasm, libultra/getcause]
+      - [0x014360, asm, libultra/contramwrite] # c
+      - [0x0145B0, asm, libultra/contramread] # c
+      - [0x0147E0, asm, libultra/crc] # c
+      - [0x014950, asm, libultra/epirawwrite] # c
+      - [0x014AB0, asm, libultra/settimer] # c
+      - [0x014C40, asm, libultra/xldtob] # c
+      - [0x015750, asm, libultra/ldiv] # c
+      - [0x0158E0, asm, libultra/xlitob] # c
+      - [0x015B80, asm, boot/015B80]
+#       - [0x015B80, asm, libultra/sirawwrite] # ambiguous # c
+#       - [0x015B80, asm, libultra/sprawwrite] # ambiguous # c
+      - [0x015BD0, asm, libultra/spsetstat] # c
+      - [0x015BE0, asm, libultra/spgetstat] # c
+      - [0x015BF0, asm, boot/015BF0]
+      - [0x015C00, asm, libultra/vimgr] # c
+      - [0x015F10, asm, boot/015F10]
+      - [0x015F20, hasm, libultra/writebackdcacheall]
+      - [0x015F50, asm, boot/015F50]
+      - [0x015F60, asm, libultra/mtxf2l] # c
+      - [0x015FD0, asm, libultra/startthread] # c
+      - [0x016120, asm, libultra/llcvt] # c
+      - [0x016330, asm, libultra/visetyscale] # c
+      - [0x016380, asm, libultra/visetxscale] # c
+      - [0x016490, asm, libultra/conteepread] # c
+      - [0x0166F0, asm, libultra/conteepwrite] # c
+      - [0x016B10, asm, boot/016B10]
+      - [0x016B50, asm, libultra/spsetpc] # c
+      - [0x016B80, asm, libultra/flashreadarray] # c
+      - [0x016D20, asm, libultra/flashgetaddr] # c
+      - [0x016D50, hasm, libultra/setwatchlo]
 
-      - [0x016D60, asm]
+      - [0x016D60, asm, boot/016D60]
 
-      - [0x016F40, data]
-      - { start: 0x019D40, type: bss, vram: 0x8003E940 }
+      - [0x016F40, data, name: boot/016F40]
+      - { start: 0x019D40, type: bss, vram: 0x8003E940, name: boot/8003E940 }
+
+  - name: dmadata
+    type: bin
+    start: 0x019D40
+    vram: 0x80044690
+    follows_vram: boot
 
   - type: bin
-    start: 0x019D40
-    follows_vram: main
+    start: 0x027130
+
+  - name: code
+    type: code
+    start: 0x675720
+    vram: 0x80051A80
+    # follows_vram: entry
+    # bss_size: 0x5D50
+    subsegments:
+      - [0x675720, asm, code/675720]
+
+  - type: bin
+    start: 0x73F4D0
+
   - [0x1914000]
