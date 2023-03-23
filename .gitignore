@@ -6,10 +6,10 @@ build/
 
 linker_scripts/jp/auto/
 linker_scripts/cn/auto/
-linker_scripts/jp/af.ld
-linker_scripts/cn/af.ld
+linker_scripts/jp/animalforest.ld
+linker_scripts/cn/animalforest.ld
 *_auto.ld
-af.ld
+animalforest.ld
 
 __pycache__/
 .make_options

@@ -75,7 +75,9 @@ segments:
     follows_vram: entry
     bss_size: 0x5D50
     subsegments:
-      - [0x001060, asm, boot/001060]
+      - [0x001060, asm, boot/boot_main]
+
+      - [0x0011F0, asm, boot/0011F0]
 
       # libultra
       - [0x008F20, asm, libultra/sendmesg] # c
@@ -241,7 +243,10 @@ segments:
 
       - [0x016D60, asm, boot/016D60]
 
-      - [0x016F40, data, boot/016F40]
+      - [0x016FC0, data, boot/016FC0]
+
+      - [0x018580, rodata, boot/018580]
+
       - { start: 0x019D40, type: bss, vram: 0x8003E940, name: boot/8003E940 }
 
   - name: dmadata
@@ -258,9 +263,15 @@ segments:
     start: 0x675720
     vram: 0x80051A80
     # follows_vram: entry
-    # bss_size: 0x5D50
+    bss_size: 0x36C90
     subsegments:
       - [0x675720, asm, code/675720]
+
+      - [0x7248D0, data, code/7248D0]
+
+      - [0x739DB0, rodata, code/739DB0]
+
+      - { start: 0x73F4D0, type: bss, vram: 0x8011B830, name: code/73F4D0 }
 
   - type: bin
     start: 0x73F4D0
