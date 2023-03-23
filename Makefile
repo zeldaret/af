@@ -105,7 +105,8 @@ SPLAT_YAML      ?= $(TARGET).$(VERSION).yaml
 
 
 
-IINC       := -Iinclude -Ibin/$(VERSION) -I.
+IINC := -Iinclude -Ibin/$(VERSION) -I.
+IINC += -Ilib/ultralib/include -Ilib/ultralib/include/PR
 
 ifeq ($(KEEP_MDEBUG),0)
   RM_MDEBUG = $(OBJCOPY) --remove-section .mdebug $@
@@ -129,9 +130,9 @@ else
 endif
 
 
-CFLAGS          += -nostdinc -fno-PIC -G 0 -mgp32 -mfp32 -fno-common -funsigned-char
+CFLAGS          += -G 0 -non_shared -Xcpluscomm -nostdinc -Wab,-r4300_mul
 
-WARNINGS        :=
+WARNINGS        := -fullwarn -verbose -woff 624,649,838,712,516,513,596,564,594
 ASFLAGS         := -march=vr4300 -32 -G0
 COMMON_DEFINES  := -D_MIPS_SZLONG=32 -D__USE_ISOC99
 GBI_DEFINES     := -DF3DEX_GBI_2
@@ -142,6 +143,7 @@ ENDIAN          := -EB
 
 OPTFLAGS        := -O2
 MIPS_VERSION    := -mips2
+ICONV_FLAGS     := --from-code=UTF-8 --to-code=EUC-JP
 
 # Use relocations and abi fpr names in the dump
 OBJDUMP_FLAGS := --disassemble --reloc --disassemble-zeroes -Mreg-names=32 -Mno-aliases
@@ -267,7 +269,7 @@ $(BUILD_DIR)/%.o: %.bin
 	$(OBJCOPY) -I binary -O elf32-big $< $@
 
 $(BUILD_DIR)/%.o: %.s
-	$(CPP) $(CPPFLAGS) $(BUILD_DEFINES) $(IINC) -I $(dir $*) $(COMMON_DEFINES) $(RELEASE_DEFINES) $(GBI_DEFINES) $(AS_DEFINES) $< | $(AS) $(ASFLAGS) $(ENDIAN) $(IINC) -I $(dir $*) -o $@
+	$(CPP) $(CPPFLAGS) $(BUILD_DEFINES) $(IINC) -I $(dir $*) $(COMMON_DEFINES) $(RELEASE_DEFINES) $(GBI_DEFINES) $(AS_DEFINES) $< | $(ICONV) $(ICONV_FLAGS) | $(AS) $(ASFLAGS) $(ENDIAN) $(IINC) -I $(dir $*) -o $@
 	$(OBJDUMP_CMD)
 
 $(BUILD_DIR)/%.o: %.c

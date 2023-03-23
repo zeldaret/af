@@ -36,15 +36,12 @@ options:
   mnemonic_ljust: 12
   rom_address_padding: True
   dump_symbols: True
-  # generated_c_preamble: |
-  #   #include "libultra.h"
-  #   #include "include_asm.h"
-  #   #include "macros_defines.h"
-  #   #include "unknown_structs.h"
+  generated_c_preamble: |
+    #include "ultra64.h"
+    #include "unknown_structs.h"
   asm_inc_header: ""
   use_legacy_include_asm: False
   create_asm_dependencies: True
-  # string_encoding: SHIFT-JIS
   asm_function_macro: glabel
   asm_jtbl_label_macro: jlabel
   asm_data_macro: dlabel
@@ -75,7 +72,7 @@ segments:
     follows_vram: entry
     bss_size: 0x5D50
     subsegments:
-      - [0x001060, asm, boot/boot_main]
+      - [0x001060, c, boot/boot_main]
 
       - [0x0011F0, asm, boot/0011F0]
 
@@ -265,6 +262,8 @@ segments:
       - [0x016DE0, asm, boot/016DE0]
       - [0x016E20, asm, boot/016E20]
       - [0x016E60, asm, boot/016E60]
+
+      - [0x016EF0, data, libultra/rsp/rspboot]
 
       - [0x016FC0, data, boot/016FC0]
 

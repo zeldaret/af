@@ -438,7 +438,7 @@ __osPfsPifRam = 0x80043360; // type:u8 size:0x40 (contramread, false)
 __CartRomHandle = 0x800433A0; // size:0x74 (cartrominit, true)
 
 
-B_80043420_jp = 0x80043420; // size:0x1220 (vimgr, false)
+B_80043420_jp = 0x80043420; // 0x1220 (vimgr, false)
 B_800445D0_jp = 0x800445D0; //
 B_800445E8_jp = 0x800445E8; //
 B_80044600_jp = 0x80044600; //
