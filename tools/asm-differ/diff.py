@@ -766,7 +766,6 @@ class AnsiFormatter(Formatter):
         BasicFormat.STACK: Fore.YELLOW,
         BasicFormat.REGISTER: Fore.YELLOW,
         BasicFormat.REGISTER_CATEGORY: Fore.LIGHTYELLOW_EX,
-        BasicFormat.DELAY_SLOT: Fore.LIGHTBLACK_EX,
         BasicFormat.DIFF_CHANGE: Fore.LIGHTBLUE_EX,
         BasicFormat.DIFF_ADD: Fore.GREEN,
         BasicFormat.DIFF_REMOVE: Fore.RED,
@@ -2220,7 +2219,6 @@ class Line:
 def process(dump: str, config: Config) -> List[Line]:
     arch = config.arch
     processor = arch.proc(config)
-    skip_next = False
     source_lines = []
     source_filename = None
     source_line_num = None
@@ -2229,7 +2227,6 @@ def process(dump: str, config: Config) -> List[Line]:
     num_instr = 0
     data_refs: Dict[int, Dict[str, List[int]]] = defaultdict(lambda: defaultdict(list))
     output: List[Line] = []
-    stop_after_delay_slot = False
     lines = dump.split("\n")
     while i < len(lines):
         row = lines[i]
@@ -2364,17 +2361,8 @@ def process(dump: str, config: Config) -> List[Line]:
         if not config.score_stack_differences:
             scorable_line = re.sub(arch.re_sprel, "addr(sp)", scorable_line)
 
-        if skip_next:
-            skip_next = False
-            row = "<delay-slot>"
-            mnemonic = "<delay-slot>"
-            scorable_line = "<delay-slot>"
-        if mnemonic in arch.branch_likely_instructions:
-            skip_next = True
-
         row = re.sub(arch.re_reg, "<reg>", row)
         row = re.sub(arch.re_sprel, "addr(sp)", row)
-        row_with_imm = row
         if mnemonic in arch.instructions_with_address_immediates:
             row = row.strip()
             row, _ = split_off_address(row)
@@ -2776,13 +2764,6 @@ def do_diff(lines1: List[Line], lines2: List[Line], config: Config) -> Diff:
                 # the diff, and don't just happen to have the are the same address
                 # by accident.
                 pass
-            elif line1.diff_row == "<delay-slot>":
-                # Don't draw attention to differing branch-likely delay slots: they
-                # typically mirror the branch destination - 1 so the real difference
-                # is elsewhere. Still, do mark them as different to avoid confusion.
-                # No need to consider branches because delay slots can't branch.
-                out1 = out1.reformat(BasicFormat.DELAY_SLOT)
-                out2 = out2.reformat(BasicFormat.DELAY_SLOT)
             else:
                 mnemonic = line1.original.split()[0]
                 branchless1, address1 = out1.plain(), ""
