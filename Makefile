@@ -102,6 +102,12 @@ SPLAT_YAML      ?= $(TARGET).$(VERSION).yaml
 
 IINC       := -Iinclude -Ibin/$(VERSION) -I.
 
+ifeq ($(KEEP_MDEBUG),0)
+  RM_MDEBUG = $(OBJCOPY) --remove-section .mdebug $@
+else
+  RM_MDEBUG = @:
+endif
+
 # Check code syntax with host compiler
 CHECK_WARNINGS := -Wall -Wextra -Wimplicit-fallthrough -Wno-unknown-pragmas -Wno-missing-braces -Wno-sign-compare -Wno-uninitialized
 # Have CC_CHECK pretend to be a MIPS compiler
@@ -266,12 +272,12 @@ $(BUILD_DIR)/%.o: %.bin
 	$(OBJCOPY) -I binary -O elf32-big $< $@
 
 $(BUILD_DIR)/%.o: %.s
-	$(CPP) $(CPPFLAGS) $(BUILD_DEFINES) $(IINC) -I $(dir $*) $(COMMON_DEFINES) $(RELEASE_DEFINES) $(GBI_DEFINES) $(AS_DEFINES) $< | $(ICONV) $(ICONV_FLAGS) | $(AS) $(ASFLAGS) $(ENDIAN) $(IINC) -I $(dir $*) -o $@
+	$(CPP) $(CPPFLAGS) $(BUILD_DEFINES) $(IINC) -I $(dir $*) $(COMMON_DEFINES) $(RELEASE_DEFINES) $(GBI_DEFINES) $(AS_DEFINES) $< | $(AS) $(ASFLAGS) $(ENDIAN) $(IINC) -I $(dir $*) -o $@
 	$(OBJDUMP_CMD)
 
 $(BUILD_DIR)/%.o: %.c
 	$(CC_CHECK) $(CC_CHECK_FLAGS) $(IINC) -I $(dir $*) $(CHECK_WARNINGS) $(BUILD_DEFINES) $(COMMON_DEFINES) $(RELEASE_DEFINES) $(GBI_DEFINES) $(C_DEFINES) $(MIPS_BUILTIN_DEFS) -o $@ $<
-	$(CC) $(C_COMPILER_FLAGS) -I $(dir $*) -E $< | $(ICONV) $(ICONV_FLAGS) | $(CC) -x c $(C_COMPILER_FLAGS) -I $(dir $*) -c -o $@ -
+	$(CC) -x c $(C_COMPILER_FLAGS) -I $(dir $*) -c -o $@ $<
 	$(OBJDUMP_CMD)
 	$(RM_MDEBUG)
 
