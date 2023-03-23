@@ -1,5 +1,7 @@
 // .text
 
+entrypoint = 0x80025C00; // type:func
+
 func_80025C00_jp = 0x80025C00; // type:func
 func_80025C60_jp = 0x80025C60; // type:func
 func_80025CC0_jp = 0x80025CC0; // type:func

@@ -63,7 +63,7 @@ segments:
     start: 0x001000
     vram: 0x80025C00
     subsegments:
-      - [0x1000, hasm]
+      - [0x1000, hasm, entry]
 
   - name: boot
     type: code
