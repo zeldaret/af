@@ -48,7 +48,7 @@ ROMC      := $(BUILD_DIR)/$(TARGET).$(VERSION).z64
 BUILD_DEFINES ?=
 
 ifeq ($(VERSION),jp)
-	BUILD_DEFINES   += -DVERSION_US=1
+	BUILD_DEFINES   += -DVERSION_JP=1
 else
 ifeq ($(VERSION),cn)
 	BUILD_DEFINES   += -DVERSION_CN=1 -DBBPLAYER=1
@@ -117,7 +117,7 @@ endif
 # Check code syntax with host compiler
 CHECK_WARNINGS := -Wall -Wextra -Wimplicit-fallthrough -Wno-unknown-pragmas -Wno-missing-braces -Wno-sign-compare -Wno-uninitialized
 # Have CC_CHECK pretend to be a MIPS compiler
-MIPS_BUILTIN_DEFS := -D_MIPS_ISA_MIPS2=2 -D_MIPS_ISA=_MIPS_ISA_MIPS2 -D_ABIO32=1 -D_MIPS_SIM=_ABIO32 -D_MIPS_SZINT=32 -D_MIPS_SZPTR=32
+MIPS_BUILTIN_DEFS := -DMIPSEB -D_MIPS_FPSET=16 -D_MIPS_ISA=2 -D_ABIO32=1 -D_MIPS_SIM=_ABIO32 -D_MIPS_SZINT=32 -D_MIPS_SZPTR=32
 ifneq ($(RUN_CC_CHECK),0)
 #	The -MMD flags additionaly creates a .d file with the same name as the .o file.
 	CC_CHECK          := $(CC_CHECK_COMP)
@@ -134,11 +134,11 @@ CFLAGS          += -G 0 -non_shared -Xcpluscomm -nostdinc -Wab,-r4300_mul
 
 WARNINGS        := -fullwarn -verbose -woff 624,649,838,712,516,513,596,564,594
 ASFLAGS         := -march=vr4300 -32 -G0
-COMMON_DEFINES  := -D_MIPS_SZLONG=32 -D__USE_ISOC99
+COMMON_DEFINES  := -D_MIPS_SZLONG=32
 GBI_DEFINES     := -DF3DEX_GBI_2
 RELEASE_DEFINES := -DNDEBUG -D_FINALROM
 AS_DEFINES      := -DMIPSEB -D_LANGUAGE_ASSEMBLY -D_ULTRA64
-C_DEFINES       := -D_LANGUAGE_C
+C_DEFINES       := -DLANGUAGE_C -D_LANGUAGE_C
 ENDIAN          := -EB
 
 OPTFLAGS        := -O2
