@@ -83,8 +83,10 @@ ifneq ($(shell type $(MIPS_BINUTILS_PREFIX)ld >/dev/null 2>/dev/null; echo $$?),
 $(error Please install or build $(MIPS_BINUTILS_PREFIX))
 endif
 
-# TODO
-CC              :=
+
+CC              := tools/ido/$(DETECTED_OS)/7.1/cc
+CC_OLD          := tools/ido/$(DETECTED_OS)/5.3/cc
+
 
 AS              := $(MIPS_BINUTILS_PREFIX)as
 LD              := $(MIPS_BINUTILS_PREFIX)ld
@@ -94,6 +96,9 @@ GCC             := $(MIPS_BINUTILS_PREFIX)gcc
 CPP             := $(MIPS_BINUTILS_PREFIX)cpp
 STRIP           := $(MIPS_BINUTILS_PREFIX)strip
 ICONV           := iconv
+ASM_PROC        := python3 tools/asm-processor/build.py
+
+ASM_PROC_FLAGS  := --input-enc=utf-8 --output-enc=euc-jp --convert-statics=global-with-filename
 
 SPLAT           ?= tools/splat/split.py
 SPLAT_YAML      ?= $(TARGET).$(VERSION).yaml
@@ -126,7 +131,7 @@ endif
 
 CFLAGS          += -nostdinc -fno-PIC -G 0 -mgp32 -mfp32 -fno-common -funsigned-char
 
-WARNINGS        := -w
+WARNINGS        :=
 ASFLAGS         := -march=vr4300 -32 -G0
 COMMON_DEFINES  := -D_MIPS_SZLONG=32 -D__USE_ISOC99
 GBI_DEFINES     := -DF3DEX_GBI_2
@@ -135,21 +140,8 @@ AS_DEFINES      := -DMIPSEB -D_LANGUAGE_ASSEMBLY -D_ULTRA64
 C_DEFINES       := -D_LANGUAGE_C
 ENDIAN          := -EB
 
-ifeq ($(VERSION),jp)
 OPTFLAGS        := -O2
-# OPTFLAGS        +=
-MIPS_VERSION    := -mips3
-ICONV_FLAGS     := --from-code=UTF-8 --to-code=Shift-JIS
-endif
-ifeq ($(VERSION),cn)
-CFLAGS          += -mcpu=4300
-OPTFLAGS        := -O2 -ggdb
 MIPS_VERSION    := -mips2
-ICONV_FLAGS     := --from-code=UTF-8 --to-code=EUC-CN
-endif
-
-# Variable to simplify C compiler invocation
-C_COMPILER_FLAGS = $(CFLAGS) $(BUILD_DEFINES) $(IINC) $(WARNINGS) $(MIPS_VERSION) $(ENDIAN) $(COMMON_DEFINES) $(RELEASE_DEFINES) $(GBI_DEFINES) $(C_DEFINES) $(OPTFLAGS)
 
 # Use relocations and abi fpr names in the dump
 OBJDUMP_FLAGS := --disassemble --reloc --disassemble-zeroes -Mreg-names=32 -Mno-aliases
@@ -190,6 +182,9 @@ $(shell mkdir -p $(BUILD_DIR)/linker_scripts/$(VERSION) $(BUILD_DIR)/linker_scri
 # directory flags
 
 # per-file flags
+
+# cc & asm-processor
+build/src/%.o: CC := $(ASM_PROC) $(ASM_PROC_FLAGS) $(CC) -- $(AS) $(ASFLAGS) --
 
 
 #### Main Targets ###
@@ -277,7 +272,7 @@ $(BUILD_DIR)/%.o: %.s
 
 $(BUILD_DIR)/%.o: %.c
 	$(CC_CHECK) $(CC_CHECK_FLAGS) $(IINC) -I $(dir $*) $(CHECK_WARNINGS) $(BUILD_DEFINES) $(COMMON_DEFINES) $(RELEASE_DEFINES) $(GBI_DEFINES) $(C_DEFINES) $(MIPS_BUILTIN_DEFS) -o $@ $<
-	$(CC) -x c $(C_COMPILER_FLAGS) -I $(dir $*) -c -o $@ $<
+	$(CC) -c $(CFLAGS) $(BUILD_DEFINES) $(IINC) $(WARNINGS) $(MIPS_VERSION) $(ENDIAN) $(COMMON_DEFINES) $(RELEASE_DEFINES) $(GBI_DEFINES) $(C_DEFINES) $(OPTFLAGS) -o $@ $<
 	$(OBJDUMP_CMD)
 	$(RM_MDEBUG)
 
