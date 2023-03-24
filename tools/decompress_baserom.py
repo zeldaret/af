@@ -12,8 +12,8 @@ FILE_TABLE_OFFSET = {
 }
 
 VERSIONS_MD5S = {
-    "jp":             "d7ae64f2f47a9fa3f87686a3c5ce09af",
-    "cn":             "af83e0cf36298e62e9eb2eb8c89aa710",
+    "jp": "d7ae64f2f47a9fa3f87686a3c5ce09af",
+    "cn": "af83e0cf36298e62e9eb2eb8c89aa710",
 }
 
 description = "Convert a rom that uses dmadata to an uncompressed one."
