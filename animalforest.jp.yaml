@@ -37,8 +37,7 @@ options:
   rom_address_padding: True
   dump_symbols: True
   generated_c_preamble: |
-    #include "ultra64.h"
-    #include "unknown_structs.h"
+    #include "global.h"
   asm_inc_header: ""
   use_legacy_include_asm: False
   create_asm_dependencies: True
