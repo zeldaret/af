@@ -129,8 +129,8 @@ segments:
       - [0x00BA60, asm, libultra/epilinkhandle] # c
       - [0x00BAB0, asm, libultra/viblack] # c
       - [0x00BB20, asm, boot/00BB20]
-#       - [0x00BB20, asm, libultra/sirawread] # ambiguous # c
-#       - [0x00BB20, asm, libultra/sprawread] # ambiguous # c
+      # - [0x00BB20, asm, libultra/sirawread] # ambiguous # c
+      # - [0x00BB20, asm, libultra/sprawread] # ambiguous # c
       - [0x00BB70, asm, libultra/getthreadid] # c
       - [0x00BB90, asm, libultra/sptaskyield] # c
       - [0x00BBB0, asm, libultra/pfsreadwritefile] # c
@@ -234,8 +234,8 @@ segments:
       - [0x015750, asm, libultra/ldiv] # c
       - [0x0158E0, asm, libultra/xlitob] # c
       - [0x015B80, asm, boot/015B80]
-#       - [0x015B80, asm, libultra/sirawwrite] # ambiguous # c
-#       - [0x015B80, asm, libultra/sprawwrite] # ambiguous # c
+      # - [0x015B80, asm, libultra/sirawwrite] # ambiguous # c
+      # - [0x015B80, asm, libultra/sprawwrite] # ambiguous # c
       - [0x015BD0, asm, libultra/spsetstat] # c
       - [0x015BE0, asm, libultra/spgetstat] # c
       - [0x015BF0, asm, boot/015BF0]
