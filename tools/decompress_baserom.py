@@ -12,7 +12,7 @@ FILE_TABLE_OFFSET = {
 }
 
 VERSIONS_MD5S = {
-    "jp":             "a4f7c57c180297b2e7ba5a5feb44fe0b",
+    "jp":             "d7ae64f2f47a9fa3f87686a3c5ce09af",
     "cn":             "af83e0cf36298e62e9eb2eb8c89aa710",
 }
 
@@ -224,11 +224,11 @@ for i in range(padding_start,padding_end):
     fileContent[i] = 0xFF
 
 # Check to see if the ROM is a "vanilla" ROM
-# str_hash = get_str_hash(bytearray(fileContent))
-# if str_hash != correct_str_hash:
-#     print("Error: Expected a hash of " + correct_str_hash + " but got " + str_hash + ". " +
-#           "The baserom has probably been tampered, find a new one")
-#     sys.exit(1)
+str_hash = get_str_hash(bytearray(fileContent))
+if str_hash != correct_str_hash:
+    print("Error: Expected a hash of " + correct_str_hash + " but got " + str_hash + ". " +
+          "The baserom has probably been tampered, find a new one")
+    sys.exit(1)
 
 # Write out our new ROM
 print(f"Writing new ROM {UNCOMPRESSED_PATH}.")

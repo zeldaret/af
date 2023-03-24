@@ -1,3 +1,5 @@
+// For addresses that the disassembler should not try to symbolize
+
 D_00000000 = 0x00000000; // ignore:true
 
 D_80000000 = 0x80000000; // ignore:true

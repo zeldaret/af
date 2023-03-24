@@ -10,10 +10,8 @@
 .endm
 
 .macro jlabel label
-#if 1
     .global \label
     .type \label, @function
-#endif
     \label:
 .endm
 

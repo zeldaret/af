@@ -48,10 +48,10 @@ ROMC      := $(BUILD_DIR)/$(TARGET).$(VERSION).z64
 BUILD_DEFINES ?=
 
 ifeq ($(VERSION),jp)
-	BUILD_DEFINES   += -DVERSION_JP=1
+    BUILD_DEFINES   += -DVERSION_JP=1
 else
 ifeq ($(VERSION),cn)
-	BUILD_DEFINES   += -DVERSION_CN=1 -DBBPLAYER=1
+    BUILD_DEFINES   += -DVERSION_CN=1 -DBBPLAYER=1
 else
 $(error Invalid VERSION variable detected. Please use either 'jp' or 'cn')
 endif
@@ -59,8 +59,8 @@ endif
 
 
 ifeq ($(NON_MATCHING),1)
-	BUILD_DEFINES   += -DNON_MATCHING -DAVOID_UB
-	COMPARE  := 0
+    BUILD_DEFINES   += -DNON_MATCHING -DAVOID_UB
+    COMPARE  := 0
 endif
 
 MAKE = make
@@ -69,18 +69,18 @@ LDFLAGS  := --no-check-sections --accept-unknown-input-arch --emit-relocs
 
 UNAME_S := $(shell uname -s)
 ifeq ($(OS),Windows_NT)
-	DETECTED_OS := windows
+    DETECTED_OS := windows
 else ifeq ($(UNAME_S),Linux)
-	DETECTED_OS := linux
+    DETECTED_OS := linux
 else ifeq ($(UNAME_S),Darwin)
-	DETECTED_OS := mac
-	MAKE := gmake
-	CPPFLAGS += -xc++
+    DETECTED_OS := mac
+    MAKE := gmake
+    CPPFLAGS += -xc++
 endif
 
 #### Tools ####
 ifneq ($(shell type $(MIPS_BINUTILS_PREFIX)ld >/dev/null 2>/dev/null; echo $$?), 0)
-$(error Please install or build $(MIPS_BINUTILS_PREFIX))
+$(error Unable to find $(MIPS_BINUTILS_PREFIX)ld. Please install or build MIPS binutils, commonly mips-linux-gnu. (or set MIPS_BINUTILS_PREFIX if your MIPS binutils install uses another prefix))
 endif
 
 
@@ -92,9 +92,7 @@ AS              := $(MIPS_BINUTILS_PREFIX)as
 LD              := $(MIPS_BINUTILS_PREFIX)ld
 OBJCOPY         := $(MIPS_BINUTILS_PREFIX)objcopy
 OBJDUMP         := $(MIPS_BINUTILS_PREFIX)objdump
-GCC             := $(MIPS_BINUTILS_PREFIX)gcc
-CPP             := $(MIPS_BINUTILS_PREFIX)cpp
-STRIP           := $(MIPS_BINUTILS_PREFIX)strip
+CPP             := cpp
 ICONV           := iconv
 ASM_PROC        := python3 tools/asm-processor/build.py
 
@@ -119,14 +117,14 @@ CHECK_WARNINGS := -Wall -Wextra -Wimplicit-fallthrough -Wno-unknown-pragmas -Wno
 # Have CC_CHECK pretend to be a MIPS compiler
 MIPS_BUILTIN_DEFS := -DMIPSEB -D_MIPS_FPSET=16 -D_MIPS_ISA=2 -D_ABIO32=1 -D_MIPS_SIM=_ABIO32 -D_MIPS_SZINT=32 -D_MIPS_SZPTR=32
 ifneq ($(RUN_CC_CHECK),0)
-#	The -MMD flags additionaly creates a .d file with the same name as the .o file.
-	CC_CHECK          := $(CC_CHECK_COMP)
-	CC_CHECK_FLAGS    := -MMD -MP -fno-builtin -fsyntax-only -funsigned-char -fdiagnostics-color -std=gnu89 -m32 -DNON_MATCHING -DAVOID_UB -DCC_CHECK=1
-	ifneq ($(WERROR), 0)
-		CHECK_WARNINGS += -Werror
-	endif
+#   The -MMD flags additionaly creates a .d file with the same name as the .o file.
+    CC_CHECK          := $(CC_CHECK_COMP)
+    CC_CHECK_FLAGS    := -MMD -MP -fno-builtin -fsyntax-only -funsigned-char -fdiagnostics-color -std=gnu89 -m32 -DNON_MATCHING -DAVOID_UB -DCC_CHECK=1
+    ifneq ($(WERROR), 0)
+        CHECK_WARNINGS += -Werror
+    endif
 else
-	CC_CHECK          := @:
+    CC_CHECK          := @:
 endif
 
 
@@ -149,11 +147,11 @@ ICONV_FLAGS     := --from-code=UTF-8 --to-code=EUC-JP
 OBJDUMP_FLAGS := --disassemble --reloc --disassemble-zeroes -Mreg-names=32 -Mno-aliases
 
 ifneq ($(OBJDUMP_BUILD), 0)
-	OBJDUMP_CMD = $(OBJDUMP) $(OBJDUMP_FLAGS) $@ > $(@:.o=.dump.s)
-	OBJCOPY_BIN = $(OBJCOPY) -O binary $@ $@.bin
+    OBJDUMP_CMD = $(OBJDUMP) $(OBJDUMP_FLAGS) $@ > $(@:.o=.dump.s)
+    OBJCOPY_BIN = $(OBJCOPY) -O binary $@ $@.bin
 else
-	OBJDUMP_CMD = @:
-	OBJCOPY_BIN = @:
+    OBJDUMP_CMD = @:
+    OBJCOPY_BIN = @:
 endif
 
 
@@ -178,7 +176,7 @@ DEP_FILES := $(O_FILES:.o=.d) \
              $(O_FILES:.o=.asmproc.d)
 
 # create build directories
-$(shell mkdir -p $(BUILD_DIR)/linker_scripts/$(VERSION) $(BUILD_DIR)/linker_scripts/$(VERSION)/auto $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS) $(LIBULTRA_DIRS) $(LIBMUS_DIRS),$(BUILD_DIR)/$(dir)))
+$(shell mkdir -p $(BUILD_DIR)/linker_scripts/$(VERSION) $(BUILD_DIR)/linker_scripts/$(VERSION)/auto $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS),$(BUILD_DIR)/$(dir)))
 
 
 # directory flags
@@ -237,13 +235,7 @@ init:
 	$(MAKE) all
 	$(MAKE) diff-init
 
-format:
-	clang-format-11 -i -style=file $(C_FILES)
-
-tidy:
-	clang-tidy-11 -p . --fix --fix-errors $(C_FILES) -- $(CC_CHECK_FLAGS) $(IINC) $(CHECK_WARNINGS) $(BUILD_DEFINES) $(COMMON_DEFINES) $(RELEASE_DEFINES) $(GBI_DEFINES) $(C_DEFINES) $(MIPS_BUILTIN_DEFS)
-
-.PHONY: all compressed uncompressed clean distclean setup extract diff-init init format tidy
+.PHONY: all compressed uncompressed clean distclean setup extract diff-init init
 .DEFAULT_GOAL := all
 # Prevent removing intermediate files
 .SECONDARY:
@@ -255,7 +247,7 @@ $(ROM): $(ELF)
 	$(OBJCOPY) -O binary --pad-to=0x1914000 --gap-fill=0xFF $< $@
 
 # TODO: avoid using auto/undefined
-$(ELF): $(O_FILES) $(LIBULTRA_O) $(LD_SCRIPT) $(BUILD_DIR)/linker_scripts/$(VERSION)/hardware_regs.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/undefined_syms.ld $(BUILD_DIR)/linker_scripts/common_undef_syms.ld $(BUILD_DIR)/linker_scripts/libultra_syms.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_syms_auto.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_funcs_auto.ld
+$(ELF): $(O_FILES) $(LD_SCRIPT) $(BUILD_DIR)/linker_scripts/$(VERSION)/hardware_regs.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/undefined_syms.ld $(BUILD_DIR)/linker_scripts/common_undef_syms.ld $(BUILD_DIR)/linker_scripts/libultra_syms.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_syms_auto.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_funcs_auto.ld
 	$(LD) $(LDFLAGS) -T $(LD_SCRIPT) \
 		-T $(BUILD_DIR)/linker_scripts/$(VERSION)/hardware_regs.ld -T $(BUILD_DIR)/linker_scripts/$(VERSION)/undefined_syms.ld -T $(BUILD_DIR)/linker_scripts/common_undef_syms.ld -T $(BUILD_DIR)/linker_scripts/libultra_syms.ld \
 		-T $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_syms_auto.ld -T $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_funcs_auto.ld \

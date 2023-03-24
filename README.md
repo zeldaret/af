@@ -1,5 +1,14 @@
 # Animal Forest
 
+```diff
+- WARNING! -
+
+This repository is a work in progress, and while it can be used to make certain changes, it's 
+still constantly evolving. If you wish to use it for modding purposes in its current state,
+please be aware that the codebase could drastically change at any time. Also note that some
+parts of the ROM may not be 'shiftable' yet, so modifying them could currently be difficult.
+```
+
 ## Setup
 
 ### Linux
@@ -11,6 +20,7 @@ The build process has the following package requirements:
 * make
 * git
 * build-essential
+* clang
 * binutils-mips-linux-gnu
 * python3
 * pip3
@@ -19,7 +29,7 @@ Under Debian / Ubuntu (which we recommend using), you can install them with the 
 
 ```bash
 sudo apt update
-sudo apt install make git build-essential binutils-mips-linux-gnu python3 python3-pip
+sudo apt install make git build-essential clang binutils-mips-linux-gnu python3 python3-pip
 ```
 
 #### 2. Install python dependencies
