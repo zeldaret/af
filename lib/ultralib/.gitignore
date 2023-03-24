@@ -1,0 +1,25 @@
+# Cache files
+__pycache__/
+.pyc
+.DS_Store
+
+# Text editor remnants
+.vscode/
+.vs/
+.idea/
+CMakeLists.txt
+cmake-build-debug
+venv/
+
+# Project-specific ignores
+base_*/
+build/
+expected/
+notes/
+tools/gcc
+*.elf
+*.o
+*.a
+
+# Tool artifacts
+ctx.c
