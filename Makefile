@@ -69,7 +69,7 @@ LDFLAGS  := --no-check-sections --accept-unknown-input-arch --emit-relocs
 
 UNAME_S := $(shell uname -s)
 ifeq ($(OS),Windows_NT)
-    DETECTED_OS := windows
+$(error Native Windows is currently unsupported for building this repository, use WSL instead c:)
 else ifeq ($(UNAME_S),Linux)
     DETECTED_OS := linux
 else ifeq ($(UNAME_S),Darwin)
