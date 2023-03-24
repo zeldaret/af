@@ -29,10 +29,12 @@ APPLY_OPTS = ""
 
 # Compiler options used with Clang-Tidy
 # Normal warnings are disabled with -Wno-everything to focus only on tidying
-INCLUDES = "-Iinclude -Isrc -Ibuild -I."
+INCLUDES = "-Iinclude -Isrc -Ibuild -I. -Ilib/ultralib/include -Ilib/ultralib/include/PR -Ibin/jp -Ibin/cn"
 DEFINES = "-D_LANGUAGE_C -DNON_MATCHING"
 COMPILER_OPTS = f"-fno-builtin -std=gnu90 -m32 -Wno-everything {INCLUDES} {DEFINES}"
 
+
+QUIET = False
 
 def get_clang_executable(allowed_executables: List[str]):
     for executable in allowed_executables:
@@ -78,7 +80,10 @@ def run_clang_format(files: List[str]):
 
 def run_clang_tidy(files: List[str]):
     exec_str = f"{CLANG_TIDY} {TIDY_OPTS} {TIDY_FIX_OPTS} {' '.join(files)} -- {COMPILER_OPTS}"
-    subprocess.run(exec_str, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    if QUIET:
+        subprocess.run(exec_str, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    else:
+        subprocess.run(exec_str, shell=True)
 
 
 def run_clang_tidy_with_export(tmp_dir: str, files: List[str]):
@@ -86,7 +91,10 @@ def run_clang_tidy_with_export(tmp_dir: str, files: List[str]):
     os.close(handle)
 
     exec_str = f"{CLANG_TIDY} {TIDY_OPTS} --export-fixes={tmp_file} {' '.join(files)} -- {COMPILER_OPTS}"
-    subprocess.run(exec_str, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    if QUIET:
+        subprocess.run(exec_str, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    else:
+        subprocess.run(exec_str, shell=True)
 
 
 def run_clang_apply_replacements(tmp_dir: str):
@@ -153,7 +161,11 @@ def main():
         default=1,
         help="number of jobs to run (default: 1 without -j, number of cpus with -j)",
     )
+    parser.add_argument("-q", "--quiet", action="store_true")
     args = parser.parse_args()
+
+    global QUIET
+    QUIET = args.quiet
 
     nb_jobs = args.jobs or multiprocessing.cpu_count()
     if nb_jobs > 1:
