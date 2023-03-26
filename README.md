@@ -55,3 +55,17 @@ make setup
 make extract
 make
 ```
+
+## Note about licensing
+
+The contents of the `src` and `include` folders are, as far as possible, licensed under CC0.
+
+Other folders and files in the repository are CC0 unless they specify another license.
+
+The licensing of this repository does not cover subrepos, namely:
+
+* `tools/asm-differ`
+* `tools/asm-processor`
+* `tools/fado`
+* `tools/splat`
+* `lib/ultralib`
