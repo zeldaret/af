@@ -73,25 +73,32 @@ segments:
     subsegments:
       - [0x001060, c, boot/boot_main]
 
-      - [0x0011F0, asm, boot/0011F0]
+      - [0x0011F0, asm, boot/idle]
 
-      - [0x0014A0, asm, boot/0014A0]
-      - [0x001640, asm, boot/001640]
-      - [0x0017F0, asm, boot/0017F0]
-      - [0x0022A0, asm, boot/0022A0]
-      - [0x002720, asm, boot/002720]
-      - [0x004F70, asm, boot/004F70]
-      - [0x0059F0, asm, boot/0059F0]
-      - [0x005BE0, asm, boot/005BE0]
-      - [0x005E30, asm, boot/005E30]
-      - [0x006BA0, asm, boot/006BA0]
-      - [0x006D10, asm, boot/006D10]
-      - [0x007000, asm, boot/007000]
-      - [0x007060, asm, boot/007060]
-      - [0x007530, asm, boot/007530]
-      - [0x007F30, asm, boot/007F30]
-      - [0x008C50, asm, boot/008C50]
-      - [0x008D20, asm, boot/008D20]
+      - [0x0014A0, asm, boot/viconfig]
+      - [0x001640, asm, boot/boot_80026240]
+      - [0x0017F0, asm, boot/z_std_dma]
+      - [0x0022A0, asm, boot/yaz0]
+      - [0x0026C0, asm, boot/syncprintf]
+      - [0x002720, asm, boot/fault]
+      - [0x004F70, asm, boot/fault_drawer]
+      - [0x0059F0, asm, boot/padutils]
+      - [0x005BE0, asm, boot/stackcheck]
+      - [0x005E30, asm, boot/gfxprint]
+      - [0x006BA0, asm, boot/mtxuty-cvt]
+      - [0x006D10, asm, boot/boot_8002B910]
+      - [0x007000, asm, boot/debug]
+      - [0x007060, asm, boot/boot_8002BC60]
+      - [0x0073A0, asm, boot/boot_8002BFA0]
+      - [0x0073F0, asm, boot/padsetup]
+      - [0x007530, asm, boot/mathf]
+      - [0x007A40, hasm, boot/fp]
+      - [0x007BA0, asm, boot/malloc]
+      - [0x007D70, asm, boot/qrand]
+      - [0x007F30, asm, boot/__osMalloc]
+      - [0x008C50, asm, boot/sprintf]
+      - [0x008D20, asm, boot/printutils]
+      - [0x008D80, asm, boot/sleep]
 
       # libultra
       - [0x008F20, asm, libultra/sendmesg] # c
@@ -111,30 +118,28 @@ segments:
       - [0x00A880, asm, libultra/thread] # c
       - [0x00A8C0, hasm, libultra/bzero]
       - [0x00A960, asm, libultra/controller] # c
-      - [0x00AC40, asm, boot/00AC40]
+      - [0x00AC40, asm, libultra/siacs]
       - [0x00AD00, asm, libultra/flashsectorerase] # c
       - [0x00AE50, asm, libultra/createthread] # c
       - [0x00AFA0, asm, libultra/contreaddata] # c
       - [0x00B180, asm, libultra/virtualtophysical] # c
       - [0x00B200, hasm, libultra/writebackdcache]
       - [0x00B280, asm, libultra/initialize] # c
-      - [0x00B5D0, asm, boot/00B5D0]
+      - [0x00B5D0, asm, boot/00B5D0] # PADDING
       - [0x00B630, hasm, libultra/setsr]
       - [0x00B640, hasm, libultra/getsr]
-      - [0x00B650, asm, boot/00B650]
+      - [0x00B650, asm, boot/boot_80030250]
       - [0x00B690, asm, libultra/perspective] # c
       - [0x00B920, asm, libultra/sprawdma] # c
       - [0x00B9B0, asm, libultra/sirawdma] # c
       - [0x00BA60, asm, libultra/epilinkhandle] # c
       - [0x00BAB0, asm, libultra/viblack] # c
-      - [0x00BB20, asm, boot/00BB20]
-      # - [0x00BB20, asm, libultra/sirawread] # ambiguous # c
-      # - [0x00BB20, asm, libultra/sprawread] # ambiguous # c
+      - [0x00BB20, asm, libultra/sirawread] # c
       - [0x00BB70, asm, libultra/getthreadid] # c
       - [0x00BB90, asm, libultra/sptaskyield] # c
       - [0x00BBB0, asm, libultra/pfsreadwritefile] # c
       - [0x00C000, asm, libultra/pfsgetstatus] # c
-      - [0x00C230, asm, boot/00C230]
+      - [0x00C230, asm, boot/00C230] # PADDING
       - [0x00C240, asm, libultra/mtxidentf] # c
       - [0x00C290, asm, libultra/visetmode] # c
       - [0x00C2F0, asm, libultra/flashinit] # c
@@ -142,11 +147,10 @@ segments:
       - [0x00C700, asm, libultra/motor] # c
       - [0x00CAD0, asm, libultra/pfsallocatefile] # c
       - [0x00CF50, asm, libultra/stoptimer] # c
-      - [0x00D040, hasm, libultra/probetlb]
+      - [0x00D040, asm, libultra/probetlb] # c
       - [0x00D100, asm, libultra/pimgr] # c
-      - [0x00D270, asm, boot/00D270]
+      - [0x00D270, asm, libultra/piacs] # c
       - [0x00D340, asm, libultra/devmgr] # c
-      - [0x00D750, asm, libultra/pirawdma] # c
       - [0x00D820, asm, libultra/contpfs] # c
       - [0x00E3A0, hasm, libultra/getcount]
       - [0x00E3B0, asm, boot/00E3B0]
@@ -184,7 +188,8 @@ segments:
       - [0x0110D0, asm, libultra/rotate] # c
       - [0x0112A0, asm, libultra/setglobalintmask] # c
       - [0x0112F0, asm, libultra/aisetfreq] # c
-      - [0x011440, asm, boot/011440]
+      - [0x011440, asm, libultra/getactivequeue]
+      - [0x011450, asm, boot/011450] # PADDING
       - [0x011460, asm, libultra/normalize] # c
       - [0x0114C0, hasm, libultra/setcompare]
       - [0x0114D0, asm, libultra/aigetstat] # c
@@ -198,7 +203,7 @@ segments:
       - [0x0122D0, hasm, libultra/interrupt]
       - [0x012360, asm, libultra/pigetcmdq] # c
       - [0x012390, asm, libultra/cosf] # c
-      - [0x012500, asm, boot/012500]
+      - [0x012500, asm, libultra/epiread]
       - [0x012550, asm, libultra/visetspecial] # c
       - [0x0126B0, asm, libultra/coss] # c
       - [0x0126E0, asm, libultra/flashwritearray] # c
@@ -218,10 +223,10 @@ segments:
       - [0x0134A0, asm, libultra/pfsinitpak] # c
       - [0x0137B0, asm, libultra/pfschecker] # c
       - [0x014160, asm, libultra/aigetlen] # c
-      - [0x014170, asm, boot/014170]
+      - [0x014170, asm, libultra/epiwrite] # c
       - [0x0141C0, hasm, libultra/maptlbrdb]
       - [0x014220, asm, libultra/yieldthread] # c
-      - [0x014270, asm, boot/014270]
+      - [0x014270, asm, boot/014270] # PADDING
       - [0x014280, asm, libultra/translate] # c
       - [0x014350, hasm, libultra/getcause]
       - [0x014360, asm, libultra/contramwrite] # c
@@ -232,16 +237,14 @@ segments:
       - [0x014C40, asm, libultra/xldtob] # c
       - [0x015750, asm, libultra/ldiv] # c
       - [0x0158E0, asm, libultra/xlitob] # c
-      - [0x015B80, asm, boot/015B80]
-      # - [0x015B80, asm, libultra/sirawwrite] # ambiguous # c
-      # - [0x015B80, asm, libultra/sprawwrite] # ambiguous # c
+      - [0x015B80, asm, libultra/sirawwrite] # c
       - [0x015BD0, asm, libultra/spsetstat] # c
       - [0x015BE0, asm, libultra/spgetstat] # c
-      - [0x015BF0, asm, boot/015BF0]
+      - [0x015BF0, asm, boot/015BF0] # PADDING
       - [0x015C00, asm, libultra/vimgr] # c
-      - [0x015F10, asm, boot/015F10]
+      - [0x015F10, asm, libultra/vigetcurrentcontext]
       - [0x015F20, hasm, libultra/writebackdcacheall]
-      - [0x015F50, asm, boot/015F50]
+      - [0x015F50, asm, libultra/getcurrfaultthread]
       - [0x015F60, asm, libultra/mtxf2l] # c
       - [0x015FD0, asm, libultra/startthread] # c
       - [0x016120, asm, libultra/llcvt] # c
@@ -249,22 +252,24 @@ segments:
       - [0x016380, asm, libultra/visetxscale] # c
       - [0x016490, asm, libultra/conteepread] # c
       - [0x0166F0, asm, libultra/conteepwrite] # c
-      - [0x016B10, asm, boot/016B10]
+      - [0x016B10, asm, boot/file_015AB0]
       - [0x016B50, asm, libultra/spsetpc] # c
       - [0x016B80, asm, libultra/flashreadarray] # c
       - [0x016D20, asm, libultra/flashgetaddr] # c
       - [0x016D50, hasm, libultra/setwatchlo]
 
-      - [0x016D60, asm, boot/016D60]
+      - [0x016D60, asm, boot/fmodf]
 
-      - [0x016DB0, asm, boot/016DB0]
-      - [0x016DE0, asm, boot/016DE0]
-      - [0x016E20, asm, boot/016E20]
-      - [0x016E60, asm, boot/016E60]
+      - [0x016DB0, asm, boot/__osMemset]
+      - [0x016DE0, asm, boot/__osStrcmp]
+      - [0x016E20, asm, boot/__osStrcpy]
+      - [0x016E60, asm, boot/__osMemcpy]
 
       - [0x016EF0, data, libultra/rsp/rspboot]
 
       - [0x016FC0, data, boot/016FC0]
+      - [0x0170B0, data, boot/gfxprint]
+      - [0x017960, data, boot/017960] # boot_8002BC60 starts around here, but no idea where it ends
 
       - [0x018580, rodata, boot/018580]
 
@@ -287,6 +292,9 @@ segments:
       - [0x019CF0, rodata, boot/019CF0]
 
       - { start: 0x019D40, type: bss, vram: 0x8003E940, name: boot/8003E940 }
+      - { start: 0x019D40, type: bss, vram: 0x800419A0, name: boot/gfxprint }
+      - { start: 0x019D40, type: bss, vram: 0x800419B0, name: boot/mathf }
+      - { start: 0x019D40, type: bss, vram: 0x800419C0, name: boot/800419C0 }
 
   - name: dmadata
     type: bin
