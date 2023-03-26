@@ -24,11 +24,12 @@ CPP_FLAGS = [
     "-D_FINALROM",
     "-D_MIPS_SZLONG=32",
     "-D__USE_ISOC99",
-    "-ffreestanding",
 
     "-DM2CTX",
+    "-DCC_CHECK=1"
     "-DNON_MATCHING",
-    "-D_OS_HOST_H_",
+
+    "-ffreestanding",
     "-std=gnu89",
 ]
 
