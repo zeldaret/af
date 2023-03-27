@@ -432,7 +432,8 @@ segments:
       - [0x722880, asm, code/722880]
       - [0x722970, asm, code/722970]
       - [0x722AB0, asm, code/722AB0]
-      - [0x723010, asm, code/723010]
+
+      - [0x723010, data, code/rsp/723010]
 
       - [0x7248D0, data, code/7248D0]
       - [0x726260, data, code/m_actor_shadow]

@@ -286,7 +286,7 @@ __osSetWatchLo = 0x8003B950; // type:func size:0x10 (setwatchlo, true)
 
 osViModePalLan1 = 0x8003C5A0; // size:0x50 (vi, false)
 
-D_8003C5F0_jp = 0x8003C5F0; // type:s16 size:0x800 (sins, false)
+sintable = 0x8003C5F0; // type:s16 size:0x800 (sins, false)
 
 __osHwIntTable = 0x8003CDF0; // size:0x28 (exceptasm, true)
 __osPiIntTable = 0x8003CE18; // size:0x8 (exceptasm, true)
