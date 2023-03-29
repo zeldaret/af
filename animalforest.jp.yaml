@@ -266,7 +266,8 @@ segments:
 
       - [0x016FC0, data, boot/016FC0]
 
-      - [0x018580, rodata, boot/018580]
+      - [0x018580, .rodata, boot/boot_main]
+      - [0x018590, rodata, boot/018590]
 
       - [0x0185B0, rodata, boot/0185B0]
       - [0x0187F0, rodata, boot/0187F0]
