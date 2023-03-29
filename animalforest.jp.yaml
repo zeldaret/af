@@ -258,8 +258,8 @@ segments:
       - [0x016D20, asm, libultra/flashgetaddr] # c
       - [0x016D50, hasm, libultra/setwatchlo]
 
+      # libido?
       - [0x016D60, asm, boot/fmodf]
-
       - [0x016DB0, asm, boot/__osMemset]
       - [0x016DE0, asm, boot/__osStrcmp]
       - [0x016E20, asm, boot/__osStrcpy]
@@ -320,7 +320,7 @@ segments:
     type: code
     start: 0x675720
     vram: 0x80051A80
-    # follows_vram: entry
+    follows_vram: dmadata
     bss_size: 0x36C90
     subsegments:
       - [0x675720, asm, code/c_keyframe]

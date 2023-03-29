@@ -20,11 +20,6 @@
 // extern UNK_TYPE D_8003BC90_jp;
 // extern UNK_TYPE D_8003BC94_jp;
 
-// extern UNK_TYPE gfxprint_moji_tlut;
-// extern UNK_TYPE gfxprint_rainbow_tlut;
-// extern UNK_TYPE gfxprint_rainbow_txtr;
-// extern UNK_TYPE gfxprint_font;
-
 // extern UNK_TYPE D_8003C560_jp;
 // extern UNK_TYPE D_FLT_8003C584_jp;
 // extern UNK_TYPE D_8003C590_jp;
@@ -281,8 +276,7 @@
 // extern UNK_TYPE B_80041982_jp;
 // extern UNK_TYPE B_80041995_jp;
 // extern UNK_TYPE B_80041998_jp;
-// extern UNK_TYPE __gfxprint_default_flags;
-// extern UNK_TYPE B_800419B0_jp;
+
 // extern UNK_TYPE B_800419C0_jp;
 // extern UNK_TYPE B_800419F0_jp;
 // extern UNK_TYPE B_80041A00_jp;
