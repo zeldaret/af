@@ -259,11 +259,11 @@ segments:
       - [0x016D50, hasm, libultra/setwatchlo]
 
       # libido?
-      - [0x016D60, asm, boot/fmodf]
-      - [0x016DB0, asm, boot/__osMemset]
-      - [0x016DE0, asm, boot/__osStrcmp]
-      - [0x016E20, asm, boot/__osStrcpy]
-      - [0x016E60, asm, boot/__osMemcpy]
+      - [0x016D60, asm, boot/016D60]
+      - [0x016DB0, asm, boot/016DB0]
+      - [0x016DE0, asm, boot/016DE0]
+      - [0x016E20, asm, boot/016E20]
+      - [0x016E60, asm, boot/016E60]
 
       - [0x016EF0, data, libultra/rsp/rspboot]
 

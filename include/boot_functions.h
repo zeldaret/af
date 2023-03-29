@@ -24,11 +24,11 @@
 
 // void func_8002BFA0_jp();
 
-// void fmodf();
-// void __osMemset();
-// void __osStrcmp();
-// void __osStrcpy();
-// void __osMemcpy();
+// void func_8003B960_jp();
+// void func_8003B9B0_jp();
+// void func_8003B9E0_jp();
+// void func_8003BA20_jp();
+// void func_8003BA60_jp();
 // void func_8003BAF0_jp();
 
 
