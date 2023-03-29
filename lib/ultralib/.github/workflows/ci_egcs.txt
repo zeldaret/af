@@ -1,0 +1,42 @@
+# CI file for EGCS builds
+# TODO: rename to `ci_egcs.yml` when the repo has EGCS / iQue support
+
+name: Build EGCS libultra
+
+# Build on every branch push, tag push, and pull request change:
+on: [push, pull_request_target]
+
+jobs:
+  build_repo:
+    name: Build repo
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [ique_v1.5]
+        suffix: [_rom] # [, _d, _rom]
+
+    steps:
+    - name: Checkout reposistory
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
+
+    - name: Install package requirements
+      run: sudo apt-get install -y build-essential python3
+
+    - name: Get extra dependencies
+      uses: actions/checkout@v3
+      with:
+        repository: ${{ secrets.SECRETREPO }}
+        token: ${{ secrets.SECRETTOKEN }}
+        path: deps_repo
+    - name: Get the dependency
+      run: cp deps_repo/libultra/${{ matrix.version }}/* .
+
+    - name: Setup
+      run: make setup -j $(nproc) TARGET=libultra${{ matrix.suffix }} VERSION=${{ matrix.version }}
+
+    - name: Build libultra${{ matrix.suffix }} ${{ matrix.version }}
+      run: make -j $(nproc) TARGET=libultra${{ matrix.suffix }} VERSION=${{ matrix.version }}

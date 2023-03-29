@@ -1,0 +1,37 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "include",
+                ".",
+                "lib/ultralib/include",
+                "lib/ultralib/include/PR"
+            ],
+            "defines": [
+                "NON_EQUIVALENT",
+                "NON_MATCHING",
+                "AVOID_UB",
+                "CC_CHECK=1",
+                "_LANGUAGE_C",
+                "F3DEX_GBI_2",
+                "_MIPS_SZLONG=32",
+                "NDEBUG",
+                "_FINALROM",
+                "__USE_ISOC99",
+                "__mips__"
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "compilerPath": "/usr/bin/clang",
+            "intelliSenseMode": "linux-clang-x86",
+            "compilerArgs": [
+                "-m32"
+            ],
+            "cStandard": "gnu89"
+        }
+    ],
+    "version": 4
+}
