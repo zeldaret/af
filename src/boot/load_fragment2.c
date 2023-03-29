@@ -10,7 +10,7 @@
 
 s32 gOverlayLogSeverity = 0;
 
-void Overlay_Relocate(void *allocatedRamAddress, OverlayRelocationSection *ovlRelocs, void *vramStart);
+void DoRelocation(void *allocatedRamAddress, OverlayRelocationSection *ovlRelocs, void *vramStart);
 
 s32 Overlay_Load(void *vromStart, void *vromEnd, void *ovlStart, void *ovlEnd, void *vramStart, void *vramEnd,
                  void *allocatedRamAddress, OverlayRelocationSection *ovlRelocs) {
@@ -22,7 +22,7 @@ s32 Overlay_Load(void *vromStart, void *vromEnd, void *ovlStart, void *ovlEnd, v
 
     DmaMgr_RequestSync(allocatedRamAddress, vromStart, vromSize);
     DmaMgr_RequestSync(ovl, ovlStart, ovlSize);
-    Overlay_Relocate(allocatedRamAddress, ovl, vramStart);
+    DoRelocation(allocatedRamAddress, ovl, vramStart);
 
     if (ovl->bssSize != 0) {
         bzero(end, ovl->bssSize);
@@ -41,7 +41,7 @@ s32 Overlay_Load(void *vromStart, void *vromEnd, void *ovlStart, void *ovlEnd, v
 // Extract MIPS jump target from an instruction word
 #define MIPS_JUMP_TARGET(insn) (((insn)&0x03FFFFFF) << 2)
 
-void Overlay_Relocate(void *allocatedRamAddress, OverlayRelocationSection *ovlRelocs, void *vramStart) {
+void DoRelocation(void *allocatedRamAddress, OverlayRelocationSection *ovlRelocs, void *vramStart) {
     uintptr_t sections[RELOC_SECTION_MAX];
     u32 *relocDataP;
     u32 reloc;
