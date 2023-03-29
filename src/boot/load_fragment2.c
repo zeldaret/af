@@ -1,7 +1,7 @@
 /**
  * @file loadfragment2.c
  *
- * Functions used to process and relocate overlays.
+ * Functions used to process and relocate dynamically loadable code segments (overlays).
  *
  */
 #include "global.h"
@@ -10,29 +10,30 @@
 
 s32 gOverlayLogSeverity = 0;
 
-void DoRelocation(void *allocatedRamAddress, OverlayRelocationSection *ovlRelocs, void *vramStart);
+void DoRelocation(void *allocatedRamAddr, OverlayRelocationSection *ovlRelocs, void *vramStart);
 
 s32 Overlay_Load(void *vromStart, void *vromEnd, void *ovlStart, void *ovlEnd, void *vramStart, void *vramEnd,
-                 void *allocatedRamAddress, OverlayRelocationSection *ovlRelocs) {
+                 void *allocatedRamAddr, OverlayRelocationSection *ovlRelocs) {
     OverlayRelocationSection *ovl = ovlRelocs;
     s32 vromSize = (uintptr_t)vromEnd - (uintptr_t)vromStart;
     s32 ovlSize = (uintptr_t)ovlEnd - (uintptr_t)ovlStart;
     s32 vramSize = (uintptr_t)vramEnd - (uintptr_t)vramStart;
-    void *end = (void *)((uintptr_t)allocatedRamAddress + vromSize);
+    void *end = (void *)((uintptr_t)allocatedRamAddr + vromSize);
 
-    DmaMgr_RequestSync(allocatedRamAddress, vromStart, vromSize);
+    DmaMgr_RequestSync(allocatedRamAddr, vromStart, vromSize);
     DmaMgr_RequestSync(ovl, ovlStart, ovlSize);
-    DoRelocation(allocatedRamAddress, ovl, vramStart);
+    DoRelocation(allocatedRamAddr, ovl, vramStart);
 
     if (ovl->bssSize != 0) {
         bzero(end, ovl->bssSize);
     }
 
-    osWritebackDCache(allocatedRamAddress, vramSize);
-    osInvalICache(allocatedRamAddress, vramSize);
+    osWritebackDCache(allocatedRamAddr, vramSize);
+    osInvalICache(allocatedRamAddr, vramSize);
     return vramSize;
 }
 
+// Extract MIPS register rs from an instruction word
 #define MIPS_REG_RS(insn) (((insn) >> 0x15) & 0x1F)
 
 // Extract MIPS register rt from an instruction word
@@ -41,13 +42,33 @@ s32 Overlay_Load(void *vromStart, void *vromEnd, void *ovlStart, void *ovlEnd, v
 // Extract MIPS jump target from an instruction word
 #define MIPS_JUMP_TARGET(insn) (((insn)&0x03FFFFFF) << 2)
 
-void DoRelocation(void *allocatedRamAddress, OverlayRelocationSection *ovlRelocs, void *vramStart) {
+/**
+ * Performs runtime relocation of overlay files, loadable code segments.
+ *
+ * Overlays are expected to be loadable anywhere in direct-mapped cached (KSEG0) memory, with some appropriate
+ * alignment requirements; memory addresses in such code must be updated once loaded in order to execute properly.
+ * When compiled, overlays are given 'fake' KSEG0 RAM addresses larger than the total possible available main memory
+ * (>= 0x80800000), such addresses are referred to as Virtual RAM (VRAM) to distinguish them. When loading the overlay
+ * the relocation table produced at compile time is consulted to determine where and how to update these VRAM addresses
+ * to correct RAM addresses based on the location the overlay was loaded at, enabling the code to execute at this
+ * address as if it were compiled to run at this address.
+ *
+ * Each relocation is represented by a packed 32-bit value, formatted in the following way:
+ *  - [31:30]  2-bit section id, taking values from the `RelocSectionId` enum.
+ *  - [29:24]  6-bit relocation type describing which relocation operation should be performed. Same as ELF32 MIPS.
+ *  - [23: 0]  24-bit section-relative offset indicating where in the section to apply this relocation.
+ *
+ * @param allocatedRamAddr Memory address the binary was loaded at.
+ * @param ovlRelocs Overlay relocation section containing overlay section layout and runtime relocations.
+ * @param vramStart Virtual RAM address that the overlay was compiled at.
+ */
+void DoRelocation(void *allocatedRamAddr, OverlayRelocationSection *ovlRelocs, void *vramStart) {
     uintptr_t sections[RELOC_SECTION_MAX];
     u32 *relocDataP;
     u32 reloc;
     u32 relocData;
     u32 isLoNeg;
-    uintptr_t allocu32 = (uintptr_t)allocatedRamAddress;
+    uintptr_t allocu32 = (uintptr_t)allocatedRamAddr;
     u32 i;
     u32 *regValP;
     //! MIPS ELF relocation does not generally require tracking register values, so at first glance it appears this
