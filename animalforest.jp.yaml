@@ -297,13 +297,24 @@ segments:
       - { start: 0x019D40, type: bss, vram: 0x800419C0, name: boot/800419C0 }
 
   - name: dmadata
-    type: bin
+    type: code
     start: 0x019D40
     vram: 0x80044690
     follows_vram: boot
+    subsegments:
+      - [0x019D40, data, dmadata/dmadata]
 
-  - type: bin
+  - name: segment_027130
+    type: bin
     start: 0x027130
+
+  - name: segment_0E4D10
+    type: bin
+    start: 0x0E4D10
+
+  - name: segment_13D9A0
+    type: bin
+    start: 0x13D9A0
 
   - name: code
     type: code
@@ -532,5 +543,7675 @@ segments:
 
   - type: bin
     start: 0x73F4D0
+
+  - name: segment_009757E0
+    type: bin
+    start: 0x9757E0
+    # vram:
+
+  - name: segment_009D4000
+    type: bin
+    start: 0x9D4000
+    # vram:
+
+  - name: segment_009DF000
+    type: bin
+    start: 0x9DF000
+    # vram:
+
+  - name: segment_009EA000
+    type: bin
+    start: 0x9EA000
+    # vram:
+
+  - name: segment_009F5000
+    type: bin
+    start: 0x9F5000
+    # vram:
+
+  - name: segment_00A00000
+    type: bin
+    start: 0xA00000
+    # vram:
+
+  - name: segment_00A0B000
+    type: bin
+    start: 0xA0B000
+    # vram:
+
+  - name: segment_00A16000
+    type: bin
+    start: 0xA16000
+    # vram:
+
+  - name: segment_00A21000
+    type: bin
+    start: 0xA21000
+    # vram:
+
+  - name: segment_00A22000
+    type: bin
+    start: 0xA22000
+    # vram:
+
+  - name: segment_00A30000
+    type: bin
+    start: 0xA30000
+    # vram:
+
+  - name: segment_00A40000
+    type: bin
+    start: 0xA40000
+    # vram:
+
+  - name: segment_00A58000
+    type: bin
+    start: 0xA58000
+    # vram:
+
+  - name: segment_00A6B000
+    type: bin
+    start: 0xA6B000
+    # vram:
+
+  - name: segment_00A76000
+    type: bin
+    start: 0xA76000
+    # vram:
+
+  - name: segment_00A7A000
+    type: bin
+    start: 0xA7A000
+    # vram:
+
+  - name: segment_00A7B000
+    type: bin
+    start: 0xA7B000
+    # vram:
+
+  - name: segment_00A7C000
+    type: bin
+    start: 0xA7C000
+    # vram:
+
+  - name: segment_00A82000
+    type: bin
+    start: 0xA82000
+    # vram:
+
+  - name: segment_00A8A000
+    type: bin
+    start: 0xA8A000
+    # vram:
+
+  - name: segment_00A8E000
+    type: bin
+    start: 0xA8E000
+    # vram:
+
+  - name: segment_00A94000
+    type: bin
+    start: 0xA94000
+    # vram:
+
+  - name: segment_00AAD000
+    type: bin
+    start: 0xAAD000
+    # vram:
+
+  - name: segment_00ABA000
+    type: bin
+    start: 0xABA000
+    # vram:
+
+  - name: segment_00AC7000
+    type: bin
+    start: 0xAC7000
+    # vram:
+
+  - name: segment_00ACA000
+    type: bin
+    start: 0xACA000
+    # vram:
+
+  - name: segment_00ACC000
+    type: bin
+    start: 0xACC000
+    # vram:
+
+  - name: segment_00AD1000
+    type: bin
+    start: 0xAD1000
+    # vram:
+
+  - name: segment_00ADD000
+    type: bin
+    start: 0xADD000
+    # vram:
+
+  - name: segment_00AE3000
+    type: bin
+    start: 0xAE3000
+    # vram:
+
+  - name: segment_00B0D000
+    type: bin
+    start: 0xB0D000
+    # vram:
+
+  - name: segment_00B17000
+    type: bin
+    start: 0xB17000
+    # vram:
+
+  - name: segment_00B1A000
+    type: bin
+    start: 0xB1A000
+    # vram:
+
+  - name: segment_00B2A000
+    type: bin
+    start: 0xB2A000
+    # vram:
+
+  - name: segment_00B36000
+    type: bin
+    start: 0xB36000
+    # vram:
+
+  - name: segment_00B68000
+    type: bin
+    start: 0xB68000
+    # vram:
+
+  - name: segment_00B88000
+    type: bin
+    start: 0xB88000
+    # vram:
+
+  - name: segment_00B8A000
+    type: bin
+    start: 0xB8A000
+    # vram:
+
+  - name: segment_00B8B000
+    type: bin
+    start: 0xB8B000
+    # vram:
+
+  - name: segment_00B8F000
+    type: bin
+    start: 0xB8F000
+    # vram:
+
+  - name: segment_00BC8000
+    type: bin
+    start: 0xBC8000
+    # vram:
+
+  - name: segment_00BCD000
+    type: bin
+    start: 0xBCD000
+    # vram:
+
+  - name: segment_00BD4000
+    type: bin
+    start: 0xBD4000
+    # vram:
+
+  - name: segment_00CF9000
+    type: bin
+    start: 0xCF9000
+    # vram:
+
+  - name: segment_00D05000
+    type: bin
+    start: 0xD05000
+    # vram:
+
+  - name: segment_00D06000
+    type: bin
+    start: 0xD06000
+    # vram:
+
+  - name: segment_00D07000
+    type: bin
+    start: 0xD07000
+    # vram:
+
+  - name: segment_00D10000
+    type: bin
+    start: 0xD10000
+    # vram:
+
+  - name: segment_00D11000
+    type: bin
+    start: 0xD11000
+    # vram:
+
+  - name: segment_00D12000
+    type: bin
+    start: 0xD12000
+    # vram:
+
+  - name: segment_00D13000
+    type: bin
+    start: 0xD13000
+    # vram:
+
+  - name: segment_00D15000
+    type: bin
+    start: 0xD15000
+    # vram:
+
+  - name: segment_00D16000
+    type: bin
+    start: 0xD16000
+    # vram:
+
+  - name: segment_00D18000
+    type: bin
+    start: 0xD18000
+    # vram:
+
+  - name: segment_00D1A000
+    type: bin
+    start: 0xD1A000
+    # vram:
+
+  - name: segment_00D25000
+    type: bin
+    start: 0xD25000
+    # vram:
+
+  - name: segment_00D29000
+    type: bin
+    start: 0xD29000
+    # vram:
+
+  - name: segment_00D2D000
+    type: bin
+    start: 0xD2D000
+    # vram:
+
+  - name: segment_00D38000
+    type: bin
+    start: 0xD38000
+    # vram:
+
+  - name: segment_00D43000
+    type: bin
+    start: 0xD43000
+    # vram:
+
+  - name: segment_00D4D000
+    type: bin
+    start: 0xD4D000
+    # vram:
+
+  - name: segment_00D58000
+    type: bin
+    start: 0xD58000
+    # vram:
+
+  - name: segment_00D59000
+    type: bin
+    start: 0xD59000
+    # vram:
+
+  - name: segment_00D5A000
+    type: bin
+    start: 0xD5A000
+    # vram:
+
+  - name: segment_00D5B000
+    type: bin
+    start: 0xD5B000
+    # vram:
+
+  - name: segment_00D5D000
+    type: bin
+    start: 0xD5D000
+    # vram:
+
+  - name: segment_00D5E000
+    type: bin
+    start: 0xD5E000
+    # vram:
+
+  - name: segment_00DF4000
+    type: bin
+    start: 0xDF4000
+    # vram:
+
+  - name: segment_00DF5000
+    type: bin
+    start: 0xDF5000
+    # vram:
+
+  - name: segment_00E00000
+    type: bin
+    start: 0xE00000
+    # vram:
+
+  - name: segment_00E01000
+    type: bin
+    start: 0xE01000
+    # vram:
+
+  - name: segment_00E02000
+    type: bin
+    start: 0xE02000
+    # vram:
+
+  - name: segment_00E03000
+    type: bin
+    start: 0xE03000
+    # vram:
+
+  - name: segment_00E04000
+    type: bin
+    start: 0xE04000
+    # vram:
+
+  - name: segment_00E05000
+    type: bin
+    start: 0xE05000
+    # vram:
+
+  - name: segment_00E0D000
+    type: bin
+    start: 0xE0D000
+    # vram:
+
+  - name: segment_00E0E000
+    type: bin
+    start: 0xE0E000
+    # vram:
+
+  - name: segment_00E61000
+    type: bin
+    start: 0xE61000
+    # vram:
+
+  - name: segment_00E64000
+    type: bin
+    start: 0xE64000
+    # vram:
+
+  - name: segment_00E66000
+    type: bin
+    start: 0xE66000
+    # vram:
+
+  - name: segment_00E69000
+    type: bin
+    start: 0xE69000
+    # vram:
+
+  - name: segment_00E6B000
+    type: bin
+    start: 0xE6B000
+    # vram:
+
+  - name: segment_00E6D000
+    type: bin
+    start: 0xE6D000
+    # vram:
+
+  - name: segment_00E6F000
+    type: bin
+    start: 0xE6F000
+    # vram:
+
+  - name: segment_00E71000
+    type: bin
+    start: 0xE71000
+    # vram:
+
+  - name: segment_00E73000
+    type: bin
+    start: 0xE73000
+    # vram:
+
+  - name: segment_00E76000
+    type: bin
+    start: 0xE76000
+    # vram:
+
+  - name: segment_00E78000
+    type: bin
+    start: 0xE78000
+    # vram:
+
+  - name: segment_00E7A000
+    type: bin
+    start: 0xE7A000
+    # vram:
+
+  - name: segment_00E7C000
+    type: bin
+    start: 0xE7C000
+    # vram:
+
+  - name: segment_00E7E000
+    type: bin
+    start: 0xE7E000
+    # vram:
+
+  - name: segment_00E80000
+    type: bin
+    start: 0xE80000
+    # vram:
+
+  - name: segment_00E82000
+    type: bin
+    start: 0xE82000
+    # vram:
+
+  - name: segment_00E84000
+    type: bin
+    start: 0xE84000
+    # vram:
+
+  - name: segment_00E86000
+    type: bin
+    start: 0xE86000
+    # vram:
+
+  - name: segment_00E88000
+    type: bin
+    start: 0xE88000
+    # vram:
+
+  - name: segment_00E8A000
+    type: bin
+    start: 0xE8A000
+    # vram:
+
+  - name: segment_00E8C000
+    type: bin
+    start: 0xE8C000
+    # vram:
+
+  - name: segment_00E8F000
+    type: bin
+    start: 0xE8F000
+    # vram:
+
+  - name: segment_00E91000
+    type: bin
+    start: 0xE91000
+    # vram:
+
+  - name: segment_00E93000
+    type: bin
+    start: 0xE93000
+    # vram:
+
+  - name: segment_00E95000
+    type: bin
+    start: 0xE95000
+    # vram:
+
+  - name: segment_00E97000
+    type: bin
+    start: 0xE97000
+    # vram:
+
+  - name: segment_00E99000
+    type: bin
+    start: 0xE99000
+    # vram:
+
+  - name: segment_00E9C000
+    type: bin
+    start: 0xE9C000
+    # vram:
+
+  - name: segment_00E9E000
+    type: bin
+    start: 0xE9E000
+    # vram:
+
+  - name: segment_00EA0000
+    type: bin
+    start: 0xEA0000
+    # vram:
+
+  - name: segment_00EA2000
+    type: bin
+    start: 0xEA2000
+    # vram:
+
+  - name: segment_00EA4000
+    type: bin
+    start: 0xEA4000
+    # vram:
+
+  - name: segment_00EA6000
+    type: bin
+    start: 0xEA6000
+    # vram:
+
+  - name: segment_00EA8000
+    type: bin
+    start: 0xEA8000
+    # vram:
+
+  - name: segment_00EAA000
+    type: bin
+    start: 0xEAA000
+    # vram:
+
+  - name: segment_00EAC000
+    type: bin
+    start: 0xEAC000
+    # vram:
+
+  - name: segment_00EAE000
+    type: bin
+    start: 0xEAE000
+    # vram:
+
+  - name: segment_00EB0000
+    type: bin
+    start: 0xEB0000
+    # vram:
+
+  - name: segment_00EB3000
+    type: bin
+    start: 0xEB3000
+    # vram:
+
+  - name: segment_00EB5000
+    type: bin
+    start: 0xEB5000
+    # vram:
+
+  - name: segment_00EB8000
+    type: bin
+    start: 0xEB8000
+    # vram:
+
+  - name: segment_00EBA000
+    type: bin
+    start: 0xEBA000
+    # vram:
+
+  - name: segment_00EBC000
+    type: bin
+    start: 0xEBC000
+    # vram:
+
+  - name: segment_00EBE000
+    type: bin
+    start: 0xEBE000
+    # vram:
+
+  - name: segment_00EC0000
+    type: bin
+    start: 0xEC0000
+    # vram:
+
+  - name: segment_00EC3000
+    type: bin
+    start: 0xEC3000
+    # vram:
+
+  - name: segment_00EC5000
+    type: bin
+    start: 0xEC5000
+    # vram:
+
+  - name: segment_00EC7000
+    type: bin
+    start: 0xEC7000
+    # vram:
+
+  - name: segment_00EC9000
+    type: bin
+    start: 0xEC9000
+    # vram:
+
+  - name: segment_00ECB000
+    type: bin
+    start: 0xECB000
+    # vram:
+
+  - name: segment_00ECD000
+    type: bin
+    start: 0xECD000
+    # vram:
+
+  - name: segment_00ECF000
+    type: bin
+    start: 0xECF000
+    # vram:
+
+  - name: segment_00ED1000
+    type: bin
+    start: 0xED1000
+    # vram:
+
+  - name: segment_00ED3000
+    type: bin
+    start: 0xED3000
+    # vram:
+
+  - name: segment_00ED5000
+    type: bin
+    start: 0xED5000
+    # vram:
+
+  - name: segment_00ED7000
+    type: bin
+    start: 0xED7000
+    # vram:
+
+  - name: segment_00ED9000
+    type: bin
+    start: 0xED9000
+    # vram:
+
+  - name: segment_00EDB000
+    type: bin
+    start: 0xEDB000
+    # vram:
+
+  - name: segment_00EDD000
+    type: bin
+    start: 0xEDD000
+    # vram:
+
+  - name: segment_00EDF000
+    type: bin
+    start: 0xEDF000
+    # vram:
+
+  - name: segment_00EE1000
+    type: bin
+    start: 0xEE1000
+    # vram:
+
+  - name: segment_00EE3000
+    type: bin
+    start: 0xEE3000
+    # vram:
+
+  - name: segment_00EE6000
+    type: bin
+    start: 0xEE6000
+    # vram:
+
+  - name: segment_00EE8000
+    type: bin
+    start: 0xEE8000
+    # vram:
+
+  - name: segment_00EEA000
+    type: bin
+    start: 0xEEA000
+    # vram:
+
+  - name: segment_00EEC000
+    type: bin
+    start: 0xEEC000
+    # vram:
+
+  - name: segment_00EEE000
+    type: bin
+    start: 0xEEE000
+    # vram:
+
+  - name: segment_00EF0000
+    type: bin
+    start: 0xEF0000
+    # vram:
+
+  - name: segment_00EF2000
+    type: bin
+    start: 0xEF2000
+    # vram:
+
+  - name: segment_00EF4000
+    type: bin
+    start: 0xEF4000
+    # vram:
+
+  - name: segment_00EF6000
+    type: bin
+    start: 0xEF6000
+    # vram:
+
+  - name: segment_00EF8000
+    type: bin
+    start: 0xEF8000
+    # vram:
+
+  - name: segment_00EFA000
+    type: bin
+    start: 0xEFA000
+    # vram:
+
+  - name: segment_00EFC000
+    type: bin
+    start: 0xEFC000
+    # vram:
+
+  - name: segment_00EFE000
+    type: bin
+    start: 0xEFE000
+    # vram:
+
+  - name: segment_00F00000
+    type: bin
+    start: 0xF00000
+    # vram:
+
+  - name: segment_00F02000
+    type: bin
+    start: 0xF02000
+    # vram:
+
+  - name: segment_00F04000
+    type: bin
+    start: 0xF04000
+    # vram:
+
+  - name: segment_00F06000
+    type: bin
+    start: 0xF06000
+    # vram:
+
+  - name: segment_00F08000
+    type: bin
+    start: 0xF08000
+    # vram:
+
+  - name: segment_00F0A000
+    type: bin
+    start: 0xF0A000
+    # vram:
+
+  - name: segment_00F0D000
+    type: bin
+    start: 0xF0D000
+    # vram:
+
+  - name: segment_00F0F000
+    type: bin
+    start: 0xF0F000
+    # vram:
+
+  - name: segment_00F12000
+    type: bin
+    start: 0xF12000
+    # vram:
+
+  - name: segment_00F14000
+    type: bin
+    start: 0xF14000
+    # vram:
+
+  - name: segment_00F16000
+    type: bin
+    start: 0xF16000
+    # vram:
+
+  - name: segment_00F18000
+    type: bin
+    start: 0xF18000
+    # vram:
+
+  - name: segment_00F1A000
+    type: bin
+    start: 0xF1A000
+    # vram:
+
+  - name: segment_00F1D000
+    type: bin
+    start: 0xF1D000
+    # vram:
+
+  - name: segment_00F1F000
+    type: bin
+    start: 0xF1F000
+    # vram:
+
+  - name: segment_00F21000
+    type: bin
+    start: 0xF21000
+    # vram:
+
+  - name: segment_00F23000
+    type: bin
+    start: 0xF23000
+    # vram:
+
+  - name: segment_00F25000
+    type: bin
+    start: 0xF25000
+    # vram:
+
+  - name: segment_00F27000
+    type: bin
+    start: 0xF27000
+    # vram:
+
+  - name: segment_00F29000
+    type: bin
+    start: 0xF29000
+    # vram:
+
+  - name: segment_00F2C000
+    type: bin
+    start: 0xF2C000
+    # vram:
+
+  - name: segment_00F2E000
+    type: bin
+    start: 0xF2E000
+    # vram:
+
+  - name: segment_00F31000
+    type: bin
+    start: 0xF31000
+    # vram:
+
+  - name: segment_00F33000
+    type: bin
+    start: 0xF33000
+    # vram:
+
+  - name: segment_00F35000
+    type: bin
+    start: 0xF35000
+    # vram:
+
+  - name: segment_00F37000
+    type: bin
+    start: 0xF37000
+    # vram:
+
+  - name: segment_00F39000
+    type: bin
+    start: 0xF39000
+    # vram:
+
+  - name: segment_00F3B000
+    type: bin
+    start: 0xF3B000
+    # vram:
+
+  - name: segment_00F3D000
+    type: bin
+    start: 0xF3D000
+    # vram:
+
+  - name: segment_00F3F000
+    type: bin
+    start: 0xF3F000
+    # vram:
+
+  - name: segment_00F41000
+    type: bin
+    start: 0xF41000
+    # vram:
+
+  - name: segment_00F43000
+    type: bin
+    start: 0xF43000
+    # vram:
+
+  - name: segment_00F45000
+    type: bin
+    start: 0xF45000
+    # vram:
+
+  - name: segment_00F48000
+    type: bin
+    start: 0xF48000
+    # vram:
+
+  - name: segment_00F4A000
+    type: bin
+    start: 0xF4A000
+    # vram:
+
+  - name: segment_00F4C000
+    type: bin
+    start: 0xF4C000
+    # vram:
+
+  - name: segment_00F4E000
+    type: bin
+    start: 0xF4E000
+    # vram:
+
+  - name: segment_00F50000
+    type: bin
+    start: 0xF50000
+    # vram:
+
+  - name: segment_00F52000
+    type: bin
+    start: 0xF52000
+    # vram:
+
+  - name: segment_00F54000
+    type: bin
+    start: 0xF54000
+    # vram:
+
+  - name: segment_00F56000
+    type: bin
+    start: 0xF56000
+    # vram:
+
+  - name: segment_00F58000
+    type: bin
+    start: 0xF58000
+    # vram:
+
+  - name: segment_00F5A000
+    type: bin
+    start: 0xF5A000
+    # vram:
+
+  - name: segment_00F5C000
+    type: bin
+    start: 0xF5C000
+    # vram:
+
+  - name: segment_00F5E000
+    type: bin
+    start: 0xF5E000
+    # vram:
+
+  - name: segment_00F60000
+    type: bin
+    start: 0xF60000
+    # vram:
+
+  - name: segment_00F63000
+    type: bin
+    start: 0xF63000
+    # vram:
+
+  - name: segment_00F65000
+    type: bin
+    start: 0xF65000
+    # vram:
+
+  - name: segment_00F67000
+    type: bin
+    start: 0xF67000
+    # vram:
+
+  - name: segment_00F69000
+    type: bin
+    start: 0xF69000
+    # vram:
+
+  - name: segment_00F6B000
+    type: bin
+    start: 0xF6B000
+    # vram:
+
+  - name: segment_00F6D000
+    type: bin
+    start: 0xF6D000
+    # vram:
+
+  - name: segment_00F6F000
+    type: bin
+    start: 0xF6F000
+    # vram:
+
+  - name: segment_00F71000
+    type: bin
+    start: 0xF71000
+    # vram:
+
+  - name: segment_00F73000
+    type: bin
+    start: 0xF73000
+    # vram:
+
+  - name: segment_00F75000
+    type: bin
+    start: 0xF75000
+    # vram:
+
+  - name: segment_00F77000
+    type: bin
+    start: 0xF77000
+    # vram:
+
+  - name: segment_00F79000
+    type: bin
+    start: 0xF79000
+    # vram:
+
+  - name: segment_00F7B000
+    type: bin
+    start: 0xF7B000
+    # vram:
+
+  - name: segment_00F7D000
+    type: bin
+    start: 0xF7D000
+    # vram:
+
+  - name: segment_00F7F000
+    type: bin
+    start: 0xF7F000
+    # vram:
+
+  - name: segment_00F81000
+    type: bin
+    start: 0xF81000
+    # vram:
+
+  - name: segment_00F83000
+    type: bin
+    start: 0xF83000
+    # vram:
+
+  - name: segment_00F85000
+    type: bin
+    start: 0xF85000
+    # vram:
+
+  - name: segment_00F87000
+    type: bin
+    start: 0xF87000
+    # vram:
+
+  - name: segment_00F89000
+    type: bin
+    start: 0xF89000
+    # vram:
+
+  - name: segment_00F8C000
+    type: bin
+    start: 0xF8C000
+    # vram:
+
+  - name: segment_00F8E000
+    type: bin
+    start: 0xF8E000
+    # vram:
+
+  - name: segment_00F91000
+    type: bin
+    start: 0xF91000
+    # vram:
+
+  - name: segment_00F93000
+    type: bin
+    start: 0xF93000
+    # vram:
+
+  - name: segment_00F95000
+    type: bin
+    start: 0xF95000
+    # vram:
+
+  - name: segment_00F97000
+    type: bin
+    start: 0xF97000
+    # vram:
+
+  - name: segment_00F99000
+    type: bin
+    start: 0xF99000
+    # vram:
+
+  - name: segment_00F9B000
+    type: bin
+    start: 0xF9B000
+    # vram:
+
+  - name: segment_00F9D000
+    type: bin
+    start: 0xF9D000
+    # vram:
+
+  - name: segment_00FA0000
+    type: bin
+    start: 0xFA0000
+    # vram:
+
+  - name: segment_00FA2000
+    type: bin
+    start: 0xFA2000
+    # vram:
+
+  - name: segment_00FA4000
+    type: bin
+    start: 0xFA4000
+    # vram:
+
+  - name: segment_00FA6000
+    type: bin
+    start: 0xFA6000
+    # vram:
+
+  - name: segment_00FA8000
+    type: bin
+    start: 0xFA8000
+    # vram:
+
+  - name: segment_00FAA000
+    type: bin
+    start: 0xFAA000
+    # vram:
+
+  - name: segment_00FAC000
+    type: bin
+    start: 0xFAC000
+    # vram:
+
+  - name: segment_00FAF000
+    type: bin
+    start: 0xFAF000
+    # vram:
+
+  - name: segment_00FB1000
+    type: bin
+    start: 0xFB1000
+    # vram:
+
+  - name: segment_00FB3000
+    type: bin
+    start: 0xFB3000
+    # vram:
+
+  - name: segment_00FB4000
+    type: bin
+    start: 0xFB4000
+    # vram:
+
+  - name: segment_00FB7000
+    type: bin
+    start: 0xFB7000
+    # vram:
+
+  - name: segment_00FB9000
+    type: bin
+    start: 0xFB9000
+    # vram:
+
+  - name: segment_00FBB000
+    type: bin
+    start: 0xFBB000
+    # vram:
+
+  - name: segment_00FBD000
+    type: bin
+    start: 0xFBD000
+    # vram:
+
+  - name: segment_00FBF000
+    type: bin
+    start: 0xFBF000
+    # vram:
+
+  - name: segment_00FC1000
+    type: bin
+    start: 0xFC1000
+    # vram:
+
+  - name: segment_00FC3000
+    type: bin
+    start: 0xFC3000
+    # vram:
+
+  - name: segment_00FC5000
+    type: bin
+    start: 0xFC5000
+    # vram:
+
+  - name: segment_00FC8000
+    type: bin
+    start: 0xFC8000
+    # vram:
+
+  - name: segment_00FCA000
+    type: bin
+    start: 0xFCA000
+    # vram:
+
+  - name: segment_00FCC000
+    type: bin
+    start: 0xFCC000
+    # vram:
+
+  - name: segment_00FCE000
+    type: bin
+    start: 0xFCE000
+    # vram:
+
+  - name: segment_00FD0000
+    type: bin
+    start: 0xFD0000
+    # vram:
+
+  - name: segment_00FD2000
+    type: bin
+    start: 0xFD2000
+    # vram:
+
+  - name: segment_00FD4000
+    type: bin
+    start: 0xFD4000
+    # vram:
+
+  - name: segment_00FD6000
+    type: bin
+    start: 0xFD6000
+    # vram:
+
+  - name: segment_00FD9000
+    type: bin
+    start: 0xFD9000
+    # vram:
+
+  - name: segment_00FDB000
+    type: bin
+    start: 0xFDB000
+    # vram:
+
+  - name: segment_00FDE000
+    type: bin
+    start: 0xFDE000
+    # vram:
+
+  - name: segment_00FE0000
+    type: bin
+    start: 0xFE0000
+    # vram:
+
+  - name: segment_00FE3000
+    type: bin
+    start: 0xFE3000
+    # vram:
+
+  - name: segment_00FE5000
+    type: bin
+    start: 0xFE5000
+    # vram:
+
+  - name: segment_00FE7000
+    type: bin
+    start: 0xFE7000
+    # vram:
+
+  - name: segment_00FE9000
+    type: bin
+    start: 0xFE9000
+    # vram:
+
+  - name: segment_00FEB000
+    type: bin
+    start: 0xFEB000
+    # vram:
+
+  - name: segment_00FED000
+    type: bin
+    start: 0xFED000
+    # vram:
+
+  - name: segment_00FEF000
+    type: bin
+    start: 0xFEF000
+    # vram:
+
+  - name: segment_00FF2000
+    type: bin
+    start: 0xFF2000
+    # vram:
+
+  - name: segment_00FF4000
+    type: bin
+    start: 0xFF4000
+    # vram:
+
+  - name: segment_00FF6000
+    type: bin
+    start: 0xFF6000
+    # vram:
+
+  - name: segment_00FF8000
+    type: bin
+    start: 0xFF8000
+    # vram:
+
+  - name: segment_00FFA000
+    type: bin
+    start: 0xFFA000
+    # vram:
+
+  - name: segment_00FFC000
+    type: bin
+    start: 0xFFC000
+    # vram:
+
+  - name: segment_00FFE000
+    type: bin
+    start: 0xFFE000
+    # vram:
+
+  - name: segment_01000000
+    type: bin
+    start: 0x1000000
+    # vram:
+
+  - name: segment_01003000
+    type: bin
+    start: 0x1003000
+    # vram:
+
+  - name: segment_01005000
+    type: bin
+    start: 0x1005000
+    # vram:
+
+  - name: segment_01007000
+    type: bin
+    start: 0x1007000
+    # vram:
+
+  - name: segment_01009000
+    type: bin
+    start: 0x1009000
+    # vram:
+
+  - name: segment_0100B000
+    type: bin
+    start: 0x100B000
+    # vram:
+
+  - name: segment_0100D000
+    type: bin
+    start: 0x100D000
+    # vram:
+
+  - name: segment_0100F000
+    type: bin
+    start: 0x100F000
+    # vram:
+
+  - name: segment_01011000
+    type: bin
+    start: 0x1011000
+    # vram:
+
+  - name: segment_01014000
+    type: bin
+    start: 0x1014000
+    # vram:
+
+  - name: segment_01016000
+    type: bin
+    start: 0x1016000
+    # vram:
+
+  - name: segment_01019000
+    type: bin
+    start: 0x1019000
+    # vram:
+
+  - name: segment_0101B000
+    type: bin
+    start: 0x101B000
+    # vram:
+
+  - name: segment_0101D000
+    type: bin
+    start: 0x101D000
+    # vram:
+
+  - name: segment_0101F000
+    type: bin
+    start: 0x101F000
+    # vram:
+
+  - name: segment_01021000
+    type: bin
+    start: 0x1021000
+    # vram:
+
+  - name: segment_01023000
+    type: bin
+    start: 0x1023000
+    # vram:
+
+  - name: segment_01025000
+    type: bin
+    start: 0x1025000
+    # vram:
+
+  - name: segment_01027000
+    type: bin
+    start: 0x1027000
+    # vram:
+
+  - name: segment_01029000
+    type: bin
+    start: 0x1029000
+    # vram:
+
+  - name: segment_0102B000
+    type: bin
+    start: 0x102B000
+    # vram:
+
+  - name: segment_0102E000
+    type: bin
+    start: 0x102E000
+    # vram:
+
+  - name: segment_01030000
+    type: bin
+    start: 0x1030000
+    # vram:
+
+  - name: segment_01033000
+    type: bin
+    start: 0x1033000
+    # vram:
+
+  - name: segment_01035000
+    type: bin
+    start: 0x1035000
+    # vram:
+
+  - name: segment_01037000
+    type: bin
+    start: 0x1037000
+    # vram:
+
+  - name: segment_01039000
+    type: bin
+    start: 0x1039000
+    # vram:
+
+  - name: segment_0103B000
+    type: bin
+    start: 0x103B000
+    # vram:
+
+  - name: segment_0103E000
+    type: bin
+    start: 0x103E000
+    # vram:
+
+  - name: segment_01040000
+    type: bin
+    start: 0x1040000
+    # vram:
+
+  - name: segment_01042000
+    type: bin
+    start: 0x1042000
+    # vram:
+
+  - name: segment_01044000
+    type: bin
+    start: 0x1044000
+    # vram:
+
+  - name: segment_01046000
+    type: bin
+    start: 0x1046000
+    # vram:
+
+  - name: segment_01048000
+    type: bin
+    start: 0x1048000
+    # vram:
+
+  - name: segment_0104A000
+    type: bin
+    start: 0x104A000
+    # vram:
+
+  - name: segment_0104C000
+    type: bin
+    start: 0x104C000
+    # vram:
+
+  - name: segment_0104E000
+    type: bin
+    start: 0x104E000
+    # vram:
+
+  - name: segment_01050000
+    type: bin
+    start: 0x1050000
+    # vram:
+
+  - name: segment_01052000
+    type: bin
+    start: 0x1052000
+    # vram:
+
+  - name: segment_01054000
+    type: bin
+    start: 0x1054000
+    # vram:
+
+  - name: segment_01056000
+    type: bin
+    start: 0x1056000
+    # vram:
+
+  - name: segment_01058000
+    type: bin
+    start: 0x1058000
+    # vram:
+
+  - name: segment_0105A000
+    type: bin
+    start: 0x105A000
+    # vram:
+
+  - name: segment_0105C000
+    type: bin
+    start: 0x105C000
+    # vram:
+
+  - name: segment_0105E000
+    type: bin
+    start: 0x105E000
+    # vram:
+
+  - name: segment_01060000
+    type: bin
+    start: 0x1060000
+    # vram:
+
+  - name: segment_01062000
+    type: bin
+    start: 0x1062000
+    # vram:
+
+  - name: segment_01065000
+    type: bin
+    start: 0x1065000
+    # vram:
+
+  - name: segment_01067000
+    type: bin
+    start: 0x1067000
+    # vram:
+
+  - name: segment_0106A000
+    type: bin
+    start: 0x106A000
+    # vram:
+
+  - name: segment_0106C000
+    type: bin
+    start: 0x106C000
+    # vram:
+
+  - name: segment_0106F000
+    type: bin
+    start: 0x106F000
+    # vram:
+
+  - name: segment_01071000
+    type: bin
+    start: 0x1071000
+    # vram:
+
+  - name: segment_01074000
+    type: bin
+    start: 0x1074000
+    # vram:
+
+  - name: segment_01076000
+    type: bin
+    start: 0x1076000
+    # vram:
+
+  - name: segment_01079000
+    type: bin
+    start: 0x1079000
+    # vram:
+
+  - name: segment_0107B000
+    type: bin
+    start: 0x107B000
+    # vram:
+
+  - name: segment_0107D000
+    type: bin
+    start: 0x107D000
+    # vram:
+
+  - name: segment_0107F000
+    type: bin
+    start: 0x107F000
+    # vram:
+
+  - name: segment_01081000
+    type: bin
+    start: 0x1081000
+    # vram:
+
+  - name: segment_01083000
+    type: bin
+    start: 0x1083000
+    # vram:
+
+  - name: segment_01085000
+    type: bin
+    start: 0x1085000
+    # vram:
+
+  - name: segment_01087000
+    type: bin
+    start: 0x1087000
+    # vram:
+
+  - name: segment_01089000
+    type: bin
+    start: 0x1089000
+    # vram:
+
+  - name: segment_0108B000
+    type: bin
+    start: 0x108B000
+    # vram:
+
+  - name: segment_0108D000
+    type: bin
+    start: 0x108D000
+    # vram:
+
+  - name: segment_0108F000
+    type: bin
+    start: 0x108F000
+    # vram:
+
+  - name: segment_01091000
+    type: bin
+    start: 0x1091000
+    # vram:
+
+  - name: segment_01094000
+    type: bin
+    start: 0x1094000
+    # vram:
+
+  - name: segment_01096000
+    type: bin
+    start: 0x1096000
+    # vram:
+
+  - name: segment_01098000
+    type: bin
+    start: 0x1098000
+    # vram:
+
+  - name: segment_0109A000
+    type: bin
+    start: 0x109A000
+    # vram:
+
+  - name: segment_0109C000
+    type: bin
+    start: 0x109C000
+    # vram:
+
+  - name: segment_0109E000
+    type: bin
+    start: 0x109E000
+    # vram:
+
+  - name: segment_010A0000
+    type: bin
+    start: 0x10A0000
+    # vram:
+
+  - name: segment_010A2000
+    type: bin
+    start: 0x10A2000
+    # vram:
+
+  - name: segment_010A4000
+    type: bin
+    start: 0x10A4000
+    # vram:
+
+  - name: segment_010A6000
+    type: bin
+    start: 0x10A6000
+    # vram:
+
+  - name: segment_010A8000
+    type: bin
+    start: 0x10A8000
+    # vram:
+
+  - name: segment_010AA000
+    type: bin
+    start: 0x10AA000
+    # vram:
+
+  - name: segment_010AC000
+    type: bin
+    start: 0x10AC000
+    # vram:
+
+  - name: segment_010AE000
+    type: bin
+    start: 0x10AE000
+    # vram:
+
+  - name: segment_010B1000
+    type: bin
+    start: 0x10B1000
+    # vram:
+
+  - name: segment_010B3000
+    type: bin
+    start: 0x10B3000
+    # vram:
+
+  - name: segment_010B6000
+    type: bin
+    start: 0x10B6000
+    # vram:
+
+  - name: segment_010B8000
+    type: bin
+    start: 0x10B8000
+    # vram:
+
+  - name: segment_010BB000
+    type: bin
+    start: 0x10BB000
+    # vram:
+
+  - name: segment_010BD000
+    type: bin
+    start: 0x10BD000
+    # vram:
+
+  - name: segment_010BF000
+    type: bin
+    start: 0x10BF000
+    # vram:
+
+  - name: segment_010C1000
+    type: bin
+    start: 0x10C1000
+    # vram:
+
+  - name: segment_010C3000
+    type: bin
+    start: 0x10C3000
+    # vram:
+
+  - name: segment_010C5000
+    type: bin
+    start: 0x10C5000
+    # vram:
+
+  - name: segment_010C7000
+    type: bin
+    start: 0x10C7000
+    # vram:
+
+  - name: segment_010C9000
+    type: bin
+    start: 0x10C9000
+    # vram:
+
+  - name: segment_010CB000
+    type: bin
+    start: 0x10CB000
+    # vram:
+
+  - name: segment_010CD000
+    type: bin
+    start: 0x10CD000
+    # vram:
+
+  - name: segment_010CF000
+    type: bin
+    start: 0x10CF000
+    # vram:
+
+  - name: segment_010D2000
+    type: bin
+    start: 0x10D2000
+    # vram:
+
+  - name: segment_010D4000
+    type: bin
+    start: 0x10D4000
+    # vram:
+
+  - name: segment_010D7000
+    type: bin
+    start: 0x10D7000
+    # vram:
+
+  - name: segment_010D9000
+    type: bin
+    start: 0x10D9000
+    # vram:
+
+  - name: segment_010DC000
+    type: bin
+    start: 0x10DC000
+    # vram:
+
+  - name: segment_010DE000
+    type: bin
+    start: 0x10DE000
+    # vram:
+
+  - name: segment_010E0000
+    type: bin
+    start: 0x10E0000
+    # vram:
+
+  - name: segment_010E2000
+    type: bin
+    start: 0x10E2000
+    # vram:
+
+  - name: segment_010E5000
+    type: bin
+    start: 0x10E5000
+    # vram:
+
+  - name: segment_010E7000
+    type: bin
+    start: 0x10E7000
+    # vram:
+
+  - name: segment_010EA000
+    type: bin
+    start: 0x10EA000
+    # vram:
+
+  - name: segment_010EC000
+    type: bin
+    start: 0x10EC000
+    # vram:
+
+  - name: segment_010EE000
+    type: bin
+    start: 0x10EE000
+    # vram:
+
+  - name: segment_010F0000
+    type: bin
+    start: 0x10F0000
+    # vram:
+
+  - name: segment_010F2000
+    type: bin
+    start: 0x10F2000
+    # vram:
+
+  - name: segment_010F4000
+    type: bin
+    start: 0x10F4000
+    # vram:
+
+  - name: segment_01100000
+    type: bin
+    start: 0x1100000
+    # vram:
+
+  - name: segment_01101000
+    type: bin
+    start: 0x1101000
+    # vram:
+
+  - name: segment_01102000
+    type: bin
+    start: 0x1102000
+    # vram:
+
+  - name: segment_01103000
+    type: bin
+    start: 0x1103000
+    # vram:
+
+  - name: segment_01106000
+    type: bin
+    start: 0x1106000
+    # vram:
+
+  - name: segment_01107000
+    type: bin
+    start: 0x1107000
+    # vram:
+
+  - name: segment_01108000
+    type: bin
+    start: 0x1108000
+    # vram:
+
+  - name: segment_01109000
+    type: bin
+    start: 0x1109000
+    # vram:
+
+  - name: segment_0110A000
+    type: bin
+    start: 0x110A000
+    # vram:
+
+  - name: segment_0110B000
+    type: bin
+    start: 0x110B000
+    # vram:
+
+  - name: segment_0110C000
+    type: bin
+    start: 0x110C000
+    # vram:
+
+  - name: segment_0110D000
+    type: bin
+    start: 0x110D000
+    # vram:
+
+  - name: segment_0110E000
+    type: bin
+    start: 0x110E000
+    # vram:
+
+  - name: segment_0110F000
+    type: bin
+    start: 0x110F000
+    # vram:
+
+  - name: segment_01110000
+    type: bin
+    start: 0x1110000
+    # vram:
+
+  - name: segment_01111000
+    type: bin
+    start: 0x1111000
+    # vram:
+
+  - name: segment_01112000
+    type: bin
+    start: 0x1112000
+    # vram:
+
+  - name: segment_01113000
+    type: bin
+    start: 0x1113000
+    # vram:
+
+  - name: segment_01114000
+    type: bin
+    start: 0x1114000
+    # vram:
+
+  - name: segment_01115000
+    type: bin
+    start: 0x1115000
+    # vram:
+
+  - name: segment_01116000
+    type: bin
+    start: 0x1116000
+    # vram:
+
+  - name: segment_01117000
+    type: bin
+    start: 0x1117000
+    # vram:
+
+  - name: segment_01118000
+    type: bin
+    start: 0x1118000
+    # vram:
+
+  - name: segment_01119000
+    type: bin
+    start: 0x1119000
+    # vram:
+
+  - name: segment_0111A000
+    type: bin
+    start: 0x111A000
+    # vram:
+
+  - name: segment_0111B000
+    type: bin
+    start: 0x111B000
+    # vram:
+
+  - name: segment_0111C000
+    type: bin
+    start: 0x111C000
+    # vram:
+
+  - name: segment_0111D000
+    type: bin
+    start: 0x111D000
+    # vram:
+
+  - name: segment_0111E000
+    type: bin
+    start: 0x111E000
+    # vram:
+
+  - name: segment_0111F000
+    type: bin
+    start: 0x111F000
+    # vram:
+
+  - name: segment_01120000
+    type: bin
+    start: 0x1120000
+    # vram:
+
+  - name: segment_01121000
+    type: bin
+    start: 0x1121000
+    # vram:
+
+  - name: segment_01122000
+    type: bin
+    start: 0x1122000
+    # vram:
+
+  - name: segment_01123000
+    type: bin
+    start: 0x1123000
+    # vram:
+
+  - name: segment_01124000
+    type: bin
+    start: 0x1124000
+    # vram:
+
+  - name: segment_01125000
+    type: bin
+    start: 0x1125000
+    # vram:
+
+  - name: segment_01126000
+    type: bin
+    start: 0x1126000
+    # vram:
+
+  - name: segment_01127000
+    type: bin
+    start: 0x1127000
+    # vram:
+
+  - name: segment_01128000
+    type: bin
+    start: 0x1128000
+    # vram:
+
+  - name: segment_01129000
+    type: bin
+    start: 0x1129000
+    # vram:
+
+  - name: segment_0112A000
+    type: bin
+    start: 0x112A000
+    # vram:
+
+  - name: segment_0112B000
+    type: bin
+    start: 0x112B000
+    # vram:
+
+  - name: segment_0112C000
+    type: bin
+    start: 0x112C000
+    # vram:
+
+  - name: segment_0112D000
+    type: bin
+    start: 0x112D000
+    # vram:
+
+  - name: segment_0112F000
+    type: bin
+    start: 0x112F000
+    # vram:
+
+  - name: segment_01130000
+    type: bin
+    start: 0x1130000
+    # vram:
+
+  - name: segment_01131000
+    type: bin
+    start: 0x1131000
+    # vram:
+
+  - name: segment_01134000
+    type: bin
+    start: 0x1134000
+    # vram:
+
+  - name: segment_01135000
+    type: bin
+    start: 0x1135000
+    # vram:
+
+  - name: segment_01136000
+    type: bin
+    start: 0x1136000
+    # vram:
+
+  - name: segment_0113C000
+    type: bin
+    start: 0x113C000
+    # vram:
+
+  - name: segment_0113D000
+    type: bin
+    start: 0x113D000
+    # vram:
+
+  - name: segment_01147000
+    type: bin
+    start: 0x1147000
+    # vram:
+
+  - name: segment_01148000
+    type: bin
+    start: 0x1148000
+    # vram:
+
+  - name: segment_0114A000
+    type: bin
+    start: 0x114A000
+    # vram:
+
+  - name: segment_01188000
+    type: bin
+    start: 0x1188000
+    # vram:
+
+  - name: segment_011AB000
+    type: bin
+    start: 0x11AB000
+    # vram:
+
+  - name: segment_011E2000
+    type: bin
+    start: 0x11E2000
+    # vram:
+
+  - name: segment_011E3000
+    type: bin
+    start: 0x11E3000
+    # vram:
+
+  - name: segment_011E4000
+    type: bin
+    start: 0x11E4000
+    # vram:
+
+  - name: segment_011E5000
+    type: bin
+    start: 0x11E5000
+    # vram:
+
+  - name: segment_011E6000
+    type: bin
+    start: 0x11E6000
+    # vram:
+
+  - name: segment_011E7000
+    type: bin
+    start: 0x11E7000
+    # vram:
+
+  - name: segment_011E8000
+    type: bin
+    start: 0x11E8000
+    # vram:
+
+  - name: segment_011E9000
+    type: bin
+    start: 0x11E9000
+    # vram:
+
+  - name: segment_011EA000
+    type: bin
+    start: 0x11EA000
+    # vram:
+
+  - name: segment_011EB000
+    type: bin
+    start: 0x11EB000
+    # vram:
+
+  - name: segment_011EC000
+    type: bin
+    start: 0x11EC000
+    # vram:
+
+  - name: segment_011ED000
+    type: bin
+    start: 0x11ED000
+    # vram:
+
+  - name: segment_011EE000
+    type: bin
+    start: 0x11EE000
+    # vram:
+
+  - name: segment_011EF000
+    type: bin
+    start: 0x11EF000
+    # vram:
+
+  - name: segment_011F0000
+    type: bin
+    start: 0x11F0000
+    # vram:
+
+  - name: segment_011F1000
+    type: bin
+    start: 0x11F1000
+    # vram:
+
+  - name: segment_011F2000
+    type: bin
+    start: 0x11F2000
+    # vram:
+
+  - name: segment_011F3000
+    type: bin
+    start: 0x11F3000
+    # vram:
+
+  - name: segment_011F4000
+    type: bin
+    start: 0x11F4000
+    # vram:
+
+  - name: segment_011F5000
+    type: bin
+    start: 0x11F5000
+    # vram:
+
+  - name: segment_011F6000
+    type: bin
+    start: 0x11F6000
+    # vram:
+
+  - name: segment_011F8000
+    type: bin
+    start: 0x11F8000
+    # vram:
+
+  - name: segment_011FA000
+    type: bin
+    start: 0x11FA000
+    # vram:
+
+  - name: segment_011FC000
+    type: bin
+    start: 0x11FC000
+    # vram:
+
+  - name: segment_011FE000
+    type: bin
+    start: 0x11FE000
+    # vram:
+
+  - name: segment_01200000
+    type: bin
+    start: 0x1200000
+    # vram:
+
+  - name: segment_01202000
+    type: bin
+    start: 0x1202000
+    # vram:
+
+  - name: segment_01203000
+    type: bin
+    start: 0x1203000
+    # vram:
+
+  - name: segment_01205000
+    type: bin
+    start: 0x1205000
+    # vram:
+
+  - name: segment_01207000
+    type: bin
+    start: 0x1207000
+    # vram:
+
+  - name: segment_01209000
+    type: bin
+    start: 0x1209000
+    # vram:
+
+  - name: segment_0120B000
+    type: bin
+    start: 0x120B000
+    # vram:
+
+  - name: segment_0120D000
+    type: bin
+    start: 0x120D000
+    # vram:
+
+  - name: segment_0120F000
+    type: bin
+    start: 0x120F000
+    # vram:
+
+  - name: segment_01211000
+    type: bin
+    start: 0x1211000
+    # vram:
+
+  - name: segment_01213000
+    type: bin
+    start: 0x1213000
+    # vram:
+
+  - name: segment_01215000
+    type: bin
+    start: 0x1215000
+    # vram:
+
+  - name: segment_01217000
+    type: bin
+    start: 0x1217000
+    # vram:
+
+  - name: segment_01218000
+    type: bin
+    start: 0x1218000
+    # vram:
+
+  - name: segment_0121A000
+    type: bin
+    start: 0x121A000
+    # vram:
+
+  - name: segment_0121C000
+    type: bin
+    start: 0x121C000
+    # vram:
+
+  - name: segment_0121E000
+    type: bin
+    start: 0x121E000
+    # vram:
+
+  - name: segment_01220000
+    type: bin
+    start: 0x1220000
+    # vram:
+
+  - name: segment_01222000
+    type: bin
+    start: 0x1222000
+    # vram:
+
+  - name: segment_01224000
+    type: bin
+    start: 0x1224000
+    # vram:
+
+  - name: segment_01226000
+    type: bin
+    start: 0x1226000
+    # vram:
+
+  - name: segment_01228000
+    type: bin
+    start: 0x1228000
+    # vram:
+
+  - name: segment_0122A000
+    type: bin
+    start: 0x122A000
+    # vram:
+
+  - name: segment_0122C000
+    type: bin
+    start: 0x122C000
+    # vram:
+
+  - name: segment_0122E000
+    type: bin
+    start: 0x122E000
+    # vram:
+
+  - name: segment_01230000
+    type: bin
+    start: 0x1230000
+    # vram:
+
+  - name: segment_01232000
+    type: bin
+    start: 0x1232000
+    # vram:
+
+  - name: segment_01234000
+    type: bin
+    start: 0x1234000
+    # vram:
+
+  - name: segment_01236000
+    type: bin
+    start: 0x1236000
+    # vram:
+
+  - name: segment_01238000
+    type: bin
+    start: 0x1238000
+    # vram:
+
+  - name: segment_0123A000
+    type: bin
+    start: 0x123A000
+    # vram:
+
+  - name: segment_0123C000
+    type: bin
+    start: 0x123C000
+    # vram:
+
+  - name: segment_0123E000
+    type: bin
+    start: 0x123E000
+    # vram:
+
+  - name: segment_01240000
+    type: bin
+    start: 0x1240000
+    # vram:
+
+  - name: segment_01242000
+    type: bin
+    start: 0x1242000
+    # vram:
+
+  - name: segment_01244000
+    type: bin
+    start: 0x1244000
+    # vram:
+
+  - name: segment_01245000
+    type: bin
+    start: 0x1245000
+    # vram:
+
+  - name: segment_01247000
+    type: bin
+    start: 0x1247000
+    # vram:
+
+  - name: segment_01249000
+    type: bin
+    start: 0x1249000
+    # vram:
+
+  - name: segment_0124B000
+    type: bin
+    start: 0x124B000
+    # vram:
+
+  - name: segment_0124D000
+    type: bin
+    start: 0x124D000
+    # vram:
+
+  - name: segment_0124F000
+    type: bin
+    start: 0x124F000
+    # vram:
+
+  - name: segment_01251000
+    type: bin
+    start: 0x1251000
+    # vram:
+
+  - name: segment_01253000
+    type: bin
+    start: 0x1253000
+    # vram:
+
+  - name: segment_01255000
+    type: bin
+    start: 0x1255000
+    # vram:
+
+  - name: segment_01257000
+    type: bin
+    start: 0x1257000
+    # vram:
+
+  - name: segment_01259000
+    type: bin
+    start: 0x1259000
+    # vram:
+
+  - name: segment_0125B000
+    type: bin
+    start: 0x125B000
+    # vram:
+
+  - name: segment_0125D000
+    type: bin
+    start: 0x125D000
+    # vram:
+
+  - name: segment_0125F000
+    type: bin
+    start: 0x125F000
+    # vram:
+
+  - name: segment_01261000
+    type: bin
+    start: 0x1261000
+    # vram:
+
+  - name: segment_01263000
+    type: bin
+    start: 0x1263000
+    # vram:
+
+  - name: segment_01265000
+    type: bin
+    start: 0x1265000
+    # vram:
+
+  - name: segment_01267000
+    type: bin
+    start: 0x1267000
+    # vram:
+
+  - name: segment_01269000
+    type: bin
+    start: 0x1269000
+    # vram:
+
+  - name: segment_0126B000
+    type: bin
+    start: 0x126B000
+    # vram:
+
+  - name: segment_0126D000
+    type: bin
+    start: 0x126D000
+    # vram:
+
+  - name: segment_0126F000
+    type: bin
+    start: 0x126F000
+    # vram:
+
+  - name: segment_01271000
+    type: bin
+    start: 0x1271000
+    # vram:
+
+  - name: segment_01273000
+    type: bin
+    start: 0x1273000
+    # vram:
+
+  - name: segment_01275000
+    type: bin
+    start: 0x1275000
+    # vram:
+
+  - name: segment_01277000
+    type: bin
+    start: 0x1277000
+    # vram:
+
+  - name: segment_01279000
+    type: bin
+    start: 0x1279000
+    # vram:
+
+  - name: segment_0127B000
+    type: bin
+    start: 0x127B000
+    # vram:
+
+  - name: segment_0127D000
+    type: bin
+    start: 0x127D000
+    # vram:
+
+  - name: segment_0127F000
+    type: bin
+    start: 0x127F000
+    # vram:
+
+  - name: segment_01281000
+    type: bin
+    start: 0x1281000
+    # vram:
+
+  - name: segment_01283000
+    type: bin
+    start: 0x1283000
+    # vram:
+
+  - name: segment_01285000
+    type: bin
+    start: 0x1285000
+    # vram:
+
+  - name: segment_01287000
+    type: bin
+    start: 0x1287000
+    # vram:
+
+  - name: segment_01289000
+    type: bin
+    start: 0x1289000
+    # vram:
+
+  - name: segment_0128B000
+    type: bin
+    start: 0x128B000
+    # vram:
+
+  - name: segment_0128D000
+    type: bin
+    start: 0x128D000
+    # vram:
+
+  - name: segment_0128F000
+    type: bin
+    start: 0x128F000
+    # vram:
+
+  - name: segment_01291000
+    type: bin
+    start: 0x1291000
+    # vram:
+
+  - name: segment_01293000
+    type: bin
+    start: 0x1293000
+    # vram:
+
+  - name: segment_01295000
+    type: bin
+    start: 0x1295000
+    # vram:
+
+  - name: segment_01297000
+    type: bin
+    start: 0x1297000
+    # vram:
+
+  - name: segment_01298000
+    type: bin
+    start: 0x1298000
+    # vram:
+
+  - name: segment_0129A000
+    type: bin
+    start: 0x129A000
+    # vram:
+
+  - name: segment_0129C000
+    type: bin
+    start: 0x129C000
+    # vram:
+
+  - name: segment_0129E000
+    type: bin
+    start: 0x129E000
+    # vram:
+
+  - name: segment_012A0000
+    type: bin
+    start: 0x12A0000
+    # vram:
+
+  - name: segment_012A2000
+    type: bin
+    start: 0x12A2000
+    # vram:
+
+  - name: segment_012A4000
+    type: bin
+    start: 0x12A4000
+    # vram:
+
+  - name: segment_012A6000
+    type: bin
+    start: 0x12A6000
+    # vram:
+
+  - name: segment_012A8000
+    type: bin
+    start: 0x12A8000
+    # vram:
+
+  - name: segment_012AA000
+    type: bin
+    start: 0x12AA000
+    # vram:
+
+  - name: segment_012AC000
+    type: bin
+    start: 0x12AC000
+    # vram:
+
+  - name: segment_012B2000
+    type: bin
+    start: 0x12B2000
+    # vram:
+
+  - name: segment_012B9000
+    type: bin
+    start: 0x12B9000
+    # vram:
+
+  - name: segment_012BB000
+    type: bin
+    start: 0x12BB000
+    # vram:
+
+  - name: segment_012C2000
+    type: bin
+    start: 0x12C2000
+    # vram:
+
+  - name: segment_012C6000
+    type: bin
+    start: 0x12C6000
+    # vram:
+
+  - name: segment_012C8000
+    type: bin
+    start: 0x12C8000
+    # vram:
+
+  - name: segment_012CA000
+    type: bin
+    start: 0x12CA000
+    # vram:
+
+  - name: segment_012CC000
+    type: bin
+    start: 0x12CC000
+    # vram:
+
+  - name: segment_012CE000
+    type: bin
+    start: 0x12CE000
+    # vram:
+
+  - name: segment_012D0000
+    type: bin
+    start: 0x12D0000
+    # vram:
+
+  - name: segment_012D2000
+    type: bin
+    start: 0x12D2000
+    # vram:
+
+  - name: segment_012D4000
+    type: bin
+    start: 0x12D4000
+    # vram:
+
+  - name: segment_012D6000
+    type: bin
+    start: 0x12D6000
+    # vram:
+
+  - name: segment_012D8000
+    type: bin
+    start: 0x12D8000
+    # vram:
+
+  - name: segment_012DA000
+    type: bin
+    start: 0x12DA000
+    # vram:
+
+  - name: segment_012DC000
+    type: bin
+    start: 0x12DC000
+    # vram:
+
+  - name: segment_012DE000
+    type: bin
+    start: 0x12DE000
+    # vram:
+
+  - name: segment_012E0000
+    type: bin
+    start: 0x12E0000
+    # vram:
+
+  - name: segment_012E2000
+    type: bin
+    start: 0x12E2000
+    # vram:
+
+  - name: segment_012E4000
+    type: bin
+    start: 0x12E4000
+    # vram:
+
+  - name: segment_012E6000
+    type: bin
+    start: 0x12E6000
+    # vram:
+
+  - name: segment_012E8000
+    type: bin
+    start: 0x12E8000
+    # vram:
+
+  - name: segment_012EA000
+    type: bin
+    start: 0x12EA000
+    # vram:
+
+  - name: segment_012EC000
+    type: bin
+    start: 0x12EC000
+    # vram:
+
+  - name: segment_012EE000
+    type: bin
+    start: 0x12EE000
+    # vram:
+
+  - name: segment_012F0000
+    type: bin
+    start: 0x12F0000
+    # vram:
+
+  - name: segment_012F2000
+    type: bin
+    start: 0x12F2000
+    # vram:
+
+  - name: segment_012F4000
+    type: bin
+    start: 0x12F4000
+    # vram:
+
+  - name: segment_012F6000
+    type: bin
+    start: 0x12F6000
+    # vram:
+
+  - name: segment_012F8000
+    type: bin
+    start: 0x12F8000
+    # vram:
+
+  - name: segment_012FA000
+    type: bin
+    start: 0x12FA000
+    # vram:
+
+  - name: segment_012FB000
+    type: bin
+    start: 0x12FB000
+    # vram:
+
+  - name: segment_012FD000
+    type: bin
+    start: 0x12FD000
+    # vram:
+
+  - name: segment_012FF000
+    type: bin
+    start: 0x12FF000
+    # vram:
+
+  - name: segment_01301000
+    type: bin
+    start: 0x1301000
+    # vram:
+
+  - name: segment_01303000
+    type: bin
+    start: 0x1303000
+    # vram:
+
+  - name: segment_01305000
+    type: bin
+    start: 0x1305000
+    # vram:
+
+  - name: segment_01307000
+    type: bin
+    start: 0x1307000
+    # vram:
+
+  - name: segment_01309000
+    type: bin
+    start: 0x1309000
+    # vram:
+
+  - name: segment_0130B000
+    type: bin
+    start: 0x130B000
+    # vram:
+
+  - name: segment_0130C000
+    type: bin
+    start: 0x130C000
+    # vram:
+
+  - name: segment_0130E000
+    type: bin
+    start: 0x130E000
+    # vram:
+
+  - name: segment_01310000
+    type: bin
+    start: 0x1310000
+    # vram:
+
+  - name: segment_01312000
+    type: bin
+    start: 0x1312000
+    # vram:
+
+  - name: segment_01314000
+    type: bin
+    start: 0x1314000
+    # vram:
+
+  - name: segment_01316000
+    type: bin
+    start: 0x1316000
+    # vram:
+
+  - name: segment_01318000
+    type: bin
+    start: 0x1318000
+    # vram:
+
+  - name: segment_0131A000
+    type: bin
+    start: 0x131A000
+    # vram:
+
+  - name: segment_0131C000
+    type: bin
+    start: 0x131C000
+    # vram:
+
+  - name: segment_0131E000
+    type: bin
+    start: 0x131E000
+    # vram:
+
+  - name: segment_01320000
+    type: bin
+    start: 0x1320000
+    # vram:
+
+  - name: segment_01322000
+    type: bin
+    start: 0x1322000
+    # vram:
+
+  - name: segment_01324000
+    type: bin
+    start: 0x1324000
+    # vram:
+
+  - name: segment_01326000
+    type: bin
+    start: 0x1326000
+    # vram:
+
+  - name: segment_01328000
+    type: bin
+    start: 0x1328000
+    # vram:
+
+  - name: segment_0132A000
+    type: bin
+    start: 0x132A000
+    # vram:
+
+  - name: segment_0132C000
+    type: bin
+    start: 0x132C000
+    # vram:
+
+  - name: segment_0132E000
+    type: bin
+    start: 0x132E000
+    # vram:
+
+  - name: segment_01330000
+    type: bin
+    start: 0x1330000
+    # vram:
+
+  - name: segment_01331000
+    type: bin
+    start: 0x1331000
+    # vram:
+
+  - name: segment_01333000
+    type: bin
+    start: 0x1333000
+    # vram:
+
+  - name: segment_01334000
+    type: bin
+    start: 0x1334000
+    # vram:
+
+  - name: segment_01335000
+    type: bin
+    start: 0x1335000
+    # vram:
+
+  - name: segment_01336000
+    type: bin
+    start: 0x1336000
+    # vram:
+
+  - name: segment_01337000
+    type: bin
+    start: 0x1337000
+    # vram:
+
+  - name: segment_01338000
+    type: bin
+    start: 0x1338000
+    # vram:
+
+  - name: segment_01339000
+    type: bin
+    start: 0x1339000
+    # vram:
+
+  - name: segment_0133A000
+    type: bin
+    start: 0x133A000
+    # vram:
+
+  - name: segment_0133B000
+    type: bin
+    start: 0x133B000
+    # vram:
+
+  - name: segment_0133D000
+    type: bin
+    start: 0x133D000
+    # vram:
+
+  - name: segment_0133E000
+    type: bin
+    start: 0x133E000
+    # vram:
+
+  - name: segment_01340000
+    type: bin
+    start: 0x1340000
+    # vram:
+
+  - name: segment_01342000
+    type: bin
+    start: 0x1342000
+    # vram:
+
+  - name: segment_01344000
+    type: bin
+    start: 0x1344000
+    # vram:
+
+  - name: segment_01345000
+    type: bin
+    start: 0x1345000
+    # vram:
+
+  - name: segment_01347000
+    type: bin
+    start: 0x1347000
+    # vram:
+
+  - name: segment_01349000
+    type: bin
+    start: 0x1349000
+    # vram:
+
+  - name: segment_0134B000
+    type: bin
+    start: 0x134B000
+    # vram:
+
+  - name: segment_0134C000
+    type: bin
+    start: 0x134C000
+    # vram:
+
+  - name: segment_0134D000
+    type: bin
+    start: 0x134D000
+    # vram:
+
+  - name: segment_0134F000
+    type: bin
+    start: 0x134F000
+    # vram:
+
+  - name: segment_01350000
+    type: bin
+    start: 0x1350000
+    # vram:
+
+  - name: segment_01352000
+    type: bin
+    start: 0x1352000
+    # vram:
+
+  - name: segment_01353000
+    type: bin
+    start: 0x1353000
+    # vram:
+
+  - name: segment_01355000
+    type: bin
+    start: 0x1355000
+    # vram:
+
+  - name: segment_01357000
+    type: bin
+    start: 0x1357000
+    # vram:
+
+  - name: segment_01359000
+    type: bin
+    start: 0x1359000
+    # vram:
+
+  - name: segment_0135B000
+    type: bin
+    start: 0x135B000
+    # vram:
+
+  - name: segment_0135D000
+    type: bin
+    start: 0x135D000
+    # vram:
+
+  - name: segment_0135F000
+    type: bin
+    start: 0x135F000
+    # vram:
+
+  - name: segment_01361000
+    type: bin
+    start: 0x1361000
+    # vram:
+
+  - name: segment_01363000
+    type: bin
+    start: 0x1363000
+    # vram:
+
+  - name: segment_01365000
+    type: bin
+    start: 0x1365000
+    # vram:
+
+  - name: segment_01367000
+    type: bin
+    start: 0x1367000
+    # vram:
+
+  - name: segment_01369000
+    type: bin
+    start: 0x1369000
+    # vram:
+
+  - name: segment_0136B000
+    type: bin
+    start: 0x136B000
+    # vram:
+
+  - name: segment_0136D000
+    type: bin
+    start: 0x136D000
+    # vram:
+
+  - name: segment_0136F000
+    type: bin
+    start: 0x136F000
+    # vram:
+
+  - name: segment_01371000
+    type: bin
+    start: 0x1371000
+    # vram:
+
+  - name: segment_01373000
+    type: bin
+    start: 0x1373000
+    # vram:
+
+  - name: segment_01375000
+    type: bin
+    start: 0x1375000
+    # vram:
+
+  - name: segment_01377000
+    type: bin
+    start: 0x1377000
+    # vram:
+
+  - name: segment_01379000
+    type: bin
+    start: 0x1379000
+    # vram:
+
+  - name: segment_0137B000
+    type: bin
+    start: 0x137B000
+    # vram:
+
+  - name: segment_0137C000
+    type: bin
+    start: 0x137C000
+    # vram:
+
+  - name: segment_0137D000
+    type: bin
+    start: 0x137D000
+    # vram:
+
+  - name: segment_0137F000
+    type: bin
+    start: 0x137F000
+    # vram:
+
+  - name: segment_01381000
+    type: bin
+    start: 0x1381000
+    # vram:
+
+  - name: segment_01383000
+    type: bin
+    start: 0x1383000
+    # vram:
+
+  - name: segment_0138A000
+    type: bin
+    start: 0x138A000
+    # vram:
+
+  - name: segment_0138F000
+    type: bin
+    start: 0x138F000
+    # vram:
+
+  - name: segment_01390000
+    type: bin
+    start: 0x1390000
+    # vram:
+
+  - name: segment_01393000
+    type: bin
+    start: 0x1393000
+    # vram:
+
+  - name: segment_01397000
+    type: bin
+    start: 0x1397000
+    # vram:
+
+  - name: segment_01398000
+    type: bin
+    start: 0x1398000
+    # vram:
+
+  - name: segment_0139A000
+    type: bin
+    start: 0x139A000
+    # vram:
+
+  - name: segment_0139C000
+    type: bin
+    start: 0x139C000
+    # vram:
+
+  - name: segment_0139E000
+    type: bin
+    start: 0x139E000
+    # vram:
+
+  - name: segment_013A0000
+    type: bin
+    start: 0x13A0000
+    # vram:
+
+  - name: segment_013A2000
+    type: bin
+    start: 0x13A2000
+    # vram:
+
+  - name: segment_013A4000
+    type: bin
+    start: 0x13A4000
+    # vram:
+
+  - name: segment_013A5000
+    type: bin
+    start: 0x13A5000
+    # vram:
+
+  - name: segment_013A6000
+    type: bin
+    start: 0x13A6000
+    # vram:
+
+  - name: segment_013A7000
+    type: bin
+    start: 0x13A7000
+    # vram:
+
+  - name: segment_013A8000
+    type: bin
+    start: 0x13A8000
+    # vram:
+
+  - name: segment_013A9000
+    type: bin
+    start: 0x13A9000
+    # vram:
+
+  - name: segment_013AB000
+    type: bin
+    start: 0x13AB000
+    # vram:
+
+  - name: segment_013AC000
+    type: bin
+    start: 0x13AC000
+    # vram:
+
+  - name: segment_013AF000
+    type: bin
+    start: 0x13AF000
+    # vram:
+
+  - name: segment_013B6000
+    type: bin
+    start: 0x13B6000
+    # vram:
+
+  - name: segment_013BB000
+    type: bin
+    start: 0x13BB000
+    # vram:
+
+  - name: segment_013BF000
+    type: bin
+    start: 0x13BF000
+    # vram:
+
+  - name: segment_013C7000
+    type: bin
+    start: 0x13C7000
+    # vram:
+
+  - name: segment_013CD000
+    type: bin
+    start: 0x13CD000
+    # vram:
+
+  - name: segment_013D4000
+    type: bin
+    start: 0x13D4000
+    # vram:
+
+  - name: segment_013DC000
+    type: bin
+    start: 0x13DC000
+    # vram:
+
+  - name: segment_013E2000
+    type: bin
+    start: 0x13E2000
+    # vram:
+
+  - name: segment_013E3000
+    type: bin
+    start: 0x13E3000
+    # vram:
+
+  - name: segment_013E5000
+    type: bin
+    start: 0x13E5000
+    # vram:
+
+  - name: segment_013E7000
+    type: bin
+    start: 0x13E7000
+    # vram:
+
+  - name: segment_013E9000
+    type: bin
+    start: 0x13E9000
+    # vram:
+
+  - name: segment_013EB000
+    type: bin
+    start: 0x13EB000
+    # vram:
+
+  - name: segment_013EC000
+    type: bin
+    start: 0x13EC000
+    # vram:
+
+  - name: segment_013F1000
+    type: bin
+    start: 0x13F1000
+    # vram:
+
+  - name: segment_013F3000
+    type: bin
+    start: 0x13F3000
+    # vram:
+
+  - name: segment_01408000
+    type: bin
+    start: 0x1408000
+    # vram:
+
+  - name: segment_01409000
+    type: bin
+    start: 0x1409000
+    # vram:
+
+  - name: segment_0140A000
+    type: bin
+    start: 0x140A000
+    # vram:
+
+  - name: segment_0140B000
+    type: bin
+    start: 0x140B000
+    # vram:
+
+  - name: segment_0140C000
+    type: bin
+    start: 0x140C000
+    # vram:
+
+  - name: segment_01410000
+    type: bin
+    start: 0x1410000
+    # vram:
+
+  - name: segment_01427000
+    type: bin
+    start: 0x1427000
+    # vram:
+
+  - name: segment_01428000
+    type: bin
+    start: 0x1428000
+    # vram:
+
+  - name: segment_01429000
+    type: bin
+    start: 0x1429000
+    # vram:
+
+  - name: segment_0142A000
+    type: bin
+    start: 0x142A000
+    # vram:
+
+  - name: segment_0142B000
+    type: bin
+    start: 0x142B000
+    # vram:
+
+  - name: segment_0142C000
+    type: bin
+    start: 0x142C000
+    # vram:
+
+  - name: segment_0142D000
+    type: bin
+    start: 0x142D000
+    # vram:
+
+  - name: segment_0142E000
+    type: bin
+    start: 0x142E000
+    # vram:
+
+  - name: segment_0142F000
+    type: bin
+    start: 0x142F000
+    # vram:
+
+  - name: segment_01430000
+    type: bin
+    start: 0x1430000
+    # vram:
+
+  - name: segment_01431000
+    type: bin
+    start: 0x1431000
+    # vram:
+
+  - name: segment_01432000
+    type: bin
+    start: 0x1432000
+    # vram:
+
+  - name: segment_01434000
+    type: bin
+    start: 0x1434000
+    # vram:
+
+  - name: segment_01435000
+    type: bin
+    start: 0x1435000
+    # vram:
+
+  - name: segment_01436000
+    type: bin
+    start: 0x1436000
+    # vram:
+
+  - name: segment_01437000
+    type: bin
+    start: 0x1437000
+    # vram:
+
+  - name: segment_01438000
+    type: bin
+    start: 0x1438000
+    # vram:
+
+  - name: segment_01439000
+    type: bin
+    start: 0x1439000
+    # vram:
+
+  - name: segment_0143A000
+    type: bin
+    start: 0x143A000
+    # vram:
+
+  - name: segment_0143B000
+    type: bin
+    start: 0x143B000
+    # vram:
+
+  - name: segment_0143D000
+    type: bin
+    start: 0x143D000
+    # vram:
+
+  - name: segment_0143E000
+    type: bin
+    start: 0x143E000
+    # vram:
+
+  - name: segment_0143F000
+    type: bin
+    start: 0x143F000
+    # vram:
+
+  - name: segment_01440000
+    type: bin
+    start: 0x1440000
+    # vram:
+
+  - name: segment_01441000
+    type: bin
+    start: 0x1441000
+    # vram:
+
+  - name: segment_01442000
+    type: bin
+    start: 0x1442000
+    # vram:
+
+  - name: segment_01443000
+    type: bin
+    start: 0x1443000
+    # vram:
+
+  - name: segment_01444000
+    type: bin
+    start: 0x1444000
+    # vram:
+
+  - name: segment_01445000
+    type: bin
+    start: 0x1445000
+    # vram:
+
+  - name: segment_01446000
+    type: bin
+    start: 0x1446000
+    # vram:
+
+  - name: segment_01447000
+    type: bin
+    start: 0x1447000
+    # vram:
+
+  - name: segment_01448000
+    type: bin
+    start: 0x1448000
+    # vram:
+
+  - name: segment_01449000
+    type: bin
+    start: 0x1449000
+    # vram:
+
+  - name: segment_0144A000
+    type: bin
+    start: 0x144A000
+    # vram:
+
+  - name: segment_0144B000
+    type: bin
+    start: 0x144B000
+    # vram:
+
+  - name: segment_0144C000
+    type: bin
+    start: 0x144C000
+    # vram:
+
+  - name: segment_0144D000
+    type: bin
+    start: 0x144D000
+    # vram:
+
+  - name: segment_0144E000
+    type: bin
+    start: 0x144E000
+    # vram:
+
+  - name: segment_01450000
+    type: bin
+    start: 0x1450000
+    # vram:
+
+  - name: segment_01451000
+    type: bin
+    start: 0x1451000
+    # vram:
+
+  - name: segment_01452000
+    type: bin
+    start: 0x1452000
+    # vram:
+
+  - name: segment_01453000
+    type: bin
+    start: 0x1453000
+    # vram:
+
+  - name: segment_01454000
+    type: bin
+    start: 0x1454000
+    # vram:
+
+  - name: segment_01455000
+    type: bin
+    start: 0x1455000
+    # vram:
+
+  - name: segment_01456000
+    type: bin
+    start: 0x1456000
+    # vram:
+
+  - name: segment_01458000
+    type: bin
+    start: 0x1458000
+    # vram:
+
+  - name: segment_01459000
+    type: bin
+    start: 0x1459000
+    # vram:
+
+  - name: segment_0145A000
+    type: bin
+    start: 0x145A000
+    # vram:
+
+  - name: segment_0145C000
+    type: bin
+    start: 0x145C000
+    # vram:
+
+  - name: segment_0145D000
+    type: bin
+    start: 0x145D000
+    # vram:
+
+  - name: segment_0145E000
+    type: bin
+    start: 0x145E000
+    # vram:
+
+  - name: segment_0145F000
+    type: bin
+    start: 0x145F000
+    # vram:
+
+  - name: segment_01460000
+    type: bin
+    start: 0x1460000
+    # vram:
+
+  - name: segment_01461000
+    type: bin
+    start: 0x1461000
+    # vram:
+
+  - name: segment_01462000
+    type: bin
+    start: 0x1462000
+    # vram:
+
+  - name: segment_01463000
+    type: bin
+    start: 0x1463000
+    # vram:
+
+  - name: segment_01464000
+    type: bin
+    start: 0x1464000
+    # vram:
+
+  - name: segment_01465000
+    type: bin
+    start: 0x1465000
+    # vram:
+
+  - name: segment_01466000
+    type: bin
+    start: 0x1466000
+    # vram:
+
+  - name: segment_01467000
+    type: bin
+    start: 0x1467000
+    # vram:
+
+  - name: segment_01468000
+    type: bin
+    start: 0x1468000
+    # vram:
+
+  - name: segment_01469000
+    type: bin
+    start: 0x1469000
+    # vram:
+
+  - name: segment_0146A000
+    type: bin
+    start: 0x146A000
+    # vram:
+
+  - name: segment_0146B000
+    type: bin
+    start: 0x146B000
+    # vram:
+
+  - name: segment_0146C000
+    type: bin
+    start: 0x146C000
+    # vram:
+
+  - name: segment_0146D000
+    type: bin
+    start: 0x146D000
+    # vram:
+
+  - name: segment_0146E000
+    type: bin
+    start: 0x146E000
+    # vram:
+
+  - name: segment_0146F000
+    type: bin
+    start: 0x146F000
+    # vram:
+
+  - name: segment_01470000
+    type: bin
+    start: 0x1470000
+    # vram:
+
+  - name: segment_01471000
+    type: bin
+    start: 0x1471000
+    # vram:
+
+  - name: segment_01472000
+    type: bin
+    start: 0x1472000
+    # vram:
+
+  - name: segment_01473000
+    type: bin
+    start: 0x1473000
+    # vram:
+
+  - name: segment_01474000
+    type: bin
+    start: 0x1474000
+    # vram:
+
+  - name: segment_01475000
+    type: bin
+    start: 0x1475000
+    # vram:
+
+  - name: segment_01476000
+    type: bin
+    start: 0x1476000
+    # vram:
+
+  - name: segment_01477000
+    type: bin
+    start: 0x1477000
+    # vram:
+
+  - name: segment_01478000
+    type: bin
+    start: 0x1478000
+    # vram:
+
+  - name: segment_01479000
+    type: bin
+    start: 0x1479000
+    # vram:
+
+  - name: segment_0147A000
+    type: bin
+    start: 0x147A000
+    # vram:
+
+  - name: segment_0147B000
+    type: bin
+    start: 0x147B000
+    # vram:
+
+  - name: segment_0147C000
+    type: bin
+    start: 0x147C000
+    # vram:
+
+  - name: segment_0147D000
+    type: bin
+    start: 0x147D000
+    # vram:
+
+  - name: segment_0147F000
+    type: bin
+    start: 0x147F000
+    # vram:
+
+  - name: segment_01480000
+    type: bin
+    start: 0x1480000
+    # vram:
+
+  - name: segment_01481000
+    type: bin
+    start: 0x1481000
+    # vram:
+
+  - name: segment_01482000
+    type: bin
+    start: 0x1482000
+    # vram:
+
+  - name: segment_01484000
+    type: bin
+    start: 0x1484000
+    # vram:
+
+  - name: segment_01486000
+    type: bin
+    start: 0x1486000
+    # vram:
+
+  - name: segment_01488000
+    type: bin
+    start: 0x1488000
+    # vram:
+
+  - name: segment_01489000
+    type: bin
+    start: 0x1489000
+    # vram:
+
+  - name: segment_0148A000
+    type: bin
+    start: 0x148A000
+    # vram:
+
+  - name: segment_0148B000
+    type: bin
+    start: 0x148B000
+    # vram:
+
+  - name: segment_0148C000
+    type: bin
+    start: 0x148C000
+    # vram:
+
+  - name: segment_0148D000
+    type: bin
+    start: 0x148D000
+    # vram:
+
+  - name: segment_0148E000
+    type: bin
+    start: 0x148E000
+    # vram:
+
+  - name: segment_0148F000
+    type: bin
+    start: 0x148F000
+    # vram:
+
+  - name: segment_01490000
+    type: bin
+    start: 0x1490000
+    # vram:
+
+  - name: segment_01491000
+    type: bin
+    start: 0x1491000
+    # vram:
+
+  - name: segment_01492000
+    type: bin
+    start: 0x1492000
+    # vram:
+
+  - name: segment_01493000
+    type: bin
+    start: 0x1493000
+    # vram:
+
+  - name: segment_01495000
+    type: bin
+    start: 0x1495000
+    # vram:
+
+  - name: segment_01496000
+    type: bin
+    start: 0x1496000
+    # vram:
+
+  - name: segment_01497000
+    type: bin
+    start: 0x1497000
+    # vram:
+
+  - name: segment_01498000
+    type: bin
+    start: 0x1498000
+    # vram:
+
+  - name: segment_01499000
+    type: bin
+    start: 0x1499000
+    # vram:
+
+  - name: segment_0149A000
+    type: bin
+    start: 0x149A000
+    # vram:
+
+  - name: segment_0149B000
+    type: bin
+    start: 0x149B000
+    # vram:
+
+  - name: segment_0149C000
+    type: bin
+    start: 0x149C000
+    # vram:
+
+  - name: segment_0149D000
+    type: bin
+    start: 0x149D000
+    # vram:
+
+  - name: segment_0149E000
+    type: bin
+    start: 0x149E000
+    # vram:
+
+  - name: segment_0149F000
+    type: bin
+    start: 0x149F000
+    # vram:
+
+  - name: segment_014A0000
+    type: bin
+    start: 0x14A0000
+    # vram:
+
+  - name: segment_014A1000
+    type: bin
+    start: 0x14A1000
+    # vram:
+
+  - name: segment_014A2000
+    type: bin
+    start: 0x14A2000
+    # vram:
+
+  - name: segment_014A3000
+    type: bin
+    start: 0x14A3000
+    # vram:
+
+  - name: segment_014A5000
+    type: bin
+    start: 0x14A5000
+    # vram:
+
+  - name: segment_014A6000
+    type: bin
+    start: 0x14A6000
+    # vram:
+
+  - name: segment_014A7000
+    type: bin
+    start: 0x14A7000
+    # vram:
+
+  - name: segment_014A8000
+    type: bin
+    start: 0x14A8000
+    # vram:
+
+  - name: segment_014AA000
+    type: bin
+    start: 0x14AA000
+    # vram:
+
+  - name: segment_014AB000
+    type: bin
+    start: 0x14AB000
+    # vram:
+
+  - name: segment_014AC000
+    type: bin
+    start: 0x14AC000
+    # vram:
+
+  - name: segment_014AE000
+    type: bin
+    start: 0x14AE000
+    # vram:
+
+  - name: segment_014AF000
+    type: bin
+    start: 0x14AF000
+    # vram:
+
+  - name: segment_014B0000
+    type: bin
+    start: 0x14B0000
+    # vram:
+
+  - name: segment_014B1000
+    type: bin
+    start: 0x14B1000
+    # vram:
+
+  - name: segment_014B2000
+    type: bin
+    start: 0x14B2000
+    # vram:
+
+  - name: segment_014B3000
+    type: bin
+    start: 0x14B3000
+    # vram:
+
+  - name: segment_014B4000
+    type: bin
+    start: 0x14B4000
+    # vram:
+
+  - name: segment_014B6000
+    type: bin
+    start: 0x14B6000
+    # vram:
+
+  - name: segment_014B7000
+    type: bin
+    start: 0x14B7000
+    # vram:
+
+  - name: segment_014B8000
+    type: bin
+    start: 0x14B8000
+    # vram:
+
+  - name: segment_014B9000
+    type: bin
+    start: 0x14B9000
+    # vram:
+
+  - name: segment_014BA000
+    type: bin
+    start: 0x14BA000
+    # vram:
+
+  - name: segment_014BB000
+    type: bin
+    start: 0x14BB000
+    # vram:
+
+  - name: segment_014BC000
+    type: bin
+    start: 0x14BC000
+    # vram:
+
+  - name: segment_014BD000
+    type: bin
+    start: 0x14BD000
+    # vram:
+
+  - name: segment_014BE000
+    type: bin
+    start: 0x14BE000
+    # vram:
+
+  - name: segment_014BF000
+    type: bin
+    start: 0x14BF000
+    # vram:
+
+  - name: segment_014C0000
+    type: bin
+    start: 0x14C0000
+    # vram:
+
+  - name: segment_014C1000
+    type: bin
+    start: 0x14C1000
+    # vram:
+
+  - name: segment_014C2000
+    type: bin
+    start: 0x14C2000
+    # vram:
+
+  - name: segment_014C3000
+    type: bin
+    start: 0x14C3000
+    # vram:
+
+  - name: segment_014C4000
+    type: bin
+    start: 0x14C4000
+    # vram:
+
+  - name: segment_014C5000
+    type: bin
+    start: 0x14C5000
+    # vram:
+
+  - name: segment_014C6000
+    type: bin
+    start: 0x14C6000
+    # vram:
+
+  - name: segment_014C7000
+    type: bin
+    start: 0x14C7000
+    # vram:
+
+  - name: segment_014C8000
+    type: bin
+    start: 0x14C8000
+    # vram:
+
+  - name: segment_014C9000
+    type: bin
+    start: 0x14C9000
+    # vram:
+
+  - name: segment_014CA000
+    type: bin
+    start: 0x14CA000
+    # vram:
+
+  - name: segment_014CB000
+    type: bin
+    start: 0x14CB000
+    # vram:
+
+  - name: segment_014CC000
+    type: bin
+    start: 0x14CC000
+    # vram:
+
+  - name: segment_014CD000
+    type: bin
+    start: 0x14CD000
+    # vram:
+
+  - name: segment_014CF000
+    type: bin
+    start: 0x14CF000
+    # vram:
+
+  - name: segment_014D0000
+    type: bin
+    start: 0x14D0000
+    # vram:
+
+  - name: segment_014D1000
+    type: bin
+    start: 0x14D1000
+    # vram:
+
+  - name: segment_014D2000
+    type: bin
+    start: 0x14D2000
+    # vram:
+
+  - name: segment_014D3000
+    type: bin
+    start: 0x14D3000
+    # vram:
+
+  - name: segment_014D4000
+    type: bin
+    start: 0x14D4000
+    # vram:
+
+  - name: segment_014D5000
+    type: bin
+    start: 0x14D5000
+    # vram:
+
+  - name: segment_014D6000
+    type: bin
+    start: 0x14D6000
+    # vram:
+
+  - name: segment_014D7000
+    type: bin
+    start: 0x14D7000
+    # vram:
+
+  - name: segment_014D8000
+    type: bin
+    start: 0x14D8000
+    # vram:
+
+  - name: segment_014D9000
+    type: bin
+    start: 0x14D9000
+    # vram:
+
+  - name: segment_014DA000
+    type: bin
+    start: 0x14DA000
+    # vram:
+
+  - name: segment_014DB000
+    type: bin
+    start: 0x14DB000
+    # vram:
+
+  - name: segment_014DC000
+    type: bin
+    start: 0x14DC000
+    # vram:
+
+  - name: segment_014DE000
+    type: bin
+    start: 0x14DE000
+    # vram:
+
+  - name: segment_014E0000
+    type: bin
+    start: 0x14E0000
+    # vram:
+
+  - name: segment_014E1000
+    type: bin
+    start: 0x14E1000
+    # vram:
+
+  - name: segment_014E2000
+    type: bin
+    start: 0x14E2000
+    # vram:
+
+  - name: segment_014E3000
+    type: bin
+    start: 0x14E3000
+    # vram:
+
+  - name: segment_014E4000
+    type: bin
+    start: 0x14E4000
+    # vram:
+
+  - name: segment_014E6000
+    type: bin
+    start: 0x14E6000
+    # vram:
+
+  - name: segment_014E7000
+    type: bin
+    start: 0x14E7000
+    # vram:
+
+  - name: segment_014E8000
+    type: bin
+    start: 0x14E8000
+    # vram:
+
+  - name: segment_014E9000
+    type: bin
+    start: 0x14E9000
+    # vram:
+
+  - name: segment_014EA000
+    type: bin
+    start: 0x14EA000
+    # vram:
+
+  - name: segment_014EB000
+    type: bin
+    start: 0x14EB000
+    # vram:
+
+  - name: segment_014EC000
+    type: bin
+    start: 0x14EC000
+    # vram:
+
+  - name: segment_014ED000
+    type: bin
+    start: 0x14ED000
+    # vram:
+
+  - name: segment_014EE000
+    type: bin
+    start: 0x14EE000
+    # vram:
+
+  - name: segment_014EF000
+    type: bin
+    start: 0x14EF000
+    # vram:
+
+  - name: segment_014F0000
+    type: bin
+    start: 0x14F0000
+    # vram:
+
+  - name: segment_014F1000
+    type: bin
+    start: 0x14F1000
+    # vram:
+
+  - name: segment_014F2000
+    type: bin
+    start: 0x14F2000
+    # vram:
+
+  - name: segment_014F3000
+    type: bin
+    start: 0x14F3000
+    # vram:
+
+  - name: segment_014F4000
+    type: bin
+    start: 0x14F4000
+    # vram:
+
+  - name: segment_014F5000
+    type: bin
+    start: 0x14F5000
+    # vram:
+
+  - name: segment_014F6000
+    type: bin
+    start: 0x14F6000
+    # vram:
+
+  - name: segment_014F7000
+    type: bin
+    start: 0x14F7000
+    # vram:
+
+  - name: segment_014F8000
+    type: bin
+    start: 0x14F8000
+    # vram:
+
+  - name: segment_014F9000
+    type: bin
+    start: 0x14F9000
+    # vram:
+
+  - name: segment_014FA000
+    type: bin
+    start: 0x14FA000
+    # vram:
+
+  - name: segment_014FC000
+    type: bin
+    start: 0x14FC000
+    # vram:
+
+  - name: segment_014FD000
+    type: bin
+    start: 0x14FD000
+    # vram:
+
+  - name: segment_014FE000
+    type: bin
+    start: 0x14FE000
+    # vram:
+
+  - name: segment_01500000
+    type: bin
+    start: 0x1500000
+    # vram:
+
+  - name: segment_01502000
+    type: bin
+    start: 0x1502000
+    # vram:
+
+  - name: segment_01503000
+    type: bin
+    start: 0x1503000
+    # vram:
+
+  - name: segment_01504000
+    type: bin
+    start: 0x1504000
+    # vram:
+
+  - name: segment_01506000
+    type: bin
+    start: 0x1506000
+    # vram:
+
+  - name: segment_01508000
+    type: bin
+    start: 0x1508000
+    # vram:
+
+  - name: segment_01509000
+    type: bin
+    start: 0x1509000
+    # vram:
+
+  - name: segment_0150A000
+    type: bin
+    start: 0x150A000
+    # vram:
+
+  - name: segment_0150B000
+    type: bin
+    start: 0x150B000
+    # vram:
+
+  - name: segment_0150C000
+    type: bin
+    start: 0x150C000
+    # vram:
+
+  - name: segment_0150D000
+    type: bin
+    start: 0x150D000
+    # vram:
+
+  - name: segment_0150E000
+    type: bin
+    start: 0x150E000
+    # vram:
+
+  - name: segment_0150F000
+    type: bin
+    start: 0x150F000
+    # vram:
+
+  - name: segment_01510000
+    type: bin
+    start: 0x1510000
+    # vram:
+
+  - name: segment_01511000
+    type: bin
+    start: 0x1511000
+    # vram:
+
+  - name: segment_01512000
+    type: bin
+    start: 0x1512000
+    # vram:
+
+  - name: segment_01513000
+    type: bin
+    start: 0x1513000
+    # vram:
+
+  - name: segment_01514000
+    type: bin
+    start: 0x1514000
+    # vram:
+
+  - name: segment_01515000
+    type: bin
+    start: 0x1515000
+    # vram:
+
+  - name: segment_01516000
+    type: bin
+    start: 0x1516000
+    # vram:
+
+  - name: segment_01517000
+    type: bin
+    start: 0x1517000
+    # vram:
+
+  - name: segment_01518000
+    type: bin
+    start: 0x1518000
+    # vram:
+
+  - name: segment_01519000
+    type: bin
+    start: 0x1519000
+    # vram:
+
+  - name: segment_0151A000
+    type: bin
+    start: 0x151A000
+    # vram:
+
+  - name: segment_0151B000
+    type: bin
+    start: 0x151B000
+    # vram:
+
+  - name: segment_0151C000
+    type: bin
+    start: 0x151C000
+    # vram:
+
+  - name: segment_0151D000
+    type: bin
+    start: 0x151D000
+    # vram:
+
+  - name: segment_0151E000
+    type: bin
+    start: 0x151E000
+    # vram:
+
+  - name: segment_0151F000
+    type: bin
+    start: 0x151F000
+    # vram:
+
+  - name: segment_01520000
+    type: bin
+    start: 0x1520000
+    # vram:
+
+  - name: segment_01521000
+    type: bin
+    start: 0x1521000
+    # vram:
+
+  - name: segment_01522000
+    type: bin
+    start: 0x1522000
+    # vram:
+
+  - name: segment_01523000
+    type: bin
+    start: 0x1523000
+    # vram:
+
+  - name: segment_01524000
+    type: bin
+    start: 0x1524000
+    # vram:
+
+  - name: segment_01525000
+    type: bin
+    start: 0x1525000
+    # vram:
+
+  - name: segment_01526000
+    type: bin
+    start: 0x1526000
+    # vram:
+
+  - name: segment_01527000
+    type: bin
+    start: 0x1527000
+    # vram:
+
+  - name: segment_01528000
+    type: bin
+    start: 0x1528000
+    # vram:
+
+  - name: segment_01529000
+    type: bin
+    start: 0x1529000
+    # vram:
+
+  - name: segment_0152A000
+    type: bin
+    start: 0x152A000
+    # vram:
+
+  - name: segment_0152B000
+    type: bin
+    start: 0x152B000
+    # vram:
+
+  - name: segment_0152C000
+    type: bin
+    start: 0x152C000
+    # vram:
+
+  - name: segment_0152D000
+    type: bin
+    start: 0x152D000
+    # vram:
+
+  - name: segment_0152E000
+    type: bin
+    start: 0x152E000
+    # vram:
+
+  - name: segment_0152F000
+    type: bin
+    start: 0x152F000
+    # vram:
+
+  - name: segment_01530000
+    type: bin
+    start: 0x1530000
+    # vram:
+
+  - name: segment_01531000
+    type: bin
+    start: 0x1531000
+    # vram:
+
+  - name: segment_01532000
+    type: bin
+    start: 0x1532000
+    # vram:
+
+  - name: segment_01533000
+    type: bin
+    start: 0x1533000
+    # vram:
+
+  - name: segment_01534000
+    type: bin
+    start: 0x1534000
+    # vram:
+
+  - name: segment_01535000
+    type: bin
+    start: 0x1535000
+    # vram:
+
+  - name: segment_01536000
+    type: bin
+    start: 0x1536000
+    # vram:
+
+  - name: segment_01537000
+    type: bin
+    start: 0x1537000
+    # vram:
+
+  - name: segment_01538000
+    type: bin
+    start: 0x1538000
+    # vram:
+
+  - name: segment_01539000
+    type: bin
+    start: 0x1539000
+    # vram:
+
+  - name: segment_0153A000
+    type: bin
+    start: 0x153A000
+    # vram:
+
+  - name: segment_0153B000
+    type: bin
+    start: 0x153B000
+    # vram:
+
+  - name: segment_0153D000
+    type: bin
+    start: 0x153D000
+    # vram:
+
+  - name: segment_0153E000
+    type: bin
+    start: 0x153E000
+    # vram:
+
+  - name: segment_0153F000
+    type: bin
+    start: 0x153F000
+    # vram:
+
+  - name: segment_01540000
+    type: bin
+    start: 0x1540000
+    # vram:
+
+  - name: segment_01541000
+    type: bin
+    start: 0x1541000
+    # vram:
+
+  - name: segment_01542000
+    type: bin
+    start: 0x1542000
+    # vram:
+
+  - name: segment_01543000
+    type: bin
+    start: 0x1543000
+    # vram:
+
+  - name: segment_01544000
+    type: bin
+    start: 0x1544000
+    # vram:
+
+  - name: segment_01545000
+    type: bin
+    start: 0x1545000
+    # vram:
+
+  - name: segment_01546000
+    type: bin
+    start: 0x1546000
+    # vram:
+
+  - name: segment_01547000
+    type: bin
+    start: 0x1547000
+    # vram:
+
+  - name: segment_01548000
+    type: bin
+    start: 0x1548000
+    # vram:
+
+  - name: segment_01549000
+    type: bin
+    start: 0x1549000
+    # vram:
+
+  - name: segment_0154A000
+    type: bin
+    start: 0x154A000
+    # vram:
+
+  - name: segment_0154B000
+    type: bin
+    start: 0x154B000
+    # vram:
+
+  - name: segment_0154C000
+    type: bin
+    start: 0x154C000
+    # vram:
+
+  - name: segment_0154D000
+    type: bin
+    start: 0x154D000
+    # vram:
+
+  - name: segment_0154E000
+    type: bin
+    start: 0x154E000
+    # vram:
+
+  - name: segment_0154F000
+    type: bin
+    start: 0x154F000
+    # vram:
+
+  - name: segment_01550000
+    type: bin
+    start: 0x1550000
+    # vram:
+
+  - name: segment_01552000
+    type: bin
+    start: 0x1552000
+    # vram:
+
+  - name: segment_01553000
+    type: bin
+    start: 0x1553000
+    # vram:
+
+  - name: segment_01554000
+    type: bin
+    start: 0x1554000
+    # vram:
+
+  - name: segment_01555000
+    type: bin
+    start: 0x1555000
+    # vram:
+
+  - name: segment_01556000
+    type: bin
+    start: 0x1556000
+    # vram:
+
+  - name: segment_01557000
+    type: bin
+    start: 0x1557000
+    # vram:
+
+  - name: segment_01559000
+    type: bin
+    start: 0x1559000
+    # vram:
+
+  - name: segment_0155A000
+    type: bin
+    start: 0x155A000
+    # vram:
+
+  - name: segment_0155B000
+    type: bin
+    start: 0x155B000
+    # vram:
+
+  - name: segment_0155C000
+    type: bin
+    start: 0x155C000
+    # vram:
+
+  - name: segment_0155D000
+    type: bin
+    start: 0x155D000
+    # vram:
+
+  - name: segment_0155E000
+    type: bin
+    start: 0x155E000
+    # vram:
+
+  - name: segment_0155F000
+    type: bin
+    start: 0x155F000
+    # vram:
+
+  - name: segment_01560000
+    type: bin
+    start: 0x1560000
+    # vram:
+
+  - name: segment_01561000
+    type: bin
+    start: 0x1561000
+    # vram:
+
+  - name: segment_01562000
+    type: bin
+    start: 0x1562000
+    # vram:
+
+  - name: segment_01563000
+    type: bin
+    start: 0x1563000
+    # vram:
+
+  - name: segment_01564000
+    type: bin
+    start: 0x1564000
+    # vram:
+
+  - name: segment_01565000
+    type: bin
+    start: 0x1565000
+    # vram:
+
+  - name: segment_01566000
+    type: bin
+    start: 0x1566000
+    # vram:
+
+  - name: segment_01567000
+    type: bin
+    start: 0x1567000
+    # vram:
+
+  - name: segment_01568000
+    type: bin
+    start: 0x1568000
+    # vram:
+
+  - name: segment_01569000
+    type: bin
+    start: 0x1569000
+    # vram:
+
+  - name: segment_0156A000
+    type: bin
+    start: 0x156A000
+    # vram:
+
+  - name: segment_0156B000
+    type: bin
+    start: 0x156B000
+    # vram:
+
+  - name: segment_0156C000
+    type: bin
+    start: 0x156C000
+    # vram:
+
+  - name: segment_0156D000
+    type: bin
+    start: 0x156D000
+    # vram:
+
+  - name: segment_0156E000
+    type: bin
+    start: 0x156E000
+    # vram:
+
+  - name: segment_0156F000
+    type: bin
+    start: 0x156F000
+    # vram:
+
+  - name: segment_01570000
+    type: bin
+    start: 0x1570000
+    # vram:
+
+  - name: segment_01571000
+    type: bin
+    start: 0x1571000
+    # vram:
+
+  - name: segment_01572000
+    type: bin
+    start: 0x1572000
+    # vram:
+
+  - name: segment_01573000
+    type: bin
+    start: 0x1573000
+    # vram:
+
+  - name: segment_01574000
+    type: bin
+    start: 0x1574000
+    # vram:
+
+  - name: segment_01575000
+    type: bin
+    start: 0x1575000
+    # vram:
+
+  - name: segment_01576000
+    type: bin
+    start: 0x1576000
+    # vram:
+
+  - name: segment_01577000
+    type: bin
+    start: 0x1577000
+    # vram:
+
+  - name: segment_01578000
+    type: bin
+    start: 0x1578000
+    # vram:
+
+  - name: segment_01579000
+    type: bin
+    start: 0x1579000
+    # vram:
+
+  - name: segment_0157A000
+    type: bin
+    start: 0x157A000
+    # vram:
+
+  - name: segment_0157C000
+    type: bin
+    start: 0x157C000
+    # vram:
+
+  - name: segment_0157D000
+    type: bin
+    start: 0x157D000
+    # vram:
+
+  - name: segment_0157E000
+    type: bin
+    start: 0x157E000
+    # vram:
+
+  - name: segment_0157F000
+    type: bin
+    start: 0x157F000
+    # vram:
+
+  - name: segment_01580000
+    type: bin
+    start: 0x1580000
+    # vram:
+
+  - name: segment_01581000
+    type: bin
+    start: 0x1581000
+    # vram:
+
+  - name: segment_01582000
+    type: bin
+    start: 0x1582000
+    # vram:
+
+  - name: segment_01583000
+    type: bin
+    start: 0x1583000
+    # vram:
+
+  - name: segment_01584000
+    type: bin
+    start: 0x1584000
+    # vram:
+
+  - name: segment_01585000
+    type: bin
+    start: 0x1585000
+    # vram:
+
+  - name: segment_01587000
+    type: bin
+    start: 0x1587000
+    # vram:
+
+  - name: segment_01588000
+    type: bin
+    start: 0x1588000
+    # vram:
+
+  - name: segment_01589000
+    type: bin
+    start: 0x1589000
+    # vram:
+
+  - name: segment_0158A000
+    type: bin
+    start: 0x158A000
+    # vram:
+
+  - name: segment_0158B000
+    type: bin
+    start: 0x158B000
+    # vram:
+
+  - name: segment_0158C000
+    type: bin
+    start: 0x158C000
+    # vram:
+
+  - name: segment_0158E000
+    type: bin
+    start: 0x158E000
+    # vram:
+
+  - name: segment_01590000
+    type: bin
+    start: 0x1590000
+    # vram:
+
+  - name: segment_01591000
+    type: bin
+    start: 0x1591000
+    # vram:
+
+  - name: segment_01592000
+    type: bin
+    start: 0x1592000
+    # vram:
+
+  - name: segment_01593000
+    type: bin
+    start: 0x1593000
+    # vram:
+
+  - name: segment_01595000
+    type: bin
+    start: 0x1595000
+    # vram:
+
+  - name: segment_01596000
+    type: bin
+    start: 0x1596000
+    # vram:
+
+  - name: segment_01597000
+    type: bin
+    start: 0x1597000
+    # vram:
+
+  - name: segment_01598000
+    type: bin
+    start: 0x1598000
+    # vram:
+
+  - name: segment_01599000
+    type: bin
+    start: 0x1599000
+    # vram:
+
+  - name: segment_0159A000
+    type: bin
+    start: 0x159A000
+    # vram:
+
+  - name: segment_0159B000
+    type: bin
+    start: 0x159B000
+    # vram:
+
+  - name: segment_0159C000
+    type: bin
+    start: 0x159C000
+    # vram:
+
+  - name: segment_0159D000
+    type: bin
+    start: 0x159D000
+    # vram:
+
+  - name: segment_0159F000
+    type: bin
+    start: 0x159F000
+    # vram:
+
+  - name: segment_015A0000
+    type: bin
+    start: 0x15A0000
+    # vram:
+
+  - name: segment_015A1000
+    type: bin
+    start: 0x15A1000
+    # vram:
+
+  - name: segment_015A2000
+    type: bin
+    start: 0x15A2000
+    # vram:
+
+  - name: segment_015A3000
+    type: bin
+    start: 0x15A3000
+    # vram:
+
+  - name: segment_015A5000
+    type: bin
+    start: 0x15A5000
+    # vram:
+
+  - name: segment_015A6000
+    type: bin
+    start: 0x15A6000
+    # vram:
+
+  - name: segment_015A7000
+    type: bin
+    start: 0x15A7000
+    # vram:
+
+  - name: segment_015A8000
+    type: bin
+    start: 0x15A8000
+    # vram:
+
+  - name: segment_015A9000
+    type: bin
+    start: 0x15A9000
+    # vram:
+
+  - name: segment_015AA000
+    type: bin
+    start: 0x15AA000
+    # vram:
+
+  - name: segment_015AC000
+    type: bin
+    start: 0x15AC000
+    # vram:
+
+  - name: segment_015AD000
+    type: bin
+    start: 0x15AD000
+    # vram:
+
+  - name: segment_015AE000
+    type: bin
+    start: 0x15AE000
+    # vram:
+
+  - name: segment_015AF000
+    type: bin
+    start: 0x15AF000
+    # vram:
+
+  - name: segment_015B1000
+    type: bin
+    start: 0x15B1000
+    # vram:
+
+  - name: segment_015B2000
+    type: bin
+    start: 0x15B2000
+    # vram:
+
+  - name: segment_015B3000
+    type: bin
+    start: 0x15B3000
+    # vram:
+
+  - name: segment_015B4000
+    type: bin
+    start: 0x15B4000
+    # vram:
+
+  - name: segment_015B5000
+    type: bin
+    start: 0x15B5000
+    # vram:
+
+  - name: segment_015B6000
+    type: bin
+    start: 0x15B6000
+    # vram:
+
+  - name: segment_015B7000
+    type: bin
+    start: 0x15B7000
+    # vram:
+
+  - name: segment_015B8000
+    type: bin
+    start: 0x15B8000
+    # vram:
+
+  - name: segment_015B9000
+    type: bin
+    start: 0x15B9000
+    # vram:
+
+  - name: segment_015BA000
+    type: bin
+    start: 0x15BA000
+    # vram:
+
+  - name: segment_015BB000
+    type: bin
+    start: 0x15BB000
+    # vram:
+
+  - name: segment_015BC000
+    type: bin
+    start: 0x15BC000
+    # vram:
+
+  - name: segment_015BD000
+    type: bin
+    start: 0x15BD000
+    # vram:
+
+  - name: segment_015BE000
+    type: bin
+    start: 0x15BE000
+    # vram:
+
+  - name: segment_015BF000
+    type: bin
+    start: 0x15BF000
+    # vram:
+
+  - name: segment_015C0000
+    type: bin
+    start: 0x15C0000
+    # vram:
+
+  - name: segment_015C1000
+    type: bin
+    start: 0x15C1000
+    # vram:
+
+  - name: segment_015C2000
+    type: bin
+    start: 0x15C2000
+    # vram:
+
+  - name: segment_015C3000
+    type: bin
+    start: 0x15C3000
+    # vram:
+
+  - name: segment_015C4000
+    type: bin
+    start: 0x15C4000
+    # vram:
+
+  - name: segment_015C5000
+    type: bin
+    start: 0x15C5000
+    # vram:
+
+  - name: segment_015C6000
+    type: bin
+    start: 0x15C6000
+    # vram:
+
+  - name: segment_015C8000
+    type: bin
+    start: 0x15C8000
+    # vram:
+
+  - name: segment_015CA000
+    type: bin
+    start: 0x15CA000
+    # vram:
+
+  - name: segment_015CB000
+    type: bin
+    start: 0x15CB000
+    # vram:
+
+  - name: segment_015CD000
+    type: bin
+    start: 0x15CD000
+    # vram:
+
+  - name: segment_015CE000
+    type: bin
+    start: 0x15CE000
+    # vram:
+
+  - name: segment_015CF000
+    type: bin
+    start: 0x15CF000
+    # vram:
+
+  - name: segment_015D0000
+    type: bin
+    start: 0x15D0000
+    # vram:
+
+  - name: segment_015D1000
+    type: bin
+    start: 0x15D1000
+    # vram:
+
+  - name: segment_015D2000
+    type: bin
+    start: 0x15D2000
+    # vram:
+
+  - name: segment_015D3000
+    type: bin
+    start: 0x15D3000
+    # vram:
+
+  - name: segment_015D4000
+    type: bin
+    start: 0x15D4000
+    # vram:
+
+  - name: segment_015D6000
+    type: bin
+    start: 0x15D6000
+    # vram:
+
+  - name: segment_015D8000
+    type: bin
+    start: 0x15D8000
+    # vram:
+
+  - name: segment_015DA000
+    type: bin
+    start: 0x15DA000
+    # vram:
+
+  - name: segment_015DC000
+    type: bin
+    start: 0x15DC000
+    # vram:
+
+  - name: segment_015DE000
+    type: bin
+    start: 0x15DE000
+    # vram:
+
+  - name: segment_015E0000
+    type: bin
+    start: 0x15E0000
+    # vram:
+
+  - name: segment_015E2000
+    type: bin
+    start: 0x15E2000
+    # vram:
+
+  - name: segment_015E4000
+    type: bin
+    start: 0x15E4000
+    # vram:
+
+  - name: segment_015E6000
+    type: bin
+    start: 0x15E6000
+    # vram:
+
+  - name: segment_015E8000
+    type: bin
+    start: 0x15E8000
+    # vram:
+
+  - name: segment_015EA000
+    type: bin
+    start: 0x15EA000
+    # vram:
+
+  - name: segment_015EC000
+    type: bin
+    start: 0x15EC000
+    # vram:
+
+  - name: segment_015EE000
+    type: bin
+    start: 0x15EE000
+    # vram:
+
+  - name: segment_015F0000
+    type: bin
+    start: 0x15F0000
+    # vram:
+
+  - name: segment_015F2000
+    type: bin
+    start: 0x15F2000
+    # vram:
+
+  - name: segment_015F4000
+    type: bin
+    start: 0x15F4000
+    # vram:
+
+  - name: segment_015F6000
+    type: bin
+    start: 0x15F6000
+    # vram:
+
+  - name: segment_015F8000
+    type: bin
+    start: 0x15F8000
+    # vram:
+
+  - name: segment_015FA000
+    type: bin
+    start: 0x15FA000
+    # vram:
+
+  - name: segment_015FC000
+    type: bin
+    start: 0x15FC000
+    # vram:
+
+  - name: segment_015FE000
+    type: bin
+    start: 0x15FE000
+    # vram:
+
+  - name: segment_01600000
+    type: bin
+    start: 0x1600000
+    # vram:
+
+  - name: segment_01602000
+    type: bin
+    start: 0x1602000
+    # vram:
+
+  - name: segment_01604000
+    type: bin
+    start: 0x1604000
+    # vram:
+
+  - name: segment_01606000
+    type: bin
+    start: 0x1606000
+    # vram:
+
+  - name: segment_01608000
+    type: bin
+    start: 0x1608000
+    # vram:
+
+  - name: segment_0160A000
+    type: bin
+    start: 0x160A000
+    # vram:
+
+  - name: segment_0160C000
+    type: bin
+    start: 0x160C000
+    # vram:
+
+  - name: segment_0160E000
+    type: bin
+    start: 0x160E000
+    # vram:
+
+  - name: segment_01610000
+    type: bin
+    start: 0x1610000
+    # vram:
+
+  - name: segment_01612000
+    type: bin
+    start: 0x1612000
+    # vram:
+
+  - name: segment_01614000
+    type: bin
+    start: 0x1614000
+    # vram:
+
+  - name: segment_01616000
+    type: bin
+    start: 0x1616000
+    # vram:
+
+  - name: segment_01618000
+    type: bin
+    start: 0x1618000
+    # vram:
+
+  - name: segment_0161A000
+    type: bin
+    start: 0x161A000
+    # vram:
+
+  - name: segment_0161C000
+    type: bin
+    start: 0x161C000
+    # vram:
+
+  - name: segment_0161E000
+    type: bin
+    start: 0x161E000
+    # vram:
+
+  - name: segment_01620000
+    type: bin
+    start: 0x1620000
+    # vram:
+
+  - name: segment_01622000
+    type: bin
+    start: 0x1622000
+    # vram:
+
+  - name: segment_01624000
+    type: bin
+    start: 0x1624000
+    # vram:
+
+  - name: segment_01626000
+    type: bin
+    start: 0x1626000
+    # vram:
+
+  - name: segment_01628000
+    type: bin
+    start: 0x1628000
+    # vram:
+
+  - name: segment_0162A000
+    type: bin
+    start: 0x162A000
+    # vram:
+
+  - name: segment_0162C000
+    type: bin
+    start: 0x162C000
+    # vram:
+
+  - name: segment_0162E000
+    type: bin
+    start: 0x162E000
+    # vram:
+
+  - name: segment_01630000
+    type: bin
+    start: 0x1630000
+    # vram:
+
+  - name: segment_01632000
+    type: bin
+    start: 0x1632000
+    # vram:
+
+  - name: segment_01634000
+    type: bin
+    start: 0x1634000
+    # vram:
+
+  - name: segment_01636000
+    type: bin
+    start: 0x1636000
+    # vram:
+
+  - name: segment_01638000
+    type: bin
+    start: 0x1638000
+    # vram:
+
+  - name: segment_0163A000
+    type: bin
+    start: 0x163A000
+    # vram:
+
+  - name: segment_0163C000
+    type: bin
+    start: 0x163C000
+    # vram:
+
+  - name: segment_0163E000
+    type: bin
+    start: 0x163E000
+    # vram:
+
+  - name: segment_01640000
+    type: bin
+    start: 0x1640000
+    # vram:
+
+  - name: segment_01642000
+    type: bin
+    start: 0x1642000
+    # vram:
+
+  - name: segment_01644000
+    type: bin
+    start: 0x1644000
+    # vram:
+
+  - name: segment_01646000
+    type: bin
+    start: 0x1646000
+    # vram:
+
+  - name: segment_01648000
+    type: bin
+    start: 0x1648000
+    # vram:
+
+  - name: segment_0164A000
+    type: bin
+    start: 0x164A000
+    # vram:
+
+  - name: segment_0164C000
+    type: bin
+    start: 0x164C000
+    # vram:
+
+  - name: segment_0164E000
+    type: bin
+    start: 0x164E000
+    # vram:
+
+  - name: segment_01650000
+    type: bin
+    start: 0x1650000
+    # vram:
+
+  - name: segment_01652000
+    type: bin
+    start: 0x1652000
+    # vram:
+
+  - name: segment_01654000
+    type: bin
+    start: 0x1654000
+    # vram:
+
+  - name: segment_01656000
+    type: bin
+    start: 0x1656000
+    # vram:
+
+  - name: segment_01658000
+    type: bin
+    start: 0x1658000
+    # vram:
+
+  - name: segment_0165A000
+    type: bin
+    start: 0x165A000
+    # vram:
+
+  - name: segment_0165C000
+    type: bin
+    start: 0x165C000
+    # vram:
+
+  - name: segment_0165E000
+    type: bin
+    start: 0x165E000
+    # vram:
+
+  - name: segment_01660000
+    type: bin
+    start: 0x1660000
+    # vram:
+
+  - name: segment_01662000
+    type: bin
+    start: 0x1662000
+    # vram:
+
+  - name: segment_01664000
+    type: bin
+    start: 0x1664000
+    # vram:
+
+  - name: segment_01666000
+    type: bin
+    start: 0x1666000
+    # vram:
+
+  - name: segment_01668000
+    type: bin
+    start: 0x1668000
+    # vram:
+
+  - name: segment_0166A000
+    type: bin
+    start: 0x166A000
+    # vram:
+
+  - name: segment_0166C000
+    type: bin
+    start: 0x166C000
+    # vram:
+
+  - name: segment_0166E000
+    type: bin
+    start: 0x166E000
+    # vram:
+
+  - name: segment_01670000
+    type: bin
+    start: 0x1670000
+    # vram:
+
+  - name: segment_01672000
+    type: bin
+    start: 0x1672000
+    # vram:
+
+  - name: segment_01674000
+    type: bin
+    start: 0x1674000
+    # vram:
+
+  - name: segment_01676000
+    type: bin
+    start: 0x1676000
+    # vram:
+
+  - name: segment_01678000
+    type: bin
+    start: 0x1678000
+    # vram:
+
+  - name: segment_0167A000
+    type: bin
+    start: 0x167A000
+    # vram:
+
+  - name: segment_0167C000
+    type: bin
+    start: 0x167C000
+    # vram:
+
+  - name: segment_0167E000
+    type: bin
+    start: 0x167E000
+    # vram:
+
+  - name: segment_01680000
+    type: bin
+    start: 0x1680000
+    # vram:
+
+  - name: segment_01682000
+    type: bin
+    start: 0x1682000
+    # vram:
+
+  - name: segment_01684000
+    type: bin
+    start: 0x1684000
+    # vram:
+
+  - name: segment_01686000
+    type: bin
+    start: 0x1686000
+    # vram:
+
+  - name: segment_01688000
+    type: bin
+    start: 0x1688000
+    # vram:
+
+  - name: segment_0168A000
+    type: bin
+    start: 0x168A000
+    # vram:
+
+  - name: segment_0168C000
+    type: bin
+    start: 0x168C000
+    # vram:
+
+  - name: segment_0168E000
+    type: bin
+    start: 0x168E000
+    # vram:
+
+  - name: segment_01690000
+    type: bin
+    start: 0x1690000
+    # vram:
+
+  - name: segment_01692000
+    type: bin
+    start: 0x1692000
+    # vram:
+
+  - name: segment_01694000
+    type: bin
+    start: 0x1694000
+    # vram:
+
+  - name: segment_01696000
+    type: bin
+    start: 0x1696000
+    # vram:
+
+  - name: segment_01698000
+    type: bin
+    start: 0x1698000
+    # vram:
+
+  - name: segment_0169A000
+    type: bin
+    start: 0x169A000
+    # vram:
+
+  - name: segment_0169C000
+    type: bin
+    start: 0x169C000
+    # vram:
+
+  - name: segment_0169E000
+    type: bin
+    start: 0x169E000
+    # vram:
+
+  - name: segment_016A0000
+    type: bin
+    start: 0x16A0000
+    # vram:
+
+  - name: segment_016A2000
+    type: bin
+    start: 0x16A2000
+    # vram:
+
+  - name: segment_016A4000
+    type: bin
+    start: 0x16A4000
+    # vram:
+
+  - name: segment_016A6000
+    type: bin
+    start: 0x16A6000
+    # vram:
+
+  - name: segment_016A8000
+    type: bin
+    start: 0x16A8000
+    # vram:
+
+  - name: segment_016AA000
+    type: bin
+    start: 0x16AA000
+    # vram:
+
+  - name: segment_016AC000
+    type: bin
+    start: 0x16AC000
+    # vram:
+
+  - name: segment_016AE000
+    type: bin
+    start: 0x16AE000
+    # vram:
+
+  - name: segment_016B0000
+    type: bin
+    start: 0x16B0000
+    # vram:
+
+  - name: segment_016B2000
+    type: bin
+    start: 0x16B2000
+    # vram:
+
+  - name: segment_016B4000
+    type: bin
+    start: 0x16B4000
+    # vram:
+
+  - name: segment_016B6000
+    type: bin
+    start: 0x16B6000
+    # vram:
+
+  - name: segment_016B8000
+    type: bin
+    start: 0x16B8000
+    # vram:
+
+  - name: segment_016BA000
+    type: bin
+    start: 0x16BA000
+    # vram:
+
+  - name: segment_016BC000
+    type: bin
+    start: 0x16BC000
+    # vram:
+
+  - name: segment_016BE000
+    type: bin
+    start: 0x16BE000
+    # vram:
+
+  - name: segment_016C0000
+    type: bin
+    start: 0x16C0000
+    # vram:
+
+  - name: segment_016C2000
+    type: bin
+    start: 0x16C2000
+    # vram:
+
+  - name: segment_016C4000
+    type: bin
+    start: 0x16C4000
+    # vram:
+
+  - name: segment_016C6000
+    type: bin
+    start: 0x16C6000
+    # vram:
+
+  - name: segment_016C8000
+    type: bin
+    start: 0x16C8000
+    # vram:
+
+  - name: segment_016CA000
+    type: bin
+    start: 0x16CA000
+    # vram:
+
+  - name: segment_016CC000
+    type: bin
+    start: 0x16CC000
+    # vram:
+
+  - name: segment_016CE000
+    type: bin
+    start: 0x16CE000
+    # vram:
+
+  - name: segment_016D0000
+    type: bin
+    start: 0x16D0000
+    # vram:
+
+  - name: segment_016D2000
+    type: bin
+    start: 0x16D2000
+    # vram:
+
+  - name: segment_016D3000
+    type: bin
+    start: 0x16D3000
+    # vram:
+
+  - name: segment_016D4000
+    type: bin
+    start: 0x16D4000
+    # vram:
+
+  - name: segment_016D5000
+    type: bin
+    start: 0x16D5000
+    # vram:
+
+  - name: segment_016D6000
+    type: bin
+    start: 0x16D6000
+    # vram:
+
+  - name: segment_016D7000
+    type: bin
+    start: 0x16D7000
+    # vram:
+
+  - name: segment_016D8000
+    type: bin
+    start: 0x16D8000
+    # vram:
+
+  - name: segment_016D9000
+    type: bin
+    start: 0x16D9000
+    # vram:
+
+  - name: segment_016DA000
+    type: bin
+    start: 0x16DA000
+    # vram:
+
+  - name: segment_016DB000
+    type: bin
+    start: 0x16DB000
+    # vram:
+
+  - name: segment_016DC000
+    type: bin
+    start: 0x16DC000
+    # vram:
+
+  - name: segment_016DD000
+    type: bin
+    start: 0x16DD000
+    # vram:
+
+  - name: segment_016DE000
+    type: bin
+    start: 0x16DE000
+    # vram:
+
+  - name: segment_016E0000
+    type: bin
+    start: 0x16E0000
+    # vram:
+
+  - name: segment_016E2000
+    type: bin
+    start: 0x16E2000
+    # vram:
+
+  - name: segment_016E4000
+    type: bin
+    start: 0x16E4000
+    # vram:
+
+  - name: segment_016E6000
+    type: bin
+    start: 0x16E6000
+    # vram:
+
+  - name: segment_016E8000
+    type: bin
+    start: 0x16E8000
+    # vram:
+
+  - name: segment_016EA000
+    type: bin
+    start: 0x16EA000
+    # vram:
+
+  - name: segment_016EC000
+    type: bin
+    start: 0x16EC000
+    # vram:
+
+  - name: segment_016EE000
+    type: bin
+    start: 0x16EE000
+    # vram:
+
+  - name: segment_016F0000
+    type: bin
+    start: 0x16F0000
+    # vram:
+
+  - name: segment_016F2000
+    type: bin
+    start: 0x16F2000
+    # vram:
+
+  - name: segment_016F4000
+    type: bin
+    start: 0x16F4000
+    # vram:
+
+  - name: segment_016F6000
+    type: bin
+    start: 0x16F6000
+    # vram:
+
+  - name: segment_016F8000
+    type: bin
+    start: 0x16F8000
+    # vram:
+
+  - name: segment_016FA000
+    type: bin
+    start: 0x16FA000
+    # vram:
+
+  - name: segment_016FC000
+    type: bin
+    start: 0x16FC000
+    # vram:
+
+  - name: segment_016FE000
+    type: bin
+    start: 0x16FE000
+    # vram:
+
+  - name: segment_01700000
+    type: bin
+    start: 0x1700000
+    # vram:
+
+  - name: segment_01702000
+    type: bin
+    start: 0x1702000
+    # vram:
+
+  - name: segment_01703000
+    type: bin
+    start: 0x1703000
+    # vram:
+
+  - name: segment_01704000
+    type: bin
+    start: 0x1704000
+    # vram:
+
+  - name: segment_01705000
+    type: bin
+    start: 0x1705000
+    # vram:
+
+  - name: segment_01706000
+    type: bin
+    start: 0x1706000
+    # vram:
+
+  - name: segment_01708000
+    type: bin
+    start: 0x1708000
+    # vram:
+
+  - name: segment_01709000
+    type: bin
+    start: 0x1709000
+    # vram:
+
+  - name: segment_0170A000
+    type: bin
+    start: 0x170A000
+    # vram:
+
+  - name: segment_0170B000
+    type: bin
+    start: 0x170B000
+    # vram:
+
+  - name: segment_0170D000
+    type: bin
+    start: 0x170D000
+    # vram:
+
+  - name: segment_0170F000
+    type: bin
+    start: 0x170F000
+    # vram:
+
+  - name: segment_01710000
+    type: bin
+    start: 0x1710000
+    # vram:
+
+  - name: segment_01711000
+    type: bin
+    start: 0x1711000
+    # vram:
+
+  - name: segment_01712000
+    type: bin
+    start: 0x1712000
+    # vram:
+
+  - name: segment_01713000
+    type: bin
+    start: 0x1713000
+    # vram:
+
+  - name: segment_01714000
+    type: bin
+    start: 0x1714000
+    # vram:
+
+  - name: segment_01715000
+    type: bin
+    start: 0x1715000
+    # vram:
+
+  - name: segment_01716000
+    type: bin
+    start: 0x1716000
+    # vram:
+
+  - name: segment_01717000
+    type: bin
+    start: 0x1717000
+    # vram:
+
+  - name: segment_01718000
+    type: bin
+    start: 0x1718000
+    # vram:
+
+  - name: segment_01719000
+    type: bin
+    start: 0x1719000
+    # vram:
+
+  - name: segment_0171A000
+    type: bin
+    start: 0x171A000
+    # vram:
+
+  - name: segment_0171B000
+    type: bin
+    start: 0x171B000
+    # vram:
+
+  - name: segment_0171C000
+    type: bin
+    start: 0x171C000
+    # vram:
+
+  - name: segment_0171D000
+    type: bin
+    start: 0x171D000
+    # vram:
+
+  - name: segment_0171E000
+    type: bin
+    start: 0x171E000
+    # vram:
+
+  - name: segment_0171F000
+    type: bin
+    start: 0x171F000
+    # vram:
+
+  - name: segment_01720000
+    type: bin
+    start: 0x1720000
+    # vram:
+
+  - name: segment_01721000
+    type: bin
+    start: 0x1721000
+    # vram:
+
+  - name: segment_01722000
+    type: bin
+    start: 0x1722000
+    # vram:
+
+  - name: segment_01723000
+    type: bin
+    start: 0x1723000
+    # vram:
+
+  - name: segment_01724000
+    type: bin
+    start: 0x1724000
+    # vram:
+
+  - name: segment_01725000
+    type: bin
+    start: 0x1725000
+    # vram:
+
+  - name: segment_01726000
+    type: bin
+    start: 0x1726000
+    # vram:
+
+  - name: segment_01727000
+    type: bin
+    start: 0x1727000
+    # vram:
+
+  - name: segment_01728000
+    type: bin
+    start: 0x1728000
+    # vram:
+
+  - name: segment_01729000
+    type: bin
+    start: 0x1729000
+    # vram:
+
+  - name: segment_0172A000
+    type: bin
+    start: 0x172A000
+    # vram:
+
+  - name: segment_0172B000
+    type: bin
+    start: 0x172B000
+    # vram:
+
+  - name: segment_0172C000
+    type: bin
+    start: 0x172C000
+    # vram:
+
+  - name: segment_0172D000
+    type: bin
+    start: 0x172D000
+    # vram:
+
+  - name: segment_0172E000
+    type: bin
+    start: 0x172E000
+    # vram:
+
+  - name: segment_0172F000
+    type: bin
+    start: 0x172F000
+    # vram:
+
+  - name: segment_01730000
+    type: bin
+    start: 0x1730000
+    # vram:
+
+  - name: segment_01731000
+    type: bin
+    start: 0x1731000
+    # vram:
+
+  - name: segment_01732000
+    type: bin
+    start: 0x1732000
+    # vram:
+
+  - name: segment_01733000
+    type: bin
+    start: 0x1733000
+    # vram:
+
+  - name: segment_01734000
+    type: bin
+    start: 0x1734000
+    # vram:
+
+  - name: segment_01735000
+    type: bin
+    start: 0x1735000
+    # vram:
+
+  - name: segment_01736000
+    type: bin
+    start: 0x1736000
+    # vram:
+
+  - name: segment_01737000
+    type: bin
+    start: 0x1737000
+    # vram:
+
+  - name: segment_01739000
+    type: bin
+    start: 0x1739000
+    # vram:
+
+  - name: segment_0173A000
+    type: bin
+    start: 0x173A000
+    # vram:
+
+  - name: segment_0173B000
+    type: bin
+    start: 0x173B000
+    # vram:
+
+  - name: segment_0173C000
+    type: bin
+    start: 0x173C000
+    # vram:
+
+  - name: segment_0173D000
+    type: bin
+    start: 0x173D000
+    # vram:
+
+  - name: segment_0173E000
+    type: bin
+    start: 0x173E000
+    # vram:
+
+  - name: segment_01740000
+    type: bin
+    start: 0x1740000
+    # vram:
+
+  - name: segment_01741000
+    type: bin
+    start: 0x1741000
+    # vram:
+
+  - name: segment_01742000
+    type: bin
+    start: 0x1742000
+    # vram:
+
+  - name: segment_01743000
+    type: bin
+    start: 0x1743000
+    # vram:
+
+  - name: segment_01744000
+    type: bin
+    start: 0x1744000
+    # vram:
+
+  - name: segment_01746000
+    type: bin
+    start: 0x1746000
+    # vram:
+
+  - name: segment_01747000
+    type: bin
+    start: 0x1747000
+    # vram:
+
+  - name: segment_01748000
+    type: bin
+    start: 0x1748000
+    # vram:
+
+  - name: segment_01749000
+    type: bin
+    start: 0x1749000
+    # vram:
+
+  - name: segment_0174A000
+    type: bin
+    start: 0x174A000
+    # vram:
+
+  - name: segment_0174B000
+    type: bin
+    start: 0x174B000
+    # vram:
+
+  - name: segment_0174C000
+    type: bin
+    start: 0x174C000
+    # vram:
+
+  - name: segment_0174D000
+    type: bin
+    start: 0x174D000
+    # vram:
+
+  - name: segment_0174E000
+    type: bin
+    start: 0x174E000
+    # vram:
+
+  - name: segment_0174F000
+    type: bin
+    start: 0x174F000
+    # vram:
+
+  - name: segment_01751000
+    type: bin
+    start: 0x1751000
+    # vram:
+
+  - name: segment_01752000
+    type: bin
+    start: 0x1752000
+    # vram:
+
+  - name: segment_01754000
+    type: bin
+    start: 0x1754000
+    # vram:
+
+  - name: segment_01755000
+    type: bin
+    start: 0x1755000
+    # vram:
+
+  - name: segment_01756000
+    type: bin
+    start: 0x1756000
+    # vram:
+
+  - name: segment_01757000
+    type: bin
+    start: 0x1757000
+    # vram:
+
+  - name: segment_01758000
+    type: bin
+    start: 0x1758000
+    # vram:
+
+  - name: segment_01759000
+    type: bin
+    start: 0x1759000
+    # vram:
+
+  - name: segment_0175A000
+    type: bin
+    start: 0x175A000
+    # vram:
+
+  - name: segment_0175B000
+    type: bin
+    start: 0x175B000
+    # vram:
+
+  - name: segment_0175C000
+    type: bin
+    start: 0x175C000
+    # vram:
+
+  - name: segment_0175D000
+    type: bin
+    start: 0x175D000
+    # vram:
+
+  - name: segment_0175E000
+    type: bin
+    start: 0x175E000
+    # vram:
+
+  - name: segment_0175F000
+    type: bin
+    start: 0x175F000
+    # vram:
+
+  - name: segment_01760000
+    type: bin
+    start: 0x1760000
+    # vram:
+
+  - name: segment_01761000
+    type: bin
+    start: 0x1761000
+    # vram:
+
+  - name: segment_01762000
+    type: bin
+    start: 0x1762000
+    # vram:
+
+  - name: segment_01763000
+    type: bin
+    start: 0x1763000
+    # vram:
+
+  - name: segment_01764000
+    type: bin
+    start: 0x1764000
+    # vram:
+
+  - name: segment_01765000
+    type: bin
+    start: 0x1765000
+    # vram:
+
+  - name: segment_01766000
+    type: bin
+    start: 0x1766000
+    # vram:
+
+  - name: segment_01767000
+    type: bin
+    start: 0x1767000
+    # vram:
+
+  - name: segment_01769000
+    type: bin
+    start: 0x1769000
+    # vram:
+
+  - name: segment_0176A000
+    type: bin
+    start: 0x176A000
+    # vram:
+
+  - name: segment_0176C000
+    type: bin
+    start: 0x176C000
+    # vram:
+
+  - name: segment_0176D000
+    type: bin
+    start: 0x176D000
+    # vram:
+
+  - name: segment_0176E000
+    type: bin
+    start: 0x176E000
+    # vram:
+
+  - name: segment_0176F000
+    type: bin
+    start: 0x176F000
+    # vram:
+
+  - name: segment_01770000
+    type: bin
+    start: 0x1770000
+    # vram:
+
+  - name: segment_01771000
+    type: bin
+    start: 0x1771000
+    # vram:
+
+  - name: segment_01772000
+    type: bin
+    start: 0x1772000
+    # vram:
+
+  - name: segment_01773000
+    type: bin
+    start: 0x1773000
+    # vram:
+
+  - name: segment_01774000
+    type: bin
+    start: 0x1774000
+    # vram:
+
+  - name: segment_01775000
+    type: bin
+    start: 0x1775000
+    # vram:
+
+  - name: segment_01776000
+    type: bin
+    start: 0x1776000
+    # vram:
+
+  - name: segment_01777000
+    type: bin
+    start: 0x1777000
+    # vram:
+
+  - name: segment_01779000
+    type: bin
+    start: 0x1779000
+    # vram:
+
+  - name: segment_0177A000
+    type: bin
+    start: 0x177A000
+    # vram:
+
+  - name: segment_0177B000
+    type: bin
+    start: 0x177B000
+    # vram:
+
+  - name: segment_0177C000
+    type: bin
+    start: 0x177C000
+    # vram:
+
+  - name: segment_0177D000
+    type: bin
+    start: 0x177D000
+    # vram:
+
+  - name: segment_0177E000
+    type: bin
+    start: 0x177E000
+    # vram:
+
+  - name: segment_0177F000
+    type: bin
+    start: 0x177F000
+    # vram:
+
+  - name: segment_01780000
+    type: bin
+    start: 0x1780000
+    # vram:
+
+  - name: segment_01781000
+    type: bin
+    start: 0x1781000
+    # vram:
+
+  - name: segment_01782000
+    type: bin
+    start: 0x1782000
+    # vram:
+
+  - name: segment_01783000
+    type: bin
+    start: 0x1783000
+    # vram:
+
+  - name: segment_01784000
+    type: bin
+    start: 0x1784000
+    # vram:
+
+  - name: segment_01785000
+    type: bin
+    start: 0x1785000
+    # vram:
+
+  - name: segment_01786000
+    type: bin
+    start: 0x1786000
+    # vram:
+
+  - name: segment_01787000
+    type: bin
+    start: 0x1787000
+    # vram:
+
+  - name: segment_01788000
+    type: bin
+    start: 0x1788000
+    # vram:
+
+  - name: segment_01789000
+    type: bin
+    start: 0x1789000
+    # vram:
+
+  - name: segment_0178A000
+    type: bin
+    start: 0x178A000
+    # vram:
+
+  - name: segment_0178B000
+    type: bin
+    start: 0x178B000
+    # vram:
+
+  - name: segment_0178C000
+    type: bin
+    start: 0x178C000
+    # vram:
+
+  - name: segment_0178D000
+    type: bin
+    start: 0x178D000
+    # vram:
+
+  - name: segment_0178E000
+    type: bin
+    start: 0x178E000
+    # vram:
+
+  - name: segment_0178F000
+    type: bin
+    start: 0x178F000
+    # vram:
+
+  - name: segment_01790000
+    type: bin
+    start: 0x1790000
+    # vram:
+
+  - name: segment_01791000
+    type: bin
+    start: 0x1791000
+    # vram:
+
+  - name: segment_01792000
+    type: bin
+    start: 0x1792000
+    # vram:
+
+  - name: segment_01793000
+    type: bin
+    start: 0x1793000
+    # vram:
+
+  - name: segment_01794000
+    type: bin
+    start: 0x1794000
+    # vram:
+
+  - name: segment_01795000
+    type: bin
+    start: 0x1795000
+    # vram:
+
+  - name: segment_01796000
+    type: bin
+    start: 0x1796000
+    # vram:
+
+  - name: segment_01797000
+    type: bin
+    start: 0x1797000
+    # vram:
+
+  - name: segment_01798000
+    type: bin
+    start: 0x1798000
+    # vram:
+
+  - name: segment_0179A000
+    type: bin
+    start: 0x179A000
+    # vram:
+
+  - name: segment_0179B000
+    type: bin
+    start: 0x179B000
+    # vram:
+
+  - name: segment_0179C000
+    type: bin
+    start: 0x179C000
+    # vram:
+
+  - name: segment_0179E000
+    type: bin
+    start: 0x179E000
+    # vram:
+
+  - name: segment_0179F000
+    type: bin
+    start: 0x179F000
+    # vram:
+
+  - name: segment_017A1000
+    type: bin
+    start: 0x17A1000
+    # vram:
+
+  - name: segment_0182A000
+    type: bin
+    start: 0x182A000
+    # vram:
+
+  - name: segment_0186F000
+    type: bin
+    start: 0x186F000
+    # vram:
+
+  - name: segment_01871000
+    type: bin
+    start: 0x1871000
+    # vram:
+
+  - name: segment_01880000
+    type: bin
+    start: 0x1880000
+    # vram:
+
+  - name: segment_01884000
+    type: bin
+    start: 0x1884000
+    # vram:
+
+  - name: segment_01888000
+    type: bin
+    start: 0x1888000
+    # vram:
+
+  - name: segment_0188C000
+    type: bin
+    start: 0x188C000
+    # vram:
+
+  - name: segment_0188D000
+    type: bin
+    start: 0x188D000
+    # vram:
+
+  - name: segment_0188E000
+    type: bin
+    start: 0x188E000
+    # vram:
+
+  - name: segment_0188F000
+    type: bin
+    start: 0x188F000
+    # vram:
+
+  - name: segment_01890000
+    type: bin
+    start: 0x1890000
+    # vram:
+
+  - name: segment_01891000
+    type: bin
+    start: 0x1891000
+    # vram:
+
+  - name: segment_01892000
+    type: bin
+    start: 0x1892000
+    # vram:
+
+  - name: segment_01893000
+    type: bin
+    start: 0x1893000
+    # vram:
+
+  - name: segment_01894000
+    type: bin
+    start: 0x1894000
+    # vram:
+
+  - name: segment_01895000
+    type: bin
+    start: 0x1895000
+    # vram:
+
+  - name: segment_01896000
+    type: bin
+    start: 0x1896000
+    # vram:
+
+  - name: segment_01897000
+    type: bin
+    start: 0x1897000
+    # vram:
+
+  - name: segment_01898000
+    type: bin
+    start: 0x1898000
+    # vram:
+
+  - name: segment_01899000
+    type: bin
+    start: 0x1899000
+    # vram:
+
+  - name: segment_0189A000
+    type: bin
+    start: 0x189A000
+    # vram:
+
+  - name: segment_0189B000
+    type: bin
+    start: 0x189B000
+    # vram:
+
+  - name: segment_0189C000
+    type: bin
+    start: 0x189C000
+    # vram:
+
+  - name: segment_0189D000
+    type: bin
+    start: 0x189D000
+    # vram:
+
+  - name: segment_0189E000
+    type: bin
+    start: 0x189E000
+    # vram:
+
+  - name: segment_0189F000
+    type: bin
+    start: 0x189F000
+    # vram:
+
+  - name: segment_018A0000
+    type: bin
+    start: 0x18A0000
+    # vram:
+
+  - name: segment_018A1000
+    type: bin
+    start: 0x18A1000
+    # vram:
+
+  - name: segment_018A2000
+    type: bin
+    start: 0x18A2000
+    # vram:
+
+  - name: segment_018A3000
+    type: bin
+    start: 0x18A3000
+    # vram:
+
+  - name: segment_018A4000
+    type: bin
+    start: 0x18A4000
+    # vram:
+
+  - name: segment_018A5000
+    type: bin
+    start: 0x18A5000
+    # vram:
+
+  - name: segment_018A6000
+    type: bin
+    start: 0x18A6000
+    # vram:
+
+  - name: segment_018A7000
+    type: bin
+    start: 0x18A7000
+    # vram:
+
+  - name: segment_018A8000
+    type: bin
+    start: 0x18A8000
+    # vram:
+
+  - name: segment_018A9000
+    type: bin
+    start: 0x18A9000
+    # vram:
+
+  - name: segment_018AA000
+    type: bin
+    start: 0x18AA000
+    # vram:
+
+  - name: segment_018AB000
+    type: bin
+    start: 0x18AB000
+    # vram:
+
+  - name: segment_018AC000
+    type: bin
+    start: 0x18AC000
+    # vram:
+
+  - name: segment_018AD000
+    type: bin
+    start: 0x18AD000
+    # vram:
+
+  - name: segment_018AE000
+    type: bin
+    start: 0x18AE000
+    # vram:
+
+  - name: segment_018AF000
+    type: bin
+    start: 0x18AF000
+    # vram:
+
+  - name: segment_018B0000
+    type: bin
+    start: 0x18B0000
+    # vram:
+
+  - name: segment_018B1000
+    type: bin
+    start: 0x18B1000
+    # vram:
+
+  - name: segment_018B2000
+    type: bin
+    start: 0x18B2000
+    # vram:
+
+  - name: segment_018B3000
+    type: bin
+    start: 0x18B3000
+    # vram:
+
+  - name: segment_018B4000
+    type: bin
+    start: 0x18B4000
+    # vram:
+
+  - name: segment_018B5000
+    type: bin
+    start: 0x18B5000
+    # vram:
+
+  - name: segment_018B6000
+    type: bin
+    start: 0x18B6000
+    # vram:
+
+  - name: segment_018B7000
+    type: bin
+    start: 0x18B7000
+    # vram:
+
+  - name: segment_018B8000
+    type: bin
+    start: 0x18B8000
+    # vram:
+
+  - name: segment_018B9000
+    type: bin
+    start: 0x18B9000
+    # vram:
+
+  - name: segment_018BA000
+    type: bin
+    start: 0x18BA000
+    # vram:
+
+  - name: segment_018BB000
+    type: bin
+    start: 0x18BB000
+    # vram:
+
+  - name: segment_018BC000
+    type: bin
+    start: 0x18BC000
+    # vram:
+
+  - name: segment_018C4000
+    type: bin
+    start: 0x18C4000
+    # vram:
+
+  - name: segment_018C7000
+    type: bin
+    start: 0x18C7000
+    # vram:
+
+  - name: segment_018C8000
+    type: bin
+    start: 0x18C8000
+    # vram:
+
+  - name: segment_018C9000
+    type: bin
+    start: 0x18C9000
+    # vram:
+
+  - name: segment_018CA000
+    type: bin
+    start: 0x18CA000
+    # vram:
+
+  - name: segment_018CB000
+    type: bin
+    start: 0x18CB000
+    # vram:
+
+  - name: segment_018CC000
+    type: bin
+    start: 0x18CC000
+    # vram:
+
+  - name: segment_018CD000
+    type: bin
+    start: 0x18CD000
+    # vram:
+
+  - name: segment_018CE000
+    type: bin
+    start: 0x18CE000
+    # vram:
+
+  - name: segment_018CF000
+    type: bin
+    start: 0x18CF000
+    # vram:
+
+  - name: segment_018D0000
+    type: bin
+    start: 0x18D0000
+    # vram:
+
+  - name: segment_018D1000
+    type: bin
+    start: 0x18D1000
+    # vram:
+
+  - name: segment_018D2000
+    type: bin
+    start: 0x18D2000
+    # vram:
+
+  - name: segment_018D3000
+    type: bin
+    start: 0x18D3000
+    # vram:
+
+  - name: segment_018D4000
+    type: bin
+    start: 0x18D4000
+    # vram:
+
+  - name: segment_018D5000
+    type: bin
+    start: 0x18D5000
+    # vram:
+
+  - name: segment_018D6000
+    type: bin
+    start: 0x18D6000
+    # vram:
+
+  - name: segment_018D7000
+    type: bin
+    start: 0x18D7000
+    # vram:
+
+  - name: segment_018D8000
+    type: bin
+    start: 0x18D8000
+    # vram:
+
+  - name: segment_018D9000
+    type: bin
+    start: 0x18D9000
+    # vram:
+
+  - name: segment_018DA000
+    type: bin
+    start: 0x18DA000
+    # vram:
+
+  - name: segment_018DB000
+    type: bin
+    start: 0x18DB000
+    # vram:
+
+  - name: segment_018DC000
+    type: bin
+    start: 0x18DC000
+    # vram:
+
+  - name: segment_018DD000
+    type: bin
+    start: 0x18DD000
+    # vram:
+
+  - name: segment_018DE000
+    type: bin
+    start: 0x18DE000
+    # vram:
+
+  - name: segment_018DF000
+    type: bin
+    start: 0x18DF000
+    # vram:
+
+  - name: segment_018E0000
+    type: bin
+    start: 0x18E0000
+    # vram:
+
+  - name: segment_018E1000
+    type: bin
+    start: 0x18E1000
+    # vram:
+
+  - name: segment_018E2000
+    type: bin
+    start: 0x18E2000
+    # vram:
+
+  - name: segment_018E3000
+    type: bin
+    start: 0x18E3000
+    # vram:
+
+  - name: segment_018E4000
+    type: bin
+    start: 0x18E4000
+    # vram:
+
+  - name: segment_018E5000
+    type: bin
+    start: 0x18E5000
+    # vram:
+
+  - name: segment_018E6000
+    type: bin
+    start: 0x18E6000
+    # vram:
+
+  - name: segment_018E7000
+    type: bin
+    start: 0x18E7000
+    # vram:
+
+  - name: segment_018E8000
+    type: bin
+    start: 0x18E8000
+    # vram:
+
+  - name: segment_018E9000
+    type: bin
+    start: 0x18E9000
+    # vram:
+
+  - name: segment_018EA000
+    type: bin
+    start: 0x18EA000
+    # vram:
+
+  - name: segment_018EB000
+    type: bin
+    start: 0x18EB000
+    # vram:
+
+  - name: segment_018EC000
+    type: bin
+    start: 0x18EC000
+    # vram:
+
+  - name: segment_018ED000
+    type: bin
+    start: 0x18ED000
+    # vram:
+
+  - name: segment_018EE000
+    type: bin
+    start: 0x18EE000
+    # vram:
+
+  - name: segment_018EF000
+    type: bin
+    start: 0x18EF000
+    # vram:
+
+  - name: segment_018F0000
+    type: bin
+    start: 0x18F0000
+    # vram:
+
+  - name: segment_018F1000
+    type: bin
+    start: 0x18F1000
+    # vram:
+
+  - name: segment_018F2000
+    type: bin
+    start: 0x18F2000
+    # vram:
+
+  - name: segment_018F3000
+    type: bin
+    start: 0x18F3000
+    # vram:
+
+  - name: segment_018F4000
+    type: bin
+    start: 0x18F4000
+    # vram:
+
+  - name: segment_018F5000
+    type: bin
+    start: 0x18F5000
+    # vram:
+
+  - name: segment_018F6000
+    type: bin
+    start: 0x18F6000
+    # vram:
+
+  - name: segment_018F7000
+    type: bin
+    start: 0x18F7000
+    # vram:
+
+  - name: segment_018F8000
+    type: bin
+    start: 0x18F8000
+    # vram:
+
+  - name: segment_018F9000
+    type: bin
+    start: 0x18F9000
+    # vram:
+
+  - name: segment_018FA000
+    type: bin
+    start: 0x18FA000
+    # vram:
+
+  - name: segment_018FB000
+    type: bin
+    start: 0x18FB000
+    # vram:
+
+  - name: segment_018FC000
+    type: bin
+    start: 0x18FC000
+    # vram:
+
+  - name: segment_018FD000
+    type: bin
+    start: 0x18FD000
+    # vram:
+
+  - name: segment_018FE000
+    type: bin
+    start: 0x18FE000
+    # vram:
+
+  - name: segment_018FF000
+    type: bin
+    start: 0x18FF000
+    # vram:
+
+  - name: segment_01900000
+    type: bin
+    start: 0x1900000
+    # vram:
+
+  - name: segment_01901000
+    type: bin
+    start: 0x1901000
+    # vram:
+
+  - name: segment_01902000
+    type: bin
+    start: 0x1902000
+    # vram:
+
+  - name: segment_01903000
+    type: bin
+    start: 0x1903000
+    # vram:
+
+  - name: segment_01904000
+    type: bin
+    start: 0x1904000
+    # vram:
+
+  - name: segment_01905000
+    type: bin
+    start: 0x1905000
+    # vram:
+
+  - name: segment_01906000
+    type: bin
+    start: 0x1906000
+    # vram:
+
+  - name: anime_model_1_static
+    type: bin
+    start: 0x1907000
+    # vram:
+
+  - name: anime_model_2_static
+    type: bin
+    start: 0x1908000
+    # vram:
+
+  - name: anime_model_3_static
+    type: bin
+    start: 0x1909000
+    # vram:
+
+  - name: anime_model_4_static
+    type: bin
+    start: 0x190A000
+    # vram:
+
+  - name: anime_model_5_static
+    type: bin
+    start: 0x190B000
+    # vram:
+
+  - name: anime_model_6_static
+    type: bin
+    start: 0x190C000
+    # vram:
+
+  - name: anime_texture_1_static
+    type: bin
+    start: 0x190D000
+    # vram:
+
+  - name: anime_texture_2_static
+    type: bin
+    start: 0x190E000
+    # vram:
+
+  - name: anime_texture_3_static
+    type: bin
+    start: 0x190F000
+    # vram:
+
+  - name: anime_texture_4_static
+    type: bin
+    start: 0x1910000
+    # vram:
+
+  - name: anime_texture_5_static
+    type: bin
+    start: 0x1911000
+    # vram:
+
+  - name: anime_texture_6_static
+    type: bin
+    start: 0x1912000
+    # vram:
+
+  - name: softsprite_matrix_static
+    type: bin
+    start: 0x1913000
+    # vram:
 
   - [0x1914000]
