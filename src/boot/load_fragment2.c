@@ -5,11 +5,10 @@
  *
  */
 #include "global.h"
+#include "dma.h"
 #include "load.h"
 
 s32 gOverlayLogSeverity = 0;
-
-void func_80026B44_jp(void* arg0, void* arg1, size_t arg2);
 
 void Overlay_Relocate(void *allocatedRamAddress, OverlayRelocationSection *ovlRelocs, void *vramStart);
 
@@ -21,8 +20,8 @@ s32 Overlay_Load(void *vromStart, void *vromEnd, void *ovlStart, void *ovlEnd, v
     s32 vramSize = (uintptr_t)vramEnd - (uintptr_t)vramStart;
     void *end = (void *)((uintptr_t)allocatedRamAddress + vromSize);
 
-    func_80026B44_jp(allocatedRamAddress, vromStart, vromSize);
-    func_80026B44_jp(ovl, ovlStart, ovlSize);
+    DmaMgr_RequestSync(allocatedRamAddress, vromStart, vromSize);
+    DmaMgr_RequestSync(ovl, ovlStart, ovlSize);
     Overlay_Relocate(allocatedRamAddress, ovl, vramStart);
 
     if (ovl->bssSize != 0) {
@@ -47,7 +46,7 @@ void Overlay_Relocate(void *allocatedRamAddress, OverlayRelocationSection *ovlRe
     u32 *relocDataP;
     u32 reloc;
     u32 relocData;
-    UNUSED u32 dbg;
+    u32 isLoNeg;
     uintptr_t allocu32 = (uintptr_t)allocatedRamAddress;
     u32 i;
     u32 *regValP;
@@ -60,17 +59,12 @@ void Overlay_Relocate(void *allocatedRamAddress, OverlayRelocationSection *ovlRe
     u32 *luiRefs[32];
     u32 luiVals[32];
     u32 *luiInstRef;
-    size_t relocOffset;
-    u32 isLoNeg;
-    u32 relocatedValue;
-    UNUSED uintptr_t unrelocatedAddress;
-    uintptr_t relocatedAddress;
+    UNUSED u32 dbg;
+    size_t relocOffset = 0;
+    u32 relocatedValue = 0;
+    UNUSED uintptr_t unrelocatedAddress = 0;
+    uintptr_t relocatedAddress = 0;
     UNUSED s32 pad;
-
-    relocOffset = 0;
-    relocatedValue = 0;
-    unrelocatedAddress = 0;
-    relocatedAddress = 0;
 
     if (gOverlayLogSeverity >= 3) {}
 
