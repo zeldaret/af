@@ -2,10 +2,27 @@
 
 D_00000000 = 0x00000000; // ignore:true
 
+D_0000FFFF = 0x0000FFFF; // ignore:true
+
 D_01000000 = 0x01000000; // ignore:true
 
 D_80000000 = 0x80000000; // ignore:true
+D_80000001 = 0x80000001; // ignore:true
 D_80000004 = 0x80000004; // ignore:true
 D_80000008 = 0x80000008; // ignore:true
 D_8000000C = 0x8000000C; // ignore:true
+
+D_80000400 = 0x80000400; // ignore:true
+D_80002901 = 0x80002901; // ignore:true
+
 D_A0000000 = 0xA0000000; // ignore:true
+
+D_A00FFFFC = 0xA00FFFFC; // ignore:true
+
+D_19D40 = 0x19D40; // ignore:true
+D_27130 = 0x27130; // ignore:true
+D_44690 = 0x44690; // ignore:true
+D_E4D10 = 0xE4D10; // ignore:true
+D_13D9A0 = 0x13D9A0; // ignore:true
+D_675720 = 0x675720; // ignore:true
+D_73F4D0 = 0x73F4D0; // ignore:true
