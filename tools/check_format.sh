@@ -1,7 +1,7 @@
 #!/bin/bash
 
 STATUSOLD=`git status --porcelain`
-./format.py -j
+./tools/format.py -j
 if [ $? -ne 0 ]
 then
    echo "Formatter failed. Exiting."
