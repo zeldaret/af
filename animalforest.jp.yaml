@@ -541,8 +541,8258 @@ segments:
       - { start: 0x73F4D0, type: bss, vram: 0x801462B0, name: code/sys_matrix }
       - { start: 0x73F4D0, type: bss, vram: 0x801462C0, name: code/801462C0 }
 
-  - type: bin
+  - name: ovl_0073F4D0
+    type: bin
     start: 0x73F4D0
+    vram: 0x80800000
+  - name: ovl_0073F4D0_reloc
+    type: bin
+    start: 0x741A40
+    # vram:
+
+  - name: ovl_00741EA0
+    type: bin
+    start: 0x741EA0
+    # vram:
+  - name: ovl_00741EA0_reloc
+    type: bin
+    start: 0x741F80
+    # vram:
+
+  - name: ovl_00741FB0
+    type: bin
+    start: 0x741FB0
+    # vram:
+  - name: ovl_00741FB0_reloc
+    type: bin
+    start: 0x743950
+    # vram:
+
+  - name: ovl_00743B70
+    type: bin
+    start: 0x743B70
+    # vram:
+  - name: ovl_00743B70_reloc
+    type: bin
+    start: 0x743CA0
+    # vram:
+
+  - name: ovl_00743CD0
+    type: bin
+    start: 0x743CD0
+    # vram:
+  - name: ovl_00743CD0_reloc
+    type: bin
+    start: 0x743FE0
+    # vram:
+
+  - name: ovl_00744020
+    type: bin
+    start: 0x744020
+    # vram:
+  - name: ovl_00744020_reloc
+    type: bin
+    start: 0x747940
+    # vram:
+
+  - name: ovl_00747AA0
+    type: bin
+    start: 0x747AA0
+    # vram:
+  - name: ovl_00747AA0_reloc
+    type: bin
+    start: 0x7485F0
+    # vram:
+
+  - name: ovl_007486E0
+    type: bin
+    start: 0x7486E0
+    # vram:
+  - name: ovl_007486E0_reloc
+    type: bin
+    start: 0x749200
+    # vram:
+
+  - name: ovl_007492E0
+    type: bin
+    start: 0x7492E0
+    # vram:
+  - name: ovl_007492E0_reloc
+    type: bin
+    start: 0x771900
+    # vram:
+
+  - name: ovl_007745B0
+    type: bin
+    start: 0x7745B0
+    # vram:
+  - name: ovl_007745B0_reloc
+    type: bin
+    start: 0x774980
+    # vram:
+
+  - name: ovl_007749C0
+    type: bin
+    start: 0x7749C0
+    # vram:
+  - name: ovl_007749C0_reloc
+    type: bin
+    start: 0x7778B0
+    # vram:
+
+  - name: ovl_00777AE0
+    type: bin
+    start: 0x777AE0
+    # vram:
+  - name: ovl_00777AE0_reloc
+    type: bin
+    start: 0x781D60
+    # vram:
+
+  - name: ovl_007829E0
+    type: bin
+    start: 0x7829E0
+    # vram:
+  - name: ovl_007829E0_reloc
+    type: bin
+    start: 0x784DE0
+    # vram:
+
+  - name: ovl_00784FC0
+    type: bin
+    start: 0x784FC0
+    # vram:
+  - name: ovl_00784FC0_reloc
+    type: bin
+    start: 0x785690
+    # vram:
+
+  - name: ovl_00785700
+    type: bin
+    start: 0x785700
+    # vram:
+  - name: ovl_00785700_reloc
+    type: bin
+    start: 0x7898C0
+    # vram:
+
+  - name: ovl_00789B60
+    type: bin
+    start: 0x789B60
+    # vram:
+  - name: ovl_00789B60_reloc
+    type: bin
+    start: 0x78A4F0
+    # vram:
+
+  - name: ovl_0078A560
+    type: bin
+    start: 0x78A560
+    # vram:
+  - name: ovl_0078A560_reloc
+    type: bin
+    start: 0x78ADC0
+    # vram:
+
+  - name: ovl_0078AE30
+    type: bin
+    start: 0x78AE30
+    # vram:
+  - name: ovl_0078AE30_reloc
+    type: bin
+    start: 0x78BEE0
+    # vram:
+
+  - name: ovl_0078BFB0
+    type: bin
+    start: 0x78BFB0
+    # vram:
+  - name: ovl_0078BFB0_reloc
+    type: bin
+    start: 0x78CAD0
+    # vram:
+
+  - name: ovl_0078CB80
+    type: bin
+    start: 0x78CB80
+    # vram:
+  - name: ovl_0078CB80_reloc
+    type: bin
+    start: 0x790530
+    # vram:
+
+  - name: ovl_007908A0
+    type: bin
+    start: 0x7908A0
+    # vram:
+  - name: ovl_007908A0_reloc
+    type: bin
+    start: 0x792610
+    # vram:
+
+  - name: ovl_00792700
+    type: bin
+    start: 0x792700
+    # vram:
+  - name: ovl_00792700_reloc
+    type: bin
+    start: 0x794240
+    # vram:
+
+  - name: ovl_00794380
+    type: bin
+    start: 0x794380
+    # vram:
+  - name: ovl_00794380_reloc
+    type: bin
+    start: 0x795290
+    # vram:
+
+  - name: ovl_00795350
+    type: bin
+    start: 0x795350
+    # vram:
+  - name: ovl_00795350_reloc
+    type: bin
+    start: 0x797870
+    # vram:
+
+  - name: ovl_00797A50
+    type: bin
+    start: 0x797A50
+    # vram:
+  - name: ovl_00797A50_reloc
+    type: bin
+    start: 0x799450
+    # vram:
+
+  - name: ovl_00799580
+    type: bin
+    start: 0x799580
+    # vram:
+  - name: ovl_00799580_reloc
+    type: bin
+    start: 0x79A1E0
+    # vram:
+
+  - name: ovl_0079A290
+    type: bin
+    start: 0x79A290
+    # vram:
+  - name: ovl_0079A290_reloc
+    type: bin
+    start: 0x79AFD0
+    # vram:
+
+  - name: ovl_0079B120
+    type: bin
+    start: 0x79B120
+    # vram:
+  - name: ovl_0079B120_reloc
+    type: bin
+    start: 0x79BF10
+    # vram:
+
+  - name: ovl_0079C020
+    type: bin
+    start: 0x79C020
+    # vram:
+  - name: ovl_0079C020_reloc
+    type: bin
+    start: 0x79D8B0
+    # vram:
+
+  - name: ovl_0079DA50
+    type: bin
+    start: 0x79DA50
+    # vram:
+  - name: ovl_0079DA50_reloc
+    type: bin
+    start: 0x79E370
+    # vram:
+
+  - name: ovl_0079E430
+    type: bin
+    start: 0x79E430
+    # vram:
+  - name: ovl_0079E430_reloc
+    type: bin
+    start: 0x79F770
+    # vram:
+
+  - name: ovl_0079F810
+    type: bin
+    start: 0x79F810
+    # vram:
+  - name: ovl_0079F810_reloc
+    type: bin
+    start: 0x7A0F40
+    # vram:
+
+  - name: ovl_007A10E0
+    type: bin
+    start: 0x7A10E0
+    # vram:
+  - name: ovl_007A10E0_reloc
+    type: bin
+    start: 0x7A2820
+    # vram:
+
+  - name: ovl_007A28F0
+    type: bin
+    start: 0x7A28F0
+    # vram:
+  - name: ovl_007A28F0_reloc
+    type: bin
+    start: 0x7AC200
+    # vram:
+
+  - name: ovl_player_actor
+    type: bin
+    start: 0x7AC420
+    # vram:
+  - name: ovl_player_actor_reloc
+    type: bin
+    start: 0x7D9BA0
+    # vram:
+
+  - name: ovl_007DE050
+    type: bin
+    start: 0x7DE050
+    # vram:
+  - name: ovl_007DE050_reloc
+    type: bin
+    start: 0x7DF070
+    # vram:
+
+  - name: ovl_007DF180
+    type: bin
+    start: 0x7DF180
+    # vram:
+  - name: ovl_007DF180_reloc
+    type: bin
+    start: 0x7E0780
+    # vram:
+
+  - name: ovl_007E08D0
+    type: bin
+    start: 0x7E08D0
+    # vram:
+  - name: ovl_007E08D0_reloc
+    type: bin
+    start: 0x7E17F0
+    # vram:
+
+  - name: ovl_007E18F0
+    type: bin
+    start: 0x7E18F0
+    # vram:
+  - name: ovl_007E18F0_reloc
+    type: bin
+    start: 0x7E2380
+    # vram:
+
+  - name: ovl_007E2440
+    type: bin
+    start: 0x7E2440
+    # vram:
+  - name: ovl_007E2440_reloc
+    type: bin
+    start: 0x7E30C0
+    # vram:
+
+  - name: ovl_007E3170
+    type: bin
+    start: 0x7E3170
+    # vram:
+  - name: ovl_007E3170_reloc
+    type: bin
+    start: 0x7E38F0
+    # vram:
+
+  - name: ovl_007E3990
+    type: bin
+    start: 0x7E3990
+    # vram:
+  - name: ovl_007E3990_reloc
+    type: bin
+    start: 0x7E4070
+    # vram:
+
+  - name: ovl_007E4130
+    type: bin
+    start: 0x7E4130
+    # vram:
+  - name: ovl_007E4130_reloc
+    type: bin
+    start: 0x7E4D30
+    # vram:
+
+  - name: ovl_007E4DF0
+    type: bin
+    start: 0x7E4DF0
+    # vram:
+  - name: ovl_007E4DF0_reloc
+    type: bin
+    start: 0x7E55B0
+    # vram:
+
+  - name: ovl_007E5640
+    type: bin
+    start: 0x7E5640
+    # vram:
+  - name: ovl_007E5640_reloc
+    type: bin
+    start: 0x7E5850
+    # vram:
+
+  - name: ovl_007E5880
+    type: bin
+    start: 0x7E5880
+    # vram:
+  - name: ovl_007E5880_reloc
+    type: bin
+    start: 0x7EF1F0
+    # vram:
+
+  - name: ovl_007F0350
+    type: bin
+    start: 0x7F0350
+    # vram:
+  - name: ovl_007F0350_reloc
+    type: bin
+    start: 0x7F9D60
+    # vram:
+
+  - name: ovl_007FAEB0
+    type: bin
+    start: 0x7FAEB0
+    # vram:
+  - name: ovl_007FAEB0_reloc
+    type: bin
+    start: 0x804CC0
+    # vram:
+
+  - name: ovl_00805E30
+    type: bin
+    start: 0x805E30
+    # vram:
+  - name: ovl_00805E30_reloc
+    type: bin
+    start: 0x80F760
+    # vram:
+
+  - name: ovl_008108C0
+    type: bin
+    start: 0x8108C0
+    # vram:
+  - name: ovl_008108C0_reloc
+    type: bin
+    start: 0x814C50
+    # vram:
+
+  - name: ovl_00814FA0
+    type: bin
+    start: 0x814FA0
+    # vram:
+  - name: ovl_00814FA0_reloc
+    type: bin
+    start: 0x815AD0
+    # vram:
+
+  - name: ovl_00815B70
+    type: bin
+    start: 0x815B70
+    # vram:
+  - name: ovl_00815B70_reloc
+    type: bin
+    start: 0x81A1A0
+    # vram:
+
+  - name: ovl_0081AA60
+    type: bin
+    start: 0x81AA60
+    # vram:
+  - name: ovl_0081AA60_reloc
+    type: bin
+    start: 0x81D540
+    # vram:
+
+  - name: ovl_0081D9D0
+    type: bin
+    start: 0x81D9D0
+    # vram:
+  - name: ovl_0081D9D0_reloc
+    type: bin
+    start: 0x821740
+    # vram:
+
+  - name: ovl_00821B40
+    type: bin
+    start: 0x821B40
+    # vram:
+  - name: ovl_00821B40_reloc
+    type: bin
+    start: 0x8240D0
+    # vram:
+
+  - name: ovl_00824500
+    type: bin
+    start: 0x824500
+    # vram:
+  - name: ovl_00824500_reloc
+    type: bin
+    start: 0x8252E0
+    # vram:
+
+  - name: ovl_008253C0
+    type: bin
+    start: 0x8253C0
+    # vram:
+  - name: ovl_008253C0_reloc
+    type: bin
+    start: 0x827BE0
+    # vram:
+
+  - name: ovl_00827DE0
+    type: bin
+    start: 0x827DE0
+    # vram:
+  - name: ovl_00827DE0_reloc
+    type: bin
+    start: 0x828C00
+    # vram:
+
+  - name: ovl_00828C50
+    type: bin
+    start: 0x828C50
+    # vram:
+  - name: ovl_00828C50_reloc
+    type: bin
+    start: 0x82B0C0
+    # vram:
+
+  - name: ovl_0082B3C0
+    type: bin
+    start: 0x82B3C0
+    # vram:
+  - name: ovl_0082B3C0_reloc
+    type: bin
+    start: 0x82BAE0
+    # vram:
+
+  - name: ovl_0082BB80
+    type: bin
+    start: 0x82BB80
+    # vram:
+  - name: ovl_0082BB80_reloc
+    type: bin
+    start: 0x82BBF0
+    # vram:
+
+  - name: ovl_0082BC20
+    type: bin
+    start: 0x82BC20
+    # vram:
+  - name: ovl_0082BC20_reloc
+    type: bin
+    start: 0x82CDE0
+    # vram:
+
+  - name: ovl_0082CED0
+    type: bin
+    start: 0x82CED0
+    # vram:
+  - name: ovl_0082CED0_reloc
+    type: bin
+    start: 0x82D7A0
+    # vram:
+
+  - name: ovl_0082D7F0
+    type: bin
+    start: 0x82D7F0
+    # vram:
+  - name: ovl_0082D7F0_reloc
+    type: bin
+    start: 0x844400
+    # vram:
+
+  - name: ovl_00845C40
+    type: bin
+    start: 0x845C40
+    # vram:
+  - name: ovl_00845C40_reloc
+    type: bin
+    start: 0x8463A0
+    # vram:
+
+  - name: ovl_00846430
+    type: bin
+    start: 0x846430
+    # vram:
+  - name: ovl_00846430_reloc
+    type: bin
+    start: 0x8464A0
+    # vram:
+
+  - name: ovl_008464D0
+    type: bin
+    start: 0x8464D0
+    # vram:
+  - name: ovl_008464D0_reloc
+    type: bin
+    start: 0x846810
+    # vram:
+
+  - name: ovl_00846860
+    type: bin
+    start: 0x846860
+    # vram:
+  - name: ovl_00846860_reloc
+    type: bin
+    start: 0x8476A0
+    # vram:
+
+  - name: ovl_008477A0
+    type: bin
+    start: 0x8477A0
+    # vram:
+  - name: ovl_008477A0_reloc
+    type: bin
+    start: 0x8484C0
+    # vram:
+
+  - name: ovl_00848600
+    type: bin
+    start: 0x848600
+    # vram:
+  - name: ovl_00848600_reloc
+    type: bin
+    start: 0x848B40
+    # vram:
+
+  - name: ovl_00848BF0
+    type: bin
+    start: 0x848BF0
+    # vram:
+  - name: ovl_00848BF0_reloc
+    type: bin
+    start: 0x849AC0
+    # vram:
+
+  - name: ovl_00849B50
+    type: bin
+    start: 0x849B50
+    # vram:
+  - name: ovl_00849B50_reloc
+    type: bin
+    start: 0x84C8A0
+    # vram:
+
+  - name: ovl_0084CBC0
+    type: bin
+    start: 0x84CBC0
+    # vram:
+  - name: ovl_0084CBC0_reloc
+    type: bin
+    start: 0x84D110
+    # vram:
+
+  - name: ovl_0084D180
+    type: bin
+    start: 0x84D180
+    # vram:
+  - name: ovl_0084D180_reloc
+    type: bin
+    start: 0x84E000
+    # vram:
+
+  - name: ovl_0084E080
+    type: bin
+    start: 0x84E080
+    # vram:
+  - name: ovl_0084E080_reloc
+    type: bin
+    start: 0x84F0E0
+    # vram:
+
+  - name: ovl_0084F180
+    type: bin
+    start: 0x84F180
+    # vram:
+  - name: ovl_0084F180_reloc
+    type: bin
+    start: 0x8504F0
+    # vram:
+
+  - name: ovl_00850680
+    type: bin
+    start: 0x850680
+    # vram:
+  - name: ovl_00850680_reloc
+    type: bin
+    start: 0x857100
+    # vram:
+
+  - name: ovl_008576C0
+    type: bin
+    start: 0x8576C0
+    # vram:
+  - name: ovl_008576C0_reloc
+    type: bin
+    start: 0x858960
+    # vram:
+
+  - name: ovl_00858A50
+    type: bin
+    start: 0x858A50
+    # vram:
+  - name: ovl_00858A50_reloc
+    type: bin
+    start: 0x85A180
+    # vram:
+
+  - name: ovl_0085A400
+    type: bin
+    start: 0x85A400
+    # vram:
+  - name: ovl_0085A400_reloc
+    type: bin
+    start: 0x85A880
+    # vram:
+
+  - name: ovl_0085A8E0
+    type: bin
+    start: 0x85A8E0
+    # vram:
+  - name: ovl_0085A8E0_reloc
+    type: bin
+    start: 0x85B0F0
+    # vram:
+
+  - name: ovl_0085B170
+    type: bin
+    start: 0x85B170
+    # vram:
+  - name: ovl_0085B170_reloc
+    type: bin
+    start: 0x85B8D0
+    # vram:
+
+  - name: ovl_0085B960
+    type: bin
+    start: 0x85B960
+    # vram:
+  - name: ovl_0085B960_reloc
+    type: bin
+    start: 0x85C160
+    # vram:
+
+  - name: ovl_0085C200
+    type: bin
+    start: 0x85C200
+    # vram:
+  - name: ovl_0085C200_reloc
+    type: bin
+    start: 0x85C510
+    # vram:
+
+  - name: ovl_0085C570
+    type: bin
+    start: 0x85C570
+    # vram:
+  - name: ovl_0085C570_reloc
+    type: bin
+    start: 0x85D4B0
+    # vram:
+
+  - name: ovl_0085D660
+    type: bin
+    start: 0x85D660
+    # vram:
+  - name: ovl_0085D660_reloc
+    type: bin
+    start: 0x85F5D0
+    # vram:
+
+  - name: ovl_0085F7D0
+    type: bin
+    start: 0x85F7D0
+    # vram:
+  - name: ovl_0085F7D0_reloc
+    type: bin
+    start: 0x861260
+    # vram:
+
+  - name: ovl_00861420
+    type: bin
+    start: 0x861420
+    # vram:
+  - name: ovl_00861420_reloc
+    type: bin
+    start: 0x8622A0
+    # vram:
+
+  - name: ovl_008623E0
+    type: bin
+    start: 0x8623E0
+    # vram:
+  - name: ovl_008623E0_reloc
+    type: bin
+    start: 0x862840
+    # vram:
+
+  - name: ovl_00862870
+    type: bin
+    start: 0x862870
+    # vram:
+  - name: ovl_00862870_reloc
+    type: bin
+    start: 0x866A80
+    # vram:
+
+  - name: ovl_00866ED0
+    type: bin
+    start: 0x866ED0
+    # vram:
+  - name: ovl_00866ED0_reloc
+    type: bin
+    start: 0x8675C0
+    # vram:
+
+  - name: ovl_00867620
+    type: bin
+    start: 0x867620
+    # vram:
+  - name: ovl_00867620_reloc
+    type: bin
+    start: 0x867880
+    # vram:
+
+  - name: ovl_008678C0
+    type: bin
+    start: 0x8678C0
+    # vram:
+  - name: ovl_008678C0_reloc
+    type: bin
+    start: 0x867C20
+    # vram:
+
+  - name: ovl_00867C60
+    type: bin
+    start: 0x867C60
+    # vram:
+  - name: ovl_00867C60_reloc
+    type: bin
+    start: 0x867CD0
+    # vram:
+
+  - name: ovl_00867D00
+    type: bin
+    start: 0x867D00
+    # vram:
+  - name: ovl_00867D00_reloc
+    type: bin
+    start: 0x867D70
+    # vram:
+
+  - name: ovl_00867DA0
+    type: bin
+    start: 0x867DA0
+    # vram:
+  - name: ovl_00867DA0_reloc
+    type: bin
+    start: 0x8681B0
+    # vram:
+
+  - name: ovl_008681F0
+    type: bin
+    start: 0x8681F0
+    # vram:
+  - name: ovl_008681F0_reloc
+    type: bin
+    start: 0x878550
+    # vram:
+
+  - name: ovl_008798C0
+    type: bin
+    start: 0x8798C0
+    # vram:
+  - name: ovl_008798C0_reloc
+    type: bin
+    start: 0x886FA0
+    # vram:
+
+  - name: ovl_00887F90
+    type: bin
+    start: 0x887F90
+    # vram:
+  - name: ovl_00887F90_reloc
+    type: bin
+    start: 0x889110
+    # vram:
+
+  - name: ovl_00889270
+    type: bin
+    start: 0x889270
+    # vram:
+  - name: ovl_00889270_reloc
+    type: bin
+    start: 0x889400
+    # vram:
+
+  - name: ovl_00889440
+    type: bin
+    start: 0x889440
+    # vram:
+  - name: ovl_00889440_reloc
+    type: bin
+    start: 0x88D780
+    # vram:
+
+  - name: ovl_0088DD00
+    type: bin
+    start: 0x88DD00
+    # vram:
+  - name: ovl_0088DD00_reloc
+    type: bin
+    start: 0x892070
+    # vram:
+
+  - name: ovl_00892600
+    type: bin
+    start: 0x892600
+    # vram:
+  - name: ovl_00892600_reloc
+    type: bin
+    start: 0x8927D0
+    # vram:
+
+  - name: ovl_00892810
+    type: bin
+    start: 0x892810
+    # vram:
+  - name: ovl_00892810_reloc
+    type: bin
+    start: 0x8947C0
+    # vram:
+
+  - name: ovl_00894A70
+    type: bin
+    start: 0x894A70
+    # vram:
+  - name: ovl_00894A70_reloc
+    type: bin
+    start: 0x8967C0
+    # vram:
+
+  - name: ovl_00896A30
+    type: bin
+    start: 0x896A30
+    # vram:
+  - name: ovl_00896A30_reloc
+    type: bin
+    start: 0x897350
+    # vram:
+
+  - name: ovl_00897450
+    type: bin
+    start: 0x897450
+    # vram:
+  - name: ovl_00897450_reloc
+    type: bin
+    start: 0x8980D0
+    # vram:
+
+  - name: ovl_00898220
+    type: bin
+    start: 0x898220
+    # vram:
+  - name: ovl_00898220_reloc
+    type: bin
+    start: 0x899040
+    # vram:
+
+  - name: ovl_008991B0
+    type: bin
+    start: 0x8991B0
+    # vram:
+  - name: ovl_008991B0_reloc
+    type: bin
+    start: 0x89A020
+    # vram:
+
+  - name: ovl_0089A1B0
+    type: bin
+    start: 0x89A1B0
+    # vram:
+  - name: ovl_0089A1B0_reloc
+    type: bin
+    start: 0x8A0B50
+    # vram:
+
+  - name: ovl_008A1160
+    type: bin
+    start: 0x8A1160
+    # vram:
+  - name: ovl_008A1160_reloc
+    type: bin
+    start: 0x8A1E00
+    # vram:
+
+  - name: ovl_008A1F10
+    type: bin
+    start: 0x8A1F10
+    # vram:
+  - name: ovl_008A1F10_reloc
+    type: bin
+    start: 0x8A4630
+    # vram:
+
+  - name: ovl_008A4940
+    type: bin
+    start: 0x8A4940
+    # vram:
+  - name: ovl_008A4940_reloc
+    type: bin
+    start: 0x8A5670
+    # vram:
+
+  - name: ovl_008A5760
+    type: bin
+    start: 0x8A5760
+    # vram:
+  - name: ovl_008A5760_reloc
+    type: bin
+    start: 0x8A6A60
+    # vram:
+
+  - name: ovl_008A6C10
+    type: bin
+    start: 0x8A6C10
+    # vram:
+  - name: ovl_008A6C10_reloc
+    type: bin
+    start: 0x8A8A10
+    # vram:
+
+  - name: ovl_008A8C80
+    type: bin
+    start: 0x8A8C80
+    # vram:
+  - name: ovl_008A8C80_reloc
+    type: bin
+    start: 0x8AA170
+    # vram:
+
+  - name: ovl_008AA370
+    type: bin
+    start: 0x8AA370
+    # vram:
+  - name: ovl_008AA370_reloc
+    type: bin
+    start: 0x8AB600
+    # vram:
+
+  - name: ovl_008AB7E0
+    type: bin
+    start: 0x8AB7E0
+    # vram:
+  - name: ovl_008AB7E0_reloc
+    type: bin
+    start: 0x8ADBA0
+    # vram:
+
+  - name: ovl_008ADF40
+    type: bin
+    start: 0x8ADF40
+    # vram:
+  - name: ovl_008ADF40_reloc
+    type: bin
+    start: 0x8B2140
+    # vram:
+
+  - name: ovl_008B26B0
+    type: bin
+    start: 0x8B26B0
+    # vram:
+  - name: ovl_008B26B0_reloc
+    type: bin
+    start: 0x8B2C20
+    # vram:
+
+  - name: ovl_008B2CE0
+    type: bin
+    start: 0x8B2CE0
+    # vram:
+  - name: ovl_008B2CE0_reloc
+    type: bin
+    start: 0x8B7410
+    # vram:
+
+  - name: ovl_008B79B0
+    type: bin
+    start: 0x8B79B0
+    # vram:
+  - name: ovl_008B79B0_reloc
+    type: bin
+    start: 0x8B8E00
+    # vram:
+
+  - name: ovl_008B8FC0
+    type: bin
+    start: 0x8B8FC0
+    # vram:
+  - name: ovl_008B8FC0_reloc
+    type: bin
+    start: 0x8BA290
+    # vram:
+
+  - name: ovl_008BA3B0
+    type: bin
+    start: 0x8BA3B0
+    # vram:
+  - name: ovl_008BA3B0_reloc
+    type: bin
+    start: 0x8BADB0
+    # vram:
+
+  - name: ovl_008BAE60
+    type: bin
+    start: 0x8BAE60
+    # vram:
+  - name: ovl_008BAE60_reloc
+    type: bin
+    start: 0x8BB990
+    # vram:
+
+  - name: ovl_008BBAA0
+    type: bin
+    start: 0x8BBAA0
+    # vram:
+  - name: ovl_008BBAA0_reloc
+    type: bin
+    start: 0x8BD250
+    # vram:
+
+  - name: ovl_008BD480
+    type: bin
+    start: 0x8BD480
+    # vram:
+  - name: ovl_008BD480_reloc
+    type: bin
+    start: 0x8BE570
+    # vram:
+
+  - name: ovl_008BE690
+    type: bin
+    start: 0x8BE690
+    # vram:
+  - name: ovl_008BE690_reloc
+    type: bin
+    start: 0x8BFAB0
+    # vram:
+
+  - name: ovl_008BFC40
+    type: bin
+    start: 0x8BFC40
+    # vram:
+  - name: ovl_008BFC40_reloc
+    type: bin
+    start: 0x8C0320
+    # vram:
+
+  - name: ovl_008C03E0
+    type: bin
+    start: 0x8C03E0
+    # vram:
+  - name: ovl_008C03E0_reloc
+    type: bin
+    start: 0x8C0F20
+    # vram:
+
+  - name: ovl_008C1040
+    type: bin
+    start: 0x8C1040
+    # vram:
+  - name: ovl_008C1040_reloc
+    type: bin
+    start: 0x8C1A20
+    # vram:
+
+  - name: ovl_008C1B30
+    type: bin
+    start: 0x8C1B30
+    # vram:
+  - name: ovl_008C1B30_reloc
+    type: bin
+    start: 0x8C2370
+    # vram:
+
+  - name: ovl_008C2480
+    type: bin
+    start: 0x8C2480
+    # vram:
+  - name: ovl_008C2480_reloc
+    type: bin
+    start: 0x8C2E60
+    # vram:
+
+  - name: ovl_008C2F70
+    type: bin
+    start: 0x8C2F70
+    # vram:
+  - name: ovl_008C2F70_reloc
+    type: bin
+    start: 0x8C31C0
+    # vram:
+
+  - name: ovl_008C3210
+    type: bin
+    start: 0x8C3210
+    # vram:
+  - name: ovl_008C3210_reloc
+    type: bin
+    start: 0x8C3930
+    # vram:
+
+  - name: ovl_008C3A00
+    type: bin
+    start: 0x8C3A00
+    # vram:
+  - name: ovl_008C3A00_reloc
+    type: bin
+    start: 0x8C4230
+    # vram:
+
+  - name: ovl_008C4300
+    type: bin
+    start: 0x8C4300
+    # vram:
+  - name: ovl_008C4300_reloc
+    type: bin
+    start: 0x8C4E40
+    # vram:
+
+  - name: ovl_008C4F70
+    type: bin
+    start: 0x8C4F70
+    # vram:
+  - name: ovl_008C4F70_reloc
+    type: bin
+    start: 0x8C6210
+    # vram:
+
+  - name: ovl_008C6390
+    type: bin
+    start: 0x8C6390
+    # vram:
+  - name: ovl_008C6390_reloc
+    type: bin
+    start: 0x8C6C50
+    # vram:
+
+  - name: ovl_008C6D80
+    type: bin
+    start: 0x8C6D80
+    # vram:
+  - name: ovl_008C6D80_reloc
+    type: bin
+    start: 0x8C7FD0
+    # vram:
+
+  - name: ovl_008C81F0
+    type: bin
+    start: 0x8C81F0
+    # vram:
+  - name: ovl_008C81F0_reloc
+    type: bin
+    start: 0x8C8DF0
+    # vram:
+
+  - name: ovl_008C8F10
+    type: bin
+    start: 0x8C8F10
+    # vram:
+  - name: ovl_008C8F10_reloc
+    type: bin
+    start: 0x8C9AC0
+    # vram:
+
+  - name: ovl_008C9BB0
+    type: bin
+    start: 0x8C9BB0
+    # vram:
+  - name: ovl_008C9BB0_reloc
+    type: bin
+    start: 0x8CA870
+    # vram:
+
+  - name: ovl_008CA950
+    type: bin
+    start: 0x8CA950
+    # vram:
+  - name: ovl_008CA950_reloc
+    type: bin
+    start: 0x8CB5C0
+    # vram:
+
+  - name: ovl_008CB690
+    type: bin
+    start: 0x8CB690
+    # vram:
+  - name: ovl_008CB690_reloc
+    type: bin
+    start: 0x8CD350
+    # vram:
+
+  - name: ovl_008CD550
+    type: bin
+    start: 0x8CD550
+    # vram:
+  - name: ovl_008CD550_reloc
+    type: bin
+    start: 0x8CE770
+    # vram:
+
+  - name: ovl_008CE890
+    type: bin
+    start: 0x8CE890
+    # vram:
+  - name: ovl_008CE890_reloc
+    type: bin
+    start: 0x8CFA70
+    # vram:
+
+  - name: ovl_008CFBA0
+    type: bin
+    start: 0x8CFBA0
+    # vram:
+  - name: ovl_008CFBA0_reloc
+    type: bin
+    start: 0x8D0BF0
+    # vram:
+
+  - name: ovl_008D0D20
+    type: bin
+    start: 0x8D0D20
+    # vram:
+  - name: ovl_008D0D20_reloc
+    type: bin
+    start: 0x8D1DD0
+    # vram:
+
+  - name: ovl_008D1F00
+    type: bin
+    start: 0x8D1F00
+    # vram:
+  - name: ovl_008D1F00_reloc
+    type: bin
+    start: 0x8D2140
+    # vram:
+
+  - name: ovl_008D2170
+    type: bin
+    start: 0x8D2170
+    # vram:
+  - name: ovl_008D2170_reloc
+    type: bin
+    start: 0x8D2410
+    # vram:
+
+  - name: ovl_008D2440
+    type: bin
+    start: 0x8D2440
+    # vram:
+  - name: ovl_008D2440_reloc
+    type: bin
+    start: 0x8D3B80
+    # vram:
+
+  - name: ovl_008D3D00
+    type: bin
+    start: 0x8D3D00
+    # vram:
+  - name: ovl_008D3D00_reloc
+    type: bin
+    start: 0x8D4970
+    # vram:
+
+  - name: ovl_008D4A20
+    type: bin
+    start: 0x8D4A20
+    # vram:
+  - name: ovl_008D4A20_reloc
+    type: bin
+    start: 0x8D6340
+    # vram:
+
+  - name: ovl_008D6550
+    type: bin
+    start: 0x8D6550
+    # vram:
+  - name: ovl_008D6550_reloc
+    type: bin
+    start: 0x8D6F10
+    # vram:
+
+  - name: ovl_008D6FC0
+    type: bin
+    start: 0x8D6FC0
+    # vram:
+  - name: ovl_008D6FC0_reloc
+    type: bin
+    start: 0x8D7ED0
+    # vram:
+
+  - name: ovl_008D8000
+    type: bin
+    start: 0x8D8000
+    # vram:
+  - name: ovl_008D8000_reloc
+    type: bin
+    start: 0x8D84A0
+    # vram:
+
+  - name: ovl_008D8510
+    type: bin
+    start: 0x8D8510
+    # vram:
+  - name: ovl_008D8510_reloc
+    type: bin
+    start: 0x8D8E40
+    # vram:
+
+  - name: ovl_008D8EC0
+    type: bin
+    start: 0x8D8EC0
+    # vram:
+  - name: ovl_008D8EC0_reloc
+    type: bin
+    start: 0x8D9FA0
+    # vram:
+
+  - name: ovl_008DA0C0
+    type: bin
+    start: 0x8DA0C0
+    # vram:
+  - name: ovl_008DA0C0_reloc
+    type: bin
+    start: 0x8DB170
+    # vram:
+
+  - name: ovl_008DB2A0
+    type: bin
+    start: 0x8DB2A0
+    # vram:
+  - name: ovl_008DB2A0_reloc
+    type: bin
+    start: 0x8DBE70
+    # vram:
+
+  - name: ovl_008DBF00
+    type: bin
+    start: 0x8DBF00
+    # vram:
+  - name: ovl_008DBF00_reloc
+    type: bin
+    start: 0x8DC730
+    # vram:
+
+  - name: ovl_008DC7D0
+    type: bin
+    start: 0x8DC7D0
+    # vram:
+  - name: ovl_008DC7D0_reloc
+    type: bin
+    start: 0x8DD7E0
+    # vram:
+
+  - name: ovl_008DD910
+    type: bin
+    start: 0x8DD910
+    # vram:
+  - name: ovl_008DD910_reloc
+    type: bin
+    start: 0x8DED10
+    # vram:
+
+  - name: ovl_008DEEC0
+    type: bin
+    start: 0x8DEEC0
+    # vram:
+  - name: ovl_008DEEC0_reloc
+    type: bin
+    start: 0x8E0870
+    # vram:
+
+  - name: ovl_008E0A30
+    type: bin
+    start: 0x8E0A30
+    # vram:
+  - name: ovl_008E0A30_reloc
+    type: bin
+    start: 0x8E4170
+    # vram:
+
+  - name: ovl_008E46A0
+    type: bin
+    start: 0x8E46A0
+    # vram:
+  - name: ovl_008E46A0_reloc
+    type: bin
+    start: 0x8E6640
+    # vram:
+
+  - name: ovl_008E6770
+    type: bin
+    start: 0x8E6770
+    # vram:
+  - name: ovl_008E6770_reloc
+    type: bin
+    start: 0x8E6F10
+    # vram:
+
+  - name: ovl_008E6FD0
+    type: bin
+    start: 0x8E6FD0
+    # vram:
+  - name: ovl_008E6FD0_reloc
+    type: bin
+    start: 0x8E74D0
+    # vram:
+
+  - name: ovl_008E7560
+    type: bin
+    start: 0x8E7560
+    # vram:
+  - name: ovl_008E7560_reloc
+    type: bin
+    start: 0x8E7830
+    # vram:
+
+  - name: ovl_008E78A0
+    type: bin
+    start: 0x8E78A0
+    # vram:
+  - name: ovl_008E78A0_reloc
+    type: bin
+    start: 0x8E7B80
+    # vram:
+
+  - name: ovl_008E7BF0
+    type: bin
+    start: 0x8E7BF0
+    # vram:
+  - name: ovl_008E7BF0_reloc
+    type: bin
+    start: 0x8E7EC0
+    # vram:
+
+  - name: ovl_008E7F30
+    type: bin
+    start: 0x8E7F30
+    # vram:
+  - name: ovl_008E7F30_reloc
+    type: bin
+    start: 0x8E8200
+    # vram:
+
+  - name: ovl_008E8270
+    type: bin
+    start: 0x8E8270
+    # vram:
+  - name: ovl_008E8270_reloc
+    type: bin
+    start: 0x8E86E0
+    # vram:
+
+  - name: ovl_008E8720
+    type: bin
+    start: 0x8E8720
+    # vram:
+  - name: ovl_008E8720_reloc
+    type: bin
+    start: 0x8E89F0
+    # vram:
+
+  - name: ovl_008E8A60
+    type: bin
+    start: 0x8E8A60
+    # vram:
+  - name: ovl_008E8A60_reloc
+    type: bin
+    start: 0x8E8DD0
+    # vram:
+
+  - name: ovl_008E8E20
+    type: bin
+    start: 0x8E8E20
+    # vram:
+  - name: ovl_008E8E20_reloc
+    type: bin
+    start: 0x8E90E0
+    # vram:
+
+  - name: ovl_008E9130
+    type: bin
+    start: 0x8E9130
+    # vram:
+  - name: ovl_008E9130_reloc
+    type: bin
+    start: 0x8EA800
+    # vram:
+
+  - name: ovl_008EA970
+    type: bin
+    start: 0x8EA970
+    # vram:
+  - name: ovl_008EA970_reloc
+    type: bin
+    start: 0x8ED0E0
+    # vram:
+
+  - name: ovl_008ED290
+    type: bin
+    start: 0x8ED290
+    # vram:
+  - name: ovl_008ED290_reloc
+    type: bin
+    start: 0x8ED580
+    # vram:
+
+  - name: ovl_008ED5C0
+    type: bin
+    start: 0x8ED5C0
+    # vram:
+  - name: ovl_008ED5C0_reloc
+    type: bin
+    start: 0x8EDB20
+    # vram:
+
+  - name: ovl_008EDB70
+    type: bin
+    start: 0x8EDB70
+    # vram:
+  - name: ovl_008EDB70_reloc
+    type: bin
+    start: 0x8EDD80
+    # vram:
+
+  - name: ovl_008EDDB0
+    type: bin
+    start: 0x8EDDB0
+    # vram:
+  - name: ovl_008EDDB0_reloc
+    type: bin
+    start: 0x8EE2B0
+    # vram:
+
+  - name: ovl_008EE310
+    type: bin
+    start: 0x8EE310
+    # vram:
+  - name: ovl_008EE310_reloc
+    type: bin
+    start: 0x8EECC0
+    # vram:
+
+  - name: ovl_008EED90
+    type: bin
+    start: 0x8EED90
+    # vram:
+  - name: ovl_008EED90_reloc
+    type: bin
+    start: 0x8EF400
+    # vram:
+
+  - name: ovl_008EF480
+    type: bin
+    start: 0x8EF480
+    # vram:
+  - name: ovl_008EF480_reloc
+    type: bin
+    start: 0x8EFEF0
+    # vram:
+
+  - name: ovl_008EFF50
+    type: bin
+    start: 0x8EFF50
+    # vram:
+  - name: ovl_008EFF50_reloc
+    type: bin
+    start: 0x8F0680
+    # vram:
+
+  - name: ovl_008F0730
+    type: bin
+    start: 0x8F0730
+    # vram:
+  - name: ovl_008F0730_reloc
+    type: bin
+    start: 0x8F0A30
+    # vram:
+
+  - name: ovl_008F0A80
+    type: bin
+    start: 0x8F0A80
+    # vram:
+  - name: ovl_008F0A80_reloc
+    type: bin
+    start: 0x8F0FA0
+    # vram:
+
+  - name: ovl_008F1010
+    type: bin
+    start: 0x8F1010
+    # vram:
+  - name: ovl_008F1010_reloc
+    type: bin
+    start: 0x8F1410
+    # vram:
+
+  - name: ovl_008F1470
+    type: bin
+    start: 0x8F1470
+    # vram:
+  - name: ovl_008F1470_reloc
+    type: bin
+    start: 0x8F1790
+    # vram:
+
+  - name: ovl_008F17C0
+    type: bin
+    start: 0x8F17C0
+    # vram:
+  - name: ovl_008F17C0_reloc
+    type: bin
+    start: 0x8F1920
+    # vram:
+
+  - name: ovl_008F1950
+    type: bin
+    start: 0x8F1950
+    # vram:
+  - name: ovl_008F1950_reloc
+    type: bin
+    start: 0x8F1BB0
+    # vram:
+
+  - name: ovl_008F1BF0
+    type: bin
+    start: 0x8F1BF0
+    # vram:
+  - name: ovl_008F1BF0_reloc
+    type: bin
+    start: 0x8F1FC0
+    # vram:
+
+  - name: ovl_008F2020
+    type: bin
+    start: 0x8F2020
+    # vram:
+  - name: ovl_008F2020_reloc
+    type: bin
+    start: 0x8F23F0
+    # vram:
+
+  - name: ovl_008F2430
+    type: bin
+    start: 0x8F2430
+    # vram:
+  - name: ovl_008F2430_reloc
+    type: bin
+    start: 0x8F2680
+    # vram:
+
+  - name: ovl_008F26B0
+    type: bin
+    start: 0x8F26B0
+    # vram:
+  - name: ovl_008F26B0_reloc
+    type: bin
+    start: 0x8F29F0
+    # vram:
+
+  - name: ovl_008F2A50
+    type: bin
+    start: 0x8F2A50
+    # vram:
+  - name: ovl_008F2A50_reloc
+    type: bin
+    start: 0x8F2DF0
+    # vram:
+
+  - name: ovl_008F2E40
+    type: bin
+    start: 0x8F2E40
+    # vram:
+  - name: ovl_008F2E40_reloc
+    type: bin
+    start: 0x8F3230
+    # vram:
+
+  - name: ovl_008F3280
+    type: bin
+    start: 0x8F3280
+    # vram:
+  - name: ovl_008F3280_reloc
+    type: bin
+    start: 0x8F3730
+    # vram:
+
+  - name: ovl_008F3780
+    type: bin
+    start: 0x8F3780
+    # vram:
+  - name: ovl_008F3780_reloc
+    type: bin
+    start: 0x8F3E30
+    # vram:
+
+  - name: ovl_008F3EC0
+    type: bin
+    start: 0x8F3EC0
+    # vram:
+  - name: ovl_008F3EC0_reloc
+    type: bin
+    start: 0x8F4290
+    # vram:
+
+  - name: ovl_008F42E0
+    type: bin
+    start: 0x8F42E0
+    # vram:
+  - name: ovl_008F42E0_reloc
+    type: bin
+    start: 0x8F44C0
+    # vram:
+
+  - name: ovl_008F44F0
+    type: bin
+    start: 0x8F44F0
+    # vram:
+  - name: ovl_008F44F0_reloc
+    type: bin
+    start: 0x8F4840
+    # vram:
+
+  - name: ovl_008F4890
+    type: bin
+    start: 0x8F4890
+    # vram:
+  - name: ovl_008F4890_reloc
+    type: bin
+    start: 0x8F4D80
+    # vram:
+
+  - name: ovl_008F4DC0
+    type: bin
+    start: 0x8F4DC0
+    # vram:
+  - name: ovl_008F4DC0_reloc
+    type: bin
+    start: 0x8F4F60
+    # vram:
+
+  - name: ovl_008F4F90
+    type: bin
+    start: 0x8F4F90
+    # vram:
+  - name: ovl_008F4F90_reloc
+    type: bin
+    start: 0x8F5220
+    # vram:
+
+  - name: ovl_008F5270
+    type: bin
+    start: 0x8F5270
+    # vram:
+  - name: ovl_008F5270_reloc
+    type: bin
+    start: 0x8F5620
+    # vram:
+
+  - name: ovl_008F56A0
+    type: bin
+    start: 0x8F56A0
+    # vram:
+  - name: ovl_008F56A0_reloc
+    type: bin
+    start: 0x8F5A20
+    # vram:
+
+  - name: ovl_008F5A80
+    type: bin
+    start: 0x8F5A80
+    # vram:
+  - name: ovl_008F5A80_reloc
+    type: bin
+    start: 0x8F5C90
+    # vram:
+
+  - name: ovl_008F5CD0
+    type: bin
+    start: 0x8F5CD0
+    # vram:
+  - name: ovl_008F5CD0_reloc
+    type: bin
+    start: 0x8F5F20
+    # vram:
+
+  - name: ovl_008F5F70
+    type: bin
+    start: 0x8F5F70
+    # vram:
+  - name: ovl_008F5F70_reloc
+    type: bin
+    start: 0x8F62E0
+    # vram:
+
+  - name: ovl_008F6320
+    type: bin
+    start: 0x8F6320
+    # vram:
+  - name: ovl_008F6320_reloc
+    type: bin
+    start: 0x8F65D0
+    # vram:
+
+  - name: ovl_008F6600
+    type: bin
+    start: 0x8F6600
+    # vram:
+  - name: ovl_008F6600_reloc
+    type: bin
+    start: 0x8F6B70
+    # vram:
+
+  - name: ovl_008F6BE0
+    type: bin
+    start: 0x8F6BE0
+    # vram:
+  - name: ovl_008F6BE0_reloc
+    type: bin
+    start: 0x8F6E90
+    # vram:
+
+  - name: ovl_008F6ED0
+    type: bin
+    start: 0x8F6ED0
+    # vram:
+  - name: ovl_008F6ED0_reloc
+    type: bin
+    start: 0x8F7350
+    # vram:
+
+  - name: ovl_008F73B0
+    type: bin
+    start: 0x8F73B0
+    # vram:
+  - name: ovl_008F73B0_reloc
+    type: bin
+    start: 0x8F7740
+    # vram:
+
+  - name: ovl_008F7770
+    type: bin
+    start: 0x8F7770
+    # vram:
+  - name: ovl_008F7770_reloc
+    type: bin
+    start: 0x8F80C0
+    # vram:
+
+  - name: ovl_008F8140
+    type: bin
+    start: 0x8F8140
+    # vram:
+  - name: ovl_008F8140_reloc
+    type: bin
+    start: 0x8F8630
+    # vram:
+
+  - name: ovl_008F8690
+    type: bin
+    start: 0x8F8690
+    # vram:
+  - name: ovl_008F8690_reloc
+    type: bin
+    start: 0x8F8A30
+    # vram:
+
+  - name: ovl_008F8A80
+    type: bin
+    start: 0x8F8A80
+    # vram:
+  - name: ovl_008F8A80_reloc
+    type: bin
+    start: 0x8F8FA0
+    # vram:
+
+  - name: ovl_008F8FE0
+    type: bin
+    start: 0x8F8FE0
+    # vram:
+  - name: ovl_008F8FE0_reloc
+    type: bin
+    start: 0x8F95C0
+    # vram:
+
+  - name: ovl_008F9650
+    type: bin
+    start: 0x8F9650
+    # vram:
+  - name: ovl_008F9650_reloc
+    type: bin
+    start: 0x8F98B0
+    # vram:
+
+  - name: ovl_008F98E0
+    type: bin
+    start: 0x8F98E0
+    # vram:
+  - name: ovl_008F98E0_reloc
+    type: bin
+    start: 0x8F9CE0
+    # vram:
+
+  - name: ovl_008F9D20
+    type: bin
+    start: 0x8F9D20
+    # vram:
+  - name: ovl_008F9D20_reloc
+    type: bin
+    start: 0x8F9ED0
+    # vram:
+
+  - name: ovl_008F9F00
+    type: bin
+    start: 0x8F9F00
+    # vram:
+  - name: ovl_008F9F00_reloc
+    type: bin
+    start: 0x8FA2F0
+    # vram:
+
+  - name: ovl_008FA340
+    type: bin
+    start: 0x8FA340
+    # vram:
+  - name: ovl_008FA340_reloc
+    type: bin
+    start: 0x8FA5B0
+    # vram:
+
+  - name: ovl_008FA5E0
+    type: bin
+    start: 0x8FA5E0
+    # vram:
+  - name: ovl_008FA5E0_reloc
+    type: bin
+    start: 0x8FABD0
+    # vram:
+
+  - name: ovl_008FAC50
+    type: bin
+    start: 0x8FAC50
+    # vram:
+  - name: ovl_008FAC50_reloc
+    type: bin
+    start: 0x8FAE90
+    # vram:
+
+  - name: ovl_008FAED0
+    type: bin
+    start: 0x8FAED0
+    # vram:
+  - name: ovl_008FAED0_reloc
+    type: bin
+    start: 0x8FB3F0
+    # vram:
+
+  - name: ovl_008FB460
+    type: bin
+    start: 0x8FB460
+    # vram:
+  - name: ovl_008FB460_reloc
+    type: bin
+    start: 0x8FB6D0
+    # vram:
+
+  - name: ovl_008FB710
+    type: bin
+    start: 0x8FB710
+    # vram:
+  - name: ovl_008FB710_reloc
+    type: bin
+    start: 0x8FBB40
+    # vram:
+
+  - name: ovl_008FBB90
+    type: bin
+    start: 0x8FBB90
+    # vram:
+  - name: ovl_008FBB90_reloc
+    type: bin
+    start: 0x8FBF30
+    # vram:
+
+  - name: ovl_008FBF70
+    type: bin
+    start: 0x8FBF70
+    # vram:
+  - name: ovl_008FBF70_reloc
+    type: bin
+    start: 0x8FC1E0
+    # vram:
+
+  - name: ovl_008FC210
+    type: bin
+    start: 0x8FC210
+    # vram:
+  - name: ovl_008FC210_reloc
+    type: bin
+    start: 0x8FC780
+    # vram:
+
+  - name: ovl_008FC7E0
+    type: bin
+    start: 0x8FC7E0
+    # vram:
+  - name: ovl_008FC7E0_reloc
+    type: bin
+    start: 0x8FC9E0
+    # vram:
+
+  - name: ovl_008FCA20
+    type: bin
+    start: 0x8FCA20
+    # vram:
+  - name: ovl_008FCA20_reloc
+    type: bin
+    start: 0x8FD460
+    # vram:
+
+  - name: ovl_008FD520
+    type: bin
+    start: 0x8FD520
+    # vram:
+  - name: ovl_008FD520_reloc
+    type: bin
+    start: 0x8FDD60
+    # vram:
+
+  - name: ovl_008FDE10
+    type: bin
+    start: 0x8FDE10
+    # vram:
+  - name: ovl_008FDE10_reloc
+    type: bin
+    start: 0x8FDF60
+    # vram:
+
+  - name: ovl_008FDF90
+    type: bin
+    start: 0x8FDF90
+    # vram:
+  - name: ovl_008FDF90_reloc
+    type: bin
+    start: 0x8FE390
+    # vram:
+
+  - name: ovl_008FE3E0
+    type: bin
+    start: 0x8FE3E0
+    # vram:
+  - name: ovl_008FE3E0_reloc
+    type: bin
+    start: 0x8FEAE0
+    # vram:
+
+  - name: ovl_008FEB60
+    type: bin
+    start: 0x8FEB60
+    # vram:
+  - name: ovl_008FEB60_reloc
+    type: bin
+    start: 0x8FEE50
+    # vram:
+
+  - name: ovl_008FEE80
+    type: bin
+    start: 0x8FEE80
+    # vram:
+  - name: ovl_008FEE80_reloc
+    type: bin
+    start: 0x8FF140
+    # vram:
+
+  - name: ovl_008FF170
+    type: bin
+    start: 0x8FF170
+    # vram:
+  - name: ovl_008FF170_reloc
+    type: bin
+    start: 0x8FF730
+    # vram:
+
+  - name: ovl_008FF7C0
+    type: bin
+    start: 0x8FF7C0
+    # vram:
+  - name: ovl_008FF7C0_reloc
+    type: bin
+    start: 0x8FFC20
+    # vram:
+
+  - name: ovl_008FFC90
+    type: bin
+    start: 0x8FFC90
+    # vram:
+  - name: ovl_008FFC90_reloc
+    type: bin
+    start: 0x9004B0
+    # vram:
+
+  - name: ovl_00900530
+    type: bin
+    start: 0x900530
+    # vram:
+  - name: ovl_00900530_reloc
+    type: bin
+    start: 0x900C60
+    # vram:
+
+  - name: ovl_00900CD0
+    type: bin
+    start: 0x900CD0
+    # vram:
+  - name: ovl_00900CD0_reloc
+    type: bin
+    start: 0x901540
+    # vram:
+
+  - name: ovl_009015C0
+    type: bin
+    start: 0x9015C0
+    # vram:
+  - name: ovl_009015C0_reloc
+    type: bin
+    start: 0x901CF0
+    # vram:
+
+  - name: ovl_00901D60
+    type: bin
+    start: 0x901D60
+    # vram:
+  - name: ovl_00901D60_reloc
+    type: bin
+    start: 0x9020D0
+    # vram:
+
+  - name: ovl_00902120
+    type: bin
+    start: 0x902120
+    # vram:
+  - name: ovl_00902120_reloc
+    type: bin
+    start: 0x902780
+    # vram:
+
+  - name: ovl_00902810
+    type: bin
+    start: 0x902810
+    # vram:
+  - name: ovl_00902810_reloc
+    type: bin
+    start: 0x902C10
+    # vram:
+
+  - name: ovl_00902C40
+    type: bin
+    start: 0x902C40
+    # vram:
+  - name: ovl_00902C40_reloc
+    type: bin
+    start: 0x9031A0
+    # vram:
+
+  - name: ovl_009031F0
+    type: bin
+    start: 0x9031F0
+    # vram:
+  - name: ovl_009031F0_reloc
+    type: bin
+    start: 0x903430
+    # vram:
+
+  - name: ovl_00903460
+    type: bin
+    start: 0x903460
+    # vram:
+  - name: ovl_00903460_reloc
+    type: bin
+    start: 0x903B40
+    # vram:
+
+  - name: ovl_00903B90
+    type: bin
+    start: 0x903B90
+    # vram:
+  - name: ovl_00903B90_reloc
+    type: bin
+    start: 0x903BB0
+    # vram:
+
+  - name: ovl_00903BD0
+    type: bin
+    start: 0x903BD0
+    # vram:
+  - name: ovl_00903BD0_reloc
+    type: bin
+    start: 0x9042B0
+    # vram:
+
+  - name: ovl_00904330
+    type: bin
+    start: 0x904330
+    # vram:
+  - name: ovl_00904330_reloc
+    type: bin
+    start: 0x904A50
+    # vram:
+
+  - name: ovl_00904AB0
+    type: bin
+    start: 0x904AB0
+    # vram:
+  - name: ovl_00904AB0_reloc
+    type: bin
+    start: 0x9051F0
+    # vram:
+
+  - name: ovl_00905280
+    type: bin
+    start: 0x905280
+    # vram:
+  - name: ovl_00905280_reloc
+    type: bin
+    start: 0x9059A0
+    # vram:
+
+  - name: ovl_00905A30
+    type: bin
+    start: 0x905A30
+    # vram:
+  - name: ovl_00905A30_reloc
+    type: bin
+    start: 0x906010
+    # vram:
+
+  - name: ovl_00906060
+    type: bin
+    start: 0x906060
+    # vram:
+  - name: ovl_00906060_reloc
+    type: bin
+    start: 0x9061F0
+    # vram:
+
+  - name: ovl_00906220
+    type: bin
+    start: 0x906220
+    # vram:
+  - name: ovl_00906220_reloc
+    type: bin
+    start: 0x906270
+    # vram:
+
+  - name: ovl_00906290
+    type: bin
+    start: 0x906290
+    # vram:
+  - name: ovl_00906290_reloc
+    type: bin
+    start: 0x9062E0
+    # vram:
+
+  - name: ovl_00906300
+    type: bin
+    start: 0x906300
+    # vram:
+  - name: ovl_00906300_reloc
+    type: bin
+    start: 0x906350
+    # vram:
+
+  - name: ovl_00906370
+    type: bin
+    start: 0x906370
+    # vram:
+  - name: ovl_00906370_reloc
+    type: bin
+    start: 0x9063C0
+    # vram:
+
+  - name: ovl_009063E0
+    type: bin
+    start: 0x9063E0
+    # vram:
+  - name: ovl_009063E0_reloc
+    type: bin
+    start: 0x906430
+    # vram:
+
+  - name: ovl_00906450
+    type: bin
+    start: 0x906450
+    # vram:
+  - name: ovl_00906450_reloc
+    type: bin
+    start: 0x9064A0
+    # vram:
+
+  - name: ovl_009064C0
+    type: bin
+    start: 0x9064C0
+    # vram:
+  - name: ovl_009064C0_reloc
+    type: bin
+    start: 0x906510
+    # vram:
+
+  - name: ovl_00906530
+    type: bin
+    start: 0x906530
+    # vram:
+  - name: ovl_00906530_reloc
+    type: bin
+    start: 0x906580
+    # vram:
+
+  - name: ovl_009065A0
+    type: bin
+    start: 0x9065A0
+    # vram:
+  - name: ovl_009065A0_reloc
+    type: bin
+    start: 0x9065F0
+    # vram:
+
+  - name: ovl_00906610
+    type: bin
+    start: 0x906610
+    # vram:
+  - name: ovl_00906610_reloc
+    type: bin
+    start: 0x906660
+    # vram:
+
+  - name: ovl_00906680
+    type: bin
+    start: 0x906680
+    # vram:
+  - name: ovl_00906680_reloc
+    type: bin
+    start: 0x9066D0
+    # vram:
+
+  - name: ovl_009066F0
+    type: bin
+    start: 0x9066F0
+    # vram:
+  - name: ovl_009066F0_reloc
+    type: bin
+    start: 0x906B20
+    # vram:
+
+  - name: ovl_00906B80
+    type: bin
+    start: 0x906B80
+    # vram:
+  - name: ovl_00906B80_reloc
+    type: bin
+    start: 0x906EE0
+    # vram:
+
+  - name: ovl_00906F10
+    type: bin
+    start: 0x906F10
+    # vram:
+  - name: ovl_00906F10_reloc
+    type: bin
+    start: 0x906F60
+    # vram:
+
+  - name: ovl_00906F80
+    type: bin
+    start: 0x906F80
+    # vram:
+  - name: ovl_00906F80_reloc
+    type: bin
+    start: 0x906FD0
+    # vram:
+
+  - name: ovl_00906FF0
+    type: bin
+    start: 0x906FF0
+    # vram:
+  - name: ovl_00906FF0_reloc
+    type: bin
+    start: 0x907040
+    # vram:
+
+  - name: ovl_00907060
+    type: bin
+    start: 0x907060
+    # vram:
+  - name: ovl_00907060_reloc
+    type: bin
+    start: 0x9070B0
+    # vram:
+
+  - name: ovl_009070D0
+    type: bin
+    start: 0x9070D0
+    # vram:
+  - name: ovl_009070D0_reloc
+    type: bin
+    start: 0x907120
+    # vram:
+
+  - name: ovl_00907140
+    type: bin
+    start: 0x907140
+    # vram:
+  - name: ovl_00907140_reloc
+    type: bin
+    start: 0x907190
+    # vram:
+
+  - name: ovl_009071B0
+    type: bin
+    start: 0x9071B0
+    # vram:
+  - name: ovl_009071B0_reloc
+    type: bin
+    start: 0x9075E0
+    # vram:
+
+  - name: ovl_00907640
+    type: bin
+    start: 0x907640
+    # vram:
+  - name: ovl_00907640_reloc
+    type: bin
+    start: 0x907690
+    # vram:
+
+  - name: ovl_009076B0
+    type: bin
+    start: 0x9076B0
+    # vram:
+  - name: ovl_009076B0_reloc
+    type: bin
+    start: 0x907700
+    # vram:
+
+  - name: ovl_00907720
+    type: bin
+    start: 0x907720
+    # vram:
+  - name: ovl_00907720_reloc
+    type: bin
+    start: 0x907770
+    # vram:
+
+  - name: ovl_00907790
+    type: bin
+    start: 0x907790
+    # vram:
+  - name: ovl_00907790_reloc
+    type: bin
+    start: 0x907AF0
+    # vram:
+
+  - name: ovl_00907B20
+    type: bin
+    start: 0x907B20
+    # vram:
+  - name: ovl_00907B20_reloc
+    type: bin
+    start: 0x907B70
+    # vram:
+
+  - name: ovl_00907B90
+    type: bin
+    start: 0x907B90
+    # vram:
+  - name: ovl_00907B90_reloc
+    type: bin
+    start: 0x907BE0
+    # vram:
+
+  - name: ovl_00907C00
+    type: bin
+    start: 0x907C00
+    # vram:
+  - name: ovl_00907C00_reloc
+    type: bin
+    start: 0x907C50
+    # vram:
+
+  - name: ovl_00907C70
+    type: bin
+    start: 0x907C70
+    # vram:
+  - name: ovl_00907C70_reloc
+    type: bin
+    start: 0x907CC0
+    # vram:
+
+  - name: ovl_00907CE0
+    type: bin
+    start: 0x907CE0
+    # vram:
+  - name: ovl_00907CE0_reloc
+    type: bin
+    start: 0x907D30
+    # vram:
+
+  - name: ovl_00907D50
+    type: bin
+    start: 0x907D50
+    # vram:
+  - name: ovl_00907D50_reloc
+    type: bin
+    start: 0x907DA0
+    # vram:
+
+  - name: ovl_00907DC0
+    type: bin
+    start: 0x907DC0
+    # vram:
+  - name: ovl_00907DC0_reloc
+    type: bin
+    start: 0x907E10
+    # vram:
+
+  - name: ovl_00907E30
+    type: bin
+    start: 0x907E30
+    # vram:
+  - name: ovl_00907E30_reloc
+    type: bin
+    start: 0x907E80
+    # vram:
+
+  - name: ovl_00907EA0
+    type: bin
+    start: 0x907EA0
+    # vram:
+  - name: ovl_00907EA0_reloc
+    type: bin
+    start: 0x907EF0
+    # vram:
+
+  - name: ovl_00907F10
+    type: bin
+    start: 0x907F10
+    # vram:
+  - name: ovl_00907F10_reloc
+    type: bin
+    start: 0x907FF0
+    # vram:
+
+  - name: ovl_00908020
+    type: bin
+    start: 0x908020
+    # vram:
+  - name: ovl_00908020_reloc
+    type: bin
+    start: 0x908100
+    # vram:
+
+  - name: ovl_00908130
+    type: bin
+    start: 0x908130
+    # vram:
+  - name: ovl_00908130_reloc
+    type: bin
+    start: 0x908210
+    # vram:
+
+  - name: ovl_00908240
+    type: bin
+    start: 0x908240
+    # vram:
+  - name: ovl_00908240_reloc
+    type: bin
+    start: 0x908330
+    # vram:
+
+  - name: ovl_00908350
+    type: bin
+    start: 0x908350
+    # vram:
+  - name: ovl_00908350_reloc
+    type: bin
+    start: 0x9083A0
+    # vram:
+
+  - name: ovl_009083C0
+    type: bin
+    start: 0x9083C0
+    # vram:
+  - name: ovl_009083C0_reloc
+    type: bin
+    start: 0x908410
+    # vram:
+
+  - name: ovl_00908430
+    type: bin
+    start: 0x908430
+    # vram:
+  - name: ovl_00908430_reloc
+    type: bin
+    start: 0x908480
+    # vram:
+
+  - name: ovl_009084A0
+    type: bin
+    start: 0x9084A0
+    # vram:
+  - name: ovl_009084A0_reloc
+    type: bin
+    start: 0x9084F0
+    # vram:
+
+  - name: ovl_00908510
+    type: bin
+    start: 0x908510
+    # vram:
+  - name: ovl_00908510_reloc
+    type: bin
+    start: 0x908560
+    # vram:
+
+  - name: ovl_00908580
+    type: bin
+    start: 0x908580
+    # vram:
+  - name: ovl_00908580_reloc
+    type: bin
+    start: 0x9088E0
+    # vram:
+
+  - name: ovl_00908910
+    type: bin
+    start: 0x908910
+    # vram:
+  - name: ovl_00908910_reloc
+    type: bin
+    start: 0x908960
+    # vram:
+
+  - name: ovl_00908980
+    type: bin
+    start: 0x908980
+    # vram:
+  - name: ovl_00908980_reloc
+    type: bin
+    start: 0x9089D0
+    # vram:
+
+  - name: ovl_009089F0
+    type: bin
+    start: 0x9089F0
+    # vram:
+  - name: ovl_009089F0_reloc
+    type: bin
+    start: 0x908A40
+    # vram:
+
+  - name: ovl_00908A60
+    type: bin
+    start: 0x908A60
+    # vram:
+  - name: ovl_00908A60_reloc
+    type: bin
+    start: 0x908AB0
+    # vram:
+
+  - name: ovl_00908AD0
+    type: bin
+    start: 0x908AD0
+    # vram:
+  - name: ovl_00908AD0_reloc
+    type: bin
+    start: 0x908B20
+    # vram:
+
+  - name: ovl_00908B40
+    type: bin
+    start: 0x908B40
+    # vram:
+  - name: ovl_00908B40_reloc
+    type: bin
+    start: 0x908B90
+    # vram:
+
+  - name: ovl_00908BB0
+    type: bin
+    start: 0x908BB0
+    # vram:
+  - name: ovl_00908BB0_reloc
+    type: bin
+    start: 0x908C00
+    # vram:
+
+  - name: ovl_00908C20
+    type: bin
+    start: 0x908C20
+    # vram:
+  - name: ovl_00908C20_reloc
+    type: bin
+    start: 0x908C70
+    # vram:
+
+  - name: ovl_00908C90
+    type: bin
+    start: 0x908C90
+    # vram:
+  - name: ovl_00908C90_reloc
+    type: bin
+    start: 0x908CE0
+    # vram:
+
+  - name: ovl_00908D00
+    type: bin
+    start: 0x908D00
+    # vram:
+  - name: ovl_00908D00_reloc
+    type: bin
+    start: 0x908D50
+    # vram:
+
+  - name: ovl_00908D70
+    type: bin
+    start: 0x908D70
+    # vram:
+  - name: ovl_00908D70_reloc
+    type: bin
+    start: 0x908DC0
+    # vram:
+
+  - name: ovl_00908DE0
+    type: bin
+    start: 0x908DE0
+    # vram:
+  - name: ovl_00908DE0_reloc
+    type: bin
+    start: 0x908E30
+    # vram:
+
+  - name: ovl_00908E50
+    type: bin
+    start: 0x908E50
+    # vram:
+  - name: ovl_00908E50_reloc
+    type: bin
+    start: 0x908EA0
+    # vram:
+
+  - name: ovl_00908EC0
+    type: bin
+    start: 0x908EC0
+    # vram:
+  - name: ovl_00908EC0_reloc
+    type: bin
+    start: 0x908F10
+    # vram:
+
+  - name: ovl_00908F30
+    type: bin
+    start: 0x908F30
+    # vram:
+  - name: ovl_00908F30_reloc
+    type: bin
+    start: 0x9093D0
+    # vram:
+
+  - name: ovl_00909410
+    type: bin
+    start: 0x909410
+    # vram:
+  - name: ovl_00909410_reloc
+    type: bin
+    start: 0x909460
+    # vram:
+
+  - name: ovl_00909480
+    type: bin
+    start: 0x909480
+    # vram:
+  - name: ovl_00909480_reloc
+    type: bin
+    start: 0x9094D0
+    # vram:
+
+  - name: ovl_009094F0
+    type: bin
+    start: 0x9094F0
+    # vram:
+  - name: ovl_009094F0_reloc
+    type: bin
+    start: 0x909540
+    # vram:
+
+  - name: ovl_00909560
+    type: bin
+    start: 0x909560
+    # vram:
+  - name: ovl_00909560_reloc
+    type: bin
+    start: 0x9095B0
+    # vram:
+
+  - name: ovl_009095D0
+    type: bin
+    start: 0x9095D0
+    # vram:
+  - name: ovl_009095D0_reloc
+    type: bin
+    start: 0x9096B0
+    # vram:
+
+  - name: ovl_009096E0
+    type: bin
+    start: 0x9096E0
+    # vram:
+  - name: ovl_009096E0_reloc
+    type: bin
+    start: 0x9097D0
+    # vram:
+
+  - name: ovl_009097F0
+    type: bin
+    start: 0x9097F0
+    # vram:
+  - name: ovl_009097F0_reloc
+    type: bin
+    start: 0x9098D0
+    # vram:
+
+  - name: ovl_00909900
+    type: bin
+    start: 0x909900
+    # vram:
+  - name: ovl_00909900_reloc
+    type: bin
+    start: 0x909950
+    # vram:
+
+  - name: ovl_00909970
+    type: bin
+    start: 0x909970
+    # vram:
+  - name: ovl_00909970_reloc
+    type: bin
+    start: 0x9099C0
+    # vram:
+
+  - name: ovl_009099E0
+    type: bin
+    start: 0x9099E0
+    # vram:
+  - name: ovl_009099E0_reloc
+    type: bin
+    start: 0x909A30
+    # vram:
+
+  - name: ovl_00909A50
+    type: bin
+    start: 0x909A50
+    # vram:
+  - name: ovl_00909A50_reloc
+    type: bin
+    start: 0x909B30
+    # vram:
+
+  - name: ovl_00909B60
+    type: bin
+    start: 0x909B60
+    # vram:
+  - name: ovl_00909B60_reloc
+    type: bin
+    start: 0x909EC0
+    # vram:
+
+  - name: ovl_00909EF0
+    type: bin
+    start: 0x909EF0
+    # vram:
+  - name: ovl_00909EF0_reloc
+    type: bin
+    start: 0x909F40
+    # vram:
+
+  - name: ovl_00909F60
+    type: bin
+    start: 0x909F60
+    # vram:
+  - name: ovl_00909F60_reloc
+    type: bin
+    start: 0x909FB0
+    # vram:
+
+  - name: ovl_00909FD0
+    type: bin
+    start: 0x909FD0
+    # vram:
+  - name: ovl_00909FD0_reloc
+    type: bin
+    start: 0x90A020
+    # vram:
+
+  - name: ovl_0090A040
+    type: bin
+    start: 0x90A040
+    # vram:
+  - name: ovl_0090A040_reloc
+    type: bin
+    start: 0x90A3A0
+    # vram:
+
+  - name: ovl_0090A3D0
+    type: bin
+    start: 0x90A3D0
+    # vram:
+  - name: ovl_0090A3D0_reloc
+    type: bin
+    start: 0x90A420
+    # vram:
+
+  - name: ovl_0090A440
+    type: bin
+    start: 0x90A440
+    # vram:
+  - name: ovl_0090A440_reloc
+    type: bin
+    start: 0x90A490
+    # vram:
+
+  - name: ovl_0090A4B0
+    type: bin
+    start: 0x90A4B0
+    # vram:
+  - name: ovl_0090A4B0_reloc
+    type: bin
+    start: 0x90A500
+    # vram:
+
+  - name: ovl_0090A520
+    type: bin
+    start: 0x90A520
+    # vram:
+  - name: ovl_0090A520_reloc
+    type: bin
+    start: 0x90AD50
+    # vram:
+
+  - name: ovl_0090ADB0
+    type: bin
+    start: 0x90ADB0
+    # vram:
+  - name: ovl_0090ADB0_reloc
+    type: bin
+    start: 0x90AE00
+    # vram:
+
+  - name: ovl_0090AE20
+    type: bin
+    start: 0x90AE20
+    # vram:
+  - name: ovl_0090AE20_reloc
+    type: bin
+    start: 0x90B180
+    # vram:
+
+  - name: ovl_0090B1B0
+    type: bin
+    start: 0x90B1B0
+    # vram:
+  - name: ovl_0090B1B0_reloc
+    type: bin
+    start: 0x90B200
+    # vram:
+
+  - name: ovl_0090B220
+    type: bin
+    start: 0x90B220
+    # vram:
+  - name: ovl_0090B220_reloc
+    type: bin
+    start: 0x90B270
+    # vram:
+
+  - name: ovl_0090B290
+    type: bin
+    start: 0x90B290
+    # vram:
+  - name: ovl_0090B290_reloc
+    type: bin
+    start: 0x90B2E0
+    # vram:
+
+  - name: ovl_0090B300
+    type: bin
+    start: 0x90B300
+    # vram:
+  - name: ovl_0090B300_reloc
+    type: bin
+    start: 0x90B350
+    # vram:
+
+  - name: ovl_0090B370
+    type: bin
+    start: 0x90B370
+    # vram:
+  - name: ovl_0090B370_reloc
+    type: bin
+    start: 0x90B3C0
+    # vram:
+
+  - name: ovl_0090B3E0
+    type: bin
+    start: 0x90B3E0
+    # vram:
+  - name: ovl_0090B3E0_reloc
+    type: bin
+    start: 0x90B430
+    # vram:
+
+  - name: ovl_0090B450
+    type: bin
+    start: 0x90B450
+    # vram:
+  - name: ovl_0090B450_reloc
+    type: bin
+    start: 0x90B4A0
+    # vram:
+
+  - name: ovl_0090B4C0
+    type: bin
+    start: 0x90B4C0
+    # vram:
+  - name: ovl_0090B4C0_reloc
+    type: bin
+    start: 0x90B510
+    # vram:
+
+  - name: ovl_0090B530
+    type: bin
+    start: 0x90B530
+    # vram:
+  - name: ovl_0090B530_reloc
+    type: bin
+    start: 0x90B580
+    # vram:
+
+  - name: ovl_0090B5A0
+    type: bin
+    start: 0x90B5A0
+    # vram:
+  - name: ovl_0090B5A0_reloc
+    type: bin
+    start: 0x90B5F0
+    # vram:
+
+  - name: ovl_0090B610
+    type: bin
+    start: 0x90B610
+    # vram:
+  - name: ovl_0090B610_reloc
+    type: bin
+    start: 0x90B970
+    # vram:
+
+  - name: ovl_0090B9A0
+    type: bin
+    start: 0x90B9A0
+    # vram:
+  - name: ovl_0090B9A0_reloc
+    type: bin
+    start: 0x90B9F0
+    # vram:
+
+  - name: ovl_0090BA10
+    type: bin
+    start: 0x90BA10
+    # vram:
+  - name: ovl_0090BA10_reloc
+    type: bin
+    start: 0x90BA60
+    # vram:
+
+  - name: ovl_0090BA80
+    type: bin
+    start: 0x90BA80
+    # vram:
+  - name: ovl_0090BA80_reloc
+    type: bin
+    start: 0x90BAD0
+    # vram:
+
+  - name: ovl_0090BAF0
+    type: bin
+    start: 0x90BAF0
+    # vram:
+  - name: ovl_0090BAF0_reloc
+    type: bin
+    start: 0x90BB40
+    # vram:
+
+  - name: ovl_0090BB60
+    type: bin
+    start: 0x90BB60
+    # vram:
+  - name: ovl_0090BB60_reloc
+    type: bin
+    start: 0x90BC40
+    # vram:
+
+  - name: ovl_0090BC70
+    type: bin
+    start: 0x90BC70
+    # vram:
+  - name: ovl_0090BC70_reloc
+    type: bin
+    start: 0x90BCC0
+    # vram:
+
+  - name: ovl_0090BCE0
+    type: bin
+    start: 0x90BCE0
+    # vram:
+  - name: ovl_0090BCE0_reloc
+    type: bin
+    start: 0x90C040
+    # vram:
+
+  - name: ovl_0090C070
+    type: bin
+    start: 0x90C070
+    # vram:
+  - name: ovl_0090C070_reloc
+    type: bin
+    start: 0x90C0C0
+    # vram:
+
+  - name: ovl_0090C0E0
+    type: bin
+    start: 0x90C0E0
+    # vram:
+  - name: ovl_0090C0E0_reloc
+    type: bin
+    start: 0x90C250
+    # vram:
+
+  - name: ovl_0090C280
+    type: bin
+    start: 0x90C280
+    # vram:
+  - name: ovl_0090C280_reloc
+    type: bin
+    start: 0x90C330
+    # vram:
+
+  - name: ovl_0090C360
+    type: bin
+    start: 0x90C360
+    # vram:
+  - name: ovl_0090C360_reloc
+    type: bin
+    start: 0x90C440
+    # vram:
+
+  - name: ovl_0090C470
+    type: bin
+    start: 0x90C470
+    # vram:
+  - name: ovl_0090C470_reloc
+    type: bin
+    start: 0x90C550
+    # vram:
+
+  - name: ovl_0090C580
+    type: bin
+    start: 0x90C580
+    # vram:
+  - name: ovl_0090C580_reloc
+    type: bin
+    start: 0x90C660
+    # vram:
+
+  - name: ovl_0090C690
+    type: bin
+    start: 0x90C690
+    # vram:
+  - name: ovl_0090C690_reloc
+    type: bin
+    start: 0x90C6E0
+    # vram:
+
+  - name: ovl_0090C700
+    type: bin
+    start: 0x90C700
+    # vram:
+  - name: ovl_0090C700_reloc
+    type: bin
+    start: 0x90C750
+    # vram:
+
+  - name: ovl_0090C770
+    type: bin
+    start: 0x90C770
+    # vram:
+  - name: ovl_0090C770_reloc
+    type: bin
+    start: 0x90C7C0
+    # vram:
+
+  - name: ovl_0090C7E0
+    type: bin
+    start: 0x90C7E0
+    # vram:
+  - name: ovl_0090C7E0_reloc
+    type: bin
+    start: 0x90C830
+    # vram:
+
+  - name: ovl_0090C850
+    type: bin
+    start: 0x90C850
+    # vram:
+  - name: ovl_0090C850_reloc
+    type: bin
+    start: 0x90C930
+    # vram:
+
+  - name: ovl_0090C960
+    type: bin
+    start: 0x90C960
+    # vram:
+  - name: ovl_0090C960_reloc
+    type: bin
+    start: 0x90C9B0
+    # vram:
+
+  - name: ovl_0090C9D0
+    type: bin
+    start: 0x90C9D0
+    # vram:
+  - name: ovl_0090C9D0_reloc
+    type: bin
+    start: 0x90CAC0
+    # vram:
+
+  - name: ovl_0090CAE0
+    type: bin
+    start: 0x90CAE0
+    # vram:
+  - name: ovl_0090CAE0_reloc
+    type: bin
+    start: 0x90CE70
+    # vram:
+
+  - name: ovl_0090CEA0
+    type: bin
+    start: 0x90CEA0
+    # vram:
+  - name: ovl_0090CEA0_reloc
+    type: bin
+    start: 0x90CF80
+    # vram:
+
+  - name: ovl_0090CFB0
+    type: bin
+    start: 0x90CFB0
+    # vram:
+  - name: ovl_0090CFB0_reloc
+    type: bin
+    start: 0x90D440
+    # vram:
+
+  - name: ovl_0090D480
+    type: bin
+    start: 0x90D480
+    # vram:
+  - name: ovl_0090D480_reloc
+    type: bin
+    start: 0x90D4D0
+    # vram:
+
+  - name: ovl_0090D4F0
+    type: bin
+    start: 0x90D4F0
+    # vram:
+  - name: ovl_0090D4F0_reloc
+    type: bin
+    start: 0x90D540
+    # vram:
+
+  - name: ovl_0090D560
+    type: bin
+    start: 0x90D560
+    # vram:
+  - name: ovl_0090D560_reloc
+    type: bin
+    start: 0x90D5B0
+    # vram:
+
+  - name: ovl_0090D5D0
+    type: bin
+    start: 0x90D5D0
+    # vram:
+  - name: ovl_0090D5D0_reloc
+    type: bin
+    start: 0x90D620
+    # vram:
+
+  - name: ovl_0090D640
+    type: bin
+    start: 0x90D640
+    # vram:
+  - name: ovl_0090D640_reloc
+    type: bin
+    start: 0x90D690
+    # vram:
+
+  - name: ovl_0090D6B0
+    type: bin
+    start: 0x90D6B0
+    # vram:
+  - name: ovl_0090D6B0_reloc
+    type: bin
+    start: 0x90D700
+    # vram:
+
+  - name: ovl_0090D720
+    type: bin
+    start: 0x90D720
+    # vram:
+  - name: ovl_0090D720_reloc
+    type: bin
+    start: 0x90DB60
+    # vram:
+
+  - name: ovl_0090DBA0
+    type: bin
+    start: 0x90DBA0
+    # vram:
+  - name: ovl_0090DBA0_reloc
+    type: bin
+    start: 0x90DBF0
+    # vram:
+
+  - name: ovl_0090DC10
+    type: bin
+    start: 0x90DC10
+    # vram:
+  - name: ovl_0090DC10_reloc
+    type: bin
+    start: 0x90DC60
+    # vram:
+
+  - name: ovl_0090DC80
+    type: bin
+    start: 0x90DC80
+    # vram:
+  - name: ovl_0090DC80_reloc
+    type: bin
+    start: 0x90DCD0
+    # vram:
+
+  - name: ovl_0090DCF0
+    type: bin
+    start: 0x90DCF0
+    # vram:
+  - name: ovl_0090DCF0_reloc
+    type: bin
+    start: 0x90DD40
+    # vram:
+
+  - name: ovl_0090DD60
+    type: bin
+    start: 0x90DD60
+    # vram:
+  - name: ovl_0090DD60_reloc
+    type: bin
+    start: 0x90DDB0
+    # vram:
+
+  - name: ovl_0090DDD0
+    type: bin
+    start: 0x90DDD0
+    # vram:
+  - name: ovl_0090DDD0_reloc
+    type: bin
+    start: 0x90DE20
+    # vram:
+
+  - name: ovl_0090DE40
+    type: bin
+    start: 0x90DE40
+    # vram:
+  - name: ovl_0090DE40_reloc
+    type: bin
+    start: 0x90DE90
+    # vram:
+
+  - name: ovl_0090DEB0
+    type: bin
+    start: 0x90DEB0
+    # vram:
+  - name: ovl_0090DEB0_reloc
+    type: bin
+    start: 0x90DF00
+    # vram:
+
+  - name: ovl_0090DF20
+    type: bin
+    start: 0x90DF20
+    # vram:
+  - name: ovl_0090DF20_reloc
+    type: bin
+    start: 0x90DF70
+    # vram:
+
+  - name: ovl_0090DF90
+    type: bin
+    start: 0x90DF90
+    # vram:
+  - name: ovl_0090DF90_reloc
+    type: bin
+    start: 0x90DFE0
+    # vram:
+
+  - name: ovl_0090E000
+    type: bin
+    start: 0x90E000
+    # vram:
+  - name: ovl_0090E000_reloc
+    type: bin
+    start: 0x90E050
+    # vram:
+
+  - name: ovl_0090E070
+    type: bin
+    start: 0x90E070
+    # vram:
+  - name: ovl_0090E070_reloc
+    type: bin
+    start: 0x90E0C0
+    # vram:
+
+  - name: ovl_0090E0E0
+    type: bin
+    start: 0x90E0E0
+    # vram:
+  - name: ovl_0090E0E0_reloc
+    type: bin
+    start: 0x90E130
+    # vram:
+
+  - name: ovl_0090E150
+    type: bin
+    start: 0x90E150
+    # vram:
+  - name: ovl_0090E150_reloc
+    type: bin
+    start: 0x90E1A0
+    # vram:
+
+  - name: ovl_0090E1C0
+    type: bin
+    start: 0x90E1C0
+    # vram:
+  - name: ovl_0090E1C0_reloc
+    type: bin
+    start: 0x90E210
+    # vram:
+
+  - name: ovl_0090E230
+    type: bin
+    start: 0x90E230
+    # vram:
+  - name: ovl_0090E230_reloc
+    type: bin
+    start: 0x90E280
+    # vram:
+
+  - name: ovl_0090E2A0
+    type: bin
+    start: 0x90E2A0
+    # vram:
+  - name: ovl_0090E2A0_reloc
+    type: bin
+    start: 0x90E2F0
+    # vram:
+
+  - name: ovl_0090E310
+    type: bin
+    start: 0x90E310
+    # vram:
+  - name: ovl_0090E310_reloc
+    type: bin
+    start: 0x90E360
+    # vram:
+
+  - name: ovl_0090E380
+    type: bin
+    start: 0x90E380
+    # vram:
+  - name: ovl_0090E380_reloc
+    type: bin
+    start: 0x90E3D0
+    # vram:
+
+  - name: ovl_0090E3F0
+    type: bin
+    start: 0x90E3F0
+    # vram:
+  - name: ovl_0090E3F0_reloc
+    type: bin
+    start: 0x90E440
+    # vram:
+
+  - name: ovl_0090E460
+    type: bin
+    start: 0x90E460
+    # vram:
+  - name: ovl_0090E460_reloc
+    type: bin
+    start: 0x90E820
+    # vram:
+
+  - name: ovl_0090E880
+    type: bin
+    start: 0x90E880
+    # vram:
+  - name: ovl_0090E880_reloc
+    type: bin
+    start: 0x90E8D0
+    # vram:
+
+  - name: ovl_0090E8F0
+    type: bin
+    start: 0x90E8F0
+    # vram:
+  - name: ovl_0090E8F0_reloc
+    type: bin
+    start: 0x90E940
+    # vram:
+
+  - name: ovl_0090E960
+    type: bin
+    start: 0x90E960
+    # vram:
+  - name: ovl_0090E960_reloc
+    type: bin
+    start: 0x90E9B0
+    # vram:
+
+  - name: ovl_0090E9D0
+    type: bin
+    start: 0x90E9D0
+    # vram:
+  - name: ovl_0090E9D0_reloc
+    type: bin
+    start: 0x90EA20
+    # vram:
+
+  - name: ovl_0090EA40
+    type: bin
+    start: 0x90EA40
+    # vram:
+  - name: ovl_0090EA40_reloc
+    type: bin
+    start: 0x90EA90
+    # vram:
+
+  - name: ovl_0090EAB0
+    type: bin
+    start: 0x90EAB0
+    # vram:
+  - name: ovl_0090EAB0_reloc
+    type: bin
+    start: 0x90EB00
+    # vram:
+
+  - name: ovl_0090EB20
+    type: bin
+    start: 0x90EB20
+    # vram:
+  - name: ovl_0090EB20_reloc
+    type: bin
+    start: 0x90EB70
+    # vram:
+
+  - name: ovl_0090EB90
+    type: bin
+    start: 0x90EB90
+    # vram:
+  - name: ovl_0090EB90_reloc
+    type: bin
+    start: 0x90EBE0
+    # vram:
+
+  - name: ovl_0090EC00
+    type: bin
+    start: 0x90EC00
+    # vram:
+  - name: ovl_0090EC00_reloc
+    type: bin
+    start: 0x90EC50
+    # vram:
+
+  - name: ovl_0090EC70
+    type: bin
+    start: 0x90EC70
+    # vram:
+  - name: ovl_0090EC70_reloc
+    type: bin
+    start: 0x90ECC0
+    # vram:
+
+  - name: ovl_0090ECE0
+    type: bin
+    start: 0x90ECE0
+    # vram:
+  - name: ovl_0090ECE0_reloc
+    type: bin
+    start: 0x90ED30
+    # vram:
+
+  - name: ovl_0090ED50
+    type: bin
+    start: 0x90ED50
+    # vram:
+  - name: ovl_0090ED50_reloc
+    type: bin
+    start: 0x90EDA0
+    # vram:
+
+  - name: ovl_0090EDC0
+    type: bin
+    start: 0x90EDC0
+    # vram:
+  - name: ovl_0090EDC0_reloc
+    type: bin
+    start: 0x90EE10
+    # vram:
+
+  - name: ovl_0090EE30
+    type: bin
+    start: 0x90EE30
+    # vram:
+  - name: ovl_0090EE30_reloc
+    type: bin
+    start: 0x90EE80
+    # vram:
+
+  - name: ovl_0090EEA0
+    type: bin
+    start: 0x90EEA0
+    # vram:
+  - name: ovl_0090EEA0_reloc
+    type: bin
+    start: 0x90EEF0
+    # vram:
+
+  - name: ovl_0090EF10
+    type: bin
+    start: 0x90EF10
+    # vram:
+  - name: ovl_0090EF10_reloc
+    type: bin
+    start: 0x90EF60
+    # vram:
+
+  - name: ovl_0090EF80
+    type: bin
+    start: 0x90EF80
+    # vram:
+  - name: ovl_0090EF80_reloc
+    type: bin
+    start: 0x90EFD0
+    # vram:
+
+  - name: ovl_0090EFF0
+    type: bin
+    start: 0x90EFF0
+    # vram:
+  - name: ovl_0090EFF0_reloc
+    type: bin
+    start: 0x90F040
+    # vram:
+
+  - name: ovl_0090F060
+    type: bin
+    start: 0x90F060
+    # vram:
+  - name: ovl_0090F060_reloc
+    type: bin
+    start: 0x90F0B0
+    # vram:
+
+  - name: ovl_0090F0D0
+    type: bin
+    start: 0x90F0D0
+    # vram:
+  - name: ovl_0090F0D0_reloc
+    type: bin
+    start: 0x90F120
+    # vram:
+
+  - name: ovl_0090F140
+    type: bin
+    start: 0x90F140
+    # vram:
+  - name: ovl_0090F140_reloc
+    type: bin
+    start: 0x90F190
+    # vram:
+
+  - name: ovl_0090F1B0
+    type: bin
+    start: 0x90F1B0
+    # vram:
+  - name: ovl_0090F1B0_reloc
+    type: bin
+    start: 0x90F200
+    # vram:
+
+  - name: ovl_0090F220
+    type: bin
+    start: 0x90F220
+    # vram:
+  - name: ovl_0090F220_reloc
+    type: bin
+    start: 0x90F2D0
+    # vram:
+
+  - name: ovl_0090F300
+    type: bin
+    start: 0x90F300
+    # vram:
+  - name: ovl_0090F300_reloc
+    type: bin
+    start: 0x90F350
+    # vram:
+
+  - name: ovl_0090F370
+    type: bin
+    start: 0x90F370
+    # vram:
+  - name: ovl_0090F370_reloc
+    type: bin
+    start: 0x90F3C0
+    # vram:
+
+  - name: ovl_0090F3E0
+    type: bin
+    start: 0x90F3E0
+    # vram:
+  - name: ovl_0090F3E0_reloc
+    type: bin
+    start: 0x90F430
+    # vram:
+
+  - name: ovl_0090F450
+    type: bin
+    start: 0x90F450
+    # vram:
+  - name: ovl_0090F450_reloc
+    type: bin
+    start: 0x90F4A0
+    # vram:
+
+  - name: ovl_0090F4C0
+    type: bin
+    start: 0x90F4C0
+    # vram:
+  - name: ovl_0090F4C0_reloc
+    type: bin
+    start: 0x90F510
+    # vram:
+
+  - name: ovl_0090F530
+    type: bin
+    start: 0x90F530
+    # vram:
+  - name: ovl_0090F530_reloc
+    type: bin
+    start: 0x90F580
+    # vram:
+
+  - name: ovl_0090F5A0
+    type: bin
+    start: 0x90F5A0
+    # vram:
+  - name: ovl_0090F5A0_reloc
+    type: bin
+    start: 0x90F5F0
+    # vram:
+
+  - name: ovl_0090F610
+    type: bin
+    start: 0x90F610
+    # vram:
+  - name: ovl_0090F610_reloc
+    type: bin
+    start: 0x90F660
+    # vram:
+
+  - name: ovl_0090F680
+    type: bin
+    start: 0x90F680
+    # vram:
+  - name: ovl_0090F680_reloc
+    type: bin
+    start: 0x90F6D0
+    # vram:
+
+  - name: ovl_0090F6F0
+    type: bin
+    start: 0x90F6F0
+    # vram:
+  - name: ovl_0090F6F0_reloc
+    type: bin
+    start: 0x90F740
+    # vram:
+
+  - name: ovl_0090F760
+    type: bin
+    start: 0x90F760
+    # vram:
+  - name: ovl_0090F760_reloc
+    type: bin
+    start: 0x90F7B0
+    # vram:
+
+  - name: ovl_0090F7D0
+    type: bin
+    start: 0x90F7D0
+    # vram:
+  - name: ovl_0090F7D0_reloc
+    type: bin
+    start: 0x90F820
+    # vram:
+
+  - name: ovl_0090F840
+    type: bin
+    start: 0x90F840
+    # vram:
+  - name: ovl_0090F840_reloc
+    type: bin
+    start: 0x90F890
+    # vram:
+
+  - name: ovl_0090F8B0
+    type: bin
+    start: 0x90F8B0
+    # vram:
+  - name: ovl_0090F8B0_reloc
+    type: bin
+    start: 0x90F900
+    # vram:
+
+  - name: ovl_0090F920
+    type: bin
+    start: 0x90F920
+    # vram:
+  - name: ovl_0090F920_reloc
+    type: bin
+    start: 0x90F970
+    # vram:
+
+  - name: ovl_0090F990
+    type: bin
+    start: 0x90F990
+    # vram:
+  - name: ovl_0090F990_reloc
+    type: bin
+    start: 0x90F9E0
+    # vram:
+
+  - name: ovl_0090FA00
+    type: bin
+    start: 0x90FA00
+    # vram:
+  - name: ovl_0090FA00_reloc
+    type: bin
+    start: 0x90FA50
+    # vram:
+
+  - name: ovl_0090FA70
+    type: bin
+    start: 0x90FA70
+    # vram:
+  - name: ovl_0090FA70_reloc
+    type: bin
+    start: 0x90FAC0
+    # vram:
+
+  - name: ovl_0090FAE0
+    type: bin
+    start: 0x90FAE0
+    # vram:
+  - name: ovl_0090FAE0_reloc
+    type: bin
+    start: 0x90FB30
+    # vram:
+
+  - name: ovl_0090FB50
+    type: bin
+    start: 0x90FB50
+    # vram:
+  - name: ovl_0090FB50_reloc
+    type: bin
+    start: 0x90FBA0
+    # vram:
+
+  - name: ovl_0090FBC0
+    type: bin
+    start: 0x90FBC0
+    # vram:
+  - name: ovl_0090FBC0_reloc
+    type: bin
+    start: 0x90FC10
+    # vram:
+
+  - name: ovl_0090FC30
+    type: bin
+    start: 0x90FC30
+    # vram:
+  - name: ovl_0090FC30_reloc
+    type: bin
+    start: 0x90FC80
+    # vram:
+
+  - name: ovl_0090FCA0
+    type: bin
+    start: 0x90FCA0
+    # vram:
+  - name: ovl_0090FCA0_reloc
+    type: bin
+    start: 0x90FCF0
+    # vram:
+
+  - name: ovl_0090FD10
+    type: bin
+    start: 0x90FD10
+    # vram:
+  - name: ovl_0090FD10_reloc
+    type: bin
+    start: 0x90FD60
+    # vram:
+
+  - name: ovl_0090FD80
+    type: bin
+    start: 0x90FD80
+    # vram:
+  - name: ovl_0090FD80_reloc
+    type: bin
+    start: 0x90FDD0
+    # vram:
+
+  - name: ovl_0090FDF0
+    type: bin
+    start: 0x90FDF0
+    # vram:
+  - name: ovl_0090FDF0_reloc
+    type: bin
+    start: 0x90FE40
+    # vram:
+
+  - name: ovl_0090FE60
+    type: bin
+    start: 0x90FE60
+    # vram:
+  - name: ovl_0090FE60_reloc
+    type: bin
+    start: 0x910280
+    # vram:
+
+  - name: ovl_009102C0
+    type: bin
+    start: 0x9102C0
+    # vram:
+  - name: ovl_009102C0_reloc
+    type: bin
+    start: 0x9103A0
+    # vram:
+
+  - name: ovl_009103D0
+    type: bin
+    start: 0x9103D0
+    # vram:
+  - name: ovl_009103D0_reloc
+    type: bin
+    start: 0x910420
+    # vram:
+
+  - name: ovl_00910440
+    type: bin
+    start: 0x910440
+    # vram:
+  - name: ovl_00910440_reloc
+    type: bin
+    start: 0x910DD0
+    # vram:
+
+  - name: ovl_00910E50
+    type: bin
+    start: 0x910E50
+    # vram:
+  - name: ovl_00910E50_reloc
+    type: bin
+    start: 0x9112F0
+    # vram:
+
+  - name: ovl_00911340
+    type: bin
+    start: 0x911340
+    # vram:
+  - name: ovl_00911340_reloc
+    type: bin
+    start: 0x911460
+    # vram:
+
+  - name: ovl_00911490
+    type: bin
+    start: 0x911490
+    # vram:
+  - name: ovl_00911490_reloc
+    type: bin
+    start: 0x911870
+    # vram:
+
+  - name: ovl_009118A0
+    type: bin
+    start: 0x9118A0
+    # vram:
+  - name: ovl_009118A0_reloc
+    type: bin
+    start: 0x9118F0
+    # vram:
+
+  - name: ovl_00911910
+    type: bin
+    start: 0x911910
+    # vram:
+  - name: ovl_00911910_reloc
+    type: bin
+    start: 0x911E20
+    # vram:
+
+  - name: ovl_00911E60
+    type: bin
+    start: 0x911E60
+    # vram:
+  - name: ovl_00911E60_reloc
+    type: bin
+    start: 0x912070
+    # vram:
+
+  - name: ovl_009120B0
+    type: bin
+    start: 0x9120B0
+    # vram:
+  - name: ovl_009120B0_reloc
+    type: bin
+    start: 0x912A60
+    # vram:
+
+  - name: ovl_00912A90
+    type: bin
+    start: 0x912A90
+    # vram:
+  - name: ovl_00912A90_reloc
+    type: bin
+    start: 0x912AE0
+    # vram:
+
+  - name: ovl_00912B00
+    type: bin
+    start: 0x912B00
+    # vram:
+  - name: ovl_00912B00_reloc
+    type: bin
+    start: 0x912B50
+    # vram:
+
+  - name: ovl_00912B70
+    type: bin
+    start: 0x912B70
+    # vram:
+  - name: ovl_00912B70_reloc
+    type: bin
+    start: 0x912BC0
+    # vram:
+
+  - name: ovl_00912BE0
+    type: bin
+    start: 0x912BE0
+    # vram:
+  - name: ovl_00912BE0_reloc
+    type: bin
+    start: 0x912C30
+    # vram:
+
+  - name: ovl_00912C50
+    type: bin
+    start: 0x912C50
+    # vram:
+  - name: ovl_00912C50_reloc
+    type: bin
+    start: 0x912CA0
+    # vram:
+
+  - name: ovl_00912CC0
+    type: bin
+    start: 0x912CC0
+    # vram:
+  - name: ovl_00912CC0_reloc
+    type: bin
+    start: 0x912D10
+    # vram:
+
+  - name: ovl_00912D30
+    type: bin
+    start: 0x912D30
+    # vram:
+  - name: ovl_00912D30_reloc
+    type: bin
+    start: 0x912D80
+    # vram:
+
+  - name: ovl_00912DA0
+    type: bin
+    start: 0x912DA0
+    # vram:
+  - name: ovl_00912DA0_reloc
+    type: bin
+    start: 0x912DF0
+    # vram:
+
+  - name: ovl_00912E10
+    type: bin
+    start: 0x912E10
+    # vram:
+  - name: ovl_00912E10_reloc
+    type: bin
+    start: 0x912EF0
+    # vram:
+
+  - name: ovl_00912F20
+    type: bin
+    start: 0x912F20
+    # vram:
+  - name: ovl_00912F20_reloc
+    type: bin
+    start: 0x912F70
+    # vram:
+
+  - name: ovl_00912F90
+    type: bin
+    start: 0x912F90
+    # vram:
+  - name: ovl_00912F90_reloc
+    type: bin
+    start: 0x912FE0
+    # vram:
+
+  - name: ovl_00913000
+    type: bin
+    start: 0x913000
+    # vram:
+  - name: ovl_00913000_reloc
+    type: bin
+    start: 0x913360
+    # vram:
+
+  - name: ovl_00913390
+    type: bin
+    start: 0x913390
+    # vram:
+  - name: ovl_00913390_reloc
+    type: bin
+    start: 0x9133E0
+    # vram:
+
+  - name: ovl_00913400
+    type: bin
+    start: 0x913400
+    # vram:
+  - name: ovl_00913400_reloc
+    type: bin
+    start: 0x913450
+    # vram:
+
+  - name: ovl_00913470
+    type: bin
+    start: 0x913470
+    # vram:
+  - name: ovl_00913470_reloc
+    type: bin
+    start: 0x9134C0
+    # vram:
+
+  - name: ovl_009134E0
+    type: bin
+    start: 0x9134E0
+    # vram:
+  - name: ovl_009134E0_reloc
+    type: bin
+    start: 0x913530
+    # vram:
+
+  - name: ovl_00913550
+    type: bin
+    start: 0x913550
+    # vram:
+  - name: ovl_00913550_reloc
+    type: bin
+    start: 0x9135A0
+    # vram:
+
+  - name: ovl_009135C0
+    type: bin
+    start: 0x9135C0
+    # vram:
+  - name: ovl_009135C0_reloc
+    type: bin
+    start: 0x913610
+    # vram:
+
+  - name: ovl_00913630
+    type: bin
+    start: 0x913630
+    # vram:
+  - name: ovl_00913630_reloc
+    type: bin
+    start: 0x913680
+    # vram:
+
+  - name: ovl_009136A0
+    type: bin
+    start: 0x9136A0
+    # vram:
+  - name: ovl_009136A0_reloc
+    type: bin
+    start: 0x913A00
+    # vram:
+
+  - name: ovl_00913A30
+    type: bin
+    start: 0x913A30
+    # vram:
+  - name: ovl_00913A30_reloc
+    type: bin
+    start: 0x913A80
+    # vram:
+
+  - name: ovl_00913AA0
+    type: bin
+    start: 0x913AA0
+    # vram:
+  - name: ovl_00913AA0_reloc
+    type: bin
+    start: 0x913AF0
+    # vram:
+
+  - name: ovl_00913B10
+    type: bin
+    start: 0x913B10
+    # vram:
+  - name: ovl_00913B10_reloc
+    type: bin
+    start: 0x913B60
+    # vram:
+
+  - name: ovl_00913B80
+    type: bin
+    start: 0x913B80
+    # vram:
+  - name: ovl_00913B80_reloc
+    type: bin
+    start: 0x913EE0
+    # vram:
+
+  - name: ovl_00913F10
+    type: bin
+    start: 0x913F10
+    # vram:
+  - name: ovl_00913F10_reloc
+    type: bin
+    start: 0x913F60
+    # vram:
+
+  - name: ovl_00913F80
+    type: bin
+    start: 0x913F80
+    # vram:
+  - name: ovl_00913F80_reloc
+    type: bin
+    start: 0x913FD0
+    # vram:
+
+  - name: ovl_00913FF0
+    type: bin
+    start: 0x913FF0
+    # vram:
+  - name: ovl_00913FF0_reloc
+    type: bin
+    start: 0x914040
+    # vram:
+
+  - name: ovl_00914060
+    type: bin
+    start: 0x914060
+    # vram:
+  - name: ovl_00914060_reloc
+    type: bin
+    start: 0x9140B0
+    # vram:
+
+  - name: ovl_009140D0
+    type: bin
+    start: 0x9140D0
+    # vram:
+  - name: ovl_009140D0_reloc
+    type: bin
+    start: 0x914120
+    # vram:
+
+  - name: ovl_00914140
+    type: bin
+    start: 0x914140
+    # vram:
+  - name: ovl_00914140_reloc
+    type: bin
+    start: 0x9144A0
+    # vram:
+
+  - name: ovl_009144D0
+    type: bin
+    start: 0x9144D0
+    # vram:
+  - name: ovl_009144D0_reloc
+    type: bin
+    start: 0x914520
+    # vram:
+
+  - name: ovl_00914540
+    type: bin
+    start: 0x914540
+    # vram:
+  - name: ovl_00914540_reloc
+    type: bin
+    start: 0x914630
+    # vram:
+
+  - name: ovl_00914650
+    type: bin
+    start: 0x914650
+    # vram:
+  - name: ovl_00914650_reloc
+    type: bin
+    start: 0x9146A0
+    # vram:
+
+  - name: ovl_009146C0
+    type: bin
+    start: 0x9146C0
+    # vram:
+  - name: ovl_009146C0_reloc
+    type: bin
+    start: 0x914710
+    # vram:
+
+  - name: ovl_00914730
+    type: bin
+    start: 0x914730
+    # vram:
+  - name: ovl_00914730_reloc
+    type: bin
+    start: 0x914780
+    # vram:
+
+  - name: ovl_009147A0
+    type: bin
+    start: 0x9147A0
+    # vram:
+  - name: ovl_009147A0_reloc
+    type: bin
+    start: 0x9147F0
+    # vram:
+
+  - name: ovl_00914810
+    type: bin
+    start: 0x914810
+    # vram:
+  - name: ovl_00914810_reloc
+    type: bin
+    start: 0x914860
+    # vram:
+
+  - name: ovl_00914880
+    type: bin
+    start: 0x914880
+    # vram:
+  - name: ovl_00914880_reloc
+    type: bin
+    start: 0x9148D0
+    # vram:
+
+  - name: ovl_009148F0
+    type: bin
+    start: 0x9148F0
+    # vram:
+  - name: ovl_009148F0_reloc
+    type: bin
+    start: 0x914940
+    # vram:
+
+  - name: ovl_00914960
+    type: bin
+    start: 0x914960
+    # vram:
+  - name: ovl_00914960_reloc
+    type: bin
+    start: 0x9149B0
+    # vram:
+
+  - name: ovl_009149D0
+    type: bin
+    start: 0x9149D0
+    # vram:
+  - name: ovl_009149D0_reloc
+    type: bin
+    start: 0x914A20
+    # vram:
+
+  - name: ovl_00914A40
+    type: bin
+    start: 0x914A40
+    # vram:
+  - name: ovl_00914A40_reloc
+    type: bin
+    start: 0x914A90
+    # vram:
+
+  - name: ovl_00914AB0
+    type: bin
+    start: 0x914AB0
+    # vram:
+  - name: ovl_00914AB0_reloc
+    type: bin
+    start: 0x914B00
+    # vram:
+
+  - name: ovl_00914B20
+    type: bin
+    start: 0x914B20
+    # vram:
+  - name: ovl_00914B20_reloc
+    type: bin
+    start: 0x914B70
+    # vram:
+
+  - name: ovl_00914B90
+    type: bin
+    start: 0x914B90
+    # vram:
+  - name: ovl_00914B90_reloc
+    type: bin
+    start: 0x914BE0
+    # vram:
+
+  - name: ovl_00914C00
+    type: bin
+    start: 0x914C00
+    # vram:
+  - name: ovl_00914C00_reloc
+    type: bin
+    start: 0x914C50
+    # vram:
+
+  - name: ovl_00914C70
+    type: bin
+    start: 0x914C70
+    # vram:
+  - name: ovl_00914C70_reloc
+    type: bin
+    start: 0x914CC0
+    # vram:
+
+  - name: ovl_00914CE0
+    type: bin
+    start: 0x914CE0
+    # vram:
+  - name: ovl_00914CE0_reloc
+    type: bin
+    start: 0x915040
+    # vram:
+
+  - name: ovl_00915070
+    type: bin
+    start: 0x915070
+    # vram:
+  - name: ovl_00915070_reloc
+    type: bin
+    start: 0x9150C0
+    # vram:
+
+  - name: ovl_009150E0
+    type: bin
+    start: 0x9150E0
+    # vram:
+  - name: ovl_009150E0_reloc
+    type: bin
+    start: 0x915130
+    # vram:
+
+  - name: ovl_00915150
+    type: bin
+    start: 0x915150
+    # vram:
+  - name: ovl_00915150_reloc
+    type: bin
+    start: 0x9151A0
+    # vram:
+
+  - name: ovl_009151C0
+    type: bin
+    start: 0x9151C0
+    # vram:
+  - name: ovl_009151C0_reloc
+    type: bin
+    start: 0x915210
+    # vram:
+
+  - name: ovl_00915230
+    type: bin
+    start: 0x915230
+    # vram:
+  - name: ovl_00915230_reloc
+    type: bin
+    start: 0x915280
+    # vram:
+
+  - name: ovl_009152A0
+    type: bin
+    start: 0x9152A0
+    # vram:
+  - name: ovl_009152A0_reloc
+    type: bin
+    start: 0x9152F0
+    # vram:
+
+  - name: ovl_00915310
+    type: bin
+    start: 0x915310
+    # vram:
+  - name: ovl_00915310_reloc
+    type: bin
+    start: 0x915860
+    # vram:
+
+  - name: ovl_00915890
+    type: bin
+    start: 0x915890
+    # vram:
+  - name: ovl_00915890_reloc
+    type: bin
+    start: 0x9159E0
+    # vram:
+
+  - name: ovl_00915A10
+    type: bin
+    start: 0x915A10
+    # vram:
+  - name: ovl_00915A10_reloc
+    type: bin
+    start: 0x915A60
+    # vram:
+
+  - name: ovl_00915A80
+    type: bin
+    start: 0x915A80
+    # vram:
+  - name: ovl_00915A80_reloc
+    type: bin
+    start: 0x915AD0
+    # vram:
+
+  - name: ovl_00915AF0
+    type: bin
+    start: 0x915AF0
+    # vram:
+  - name: ovl_00915AF0_reloc
+    type: bin
+    start: 0x915B40
+    # vram:
+
+  - name: ovl_00915B60
+    type: bin
+    start: 0x915B60
+    # vram:
+  - name: ovl_00915B60_reloc
+    type: bin
+    start: 0x915BB0
+    # vram:
+
+  - name: ovl_00915BD0
+    type: bin
+    start: 0x915BD0
+    # vram:
+  - name: ovl_00915BD0_reloc
+    type: bin
+    start: 0x915C20
+    # vram:
+
+  - name: ovl_00915C40
+    type: bin
+    start: 0x915C40
+    # vram:
+  - name: ovl_00915C40_reloc
+    type: bin
+    start: 0x915F50
+    # vram:
+
+  - name: ovl_00915F80
+    type: bin
+    start: 0x915F80
+    # vram:
+  - name: ovl_00915F80_reloc
+    type: bin
+    start: 0x915FD0
+    # vram:
+
+  - name: ovl_00915FF0
+    type: bin
+    start: 0x915FF0
+    # vram:
+  - name: ovl_00915FF0_reloc
+    type: bin
+    start: 0x916300
+    # vram:
+
+  - name: ovl_00916330
+    type: bin
+    start: 0x916330
+    # vram:
+  - name: ovl_00916330_reloc
+    type: bin
+    start: 0x916380
+    # vram:
+
+  - name: ovl_009163A0
+    type: bin
+    start: 0x9163A0
+    # vram:
+  - name: ovl_009163A0_reloc
+    type: bin
+    start: 0x9166B0
+    # vram:
+
+  - name: ovl_009166E0
+    type: bin
+    start: 0x9166E0
+    # vram:
+  - name: ovl_009166E0_reloc
+    type: bin
+    start: 0x916730
+    # vram:
+
+  - name: ovl_00916750
+    type: bin
+    start: 0x916750
+    # vram:
+  - name: ovl_00916750_reloc
+    type: bin
+    start: 0x9167A0
+    # vram:
+
+  - name: ovl_009167C0
+    type: bin
+    start: 0x9167C0
+    # vram:
+  - name: ovl_009167C0_reloc
+    type: bin
+    start: 0x916810
+    # vram:
+
+  - name: ovl_00916830
+    type: bin
+    start: 0x916830
+    # vram:
+  - name: ovl_00916830_reloc
+    type: bin
+    start: 0x916880
+    # vram:
+
+  - name: ovl_009168A0
+    type: bin
+    start: 0x9168A0
+    # vram:
+  - name: ovl_009168A0_reloc
+    type: bin
+    start: 0x9169E0
+    # vram:
+
+  - name: ovl_00916A10
+    type: bin
+    start: 0x916A10
+    # vram:
+  - name: ovl_00916A10_reloc
+    type: bin
+    start: 0x916A60
+    # vram:
+
+  - name: ovl_00916A80
+    type: bin
+    start: 0x916A80
+    # vram:
+  - name: ovl_00916A80_reloc
+    type: bin
+    start: 0x916AD0
+    # vram:
+
+  - name: ovl_00916AF0
+    type: bin
+    start: 0x916AF0
+    # vram:
+  - name: ovl_00916AF0_reloc
+    type: bin
+    start: 0x916B40
+    # vram:
+
+  - name: ovl_00916B60
+    type: bin
+    start: 0x916B60
+    # vram:
+  - name: ovl_00916B60_reloc
+    type: bin
+    start: 0x916E40
+    # vram:
+
+  - name: ovl_00916E70
+    type: bin
+    start: 0x916E70
+    # vram:
+  - name: ovl_00916E70_reloc
+    type: bin
+    start: 0x916EC0
+    # vram:
+
+  - name: ovl_00916EE0
+    type: bin
+    start: 0x916EE0
+    # vram:
+  - name: ovl_00916EE0_reloc
+    type: bin
+    start: 0x916F30
+    # vram:
+
+  - name: ovl_00916F50
+    type: bin
+    start: 0x916F50
+    # vram:
+  - name: ovl_00916F50_reloc
+    type: bin
+    start: 0x916FA0
+    # vram:
+
+  - name: ovl_00916FC0
+    type: bin
+    start: 0x916FC0
+    # vram:
+  - name: ovl_00916FC0_reloc
+    type: bin
+    start: 0x917010
+    # vram:
+
+  - name: ovl_00917030
+    type: bin
+    start: 0x917030
+    # vram:
+  - name: ovl_00917030_reloc
+    type: bin
+    start: 0x917080
+    # vram:
+
+  - name: ovl_009170A0
+    type: bin
+    start: 0x9170A0
+    # vram:
+  - name: ovl_009170A0_reloc
+    type: bin
+    start: 0x9170F0
+    # vram:
+
+  - name: ovl_00917110
+    type: bin
+    start: 0x917110
+    # vram:
+  - name: ovl_00917110_reloc
+    type: bin
+    start: 0x917160
+    # vram:
+
+  - name: ovl_00917180
+    type: bin
+    start: 0x917180
+    # vram:
+  - name: ovl_00917180_reloc
+    type: bin
+    start: 0x9174E0
+    # vram:
+
+  - name: ovl_00917510
+    type: bin
+    start: 0x917510
+    # vram:
+  - name: ovl_00917510_reloc
+    type: bin
+    start: 0x917870
+    # vram:
+
+  - name: ovl_009178A0
+    type: bin
+    start: 0x9178A0
+    # vram:
+  - name: ovl_009178A0_reloc
+    type: bin
+    start: 0x917C00
+    # vram:
+
+  - name: ovl_00917C30
+    type: bin
+    start: 0x917C30
+    # vram:
+  - name: ovl_00917C30_reloc
+    type: bin
+    start: 0x917F10
+    # vram:
+
+  - name: ovl_00917F40
+    type: bin
+    start: 0x917F40
+    # vram:
+  - name: ovl_00917F40_reloc
+    type: bin
+    start: 0x917F90
+    # vram:
+
+  - name: ovl_00917FB0
+    type: bin
+    start: 0x917FB0
+    # vram:
+  - name: ovl_00917FB0_reloc
+    type: bin
+    start: 0x918000
+    # vram:
+
+  - name: ovl_00918020
+    type: bin
+    start: 0x918020
+    # vram:
+  - name: ovl_00918020_reloc
+    type: bin
+    start: 0x918070
+    # vram:
+
+  - name: ovl_00918090
+    type: bin
+    start: 0x918090
+    # vram:
+  - name: ovl_00918090_reloc
+    type: bin
+    start: 0x9180E0
+    # vram:
+
+  - name: ovl_00918100
+    type: bin
+    start: 0x918100
+    # vram:
+  - name: ovl_00918100_reloc
+    type: bin
+    start: 0x918150
+    # vram:
+
+  - name: ovl_00918170
+    type: bin
+    start: 0x918170
+    # vram:
+  - name: ovl_00918170_reloc
+    type: bin
+    start: 0x918490
+    # vram:
+
+  - name: ovl_009184E0
+    type: bin
+    start: 0x9184E0
+    # vram:
+  - name: ovl_009184E0_reloc
+    type: bin
+    start: 0x9187C0
+    # vram:
+
+  - name: ovl_009187F0
+    type: bin
+    start: 0x9187F0
+    # vram:
+  - name: ovl_009187F0_reloc
+    type: bin
+    start: 0x918840
+    # vram:
+
+  - name: ovl_00918860
+    type: bin
+    start: 0x918860
+    # vram:
+  - name: ovl_00918860_reloc
+    type: bin
+    start: 0x918BD0
+    # vram:
+
+  - name: ovl_00918C20
+    type: bin
+    start: 0x918C20
+    # vram:
+  - name: ovl_00918C20_reloc
+    type: bin
+    start: 0x919390
+    # vram:
+
+  - name: ovl_00919400
+    type: bin
+    start: 0x919400
+    # vram:
+  - name: ovl_00919400_reloc
+    type: bin
+    start: 0x919730
+    # vram:
+
+  - name: ovl_00919760
+    type: bin
+    start: 0x919760
+    # vram:
+  - name: ovl_00919760_reloc
+    type: bin
+    start: 0x91A230
+    # vram:
+
+  - name: ovl_0091A2D0
+    type: bin
+    start: 0x91A2D0
+    # vram:
+  - name: ovl_0091A2D0_reloc
+    type: bin
+    start: 0x91A860
+    # vram:
+
+  - name: ovl_0091A8B0
+    type: bin
+    start: 0x91A8B0
+    # vram:
+  - name: ovl_0091A8B0_reloc
+    type: bin
+    start: 0x91AFF0
+    # vram:
+
+  - name: ovl_0091B080
+    type: bin
+    start: 0x91B080
+    # vram:
+  - name: ovl_0091B080_reloc
+    type: bin
+    start: 0x91B660
+    # vram:
+
+  - name: ovl_0091B700
+    type: bin
+    start: 0x91B700
+    # vram:
+  - name: ovl_0091B700_reloc
+    type: bin
+    start: 0x91BEF0
+    # vram:
+
+  - name: ovl_0091BF30
+    type: bin
+    start: 0x91BF30
+    # vram:
+  - name: ovl_0091BF30_reloc
+    type: bin
+    start: 0x91C160
+    # vram:
+
+  - name: ovl_0091C190
+    type: bin
+    start: 0x91C190
+    # vram:
+  - name: ovl_0091C190_reloc
+    type: bin
+    start: 0x91C5A0
+    # vram:
+
+  - name: ovl_0091C600
+    type: bin
+    start: 0x91C600
+    # vram:
+  - name: ovl_0091C600_reloc
+    type: bin
+    start: 0x91CCA0
+    # vram:
+
+  - name: ovl_0091CD10
+    type: bin
+    start: 0x91CD10
+    # vram:
+  - name: ovl_0091CD10_reloc
+    type: bin
+    start: 0x91D3D0
+    # vram:
+
+  - name: ovl_0091D450
+    type: bin
+    start: 0x91D450
+    # vram:
+  - name: ovl_0091D450_reloc
+    type: bin
+    start: 0x91D8D0
+    # vram:
+
+  - name: ovl_0091D910
+    type: bin
+    start: 0x91D910
+    # vram:
+  - name: ovl_0091D910_reloc
+    type: bin
+    start: 0x91DEB0
+    # vram:
+
+  - name: ovl_0091DF10
+    type: bin
+    start: 0x91DF10
+    # vram:
+  - name: ovl_0091DF10_reloc
+    type: bin
+    start: 0x91E390
+    # vram:
+
+  - name: ovl_0091E3C0
+    type: bin
+    start: 0x91E3C0
+    # vram:
+  - name: ovl_0091E3C0_reloc
+    type: bin
+    start: 0x91E7A0
+    # vram:
+
+  - name: ovl_0091E800
+    type: bin
+    start: 0x91E800
+    # vram:
+  - name: ovl_0091E800_reloc
+    type: bin
+    start: 0x91E850
+    # vram:
+
+  - name: ovl_0091E870
+    type: bin
+    start: 0x91E870
+    # vram:
+  - name: ovl_0091E870_reloc
+    type: bin
+    start: 0x91E8C0
+    # vram:
+
+  - name: ovl_0091E8E0
+    type: bin
+    start: 0x91E8E0
+    # vram:
+  - name: ovl_0091E8E0_reloc
+    type: bin
+    start: 0x91EC40
+    # vram:
+
+  - name: ovl_0091EC70
+    type: bin
+    start: 0x91EC70
+    # vram:
+  - name: ovl_0091EC70_reloc
+    type: bin
+    start: 0x91F370
+    # vram:
+
+  - name: ovl_0091F3E0
+    type: bin
+    start: 0x91F3E0
+    # vram:
+  - name: ovl_0091F3E0_reloc
+    type: bin
+    start: 0x91FB10
+    # vram:
+
+  - name: ovl_0091FB80
+    type: bin
+    start: 0x91FB80
+    # vram:
+  - name: ovl_0091FB80_reloc
+    type: bin
+    start: 0x91FBD0
+    # vram:
+
+  - name: ovl_0091FBF0
+    type: bin
+    start: 0x91FBF0
+    # vram:
+  - name: ovl_0091FBF0_reloc
+    type: bin
+    start: 0x91FC40
+    # vram:
+
+  - name: ovl_0091FC60
+    type: bin
+    start: 0x91FC60
+    # vram:
+  - name: ovl_0091FC60_reloc
+    type: bin
+    start: 0x91FCB0
+    # vram:
+
+  - name: ovl_0091FCD0
+    type: bin
+    start: 0x91FCD0
+    # vram:
+  - name: ovl_0091FCD0_reloc
+    type: bin
+    start: 0x91FD20
+    # vram:
+
+  - name: ovl_0091FD40
+    type: bin
+    start: 0x91FD40
+    # vram:
+  - name: ovl_0091FD40_reloc
+    type: bin
+    start: 0x91FD90
+    # vram:
+
+  - name: ovl_0091FDB0
+    type: bin
+    start: 0x91FDB0
+    # vram:
+  - name: ovl_0091FDB0_reloc
+    type: bin
+    start: 0x920260
+    # vram:
+
+  - name: ovl_009202A0
+    type: bin
+    start: 0x9202A0
+    # vram:
+  - name: ovl_009202A0_reloc
+    type: bin
+    start: 0x920380
+    # vram:
+
+  - name: ovl_009203B0
+    type: bin
+    start: 0x9203B0
+    # vram:
+  - name: ovl_009203B0_reloc
+    type: bin
+    start: 0x920490
+    # vram:
+
+  - name: ovl_009204C0
+    type: bin
+    start: 0x9204C0
+    # vram:
+  - name: ovl_009204C0_reloc
+    type: bin
+    start: 0x9205A0
+    # vram:
+
+  - name: ovl_009205D0
+    type: bin
+    start: 0x9205D0
+    # vram:
+  - name: ovl_009205D0_reloc
+    type: bin
+    start: 0x9206B0
+    # vram:
+
+  - name: ovl_009206E0
+    type: bin
+    start: 0x9206E0
+    # vram:
+  - name: ovl_009206E0_reloc
+    type: bin
+    start: 0x920CD0
+    # vram:
+
+  - name: ovl_00920D20
+    type: bin
+    start: 0x920D20
+    # vram:
+  - name: ovl_00920D20_reloc
+    type: bin
+    start: 0x920D70
+    # vram:
+
+  - name: ovl_00920D90
+    type: bin
+    start: 0x920D90
+    # vram:
+  - name: ovl_00920D90_reloc
+    type: bin
+    start: 0x920DE0
+    # vram:
+
+  - name: ovl_00920E00
+    type: bin
+    start: 0x920E00
+    # vram:
+  - name: ovl_00920E00_reloc
+    type: bin
+    start: 0x922270
+    # vram:
+
+  - name: ovl_00922380
+    type: bin
+    start: 0x922380
+    # vram:
+  - name: ovl_00922380_reloc
+    type: bin
+    start: 0x9223D0
+    # vram:
+
+  - name: ovl_009223F0
+    type: bin
+    start: 0x9223F0
+    # vram:
+  - name: ovl_009223F0_reloc
+    type: bin
+    start: 0x9229B0
+    # vram:
+
+  - name: ovl_00922A10
+    type: bin
+    start: 0x922A10
+    # vram:
+  - name: ovl_00922A10_reloc
+    type: bin
+    start: 0x924590
+    # vram:
+
+  - name: ovl_009247E0
+    type: bin
+    start: 0x9247E0
+    # vram:
+  - name: ovl_009247E0_reloc
+    type: bin
+    start: 0x924830
+    # vram:
+
+  - name: ovl_00924850
+    type: bin
+    start: 0x924850
+    # vram:
+  - name: ovl_00924850_reloc
+    type: bin
+    start: 0x9248A0
+    # vram:
+
+  - name: ovl_009248C0
+    type: bin
+    start: 0x9248C0
+    # vram:
+  - name: ovl_009248C0_reloc
+    type: bin
+    start: 0x924910
+    # vram:
+
+  - name: ovl_00924930
+    type: bin
+    start: 0x924930
+    # vram:
+  - name: ovl_00924930_reloc
+    type: bin
+    start: 0x924980
+    # vram:
+
+  - name: ovl_009249A0
+    type: bin
+    start: 0x9249A0
+    # vram:
+  - name: ovl_009249A0_reloc
+    type: bin
+    start: 0x9249F0
+    # vram:
+
+  - name: ovl_00924A10
+    type: bin
+    start: 0x924A10
+    # vram:
+  - name: ovl_00924A10_reloc
+    type: bin
+    start: 0x924A60
+    # vram:
+
+  - name: ovl_00924A80
+    type: bin
+    start: 0x924A80
+    # vram:
+  - name: ovl_00924A80_reloc
+    type: bin
+    start: 0x924AD0
+    # vram:
+
+  - name: ovl_00924AF0
+    type: bin
+    start: 0x924AF0
+    # vram:
+  - name: ovl_00924AF0_reloc
+    type: bin
+    start: 0x924B40
+    # vram:
+
+  - name: ovl_00924B60
+    type: bin
+    start: 0x924B60
+    # vram:
+  - name: ovl_00924B60_reloc
+    type: bin
+    start: 0x924BB0
+    # vram:
+
+  - name: ovl_00924BD0
+    type: bin
+    start: 0x924BD0
+    # vram:
+  - name: ovl_00924BD0_reloc
+    type: bin
+    start: 0x924C20
+    # vram:
+
+  - name: ovl_00924C40
+    type: bin
+    start: 0x924C40
+    # vram:
+  - name: ovl_00924C40_reloc
+    type: bin
+    start: 0x927200
+    # vram:
+
+  - name: ovl_00927440
+    type: bin
+    start: 0x927440
+    # vram:
+  - name: ovl_00927440_reloc
+    type: bin
+    start: 0x927860
+    # vram:
+
+  - name: ovl_00927910
+    type: bin
+    start: 0x927910
+    # vram:
+  - name: ovl_00927910_reloc
+    type: bin
+    start: 0x928170
+    # vram:
+
+  - name: ovl_00928230
+    type: bin
+    start: 0x928230
+    # vram:
+  - name: ovl_00928230_reloc
+    type: bin
+    start: 0x9284D0
+    # vram:
+
+  - name: ovl_00928530
+    type: bin
+    start: 0x928530
+    # vram:
+  - name: ovl_00928530_reloc
+    type: bin
+    start: 0x928770
+    # vram:
+
+  - name: ovl_009287B0
+    type: bin
+    start: 0x9287B0
+    # vram:
+  - name: ovl_009287B0_reloc
+    type: bin
+    start: 0x928C80
+    # vram:
+
+  - name: ovl_00928CC0
+    type: bin
+    start: 0x928CC0
+    # vram:
+  - name: ovl_00928CC0_reloc
+    type: bin
+    start: 0x928D10
+    # vram:
+
+  - name: ovl_00928D30
+    type: bin
+    start: 0x928D30
+    # vram:
+  - name: ovl_00928D30_reloc
+    type: bin
+    start: 0x929140
+    # vram:
+
+  - name: ovl_00929170
+    type: bin
+    start: 0x929170
+    # vram:
+  - name: ovl_00929170_reloc
+    type: bin
+    start: 0x9291C0
+    # vram:
+
+  - name: ovl_009291E0
+    type: bin
+    start: 0x9291E0
+    # vram:
+  - name: ovl_009291E0_reloc
+    type: bin
+    start: 0x929230
+    # vram:
+
+  - name: ovl_00929250
+    type: bin
+    start: 0x929250
+    # vram:
+  - name: ovl_00929250_reloc
+    type: bin
+    start: 0x9292A0
+    # vram:
+
+  - name: ovl_009292C0
+    type: bin
+    start: 0x9292C0
+    # vram:
+  - name: ovl_009292C0_reloc
+    type: bin
+    start: 0x929310
+    # vram:
+
+  - name: ovl_00929330
+    type: bin
+    start: 0x929330
+    # vram:
+  - name: ovl_00929330_reloc
+    type: bin
+    start: 0x929380
+    # vram:
+
+  - name: ovl_009293A0
+    type: bin
+    start: 0x9293A0
+    # vram:
+  - name: ovl_009293A0_reloc
+    type: bin
+    start: 0x9293F0
+    # vram:
+
+  - name: ovl_00929410
+    type: bin
+    start: 0x929410
+    # vram:
+  - name: ovl_00929410_reloc
+    type: bin
+    start: 0x929460
+    # vram:
+
+  - name: ovl_00929480
+    type: bin
+    start: 0x929480
+    # vram:
+  - name: ovl_00929480_reloc
+    type: bin
+    start: 0x9294D0
+    # vram:
+
+  - name: ovl_009294F0
+    type: bin
+    start: 0x9294F0
+    # vram:
+  - name: ovl_009294F0_reloc
+    type: bin
+    start: 0x929540
+    # vram:
+
+  - name: ovl_00929560
+    type: bin
+    start: 0x929560
+    # vram:
+  - name: ovl_00929560_reloc
+    type: bin
+    start: 0x9295B0
+    # vram:
+
+  - name: ovl_009295D0
+    type: bin
+    start: 0x9295D0
+    # vram:
+  - name: ovl_009295D0_reloc
+    type: bin
+    start: 0x929620
+    # vram:
+
+  - name: ovl_00929640
+    type: bin
+    start: 0x929640
+    # vram:
+  - name: ovl_00929640_reloc
+    type: bin
+    start: 0x929690
+    # vram:
+
+  - name: ovl_009296B0
+    type: bin
+    start: 0x9296B0
+    # vram:
+  - name: ovl_009296B0_reloc
+    type: bin
+    start: 0x929700
+    # vram:
+
+  - name: ovl_00929720
+    type: bin
+    start: 0x929720
+    # vram:
+  - name: ovl_00929720_reloc
+    type: bin
+    start: 0x929770
+    # vram:
+
+  - name: ovl_00929790
+    type: bin
+    start: 0x929790
+    # vram:
+  - name: ovl_00929790_reloc
+    type: bin
+    start: 0x9297E0
+    # vram:
+
+  - name: ovl_00929800
+    type: bin
+    start: 0x929800
+    # vram:
+  - name: ovl_00929800_reloc
+    type: bin
+    start: 0x929E20
+    # vram:
+
+  - name: ovl_00929E80
+    type: bin
+    start: 0x929E80
+    # vram:
+  - name: ovl_00929E80_reloc
+    type: bin
+    start: 0x929F70
+    # vram:
+
+  - name: ovl_00929F90
+    type: bin
+    start: 0x929F90
+    # vram:
+  - name: ovl_00929F90_reloc
+    type: bin
+    start: 0x929FE0
+    # vram:
+
+  - name: ovl_0092A000
+    type: bin
+    start: 0x92A000
+    # vram:
+  - name: ovl_0092A000_reloc
+    type: bin
+    start: 0x92A050
+    # vram:
+
+  - name: ovl_0092A070
+    type: bin
+    start: 0x92A070
+    # vram:
+  - name: ovl_0092A070_reloc
+    type: bin
+    start: 0x92A0C0
+    # vram:
+
+  - name: ovl_0092A0E0
+    type: bin
+    start: 0x92A0E0
+    # vram:
+  - name: ovl_0092A0E0_reloc
+    type: bin
+    start: 0x92A130
+    # vram:
+
+  - name: ovl_0092A150
+    type: bin
+    start: 0x92A150
+    # vram:
+  - name: ovl_0092A150_reloc
+    type: bin
+    start: 0x92A1A0
+    # vram:
+
+  - name: ovl_0092A1C0
+    type: bin
+    start: 0x92A1C0
+    # vram:
+  - name: ovl_0092A1C0_reloc
+    type: bin
+    start: 0x92A210
+    # vram:
+
+  - name: ovl_0092A230
+    type: bin
+    start: 0x92A230
+    # vram:
+  - name: ovl_0092A230_reloc
+    type: bin
+    start: 0x92A280
+    # vram:
+
+  - name: ovl_0092A2A0
+    type: bin
+    start: 0x92A2A0
+    # vram:
+  - name: ovl_0092A2A0_reloc
+    type: bin
+    start: 0x92A390
+    # vram:
+
+  - name: ovl_0092A3B0
+    type: bin
+    start: 0x92A3B0
+    # vram:
+  - name: ovl_0092A3B0_reloc
+    type: bin
+    start: 0x92A400
+    # vram:
+
+  - name: ovl_0092A420
+    type: bin
+    start: 0x92A420
+    # vram:
+  - name: ovl_0092A420_reloc
+    type: bin
+    start: 0x92A470
+    # vram:
+
+  - name: ovl_0092A490
+    type: bin
+    start: 0x92A490
+    # vram:
+  - name: ovl_0092A490_reloc
+    type: bin
+    start: 0x92A6E0
+    # vram:
+
+  - name: ovl_0092A730
+    type: bin
+    start: 0x92A730
+    # vram:
+  - name: ovl_0092A730_reloc
+    type: bin
+    start: 0x92A820
+    # vram:
+
+  - name: ovl_0092A840
+    type: bin
+    start: 0x92A840
+    # vram:
+  - name: ovl_0092A840_reloc
+    type: bin
+    start: 0x92A890
+    # vram:
+
+  - name: ovl_0092A8B0
+    type: bin
+    start: 0x92A8B0
+    # vram:
+  - name: ovl_0092A8B0_reloc
+    type: bin
+    start: 0x92A900
+    # vram:
+
+  - name: ovl_0092A920
+    type: bin
+    start: 0x92A920
+    # vram:
+  - name: ovl_0092A920_reloc
+    type: bin
+    start: 0x92A970
+    # vram:
+
+  - name: ovl_0092A990
+    type: bin
+    start: 0x92A990
+    # vram:
+  - name: ovl_0092A990_reloc
+    type: bin
+    start: 0x92A9E0
+    # vram:
+
+  - name: ovl_0092AA00
+    type: bin
+    start: 0x92AA00
+    # vram:
+  - name: ovl_0092AA00_reloc
+    type: bin
+    start: 0x92AA50
+    # vram:
+
+  - name: ovl_0092AA70
+    type: bin
+    start: 0x92AA70
+    # vram:
+  - name: ovl_0092AA70_reloc
+    type: bin
+    start: 0x92AAC0
+    # vram:
+
+  - name: ovl_0092AAE0
+    type: bin
+    start: 0x92AAE0
+    # vram:
+  - name: ovl_0092AAE0_reloc
+    type: bin
+    start: 0x92AB30
+    # vram:
+
+  - name: ovl_0092AB50
+    type: bin
+    start: 0x92AB50
+    # vram:
+  - name: ovl_0092AB50_reloc
+    type: bin
+    start: 0x92B490
+    # vram:
+
+  - name: ovl_0092B4F0
+    type: bin
+    start: 0x92B4F0
+    # vram:
+  - name: ovl_0092B4F0_reloc
+    type: bin
+    start: 0x92B540
+    # vram:
+
+  - name: ovl_0092B560
+    type: bin
+    start: 0x92B560
+    # vram:
+  - name: ovl_0092B560_reloc
+    type: bin
+    start: 0x92B650
+    # vram:
+
+  - name: ovl_0092B670
+    type: bin
+    start: 0x92B670
+    # vram:
+  - name: ovl_0092B670_reloc
+    type: bin
+    start: 0x92B6C0
+    # vram:
+
+  - name: ovl_0092B6E0
+    type: bin
+    start: 0x92B6E0
+    # vram:
+  - name: ovl_0092B6E0_reloc
+    type: bin
+    start: 0x92B730
+    # vram:
+
+  - name: ovl_0092B750
+    type: bin
+    start: 0x92B750
+    # vram:
+  - name: ovl_0092B750_reloc
+    type: bin
+    start: 0x92B940
+    # vram:
+
+  - name: ovl_0092B970
+    type: bin
+    start: 0x92B970
+    # vram:
+  - name: ovl_0092B970_reloc
+    type: bin
+    start: 0x92BEB0
+    # vram:
+
+  - name: ovl_0092BF20
+    type: bin
+    start: 0x92BF20
+    # vram:
+  - name: ovl_0092BF20_reloc
+    type: bin
+    start: 0x92BF70
+    # vram:
+
+  - name: ovl_0092BF90
+    type: bin
+    start: 0x92BF90
+    # vram:
+  - name: ovl_0092BF90_reloc
+    type: bin
+    start: 0x92BFE0
+    # vram:
+
+  - name: ovl_0092C000
+    type: bin
+    start: 0x92C000
+    # vram:
+  - name: ovl_0092C000_reloc
+    type: bin
+    start: 0x92C050
+    # vram:
+
+  - name: ovl_0092C070
+    type: bin
+    start: 0x92C070
+    # vram:
+  - name: ovl_0092C070_reloc
+    type: bin
+    start: 0x92C0C0
+    # vram:
+
+  - name: ovl_0092C0E0
+    type: bin
+    start: 0x92C0E0
+    # vram:
+  - name: ovl_0092C0E0_reloc
+    type: bin
+    start: 0x92C130
+    # vram:
+
+  - name: ovl_0092C150
+    type: bin
+    start: 0x92C150
+    # vram:
+  - name: ovl_0092C150_reloc
+    type: bin
+    start: 0x92C1A0
+    # vram:
+
+  - name: ovl_0092C1C0
+    type: bin
+    start: 0x92C1C0
+    # vram:
+  - name: ovl_0092C1C0_reloc
+    type: bin
+    start: 0x92C210
+    # vram:
+
+  - name: ovl_0092C230
+    type: bin
+    start: 0x92C230
+    # vram:
+  - name: ovl_0092C230_reloc
+    type: bin
+    start: 0x92C320
+    # vram:
+
+  - name: ovl_0092C340
+    type: bin
+    start: 0x92C340
+    # vram:
+  - name: ovl_0092C340_reloc
+    type: bin
+    start: 0x92C390
+    # vram:
+
+  - name: ovl_0092C3B0
+    type: bin
+    start: 0x92C3B0
+    # vram:
+  - name: ovl_0092C3B0_reloc
+    type: bin
+    start: 0x92C4A0
+    # vram:
+
+  - name: ovl_0092C4C0
+    type: bin
+    start: 0x92C4C0
+    # vram:
+  - name: ovl_0092C4C0_reloc
+    type: bin
+    start: 0x92C820
+    # vram:
+
+  - name: ovl_0092C850
+    type: bin
+    start: 0x92C850
+    # vram:
+  - name: ovl_0092C850_reloc
+    type: bin
+    start: 0x92E960
+    # vram:
+
+  - name: ovl_0092EC40
+    type: bin
+    start: 0x92EC40
+    # vram:
+  - name: ovl_0092EC40_reloc
+    type: bin
+    start: 0x92EFA0
+    # vram:
+
+  - name: ovl_0092EFD0
+    type: bin
+    start: 0x92EFD0
+    # vram:
+  - name: ovl_0092EFD0_reloc
+    type: bin
+    start: 0x92F020
+    # vram:
+
+  - name: ovl_0092F040
+    type: bin
+    start: 0x92F040
+    # vram:
+  - name: ovl_0092F040_reloc
+    type: bin
+    start: 0x92F3A0
+    # vram:
+
+  - name: ovl_0092F3D0
+    type: bin
+    start: 0x92F3D0
+    # vram:
+  - name: ovl_0092F3D0_reloc
+    type: bin
+    start: 0x92F730
+    # vram:
+
+  - name: ovl_0092F760
+    type: bin
+    start: 0x92F760
+    # vram:
+  - name: ovl_0092F760_reloc
+    type: bin
+    start: 0x92FAC0
+    # vram:
+
+  - name: ovl_0092FAF0
+    type: bin
+    start: 0x92FAF0
+    # vram:
+  - name: ovl_0092FAF0_reloc
+    type: bin
+    start: 0x92FE50
+    # vram:
+
+  - name: ovl_0092FE80
+    type: bin
+    start: 0x92FE80
+    # vram:
+  - name: ovl_0092FE80_reloc
+    type: bin
+    start: 0x9301E0
+    # vram:
+
+  - name: ovl_00930210
+    type: bin
+    start: 0x930210
+    # vram:
+  - name: ovl_00930210_reloc
+    type: bin
+    start: 0x930570
+    # vram:
+
+  - name: ovl_009305A0
+    type: bin
+    start: 0x9305A0
+    # vram:
+  - name: ovl_009305A0_reloc
+    type: bin
+    start: 0x930A60
+    # vram:
+
+  - name: ovl_00930A90
+    type: bin
+    start: 0x930A90
+    # vram:
+  - name: ovl_00930A90_reloc
+    type: bin
+    start: 0x930AE0
+    # vram:
+
+  - name: ovl_00930B00
+    type: bin
+    start: 0x930B00
+    # vram:
+  - name: ovl_00930B00_reloc
+    type: bin
+    start: 0x930B50
+    # vram:
+
+  - name: ovl_00930B70
+    type: bin
+    start: 0x930B70
+    # vram:
+  - name: ovl_00930B70_reloc
+    type: bin
+    start: 0x930ED0
+    # vram:
+
+  - name: ovl_00930F00
+    type: bin
+    start: 0x930F00
+    # vram:
+  - name: ovl_00930F00_reloc
+    type: bin
+    start: 0x931260
+    # vram:
+
+  - name: ovl_00931290
+    type: bin
+    start: 0x931290
+    # vram:
+  - name: ovl_00931290_reloc
+    type: bin
+    start: 0x9315F0
+    # vram:
+
+  - name: ovl_00931620
+    type: bin
+    start: 0x931620
+    # vram:
+  - name: ovl_00931620_reloc
+    type: bin
+    start: 0x931980
+    # vram:
+
+  - name: ovl_009319B0
+    type: bin
+    start: 0x9319B0
+    # vram:
+  - name: ovl_009319B0_reloc
+    type: bin
+    start: 0x931D10
+    # vram:
+
+  - name: ovl_00931D40
+    type: bin
+    start: 0x931D40
+    # vram:
+  - name: ovl_00931D40_reloc
+    type: bin
+    start: 0x932260
+    # vram:
+
+  - name: ovl_009322F0
+    type: bin
+    start: 0x9322F0
+    # vram:
+  - name: ovl_009322F0_reloc
+    type: bin
+    start: 0x932A50
+    # vram:
+
+  - name: ovl_00932AA0
+    type: bin
+    start: 0x932AA0
+    # vram:
+  - name: ovl_00932AA0_reloc
+    type: bin
+    start: 0x932B30
+    # vram:
+
+  - name: ovl_00932B60
+    type: bin
+    start: 0x932B60
+    # vram:
+  - name: ovl_00932B60_reloc
+    type: bin
+    start: 0x933DB0
+    # vram:
+
+  - name: ovl_00933F00
+    type: bin
+    start: 0x933F00
+    # vram:
+  - name: ovl_00933F00_reloc
+    type: bin
+    start: 0x934C40
+    # vram:
+
+  - name: ovl_00934D50
+    type: bin
+    start: 0x934D50
+    # vram:
+  - name: ovl_00934D50_reloc
+    type: bin
+    start: 0x936310
+    # vram:
+
+  - name: ovl_00936470
+    type: bin
+    start: 0x936470
+    # vram:
+  - name: ovl_00936470_reloc
+    type: bin
+    start: 0x936B20
+    # vram:
+
+  - name: ovl_00936BC0
+    type: bin
+    start: 0x936BC0
+    # vram:
+  - name: ovl_00936BC0_reloc
+    type: bin
+    start: 0x9370C0
+    # vram:
+
+  - name: ovl_00937120
+    type: bin
+    start: 0x937120
+    # vram:
+  - name: ovl_00937120_reloc
+    type: bin
+    start: 0x937820
+    # vram:
+
+  - name: ovl_009378C0
+    type: bin
+    start: 0x9378C0
+    # vram:
+  - name: ovl_009378C0_reloc
+    type: bin
+    start: 0x938EC0
+    # vram:
+
+  - name: ovl_00939090
+    type: bin
+    start: 0x939090
+    # vram:
+  - name: ovl_00939090_reloc
+    type: bin
+    start: 0x9390E0
+    # vram:
+
+  - name: ovl_00939100
+    type: bin
+    start: 0x939100
+    # vram:
+  - name: ovl_00939100_reloc
+    type: bin
+    start: 0x939150
+    # vram:
+
+  - name: ovl_00939170
+    type: bin
+    start: 0x939170
+    # vram:
+  - name: ovl_00939170_reloc
+    type: bin
+    start: 0x9391C0
+    # vram:
+
+  - name: ovl_009391E0
+    type: bin
+    start: 0x9391E0
+    # vram:
+  - name: ovl_009391E0_reloc
+    type: bin
+    start: 0x9392C0
+    # vram:
+
+  - name: ovl_009392F0
+    type: bin
+    start: 0x9392F0
+    # vram:
+  - name: ovl_009392F0_reloc
+    type: bin
+    start: 0x9393D0
+    # vram:
+
+  - name: ovl_00939400
+    type: bin
+    start: 0x939400
+    # vram:
+  - name: ovl_00939400_reloc
+    type: bin
+    start: 0x9394E0
+    # vram:
+
+  - name: ovl_00939510
+    type: bin
+    start: 0x939510
+    # vram:
+  - name: ovl_00939510_reloc
+    type: bin
+    start: 0x939560
+    # vram:
+
+  - name: ovl_00939580
+    type: bin
+    start: 0x939580
+    # vram:
+  - name: ovl_00939580_reloc
+    type: bin
+    start: 0x9395D0
+    # vram:
+
+  - name: ovl_009395F0
+    type: bin
+    start: 0x9395F0
+    # vram:
+  - name: ovl_009395F0_reloc
+    type: bin
+    start: 0x93A7D0
+    # vram:
+
+  - name: ovl_0093A8B0
+    type: bin
+    start: 0x93A8B0
+    # vram:
+  - name: ovl_0093A8B0_reloc
+    type: bin
+    start: 0x93A900
+    # vram:
+
+  - name: ovl_0093A920
+    type: bin
+    start: 0x93A920
+    # vram:
+  - name: ovl_0093A920_reloc
+    type: bin
+    start: 0x93BBC0
+    # vram:
+
+  - name: ovl_0093BD70
+    type: bin
+    start: 0x93BD70
+    # vram:
+  - name: ovl_0093BD70_reloc
+    type: bin
+    start: 0x93BF40
+    # vram:
+
+  - name: ovl_0093BF80
+    type: bin
+    start: 0x93BF80
+    # vram:
+  - name: ovl_0093BF80_reloc
+    type: bin
+    start: 0x93BFD0
+    # vram:
+
+  - name: ovl_0093BFF0
+    type: bin
+    start: 0x93BFF0
+    # vram:
+  - name: ovl_0093BFF0_reloc
+    type: bin
+    start: 0x93C040
+    # vram:
+
+  - name: ovl_0093C060
+    type: bin
+    start: 0x93C060
+    # vram:
+  - name: ovl_0093C060_reloc
+    type: bin
+    start: 0x93C0B0
+    # vram:
+
+  - name: ovl_0093C0D0
+    type: bin
+    start: 0x93C0D0
+    # vram:
+  - name: ovl_0093C0D0_reloc
+    type: bin
+    start: 0x93C5A0
+    # vram:
+
+  - name: ovl_0093C5D0
+    type: bin
+    start: 0x93C5D0
+    # vram:
+  - name: ovl_0093C5D0_reloc
+    type: bin
+    start: 0x93CAA0
+    # vram:
+
+  - name: ovl_0093CAD0
+    type: bin
+    start: 0x93CAD0
+    # vram:
+  - name: ovl_0093CAD0_reloc
+    type: bin
+    start: 0x93CFA0
+    # vram:
+
+  - name: ovl_0093CFD0
+    type: bin
+    start: 0x93CFD0
+    # vram:
+  - name: ovl_0093CFD0_reloc
+    type: bin
+    start: 0x93D4A0
+    # vram:
+
+  - name: ovl_0093D4D0
+    type: bin
+    start: 0x93D4D0
+    # vram:
+  - name: ovl_0093D4D0_reloc
+    type: bin
+    start: 0x93D520
+    # vram:
+
+  - name: ovl_0093D540
+    type: bin
+    start: 0x93D540
+    # vram:
+  - name: ovl_0093D540_reloc
+    type: bin
+    start: 0x93D590
+    # vram:
+
+  - name: ovl_0093D5B0
+    type: bin
+    start: 0x93D5B0
+    # vram:
+  - name: ovl_0093D5B0_reloc
+    type: bin
+    start: 0x93D600
+    # vram:
+
+  - name: ovl_0093D620
+    type: bin
+    start: 0x93D620
+    # vram:
+  - name: ovl_0093D620_reloc
+    type: bin
+    start: 0x93D670
+    # vram:
+
+  - name: ovl_0093D690
+    type: bin
+    start: 0x93D690
+    # vram:
+  - name: ovl_0093D690_reloc
+    type: bin
+    start: 0x93D6E0
+    # vram:
+
+  - name: ovl_0093D700
+    type: bin
+    start: 0x93D700
+    # vram:
+  - name: ovl_0093D700_reloc
+    type: bin
+    start: 0x93DBD0
+    # vram:
+
+  - name: ovl_0093DC00
+    type: bin
+    start: 0x93DC00
+    # vram:
+  - name: ovl_0093DC00_reloc
+    type: bin
+    start: 0x93E0D0
+    # vram:
+
+  - name: ovl_0093E100
+    type: bin
+    start: 0x93E100
+    # vram:
+  - name: ovl_0093E100_reloc
+    type: bin
+    start: 0x93E5D0
+    # vram:
+
+  - name: ovl_0093E600
+    type: bin
+    start: 0x93E600
+    # vram:
+  - name: ovl_0093E600_reloc
+    type: bin
+    start: 0x93EAD0
+    # vram:
+
+  - name: ovl_0093EB00
+    type: bin
+    start: 0x93EB00
+    # vram:
+  - name: ovl_0093EB00_reloc
+    type: bin
+    start: 0x93EFD0
+    # vram:
+
+  - name: ovl_0093F000
+    type: bin
+    start: 0x93F000
+    # vram:
+  - name: ovl_0093F000_reloc
+    type: bin
+    start: 0x93F050
+    # vram:
+
+  - name: ovl_0093F070
+    type: bin
+    start: 0x93F070
+    # vram:
+  - name: ovl_0093F070_reloc
+    type: bin
+    start: 0x93F0C0
+    # vram:
+
+  - name: ovl_0093F0E0
+    type: bin
+    start: 0x93F0E0
+    # vram:
+  - name: ovl_0093F0E0_reloc
+    type: bin
+    start: 0x93F130
+    # vram:
+
+  - name: ovl_0093F150
+    type: bin
+    start: 0x93F150
+    # vram:
+  - name: ovl_0093F150_reloc
+    type: bin
+    start: 0x93F1A0
+    # vram:
+
+  - name: ovl_0093F1C0
+    type: bin
+    start: 0x93F1C0
+    # vram:
+  - name: ovl_0093F1C0_reloc
+    type: bin
+    start: 0x93F210
+    # vram:
+
+  - name: ovl_0093F230
+    type: bin
+    start: 0x93F230
+    # vram:
+  - name: ovl_0093F230_reloc
+    type: bin
+    start: 0x93F280
+    # vram:
+
+  - name: ovl_0093F2A0
+    type: bin
+    start: 0x93F2A0
+    # vram:
+  - name: ovl_0093F2A0_reloc
+    type: bin
+    start: 0x93F2F0
+    # vram:
+
+  - name: ovl_0093F310
+    type: bin
+    start: 0x93F310
+    # vram:
+  - name: ovl_0093F310_reloc
+    type: bin
+    start: 0x93F360
+    # vram:
+
+  - name: ovl_0093F380
+    type: bin
+    start: 0x93F380
+    # vram:
+  - name: ovl_0093F380_reloc
+    type: bin
+    start: 0x93F9A0
+    # vram:
+
+  - name: ovl_0093F9E0
+    type: bin
+    start: 0x93F9E0
+    # vram:
+  - name: ovl_0093F9E0_reloc
+    type: bin
+    start: 0x93FA30
+    # vram:
+
+  - name: ovl_0093FA50
+    type: bin
+    start: 0x93FA50
+    # vram:
+  - name: ovl_0093FA50_reloc
+    type: bin
+    start: 0x93FAA0
+    # vram:
+
+  - name: ovl_0093FAC0
+    type: bin
+    start: 0x93FAC0
+    # vram:
+  - name: ovl_0093FAC0_reloc
+    type: bin
+    start: 0x93FB10
+    # vram:
+
+  - name: ovl_0093FB30
+    type: bin
+    start: 0x93FB30
+    # vram:
+  - name: ovl_0093FB30_reloc
+    type: bin
+    start: 0x93FB80
+    # vram:
+
+  - name: ovl_0093FBA0
+    type: bin
+    start: 0x93FBA0
+    # vram:
+  - name: ovl_0093FBA0_reloc
+    type: bin
+    start: 0x93FBF0
+    # vram:
+
+  - name: ovl_0093FC10
+    type: bin
+    start: 0x93FC10
+    # vram:
+  - name: ovl_0093FC10_reloc
+    type: bin
+    start: 0x9402F0
+    # vram:
+
+  - name: ovl_00940380
+    type: bin
+    start: 0x940380
+    # vram:
+  - name: ovl_00940380_reloc
+    type: bin
+    start: 0x9419B0
+    # vram:
+
+  - name: ovl_00941B10
+    type: bin
+    start: 0x941B10
+    # vram:
+  - name: ovl_00941B10_reloc
+    type: bin
+    start: 0x941B60
+    # vram:
+
+  - name: ovl_00941B80
+    type: bin
+    start: 0x941B80
+    # vram:
+  - name: ovl_00941B80_reloc
+    type: bin
+    start: 0x941BD0
+    # vram:
+
+  - name: ovl_00941BF0
+    type: bin
+    start: 0x941BF0
+    # vram:
+  - name: ovl_00941BF0_reloc
+    type: bin
+    start: 0x9427D0
+    # vram:
+
+  - name: ovl_009428A0
+    type: bin
+    start: 0x9428A0
+    # vram:
+  - name: ovl_009428A0_reloc
+    type: bin
+    start: 0x942E50
+    # vram:
+
+  - name: ovl_00942EE0
+    type: bin
+    start: 0x942EE0
+    # vram:
+  - name: ovl_00942EE0_reloc
+    type: bin
+    start: 0x942F30
+    # vram:
+
+  - name: ovl_00942F50
+    type: bin
+    start: 0x942F50
+    # vram:
+  - name: ovl_00942F50_reloc
+    type: bin
+    start: 0x942FA0
+    # vram:
+
+  - name: ovl_00942FC0
+    type: bin
+    start: 0x942FC0
+    # vram:
+  - name: ovl_00942FC0_reloc
+    type: bin
+    start: 0x943010
+    # vram:
+
+  - name: ovl_00943030
+    type: bin
+    start: 0x943030
+    # vram:
+  - name: ovl_00943030_reloc
+    type: bin
+    start: 0x943080
+    # vram:
+
+  - name: ovl_009430A0
+    type: bin
+    start: 0x9430A0
+    # vram:
+  - name: ovl_009430A0_reloc
+    type: bin
+    start: 0x9430F0
+    # vram:
+
+  - name: ovl_00943110
+    type: bin
+    start: 0x943110
+    # vram:
+  - name: ovl_00943110_reloc
+    type: bin
+    start: 0x943160
+    # vram:
+
+  - name: ovl_00943180
+    type: bin
+    start: 0x943180
+    # vram:
+  - name: ovl_00943180_reloc
+    type: bin
+    start: 0x9431D0
+    # vram:
+
+  - name: ovl_009431F0
+    type: bin
+    start: 0x9431F0
+    # vram:
+  - name: ovl_009431F0_reloc
+    type: bin
+    start: 0x943240
+    # vram:
+
+  - name: ovl_00943260
+    type: bin
+    start: 0x943260
+    # vram:
+  - name: ovl_00943260_reloc
+    type: bin
+    start: 0x9432B0
+    # vram:
+
+  - name: ovl_009432D0
+    type: bin
+    start: 0x9432D0
+    # vram:
+  - name: ovl_009432D0_reloc
+    type: bin
+    start: 0x943320
+    # vram:
+
+  - name: ovl_00943340
+    type: bin
+    start: 0x943340
+    # vram:
+  - name: ovl_00943340_reloc
+    type: bin
+    start: 0x943390
+    # vram:
+
+  - name: ovl_009433B0
+    type: bin
+    start: 0x9433B0
+    # vram:
+  - name: ovl_009433B0_reloc
+    type: bin
+    start: 0x943400
+    # vram:
+
+  - name: ovl_00943420
+    type: bin
+    start: 0x943420
+    # vram:
+  - name: ovl_00943420_reloc
+    type: bin
+    start: 0x943470
+    # vram:
+
+  - name: ovl_00943490
+    type: bin
+    start: 0x943490
+    # vram:
+  - name: ovl_00943490_reloc
+    type: bin
+    start: 0x9434E0
+    # vram:
+
+  - name: ovl_00943500
+    type: bin
+    start: 0x943500
+    # vram:
+  - name: ovl_00943500_reloc
+    type: bin
+    start: 0x943550
+    # vram:
+
+  - name: ovl_00943570
+    type: bin
+    start: 0x943570
+    # vram:
+  - name: ovl_00943570_reloc
+    type: bin
+    start: 0x9435C0
+    # vram:
+
+  - name: ovl_009435E0
+    type: bin
+    start: 0x9435E0
+    # vram:
+  - name: ovl_009435E0_reloc
+    type: bin
+    start: 0x943630
+    # vram:
+
+  - name: ovl_00943650
+    type: bin
+    start: 0x943650
+    # vram:
+  - name: ovl_00943650_reloc
+    type: bin
+    start: 0x9436A0
+    # vram:
+
+  - name: ovl_009436C0
+    type: bin
+    start: 0x9436C0
+    # vram:
+  - name: ovl_009436C0_reloc
+    type: bin
+    start: 0x943710
+    # vram:
+
+  - name: ovl_00943730
+    type: bin
+    start: 0x943730
+    # vram:
+  - name: ovl_00943730_reloc
+    type: bin
+    start: 0x943780
+    # vram:
+
+  - name: ovl_009437A0
+    type: bin
+    start: 0x9437A0
+    # vram:
+  - name: ovl_009437A0_reloc
+    type: bin
+    start: 0x9437F0
+    # vram:
+
+  - name: ovl_00943810
+    type: bin
+    start: 0x943810
+    # vram:
+  - name: ovl_00943810_reloc
+    type: bin
+    start: 0x943860
+    # vram:
+
+  - name: ovl_00943880
+    type: bin
+    start: 0x943880
+    # vram:
+  - name: ovl_00943880_reloc
+    type: bin
+    start: 0x9438D0
+    # vram:
+
+  - name: ovl_009438F0
+    type: bin
+    start: 0x9438F0
+    # vram:
+  - name: ovl_009438F0_reloc
+    type: bin
+    start: 0x943940
+    # vram:
+
+  - name: ovl_00943960
+    type: bin
+    start: 0x943960
+    # vram:
+  - name: ovl_00943960_reloc
+    type: bin
+    start: 0x9448A0
+    # vram:
+
+  - name: ovl_00944930
+    type: bin
+    start: 0x944930
+    # vram:
+  - name: ovl_00944930_reloc
+    type: bin
+    start: 0x944980
+    # vram:
+
+  - name: ovl_009449A0
+    type: bin
+    start: 0x9449A0
+    # vram:
+  - name: ovl_009449A0_reloc
+    type: bin
+    start: 0x9449F0
+    # vram:
+
+  - name: ovl_00944A10
+    type: bin
+    start: 0x944A10
+    # vram:
+  - name: ovl_00944A10_reloc
+    type: bin
+    start: 0x944A60
+    # vram:
+
+  - name: ovl_00944A80
+    type: bin
+    start: 0x944A80
+    # vram:
+  - name: ovl_00944A80_reloc
+    type: bin
+    start: 0x944AD0
+    # vram:
+
+  - name: ovl_00944AF0
+    type: bin
+    start: 0x944AF0
+    # vram:
+  - name: ovl_00944AF0_reloc
+    type: bin
+    start: 0x944B40
+    # vram:
+
+  - name: ovl_00944B60
+    type: bin
+    start: 0x944B60
+    # vram:
+  - name: ovl_00944B60_reloc
+    type: bin
+    start: 0x944C40
+    # vram:
+
+  - name: ovl_00944C70
+    type: bin
+    start: 0x944C70
+    # vram:
+  - name: ovl_00944C70_reloc
+    type: bin
+    start: 0x944D50
+    # vram:
+
+  - name: ovl_00944D80
+    type: bin
+    start: 0x944D80
+    # vram:
+  - name: ovl_00944D80_reloc
+    type: bin
+    start: 0x944E60
+    # vram:
+
+  - name: ovl_00944E90
+    type: bin
+    start: 0x944E90
+    # vram:
+  - name: ovl_00944E90_reloc
+    type: bin
+    start: 0x945A20
+    # vram:
+
+  - name: ovl_00945B10
+    type: bin
+    start: 0x945B10
+    # vram:
+  - name: ovl_00945B10_reloc
+    type: bin
+    start: 0x9467E0
+    # vram:
+
+  - name: ovl_00946900
+    type: bin
+    start: 0x946900
+    # vram:
+  - name: ovl_00946900_reloc
+    type: bin
+    start: 0x9473F0
+    # vram:
+
+  - name: ovl_009474F0
+    type: bin
+    start: 0x9474F0
+    # vram:
+  - name: ovl_009474F0_reloc
+    type: bin
+    start: 0x948850
+    # vram:
+
+  - name: ovl_00948A20
+    type: bin
+    start: 0x948A20
+    # vram:
+  - name: ovl_00948A20_reloc
+    type: bin
+    start: 0x949A90
+    # vram:
+
+  - name: ovl_00949BE0
+    type: bin
+    start: 0x949BE0
+    # vram:
+  - name: ovl_00949BE0_reloc
+    type: bin
+    start: 0x94B350
+    # vram:
+
+  - name: ovl_0094B4B0
+    type: bin
+    start: 0x94B4B0
+    # vram:
+  - name: ovl_0094B4B0_reloc
+    type: bin
+    start: 0x94BF40
+    # vram:
+
+  - name: ovl_0094BFD0
+    type: bin
+    start: 0x94BFD0
+    # vram:
+  - name: ovl_0094BFD0_reloc
+    type: bin
+    start: 0x94D850
+    # vram:
+
+  - name: ovl_0094D920
+    type: bin
+    start: 0x94D920
+    # vram:
+  - name: ovl_0094D920_reloc
+    type: bin
+    start: 0x94EF80
+    # vram:
+
+  - name: ovl_0094F170
+    type: bin
+    start: 0x94F170
+    # vram:
+  - name: ovl_0094F170_reloc
+    type: bin
+    start: 0x94F520
+    # vram:
+
+  - name: ovl_0094F570
+    type: bin
+    start: 0x94F570
+    # vram:
+  - name: ovl_0094F570_reloc
+    type: bin
+    start: 0x94F9C0
+    # vram:
+
+  - name: ovl_0094FA20
+    type: bin
+    start: 0x94FA20
+    # vram:
+  - name: ovl_0094FA20_reloc
+    type: bin
+    start: 0x94FB00
+    # vram:
+
+  - name: ovl_0094FB30
+    type: bin
+    start: 0x94FB30
+    # vram:
+  - name: ovl_0094FB30_reloc
+    type: bin
+    start: 0x94FC10
+    # vram:
+
+  - name: ovl_0094FC40
+    type: bin
+    start: 0x94FC40
+    # vram:
+  - name: ovl_0094FC40_reloc
+    type: bin
+    start: 0x94FD20
+    # vram:
+
+  - name: ovl_0094FD50
+    type: bin
+    start: 0x94FD50
+    # vram:
+  - name: ovl_0094FD50_reloc
+    type: bin
+    start: 0x94FE30
+    # vram:
+
+  - name: ovl_0094FE60
+    type: bin
+    start: 0x94FE60
+    # vram:
+  - name: ovl_0094FE60_reloc
+    type: bin
+    start: 0x94FF40
+    # vram:
+
+  - name: ovl_0094FF70
+    type: bin
+    start: 0x94FF70
+    # vram:
+  - name: ovl_0094FF70_reloc
+    type: bin
+    start: 0x950C50
+    # vram:
+
+  - name: ovl_00950DE0
+    type: bin
+    start: 0x950DE0
+    # vram:
+  - name: ovl_00950DE0_reloc
+    type: bin
+    start: 0x951960
+    # vram:
+
+  - name: ovl_00951A70
+    type: bin
+    start: 0x951A70
+    # vram:
+  - name: ovl_00951A70_reloc
+    type: bin
+    start: 0x951CC0
+    # vram:
+
+  - name: ovl_00951D10
+    type: bin
+    start: 0x951D10
+    # vram:
+  - name: ovl_00951D10_reloc
+    type: bin
+    start: 0x952670
+    # vram:
+
+  - name: ovl_00952730
+    type: bin
+    start: 0x952730
+    # vram:
+  - name: ovl_00952730_reloc
+    type: bin
+    start: 0x9536E0
+    # vram:
+
+  - name: ovl_009537E0
+    type: bin
+    start: 0x9537E0
+    # vram:
+  - name: ovl_009537E0_reloc
+    type: bin
+    start: 0x953D70
+    # vram:
+
+  - name: ovl_00953DE0
+    type: bin
+    start: 0x953DE0
+    # vram:
+  - name: ovl_00953DE0_reloc
+    type: bin
+    start: 0x953E30
+    # vram:
+
+  - name: ovl_00953E50
+    type: bin
+    start: 0x953E50
+    # vram:
+  - name: ovl_00953E50_reloc
+    type: bin
+    start: 0x953EA0
+    # vram:
+
+  - name: ovl_00953EC0
+    type: bin
+    start: 0x953EC0
+    # vram:
+  - name: ovl_00953EC0_reloc
+    type: bin
+    start: 0x953F10
+    # vram:
+
+  - name: ovl_00953F30
+    type: bin
+    start: 0x953F30
+    # vram:
+  - name: ovl_00953F30_reloc
+    type: bin
+    start: 0x954C50
+    # vram:
+
+  - name: ovl_00954D30
+    type: bin
+    start: 0x954D30
+    # vram:
+  - name: ovl_00954D30_reloc
+    type: bin
+    start: 0x9563E0
+    # vram:
+
+  - name: ovl_00956630
+    type: bin
+    start: 0x956630
+    # vram:
+  - name: ovl_00956630_reloc
+    type: bin
+    start: 0x956830
+    # vram:
+
+  - name: ovl_00956870
+    type: bin
+    start: 0x956870
+    # vram:
+  - name: ovl_00956870_reloc
+    type: bin
+    start: 0x9568C0
+    # vram:
+
+  - name: ovl_009568E0
+    type: bin
+    start: 0x9568E0
+    # vram:
+  - name: ovl_009568E0_reloc
+    type: bin
+    start: 0x956930
+    # vram:
+
+  - name: ovl_00956950
+    type: bin
+    start: 0x956950
+    # vram:
+  - name: ovl_00956950_reloc
+    type: bin
+    start: 0x9569A0
+    # vram:
+
+  - name: ovl_009569C0
+    type: bin
+    start: 0x9569C0
+    # vram:
+  - name: ovl_009569C0_reloc
+    type: bin
+    start: 0x956A10
+    # vram:
+
+  - name: ovl_00956A30
+    type: bin
+    start: 0x956A30
+    # vram:
+  - name: ovl_00956A30_reloc
+    type: bin
+    start: 0x956A80
+    # vram:
+
+  - name: ovl_00956AA0
+    type: bin
+    start: 0x956AA0
+    # vram:
+  - name: ovl_00956AA0_reloc
+    type: bin
+    start: 0x956AF0
+    # vram:
+
+  - name: ovl_00956B10
+    type: bin
+    start: 0x956B10
+    # vram:
+  - name: ovl_00956B10_reloc
+    type: bin
+    start: 0x956B60
+    # vram:
+
+  - name: ovl_00956B80
+    type: bin
+    start: 0x956B80
+    # vram:
+  - name: ovl_00956B80_reloc
+    type: bin
+    start: 0x956BD0
+    # vram:
+
+  - name: ovl_00956BF0
+    type: bin
+    start: 0x956BF0
+    # vram:
+  - name: ovl_00956BF0_reloc
+    type: bin
+    start: 0x957380
+    # vram:
+
+  - name: ovl_00957410
+    type: bin
+    start: 0x957410
+    # vram:
+  - name: ovl_00957410_reloc
+    type: bin
+    start: 0x957770
+    # vram:
+
+  - name: ovl_009577A0
+    type: bin
+    start: 0x9577A0
+    # vram:
+  - name: ovl_009577A0_reloc
+    type: bin
+    start: 0x957B00
+    # vram:
+
+  - name: ovl_00957B30
+    type: bin
+    start: 0x957B30
+    # vram:
+  - name: ovl_00957B30_reloc
+    type: bin
+    start: 0x957B80
+    # vram:
+
+  - name: ovl_00957BA0
+    type: bin
+    start: 0x957BA0
+    # vram:
+  - name: ovl_00957BA0_reloc
+    type: bin
+    start: 0x957FA0
+    # vram:
+
+  - name: ovl_00957FF0
+    type: bin
+    start: 0x957FF0
+    # vram:
+  - name: ovl_00957FF0_reloc
+    type: bin
+    start: 0x958040
+    # vram:
+
+  - name: ovl_00958060
+    type: bin
+    start: 0x958060
+    # vram:
+  - name: ovl_00958060_reloc
+    type: bin
+    start: 0x9580B0
+    # vram:
+
+  - name: ovl_009580D0
+    type: bin
+    start: 0x9580D0
+    # vram:
+  - name: ovl_009580D0_reloc
+    type: bin
+    start: 0x958120
+    # vram:
+
+  - name: ovl_00958140
+    type: bin
+    start: 0x958140
+    # vram:
+  - name: ovl_00958140_reloc
+    type: bin
+    start: 0x958190
+    # vram:
+
+  - name: ovl_009581B0
+    type: bin
+    start: 0x9581B0
+    # vram:
+  - name: ovl_009581B0_reloc
+    type: bin
+    start: 0x958200
+    # vram:
+
+  - name: ovl_00958220
+    type: bin
+    start: 0x958220
+    # vram:
+  - name: ovl_00958220_reloc
+    type: bin
+    start: 0x9590A0
+    # vram:
+
+  - name: ovl_009591D0
+    type: bin
+    start: 0x9591D0
+    # vram:
+  - name: ovl_009591D0_reloc
+    type: bin
+    start: 0x95B1E0
+    # vram:
+
+  - name: ovl_0095B440
+    type: bin
+    start: 0x95B440
+    # vram:
+  - name: ovl_0095B440_reloc
+    type: bin
+    start: 0x95BD80
+    # vram:
+
+  - name: ovl_0095BDE0
+    type: bin
+    start: 0x95BDE0
+    # vram:
+  - name: ovl_0095BDE0_reloc
+    type: bin
+    start: 0x95BE30
+    # vram:
+
+  - name: ovl_0095BE50
+    type: bin
+    start: 0x95BE50
+    # vram:
+  - name: ovl_0095BE50_reloc
+    type: bin
+    start: 0x95BEA0
+    # vram:
+
+  - name: ovl_0095BEC0
+    type: bin
+    start: 0x95BEC0
+    # vram:
+  - name: ovl_0095BEC0_reloc
+    type: bin
+    start: 0x95BF10
+    # vram:
+
+  - name: ovl_0095BF30
+    type: bin
+    start: 0x95BF30
+    # vram:
+  - name: ovl_0095BF30_reloc
+    type: bin
+    start: 0x95BF80
+    # vram:
+
+  - name: ovl_0095BFA0
+    type: bin
+    start: 0x95BFA0
+    # vram:
+  - name: ovl_0095BFA0_reloc
+    type: bin
+    start: 0x95C5D0
+    # vram:
+
+  - name: ovl_0095C630
+    type: bin
+    start: 0x95C630
+    # vram:
+  - name: ovl_0095C630_reloc
+    type: bin
+    start: 0x95CF10
+    # vram:
+
+  - name: ovl_0095CFD0
+    type: bin
+    start: 0x95CFD0
+    # vram:
+  - name: ovl_0095CFD0_reloc
+    type: bin
+    start: 0x95D020
+    # vram:
+
+  - name: ovl_0095D040
+    type: bin
+    start: 0x95D040
+    # vram:
+  - name: ovl_0095D040_reloc
+    type: bin
+    start: 0x95D090
+    # vram:
+
+  - name: ovl_0095D0B0
+    type: bin
+    start: 0x95D0B0
+    # vram:
+  - name: ovl_0095D0B0_reloc
+    type: bin
+    start: 0x95D100
+    # vram:
+
+  - name: ovl_0095D120
+    type: bin
+    start: 0x95D120
+    # vram:
+  - name: ovl_0095D120_reloc
+    type: bin
+    start: 0x95D4C0
+    # vram:
+
+  - name: ovl_0095D4F0
+    type: bin
+    start: 0x95D4F0
+    # vram:
+  - name: ovl_0095D4F0_reloc
+    type: bin
+    start: 0x95DD40
+    # vram:
+
+  - name: ovl_0095DDA0
+    type: bin
+    start: 0x95DDA0
+    # vram:
+  - name: ovl_0095DDA0_reloc
+    type: bin
+    start: 0x95DE80
+    # vram:
+
+  - name: ovl_0095DEB0
+    type: bin
+    start: 0x95DEB0
+    # vram:
+  - name: ovl_0095DEB0_reloc
+    type: bin
+    start: 0x95E4C0
+    # vram:
+
+  - name: ovl_0095E520
+    type: bin
+    start: 0x95E520
+    # vram:
+  - name: ovl_0095E520_reloc
+    type: bin
+    start: 0x95E570
+    # vram:
+
+  - name: ovl_0095E590
+    type: bin
+    start: 0x95E590
+    # vram:
+  - name: ovl_0095E590_reloc
+    type: bin
+    start: 0x95E5E0
+    # vram:
+
+  - name: ovl_0095E600
+    type: bin
+    start: 0x95E600
+    # vram:
+  - name: ovl_0095E600_reloc
+    type: bin
+    start: 0x95E650
+    # vram:
+
+  - name: ovl_0095E670
+    type: bin
+    start: 0x95E670
+    # vram:
+  - name: ovl_0095E670_reloc
+    type: bin
+    start: 0x95E6C0
+    # vram:
+
+  - name: ovl_0095E6E0
+    type: bin
+    start: 0x95E6E0
+    # vram:
+  - name: ovl_0095E6E0_reloc
+    type: bin
+    start: 0x95E730
+    # vram:
+
+  - name: ovl_0095E750
+    type: bin
+    start: 0x95E750
+    # vram:
+  - name: ovl_0095E750_reloc
+    type: bin
+    start: 0x95EC60
+    # vram:
+
+  - name: ovl_0095ECC0
+    type: bin
+    start: 0x95ECC0
+    # vram:
+  - name: ovl_0095ECC0_reloc
+    type: bin
+    start: 0x95ED90
+    # vram:
+
+  - name: ovl_0095EDC0
+    type: bin
+    start: 0x95EDC0
+    # vram:
+  - name: ovl_0095EDC0_reloc
+    type: bin
+    start: 0x95EE10
+    # vram:
+
+  - name: ovl_0095EE30
+    type: bin
+    start: 0x95EE30
+    # vram:
+  - name: ovl_0095EE30_reloc
+    type: bin
+    start: 0x95EE80
+    # vram:
+
+  - name: ovl_0095EEA0
+    type: bin
+    start: 0x95EEA0
+    # vram:
+  - name: ovl_0095EEA0_reloc
+    type: bin
+    start: 0x95EEF0
+    # vram:
+
+  - name: ovl_0095EF10
+    type: bin
+    start: 0x95EF10
+    # vram:
+  - name: ovl_0095EF10_reloc
+    type: bin
+    start: 0x95F750
+    # vram:
+
+  - name: ovl_0095F830
+    type: bin
+    start: 0x95F830
+    # vram:
+  - name: ovl_0095F830_reloc
+    type: bin
+    start: 0x95FE60
+    # vram:
+
+  - name: ovl_0095FEC0
+    type: bin
+    start: 0x95FEC0
+    # vram:
+  - name: ovl_0095FEC0_reloc
+    type: bin
+    start: 0x9625A0
+    # vram:
+
+  - name: ovl_00962800
+    type: bin
+    start: 0x962800
+    # vram:
+  - name: ovl_00962800_reloc
+    type: bin
+    start: 0x962CD0
+    # vram:
+
+  - name: ovl_00962D00
+    type: bin
+    start: 0x962D00
+    # vram:
+  - name: ovl_00962D00_reloc
+    type: bin
+    start: 0x963000
+    # vram:
+
+  - name: ovl_00963030
+    type: bin
+    start: 0x963030
+    # vram:
+  - name: ovl_00963030_reloc
+    type: bin
+    start: 0x963490
+    # vram:
+
+  - name: ovl_009634D0
+    type: bin
+    start: 0x9634D0
+    # vram:
+  - name: ovl_009634D0_reloc
+    type: bin
+    start: 0x9635B0
+    # vram:
+
+  - name: ovl_009635E0
+    type: bin
+    start: 0x9635E0
+    # vram:
+  - name: ovl_009635E0_reloc
+    type: bin
+    start: 0x963D90
+    # vram:
+
+  - name: ovl_00963DF0
+    type: bin
+    start: 0x963DF0
+    # vram:
+  - name: ovl_00963DF0_reloc
+    type: bin
+    start: 0x965040
+    # vram:
+
+  - name: ovl_009651E0
+    type: bin
+    start: 0x9651E0
+    # vram:
+  - name: ovl_009651E0_reloc
+    type: bin
+    start: 0x9652C0
+    # vram:
+
+  - name: ovl_009652F0
+    type: bin
+    start: 0x9652F0
+    # vram:
+  - name: ovl_009652F0_reloc
+    type: bin
+    start: 0x965340
+    # vram:
+
+  - name: ovl_00965360
+    type: bin
+    start: 0x965360
+    # vram:
+  - name: ovl_00965360_reloc
+    type: bin
+    start: 0x9653B0
+    # vram:
+
+  - name: ovl_009653D0
+    type: bin
+    start: 0x9653D0
+    # vram:
+  - name: ovl_009653D0_reloc
+    type: bin
+    start: 0x965B80
+    # vram:
+
+  - name: ovl_00965BE0
+    type: bin
+    start: 0x965BE0
+    # vram:
+  - name: ovl_00965BE0_reloc
+    type: bin
+    start: 0x967130
+    # vram:
+
+  - name: ovl_009672A0
+    type: bin
+    start: 0x9672A0
+    # vram:
+  - name: ovl_009672A0_reloc
+    type: bin
+    start: 0x9672F0
+    # vram:
+
+  - name: ovl_00967310
+    type: bin
+    start: 0x967310
+    # vram:
+  - name: ovl_00967310_reloc
+    type: bin
+    start: 0x967940
+    # vram:
+
+  - name: ovl_009679A0
+    type: bin
+    start: 0x9679A0
+    # vram:
+  - name: ovl_009679A0_reloc
+    type: bin
+    start: 0x968030
+    # vram:
+
+  - name: ovl_009680A0
+    type: bin
+    start: 0x9680A0
+    # vram:
+  - name: ovl_009680A0_reloc
+    type: bin
+    start: 0x9686D0
+    # vram:
+
+  - name: ovl_00968730
+    type: bin
+    start: 0x968730
+    # vram:
+  - name: ovl_00968730_reloc
+    type: bin
+    start: 0x968780
+    # vram:
+
+  - name: ovl_009687A0
+    type: bin
+    start: 0x9687A0
+    # vram:
+  - name: ovl_009687A0_reloc
+    type: bin
+    start: 0x9687F0
+    # vram:
+
+  - name: ovl_00968810
+    type: bin
+    start: 0x968810
+    # vram:
+  - name: ovl_00968810_reloc
+    type: bin
+    start: 0x968860
+    # vram:
+
+  - name: ovl_00968880
+    type: bin
+    start: 0x968880
+    # vram:
+  - name: ovl_00968880_reloc
+    type: bin
+    start: 0x968960
+    # vram:
+
+  - name: ovl_00968990
+    type: bin
+    start: 0x968990
+    # vram:
+  - name: ovl_00968990_reloc
+    type: bin
+    start: 0x9689E0
+    # vram:
+
+  - name: ovl_00968A00
+    type: bin
+    start: 0x968A00
+    # vram:
+  - name: ovl_00968A00_reloc
+    type: bin
+    start: 0x968A50
+    # vram:
+
+  - name: ovl_00968A70
+    type: bin
+    start: 0x968A70
+    # vram:
+  - name: ovl_00968A70_reloc
+    type: bin
+    start: 0x968AC0
+    # vram:
+
+  - name: ovl_00968AE0
+    type: bin
+    start: 0x968AE0
+    # vram:
+  - name: ovl_00968AE0_reloc
+    type: bin
+    start: 0x968DA0
+    # vram:
+
+  - name: ovl_00968DD0
+    type: bin
+    start: 0x968DD0
+    # vram:
+  - name: ovl_00968DD0_reloc
+    type: bin
+    start: 0x969130
+    # vram:
+
+  - name: ovl_00969160
+    type: bin
+    start: 0x969160
+    # vram:
+  - name: ovl_00969160_reloc
+    type: bin
+    start: 0x9691B0
+    # vram:
+
+  - name: ovl_009691D0
+    type: bin
+    start: 0x9691D0
+    # vram:
+  - name: ovl_009691D0_reloc
+    type: bin
+    start: 0x969220
+    # vram:
+
+  - name: ovl_00969240
+    type: bin
+    start: 0x969240
+    # vram:
+  - name: ovl_00969240_reloc
+    type: bin
+    start: 0x969290
+    # vram:
+
+  - name: ovl_009692B0
+    type: bin
+    start: 0x9692B0
+    # vram:
+  - name: ovl_009692B0_reloc
+    type: bin
+    start: 0x969300
+    # vram:
+
+  - name: ovl_00969320
+    type: bin
+    start: 0x969320
+    # vram:
+  - name: ovl_00969320_reloc
+    type: bin
+    start: 0x969370
+    # vram:
+
+  - name: ovl_00969390
+    type: bin
+    start: 0x969390
+    # vram:
+  - name: ovl_00969390_reloc
+    type: bin
+    start: 0x9693E0
+    # vram:
+
+  - name: ovl_00969400
+    type: bin
+    start: 0x969400
+    # vram:
+  - name: ovl_00969400_reloc
+    type: bin
+    start: 0x969450
+    # vram:
+
+  - name: ovl_00969470
+    type: bin
+    start: 0x969470
+    # vram:
+  - name: ovl_00969470_reloc
+    type: bin
+    start: 0x9694C0
+    # vram:
+
+  - name: ovl_009694E0
+    type: bin
+    start: 0x9694E0
+    # vram:
+  - name: ovl_009694E0_reloc
+    type: bin
+    start: 0x969530
+    # vram:
+
+  - name: ovl_00969550
+    type: bin
+    start: 0x969550
+    # vram:
+  - name: ovl_00969550_reloc
+    type: bin
+    start: 0x9695A0
+    # vram:
+
+  - name: ovl_009695C0
+    type: bin
+    start: 0x9695C0
+    # vram:
+  - name: ovl_009695C0_reloc
+    type: bin
+    start: 0x969610
+    # vram:
+
+  - name: ovl_00969630
+    type: bin
+    start: 0x969630
+    # vram:
+  - name: ovl_00969630_reloc
+    type: bin
+    start: 0x969B30
+    # vram:
+
+  - name: ovl_00969B80
+    type: bin
+    start: 0x969B80
+    # vram:
+  - name: ovl_00969B80_reloc
+    type: bin
+    start: 0x96A080
+    # vram:
+
+  - name: ovl_0096A0D0
+    type: bin
+    start: 0x96A0D0
+    # vram:
+  - name: ovl_0096A0D0_reloc
+    type: bin
+    start: 0x96A120
+    # vram:
+
+  - name: ovl_0096A140
+    type: bin
+    start: 0x96A140
+    # vram:
+  - name: ovl_0096A140_reloc
+    type: bin
+    start: 0x96A190
+    # vram:
+
+  - name: ovl_0096A1B0
+    type: bin
+    start: 0x96A1B0
+    # vram:
+  - name: ovl_0096A1B0_reloc
+    type: bin
+    start: 0x96A200
+    # vram:
+
+  - name: ovl_0096A220
+    type: bin
+    start: 0x96A220
+    # vram:
+  - name: ovl_0096A220_reloc
+    type: bin
+    start: 0x96A270
+    # vram:
+
+  - name: ovl_0096A290
+    type: bin
+    start: 0x96A290
+    # vram:
+  - name: ovl_0096A290_reloc
+    type: bin
+    start: 0x96AF10
+    # vram:
+
+  - name: ovl_0096B010
+    type: bin
+    start: 0x96B010
+    # vram:
+  - name: ovl_0096B010_reloc
+    type: bin
+    start: 0x96B0F0
+    # vram:
+
+  - name: ovl_0096B120
+    type: bin
+    start: 0x96B120
+    # vram:
+  - name: ovl_0096B120_reloc
+    type: bin
+    start: 0x96B200
+    # vram:
+
+  - name: ovl_0096B230
+    type: bin
+    start: 0x96B230
+    # vram:
+  - name: ovl_0096B230_reloc
+    type: bin
+    start: 0x96B310
+    # vram:
+
+  - name: ovl_0096B340
+    type: bin
+    start: 0x96B340
+    # vram:
+  - name: ovl_0096B340_reloc
+    type: bin
+    start: 0x96B450
+    # vram:
+
+  - name: ovl_0096B470
+    type: bin
+    start: 0x96B470
+    # vram:
+  - name: ovl_0096B470_reloc
+    type: bin
+    start: 0x96C2B0
+    # vram:
+
+  - name: ovl_0096C3A0
+    type: bin
+    start: 0x96C3A0
+    # vram:
+  - name: ovl_0096C3A0_reloc
+    type: bin
+    start: 0x96CC00
+    # vram:
+
+  - name: ovl_0096CCF0
+    type: bin
+    start: 0x96CCF0
+    # vram:
+  - name: ovl_0096CCF0_reloc
+    type: bin
+    start: 0x96D1F0
+    # vram:
+
+  - name: ovl_0096D250
+    type: bin
+    start: 0x96D250
+    # vram:
+  - name: ovl_0096D250_reloc
+    type: bin
+    start: 0x96E7D0
+    # vram:
+
+  - name: ovl_0096E8E0
+    type: bin
+    start: 0x96E8E0
+    # vram:
+  - name: ovl_0096E8E0_reloc
+    type: bin
+    start: 0x96E9C0
+    # vram:
+
+  - name: ovl_0096E9F0
+    type: bin
+    start: 0x96E9F0
+    # vram:
+  - name: ovl_0096E9F0_reloc
+    type: bin
+    start: 0x96EB00
+    # vram:
+
+  - name: ovl_0096EB20
+    type: bin
+    start: 0x96EB20
+    # vram:
+  - name: ovl_0096EB20_reloc
+    type: bin
+    start: 0x96F290
+    # vram:
+
+  - name: ovl_0096F360
+    type: bin
+    start: 0x96F360
+    # vram:
+  - name: ovl_0096F360_reloc
+    type: bin
+    start: 0x96F3B0
+    # vram:
+
+  - name: ovl_0096F3D0
+    type: bin
+    start: 0x96F3D0
+    # vram:
+  - name: ovl_0096F3D0_reloc
+    type: bin
+    start: 0x96F420
+    # vram:
+
+  - name: ovl_0096F440
+    type: bin
+    start: 0x96F440
+    # vram:
+  - name: ovl_0096F440_reloc
+    type: bin
+    start: 0x96F490
+    # vram:
+
+  - name: ovl_0096F4B0
+    type: bin
+    start: 0x96F4B0
+    # vram:
+  - name: ovl_0096F4B0_reloc
+    type: bin
+    start: 0x96F500
+    # vram:
+
+  - name: ovl_0096F520
+    type: bin
+    start: 0x96F520
+    # vram:
+  - name: ovl_0096F520_reloc
+    type: bin
+    start: 0x96F570
+    # vram:
+
+  - name: ovl_0096F590
+    type: bin
+    start: 0x96F590
+    # vram:
+  - name: ovl_0096F590_reloc
+    type: bin
+    start: 0x96F5E0
+    # vram:
+
+  - name: ovl_0096F600
+    type: bin
+    start: 0x96F600
+    # vram:
+  - name: ovl_0096F600_reloc
+    type: bin
+    start: 0x96FAA0
+    # vram:
+
+  - name: ovl_0096FAE0
+    type: bin
+    start: 0x96FAE0
+    # vram:
+  - name: ovl_0096FAE0_reloc
+    type: bin
+    start: 0x96FE40
+    # vram:
+
+  - name: ovl_0096FE70
+    type: bin
+    start: 0x96FE70
+    # vram:
+  - name: ovl_0096FE70_reloc
+    type: bin
+    start: 0x9701D0
+    # vram:
+
+  - name: ovl_00970200
+    type: bin
+    start: 0x970200
+    # vram:
+  - name: ovl_00970200_reloc
+    type: bin
+    start: 0x970820
+    # vram:
+
+  - name: ovl_00970880
+    type: bin
+    start: 0x970880
+    # vram:
+  - name: ovl_00970880_reloc
+    type: bin
+    start: 0x9708F0
+    # vram:
+
+  - name: ovl_00970920
+    type: bin
+    start: 0x970920
+    # vram:
+  - name: ovl_00970920_reloc
+    type: bin
+    start: 0x9754A0
+    # vram:
 
   - name: segment_009757E0
     type: bin
