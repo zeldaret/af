@@ -84,8 +84,8 @@ void DoRelocation(void *allocatedRamAddress, OverlayRelocationSection *ovlRelocs
 
         switch (RELOC_TYPE_MASK(reloc)) {
             case R_MIPS_32 << RELOC_TYPE_SHIFT:
-                // Handles 32-bit address relocation, used for things such as jump tables
-                // and pointers in data. Just relocate the full address.
+                // Handles 32-bit address relocation, used for things such as jump tables and pointers in data.
+                // Just relocate the full address.
 
                 // Check address is valid for relocation
                 if ((*relocDataP & 0x0F000000) == 0) {
@@ -99,8 +99,8 @@ void DoRelocation(void *allocatedRamAddress, OverlayRelocationSection *ovlRelocs
 
             case R_MIPS_26 << RELOC_TYPE_SHIFT:
                 // Handles 26-bit address relocation, used for jumps and jals.
-                // Extract the address from the target field of the J-type MIPS
-                // instruction. Relocate the address and update the instruction.
+                // Extract the address from the target field of the J-type MIPS instruction.
+                // Relocate the address and update the instruction.
                 if (1) {
                     relocOffset = PHYS_TO_K0(MIPS_JUMP_TARGET(*relocDataP)) - (uintptr_t)vramStart;
                     unrelocatedAddress = PHYS_TO_K0(MIPS_JUMP_TARGET(*relocDataP));
@@ -112,9 +112,8 @@ void DoRelocation(void *allocatedRamAddress, OverlayRelocationSection *ovlRelocs
 
             case R_MIPS_HI16 << RELOC_TYPE_SHIFT:
                 // Handles relocation for a hi/lo pair, part 1.
-                // Store the reference to the LUI instruction (hi) using the `rt` register
-                // of the instruction. This will be updated later in the `R_MIPS_LO16`
-                // section.
+                // Store the reference to the LUI instruction (hi) using the `rt` register of the instruction.
+                // This will be updated later in the `R_MIPS_LO16` section.
 
                 luiRefs[MIPS_REG_RT(*relocDataP)] = relocDataP;
                 luiVals[MIPS_REG_RT(*relocDataP)] = *relocDataP;
@@ -122,11 +121,10 @@ void DoRelocation(void *allocatedRamAddress, OverlayRelocationSection *ovlRelocs
 
             case R_MIPS_LO16 << RELOC_TYPE_SHIFT:
                 // Handles relocation for a hi/lo pair, part 2.
-                // Grab the stored LUI (hi) from the `R_MIPS_HI16` section using the `rs`
-                // register of the instruction. The full address is calculated, relocated,
-                // and then used to update both the LUI and lo instructions. If the lo
-                // part is negative, add 1 to the LUI value. Note: The lo instruction is
-                // assumed to have a signed immediate.
+                // Grab the stored LUI (hi) from the `R_MIPS_HI16` section using the `rs` register of the instruction.
+                // The full address is calculated, relocated, and then used to update both the LUI and lo instructions.
+                // If the lo part is negative, add 1 to the LUI value.
+                // Note: The lo instruction is assumed to have a signed immediate.
 
                 luiInstRef = luiRefs[MIPS_REG_RS(*relocDataP)];
                 regValP = &luiVals[MIPS_REG_RS(*relocDataP)];
