@@ -293,13 +293,19 @@ D_8003C590_jp = 0x8003C590; //
 
 RO_STR_8003D180_jp = 0x8003D180; // type:asciz
 RO_STR_8003D188_jp = 0x8003D188; // type:asciz
+
 RO_STR_8003D190_jp = 0x8003D190; // type:asciz
 RO_STR_8003D19C_jp = 0x8003D19C; // type:asciz
 RO_FLT_8003D1A4_jp = 0x8003D1A4; // type:f32
+
 RO_STR_8003D1B0_jp = 0x8003D1B0; // type:asciz
 RO_STR_8003D1B4_jp = 0x8003D1B4; // type:asciz
+
+RO_STR_8003D1D0_jp = 0x8003D1D0; // type:asciz
+RO_STR_8003D1D4_jp = 0x8003D1D4; // type:asciz
 RO_STR_8003D1D8_jp = 0x8003D1D8; // type:asciz
 RO_STR_8003D1EC_jp = 0x8003D1EC; // type:asciz
+RO_STR_8003D200_jp = 0x8003D200; // type:asciz
 RO_STR_8003D214_jp = 0x8003D214; // type:asciz
 RO_STR_8003D218_jp = 0x8003D218; // type:asciz
 RO_STR_8003D22C_jp = 0x8003D22C; // type:asciz
@@ -419,7 +425,7 @@ RO_STR_8003DBE0_jp = 0x8003DBE0; // type:asciz
 RO_STR_8003DC08_jp = 0x8003DC08; // type:asciz
 RO_STR_8003DC14_jp = 0x8003DC14; // type:asciz
 RO_STR_8003DC20_jp = 0x8003DC20; // type:asciz
-RO_8003DC24_jp = 0x8003DC24; //
+RO_STR_8003DC24_jp = 0x8003DC24; // type:asciz
 RO_STR_8003DC48_jp = 0x8003DC48; // type:asciz
 RO_STR_8003DC80_jp = 0x8003DC80; // type:asciz
 RO_STR_8003DCB4_jp = 0x8003DCB4; // type:asciz
@@ -494,6 +500,10 @@ RO_8003E8E0_jp = 0x8003E8E0; // type:u8
 RO_DBL_8003E8E8_jp = 0x8003E8E8; // type:f64
 RO_8003E8F0_jp = 0x8003E8F0; // type:s64
 RO_8003E8F8_jp = 0x8003E8F8; // type:s64
+
+gBuildTeam = 0x8003E900; // type:asciz
+gBuildDate = 0x8003E924; // type:asciz
+gBuildMakeOption = 0x8003E938; // type:asciz
 
 // .bss
 
