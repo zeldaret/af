@@ -85,7 +85,7 @@ segments:
       - [0x005BE0, asm, boot/005BE0]
       - [0x005E30, asm, boot/005E30]
       - [0x006BA0, asm, boot/006BA0]
-      - [0x006D10, c, boot/load_fragment2]
+      - [0x006D10, c, boot/loadfragment2]
       - [0x007000, asm, boot/007000]
       - [0x007060, asm, boot/007060]
       - [0x007530, asm, boot/007530]
@@ -265,7 +265,7 @@ segments:
       - [0x016EF0, data, libultra/rsp/rspboot]
 
       - [0x016FC0, data, boot/016FC0]
-      - [0x017950, .data, boot/load_fragment2] # Not 100% sure correct address as data is unused
+      - [0x017950, .data, boot/loadfragment2] # Not 100% sure correct address as data is unused
       - [0x017960, data, boot/017960]
 
       - [0x018580, rodata, boot/018580]
