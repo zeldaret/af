@@ -81,7 +81,7 @@ void DoRelocation(void *allocatedRamAddr, OverlayRelocationSection *ovlRelocs, v
     u32 luiVals[32];
     u32 *luiInstRef;
     UNUSED u32 dbg;
-    size_t relocOffset = 0;
+    ptrdiff_t relocOffset = 0;
     u32 relocatedValue = 0;
     UNUSED uintptr_t unrelocatedAddress = 0;
     uintptr_t relocatedAddress = 0;
