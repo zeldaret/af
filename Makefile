@@ -17,7 +17,7 @@ WERROR ?= 0
 KEEP_MDEBUG ?= 0
 # Check code syntax with host compiler
 RUN_CC_CHECK ?= 1
-CC_CHECK_COMP ?= clang
+CC_CHECK_COMP ?= gcc
 # Dump build object files
 OBJDUMP_BUILD ?= 1
 
