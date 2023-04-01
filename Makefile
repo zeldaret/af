@@ -17,9 +17,9 @@ WERROR ?= 0
 KEEP_MDEBUG ?= 0
 # Check code syntax with host compiler
 RUN_CC_CHECK ?= 1
-CC_CHECK_COMP ?= clang
+CC_CHECK_COMP ?= gcc
 # Dump build object files
-OBJDUMP_BUILD ?= 1
+OBJDUMP_BUILD ?= 0
 
 # Set prefix to mips binutils binaries (mips-linux-gnu-ld => 'mips-linux-gnu-') - Change at your own risk!
 # In nearly all cases, not having 'mips-linux-gnu-*' binaries on the PATH is indicative of missing dependencies
