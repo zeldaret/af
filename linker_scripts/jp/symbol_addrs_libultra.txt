@@ -172,6 +172,7 @@ guRotate = 0x80035E54; // type:func size:0x4C (rotate, true)
 __osSetGlobalIntMask = 0x80035EA0; // type:func size:0x4C (setglobalintmask, true)
 osAiSetFrequency = 0x80035EF0; // type:func size:0x144 (aisetfreq, true)
 __osGetActiveQueue = 0x80036040; // type:func
+func_80036050_jp = 0x80036050; // type:func
 guNormalize = 0x80036060; // type:func size:0x54 (normalize, true)
 __osSetCompare = 0x800360C0; // type:func size:0xC (setcompare, true)
 
@@ -306,6 +307,7 @@ __osPiDevMgr = 0x8003CE80; // size:0x1C (epidma, false)
 __osPiTable = 0x8003CE9C; // size:0x4 (cartrominit, false)
 __osCurrentHandle = 0x8003CEA0; // (epirawdma, false)
 __osPiAccessQueueEnabled = 0x8003CEB0; // size:0x4 (pimgr, false)
+D_8003CEC0_jp = 0x8003CEC0; //
 __osPfsInodeCacheChannel = 0x8003CF10; // size:0x4 (contpfs, true)
 __osPfsInodeCacheBank = 0x8003CF14; // type:s8 size:0x1 (contpfs, true)
 __osPreNMI = 0x8003CF20; // size:0x4 (seteventmesg, true)

@@ -17,6 +17,7 @@ options:
     - linker_scripts/jp/symbol_addrs_boot.txt
     - linker_scripts/jp/symbol_addrs_libultra.txt
     - linker_scripts/jp/symbol_addrs_code.txt
+    - linker_scripts/jp/symbol_addrs_overlays.txt
     - linker_scripts/jp/ignored_addresses.txt
   reloc_addrs_path:
     - relocs/reloc_addrs.jp.txt
