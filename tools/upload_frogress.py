@@ -13,7 +13,7 @@ import progress
 
 
 BASE_URL = "https://progress.deco.mp"
-PROJECT = "af"
+PROJECT = "animalforest"
 
 def uploadProgressMain():
     parser = argparse.ArgumentParser()
