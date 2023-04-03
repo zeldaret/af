@@ -4,6 +4,11 @@ D_00000000 = 0x00000000; // ignore:true
 
 D_0000FFFF = 0x0000FFFF; // ignore:true
 
+D_00010004 = 0x00010004; // ignore:true
+D_00010010 = 0x00010010; // ignore:true
+D_00010044 = 0x00010044; // ignore:true
+D_00040400 = 0x00040400; // ignore:true
+
 D_01000000 = 0x01000000; // ignore:true
 
 D_80000000 = 0x80000000; // ignore:true
