@@ -1,0 +1,14 @@
+  - name: header
+    type: header
+    start: 0x0
+
+  - name: ipl3
+    type: bin
+    start: 0x40
+
+  - name: entry
+    type: code
+    start: 0x001000
+    vram: 0x80025C00
+    subsegments:
+      - [0x1000, hasm, entry/entry]
