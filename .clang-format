@@ -2,7 +2,7 @@ IndentWidth: 4
 Language: Cpp
 UseTab: Never
 ColumnLimit: 120
-PointerAlignment: Right
+PointerAlignment: Left
 BreakBeforeBraces: Attach
 SpaceAfterCStyleCast: false
 Cpp11BracedListStyle: false
