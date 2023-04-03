@@ -1,6 +1,6 @@
 # Animal Forest ![Code jp Progress]
 
-[Code jp Progress]: https://img.shields.io/endpoint?label=Code%20jp&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fdrmario64%2Fjp%2Fcode%2F%3Fmode%3Dshield%26measure%3Dall
+[Code jp Progress]: https://img.shields.io/endpoint?label=Code%20jp&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fanimalforest%2Fjp%2Fcode%2F%3Fmode%3Dshield%26measure%3Dall
 
 ```diff
 - WARNING! -
