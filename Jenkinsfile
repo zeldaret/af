@@ -50,7 +50,6 @@ pipeline {
                 branch 'main'
             }
             steps {
-                sh 'python3 install requests'
                 sh 'python3 ./tools/upload_frogress.py jp --apikey $FROGRESS_KEY'
             }
         }
