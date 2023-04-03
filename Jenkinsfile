@@ -3,6 +3,10 @@ pipeline {
         label 'af'
     }
 
+    environment {
+        FROGRESS_KEY = credentials('af_frogress_key')
+    }
+
     options {
         ansiColor('xterm')
     }
@@ -39,6 +43,14 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'bash -c "make -j uncompressed"'
+            }
+        }
+        stage('Upload to Frogress') {
+            when {
+                branch 'main'
+            }
+            steps {
+                sh 'python3 ./tools/upload_frogress.py jp --apikey $FROGRESS_KEY'
             }
         }
     }
