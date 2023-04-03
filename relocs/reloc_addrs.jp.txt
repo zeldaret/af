@@ -1,0 +1,13 @@
+// Try to keep the list sorted by rom address
+
+// ovl_0082CED0 tries to load a branch target from code as a half.
+// It is suspected to be a negative addend to an unknown symbol.
+// Use the first data symbol of code in the meanwhile
+rom:0x82D48C symbol:D_80100C30_jp reloc:MIPS_HI16 addend:-0x7D04
+rom:0x82D4A0 symbol:D_80100C30_jp reloc:MIPS_LO16 addend:-0x7D04
+
+// ovl_008ADF40 tries to load a branch target from another overlay.
+// It is suspected to be a negative addend to an unknown symbol.
+// Use the first data symbol of this overlay in the meanwhile
+rom:0x8B136C symbol:D_809CE130_jp reloc:MIPS_HI16 addend:-0xB560
+rom:0x8B137C symbol:D_809CE130_jp reloc:MIPS_LO16 addend:-0xB560
