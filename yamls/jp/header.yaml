@@ -1,0 +1,52 @@
+name: Doubutsunomori (Japanese)
+sha1: 3ee1f866eb08c0ce57a30e09f0c8b0a16a760c8f
+options:
+  basename: animalforest
+  target_path: baserom_uncompressed.jp.z64
+  ld_script_path: linker_scripts/jp/animalforest.ld
+  base_path: .
+  compiler: IDO
+  find_file_boundaries: True
+  header_encoding: ASCII
+  platform: n64
+
+  undefined_funcs_auto_path: linker_scripts/jp/auto/undefined_funcs_auto.ld
+  undefined_syms_auto_path: linker_scripts/jp/auto/undefined_syms_auto.ld
+
+  symbol_addrs_path:
+    - linker_scripts/jp/symbol_addrs_boot.txt
+    - linker_scripts/jp/symbol_addrs_libultra.txt
+    - linker_scripts/jp/symbol_addrs_code.txt
+    - linker_scripts/jp/symbol_addrs_overlays.txt
+    - linker_scripts/jp/ignored_addresses.txt
+  reloc_addrs_path:
+    - relocs/reloc_addrs.jp.txt
+
+  asm_path: asm/jp
+  src_path: src
+  asset_path: bin/jp
+
+  build_path: build
+
+  extensions_path: tools/splat_ext
+  mips_abi_float_regs: o32
+
+  do_c_func_detection: True
+  o_as_suffix: True
+  gfx_ucode: f3dex2
+  mnemonic_ljust: 12
+  rom_address_padding: True
+  dump_symbols: True
+  generated_c_preamble: |
+    #include "global.h"
+  asm_inc_header: ""
+  use_legacy_include_asm: False
+  create_asm_dependencies: True
+  asm_function_macro: glabel
+  asm_jtbl_label_macro: jlabel
+  asm_data_macro: dlabel
+  include_macro_inc: False
+  libultra_symbols: True
+  hardware_regs: True
+
+segments:
