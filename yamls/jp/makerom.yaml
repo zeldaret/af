@@ -4,5 +4,5 @@
     vram: 0x80024C00
     subsegments:
       - [0x000000, header, makerom/header]
-      - [0x001000, bin, makerom/ipl3]
+      - [0x000040, bin, makerom/ipl3]
       - [0x001000, hasm, makerom/entry]

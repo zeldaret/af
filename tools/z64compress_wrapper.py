@@ -37,7 +37,11 @@ def getCompressedSegmentIndices(yamlPath: Path):
     for segment in yamlObj["segments"]:
         if not isinstance(segment, dict):
             break
-        # print(segment)
+
+        notInDma = segment.get("notdma", False)
+        if notInDma:
+            continue
+
         shouldCompress = segment.get("compress", False)
         if shouldCompress:
             indices.append(currentIndex)
@@ -116,7 +120,6 @@ def main():
 
 
     print(command)
-
     try:
         subprocess.check_call(command, shell=True)
     except subprocess.CalledProcessError as e:
