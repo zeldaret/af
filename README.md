@@ -71,3 +71,4 @@ The licensing of this repository does not cover subrepos, namely:
 * `tools/fado`
 * `tools/splat`
 * `lib/ultralib`
+* `tools/z64compress`
