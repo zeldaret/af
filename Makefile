@@ -20,6 +20,8 @@ RUN_CC_CHECK ?= 1
 CC_CHECK_COMP ?= gcc
 # Dump build object files
 OBJDUMP_BUILD ?= 0
+# Number of threads to compress with
+N_THREADS ?= $(shell nproc)
 
 # Set prefix to mips binutils binaries (mips-linux-gnu-ld => 'mips-linux-gnu-') - Change at your own risk!
 # In nearly all cases, not having 'mips-linux-gnu-*' binaries on the PATH is indicative of missing dependencies
@@ -155,6 +157,11 @@ else
     OBJCOPY_BIN = @:
 endif
 
+# rom compression flags
+COMPFLAGS := --threads $(N_THREADS)
+ifeq ($(NON_MATCHING),0)
+    COMPFLAGS += --matching
+endif
 
 #### Files ####
 
@@ -198,12 +205,11 @@ ifneq ($(COMPARE),0)
 	@md5sum -c $(TARGET)_uncompressed.$(VERSION).md5
 endif
 
-# TODO
-# compressed: $(ROMC)
-# ifneq ($(COMPARE),0)
-# 	@md5sum $(ROMC)
-# 	@md5sum -c $(TARGET).$(VERSION).md5
-# endif
+compressed: $(ROMC)
+ifneq ($(COMPARE),0)
+	@md5sum $(ROMC)
+	@md5sum -c $(TARGET).$(VERSION).md5
+endif
 
 clean:
 	$(RM) -r $(BUILD_DIR)/asm $(BUILD_DIR)/bin $(BUILD_DIR)/src $(ROM) $(ROMC) $(ELF)
@@ -247,6 +253,9 @@ init:
 
 $(ROM): $(ELF)
 	$(OBJCOPY) -O binary --pad-to=0x1914000 --gap-fill=0xFF $< $@
+
+$(ROMC): $(ROM)
+	python3 tools/z64compress_wrapper.py $(COMPFLAGS) $< $@ $(ELF) $(SPLAT_YAML)
 
 # TODO: avoid using auto/undefined
 $(ELF): $(O_FILES) $(LD_SCRIPT) $(BUILD_DIR)/linker_scripts/$(VERSION)/hardware_regs.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/undefined_syms.ld $(BUILD_DIR)/linker_scripts/common_undef_syms.ld $(BUILD_DIR)/linker_scripts/libultra_syms.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_syms_auto.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_funcs_auto.ld

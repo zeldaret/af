@@ -3,6 +3,7 @@
     start: 0x675720
     vram: 0x80051A80
     follows_vram: dmadata
+    compress: True
     bss_size: 0x36C90
     subsegments:
       - [0x675720, asm, code/c_keyframe]

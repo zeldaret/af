@@ -1,14 +1,8 @@
-  - name: header
-    type: header
-    start: 0x0
-
-  - name: ipl3
-    type: bin
-    start: 0x40
-
-  - name: entry
+  - name: makerom
     type: code
-    start: 0x001000
-    vram: 0x80025C00
+    start: 0x000000
+    vram: 0x80024C00
     subsegments:
-      - [0x1000, hasm, entry/entry]
+      - [0x000000, header, makerom/header]
+      - [0x001000, bin, makerom/ipl3]
+      - [0x001000, hasm, makerom/entry]

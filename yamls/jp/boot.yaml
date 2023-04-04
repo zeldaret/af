@@ -2,7 +2,7 @@
     type: code
     start: 0x001060
     vram: 0x80025C60
-    follows_vram: entry
+    follows_vram: makerom
     bss_size: 0x5D50
     subsegments:
       - [0x001060, c, boot/boot_main]
