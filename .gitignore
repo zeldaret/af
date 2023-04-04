@@ -10,6 +10,8 @@ linker_scripts/jp/animalforest.ld
 linker_scripts/cn/animalforest.ld
 *_auto.ld
 animalforest.ld
+animalforest.jp.yaml
+animalforest.cn.yaml
 
 __pycache__/
 .make_options

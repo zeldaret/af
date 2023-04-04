@@ -17,9 +17,9 @@ WERROR ?= 0
 KEEP_MDEBUG ?= 0
 # Check code syntax with host compiler
 RUN_CC_CHECK ?= 1
-CC_CHECK_COMP ?= clang
+CC_CHECK_COMP ?= gcc
 # Dump build object files
-OBJDUMP_BUILD ?= 1
+OBJDUMP_BUILD ?= 0
 
 # Set prefix to mips binutils binaries (mips-linux-gnu-ld => 'mips-linux-gnu-') - Change at your own risk!
 # In nearly all cases, not having 'mips-linux-gnu-*' binaries on the PATH is indicative of missing dependencies
@@ -95,6 +95,7 @@ OBJDUMP         := $(MIPS_BINUTILS_PREFIX)objdump
 CPP             := cpp
 ICONV           := iconv
 ASM_PROC        := python3 tools/asm-processor/build.py
+CAT             := cat
 
 ASM_PROC_FLAGS  := --input-enc=utf-8 --output-enc=euc-jp --convert-statics=global-with-filename
 
@@ -221,6 +222,7 @@ setup:
 
 extract:
 	$(RM) -r asm/$(VERSION) bin/$(VERSION)
+	$(CAT) yamls/$(VERSION)/header.yaml yamls/$(VERSION)/makerom.yaml yamls/$(VERSION)/boot.yaml yamls/$(VERSION)/code.yaml yamls/$(VERSION)/overlays.yaml yamls/$(VERSION)/assets.yaml > $(SPLAT_YAML)
 	$(SPLAT) $(SPLAT_YAML)
 
 diff-init: all

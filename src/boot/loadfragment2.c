@@ -8,8 +8,6 @@
 #include "dma.h"
 #include "load.h"
 
-s32 gOverlayLogSeverity = 0;
-
 void DoRelocation(void *allocatedRamAddr, OverlayRelocationSection *ovlRelocs, void *vramStart);
 
 s32 Overlay_Load(void *vromStart, void *vromEnd, void *ovlStart, void *ovlEnd, void *vramStart, void *vramEnd,
