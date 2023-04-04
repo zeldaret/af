@@ -5,8 +5,8 @@
  *
  */
 #include "global.h"
-#include "dma.h"
 #include "load.h"
+#include "z_std_dma.h"
 
 void DoRelocation(void *allocatedRamAddr, OverlayRelocationSection *ovlRelocs, void *vramStart);
 
