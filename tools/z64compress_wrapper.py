@@ -36,7 +36,7 @@ def getCompressedSegmentIndices(yamlPath: Path):
     currentIndex = 0
     for segment in yamlObj["segments"]:
         if not isinstance(segment, dict):
-            break
+            continue
 
         notInDma = segment.get("notdma", False)
         if notInDma:

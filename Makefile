@@ -252,7 +252,7 @@ init:
 #### Various Recipes ####
 
 $(ROM): $(ELF)
-	$(OBJCOPY) -O binary --pad-to=0x1914000 --gap-fill=0xFF $< $@
+	$(OBJCOPY) -O binary --pad-to=0x1914000 --gap-fill=0x00 $< $@
 
 $(ROMC): $(ROM)
 	python3 tools/z64compress_wrapper.py $(COMPFLAGS) $< $@ $(ELF) $(SPLAT_YAML)
