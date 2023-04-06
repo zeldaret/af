@@ -253,6 +253,7 @@ init:
 
 $(ROM): $(ELF)
 	$(OBJCOPY) -O binary --pad-to=0x1914000 --gap-fill=0x00 $< $@
+# TODO: update rom header checksum
 
 $(ROMC): $(ROM)
 	python3 tools/z64compress_wrapper.py $(COMPFLAGS) $< $@ $(ELF) $(SPLAT_YAML)
