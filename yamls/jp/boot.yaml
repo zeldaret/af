@@ -239,7 +239,6 @@
     vram: 0x80044690
     follows_vram: boot
     subsegments:
-      - [0x019D40, c, dmadata/dmadata]
       - [0x019D40, .data, dmadata/dmadata]
 
   - name: segment_027130
