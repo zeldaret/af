@@ -48,5 +48,6 @@ options:
   include_macro_inc: False
   libultra_symbols: True
   hardware_regs: True
+  segment_end_before_align: True
 
 segments:
