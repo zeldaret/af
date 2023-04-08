@@ -197,7 +197,7 @@ build/src/%.o: CC := $(ASM_PROC) $(ASM_PROC_FLAGS) $(CC) -- $(AS) $(ASFLAGS) --
 
 #### Main Targets ###
 
-all: uncompressed
+all: uncompressed compressed
 
 uncompressed: $(ROM)
 ifneq ($(COMPARE),0)
@@ -244,7 +244,7 @@ init:
 	$(MAKE) diff-init
 
 .PHONY: all compressed uncompressed clean distclean setup extract diff-init init
-.DEFAULT_GOAL := all
+.DEFAULT_GOAL := uncompressed
 # Prevent removing intermediate files
 .SECONDARY:
 
