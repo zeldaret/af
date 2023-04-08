@@ -65,7 +65,7 @@ func_800301D0_jp = 0x800301D0; // type:func
 
 __osSetSR = 0x80030230; // type:func size:0x10 (setsr, true)
 __osGetSR = 0x80030240; // type:func size:0xC (getsr, true)
-func_80030250_jp = 0x80030250; // type:func
+osViGetNextFramebuffer = 0x80030250; // type:func size:0x3C (vigetnextframebuf, true)
 
 guPerspectiveF = 0x80030290; // type:func size:0x230 (perspective, true)
 guPerspective = 0x800304C0; // type:func size:0x58 (perspective, true)
@@ -276,7 +276,7 @@ osEepromWrite = 0x8003B2F0; // type:func size:0x1C4 (conteepwrite, true)
 __osPackEepWriteData = 0x8003B4B4; // type:func
 
 __osEepStatus = 0x8003B560; // type:func size:0x1A8 (conteepwrite, true)
-func_8003B710_jp = 0x8003B710; // type:func
+osViGetCurrentFramebuffer = 0x8003B710; // type:func size:0x3C (vigetcurrframebuf, true)
 __osSpSetPc = 0x8003B750; // type:func size:0x2C (spsetpc, true)
 osFlashReadArray = 0x8003B780; // type:func size:0x194 (flashreadarray, true)
 __osFlashGetAddr = 0x8003B920; // type:func size:0x24 (flashgetaddr, true)

@@ -52,7 +52,7 @@
       - [0x00A880, asm, libultra/thread] # c
       - [0x00A8C0, hasm, libultra/bzero]
       - [0x00A960, asm, libultra/controller] # c
-      - [0x00AC40, asm, libultra/siacs]
+      - [0x00AC40, asm, libultra/siacs] # c
       - [0x00AD00, asm, libultra/flashsectorerase] # c
       - [0x00AE50, asm, libultra/createthread] # c
       - [0x00AFA0, asm, libultra/contreaddata] # c
@@ -60,9 +60,9 @@
       - [0x00B200, hasm, libultra/writebackdcache]
       - [0x00B280, asm, libultra/initialize] # c
       - [0x00B5D0, asm, boot/00B5D0] # PADDING
-      - [0x00B630, hasm, libultra/setsr]
-      - [0x00B640, hasm, libultra/getsr]
-      - [0x00B650, asm, boot/00B650]
+      - [0x00B630, hasm, libultra/setsr] # hasm
+      - [0x00B640, hasm, libultra/getsr] # hasm
+      - [0x00B650, asm, libultra/vigetnextframebuf] # c
       - [0x00B690, asm, libultra/perspective] # c
       - [0x00B920, asm, libultra/sprawdma] # c
       - [0x00B9B0, asm, libultra/sirawdma] # c
@@ -87,13 +87,13 @@
       - [0x00D340, asm, libultra/devmgr] # c
       - [0x00D820, asm, libultra/contpfs] # c
       - [0x00E3A0, hasm, libultra/getcount]
-      - [0x00E3B0, asm, boot/00E3B0]
+      - [0x00E3B0, asm, boot/00E3B0] # PADDING
       - [0x00E3C0, asm, libultra/mtxl2f] # c
       - [0x00E430, asm, libultra/flashreadstatus] # c
       - [0x00E4C0, asm, libultra/getmemsize] # c
       - [0x00E5E0, asm, libultra/pfssearchfile] # c
       - [0x00E7B0, asm, libultra/seteventmesg] # c
-      - [0x00E870, hasm, libultra/sqrtf]
+      - [0x00E870, hasm, libultra/sqrtf] # hasm
       - [0x00E880, asm, libultra/afterprenmi] # c
       - [0x00E8A0, asm, libultra/contquery] # c
       - [0x00E940, asm, libultra/lookathil] # c
@@ -117,7 +117,7 @@
       - [0x010AD0, asm, libultra/position] # c
       - [0x010CE0, asm, libultra/epirawdma] # c
       - [0x010EC0, asm, libultra/sptaskyielded] # c
-      - [0x010F20, hasm, libultra/bcmp]
+      - [0x010F20, hasm, libultra/bcmp] # hasm
       - [0x011040, asm, libultra/gettime] # c
       - [0x0110D0, asm, libultra/rotate] # c
       - [0x0112A0, asm, libultra/setglobalintmask] # c
@@ -127,7 +127,7 @@
       - [0x011460, asm, libultra/normalize] # c
       - [0x0114C0, hasm, libultra/setcompare]
       - [0x0114D0, asm, libultra/aigetstat] # c
-      - [0x0114E0, hasm, libultra/bcopy]
+      - [0x0114E0, hasm, libultra/bcopy] # hasm
       - [0x0117F0, asm, libultra/resetglobalintmask] # c
       - [0x011850, asm, libultra/pfsdeletefile] # c
       - [0x011AC0, asm, libultra/ortho] # c
@@ -151,8 +151,8 @@
       - [0x013040, asm, libultra/us2dex] # c
       - [0x0131C0, asm, libultra/pfsselectbank] # c
       - [0x013240, asm, libultra/contsetch] # c
-      - [0x0132A0, hasm, libultra/setfpccsr]
-      - [0x0132B0, hasm, libultra/getfpccsr]
+      - [0x0132A0, hasm, libultra/setfpccsr] # hasm
+      - [0x0132B0, hasm, libultra/getfpccsr] # hasm
       - [0x0132C0, asm, libultra/pfsfilestate] # c
       - [0x0134A0, asm, libultra/pfsinitpak] # c
       - [0x0137B0, asm, libultra/pfschecker] # c
@@ -162,7 +162,7 @@
       - [0x014220, asm, libultra/yieldthread] # c
       - [0x014270, asm, boot/014270] # PADDING
       - [0x014280, asm, libultra/translate] # c
-      - [0x014350, hasm, libultra/getcause]
+      - [0x014350, hasm, libultra/getcause] # hasm
       - [0x014360, asm, libultra/contramwrite] # c
       - [0x0145B0, asm, libultra/contramread] # c
       - [0x0147E0, asm, libultra/crc] # c
@@ -176,9 +176,9 @@
       - [0x015BE0, asm, libultra/spgetstat] # c
       - [0x015BF0, asm, boot/015BF0] # PADDING
       - [0x015C00, asm, libultra/vimgr] # c
-      - [0x015F10, asm, libultra/vigetcurrentcontext]
-      - [0x015F20, hasm, libultra/writebackdcacheall]
-      - [0x015F50, asm, libultra/getcurrfaultthread]
+      - [0x015F10, asm, libultra/vigetcurrentcontext] # c
+      - [0x015F20, hasm, libultra/writebackdcacheall] # hasm
+      - [0x015F50, asm, libultra/getcurrfaultthread] # c
       - [0x015F60, asm, libultra/mtxf2l] # c
       - [0x015FD0, asm, libultra/startthread] # c
       - [0x016120, asm, libultra/llcvt] # c
@@ -186,11 +186,11 @@
       - [0x016380, asm, libultra/visetxscale] # c
       - [0x016490, asm, libultra/conteepread] # c
       - [0x0166F0, asm, libultra/conteepwrite] # c
-      - [0x016B10, asm, boot/016B10]
+      - [0x016B10, asm, libultra/vigetcurrframebuf] # c
       - [0x016B50, asm, libultra/spsetpc] # c
       - [0x016B80, asm, libultra/flashreadarray] # c
       - [0x016D20, asm, libultra/flashgetaddr] # c
-      - [0x016D50, hasm, libultra/setwatchlo]
+      - [0x016D50, hasm, libultra/setwatchlo] # hasm
 
       # libido?
       - [0x016D60, asm, boot/016D60]
