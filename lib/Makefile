@@ -47,7 +47,18 @@ RELEASE_DEFINES := -DNDEBUG -D_FINALROM
 
 #### Files ####
 
-SRC_DIRS      := $(shell find ultralib/src -type d -not -path "ultralib/src/voice" -not -path "ultralib/src/audio")
+SRC_DIRS      := $(shell find ultralib/src -type d \
+					-not -path "ultralib/src/audio" \
+					-not -path "ultralib/src/debug" \
+					-not -path "ultralib/src/error" \
+					-not -path "ultralib/src/gio" \
+					-not -path "ultralib/src/gt" \
+					-not -path "ultralib/src/host" \
+					-not -path "ultralib/src/log" \
+					-not -path "ultralib/src/rg" \
+					-not -path "ultralib/src/rmon" \
+					-not -path "ultralib/src/sched" \
+					-not -path "ultralib/src/voice")
 
 C_FILES       := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 S_FILES       := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.s))
