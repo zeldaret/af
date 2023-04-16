@@ -201,11 +201,14 @@
       - [0x016E20, asm, boot/016E20]
       - [0x016E60, asm, boot/016E60]
 
-      - [0x016EF0, data, libultra/rsp/rspboot]
+
+      - [0x016EF0, data, boot/rsp/rspboot]
 
       - [0x016FC0, data, boot/016FC0]
       - [0x0170B0, data, boot/gfxprint]
       - [0x017960, data, boot/017960] # boot/007060 starts around here, but no idea where it ends
+
+      # libultra
       - [0x0179A0, .data, ../lib/ultralib/src/vimodes/vimodepallan1]
       - [0x0179F0, .data, ../lib/ultralib/src/gu/sins]
       - [0x0181F0, .data, ../lib/ultralib/src/os/exceptasm]
@@ -243,6 +246,8 @@
       - [0x0196B0, rodata, boot/0196B0]
       - [0x0196C0, rodata, boot/0196C0]
       - [0x019710, rodata, boot/019710]
+
+      # libultra
       - [0x0199D0, .rodata, ../lib/ultralib/src/os/setintmask]
       - [0x019A50, .rodata, ../lib/ultralib/src/gu/sinf]
       - [0x019AA0, .rodata, ../lib/ultralib/src/os/exceptasm]
@@ -254,12 +259,16 @@
       - [0x019C80, .rodata, ../lib/ultralib/src/gu/libm_vals]
       - [0x019C90, .rodata, ../lib/ultralib/src/libc/xldtob]
       - [0x019CF0, .rodata, ../lib/ultralib/src/libc/llcvt]
+
       - [0x019D00, rodata, boot/build]
+
 
       - { start: 0x019D40, type: bss, vram: 0x8003E940, name: boot/8003E940 }
       - { start: 0x019D40, type: bss, vram: 0x800419A0, name: boot/gfxprint }
       - { start: 0x019D40, type: bss, vram: 0x800419B0, name: boot/mathf }
       - { start: 0x019D40, type: bss, vram: 0x800419C0, name: boot/800419C0 }
+
+      # libultra
       - { start: 0x019D40, type: .bss, vram: 0x80041A10, name: ../lib/ultralib/src/io/sptask }
       - { start: 0x019D40, type: .bss, vram: 0x80041A50, name: ../lib/ultralib/src/io/controller }
       - { start: 0x019D40, type: .bss, vram: 0x80041AE0, name: ../lib/ultralib/src/io/siacs }
@@ -277,6 +286,7 @@
       - { start: 0x019D40, type: .bss, vram: 0x800433A0, name: ../lib/ultralib/src/io/cartrominit }
       - { start: 0x019D40, type: .bss, vram: 0x80043420, name: ../lib/ultralib/src/io/vimgr }
       - { start: 0x019D40, type: .bss, vram: 0x80044640, name: ../lib/ultralib/src/io/conteepread }
+
 
   - name: dmadata
     type: code
