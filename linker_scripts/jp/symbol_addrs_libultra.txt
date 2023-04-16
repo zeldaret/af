@@ -307,7 +307,7 @@ __osPiDevMgr = 0x8003CE80; // size:0x1C (epidma, false)
 __osPiTable = 0x8003CE9C; // size:0x4 (cartrominit, false)
 __osCurrentHandle = 0x8003CEA0; // (epirawdma, false)
 __osPiAccessQueueEnabled = 0x8003CEB0; // size:0x4 (pimgr, false)
-D_8003CEC0_jp = 0x8003CEC0; //
+osViModeNtscLpn1 = 0x8003CEC0; //
 __osPfsInodeCacheChannel = 0x8003CF10; // size:0x4 (contpfs, true)
 __osPfsInodeCacheBank = 0x8003CF14; // type:s8 size:0x1 (contpfs, true)
 __osPreNMI = 0x8003CF20; // size:0x4 (seteventmesg, true)
@@ -328,7 +328,7 @@ __osViCurr = 0x8003D0B0; // size:0x4 (vi, true)
 __osViNext = 0x8003D0B4; // size:0x4 (vi, true)
 
 first = 0x8003D0C0; // size:0x10 (cartrominit, false)
-D_8003D0D0_jp = 0x8003D0D0; //
+osViModeFpalLan1 = 0x8003D0D0; //
 
 __osPfsLastChannel = 0x8003D120; // size:0x4 (contramread, true)
 
