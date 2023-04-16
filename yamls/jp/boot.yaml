@@ -59,7 +59,12 @@
       - [0x00B180, c, ../lib/ultralib/src/os/virtualtophysical]
       - [0x00B200, .hasm, ../../lib/ultralib/src/os/writebackdcache]
       - [0x00B280, c, ../lib/ultralib/src/os/initialize]
-      - [0x00B5D0, asm, boot/00B5D0] # PADDING
+      - [0x00B5D0, asm, boot/padding00B5D0]
+      - [0x00B5E0, asm, boot/padding00B5E0]
+      - [0x00B5F0, asm, boot/padding00B5F0]
+      - [0x00B600, asm, boot/padding00B600]
+      - [0x00B610, asm, boot/padding00B610]
+      - [0x00B620, asm, boot/padding00B620]
       - [0x00B630, .hasm, ../../lib/ultralib/src/os/setsr]
       - [0x00B640, .hasm, ../../lib/ultralib/src/os/getsr]
       - [0x00B650, c, ../lib/ultralib/src/io/vigetnextframebuf]
@@ -73,7 +78,7 @@
       - [0x00BB90, c, ../lib/ultralib/src/io/sptaskyield]
       - [0x00BBB0, c, ../lib/ultralib/src/io/pfsreadwritefile]
       - [0x00C000, c, ../lib/ultralib/src/io/pfsgetstatus]
-      - [0x00C230, asm, boot/00C230] # PADDING
+      - [0x00C230, asm, boot/padding00C230]
       - [0x00C240, .hasm, ../../lib/ultralib/src/mgu/mtxidentf]
       - [0x00C290, c, ../lib/ultralib/src/io/visetmode]
       - [0x00C2F0, c, ../lib/ultralib/src/flash/flashinit]
@@ -84,12 +89,12 @@
       - [0x00D040, hasm, ../../lib/ultralib/src/os/probetlb]
       - [0x00D100, c, ../lib/ultralib/src/io/pimgr]
       - [0x00D270, c, ../lib/ultralib/src/io/piacs]
-      - [0x00D330, asm, boot/00D330] # PADDING
+      - [0x00D330, asm, boot/padding00D330]
       - [0x00D340, c, ../lib/ultralib/src/io/devmgr]
       - [0x00D750, c, ../lib/ultralib/src/io/pirawdma]
       - [0x00D820, c, ../lib/ultralib/src/io/contpfs]
       - [0x00E3A0, .hasm, ../../lib/ultralib/src/os/getcount]
-      - [0x00E3B0, asm, boot/00E3B0] # PADDING
+      - [0x00E3B0, asm, boot/padding00E3B0]
       - [0x00E3C0, .hasm, ../../lib/ultralib/src/mgu/mtxl2f]
       - [0x00E430, c, ../lib/ultralib/src/flash/flashreadstatus]
       - [0x00E4C0, c, ../lib/ultralib/src/os/getmemsize]
@@ -125,7 +130,7 @@
       - [0x0112A0, c, ../lib/ultralib/src/os/setglobalintmask]
       - [0x0112F0, c, ../lib/ultralib/src/io/aisetfreq]
       - [0x011440, c, ../lib/ultralib/src/os/getactivequeue]
-      - [0x011450, asm, boot/011450] # PADDING
+      - [0x011450, asm, boot/padding011450]
       - [0x011460, .hasm, ../../lib/ultralib/src/mgu/normalize]
       - [0x0114C0, .hasm, ../../lib/ultralib/src/os/setcompare]
       - [0x0114D0, c, ../lib/ultralib/src/io/aigetstat]
@@ -162,7 +167,7 @@
       - [0x014170, c, ../lib/ultralib/src/io/epiwrite]
       - [0x0141C0, .hasm, ../../lib/ultralib/src/os/maptlbrdb]
       - [0x014220, c, ../lib/ultralib/src/os/yieldthread]
-      - [0x014270, asm, boot/014270] # PADDING
+      - [0x014270, asm, boot/padding014270]
       - [0x014280, .hasm, ../../lib/ultralib/src/mgu/translate]
       - [0x014350, .hasm, ../../lib/ultralib/src/os/getcause]
       - [0x014360, c, ../lib/ultralib/src/io/contramwrite]
@@ -176,7 +181,7 @@
       - [0x015B80, c, ../lib/ultralib/src/io/sirawwrite]
       - [0x015BD0, c, ../lib/ultralib/src/io/spsetstat]
       - [0x015BE0, c, ../lib/ultralib/src/io/spgetstat]
-      - [0x015BF0, asm, boot/015BF0] # PADDING
+      - [0x015BF0, asm, boot/padding015BF0]
       - [0x015C00, c, ../lib/ultralib/src/io/vimgr]
       - [0x015F10, c, ../lib/ultralib/src/io/vigetcurrcontext]
       - [0x015F20, .hasm, ../../lib/ultralib/src/os/writebackdcacheall]

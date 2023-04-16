@@ -263,7 +263,6 @@ func_8003B9B0_jp = 0x8003B9B0; // type:func
 func_8003B9E0_jp = 0x8003B9E0; // type:func
 func_8003BA20_jp = 0x8003BA20; // type:func
 func_8003BA60_jp = 0x8003BA60; // type:func
-func_8003BAF0_jp = 0x8003BAF0; // type:func
 
 // .data
 
