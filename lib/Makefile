@@ -49,7 +49,6 @@ RELEASE_DEFINES := -DNDEBUG -D_FINALROM
 
 SRC_DIRS      := $(shell find ultralib/src -type d \
 					-not -path "ultralib/src/audio" \
-					-not -path "ultralib/src/debug" \
 					-not -path "ultralib/src/error" \
 					-not -path "ultralib/src/gio" \
 					-not -path "ultralib/src/gt" \

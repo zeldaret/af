@@ -173,7 +173,6 @@ O_FILES       := $(foreach f,$(C_FILES:.c=.o),$(BUILD_DIR)/$f) \
 
 LIBULTRA_DIRS := $(shell find lib/ultralib/src -type d \
 					-not -path "lib/ultralib/src/audio" \
-					-not -path "lib/ultralib/src/debug" \
 					-not -path "lib/ultralib/src/error" \
 					-not -path "lib/ultralib/src/gio" \
 					-not -path "lib/ultralib/src/gt" \

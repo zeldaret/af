@@ -285,7 +285,6 @@
 // extern UNK_TYPE B_800419F0_jp;
 // extern UNK_TYPE B_80041A00_jp;
 
-// extern UNK_TYPE B_80044684_jp;
 // extern UNK_TYPE D_80044690_jp;
 
 
