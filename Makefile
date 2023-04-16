@@ -172,16 +172,16 @@ O_FILES       := $(foreach f,$(C_FILES:.c=.o),$(BUILD_DIR)/$f) \
                  $(foreach f,$(BIN_FILES:.bin=.o),$(BUILD_DIR)/$f)
 
 LIBULTRA_DIRS := $(shell find lib/ultralib/src -type d \
-					-not -path "lib/ultralib/src/audio" \
-					-not -path "lib/ultralib/src/error" \
-					-not -path "lib/ultralib/src/gio" \
-					-not -path "lib/ultralib/src/gt" \
-					-not -path "lib/ultralib/src/host" \
-					-not -path "lib/ultralib/src/log" \
-					-not -path "lib/ultralib/src/rg" \
-					-not -path "lib/ultralib/src/rmon" \
-					-not -path "lib/ultralib/src/sched" \
-					-not -path "lib/ultralib/src/voice")
+                  -not -path "lib/ultralib/src/audio" \
+                  -not -path "lib/ultralib/src/error" \
+                  -not -path "lib/ultralib/src/gio" \
+                  -not -path "lib/ultralib/src/gt" \
+                  -not -path "lib/ultralib/src/host" \
+                  -not -path "lib/ultralib/src/log" \
+                  -not -path "lib/ultralib/src/rg" \
+                  -not -path "lib/ultralib/src/rmon" \
+                  -not -path "lib/ultralib/src/sched" \
+                  -not -path "lib/ultralib/src/voice")
 
 LIBULTRA_C    := $(foreach dir,$(LIBULTRA_DIRS),$(wildcard $(dir)/*.c))
 LIBULTRA_S    := $(foreach dir,$(LIBULTRA_DIRS),$(wildcard $(dir)/*.s))
