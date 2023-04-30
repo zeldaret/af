@@ -5,7 +5,7 @@
     follows_vram: dmadata
     bss_size: 0x36C90
     subsegments:
-      - [0x675720, asm, code/c_keyframe]
+      - [0x675720, c, code/c_keyframe]
       - [0x678660, asm, code/evw_anime]
       - [0x6792F0, asm, code/6792F0]
       - [0x67A020, asm, code/m_actor]
