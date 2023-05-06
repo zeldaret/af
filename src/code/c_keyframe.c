@@ -18,64 +18,94 @@ typedef struct {
 ///////////////////////////////////////////////////////////////////////////////
 //z64animation.h
 
+typedef enum cKF_FC_Mode {
+    cKF_FC_STOP = 0,
+    cKF_FC_REPEAT = 1,
+    cKF_FC_LAST_INDEX = 2
+};
+
 typedef struct {
-    /* 0x00 */ f32 unk_0;
-    /* 0x04 */ f32 unk_4;
-    /* 0x08 */ f32 unk_8;
-    /* 0x0C */ f32 unk_C;
-    /* 0x10 */ f32 unk_10;
-    /* 0x14 */ s32 unk_14;
+    /* 0x00 */ f32 start;
+    /* 0x04 */ f32 end;
+    /* 0x08 */ f32 max;
+    /* 0x0C */ f32 speed;
+    /* 0x10 */ f32 current;
+    /* 0x14 */ s32 mode;
 } FrameControl; // size = 0x18
 
 typedef struct {
-    /* 0x0 */ Gfx* dList;
-    /* 0x4 */ u8 unk_4;
-    /* 0x5 */ u8 flags;
-    /* 0x6 */ Vec3s root;
-} limb_type1; // size = 0xC
+    /* 0x0 */ Gfx* shape;
+    /* 0x4 */ u8 child;
+    /* 0x5 */ u8 work_flag;
+    /* 0x6 */ u8 func_index;
+    /* 0x7 */ char pad; //TODO can i remove this?
+} JointElem; // size = 0x8
 
 typedef struct {
-    /* 0x0 */ Gfx* dList;
-    /* 0x4 */ u8 unk_4;
-    /* 0x5 */ u8 flags;
-    /* 0x6 */ u8 unk_6;         // transform limb draw index
-} limb_type2; // size = 0x8
+    /* 0x0 */ Gfx* shape;
+    /* 0x4 */ u8 child;
+    /* 0x5 */ u8 work_flag;
+    /* 0x6 */ Vec3s trs;
+} JointElem_R; // size = 0xC
 
-//cKF_je_r
+typedef struct {
+    /* 0x00 */ u8 joint_num;
+    /* 0x01 */ u8 display_joint_num;
+    /* 0x02 */ char pad[0x2]; //TODO can i remove this?
+    /* 0x04 */ JointElem_R* joint_tbl;
+} BaseSkeleton; // size = 0x8
+
 typedef struct {
     /* 0x00 */ char pad[0x14];
-    //u8 limb count
-    //u8
-    //limb struct pointer (array of them, number based on how many limbs?) (also it's a segmented address) (can be type 1 or type 2)
-    //s16*
-    //s16*
-    //?? 2 bytes
-    //s16
-} placeholderStruct1; // size = 0x14
+} BaseSkeleton_R; // size = 0x14
 
-//cKF_ba_r
-//- cKF_ckcb_r
-//- cKF_kn
-//- cKF_c
-//- cKF_ds
 typedef struct {
-    /* 0x00 */ u16* unk_0;
-    /* 0x04 */ s16* unk_4;
-    /* 0x08 */ s16* unk_8;
-    /* 0x0C */ s16* unk_C;
-    /* 0x10 */ char unk_10[0x2];
-    /* 0x12 */ s16 unk_12;
-} placeholderStruct2; // size = 0x14
+    /* 0x00 */ u16* ConstKeyCheckBitTbl;
+    /* 0x04 */ s16* data_source;
+    /* 0x08 */ s16* key_num;
+    /* 0x0C */ s16* const_value_tbl;
+    /* 0x10 */ s16 ext;
+    /* 0x12 */ s16 frames;
+} BaseAnimation; // size = 0x14
+
+typedef struct {
+    /* 0x00 */ u16* ConstKeyCheckBitTbl;
+    /* 0x04 */ s16* data_source;
+    /* 0x08 */ s16* key_num;
+    /* 0x0C */ s16* const_value_tbl;
+    /* 0x10 */ s16 ext;
+    /* 0x12 */ s16 frames;
+} BaseAnimation_R; // size = 0x14
 
 typedef struct {
     /* 0x00 */ FrameControl frameCtrl;
-    /* 0x18 */ placeholderStruct1* unk_18;
-    /* 0x1C */ placeholderStruct2* unk_1C;
-    /* 0x20 */ void* unk_20;
-    /* 0x24 */ Vec3s* frameData;
-    /* 0x28 */ s32* unk_28;
-    /* 0x2C */ s16* unk_2C;
+    /* 0x18 */ BaseSkeleton* skeleton;
+    /* 0x1C */ BaseAnimation* animation;
+    /* 0x20 */ void* unk_20; //BEFORE_FUNC_TBL before_func_tbl
+    /* 0x24 */ f32 morphCounter;
+    /* 0x28 */ Vec3s* now_joint;
+    /* 0x2C */ Vec3s* morph_joint;
 } SkeletonInfo; // size = 0x30
+
+typedef struct {
+    /* 0x00 */ FrameControl frameCtrl;
+    /* 0x18 */ BaseSkeleton* skeleton; //cKF_BaseSkeleton_c skl
+    /* 0x1C */ BaseAnimation* animation; //cKF_BaseAnimation_c anm
+    /* 0x20 */ f32 morphCounter;
+    /* 0x24 */ Vec3s* now_joint;
+    /* 0x28 */ Vec3s* morph_joint;
+    /* 0x2C */ Vec3s* diff_rot_tbl;
+    /* 0x30 */ s32 move_flag;
+    /* 0x34 */ Vec3f idle_world_pos;
+    /* 0x40 */ s16 idle_set_angleY;
+    /* 0x42 */ char pad[0x2]; //TODO can i remove this?
+    /* 0x44 */ Vec3f base_shape_trs;
+    /* 0x50 */ Vec3s base_data_angle;
+    /* 0x56 */ Vec3s renew_base_data_angle;
+    /* 0x5C */ f32 correct_counter;
+    /* 0x60 */ Vec3f d_correct_base_world_pos;
+    /* 0x6C */ s16 d_correct_base_set_angleY;
+} SkeletonInfo_R; // size = 0x70
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -88,12 +118,12 @@ typedef struct {
 
 //     }
 //     bzero(frameCtrl, 0x18);
-//     frameCtrl->unk_14 = false;
-//     frameCtrl->unk_8 = 1.0f;
-//     frameCtrl->unk_10 = 1.0f;
-//     frameCtrl->unk_C = 1.0f;
-//     frameCtrl->unk_4 = 1.0f;
-//     frameCtrl->unk_0 = 1.0f;
+//     frameCtrl->mode = false;
+//     frameCtrl->max = 1.0f;
+//     frameCtrl->current = 1.0f;
+//     frameCtrl->speed = 1.0f;
+//     frameCtrl->end = 1.0f;
+//     frameCtrl->start = 1.0f;
 // }
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80051AC4_jp.s")
@@ -126,12 +156,12 @@ s32 func_80051B44_jp(FrameControl* frameCtrl, f32 arg1, f32* arg2)
     {
     }
     *arg2 = 0.0f;
-    temp_fv0 = frameCtrl->unk_10;
+    temp_fv0 = frameCtrl->current;
     if (arg1 == temp_fv0)
     {
         return 0;
     }
-    var_fv1 = (frameCtrl->unk_0 < frameCtrl->unk_4) ? frameCtrl->unk_C : -frameCtrl->unk_C;
+    var_fv1 = (frameCtrl->start < frameCtrl->end) ? frameCtrl->speed : -frameCtrl->speed;
 
     if ((var_fv1 >= 0.0f && temp_fv0 < arg1 && arg1 <= temp_fv0 + var_fv1) ||
         (var_fv1 < 0.0f && arg1 < temp_fv0 && temp_fv0 + var_fv1 <= arg1))
@@ -172,22 +202,22 @@ s32 func_80051CE8_jp(FrameControl* frameCtrl)
 {
     //TODO better match
     f32 sp1C;
-    if (frameCtrl->unk_4)
+    if (frameCtrl->end)
     {
     }
 
-    if (frameCtrl->unk_10 == frameCtrl->unk_4)
+    if (frameCtrl->current == frameCtrl->end)
     {
         return 1;
     }
-    if (func_80051B44_jp(frameCtrl, frameCtrl->unk_4, &sp1C))
+    if (func_80051B44_jp(frameCtrl, frameCtrl->end, &sp1C))
     {
-        frameCtrl->unk_10 = frameCtrl->unk_4;
+        frameCtrl->current = frameCtrl->end;
         return 1;
     }
-    if (func_80051B44_jp(frameCtrl, frameCtrl->unk_0, &sp1C))
+    if (func_80051B44_jp(frameCtrl, frameCtrl->start, &sp1C))
     {
-        frameCtrl->unk_10 = frameCtrl->unk_4;
+        frameCtrl->current = frameCtrl->end;
         return 1;
     }
     return 0;
@@ -199,14 +229,14 @@ s32 func_80051D74_jp(FrameControl* frameCtrl)
 {
     f32 sp1C;
 
-    if (func_80051B44_jp(frameCtrl, frameCtrl->unk_4, &sp1C))
+    if (func_80051B44_jp(frameCtrl, frameCtrl->end, &sp1C))
     {
-        frameCtrl->unk_10 = (f32) (frameCtrl->unk_0 + sp1C);
+        frameCtrl->current = (f32) (frameCtrl->start + sp1C);
         return 2;
     }
-    if (func_80051B44_jp(frameCtrl, frameCtrl->unk_0, &sp1C) != 0)
+    if (func_80051B44_jp(frameCtrl, frameCtrl->start, &sp1C) != 0)
     {
-        frameCtrl->unk_10 = frameCtrl->unk_4 + sp1C;
+        frameCtrl->current = frameCtrl->end + sp1C;
         return 2;
     }
     return 0;
@@ -285,26 +315,26 @@ s32 func_80051D74_jp(FrameControl* frameCtrl)
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_800521A8_jp.s")
 //cKF_SkeletonInfo_morphST
-void func_800521A8_jp(s16 skeleton[3], s16 arg1[3], f32 t)
+void func_800521A8_jp(s16 arg0[3], s16 arg1[3], f32 arg3)
 {
     s32 i;
 
     for (i = 0; i < 3; i++)
     {
-        if (*skeleton != *arg1)
+        if (*arg0 != *arg1)
         {
-            f32 f1 = *skeleton;
+            f32 f1 = *arg0;
             f32 f2 = *arg1;
-            *skeleton = f1 + (f2 - f1) * t;
+            *arg0 = f1 + (f2 - f1) * arg3;
         }
-        skeleton++;
+        arg0++;
         arg1++;
     }
 }
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80052208_jp.s")
 //cKF_SkeletonInfo_R_zeroClear
-void func_80052208_jp(SkeletonInfo* skeleton)
+void func_80052208_jp(SkeletonInfo_R* skeleton)
 {
     bzero(skeleton, 0x70);
 }
