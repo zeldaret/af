@@ -2,6 +2,9 @@
 
 [Code jp Progress]: https://img.shields.io/endpoint?label=Code%20jp&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fanimalforest%2Fjp%2Fcode%2F%3Fmode%3Dshield%26measure%3Dall
 
+This is a work-in-progress decompilation project for the Nintendo 64 game *Animal Forest*, also known as どうぶつの森 (*Doubutsu no Mori*).
+There is a decompilation project for the GameCube versions (*Animal Crossing*, etc.) [here](https://github.com/Prakxo/ac-decomp/).
+
 ```diff
 - WARNING! -
 
@@ -10,6 +13,10 @@ still constantly evolving. If you wish to use it for modding purposes in its cur
 please be aware that the codebase could drastically change at any time. Also note that some
 parts of the ROM may not be 'shiftable' yet, so modifying them could currently be difficult.
 ```
+
+**Note:** this project is *not* a port, to PC or any other platform.
+It takes a Nintendo 64 rom, extracts assets from it, and combines them with C code we reverse-engineered from the rom, to produce an identical rom.
+It is explicitly a non-goal for this project to be used as basis for a port, or to be used for any commercial purpose.
 
 ## Setup
 
