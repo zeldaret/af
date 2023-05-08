@@ -22,7 +22,7 @@ typedef enum cKF_FC_Mode {
     cKF_FC_STOP = 0,
     cKF_FC_REPEAT = 1,
     cKF_FC_LAST_INDEX = 2
-};
+} cKF_FC_Mode;
 
 typedef struct {
     /* 0x00 */ f32 start;
@@ -52,11 +52,14 @@ typedef struct {
     /* 0x00 */ u8 joint_num;
     /* 0x01 */ u8 display_joint_num;
     /* 0x02 */ char pad[0x2]; //TODO can i remove this?
-    /* 0x04 */ JointElem_R* joint_tbl;
+    /* 0x04 */ JointElem* joint_tbl;
 } BaseSkeleton; // size = 0x8
 
 typedef struct {
-    /* 0x00 */ char pad[0x14];
+    /* 0x00 */ u8 joint_num;
+    /* 0x01 */ u8 display_joint_num;
+    /* 0x02 */ char pad[0x2]; //TODO can i remove this?
+    /* 0x04 */ JointElem_R* joint_tbl;
 } BaseSkeleton_R; // size = 0x14
 
 typedef struct {
@@ -89,8 +92,8 @@ typedef struct {
 
 typedef struct {
     /* 0x00 */ FrameControl frameCtrl;
-    /* 0x18 */ BaseSkeleton* skeleton; //cKF_BaseSkeleton_c skl
-    /* 0x1C */ BaseAnimation* animation; //cKF_BaseAnimation_c anm
+    /* 0x18 */ BaseSkeleton_R* skeleton;
+    /* 0x1C */ BaseAnimation_R* animation;
     /* 0x20 */ f32 morphCounter;
     /* 0x24 */ Vec3s* now_joint;
     /* 0x28 */ Vec3s* morph_joint;
@@ -109,22 +112,18 @@ typedef struct {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80051A80_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80051A80_jp.s")
 // cKF_FrameControl_zeroClear
-// void func_80051A80_jp(FrameControl* frameCtrl)
-// {
-//     if ((frameCtrl && frameCtrl) && frameCtrl)
-//     {
-
-//     }
-//     bzero(frameCtrl, 0x18);
-//     frameCtrl->mode = false;
-//     frameCtrl->max = 1.0f;
-//     frameCtrl->current = 1.0f;
-//     frameCtrl->speed = 1.0f;
-//     frameCtrl->end = 1.0f;
-//     frameCtrl->start = 1.0f;
-// }
+void func_80051A80_jp(FrameControl* frameCtrl)
+{
+    bzero(frameCtrl, 0x18);
+    frameCtrl->mode = false;
+    frameCtrl->max = 1.0f;
+    frameCtrl->current = 1.0f;
+    frameCtrl->speed = 1.0f;
+    frameCtrl->end = 1.0f;
+    frameCtrl->start = 1.0f;
+}
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80051AC4_jp.s")
 //cKF_FrameControl_ct
@@ -132,17 +131,18 @@ void func_80051AC4_jp(FrameControl* frameCtrl) {
     func_80051A80_jp(frameCtrl);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80051AE4_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80051AE4_jp.s")
 //cKF_FrameControl_setFrame
-// void func_80051AE4_jp(FrameControl* frameCtrl, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, s32 arg6)
-// {
-//     frameCtrl->unk_0 = arg1;
-//     frameCtrl->unk_4 = (arg2 < 1.0f) ? arg3 : arg2;
-//     frameCtrl->unk_8 = arg3;
-//     frameCtrl->unk_C = arg5;
-//     frameCtrl->unk_10 = arg4;
-//     frameCtrl->unk_14 = arg6;
-// }
+void func_80051AE4_jp(FrameControl *frameCtrl, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, s32 arg6)
+{
+    frameCtrl->start = arg1;
+    frameCtrl->end = (arg2 < 1.0f) ? arg3 : arg2;
+    frameCtrl->max = arg3;
+    frameCtrl->speed = arg5;
+    frameCtrl->current = arg4;
+    frameCtrl->mode = arg6;
+}
+
 
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80051B44_jp.s")
@@ -151,10 +151,6 @@ s32 func_80051B44_jp(FrameControl* frameCtrl, f32 arg1, f32* arg2)
 {
     f32 temp_fv0;
     f32 var_fv1;
-    //TODO fix this fake match
-    if ((frameCtrl && frameCtrl) && frameCtrl)
-    {
-    }
     *arg2 = 0.0f;
     temp_fv0 = frameCtrl->current;
     if (arg1 == temp_fv0)
@@ -174,17 +170,18 @@ s32 func_80051B44_jp(FrameControl* frameCtrl, f32 arg1, f32* arg2)
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80051C18_jp.s")
 //cKF_FrameControl_passCheck_now
-// s32 func_80051C18_jp(FrameControl* frameCtrl, f32 arg1)
+// s32 func_80051C18_jp(FrameControl *frameCtrl, f32 arg1)
 // {
-//     s32 var_v1;
 //     f32 var_fv1;
+//     s32 var_v1;
 
 //     var_v1 = 0;
-//     if (arg1 = frameCtrl->unk_10)
+//     if (arg1 != frameCtrl->current)
 //     {
-//         var_fv1 = (frameCtrl->unk_0 < frameCtrl->unk_4) ? frameCtrl->unk_C : -frameCtrl->unk_C;
-//         if ((var_fv1 >= 0.0f && arg1 <= frameCtrl->unk_10 && (frameCtrl->unk_10 - var_fv1) < arg1) ||
-//             (var_fv1 < 0.0f && frameCtrl->unk_10 <= arg1 && arg1 < (frameCtrl->unk_10 - var_fv1)))
+//         var_fv1 = (frameCtrl->start < frameCtrl->end) ? frameCtrl->speed : -frameCtrl->speed;
+
+//         if (var_fv1 >= 0.0f && arg1 <= frameCtrl->current && frameCtrl->current - var_fv1 < arg1 ||
+//           var_fv1 < 0.0f && frameCtrl->current <= arg1 && arg1 < frameCtrl->current - var_fv1)
 //         {
 //             var_v1 = 1;
 //         }
