@@ -8,15 +8,15 @@
 #include "load.h"
 #include "z_std_dma.h"
 
-void DoRelocation(void *allocatedRamAddr, OverlayRelocationSection *ovlRelocs, void *vramStart);
+void DoRelocation(void* allocatedRamAddr, OverlayRelocationSection* ovlRelocs, void* vramStart);
 
-s32 Overlay_Load(void *vromStart, void *vromEnd, void *ovlStart, void *ovlEnd, void *vramStart, void *vramEnd,
-                 void *allocatedRamAddr, OverlayRelocationSection *ovlRelocs) {
-    OverlayRelocationSection *ovl = ovlRelocs;
+s32 Overlay_Load(void* vromStart, void* vromEnd, void* ovlStart, void* ovlEnd, void* vramStart, void* vramEnd,
+                 void* allocatedRamAddr, OverlayRelocationSection* ovlRelocs) {
+    OverlayRelocationSection* ovl = ovlRelocs;
     s32 vromSize = (uintptr_t)vromEnd - (uintptr_t)vromStart;
     s32 ovlSize = (uintptr_t)ovlEnd - (uintptr_t)ovlStart;
     s32 vramSize = (uintptr_t)vramEnd - (uintptr_t)vramStart;
-    void *end = (void *)((uintptr_t)allocatedRamAddr + vromSize);
+    void* end = (void*)((uintptr_t)allocatedRamAddr + vromSize);
 
     DmaMgr_RequestSync(allocatedRamAddr, vromStart, vromSize);
     DmaMgr_RequestSync(ovl, ovlStart, ovlSize);
@@ -60,24 +60,24 @@ s32 Overlay_Load(void *vromStart, void *vromEnd, void *ovlStart, void *ovlEnd, v
  * @param ovlRelocs Overlay relocation section containing overlay section layout and runtime relocations.
  * @param vramStart Virtual RAM address that the overlay was compiled at.
  */
-void DoRelocation(void *allocatedRamAddr, OverlayRelocationSection *ovlRelocs, void *vramStart) {
+void DoRelocation(void* allocatedRamAddr, OverlayRelocationSection* ovlRelocs, void* vramStart) {
     uintptr_t sections[RELOC_SECTION_MAX];
-    u32 *relocDataP;
+    u32* relocDataP;
     u32 reloc;
     u32 relocData;
     u32 isLoNeg;
     uintptr_t allocu32 = (uintptr_t)allocatedRamAddr;
     u32 i;
-    u32 *regValP;
+    u32* regValP;
     //! MIPS ELF relocation does not generally require tracking register values, so at first glance it appears this
     //! register tracking was an unnecessary complication. However there is a bug in the IDO compiler that can cause
     //! relocations to be emitted in the wrong order under rare circumstances when the compiler attempts to reuse a
     //! previous HI16 relocation for a different LO16 relocation as an optimization. This register tracking is likely
     //! a workaround to prevent improper matching of unrelated HI16 and LO16 relocations that would otherwise arise
     //! due to the incorrect ordering.
-    u32 *luiRefs[32];
+    u32* luiRefs[32];
     u32 luiVals[32];
-    u32 *luiInstRef;
+    u32* luiInstRef;
     UNUSED u32 dbg;
     ptrdiff_t relocOffset = 0;
     u32 relocatedValue = 0;
@@ -98,7 +98,7 @@ void DoRelocation(void *allocatedRamAddr, OverlayRelocationSection *ovlRelocs, v
         // containing code or pointers must be aligned to at least 4 bytes and the
         // MIPS ABI defines the offset of both 16-bit and 32-bit relocations to be
         // the start of the 32-bit word containing the target.
-        relocDataP = (u32 *)(sections[RELOC_SECTION(reloc)] + RELOC_OFFSET(reloc));
+        relocDataP = (u32*)(sections[RELOC_SECTION(reloc)] + RELOC_OFFSET(reloc));
         relocData = *relocDataP;
 
         switch (RELOC_TYPE_MASK(reloc)) {
