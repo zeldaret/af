@@ -1,5 +1,5 @@
-#ifndef LOAD_H
-#define LOAD_H
+#ifndef LOADFRAGMENT_H
+#define LOADFRAGMENT_H
 
 #include "ultra64.h"
 
