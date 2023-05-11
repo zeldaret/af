@@ -441,199 +441,26 @@ void func_80052584_jp(SkeletonInfo_R* skeleton, void *arg1, void *arg2, f32 arg3
     skeleton->diff_rot_tbl = arg9;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80052610_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80052610_jp.s")
 //cKF_SkeletonInfo_R_setAnim
+void func_80052610_jp(SkeletonInfo_R* skeleton, BaseAnimation_R* arg1)
+{
+    BaseAnimation_R* temp_v0;
+
+    temp_v0 = (BaseAnimation_R*)func_8009ADA8_jp(arg1);
+    skeleton->animation = temp_v0;
+    skeleton->frameCtrl.max = temp_v0->frames;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_8005264C_jp.s")
 //cKF_SkeletonInfo_R_morphJoint
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/cKF_SkeletonInfo_R_play.s")
 //cKF_SkeletonInfo_R_play
-// s32 func_80051DF0_jp(void *);                       /* extern */
-// s16 func_80051F3C_jp(s16, s16, void *, s32);        /* extern */
-// ? func_8005264C_jp(void *);                         /* extern */
-// extern f32 RO_FLT_8011611C_jp;
-// extern f32 RO_FLT_80116120_jp;
-// extern f32 RO_FLT_80116124_jp;
-// extern f32 RO_FLT_80116128_jp;
-// extern f32 RO_FLT_8011612C_jp;
-// extern f32 RO_FLT_80116130_jp;
-
-// s32 cKF_SkeletonInfo_R_play(SkeletonInfo* skeleton)
-// {
-//     s32 sp84;
-//     u8 *sp7C;
-//     void *sp68;
-//     void *sp64;
-//     void *sp60;
-//     f32 temp_fs0;
-//     f32 temp_fs1;
-//     f32 temp_fs3;
-//     f32 temp_fv0;
-//     f32 temp_fv0_2;
-//     f32 temp_fv1;
-//     s16 *temp_s0;
-//     s16 *temp_s0_2;
-//     s16 *var_s1;
-//     s16 *var_v0;
-//     s16 *var_v0_2;
-//     s16 temp_ft1;
-//     s16 temp_t4;
-//     s16 temp_t7;
-//     s16 temp_t7_2;
-//     s16 temp_t9;
-//     s16 var_s6;
-//     s32 temp_t3;
-//     s32 temp_t5;
-//     s32 var_s3;
-//     s32 var_s3_2;
-//     s32 var_s4;
-//     s32 var_s5;
-//     s32 var_v1_2;
-//     u32 var_s2;
-//     u32 var_s2_2;
-//     u8 *var_s7;
-//     u8 *var_t0;
-//     u8 var_v1;
-
-//     var_s4 = 0;
-//     var_s5 = 0;
-//     var_s6 = 0;
-//     if (!(fabsf(skeleton->unk_20) < RO_FLT_8011611C_jp))
-//     {
-//         var_s1 = skeleton->unk_28;
-//     }
-//     else
-//     {
-//         var_s1 = skeleton->unk24;
-//     }
-//     sp68 = func_8009ADA8_jp(skeleton->unk1C->unkC);
-//     sp60 = func_8009ADA8_jp(skeleton->unk1C->unk8);
-//     sp64 = func_8009ADA8_jp(skeleton->unk1C->unk4);
-//     var_t0 = func_8009ADA8_jp(*skeleton->unk1C);
-//     var_s2 = 0x20;
-//     var_s3 = 0;
-//     do
-//     {
-//         if (*var_t0 & var_s2)
-//         {
-//             temp_s0 = sp60 + (var_s4 * 2);
-//             sp7C = var_t0;
-//             *var_s1 = func_80051F3C_jp(var_s6, *temp_s0, sp64, skeleton->unk10);
-//             var_s4 += 1;
-//             var_s6 += *temp_s0;
-//         }
-//         else
-//         {
-//             temp_t4 = *(sp68 + (var_s5 * 2));
-//             var_s5 += 1;
-//             *var_s1 = temp_t4;
-//         }
-//         var_s3 += 1;
-//         var_s2 = var_s2 >> 1;
-//         var_s1 += 2;
-//     } while (var_s3 != 3);
-//     sp84 = 0;
-//     var_s7 = var_t0;
-//     var_v1 = *skeleton->unk18;
-//     if ((s32) var_v1 > 0)
-//     {
-//         temp_fs3 = RO_FLT_80116120_jp;
-//         temp_fs1 = RO_FLT_80116124_jp;
-//         temp_fs0 = RO_FLT_80116128_jp;
-//         do
-//         {
-//             var_s2_2 = 4;
-//             var_s3_2 = 0;
-// loop_11:
-//             if (*var_s7 & var_s2_2)
-//             {
-//                 temp_s0_2 = sp60 + (var_s4 * 2);
-//                 *var_s1 = func_80051F3C_jp(var_s6, *temp_s0_2, sp64, skeleton->unk10);
-//                 var_s4 += 1;
-//                 var_s6 += *temp_s0_2;
-//             }
-//             else
-//             {
-//                 temp_t7 = *(sp68 + (var_s5 * 2));
-//                 var_s5 += 1;
-//                 *var_s1 = temp_t7;
-//             }
-//             var_s3_2 += 1;
-//             var_s2_2 = var_s2_2 >> 1;
-//             temp_ft1 = *var_s1;
-//             var_s1 += 2;
-//             temp_fv0 = (f32) temp_ft1 * temp_fs0;
-//             var_s1->unk-2 = (s16) (s32) ((temp_fv0 - ((f32) (s32) (temp_fv0 * temp_fs1) * 360.0f)) * temp_fs3);
-//             if (var_s3_2 != 3)
-//             {
-//                 goto loop_11;
-//             }
-//             var_s7 += 1;
-//             temp_t5 = sp84 + 1;
-//             sp84 = temp_t5;
-//             var_v1 = *skeleton->unk18;
-//         } while (temp_t5 < (s32) var_v1);
-//     }
-//     if (skeleton->unk2C != 0)
-//     {
-//         temp_fv0_2 = fabsf(skeleton->unk20);
-//         sp84 = 0;
-//         if (!(temp_fv0_2 < RO_FLT_8011612C_jp))
-//         {
-//             var_v0 = skeleton->unk28;
-//         }
-//         else
-//         {
-//             var_v0 = skeleton->unk24;
-//         }
-//         var_v0_2 = var_v0 + 6;
-//         if ((s32) var_v1 > 0)
-//         {
-//             var_v1_2 = 0;
-//             do
-//             {
-//                 temp_t7_2 = *var_v0_2;
-//                 var_v0_2 += 6;
-//                 var_v0_2->unk-6 = (s16) (*(skeleton->unk2C + var_v1_2) + temp_t7_2);
-//                 var_v0_2->unk-4 = (s16) ((skeleton->unk2C + var_v1_2)->unk2 + var_v0_2->unk-4);
-//                 temp_t9 = (skeleton->unk2C + var_v1_2)->unk4;
-//                 var_v1_2 += 6;
-//                 var_v0_2->unk-2 = (s16) (temp_t9 + var_v0_2->unk-2);
-//                 temp_t3 = sp84 + 1;
-//                 sp84 = temp_t3;
-//             } while (temp_t3 < (s32) *skeleton->unk18);
-//         }
-//     }
-//     temp_fv1 = skeleton->unk20;
-//     if (fabsf(temp_fv1) < RO_FLT_80116130_jp)
-//     {
-//         return func_80051DF0_jp(skeleton);
-//     }
-//     if (temp_fv1 > 0.0f)
-//     {
-//         func_8005264C_jp(skeleton);
-//         skeleton->unk20 = (f32) (skeleton->unk20 - 1.0f);
-//         if (skeleton->unk20 <= 0.0f)
-//         {
-//             skeleton->unk20 = 0.0f;
-//         }
-//         return 0;
-//     }
-//     func_8005264C_jp(skeleton);
-//     skeleton->unk20 = (f32) (skeleton->unk20 + 1.0f);
-//     if (skeleton->unk20 >= 0.0f)
-//     {
-//         skeleton->unk20 = 0.0f;
-//     }
-//     return func_80051DF0_jp(skeleton);
-// }
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80052D20_jp.s")
 
-
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_800530D8_jp.s")
-
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80053170_jp.s")
 
@@ -671,8 +498,36 @@ void func_80052584_jp(SkeletonInfo_R* skeleton, void *arg1, void *arg2, f32 arg3
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80054320_jp.s")
 
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80054474_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80054474_jp.s")
+//cKF_SkeletonInfo_R_AnimationMove_base (i think?)
+void func_80054474_jp(SkeletonInfo_R* skeleton)
+{
+    s32 temp_v0;
+    Vec3f* temp_a1;
+    Vec3s* temp_v0_2;
+    Vec3s* temp_v1;
 
+    temp_v0 = skeleton->move_flag;
+    temp_v1 = skeleton->now_joint;
+    temp_a1 = &skeleton->base_shape_trs;
+    if (temp_v0 & 1)
+    {
+        temp_v1->x = temp_a1->x;
+        temp_v1->z = temp_a1->z;
+    }
+    if (temp_v0 & 2)
+    {
+        temp_v1->y = temp_a1->y;
+    }
+    if (temp_v0 & 4)
+    {
+        temp_v0_2 = skeleton->now_joint + 1;
+        temp_v0_2->x = skeleton->base_data_angle.x;
+        temp_v0_2->y = skeleton->base_data_angle.y;
+        temp_v0_2->z = skeleton->base_data_angle.z;
+    }
+    skeleton->move_flag = 0;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80054504_jp.s")
 
