@@ -101,7 +101,7 @@ typedef struct {
     /* 0x18 */ BaseSkeleton_R* skeleton;
     /* 0x1C */ BaseAnimation_R* animation;
     /* 0x20 */ f32 morphCounter;
-    /* 0x24 */ Vec3s* now_joint;
+    /* 0x24 */ Vec3s* now_joint; //array of Vec3s
     /* 0x28 */ Vec3s* morph_joint;
     /* 0x2C */ Vec3s* diff_rot_tbl;
     /* 0x30 */ s32 move_flag;
@@ -119,7 +119,12 @@ typedef struct {
 ///////////////////////////////////////////////////////////////////////////////
 //prototypes
 
-void func_80052584_jp(SkeletonInfo_R* skeleton, void *arg1, void *arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, s32 arg8, Vec3s* arg9);
+void func_80052584_jp(SkeletonInfo_R* skeletonInfo, BaseSkeleton_R* skeleton, BaseAnimation_R* animation, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, s32 arg8, Vec3s* arg9);
+
+s32 cKF_SkeletonInfo_R_play(SkeletonInfo_R* skeletonInfo); //todo remove
+
+//Lib_SegmentedToVirtual
+void* func_8009ADA8_jp(void* ptr);
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -176,30 +181,30 @@ s32 func_80051B44_jp(FrameControl* frameCtrl, f32 arg1, f32* arg2)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80051C18_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80051C18_jp.s")
 //cKF_FrameControl_passCheck_now
-// s32 func_80051C18_jp(FrameControl *frameCtrl, f32 arg1)
-// {
-//     f32 var_fv1;
-//     s32 var_v1;
+s32 func_80051C18_jp(FrameControl *frameCtrl, f32 arg1)
+{
+    s32 var_v1;
 
-//     var_v1 = 0;
-//     if (arg1 != frameCtrl->current)
-//     {
-//         var_fv1 = (frameCtrl->start < frameCtrl->end) ? frameCtrl->speed : -frameCtrl->speed;
+    var_v1 = 0;
+    if (arg1 != frameCtrl->current)
+    {
+        f32 var_fv1;
+        var_fv1 = (frameCtrl->start < frameCtrl->end) ? frameCtrl->speed : -frameCtrl->speed;
 
-//         if (var_fv1 >= 0.0f && arg1 <= frameCtrl->current && frameCtrl->current - var_fv1 < arg1 ||
-//           var_fv1 < 0.0f && frameCtrl->current <= arg1 && arg1 < frameCtrl->current - var_fv1)
-//         {
-//             var_v1 = 1;
-//         }
-//     }
-//     else
-//     {
-//         var_v1 = 1;
-//     }
-//     return var_v1;
-// }
+        if (var_fv1 >= 0.0f && arg1 <= frameCtrl->current && frameCtrl->current - var_fv1 < arg1 ||
+          var_fv1 < 0.0f && frameCtrl->current <= arg1 && arg1 < frameCtrl->current - var_fv1)
+        {
+            var_v1 = 1;
+        }
+    }
+    else
+    {
+        var_v1 = 1;
+    }
+    return var_v1;
+}
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80051CE8_jp.s")
 //cKF_FrameControl_stop_proc
@@ -360,96 +365,92 @@ void func_800521A8_jp(s16 arg0[3], s16 arg1[3], f32 arg3)
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80052208_jp.s")
 //cKF_SkeletonInfo_R_zeroClear
-void func_80052208_jp(SkeletonInfo_R* skeleton)
+void func_80052208_jp(SkeletonInfo_R* skeletonInfo)
 {
-    bzero(skeleton, 0x70);
+    bzero(skeletonInfo, 0x70);
 }
-
-
-//Lib_SegmentedToVirtual
-void* func_8009ADA8_jp(void* ptr);
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80052228_jp.s")
 // cKF_SkeletonInfo_R_ct   
-void func_80052228_jp(SkeletonInfo_R* skeleton, void *arg1, void *arg2, Vec3s *arg3, Vec3s *arg4)
+void func_80052228_jp(SkeletonInfo_R* skeletonInfo, BaseSkeleton_R* skeleton, BaseAnimation_R* animation, Vec3s *arg3, Vec3s *arg4)
 {
-    func_80052208_jp(skeleton);
-    func_80051AC4_jp(&skeleton->frameCtrl);
-    skeleton->skeleton = func_8009ADA8_jp(arg1);
-    skeleton->animation = func_8009ADA8_jp(arg2);
-    skeleton->now_joint = arg3;
-    skeleton->morph_joint = arg4;
+    func_80052208_jp(skeletonInfo);
+    func_80051AC4_jp(&skeletonInfo->frameCtrl);
+    skeletonInfo->skeleton = func_8009ADA8_jp(skeleton);
+    skeletonInfo->animation = func_8009ADA8_jp(animation);
+    skeletonInfo->now_joint = arg3;
+    skeletonInfo->morph_joint = arg4;
 }
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/cKF_SkeletonInfo_R_dt.s")
 //cKF_SkeletonInfo_R_dt
-void cKF_SkeletonInfo_R_dt(SkeletonInfo_R* skeleton)
+void cKF_SkeletonInfo_R_dt(SkeletonInfo_R* skeletonInfo)
 {
 
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80052298_jp.s")
-//cKF_SkeletonInfo_R_init_standard_stop
-// void func_80052298_jp(SkeletonInfo_R* skeleton, BaseAnimation_R* arg1, Vec3s* arg2)
-// {
-//     func_80052584_jp(skeleton, skeleton->skeleton, arg1, 1.0f, ((BaseAnimation_R*)func_8009ADA8_jp(arg1))->frames, 1.0f, 1.0f, 0.0f, cKF_FC_STOP, arg2);
-// }
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80052298_jp.s")
+// cKF_SkeletonInfo_R_init_standard_stop
+void func_80052298_jp(SkeletonInfo_R* skeletonInfo, BaseAnimation_R* animation, Vec3s* arg2)
+{
+    func_80052584_jp(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f, ((BaseAnimation_R*)func_8009ADA8_jp(animation))->frames, 1.0f, 1.0, 0.0f, cKF_FC_STOP, arg2);
+}
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80052310_jp.s")
 //cKF_SkeletonInfo_R_init_standard_stop_speedset
-void func_80052310_jp(SkeletonInfo_R *skeleton, BaseAnimation_R* arg1, Vec3s* arg2, f32 arg3)
+void func_80052310_jp(SkeletonInfo_R* skeletonInfo, BaseAnimation_R* animation, Vec3s* arg2, f32 arg3)
 {
-    func_80052584_jp(skeleton, skeleton->skeleton, arg1, 1.0f, ((BaseAnimation_R*)func_8009ADA8_jp(arg1))->frames, 1.0f, arg3, 0.0f, cKF_FC_STOP, arg2);
+    func_80052584_jp(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f, ((BaseAnimation_R*)func_8009ADA8_jp(animation))->frames, 1.0f, arg3, 0.0f, cKF_FC_STOP, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_8005238C_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_8005238C_jp.s")
 //cKF_SkeletonInfo_R_init_standard_stop_morph
-// void func_8005238C_jp(SkeletonInfo_R *skeleton, BaseAnimation_R* arg1, Vec3s *arg2, f32 arg3)
-// {
-//     func_80052584_jp(skeleton, skeleton->skeleton, arg1, 1.0f, ((BaseAnimation_R*)func_8009ADA8_jp(arg1))->frames, 1.0f, 1.0f, arg3, cKF_FC_STOP, arg2);
-// }
+void func_8005238C_jp(SkeletonInfo_R* skeletonInfo, BaseAnimation_R* animation, Vec3s *arg2, f32 arg3)
+{
+    func_80052584_jp(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f, ((BaseAnimation_R*)func_8009ADA8_jp(animation))->frames, 1.0f, 1.0, arg3, cKF_FC_STOP, arg2);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80052408_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80052408_jp.s")
 //cKF_SkeletonInfo_R_init_standard_repeat
-// void func_80052408_jp(SkeletonInfo_R *skeleton, BaseAnimation_R* arg1, Vec3s* arg2)
-// {
-//     func_80052584_jp(skeleton, skeleton->skeleton, arg1, 1.0f, ((BaseAnimation_R*)func_8009ADA8_jp(arg1))->frames, 1.0f, 1.0f, 0.0f, cKF_FC_REPEAT, arg2);
-// }
+void func_80052408_jp(SkeletonInfo_R *skeletonInfo, BaseAnimation_R* animation, Vec3s* arg2)
+{
+    func_80052584_jp(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f, ((BaseAnimation_R*)func_8009ADA8_jp(animation))->frames, 1.0f, 1.0, 0.0f, cKF_FC_REPEAT, arg2);
+}
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80052484_jp.s")
 //cKF_SkeletonInfo_R_init_standard_repeat_speedset
-void func_80052484_jp(SkeletonInfo_R *skeleton, BaseAnimation_R* arg1, Vec3s* arg2, f32 arg3)
+void func_80052484_jp(SkeletonInfo_R *skeletonInfo, BaseAnimation_R* animation, Vec3s* arg2, f32 arg3)
 {
-    func_80052584_jp(skeleton, skeleton->skeleton, arg1, 1.0f, ((BaseAnimation_R*)func_8009ADA8_jp(arg1))->frames, 1.0f, arg3, 0.0f, cKF_FC_REPEAT, arg2);
+    func_80052584_jp(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f, ((BaseAnimation_R*)func_8009ADA8_jp(animation))->frames, 1.0f, arg3, 0.0f, cKF_FC_REPEAT, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80052504_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80052504_jp.s")
 //cKF_SkeletonInfo_R_init_standard_repeat_morph
-// void func_80052504_jp(SkeletonInfo_R *skeleton, BaseAnimation_R* arg1, Vec3s *arg2, f32 arg3)
-// {
-//     func_80052584_jp(skeleton, skeleton->skeleton, arg1, 1.0f, ((BaseAnimation_R*)func_8009ADA8_jp(arg1))->frames, 1.0f, 1.0f, arg3, cKF_FC_REPEAT, arg2);
-// }
+void func_80052504_jp(SkeletonInfo_R *skeletonInfo, BaseAnimation_R* animation, Vec3s *arg2, f32 arg3)
+{
+    func_80052584_jp(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f, ((BaseAnimation_R*)func_8009ADA8_jp(animation))->frames, 1.0f, 1.0, arg3, cKF_FC_REPEAT, arg2);
+}
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80052584_jp.s")
 //cKF_SkeletonInfo_R_init
-void func_80052584_jp(SkeletonInfo_R* skeleton, void *arg1, void *arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, s32 arg8, Vec3s* arg9)
+void func_80052584_jp(SkeletonInfo_R* skeletonInfo, BaseSkeleton_R* skeleton, BaseAnimation_R* animation, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, s32 arg8, Vec3s* arg9)
 {
-    skeleton->morphCounter = arg7;
-    skeleton->skeleton = func_8009ADA8_jp(arg1);
-    skeleton->animation = func_8009ADA8_jp(arg2);
-    func_80051AE4_jp(&skeleton->frameCtrl, arg3, arg4, skeleton->animation->frames, arg5, arg6, arg8);
-    skeleton->diff_rot_tbl = arg9;
+    skeletonInfo->morphCounter = arg7;
+    skeletonInfo->skeleton = func_8009ADA8_jp(skeleton);
+    skeletonInfo->animation = func_8009ADA8_jp(animation);
+    func_80051AE4_jp(&skeletonInfo->frameCtrl, arg3, arg4, skeletonInfo->animation->frames, arg5, arg6, arg8);
+    skeletonInfo->diff_rot_tbl = arg9;
 }
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80052610_jp.s")
 //cKF_SkeletonInfo_R_setAnim
-void func_80052610_jp(SkeletonInfo_R* skeleton, BaseAnimation_R* arg1)
+void func_80052610_jp(SkeletonInfo_R* skeletonInfo, BaseAnimation_R* animation)
 {
     BaseAnimation_R* temp_v0;
 
-    temp_v0 = (BaseAnimation_R*)func_8009ADA8_jp(arg1);
-    skeleton->animation = temp_v0;
-    skeleton->frameCtrl.max = temp_v0->frames;
+    temp_v0 = (BaseAnimation_R*)func_8009ADA8_jp(animation);
+    skeletonInfo->animation = temp_v0;
+    skeletonInfo->frameCtrl.max = temp_v0->frames;
 }
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_8005264C_jp.s")
@@ -457,59 +458,259 @@ void func_80052610_jp(SkeletonInfo_R* skeleton, BaseAnimation_R* arg1)
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/cKF_SkeletonInfo_R_play.s")
 //cKF_SkeletonInfo_R_play
+// s32 cKF_SkeletonInfo_R_play(SkeletonInfo_R *skeletonInfo)
+// {
+//     s32 sp84;
+//     u8 *sp7C;
+//     void *sp68;
+//     void *sp64;
+//     void *sp60;
+//     Vec3s *var_s1;
+//     Vec3s *var_v0;
+//     Vec3s *var_v0_2;
+//     f32 temp_fs0;
+//     f32 temp_fs1;
+//     f32 temp_fs3;
+//     f32 temp_fv0;
+//     f32 temp_fv0_2;
+//     f32 temp_fv1;
+//     s16 *temp_s0;
+//     s16 *temp_s0_2;
+//     s16 temp_ft1;
+//     s16 temp_t4;
+//     s16 temp_t7;
+//     // s16 temp_t7_2;
+//     s16 temp_t9;
+//     s16 var_s6;
+//     s32 temp_t3;
+//     s32 temp_t5;
+//     s32 var_s3;
+//     s32 var_s3_2;
+//     s32 var_s4;
+//     s32 var_s5;
+//     s32 var_v1_2;
+//     u32 var_s2;
+//     u32 var_s2_2;
+//     u8 *var_s7;
+//     u8 *var_t0;
+//     u8 var_v1;
+
+//     var_s4 = 0;
+//     var_s5 = 0;
+//     var_s6 = 0;
+//     if (!(fabsf(skeletonInfo->morphCounter) < RO_FLT_8011611C_jp))
+//     {
+//         var_s1 = skeletonInfo->morph_joint;
+//     }
+//     else
+//     {
+//         var_s1 = skeletonInfo->now_joint;
+//     }
+//     sp68 = func_8009ADA8_jp(skeletonInfo->animation->const_value_tbl);
+//     sp60 = func_8009ADA8_jp(skeletonInfo->animation->key_num);
+//     sp64 = func_8009ADA8_jp(skeletonInfo->animation->data_source);
+//     var_t0 = func_8009ADA8_jp(skeletonInfo->animation->ConstKeyCheckBitTbl);
+//     var_s2 = 0x20;
+//     var_s3 = 0;
+//     do
+//     {
+//         if (*var_t0 & var_s2)
+//         {
+//             temp_s0 = sp60 + (var_s4 * 2);
+//             sp7C = var_t0;
+//             var_s1->x = func_80051F3C_jp(var_s6, *temp_s0, sp64, skeletonInfo->frameCtrl.current);
+//             var_s4 += 1;
+//             var_s6 += *temp_s0;
+//         }
+//         else
+//         {
+//             temp_t4 = *(sp68 + (var_s5 * 2));
+//             var_s5 += 1;
+//             var_s1->x = temp_t4;
+//         }
+//         var_s3 += 1;
+//         var_s2 = var_s2 >> 1;
+//         var_s1 += 2;
+//     } while (var_s3 != 3);
+//     sp84 = 0;
+//     var_s7 = var_t0;
+//     var_v1 = skeletonInfo->skeleton->joint_num;
+//     if ((s32) var_v1 > 0)
+//     {
+//         temp_fs3 = RO_FLT_80116120_jp;
+//         temp_fs1 = RO_FLT_80116124_jp;
+//         temp_fs0 = RO_FLT_80116128_jp;
+//         do
+//         {
+//             var_s2_2 = 4;
+//             var_s3_2 = 0;
+// loop_11:
+//             if (*var_s7 & var_s2_2)
+//             {
+//                 temp_s0_2 = sp60 + (var_s4 * 2);
+//                 var_s1->x = func_80051F3C_jp(var_s6, *temp_s0_2, sp64, skeletonInfo->frameCtrl.current);
+//                 var_s4 += 1;
+//                 var_s6 += *temp_s0_2;
+//             }
+//             else
+//             {
+//                 temp_t7 = *(sp68 + (var_s5 * 2));
+//                 var_s5 += 1;
+//                 var_s1->x = temp_t7;
+//             }
+//             var_s3_2 += 1;
+//             var_s2_2 = var_s2_2 >> 1;
+//             temp_ft1 = var_s1->x;
+//             var_s1 += 2;
+//             temp_fv0 = (f32) temp_ft1 * temp_fs0;
+//             var_s1->unk-2 = (s16) (s32) ((temp_fv0 - ((f32) (s32) (temp_fv0 * temp_fs1) * 360.0f)) * temp_fs3);
+//             if (var_s3_2 != 3)
+//             {
+//                 goto loop_11;
+//             }
+//             var_s7 += 1;
+//             temp_t5 = sp84 + 1;
+//             sp84 = temp_t5;
+//             var_v1 = skeletonInfo->skeleton->joint_num;
+//         } while (temp_t5 < (s32) var_v1);
+//     }
+//     if (skeletonInfo->diff_rot_tbl != NULL)
+//     {
+//         sp84 = 0;
+//         if (!(fabsf(skeletonInfo->morphCounter) < RO_FLT_8011612C_jp))
+//         {
+//             var_v0 = skeletonInfo->morph_joint;
+//         }
+//         else
+//         {
+//             var_v0 = skeletonInfo->now_joint;
+//         }
+//         var_v0_2 = &var_v0[1];
+//         if (skeletonInfo->skeleton->joint_num)
+//         {
+//             for (var_v1_2 = 0; var_v1_2 < skeletonInfo->skeleton->joint_num; var_v1_2++)
+//             {
+//                 var_v0_2[var_v1_2].x = skeletonInfo->diff_rot_tbl[var_v1_2].x + var_v0_2[var_v1_2].x;
+//                 var_v0_2[var_v1_2].y = skeletonInfo->diff_rot_tbl[var_v1_2].y + var_v0_2[var_v1_2].y;
+//                 var_v0_2[var_v1_2].z = skeletonInfo->diff_rot_tbl[var_v1_2].y + var_v0_2[var_v1_2].z;
+//             }
+//         }
+//     }
+//     temp_fv1 = skeletonInfo->morphCounter;
+//     if (fabsf(temp_fv1) < RO_FLT_80116130_jp)
+//     {
+//         return func_80051DF0_jp(&skeletonInfo->frameCtrl);
+//     }
+//     if (temp_fv1 > 0.0f)
+//     {
+//         func_8005264C_jp(skeletonInfo);
+//         skeletonInfo->morphCounter -= 1.0f;
+//         if (skeletonInfo->morphCounter <= 0.0f)
+//         {
+//             skeletonInfo->morphCounter = 0.0f;
+//         }
+//         return 0;
+//     }
+//     func_8005264C_jp(skeletonInfo);
+//     skeletonInfo->morphCounter += 1.0f;
+//     if (skeletonInfo->morphCounter >= 0.0f)
+//     {
+//         skeletonInfo->morphCounter = 0.0f;
+//     }
+//     return func_80051DF0_jp(&skeletonInfo->frameCtrl);
+// }
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80052D20_jp.s")
+//cKF_Si3_draw_SV_R_child
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_800530D8_jp.s")
+//cKF_Si3_draw_R_SV
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80053170_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80053170_jp.s")
+//cKF_SkeletonInfo_R_init_standard_repeat_speedsetandmorph
+void func_80053170_jp(SkeletonInfo_R* skeletonInfo, BaseAnimation_R* animation, Vec3s *arg2, f32 arg3, f32 arg4)
+{
+    func_80052584_jp(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f, ((BaseAnimation_R*)func_8009ADA8_jp(animation))->frames, 1.0f, arg3, arg4, cKF_FC_REPEAT, arg2);
+}
 
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_800531F0_jp.s")
+//cKF_SkeletonInfo_R_init_standard_repeat_setframeandspeedandmorph
+void func_800531F0_jp(SkeletonInfo_R* skeletonInfo, BaseAnimation_R* animation, Vec3s *arg2, f32 arg3, f32 arg4, f32 arg5)
+{
+    func_80052584_jp(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f, ((BaseAnimation_R*)func_8009ADA8_jp(animation))->frames, arg3, arg4, arg5, cKF_FC_REPEAT, arg2);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_800531F0_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_8005326C_jp.s")
+//cKF_SkeletonInfo_R_init_standard_setframeandspeedandmorphandmode
+void func_8005326C_jp(SkeletonInfo_R* skeletonInfo, BaseAnimation_R* animation, Vec3s *arg2, f32 arg3, f32 arg4, f32 arg5, s32 arg6)
+{
+    func_80052584_jp(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f, ((BaseAnimation_R*)func_8009ADA8_jp(animation))->frames, arg3, arg4, arg5, arg6, arg2);
+}
 
-
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_8005326C_jp.s")
-
-
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_800532E8_jp.s")
-
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_800532E8_jp.s")
+//cKF_SkeletonInfo_R_init_reverse_setspeedandmorphandmode
+void func_800532E8_jp(SkeletonInfo_R* skeletonInfo, BaseAnimation_R* animation, Vec3s *arg2, f32 arg3, f32 arg4, s32 arg5)
+{
+    func_80052584_jp(skeletonInfo, skeletonInfo->skeleton, animation, ((BaseAnimation_R*)func_8009ADA8_jp(animation))->frames, 1.0f, ((BaseAnimation_R*)func_8009ADA8_jp(animation))->frames, arg3, arg4, arg5, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80053384_jp.s")
+// extern s32* B_801458A0_jp;
 
+// void func_80053384_jp(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8)
+// {
+//     if (arg3)
+//     {
+//          *(&B_801458A0_jp + (arg0 * 4)) = arg6 + 0x80000000;
+//     }
+//     if (arg4)
+//     {
+//         *(&B_801458A0_jp + (arg1 * 4)) = arg7 + 0x80000000;
+//     }
+//     if (arg5)
+//     {
+//         *(&B_801458A0_jp + (arg2 * 4)) = arg8 + 0x80000000;
+//     }
+// }
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_800533F4_jp.s")
 
-
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80053470_jp.s")
-
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_8005376C_jp.s")
 
-
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80053B54_jp.s")
-
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80053EF8_jp.s")
 
-
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_800542CC_jp.s")
-
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_800542CC_jp.s")
+void func_800542CC_jp(SkeletonInfo_R* skeletonInfo, f32 arg1, f32 arg2, f32 arg3, s16 arg4, s16 arg5, s16 arg6)
+{
+    skeletonInfo->base_shape_trs.x = arg1;
+    skeletonInfo->base_shape_trs.y = arg2;
+    skeletonInfo->base_shape_trs.z = arg3;
+    skeletonInfo->base_data_angle.x = arg4;
+    skeletonInfo->renew_base_data_angle.x = skeletonInfo->base_data_angle.x;
+    skeletonInfo->base_data_angle.y = arg5;
+    skeletonInfo->renew_base_data_angle.y = skeletonInfo->base_data_angle.y;
+    skeletonInfo->base_data_angle.z = arg6;
+    skeletonInfo->renew_base_data_angle.z = skeletonInfo->base_data_angle.z;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80054320_jp.s")
 
-
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80054474_jp.s")
 //cKF_SkeletonInfo_R_AnimationMove_base (i think?)
-void func_80054474_jp(SkeletonInfo_R* skeleton)
+void func_80054474_jp(SkeletonInfo_R* skeletonInfo)
 {
     s32 temp_v0;
     Vec3f* temp_a1;
     Vec3s* temp_v0_2;
     Vec3s* temp_v1;
 
-    temp_v0 = skeleton->move_flag;
-    temp_v1 = skeleton->now_joint;
-    temp_a1 = &skeleton->base_shape_trs;
+    temp_v0 = skeletonInfo->move_flag;
+    temp_v1 = &skeletonInfo->now_joint[0];
+    temp_a1 = &skeletonInfo->base_shape_trs;
     if (temp_v0 & 1)
     {
         temp_v1->x = temp_a1->x;
@@ -521,15 +722,14 @@ void func_80054474_jp(SkeletonInfo_R* skeleton)
     }
     if (temp_v0 & 4)
     {
-        temp_v0_2 = skeleton->now_joint + 1;
-        temp_v0_2->x = skeleton->base_data_angle.x;
-        temp_v0_2->y = skeleton->base_data_angle.y;
-        temp_v0_2->z = skeleton->base_data_angle.z;
+        temp_v0_2 = &skeletonInfo->now_joint[1];
+        temp_v0_2->x = skeletonInfo->base_data_angle.x;
+        temp_v0_2->y = skeletonInfo->base_data_angle.y;
+        temp_v0_2->z = skeletonInfo->base_data_angle.z;
     }
-    skeleton->move_flag = 0;
+    skeletonInfo->move_flag = 0;
 }
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80054504_jp.s")
-
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80054884_jp.s")
