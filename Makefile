@@ -140,7 +140,7 @@ AS_DEFINES      := -DMIPSEB -D_LANGUAGE_ASSEMBLY -D_ULTRA64
 C_DEFINES       := -DLANGUAGE_C -D_LANGUAGE_C
 ENDIAN          := -EB
 
-OPTFLAGS        := -O2
+OPTFLAGS        := -O2 -g3
 MIPS_VERSION    := -mips2
 ICONV_FLAGS     := --from-code=UTF-8 --to-code=EUC-JP
 
@@ -183,6 +183,7 @@ $(shell mkdir -p $(BUILD_DIR)/linker_scripts/$(VERSION) $(BUILD_DIR)/linker_scri
 # directory flags
 
 # per-file flags
+build/src/boot/loadfragment2.o: OPTFLAGS := -O2
 
 # cc & asm-processor
 build/src/%.o: CC := $(ASM_PROC) $(ASM_PROC_FLAGS) $(CC) -- $(AS) $(ASFLAGS) --
