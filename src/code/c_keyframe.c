@@ -1,5 +1,25 @@
 #include "global.h"
 
+// f32 RO_FLT_80116110_jp = 0.00800000038;
+// f32 RO_FLT_80116114_jp = 0.03333333507;
+f32 RO_FLT_80116118_jp = 0.00800000038;
+f32 RO_FLT_8011611C_jp = 0.00800000038;
+f32 RO_FLT_80116120_jp = 182.0444489;
+f32 RO_FLT_80116124_jp = 0.002777777845;
+f32 RO_FLT_80116128_jp = 0.1000000015;
+f32 RO_FLT_8011612C_jp = 0.00800000038;
+f32 RO_FLT_80116130_jp = 0.00800000038;
+f32 RO_FLT_80116134_jp = 182.0444489;
+f32 RO_FLT_80116138_jp = 0.002777777845;
+f32 RO_FLT_8011613C_jp = 0.1000000015;
+f32 RO_FLT_80116140_jp = 0.00800000038;
+f32 RO_FLT_80116144_jp = 0.00800000038;
+f32 RO_FLT_80116148_jp = 0.00800000038;
+f32 RO_FLT_8011614C_jp = 0.00800000038;
+f32 RO_FLT_80116150_jp = 0.00800000038;
+f32 RO_FLT_80116154_jp = 0.00800000038;
+
+
 ///////////////////////////////////////////////////////////////////////////////
 //z64math.h
 
@@ -20,6 +40,8 @@ float fabsf(float f);
 #pragma intrinsic(fabsf)
 
 #define IS_ZERO(f) (fabsf(f) < 0.008f)
+
+f64 nearbyint(f64 x);
 
 ///////////////////////////////////////////////////////////////////////////////
 //z64animation.h
@@ -196,8 +218,8 @@ s32 func_80051C18_jp(FrameControl *frameCtrl, f32 arg1)
         f32 var_fv1;
         var_fv1 = (frameCtrl->start < frameCtrl->end) ? frameCtrl->speed : -frameCtrl->speed;
 
-        if (var_fv1 >= 0.0f && arg1 <= frameCtrl->current && frameCtrl->current - var_fv1 < arg1 ||
-          var_fv1 < 0.0f && frameCtrl->current <= arg1 && arg1 < frameCtrl->current - var_fv1)
+        if ((var_fv1 >= 0.0f && arg1 <= frameCtrl->current && frameCtrl->current - var_fv1 < arg1) ||
+          (var_fv1 < 0.0f && frameCtrl->current <= arg1 && arg1 < frameCtrl->current - var_fv1))
         {
             var_v1 = 1;
         }
@@ -294,39 +316,41 @@ f32 func_80051EC4_jp(f32 t, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5)
     return (1.0f - p) * arg2 + p * arg3 + ((CB(t) - 2.0f * SQ(t) + t) * arg4 + (CB(t) - SQ(t)) * arg5) * arg1;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80051F3C_jp.s")
-//cKF_KeyCalc
-// s16 func_80051F3C_jp(s16 arg0, s16 arg1, Vec3s* arg2, f32 arg3)
-// {
-//     Vec3s* temp_a3 = &arg2[arg0];
-//     Vec3s* temp_v1 = &temp_a3[arg1];
-//     f32 temp_fv1;
-//     s16 var_v0;
-//     s16 var_v1;
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80051F3C_jp.s")
+// cKF_KeyCalc
+s16 func_80051F3C_jp(s16 arg0, s16 arg1, Vec3s* arg2, f32 arg3)
+{
+    Vec3s* temp_a3 = &arg2[arg0];
+    f32 temp_fv1;
+    s32 var_v0;
+    s32 var_v1;
 
-//     if (arg3 <= temp_a3->x)
-//     {
-//         return temp_a3->y;
-//     }
-//     if (temp_a3[arg1 - 1].x <= arg3)
-//     {
-//         return temp_a3[arg1 - 1].y;
-//     }
-
-//     for (var_v0 = 1, var_v1 = 0; true; var_v0++, var_v1++)
-//     {
-//         if (arg3 < temp_a3[var_v0].x)
-//         {
-//             temp_fv1 = temp_a3[var_v0].x - temp_a3[var_v1].x;
-//             if (!IS_ZERO(temp_fv1)) {
-//                 return nearbyint(func_80183808((arg3 - temp_a3[var_v1].x) / temp_fv1, temp_fv1 * (1.0f / 30),
-//                                                temp_a3[var_v1].y, temp_a3[var_v0].y, temp_a3[var_v1].z,
-//                                                temp_a3[var_v0].z));
-//             }
-//             return temp_a3[var_v1].y;
-//         }
-//     }
-// }
+    if (arg3 <= temp_a3->x)
+    {
+        return temp_a3->y;
+    }
+    if (temp_a3[arg1 - 1].x <= arg3)
+    {
+        return temp_a3[arg1 - 1].y;
+    }
+    for (var_v0 = 1, var_v1 = 0; true; var_v1++, var_v0++)
+    {
+        if (arg3 < temp_a3[var_v0].x)
+        {
+            temp_fv1 = temp_a3[var_v0].x - temp_a3[var_v1].x;
+            if (!IS_ZERO(temp_fv1))
+            {
+                return nearbyint(func_80051EC4_jp((arg3 - temp_a3[var_v1].x) / temp_fv1,
+                                                  temp_fv1 * (1.0f / 30),
+                                                  temp_a3[var_v1].y,
+                                                  temp_a3[var_v0].y,
+                                                  temp_a3[var_v1].z,
+                                                  temp_a3[var_v0].z));
+            }
+            return temp_a3[var_v1].y;
+        }
+    }
+}
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_800520DC_jp.s")
 //cKF_SkeletonInfo_subRotInterpolation
@@ -671,7 +695,7 @@ void func_800532E8_jp(SkeletonInfo_R* skeletonInfo, BaseAnimation_R* animation, 
 // }
 
 typedef struct {
-    /* 0x00 */ s32* unk_0;
+    /* 0x00 */ SkeletonInfo_R* unk_0;
     /* 0x04 */ u16* unk_4;
     /* 0x08 */ s16* unk_8;
     /* 0x0C */ s16* unk_C;
