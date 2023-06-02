@@ -119,6 +119,62 @@ typedef struct {
 } SkeletonInfo_R; // size = 0x70
 
 ///////////////////////////////////////////////////////////////////////////////
+//macros.h
+#define WORK_DISP __gfxCtx->work.p
+#define POLY_OPA_DISP __gfxCtx->polyOpa.p
+#define POLY_XLU_DISP __gfxCtx->polyXlu.p
+#define OVERLAY_DISP __gfxCtx->overlay.p
+#define DEBUG_DISP __gfxCtx->debug.p
+
+#define OPEN_DISPS(gfxCtx)                  \
+    {                                       \
+        GraphicsContext* __gfxCtx = gfxCtx; \
+        s32 __dispPad
+
+#define CLOSE_DISPS(gfxCtx) \
+    (void)0;                \
+    }                       \
+    (void)0
+
+///////////////////////////////////////////////////////////////////////////////
+//tha.h
+typedef struct TwoHeadArena {
+    /* 0x0 */ size_t size;
+    /* 0x4 */ void* start;
+    /* 0x8 */ void* head;
+    /* 0xC */ void* tail;
+} TwoHeadArena; // size = 0x10
+
+///////////////////////////////////////////////////////////////////////////////
+//thga.h
+typedef union TwoHeadGfxArena
+{
+    struct {       // Same as TwoHeadArena, with different types and field names for the head and tail pointers
+        /* 0x0 */ size_t size;
+        /* 0x4 */ void* start;
+        /* 0x8 */ Gfx* p;
+        /* 0xC */ void* d;
+    };
+    /* 0x0 */ TwoHeadArena tha;
+} TwoHeadGfxArena; // size = 0x10
+
+///////////////////////////////////////////////////////////////////////////////
+//z64.h
+typedef struct GraphicsContext {
+    /* 0x000 */ char pad[0x290];
+    /* 0x298 */ TwoHeadGfxArena polyOpa; 
+    /* 0x2A8 */ TwoHeadGfxArena polyXlu;
+} GraphicsContext; // size = ??
+
+typedef struct GameState {
+    /* 0x00 */ GraphicsContext* gfxCtx;
+} GameState; // size = ??
+
+typedef struct PlayState {
+    /* 0x00000 */ GameState state;
+} PlayState; // size = ??
+
+///////////////////////////////////////////////////////////////////////////////
 //prototypes
 
 void func_80052584_jp(SkeletonInfo_R* skeletonInfo, BaseSkeleton_R* skeleton, BaseAnimation_R* animation, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, s32 arg8, Vec3s* arg9);
@@ -130,6 +186,8 @@ void* func_8009ADA8_jp(void* ptr);
 
 f32 cos_s(s16);                        /* extern */
 f32 sin_s(s16);                        /* extern */
+
+typedef int (*cKF_draw_callback)(PlayState*, SkeletonInfo_R*, int, Gfx**, u8*, void*, Vec3s*, Vec3s*);
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -483,6 +541,8 @@ void func_8005264C_jp(SkeletonInfo_R* skeletonInfo) {
     morph_joint++;
     for (i = 0; i < skeletonInfo->skeleton->joint_num; i++)
     {
+        //TODO next_joint and next_morph should probably be renamed
+        //these temps seem to be used because cKF_SkeletonInfo_subRotInterpolation needs the original joint as an output, and 2 other rotations as arguments
         next_joint.x = now_joint->x;
         next_joint.y = now_joint->y;
         next_joint.z = now_joint->z;
@@ -674,8 +734,38 @@ void func_8005264C_jp(SkeletonInfo_R* skeletonInfo) {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80052D20_jp.s")
 //cKF_Si3_draw_SV_R_child
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_800530D8_jp.s")
+void func_80052D20_jp(PlayState* play, SkeletonInfo_R* skeletonInfo, s32* joint_num, cKF_draw_callback prerender_callback, cKF_draw_callback postrender_callback, void* arg, Mtx** mtxpp);
+
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_800530D8_jp.s")
 //cKF_Si3_draw_R_SV
+void func_800530D8_jp(PlayState* play, SkeletonInfo_R* skeletonInfo, Mtx* mtxp, cKF_draw_callback prerender_callback, cKF_draw_callback postrender_callback, void* arg)
+{
+    s32 joint_num;
+    // Mtx* mtx_p = mtxp;
+    // void* temp_a0;
+    // void* temp_v1;
+    // void* temp_v1_2;
+
+    if (mtxp != NULL)
+    {
+        // temp_a0 = *arg0;
+        // temp_v1 = temp_a0->unk298;
+        // temp_a0->unk298 = (void* ) (temp_v1 + 8);
+        // temp_v1->unk0 = 0xDB060034;
+        // temp_v1->unk4 = arg2;
+        // temp_v1_2 = temp_a0->unk2A8;
+        // temp_a0->unk2A8 = (void* ) (temp_v1_2 + 8);
+        // temp_v1_2->unk0 = 0xDB060034;
+        // temp_v1_2->unk4 = arg2;
+        OPEN_DISPS(play->state.gfxCtx);
+        // gSPSegment(POLY_OPA_DISP++, 0x0D, mtxp);
+        // gSPSegment(POLY_XLU_DISP++, 0x0D, mtxp);
+        do { gSPSegment(__gfxCtx->polyOpa.p++, 0x0D, mtxp); do { gSPSegment(__gfxCtx->polyXlu.p++, 0x0D, mtxp); } while (0); } while (0);
+        CLOSE_DISPS(play->state.gfxCtx);
+        joint_num = 0;
+        func_80052D20_jp(play, skeletonInfo, &joint_num, prerender_callback, postrender_callback, arg, &mtxp);
+    }
+}
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80053170_jp.s")
 //cKF_SkeletonInfo_R_init_standard_repeat_speedsetandmorph
