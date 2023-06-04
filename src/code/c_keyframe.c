@@ -118,6 +118,17 @@ typedef struct {
     /* 0x6C */ s16 d_correct_base_set_angleY;
 } SkeletonInfo_R; // size = 0x70
 
+typedef struct {
+    /* 0x00 */ SkeletonInfo_R* skeletonInfo;
+    /* 0x04 */ u8* anm_check_bit_tbl;
+    /* 0x08 */ s16* anm_const_val_tbl;
+    /* 0x0C */ Vec3s* anm_data_src;
+    /* 0x10 */ s16* anm_key_num;
+    /* 0x14 */ s32 anm_key_num_idx;
+    /* 0x18 */ s32 anm_const_val_tbl_idx;
+    /* 0x1C */ s32 anm_data_src_idx;
+} SkeletonInfo_R_combine_work; // size = 0x20
+
 ///////////////////////////////////////////////////////////////////////////////
 //macros.h
 #define WORK_DISP __gfxCtx->work.p
@@ -135,6 +146,17 @@ typedef struct {
     (void)0;                \
     }                       \
     (void)0
+
+// #define OPEN_DISPS(gfxCtx)                    \
+//     {                                         \
+//         GraphicsContext* __gfxCtx = (gfxCtx); \
+//         s32 __gfx_opened = 0;                 \
+//         while (0)
+
+// #define CLOSE_DISPS(gfxCtx) \
+// 	  (void)__gfx_opened;   \
+//   }						    \
+//   while (0)
 
 ///////////////////////////////////////////////////////////////////////////////
 //tha.h
@@ -187,7 +209,7 @@ void* func_8009ADA8_jp(void* ptr);
 f32 cos_s(s16);                        /* extern */
 f32 sin_s(s16);                        /* extern */
 
-typedef int (*cKF_draw_callback)(PlayState*, SkeletonInfo_R*, int, Gfx**, u8*, void*, Vec3s*, Vec3s*);
+typedef int (*cKF_draw_callback)(PlayState*, SkeletonInfo_R*, int, Gfx**, u8*, void*, Vec3s*, Vec3f*);
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -731,8 +753,138 @@ void func_8005264C_jp(SkeletonInfo_R* skeletonInfo) {
 //     return func_80051DF0_jp(&skeletonInfo->frameCtrl);
 // }
 
+void Matrix_pull(void);                                    /* extern */
+void Matrix_push(void);                              /* extern */
+void Matrix_softcv3_mult(Vec3f* src, Vec3s* dest);                  /* extern */
+Mtx* _Matrix_to_Mtx(Mtx* dest);                             /* extern */
+
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80052D20_jp.s")
 //cKF_Si3_draw_SV_R_child
+// void func_80052D20_jp(PlayState* play, SkeletonInfo_R* skeletonInfo, s32* joint_num, cKF_draw_callback prerender_callback, cKF_draw_callback postrender_callback, void* arg, Mtx** mtxpp) {
+//     // s32 sp88;
+//     // s16 sp7C;
+//     // s16 sp7A;
+//     // s16 sp78;
+//     // f32 sp70;
+//     // f32 sp6C;
+//     // f32 sp68;
+//     // GraphicsContext* sp58;
+//     // GraphicsContext* temp_t0;
+//     // GraphicsContext* var_t0;
+//     // Vec3f* temp_v0;
+//     // Vec3s* temp_a0;
+//     // s32 temp_v1;
+//     // s32 var_v0;
+//     // void* temp_s2;
+//     // void* temp_v0_2;
+//     // void* temp_v0_3;
+//     // void* temp_v0_4;
+//     // void* temp_v1_3;
+//     // void* temp_v1_4;
+//     s32 i;
+//     s32 temp_v1_2;
+//     u8 joint_flag;
+//     Gfx* joint_shape;
+//     Gfx* newDlist;
+//     // s32 pad;
+//     Vec3f def_joint;
+//     Vec3s joint1;
+//     JointElem_R* skel_c_joint;
+//     Vec3s* cur_joint;
+//     Vec3f* temp;
+
+//     // temp_v1 = *joint_num;
+//     skel_c_joint = func_8009ADA8_jp(skeletonInfo->skeleton->joint_tbl);
+//     skel_c_joint += *joint_num;
+//     // temp_s2 = func_8009ADA8_jp(skel_c_joint);
+//     // func_8009ADA8_jp(skel_c_joint);
+//     cur_joint = &skeletonInfo->now_joint[*joint_num];
+//     if (*joint_num)
+//     {
+//         def_joint.x = skel_c_joint->trs.x;
+//         def_joint.y = skel_c_joint->trs.y;
+//         def_joint.z = skel_c_joint->trs.z;
+//     }
+//     else
+//     {
+//         // temp_v1_2 = skeletonInfo->move_flag;
+//         // temp_v0 = &skeletonInfo->base_shape_trs;
+//         temp = &skeletonInfo->base_shape_trs;
+//         if (temp_v1_2 = skeletonInfo->move_flag & 1)
+//         {
+//             def_joint.x = temp->x;
+//             def_joint.z = temp->z;
+//         }
+//         else
+//         {
+//             def_joint.x = cur_joint->x;
+//             def_joint.z = cur_joint->z;
+//         }
+//         if (temp_v1_2 & 2) {
+//             def_joint.y = temp->y;
+//         }
+//         else
+//         {
+//             def_joint.y = cur_joint->y;
+//         }
+//     }
+//     cur_joint++;
+//     joint1 = *cur_joint;
+//     // sp78.unk0 = (s32) temp_a0->unk6;
+//     // sp78.unk4 = (u16) joint1->z;
+//     if ((joint_num[0] == 0) && (skeletonInfo->move_flag & 4)) {
+//         joint1.x = skeletonInfo->base_data_angle.x;
+//         joint1.y = skeletonInfo->renew_base_data_angle.y;
+//         joint1.z = skeletonInfo->renew_base_data_angle.z;
+//     }
+//     if (1) { } if (1) { } if (1) { } if (1) { } if (1) { } if (1) { }
+//     // temp_t0 = play->state.gfxCtx;
+//     // sp58 = temp_t0;
+//     OPEN_DISPS(play->state.gfxCtx);
+//     Matrix_push();
+//     newDlist = joint_shape = skel_c_joint->shape;
+//     // var_t0 = temp_t0;
+//     // sp84 = joint_shape;
+//     joint_flag = skel_c_joint->work_flag;
+//     if ((prerender_callback == NULL) || ((prerender_callback != NULL) && prerender_callback(play, skeletonInfo, *joint_num, &newDlist, &joint_flag, arg, &joint1, &def_joint) != 0)) {
+//         // sp58 = var_t0;
+//         Matrix_softcv3_mult(&def_joint, &joint1);
+//         if (newDlist != NULL) {
+//             _Matrix_to_Mtx(*mtxpp);
+//             if (joint_flag & 1) {
+//                 gSPMatrix(POLY_XLU_DISP++, *mtxpp, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+//                 gSPDisplayList(POLY_XLU_DISP++, newDlist);
+//             }
+//             else
+//             {
+//                 gSPMatrix(POLY_OPA_DISP++, *mtxpp, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+//                 gSPDisplayList(POLY_OPA_DISP++, newDlist);
+//             }
+//             *mtxpp+=1;
+//         }
+//         else if (joint_shape != NULL)
+//         {
+//             if ((!__gfxCtx) && (!__gfxCtx))
+//             {
+//             }
+//             _Matrix_to_Mtx(*mtxpp);
+//             gSPMatrix(POLY_OPA_DISP++, *mtxpp, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+//             *mtxpp+=1;
+//         }
+//     }
+
+    
+//     if (postrender_callback != NULL) {
+//         postrender_callback(play, skeletonInfo, *joint_num, &newDlist, &joint_flag, arg, (Vec3s* ) &joint1, &def_joint);
+//     }
+//     *joint_num += 1;
+//     for(i = 0; i < skel_c_joint->child; i++)
+//     {
+//         func_80052D20_jp(play, skeletonInfo, joint_num, prerender_callback, postrender_callback, arg, mtxpp);
+//     }
+//     Matrix_pull();
+//     CLOSE_DISPS(play->state.gfxCtx);
+// }
 
 void func_80052D20_jp(PlayState* play, SkeletonInfo_R* skeletonInfo, s32* joint_num, cKF_draw_callback prerender_callback, cKF_draw_callback postrender_callback, void* arg, Mtx** mtxpp);
 
@@ -742,25 +894,13 @@ void func_800530D8_jp(PlayState* play, SkeletonInfo_R* skeletonInfo, Mtx* mtxp, 
 {
     s32 joint_num;
     // Mtx* mtx_p = mtxp;
-    // void* temp_a0;
-    // void* temp_v1;
-    // void* temp_v1_2;
 
     if (mtxp != NULL)
     {
-        // temp_a0 = *arg0;
-        // temp_v1 = temp_a0->unk298;
-        // temp_a0->unk298 = (void* ) (temp_v1 + 8);
-        // temp_v1->unk0 = 0xDB060034;
-        // temp_v1->unk4 = arg2;
-        // temp_v1_2 = temp_a0->unk2A8;
-        // temp_a0->unk2A8 = (void* ) (temp_v1_2 + 8);
-        // temp_v1_2->unk0 = 0xDB060034;
-        // temp_v1_2->unk4 = arg2;
         OPEN_DISPS(play->state.gfxCtx);
+        do { gSPSegment(POLY_OPA_DISP++, 0x0D, mtxp); do { gSPSegment(POLY_XLU_DISP++, 0x0D, mtxp); } while (0); } while (0);
         // gSPSegment(POLY_OPA_DISP++, 0x0D, mtxp);
         // gSPSegment(POLY_XLU_DISP++, 0x0D, mtxp);
-        do { gSPSegment(__gfxCtx->polyOpa.p++, 0x0D, mtxp); do { gSPSegment(__gfxCtx->polyXlu.p++, 0x0D, mtxp); } while (0); } while (0);
         CLOSE_DISPS(play->state.gfxCtx);
         joint_num = 0;
         func_80052D20_jp(play, skeletonInfo, &joint_num, prerender_callback, postrender_callback, arg, &mtxp);
@@ -815,44 +955,102 @@ void func_800532E8_jp(SkeletonInfo_R* skeletonInfo, BaseAnimation_R* animation, 
 //     }
 // }
 
-typedef struct {
-    /* 0x00 */ SkeletonInfo_R* unk_0;
-    /* 0x04 */ u16* unk_4;
-    /* 0x08 */ s16* unk_8;
-    /* 0x0C */ s16* unk_C;
-    /* 0x10 */ s16* unk_10;
-    /* 0x14 */ s32 unk_14;
-    /* 0x18 */ s32 unk_18;
-    /* 0x1C */ s32 unk_1C;
-} unkStruct;
-
-// typedef struct combine_work_set_s {
-//     cKF_SkeletonInfo_R_c* keyframe;
-//     u8* anm_check_bit_tbl;
-//     s16* anm_const_val_tbl;
-//     s16* anm_data_src;
-//     s16* anm_key_num;
-//     int anm_key_num_idx;
-//     int anm_const_val_tbl_idx;
-//     int anm_data_src_idx;
-// }cKF_SkeletonInfo_R_combine_work_c;
-
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_800533F4_jp.s")
 //cKF_SkeletonInfo_R_combine_work_set
-void func_800533F4_jp(unkStruct *arg0, SkeletonInfo_R *skeleton)
+void func_800533F4_jp(SkeletonInfo_R_combine_work *combine, SkeletonInfo_R *skeleton)
 {
-    arg0->unk_0 = skeleton;
-    arg0->unk_8 = func_8009ADA8_jp(skeleton->animation->const_value_tbl);
-    arg0->unk_10 = func_8009ADA8_jp(skeleton->animation->key_num);
-    arg0->unk_C = func_8009ADA8_jp(skeleton->animation->data_source);
-    arg0->unk_4 = func_8009ADA8_jp(skeleton->animation->ConstKeyCheckBitTbl);
-    arg0->unk_14 = 0;
-    arg0->unk_18 = 0;
-    arg0->unk_1C = 0;
+    combine->skeletonInfo = skeleton;
+    combine->anm_const_val_tbl = func_8009ADA8_jp(skeleton->animation->const_value_tbl);
+    combine->anm_key_num = func_8009ADA8_jp(skeleton->animation->key_num);
+    combine->anm_data_src = func_8009ADA8_jp(skeleton->animation->data_source);
+    combine->anm_check_bit_tbl = func_8009ADA8_jp(skeleton->animation->ConstKeyCheckBitTbl);
+    combine->anm_key_num_idx = 0;
+    combine->anm_const_val_tbl_idx = 0;
+    combine->anm_data_src_idx = 0;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80053470_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80053470_jp.s")
 //cKF_SkeletonInfo_R_combine_translation
+void func_80053470_jp(s16 **joint, u32 *flag, SkeletonInfo_R_combine_work *combine, s8* arg3)
+{
+    SkeletonInfo_R_combine_work *temp_s1;
+    SkeletonInfo_R_combine_work *temp_s2;
+    // s32 temp_v0_2;
+    // s32 temp_v0_3;
+    // s32 temp_v0_4;
+    s32 i = 0;
+    // s8 switch_flag;
+    // s8 switch_flag = *arg3;
+
+    temp_s1 = &combine[1];
+    temp_s2 = &combine[2];
+    for(i; i < 3; i++)
+    {
+        // switch_flag = skeletonInfo->frameCtrl.start;
+        switch (*arg3)
+        {
+        case 0:
+            if (*combine[0].anm_check_bit_tbl & *flag)
+            {
+                **joint = func_80051F3C_jp(combine[0].anm_data_src_idx,
+                                           combine[0].anm_key_num[combine->anm_key_num_idx],
+                                           combine[0].anm_data_src,
+                                           combine[0].skeletonInfo->frameCtrl.current);
+            }
+            else
+            {
+                **joint = combine->anm_const_val_tbl[combine->anm_const_val_tbl_idx];
+            }
+            break;
+        case 1:
+             if (*temp_s1->anm_check_bit_tbl & *flag)
+            {
+                **joint = func_80051F3C_jp(temp_s1->anm_data_src_idx, temp_s1->anm_key_num[temp_s1->anm_key_num_idx], (Vec3s *) temp_s1->anm_data_src, temp_s1->skeletonInfo->frameCtrl.current);
+            }
+            else
+            {
+                **joint = temp_s1->anm_const_val_tbl[temp_s1->anm_const_val_tbl_idx];
+            }
+            break;
+        case 2:
+             if (*temp_s2->anm_check_bit_tbl & *flag)
+            {
+                **joint = func_80051F3C_jp(temp_s2->anm_data_src_idx, temp_s2->anm_key_num[temp_s2->anm_key_num_idx], (Vec3s *) temp_s2->anm_data_src, temp_s2->skeletonInfo->frameCtrl.current);
+            }
+            else
+            {
+                **joint = temp_s2->anm_const_val_tbl[temp_s2->anm_const_val_tbl_idx];
+            }
+            break;
+        }
+         if (*combine[0].anm_check_bit_tbl & *flag)
+        {
+            combine->anm_data_src_idx += combine[0].anm_key_num[combine->anm_key_num_idx++];
+        }
+        else
+        {
+            combine->anm_const_val_tbl_idx += 1;
+        }
+         if (*temp_s1->anm_check_bit_tbl & *flag)
+        {
+            temp_s1->anm_data_src_idx += temp_s1->anm_key_num[temp_s1->anm_key_num_idx++];
+        }
+        else
+        {
+            temp_s1->anm_const_val_tbl_idx++;
+        }
+         if (*temp_s2->anm_check_bit_tbl & *flag)
+        {
+            temp_s2->anm_data_src_idx += temp_s2->anm_key_num[temp_s2->anm_key_num_idx++];
+        }
+        else
+        {
+            temp_s2->anm_const_val_tbl_idx += 1;
+        }
+        *flag >>= 1;
+        *joint += 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_8005376C_jp.s")
 //cKF_SkeletonInfo_R_combine_rotation
