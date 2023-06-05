@@ -147,17 +147,6 @@ typedef struct {
     }                       \
     (void)0
 
-// #define OPEN_DISPS(gfxCtx)                    \
-//     {                                         \
-//         GraphicsContext* __gfxCtx = (gfxCtx); \
-//         s32 __gfx_opened = 0;                 \
-//         while (0)
-
-// #define CLOSE_DISPS(gfxCtx) \
-// 	  (void)__gfx_opened;   \
-//   }						    \
-//   while (0)
-
 ///////////////////////////////////////////////////////////////////////////////
 //tha.h
 typedef struct TwoHeadArena {
@@ -975,18 +964,12 @@ void func_80053470_jp(s16 **joint, u32 *flag, SkeletonInfo_R_combine_work *combi
 {
     SkeletonInfo_R_combine_work *temp_s1;
     SkeletonInfo_R_combine_work *temp_s2;
-    // s32 temp_v0_2;
-    // s32 temp_v0_3;
-    // s32 temp_v0_4;
-    s32 i = 0;
-    // s8 switch_flag;
-    // s8 switch_flag = *arg3;
+    s32 i;
 
     temp_s1 = &combine[1];
     temp_s2 = &combine[2];
-    for(i; i < 3; i++)
+    for(i = 0; i < 3; i++)
     {
-        // switch_flag = skeletonInfo->frameCtrl.start;
         switch (*arg3)
         {
         case 0:
@@ -1052,8 +1035,91 @@ void func_80053470_jp(s16 **joint, u32 *flag, SkeletonInfo_R_combine_work *combi
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_8005376C_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_8005376C_jp.s")
 //cKF_SkeletonInfo_R_combine_rotation
+void func_8005376C_jp(s16 **joint, u32 *flag, SkeletonInfo_R_combine_work *combine, s8* arg3)
+{
+    SkeletonInfo_R_combine_work *sp64;
+    SkeletonInfo_R_combine_work *temp_s0;
+    SkeletonInfo_R_combine_work *temp_s1;
+    s32 i;
+    s32 j;
+    s16 *temp_v0_5;
+    f32 temp_fv0;
+
+    sp64 = combine;
+    temp_s0 = &combine[1];
+    temp_s1 = &combine[2];
+    for (i = 0; i < sp64->skeletonInfo->skeleton->joint_num; i++)
+    {
+        *flag = 4;
+        for (j = 0; j < 3; j++)
+        {
+            switch (arg3[i+1])
+            {
+            case 0:
+                if (combine->anm_check_bit_tbl[i] & *flag)
+                {
+                    **joint = func_80051F3C_jp(combine[0].anm_data_src_idx, combine->anm_key_num[combine->anm_key_num_idx], combine->anm_data_src, combine->skeletonInfo->frameCtrl.current);
+                }
+                else
+                {
+                    **joint = combine->anm_const_val_tbl[combine->anm_const_val_tbl_idx];
+                }
+                break;
+            case 1:
+                if (temp_s0->anm_check_bit_tbl[i] & *flag)
+                {
+                    **joint = func_80051F3C_jp(temp_s0->anm_data_src_idx, temp_s0->anm_key_num[temp_s0->anm_key_num_idx], temp_s0->anm_data_src, temp_s0->skeletonInfo->frameCtrl.current);
+                }
+                else
+                {
+                    **joint = temp_s0->anm_const_val_tbl[temp_s0->anm_const_val_tbl_idx];
+                }
+                break;
+            case 2:
+                if (temp_s1->anm_check_bit_tbl[i] & *flag)
+                {
+                    **joint = func_80051F3C_jp(temp_s1->anm_data_src_idx, temp_s1->anm_key_num[temp_s1->anm_key_num_idx], temp_s1->anm_data_src, temp_s1->skeletonInfo->frameCtrl.current);
+                }
+                else
+                {
+                    **joint = temp_s1->anm_const_val_tbl[temp_s1->anm_const_val_tbl_idx];
+                }
+                break;
+            }
+            if (combine->anm_check_bit_tbl[i] & *flag)
+            {
+                combine->anm_data_src_idx += combine->anm_key_num[combine->anm_key_num_idx++];
+            }
+            else
+            {
+                combine->anm_const_val_tbl_idx++;
+            }
+            if (temp_s0->anm_check_bit_tbl[i] & *flag)
+            {
+                temp_s0->anm_data_src_idx += temp_s0->anm_key_num[temp_s0->anm_key_num_idx++];
+            }
+            else
+            {
+                temp_s0->anm_const_val_tbl_idx++;
+            }
+            if (temp_s1->anm_check_bit_tbl[i] & *flag)
+            {
+                temp_s1->anm_data_src_idx += temp_s1->anm_key_num[temp_s1->anm_key_num_idx++];
+            }
+            else
+            {
+                temp_s1->anm_const_val_tbl_idx++;
+            }
+            temp_v0_5 = *joint;
+            temp_fv0 = *temp_v0_5 * 0.1f;
+            *temp_v0_5 = (s16) (s32) ((temp_fv0 - ((f32) (s32) (temp_fv0 * 0.0027777778f) * 360.0f)) * 182.04445f);
+            *flag >>= 1;
+            *joint += 1;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80053B54_jp.s")
 //cKF_SkeletonInfo_R_combine_play
