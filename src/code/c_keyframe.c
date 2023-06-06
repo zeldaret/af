@@ -1122,69 +1122,53 @@ void func_800542CC_jp(SkeletonInfo_R* skeletonInfo, f32 arg1, f32 arg2, f32 arg3
     skeletonInfo->renew_base_data_angle.z = skeletonInfo->base_data_angle.z;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80054320_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80054320_jp.s")
 //cKF_SkeletonInfo_R_AnimationMove_ct_base
-// extern ? D_8010F4A0_jp;
+extern Vec3f D_8010F4A0_jp;
 
-// void func_80054320_jp(void *arg0, void *arg1, s16 arg2, s16 arg3, f32 arg4, void *arg5, s32 arg6)
-// {
-//     s16 temp_v1;
-//     s16 var_v0;
-//     void *var_a1;
+void func_80054320_jp(Vec3f* arg0, Vec3f* arg1, s16 arg2, s16 arg3, f32 arg4, SkeletonInfo_R* skeletonInfo, s32 arg6) {
+    s32 var_v0;
 
-//     var_a1 = arg1;
-//     temp_v1 = arg2 - arg3;
-//     arg5->unk30 = arg6;
-//     if (arg4 >= 0.0f)
-//     {
-//         arg5->unk5C = arg4;
-//     }
-//     else
-//     {
-//         arg5->unk5C = (f32) -arg4;
-//     }
-//     arg5->unk34 = (f32) D_8010F4A0_jp.unk0;
-//     arg5->unk38 = (f32) D_8010F4A0_jp.unk4;
-//     arg5->unk3C = (f32) D_8010F4A0_jp.unk8;
-//     arg5->unk60 = (f32) D_8010F4A0_jp.unk0;
-//     arg5->unk64 = (f32) D_8010F4A0_jp.unk4;
-//     arg5->unk68 = (f32) D_8010F4A0_jp.unk8;
-//     if (arg0 != NULL)
-//     {
-//         if (var_a1 == NULL)
-//         {
-//             var_a1 = arg0;
-//         }
-//         if (arg6 & 1)
-//         {
-//             arg5->unk34 = (f32) var_a1->unk0;
-//             arg5->unk3C = (f32) var_a1->unk8;
-//             arg5->unk60 = (f32) (arg0->unk0 - var_a1->unk0);
-//             arg5->unk68 = (f32) (arg0->unk8 - var_a1->unk8);
-//         }
-//         if (arg6 & 2)
-//         {
-//             arg5->unk38 = (f32) var_a1->unk4;
-//             arg5->unk64 = (f32) (arg0->unk4 - var_a1->unk4);
-//         }
-//     }
-//     arg5->unk40 = arg3;
-//     arg5->unk6C = 0;
-//     if (arg6 & 4)
-//     {
-//         var_v0 = temp_v1;
-//         if (temp_v1 >= 0x8001)
-//         {
-//             var_v0 = 0xFFFF0000 - -temp_v1;
-//         }
-//         else if (temp_v1 < -0x8000)
-//         {
-//             var_v0 = temp_v1 + 0x10000;
-//         }
-//         arg5->unk6C = var_v0;
-//     }
-// }
-
+    skeletonInfo->move_flag = arg6;
+    skeletonInfo->correct_counter = (arg4 >= 0.0f) ? arg4 : -arg4;
+    skeletonInfo->idle_world_pos = D_8010F4A0_jp;
+    skeletonInfo->d_correct_base_world_pos = D_8010F4A0_jp;
+    
+    if (arg0 != NULL)
+    {
+        if (arg1 == NULL)
+        {
+            arg1 = arg0;
+        }
+        if (arg6 & 1)
+        {
+            skeletonInfo->idle_world_pos.x = arg1->x;
+            skeletonInfo->idle_world_pos.z = arg1->z;
+            skeletonInfo->d_correct_base_world_pos.x = arg0->x - arg1->x;
+            skeletonInfo->d_correct_base_world_pos.z = arg0->z - arg1->z;
+        }
+        if (arg6 & 2)
+        {
+            skeletonInfo->idle_world_pos.y = arg1->y;
+            skeletonInfo->d_correct_base_world_pos.y = (f32) (arg0->y - arg1->y);
+        }
+    }
+    skeletonInfo->idle_set_angleY = arg3;
+    skeletonInfo->d_correct_base_set_angleY = 0;
+    if (arg6 & 4)
+    {
+        var_v0 = arg2 - arg3;
+        if (var_v0 >= 0x8001)
+        {
+            var_v0 = -(0x10000 - var_v0);
+        }
+        else if (var_v0 < -0x8000)
+        {
+            var_v0 = var_v0 + 0x10000;
+        }
+        skeletonInfo->d_correct_base_set_angleY = var_v0;
+    }
+}
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80054474_jp.s")
 //cKF_SkeletonInfo_R_AnimationMove_dt
