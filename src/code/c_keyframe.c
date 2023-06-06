@@ -200,6 +200,11 @@ f32 sin_s(s16);                        /* extern */
 
 typedef int (*cKF_draw_callback)(PlayState*, SkeletonInfo_R*, int, Gfx**, u8*, void*, Vec3s*, Vec3f*);
 
+void Matrix_softcv3_mult(Vec3f* src, Vec3s* dest);
+void Matrix_push(void);
+Mtx* _Matrix_to_Mtx(Mtx* dest);
+void Matrix_pull(void);
+
 ///////////////////////////////////////////////////////////////////////////////
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80051A80_jp.s")
@@ -742,140 +747,121 @@ void func_8005264C_jp(SkeletonInfo_R* skeletonInfo) {
 //     return func_80051DF0_jp(&skeletonInfo->frameCtrl);
 // }
 
-void Matrix_pull(void);                                    /* extern */
-void Matrix_push(void);                              /* extern */
-void Matrix_softcv3_mult(Vec3f* src, Vec3s* dest);                  /* extern */
-Mtx* _Matrix_to_Mtx(Mtx* dest);                             /* extern */
-
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80052D20_jp.s")
 //cKF_Si3_draw_SV_R_child
-// void func_80052D20_jp(PlayState* play, SkeletonInfo_R* skeletonInfo, s32* joint_num, cKF_draw_callback prerender_callback, cKF_draw_callback postrender_callback, void* arg, Mtx** mtxpp) {
-//     // s32 sp88;
+// void func_80052D20_jp(PlayState *play, SkeletonInfo_R *skeletonInfo, s32 *joint_num, cKF_draw_callback prerender_callback, cKF_draw_callback postrender_callback, void *arg, Mtx **mtxpp)
+// {
+//     s32 sp88;
+//     Gfx *sp84;
+//     u8 sp7F;
 //     // s16 sp7C;
 //     // s16 sp7A;
-//     // s16 sp78;
+//     Vec3s rot;
 //     // f32 sp70;
 //     // f32 sp6C;
-//     // f32 sp68;
-//     // GraphicsContext* sp58;
-//     // GraphicsContext* temp_t0;
-//     // GraphicsContext* var_t0;
-//     // Vec3f* temp_v0;
-//     // Vec3s* temp_a0;
-//     // s32 temp_v1;
-//     // s32 var_v0;
-//     // void* temp_s2;
-//     // void* temp_v0_2;
-//     // void* temp_v0_3;
-//     // void* temp_v0_4;
-//     // void* temp_v1_3;
-//     // void* temp_v1_4;
-//     s32 i;
+//     Vec3f pos;
+//     GraphicsContext *sp58;
+//     Gfx *temp_s0;
+//     GraphicsContext *temp_t0;
+//     Vec3f *temp_v0;
+//     Vec3s *temp_a0;
+//     s32 temp_v1;
 //     s32 temp_v1_2;
-//     u8 joint_flag;
-//     Gfx* joint_shape;
-//     Gfx* newDlist;
-//     // s32 pad;
-//     Vec3f def_joint;
-//     Vec3s joint1;
-//     JointElem_R* skel_c_joint;
-//     Vec3s* cur_joint;
-//     Vec3f* temp;
+//     s32 var_v0;
+//     JointElem_R *temp_s2;
+//     void *temp_v0_2;
+//     void *temp_v0_3;
+//     void *temp_v0_4;
+//     void *temp_v1_3;
+//     void *temp_v1_4;
 
-//     // temp_v1 = *joint_num;
-//     skel_c_joint = func_8009ADA8_jp(skeletonInfo->skeleton->joint_tbl);
-//     skel_c_joint += *joint_num;
-//     // temp_s2 = func_8009ADA8_jp(skel_c_joint);
-//     // func_8009ADA8_jp(skel_c_joint);
-//     cur_joint = &skeletonInfo->now_joint[*joint_num];
-//     if (*joint_num)
+//     if (1) { } if (1) { } if (1) { } if (1) { } 
+//     temp_s2 = func_8009ADA8_jp(skeletonInfo->skeleton->joint_tbl);
+//     temp_s2 += *joint_num;
+//     temp_a0 = &skeletonInfo->now_joint[*joint_num];
+//     if (*joint_num != 0)
 //     {
-//         def_joint.x = skel_c_joint->trs.x;
-//         def_joint.y = skel_c_joint->trs.y;
-//         def_joint.z = skel_c_joint->trs.z;
+//         pos.x = temp_s2->trs.x;
+//         pos.y = temp_s2->trs.y;
+//         pos.z = temp_s2->trs.z;
 //     }
 //     else
 //     {
-//         // temp_v1_2 = skeletonInfo->move_flag;
-//         // temp_v0 = &skeletonInfo->base_shape_trs;
-//         temp = &skeletonInfo->base_shape_trs;
-//         if (temp_v1_2 = skeletonInfo->move_flag & 1)
+//         temp_v1_2 = skeletonInfo->move_flag;
+//         temp_v0 = &skeletonInfo->base_shape_trs;
+//         if (temp_v1_2 & 1)
 //         {
-//             def_joint.x = temp->x;
-//             def_joint.z = temp->z;
+//             pos.x = temp_v0->x;
+//             pos.z = temp_v0->z;
 //         }
 //         else
 //         {
-//             def_joint.x = cur_joint->x;
-//             def_joint.z = cur_joint->z;
+//             pos.x = temp_a0->x;
+//             pos.z = temp_a0->z;
 //         }
-//         if (temp_v1_2 & 2) {
-//             def_joint.y = temp->y;
+//         if (temp_v1_2 & 2)
+//         {
+//             pos.y = temp_v0->y;
 //         }
 //         else
 //         {
-//             def_joint.y = cur_joint->y;
+//             pos.y = temp_a0->y;
 //         }
 //     }
-//     cur_joint++;
-//     joint1 = *cur_joint;
-//     // sp78.unk0 = (s32) temp_a0->unk6;
-//     // sp78.unk4 = (u16) joint1->z;
-//     if ((joint_num[0] == 0) && (skeletonInfo->move_flag & 4)) {
-//         joint1.x = skeletonInfo->base_data_angle.x;
-//         joint1.y = skeletonInfo->renew_base_data_angle.y;
-//         joint1.z = skeletonInfo->renew_base_data_angle.z;
+//     rot = temp_a0[1];
+//     if ((*joint_num == 0) && (skeletonInfo->move_flag & 4))
+//     {
+//         rot.x = skeletonInfo->base_data_angle.x;
+//         rot.y = skeletonInfo->renew_base_data_angle.y;
+//         rot.z = skeletonInfo->renew_base_data_angle.z;
 //     }
-//     if (1) { } if (1) { } if (1) { } if (1) { } if (1) { } if (1) { }
 //     // temp_t0 = play->state.gfxCtx;
 //     // sp58 = temp_t0;
 //     OPEN_DISPS(play->state.gfxCtx);
 //     Matrix_push();
-//     newDlist = joint_shape = skel_c_joint->shape;
-//     // var_t0 = temp_t0;
-//     // sp84 = joint_shape;
-//     joint_flag = skel_c_joint->work_flag;
-//     if ((prerender_callback == NULL) || ((prerender_callback != NULL) && prerender_callback(play, skeletonInfo, *joint_num, &newDlist, &joint_flag, arg, &joint1, &def_joint) != 0)) {
-//         // sp58 = var_t0;
-//         Matrix_softcv3_mult(&def_joint, &joint1);
-//         if (newDlist != NULL) {
+//     temp_s0 = temp_s2->shape;
+//     sp84 = temp_s0;
+//     sp7F = temp_s2->work_flag;
+    
+//     if ((prerender_callback == NULL) ||
+//         (prerender_callback != NULL && prerender_callback(play, skeletonInfo, *joint_num, &sp84, &sp7F, arg, &rot, &pos) != NULL))
+//     {
+//         Matrix_softcv3_mult(&pos, &rot);
+//         if (sp84 != NULL)
+//         {
 //             _Matrix_to_Mtx(*mtxpp);
-//             if (joint_flag & 1) {
+//             if (sp7F & 1)
+//             {
 //                 gSPMatrix(POLY_XLU_DISP++, *mtxpp, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-//                 gSPDisplayList(POLY_XLU_DISP++, newDlist);
+//                 gSPDisplayList(POLY_XLU_DISP++, sp84);
 //             }
 //             else
 //             {
 //                 gSPMatrix(POLY_OPA_DISP++, *mtxpp, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-//                 gSPDisplayList(POLY_OPA_DISP++, newDlist);
+//                 gSPDisplayList(POLY_OPA_DISP++, sp84);
 //             }
-//             *mtxpp+=1;
+//             (*mtxpp)++;
 //         }
-//         else if (joint_shape != NULL)
+//         else if (temp_s0 != NULL)
 //         {
-//             if ((!__gfxCtx) && (!__gfxCtx))
-//             {
-//             }
 //             _Matrix_to_Mtx(*mtxpp);
+//             if(1){}
 //             gSPMatrix(POLY_OPA_DISP++, *mtxpp, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-//             *mtxpp+=1;
+//             (*mtxpp)++;
 //         }
 //     }
-
-    
-//     if (postrender_callback != NULL) {
-//         postrender_callback(play, skeletonInfo, *joint_num, &newDlist, &joint_flag, arg, (Vec3s* ) &joint1, &def_joint);
+//     if (postrender_callback != NULL)
+//     {
+//         postrender_callback(play, skeletonInfo, *joint_num, &sp84, &sp7F, arg, &rot, &pos);
 //     }
-//     *joint_num += 1;
-//     for(i = 0; i < skel_c_joint->child; i++)
+//     (*joint_num)++;
+//     for (var_v0 = 0; var_v0 < temp_s2->child; var_v0++)
 //     {
 //         func_80052D20_jp(play, skeletonInfo, joint_num, prerender_callback, postrender_callback, arg, mtxpp);
 //     }
 //     Matrix_pull();
-//     CLOSE_DISPS(play->state.gfxCtx);
+//     CLOSE_DISPS(play->state.gfx);
 // }
-
-void func_80052D20_jp(PlayState* play, SkeletonInfo_R* skeletonInfo, s32* joint_num, cKF_draw_callback prerender_callback, cKF_draw_callback postrender_callback, void* arg, Mtx** mtxpp);
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_800530D8_jp.s")
 //cKF_Si3_draw_R_SV
@@ -924,25 +910,19 @@ void func_800532E8_jp(SkeletonInfo_R* skeletonInfo, BaseAnimation_R* animation, 
     func_80052584_jp(skeletonInfo, skeletonInfo->skeleton, animation, ((BaseAnimation_R*)func_8009ADA8_jp(animation))->frames, 1.0f, ((BaseAnimation_R*)func_8009ADA8_jp(animation))->frames, arg3, arg4, arg5, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80053384_jp.s")
-// extern s32* B_801458A0_jp;
-
-// void func_80053384_jp(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8)
-// {
-//     s32* temp = B_801458A0_jp;
-//     if (arg3)
-//     {
-//         temp[arg0] = arg6 + 0x80000000;
-//     }
-//     if (arg4)
-//     {
-//         temp[arg1] = arg7 + 0x80000000;
-//     }
-//     if (arg5)
-//     {
-//         temp[arg2] = arg8 + 0x80000000;
-//     }
-// }
+extern u32* B_801458A0_jp;
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80053384_jp.s")
+void func_80053384_jp(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8) {
+    if (arg3 != 0) {
+        *(&B_801458A0_jp + arg0) = arg6 + 0x80000000;
+    }
+    if (arg4 != 0) {
+        *(&B_801458A0_jp + arg1) = arg7 + 0x80000000;
+    }
+    if (arg5 != 0) {
+        *(&B_801458A0_jp + arg2) = arg8 + 0x80000000;
+    }
+}
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_800533F4_jp.s")
 //cKF_SkeletonInfo_R_combine_work_set
