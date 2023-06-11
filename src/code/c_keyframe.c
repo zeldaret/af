@@ -63,8 +63,14 @@ typedef struct {
 } BaseSkeleton_R; // size = 0x14
 
 typedef struct {
-    /* 0x00 */ u16 *ConstKeyCheckBitTbl;
-    /* 0x04 */ s16 *data_source;
+    /* 0x00 */ s16 frame;
+    /* 0x02 */ s16 point;
+    /* 0x04 */ s16 velocity;
+} Keyframe; // size = 0x06
+
+typedef struct {
+    /* 0x00 */ u8 *ConstKeyCheckBitTbl;
+    /* 0x04 */ Keyframe *data_source;
     /* 0x08 */ s16 *key_num;
     /* 0x0C */ s16 *const_value_tbl;
     /* 0x10 */ s16 ext;
@@ -72,8 +78,8 @@ typedef struct {
 } BaseAnimation; // size = 0x14
 
 typedef struct {
-    /* 0x00 */ u16 *ConstKeyCheckBitTbl;
-    /* 0x04 */ s16 *data_source;
+    /* 0x00 */ u8 *ConstKeyCheckBitTbl;
+    /* 0x04 */ Keyframe *data_source;
     /* 0x08 */ s16 *key_num;
     /* 0x0C */ s16 *const_value_tbl;
     /* 0x10 */ s16 ext;
@@ -95,7 +101,7 @@ typedef struct {
     /* 0x18 */ BaseSkeleton_R *skeleton;
     /* 0x1C */ BaseAnimation_R *animation;
     /* 0x20 */ f32 morphCounter;
-    /* 0x24 */ Vec3s *now_joint; // array of Vec3s
+    /* 0x24 */ Vec3s *now_joint;
     /* 0x28 */ Vec3s *morph_joint;
     /* 0x2C */ Vec3s *diff_rot_tbl;
     /* 0x30 */ s32 move_flag;
@@ -110,16 +116,10 @@ typedef struct {
 } SkeletonInfo_R; // size = 0x70
 
 typedef struct {
-    /* 0x00 */ s16 unk_0;
-    /* 0x02 */ s16 point;
-    /* 0x04 */ s16 velocity;
-} dsStruct; // size = 0x06
-
-typedef struct {
     /* 0x00 */ SkeletonInfo_R *skeletonInfo;
     /* 0x04 */ u8 *anm_check_bit_tbl;
     /* 0x08 */ s16 *anm_const_val_tbl;
-    /* 0x0C */ dsStruct *anm_data_src;
+    /* 0x0C */ Keyframe *anm_data_src;
     /* 0x10 */ s16 *anm_key_num;
     /* 0x14 */ s32 anm_key_num_idx;
     /* 0x18 */ s32 anm_const_val_tbl_idx;
@@ -343,28 +343,34 @@ f32 cKF_HermitCalc(f32 t, f32 arg1, f32 p0, f32 p1, f32 v0, f32 v1) {
     return h0 * p0 + h3 * p1 + (h1 * v0 + h2 * v1) * arg1;
 }
 
-s16 cKF_KeyCalc(s16 dsindex, s16 keyNum, dsStruct *dataSource, f32 currentFrame) {
-    dsStruct *temp_a3 = &dataSource[dsindex];
-    f32 temp_fv1;
-    s32 endPointIndex;
-    s32 startPointIndex;
+// startIndex: which keyframe in datasource to start with
+// sequenceLength: how many keyframes are in the sequence
+// dataSource: Array where all the keyframes are stored
+// currentFrame: current frame of the animation
+s16 cKF_KeyCalc(s16 startIndex, s16 sequenceLength, Keyframe *dataSource, f32 currentFrame) {
+    Keyframe *ds = &dataSource[startIndex];
+    f32 frameDelta;
+    s32 kf2;
+    s32 kf1;
 
-    if (currentFrame <= temp_a3->unk_0) {
-        return temp_a3->point;
+    // if currentFrame is before the starting keyframe
+    if (currentFrame <= ds[0].frame) {
+        return ds[0].point;
     }
-    if (temp_a3[keyNum - 1].unk_0 <= currentFrame) {
-        return temp_a3[keyNum - 1].point;
+    // if currentFrame is after the ending frame
+    if (ds[sequenceLength - 1].frame <= currentFrame) {
+        return ds[sequenceLength - 1].point;
     }
-    for (endPointIndex = 1, startPointIndex = 0; true; startPointIndex++, endPointIndex++) {
-        if (currentFrame < temp_a3[endPointIndex].unk_0) {
-            temp_fv1 = temp_a3[endPointIndex].unk_0 - temp_a3[startPointIndex].unk_0;
-            if (!IS_ZERO(temp_fv1)) {
-                return nearbyint(cKF_HermitCalc((currentFrame - temp_a3[startPointIndex].unk_0) / temp_fv1,
-                                                temp_fv1 * (1.0f / 30), temp_a3[startPointIndex].point,
-                                                temp_a3[endPointIndex].point, temp_a3[startPointIndex].velocity,
-                                                temp_a3[endPointIndex].velocity));
+    // iterate over all the keyframes to find the correct keyframes to interpolate between
+    for (kf2 = 1, kf1 = 0; true; kf1++, kf2++) {
+        if (currentFrame < ds[kf2].frame) {
+            frameDelta = ds[kf2].frame - ds[kf1].frame;
+            if (!IS_ZERO(frameDelta)) {
+                return nearbyint(cKF_HermitCalc((currentFrame - ds[kf1].frame) / frameDelta, frameDelta * (1.0f / 30),
+                                                ds[kf1].point, ds[kf2].point, ds[kf1].velocity, ds[kf2].velocity));
+            } else {
+                return ds[kf1].point;
             }
-            return temp_a3[startPointIndex].point;
         }
     }
 }
@@ -551,7 +557,7 @@ void cKF_SkeletonInfo_R_morphJoint(SkeletonInfo_R *skeletonInfo) {
 //     s16* const_value_table;
 //     Vec3s* data_source;
 //     s16* key_num;
-    
+
 //     if (!IS_ZERO(skeletonInfo->morphCounter))
 //     {
 //         joint1 = &skeletonInfo->morph_joint->x;
@@ -560,20 +566,19 @@ void cKF_SkeletonInfo_R_morphJoint(SkeletonInfo_R *skeletonInfo) {
 //     {
 //         joint1 = &skeletonInfo->now_joint->x;
 //     }
-    
+
 //     const_value_table = func_8009ADA8_jp(skeletonInfo->animation->const_value_tbl);
 //     key_num = func_8009ADA8_jp(skeletonInfo->animation->key_num);
 //     data_source = func_8009ADA8_jp(skeletonInfo->animation->data_source);
 //     ckcb_table = func_8009ADA8_jp(skeletonInfo->animation->ConstKeyCheckBitTbl);
-    
+
 //     // bitflag_index = 0x20;
 //     for (bitflag_index = 0x20, threeIndex = 0; threeIndex < 3; threeIndex++)
 //     {
 //         if (*ckcb_table & bitflag_index)
 //         {
-//             *joint1 = func_80051F3C_jp(key_calc_index, key_num[kn_index], data_source, skeletonInfo->frameCtrl.current);
-//             key_calc_index += key_num[kn_index];
-//             kn_index += 1;
+//             *joint1 = func_80051F3C_jp(key_calc_index, key_num[kn_index], data_source,
+//             skeletonInfo->frameCtrl.current); key_calc_index += key_num[kn_index]; kn_index += 1;
 //         }
 //         else
 //         {
@@ -588,12 +593,11 @@ void cKF_SkeletonInfo_R_morphJoint(SkeletonInfo_R *skeletonInfo) {
 //         // bitflag_index = 0x4;
 //         for (bitflag_index = 0x4, threeIndex = 0; threeIndex < 3; threeIndex++)
 //         {
-            
+
 //             if (ckcb_table[jointIndex] & bitflag_index)
 //             {
-//                 *joint1 = func_80051F3C_jp(key_calc_index, key_num[kn_index], data_source, skeletonInfo->frameCtrl.current);
-//                 key_calc_index += key_num[kn_index];
-//                 kn_index += 1;
+//                 *joint1 = func_80051F3C_jp(key_calc_index, key_num[kn_index], data_source,
+//                 skeletonInfo->frameCtrl.current); key_calc_index += key_num[kn_index]; kn_index += 1;
 //             }
 //             else
 //             {
