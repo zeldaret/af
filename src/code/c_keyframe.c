@@ -60,7 +60,7 @@ typedef struct {
     /* 0x00 */ u8 joint_num;
     /* 0x01 */ u8 display_joint_num;
     /* 0x04 */ JointElem_R *joint_tbl;
-} BaseSkeleton_R; // size = 0x14
+} BaseSkeleton_R; // size = 0x8
 
 typedef struct {
     /* 0x00 */ s16 frame;
