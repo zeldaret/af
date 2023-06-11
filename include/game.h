@@ -2,6 +2,11 @@
 #define GAME_H
 
 #include "ultra64.h"
+#include "gfx.h"
+
+typedef struct GameState {
+    /* 0x00 */ GraphicsContext* gfxCtx;
+} GameState; // size = ??
 
 // void func_800D2E00_jp();
 // void func_800D2E58_jp();
