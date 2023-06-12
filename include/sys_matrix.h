@@ -3,6 +3,11 @@
 
 #include "ultra64.h"
 
+typedef enum {
+    /* 0 */ MTXMODE_NEW,  // generates a new matrix
+    /* 1 */ MTXMODE_APPLY // applies transformation to the current matrix
+} MatrixMode;
+
 // void new_Matrix();
 // void Matrix_push();
 // void Matrix_pull();
