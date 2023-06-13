@@ -50,4 +50,7 @@ typedef union {
     };
 } MtxF; // size = 0x40
 
+#define SQ(x) ((x) * (x))
+#define CB(x) ((x) * (x) * (x))
+
 #endif

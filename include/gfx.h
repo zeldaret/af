@@ -28,4 +28,6 @@ typedef struct GraphicsContext {
 //     }                       \
 //     (void)0
 
+#define GRAPH_ALLOC(gfxCtx, size) ((void*)((gfxCtx)->polyOpa.d = (Gfx*)((u8*)(gfxCtx)->polyOpa.d - ALIGN16(size))))
+
 #endif
