@@ -132,6 +132,7 @@
       - [0x726260, data, code/m_actor_shadow]
       - [0x72B7A0, data, code/m_lib]
       - [0x72B7D0, data, code/72B7D0]
+      - [0x733970, .data, code/sys_matrix]
       - [0x7339F0, data, code/sys_ucode]
       - [0x733A00, data, code/m_nmi_buff]
       - [0x733A10, data, code/733A10]
