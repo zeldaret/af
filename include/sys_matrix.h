@@ -51,6 +51,6 @@ void Skin_Matrix_SetTranslate(MtxF* mf, f32 x, f32 y, f32 z);   /* extern */
 void Skin_Matrix_SetScale(MtxF* mf, f32 x, f32 y, f32 z);       /* extern */
 f32 cos_s(s16 angle);                                           /* extern */
 f32 sin_s(s16 angle);                                           /* extern */
-s16 Math_FAtan2F(f32 y, f32 x);
+f32 Math_FAtan2F(f32 y, f32 x);
 
 #endif
