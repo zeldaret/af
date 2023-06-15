@@ -3,6 +3,8 @@
  *
  * Functions used to process and relocate dynamically loadable code segments (overlays).
  *
+ * @note:
+ *     These are for specific fragment overlays with the .ovl file extension
  */
 #include "global.h"
 #include "loadfragment.h"
@@ -10,6 +12,7 @@
 
 void DoRelocation(void* allocatedRamAddr, OverlayRelocationSection* ovlRelocs, void* vramStart);
 
+// Unknown original name
 s32 Overlay_Load(void* vromStart, void* vromEnd, void* ovlStart, void* ovlEnd, void* vramStart, void* vramEnd,
                  void* allocatedRamAddr, OverlayRelocationSection* ovlRelocs) {
     OverlayRelocationSection* ovl = ovlRelocs;
