@@ -35,22 +35,25 @@ void Matrix_Position_VecX(f32 x, Vec3f* dest);
 void Matrix_Position_VecY(f32 y, Vec3f* dest);
 void Matrix_Position_VecZ(f32 z, Vec3f* dest);
 void Matrix_copy_MtxF(MtxF* dest, MtxF* src);
-// void Matrix_MtxtoMtxF();
-// void Matrix_MtxF_Position2();
-// void Matrix_reverse();
-// void Matrix_rotate_scale_exchange();
-// void Matrix_to_rotate_new();
-// void Matrix_to_rotate2_new();
-// void Matrix_RotateVector();
-// void suMtxMakeTS();
-// void suMtxMakeSRT();
-// void suMtxMakeSRT_ZXY();
+void Matrix_MtxtoMtxF(Mtx* src, MtxF* dest);
+void Matrix_MtxF_Position2(Vec3f* src, Vec3f* dest, MtxF* mf);
+void Matrix_reverse(MtxF* mf);
+void Matrix_rotate_scale_exchange(MtxF* mf);
+void Matrix_to_rotate_new(MtxF* src, Vec3s* dest, s32 nonUniformScale);
+void Matrix_to_rotate2_new(MtxF* src, Vec3s* dest, s32 nonUniformScale);
+void Matrix_RotateVector(s16 angle, Vec3f* axis, u8 mode);
+void suMtxMakeTS(Mtx* mtx, f32 scaleX, f32 scaleY, f32 scaleZ, f32 translateX, f32 translateY, f32 translateZ);
+void suMtxMakeSRT(Mtx* mtx, f32 scaleX, f32 scaleY, f32 scaleZ, s16 rotX, s16 rotY, s16 rotZ, f32 translateX,
+                  f32 translateY, f32 translateZ);
+void suMtxMakeSRT_ZXY(Mtx* mtx, f32 scaleX, f32 scaleY, f32 scaleZ, s16 rotX, s16 rotY, s16 rotZ, f32 translateX,
+                      f32 translateY, f32 translateZ);
 
-void SkinMatrix_MtxFMtxFMult(MtxF* mfB, MtxF* mfA, MtxF* dest); /* extern */
-void Skin_Matrix_SetTranslate(MtxF* mf, f32 x, f32 y, f32 z);   /* extern */
-void Skin_Matrix_SetScale(MtxF* mf, f32 x, f32 y, f32 z);       /* extern */
-f32 cos_s(s16 angle);                                           /* extern */
-f32 sin_s(s16 angle);                                           /* extern */
+void Skin_Matrix_SetTranslate(MtxF* mf, f32 x, f32 y, f32 z);            /* extern */
+void Skin_Matrix_SetScale(MtxF* mf, f32 x, f32 y, f32 z);                /* extern */
+void Skin_Matrix_MulMatrix(MtxF* mfB, MtxF* mfA, MtxF* dest);            /* extern */
+void Skin_Matrix_SetRotateXyz_s(MtxF* mf, s16 roll, s16 pitch, s16 yaw); /* extern */
+f32 cos_s(s16 angle);                                                    /* extern */
+f32 sin_s(s16 angle);                                                    /* extern */
 f32 Math_FAtan2F(f32 y, f32 x);
 
 #endif

@@ -46,12 +46,14 @@
 #include "gfx.h"
 
 // clang-format off
+
 Mtx Mtx_clear = gdSPDefMtx(
     1.0f, 0.0f, 0.0f, 0.0f,
     0.0f, 1.0f, 0.0f, 0.0f,
     0.0f, 0.0f, 1.0f, 0.0f,
     0.0f, 0.0f, 0.0f, 1.0f
 );
+
 // clang-format on
 
 MtxF MtxF_clear = { {
@@ -61,15 +63,15 @@ MtxF MtxF_clear = { {
     { 0.0f, 0.0f, 0.0f, 1.0f },
 } };
 
-MtxF* Matrix_stack;
-MtxF* Matrix_now;
+MtxF* Matrix_stack; // Bottom of the stack.
+MtxF* Matrix_now;   // Top of the stack.
 
 #define MATRIX_STACK_SIZE 20
 
 /* Stack operations */
 
 /**
- * @brief Create the matrix stack and set the pointer to the top of it.
+ * Create the matrix stack and set the pointer to the top of it.
  */
 void new_Matrix(GameState* gameState) {
     Matrix_now = THA_alloc16(&gameState->heap, MATRIX_STACK_SIZE * sizeof(MtxF));
@@ -77,7 +79,7 @@ void new_Matrix(GameState* gameState) {
 }
 
 /**
- * @brief Place a new matrix on the top of the stack and move the stack pointer up.
+ * Place a new matrix on the top of the stack and move the stack pointer up.
  */
 void Matrix_push(void) {
     Matrix_copy_MtxF(&Matrix_now[1], Matrix_now);
@@ -85,14 +87,14 @@ void Matrix_push(void) {
 }
 
 /**
- * @brief Discard the top matrix on the stack and move stack pointer to the next one down.
+ * Discard the top matrix on the stack and move stack pointer to the next one down.
  */
 void Matrix_pull(void) {
     Matrix_now--;
 }
 
 /**
- * @brief Copy the top matrix from the stack.
+ * Copy the top matrix from the stack.
  *
  * @param[out] dest Matrix into which to copy.
  */
@@ -101,7 +103,7 @@ void Matrix_get(MtxF* dest) {
 }
 
 /**
- * @brief Overwrite the top matrix on the stack.
+ * Overwrite the top matrix on the stack.
  *
  * @param[in] src Matrix from which to copy.
  */
@@ -110,7 +112,7 @@ void Matrix_put(MtxF* src) {
 }
 
 /**
- * @brief Return pointer to the top of the matrix stack.
+ * Return pointer to the top of the matrix stack.
  *
  * @return pointer to top matrix on the stack.
  */
@@ -119,27 +121,29 @@ MtxF* get_Matrix_now(void) {
 }
 
 /**
- * @brief General multiplication of current by a matrix.
- *      - APPLY: current * mf -> current
- *      - NEW: mf -> current
+ * General multiplication of the top matrix by another matrix.
+ *
+ * - APPLY: top * mf -> top
+ * - NEW: mf -> top
  *
  * @param mf Matrix to multiply by.
  * @param mode APPLY or NEW.
  */
 void Matrix_mult(MtxF* mf, u8 mode) {
-    MtxF* cmf = get_Matrix_now();
+    MtxF* top = get_Matrix_now();
 
     if (mode == MTXMODE_APPLY) {
-        Skin_Matrix_MulMatrix(cmf, mf, cmf);
+        Skin_Matrix_MulMatrix(top, mf, top);
     } else {
         Matrix_copy_MtxF(Matrix_now, mf);
     }
 }
 
 /**
- * @brief Right-multiply current by a translation matrix T.
- *      - APPLY: current * T -> current
- *      - NEW: T -> current
+ * Right-multiply the top matrix by a translation matrix T.
+ *
+ * - APPLY: top * T -> top
+ * - NEW: T -> top
  *
  * T is given by
  *
@@ -158,32 +162,33 @@ void Matrix_mult(MtxF* mf, u8 mode) {
  * @param mode APPLY or NEW.
  */
 void Matrix_translate(f32 x, f32 y, f32 z, u8 mode) {
-    MtxF* cmf = Matrix_now;
+    MtxF* top = Matrix_now;
     f32 tempX;
     f32 tempY;
 
     if (mode == MTXMODE_APPLY) {
-        tempX = cmf->xx;
-        tempY = cmf->xy;
-        cmf->xw += tempX * x + tempY * y + cmf->xz * z;
-        tempX = cmf->yx;
-        tempY = cmf->yy;
-        cmf->yw += tempX * x + tempY * y + cmf->yz * z;
-        tempX = cmf->zx;
-        tempY = cmf->zy;
-        cmf->zw += tempX * x + tempY * y + cmf->zz * z;
-        tempX = cmf->wx;
-        tempY = cmf->wy;
-        cmf->ww += tempX * x + tempY * y + cmf->wz * z;
+        tempX = top->xx;
+        tempY = top->xy;
+        top->xw += tempX * x + tempY * y + top->xz * z;
+        tempX = top->yx;
+        tempY = top->yy;
+        top->yw += tempX * x + tempY * y + top->yz * z;
+        tempX = top->zx;
+        tempY = top->zy;
+        top->zw += tempX * x + tempY * y + top->zz * z;
+        tempX = top->wx;
+        tempY = top->wy;
+        top->ww += tempX * x + tempY * y + top->wz * z;
     } else {
-        Skin_Matrix_SetTranslate(cmf, x, y, z);
+        Skin_Matrix_SetTranslate(top, x, y, z);
     }
 }
 
 /**
- * @brief Right-multiply by the diagonal scale matrix S = diag(x,y,z,1).
- *      - APPLY: current * S -> current
- *      - NEW: S -> current
+ * Right-multiply the top matrix by the diagonal scale matrix S = diag(x,y,z,1).
+ *
+ * - APPLY: top * S -> top
+ * - NEW: S -> top
  *
  * S is given by
  *
@@ -202,30 +207,31 @@ void Matrix_translate(f32 x, f32 y, f32 z, u8 mode) {
  * @param mode APPLY or NEW.
  */
 void Matrix_scale(f32 x, f32 y, f32 z, u8 mode) {
-    MtxF* cmf = Matrix_now;
+    MtxF* top = Matrix_now;
 
     if (mode == MTXMODE_APPLY) {
-        cmf->xx *= x;
-        cmf->yx *= x;
-        cmf->zx *= x;
-        cmf->xy *= y;
-        cmf->yy *= y;
-        cmf->zy *= y;
-        cmf->xz *= z;
-        cmf->yz *= z;
-        cmf->zz *= z;
-        cmf->wx *= x;
-        cmf->wy *= y;
-        cmf->wz *= z;
+        top->xx *= x;
+        top->yx *= x;
+        top->zx *= x;
+        top->xy *= y;
+        top->yy *= y;
+        top->zy *= y;
+        top->xz *= z;
+        top->yz *= z;
+        top->zz *= z;
+        top->wx *= x;
+        top->wy *= y;
+        top->wz *= z;
     } else {
-        Skin_Matrix_SetScale(cmf, x, y, z);
+        Skin_Matrix_SetScale(top, x, y, z);
     }
 }
 
 /**
- * @brief Right-multiply by a rotation about the x axis
- *      - APPLY: current * R -> current
- *      - NEW: R -> current
+ * Right-multiply the top matrix by a rotation about the x axis
+ *
+ * - APPLY: top * R -> top
+ * - NEW: R -> top
  *
  * R is given by
  *
@@ -244,7 +250,7 @@ void Matrix_scale(f32 x, f32 y, f32 z, u8 mode) {
  * @param mode APPLY or NEW.
  */
 void Matrix_RotateX(s16 x, MatrixMode mode) {
-    MtxF* cmf;
+    MtxF* top;
     f32 sin;
     f32 cos;
     f32 tempY;
@@ -252,33 +258,33 @@ void Matrix_RotateX(s16 x, MatrixMode mode) {
 
     if (mode == MTXMODE_APPLY) {
         if (x != 0) {
-            cmf = Matrix_now;
+            top = Matrix_now;
 
             sin = sin_s(x);
             cos = cos_s(x);
 
-            tempY = cmf->xy;
-            tempZ = cmf->xz;
-            cmf->xy = tempY * cos + tempZ * sin;
-            cmf->xz = tempZ * cos - tempY * sin;
+            tempY = top->xy;
+            tempZ = top->xz;
+            top->xy = tempY * cos + tempZ * sin;
+            top->xz = tempZ * cos - tempY * sin;
 
-            tempY = cmf->yy;
-            tempZ = cmf->yz;
-            cmf->yy = tempY * cos + tempZ * sin;
-            cmf->yz = tempZ * cos - tempY * sin;
+            tempY = top->yy;
+            tempZ = top->yz;
+            top->yy = tempY * cos + tempZ * sin;
+            top->yz = tempZ * cos - tempY * sin;
 
-            tempY = cmf->zy;
-            tempZ = cmf->zz;
-            cmf->zy = tempY * cos + tempZ * sin;
-            cmf->zz = tempZ * cos - tempY * sin;
+            tempY = top->zy;
+            tempZ = top->zz;
+            top->zy = tempY * cos + tempZ * sin;
+            top->zz = tempZ * cos - tempY * sin;
 
-            tempY = cmf->wy;
-            tempZ = cmf->wz;
-            cmf->wy = tempY * cos + tempZ * sin;
-            cmf->wz = tempZ * cos - tempY * sin;
+            tempY = top->wy;
+            tempZ = top->wz;
+            top->wy = tempY * cos + tempZ * sin;
+            top->wz = tempZ * cos - tempY * sin;
         }
     } else {
-        cmf = Matrix_now;
+        top = Matrix_now;
 
         if (x != 0) {
             sin = sin_s(x);
@@ -288,29 +294,30 @@ void Matrix_RotateX(s16 x, MatrixMode mode) {
             cos = 1.0f;
         }
 
-        cmf->yx = 0.0f;
-        cmf->zx = 0.0f;
-        cmf->wx = 0.0f;
-        cmf->xy = 0.0f;
-        cmf->wy = 0.0f;
-        cmf->xz = 0.0f;
-        cmf->wz = 0.0f;
-        cmf->xw = 0.0f;
-        cmf->yw = 0.0f;
-        cmf->zw = 0.0f;
-        cmf->xx = 1.0f;
-        cmf->ww = 1.0f;
-        cmf->yy = cos;
-        cmf->zz = cos;
-        cmf->zy = sin;
-        cmf->yz = -sin;
+        top->yx = 0.0f;
+        top->zx = 0.0f;
+        top->wx = 0.0f;
+        top->xy = 0.0f;
+        top->wy = 0.0f;
+        top->xz = 0.0f;
+        top->wz = 0.0f;
+        top->xw = 0.0f;
+        top->yw = 0.0f;
+        top->zw = 0.0f;
+        top->xx = 1.0f;
+        top->ww = 1.0f;
+        top->yy = cos;
+        top->zz = cos;
+        top->zy = sin;
+        top->yz = -sin;
     }
 }
 
 /**
- * @brief Right-multiply by a rotation about the y axis
- *      - APPLY: current * R -> current
- *      - NEW: R -> current
+ * Right-multiply the top matrix by a rotation about the y axis
+ *
+ * - APPLY: top * R -> top
+ * - NEW: R -> top
  *
  * R is given by
  *
@@ -329,7 +336,7 @@ void Matrix_RotateX(s16 x, MatrixMode mode) {
  * @param mode APPLY or NEW.
  */
 void Matrix_RotateY(s16 y, MatrixMode mode) {
-    MtxF* cmf;
+    MtxF* top;
     f32 sin;
     f32 cos;
     f32 tempX;
@@ -337,33 +344,33 @@ void Matrix_RotateY(s16 y, MatrixMode mode) {
 
     if (mode == MTXMODE_APPLY) {
         if (y != 0) {
-            cmf = Matrix_now;
+            top = Matrix_now;
 
             sin = sin_s(y);
             cos = cos_s(y);
 
-            tempX = cmf->xx;
-            tempZ = cmf->xz;
-            cmf->xx = tempX * cos - tempZ * sin;
-            cmf->xz = tempX * sin + tempZ * cos;
+            tempX = top->xx;
+            tempZ = top->xz;
+            top->xx = tempX * cos - tempZ * sin;
+            top->xz = tempX * sin + tempZ * cos;
 
-            tempX = cmf->yx;
-            tempZ = cmf->yz;
-            cmf->yx = tempX * cos - tempZ * sin;
-            cmf->yz = tempX * sin + tempZ * cos;
+            tempX = top->yx;
+            tempZ = top->yz;
+            top->yx = tempX * cos - tempZ * sin;
+            top->yz = tempX * sin + tempZ * cos;
 
-            tempX = cmf->zx;
-            tempZ = cmf->zz;
-            cmf->zx = tempX * cos - tempZ * sin;
-            cmf->zz = tempX * sin + tempZ * cos;
+            tempX = top->zx;
+            tempZ = top->zz;
+            top->zx = tempX * cos - tempZ * sin;
+            top->zz = tempX * sin + tempZ * cos;
 
-            tempX = cmf->wx;
-            tempZ = cmf->wz;
-            cmf->wx = tempX * cos - tempZ * sin;
-            cmf->wz = tempX * sin + tempZ * cos;
+            tempX = top->wx;
+            tempZ = top->wz;
+            top->wx = tempX * cos - tempZ * sin;
+            top->wz = tempX * sin + tempZ * cos;
         }
     } else {
-        cmf = Matrix_now;
+        top = Matrix_now;
 
         if (y != 0) {
             sin = sin_s(y);
@@ -373,29 +380,30 @@ void Matrix_RotateY(s16 y, MatrixMode mode) {
             cos = 1.0f;
         }
 
-        cmf->yx = 0.0f;
-        cmf->wx = 0.0f;
-        cmf->xy = 0.0f;
-        cmf->zy = 0.0f;
-        cmf->wy = 0.0f;
-        cmf->yz = 0.0f;
-        cmf->wz = 0.0f;
-        cmf->xw = 0.0f;
-        cmf->yw = 0.0f;
-        cmf->zw = 0.0f;
-        cmf->yy = 1.0f;
-        cmf->ww = 1.0f;
-        cmf->xx = cos;
-        cmf->zz = cos;
-        cmf->zx = -sin;
-        cmf->xz = sin;
+        top->yx = 0.0f;
+        top->wx = 0.0f;
+        top->xy = 0.0f;
+        top->zy = 0.0f;
+        top->wy = 0.0f;
+        top->yz = 0.0f;
+        top->wz = 0.0f;
+        top->xw = 0.0f;
+        top->yw = 0.0f;
+        top->zw = 0.0f;
+        top->yy = 1.0f;
+        top->ww = 1.0f;
+        top->xx = cos;
+        top->zz = cos;
+        top->zx = -sin;
+        top->xz = sin;
     }
 }
 
 /**
- * @brief Right-multiply by a rotation about the z axis.
- *      - APPLY: current * R -> current
- *      - NEW: R -> current
+ * Right-multiply the top matrix by a rotation about the z axis.
+ *
+ * - APPLY: top * R -> top
+ * - NEW: R -> top
  *
  * R is given by
  *
@@ -414,7 +422,7 @@ void Matrix_RotateY(s16 y, MatrixMode mode) {
  * @param mode APPLY or NEW.
  */
 void Matrix_RotateZ(s16 z, MatrixMode mode) {
-    MtxF* cmf;
+    MtxF* top;
     f32 sin;
     f32 cos;
     f32 tempX;
@@ -424,33 +432,33 @@ void Matrix_RotateZ(s16 z, MatrixMode mode) {
 
     if (mode == MTXMODE_APPLY) {
         if (z != 0) {
-            cmf = Matrix_now;
+            top = Matrix_now;
 
             sin = sin_s(z);
             cos = cos_s(z);
 
-            tempX = cmf->xx;
-            tempY = cmf->xy;
-            cmf->xx = tempX * cos + tempY * sin;
-            cmf->xy = tempY * cos - tempX * sin;
+            tempX = top->xx;
+            tempY = top->xy;
+            top->xx = tempX * cos + tempY * sin;
+            top->xy = tempY * cos - tempX * sin;
 
-            tempX = cmf->yx;
-            tempY = cmf->yy;
-            cmf->yx = tempX * cos + tempY * sin;
-            cmf->yy = tempY * cos - tempX * sin;
+            tempX = top->yx;
+            tempY = top->yy;
+            top->yx = tempX * cos + tempY * sin;
+            top->yy = tempY * cos - tempX * sin;
 
-            tempX = cmf->zx;
-            tempY = cmf->zy;
-            cmf->zx = tempX * cos + tempY * sin;
-            cmf->zy = tempY * cos - tempX * sin;
+            tempX = top->zx;
+            tempY = top->zy;
+            top->zx = tempX * cos + tempY * sin;
+            top->zy = tempY * cos - tempX * sin;
 
-            tempX = cmf->wx;
-            tempY = cmf->wy;
-            cmf->wx = tempX * cos + tempY * sin;
-            cmf->wy = tempY * cos - tempX * sin;
+            tempX = top->wx;
+            tempY = top->wy;
+            top->wx = tempX * cos + tempY * sin;
+            top->wy = tempY * cos - tempX * sin;
         }
     } else {
-        cmf = Matrix_now;
+        top = Matrix_now;
 
         if (z != 0) {
             sin = sin_s(z);
@@ -460,29 +468,30 @@ void Matrix_RotateZ(s16 z, MatrixMode mode) {
             cos = one;
         }
 
-        cmf->zx = zero;
-        cmf->wx = zero;
-        cmf->zy = zero;
-        cmf->wy = zero;
-        cmf->xz = zero;
-        cmf->yz = zero;
-        cmf->wz = zero;
-        cmf->xw = zero;
-        cmf->yw = zero;
-        cmf->zw = zero;
-        cmf->zz = one;
-        cmf->ww = one;
-        cmf->xx = cos;
-        cmf->yy = cos;
-        cmf->yx = sin;
-        cmf->xy = -sin;
+        top->zx = zero;
+        top->wx = zero;
+        top->zy = zero;
+        top->wy = zero;
+        top->xz = zero;
+        top->yz = zero;
+        top->wz = zero;
+        top->xw = zero;
+        top->yw = zero;
+        top->zw = zero;
+        top->zz = one;
+        top->ww = one;
+        top->xx = cos;
+        top->yy = cos;
+        top->yx = sin;
+        top->xy = -sin;
     }
 }
 
 /**
- * @brief Rotate using ZYX Tait-Bryan angles.
- *      - APPLY: current Rz Ry Rx -> current
- *      - NEW: Rz Ry Rx -> current
+ * Rotate the top matrix using ZYX Tait-Bryan angles.
+ *
+ * - APPLY: top Rz Ry Rx -> top
+ * - NEW: Rz Ry Rx -> top
  *
  * This means a (column) vector is first rotated around X, then around Y, then around Z, then (if `mode` is APPLY) gets
  * transformed by what the matrix was before adding the ZYX rotation.
@@ -495,7 +504,7 @@ void Matrix_RotateZ(s16 z, MatrixMode mode) {
  * @param mode APPLY or NEW
  */
 void Matrix_rotateXYZ(s16 x, s16 y, s16 z, MatrixMode mode) {
-    MtxF* cmf = Matrix_now;
+    MtxF* top = Matrix_now;
     f32 temp1;
     f32 temp2;
     f32 sin;
@@ -505,83 +514,84 @@ void Matrix_rotateXYZ(s16 x, s16 y, s16 z, MatrixMode mode) {
         sin = sin_s(z);
         cos = cos_s(z);
 
-        temp1 = cmf->xx;
-        temp2 = cmf->xy;
-        cmf->xx = temp1 * cos + temp2 * sin;
-        cmf->xy = temp2 * cos - temp1 * sin;
+        temp1 = top->xx;
+        temp2 = top->xy;
+        top->xx = temp1 * cos + temp2 * sin;
+        top->xy = temp2 * cos - temp1 * sin;
 
-        temp1 = cmf->yx;
-        temp2 = cmf->yy;
-        cmf->yx = temp1 * cos + temp2 * sin;
-        cmf->yy = temp2 * cos - temp1 * sin;
+        temp1 = top->yx;
+        temp2 = top->yy;
+        top->yx = temp1 * cos + temp2 * sin;
+        top->yy = temp2 * cos - temp1 * sin;
 
-        temp1 = cmf->zx;
-        temp2 = cmf->zy;
-        cmf->zx = temp1 * cos + temp2 * sin;
-        cmf->zy = temp2 * cos - temp1 * sin;
+        temp1 = top->zx;
+        temp2 = top->zy;
+        top->zx = temp1 * cos + temp2 * sin;
+        top->zy = temp2 * cos - temp1 * sin;
 
-        temp1 = cmf->wx;
-        temp2 = cmf->wy;
-        cmf->wx = temp1 * cos + temp2 * sin;
-        cmf->wy = temp2 * cos - temp1 * sin;
+        temp1 = top->wx;
+        temp2 = top->wy;
+        top->wx = temp1 * cos + temp2 * sin;
+        top->wy = temp2 * cos - temp1 * sin;
 
         if (y != 0) {
             sin = sin_s(y);
             cos = cos_s(y);
 
-            temp1 = cmf->xx;
-            temp2 = cmf->xz;
-            cmf->xx = temp1 * cos - temp2 * sin;
-            cmf->xz = temp1 * sin + temp2 * cos;
+            temp1 = top->xx;
+            temp2 = top->xz;
+            top->xx = temp1 * cos - temp2 * sin;
+            top->xz = temp1 * sin + temp2 * cos;
 
-            temp1 = cmf->yx;
-            temp2 = cmf->yz;
-            cmf->yx = temp1 * cos - temp2 * sin;
-            cmf->yz = temp1 * sin + temp2 * cos;
+            temp1 = top->yx;
+            temp2 = top->yz;
+            top->yx = temp1 * cos - temp2 * sin;
+            top->yz = temp1 * sin + temp2 * cos;
 
-            temp1 = cmf->zx;
-            temp2 = cmf->zz;
-            cmf->zx = temp1 * cos - temp2 * sin;
-            cmf->zz = temp1 * sin + temp2 * cos;
+            temp1 = top->zx;
+            temp2 = top->zz;
+            top->zx = temp1 * cos - temp2 * sin;
+            top->zz = temp1 * sin + temp2 * cos;
 
-            temp1 = cmf->wx;
-            temp2 = cmf->wz;
-            cmf->wx = temp1 * cos - temp2 * sin;
-            cmf->wz = temp1 * sin + temp2 * cos;
+            temp1 = top->wx;
+            temp2 = top->wz;
+            top->wx = temp1 * cos - temp2 * sin;
+            top->wz = temp1 * sin + temp2 * cos;
         }
 
         if (x != 0) {
             sin = sin_s(x);
             cos = cos_s(x);
 
-            temp1 = cmf->xy;
-            temp2 = cmf->xz;
-            cmf->xy = temp1 * cos + temp2 * sin;
-            cmf->xz = temp2 * cos - temp1 * sin;
+            temp1 = top->xy;
+            temp2 = top->xz;
+            top->xy = temp1 * cos + temp2 * sin;
+            top->xz = temp2 * cos - temp1 * sin;
 
-            temp1 = cmf->yy;
-            temp2 = cmf->yz;
-            cmf->yy = temp1 * cos + temp2 * sin;
-            cmf->yz = temp2 * cos - temp1 * sin;
+            temp1 = top->yy;
+            temp2 = top->yz;
+            top->yy = temp1 * cos + temp2 * sin;
+            top->yz = temp2 * cos - temp1 * sin;
 
-            temp1 = cmf->zy;
-            temp2 = cmf->zz;
-            cmf->zy = temp1 * cos + temp2 * sin;
-            cmf->zz = temp2 * cos - temp1 * sin;
+            temp1 = top->zy;
+            temp2 = top->zz;
+            top->zy = temp1 * cos + temp2 * sin;
+            top->zz = temp2 * cos - temp1 * sin;
 
-            temp1 = cmf->wy;
-            temp2 = cmf->wz;
-            cmf->wy = temp1 * cos + temp2 * sin;
-            cmf->wz = temp2 * cos - temp1 * sin;
+            temp1 = top->wy;
+            temp2 = top->wz;
+            top->wy = temp1 * cos + temp2 * sin;
+            top->wz = temp2 * cos - temp1 * sin;
         }
     } else {
-        Skin_Matrix_SetRotateXyz_s(cmf, x, y, z);
+        Skin_Matrix_SetRotateXyz_s(top, x, y, z);
     }
 }
-
+// todo improve these comments, the difference between softcv3_mult and softcv3_load is confusing
 /**
- * @brief Translate and rotate using ZYX Tait-Bryan angles.
- *      current T Rz Ry Rx -> current
+ * Translate and rotate the top matrix using ZYX Tait-Bryan angles.
+ *
+ * top T Rz Ry Rx -> top
  *
  * This means a (column) vector is first rotated around X, then around Y, then around Z, then translated, then gets
  * transformed by whatever the matrix was previously.
@@ -590,90 +600,90 @@ void Matrix_rotateXYZ(s16 x, s16 y, s16 z, MatrixMode mode) {
  * @param rot vector of rotation angles.
  */
 void Matrix_softcv3_mult(Vec3f* translation, Vec3s* rot) {
-    MtxF* cmf = Matrix_now;
+    MtxF* top = Matrix_now;
     f32 sin = sin_s(rot->z);
     f32 cos = cos_s(rot->z);
     f32 temp1;
     f32 temp2;
 
     // No check for z != 0, presumably since translation is interleaved.
-    temp1 = cmf->xx;
-    temp2 = cmf->xy;
-    cmf->xw += temp1 * translation->x + temp2 * translation->y + cmf->xz * translation->z;
-    cmf->xx = temp1 * cos + temp2 * sin;
-    cmf->xy = temp2 * cos - temp1 * sin;
+    temp1 = top->xx;
+    temp2 = top->xy;
+    top->xw += temp1 * translation->x + temp2 * translation->y + top->xz * translation->z;
+    top->xx = temp1 * cos + temp2 * sin;
+    top->xy = temp2 * cos - temp1 * sin;
 
-    temp1 = cmf->yx;
-    temp2 = cmf->yy;
-    cmf->yw += temp1 * translation->x + temp2 * translation->y + cmf->yz * translation->z;
-    cmf->yx = temp1 * cos + temp2 * sin;
-    cmf->yy = temp2 * cos - temp1 * sin;
+    temp1 = top->yx;
+    temp2 = top->yy;
+    top->yw += temp1 * translation->x + temp2 * translation->y + top->yz * translation->z;
+    top->yx = temp1 * cos + temp2 * sin;
+    top->yy = temp2 * cos - temp1 * sin;
 
-    temp1 = cmf->zx;
-    temp2 = cmf->zy;
-    cmf->zw += temp1 * translation->x + temp2 * translation->y + cmf->zz * translation->z;
-    cmf->zx = temp1 * cos + temp2 * sin;
-    cmf->zy = temp2 * cos - temp1 * sin;
+    temp1 = top->zx;
+    temp2 = top->zy;
+    top->zw += temp1 * translation->x + temp2 * translation->y + top->zz * translation->z;
+    top->zx = temp1 * cos + temp2 * sin;
+    top->zy = temp2 * cos - temp1 * sin;
 
-    temp1 = cmf->wx;
-    temp2 = cmf->wy;
-    cmf->ww += temp1 * translation->x + temp2 * translation->y + cmf->wz * translation->z;
-    cmf->wx = temp1 * cos + temp2 * sin;
-    cmf->wy = temp2 * cos - temp1 * sin;
+    temp1 = top->wx;
+    temp2 = top->wy;
+    top->ww += temp1 * translation->x + temp2 * translation->y + top->wz * translation->z;
+    top->wx = temp1 * cos + temp2 * sin;
+    top->wy = temp2 * cos - temp1 * sin;
 
     if (rot->y != 0) {
         sin = sin_s(rot->y);
         cos = cos_s(rot->y);
 
-        temp1 = cmf->xx;
-        temp2 = cmf->xz;
-        cmf->xx = temp1 * cos - temp2 * sin;
-        cmf->xz = temp1 * sin + temp2 * cos;
+        temp1 = top->xx;
+        temp2 = top->xz;
+        top->xx = temp1 * cos - temp2 * sin;
+        top->xz = temp1 * sin + temp2 * cos;
 
-        temp1 = cmf->yx;
-        temp2 = cmf->yz;
-        cmf->yx = temp1 * cos - temp2 * sin;
-        cmf->yz = temp1 * sin + temp2 * cos;
+        temp1 = top->yx;
+        temp2 = top->yz;
+        top->yx = temp1 * cos - temp2 * sin;
+        top->yz = temp1 * sin + temp2 * cos;
 
-        temp1 = cmf->zx;
-        temp2 = cmf->zz;
-        cmf->zx = temp1 * cos - temp2 * sin;
-        cmf->zz = temp1 * sin + temp2 * cos;
+        temp1 = top->zx;
+        temp2 = top->zz;
+        top->zx = temp1 * cos - temp2 * sin;
+        top->zz = temp1 * sin + temp2 * cos;
 
-        temp1 = cmf->wx;
-        temp2 = cmf->wz;
-        cmf->wx = temp1 * cos - temp2 * sin;
-        cmf->wz = temp1 * sin + temp2 * cos;
+        temp1 = top->wx;
+        temp2 = top->wz;
+        top->wx = temp1 * cos - temp2 * sin;
+        top->wz = temp1 * sin + temp2 * cos;
     }
 
     if (rot->x != 0) {
         sin = sin_s(rot->x);
         cos = cos_s(rot->x);
 
-        temp1 = cmf->xy;
-        temp2 = cmf->xz;
-        cmf->xy = temp1 * cos + temp2 * sin;
-        cmf->xz = temp2 * cos - temp1 * sin;
+        temp1 = top->xy;
+        temp2 = top->xz;
+        top->xy = temp1 * cos + temp2 * sin;
+        top->xz = temp2 * cos - temp1 * sin;
 
-        temp1 = cmf->yy;
-        temp2 = cmf->yz;
-        cmf->yy = temp1 * cos + temp2 * sin;
-        cmf->yz = temp2 * cos - temp1 * sin;
+        temp1 = top->yy;
+        temp2 = top->yz;
+        top->yy = temp1 * cos + temp2 * sin;
+        top->yz = temp2 * cos - temp1 * sin;
 
-        temp1 = cmf->zy;
-        temp2 = cmf->zz;
-        cmf->zy = temp1 * cos + temp2 * sin;
-        cmf->zz = temp2 * cos - temp1 * sin;
+        temp1 = top->zy;
+        temp2 = top->zz;
+        top->zy = temp1 * cos + temp2 * sin;
+        top->zz = temp2 * cos - temp1 * sin;
 
-        temp1 = cmf->wy;
-        temp2 = cmf->wz;
-        cmf->wy = temp1 * cos + temp2 * sin;
-        cmf->wz = temp2 * cos - temp1 * sin;
+        temp1 = top->wy;
+        temp2 = top->wz;
+        top->wy = temp1 * cos + temp2 * sin;
+        top->wz = temp2 * cos - temp1 * sin;
     }
 }
 
 /**
- * @brief Set current to a general translation and rotation using YXZ Tait-Bryan angles: T Ry Rx Rz -> current
+ * Set the top matrix to a general translation and rotation using YXZ Tait-Bryan angles: T Ry Rx Rz -> top
  *
  * This means a (column) vector is first rotated around Y, then around X, then around Z, then translated, then gets
  * transformed by whatever the matrix was previously.
@@ -684,65 +694,65 @@ void Matrix_softcv3_mult(Vec3f* translation, Vec3s* rot) {
  * @param rot vector of rotation angles.
  */
 void Matrix_softcv3_load(f32 x, f32 y, f32 z, Vec3s* rot) {
-    MtxF* cmf = Matrix_now;
+    MtxF* top = Matrix_now;
     f32 sinY = sin_s(rot->y);
     f32 cosY = cos_s(rot->y);
     f32 cosTemp;
     f32 sinTemp;
 
-    cmf->xx = cosY;
-    cmf->zx = -sinY;
-    cmf->xw = x;
-    cmf->yw = y;
-    cmf->zw = z;
-    cmf->wx = 0.0f;
-    cmf->wy = 0.0f;
-    cmf->wz = 0.0f;
-    cmf->ww = 1.0f;
+    top->xx = cosY;
+    top->zx = -sinY;
+    top->xw = x;
+    top->yw = y;
+    top->zw = z;
+    top->wx = 0.0f;
+    top->wy = 0.0f;
+    top->wz = 0.0f;
+    top->ww = 1.0f;
 
     if (rot->x != 0) {
         sinTemp = sin_s(rot->x);
         cosTemp = cos_s(rot->x);
 
-        cmf->zz = cosY * cosTemp;
-        cmf->zy = cosY * sinTemp;
-        cmf->xz = sinY * cosTemp;
-        cmf->xy = sinY * sinTemp;
-        cmf->yz = -sinTemp;
-        cmf->yy = cosTemp;
+        top->zz = cosY * cosTemp;
+        top->zy = cosY * sinTemp;
+        top->xz = sinY * cosTemp;
+        top->xy = sinY * sinTemp;
+        top->yz = -sinTemp;
+        top->yy = cosTemp;
     } else {
-        cmf->zz = cosY;
-        cmf->xz = sinY;
-        cmf->yz = 0.0f;
-        cmf->zy = 0.0f;
-        cmf->xy = 0.0f;
-        cmf->yy = 1.0f;
+        top->zz = cosY;
+        top->xz = sinY;
+        top->yz = 0.0f;
+        top->zy = 0.0f;
+        top->xy = 0.0f;
+        top->yy = 1.0f;
     }
 
     if (rot->z != 0) {
         sinTemp = sin_s(rot->z);
         cosTemp = cos_s(rot->z);
 
-        sinY = cmf->xx;
-        cosY = cmf->xy;
-        cmf->xx = sinY * cosTemp + cosY * sinTemp;
-        cmf->xy = cosY * cosTemp - sinY * sinTemp;
+        sinY = top->xx;
+        cosY = top->xy;
+        top->xx = sinY * cosTemp + cosY * sinTemp;
+        top->xy = cosY * cosTemp - sinY * sinTemp;
 
-        sinY = cmf->zx;
-        cosY = cmf->zy;
-        cmf->zx = sinY * cosTemp + cosY * sinTemp;
-        cmf->zy = cosY * cosTemp - sinY * sinTemp;
+        sinY = top->zx;
+        cosY = top->zy;
+        top->zx = sinY * cosTemp + cosY * sinTemp;
+        top->zy = cosY * cosTemp - sinY * sinTemp;
 
-        cosY = cmf->yy;
-        cmf->yx = cosY * sinTemp;
-        cmf->yy = cosY * cosTemp;
+        cosY = top->yy;
+        top->yx = cosY * sinTemp;
+        top->yy = cosY * cosTemp;
     } else {
-        cmf->yx = 0.0f;
+        top->yx = 0.0f;
     }
 }
 
 /**
- * @brief Converts a floating-point MtxF to a fixed-point RSP-compatible matrix.
+ * Converts a floating-point MtxF to a fixed-point RSP-compatible matrix.
  *
  * @param[in] src MtxF to convert.
  * @param[out] dest mtx to output to.
@@ -751,77 +761,78 @@ void Matrix_softcv3_load(f32 x, f32 y, f32 z, Vec3s* rot) {
  */
 Mtx* _MtxF_to_Mtx(MtxF* src, Mtx* dest) {
     s32 fp;
-    u16* m1 = (u16*)&dest->m[0][0];
-    u16* m2 = (u16*)&dest->m[2][0];
+    u16* intPart = (u16*)&dest->m[0][0];
+    u16* fracPart = (u16*)&dest->m[2][0];
 
     fp = src->xx * 0x10000;
-    m1[0] = (fp >> 0x10);
-    m1[16 + 0] = fp & 0xFFFF;
+    intPart[0 + 0] = (fp >> 0x10);
+    fracPart[0 + 0] = fp & 0xFFFF;
 
     fp = src->yx * 0x10000;
-    m1[1] = (fp >> 0x10);
-    m1[16 + 1] = fp & 0xFFFF;
+    intPart[0 + 1] = (fp >> 0x10);
+    fracPart[0 + 1] = fp & 0xFFFF;
 
     fp = src->zx * 0x10000;
-    m1[2] = (fp >> 0x10);
-    m1[16 + 2] = fp & 0xFFFF;
+    intPart[0 + 2] = (fp >> 0x10);
+    fracPart[0 + 2] = fp & 0xFFFF;
 
     fp = src->wx * 0x10000;
-    m1[3] = (fp >> 0x10);
-    m1[16 + 3] = fp & 0xFFFF;
+    intPart[0 + 3] = (fp >> 0x10);
+    fracPart[0 + 3] = fp & 0xFFFF;
 
     fp = src->xy * 0x10000;
-    m1[4] = (fp >> 0x10);
-    m1[16 + 4] = fp & 0xFFFF;
+    intPart[1 * 4 + 0] = (fp >> 0x10);
+    fracPart[1 * 4 + 0] = fp & 0xFFFF;
 
     fp = src->yy * 0x10000;
-    m1[5] = (fp >> 0x10);
-    m1[16 + 5] = fp & 0xFFFF;
+    intPart[1 * 4 + 1] = (fp >> 0x10);
+    fracPart[1 * 4 + 1] = fp & 0xFFFF;
 
+    // Ideally these three would use fracPart instead of intPart, but it's required to match.
     fp = src->zy * 0x10000;
-    m1[6] = (fp >> 0x10);
-    m1[16 + 6] = fp & 0xFFFF;
+    intPart[1 * 4 + 2] = (fp >> 0x10);
+    intPart[16 + 1 * 4 + 2] = fp & 0xFFFF;
 
     fp = src->wy * 0x10000;
-    m1[7] = (fp >> 0x10);
-    m1[16 + 7] = fp & 0xFFFF;
+    intPart[1 * 4 + 3] = (fp >> 0x10);
+    intPart[16 + 1 * 4 + 3] = fp & 0xFFFF;
 
     fp = src->xz * 0x10000;
-    m1[8] = (fp >> 0x10);
-    m1[16 + 8] = fp & 0xFFFF;
+    intPart[2 * 4 + 0] = (fp >> 0x10);
+    intPart[16 + 2 * 4 + 0] = fp & 0xFFFF;
 
     fp = src->yz * 0x10000;
-    m1[9] = (fp >> 0x10);
-    m2[9] = fp & 0xFFFF;
+    intPart[2 * 4 + 1] = (fp >> 0x10);
+    fracPart[2 * 4 + 1] = fp & 0xFFFF;
 
     fp = src->zz * 0x10000;
-    m1[10] = (fp >> 0x10);
-    m2[10] = fp & 0xFFFF;
+    intPart[2 * 4 + 2] = (fp >> 0x10);
+    fracPart[2 * 4 + 2] = fp & 0xFFFF;
 
     fp = src->wz * 0x10000;
-    m1[11] = (fp >> 0x10);
-    m2[11] = fp & 0xFFFF;
+    intPart[2 * 4 + 3] = (fp >> 0x10);
+    fracPart[2 * 4 + 3] = fp & 0xFFFF;
 
     fp = src->xw * 0x10000;
-    m1[12] = (fp >> 0x10);
-    m2[12] = fp & 0xFFFF;
+    intPart[3 * 4 + 0] = (fp >> 0x10);
+    fracPart[3 * 4 + 0] = fp & 0xFFFF;
 
     fp = src->yw * 0x10000;
-    m1[13] = (fp >> 0x10);
-    m2[13] = fp & 0xFFFF;
+    intPart[3 * 4 + 1] = (fp >> 0x10);
+    fracPart[3 * 4 + 1] = fp & 0xFFFF;
 
     fp = src->zw * 0x10000;
-    m1[14] = (fp >> 0x10);
-    m2[14] = fp & 0xFFFF;
+    intPart[3 * 4 + 2] = (fp >> 0x10);
+    fracPart[3 * 4 + 2] = fp & 0xFFFF;
 
     fp = src->ww * 0x10000;
-    m1[15] = (fp >> 0x10);
-    m2[15] = fp & 0xFFFF;
+    intPart[3 * 4 + 3] = (fp >> 0x10);
+    fracPart[3 * 4 + 3] = fp & 0xFFFF;
     return dest;
 }
 
 /**
- * @brief Converts current to a fixed-point RSP-compatible matrix.
+ * Converts the top matrix to a fixed-point RSP-compatible matrix.
  *
  * @param[out] dest mtx to output to.
  *
@@ -832,7 +843,7 @@ Mtx* _Matrix_to_Mtx(Mtx* dest) {
 }
 
 /**
- * @brief Converts current to a RSP-compatible matrix and saves it to allocated space in the OPA buffer.
+ * Converts the top matrix to a RSP-compatible matrix and saves it to allocated space in the OPA buffer.
  *
  * @param[in,out] gfxCtx Graphics context.
  *
@@ -843,7 +854,7 @@ Mtx* _Matrix_to_Mtx_new(GraphicsContext* gfxCtx) {
 }
 
 /**
- * @brief Converts src to a RSP-compatible matrix and saves it to allocated space in the OPA buffer.
+ * Converts src to a RSP-compatible matrix and saves it to allocated space in the OPA buffer.
  *
  * @param[in] src MtxF to convert.
  * @param[in,out] gfxCtx Graphics context.
@@ -854,10 +865,11 @@ void _MtxF_to_Mtx_new(MtxF* src, GraphicsContext* gfxCtx) {
     _MtxF_to_Mtx(src, GRAPH_ALLOC(gfxCtx, sizeof(Mtx)));
 }
 
+//todo better wording
 /**
- * @brief Calculates current * (src,1) and writes its components to dest.
+ * Calculates top * (src,1) and writes its components to dest.
  *
- * This assumes that current has the form
+ * This assumes that the top matrix has the form
  *
  * \f[
  *  M =
@@ -892,33 +904,33 @@ void _MtxF_to_Mtx_new(MtxF* src, GraphicsContext* gfxCtx) {
  * @param[out] dest output vector
  */
 void Matrix_Position(Vec3f* src, Vec3f* dest) {
-    MtxF* cmf = Matrix_now;
+    MtxF* top = Matrix_now;
 
-    dest->x = cmf->xw + (cmf->xx * src->x + cmf->xy * src->y + cmf->xz * src->z);
-    dest->y = cmf->yw + (cmf->yx * src->x + cmf->yy * src->y + cmf->yz * src->z);
-    dest->z = cmf->zw + (cmf->zx * src->x + cmf->zy * src->y + cmf->zz * src->z);
+    dest->x = top->xw + (top->xx * src->x + top->xy * src->y + top->xz * src->z);
+    dest->y = top->yw + (top->yx * src->x + top->yy * src->y + top->yz * src->z);
+    dest->z = top->zw + (top->zx * src->x + top->zy * src->y + top->zz * src->z);
 }
 
 /**
- * @brief Multiply the vector `(0, 0, 0, 1)` by current.
+ * Multiply the vector `(0, 0, 0, 1)` by the top matrix.
  *
- * Can also see it as obtaining the translation vector part of current, but the former interpretation is consistent with
- * the other functions nearby.
+ * Can also see it as obtaining the translation vector part of the top matrix, but the former interpretation is
+ * consistent with the other functions nearby.
  *
  * @note Special case of Matrix_Position() with `src = { 0, 0, 0 }`; the same assumptions apply.
  *
  * @param[out] dest output vector.
  */
 void Matrix_Position_Zero(Vec3f* dest) {
-    MtxF* cmf = Matrix_now;
+    MtxF* top = Matrix_now;
 
-    dest->x = cmf->xw;
-    dest->y = cmf->yw;
-    dest->z = cmf->zw;
+    dest->x = top->xw;
+    dest->y = top->yw;
+    dest->z = top->zw;
 }
 
 /**
- * @brief Multiply the vector `(x, 0, 0, 1)` by current.
+ * Multiply the vector `(x, 0, 0, 1)` by the top matrix.
  *
  * I.e. calculate \f$ A(x, 0, 0) + b \f$.
  *
@@ -928,15 +940,15 @@ void Matrix_Position_Zero(Vec3f* dest) {
  * @param[out] dest output vector.
  */
 void Matrix_Position_VecX(f32 x, Vec3f* dest) {
-    MtxF* cmf = Matrix_now;
+    MtxF* top = Matrix_now;
 
-    dest->x = cmf->xw + cmf->xx * x;
-    dest->y = cmf->yw + cmf->yx * x;
-    dest->z = cmf->zw + cmf->zx * x;
+    dest->x = top->xw + top->xx * x;
+    dest->y = top->yw + top->yx * x;
+    dest->z = top->zw + top->zx * x;
 }
 
 /**
- * @brief Multiply the vector `(0, y, 0, 1)` by current.
+ * Multiply the vector `(0, y, 0, 1)` by the top matrix.
  *
  * I.e. calculate \f$ A(0, y, 0) + b \f$.
  *
@@ -946,15 +958,15 @@ void Matrix_Position_VecX(f32 x, Vec3f* dest) {
  * @param[out] dest output vector.
  */
 void Matrix_Position_VecY(f32 y, Vec3f* dest) {
-    MtxF* cmf = Matrix_now;
+    MtxF* top = Matrix_now;
 
-    dest->x = cmf->xw + cmf->xy * y;
-    dest->y = cmf->yw + cmf->yy * y;
-    dest->z = cmf->zw + cmf->zy * y;
+    dest->x = top->xw + top->xy * y;
+    dest->y = top->yw + top->yy * y;
+    dest->z = top->zw + top->zy * y;
 }
 
 /**
- * @brief Multiply the vector `(0, 0, z, 1)` by current.
+ * Multiply the vector `(0, 0, z, 1)` by the top matrix.
  *
  * I.e. calculate \f$ A(0, 0, z) + b \f$.
  *
@@ -964,15 +976,15 @@ void Matrix_Position_VecY(f32 y, Vec3f* dest) {
  * @param[out] dest output vector.
  */
 void Matrix_Position_VecZ(f32 z, Vec3f* dest) {
-    MtxF* cmf = Matrix_now;
+    MtxF* top = Matrix_now;
 
-    dest->x = cmf->xw + cmf->xz * z;
-    dest->y = cmf->yw + cmf->yz * z;
-    dest->z = cmf->zw + cmf->zz * z;
+    dest->x = top->xw + top->xz * z;
+    dest->y = top->yw + top->yz * z;
+    dest->z = top->zw + top->zz * z;
 }
 
 /**
- * @brief Copies the matrix src into dest.
+ * Copies the matrix src into dest.
  *
  * @param[out] dest matrix to copy to.
  * @param[in] src matrix to copy from.
@@ -989,37 +1001,37 @@ void Matrix_copy_MtxF(MtxF* dest, MtxF* src) {
 }
 
 /**
- * @brief Converts fixed-point RSP-compatible matrix to an MtxF.
+ * Converts a fixed-point RSP-compatible matrix to an MtxF.
  *
  * @param[in] src mtx to convert
  * @param[out] dest MtxF to output to
  */
 void Matrix_MtxtoMtxF(Mtx* src, MtxF* dest) {
-    u16* m1 = (u16*)&src->m[0][0];
-    u16* m2 = (u16*)&src->m[2][0];
+    u16* intPart = (u16*)&src->m[0][0];
+    u16* fracPart = (u16*)&src->m[2][0];
 
-    dest->xx = ((m1[0] << 0x10) | m2[0]) * (1 / (f32)0x10000);
-    dest->yx = ((m1[1] << 0x10) | m2[1]) * (1 / (f32)0x10000);
-    dest->zx = ((m1[2] << 0x10) | m2[2]) * (1 / (f32)0x10000);
-    dest->wx = ((m1[3] << 0x10) | m2[3]) * (1 / (f32)0x10000);
-    dest->xy = ((m1[4] << 0x10) | m2[4]) * (1 / (f32)0x10000);
-    dest->yy = ((m1[5] << 0x10) | m2[5]) * (1 / (f32)0x10000);
-    dest->zy = ((m1[6] << 0x10) | m2[6]) * (1 / (f32)0x10000);
-    dest->wy = ((m1[7] << 0x10) | m2[7]) * (1 / (f32)0x10000);
-    dest->xz = ((m1[8] << 0x10) | m2[8]) * (1 / (f32)0x10000);
-    dest->yz = ((m1[9] << 0x10) | m2[9]) * (1 / (f32)0x10000);
-    dest->zz = ((m1[10] << 0x10) | m2[10]) * (1 / (f32)0x10000);
-    dest->wz = ((m1[11] << 0x10) | m2[11]) * (1 / (f32)0x10000);
-    dest->xw = ((m1[12] << 0x10) | m2[12]) * (1 / (f32)0x10000);
-    dest->yw = ((m1[13] << 0x10) | m2[13]) * (1 / (f32)0x10000);
-    dest->zw = ((m1[14] << 0x10) | m2[14]) * (1 / (f32)0x10000);
-    dest->ww = ((m1[15] << 0x10) | m2[15]) * (1 / (f32)0x10000);
+    dest->xx = ((intPart[0] << 0x10) | fracPart[0]) * (1 / (f32)0x10000);
+    dest->yx = ((intPart[1] << 0x10) | fracPart[1]) * (1 / (f32)0x10000);
+    dest->zx = ((intPart[2] << 0x10) | fracPart[2]) * (1 / (f32)0x10000);
+    dest->wx = ((intPart[3] << 0x10) | fracPart[3]) * (1 / (f32)0x10000);
+    dest->xy = ((intPart[4] << 0x10) | fracPart[4]) * (1 / (f32)0x10000);
+    dest->yy = ((intPart[5] << 0x10) | fracPart[5]) * (1 / (f32)0x10000);
+    dest->zy = ((intPart[6] << 0x10) | fracPart[6]) * (1 / (f32)0x10000);
+    dest->wy = ((intPart[7] << 0x10) | fracPart[7]) * (1 / (f32)0x10000);
+    dest->xz = ((intPart[8] << 0x10) | fracPart[8]) * (1 / (f32)0x10000);
+    dest->yz = ((intPart[9] << 0x10) | fracPart[9]) * (1 / (f32)0x10000);
+    dest->zz = ((intPart[10] << 0x10) | fracPart[10]) * (1 / (f32)0x10000);
+    dest->wz = ((intPart[11] << 0x10) | fracPart[11]) * (1 / (f32)0x10000);
+    dest->xw = ((intPart[12] << 0x10) | fracPart[12]) * (1 / (f32)0x10000);
+    dest->yw = ((intPart[13] << 0x10) | fracPart[13]) * (1 / (f32)0x10000);
+    dest->zw = ((intPart[14] << 0x10) | fracPart[14]) * (1 / (f32)0x10000);
+    dest->ww = ((intPart[15] << 0x10) | fracPart[15]) * (1 / (f32)0x10000);
 }
 
 /**
- * @brief Calculates mf * (src,1) and writes its components to dest.
+ * Calculates mf * (src,1) and writes its components to dest.
  *
- * This is the same as Matrix_Position() but using a specified matrix rather than the current one; the same
+ * This is the same as Matrix_Position() but using a specified matrix rather than the top matrix; the same
  * assumptions apply.
  *
  * @param[in] src input vector
@@ -1033,7 +1045,7 @@ void Matrix_MtxF_Position2(Vec3f* src, Vec3f* dest, MtxF* mf) {
 }
 
 /**
- * @brief Overwrite the linear part of mf with its transpose (ignores the translational part).
+ * Overwrite the linear part of mf with its transpose (ignores the translational part).
  *
  * Viz.,
  *
@@ -1068,8 +1080,8 @@ void Matrix_reverse(MtxF* mf) {
 }
 
 /**
- * @brief Decompose the linear part A of current into B * S, where B has normalised columns and S is diagonal, and
- * replace B by `mf`.
+ * Decompose the linear part A of the top matrix into B * S, where B has normalised columns and S is diagonal,
+ * and replace B by `mf`.
  *
  * Since B is typically a rotation matrix, and the linear part R * S to `mf` * S, this operation can be
  * seen as replacing the B rotation with `mf`, hence the function name.
@@ -1077,53 +1089,53 @@ void Matrix_reverse(MtxF* mf) {
  * @param[in] mf matrix whose linear part will replace the normalised part of A.
  */
 void Matrix_rotate_scale_exchange(MtxF* mf) {
-    MtxF* cmf = Matrix_now;
+    MtxF* top = Matrix_now;
     f32 acc;
     f32 component;
     f32 curColNorm;
 
-    // compute the Euclidean norm of the first column of the current matrix
-    acc = cmf->xx;
+    // compute the Euclidean norm of the first column of the top matrix
+    acc = top->xx;
     acc *= acc;
-    component = cmf->yx;
+    component = top->yx;
     acc += SQ(component);
-    component = cmf->zx;
+    component = top->zx;
     acc += SQ(component);
     curColNorm = sqrtf(acc);
 
-    cmf->xx = mf->xx * curColNorm;
-    cmf->yx = mf->yx * curColNorm;
-    cmf->zx = mf->zx * curColNorm;
+    top->xx = mf->xx * curColNorm;
+    top->yx = mf->yx * curColNorm;
+    top->zx = mf->zx * curColNorm;
 
     // second column
-    acc = cmf->xy;
+    acc = top->xy;
     acc *= acc;
-    component = cmf->yy;
+    component = top->yy;
     acc += SQ(component);
-    component = cmf->zy;
+    component = top->zy;
     acc += SQ(component);
     curColNorm = sqrtf(acc);
 
-    cmf->xy = mf->xy * curColNorm;
-    cmf->yy = mf->yy * curColNorm;
-    cmf->zy = mf->zy * curColNorm;
+    top->xy = mf->xy * curColNorm;
+    top->yy = mf->yy * curColNorm;
+    top->zy = mf->zy * curColNorm;
 
     // third column
-    acc = cmf->xz;
+    acc = top->xz;
     acc *= acc;
-    component = cmf->yz;
+    component = top->yz;
     acc += SQ(component);
-    component = cmf->zz;
+    component = top->zz;
     acc += SQ(component);
     curColNorm = sqrtf(acc);
 
-    cmf->xz = mf->xz * curColNorm;
-    cmf->yz = mf->yz * curColNorm;
-    cmf->zz = mf->zz * curColNorm;
+    top->xz = mf->xz * curColNorm;
+    top->yz = mf->yz * curColNorm;
+    top->zz = mf->zz * curColNorm;
 }
 
 /**
- * @brief Extract the YXZ Tait-Bryan rotation angles from the linear part \f$ A \f$ of a matrix.
+ * Extract the YXZ Tait-Bryan rotation angles from the linear part \f$ A \f$ of a matrix.
  *
  * \f$ A \f$ should have orthogonal columns; the most general matrix of this form can be written as \f$ RS \f$
  * with \f$ S \f$ a scale matrix.
@@ -1140,7 +1152,6 @@ void Matrix_to_rotate_new(MtxF* src, Vec3s* dest, s32 nonUniformScale) {
     f32 temp;
     f32 temp2;
     f32 temp3;
-    f32 temp4;
 
     temp = src->xz;
     temp *= temp;
@@ -1191,7 +1202,7 @@ void Matrix_to_rotate_new(MtxF* src, Vec3s* dest, s32 nonUniformScale) {
 }
 
 /**
- * @brief Extract the ZYX Tait-Bryan rotation angles from the linear part \f$ A \f$ of a matrix.
+ * Extract the ZYX Tait-Bryan rotation angles from the linear part \f$ A \f$ of a matrix.
  *
  * \f$ A \f$ should have orthogonal columns; the most general matrix of this form can be written as \f$ RS \f$
  * with \f$ S \f$ a scale matrix.
@@ -1210,7 +1221,6 @@ void Matrix_to_rotate2_new(MtxF* src, Vec3s* dest, s32 nonUniformScale) {
     f32 temp;
     f32 temp2;
     f32 temp3;
-    f32 temp4;
 
     temp = src->xx;
     temp *= temp;
@@ -1251,110 +1261,121 @@ void Matrix_to_rotate2_new(MtxF* src, Vec3s* dest, s32 nonUniformScale) {
 }
 
 /**
- * @brief Rotate by binary angle `angle` about `axis`, which is assumed to be a unit vector.
+ * Rotate the top matrix by binary angle `angle` about `axis`, which is assumed to be a unit vector.
  *
  * @param angle rotation angle (binary).
  * @param axis axis about which to rotate, must be a unit vector.
  * @param mode APPLY or NEW.
  */
 void Matrix_RotateVector(s16 angle, Vec3f* axis, u8 mode) {
-    MtxF* curm;
+    MtxF* top;
     f32 sin;
     f32 cos;
     f32 versin;
-    f32 temp1; // component x
-    f32 temp2; // component y
-    f32 temp3; // component z
-    f32 temp4; // component q?
+    f32 temp1;
+    f32 temp2;
+    f32 temp3;
+    f32 temp4;
 
     if (mode == 1) {
         if (angle != 0) {
-            curm = Matrix_now;
+            top = Matrix_now;
 
             sin = sin_s(angle);
             cos = cos_s(angle);
-            temp1 = curm->xx;
-            temp2 = curm->xy;
-            temp3 = curm->xz;
+            temp1 = top->xx;
+            temp2 = top->xy;
+            temp3 = top->xz;
             temp4 = (axis->x * temp1 + axis->y * temp2 + axis->z * temp3) * (1.0f - cos);
-            curm->xx = temp1 * cos + axis->x * temp4 + sin * (temp2 * axis->z - temp3 * axis->y);
-            curm->xy = temp2 * cos + axis->y * temp4 + sin * (temp3 * axis->x - temp1 * axis->z);
-            curm->xz = temp3 * cos + axis->z * temp4 + sin * (temp1 * axis->y - temp2 * axis->x);
+            top->xx = temp1 * cos + axis->x * temp4 + sin * (temp2 * axis->z - temp3 * axis->y);
+            top->xy = temp2 * cos + axis->y * temp4 + sin * (temp3 * axis->x - temp1 * axis->z);
+            top->xz = temp3 * cos + axis->z * temp4 + sin * (temp1 * axis->y - temp2 * axis->x);
 
-            temp1 = curm->yx;
-            temp2 = curm->yy;
-            temp3 = curm->yz;
+            temp1 = top->yx;
+            temp2 = top->yy;
+            temp3 = top->yz;
             temp4 = (axis->x * temp1 + axis->y * temp2 + axis->z * temp3) * (1.0f - cos);
-            curm->yx = temp1 * cos + axis->x * temp4 + sin * (temp2 * axis->z - temp3 * axis->y);
-            curm->yy = temp2 * cos + axis->y * temp4 + sin * (temp3 * axis->x - temp1 * axis->z);
-            curm->yz = temp3 * cos + axis->z * temp4 + sin * (temp1 * axis->y - temp2 * axis->x);
+            top->yx = temp1 * cos + axis->x * temp4 + sin * (temp2 * axis->z - temp3 * axis->y);
+            top->yy = temp2 * cos + axis->y * temp4 + sin * (temp3 * axis->x - temp1 * axis->z);
+            top->yz = temp3 * cos + axis->z * temp4 + sin * (temp1 * axis->y - temp2 * axis->x);
 
-            temp1 = curm->zx;
-            temp2 = curm->zy;
-            temp3 = curm->zz;
+            temp1 = top->zx;
+            temp2 = top->zy;
+            temp3 = top->zz;
             temp4 = (axis->x * temp1 + axis->y * temp2 + axis->z * temp3) * (1.0f - cos);
-            curm->zx = temp1 * cos + axis->x * temp4 + sin * (temp2 * axis->z - temp3 * axis->y);
-            curm->zy = temp2 * cos + axis->y * temp4 + sin * (temp3 * axis->x - temp1 * axis->z);
-            curm->zz = temp3 * cos + axis->z * temp4 + sin * (temp1 * axis->y - temp2 * axis->x);
+            top->zx = temp1 * cos + axis->x * temp4 + sin * (temp2 * axis->z - temp3 * axis->y);
+            top->zy = temp2 * cos + axis->y * temp4 + sin * (temp3 * axis->x - temp1 * axis->z);
+            top->zz = temp3 * cos + axis->z * temp4 + sin * (temp1 * axis->y - temp2 * axis->x);
         }
     } else {
-        curm = Matrix_now;
+        top = Matrix_now;
 
         if (angle != 0) {
             sin = sin_s(angle);
             cos = cos_s(angle);
             versin = 1.0f - cos;
 
-            curm->xx = axis->x * axis->x * versin + cos;
-            curm->yy = axis->y * axis->y * versin + cos;
-            curm->zz = axis->z * axis->z * versin + cos;
+            top->xx = axis->x * axis->x * versin + cos;
+            top->yy = axis->y * axis->y * versin + cos;
+            top->zz = axis->z * axis->z * versin + cos;
 
             if (0) {}
 
             temp2 = axis->x * versin * axis->y;
             temp3 = axis->z * sin;
-            curm->yx = temp2 + temp3;
-            curm->xy = temp2 - temp3;
+            top->yx = temp2 + temp3;
+            top->xy = temp2 - temp3;
 
             temp2 = axis->x * versin * axis->z;
             temp3 = axis->y * sin;
-            curm->zx = temp2 - temp3;
-            curm->xz = temp2 + temp3;
+            top->zx = temp2 - temp3;
+            top->xz = temp2 + temp3;
 
             temp2 = axis->y * versin * axis->z;
             temp3 = axis->x * sin;
-            curm->zy = temp2 + temp3;
-            curm->yz = temp2 - temp3;
+            top->zy = temp2 + temp3;
+            top->yz = temp2 - temp3;
 
-            curm->wx = 0.0f;
-            curm->wy = 0.0f;
-            curm->wz = 0.0f;
-            curm->xw = 0.0f;
-            curm->yw = 0.0f;
-            curm->zw = 0.0f;
-            curm->ww = 1.0f;
+            top->wx = 0.0f;
+            top->wy = 0.0f;
+            top->wz = 0.0f;
+            top->xw = 0.0f;
+            top->yw = 0.0f;
+            top->zw = 0.0f;
+            top->ww = 1.0f;
         } else {
-            curm->yx = 0.0f;
-            curm->zx = 0.0f;
-            curm->wx = 0.0f;
-            curm->xy = 0.0f;
-            curm->zy = 0.0f;
-            curm->wy = 0.0f;
-            curm->xz = 0.0f;
-            curm->yz = 0.0f;
-            curm->wz = 0.0f;
-            curm->xw = 0.0f;
-            curm->yw = 0.0f;
-            curm->zw = 0.0f;
-            curm->xx = 1.0f;
-            curm->yy = 1.0f;
-            curm->zz = 1.0f;
-            curm->ww = 1.0f;
+            top->yx = 0.0f;
+            top->zx = 0.0f;
+            top->wx = 0.0f;
+            top->xy = 0.0f;
+            top->zy = 0.0f;
+            top->wy = 0.0f;
+            top->xz = 0.0f;
+            top->yz = 0.0f;
+            top->wz = 0.0f;
+            top->xw = 0.0f;
+            top->yw = 0.0f;
+            top->zw = 0.0f;
+            top->xx = 1.0f;
+            top->yy = 1.0f;
+            top->zz = 1.0f;
+            top->ww = 1.0f;
         }
     }
 }
 
-//todo full comment
+// todo full comment
+/**
+ *  translation scale
+ *
+ * @param mtx:
+ * @param scaleX:
+ * @param scaleY:
+ * @param scaleZ:
+ * @param translateX:
+ * @param translateY:
+ * @param translateZ:
+ */
 void suMtxMakeTS(Mtx* mtx, f32 scaleX, f32 scaleY, f32 scaleZ, f32 translateX, f32 translateY, f32 translateZ) {
     struct {
         s16 intPart[4][4];
@@ -1396,20 +1417,32 @@ void suMtxMakeTS(Mtx* mtx, f32 scaleX, f32 scaleY, f32 scaleZ, f32 translateX, f
     mtx->m[3][3] = (u32)fp << 16;
 }
 
-//todo full comment
-// S(RxRyRz)T where S is a scale matrix, Rx/Ry/Rz are rotations about the x/y/z axes, and T is a translation
+// todo full comment
+/**
+ * S(RxRyRz)T where S is a scale matrix, Rx/Ry/Rz are rotations about the x/y/z axes, and T is a translation
+ * @param mtx:
+ * @param scaleX:
+ * @param scaleY:
+ * @param scaleZ:
+ * @param rotX:
+ * @param rotY:
+ * @param rotZ:
+ * @param translateX:
+ * @param translateY:
+ * @param translateZ:
+ */
 void suMtxMakeSRT(Mtx* mtx, f32 scaleX, f32 scaleY, f32 scaleZ, s16 rotX, s16 rotY, s16 rotZ, f32 translateX,
                   f32 translateY, f32 translateZ) {
-    s32 fp;
     struct {
         s16 intPart[4][4];
         u16 fracPart[4][4];
     }* mu = (void*)mtx;
+    s32 fp;
     f32 sinX = sin_s(rotX);
-    f32 sinY = sin_s(rotY); // sp+38
-    f32 sinZ = sin_s(rotZ); // sp+34
-    f32 cosX = cos_s(rotX); // sp+30
-    f32 cosY = cos_s(rotY); // sp+2C
+    f32 sinY = sin_s(rotY);
+    f32 sinZ = sin_s(rotZ);
+    f32 cosX = cos_s(rotX);
+    f32 cosY = cos_s(rotY);
     f32 cosZ = cos_s(rotZ);
 
     fp = cosY * cosZ * scaleX * 0x10000;
@@ -1466,21 +1499,34 @@ void suMtxMakeSRT(Mtx* mtx, f32 scaleX, f32 scaleY, f32 scaleZ, s16 rotX, s16 ro
     mu->fracPart[3][3] = 0;
 }
 
-//todo full comment
-// S(RzRxRy)T where S is a scale matrix, Rx/Ry/Rz are rotations, and T is a translation
+// todo full comment
+/**
+ * S(RzRxRy)T where S is a scale matrix, Rx/Ry/Rz are rotations, and T is a translation
+ *
+ * @param mtx:
+ * @param scaleX:
+ * @param scaleY:
+ * @param scaleZ:
+ * @param rotX:
+ * @param rotY:
+ * @param rotZ:
+ * @param translateX:
+ * @param translateY:
+ * @param translateZ:
+ */
 void suMtxMakeSRT_ZXY(Mtx* mtx, f32 scaleX, f32 scaleY, f32 scaleZ, s16 rotX, s16 rotY, s16 rotZ, f32 translateX,
                       f32 translateY, f32 translateZ) {
-    s32 fp;
     struct {
         s16 intPart[4][4];
         u16 fracPart[4][4];
     }* mu = (void*)mtx;
-    f32 sinX = sin_s(rotX); // sp+4C
-    f32 sinY = sin_s(rotY); // likely sp+48
-    f32 sinZ = sin_s(rotZ); // sp+44
-    f32 cosX = cos_s(rotX); // sp+40
-    f32 cosY = cos_s(rotY); // sp+3C
-    f32 cosZ = cos_s(rotZ); // likely sp+38
+    s32 fp;
+    f32 sinX = sin_s(rotX);
+    f32 sinY = sin_s(rotY);
+    f32 sinZ = sin_s(rotZ);
+    f32 cosX = cos_s(rotX);
+    f32 cosY = cos_s(rotY);
+    f32 cosZ = cos_s(rotZ);
 
     fp = ((cosY * cosZ) + (sinX * sinY * sinZ)) * scaleX * 0x10000;
     mu->intPart[0][0] = ((u32)fp >> 0x10) & 0xFFFF;
