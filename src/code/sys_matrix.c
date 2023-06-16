@@ -121,7 +121,7 @@ MtxF* get_Matrix_now(void) {
 }
 
 /**
- * General multiplication of the top matrix by another matrix.
+ * General multiplication of the top matrix on the stack by another matrix.
  *
  * - APPLY: top * mf -> top
  * - NEW: mf -> top
@@ -140,7 +140,7 @@ void Matrix_mult(MtxF* mf, u8 mode) {
 }
 
 /**
- * Right-multiply the top matrix by a translation matrix T.
+ * Right-multiply the top matrix on the stack by a translation matrix T.
  *
  * - APPLY: top * T -> top
  * - NEW: T -> top
@@ -185,7 +185,7 @@ void Matrix_translate(f32 x, f32 y, f32 z, u8 mode) {
 }
 
 /**
- * Right-multiply the top matrix by the diagonal scale matrix S = diag(x,y,z,1).
+ * Right-multiply the top matrix on the stack by the diagonal scale matrix S = diag(x,y,z,1).
  *
  * - APPLY: top * S -> top
  * - NEW: S -> top
@@ -228,7 +228,7 @@ void Matrix_scale(f32 x, f32 y, f32 z, u8 mode) {
 }
 
 /**
- * Right-multiply the top matrix by a rotation about the x axis
+ * Right-multiply the top matrix on the stack by a rotation about the x axis
  *
  * - APPLY: top * R -> top
  * - NEW: R -> top
@@ -314,7 +314,7 @@ void Matrix_RotateX(s16 x, MatrixMode mode) {
 }
 
 /**
- * Right-multiply the top matrix by a rotation about the y axis
+ * Right-multiply the top matrix on the stack by a rotation about the y axis
  *
  * - APPLY: top * R -> top
  * - NEW: R -> top
@@ -400,7 +400,7 @@ void Matrix_RotateY(s16 y, MatrixMode mode) {
 }
 
 /**
- * Right-multiply the top matrix by a rotation about the z axis.
+ * Right-multiply the top matrix on the stack by a rotation about the z axis.
  *
  * - APPLY: top * R -> top
  * - NEW: R -> top
@@ -488,7 +488,7 @@ void Matrix_RotateZ(s16 z, MatrixMode mode) {
 }
 
 /**
- * Rotate the top matrix using ZYX Tait-Bryan angles.
+ * Rotate the top matrix on the stack using ZYX Tait-Bryan angles.
  *
  * - APPLY: top Rz Ry Rx -> top
  * - NEW: Rz Ry Rx -> top
@@ -589,7 +589,7 @@ void Matrix_rotateXYZ(s16 x, s16 y, s16 z, MatrixMode mode) {
 }
 // todo improve these comments, the difference between softcv3_mult and softcv3_load is confusing
 /**
- * Translate and rotate the top matrix using ZYX Tait-Bryan angles.
+ * Translate and rotate the top matrix on the stack using ZYX Tait-Bryan angles.
  *
  * top T Rz Ry Rx -> top
  *
@@ -683,7 +683,7 @@ void Matrix_softcv3_mult(Vec3f* translation, Vec3s* rot) {
 }
 
 /**
- * Set the top matrix to a general translation and rotation using YXZ Tait-Bryan angles: T Ry Rx Rz -> top
+ * Set the top matrix on the stack to a general translation and rotation using YXZ Tait-Bryan angles: T Ry Rx Rz -> top
  *
  * This means a (column) vector is first rotated around Y, then around X, then around Z, then translated, then gets
  * transformed by whatever the matrix was previously.
@@ -751,8 +751,14 @@ void Matrix_softcv3_load(f32 x, f32 y, f32 z, Vec3s* rot) {
     }
 }
 
+#define intPart(i, j) (m1[4*i + j])
+#define fracPart(i, j) (m2[4*i + j])
 /**
  * Converts a floating-point MtxF to a fixed-point RSP-compatible matrix.
+ *
+ * Fixed-point numbers are split into an integer and a fractional scaling factor. For optimization reasons, the
+ * RSP matrix format groups all the integer parts together into the first 8 words, and the fractional parts into the
+ * last 8 words.
  *
  * @param[in] src MtxF to convert.
  * @param[out] dest mtx to output to.
@@ -761,78 +767,78 @@ void Matrix_softcv3_load(f32 x, f32 y, f32 z, Vec3s* rot) {
  */
 Mtx* _MtxF_to_Mtx(MtxF* src, Mtx* dest) {
     s32 fp;
-    u16* intPart = (u16*)&dest->m[0][0];
-    u16* fracPart = (u16*)&dest->m[2][0];
+    u16* m1 = (u16*)&dest->m[0][0];
+    u16* m2 = (u16*)&dest->m[2][0];
 
     fp = src->xx * 0x10000;
-    intPart[0 + 0] = (fp >> 0x10);
-    fracPart[0 + 0] = fp & 0xFFFF;
+    intPart(0, 0) = (fp >> 0x10);
+    fracPart(0, 0) = fp & 0xFFFF;
 
     fp = src->yx * 0x10000;
-    intPart[0 + 1] = (fp >> 0x10);
-    fracPart[0 + 1] = fp & 0xFFFF;
+    intPart(0, 1) = (fp >> 0x10);
+    fracPart(0, 1) = fp & 0xFFFF;
 
     fp = src->zx * 0x10000;
-    intPart[0 + 2] = (fp >> 0x10);
-    fracPart[0 + 2] = fp & 0xFFFF;
+    intPart(0, 2) = (fp >> 0x10);
+    fracPart(0, 2) = fp & 0xFFFF;
 
     fp = src->wx * 0x10000;
-    intPart[0 + 3] = (fp >> 0x10);
-    fracPart[0 + 3] = fp & 0xFFFF;
+    intPart(0, 3) = (fp >> 0x10);
+    fracPart(0, 3) = fp & 0xFFFF;
 
     fp = src->xy * 0x10000;
-    intPart[1 * 4 + 0] = (fp >> 0x10);
-    fracPart[1 * 4 + 0] = fp & 0xFFFF;
+    intPart(1, 0) = (fp >> 0x10);
+    fracPart(1, 0) = fp & 0xFFFF;
 
     fp = src->yy * 0x10000;
-    intPart[1 * 4 + 1] = (fp >> 0x10);
-    fracPart[1 * 4 + 1] = fp & 0xFFFF;
+    intPart(1, 1) = (fp >> 0x10);
+    fracPart(1, 1) = fp & 0xFFFF;
 
     // Ideally these three would use fracPart instead of intPart, but it's required to match.
     fp = src->zy * 0x10000;
-    intPart[1 * 4 + 2] = (fp >> 0x10);
-    intPart[16 + 1 * 4 + 2] = fp & 0xFFFF;
+    intPart(1, 2) = (fp >> 0x10);
+    intPart(5, 2) = fp & 0xFFFF;
 
     fp = src->wy * 0x10000;
-    intPart[1 * 4 + 3] = (fp >> 0x10);
-    intPart[16 + 1 * 4 + 3] = fp & 0xFFFF;
+    intPart(1, 3) = (fp >> 0x10);
+    intPart(5, 3) = fp & 0xFFFF;
 
     fp = src->xz * 0x10000;
-    intPart[2 * 4 + 0] = (fp >> 0x10);
-    intPart[16 + 2 * 4 + 0] = fp & 0xFFFF;
+    intPart(2, 0) = (fp >> 0x10);
+    intPart(6, 0) = fp & 0xFFFF;
 
     fp = src->yz * 0x10000;
-    intPart[2 * 4 + 1] = (fp >> 0x10);
-    fracPart[2 * 4 + 1] = fp & 0xFFFF;
+    intPart(2, 1) = (fp >> 0x10);
+    fracPart(2, 1) = fp & 0xFFFF;
 
     fp = src->zz * 0x10000;
-    intPart[2 * 4 + 2] = (fp >> 0x10);
-    fracPart[2 * 4 + 2] = fp & 0xFFFF;
+    intPart(2, 2) = (fp >> 0x10);
+    fracPart(2, 2) = fp & 0xFFFF;
 
     fp = src->wz * 0x10000;
-    intPart[2 * 4 + 3] = (fp >> 0x10);
-    fracPart[2 * 4 + 3] = fp & 0xFFFF;
+    intPart(2, 3) = (fp >> 0x10);
+    fracPart(2, 3) = fp & 0xFFFF;
 
     fp = src->xw * 0x10000;
-    intPart[3 * 4 + 0] = (fp >> 0x10);
-    fracPart[3 * 4 + 0] = fp & 0xFFFF;
+    intPart(3, 0) = (fp >> 0x10);
+    fracPart(3, 0) = fp & 0xFFFF;
 
     fp = src->yw * 0x10000;
-    intPart[3 * 4 + 1] = (fp >> 0x10);
-    fracPart[3 * 4 + 1] = fp & 0xFFFF;
+    intPart(3, 1) = (fp >> 0x10);
+    fracPart(3, 1) = fp & 0xFFFF;
 
     fp = src->zw * 0x10000;
-    intPart[3 * 4 + 2] = (fp >> 0x10);
-    fracPart[3 * 4 + 2] = fp & 0xFFFF;
+    intPart(3, 2) = (fp >> 0x10);
+    fracPart(3, 2) = fp & 0xFFFF;
 
     fp = src->ww * 0x10000;
-    intPart[3 * 4 + 3] = (fp >> 0x10);
-    fracPart[3 * 4 + 3] = fp & 0xFFFF;
+    intPart(3, 3) = (fp >> 0x10);
+    fracPart(3, 3) = fp & 0xFFFF;
     return dest;
 }
 
 /**
- * Converts the top matrix to a fixed-point RSP-compatible matrix.
+ * Converts the top matrix on the stack to a fixed-point RSP-compatible matrix.
  *
  * @param[out] dest mtx to output to.
  *
@@ -843,7 +849,7 @@ Mtx* _Matrix_to_Mtx(Mtx* dest) {
 }
 
 /**
- * Converts the top matrix to a RSP-compatible matrix and saves it to allocated space in the OPA buffer.
+ * Converts the top matrix on the stack to a RSP-compatible matrix and saves it to allocated space in the OPA buffer.
  *
  * @param[in,out] gfxCtx Graphics context.
  *
@@ -865,11 +871,10 @@ void _MtxF_to_Mtx_new(MtxF* src, GraphicsContext* gfxCtx) {
     _MtxF_to_Mtx(src, GRAPH_ALLOC(gfxCtx, sizeof(Mtx)));
 }
 
-//todo better wording
 /**
  * Calculates top * (src,1) and writes its components to dest.
  *
- * This assumes that the top matrix has the form
+ * This assumes that the top matrix on the stack has the form
  *
  * \f[
  *  M =
@@ -912,7 +917,7 @@ void Matrix_Position(Vec3f* src, Vec3f* dest) {
 }
 
 /**
- * Multiply the vector `(0, 0, 0, 1)` by the top matrix.
+ * Multiply the vector `(0, 0, 0, 1)` by the top matrix on the stack.
  *
  * Can also see it as obtaining the translation vector part of the top matrix, but the former interpretation is
  * consistent with the other functions nearby.
@@ -930,7 +935,7 @@ void Matrix_Position_Zero(Vec3f* dest) {
 }
 
 /**
- * Multiply the vector `(x, 0, 0, 1)` by the top matrix.
+ * Multiply the vector `(x, 0, 0, 1)` by the top matrix on the stack.
  *
  * I.e. calculate \f$ A(x, 0, 0) + b \f$.
  *
@@ -948,7 +953,7 @@ void Matrix_Position_VecX(f32 x, Vec3f* dest) {
 }
 
 /**
- * Multiply the vector `(0, y, 0, 1)` by the top matrix.
+ * Multiply the vector `(0, y, 0, 1)` by the top matrix on the stack.
  *
  * I.e. calculate \f$ A(0, y, 0) + b \f$.
  *
@@ -966,7 +971,7 @@ void Matrix_Position_VecY(f32 y, Vec3f* dest) {
 }
 
 /**
- * Multiply the vector `(0, 0, z, 1)` by the top matrix.
+ * Multiply the vector `(0, 0, z, 1)` by the top matrix on the stack.
  *
  * I.e. calculate \f$ A(0, 0, z) + b \f$.
  *
@@ -1002,6 +1007,8 @@ void Matrix_copy_MtxF(MtxF* dest, MtxF* src) {
 
 /**
  * Converts a fixed-point RSP-compatible matrix to an MtxF.
+ *
+ * @see _MtxF_to_Mtx
  *
  * @param[in] src mtx to convert
  * @param[out] dest MtxF to output to
@@ -1045,7 +1052,7 @@ void Matrix_MtxF_Position2(Vec3f* src, Vec3f* dest, MtxF* mf) {
 }
 
 /**
- * Overwrite the linear part of mf with its transpose (ignores the translational part).
+ * Overwrite the linear part of a matrix with its transpose (ignores the translational part).
  *
  * Viz.,
  *
@@ -1080,8 +1087,8 @@ void Matrix_reverse(MtxF* mf) {
 }
 
 /**
- * Decompose the linear part A of the top matrix into B * S, where B has normalised columns and S is diagonal,
- * and replace B by `mf`.
+ * Decompose the linear part A of the top matrix on the stack into B * S, where B has normalised columns and S is
+ * diagonal, and replace B by `mf`.
  *
  * Since B is typically a rotation matrix, and the linear part R * S to `mf` * S, this operation can be
  * seen as replacing the B rotation with `mf`, hence the function name.
@@ -1261,7 +1268,7 @@ void Matrix_to_rotate2_new(MtxF* src, Vec3s* dest, s32 nonUniformScale) {
 }
 
 /**
- * Rotate the top matrix by binary angle `angle` about `axis`, which is assumed to be a unit vector.
+ * Rotate the top matrix on the stack by binary angle `angle` about `axis`, which is assumed to be a unit vector.
  *
  * @param angle rotation angle (binary).
  * @param axis axis about which to rotate, must be a unit vector.
@@ -1364,17 +1371,18 @@ void Matrix_RotateVector(s16 angle, Vec3f* axis, u8 mode) {
     }
 }
 
-// todo full comment
 /**
- *  translation scale
+ * Writes a combined translation and scale matrix to a fixed-point RSP-compatible matrix.
  *
- * @param mtx:
- * @param scaleX:
- * @param scaleY:
- * @param scaleZ:
- * @param translateX:
- * @param translateY:
- * @param translateZ:
+ * @see _MtxF_to_Mtx
+ *
+ * @param mtx: output matrix
+ * @param scaleX: amount to scale in X direction.
+ * @param scaleY: amount to scale in Y direction.
+ * @param scaleZ: amount to scale in Z direction.
+ * @param translateX: amount to translate in X direction.
+ * @param translateY: amount to translate in Y direction.
+ * @param translateZ: amount to translate in Z direction.
  */
 void suMtxMakeTS(Mtx* mtx, f32 scaleX, f32 scaleY, f32 scaleZ, f32 translateX, f32 translateY, f32 translateZ) {
     struct {
@@ -1384,52 +1392,58 @@ void suMtxMakeTS(Mtx* mtx, f32 scaleX, f32 scaleY, f32 scaleZ, f32 translateX, f
     s32 fp;
 
     fp = scaleX * 0x10000;
-    mtx->m[0][0] = fp;
-    mu->intPart[0][1] = 0;
-    mtx->m[0][1] = 0;
-    mtx->m[2][0] = (u32)fp << 16;
+    mtx->m[0][0] = fp;            // intpart xx = scaleX. This overwrites xy
+    mu->intPart[0][1] = 0;        // intpart xy = 0. Sets xy back to 0
+    mtx->m[0][1] = 0;             // intpart xz, xw = 0
+    mtx->m[2][0] = (u32)fp << 16; // fracpart xx = scaleX
+    mtx->m[2][1] = 0;             // fracpart xy = 0
 
     fp = scaleY * 0x10000;
-    mtx->m[2][1] = 0;
-    mtx->m[0][2] = (u32)fp >> 16;
-    mtx->m[0][3] = 0;
-    mtx->m[2][2] = fp & 0xFFFF;
-    mtx->m[2][3] = 0;
+    mtx->m[0][2] = (u32)fp >> 16; // intpart yy = scaleY
+    mtx->m[0][3] = 0;             // intpart yz = 0
+    mtx->m[2][2] = fp & 0xFFFF;   // fracpart yy = scaleY
+    mtx->m[2][3] = 0;             // fracpart yz = 0
 
     fp = scaleZ * 0x10000;
-    mtx->m[1][0] = 0;
-    mtx->m[1][1] = fp;
-    mu->intPart[2][3] = 0;
-    mtx->m[3][0] = 0;
-    mtx->m[3][1] = (u32)fp << 16;
+    mtx->m[1][0] = 0;             // intpart zx, zy = 0
+    mtx->m[1][1] = fp;            // intpart zz = scaleZ
+    mu->intPart[2][3] = 0;        // intpart zw = 0
+    mtx->m[3][0] = 0;             // fracpart zx, zy = 0
+    mtx->m[3][1] = (u32)fp << 16; // fracpart zz = scaleZ
 
+    // wx = translateX
     fp = translateX * 0x10000;
     mu->intPart[3][0] = ((u32)fp >> 16) & 0xFFFF;
     mu->fracPart[3][0] = fp & 0xFFFF;
 
+    // wy = translateY
     fp = translateY * 0x10000;
     mu->intPart[3][1] = ((u32)fp >> 16) & 0xFFFF;
     mu->fracPart[3][1] = fp & 0xFFFF;
 
+    // wz = translateZ
     fp = translateZ * 0x10000;
     mu->intPart[3][2] = ((u32)fp >> 16) & 0xFFFF;
+    // ww = 1
     mu->intPart[3][3] = 1;
     mtx->m[3][3] = (u32)fp << 16;
 }
 
-// todo full comment
 /**
- * S(RxRyRz)T where S is a scale matrix, Rx/Ry/Rz are rotations about the x/y/z axes, and T is a translation
- * @param mtx:
- * @param scaleX:
- * @param scaleY:
- * @param scaleZ:
- * @param rotX:
- * @param rotY:
- * @param rotZ:
- * @param translateX:
- * @param translateY:
- * @param translateZ:
+ * Writes a combined scale, rotation, and translation matrix to a fixed-point RSP-compatible matrix.
+ *
+ * @see _MtxF_to_Mtx
+ *
+ * @param mtx: output matrix
+ * @param scaleX: amount to scale in X direction.
+ * @param scaleY: amount to scale in Y direction.
+ * @param scaleZ: amount to scale in Z direction.
+ * @param rotX: binary angle to rotate about X axis
+ * @param rotY: binary angle to rotate about Y axis
+ * @param rotZ: binary angle to rotate about Z axis
+ * @param translateX: amount to translate in X direction.
+ * @param translateY: amount to translate in Y direction.
+ * @param translateZ: amount to translate in Z direction.
  */
 void suMtxMakeSRT(Mtx* mtx, f32 scaleX, f32 scaleY, f32 scaleZ, s16 rotX, s16 rotY, s16 rotZ, f32 translateX,
                   f32 translateY, f32 translateZ) {
@@ -1499,20 +1513,21 @@ void suMtxMakeSRT(Mtx* mtx, f32 scaleX, f32 scaleY, f32 scaleZ, s16 rotX, s16 ro
     mu->fracPart[3][3] = 0;
 }
 
-// todo full comment
 /**
  * S(RzRxRy)T where S is a scale matrix, Rx/Ry/Rz are rotations, and T is a translation
  *
- * @param mtx:
- * @param scaleX:
- * @param scaleY:
- * @param scaleZ:
- * @param rotX:
- * @param rotY:
- * @param rotZ:
- * @param translateX:
- * @param translateY:
- * @param translateZ:
+ * @see _MtxF_to_Mtx
+ *
+ * @param mtx: output matrix
+ * @param scaleX: amount to scale in X direction.
+ * @param scaleY: amount to scale in Y direction.
+ * @param scaleZ: amount to scale in Z direction.
+ * @param rotX: binary angle to rotate about X axis
+ * @param rotY: binary angle to rotate about Y axis
+ * @param rotZ: binary angle to rotate about Z axis
+ * @param translateX: amount to translate in X direction.
+ * @param translateY: amount to translate in Y direction.
+ * @param translateZ: amount to translate in Z direction.
  */
 void suMtxMakeSRT_ZXY(Mtx* mtx, f32 scaleX, f32 scaleY, f32 scaleZ, s16 rotX, s16 rotY, s16 rotZ, f32 translateX,
                       f32 translateY, f32 translateZ) {
