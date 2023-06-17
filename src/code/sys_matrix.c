@@ -587,7 +587,6 @@ void Matrix_rotateXYZ(s16 x, s16 y, s16 z, MatrixMode mode) {
         Skin_Matrix_SetRotateXyz_s(top, x, y, z);
     }
 }
-// todo improve these comments, the difference between softcv3_mult and softcv3_load is confusing
 /**
  * Translate and rotate the top matrix on the stack using ZYX Tait-Bryan angles.
  *
@@ -683,7 +682,7 @@ void Matrix_softcv3_mult(Vec3f* translation, Vec3s* rot) {
 }
 
 /**
- * Set the top matrix on the stack to a general translation and rotation using YXZ Tait-Bryan angles: T Ry Rx Rz -> top
+ * Set the top matrix on the stack to a general translation and rotation matrix using YXZ Tait-Bryan angles: T Ry Rx Rz -> top
  *
  * This means a (column) vector is first rotated around Y, then around X, then around Z, then translated, then gets
  * transformed by whatever the matrix was previously.
@@ -751,8 +750,6 @@ void Matrix_softcv3_load(f32 x, f32 y, f32 z, Vec3s* rot) {
     }
 }
 
-#define intPart(i, j) (m1[4*i + j])
-#define fracPart(i, j) (m2[4*i + j])
 /**
  * Converts a floating-point MtxF to a fixed-point RSP-compatible matrix.
  *
@@ -767,73 +764,73 @@ void Matrix_softcv3_load(f32 x, f32 y, f32 z, Vec3s* rot) {
  */
 Mtx* _MtxF_to_Mtx(MtxF* src, Mtx* dest) {
     s32 fp;
-    u16* m1 = (u16*)&dest->m[0][0];
-    u16* m2 = (u16*)&dest->m[2][0];
+    u16* intPart = (u16*)&dest->m[0][0];
+    u16* fracPart = (u16*)&dest->m[2][0];
 
     fp = src->xx * 0x10000;
-    intPart(0, 0) = (fp >> 0x10);
-    fracPart(0, 0) = fp & 0xFFFF;
+    intPart[0] = (fp >> 0x10);
+    fracPart[0] = fp & 0xFFFF;
 
     fp = src->yx * 0x10000;
-    intPart(0, 1) = (fp >> 0x10);
-    fracPart(0, 1) = fp & 0xFFFF;
+    intPart[1] = (fp >> 0x10);
+    fracPart[1] = fp & 0xFFFF;
 
     fp = src->zx * 0x10000;
-    intPart(0, 2) = (fp >> 0x10);
-    fracPart(0, 2) = fp & 0xFFFF;
+    intPart[2] = (fp >> 0x10);
+    fracPart[2] = fp & 0xFFFF;
 
     fp = src->wx * 0x10000;
-    intPart(0, 3) = (fp >> 0x10);
-    fracPart(0, 3) = fp & 0xFFFF;
+    intPart[3] = (fp >> 0x10);
+    fracPart[3] = fp & 0xFFFF;
 
     fp = src->xy * 0x10000;
-    intPart(1, 0) = (fp >> 0x10);
-    fracPart(1, 0) = fp & 0xFFFF;
+    intPart[4] = (fp >> 0x10);
+    fracPart[4] = fp & 0xFFFF;
 
     fp = src->yy * 0x10000;
-    intPart(1, 1) = (fp >> 0x10);
-    fracPart(1, 1) = fp & 0xFFFF;
+    intPart[5] = (fp >> 0x10);
+    fracPart[5] = fp & 0xFFFF;
 
     // Ideally these three would use fracPart instead of intPart, but it's required to match.
     fp = src->zy * 0x10000;
-    intPart(1, 2) = (fp >> 0x10);
-    intPart(5, 2) = fp & 0xFFFF;
+    intPart[6] = (fp >> 0x10);
+    intPart[22] = fp & 0xFFFF;
 
     fp = src->wy * 0x10000;
-    intPart(1, 3) = (fp >> 0x10);
-    intPart(5, 3) = fp & 0xFFFF;
+    intPart[7] = (fp >> 0x10);
+    intPart[23] = fp & 0xFFFF;
 
     fp = src->xz * 0x10000;
-    intPart(2, 0) = (fp >> 0x10);
-    intPart(6, 0) = fp & 0xFFFF;
+    intPart[8] = (fp >> 0x10);
+    intPart[24] = fp & 0xFFFF;
 
     fp = src->yz * 0x10000;
-    intPart(2, 1) = (fp >> 0x10);
-    fracPart(2, 1) = fp & 0xFFFF;
+    intPart[9] = (fp >> 0x10);
+    fracPart[9] = fp & 0xFFFF;
 
     fp = src->zz * 0x10000;
-    intPart(2, 2) = (fp >> 0x10);
-    fracPart(2, 2) = fp & 0xFFFF;
+    intPart[10] = (fp >> 0x10);
+    fracPart[10] = fp & 0xFFFF;
 
     fp = src->wz * 0x10000;
-    intPart(2, 3) = (fp >> 0x10);
-    fracPart(2, 3) = fp & 0xFFFF;
+    intPart[11] = (fp >> 0x10);
+    fracPart[11] = fp & 0xFFFF;
 
     fp = src->xw * 0x10000;
-    intPart(3, 0) = (fp >> 0x10);
-    fracPart(3, 0) = fp & 0xFFFF;
+    intPart[12] = (fp >> 0x10);
+    fracPart[12] = fp & 0xFFFF;
 
     fp = src->yw * 0x10000;
-    intPart(3, 1) = (fp >> 0x10);
-    fracPart(3, 1) = fp & 0xFFFF;
+    intPart[13] = (fp >> 0x10);
+    fracPart[13] = fp & 0xFFFF;
 
     fp = src->zw * 0x10000;
-    intPart(3, 2) = (fp >> 0x10);
-    fracPart(3, 2) = fp & 0xFFFF;
+    intPart[14] = (fp >> 0x10);
+    fracPart[14] = fp & 0xFFFF;
 
     fp = src->ww * 0x10000;
-    intPart(3, 3) = (fp >> 0x10);
-    fracPart(3, 3) = fp & 0xFFFF;
+    intPart[15] = (fp >> 0x10);
+    fracPart[15] = fp & 0xFFFF;
     return dest;
 }
 
@@ -1376,7 +1373,7 @@ void Matrix_RotateVector(s16 angle, Vec3f* axis, u8 mode) {
  *
  * @see _MtxF_to_Mtx
  *
- * @param mtx: output matrix
+ * @param mtx: output matrix.
  * @param scaleX: amount to scale in X direction.
  * @param scaleY: amount to scale in Y direction.
  * @param scaleZ: amount to scale in Z direction.
@@ -1430,17 +1427,17 @@ void suMtxMakeTS(Mtx* mtx, f32 scaleX, f32 scaleY, f32 scaleZ, f32 translateX, f
 }
 
 /**
- * Writes a combined scale, rotation, and translation matrix to a fixed-point RSP-compatible matrix.
+ * Writes a combined scale, rotation (x, y, z), and translation matrix to a fixed-point RSP-compatible matrix.
  *
  * @see _MtxF_to_Mtx
  *
- * @param mtx: output matrix
+ * @param mtx: output matrix.
  * @param scaleX: amount to scale in X direction.
  * @param scaleY: amount to scale in Y direction.
  * @param scaleZ: amount to scale in Z direction.
- * @param rotX: binary angle to rotate about X axis
- * @param rotY: binary angle to rotate about Y axis
- * @param rotZ: binary angle to rotate about Z axis
+ * @param rotX: binary angle to rotate about X axis.
+ * @param rotY: binary angle to rotate about Y axis.
+ * @param rotZ: binary angle to rotate about Z axis.
  * @param translateX: amount to translate in X direction.
  * @param translateY: amount to translate in Y direction.
  * @param translateZ: amount to translate in Z direction.
@@ -1514,17 +1511,17 @@ void suMtxMakeSRT(Mtx* mtx, f32 scaleX, f32 scaleY, f32 scaleZ, s16 rotX, s16 ro
 }
 
 /**
- * S(RzRxRy)T where S is a scale matrix, Rx/Ry/Rz are rotations, and T is a translation
+ * Writes a combined scale, rotation (z, x, y), and translation matrix to a fixed-point RSP-compatible matrix.
  *
  * @see _MtxF_to_Mtx
  *
- * @param mtx: output matrix
+ * @param mtx: output matrix.
  * @param scaleX: amount to scale in X direction.
  * @param scaleY: amount to scale in Y direction.
  * @param scaleZ: amount to scale in Z direction.
- * @param rotX: binary angle to rotate about X axis
- * @param rotY: binary angle to rotate about Y axis
- * @param rotZ: binary angle to rotate about Z axis
+ * @param rotX: binary angle to rotate about X axis.
+ * @param rotY: binary angle to rotate about Y axis.
+ * @param rotZ: binary angle to rotate about Z axis.
  * @param translateX: amount to translate in X direction.
  * @param translateY: amount to translate in Y direction.
  * @param translateZ: amount to translate in Z direction.
