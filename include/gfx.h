@@ -60,7 +60,7 @@ typedef struct GraphicsContext {
         (FPART(wx) << 0x10) | FPART(wy),  \
         (FPART(wz) << 0x10) | FPART(ww),  \
     }}
-    
+
 // clang-format on
 
 #endif

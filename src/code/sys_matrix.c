@@ -682,7 +682,8 @@ void Matrix_softcv3_mult(Vec3f* translation, Vec3s* rot) {
 }
 
 /**
- * Set the top matrix on the stack to a general translation and rotation matrix using YXZ Tait-Bryan angles: T Ry Rx Rz -> top
+ * Set the top matrix on the stack to a general translation and rotation matrix using YXZ Tait-Bryan angles: T Ry Rx Rz
+ * -> top
  *
  * This means a (column) vector is first rotated around Y, then around X, then around Z, then translated, then gets
  * transformed by whatever the matrix was previously.

@@ -3,7 +3,10 @@
 
 #include "ultra64.h"
 
-#define VEC_SET(V,X,Y,Z) V.x=X;V.y=Y;V.z=Z
+#define VEC_SET(V, X, Y, Z) \
+    V.x = X;                \
+    V.y = Y;                \
+    V.z = Z
 
 typedef struct {
     /* 0x0 */ s16 x;
@@ -43,10 +46,7 @@ typedef float MtxF_t[4][4];
 typedef union {
     MtxF_t mf;
     struct {
-        float xx, yx, zx, wx,
-              xy, yy, zy, wy,
-              xz, yz, zz, wz,
-              xw, yw, zw, ww;
+        float xx, yx, zx, wx, xy, yy, zy, wy, xz, yz, zz, wz, xw, yw, zw, ww;
     };
 } MtxF; // size = 0x40
 
