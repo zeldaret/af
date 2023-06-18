@@ -1,5 +1,36 @@
 # splat Release Notes
 
+### 0.14.1
+
+* Fix bug, cod cleanup
+
+### 0.14.0
+
+* Add support for PSX's GTE instruction set
+
+### 0.13.10
+
+* New option `disasm_unknown` (False by default)
+  * If enabled it tells the disassembler to try disassembling functions with unknown instructions instead of falling back to disassembling as raw data
+
+### 0.13.9
+
+* New segment option `linker_entry` (true by default).
+  * If disabled, this segment will not produce entries in the linker script.
+
+### 0.13.8
+
+* New option `segment_end_before_align`.
+  * If enabled, the end symbol for each segment will be placed before the alignment directive for the segment
+
+### 0.13.7
+
+* Severely sped-up linker entry writing by using a dict instead of a list. Symbol headers will no longer be in any specific order (which shouldn't matter, because they're headers).
+
+### 0.13.6
+
+* Changed CI image processing so that their data is fetched during the scan phase, supporting palettes that come before CI images.
+
 ### 0.13.5
 
 * An error will be produced if a symbol is declared with an unknown type in the symbol_addrs file.
@@ -13,7 +44,7 @@
 
 ### 0.13.3
 
-* Added a new symbol_addrs attribute `appears_after_overlays_addr:0x1234` which will modify the linker script such that the symbol's address is equal to the value of the end of the longest overlay starting with address 0x1234. It achieve this by writing a series of sym = MAX(sym, seg_vram_END) statements into the linker script. For some games, it's feasible to manually create such statements, but for games with hundreds of overlays at the same address, this is very tedious and prone to error. The new attribute allows you to have peace of mind that the symbol will end up after all of these overlays.
+* Added a new symbol_addrs attribute `appears_after_overlays_addr:0x1234` which will modify the linker script such that the symbol's address is equal to the value of the end of the longest overlay starting with address 0x1234. It achieves this by writing a series of sym = MAX(sym, seg_vram_END) statements into the linker script. For some games, it's feasible to manually create such statements, but for games with hundreds of overlays at the same address, this is very tedious and prone to error. The new attribute allows you to have peace of mind that the symbol will end up after all of these overlays.
 
 ### 0.13.2
 
@@ -34,7 +65,7 @@
 ### 0.12.14
 
 * New option: `pair_rodata_to_text`.
-  * If enabled, splat will try to find to which text segment an unpaired rodata segment belongs and it will hint it to the user.
+  * If enabled, splat will try to find to which text segment an unpaired rodata segment belongs, and it will hint it to the user.
 
 ### 0.12.13
 
@@ -64,7 +95,7 @@
 ### 0.12.8
 
 * The gfx and vtx segments now have a `data_only` option, which, if enabled, will emit only the plain data for the type and omit the enclosing symbol definition. This mode is useful when you want to manually declare the symbol and then #include the extracted data within the declaration.
-* The gfx segment has a method, `format_sym_name()`, which will allow custom overriding of the output of symbol names by extending the `gfx` segment. For example, this can be used to transform context-specific symbol names like mac_01_vtx into N(vtx), where N() is a macro that applies the current "namespace" to the symbol. Paper Mario plans to use this so we can extract an asset once and then #include it in multiple places, while giving each inclusion unique symbol names for each component.
+* The gfx segment has a method, `format_sym_name()`, which will allow custom overriding of the output of symbol names by extending the `gfx` segment. For example, this can be used to transform context-specific symbol names like mac_01_vtx into N(vtx), where N() is a macro that applies the current "namespace" to the symbol. Paper Mario plans to use this, so we can extract an asset once and then #include it in multiple places, while giving each inclusion unique symbol names for each component.
 
 ### 0.12.7
 
@@ -88,7 +119,7 @@
 
 * Update minimal spimdisasm version to 1.7.1.
 * Fix spimdisasm>=1.7.0 non being able to see symbols which only are referenced by other data symbols.
-* An check was added to prevent segments marked with `exclusive_ram_id` have a vram address range which overlaps with segments not marked with said tag. If this happens it will be warned to the user.
+* A check was added to prevent segments marked with `exclusive_ram_id` have a vram address range which overlaps with segments not marked with said tag. If this happens it will be warned to the user.
 
 ### 0.12.4
 

@@ -31,8 +31,8 @@ country_codes = {
     0x00: "Unknown",
     0x37: "Beta",
     0x41: "Asian (NTSC)",
-    0x42: "Brazillian",
-    0x43: "Chiniese",
+    0x42: "Brazilian",
+    0x43: "Chinese",
     0x44: "German",
     0x45: "North America",
     0x46: "French",
@@ -46,7 +46,7 @@ country_codes = {
     0x50: "European (basic spec.)",
     0x53: "Spanish",
     0x55: "Australian",
-    0x57: "Scandanavian",
+    0x57: "Scandinavian",
     0x58: "European",
     0x59: "European",
 }
@@ -106,7 +106,7 @@ class N64EntrypointInfo:
                 register_values[insn.rt.value] = insn.getProcessedImmediate() << 16
             elif insn.canBeLo():
                 if insn.isLikelyHandwritten():
-                    # Try to skip this instructions:
+                    # Try to skip these instructions:
                     # addi        $t0, $t0, 0x8
                     # addi        $t1, $t1, -0x8
                     pass
@@ -241,7 +241,7 @@ def get_info_bytes(rom_bytes: bytes, header_encoding: str) -> N64Rom:
     checksum = rom_bytes[0x10:0x18].hex().upper()
 
     try:
-        name = rom_bytes[0x20:0x34].decode(header_encoding).strip()
+        name = rom_bytes[0x20:0x34].decode(header_encoding).rstrip(" \0") or "empty"
     except:
         sys.exit(
             "splat could not decode the game name;"
