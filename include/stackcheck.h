@@ -2,6 +2,7 @@
 #define STACK_CHECK_H
 
 #include "ultra64.h"
+
 typedef struct StackEntry {
     /* 0x00 */ struct StackEntry* next;
     /* 0x04 */ struct StackEntry* prev;

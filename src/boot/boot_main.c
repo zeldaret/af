@@ -22,7 +22,7 @@ void func_80025C60_jp(void) {
     }
     
     size = osMemSize - OS_K0_TO_PHYSICAL(dmadata_VRAM);
-    if ((size) > 0) {
+    if (size > 0) {
         bzero(dmadata_VRAM, size);
     }
 }
