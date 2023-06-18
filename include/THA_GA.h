@@ -1,6 +1,7 @@
 #ifndef THA_GA_H
 #define THA_GA_H
 
+#include "ultra64.h"
 #include "TwoHeadArena.h"
 
 typedef union TwoHeadGfxArena {
