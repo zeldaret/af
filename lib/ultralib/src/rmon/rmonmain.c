@@ -69,11 +69,12 @@ void __rmonSendData(char* const block, unsigned int blockSize) {
                 __rmonIOputw(*(blockPointer++));
             }
         }
-    } else while (wordCount--) {
-        __rmonMemcpy((u8*)buffer.bufBytes, (u8*)blockPointer, sizeof(buffer));
-        __rmonIOputw(buffer.bufWord);
-        blockPointer++;
-    }
+    } else
+        while (wordCount--) {
+            __rmonMemcpy((u8*)buffer.bufBytes, (u8*)blockPointer, sizeof(buffer));
+            __rmonIOputw(buffer.bufWord);
+            blockPointer++;
+        }
     __rmonIOflush();
 }
 

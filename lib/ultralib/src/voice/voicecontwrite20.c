@@ -7,7 +7,7 @@
 #define WRITE20FORMAT(p) ((__OSVoiceWrite20Format*)(ptr))
 
 s32 __osVoiceContWrite20(OSMesgQueue* mq, int channel, u16 address, u8* buffer) {
-    s32 ret;
+    s32 ret = 0;
     u8 status;
     int i;
     u8* ptr;
@@ -40,18 +40,18 @@ s32 __osVoiceContWrite20(OSMesgQueue* mq, int channel, u16 address, u8* buffer) 
 
             ptr[sizeof(__OSVoiceWrite20Format)] = CONT_CMD_END;
         } else {
-            ptr = (u8*)&__osPfsPifRam.ramarray + channel;
+            ptr += channel;
         }
 
         WRITE20FORMAT(ptr)->addrh = address >> 3;
-        WRITE20FORMAT(ptr)->addrl = __osContAddressCrc(address) | (address << 5);
+        WRITE20FORMAT(ptr)->addrl = (address << 5) | __osContAddressCrc(address);
 
         bcopy(buffer, &WRITE20FORMAT(ptr)->data, 20);
 
-        __osSiRawStartDma(OS_WRITE, &__osPfsPifRam);
+        ret = __osSiRawStartDma(OS_WRITE, &__osPfsPifRam);
         crc = __osVoiceContDataCrc(buffer, 20);
         osRecvMesg(mq, NULL, OS_MESG_BLOCK);
-        __osSiRawStartDma(OS_READ, &__osPfsPifRam);
+        ret = __osSiRawStartDma(OS_READ, &__osPfsPifRam);
         osRecvMesg(mq, NULL, OS_MESG_BLOCK);
 
         ret = (WRITE20FORMAT(ptr)->rxsize & 0xC0) >> 4;
@@ -61,9 +61,9 @@ s32 __osVoiceContWrite20(OSMesgQueue* mq, int channel, u16 address, u8* buffer) 
                 ret = __osVoiceGetStatus(mq, channel, &status);
                 if (ret != 0) {
                     break;
+                } else {
+                    ret = CONT_ERR_CONTRFAIL;
                 }
-
-                ret = CONT_ERR_CONTRFAIL;
             }
         } else {
             ret = CONT_ERR_NO_CONTROLLER;

@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         version: [L] # [H, I, I_patch, J, K, L]
-        suffix: [_rom] # [, _d, _rom]
+        suffix: [~, _d, _rom]
 
     steps:
     - name: Checkout reposistory

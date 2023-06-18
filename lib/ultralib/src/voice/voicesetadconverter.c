@@ -7,7 +7,7 @@
 #define SWRITEFORMAT(p) ((__OSVoiceSWriteFormat*)(p))
 
 s32 __osVoiceSetADConverter(OSMesgQueue* mq, s32 channel, u8 data) {
-    s32 ret;
+    s32 ret = 0;
     int i;
     u8* ptr;
     u8 status;
@@ -36,15 +36,15 @@ s32 __osVoiceSetADConverter(OSMesgQueue* mq, s32 channel, u8 data) {
 
             ptr[sizeof(__OSVoiceSWriteFormat)] = CONT_CMD_END;
         } else {
-            ptr = (u8*)&__osPfsPifRam + channel;
+            ptr += channel;
         }
 
         SWRITEFORMAT(ptr)->data = data;
-        SWRITEFORMAT(ptr)->scrc = __osContAddressCrc(data * 8);
+        SWRITEFORMAT(ptr)->scrc = __osContAddressCrc(data << 3);
 
-        __osSiRawStartDma(OS_WRITE, &__osPfsPifRam);
+        ret = __osSiRawStartDma(OS_WRITE, &__osPfsPifRam);
         osRecvMesg(mq, NULL, OS_MESG_BLOCK);
-        __osSiRawStartDma(OS_READ, &__osPfsPifRam);
+        ret = __osSiRawStartDma(OS_READ, &__osPfsPifRam);
         osRecvMesg(mq, NULL, OS_MESG_BLOCK);
 
         ret = CHNL_ERR(*SWRITEFORMAT(ptr));
@@ -54,9 +54,9 @@ s32 __osVoiceSetADConverter(OSMesgQueue* mq, s32 channel, u8 data) {
                 ret = __osVoiceGetStatus(mq, channel, &status);
                 if (ret != 0) {
                     break;
+                } else {
+                    ret = CONT_ERR_CONTRFAIL;
                 }
-
-                ret = CONT_ERR_CONTRFAIL;
             }
         } else {
             ret = CONT_ERR_NO_CONTROLLER;

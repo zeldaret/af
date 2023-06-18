@@ -67,4 +67,5 @@ extern __OSViContext *__osViNext;
 extern u32 __additional_scanline;
 __OSViContext *__osViGetCurrentContext(void);
 void __osViInit(void);
+extern	OSDevMgr	__osViDevMgr;
 #endif

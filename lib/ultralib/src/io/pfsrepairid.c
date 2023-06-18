@@ -1,7 +1,7 @@
 #include "PR/os_internal.h"
 #include "controller.h"
 
-s32 osPfsRepairId(OSPfs *pfs) {
+s32 osPfsRepairId(OSPfs* pfs) {
     s32 ret = 0;
 
     if ((pfs->status & (PFS_INITIALIZED | PFS_ID_BROKEN))) {

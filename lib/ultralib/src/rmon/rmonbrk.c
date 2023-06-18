@@ -146,7 +146,8 @@ int __rmonSetBreak(KKHeader* req) {
             osInvalICache((void*)request->addr, sizeof(whichBreak->oldInstruction));
         }
         whichBreak->breakAddress = (u32*)request->addr;
-        STUBBED_PRINTF(("* (%08x) = %08x (was %08x)\n", whichBreak->breakAddress, *whichBreak->breakAddress, whichBreak->oldInstruction));
+        STUBBED_PRINTF(("* (%08x) = %08x (was %08x)\n", whichBreak->breakAddress, *whichBreak->breakAddress,
+                        whichBreak->oldInstruction));
     }
 
     /* Send reply */
@@ -237,10 +238,10 @@ u32 __rmonGetBranchTarget(int method, int thread, char* addr) {
             break;
         case 1: /* REGIMM */
             switch ((inst >> 16) & 0x1F) {
-                case 0: /* BLTZ */
-                case 1: /* BGEZ */
-                case 2: /* BLTZL */
-                case 3: /* BGEZL */
+                case 0:  /* BLTZ */
+                case 1:  /* BGEZ */
+                case 2:  /* BLTZL */
+                case 3:  /* BGEZL */
                 case 16: /* BLTZAL */
                 case 17: /* BGEZAL */
                 case 18: /* BLTZALL */
@@ -251,13 +252,13 @@ u32 __rmonGetBranchTarget(int method, int thread, char* addr) {
         case 2: /* J */
         case 3: /* JAL */
             return (((u32)inst << 6) >> 4) + (((s32)((u32)addr + 4) >> 0x1C) << 0x1C);
-        case 4: /* BEQ */
-        case 5: /* BNE */
+        case 4:  /* BEQ */
+        case 5:  /* BNE */
         case 20: /* BEQL */
         case 21: /* BNEL */
             return (u32)addr + ((inst << 0x10) >> 0xE) + 4;
-        case 6: /* BLEZ */
-        case 7: /* BGTZ */
+        case 6:  /* BLEZ */
+        case 7:  /* BGTZ */
         case 22: /* BLEZL */
         case 23: /* BGTZL */
             if (((inst >> 16) & 0x1F) == 0) {

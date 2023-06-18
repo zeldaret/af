@@ -7,7 +7,7 @@
 #define READ2FORMAT(p) ((__OSVoiceRead2Format*)(ptr))
 
 s32 __osVoiceContRead2(OSMesgQueue* mq, int channel, u16 address, u8* buffer) {
-    s32 ret;
+    s32 ret = 0;
     u8 status;
     int i;
     u8* ptr;
@@ -39,27 +39,28 @@ s32 __osVoiceContRead2(OSMesgQueue* mq, int channel, u16 address, u8* buffer) {
 
             ptr[sizeof(__OSVoiceRead2Format)] = CONT_CMD_END;
         } else {
-            ptr = (u8*)&__osPfsPifRam.ramarray + channel;
+            ptr += channel;
         }
 
         READ2FORMAT(ptr)->addrh = address >> 3;
-        READ2FORMAT(ptr)->addrl = __osContAddressCrc(address) | (address << 5);
+        READ2FORMAT(ptr)->addrl = (address << 5) | __osContAddressCrc(address);
 
-        __osSiRawStartDma(OS_WRITE, &__osPfsPifRam);
+        ret = __osSiRawStartDma(OS_WRITE, &__osPfsPifRam);
         osRecvMesg(mq, NULL, OS_MESG_BLOCK);
-        __osSiRawStartDma(OS_READ, &__osPfsPifRam);
+        ret = __osSiRawStartDma(OS_READ, &__osPfsPifRam);
         osRecvMesg(mq, NULL, OS_MESG_BLOCK);
 
         ret = CHNL_ERR(*READ2FORMAT(ptr));
 
         if (ret == 0) {
-            if (__osVoiceContDataCrc(&READ2FORMAT(ptr)->data, ARRLEN(READ2FORMAT(ptr)->data)) != READ2FORMAT(ptr)->datacrc) {
+            if (__osVoiceContDataCrc(&READ2FORMAT(ptr)->data, ARRLEN(READ2FORMAT(ptr)->data)) !=
+                READ2FORMAT(ptr)->datacrc) {
                 ret = __osVoiceGetStatus(mq, channel, &status);
                 if (ret != 0) {
                     break;
+                } else {
+                    ret = CONT_ERR_CONTRFAIL;
                 }
-
-                ret = CONT_ERR_CONTRFAIL;
             } else {
                 bcopy(&READ2FORMAT(ptr)->data, buffer, ARRLEN(READ2FORMAT(ptr)->data));
             }

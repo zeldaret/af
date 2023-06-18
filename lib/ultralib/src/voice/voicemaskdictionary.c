@@ -4,15 +4,16 @@
 #include "voiceinternal.h"
 
 s32 osVoiceMaskDictionary(OSVoiceHandle* hd, u8* pattern, int size) {
-    s32 ret;
+    s32 ret = 0;
     s32 i;
     s32 j;
     u8 stat;
     u8 buf[20];
 
-    ERRCK(__osVoiceGetStatus(hd->__mq, hd->__channel, &stat));
-
-    if (stat & 2) {
+    ret = __osVoiceGetStatus(hd->__mq, hd->__channel, &stat);
+    if (ret != 0) {
+        return ret;
+    } else if (stat & 2) {
         return CONT_ERR_VOICE_NO_RESPONSE;
     }
 

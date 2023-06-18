@@ -30,7 +30,7 @@ void osContGetReadData(OSContPad* data) {
     for (i = 0; i < __osMaxControllers; i++, ptr += sizeof(__OSContReadFormat), data++) {
         readformat = *(__OSContReadFormat*)ptr;
         data->errno = CHNL_ERR(readformat);
-        
+
         if (data->errno != 0) {
             continue;
         }
@@ -63,6 +63,6 @@ static void __osPackReadData(void) {
         *(__OSContReadFormat*)ptr = readformat;
         ptr += sizeof(__OSContReadFormat);
     }
-    
+
     *ptr = CONT_CMD_END;
 }

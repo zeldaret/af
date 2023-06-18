@@ -7,7 +7,7 @@
 #define WRITE4FORMAT(p) ((__OSVoiceWrite4Format*)(ptr))
 
 s32 __osVoiceContWrite4(OSMesgQueue* mq, int channel, u16 address, u8 dst[4]) {
-    s32 ret;
+    s32 ret = 0;
     u8 status;
     int i;
     u8* ptr;
@@ -38,18 +38,18 @@ s32 __osVoiceContWrite4(OSMesgQueue* mq, int channel, u16 address, u8 dst[4]) {
 
             ptr[sizeof(__OSVoiceWrite4Format)] = CONT_CMD_END;
         } else {
-            ptr = (u8*)&__osPfsPifRam + channel;
+            ptr += channel;
         }
 
         WRITE4FORMAT(ptr)->addrh = address >> 3;
-        WRITE4FORMAT(ptr)->addrl = __osContAddressCrc(address) | (address << 5);
+        WRITE4FORMAT(ptr)->addrl = (address << 5) | __osContAddressCrc(address);
 
         bcopy(dst, &WRITE4FORMAT(ptr)->data, 4);
 
-        __osSiRawStartDma(OS_WRITE, &__osPfsPifRam);
+        ret = __osSiRawStartDma(OS_WRITE, &__osPfsPifRam);
         crc = __osVoiceContDataCrc(dst, 4);
         osRecvMesg(mq, NULL, OS_MESG_BLOCK);
-        __osSiRawStartDma(OS_READ, &__osPfsPifRam);
+        ret = __osSiRawStartDma(OS_READ, &__osPfsPifRam);
         osRecvMesg(mq, NULL, OS_MESG_BLOCK);
 
         ret = (WRITE4FORMAT(ptr)->rxsize & 0xC0) >> 4;
@@ -59,9 +59,9 @@ s32 __osVoiceContWrite4(OSMesgQueue* mq, int channel, u16 address, u8 dst[4]) {
                 ret = __osVoiceGetStatus(mq, channel, &status);
                 if (ret != 0) {
                     break;
+                } else {
+                    ret = CONT_ERR_CONTRFAIL;
                 }
-
-                ret = CONT_ERR_CONTRFAIL;
             }
         } else {
             ret = CONT_ERR_NO_CONTROLLER;

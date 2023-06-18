@@ -1,9 +1,12 @@
 NON_MATCHING ?= 0
 
-TARGET := libgultra_rom
+# One of libgultra_rom, libgultra_d, libgultra
+TARGET ?= libgultra_rom
+
 BASE_DIR := base_$(TARGET)
 BASE_AR := $(TARGET).a
-BUILD_DIR := build
+BUILD_ROOT := build
+BUILD_DIR := $(BUILD_ROOT)/$(TARGET)
 BUILD_AR := $(BUILD_DIR)/$(TARGET).a
 
 WORKING_DIR := $(shell pwd)
@@ -16,17 +19,22 @@ AR_OLD := tools/gcc/ar
 
 export COMPILER_PATH := $(WORKING_DIR)/tools/gcc
 
-CFLAGS := -w -nostdinc -c -G 0 -mgp32 -mfp32 -mips3 -D_LANGUAGE_C 
+CFLAGS := -w -nostdinc -c -G 0 -mgp32 -mfp32 -mips3 -D_LANGUAGE_C
 ASFLAGS := -w -nostdinc -c -G 0 -mgp32 -mfp32 -mips3 -DMIPSEB -D_LANGUAGE_ASSEMBLY -D_MIPS_SIM=1 -D_ULTRA64 -x assembler-with-cpp
 GBIDEFINE := -DF3DEX_GBI_2
-CPPFLAGS = -D_MIPS_SZLONG=32 -D__USE_ISOC99 -I $(WORKING_DIR)/include -I $(WORKING_DIR)/include/gcc -I $(WORKING_DIR)/include/PR $(GBIDEFINE)
+CPPFLAGS = -D_MIPS_SZLONG=32 -D__USE_ISOC99 $(GBIDEFINE)
+INCLUDES = -I . -I $(WORKING_DIR)/include -I $(WORKING_DIR)/include/gcc -I $(WORKING_DIR)/include/PR
 
 ifeq ($(findstring _d,$(TARGET)),_d)
 CPPFLAGS += -D_DEBUG
 OPTFLAGS := -O0
 else
-CPPFLAGS += -DNDEBUG -D_FINALROM
+CPPFLAGS += -DNDEBUG
 OPTFLAGS := -O3
+endif
+
+ifeq ($(findstring _rom,$(TARGET)),_rom)
+CPPFLAGS += -D_FINALROM
 endif
 
 SRC_DIRS := $(shell find src -type d)
@@ -74,7 +82,7 @@ ifneq ($(NON_MATCHING),1)
 endif
 
 clean:
-	$(RM) -rf $(BUILD_DIR)
+	$(RM) -rf $(BUILD_ROOT)
 
 distclean: clean
 	$(MAKE) -C tools distclean
@@ -110,26 +118,31 @@ STRIP =
 $(BUILD_DIR)/src/os/initialize_isv.marker: OPTFLAGS := -O2
 $(BUILD_DIR)/src/os/initialize_isv.marker: STRIP = && tools/gcc/strip-2.7 -N initialize_isv.c $(WORKING_DIR)/$(@:.marker=.o) $(WORKING_DIR)/$(@:.marker=.o)
 $(BUILD_DIR)/src/os/assert.marker: OPTFLAGS := -O0
-$(BUILD_DIR)/src/os/ackramromread.marker: OPTFLAGS := -O0
-$(BUILD_DIR)/src/os/ackramromwrite.marker: OPTFLAGS := -O0
-$(BUILD_DIR)/src/os/exit.marker: OPTFLAGS := -O0
 $(BUILD_DIR)/src/os/seterrorhandler.marker: OPTFLAGS := -O0
+$(BUILD_DIR)/src/gu/parse_gbi.marker: GBIDEFINE := 
 $(BUILD_DIR)/src/gu/us2dex_emu.marker: GBIDEFINE := -DF3DEX_GBI
 $(BUILD_DIR)/src/sp/sprite.marker: GBIDEFINE := 
 $(BUILD_DIR)/src/sp/spriteex.marker: GBIDEFINE := 
 $(BUILD_DIR)/src/sp/spriteex2.marker: GBIDEFINE := 
-$(BUILD_DIR)/src/sp/spriteex2.marker: GBIDEFINE := 
 $(BUILD_DIR)/src/mgu/%.marker: export VR4300MUL := OFF
 $(BUILD_DIR)/src/mgu/rotate.marker: export VR4300MUL := ON
+$(BUILD_DIR)/src/debug/%.marker: ASFLAGS += -P
+$(BUILD_DIR)/src/error/%.marker: ASFLAGS += -P
+$(BUILD_DIR)/src/log/%.marker: ASFLAGS += -P
 $(BUILD_DIR)/src/os/%.marker: ASFLAGS += -P
 $(BUILD_DIR)/src/gu/%.marker: ASFLAGS += -P
 $(BUILD_DIR)/src/libc/%.marker: ASFLAGS += -P
 $(BUILD_DIR)/src/rmon/%.marker: ASFLAGS += -P
 $(BUILD_DIR)/src/voice/%.marker: OPTFLAGS += -DLANG_JAPANESE -I$(WORKING_DIR)/src -I$(WORKING_DIR)/src/voice
-$(BUILD_DIR)/src/voice/%.marker: CC := tools/compile_sjis.py -D__CC=$(WORKING_DIR)/$(CC)
+$(BUILD_DIR)/src/voice/%.marker: CC := tools/compile_sjis.py -D__CC=$(WORKING_DIR)/$(CC) -D__BUILD_DIR=$(BUILD_DIR)
+$(BUILD_DIR)/src/host/host_ptn64.marker: CFLAGS += -fno-builtin # Probably a better way to solve this
+
+MDEBUG_FILES := $(BUILD_DIR)/src/monutil.marker
+$(BUILD_DIR)/src/monutil.marker: CC := tools/ido/cc
+$(BUILD_DIR)/src/monutil.marker: ASFLAGS := -non_shared -mips2 -fullwarn -verbose -Xcpluscomm -G 0 -woff 516,649,838,712 -Wab,-r4300_mul -nostdinc -o32 -c
 
 $(BUILD_DIR)/%.marker: %.c
-	cd $(<D) && $(WORKING_DIR)/$(CC) $(CFLAGS) $(CPPFLAGS) $(OPTFLAGS) $(<F) -o $(WORKING_DIR)/$(@:.marker=.o)
+	cd $(<D) && $(WORKING_DIR)/$(CC) $(CFLAGS) $(CPPFLAGS) $(OPTFLAGS) $(<F) $(INCLUDES) -o $(WORKING_DIR)/$(@:.marker=.o)
 ifneq ($(NON_MATCHING),1)
 # check if this file is in the archive; patch corrupted bytes and change file timestamps to match original if so
 		$(if $(findstring $(BASE_DIR)/$(@F:.marker=.o), $(BASE_OBJS)), \
@@ -143,7 +156,25 @@ ifneq ($(NON_MATCHING),1)
 endif
 
 $(BUILD_DIR)/%.marker: %.s
-	cd $(<D) && $(WORKING_DIR)/$(CC) $(ASFLAGS) $(CPPFLAGS) -I. $(OPTFLAGS) $(<F) -o $(WORKING_DIR)/$(@:.marker=.o)
+	cd $(<D) && $(WORKING_DIR)/$(CC) $(ASFLAGS) $(CPPFLAGS) $(<F) $(INCLUDES) -o $(WORKING_DIR)/$(@:.marker=.o)
+ifneq ($(NON_MATCHING),1)
+# check if this file is in the archive; patch corrupted bytes and change file timestamps to match original if so
+	@$(if $(findstring $(BASE_DIR)/$(@F:.marker=.o), $(BASE_OBJS)), \
+	 python3 tools/fix_objfile.py $(@:.marker=.o) $(BASE_DIR)/$(@F:.marker=.o) && \
+	 $(COMPARE_OBJ) && \
+	 touch -r $(BASE_DIR)/$(@F:.marker=.o) $(@:.marker=.o), \
+	 echo "Object file $(<F:.marker=.o) is not in the current archive" \
+	)
+# create or update the marker file
+	@touch $@
+endif
+
+# Rule for building files that require specific file paths in the mdebug section
+$(MDEBUG_FILES): $(BUILD_DIR)/src/%.marker: src/%.s
+	cp $(<:.marker=.s) $(dir $@)
+	mkdir -p $(@:.marker=)
+	export USR_INCLUDE=$(WORKING_DIR)/include && cd $(@:.marker=) && $(WORKING_DIR)/$(CC) $(ASFLAGS) $(CPPFLAGS) ../$(<F) -I/usr/include -o $(notdir $(<:.s=.o))
+	mv $(@:.marker=)/$(<F:.s=.o) $(@:.marker=)/..
 ifneq ($(NON_MATCHING),1)
 # check if this file is in the archive; patch corrupted bytes and change file timestamps to match original if so
 	@$(if $(findstring $(BASE_DIR)/$(@F:.marker=.o), $(BASE_OBJS)), \

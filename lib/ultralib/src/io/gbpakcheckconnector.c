@@ -27,7 +27,7 @@ s32 osGbpakCheckConnector(OSPfs* pfs, u8* status) {
         }
 
         bzero(buf_status, sizeof(buf_status));
-        
+
         for (address = 0x80; address <= 0x4000; address <<= 1) {
             num = 0;
             daddr = 0;
@@ -49,7 +49,7 @@ s32 osGbpakCheckConnector(OSPfs* pfs, u8* status) {
                 if (bcmp(buf[bufn][num], buf[oldbufn][num], BLOCKSIZE) != 0) {
                     num = 0;
                     break;
-                } 
+                }
 
                 daddr += BLOCKSIZE;
             } while (num++ < ARRLEN(buf[0]) - 1);
@@ -81,7 +81,7 @@ s32 osGbpakCheckConnector(OSPfs* pfs, u8* status) {
                         num = 0;
                         break;
                     }
-                    
+
                     daddr += BLOCKSIZE;
                 } while (num++ < ARRLEN(buf_status[0]) - 1);
             }
@@ -89,7 +89,7 @@ s32 osGbpakCheckConnector(OSPfs* pfs, u8* status) {
             if (num != 0) {
                 return PFS_ERR_CONTRFAIL;
             }
-            
+
             if (oldbufn != 0) {
                 bzero(buf_status[oldbufn], ARRLEN(buf_status[oldbufn]));
             }
@@ -106,7 +106,7 @@ s32 osGbpakCheckConnector(OSPfs* pfs, u8* status) {
             do {
                 ERRCK(osGbpakReadWrite(pfs, OS_READ, daddr + 0xA000, buf[bufn][num], BLOCKSIZE));
                 ERRCK(osGbpakReadWrite(pfs, OS_READ, daddr + 0x2000, buf[oldbufn][num], BLOCKSIZE));
-                
+
                 if (bcmp(buf[bufn][num], buf[oldbufn][num], BLOCKSIZE)) {
                     num = 0;
                     break;
@@ -119,7 +119,7 @@ s32 osGbpakCheckConnector(OSPfs* pfs, u8* status) {
                 return PFS_ERR_CONTRFAIL;
             }
         }
-        
+
         ret = osGbpakGetStatus(pfs, status);
 
         if (ret == PFS_ERR_NEW_GBCART) {

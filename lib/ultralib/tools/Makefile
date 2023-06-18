@@ -1,11 +1,17 @@
 
 .PHONY: all clean distclean
+
+# GCC
 GCC_DIR   := gcc
 AR        := $(GCC_DIR)/ar
 GCC-2.7.2 := $(GCC_DIR)/gcc
 STRIP-2.7 := $(GCC_DIR)/strip-2.7
 
-all: $(AR) $(GCC-2.7.2) $(STRIP-2.7)
+# IDO
+IDO_DIR   := ido
+IDO-5.3   := $(IDO_DIR)/cc
+
+all: $(AR) $(GCC-2.7.2) $(STRIP-2.7) $(IDO-5.3)
 
 $(AR): | $(GCC_DIR)
 	wget https://github.com/decompals/mips-binutils-2.6/releases/download/main/binutils-2.6-linux.tar.gz
@@ -25,6 +31,16 @@ $(STRIP-2.7): | $(GCC_DIR)
 $(GCC_DIR):
 	mkdir -p $@
 
+$(IDO-5.3): | $(IDO_DIR)
+	wget https://github.com/decompals/ido-static-recomp/releases/latest/download/ido-5.3-recomp-ubuntu-20.04.tar.gz
+	tar xf ido-5.3-recomp-ubuntu-20.04.tar.gz -C $(IDO_DIR)
+	$(RM) ido-5.3-recomp-ubuntu-20.04.tar.gz
+
+$(IDO_DIR):
+	mkdir -p $@
+
 clean:
-distclean: clean
 	$(RM) -rf $(GCC_DIR)
+	$(RM) -rf $(IDO_DIR)
+
+distclean: clean
