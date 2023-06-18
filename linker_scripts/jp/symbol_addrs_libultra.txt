@@ -11,7 +11,7 @@ guScale = 0x8002E1E0; // type:func size:0xA4 (scale, true)
 sinf = 0x8002E290; // type:func size:0x1C0 (sinf, true)
 sins = 0x8002E450; // type:func size:0x70 (sins, true)
 
-func_8002E4C0_jp = 0x8002E4C0; // type:func
+_VirtualToPhysicalTask = 0x8002E4C0; // type:func
 
 osSpTaskLoad = 0x8002E5CC; // type:func size:0x168 (sptask, true)
 osSpTaskStartGo = 0x8002E734; // type:func size:0x40 (sptask, true)
@@ -54,7 +54,7 @@ osFlashSectorErase = 0x8002F900; // type:func size:0x144 (flashsectorerase, true
 osCreateThread = 0x8002FA50; // type:func size:0x144 (createthread, true)
 osContStartReadData = 0x8002FBA0; // type:func size:0x84 (contreaddata, true)
 osContGetReadData = 0x8002FC24; // type:func size:0x8C (contreaddata, true)
-func_8002FCB0_jp = 0x8002FCB0; // type:func
+__osPackReadData = 0x8002FCB0; // type:func
 
 osVirtualToPhysical = 0x8002FD80; // type:func size:0x7C (virtualtophysical, true)
 osWritebackDCache = 0x8002FE00; // type:func size:0x74 (writebackdcache, true)
@@ -78,7 +78,7 @@ __osSiRawReadIo = 0x80030720; // type:func (initialize, false)
 osGetThreadId = 0x80030770; // type:func size:0x18 (getthreadid, true)
 osSpTaskYield = 0x80030790; // type:func size:0x20 (sptaskyield, true)
 
-func_800307B0_jp = 0x800307B0; // type:func
+__osPfsGetNextPage = 0x800307B0; // type:func
 
 osPfsReadWriteFile = 0x80030884; // type:func size:0x378 (pfsreadwritefile, true)
 __osPfsGetStatus = 0x80030C00; // type:func size:0xD0 (pfsgetstatus, true)
@@ -93,7 +93,7 @@ guLookAtF = 0x80030FE0; // type:func size:0x2A4 (lookat, true)
 guLookAt = 0x80031284; // type:func size:0x74 (lookat, true)
 __osMotorAccess = 0x80031300; // type:func size:0x168 (motor, true)
 
-func_80031468_jp = 0x80031468; // type:func
+_MakeMotorData = 0x80031468; // type:func
 
 osMotorInit = 0x80031574; // type:func size:0x15C (motor, true)
 osPfsAllocateFile = 0x800316D0; // type:func size:0x334 (pfsallocatefile, true)
@@ -134,7 +134,7 @@ guLookAtHiliteF = 0x80033540; // type:func size:0x7C0 (lookathil, true)
 guLookAtHilite = 0x80033D00; // type:func size:0xB8 (lookathil, true)
 _Printf = 0x80033DC0; // type:func size:0x648 (xprintf, true)
 
-func_80034408_jp = 0x80034408; // type:func
+_Putfld = 0x80034408; // type:func
 
 osUnmapTLBAll = 0x80034AA0; // type:func size:0x44 (unmaptlball, true)
 osEPiStartDma = 0x80034AF0; // type:func size:0x9C (epidma, true)
@@ -171,7 +171,8 @@ guRotateF = 0x80035CD0; // type:func size:0x184 (rotate, true)
 guRotate = 0x80035E54; // type:func size:0x4C (rotate, true)
 __osSetGlobalIntMask = 0x80035EA0; // type:func size:0x4C (setglobalintmask, true)
 osAiSetFrequency = 0x80035EF0; // type:func size:0x144 (aisetfreq, true)
-func_80036040_jp = 0x80036040; // type:func
+__osGetActiveQueue = 0x80036040; // type:func
+func_80036050_jp = 0x80036050; // type:func
 guNormalize = 0x80036060; // type:func size:0x54 (normalize, true)
 __osSetCompare = 0x800360C0; // type:func size:0xC (setcompare, true)
 
@@ -212,7 +213,7 @@ __osGetFpcCsr = 0x80037EB0; // type:func size:0xC (getfpccsr, true)
 osPfsFileState = 0x80037EC0; // type:func size:0x1DC (pfsfilestate, true)
 osPfsInitPak = 0x800380A0; // type:func size:0x208 (pfsinitpak, true)
 
-func_800382A8_jp = 0x800382A8; // type:func
+__osPfsCheckRamArea = 0x800382A8; // type:func
 
 osPfsChecker = 0x800383B0; // type:func size:0x538 (pfschecker, true)
 corrupted_init = 0x800388E8; // type:func size:0x2D8 (pfschecker, true)
@@ -234,9 +235,9 @@ __osEPiRawWriteIo = 0x80039550; // type:func size:0x158 (epirawwrite, true)
 osSetTimer = 0x800396B0; // type:func size:0x188 (settimer, true)
 _Ldtob = 0x80039840; // type:func size:0x490 (xldtob, true)
 
-func_80039CD0_jp = 0x80039CD0; // type:func
+_Ldunscale = 0x80039CD0; // type:func
 
-func_80039D88_jp = 0x80039D88; // type:func
+_Genld = 0x80039D88; // type:func
 
 ldiv = 0x8003A350; // type:func size:0x84 (ldiv, true)
 lldiv = 0x8003A3D4; // type:func size:0x100 (ldiv, true)
@@ -247,10 +248,10 @@ __osSpGetStatus = 0x8003A7E0; // type:func size:0xC (spgetstat, true)
 
 func_8003A7F0_jp = 0x8003A7F0; // type:func
 osCreateViManager = 0x8003A800; // type:func size:0x180 (vimgr, true)
-func_8003A980_jp = 0x8003A980; // type:func
+viMgrMain = 0x8003A980; // type:func
 __osViGetCurrentContext = 0x8003AB10; // type:func (vimgr, false)
 osWritebackDCacheAll = 0x8003AB20; // type:func size:0x28 (writebackdcacheall, true)
-func_8003AB50_jp = 0x8003AB50; // type:func
+__osGetCurrFaultedThread = 0x8003AB50; // type:func
 guMtxF2L = 0x8003AB60; // type:func size:0x64 (mtxf2l, true)
 
 osStartThread = 0x8003ABD0; // type:func size:0x150 (startthread, true)
@@ -268,11 +269,11 @@ osViSetYScale = 0x8003AF30; // type:func size:0x4C (visetyscale, true)
 osViSetXScale = 0x8003AF80; // type:func size:0x10C (visetxscale, true)
 osEepromRead = 0x8003B090; // type:func size:0x1D0 (conteepread, true)
 
-func_8003B260_jp = 0x8003B260; // type:func
+__osEepReadData = 0x8003B260; // type:func
 
 osEepromWrite = 0x8003B2F0; // type:func size:0x1C4 (conteepwrite, true)
 
-func_8003B4B4_jp = 0x8003B4B4; // type:func
+__osPackEepWriteData = 0x8003B4B4; // type:func
 
 __osEepStatus = 0x8003B560; // type:func size:0x1A8 (conteepwrite, true)
 func_8003B710_jp = 0x8003B710; // type:func
@@ -286,7 +287,7 @@ __osSetWatchLo = 0x8003B950; // type:func size:0x10 (setwatchlo, true)
 
 osViModePalLan1 = 0x8003C5A0; // size:0x50 (vi, false)
 
-D_8003C5F0_jp = 0x8003C5F0; // type:s16 size:0x800 (sins, false)
+sintable = 0x8003C5F0; // type:s16 size:0x800 (sins, false)
 
 __osHwIntTable = 0x8003CDF0; // size:0x28 (exceptasm, true)
 __osPiIntTable = 0x8003CE18; // size:0x8 (exceptasm, true)
@@ -306,6 +307,7 @@ __osPiDevMgr = 0x8003CE80; // size:0x1C (epidma, false)
 __osPiTable = 0x8003CE9C; // size:0x4 (cartrominit, false)
 __osCurrentHandle = 0x8003CEA0; // (epirawdma, false)
 __osPiAccessQueueEnabled = 0x8003CEB0; // size:0x4 (pimgr, false)
+D_8003CEC0_jp = 0x8003CEC0; //
 __osPfsInodeCacheChannel = 0x8003CF10; // size:0x4 (contpfs, true)
 __osPfsInodeCacheBank = 0x8003CF14; // type:s8 size:0x1 (contpfs, true)
 __osPreNMI = 0x8003CF20; // size:0x4 (seteventmesg, true)

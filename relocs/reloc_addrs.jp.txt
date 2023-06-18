@@ -1,0 +1,67 @@
+// Try to keep the list sorted by rom address
+// boot
+
+rom:0x001000 symbol:boot_BSS_START reloc:MIPS_HI16
+rom:0x001004 symbol:boot_BSS_START reloc:MIPS_LO16
+
+rom:0x001008 symbol:boot_BSS_SIZE reloc:MIPS_LO16
+
+rom:0x001024 symbol:sBootStack reloc:MIPS_HI16 addend:0x400
+rom:0x001030 symbol:sBootStack reloc:MIPS_LO16 addend:0x400
+
+rom:0x001094 symbol:dmadata_VRAM reloc:MIPS_HI16 addend:-0x80000000
+rom:0x001098 symbol:dmadata_VRAM reloc:MIPS_LO16 addend:-0x80000000
+
+rom:0x0010A4 symbol:dmadata_VRAM reloc:MIPS_HI16
+rom:0x0010AC symbol:dmadata_VRAM reloc:MIPS_LO16
+
+rom:0x0020B4 symbol:dmadata_ROM_START reloc:MIPS_HI16
+rom:0x0020C0 symbol:dmadata_ROM_START reloc:MIPS_LO16
+
+rom:0x0020B8 symbol:dmadata_ROM_END reloc:MIPS_HI16
+rom:0x0020BC symbol:dmadata_ROM_END reloc:MIPS_LO16
+
+rom:0x0020C4 symbol:dmadata_VRAM reloc:MIPS_HI16
+rom:0x0020C8 symbol:dmadata_VRAM reloc:MIPS_LO16
+
+rom:0x001204 symbol:code_ROM_START reloc:MIPS_HI16
+rom:0x00120C symbol:code_ROM_START reloc:MIPS_LO16
+
+rom:0x001208 symbol:code_ROM_END reloc:MIPS_HI16
+rom:0x001210 symbol:code_ROM_END reloc:MIPS_LO16
+
+rom:0x001214 symbol:code_VRAM reloc:MIPS_HI16
+rom:0x001228 symbol:code_VRAM reloc:MIPS_LO16
+
+rom:0x001234 symbol:code_BSS_START reloc:MIPS_HI16
+rom:0x00123C symbol:code_BSS_START reloc:MIPS_LO16
+
+rom:0x001238 symbol:code_BSS_END reloc:MIPS_HI16
+rom:0x001240 symbol:code_BSS_END reloc:MIPS_LO16
+
+
+// code
+
+rom:0x6F657C symbol:segment_13D9A0_ROM_START reloc:MIPS_HI16
+rom:0x6F6580 symbol:segment_13D9A0_ROM_START reloc:MIPS_LO16
+
+rom:0x6F6588 symbol:segment_027130_ROM_START reloc:MIPS_HI16
+rom:0x6F6594 symbol:segment_027130_ROM_START reloc:MIPS_LO16
+
+rom:0x6F658C symbol:segment_027130_ROM_END reloc:MIPS_HI16
+rom:0x6F6590 symbol:segment_027130_ROM_END reloc:MIPS_LO16
+
+
+// overlays
+
+// ovl_0082CED0 tries to load a branch target from code as a half.
+// It is suspected to be a negative addend to an unknown symbol.
+// Use the first data symbol of code in the meanwhile
+rom:0x82D48C symbol:D_80100C30_jp reloc:MIPS_HI16 addend:-0x7D04
+rom:0x82D4A0 symbol:D_80100C30_jp reloc:MIPS_LO16 addend:-0x7D04
+
+// ovl_008ADF40 tries to load a branch target from another overlay.
+// It is suspected to be a negative addend to an unknown symbol.
+// Use the first data symbol of this overlay in the meanwhile
+rom:0x8B136C symbol:D_809CE130_jp reloc:MIPS_HI16 addend:-0xB560
+rom:0x8B137C symbol:D_809CE130_jp reloc:MIPS_LO16 addend:-0xB560
