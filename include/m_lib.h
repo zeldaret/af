@@ -6,8 +6,8 @@
 // void mem_copy();
 // void mem_clear();
 // void mem_cmp();
-// void cos_s();
-// void sin_s();
+f32 cos_s(s16 angle);
+f32 sin_s(s16 angle);
 // void chase_angle();
 // void chase_s();
 // void chase_f();

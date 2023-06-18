@@ -2,18 +2,19 @@
 #define M_SKIN_MATRIX_H
 
 #include "ultra64.h"
+#include "z64math.h"
 
 // void Skin_Matrix_PrjMulVector();
 // void Skin_Matrix_MulVector();
-// void Skin_Matrix_MulMatrix();
+void Skin_Matrix_MulMatrix(MtxF* mfB, MtxF* mfA, MtxF* dest);
 // void Skin_Matrix_getUnitMatrixPointer();
 // void Skin_Matrix_SetUnitMatrix();
 // void Skin_Matrix_Copy();
 // void Skin_Matrix_InverseMatrix();
-// void Skin_Matrix_SetScale();
-// void Skin_Matrix_SetRotateXyz_s();
+void Skin_Matrix_SetScale(MtxF* mf, f32 x, f32 y, f32 z);
+void Skin_Matrix_SetRotateXyz_s(MtxF* mf, s16 roll, s16 pitch, s16 yaw);
 // void Skin_Matrix_SetRotateZxy_s();
-// void Skin_Matrix_SetTranslate();
+void Skin_Matrix_SetTranslate(MtxF* mf, f32 x, f32 y, f32 z);
 // void Skin_Matrix_SetSrtMatrix();
 // void Skin_Matrix_SetSRzxyTMatrix();
 // void Skin_Matrix_SetRtMatrix();

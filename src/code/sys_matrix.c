@@ -44,6 +44,9 @@
 #include "game.h"
 #include "z64math.h"
 #include "gfx.h"
+#include "m_skin_matrix.h"
+#include "mathf.h"
+#include "m_lib.h"
 
 // clang-format off
 

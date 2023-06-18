@@ -2,15 +2,17 @@
 #define SYS_MATRIX_H
 
 #include "ultra64.h"
-#include "game.h"
 #include "z64math.h"
+
+struct GraphicsContext;
+struct GameState;
 
 typedef enum {
     /* 0 */ MTXMODE_NEW,  // generates a new matrix
     /* 1 */ MTXMODE_APPLY // applies transformation to the current matrix
 } MatrixMode;
 
-void new_Matrix(GameState* gameState);
+void new_Matrix(struct GameState* gameState);
 void Matrix_push(void);
 void Matrix_pull(void);
 void Matrix_get(MtxF* dest);
@@ -27,8 +29,8 @@ void Matrix_softcv3_mult(Vec3f* translation, Vec3s* rot);
 void Matrix_softcv3_load(f32 x, f32 y, f32 z, Vec3s* rot);
 Mtx* _MtxF_to_Mtx(MtxF* src, Mtx* dest);
 Mtx* _Matrix_to_Mtx(Mtx* dest);
-Mtx* _Matrix_to_Mtx_new(GraphicsContext* gfxCtx);
-void _MtxF_to_Mtx_new(MtxF* src, GraphicsContext* gfxCtx);
+Mtx* _Matrix_to_Mtx_new(struct GraphicsContext* gfxCtx);
+void _MtxF_to_Mtx_new(MtxF* src, struct GraphicsContext* gfxCtx);
 void Matrix_Position(Vec3f* src, Vec3f* dest);
 void Matrix_Position_Zero(Vec3f* dest);
 void Matrix_Position_VecX(f32 x, Vec3f* dest);
@@ -47,13 +49,5 @@ void suMtxMakeSRT(Mtx* mtx, f32 scaleX, f32 scaleY, f32 scaleZ, s16 rotX, s16 ro
                   f32 translateY, f32 translateZ);
 void suMtxMakeSRT_ZXY(Mtx* mtx, f32 scaleX, f32 scaleY, f32 scaleZ, s16 rotX, s16 rotY, s16 rotZ, f32 translateX,
                       f32 translateY, f32 translateZ);
-
-void Skin_Matrix_SetTranslate(MtxF* mf, f32 x, f32 y, f32 z);            /* extern */
-void Skin_Matrix_SetScale(MtxF* mf, f32 x, f32 y, f32 z);                /* extern */
-void Skin_Matrix_MulMatrix(MtxF* mfB, MtxF* mfA, MtxF* dest);            /* extern */
-void Skin_Matrix_SetRotateXyz_s(MtxF* mf, s16 roll, s16 pitch, s16 yaw); /* extern */
-f32 cos_s(s16 angle);                                                    /* extern */
-f32 sin_s(s16 angle);                                                    /* extern */
-f32 Math_FAtan2F(f32 y, f32 x);
 
 #endif
