@@ -37,9 +37,9 @@ IINC       := -Iultralib/include -Iultralib/include/ido -Iultralib/include/PR -I
 
 OPTFLAGS        := -O2
 ASOPTFLAGS      := -O1
-MIPS_VERSION    := -mips2 -non_shared -32
-CFLAGS          := -Wab,-r4300_mul -G 0 -nostdinc -Xcpluscomm -fullwarn
-ASFLAGS         := -Wab,-r4300_mul -G 0 -nostdinc
+MIPS_VERSION    := -mips2 -32
+CFLAGS          := -Wab,-r4300_mul -G 0 -nostdinc -Xcpluscomm -fullwarn -non_shared
+ASFLAGS         := -Wab,-r4300_mul -G 0 -nostdinc -non_shared
 WARNINGS        := -woff 516,649,838,712
 COMMON_DEFINES  := -D_MIPS_SZLONG=32
 GBI_DEFINES     := -DF3DEX_GBI_2
