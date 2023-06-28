@@ -23,7 +23,7 @@ void __rmonWriteWordTo(u32* addr, u32 val) {
 u32 __rmonReadWordAt(u32* addr) {
     u32 data;
 
-    if (addr >= (u32*)SP_DMEM_START && addr < (u32*)0x05000000) {
+    if ((u32)addr >= SP_DMEM_START && (u32)addr < 0x05000000) {
         __osSpRawReadIo((u32)addr, &data);
         return data;
     }
@@ -70,10 +70,9 @@ int __rmonReadMem(KKHeader* req) {
     }
 
     if (req->method == RMON_RSP) {
-        if ((request->addr < SP_IMEM_START || (request->addr + request->nbytes) > SP_IMEM_END)) {
-            if ((request->addr < SP_DMEM_START || (request->addr + request->nbytes) > SP_DMEM_END)) {
+        if (!((request->addr < SP_IMEM_START || (request->addr + request->nbytes) > SP_IMEM_END) ? FALSE : TRUE) &&
+        !((request->addr < SP_DMEM_START || (request->addr + request->nbytes) > SP_DMEM_END) ? FALSE : TRUE)) {
                 return TV_ERROR_INVALID_ADDRESS;
-            }
         }
     } else if (osVirtualToPhysical((void*)request->addr) == (u32)-1) {
         return TV_ERROR_INVALID_ADDRESS;
@@ -110,7 +109,8 @@ int __rmonWriteMem(KKHeader* req) {
         return TV_ERROR_INVALID_CAPABILITY;
     }
 
-    if ((request->writeHeader.addr >= SP_DMEM_START && (request->writeHeader.addr + request->writeHeader.nbytes) < 0x05000000)) {
+    if (((request->writeHeader.addr < SP_DMEM_START ||
+         (request->writeHeader.addr + request->writeHeader.nbytes) > 0x04FFFFFF) ? FALSE : TRUE)) {
         int align;
         u32 word;
 

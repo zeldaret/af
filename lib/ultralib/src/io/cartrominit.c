@@ -2,37 +2,35 @@
 #include "PR/os_internal.h"
 #include "PR/R4300.h"
 #include "PR/rcp.h"
+#include "piint.h"
 
 OSPiHandle __CartRomHandle ALIGNED(8);
-OSPiHandle *osCartRomInit(void)
-{
-   u32 value;
-   u32 saveMask;
-   static int first = 1;
-   register u32 stat;
-   u32 latency;
-   u32 pulse;
-   u32 pageSize;
-   u32 relDuration;
+OSPiHandle* osCartRomInit(void) {
+    u32 value = 0;
+    u32 saveMask;
+    static int first = 1;
+    register u32 stat;
+    u32 latency;
+    u32 pulse;
+    u32 pageSize;
+    u32 relDuration;
 
     __osPiGetAccess();
 
-	if (!first) {
+    if (!first) {
         __osPiRelAccess();
-		return &__CartRomHandle;
+        return &__CartRomHandle;
     }
 
     first = 0;
-	__CartRomHandle.type = DEVICE_TYPE_CART;
-	__CartRomHandle.baseAddress = PHYS_TO_K1(PI_DOM1_ADDR2);
-	__CartRomHandle.domain = PI_DOMAIN1;
-	__CartRomHandle.speed = 0;
+    __CartRomHandle.type = DEVICE_TYPE_CART;
+    __CartRomHandle.baseAddress = PHYS_TO_K1(PI_DOM1_ADDR2);
+    __CartRomHandle.domain = PI_DOMAIN1;
+    __CartRomHandle.speed = 0;
 
-	bzero(&__CartRomHandle.transferInfo, sizeof(__OSTranxInfo));
+    bzero(&__CartRomHandle.transferInfo, sizeof(__OSTranxInfo));
 
-    while (stat = IO_READ(PI_STATUS_REG), stat & (PI_STATUS_DMA_BUSY | PI_STATUS_IO_BUSY)) {
-        ;
-    }
+    WAIT_ON_IOBUSY(stat);
 
     latency = IO_READ(PI_BSD_DOM1_LAT_REG);
     pageSize = IO_READ(PI_BSD_DOM1_PGS_REG);
@@ -55,11 +53,11 @@ OSPiHandle *osCartRomInit(void)
     IO_WRITE(PI_BSD_DOM1_RLS_REG, relDuration);
     IO_WRITE(PI_BSD_DOM1_PWD_REG, pulse);
 
-	saveMask = __osDisableInt();
-	__CartRomHandle.next = __osPiTable;
-	__osPiTable = &__CartRomHandle;
-	__osRestoreInt(saveMask);
+    saveMask = __osDisableInt();
+    __CartRomHandle.next = __osPiTable;
+    __osPiTable = &__CartRomHandle;
+    __osRestoreInt(saveMask);
     __osPiRelAccess();
-	
-	return &__CartRomHandle;
+
+    return &__CartRomHandle;
 }

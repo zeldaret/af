@@ -15,7 +15,7 @@ LEAF(__osDisableInt)
     lw    t0, (t2)
     andi  t0, 0xFF00
     beq   t0, t3, No_Change_Global_Int
-     la   t2, __osRunningThread
+     la   t2, __osRunningThread # this is intentionally a macro in the branch delay slot
     lw    t1, 280(t2)
     andi  t2, t1, 0xFF00
     and   t2, t0

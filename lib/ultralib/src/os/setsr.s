@@ -5,6 +5,6 @@
 .text
 LEAF(__osSetSR)
     STAY2(mtc0 a0, C0_SR)
-    nop
+    NOP
     jr ra
 END(__osSetSR)

@@ -39,11 +39,14 @@ extern u32 __osViIntrCount;
 extern u32 __osTimerCounter;
 extern u32 __osShutdown;
 
+extern OSMesgQueue __osProfTimerQ;
+extern OSProf *__osProfileList;
+extern OSProf *__osProfileListEnd;
+extern u32 __osProfileOverflowBin;
+
 extern __OSEventState __osEventStateTab[OS_NUM_EVENTS];
 
 
-//not sure if this should be here
-extern s32 osViClock;
 extern void __osTimerServicesInit(void);
 extern s32 __osAiDeviceBusy(void);
 extern int __osDpDeviceBusy(void);

@@ -9,7 +9,7 @@ int __osSiDeviceBusy() {
 
     if (stat & (SI_STATUS_DMA_BUSY | SI_STATUS_RD_BUSY)) {
         return TRUE;
+    } else {
+        return FALSE;
     }
-
-    return FALSE;
 }

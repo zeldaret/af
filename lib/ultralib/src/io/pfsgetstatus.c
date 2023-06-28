@@ -3,9 +3,9 @@
 #include "siint.h"
 
 void __osPfsRequestOneChannel(int channel, u8 cmd);
-void __osPfsGetOneChannelData(int channel, OSContStatus *data);
+void __osPfsGetOneChannelData(int channel, OSContStatus* data);
 
-s32 __osPfsGetStatus(OSMesgQueue *queue, int channel) {
+s32 __osPfsGetStatus(OSMesgQueue* queue, int channel) {
     s32 ret = 0;
     OSMesg dummy;
     OSContStatus data;
@@ -29,19 +29,19 @@ s32 __osPfsGetStatus(OSMesgQueue *queue, int channel) {
     } else if ((data.status & CONT_ADDR_CRC_ER) != 0) {
         return PFS_ERR_CONTRFAIL;
     }
-    
+
     return ret;
 }
 
 void __osPfsRequestOneChannel(int channel, u8 cmd) {
-    u8 *ptr;
+    u8* ptr;
     __OSContRequesFormatShort requestformat;
     int i;
 
     __osContLastCmd = CONT_CMD_END;
     __osPfsPifRam.pifstatus = CONT_CMD_READ_BUTTON;
-    
-    ptr = (u8 *)&__osPfsPifRam;
+
+    ptr = (u8*)&__osPfsPifRam;
 
     requestformat.txsize = CONT_CMD_REQUEST_STATUS_TX;
     requestformat.rxsize = CONT_CMD_REQUEST_STATUS_RX;
@@ -54,25 +54,27 @@ void __osPfsRequestOneChannel(int channel, u8 cmd) {
         *ptr++ = CONT_CMD_REQUEST_STATUS;
     }
 
-    *(__OSContRequesFormatShort *)ptr = requestformat;
+    *(__OSContRequesFormatShort*)ptr = requestformat;
     ptr += sizeof(__OSContRequesFormatShort);
     *ptr = CONT_CMD_END;
 }
 
-void __osPfsGetOneChannelData(int channel, OSContStatus *data) {
-    u8 *ptr = (u8*)&__osPfsPifRam;
+void __osPfsGetOneChannelData(int channel, OSContStatus* data) {
+    u8* ptr = (u8*)&__osPfsPifRam;
     __OSContRequesFormatShort requestformat;
     int i;
-    
+
     for (i = 0; i < channel; i++) {
         ptr++;
     }
 
-    requestformat = *(__OSContRequesFormatShort *)ptr;
+    requestformat = *(__OSContRequesFormatShort*)ptr;
     data->errno = CHNL_ERR(requestformat);
 
-    if (data->errno == 0) {
-        data->type = (requestformat.typel << 8) | (requestformat.typeh);
-        data->status = requestformat.status;
+    if (data->errno != 0) {
+        return;
     }
+
+    data->type = (requestformat.typel << 8) | (requestformat.typeh);
+    data->status = requestformat.status;
 }

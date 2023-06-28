@@ -3,17 +3,16 @@
 #include "sys/regdef.h"
 
 .text
-.set noreorder
 LEAF(osInvalICache)
 	blez a1, 2f
-	nop
+
 	li t3, ICACHE_SIZE
 	bgeu a1, t3, 3f
-	nop
+
 	move t0, a0
 	addu t1, a0, a1
 	bgeu t0, t1, 2f
-	nop
+
 	addiu t1, t1, -ICACHE_LINESIZE
 	andi t2, t0, ICACHE_LINEMASK
 	subu t0, t0, t2
@@ -25,7 +24,7 @@ LEAF(osInvalICache)
     .set reorder
 2:
 	jr ra
-	#nop
+
 3:
 	li t0, KUSIZE
 	addu t1, t0, t3
@@ -38,5 +37,5 @@ LEAF(osInvalICache)
     .set reorder
 
 	jr ra
-	#nop
+
 END(osInvalICache)

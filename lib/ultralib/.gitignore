@@ -17,6 +17,7 @@ build/
 expected/
 notes/
 tools/gcc
+tools/ido
 *.elf
 *.o
 *.a

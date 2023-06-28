@@ -1,7 +1,7 @@
 #ifndef _THREADASM_H_
 #define _THREADASM_H_
 
-// Offsets of members in the OSThread struct
+/* Offsets of members in the OSThread struct */
 #define THREAD_NEXT      0
 #define THREAD_PRI       4
 #define THREAD_QUEUE     8
@@ -35,7 +35,7 @@
 #define THREAD_GP23      208
 #define THREAD_GP24      216
 #define THREAD_GP25      224
-// k0 and k1 are reserved for the kernel
+/* k0 and k1 are reserved for the kernel */
 #define THREAD_GP28      232
 #define THREAD_GP29      240
 #define THREAD_GP30      248

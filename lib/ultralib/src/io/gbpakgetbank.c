@@ -23,6 +23,6 @@ s32 __osGbpakGetBank(OSPfs* pfs, u8* bank) {
         *bank = ((u8*)temp)[0];
         pfs->banks = *bank;
     }
-    
+
     return ret;
 }
