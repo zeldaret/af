@@ -79,10 +79,10 @@ $(BUILD_DIR)/ultralib/src/log/%.o: OPTFLAGS := -O1
 $(BUILD_DIR)/ultralib/src/libc/%.o: ASOPTFLAGS := -O2
 $(BUILD_DIR)/ultralib/src/mgu/%.o: ASOPTFLAGS := -O2
 
-$(BUILD_DIR)/ultralib/src/libc/ll.o: MIPS_VERSION := -mips3 -32 -non_shared
-$(BUILD_DIR)/ultralib/src/libc/llbit.o: MIPS_VERSION := -mips3 -32 -non_shared
-$(BUILD_DIR)/ultralib/src/libc/llcvt.o: MIPS_VERSION := -mips3 -32 -non_shared
-$(BUILD_DIR)/ultralib/src/os/exceptasm.o: MIPS_VERSION := -mips3 -32 -non_shared
+$(BUILD_DIR)/ultralib/src/libc/ll.o: MIPS_VERSION := -mips3 -32
+$(BUILD_DIR)/ultralib/src/libc/llbit.o: MIPS_VERSION := -mips3 -32
+$(BUILD_DIR)/ultralib/src/libc/llcvt.o: MIPS_VERSION := -mips3 -32
+$(BUILD_DIR)/ultralib/src/os/exceptasm.o: MIPS_VERSION := -mips3 -32
 
 
 #### Main Targets ###
