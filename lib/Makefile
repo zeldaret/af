@@ -84,6 +84,12 @@ $(BUILD_DIR)/ultralib/src/libc/llbit.o: MIPS_VERSION := -mips3 -32
 $(BUILD_DIR)/ultralib/src/libc/llcvt.o: MIPS_VERSION := -mips3 -32
 $(BUILD_DIR)/ultralib/src/os/exceptasm.o: MIPS_VERSION := -mips3 -32
 
+$(BUILD_DIR)/src/gu/parse_gbi.marker: GBIDEFINE := -DF3D_GBI
+$(BUILD_DIR)/src/gu/us2dex_emu.marker: GBIDEFINE :=
+$(BUILD_DIR)/src/gu/us2dex2_emu.marker: GBIDEFINE :=
+$(BUILD_DIR)/src/sp/sprite.marker: GBIDEFINE := -DF3D_GBI
+$(BUILD_DIR)/src/sp/spriteex.marker: GBIDEFINE :=
+$(BUILD_DIR)/src/sp/spriteex2.marker: GBIDEFINE :=
 
 #### Main Targets ###
 
