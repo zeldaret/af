@@ -4,18 +4,14 @@
 #include "m_lib.h"
 #include "gfx.h"
 #include "m_play.h"
+#include "fp.h"
 
 #define IS_ZERO(f) (fabsf(f) < 0.008f)
-
 
 float fabsf(float f);
 #pragma intrinsic(fabsf)
 
-f64 nearbyint(f64 x);
-
 #define FMOD(x, mod) ((x) - ((s32)((x) * (1.0f / (mod))) * (f32)(mod)))
-
-void *Lib_SegmentedToVirtual(void *ptr);
 
 // SkeletonInfo_R_combine_work* combineStructPtr[3];
 
@@ -129,35 +125,62 @@ s32 cKF_FrameControl_play(FrameControl *frameCtrl) {
     return var_v0;
 }
 
-// cubic hermite interpolation
-f32 cKF_HermitCalc(f32 t, f32 arg1, f32 p0, f32 p1, f32 v0, f32 v1) {
+/**
+ * Interpolate between two points using cubic Hermite interpolation.
+ *
+ * A Hermite curve is a parametric function p(t) where t is restricted to the domain [0, 1].
+ * It's defined with a start point and an end point. The shape of the curve is controlled by the tangents of the end
+ * points.
+ * If keyframes aren't placed at fixed intervals in time, the animation will abruptly change speed and direction when
+ * passing through keyframes. To avoid this, the tangents are multiplied by the length of time between the two
+ * keyframes.
+ *
+ * @param t Parameter.
+ * @param duration The amount of time between keyframe 1 and keyframe 2, in seconds.
+ * @param p0 The start point.
+ * @param p1 The end point.
+ * @param v0 The velocity at p0.
+ * @param v1 The velocity at p1.
+ * @return Interpolated value.
+ */
+f32 cKF_HermitCalc(f32 t, f32 duration, f32 p0, f32 p1, f32 v0, f32 v1) {
     f32 h3 = 3.0f * SQ(t) - 2.0f * CB(t);
     f32 h2 = -SQ(t) + CB(t);
     f32 h1 = CB(t) - 2.0f * SQ(t) + t;
     f32 h0 = 1.0f - h3;
 
-    return h0 * p0 + h3 * p1 + (h1 * v0 + h2 * v1) * arg1;
+    return h0 * p0 + h3 * p1 + (h1 * v0 + h2 * v1) * duration;
 }
 
-// startIndex: which keyframe in datasource to start with
-// sequenceLength: how many keyframes are in the sequence
-// dataSource: Array where all the keyframes are stored
-// currentFrame: current frame of the animation
+/**
+ * Given a sequence of keyframes, return the position that corresponds to the current frame.
+ *
+ * Animations are defined by a small sequence of keyframes, which record a position at a specific frame of the
+ * animation. Any frame between two keyframes calculates the position by interpolating between two keyframes.
+ * Keyframes are 1 dimensional. In the context of a 3d position, x, y, and z coordinates would each use a separate
+ * sequence of keyframes.
+ *
+ * @param startIndex Which keyframe in dataSource to start with.
+ * @param sequenceLength How many keyframes are in the sequence.
+ * @param dataSource Array where all the keyframes are stored.
+ * @param currentFrame The current frame of the animation.
+ * @return The position that corresponds to currentFrame.
+ */
 s16 cKF_KeyCalc(s16 startIndex, s16 sequenceLength, Keyframe *dataSource, f32 currentFrame) {
     Keyframe *ds = &dataSource[startIndex];
     f32 frameDelta;
     s32 kf2;
     s32 kf1;
 
-    // if currentFrame is before the starting keyframe
+    // if currentFrame is before the first keyframe of the sequence
     if (currentFrame <= ds[0].frame) {
         return ds[0].point;
     }
-    // if currentFrame is after the ending frame
+    // if currentFrame is after the last frame of the sequence
     if (ds[sequenceLength - 1].frame <= currentFrame) {
         return ds[sequenceLength - 1].point;
     }
-    // iterate over all the keyframes to find the correct keyframes to interpolate between
+    // iterate over each keyframe to find the two keyframes before and after currentFrame
     for (kf2 = 1, kf1 = 0; true; kf1++, kf2++) {
         if (currentFrame < ds[kf2].frame) {
             frameDelta = ds[kf2].frame - ds[kf1].frame;
