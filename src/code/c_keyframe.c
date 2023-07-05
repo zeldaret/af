@@ -17,7 +17,7 @@ float fabsf(float f);
 void cKF_FrameControl_zeroClear(cKF_FrameControl_c *frameCtrl) {
     bzero(frameCtrl, 0x18);
     frameCtrl->mode = cKF_FC_STOP;
-    frameCtrl->max = 1.0f;
+    frameCtrl->duration = 1.0f;
     frameCtrl->current = 1.0f;
     frameCtrl->speed = 1.0f;
     frameCtrl->end = 1.0f;
@@ -25,66 +25,66 @@ void cKF_FrameControl_zeroClear(cKF_FrameControl_c *frameCtrl) {
 }
 
 /**
- * Initialize a FrameControl struct with manually specified parameters.
+ * Initialize a FrameControl struct with default values.
  */
 void cKF_FrameControl_ct(cKF_FrameControl_c *frameCtrl) {
     cKF_FrameControl_zeroClear(frameCtrl);
 }
 
 /**
- * Initialize a FrameControl struct with specified parameters.
+ * Initialize a FrameControl struct with manually specified parameters.
  */
-void cKF_FrameControl_setFrame(cKF_FrameControl_c *frameCtrl, f32 start, f32 end, f32 max, f32 current, f32 speed,
+void cKF_FrameControl_setFrame(cKF_FrameControl_c *frameCtrl, f32 start, f32 end, f32 duration, f32 current, f32 speed,
                                s32 mode) {
     frameCtrl->start = start;
-    frameCtrl->end = (end < 1.0f) ? max : end;
-    frameCtrl->max = max;
+    frameCtrl->end = (end < 1.0f) ? duration : end;
+    frameCtrl->duration = duration;
     frameCtrl->speed = speed;
     frameCtrl->current = current;
     frameCtrl->mode = mode;
 }
 
 /**
- * Check if the next frame will exceed the length of the animation
+ * Check if the next frame will pass the specified frame number.
  * 
  * @param[in] frameCtrl The FrameControl struct to check.
- * @param[in] frameEnd The frame number to compare against.
- * @param[out] remainder The amount of frames past the end point. If it doesn't exceed the length of the animation this is set to 0.
- * @return Boolean. False if the next frame does not exceed the length of the animation. True if it does.
+ * @param[in] compareFrame The frame number to compare against.
+ * @param[out] remainder The amount of frames past compareFrame.
+ * @return Boolean. True if the next frame passes compareFrame.
  */
-s32 cKF_FrameControl_passCheck(cKF_FrameControl_c *frameCtrl, f32 frameEnd, f32 *remainder) {
+s32 cKF_FrameControl_passCheck(cKF_FrameControl_c *frameCtrl, f32 compareFrame, f32 *remainder) {
     f32 speed;
 
     *remainder = 0.0f;
 
-    if (frameEnd == frameCtrl->current) {
+    if (compareFrame == frameCtrl->current) {
         return false;
     }
+
     speed = (frameCtrl->start < frameCtrl->end) ? frameCtrl->speed : -frameCtrl->speed;
 
-    if ((speed >= 0.0f && frameCtrl->current < frameEnd && frameEnd <= frameCtrl->current + speed) ||
-        (speed < 0.0f && frameEnd < frameCtrl->current && frameCtrl->current + speed <= frameEnd)) {
-        *remainder = frameCtrl->current + speed - frameEnd;
+    if ((speed >= 0.0f && frameCtrl->current < compareFrame && frameCtrl->current + speed >= compareFrame) ||
+        (speed < 0.0f && compareFrame < frameCtrl->current && frameCtrl->current + speed <= compareFrame)) {
+        *remainder = frameCtrl->current + speed - compareFrame;
         return true;
     }
+
     return false;
 }
 
 /**
- * Check if the current frame exceeds the length of the animation
+ * Check if the current frame is past the specified frame number.
  * 
- * @param frameCtrl The FrameControl struct to check.
- * @param frameEnd The frame number to compare against.
- * @return Boolean. False if the current frame exceeds the length of the animation. True if it does.
+ * @return Boolean. True if the current frame is past compareFrame.
  */
-s32 cKF_FrameControl_passCheck_now(cKF_FrameControl_c *frameCtrl, f32 frameEnd) {
+s32 cKF_FrameControl_passCheck_now(cKF_FrameControl_c *frameCtrl, f32 compareFrame) {
     s32 ret = false;
 
-    if (frameEnd != frameCtrl->current) {
+    if (compareFrame != frameCtrl->current) {
         f32 speed = (frameCtrl->start < frameCtrl->end) ? frameCtrl->speed : -frameCtrl->speed;
 
-        if ((speed >= 0.0f && frameEnd <= frameCtrl->current && frameCtrl->current - speed < frameEnd) ||
-            (speed < 0.0f && frameCtrl->current <= frameEnd && frameEnd < frameCtrl->current - speed)) {
+        if ((speed >= 0.0f && compareFrame <= frameCtrl->current && frameCtrl->current - speed < compareFrame) ||
+            (speed < 0.0f && frameCtrl->current <= compareFrame &&  frameCtrl->current - speed > compareFrame)) {
             ret = true;
         }
     } else {
@@ -94,17 +94,22 @@ s32 cKF_FrameControl_passCheck_now(cKF_FrameControl_c *frameCtrl, f32 frameEnd) 
     return ret;
 }
 
+/**
+ * Check if an animation that plays once has completed.
+ * 
+ * @return 0 if the animation is still playing. 1 if the animation has completed.
+ */
 s32 cKF_FrameControl_stop_proc(cKF_FrameControl_c *frameCtrl) {
-    f32 sp1C;
+    f32 remainder;
 
     if (frameCtrl->current == frameCtrl->end) {
         return 1;
     }
-    if (cKF_FrameControl_passCheck(frameCtrl, frameCtrl->end, &sp1C)) {
+    if (cKF_FrameControl_passCheck(frameCtrl, frameCtrl->end, &remainder)) {
         frameCtrl->current = frameCtrl->end;
         return 1;
     }
-    if (cKF_FrameControl_passCheck(frameCtrl, frameCtrl->start, &sp1C)) {
+    if (cKF_FrameControl_passCheck(frameCtrl, frameCtrl->start, &remainder)) {
         frameCtrl->current = frameCtrl->end;
         return 1;
     }
@@ -112,15 +117,20 @@ s32 cKF_FrameControl_stop_proc(cKF_FrameControl_c *frameCtrl) {
     return 0;
 }
 
+/**
+ * Check if an animation that repeats has completed one loop.
+ * 
+ * @return 0 if the animation is still playing. 2 if the loop has completed.
+ */
 s32 cKF_FrameControl_repeat_proc(cKF_FrameControl_c *frameCtrl) {
-    f32 sp1C;
+    f32 remainder;
 
-    if (cKF_FrameControl_passCheck(frameCtrl, frameCtrl->end, &sp1C)) {
-        frameCtrl->current = (f32)(frameCtrl->start + sp1C);
+    if (cKF_FrameControl_passCheck(frameCtrl, frameCtrl->end, &remainder)) {
+        frameCtrl->current = (f32)(frameCtrl->start + remainder);
         return 2;
     }
-    if (cKF_FrameControl_passCheck(frameCtrl, frameCtrl->start, &sp1C) != 0) {
-        frameCtrl->current = frameCtrl->end + sp1C;
+    if (cKF_FrameControl_passCheck(frameCtrl, frameCtrl->start, &remainder)) {
+        frameCtrl->current = frameCtrl->end + remainder;
         return 2;
     }
 
@@ -150,9 +160,9 @@ s32 cKF_FrameControl_play(cKF_FrameControl_c *frameCtrl) {
 
     //if the current frame is past the end, wrap the frame counter back to the start of the animation
     if (frameCtrl->current < 1.0f) {
-        frameCtrl->current = (frameCtrl->current - 1.0f) + frameCtrl->max;
-    } else if (frameCtrl->max < frameCtrl->current) {
-        frameCtrl->current = (frameCtrl->current - frameCtrl->max) + 1.0f;
+        frameCtrl->current = (frameCtrl->current - 1.0f) + frameCtrl->duration;
+    } else if (frameCtrl->duration < frameCtrl->current) {
+        frameCtrl->current = (frameCtrl->current - frameCtrl->duration) + 1.0f;
     }
 
     return ret;
@@ -284,7 +294,7 @@ void cKF_SkeletonInfo_R_dt(cKF_SkeletonInfo_R_c *skeletonInfo) {
 void cKF_SkeletonInfo_R_init_standard_stop(cKF_SkeletonInfo_R_c *skeletonInfo, cKF_BaseAnimation_R_c *animation,
                                            Vec3s *diff_rot_tbl) {
     cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
-                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->frames, 1.0f, 1.0, 0.0f,
+                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->duration, 1.0f, 1.0, 0.0f,
                             cKF_FC_STOP, diff_rot_tbl);
 }
 
@@ -295,14 +305,14 @@ void cKF_SkeletonInfo_R_init_standard_stop_speedset(cKF_SkeletonInfo_R_c *skelet
                                                     cKF_BaseAnimation_R_c *animation, Vec3s *diff_rot_tbl,
                                                     f32 frameSpeed) {
     cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
-                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->frames, 1.0f, frameSpeed,
+                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->duration, 1.0f, frameSpeed,
                             0.0f, cKF_FC_STOP, diff_rot_tbl);
 }
 
 void cKF_SkeletonInfo_R_init_standard_stop_morph(cKF_SkeletonInfo_R_c *skeletonInfo, cKF_BaseAnimation_R_c *animation,
                                                  Vec3s *diff_rot_tbl, f32 morphCounter) {
     cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
-                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->frames, 1.0f, 1.0,
+                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->duration, 1.0f, 1.0,
                             morphCounter, cKF_FC_STOP, diff_rot_tbl);
 }
 
@@ -312,7 +322,7 @@ void cKF_SkeletonInfo_R_init_standard_stop_morph(cKF_SkeletonInfo_R_c *skeletonI
 void cKF_SkeletonInfo_R_init_standard_repeat(cKF_SkeletonInfo_R_c *skeletonInfo, cKF_BaseAnimation_R_c *animation,
                                              Vec3s *diff_rot_tbl) {
     cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
-                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->frames, 1.0f, 1.0, 0.0f,
+                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->duration, 1.0f, 1.0, 0.0f,
                             cKF_FC_REPEAT, diff_rot_tbl);
 }
 
@@ -323,14 +333,14 @@ void cKF_SkeletonInfo_R_init_standard_repeat_speedset(cKF_SkeletonInfo_R_c *skel
                                                       cKF_BaseAnimation_R_c *animation, Vec3s *diff_rot_tbl,
                                                       f32 frameSpeed) {
     cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
-                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->frames, 1.0f, frameSpeed,
+                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->duration, 1.0f, frameSpeed,
                             0.0f, cKF_FC_REPEAT, diff_rot_tbl);
 }
 
 void cKF_SkeletonInfo_R_init_standard_repeat_morph(cKF_SkeletonInfo_R_c *skeletonInfo, cKF_BaseAnimation_R_c *animation,
                                                    Vec3s *diff_rot_tbl, f32 morphCounter) {
     cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
-                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->frames, 1.0f, 1.0,
+                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->duration, 1.0f, 1.0,
                             morphCounter, cKF_FC_REPEAT, diff_rot_tbl);
 }
 
@@ -343,17 +353,19 @@ void cKF_SkeletonInfo_R_init(cKF_SkeletonInfo_R_c *skeletonInfo, cKF_BaseSkeleto
     skeletonInfo->morphCounter = morphCounter;
     skeletonInfo->skeleton = Lib_SegmentedToVirtual(skeleton);
     skeletonInfo->animation = Lib_SegmentedToVirtual(animation);
-    cKF_FrameControl_setFrame(&skeletonInfo->frameCtrl, startFrame, endFrame, skeletonInfo->animation->frames,
+    cKF_FrameControl_setFrame(&skeletonInfo->frameCtrl, startFrame, endFrame, skeletonInfo->animation->duration,
                               frameCurrent, frameSpeed, frameMode);
     skeletonInfo->diff_rot_tbl = diff_rot_tbl;
 }
 
+/**
+ * Change a SkeletonInfo's animation to the one specified.
+ */
 void cKF_SkeletonInfo_R_setAnim(cKF_SkeletonInfo_R_c *skeletonInfo, cKF_BaseAnimation_R_c *animation) {
-    cKF_BaseAnimation_R_c *temp_v0;
+    cKF_BaseAnimation_R_c *anim = (cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation);
 
-    temp_v0 = (cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation);
-    skeletonInfo->animation = temp_v0;
-    skeletonInfo->frameCtrl.max = temp_v0->frames;
+    skeletonInfo->animation = anim;
+    skeletonInfo->frameCtrl.duration = anim->duration;
 }
 
 void cKF_SkeletonInfo_R_morphJoint(cKF_SkeletonInfo_R_c *skeletonInfo) {
@@ -666,7 +678,7 @@ void cKF_SkeletonInfo_R_init_standard_repeat_speedsetandmorph(cKF_SkeletonInfo_R
                                                               cKF_BaseAnimation_R_c *animation, Vec3s *arg2, f32 arg3,
                                                               f32 arg4) {
     cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
-                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->frames, 1.0f, arg3, arg4,
+                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->duration, 1.0f, arg3, arg4,
                             cKF_FC_REPEAT, arg2);
 }
 
@@ -674,7 +686,7 @@ void cKF_SkeletonInfo_R_init_standard_repeat_setframeandspeedandmorph(cKF_Skelet
                                                                       cKF_BaseAnimation_R_c *animation, Vec3s *arg2,
                                                                       f32 arg3, f32 arg4, f32 arg5) {
     cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
-                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->frames, arg3, arg4, arg5,
+                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->duration, arg3, arg4, arg5,
                             cKF_FC_REPEAT, arg2);
 }
 
@@ -682,7 +694,7 @@ void cKF_SkeletonInfo_R_init_standard_setframeandspeedandmorphandmode(cKF_Skelet
                                                                       cKF_BaseAnimation_R_c *animation, Vec3s *arg2,
                                                                       f32 arg3, f32 arg4, f32 arg5, s32 arg6) {
     cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
-                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->frames, arg3, arg4, arg5,
+                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->duration, arg3, arg4, arg5,
                             arg6, arg2);
 }
 
@@ -690,8 +702,8 @@ void cKF_SkeletonInfo_R_init_reverse_setspeedandmorphandmode(cKF_SkeletonInfo_R_
                                                              cKF_BaseAnimation_R_c *animation, Vec3s *arg2, f32 arg3,
                                                              f32 arg4, s32 arg5) {
     cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation,
-                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->frames, 1.0f,
-                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->frames, arg3, arg4, arg5,
+                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->duration, 1.0f,
+                            ((cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation))->duration, arg3, arg4, arg5,
                             arg2);
 }
 

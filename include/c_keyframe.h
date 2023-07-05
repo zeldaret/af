@@ -13,7 +13,7 @@ typedef enum cKF_FC_Mode { cKF_FC_STOP = 0, cKF_FC_REPEAT = 1, cKF_FC_LAST_INDEX
 typedef struct {
     /* 0x00 */ f32 start;
     /* 0x04 */ f32 end;
-    /* 0x08 */ f32 max;
+    /* 0x08 */ f32 duration;
     /* 0x0C */ f32 speed;
     /* 0x10 */ f32 current;
     /* 0x14 */ s32 mode;
@@ -58,7 +58,7 @@ typedef struct {
     /* 0x08 */ s16 *key_num;
     /* 0x0C */ s16 *const_value_tbl;
     /* 0x10 */ s16 ext;
-    /* 0x12 */ s16 frames;
+    /* 0x12 */ s16 duration;
 } cKF_BaseAnimation_c; // size = 0x14
 
 typedef struct {
@@ -67,7 +67,7 @@ typedef struct {
     /* 0x08 */ s16 *key_num;
     /* 0x0C */ s16 *const_value_tbl;
     /* 0x10 */ s16 ext;
-    /* 0x12 */ s16 frames;
+    /* 0x12 */ s16 duration;
 } cKF_BaseAnimation_R_c; // size = 0x14
 
 typedef int (*BEFORE_FUNC_TBL)(struct GameState *, struct cKF_SkeletonInfo_c *, int, Gfx **, u8 *, void *);
