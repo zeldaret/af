@@ -537,46 +537,54 @@ void cKF_SkeletonInfo_R_morphJoint(cKF_SkeletonInfo_R_c *skeletonInfo) {
 // }
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/cKF_Si3_draw_SV_R_child.s")
-void cKF_Si3_draw_SV_R_child(PlayState *play, cKF_SkeletonInfo_R_c *skeletonInfo, s32 *joint_num,
-                             cKF_draw_callback prerender_callback, cKF_draw_callback postrender_callback, void *arg,
-                             Mtx **mtxpp) {
+
+/**
+ * Draw a specified joint in a SkeletonInfo struct.
+ *
+ * This is a recursive function, that will call itself again for each child this joint has.
+ * 
+ * @param jointIndex The index of the joint to draw.
+ */
+void cKF_Si3_draw_SV_R_child(PlayState *play, cKF_SkeletonInfo_R_c *skeletonInfo, s32 *jointIndex,
+                             cKF_draw_callback prerenderCallback, cKF_draw_callback postrenderCallback, void *arg,
+                             Mtx **mtx) {
     cKF_JointElem_R_c *jointElem =
-        *joint_num + (cKF_JointElem_R_c *)Lib_SegmentedToVirtual(skeletonInfo->skeleton->joint_tbl);
+        *jointIndex + (cKF_JointElem_R_c *)Lib_SegmentedToVirtual(skeletonInfo->skeleton->joint_tbl);
     s32 i;
     Gfx *newDlist;
-    Gfx *joint_shape;
-    u8 joint_flag;
+    Gfx *shape;
+    u8 jointElemFlag;
     Vec3s rotation;
-    Vec3s *sp68 = &skeletonInfo->now_joint[*joint_num];
+    Vec3s *joint = &skeletonInfo->now_joint[*jointIndex];
     Vec3f translation;
 
-    if (*joint_num) {
+    if (*jointIndex) {
         translation.x = jointElem->trs.x;
         translation.y = jointElem->trs.y;
         translation.z = jointElem->trs.z;
     } else {
-        s32 temp_v1_2 = skeletonInfo->move_flag;
+        s32 skeletonInfoFlag = skeletonInfo->move_flag;
         Vec3f *temp = &skeletonInfo->base_shape_trs;
 
-        if (temp_v1_2 & 1) {
+        if (skeletonInfoFlag & 1) {
             translation.x = temp->x;
             translation.z = temp->z;
         } else {
-            translation.x = sp68->x;
-            translation.z = sp68->z;
+            translation.x = joint->x;
+            translation.z = joint->z;
         }
 
-        if (temp_v1_2 & 2) {
+        if (skeletonInfoFlag & 2) {
             translation.y = temp->y;
         } else {
-            translation.y = sp68->y;
+            translation.y = joint->y;
         }
     }
 
-    sp68++;
-    rotation = *sp68;
-    
-    if (*joint_num == 0) {
+    joint++;
+    rotation = *joint;
+
+    if (*jointIndex == 0) {
         s32 an_flag = skeletonInfo->move_flag;
 
         if (an_flag & 4) {
@@ -591,70 +599,74 @@ void cKF_Si3_draw_SV_R_child(PlayState *play, cKF_SkeletonInfo_R_c *skeletonInfo
 
     OPEN_DISPS(play->state.gfxCtx);
     Matrix_push();
-    newDlist = joint_shape = jointElem->shape;
-    joint_flag = jointElem->work_flag;
+    newDlist = shape = jointElem->shape;
+    jointElemFlag = jointElem->work_flag;
 
-    if ((prerender_callback == NULL) ||
-        ((prerender_callback != NULL) &&
-         prerender_callback(play, skeletonInfo, *joint_num, &newDlist, &joint_flag, arg, &rotation, &translation) != 0)) {
+    if ((prerenderCallback == NULL) ||
+        ((prerenderCallback != NULL) && prerenderCallback(play, skeletonInfo, *jointIndex, &newDlist,
+                                                            &jointElemFlag, arg, &rotation, &translation) != NULL)) {
         Matrix_softcv3_mult(&translation, &rotation);
 
         if (newDlist != NULL) {
-            _Matrix_to_Mtx(*mtxpp);
+            _Matrix_to_Mtx(*mtx);
 
-            if (joint_flag & 1) {
-                gSPMatrix(POLY_XLU_DISP++, *mtxpp, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+            if (jointElemFlag & 1) {
+                gSPMatrix(POLY_XLU_DISP++, *mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
                 if (1) {}
                 gSPDisplayList(POLY_XLU_DISP++, newDlist);
             } else {
-                gSPMatrix(POLY_OPA_DISP++, *mtxpp, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+                gSPMatrix(POLY_OPA_DISP++, *mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
                 gSPDisplayList(POLY_OPA_DISP++, newDlist);
             }
 
-            (*mtxpp)++;
+            (*mtx)++;
 
-        } else if (joint_shape != NULL) {
-            _Matrix_to_Mtx(*mtxpp);
+        } else if (shape != NULL) {
+            _Matrix_to_Mtx(*mtx);
             if (1) {
-                gSPMatrix(POLY_OPA_DISP++, *mtxpp, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+                gSPMatrix(POLY_OPA_DISP++, *mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             }
 
-            (*mtxpp)++;
+            (*mtx)++;
         }
     }
 
-    if (postrender_callback != NULL) {
-        postrender_callback(play, skeletonInfo, *joint_num, &newDlist, &joint_flag, arg, (Vec3s *)&rotation, &translation);
+    if (postrenderCallback != NULL) {
+        postrenderCallback(play, skeletonInfo, *jointIndex, &newDlist, &jointElemFlag, arg, &rotation,
+                            &translation);
     }
 
-    (*joint_num)++;
+    (*jointIndex)++;
 
-    for (i = 0; i < jointElem->child; i++) {
-        cKF_Si3_draw_SV_R_child(play, skeletonInfo, joint_num, prerender_callback, postrender_callback, arg, mtxpp);
+    for (i = 0; i < jointElem->numberOfChildren; i++) {
+        cKF_Si3_draw_SV_R_child(play, skeletonInfo, jointIndex, prerenderCallback, postrenderCallback, arg,
+                                mtx);
     }
 
     Matrix_pull();
     CLOSE_DISPS(play->state.gfxCtx);
 }
 
-void cKF_Si3_draw_R_SV(PlayState *play, cKF_SkeletonInfo_R_c *skeletonInfo, Mtx *mtxp,
-                       cKF_draw_callback prerender_callback, cKF_draw_callback postrender_callback, void *arg) {
-    s32 joint_num;
-    // Mtx* mtx_p = mtxp;
+/**
+ * Draw all the joints in in a SkeletonInfo struct.
+ * 
+ * This function calls cKF_Si3_draw_SV_R_child() to recursively draw each joint.
+ */
+void cKF_Si3_draw_R_SV(PlayState *play, cKF_SkeletonInfo_R_c *skeletonInfo, Mtx *mtx,
+                       cKF_draw_callback prerenderCallback, cKF_draw_callback postrenderCallback, void *arg) {
+    s32 jointIndex;
 
-    if (mtxp != NULL) {
-        OPEN_DISPS(play->state.gfxCtx);
+    if (mtx != NULL) {
+    OPEN_DISPS(play->state.gfxCtx);
+    do {
+        gSPSegment(POLY_OPA_DISP++, 0x0D, mtx);
         do {
-            gSPSegment(POLY_OPA_DISP++, 0x0D, mtxp);
-            do {
-                gSPSegment(POLY_XLU_DISP++, 0x0D, mtxp);
-            } while (0);
+            gSPSegment(POLY_XLU_DISP++, 0x0D, mtx);
         } while (0);
-        // gSPSegment(POLY_OPA_DISP++, 0x0D, mtxp);
-        // gSPSegment(POLY_XLU_DISP++, 0x0D, mtxp);
-        CLOSE_DISPS(play->state.gfxCtx);
-        joint_num = 0;
-        cKF_Si3_draw_SV_R_child(play, skeletonInfo, &joint_num, prerender_callback, postrender_callback, arg, &mtxp);
+    } while (0);
+    jointIndex = 0;
+    cKF_Si3_draw_SV_R_child(play, skeletonInfo, &jointIndex, prerenderCallback, postrenderCallback, arg, &mtx);
+    CLOSE_DISPS(play->state.gfxCtx);
     }
 }
 

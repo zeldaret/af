@@ -21,14 +21,14 @@ typedef struct {
 
 typedef struct {
     /* 0x0 */ Gfx *shape;
-    /* 0x4 */ u8 child;
+    /* 0x4 */ u8 numberOfChildren;
     /* 0x5 */ u8 work_flag;
     /* 0x6 */ u8 func_index;
 } cKF_JointElem_c; // size = 0x8
 
 typedef struct {
     /* 0x0 */ Gfx *shape;
-    /* 0x4 */ u8 child;
+    /* 0x4 */ u8 numberOfChildren;
     /* 0x5 */ u8 work_flag;
     /* 0x6 */ Vec3s trs;
 } cKF_JointElem_R_c; // size = 0xC
