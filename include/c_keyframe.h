@@ -116,30 +116,35 @@ typedef int (*cKF_draw_callback)(struct PlayState *, cKF_SkeletonInfo_R_c *, int
 
 void cKF_FrameControl_zeroClear(cKF_FrameControl_c *frameCtrl);
 void cKF_FrameControl_ct(cKF_FrameControl_c *frameCtrl);
-void cKF_FrameControl_setFrame(cKF_FrameControl_c *frameCtrl, f32 start, f32 end, f32 max, f32 current, f32 speed, s32 mode);
-s32 cKF_FrameControl_passCheck(cKF_FrameControl_c *frameCtrl, f32 arg1, f32 *out);
-s32 cKF_FrameControl_passCheck_now(cKF_FrameControl_c *frameCtrl, f32 arg1);
+void cKF_FrameControl_setFrame(cKF_FrameControl_c *frameCtrl, f32 start, f32 end, f32 duration, f32 current, f32 speed,
+                               s32 mode);
+s32 cKF_FrameControl_passCheck(cKF_FrameControl_c *frameCtrl, f32 compareFrame, f32 *remainder);
+s32 cKF_FrameControl_passCheck_now(cKF_FrameControl_c *frameCtrl, f32 compareFrame);
 s32 cKF_FrameControl_stop_proc(cKF_FrameControl_c *frameCtrl);
 s32 cKF_FrameControl_repeat_proc(cKF_FrameControl_c *frameCtrl);
 s32 cKF_FrameControl_play(cKF_FrameControl_c *frameCtrl);
-f32 cKF_HermitCalc(f32 t, f32 arg1, f32 p0, f32 p1, f32 v0, f32 v1);
+f32 cKF_HermitCalc(f32 t, f32 duration, f32 p0, f32 p1, f32 v0, f32 v1);
 s16 cKF_KeyCalc(s16 startIndex, s16 sequenceLength, Keyframe *dataSource, f32 currentFrame);
 void cKF_SkeletonInfo_subRotInterpolation(f32 t, s16 *out, s16 rot1, s16 rot2);
 void cKF_SkeletonInfo_morphST(s16 arg0[3], s16 arg1[3], f32 arg3);
 void cKF_SkeletonInfo_R_zeroClear(cKF_SkeletonInfo_R_c *skeletonInfo);
-void cKF_SkeletonInfo_R_ct(cKF_SkeletonInfo_R_c *skeletonInfo, cKF_BaseSkeleton_R_c *skeleton, cKF_BaseAnimation_R_c *animation,
-                           Vec3s *arg3, Vec3s *arg4);
+void cKF_SkeletonInfo_R_ct(cKF_SkeletonInfo_R_c *skeletonInfo, cKF_BaseSkeleton_R_c *skeleton,
+                           cKF_BaseAnimation_R_c *animation, Vec3s *now_joint, Vec3s *morph_joint);
 void cKF_SkeletonInfo_R_dt(cKF_SkeletonInfo_R_c *skeletonInfo);
-void cKF_SkeletonInfo_R_init_standard_stop(cKF_SkeletonInfo_R_c *skeletonInfo, cKF_BaseAnimation_R_c *animation, Vec3s *arg2);
-void cKF_SkeletonInfo_R_init_standard_stop_speedset(cKF_SkeletonInfo_R_c *skeletonInfo, cKF_BaseAnimation_R_c *animation,
-                                                    Vec3s *arg2, f32 arg3);
-void cKF_SkeletonInfo_R_init_standard_stop_morph(cKF_SkeletonInfo_R_c *skeletonInfo, cKF_BaseAnimation_R_c *animation, Vec3s *arg2,
-                                                 f32 arg3);
-void cKF_SkeletonInfo_R_init_standard_repeat(cKF_SkeletonInfo_R_c *skeletonInfo, cKF_BaseAnimation_R_c *animation, Vec3s *arg2);
-void cKF_SkeletonInfo_R_init_standard_repeat_speedset(cKF_SkeletonInfo_R_c *skeletonInfo, cKF_BaseAnimation_R_c *animation,
-                                                      Vec3s *arg2, f32 arg3);
+void cKF_SkeletonInfo_R_init_standard_stop(cKF_SkeletonInfo_R_c *skeletonInfo, cKF_BaseAnimation_R_c *animation,
+                                           Vec3s *diff_rot_tbl);
+void cKF_SkeletonInfo_R_init_standard_stop_speedset(cKF_SkeletonInfo_R_c *skeletonInfo,
+                                                    cKF_BaseAnimation_R_c *animation, Vec3s *diff_rot_tbl,
+                                                    f32 frameSpeed);
+void cKF_SkeletonInfo_R_init_standard_stop_morph(cKF_SkeletonInfo_R_c *skeletonInfo, cKF_BaseAnimation_R_c *animation,
+                                                 Vec3s *diff_rot_tbl, f32 morphCounter);
+void cKF_SkeletonInfo_R_init_standard_repeat(cKF_SkeletonInfo_R_c *skeletonInfo, cKF_BaseAnimation_R_c *animation,
+                                             Vec3s *diff_rot_tbl);
+void cKF_SkeletonInfo_R_init_standard_repeat_speedset(cKF_SkeletonInfo_R_c *skeletonInfo,
+                                                      cKF_BaseAnimation_R_c *animation, Vec3s *diff_rot_tbl,
+                                                      f32 frameSpeed);
 void cKF_SkeletonInfo_R_init_standard_repeat_morph(cKF_SkeletonInfo_R_c *skeletonInfo, cKF_BaseAnimation_R_c *animation,
-                                                   Vec3s *arg2, f32 arg3);
+                                                   Vec3s *diff_rot_tbl, f32 morphCounter);
 void cKF_SkeletonInfo_R_init(cKF_SkeletonInfo_R_c *skeletonInfo, cKF_BaseSkeleton_R_c *skeleton, cKF_BaseAnimation_R_c *animation,
                              f32 startFrame, f32 endFrame, f32 frameCurrent, f32 frameSpeed, f32 morphCounter,
                              s32 frameMode, Vec3s *diff_rot_tbl);

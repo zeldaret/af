@@ -57,7 +57,7 @@ f32 sin_s(s16 angle);
 // void Cheap_gfx_display();
 // void Cheap_gfx_display_xlu();
 // void _Game_play_isPause();
-void *Lib_SegmentedToVirtual(void *ptr);
+void *Lib_SegmentedToVirtual(void *ptr); //unknown original name, taken from majora's mask
 // void func_8009ADE0_jp();
 // void func_8009AE28_jp();
 // void func_8009AE44_jp();

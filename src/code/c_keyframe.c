@@ -5,6 +5,7 @@
 #include "gfx.h"
 #include "m_play.h"
 #include "fp.h"
+#include "sys_matrix.h"
 
 float fabsf(float f);
 #pragma intrinsic(fabsf)
@@ -46,7 +47,7 @@ void cKF_FrameControl_setFrame(cKF_FrameControl_c *frameCtrl, f32 start, f32 end
 
 /**
  * Check if the next frame will pass the specified frame number.
- * 
+ *
  * @param[in] frameCtrl The FrameControl struct to check.
  * @param[in] compareFrame The frame number to compare against.
  * @param[out] remainder The amount of frames past compareFrame.
@@ -74,7 +75,7 @@ s32 cKF_FrameControl_passCheck(cKF_FrameControl_c *frameCtrl, f32 compareFrame, 
 
 /**
  * Check if the current frame is past the specified frame number.
- * 
+ *
  * @return Boolean. True if the current frame is past compareFrame.
  */
 s32 cKF_FrameControl_passCheck_now(cKF_FrameControl_c *frameCtrl, f32 compareFrame) {
@@ -84,7 +85,7 @@ s32 cKF_FrameControl_passCheck_now(cKF_FrameControl_c *frameCtrl, f32 compareFra
         f32 speed = (frameCtrl->start < frameCtrl->end) ? frameCtrl->speed : -frameCtrl->speed;
 
         if ((speed >= 0.0f && compareFrame <= frameCtrl->current && frameCtrl->current - speed < compareFrame) ||
-            (speed < 0.0f && frameCtrl->current <= compareFrame &&  frameCtrl->current - speed > compareFrame)) {
+            (speed < 0.0f && frameCtrl->current <= compareFrame && frameCtrl->current - speed > compareFrame)) {
             ret = true;
         }
     } else {
@@ -96,7 +97,7 @@ s32 cKF_FrameControl_passCheck_now(cKF_FrameControl_c *frameCtrl, f32 compareFra
 
 /**
  * Check if an animation that plays once has completed.
- * 
+ *
  * @return 0 if the animation is still playing. 1 if the animation has completed.
  */
 s32 cKF_FrameControl_stop_proc(cKF_FrameControl_c *frameCtrl) {
@@ -119,7 +120,7 @@ s32 cKF_FrameControl_stop_proc(cKF_FrameControl_c *frameCtrl) {
 
 /**
  * Check if an animation that repeats has completed one loop.
- * 
+ *
  * @return 0 if the animation is still playing. 2 if the loop has completed.
  */
 s32 cKF_FrameControl_repeat_proc(cKF_FrameControl_c *frameCtrl) {
@@ -139,7 +140,7 @@ s32 cKF_FrameControl_repeat_proc(cKF_FrameControl_c *frameCtrl) {
 
 /**
  * Advance a FrameControl struct by 1 frame.
- * 
+ *
  * @return 0 if the animation is still playing. 1 if the animation has completed. 2 if the animation repeated.
  */
 s32 cKF_FrameControl_play(cKF_FrameControl_c *frameCtrl) {
@@ -151,14 +152,14 @@ s32 cKF_FrameControl_play(cKF_FrameControl_c *frameCtrl) {
     } else {
         ret = cKF_FrameControl_repeat_proc(frameCtrl);
     }
-    
+
     // if the animation is still playing
     if (ret == 0) {
         speed = (frameCtrl->start < frameCtrl->end) ? frameCtrl->speed : -frameCtrl->speed;
         frameCtrl->current += speed;
     }
 
-    //if the current frame is past the end, wrap the frame counter back to the start of the animation
+    // if the current frame is past the end, wrap the frame counter back to the start of the animation
     if (frameCtrl->current < 1.0f) {
         frameCtrl->current = (frameCtrl->current - 1.0f) + frameCtrl->duration;
     } else if (frameCtrl->duration < frameCtrl->current) {
@@ -359,7 +360,7 @@ void cKF_SkeletonInfo_R_init(cKF_SkeletonInfo_R_c *skeletonInfo, cKF_BaseSkeleto
 }
 
 /**
- * Change a SkeletonInfo's animation to the one specified.
+ * Assign a SkeletonInfo struct's animation.
  */
 void cKF_SkeletonInfo_R_setAnim(cKF_SkeletonInfo_R_c *skeletonInfo, cKF_BaseAnimation_R_c *animation) {
     cKF_BaseAnimation_R_c *anim = (cKF_BaseAnimation_R_c *)Lib_SegmentedToVirtual(animation);
@@ -535,123 +536,106 @@ void cKF_SkeletonInfo_R_morphJoint(cKF_SkeletonInfo_R_c *skeletonInfo) {
 //     return func_80051DF0_jp(&skeletonInfo->frameCtrl);
 // }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/cKF_Si3_draw_SV_R_child.s")
-// cKF_Si3_draw_SV_R_child
-//  void cKF_Si3_draw_SV_R_child(PlayState *play, cKF_SkeletonInfo_R_c *skeletonInfo, s32 *joint_num, cKF_draw_callback
-//  prerender_callback, cKF_draw_callback postrender_callback, void *arg, Mtx **mtxpp)
-//  {
-//      s32 sp88;
-//      Gfx *sp84;
-//      u8 sp7F;
-//      // s16 sp7C;
-//      // s16 sp7A;
-//      Vec3s rot;
-//      // f32 sp70;
-//      // f32 sp6C;
-//      Vec3f pos;
-//      GraphicsContext *sp58;
-//      Gfx *temp_s0;
-//      GraphicsContext *temp_t0;
-//      Vec3f *temp_v0;
-//      Vec3s *temp_a0;
-//      s32 temp_v1;
-//      s32 temp_v1_2;
-//      s32 var_v0;
-//      cKF_JointElem_R_c *temp_s2;
-//      void *temp_v0_2;
-//      void *temp_v0_3;
-//      void *temp_v0_4;
-//      void *temp_v1_3;
-//      void *temp_v1_4;
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/cKF_Si3_draw_SV_R_child.s")
+void cKF_Si3_draw_SV_R_child(PlayState *play, cKF_SkeletonInfo_R_c *skeletonInfo, s32 *joint_num,
+                             cKF_draw_callback prerender_callback, cKF_draw_callback postrender_callback, void *arg,
+                             Mtx **mtxpp) {
+    cKF_JointElem_R_c *jointElem =
+        *joint_num + (cKF_JointElem_R_c *)Lib_SegmentedToVirtual(skeletonInfo->skeleton->joint_tbl);
+    s32 i;
+    Gfx *newDlist;
+    Gfx *joint_shape;
+    u8 joint_flag;
+    Vec3s rotation;
+    Vec3s *sp68 = &skeletonInfo->now_joint[*joint_num];
+    Vec3f translation;
 
-//     if (1) { } if (1) { } if (1) { } if (1) { }
-//     temp_s2 = Lib_SegmentedToVirtual(skeletonInfo->skeleton->joint_tbl);
-//     temp_s2 += *joint_num;
-//     temp_a0 = &skeletonInfo->now_joint[*joint_num];
-//     if (*joint_num != 0)
-//     {
-//         pos.x = temp_s2->trs.x;
-//         pos.y = temp_s2->trs.y;
-//         pos.z = temp_s2->trs.z;
-//     }
-//     else
-//     {
-//         temp_v1_2 = skeletonInfo->move_flag;
-//         temp_v0 = &skeletonInfo->base_shape_trs;
-//         if (temp_v1_2 & 1)
-//         {
-//             pos.x = temp_v0->x;
-//             pos.z = temp_v0->z;
-//         }
-//         else
-//         {
-//             pos.x = temp_a0->x;
-//             pos.z = temp_a0->z;
-//         }
-//         if (temp_v1_2 & 2)
-//         {
-//             pos.y = temp_v0->y;
-//         }
-//         else
-//         {
-//             pos.y = temp_a0->y;
-//         }
-//     }
-//     rot = temp_a0[1];
-//     if ((*joint_num == 0) && (skeletonInfo->move_flag & 4))
-//     {
-//         rot.x = skeletonInfo->base_data_angle.x;
-//         rot.y = skeletonInfo->renew_base_data_angle.y;
-//         rot.z = skeletonInfo->renew_base_data_angle.z;
-//     }
-//     // temp_t0 = play->state.gfxCtx;
-//     // sp58 = temp_t0;
-//     OPEN_DISPS(play->state.gfxCtx);
-//     Matrix_push();
-//     temp_s0 = temp_s2->shape;
-//     sp84 = temp_s0;
-//     sp7F = temp_s2->work_flag;
+    if (*joint_num) {
+        translation.x = jointElem->trs.x;
+        translation.y = jointElem->trs.y;
+        translation.z = jointElem->trs.z;
+    } else {
+        s32 temp_v1_2 = skeletonInfo->move_flag;
+        Vec3f *temp = &skeletonInfo->base_shape_trs;
 
-//     if ((prerender_callback == NULL) ||
-//         (prerender_callback != NULL && prerender_callback(play, skeletonInfo, *joint_num, &sp84, &sp7F, arg, &rot,
-//         &pos) != NULL))
-//     {
-//         Matrix_softcv3_mult(&pos, &rot);
-//         if (sp84 != NULL)
-//         {
-//             _Matrix_to_Mtx(*mtxpp);
-//             if (sp7F & 1)
-//             {
-//                 gSPMatrix(POLY_XLU_DISP++, *mtxpp, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-//                 gSPDisplayList(POLY_XLU_DISP++, sp84);
-//             }
-//             else
-//             {
-//                 gSPMatrix(POLY_OPA_DISP++, *mtxpp, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-//                 gSPDisplayList(POLY_OPA_DISP++, sp84);
-//             }
-//             (*mtxpp)++;
-//         }
-//         else if (temp_s0 != NULL)
-//         {
-//             _Matrix_to_Mtx(*mtxpp);
-//             if(1){}
-//             gSPMatrix(POLY_OPA_DISP++, *mtxpp, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-//             (*mtxpp)++;
-//         }
-//     }
-//     if (postrender_callback != NULL)
-//     {
-//         postrender_callback(play, skeletonInfo, *joint_num, &sp84, &sp7F, arg, &rot, &pos);
-//     }
-//     (*joint_num)++;
-//     for (var_v0 = 0; var_v0 < temp_s2->child; var_v0++)
-//     {
-//         cKF_Si3_draw_SV_R_child(play, skeletonInfo, joint_num, prerender_callback, postrender_callback, arg, mtxpp);
-//     }
-//     Matrix_pull();
-//     CLOSE_DISPS(play->state.gfx);
-// }
+        if (temp_v1_2 & 1) {
+            translation.x = temp->x;
+            translation.z = temp->z;
+        } else {
+            translation.x = sp68->x;
+            translation.z = sp68->z;
+        }
+
+        if (temp_v1_2 & 2) {
+            translation.y = temp->y;
+        } else {
+            translation.y = sp68->y;
+        }
+    }
+
+    sp68++;
+    rotation = *sp68;
+    
+    if (*joint_num == 0) {
+        s32 an_flag = skeletonInfo->move_flag;
+
+        if (an_flag & 4) {
+            rotation.x = skeletonInfo->base_data_angle.x;
+            rotation.y = skeletonInfo->renew_base_data_angle.y;
+            rotation.z = skeletonInfo->renew_base_data_angle.z;
+        }
+    }
+
+    if (1) {}
+    if (1) {}
+
+    OPEN_DISPS(play->state.gfxCtx);
+    Matrix_push();
+    newDlist = joint_shape = jointElem->shape;
+    joint_flag = jointElem->work_flag;
+
+    if ((prerender_callback == NULL) ||
+        ((prerender_callback != NULL) &&
+         prerender_callback(play, skeletonInfo, *joint_num, &newDlist, &joint_flag, arg, &rotation, &translation) != 0)) {
+        Matrix_softcv3_mult(&translation, &rotation);
+
+        if (newDlist != NULL) {
+            _Matrix_to_Mtx(*mtxpp);
+
+            if (joint_flag & 1) {
+                gSPMatrix(POLY_XLU_DISP++, *mtxpp, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+                if (1) {}
+                gSPDisplayList(POLY_XLU_DISP++, newDlist);
+            } else {
+                gSPMatrix(POLY_OPA_DISP++, *mtxpp, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+                gSPDisplayList(POLY_OPA_DISP++, newDlist);
+            }
+
+            (*mtxpp)++;
+
+        } else if (joint_shape != NULL) {
+            _Matrix_to_Mtx(*mtxpp);
+            if (1) {
+                gSPMatrix(POLY_OPA_DISP++, *mtxpp, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+            }
+
+            (*mtxpp)++;
+        }
+    }
+
+    if (postrender_callback != NULL) {
+        postrender_callback(play, skeletonInfo, *joint_num, &newDlist, &joint_flag, arg, (Vec3s *)&rotation, &translation);
+    }
+
+    (*joint_num)++;
+
+    for (i = 0; i < jointElem->child; i++) {
+        cKF_Si3_draw_SV_R_child(play, skeletonInfo, joint_num, prerender_callback, postrender_callback, arg, mtxpp);
+    }
+
+    Matrix_pull();
+    CLOSE_DISPS(play->state.gfxCtx);
+}
 
 void cKF_Si3_draw_R_SV(PlayState *play, cKF_SkeletonInfo_R_c *skeletonInfo, Mtx *mtxp,
                        cKF_draw_callback prerender_callback, cKF_draw_callback postrender_callback, void *arg) {
