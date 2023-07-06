@@ -14,7 +14,7 @@ float fabsf(float f);
 #define IS_ZERO(f) (fabsf(f) < 0.008f)
 #define FMOD(x, mod) ((x) - ((s32)((x) * (1.0f / (mod))) * (f32)(mod)))
 
-cKF_SkeletonInfo_R_combine_work_c* B_801458A0_jp[4];
+UNK_TYPE *B_801458A0_jp[4];
 
 void cKF_FrameControl_zeroClear(cKF_FrameControl_c *frameCtrl) {
     bzero(frameCtrl, 0x18);
@@ -543,7 +543,7 @@ void cKF_SkeletonInfo_R_morphJoint(cKF_SkeletonInfo_R_c *skeletonInfo) {
  * Draw a specified joint in a SkeletonInfo struct.
  *
  * This is a recursive function, that will call itself again for each child this joint has.
- * 
+ *
  * @param jointIndex The index of the joint to draw.
  */
 void cKF_Si3_draw_SV_R_child(PlayState *play, cKF_SkeletonInfo_R_c *skeletonInfo, s32 *jointIndex,
@@ -604,8 +604,8 @@ void cKF_Si3_draw_SV_R_child(PlayState *play, cKF_SkeletonInfo_R_c *skeletonInfo
     jointElemFlag = jointElem->work_flag;
 
     if ((prerenderCallback == NULL) ||
-        ((prerenderCallback != NULL) && prerenderCallback(play, skeletonInfo, *jointIndex, &newDlist,
-                                                            &jointElemFlag, arg, &rotation, &translation) != NULL)) {
+        ((prerenderCallback != NULL) && prerenderCallback(play, skeletonInfo, *jointIndex, &newDlist, &jointElemFlag,
+                                                          arg, &rotation, &translation) != NULL)) {
         Matrix_softcv3_mult(&translation, &rotation);
 
         if (newDlist != NULL) {
@@ -633,15 +633,13 @@ void cKF_Si3_draw_SV_R_child(PlayState *play, cKF_SkeletonInfo_R_c *skeletonInfo
     }
 
     if (postrenderCallback != NULL) {
-        postrenderCallback(play, skeletonInfo, *jointIndex, &newDlist, &jointElemFlag, arg, &rotation,
-                            &translation);
+        postrenderCallback(play, skeletonInfo, *jointIndex, &newDlist, &jointElemFlag, arg, &rotation, &translation);
     }
 
     (*jointIndex)++;
 
     for (i = 0; i < jointElem->numberOfChildren; i++) {
-        cKF_Si3_draw_SV_R_child(play, skeletonInfo, jointIndex, prerenderCallback, postrenderCallback, arg,
-                                mtx);
+        cKF_Si3_draw_SV_R_child(play, skeletonInfo, jointIndex, prerenderCallback, postrenderCallback, arg, mtx);
     }
 
     Matrix_pull();
@@ -650,7 +648,7 @@ void cKF_Si3_draw_SV_R_child(PlayState *play, cKF_SkeletonInfo_R_c *skeletonInfo
 
 /**
  * Draw all the joints in in a SkeletonInfo struct.
- * 
+ *
  * This function calls cKF_Si3_draw_SV_R_child() to recursively draw each joint.
  */
 void cKF_Si3_draw_R_SV(PlayState *play, cKF_SkeletonInfo_R_c *skeletonInfo, Mtx *mtx,
@@ -658,16 +656,16 @@ void cKF_Si3_draw_R_SV(PlayState *play, cKF_SkeletonInfo_R_c *skeletonInfo, Mtx 
     s32 jointIndex;
 
     if (mtx != NULL) {
-    OPEN_DISPS(play->state.gfxCtx);
-    do {
-        gSPSegment(POLY_OPA_DISP++, 0x0D, mtx);
+        OPEN_DISPS(play->state.gfxCtx);
         do {
-            gSPSegment(POLY_XLU_DISP++, 0x0D, mtx);
+            gSPSegment(POLY_OPA_DISP++, 0x0D, mtx);
+            do {
+                gSPSegment(POLY_XLU_DISP++, 0x0D, mtx);
+            } while (0);
         } while (0);
-    } while (0);
-    jointIndex = 0;
-    cKF_Si3_draw_SV_R_child(play, skeletonInfo, &jointIndex, prerenderCallback, postrenderCallback, arg, &mtx);
-    CLOSE_DISPS(play->state.gfxCtx);
+        jointIndex = 0;
+        cKF_Si3_draw_SV_R_child(play, skeletonInfo, &jointIndex, prerenderCallback, postrenderCallback, arg, &mtx);
+        CLOSE_DISPS(play->state.gfxCtx);
     }
 }
 
@@ -705,15 +703,16 @@ void cKF_SkeletonInfo_R_init_reverse_setspeedandmorphandmode(cKF_SkeletonInfo_R_
 }
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80053384_jp.s")
-void func_80053384_jp(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8) {
+void func_80053384_jp(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, UNK_TYPE* arg6, UNK_TYPE* arg7,
+                      UNK_TYPE* arg8) {
     if (arg3 != 0) {
-        B_801458A0_jp[arg0] = (cKF_SkeletonInfo_R_combine_work_c *)(arg6 + 0x80000000);
+        B_801458A0_jp[arg0] = PHYSICAL_TO_VIRTUAL(arg6);
     }
     if (arg4 != 0) {
-        B_801458A0_jp[arg1] = (cKF_SkeletonInfo_R_combine_work_c *)(arg7 + 0x80000000);
+        B_801458A0_jp[arg1] = PHYSICAL_TO_VIRTUAL(arg7);
     }
     if (arg5 != 0) {
-        B_801458A0_jp[arg2] = (cKF_SkeletonInfo_R_combine_work_c *)(arg8 + 0x80000000);
+        B_801458A0_jp[arg2] = PHYSICAL_TO_VIRTUAL(arg8);
     }
 }
 
@@ -849,115 +848,95 @@ void cKF_SkeletonInfo_R_combine_rotation(s16 **joint, u32 *flag, cKF_SkeletonInf
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/cKF_SkeletonInfo_R_combine_play.s")
-// s32 cKF_SkeletonInfo_R_combine_play(cKF_SkeletonInfo_R_c* arg0, cKF_SkeletonInfo_R_c* arg1, s32 arg2, s32 arg3, s32
-// arg4, s32 arg5, s8* arg6)
-// {
-//     u32 spB0; //bitflag
-//     s16 *spAC;
-//     cKF_SkeletonInfo_R_combine_work_c sp8C;
-//     cKF_SkeletonInfo_R_combine_work_c sp6C;
-//     cKF_SkeletonInfo_R_combine_work_c sp4C;
-//     cKF_SkeletonInfo_R_combine_work_c *sp44;
-//     cKF_SkeletonInfo_R_combine_work_c *sp40;
-//     cKF_SkeletonInfo_R_combine_work_c **temp_v0;
-//     cKF_SkeletonInfo_R_combine_work_c **temp_v0_2;
-//     cKF_SkeletonInfo_R_combine_work_c *temp_t6;
-//     Vec3s *var_v0;
-//     Vec3s *var_v0_2;
-//     // f32 temp_fv1;
-//     s16 temp_t4;
-//     s16 temp_t5;
-//     s16 temp_t8;
-//     s32 var_a0;
-//     s32 var_s0;
-//     s32 var_v1;
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/cKF_SkeletonInfo_R_combine_play.s")
+s32 cKF_SkeletonInfo_R_combine_play(cKF_SkeletonInfo_R_c *skeletonInfo1, cKF_SkeletonInfo_R_c *skeletonInfo2, s32 arg2,
+                                    s32 arg3, s32 arg4, s32 arg5, s8 *flag) {
+    Vec3s *var_v0;
+    u32 spB0;
+    s16 *joint;
+    cKF_SkeletonInfo_R_combine_work_c combine1;
+    cKF_SkeletonInfo_R_combine_work_c combine2;
+    cKF_SkeletonInfo_R_combine_work_c combine3;
+    s32 var_s0;
+    UNK_TYPE *sp44;
+    UNK_TYPE *sp40;
+    s32 var_v1;
 
-//     sp44 = 0;
-//     sp40 = 0;
-//     if ((arg0 == NULL) || (arg1 == NULL) || (arg2 < 0) || (arg2 >= 0x10) || (arg3 < 0) || (arg3 >= 0x10) || (arg6 ==
-//     NULL)) {
-//         return 0;
-//     }
-//     if (!IS_ZERO(arg0->morphCounter)) {
-//         spAC = arg0->morph_joint->x;
-//     } else {
-//         spAC = arg0->now_joint->x;
-//     }
-//     if (arg4 != 0)
-//     {
-//         temp_v0 = &(&B_801458A0_jp)[arg2];
-//         temp_t6 = *temp_v0;
-//         *temp_v0 = arg4 + 0x80000000;
-//         sp44 = temp_t6 + 0x80000000;
-//         //cKF_SkeletonInfo_R_combine_work_set
-//         cKF_SkeletonInfo_R_combine_work_set(&sp4C, arg0);
-//     }
-//     if (arg5 != 0)
-//     {
-//         temp_v0_2 = &(&B_801458A0_jp)[arg3];
-//         sp40 = *temp_v0_2 + 0x80000000;
-//         *temp_v0_2 = arg5 + 0x80000000;
-//         //cKF_SkeletonInfo_R_combine_work_set
-//         cKF_SkeletonInfo_R_combine_work_set(&sp6C, arg1);
-//         cKF_SkeletonInfo_R_combine_work_set(&sp8C, arg1);
-//     }
-//     spB0 = 0x20;
-//     //cKF_SkeletonInfo_R_combine_translation
-//     cKF_SkeletonInfo_R_combine_translation(&spAC, &spB0, &sp4C, arg6);
-//     //cKF_SkeletonInfo_R_combine_rotation
-//     cKF_SkeletonInfo_R_combine_rotation(&spAC, &spB0, &sp4C, arg6);
-//     if (arg0->diff_rot_tbl != NULL)
-//     {
-//         if (!IS_ZERO(arg0->morphCounter))
-//         {
-//             var_v0 = arg0->morph_joint;
-//         }
-//         else
-//         {
-//             var_v0 = arg0->now_joint;
-//         }
+    sp44 = NULL;
+    sp40 = NULL;
 
-//         var_v0++;
+    if ((skeletonInfo1 == NULL) || (skeletonInfo2 == NULL) || (arg2 < 0) || (arg2 >= 0x10) || (arg3 < 0) ||
+        (arg3 >= 0x10) || (flag == NULL)) {
+        return 0;
+    }
 
-//         for (var_v1 = 0; var_v1 < arg0->skeleton->joint_num; var_v1++)
-//         {
-//             var_v0->x = var_v0->x + arg0->diff_rot_tbl[var_v1].x;
-//             var_v0->y = var_v0->y + arg0->diff_rot_tbl[var_v1].y;
-//             var_v0->z = var_v0->z + arg0->diff_rot_tbl[var_v1].z;
-//             var_v0++;
-//         }
-//     }
-//     // temp_fv1 = arg0->morphCounter;
-//     if (IS_ZERO(arg0->morphCounter))
-//     {
-//         cKF_FrameControl_play(&arg1->frameCtrl);
-//         var_s0 = cKF_FrameControl_play(&arg0->frameCtrl);
-//         func_80053384_jp(arg2, arg3, 0, arg4, arg5, 0, sp44, sp40, 0);
-//         return var_s0;
-//     }
-//     if (arg0->morphCounter > 0.0f)
-//     {
-//         cKF_SkeletonInfo_R_morphJoint(arg0);
-//         arg0->morphCounter -= 1.0f;
-//         if (arg0->morphCounter <= 0.0f)
-//         {
-//             arg0->morphCounter = 0.0f;
-//         }
-//         func_80053384_jp(arg2, arg3, 0, arg4, arg5, 0, sp44, sp40, 0);
-//         return 0;
-//     }
-//     cKF_SkeletonInfo_R_morphJoint(arg0);
-//     arg0->morphCounter += 1.0f;
-//     if (arg0->morphCounter >= 0.0f)
-//     {
-//         arg0->morphCounter = 0.0f;
-//     }
-//     cKF_FrameControl_play(&arg1->frameCtrl);
-//     var_s0 = cKF_FrameControl_play(&arg0->frameCtrl);
-//     func_80053384_jp(arg2, arg3, 0, arg4, arg5, 0, sp44, sp40, 0);
-//     return var_s0;
-// }
+    if (!(fabsf(skeletonInfo1->morphCounter) < 0.008f)) {
+        joint = (s16 *)skeletonInfo1->morph_joint;
+    } else {
+        joint = (s16 *)skeletonInfo1->now_joint;
+    }
+
+    if (arg4 != 0) {
+        sp44 = PHYSICAL_TO_VIRTUAL(B_801458A0_jp[arg2]);
+        B_801458A0_jp[arg2] = PHYSICAL_TO_VIRTUAL(arg4);
+        cKF_SkeletonInfo_R_combine_work_set(&combine3, skeletonInfo1);
+    }
+
+    if (arg5 != 0) {
+        sp40 = PHYSICAL_TO_VIRTUAL(B_801458A0_jp[arg3]);
+        B_801458A0_jp[arg3] = PHYSICAL_TO_VIRTUAL(arg5);
+        cKF_SkeletonInfo_R_combine_work_set(&combine2, skeletonInfo2);
+        cKF_SkeletonInfo_R_combine_work_set(&combine1, skeletonInfo2);
+    }
+
+    spB0 = 0x20;
+    cKF_SkeletonInfo_R_combine_translation(&joint, &spB0, &combine3, flag);
+    cKF_SkeletonInfo_R_combine_rotation(&joint, &spB0, &combine3, flag);
+
+    if (skeletonInfo1->diff_rot_tbl != NULL) {
+        if (!IS_ZERO(skeletonInfo1->morphCounter)) {
+            var_v0 = skeletonInfo1->morph_joint;
+        } else {
+            var_v0 = skeletonInfo1->now_joint;
+        }
+
+        var_v0++;
+
+        for (var_v1 = 0; var_v1 < skeletonInfo1->skeleton->joint_num; var_v1++) {
+            var_v0->x = var_v0->x + skeletonInfo1->diff_rot_tbl[var_v1].x;
+            var_v0->y = var_v0->y + skeletonInfo1->diff_rot_tbl[var_v1].y;
+            var_v0->z = var_v0->z + skeletonInfo1->diff_rot_tbl[var_v1].z;
+            var_v0++;
+        }
+    }
+    if (IS_ZERO(skeletonInfo1->morphCounter)) {
+        cKF_FrameControl_play(&skeletonInfo2->frameCtrl);
+        var_s0 = cKF_FrameControl_play(&skeletonInfo1->frameCtrl);
+        func_80053384_jp(arg2, arg3, 0, arg4, arg5, 0, sp44, sp40, 0);
+    } else {
+        if (skeletonInfo1->morphCounter > 0.0f) {
+            cKF_SkeletonInfo_R_morphJoint(skeletonInfo1);
+            skeletonInfo1->morphCounter -= 1.0f;
+            if (skeletonInfo1->morphCounter <= 0.0f) {
+                skeletonInfo1->morphCounter = 0.0f;
+            }
+            func_80053384_jp(arg2, arg3, 0, arg4, arg5, 0, sp44, sp40, 0);
+            return 0;
+        }
+
+        cKF_SkeletonInfo_R_morphJoint(skeletonInfo1);
+
+        skeletonInfo1->morphCounter += 1.0f;
+        if (skeletonInfo1->morphCounter >= 0.0f) {
+            skeletonInfo1->morphCounter = 0.0f;
+        }
+
+        cKF_FrameControl_play(&skeletonInfo2->frameCtrl);
+        var_s0 = cKF_FrameControl_play(&skeletonInfo1->frameCtrl);
+        func_80053384_jp(arg2, arg3, 0, arg4, arg5, 0, sp44, sp40, 0);
+    }
+    return var_s0;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/cKF_SkeletonInfo_R_T_combine_play.s")
 
