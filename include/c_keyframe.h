@@ -45,7 +45,7 @@ typedef struct {
     /* 0x04 */ cKF_JointElem_R_c *joint_tbl;
 } cKF_BaseSkeleton_R_c; // size = 0x8
 
-// unknown original name
+// original name unknown
 typedef struct {
     /* 0x00 */ s16 frame;
     /* 0x02 */ s16 point;

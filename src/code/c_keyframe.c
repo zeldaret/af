@@ -6,6 +6,7 @@
 #include "m_play.h"
 #include "fp.h"
 #include "sys_matrix.h"
+#include "sys_math3d.h"
 
 float fabsf(float f);
 #pragma intrinsic(fabsf)
@@ -13,7 +14,7 @@ float fabsf(float f);
 #define IS_ZERO(f) (fabsf(f) < 0.008f)
 #define FMOD(x, mod) ((x) - ((s32)((x) * (1.0f / (mod))) * (f32)(mod)))
 
-// cKF_SkeletonInfo_R_combine_work_c* combineStructPtr[3];
+cKF_SkeletonInfo_R_combine_work_c* B_801458A0_jp[4];
 
 void cKF_FrameControl_zeroClear(cKF_FrameControl_c *frameCtrl) {
     bzero(frameCtrl, 0x18);
@@ -703,18 +704,16 @@ void cKF_SkeletonInfo_R_init_reverse_setspeedandmorphandmode(cKF_SkeletonInfo_R_
                             arg2);
 }
 
-extern cKF_SkeletonInfo_R_combine_work_c *B_801458A0_jp;
-
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80053384_jp.s")
 void func_80053384_jp(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8) {
     if (arg3 != 0) {
-        *(&B_801458A0_jp + arg0) = (cKF_SkeletonInfo_R_combine_work_c *)(arg6 + 0x80000000);
+        B_801458A0_jp[arg0] = (cKF_SkeletonInfo_R_combine_work_c *)(arg6 + 0x80000000);
     }
     if (arg4 != 0) {
-        *(&B_801458A0_jp + arg1) = (cKF_SkeletonInfo_R_combine_work_c *)(arg7 + 0x80000000);
+        B_801458A0_jp[arg1] = (cKF_SkeletonInfo_R_combine_work_c *)(arg7 + 0x80000000);
     }
     if (arg5 != 0) {
-        *(&B_801458A0_jp + arg2) = (cKF_SkeletonInfo_R_combine_work_c *)(arg8 + 0x80000000);
+        B_801458A0_jp[arg2] = (cKF_SkeletonInfo_R_combine_work_c *)(arg8 + 0x80000000);
     }
 }
 
@@ -975,16 +974,14 @@ void cKF_SkeletonInfo_R_Animation_Set_base_shape_trs(cKF_SkeletonInfo_R_c *skele
     skeletonInfo->renew_base_data_angle.z = skeletonInfo->base_data_angle.z;
 }
 
-extern Vec3f D_8010F4A0_jp; // todo: import this
-
 void cKF_SkeletonInfo_R_AnimationMove_ct_base(Vec3f *arg0, Vec3f *arg1, s16 arg2, s16 arg3, f32 arg4,
                                               cKF_SkeletonInfo_R_c *skeletonInfo, s32 arg6) {
     s32 var_v0;
 
     skeletonInfo->move_flag = arg6;
     skeletonInfo->correct_counter = (arg4 >= 0.0f) ? arg4 : -arg4;
-    skeletonInfo->idle_world_pos = D_8010F4A0_jp;
-    skeletonInfo->d_correct_base_world_pos = D_8010F4A0_jp;
+    skeletonInfo->idle_world_pos = ZeroVec;
+    skeletonInfo->d_correct_base_world_pos = ZeroVec;
 
     if (arg0 != NULL) {
         if (arg1 == NULL) {
