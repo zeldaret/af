@@ -183,7 +183,7 @@ void cKF_SkeletonInfo_R_Animation_Set_base_shape_trs(cKF_SkeletonInfo_R_c *skele
 void cKF_SkeletonInfo_R_AnimationMove_ct_base(Vec3f *arg0, Vec3f *arg1, s16 arg2, s16 arg3, f32 arg4,
                                               cKF_SkeletonInfo_R_c *skeletonInfo, s32 arg6);
 void cKF_SkeletonInfo_R_AnimationMove_dt(cKF_SkeletonInfo_R_c *skeletonInfo);
-void cKF_SkeletonInfo_R_AnimationMove_base(Vec3f *arg0, s16 *arg1, Vec3f *arg2, s16 arg3,
+void cKF_SkeletonInfo_R_AnimationMove_base(Vec3f *arg0, Vec3s *arg1, Vec3f *arg2, s16 arg3,
                                            cKF_SkeletonInfo_R_c *skeletonInfo);
 void cKF_SkeletonInfo_R_AnimationMove_CulcTransToWorld(Vec3f *arg0, Vec3f *arg1, f32 arg2, f32 arg3, f32 arg4, s16 arg5,
                                                        Vec3f *arg6, cKF_SkeletonInfo_R_c *skeleton, s32 arg8);

@@ -537,8 +537,6 @@ void cKF_SkeletonInfo_R_morphJoint(cKF_SkeletonInfo_R_c *skeletonInfo) {
 //     return func_80051DF0_jp(&skeletonInfo->frameCtrl);
 // }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/cKF_Si3_draw_SV_R_child.s")
-
 /**
  * Draw a specified joint in a SkeletonInfo struct.
  *
@@ -702,7 +700,6 @@ void cKF_SkeletonInfo_R_init_reverse_setspeedandmorphandmode(cKF_SkeletonInfo_R_
                             arg2);
 }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/func_80053384_jp.s")
 void func_80053384_jp(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, UNK_TYPE* arg6, UNK_TYPE* arg7,
                       UNK_TYPE* arg8) {
     if (arg3 != 0) {
@@ -848,7 +845,6 @@ void cKF_SkeletonInfo_R_combine_rotation(s16 **joint, u32 *flag, cKF_SkeletonInf
     }
 }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/cKF_SkeletonInfo_R_combine_play.s")
 s32 cKF_SkeletonInfo_R_combine_play(cKF_SkeletonInfo_R_c *skeletonInfo1, cKF_SkeletonInfo_R_c *skeletonInfo2, s32 arg2,
                                     s32 arg3, s32 arg4, s32 arg5, s8 *flag) {
     Vec3s *var_v0;
@@ -938,7 +934,94 @@ s32 cKF_SkeletonInfo_R_combine_play(cKF_SkeletonInfo_R_c *skeletonInfo1, cKF_Ske
     return var_s0;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/cKF_SkeletonInfo_R_T_combine_play.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/cKF_SkeletonInfo_R_T_combine_play.s")
+void cKF_SkeletonInfo_R_T_combine_play(s32* arg0, s32* arg1, s32* arg2, cKF_SkeletonInfo_R_c* skeletonInfo1, cKF_SkeletonInfo_R_c* skeletonInfo2, cKF_SkeletonInfo_R_c* skeletonInfo3, s32 arg6, s32 arg7, s32 arg8, s32 arg9, s32 argA, s32 argB, s8* flag) {
+    s32 i;
+    u32 spB0;
+    s16* spAC;
+    cKF_SkeletonInfo_R_combine_work_c sp8C;
+    cKF_SkeletonInfo_R_combine_work_c sp6C;
+    cKF_SkeletonInfo_R_combine_work_c sp4C;
+    UNK_TYPE* sp48 = NULL;
+    UNK_TYPE* sp44 = NULL;
+    UNK_TYPE* sp40 = NULL;
+    Vec3s* var_v0;
+
+    
+    if ((skeletonInfo1 == NULL) || (skeletonInfo2 == NULL) || (skeletonInfo3 == NULL) || (arg6 < 0) || (arg6 >= 0x10) || (arg7 < 0) || (arg7 >= 0x10) || (arg8 < 0) || (arg8 >= 0x10) || (flag == NULL))
+    {
+        return;
+    }
+    
+    if (!IS_ZERO(skeletonInfo1->morphCounter)) {
+        spAC = (s16*)skeletonInfo1->morph_joint;
+    } else {
+        spAC = (s16*)skeletonInfo1->now_joint;
+    }
+    
+    if (arg9 != 0) {
+        sp48 = PHYSICAL_TO_VIRTUAL(B_801458A0_jp[arg6]);
+        B_801458A0_jp[arg6] = PHYSICAL_TO_VIRTUAL(arg9);
+        cKF_SkeletonInfo_R_combine_work_set(&sp4C, skeletonInfo1);
+    }
+    if (argA != 0) {
+        sp44 = PHYSICAL_TO_VIRTUAL(B_801458A0_jp[arg7]);
+        B_801458A0_jp[arg7] = PHYSICAL_TO_VIRTUAL(argA);
+        cKF_SkeletonInfo_R_combine_work_set(&sp6C, skeletonInfo2);
+    }
+    if (argB != 0) {
+        sp40 = PHYSICAL_TO_VIRTUAL(B_801458A0_jp[arg8]);
+        B_801458A0_jp[arg8] = PHYSICAL_TO_VIRTUAL(argB);
+        cKF_SkeletonInfo_R_combine_work_set(&sp8C, skeletonInfo3);
+    }
+    
+    spB0 = 0x20;
+    cKF_SkeletonInfo_R_combine_translation(&spAC, &spB0, &sp4C, flag);
+    cKF_SkeletonInfo_R_combine_rotation(&spAC, &spB0, &sp4C, flag);
+    
+    if (skeletonInfo1->diff_rot_tbl != NULL) {
+        if (!IS_ZERO(skeletonInfo1->morphCounter)) {
+            var_v0 = skeletonInfo1->morph_joint;
+        } else {
+            var_v0 = skeletonInfo1->now_joint;
+        }
+
+        var_v0++;
+
+        for (i = 0; i < skeletonInfo1->skeleton->joint_num; i++)
+        {
+            var_v0->x = var_v0->x + skeletonInfo1->diff_rot_tbl[i].x;
+            var_v0->y = var_v0->y + skeletonInfo1->diff_rot_tbl[i].y;
+            var_v0->z = var_v0->z + skeletonInfo1->diff_rot_tbl[i].z;
+            var_v0++;
+        }
+    }
+
+    if (IS_ZERO(skeletonInfo1->morphCounter)) {
+        *arg0 = cKF_FrameControl_play(&skeletonInfo1->frameCtrl);
+        *arg1 = cKF_FrameControl_play(&skeletonInfo2->frameCtrl);
+        *arg2 = cKF_FrameControl_play(&skeletonInfo3->frameCtrl);
+    } else if (skeletonInfo1->morphCounter > 0.0f) {
+        cKF_SkeletonInfo_R_morphJoint(skeletonInfo1);
+        skeletonInfo1->morphCounter -= 1.0f;
+        if (skeletonInfo1->morphCounter <= 0.0f) {
+            skeletonInfo1->morphCounter = 0.0f;
+        }
+        *arg0 = 0;
+        *arg1 = 0;
+        *arg2 = 0;
+    } else {
+        cKF_SkeletonInfo_R_morphJoint(skeletonInfo1);
+        skeletonInfo1->morphCounter += 1.0f;
+        if (skeletonInfo1->morphCounter >= 0.0f) {
+            skeletonInfo1->morphCounter = 0.0f;
+        }
+        *arg0 = cKF_FrameControl_play(&skeletonInfo1->frameCtrl);
+        *arg1 = cKF_FrameControl_play(&skeletonInfo2->frameCtrl);
+        *arg2 = cKF_FrameControl_play(&skeletonInfo3->frameCtrl);
+    }
+    func_80053384_jp(arg6, arg7, arg8, arg9, argA, argB, sp48, sp44, sp40);
+}
 
 void cKF_SkeletonInfo_R_Animation_Set_base_shape_trs(cKF_SkeletonInfo_R_c *skeletonInfo, f32 arg1, f32 arg2, f32 arg3,
                                                      s16 arg4, s16 arg5, s16 arg6) {
@@ -1016,13 +1099,12 @@ void cKF_SkeletonInfo_R_AnimationMove_dt(cKF_SkeletonInfo_R_c *skeletonInfo) {
 }
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/cKF_SkeletonInfo_R_AnimationMove_base.s")
-// void cKF_SkeletonInfo_R_AnimationMove_base(Vec3f *arg0, s16 *arg1, Vec3f *arg2, s16 arg3, cKF_SkeletonInfo_R_c
-// *skeletonInfo)
+// void cKF_SkeletonInfo_R_AnimationMove_base(Vec3f *arg0, Vec3s *arg1, Vec3f *arg2, s16 arg3, cKF_SkeletonInfo_R_c *skeletonInfo)
 // {
 //     // s32 spAC;
-//     f32 spA8;
-//     s32 temp_v1;
-//     f32 temp_fv1;
+//     f32 fc;
+//     s32 moveFlag = skeletonInfo->move_flag;
+//     f32 count;
 //     f32 var_ft4;
 //     // s32 pad;
 //     s32 sp8C;
@@ -1030,12 +1112,8 @@ void cKF_SkeletonInfo_R_AnimationMove_dt(cKF_SkeletonInfo_R_c *skeletonInfo) {
 //     s32 sp80;
 //     Vec3s *sp78;
 //     // s16 sp76;
-//     f32 sp70;
-//     f32 sp6C;
-//     f32 sp68;
-//     f32 sp58;
-//     f32 sp54;
-//     f32 sp50;
+
+
 //     Vec3s *sp28;
 //     // s32 sp24;
 //     // MtxF *temp_v0_3;
@@ -1044,32 +1122,31 @@ void cKF_SkeletonInfo_R_AnimationMove_dt(cKF_SkeletonInfo_R_c *skeletonInfo) {
 //     // f32 temp_fa0;
 //     // f32 temp_fa1;
 //     // f32 temp_ft0;
-//     f32 temp_fv0;
-//     f32 temp_fv0_2;
+
 //     // f32 temp_fv1_2;
-
-//     s16 temp_v0;
+    
+//     // s16 temp_v0;
 //     s16 var_a0;
-//     s16 temp5;
-//     s32 temp_a0;
+//     // s16 temp5;
+//     // s32 temp_a0;
 
-//     temp_v1 = skeletonInfo->move_flag;
-//     spA8 = skeletonInfo->correct_counter;
-//     temp_fv1 = spA8 + 1.0f;
-//     // temp_a0 = temp_v1 & 4;
-//     if (temp_fv1 > 1.0f)
+//     // moveFlag = skeletonInfo->move_flag;
+//     fc = skeletonInfo->correct_counter;
+//     count = fc + 1.0f;
+//     // temp_a0 = moveFlag & 4;
+//     if (count > 1.0f)
 //     {
-//         var_ft4 = 1.0f / temp_fv1;
+//         var_ft4 = 1.0f / count;
 //     }
 //     else
 //     {
 //         var_ft4 = 0.0f;
 //     }
-
-//     if (temp_v1 & 4)
+    
+//     if (moveFlag & 4)
 //     {
 //         f32 temp6 = skeletonInfo->d_correct_base_set_angleY;
-//         if (temp_fv1 > 1.0f)
+//         if (count > 1.0f)
 //         {
 //             temp6 *= var_ft4;
 //             skeletonInfo->d_correct_base_set_angleY -= (s32)temp6;
@@ -1079,9 +1156,9 @@ void cKF_SkeletonInfo_R_AnimationMove_dt(cKF_SkeletonInfo_R_c *skeletonInfo) {
 //             skeletonInfo->d_correct_base_set_angleY = 0;
 //         }
 //     }
-//     if (temp_fv1 > 1.0f)
+//     if (count > 1.0f)
 //     {
-//         if (temp_v1 & 1)
+//         if (moveFlag & 1)
 //         {
 //             f32 temp8;
 //             f32 temp9;
@@ -1095,7 +1172,7 @@ void cKF_SkeletonInfo_R_AnimationMove_dt(cKF_SkeletonInfo_R_c *skeletonInfo) {
 //             skeletonInfo->d_correct_base_world_pos.x -= temp8;
 //             skeletonInfo->d_correct_base_world_pos.z -= temp9;
 //         }
-//         if (temp_v1 & 2)
+//         if (moveFlag & 2)
 //         {
 //             f32 temp7;
 //             temp7 = skeletonInfo->d_correct_base_world_pos.y;
@@ -1110,32 +1187,45 @@ void cKF_SkeletonInfo_R_AnimationMove_dt(cKF_SkeletonInfo_R_c *skeletonInfo) {
 //         skeletonInfo->d_correct_base_world_pos.y = 0.0f;
 //         skeletonInfo->d_correct_base_world_pos.z = 0.0f;
 //     }
-//     if ((arg1 != NULL) && (temp_v1 & 4))
+//     if ((arg1 != NULL) && (moveFlag & 4))
 //     {
+//         u32 temp;
 //         sp8C = skeletonInfo->idle_set_angleY;
 //         sp88 = skeletonInfo->d_correct_base_set_angleY;
 //         sp80 = skeletonInfo->base_data_angle.x;
 //         sp28 = &skeletonInfo->renew_base_data_angle;
 //         Matrix_push();
-//         Matrix_rotateXYZ(skeletonInfo->now_joint[1].x, skeletonInfo->now_joint[1].y, skeletonInfo->now_joint[1].z,
-//         0); Matrix_to_rotate2_new(get_Matrix_now(), sp28, 0); Matrix_pull(); *arg1 = sp8C + sp88 + (sp28->x - sp80);
+//         Matrix_rotateXYZ(skeletonInfo->now_joint[1].x, skeletonInfo->now_joint[1].y, skeletonInfo->now_joint[1].z, 0);
+//         Matrix_to_rotate2_new(get_Matrix_now(), sp28, 0);
+//         Matrix_pull();
+//         temp = sp8C + sp88;
+//         arg1->x = temp + (sp28->x - sp80);
 //     }
 //     var_a0 = 0;
 //     if (arg0 != NULL)
 //     {
-//         // sp24 = temp_v1 & 2;
+//         // sp24 = moveFlag & 2;
 //         sp78 = skeletonInfo->now_joint;
 //         if (arg1 != NULL)
 //         {
-//             var_a0 = *arg1 - arg3;
+//             var_a0 = arg1->x - arg3;
 //         }
-//         if (temp_v1 & 1)
+//         if (moveFlag & 1)
 //         {
+
+//             f32 sp70;
+//             f32 sp6C;
+//             f32 sp58;
+//             f32 sp54;
+//             f32 sp50;
+//             f32 sp68;
+//             f32 temp_fv0;
+//             f32 temp_fv0_2;
 //             f32 temp_x;
 //             f32 temp_z;
 //             f32 temp2;
 //             f32 temp1;
-
+         
 //             sp70 = skeletonInfo->base_shape_trs.x;
 //             sp6C = skeletonInfo->base_shape_trs.z;
 //             // sp76 = var_a0;
@@ -1146,31 +1236,35 @@ void cKF_SkeletonInfo_R_AnimationMove_dt(cKF_SkeletonInfo_R_c *skeletonInfo) {
 //             sp58 = arg2->x * (sp78->x - temp1);
 //             temp1 = (-sp70 * sp68) + (sp6C * temp_fv0);
 //             sp54 = arg2->z * (sp78->z - temp1);
-
+            
 //             sp50 = sin_s(arg3);
 //             temp_fv0_2 = cos_s(arg3);
-
-//             // arg0->x = skeletonInfo->idle_world_pos.x + skeletonInfo->d_correct_base_world_pos.x + ((sp58 *
-//             temp_fv0_2) + (sp54 * sp50));
-//             // arg0->z = skeletonInfo->idle_world_pos.z + skeletonInfo->d_correct_base_world_pos.z + ((-sp58 * sp50)
-//             + (sp54 * temp_fv0_2)); temp_x = skeletonInfo->d_correct_base_world_pos.x; temp_z =
-//             skeletonInfo->d_correct_base_world_pos.z; temp2 = (sp58 * temp_fv0_2) + (sp54 * sp50); arg0->x = temp2 +
-//             (skeletonInfo->idle_world_pos.x + temp_x); temp2 = (-sp58 * sp50) + (sp54 * temp_fv0_2); arg0->z = temp2
-//             + (skeletonInfo->idle_world_pos.z + temp_z);
+            
+//             // arg0->x = skeletonInfo->idle_world_pos.x + skeletonInfo->d_correct_base_world_pos.x + ((sp58 * temp_fv0_2) + (sp54 * sp50));
+//             // arg0->z = skeletonInfo->idle_world_pos.z + skeletonInfo->d_correct_base_world_pos.z + ((-sp58 * sp50) + (sp54 * temp_fv0_2));
+//             temp_x = skeletonInfo->d_correct_base_world_pos.x;
+//             temp_z = skeletonInfo->d_correct_base_world_pos.z;
+//             temp2 = (sp58 * temp_fv0_2) + (sp54 * sp50);
+//             arg0->x = temp2 + (skeletonInfo->idle_world_pos.x + temp_x);
+//             temp2 = (-sp58 * sp50) + (sp54 * temp_fv0_2);
+//             arg0->z = temp2 + (skeletonInfo->idle_world_pos.z + temp_z);
 //         }
-//         if (temp_v1 & 2)
+//         if (moveFlag & 2)
 //         {
+//             f32 new_var;
 //             f32 temp3 = sp78->y - skeletonInfo->base_shape_trs.y;
-//             arg0->y = skeletonInfo->idle_world_pos.y + skeletonInfo->d_correct_base_world_pos.y + (arg2->y * temp3);
+//             // arg0->y = skeletonInfo->idle_world_pos.y + skeletonInfo->d_correct_base_world_pos.y + (arg2->y * temp3);
+//             new_var = arg2->y;
+//             arg0->y = (skeletonInfo->idle_world_pos.y + skeletonInfo->d_correct_base_world_pos.y) + (new_var * temp3);
+//             // arg0->y = arg2->y * (sp78->x - skeletonInfo->base_shape_trs.y) + (skeletonInfo->idle_world_pos.y + skeletonInfo->d_correct_base_world_pos.y);
 //         }
 //     }
-//     // temp_ft0 = spA8 - 1.0f;
-//     spA8 -= 1.0f;
-//     if (spA8 < 0.0f)
+//     fc -= 1.0f;
+//     if (fc < 0.0f)
 //     {
-//         spA8 = 0.0f;
+//         fc = 0.0f;
 //     }
-//     skeletonInfo->correct_counter = spA8;
+//     skeletonInfo->correct_counter = fc;
 // }
 
 void cKF_SkeletonInfo_R_AnimationMove_CulcTransToWorld(Vec3f *arg0, Vec3f *arg1, f32 arg2, f32 arg3, f32 arg4, s16 arg5,
