@@ -428,114 +428,98 @@ void cKF_SkeletonInfo_R_morphJoint(cKF_SkeletonInfo_R_c *skeletonInfo) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/cKF_SkeletonInfo_R_play.s")
-// s32 cKF_SkeletonInfo_R_play(cKF_SkeletonInfo_R_c* skeletonInfo)
-// {
-//     s32 threeIndex;
-//     u32 bitflag_index;
-//     s32 jointIndex;
-//     s32 kn_index = 0;
-//     u8* ckcb_table;
-//     s32 const_value_index = 0;
-//     s32 key_calc_index = 0;
-//     s16* joint1;
-//     Vec3s* joint2;
-//     s16* const_value_table;
-//     Vec3s* data_source;
-//     s16* key_num;
-
-//     if (!IS_ZERO(skeletonInfo->morphCounter))
-//     {
-//         joint1 = &skeletonInfo->morph_joint->x;
-//     }
-//     else
-//     {
-//         joint1 = &skeletonInfo->now_joint->x;
-//     }
-
-//     const_value_table = func_8009ADA8_jp(skeletonInfo->animation->const_value_tbl);
-//     key_num = func_8009ADA8_jp(skeletonInfo->animation->key_num);
-//     data_source = func_8009ADA8_jp(skeletonInfo->animation->data_source);
-//     ckcb_table = func_8009ADA8_jp(skeletonInfo->animation->ConstKeyCheckBitTbl);
-
-//     // bitflag_index = 0x20;
-//     for (bitflag_index = 0x20, threeIndex = 0; threeIndex < 3; threeIndex++)
-//     {
-//         if (*ckcb_table & bitflag_index)
-//         {
-//             *joint1 = func_80051F3C_jp(key_calc_index, key_num[kn_index], data_source,
-//             skeletonInfo->frameCtrl.current); key_calc_index += key_num[kn_index]; kn_index += 1;
-//         }
-//         else
-//         {
-//             *joint1 = const_value_table[const_value_index];
-//             const_value_index += 1;
-//         }
-//         bitflag_index >>= 1;
-//         joint1++;
-//     }
-//     for (jointIndex = 0; jointIndex < skeletonInfo->skeleton->joint_num; jointIndex++)
-//     {
-//         // bitflag_index = 0x4;
-//         for (bitflag_index = 0x4, threeIndex = 0; threeIndex < 3; threeIndex++)
-//         {
-
-//             if (ckcb_table[jointIndex] & bitflag_index)
-//             {
-//                 *joint1 = func_80051F3C_jp(key_calc_index, key_num[kn_index], data_source,
-//                 skeletonInfo->frameCtrl.current); key_calc_index += key_num[kn_index]; kn_index += 1;
-//             }
-//             else
-//             {
-//                 *joint1 = const_value_table[const_value_index];
-//                 const_value_index += 1;
-//             }
-//             bitflag_index >>= 1;
-//             *joint1 = FMOD(*joint1 * 0.1f, 360.0f) * 182.04445f;
-//             joint1++;
-//         }
-//     }
-//     if (skeletonInfo->diff_rot_tbl != NULL)
-//     {
-//         if (!IS_ZERO(skeletonInfo->morphCounter))
-//         {
-//             joint2 = skeletonInfo->morph_joint;
-//         }
-//         else
-//         {
-//             joint2 = skeletonInfo->now_joint;
-//         }
-//         joint2++;
-//         for (jointIndex = 0; jointIndex < skeletonInfo->skeleton->joint_num; jointIndex++)
-//         {
-//             joint2->x = joint2->x + skeletonInfo->diff_rot_tbl[jointIndex].x;
-//             joint2->y = joint2->y + skeletonInfo->diff_rot_tbl[jointIndex].y;
-//             joint2->z = joint2->z + skeletonInfo->diff_rot_tbl[jointIndex].z;
-//             joint2++;
-//         }
-//     }
-//     if (IS_ZERO(skeletonInfo->morphCounter))
-//     {
-//         return func_80051DF0_jp(&skeletonInfo->frameCtrl);
-//     }
-//     if (skeletonInfo->morphCounter > 0.0f)
-//     {
-//         func_8005264C_jp(skeletonInfo);
-//         skeletonInfo->morphCounter -= 1.0f;
-//         if (skeletonInfo->morphCounter <= 0.0f)
-//         {
-//             skeletonInfo->morphCounter = 0.0f;
-//         }
-//         return 0;
-//     }
-//     func_8005264C_jp(skeletonInfo);
-//     skeletonInfo->morphCounter += 1.0f;
-//     if (skeletonInfo->morphCounter >= 0.0f)
-//     {
-//         skeletonInfo->morphCounter = 0.0f;
-//     }
-//     return func_80051DF0_jp(&skeletonInfo->frameCtrl);
-// }
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/cKF_SkeletonInfo_R_play.s")
+s32 cKF_SkeletonInfo_R_play(cKF_SkeletonInfo_R_c* skeletonInfo)
+{
+    s32 jointIndex;
+    s32 threeIndex;
+    u8* ckcb_table;
+    s32 kn_index = 0;
+    s32 const_value_index = 0;
+    s32 key_calc_index = 0;
+    s16* joint1 = (!IS_ZERO(skeletonInfo->morphCounter)) ? skeletonInfo->morph_joint : skeletonInfo->now_joint;
+    s16* const_value_table;
+    Keyframe* data_source;
+    s16* key_num;
+    u32 bitflag_index;
+    Vec3s* joint2;
+    
+    const_value_table = Lib_SegmentedToVirtual(skeletonInfo->animation->const_value_tbl);
+    key_num = Lib_SegmentedToVirtual(skeletonInfo->animation->key_num);
+    data_source = Lib_SegmentedToVirtual(skeletonInfo->animation->data_source);
+    ckcb_table = Lib_SegmentedToVirtual(skeletonInfo->animation->ConstKeyCheckBitTbl);
+    
+    for (bitflag_index = 0x20, threeIndex = 0; threeIndex < 3; threeIndex++)
+    {
+        if (ckcb_table[0] & bitflag_index)
+        {
+            *joint1 = cKF_KeyCalc(key_calc_index, key_num[kn_index], data_source, skeletonInfo->frameCtrl.current);
+            key_calc_index += key_num[kn_index];
+            kn_index++;
+        }
+        else
+        {
+            *joint1 = const_value_table[const_value_index];
+            const_value_index += 1;
+        }
+        bitflag_index >>= 1;
+        joint1++;
+    }
+    for (jointIndex = 0; jointIndex < skeletonInfo->skeleton->joint_num; jointIndex++)
+    {
+        for (bitflag_index = 0x4, threeIndex = 0; threeIndex < 3; threeIndex++)
+        {
+            
+            if (ckcb_table[jointIndex] & bitflag_index)
+            {
+                *joint1 = cKF_KeyCalc(key_calc_index, key_num[kn_index], data_source, skeletonInfo->frameCtrl.current);
+                key_calc_index += key_num[kn_index];
+                kn_index += 1;
+            }
+            else
+            {
+                *joint1 = const_value_table[const_value_index];
+                const_value_index += 1;
+            }
+            bitflag_index >>= 1;
+            *joint1 = FMOD(*joint1 * 0.1f, 360.0f) * 182.04445f;
+            joint1++;
+        }
+    }
+    if (skeletonInfo->diff_rot_tbl != NULL)
+    {
+        joint2 = (!IS_ZERO(skeletonInfo->morphCounter)) ? skeletonInfo->morph_joint : skeletonInfo->now_joint;
+        joint2++;
+        for (jointIndex = 0; jointIndex < skeletonInfo->skeleton->joint_num; jointIndex++)
+        {
+            joint2->x = joint2->x + skeletonInfo->diff_rot_tbl[jointIndex].x;
+            joint2->y = joint2->y + skeletonInfo->diff_rot_tbl[jointIndex].y;
+            joint2->z = joint2->z + skeletonInfo->diff_rot_tbl[jointIndex].z;
+            joint2++;
+        }
+    }
+    if (IS_ZERO(skeletonInfo->morphCounter))
+    {
+        return cKF_FrameControl_play(&skeletonInfo->frameCtrl);
+    }
+    if (skeletonInfo->morphCounter > 0.0f)
+    {
+        cKF_SkeletonInfo_R_morphJoint(skeletonInfo);
+        skeletonInfo->morphCounter -= 1.0f;
+        if (skeletonInfo->morphCounter <= 0.0f)
+        {
+            skeletonInfo->morphCounter = 0.0f;
+        }
+        return 0;
+    }
+    cKF_SkeletonInfo_R_morphJoint(skeletonInfo);
+    skeletonInfo->morphCounter += 1.0f;
+    if (skeletonInfo->morphCounter >= 0.0f)
+    {
+        skeletonInfo->morphCounter = 0.0f;
+    }
+    return cKF_FrameControl_play(&skeletonInfo->frameCtrl);
+}
 
 /**
  * Draw a specified joint in a SkeletonInfo struct.
