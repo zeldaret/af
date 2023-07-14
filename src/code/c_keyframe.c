@@ -1082,174 +1082,120 @@ void cKF_SkeletonInfo_R_AnimationMove_dt(cKF_SkeletonInfo_R_c *skeletonInfo) {
     skeletonInfo->move_flag = 0;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/cKF_SkeletonInfo_R_AnimationMove_base.s")
-// void cKF_SkeletonInfo_R_AnimationMove_base(Vec3f *arg0, Vec3s *arg1, Vec3f *arg2, s16 arg3, cKF_SkeletonInfo_R_c *skeletonInfo)
-// {
-//     // s32 spAC;
-//     f32 fc;
-//     s32 moveFlag = skeletonInfo->move_flag;
-//     f32 count;
-//     f32 var_ft4;
-//     // s32 pad;
-//     s32 sp8C;
-//     s32 sp88;
-//     s32 sp80;
-//     Vec3s *sp78;
-//     // s16 sp76;
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/cKF_SkeletonInfo_R_AnimationMove_base.s")
+void cKF_SkeletonInfo_R_AnimationMove_base(Vec3f *arg0, Vec3s *arg1, Vec3f *arg2, s16 arg3, cKF_SkeletonInfo_R_c *skeletonInfo) {
+    u32 moveFlag = skeletonInfo->move_flag;
+    f32 correct_counter = skeletonInfo->correct_counter;
+    f32 count;
+    f32 var_ft4;
 
-
-//     Vec3s *sp28;
-//     // s32 sp24;
-//     // MtxF *temp_v0_3;
-//     // Vec3s *temp_a1;
-//     // Vec3s *temp_v0_2;
-//     // f32 temp_fa0;
-//     // f32 temp_fa1;
-//     // f32 temp_ft0;
-
-//     // f32 temp_fv1_2;
+    count = correct_counter + 1.0f;
+    if (count > 1.0f) {
+        var_ft4 = 1.0f / count;
+    } else {
+        var_ft4 = 0.0f;
+    }
     
-//     // s16 temp_v0;
-//     s16 var_a0;
-//     // s16 temp5;
-//     // s32 temp_a0;
+    if (moveFlag & 4) {
+        f32 temp6 = skeletonInfo->d_correct_base_set_angleY;
+        
+        if (count > 1.0f) {
+            temp6 *= var_ft4;
+            skeletonInfo->d_correct_base_set_angleY -= (s16)temp6;
+        } else {
+            skeletonInfo->d_correct_base_set_angleY = 0;
+        }
+    }
+    if (count > 1.0f) {
+        if (moveFlag & 1) {
+            f32 posXTemp;
+            f32 posZTemp;
 
-//     // moveFlag = skeletonInfo->move_flag;
-//     fc = skeletonInfo->correct_counter;
-//     count = fc + 1.0f;
-//     // temp_a0 = moveFlag & 4;
-//     if (count > 1.0f)
-//     {
-//         var_ft4 = 1.0f / count;
-//     }
-//     else
-//     {
-//         var_ft4 = 0.0f;
-//     }
+            posXTemp = skeletonInfo->d_correct_base_world_pos.x;
+            posXTemp *= var_ft4;
+
+            posZTemp = skeletonInfo->d_correct_base_world_pos.z;
+            posZTemp *= var_ft4;
+
+            skeletonInfo->d_correct_base_world_pos.x -= posXTemp;
+            skeletonInfo->d_correct_base_world_pos.z -= posZTemp;
+        }
+        if (moveFlag & 2) {
+            f32 posYTemp;
+            
+            posYTemp = skeletonInfo->d_correct_base_world_pos.y;
+            posYTemp *= var_ft4;
+
+            skeletonInfo->d_correct_base_world_pos.y -= posYTemp;
+        }
+    } else {
+        skeletonInfo->d_correct_base_world_pos.x = 0.0f;
+        skeletonInfo->d_correct_base_world_pos.y = 0.0f;
+        skeletonInfo->d_correct_base_world_pos.z = 0.0f;
+    }
     
-//     if (moveFlag & 4)
-//     {
-//         f32 temp6 = skeletonInfo->d_correct_base_set_angleY;
-//         if (count > 1.0f)
-//         {
-//             temp6 *= var_ft4;
-//             skeletonInfo->d_correct_base_set_angleY -= (s32)temp6;
-//         }
-//         else
-//         {
-//             skeletonInfo->d_correct_base_set_angleY = 0;
-//         }
-//     }
-//     if (count > 1.0f)
-//     {
-//         if (moveFlag & 1)
-//         {
-//             f32 temp8;
-//             f32 temp9;
+    if ((arg1 != NULL) && (moveFlag & 4)) {
+        s32 sp8C = skeletonInfo->idle_set_angleY;
+        s32 sp88 = skeletonInfo->d_correct_base_set_angleY;
+        Vec3s* sp28 = &skeletonInfo->renew_base_data_angle;
+        s32 sp80 = skeletonInfo->base_data_angle.x;
+        s32 temp;
+        
+        Matrix_push();
+        Matrix_rotateXYZ(skeletonInfo->now_joint[1].x, skeletonInfo->now_joint[1].y, skeletonInfo->now_joint[1].z, 0);
+        Matrix_to_rotate2_new(get_Matrix_now(), sp28, 0);
+        Matrix_pull();
+        temp = sp28->x - sp80;
+        arg1->x = (sp8C + sp88) + temp;
+    }
+    
+    if (arg0 != NULL) {
+        Vec3s *sp78 = skeletonInfo->now_joint;
+        s16 var_a0 = 0;
 
-//             temp8 = skeletonInfo->d_correct_base_world_pos.x;
-//             temp8 *= var_ft4;
-
-//             temp9 = skeletonInfo->d_correct_base_world_pos.z;
-//             temp9 *= var_ft4;
-
-//             skeletonInfo->d_correct_base_world_pos.x -= temp8;
-//             skeletonInfo->d_correct_base_world_pos.z -= temp9;
-//         }
-//         if (moveFlag & 2)
-//         {
-//             f32 temp7;
-//             temp7 = skeletonInfo->d_correct_base_world_pos.y;
-//             temp7 *= var_ft4;
-
-//             skeletonInfo->d_correct_base_world_pos.y -= temp7;
-//         }
-//     }
-//     else
-//     {
-//         skeletonInfo->d_correct_base_world_pos.x = 0.0f;
-//         skeletonInfo->d_correct_base_world_pos.y = 0.0f;
-//         skeletonInfo->d_correct_base_world_pos.z = 0.0f;
-//     }
-//     if ((arg1 != NULL) && (moveFlag & 4))
-//     {
-//         u32 temp;
-//         sp8C = skeletonInfo->idle_set_angleY;
-//         sp88 = skeletonInfo->d_correct_base_set_angleY;
-//         sp80 = skeletonInfo->base_data_angle.x;
-//         sp28 = &skeletonInfo->renew_base_data_angle;
-//         Matrix_push();
-//         Matrix_rotateXYZ(skeletonInfo->now_joint[1].x, skeletonInfo->now_joint[1].y, skeletonInfo->now_joint[1].z, 0);
-//         Matrix_to_rotate2_new(get_Matrix_now(), sp28, 0);
-//         Matrix_pull();
-//         temp = sp8C + sp88;
-//         arg1->x = temp + (sp28->x - sp80);
-//     }
-//     var_a0 = 0;
-//     if (arg0 != NULL)
-//     {
-//         // sp24 = moveFlag & 2;
-//         sp78 = skeletonInfo->now_joint;
-//         if (arg1 != NULL)
-//         {
-//             var_a0 = arg1->x - arg3;
-//         }
-//         if (moveFlag & 1)
-//         {
-
-//             f32 sp70;
-//             f32 sp6C;
-//             f32 sp58;
-//             f32 sp54;
-//             f32 sp50;
-//             f32 sp68;
-//             f32 temp_fv0;
-//             f32 temp_fv0_2;
-//             f32 temp_x;
-//             f32 temp_z;
-//             f32 temp2;
-//             f32 temp1;
-         
-//             sp70 = skeletonInfo->base_shape_trs.x;
-//             sp6C = skeletonInfo->base_shape_trs.z;
-//             // sp76 = var_a0;
-//             sp68 = sin_s(var_a0);
-//             temp_fv0 = cos_s(var_a0);
-
-//             temp1 = (sp70 * temp_fv0) + (sp6C * sp68);
-//             sp58 = arg2->x * (sp78->x - temp1);
-//             temp1 = (-sp70 * sp68) + (sp6C * temp_fv0);
-//             sp54 = arg2->z * (sp78->z - temp1);
+        if (arg1 != NULL) {
+            var_a0 = arg1->x - arg3;
+        }
+        
+        if (moveFlag & 1) {
+            f32 baseTranslationXTemp = skeletonInfo->base_shape_trs.x;
+            f32 baseTranslationZTemp = skeletonInfo->base_shape_trs.z;
+            f32 sin1 = sin_s(var_a0);
+            f32 cos1 = cos_s(var_a0);
+            s32 pad1;
+            s32 pad2;
+            f32 move_x = arg2->x * (sp78->x - ((baseTranslationXTemp * cos1) + (baseTranslationZTemp * sin1)));
+            f32 move_z = arg2->z * (sp78->z - ((-baseTranslationXTemp * sin1) + (baseTranslationZTemp * cos1)));
+            f32 sin2 = sin_s(arg3);
+            f32 cos2 = cos_s(arg3);
+            f32 correctBaseWorldXTemp = skeletonInfo->d_correct_base_world_pos.x;
+            f32 correctBaseWorldZTemp = skeletonInfo->d_correct_base_world_pos.z;
+            // This is almost assuredly "not real", but helps to fill up space
+            // In actuality, some of this stack space is probably compiler-managed
+            s32 pad3;
+            s32 pad4;
             
-//             sp50 = sin_s(arg3);
-//             temp_fv0_2 = cos_s(arg3);
-            
-//             // arg0->x = skeletonInfo->idle_world_pos.x + skeletonInfo->d_correct_base_world_pos.x + ((sp58 * temp_fv0_2) + (sp54 * sp50));
-//             // arg0->z = skeletonInfo->idle_world_pos.z + skeletonInfo->d_correct_base_world_pos.z + ((-sp58 * sp50) + (sp54 * temp_fv0_2));
-//             temp_x = skeletonInfo->d_correct_base_world_pos.x;
-//             temp_z = skeletonInfo->d_correct_base_world_pos.z;
-//             temp2 = (sp58 * temp_fv0_2) + (sp54 * sp50);
-//             arg0->x = temp2 + (skeletonInfo->idle_world_pos.x + temp_x);
-//             temp2 = (-sp58 * sp50) + (sp54 * temp_fv0_2);
-//             arg0->z = temp2 + (skeletonInfo->idle_world_pos.z + temp_z);
-//         }
-//         if (moveFlag & 2)
-//         {
-//             f32 new_var;
-//             f32 temp3 = sp78->y - skeletonInfo->base_shape_trs.y;
-//             // arg0->y = skeletonInfo->idle_world_pos.y + skeletonInfo->d_correct_base_world_pos.y + (arg2->y * temp3);
-//             new_var = arg2->y;
-//             arg0->y = (skeletonInfo->idle_world_pos.y + skeletonInfo->d_correct_base_world_pos.y) + (new_var * temp3);
-//             // arg0->y = arg2->y * (sp78->x - skeletonInfo->base_shape_trs.y) + (skeletonInfo->idle_world_pos.y + skeletonInfo->d_correct_base_world_pos.y);
-//         }
-//     }
-//     fc -= 1.0f;
-//     if (fc < 0.0f)
-//     {
-//         fc = 0.0f;
-//     }
-//     skeletonInfo->correct_counter = fc;
-// }
+            arg0->x = (skeletonInfo->idle_world_pos.x + correctBaseWorldXTemp) + ((move_x * cos2) + (move_z * sin2));
+            arg0->z = (skeletonInfo->idle_world_pos.z + correctBaseWorldZTemp) + ((-move_x * sin2) + (move_z * cos2));
+        }
+
+        if (moveFlag & 2) {
+            f32 yTemp = skeletonInfo->base_shape_trs.y;
+            f32 temp3 = (arg2->y * (sp78->y - yTemp));
+            f32 new_var = skeletonInfo->d_correct_base_world_pos.y;
+
+            arg0->y = (skeletonInfo->idle_world_pos.y + new_var) + temp3;
+        }
+    }
+    correct_counter -= 1.0f;
+    
+    if (correct_counter < 0.0f) {
+        correct_counter = 0.0f;
+    }
+    
+    skeletonInfo->correct_counter = correct_counter;
+}
+
 
 void cKF_SkeletonInfo_R_AnimationMove_CulcTransToWorld(Vec3f *arg0, Vec3f *arg1, f32 arg2, f32 arg3, f32 arg4, s16 arg5,
                                                        Vec3f *arg6, cKF_SkeletonInfo_R_c *skeleton, s32 arg8) {
