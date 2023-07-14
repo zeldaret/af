@@ -18,7 +18,7 @@
 
 static u32 RCPpc;
 static u32 oldIMEMvalue;
-static u32 DMEMbuffer[4] ALIGNED(8);
+static u32 DMEMbuffer[4];
 
 typedef union {
     u32 everything;
@@ -190,6 +190,7 @@ int __rmonGetFRegisters(KKHeader* req) {
 
     __rmonSendReply(&reply.header, sizeof(reply), KK_TYPE_REPLY);
     return TV_ERROR_NO_ERROR;
+
 }
 
 int __rmonSetFRegisters(KKHeader* req) {
@@ -212,8 +213,7 @@ int __rmonSetFRegisters(KKHeader* req) {
         return TV_ERROR_INVALID_ID;
     }
 
-    __rmonCopyWords((u32*)&tptr->context.fp0, (u32*)request->registers.fpregs.regs,
-                    ARRLEN(request->registers.fpregs.regs));
+    __rmonCopyWords((u32*)&tptr->context.fp0, (u32*)request->registers.fpregs.regs, ARRLEN(request->registers.fpregs.regs));
     tptr->context.fpcsr = request->registers.fpcsr;
 
     reply.object = request->tid;
@@ -237,6 +237,7 @@ static u32 rmonGetRcpRegister(int regNumber) {
     CleanupFromRCPop(FALSE);
 
     return contents;
+
 }
 
 int __rmonGetSRegs(KKHeader* req) {

@@ -7,7 +7,7 @@
 #define READ36FORMAT(p) ((__OSVoiceRead36Format*)(ptr))
 
 s32 __osVoiceContRead36(OSMesgQueue* mq, s32 channel, u16 address, u8* buffer) {
-    s32 ret = 0;
+    s32 ret;
     u8 status;
     s32 i;
     u8* ptr;
@@ -37,28 +37,27 @@ s32 __osVoiceContRead36(OSMesgQueue* mq, s32 channel, u16 address, u8* buffer) {
 
             ptr[sizeof(__OSVoiceRead36Format)] = CONT_CMD_END;
         } else {
-            ptr += channel;
+            ptr = (u8*)&__osPfsPifRam + channel;
         }
 
         READ36FORMAT(ptr)->addrh = address >> 3;
-        READ36FORMAT(ptr)->addrl = (address << 5) | __osContAddressCrc(address);
+        READ36FORMAT(ptr)->addrl = __osContAddressCrc(address) | (address << 5);
 
-        ret = __osSiRawStartDma(OS_WRITE, &__osPfsPifRam);
+        __osSiRawStartDma(OS_WRITE, &__osPfsPifRam);
         osRecvMesg(mq, NULL, OS_MESG_BLOCK);
-        ret = __osSiRawStartDma(OS_READ, &__osPfsPifRam);
+        __osSiRawStartDma(OS_READ, &__osPfsPifRam);
         osRecvMesg(mq, NULL, OS_MESG_BLOCK);
 
         ret = CHNL_ERR(*READ36FORMAT(ptr));
 
         if (ret == 0) {
-            if (__osVoiceContDataCrc(&READ36FORMAT(ptr)->data, ARRLEN(READ36FORMAT(ptr)->data)) !=
-                READ36FORMAT(ptr)->datacrc) {
+            if (__osVoiceContDataCrc(&READ36FORMAT(ptr)->data, ARRLEN(READ36FORMAT(ptr)->data)) != READ36FORMAT(ptr)->datacrc) {
                 ret = __osVoiceGetStatus(mq, channel, &status);
                 if (ret != 0) {
                     break;
-                } else {
-                    ret = CONT_ERR_CONTRFAIL;
                 }
+
+                ret = CONT_ERR_CONTRFAIL;
             } else {
                 bcopy(&READ36FORMAT(ptr)->data, buffer, ARRLEN(READ36FORMAT(ptr)->data));
             }

@@ -9,10 +9,9 @@ s32 osVoiceStopReadData(OSVoiceHandle* hd) {
     u8 stat;
     u8 temp[4];
 
-    ret = __osVoiceGetStatus(hd->__mq, hd->__channel, &stat);
-    if (ret != 0) {
-        return ret;
-    } else if (stat & 2) {
+    ERRCK(__osVoiceGetStatus(hd->__mq, hd->__channel, &stat));
+
+    if (stat & 2) {
         return CONT_ERR_VOICE_NO_RESPONSE;
     }
 
@@ -39,9 +38,6 @@ s32 osVoiceStopReadData(OSVoiceHandle* hd) {
             }
             i++;
         } while ((ret == CONT_ERR_VOICE_NO_RESPONSE) && (i < 20));
-    }
-    if (i >= 20) {
-        ret == CONT_ERR_VOICE_NO_RESPONSE;
     }
 
     return ret;

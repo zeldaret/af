@@ -5,18 +5,17 @@ s32 osFlashCheckEraseEnd(void) {
 
     osFlashReadStatus(&status);
 
-    if (status & FLASH_STATUS_ERASE_BUSY) {
-        return FLASH_STATUS_ERASE_BUSY;
-    } else {
+    if (!(status & FLASH_STATUS_ERASE_BUSY)) {
         // not busy, read and clear status
         osFlashReadStatus(&status);
-    }
-    osFlashClearStatus();
+        osFlashClearStatus();
 
-    // check for success
-    if (((status & 0xFF) == 8) || ((status & 0xFF) == 0x48) || ((status & 8) == 8)) {
-        return FLASH_STATUS_ERASE_OK;
-    } else {
-        return FLASH_STATUS_ERASE_ERROR;
+        // check for success
+        if (((status & 0xFF) == 8) || ((status & 0xFF) == 0x48) || ((status & 8) == 8)) {
+            return FLASH_STATUS_ERASE_OK;
+        } else {
+            return FLASH_STATUS_ERASE_ERROR;
+        }
     }
+    return FLASH_STATUS_ERASE_BUSY;
 }

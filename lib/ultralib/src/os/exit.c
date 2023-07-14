@@ -3,7 +3,6 @@
 void osExit() {
     __osGIOInterrupt(16);
 
-    for (;;) {
-        ;
-    }
+    for (;;);
 }
+

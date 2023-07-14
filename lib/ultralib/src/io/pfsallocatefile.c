@@ -1,10 +1,9 @@
 #include "PR/os_internal.h"
 #include "controller.h"
 
-#define ROUND_UP_DIVIDE(numerator, denominator) (((numerator) + (denominator)-1) / (denominator))
+#define ROUND_UP_DIVIDE(numerator, denominator) (((numerator) + (denominator) - 1) / (denominator))
 
-s32 osPfsAllocateFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name, u8* ext_name, int file_size_in_bytes,
-                      s32* file_no) {
+s32 osPfsAllocateFile(OSPfs *pfs, u16 company_code, u32 game_code, u8 *game_name, u8 *ext_name, int file_size_in_bytes, s32 *file_no) {
     int start_page;
     int decleared;
     int last_page;
@@ -26,9 +25,12 @@ s32 osPfsAllocateFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name
 
     file_size_in_pages = ROUND_UP_DIVIDE(file_size_in_bytes, BLOCKSIZE * PFS_ONE_PAGE);
 
-    if (((ret = osPfsFindFile(pfs, company_code, game_code, game_name, ext_name, file_no)) != 0) &&
-        ret != PFS_ERR_INVALID) {
-        return ret;
+    ret = osPfsFindFile(pfs, company_code, game_code, game_name, ext_name, file_no);
+    
+    if (ret != 0) {
+        if (ret != PFS_ERR_INVALID) {
+            return ret;
+        }
     }
 
     if (*file_no != -1) {
@@ -36,7 +38,7 @@ s32 osPfsAllocateFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name
     }
 
     ret = osPfsFreeBlocks(pfs, &bytes);
-
+    
     if (file_size_in_bytes > bytes) {
         return PFS_DATA_FULL;
     }
@@ -45,10 +47,13 @@ s32 osPfsAllocateFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name
         return PFS_ERR_INVALID;
     }
 
-    if (((ret = osPfsFindFile(pfs, 0, 0, NULL, NULL, file_no)) != 0) && ret != PFS_ERR_INVALID) {
-        return ret;
+    ret = osPfsFindFile(pfs, 0, 0, NULL, NULL, file_no);
+    if (ret != 0) {
+        if (ret != PFS_ERR_INVALID) {
+            return ret;
+        }
     }
-
+    
     if (*file_no == -1) {
         return PFS_DIR_FULL;
     }
@@ -92,16 +97,16 @@ s32 osPfsAllocateFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name
 
     bcopy(game_name, dir.game_name, PFS_FILE_NAME_LEN);
     bcopy(ext_name, dir.ext_name, PFS_FILE_EXT_LEN);
-
-    ret = __osContRamWrite(pfs->queue, pfs->channel, pfs->dir_table + *file_no, (u8*)&dir, FALSE);
-    return ret;
+    
+    return __osContRamWrite(pfs->queue, pfs->channel, pfs->dir_table + *file_no, (u8*)&dir, FALSE);
 }
 
-s32 __osPfsDeclearPage(OSPfs* pfs, __OSInode* inode, int file_size_in_pages, int* first_page, u8 bank, int* decleared,
-                       int* last_page) {
+s32 __osPfsDeclearPage(OSPfs *pfs, __OSInode *inode, int file_size_in_pages, int *first_page, u8 bank, int *decleared, int *last_page)
+{
     int j;
     int spage;
     int old_page;
+    int i;
     s32 ret = 0;
     int offset = bank > 0 ? 1 : pfs->inode_start_page;
 
@@ -118,9 +123,8 @@ s32 __osPfsDeclearPage(OSPfs* pfs, __OSInode* inode, int file_size_in_pages, int
 
     spage = j;
     *decleared = 1;
-    old_page = j;
-    j++;
-
+    old_page = j++;
+    
     while (file_size_in_pages > *decleared && j < ARRLEN(inode->inode_page)) {
         if (inode->inode_page[j].ipage == 3) {
             inode->inode_page[old_page].inode_t.bank = bank;
@@ -139,37 +143,6 @@ s32 __osPfsDeclearPage(OSPfs* pfs, __OSInode* inode, int file_size_in_pages, int
         inode->inode_page[old_page].ipage = 1;
         *last_page = 0;
     }
-
+    
     return ret;
 }
-
-#ifdef _DEBUG
-s32 __osDumpInode(OSPfs* pfs) {
-    int j;
-    __OSInode inode;
-    s32 ret = 0;
-    __OSDir dir;
-    u8 bank;
-    u8 startbank = PFS_ID_BANK_256K;
-
-    rmonPrintf("INODE:\n");
-
-    for (bank = startbank; bank < pfs->banks; bank++) {
-        rmonPrintf("\nBank %d:\n", bank);
-        ret = __osPfsRWInode(pfs, &inode, PFS_READ, bank);
-        for (j = 0; j < PFS_INODE_SIZE_PER_PAGE; j++) {
-            rmonPrintf("%x ", inode.inode_page[j].ipage);
-        }
-    }
-
-    rmonPrintf("dir_size %d %d\n", pfs->dir_size, pfs->inode_start_page);
-
-    for (j = 0; j < pfs->dir_size; j++) {
-        __osContRamRead(pfs->queue, pfs->channel, (u16)(pfs->dir_table + (int)j), (u8*)&dir);
-        rmonPrintf("file %d game_code %d page %x c_code %d sum %d\n", j, dir.game_code, dir.start_page.ipage,
-                   dir.company_code, dir.data_sum);
-    }
-    rmonPrintf("End of Dump\n");
-    return ret;
-}
-#endif

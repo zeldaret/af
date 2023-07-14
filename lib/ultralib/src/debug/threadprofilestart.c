@@ -2,8 +2,7 @@
 
 void osThreadProfileStart(void) {
     register u32 saveMask;
-
-#ifndef NDEBUG
+    
     if (!__osThprofFlag) {
         __osError(136, 0);
         return;
@@ -12,7 +11,6 @@ void osThreadProfileStart(void) {
         __osError(137, 0);
         return;
     }
-#endif
 
     saveMask = __osDisableInt();
 

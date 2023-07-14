@@ -1,6 +1,8 @@
 /*====================================================================
  * seqpdelete.c
  *
+ * Synopsis:
+ *
  * Copyright 1995, Silicon Graphics, Inc.
  * All Rights Reserved.
  *
@@ -20,6 +22,7 @@
 
 #include <libaudio.h>
 #include <assert.h>
+
 // TODO: this comes from a header
 #ident "$Revision: 1.17 $"
 

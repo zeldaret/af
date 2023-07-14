@@ -114,11 +114,9 @@ s32 __osEPiRawStartDma(OSPiHandle *, s32 , u32 , void *, u32 );
 OSMesgQueue *osPiGetCmdQueue(void);
 
 #define WAIT_ON_IOBUSY(stat)                                                                \
-    {                                                                                       \
-        stat = IO_READ(PI_STATUS_REG);                                                      \
-        while (stat & (PI_STATUS_IO_BUSY | PI_STATUS_DMA_BUSY))                             \
-            stat = IO_READ(PI_STATUS_REG);                                                  \
-    } (void)0
+    while (stat = IO_READ(PI_STATUS_REG), stat & (PI_STATUS_IO_BUSY | PI_STATUS_DMA_BUSY))  \
+        ;                                                                                   \
+    (void)0
 
 #define UPDATE_REG(pihandle, reg, var) \
     if (cHandle->var != pihandle->var) \

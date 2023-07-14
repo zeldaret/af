@@ -12,5 +12,6 @@ void osFlashReadStatus(u8* flash_status) {
     osEPiReadIo(&__osFlashHandler, __osFlashHandler.baseAddress, &status);
 
     *flash_status = status & 0xFF;
+
     return;
 }

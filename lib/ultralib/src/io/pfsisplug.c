@@ -84,7 +84,7 @@ void __osPfsGetInitData(u8* pattern, OSContStatus* data) {
         requestformat = *((__OSContRequesFormat*)ptr);
         data->errno = CHNL_ERR(requestformat);
 
-        if (data->errno != 0) {
+        if (data->errno) {
             continue;
         }
 

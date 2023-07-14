@@ -1,9 +1,11 @@
 /*
  * Copyright 1995, Silicon Graphics, Inc.
  * ALL RIGHTS RESERVED
+ *
  * UNPUBLISHED -- Rights reserved under the copyright laws of the United
  * States.   Use of a copyright notice is precautionary only and does not
  * imply publication or disclosure.
+ *
  * U.S. GOVERNMENT RESTRICTED RIGHTS LEGEND:
  * Use, duplication or disclosure by the Government is subject to restrictions
  * as set forth in FAR 52.227.19(c)(2) or subparagraph (c)(1)(ii) of the Rights
@@ -18,6 +20,7 @@
  * PROHIBITED WITHOUT THE PRIOR EXPRESS WRITTEN PERMISSION OF SILICON
  * GRAPHICS, INC.
  */
+
 #include <assert.h>
 #include <sp.h>
 

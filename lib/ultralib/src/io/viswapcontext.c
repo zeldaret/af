@@ -1,16 +1,16 @@
-#include "PR/os_internal.h"
-#include "PR/rcp.h"
+#include <PR/os_internal.h>
+#include <PR/rcp.h>
 #include "viint.h"
 
 // TODO: this comes from a header
 #ident "$Revision: 1.17 $"
 
 void __osViSwapContext() {
-    register OSViMode* vm;
-    register __OSViContext* vc;
+    register OSViMode *vm;
+    register __OSViContext *vc;
     u32 origin;
-    u32 hStart;
     u32 vStart;
+    u32 hStart;
     u32 nomValue;
     u32 field;
 
@@ -18,7 +18,7 @@ void __osViSwapContext() {
     vc = __osViNext;
     vm = vc->modep;
 
-    field = IO_READ(VI_CURRENT_REG) & 1; // field num
+    field = IO_READ(VI_CURRENT_REG) & 1; //field num
 
     origin = osVirtualToPhysical(vc->framep) + (vm->fldRegs[field].origin);
     if (vc->state & VI_STATE_XSCALE_UPDATED) {

@@ -22,5 +22,6 @@ void osFlashReadId(u32* flash_type, u32* flash_maker) {
 
     *flash_type = __osFlashID[0];
     *flash_maker = __osFlashID[1];
+
     return;
 }

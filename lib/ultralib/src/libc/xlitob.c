@@ -19,7 +19,11 @@ void _Litob(_Pft *args, char type) {
     s32 i;
     unsigned long long ullval;
 
-    digs = (type == 'X') ? udigs : ldigs;
+    if (type == 'X') {
+        digs = udigs;
+    } else {
+        digs = ldigs;
+    }
 
     base = (type == 'o') ? 8 : ((type != 'x' && type != 'X') ? 10 : 16);
     i = BUFF_LEN;
@@ -51,7 +55,9 @@ void _Litob(_Pft *args, char type) {
     }
 
     if (args->prec < 0 && (args->flags & (FLAGS_ZERO | FLAGS_MINUS)) == FLAGS_ZERO) {
-        if ((i = args->width - args->n0 - args->nz0 - args->n1) > 0) {
+        i = args->width - args->n0 - args->nz0 - args->n1;
+        
+        if (i > 0) {
             args->nz0 += i;
         }
     }

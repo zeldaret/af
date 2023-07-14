@@ -2,29 +2,20 @@
 #include "io/controller.h"
 #include "PR/os_voice.h"
 
-s32 osVoiceSetWord(OSVoiceHandle* hd, u8* word) {
+s32 osVoiceSetWord(OSVoiceHandle *hd, u8 *word) {
     s32 j;
     s32 k;
     s32 ret;
     u8 stat;
     u8 buf[40];
 
-    ret = __osVoiceGetStatus(hd->__mq, hd->__channel, &stat);
-    if (ret != 0) {
-        return ret;
-    } else if (stat & 2) {
+    ERRCK(__osVoiceGetStatus(hd->__mq, hd->__channel, &stat));
+    if (stat & 2) {
         return CONT_ERR_VOICE_NO_RESPONSE;
     }
-
     for (k = 0; word[k] != 0; k += 2) {
         ;
     }
-
-#ifndef NDEBUG
-    if (k >= 34) {
-        return CONT_ERR_VOICE_WORD;
-    }
-#endif
 
     bzero(buf, ARRLEN(buf));
 

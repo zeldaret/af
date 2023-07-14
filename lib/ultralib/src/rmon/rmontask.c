@@ -4,7 +4,7 @@
 #include "PR/os_internal.h"
 #include "rmonint.h"
 #include "PR/rcp.h"
-#include "PR/sptask.h"
+#include "sptask.h"
 
 #include "macros.h"
 
@@ -111,8 +111,7 @@ int __rmonListThreads(KKHeader* req) {
     }
     reply->header.code = request->header.code;
     reply->header.error = TV_ERROR_NO_ERROR;
-    __rmonSendReply(&reply->header, sizeof(*reply) + sizeof(reply->objs.objects[0]) * (reply->objs.number - 1),
-                    KK_TYPE_REPLY);
+    __rmonSendReply(&reply->header, sizeof(*reply) + sizeof(reply->objs.objects[0]) * (reply->objs.number - 1), KK_TYPE_REPLY);
     return TV_ERROR_NO_ERROR;
 }
 
@@ -229,7 +228,7 @@ int __rmonStopThread(KKHeader* req) {
                 }
                 pc--;
                 /* Check if the RSP is stopped in a branch delay slot, if it is step out of it. The RSP would otherwise
-                   lose information about whether the branch should or should not be taken when reading registers. */
+                   lose information about whether the branch should or should not be taken when reading registers.      */
                 if (__rmonGetBranchTarget(RMON_RSP, RMON_TID_RSP, (void*)((u32)pc + SP_IMEM_START)) % 4 == 0) {
                     __rmonStepRCP();
                 }
@@ -250,6 +249,7 @@ int __rmonStopThread(KKHeader* req) {
         __rmonSendReply(&reply.header, sizeof(reply), KK_TYPE_EXCEPTION);
     }
     return TV_ERROR_NO_ERROR;
+
 }
 
 int __rmonRunThread(KKHeader* req) {
@@ -295,10 +295,7 @@ int __rmonRunThread(KKHeader* req) {
             }
             if (request->actions.flags & KK_RUN_SSTEP) {
                 /* If the RSP is stopped at a branch step twice so as to not stop in a branch delay slot. */
-                if (__rmonGetBranchTarget(RMON_RSP, RMON_TID_RSP,
-                                          (void*)(__rmonReadWordAt((u32*)SP_PC_REG) + SP_IMEM_START)) %
-                        4 ==
-                    0) {
+                if (__rmonGetBranchTarget(RMON_RSP, RMON_TID_RSP, (void*)(__rmonReadWordAt((u32*)SP_PC_REG) + SP_IMEM_START)) % 4 == 0) {
                     __rmonStepRCP();
                 }
                 __rmonStepRCP();
