@@ -1,6 +1,6 @@
 # asm-differ
 
-Nice differ for assembly code. Currently supports MIPS, PPC, AArch64, and ARM32; should be easy to hack to support other instruction sets.
+Nice differ for assembly code. Currently supports MIPS, PPC, AArch64, ARM32, and SH2; should be easy to hack to support other instruction sets.
 
 ![](screenshot.png)
 

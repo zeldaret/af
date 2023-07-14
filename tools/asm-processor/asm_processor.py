@@ -605,11 +605,11 @@ class GlobalAsmBlock:
         line = re.sub(r'^[a-zA-Z0-9_]+:\s*', '', line)
         changed_section = False
         emitting_double = False
-        if line.startswith('glabel ') and self.cur_section == '.text':
+        if (line.startswith('glabel ') or line.startswith('jlabel ')) and self.cur_section == '.text':
             self.text_glabels.append(line.split()[1])
         if not line:
             pass # empty line
-        elif line.startswith('glabel ') or line.startswith('dlabel ') or line.startswith('endlabel ') or (' ' not in line and line.endswith(':')):
+        elif line.startswith('glabel ') or line.startswith('dlabel ') or line.startswith('jlabel ') or line.startswith('endlabel ') or (' ' not in line and line.endswith(':')):
             pass # label
         elif line.startswith('.section') or line in ['.text', '.data', '.rdata', '.rodata', '.bss', '.late_rodata']:
             # section change
@@ -651,17 +651,22 @@ class GlobalAsmBlock:
             emitting_double = True
         elif line.startswith('.space'):
             self.add_sized(int(line.split()[1], 0), real_line)
-        elif line.startswith('.balign') or line.startswith('.align'):
+        elif line.startswith('.balign'):
             align = int(line.split()[1])
             if align != 4:
                 self.fail("only .balign 4 is supported", real_line)
+            self.align4()
+        elif line.startswith('.align'):
+            align = int(line.split()[1])
+            if align != 2:
+                self.fail("only .align 2 is supported", real_line)
             self.align4()
         elif line.startswith('.asci'):
             z = (line.startswith('.asciz') or line.startswith('.asciiz'))
             self.add_sized(self.count_quoted_size(line, z, real_line, output_enc), real_line)
         elif line.startswith('.byte'):
             self.add_sized(len(line.split(',')), real_line)
-        elif line.startswith('.half'):
+        elif line.startswith('.half') or line.startswith('.hword'):
             self.align2()
             self.add_sized(2*len(line.split(',')), real_line)
         elif line.startswith('.'):
