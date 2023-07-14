@@ -1,13 +1,12 @@
 from pathlib import Path
 from typing import Optional
 
-import spimdisasm
 from util import options, symbols, log
 
 from segtypes.common.codesubsegment import CommonSegCodeSubsegment
 from segtypes.common.group import CommonSegGroup
 
-from disassembler_section import DisassemblerSection, make_data_section
+from disassembler_section import make_data_section
 
 
 class CommonSegData(CommonSegCodeSubsegment, CommonSegGroup):
@@ -26,7 +25,7 @@ class CommonSegData(CommonSegCodeSubsegment, CommonSegGroup):
     def scan(self, rom_bytes: bytes):
         CommonSegGroup.scan(self, rom_bytes)
 
-        if self.should_scan():
+        if self.rom_start is not None and self.rom_end is not None:
             self.disassemble_data(rom_bytes)
 
     def split(self, rom_bytes: bytes):
@@ -57,9 +56,7 @@ class CommonSegData(CommonSegCodeSubsegment, CommonSegGroup):
         return options.opts.is_mode_active("data")
 
     def should_scan(self) -> bool:
-        # Ensure data segments are scanned even if extract is False so subsegments get scanned too
-        # Check for not None so we avoid scanning "auto" segments
-        return self.rom_start is not None and self.rom_end is not None
+        return True
 
     def should_split(self) -> bool:
         return True
@@ -102,6 +99,17 @@ class CommonSegData(CommonSegCodeSubsegment, CommonSegGroup):
         )
 
         assert self.spim_section is not None
+
+        # Set rodata string encoding
+        # First check the global configuration
+        if options.opts.data_string_encoding is not None:
+            self.spim_section.get_section().stringEncoding = (
+                options.opts.data_string_encoding
+            )
+
+        # Then check the per-segment configuration in case we want to override the global one
+        if self.str_encoding is not None:
+            self.spim_section.get_section().stringEncoding = self.str_encoding
 
         self.spim_section.analyze()
         self.spim_section.set_comment_offset(self.rom_start)
