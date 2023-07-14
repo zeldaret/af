@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:ethteck/splat.git
 	branch = master
-	commit = 4fec014c10aa1fc90d200fe6722000425bf7d43f
-	parent = 6a5e64cc4c26398cc607bb02cdc12a056ddf42d1
+	commit = 7869ef2e51a5974fb8e583e45e8b47793d3fecd2
+	parent = c567c13e68bc84d3e6032886ec5bfd594363f563
 	method = merge
 	cmdver = 0.4.3
