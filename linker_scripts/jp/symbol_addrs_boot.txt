@@ -3,7 +3,7 @@
 entrypoint = 0x80025C00; // type:func
 
 func_80025C60_jp = 0x80025C60; // type:func
-func_80025CC0_jp = 0x80025CC0; // type:func
+bootproc = 0x80025CC0; // type:func
 
 func_80025DF0_jp = 0x80025DF0; // type:func
 func_80025E6C_jp = 0x80025E6C; // type:func
@@ -511,7 +511,7 @@ B_8003E940_jp = 0x8003E940; //
 B_8003ED40_jp = 0x8003ED40; //
 B_8003ED60_jp = 0x8003ED60; //
 B_8003ED80_jp = 0x8003ED80; //
-B_8003EF30_jp = 0x8003EF30; //
+sBootStack = 0x8003EF30; //
 B_8003F330_jp = 0x8003F330; //
 B_8003F4E0_jp = 0x8003F4E0; //
 B_8003FDE0_jp = 0x8003FDE0; //
@@ -560,4 +560,5 @@ B_800419F0_jp = 0x800419F0; //
 B_80041A00_jp = 0x80041A00; //
 
 B_80044684_jp = 0x80044684; //
-D_80044690_jp = 0x80044690; //
+
+gDmaDataTable = 0x80044690; //
