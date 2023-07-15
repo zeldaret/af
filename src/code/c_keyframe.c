@@ -1,3 +1,35 @@
+/**
+ * @file c_keyframe.c
+ *
+ * Skeletal animation with keyframes.
+ *
+ * This system was used in Majora's Mask, however Doubutsu no Mori uses the "R" variants of structs, which differ
+ * slightly.
+ *
+ * Animation is broken down into multiple parts that work together.
+ *
+ * FrameControl: A struct responsible for keeping track of the time component of animations. Animations use frames
+ * (one thirtieth of a second) as a unit of time.
+ *
+ * Joint: A display list that represents a smaller part of the overall model. Each joint is rotated separately in order
+ * to pose the skeleton during the animation. Joints have a hierarchal structure, where joints can specify child joints.
+ * Each joint inherits it's parent's transformation. Joints are represented in multiple spots. JointElemR stores the
+ * joint's display list. There's also a jointTable struct that gets passed in from outside these structs, which stores
+ * all the joint's current transformations.
+ *
+ * Morph: Normally switching from the previous animation to a new animation produces jarring motion as the joints jump
+ * to the first frame of the new animation in a single frame. Morph allows the joints to interpolate between their old
+ * position and the current animation's position over multiple frames (specified by morphCounter) to avoid a jarring
+ * motion. If an animation is using morph, an array separate from jointTable, morphTable is used.
+ *
+ * BaseSkeletonR: A collection of JointElemR structs that make up the skeleton that will be animated.
+ *
+ * BaseAnimationR: Stores translation and rotation keyframes used to animate the skeleton.
+ *
+ * SkeletonInfoR: The large struct containing a FrameControl, BaseSkeletonR, BaseAnimationR, jointTable, morphTable, and
+ * more.
+ */
+
 #include "global.h"
 #include "c_keyframe.h"
 #include "z64math.h"
@@ -28,16 +60,10 @@ void cKF_FrameControl_zeroClear(FrameControl* frameControl) {
     frameControl->start = 1.0f;
 }
 
-/**
- * Initialize a FrameControl struct with default values.
- */
 void cKF_FrameControl_ct(FrameControl* frameControl) {
     cKF_FrameControl_zeroClear(frameControl);
 }
 
-/**
- * Initialize a FrameControl struct with manually specified parameters.
- */
 void cKF_FrameControl_setFrame(FrameControl* frameControl, f32 start, f32 end, f32 duration, f32 currentFrame,
                                f32 speed, AnimationMode mode) {
     frameControl->start = start;
@@ -262,17 +288,25 @@ void cKF_SkeletonInfo_subRotInterpolation(f32 t, s16* out, s16 rot1, s16 rot2) {
     }
 }
 
-void cKF_SkeletonInfo_morphST(s16 arg0[3], s16 arg1[3], f32 arg3) {
+/**
+ * When playing a morph animation, linearly interpolate the root joint between it's current position and it's position in the
+ * current frame of the animation.
+ *
+ * Linear interpolation uses a parametric function p(t) where t is restricted to the domain [0, 1].
+ *
+ * @param t Represents the desired position between p0 and p1 to interpolate.
+ */
+void cKF_SkeletonInfo_morphST(s16* joint, s16* morph, f32 t) {
     s32 i;
 
     for (i = 0; i < 3; i++) {
-        if (*arg0 != *arg1) {
-            f32 f1 = *arg0;
-            f32 f2 = *arg1;
-            *arg0 = f1 + (f2 - f1) * arg3;
+        if (*joint != *morph) {
+            f32 p0 = *joint;
+            f32 p1 = *morph;
+            *joint = p0 + (p1 - p0) * t;
         }
-        arg0++;
-        arg1++;
+        joint++;
+        morph++;
     }
 }
 
@@ -280,25 +314,19 @@ void cKF_SkeletonInfo_R_zeroClear(SkeletonInfoR* skeletonInfo) {
     bzero(skeletonInfo, 0x70);
 }
 
-/**
- * Initialize a SkeletonInfo struct with default values.
- */
 void cKF_SkeletonInfo_R_ct(SkeletonInfoR* skeletonInfo, BaseSkeletonR* skeleton, BaseAnimationR* animation,
-                           Vec3s* now_joint, Vec3s* morph_joint) {
+                           Vec3s* jointTable, Vec3s* morphTable) {
     cKF_SkeletonInfo_R_zeroClear(skeletonInfo);
     cKF_FrameControl_ct(&skeletonInfo->frameControl);
     skeletonInfo->skeleton = Lib_SegmentedToVirtual(skeleton);
     skeletonInfo->animation = Lib_SegmentedToVirtual(animation);
-    skeletonInfo->now_joint = now_joint;
-    skeletonInfo->morph_joint = morph_joint;
+    skeletonInfo->jointTable = jointTable;
+    skeletonInfo->morphTable = morphTable;
 }
 
 void cKF_SkeletonInfo_R_dt(SkeletonInfoR* skeletonInfo) {
 }
 
-/**
- * Initialize a SkeletonInfo struct with an animation that plays once.
- */
 void cKF_SkeletonInfo_R_init_standard_stop(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
                                            Vec3s* diffRotTable) {
     cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
@@ -306,9 +334,6 @@ void cKF_SkeletonInfo_R_init_standard_stop(SkeletonInfoR* skeletonInfo, BaseAnim
                             ANIMATION_STOP, diffRotTable);
 }
 
-/**
- * Initialize a SkeletonInfo struct with a specified playback speed that plays once.
- */
 void cKF_SkeletonInfo_R_init_standard_stop_speedset(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
                                                     Vec3s* diffRotTable, f32 speed) {
     cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
@@ -323,9 +348,6 @@ void cKF_SkeletonInfo_R_init_standard_stop_morph(SkeletonInfoR* skeletonInfo, Ba
                             ANIMATION_STOP, diffRotTable);
 }
 
-/**
- * Initialize a SkeletonInfo struct with an animation that repeats.
- */
 void cKF_SkeletonInfo_R_init_standard_repeat(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
                                              Vec3s* diffRotTable) {
     cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
@@ -333,9 +355,6 @@ void cKF_SkeletonInfo_R_init_standard_repeat(SkeletonInfoR* skeletonInfo, BaseAn
                             ANIMATION_REPEAT, diffRotTable);
 }
 
-/**
- * Initialize a SkeletonInfo struct with a specified playback speed that repeats.
- */
 void cKF_SkeletonInfo_R_init_standard_repeat_speedset(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
                                                       Vec3s* diffRotTable, f32 speed) {
     cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
@@ -350,9 +369,6 @@ void cKF_SkeletonInfo_R_init_standard_repeat_morph(SkeletonInfoR* skeletonInfo, 
                             ANIMATION_REPEAT, diffRotTable);
 }
 
-/**
- * Initialize a SkeletonInfo struct with manually specified parameters.
- */
 void cKF_SkeletonInfo_R_init(SkeletonInfoR* skeletonInfo, BaseSkeletonR* skeleton, BaseAnimationR* animation,
                              f32 startFrame, f32 endFrame, f32 currentFrame, f32 speed, f32 morphCounter,
                              AnimationMode mode, Vec3s* diffRotTable) {
@@ -364,9 +380,6 @@ void cKF_SkeletonInfo_R_init(SkeletonInfoR* skeletonInfo, BaseSkeletonR* skeleto
     skeletonInfo->diffRotTable = diffRotTable;
 }
 
-/**
- * Assign a SkeletonInfo struct's animation.
- */
 void cKF_SkeletonInfo_R_setAnim(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation) {
     BaseAnimationR* anim = (BaseAnimationR*)Lib_SegmentedToVirtual(animation);
 
@@ -374,61 +387,63 @@ void cKF_SkeletonInfo_R_setAnim(SkeletonInfoR* skeletonInfo, BaseAnimationR* ani
     skeletonInfo->frameControl.duration = anim->duration;
 }
 
+/**
+ *
+ */
+// Positive morphCounter morph from the current pose to the start pose of the new animation, then start the new
+// animation. Negative morphCounter starts the new animation immediately, modified by the pose immediately before the
+// animation change.
 void cKF_SkeletonInfo_R_morphJoint(SkeletonInfoR* skeletonInfo) {
-    Vec3s* now_joint = skeletonInfo->now_joint;
-    Vec3s* morph_joint = skeletonInfo->morph_joint;
-    f32 step;
-    Vec3s next_joint;
-    Vec3s next_morph;
+    // the current position of the joints
+    Vec3s* joint = skeletonInfo->jointTable;
+    // the animation's current position
+    Vec3s* morph = skeletonInfo->morphTable;
+    // Represents the position between joint 1 and joint 2 to interpolate.
+    f32 parameter = !IS_ZERO(skeletonInfo->morphCounter) ? 1.0f / fabsf(skeletonInfo->morphCounter) : 0.0f;
+    Vec3s jointTemp;
+    Vec3s morphTemp;
     Vec3s temp_vec;
     s32 i;
     f32 new_var;
     f32 new_var2;
 
-    if (!(fabsf(skeletonInfo->morphCounter) < 0.008f)) {
-        step = 1.0f / fabsf(skeletonInfo->morphCounter);
-    } else {
-        step = 0.0f;
-    }
-    cKF_SkeletonInfo_morphST(&now_joint->x, &morph_joint->x, step);
+    // the first Vec3s is the root joint's translation
+    cKF_SkeletonInfo_morphST((s16*)joint, (s16*)morph, parameter);
 
-    now_joint++;
-    morph_joint++;
+    joint++;
+    morph++;
 
     for (i = 0; i < skeletonInfo->skeleton->joint_num; i++) {
-        // TODO next_joint and next_morph should probably be renamed
-        // these temps seem to be used because cKF_SkeletonInfo_subRotInterpolation needs the original joint as an
-        // output, and 2 other rotations as arguments
-        next_joint.x = now_joint->x;
-        next_joint.y = now_joint->y;
-        next_joint.z = now_joint->z;
+        jointTemp.x = joint->x;
+        jointTemp.y = joint->y;
+        jointTemp.z = joint->z;
 
-        next_morph.x = morph_joint->x;
-        next_morph.y = morph_joint->y;
-        next_morph.z = morph_joint->z;
+        morphTemp.x = morph->x;
+        morphTemp.y = morph->y;
+        morphTemp.z = morph->z;
 
-        if (next_joint.x != next_morph.x || next_joint.y != next_morph.y || next_joint.z != next_morph.z) {
-            temp_vec.x = 0x7FFF + next_joint.x;
-            temp_vec.y = 0x7FFF - next_joint.y;
-            temp_vec.z = 0x7FFF + next_joint.z;
+        if ((jointTemp.x != morphTemp.x) || (jointTemp.y != morphTemp.y) || (jointTemp.z != morphTemp.z)) {
+            temp_vec.x = 0x7FFF + jointTemp.x;
+            temp_vec.y = 0x7FFF - jointTemp.y;
+            temp_vec.z = 0x7FFF + jointTemp.z;
 
-            new_var = (fabsf(((f32)next_morph.x) - next_joint.x) + fabsf(((f32)next_morph.y) - next_joint.y)) +
-                      fabsf(((f32)next_morph.z) - next_joint.z);
-            new_var2 = (fabsf(((f32)next_morph.x) - temp_vec.x) + fabsf(((f32)next_morph.y) - temp_vec.y)) +
-                       fabsf(((f32)next_morph.z) - temp_vec.z);
+            new_var = (fabsf(((f32)morphTemp.x) - jointTemp.x) + fabsf(((f32)morphTemp.y) - jointTemp.y)) +
+                      fabsf(((f32)morphTemp.z) - jointTemp.z);
+            new_var2 = (fabsf(((f32)morphTemp.x) - temp_vec.x) + fabsf(((f32)morphTemp.y) - temp_vec.y)) +
+                       fabsf(((f32)morphTemp.z) - temp_vec.z);
 
             if (new_var < new_var2) {
-                cKF_SkeletonInfo_subRotInterpolation(step, &now_joint->x, next_joint.x, next_morph.x);
-                cKF_SkeletonInfo_subRotInterpolation(step, &now_joint->y, next_joint.y, next_morph.y);
-                cKF_SkeletonInfo_subRotInterpolation(step, &now_joint->z, next_joint.z, next_morph.z);
+                cKF_SkeletonInfo_subRotInterpolation(parameter, &joint->x, jointTemp.x, morphTemp.x);
+                cKF_SkeletonInfo_subRotInterpolation(parameter, &joint->y, jointTemp.y, morphTemp.y);
+                cKF_SkeletonInfo_subRotInterpolation(parameter, &joint->z, jointTemp.z, morphTemp.z);
             } else {
-                cKF_SkeletonInfo_subRotInterpolation(step, &now_joint->x, temp_vec.x, next_morph.x);
-                cKF_SkeletonInfo_subRotInterpolation(step, &now_joint->y, temp_vec.y, next_morph.y);
-                cKF_SkeletonInfo_subRotInterpolation(step, &now_joint->z, temp_vec.z, next_morph.z);
+                cKF_SkeletonInfo_subRotInterpolation(parameter, &joint->x, temp_vec.x, morphTemp.x);
+                cKF_SkeletonInfo_subRotInterpolation(parameter, &joint->y, temp_vec.y, morphTemp.y);
+                cKF_SkeletonInfo_subRotInterpolation(parameter, &joint->z, temp_vec.z, morphTemp.z);
             }
         }
-        morph_joint++;
-        now_joint++;
+        morph++;
+        joint++;
     }
 }
 
@@ -450,7 +465,7 @@ s32 cKF_SkeletonInfo_R_play(SkeletonInfoR* skeletonInfo) {
     s32 constValueIndex = 0;
     s32 keyframeStartIndex = 0;
     s16* jointComponent =
-        (!IS_ZERO(skeletonInfo->morphCounter)) ? (s16*)skeletonInfo->morph_joint : (s16*)skeletonInfo->now_joint;
+        (!IS_ZERO(skeletonInfo->morphCounter)) ? (s16*)skeletonInfo->morphTable : (s16*)skeletonInfo->jointTable;
     s16* constValueTable;
     Keyframe* dataSource;
     s16* keyframeNumberTable;
@@ -505,7 +520,7 @@ s32 cKF_SkeletonInfo_R_play(SkeletonInfoR* skeletonInfo) {
     }
 
     if (skeletonInfo->diffRotTable) {
-        joint = (!IS_ZERO(skeletonInfo->morphCounter)) ? skeletonInfo->morph_joint : skeletonInfo->now_joint;
+        joint = (!IS_ZERO(skeletonInfo->morphCounter)) ? skeletonInfo->morphTable : skeletonInfo->jointTable;
         joint++;
         for (jointIndex = 0; jointIndex < skeletonInfo->skeleton->joint_num; jointIndex++) {
             joint->x = joint->x + skeletonInfo->diffRotTable[jointIndex].x;
@@ -516,6 +531,7 @@ s32 cKF_SkeletonInfo_R_play(SkeletonInfoR* skeletonInfo) {
     }
 
     if (IS_ZERO(skeletonInfo->morphCounter)) {
+        // if the animation isn't using morph
         return cKF_FrameControl_play(&skeletonInfo->frameControl);
 
     } else if (skeletonInfo->morphCounter > 0.0f) {
@@ -528,7 +544,7 @@ s32 cKF_SkeletonInfo_R_play(SkeletonInfoR* skeletonInfo) {
         return 0;
 
     } else {
-        // if morphCounter is less than 0
+        // if morphCounter is negative
         cKF_SkeletonInfo_R_morphJoint(skeletonInfo);
 
         skeletonInfo->morphCounter += 1.0f;
@@ -548,13 +564,13 @@ s32 cKF_SkeletonInfo_R_play(SkeletonInfoR* skeletonInfo) {
  */
 void cKF_Si3_draw_SV_R_child(PlayState* play, SkeletonInfoR* skeletonInfo, s32* jointIndex, DrawCallback beforeCallback,
                              DrawCallback afterCallback, void* arg, Mtx** mtx) {
-    JointElemR* jointElem = *jointIndex + (JointElemR*)Lib_SegmentedToVirtual(skeletonInfo->skeleton->joint_tbl);
+    JointElemR* jointElem = *jointIndex + (JointElemR*)Lib_SegmentedToVirtual(skeletonInfo->skeleton->jointElemTable);
     s32 i;
     Gfx* newDlist;
     Gfx* shape;
     u8 jointElemFlag;
     Vec3s rotation;
-    Vec3s* joint = &skeletonInfo->now_joint[*jointIndex];
+    Vec3s* joint = &skeletonInfo->jointTable[*jointIndex];
     Vec3f translation;
 
     if (*jointIndex) {
@@ -734,8 +750,9 @@ void cKF_SkeletonInfo_R_combine_translation(s16** joint, u32* flag, SkeletonInfo
         switch (*arg3) {
             case 0:
                 if (*combineWork[0].anm_check_bit_tbl & *flag) {
-                    **joint = cKF_KeyCalc(combineWork[0].anm_data_src_idx, combineWork[0].anm_key_num[combineWork->anm_key_num_idx],
-                                          combineWork[0].anm_data_src, combineWork[0].skeletonInfo->frameControl.currentFrame);
+                    **joint = cKF_KeyCalc(
+                        combineWork[0].anm_data_src_idx, combineWork[0].anm_key_num[combineWork->anm_key_num_idx],
+                        combineWork[0].anm_data_src, combineWork[0].skeletonInfo->frameControl.currentFrame);
                 } else {
                     **joint = combineWork->anm_const_val_tbl[combineWork->anm_const_val_tbl_idx];
                 }
@@ -795,9 +812,9 @@ void cKF_SkeletonInfo_R_combine_rotation(s16** joint, u32* flag, SkeletonInfoRCo
             switch (arg3[i + 1]) {
                 case 0:
                     if (combineWork->anm_check_bit_tbl[i] & *flag) {
-                        **joint =
-                            cKF_KeyCalc(combineWork[0].anm_data_src_idx, combineWork->anm_key_num[combineWork->anm_key_num_idx],
-                                        combineWork->anm_data_src, combineWork->skeletonInfo->frameControl.currentFrame);
+                        **joint = cKF_KeyCalc(
+                            combineWork[0].anm_data_src_idx, combineWork->anm_key_num[combineWork->anm_key_num_idx],
+                            combineWork->anm_data_src, combineWork->skeletonInfo->frameControl.currentFrame);
                     } else {
                         **joint = combineWork->anm_const_val_tbl[combineWork->anm_const_val_tbl_idx];
                     }
@@ -865,9 +882,9 @@ s32 cKF_SkeletonInfo_R_combine_play(SkeletonInfoR* skeletonInfo1, SkeletonInfoR*
     }
 
     if (!(fabsf(skeletonInfo1->morphCounter) < 0.008f)) {
-        joint = (s16*)skeletonInfo1->morph_joint;
+        joint = (s16*)skeletonInfo1->morphTable;
     } else {
-        joint = (s16*)skeletonInfo1->now_joint;
+        joint = (s16*)skeletonInfo1->jointTable;
     }
 
     if (arg4 != 0) {
@@ -889,9 +906,9 @@ s32 cKF_SkeletonInfo_R_combine_play(SkeletonInfoR* skeletonInfo1, SkeletonInfoR*
 
     if (skeletonInfo1->diffRotTable != NULL) {
         if (!IS_ZERO(skeletonInfo1->morphCounter)) {
-            var_v0 = skeletonInfo1->morph_joint;
+            var_v0 = skeletonInfo1->morphTable;
         } else {
-            var_v0 = skeletonInfo1->now_joint;
+            var_v0 = skeletonInfo1->jointTable;
         }
 
         var_v0++;
@@ -953,9 +970,9 @@ void cKF_SkeletonInfo_R_T_combine_play(s32* arg0, s32* arg1, s32* arg2, Skeleton
     }
 
     if (!IS_ZERO(skeletonInfo1->morphCounter)) {
-        spAC = (s16*)skeletonInfo1->morph_joint;
+        spAC = (s16*)skeletonInfo1->morphTable;
     } else {
-        spAC = (s16*)skeletonInfo1->now_joint;
+        spAC = (s16*)skeletonInfo1->jointTable;
     }
 
     if (arg9 != 0) {
@@ -980,9 +997,9 @@ void cKF_SkeletonInfo_R_T_combine_play(s32* arg0, s32* arg1, s32* arg2, Skeleton
 
     if (skeletonInfo1->diffRotTable != NULL) {
         if (!IS_ZERO(skeletonInfo1->morphCounter)) {
-            var_v0 = skeletonInfo1->morph_joint;
+            var_v0 = skeletonInfo1->morphTable;
         } else {
-            var_v0 = skeletonInfo1->now_joint;
+            var_v0 = skeletonInfo1->jointTable;
         }
 
         var_v0++;
@@ -1078,7 +1095,7 @@ void cKF_SkeletonInfo_R_AnimationMove_dt(SkeletonInfoR* skeletonInfo) {
     Vec3s* temp_v1;
 
     temp_v0 = skeletonInfo->move_flag;
-    temp_v1 = &skeletonInfo->now_joint[0];
+    temp_v1 = &skeletonInfo->jointTable[0];
     temp_a1 = &skeletonInfo->base_shape_trs;
     if (temp_v0 & 1) {
         temp_v1->x = temp_a1->x;
@@ -1088,7 +1105,7 @@ void cKF_SkeletonInfo_R_AnimationMove_dt(SkeletonInfoR* skeletonInfo) {
         temp_v1->y = temp_a1->y;
     }
     if (temp_v0 & 4) {
-        temp_v0_2 = &skeletonInfo->now_joint[1];
+        temp_v0_2 = &skeletonInfo->jointTable[1];
         temp_v0_2->x = skeletonInfo->base_data_angle.x;
         temp_v0_2->y = skeletonInfo->base_data_angle.y;
         temp_v0_2->z = skeletonInfo->base_data_angle.z;
@@ -1157,7 +1174,8 @@ void cKF_SkeletonInfo_R_AnimationMove_base(Vec3f* arg0, Vec3s* arg1, Vec3f* arg2
         s32 temp;
 
         Matrix_push();
-        Matrix_rotateXYZ(skeletonInfo->now_joint[1].x, skeletonInfo->now_joint[1].y, skeletonInfo->now_joint[1].z, 0);
+        Matrix_rotateXYZ(skeletonInfo->jointTable[1].x, skeletonInfo->jointTable[1].y, skeletonInfo->jointTable[1].z,
+                         0);
         Matrix_to_rotate2_new(get_Matrix_now(), sp28, 0);
         Matrix_pull();
         temp = sp28->x - sp80;
@@ -1165,7 +1183,7 @@ void cKF_SkeletonInfo_R_AnimationMove_base(Vec3f* arg0, Vec3s* arg1, Vec3f* arg2
     }
 
     if (arg0 != NULL) {
-        Vec3s* sp78 = skeletonInfo->now_joint;
+        Vec3s* sp78 = skeletonInfo->jointTable;
         s16 var_a0 = 0;
 
         if (arg1 != NULL) {
@@ -1217,7 +1235,7 @@ void cKF_SkeletonInfo_R_AnimationMove_CulcTransToWorld(Vec3f* arg0, Vec3f* arg1,
     f32 sp18;
     f32 temp_fv0;
 
-    temp_v0 = &skeleton->now_joint[0];
+    temp_v0 = &skeleton->jointTable[0];
     if (arg8 & 1) {
         sp20 = temp_v0->x - arg2;
         sp1C = temp_v0->z - arg4;

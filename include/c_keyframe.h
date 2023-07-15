@@ -27,7 +27,7 @@ typedef struct {
 typedef struct {
     /* 0x00 */ u8 joint_num;
     /* 0x01 */ u8 display_joint_num;
-    /* 0x04 */ JointElemR* joint_tbl;
+    /* 0x04 */ JointElemR* jointElemTable;
 } BaseSkeletonR; // size = 0x8
 
 // original name unknown
@@ -51,8 +51,8 @@ typedef struct {
     /* 0x18 */ BaseSkeletonR* skeleton;
     /* 0x1C */ BaseAnimationR* animation;
     /* 0x20 */ f32 morphCounter;
-    /* 0x24 */ Vec3s* now_joint;
-    /* 0x28 */ Vec3s* morph_joint;
+    /* 0x24 */ Vec3s* jointTable;
+    /* 0x28 */ Vec3s* morphTable;
     /* 0x2C */ Vec3s* diffRotTable;
     /* 0x30 */ s32 move_flag;
     /* 0x34 */ Vec3f idle_world_pos;
