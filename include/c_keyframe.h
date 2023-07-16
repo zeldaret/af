@@ -20,31 +20,43 @@ typedef struct {
 typedef struct {
     /* 0x0 */ Gfx* shape;
     /* 0x4 */ u8 numberOfChildren;
-    /* 0x5 */ u8 work_flag;
-    /* 0x6 */ Vec3s trs;
+    /* 0x5 */ u8 displayBufferFlag;
+    /* 0x6 */ Vec3s translation;
 } JointElemR; // size = 0xC
 
 typedef struct {
-    /* 0x00 */ u8 joint_num;
-    /* 0x01 */ u8 display_joint_num;
+    /* 0x00 */ u8 numberOfJoints;
+    /* 0x01 */ u8 unk01;
     /* 0x04 */ JointElemR* jointElemTable;
 } BaseSkeletonR; // size = 0x8
 
 // original name unknown
 typedef struct {
     /* 0x00 */ s16 frame;
-    /* 0x02 */ s16 point;
+    /* 0x02 */ s16 value;
     /* 0x04 */ s16 velocity;
 } Keyframe; // size = 0x06
 
 typedef struct {
-    /* 0x00 */ u8* ConstKeyCheckBitTbl;
-    /* 0x04 */ Keyframe* data_source;
-    /* 0x08 */ s16* key_num;
-    /* 0x0C */ s16* const_value_tbl;
-    /* 0x10 */ s16 ext;
+    /* 0x00 */ u8* constKeyCheckBitTable;
+    /* 0x04 */ Keyframe* dataSource;
+    /* 0x08 */ s16* keyframeNumber;
+    /* 0x0C */ s16* constValueTable;
+    /* 0x10 */ s16 unk10;
     /* 0x12 */ s16 duration;
 } BaseAnimationR; // size = 0x14
+
+typedef struct {
+    /* 0x00 */ s32 move_flag;
+    /* 0x04 */ Vec3f idle_world_pos;
+    /* 0x10 */ s16 idle_set_angleY;
+    /* 0x14 */ Vec3f baseShapeTrs;
+    /* 0x20 */ Vec3s base_data_angle;
+    /* 0x26 */ Vec3s renew_base_data_angle;
+    /* 0x2C */ f32 correct_counter;
+    /* 0x30 */ Vec3f d_correct_base_world_pos;
+    /* 0x3C */ s16 d_correct_base_set_angleY;
+} AnimationMove; // size = 0x40
 
 typedef struct {
     /* 0x00 */ FrameControl frameControl;
@@ -54,26 +66,18 @@ typedef struct {
     /* 0x24 */ Vec3s* jointTable;
     /* 0x28 */ Vec3s* morphTable;
     /* 0x2C */ Vec3s* diffRotTable;
-    /* 0x30 */ s32 move_flag;
-    /* 0x34 */ Vec3f idle_world_pos;
-    /* 0x40 */ s16 idle_set_angleY;
-    /* 0x44 */ Vec3f base_shape_trs;
-    /* 0x50 */ Vec3s base_data_angle;
-    /* 0x56 */ Vec3s renew_base_data_angle;
-    /* 0x5C */ f32 correct_counter;
-    /* 0x60 */ Vec3f d_correct_base_world_pos;
-    /* 0x6C */ s16 d_correct_base_set_angleY;
+    /* 0x30 */ AnimationMove animationMove;
 } SkeletonInfoR; // size = 0x70
 
 typedef struct {
     /* 0x00 */ SkeletonInfoR* skeletonInfo;
-    /* 0x04 */ u8* anm_check_bit_tbl;
-    /* 0x08 */ s16* anm_const_val_tbl;
-    /* 0x0C */ Keyframe* anm_data_src;
-    /* 0x10 */ s16* anm_key_num;
-    /* 0x14 */ s32 anm_key_num_idx;
-    /* 0x18 */ s32 anm_const_val_tbl_idx;
-    /* 0x1C */ s32 anm_data_src_idx;
+    /* 0x04 */ u8* constKeyCheckBitTable;
+    /* 0x08 */ s16* constValueTable;
+    /* 0x0C */ Keyframe* dataSource;
+    /* 0x10 */ s16* keyframeNumber;
+    /* 0x14 */ s32 keyframeNumberIndex;
+    /* 0x18 */ s32 ckcbIndex;
+    /* 0x1C */ s32 keyframeStartIndex;
 } SkeletonInfoRCombineWork; // size = 0x20
 
 typedef int (*DrawCallback)(struct PlayState*, SkeletonInfoR*, int, Gfx**, u8*, void*, Vec3s*, Vec3f*);
