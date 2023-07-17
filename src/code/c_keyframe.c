@@ -18,8 +18,8 @@
  *
  * Morph: Normally switching from the previous animation to a new animation produces jarring motion as the joints jump
  * to the first frame of the new animation in a single frame. Morph allows the joints to interpolate between their old
- * position and the current animation's position over multiple frames (specified by morphCounter) to avoid a jarring
- * motion. If an animation is using morph, an array separate from jointTable, morphTable is used.
+ * position and the current animation's position over multiple frames (specified by morphCounter) to avoid this. If an
+ * animation is using morph an array separate from jointTable, morphTable stores the the animation's joint rotations.
  *
  * BaseSkeletonR: A collection of JointElemR structs that make up the skeleton that will be animated.
  *
@@ -250,15 +250,15 @@ s16 cKF_KeyCalc(s16 startIndex, s16 sequenceLength, Keyframe* dataSource, f32 cu
     s32 kf2;
     s32 kf1;
 
-    // if currentFrame is before the first keyframe of the sequence
+    // If currentFrame is before the first keyframe of the sequence.
     if (currentFrame <= ds[0].frame) {
         return ds[0].value;
     }
-    // if currentFrame is after the last frame of the sequence
+    // If currentFrame is after the last frame of the sequence.
     if (ds[sequenceLength - 1].frame <= currentFrame) {
         return ds[sequenceLength - 1].value;
     }
-    // iterate over each keyframe to find which keyframes are before and after currentFrame
+    // Iterate over each keyframe to find which keyframes are before and after currentFrame.
     for (kf2 = 1, kf1 = 0; true; kf1++, kf2++) {
         if (currentFrame < ds[kf2].frame) {
             frameDelta = ds[kf2].frame - ds[kf1].frame;
@@ -272,20 +272,12 @@ s16 cKF_KeyCalc(s16 startIndex, s16 sequenceLength, Keyframe* dataSource, f32 cu
     }
 }
 
-/**
- *
- *
- * @param[in]  t
- * @param[out] out
- * @param[in]  jointComponent
- * @param[in]  morphComponent
- */
-void cKF_SkeletonInfo_subRotInterpolation(f32 t, s16* out, s16 jointComponent, s16 morphComponent) {
-    u16 urot1 = jointComponent;
+void cKF_SkeletonInfo_subRotInterpolation(f32 t, s16* out, s16 jointRotation, s16 morphRotation) {
+    u16 urot1 = jointRotation;
     s32 pad;
-    u16 urot2 = morphComponent;
-    f32 f1 = jointComponent;
-    f32 signedDiff = morphComponent - f1;
+    u16 urot2 = morphRotation;
+    f32 f1 = jointRotation;
+    f32 signedDiff = morphRotation - f1;
     f32 f2 = urot1;
     f32 unsignedDiff = urot2 - f2;
 
@@ -395,12 +387,6 @@ void cKF_SkeletonInfo_R_setAnim(SkeletonInfoR* skeletonInfo, BaseAnimationR* ani
     skeletonInfo->frameControl.duration = anim->duration;
 }
 
-/**
- *
- */
-// Positive morphCounter morph from the current pose to the start pose of the new animation, then start the new
-// animation. Negative morphCounter starts the new animation immediately, modified by the pose immediately before the
-// animation change.
 void cKF_SkeletonInfo_R_morphJoint(SkeletonInfoR* skeletonInfo) {
     // the current position of the joints
     Vec3s* joint = skeletonInfo->jointTable;
@@ -456,14 +442,14 @@ void cKF_SkeletonInfo_R_morphJoint(SkeletonInfoR* skeletonInfo) {
 }
 
 /**
- * Advance the animation one frame and move the joints accordingly.
+ * Advance the animation one frame and transform the joints accordingly.
  *
  * Joints can be animated in two ways, with keyframes or constant values. Which one a value uses is stored in
  * constKeyCheckBitTable. In this table, there is a byte for every joint, which is a bitfield. 1 is keyframe, 0 is
  * constant value. The 00111000 bits correspond to  that joint's x, y, or z translation. the 00000111 bits correspond to
- * that joint's x, y, or z rotation. Note that only the first joint can be translated.
+ * that joint's x, y, or z rotation. Note that only the root joint can be translated.
  *
- * @return s32
+ * @return 0 if the animation is still playing. 1 if the animation has completed. 2 if the animation repeated.
  */
 s32 cKF_SkeletonInfo_R_play(SkeletonInfoR* skeletonInfo) {
     s32 jointIndex;
@@ -538,11 +524,12 @@ s32 cKF_SkeletonInfo_R_play(SkeletonInfoR* skeletonInfo) {
         }
     }
 
+    // If the animation isn't using morph.
     if (IS_ZERO(skeletonInfo->morphCounter)) {
-        // if the animation isn't using morph
         return cKF_FrameControl_play(&skeletonInfo->frameControl);
 
     } else if (skeletonInfo->morphCounter > 0.0f) {
+        // A positive morphCounter will wait to play the animation until the morph has finished.
         cKF_SkeletonInfo_R_morphJoint(skeletonInfo);
 
         skeletonInfo->morphCounter -= 1.0f;
@@ -552,7 +539,7 @@ s32 cKF_SkeletonInfo_R_play(SkeletonInfoR* skeletonInfo) {
         return 0;
 
     } else {
-        // if morphCounter is negative
+        // A negative morphCounter will play the animation and morph at the same time.
         cKF_SkeletonInfo_R_morphJoint(skeletonInfo);
 
         skeletonInfo->morphCounter += 1.0f;
@@ -594,12 +581,12 @@ void cKF_Si3_draw_SV_R_child(PlayState* play, SkeletonInfoR* skeletonInfo, s32* 
         translation.z = jointElem->translation.z;
 
     } else {
-        // Translate the root joint.
-        s32 skeletonInfoFlag = skeletonInfo->animationMove.move_flag;
-        Vec3f* baseTranslation = &skeletonInfo->animationMove.baseShapeTrs;
+        s32 transformationFlag = skeletonInfo->animationMove.transformationFlag;
+        Vec3f* baseTranslation = &skeletonInfo->animationMove.baseShapeTranslation;
 
-        // The skeletonInfo struct can specify an override translation.
-        if (skeletonInfoFlag & 1) {
+        // Translate the root joint.
+        // The AnimationMove struct can specify an override translation.
+        if (transformationFlag & 1) {
             translation.x = baseTranslation->x;
             translation.z = baseTranslation->z;
         } else {
@@ -607,27 +594,25 @@ void cKF_Si3_draw_SV_R_child(PlayState* play, SkeletonInfoR* skeletonInfo, s32* 
             translation.z = joint->z;
         }
 
-        if (skeletonInfoFlag & 2) {
+        if (transformationFlag & 2) {
             translation.y = baseTranslation->y;
         } else {
             translation.y = joint->y;
         }
     }
 
-    // The second joint is the root's rotation.
     // jointIndex increases by 1 each recursive call, but because the root joint uses the first 2 Vec3s in jointTable,
     // the index of the current joint is actually jointIndex + 1.
     joint++;
     rotation = *joint;
 
     if (*jointIndex == 0) {
-        s32 an_flag = skeletonInfo->animationMove.move_flag;
+        s32 transformationFlag = skeletonInfo->animationMove.transformationFlag;
 
-        if (an_flag & 4) {
-            // use the skeletonInfo's override rotation.
-            rotation.x = skeletonInfo->animationMove.base_data_angle.x;
-            rotation.y = skeletonInfo->animationMove.renew_base_data_angle.y;
-            rotation.z = skeletonInfo->animationMove.renew_base_data_angle.z;
+        if (transformationFlag & 4) {
+            rotation.x = skeletonInfo->animationMove.baseShapeRotation.x;
+            rotation.y = skeletonInfo->animationMove.updatedBaseShapeRotation.y;
+            rotation.z = skeletonInfo->animationMove.updatedBaseShapeRotation.z;
         }
     }
 
@@ -640,8 +625,8 @@ void cKF_Si3_draw_SV_R_child(PlayState* play, SkeletonInfoR* skeletonInfo, s32* 
     jointElemFlag = jointElem->displayBufferFlag;
 
     if ((beforeCallback == NULL) ||
-        (beforeCallback != NULL) && beforeCallback(play, skeletonInfo, *jointIndex, &newDlist, &jointElemFlag, arg,
-                                                   &rotation, &translation) != NULL) {
+        (beforeCallback != NULL && beforeCallback(play, skeletonInfo, *jointIndex, &newDlist, &jointElemFlag, arg,
+                                                  &rotation, &translation) != NULL)) {
         Matrix_softcv3_mult(&translation, &rotation);
 
         if (newDlist != NULL) {
@@ -660,6 +645,7 @@ void cKF_Si3_draw_SV_R_child(PlayState* play, SkeletonInfoR* skeletonInfo, s32* 
 
         } else if (shape != NULL) {
             _Matrix_to_Mtx(*mtx);
+
             if (1) {
                 gSPMatrix(POLY_OPA_DISP++, *mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             }
@@ -772,25 +758,28 @@ void cKF_SkeletonInfo_R_combine_translation(s16** joint, u32* flag, SkeletonInfo
         switch (*arg3) {
             case 0:
                 if (*combineWork[0].constKeyCheckBitTable & *flag) {
-                    **joint = cKF_KeyCalc(
-                        combineWork[0].keyframeStartIndex, combineWork[0].keyframeNumber[combineWork->keyframeNumberIndex],
-                        combineWork[0].dataSource, combineWork[0].skeletonInfo->frameControl.currentFrame);
+                    **joint =
+                        cKF_KeyCalc(combineWork[0].keyframeStartIndex,
+                                    combineWork[0].keyframeNumber[combineWork->keyframeNumberIndex],
+                                    combineWork[0].dataSource, combineWork[0].skeletonInfo->frameControl.currentFrame);
                 } else {
                     **joint = combineWork->constValueTable[combineWork->ckcbIndex];
                 }
                 break;
             case 1:
                 if (*temp_s1->constKeyCheckBitTable & *flag) {
-                    **joint = cKF_KeyCalc(temp_s1->keyframeStartIndex, temp_s1->keyframeNumber[temp_s1->keyframeNumberIndex],
-                                          temp_s1->dataSource, temp_s1->skeletonInfo->frameControl.currentFrame);
+                    **joint =
+                        cKF_KeyCalc(temp_s1->keyframeStartIndex, temp_s1->keyframeNumber[temp_s1->keyframeNumberIndex],
+                                    temp_s1->dataSource, temp_s1->skeletonInfo->frameControl.currentFrame);
                 } else {
                     **joint = temp_s1->constValueTable[temp_s1->ckcbIndex];
                 }
                 break;
             case 2:
                 if (*temp_s2->constKeyCheckBitTable & *flag) {
-                    **joint = cKF_KeyCalc(temp_s2->keyframeStartIndex, temp_s2->keyframeNumber[temp_s2->keyframeNumberIndex],
-                                          temp_s2->dataSource, temp_s2->skeletonInfo->frameControl.currentFrame);
+                    **joint =
+                        cKF_KeyCalc(temp_s2->keyframeStartIndex, temp_s2->keyframeNumber[temp_s2->keyframeNumberIndex],
+                                    temp_s2->dataSource, temp_s2->skeletonInfo->frameControl.currentFrame);
                 } else {
                     **joint = temp_s2->constValueTable[temp_s2->ckcbIndex];
                 }
@@ -834,16 +823,18 @@ void cKF_SkeletonInfo_R_combine_rotation(s16** joint, u32* flag, SkeletonInfoRCo
             switch (arg3[i + 1]) {
                 case 0:
                     if (combineWork->constKeyCheckBitTable[i] & *flag) {
-                        **joint = cKF_KeyCalc(
-                            combineWork[0].keyframeStartIndex, combineWork->keyframeNumber[combineWork->keyframeNumberIndex],
-                            combineWork->dataSource, combineWork->skeletonInfo->frameControl.currentFrame);
+                        **joint =
+                            cKF_KeyCalc(combineWork[0].keyframeStartIndex,
+                                        combineWork->keyframeNumber[combineWork->keyframeNumberIndex],
+                                        combineWork->dataSource, combineWork->skeletonInfo->frameControl.currentFrame);
                     } else {
                         **joint = combineWork->constValueTable[combineWork->ckcbIndex];
                     }
                     break;
                 case 1:
                     if (temp_s0->constKeyCheckBitTable[i] & *flag) {
-                        **joint = cKF_KeyCalc(temp_s0->keyframeStartIndex, temp_s0->keyframeNumber[temp_s0->keyframeNumberIndex],
+                        **joint = cKF_KeyCalc(temp_s0->keyframeStartIndex,
+                                              temp_s0->keyframeNumber[temp_s0->keyframeNumberIndex],
                                               temp_s0->dataSource, temp_s0->skeletonInfo->frameControl.currentFrame);
                     } else {
                         **joint = temp_s0->constValueTable[temp_s0->ckcbIndex];
@@ -851,7 +842,8 @@ void cKF_SkeletonInfo_R_combine_rotation(s16** joint, u32* flag, SkeletonInfoRCo
                     break;
                 case 2:
                     if (temp_s1->constKeyCheckBitTable[i] & *flag) {
-                        **joint = cKF_KeyCalc(temp_s1->keyframeStartIndex, temp_s1->keyframeNumber[temp_s1->keyframeNumberIndex],
+                        **joint = cKF_KeyCalc(temp_s1->keyframeStartIndex,
+                                              temp_s1->keyframeNumber[temp_s1->keyframeNumberIndex],
                                               temp_s1->dataSource, temp_s1->skeletonInfo->frameControl.currentFrame);
                     } else {
                         **joint = temp_s1->constValueTable[temp_s1->ckcbIndex];
@@ -971,7 +963,6 @@ s32 cKF_SkeletonInfo_R_combine_play(SkeletonInfoR* skeletonInfo1, SkeletonInfoR*
     return var_s0;
 }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/cKF_SkeletonInfo_R_T_combine_play.s")
 void cKF_SkeletonInfo_R_T_combine_play(s32* arg0, s32* arg1, s32* arg2, SkeletonInfoR* skeletonInfo1,
                                        SkeletonInfoR* skeletonInfo2, SkeletonInfoR* skeletonInfo3, s32 arg6, s32 arg7,
                                        s32 arg8, s32 arg9, s32 argA, s32 argB, s8* flag) {
@@ -1060,139 +1051,132 @@ void cKF_SkeletonInfo_R_T_combine_play(s32* arg0, s32* arg1, s32* arg2, Skeleton
     func_80053384_jp(arg6, arg7, arg8, arg9, argA, argB, sp48, sp44, sp40);
 }
 
-void cKF_SkeletonInfo_R_Animation_Set_base_shape_trs(SkeletonInfoR* skeletonInfo, f32 translationX, f32 translationY, f32 translationZ,
-                                                     s16 rotationX, s16 rotationY, s16 rotationZ) {
-    skeletonInfo->animationMove.baseShapeTrs.x = translationX;
-    skeletonInfo->animationMove.baseShapeTrs.y = translationY;
-    skeletonInfo->animationMove.baseShapeTrs.z = translationZ;
-    skeletonInfo->animationMove.base_data_angle.x = rotationX;
-    skeletonInfo->animationMove.renew_base_data_angle.x = skeletonInfo->animationMove.base_data_angle.x;
-    skeletonInfo->animationMove.base_data_angle.y = rotationY;
-    skeletonInfo->animationMove.renew_base_data_angle.y = skeletonInfo->animationMove.base_data_angle.y;
-    skeletonInfo->animationMove.base_data_angle.z = rotationZ;
-    skeletonInfo->animationMove.renew_base_data_angle.z = skeletonInfo->animationMove.base_data_angle.z;
+void cKF_SkeletonInfo_R_Animation_Set_base_shape_trs(SkeletonInfoR* skeletonInfo, f32 translationX, f32 translationY,
+                                                     f32 translationZ, s16 rotX, s16 rotY, s16 rotZ) {
+    skeletonInfo->animationMove.baseShapeTranslation.x = translationX;
+    skeletonInfo->animationMove.baseShapeTranslation.y = translationY;
+    skeletonInfo->animationMove.baseShapeTranslation.z = translationZ;
+    skeletonInfo->animationMove.updatedBaseShapeRotation.x = skeletonInfo->animationMove.baseShapeRotation.x = rotX;
+    skeletonInfo->animationMove.updatedBaseShapeRotation.y = skeletonInfo->animationMove.baseShapeRotation.y = rotY;
+    skeletonInfo->animationMove.updatedBaseShapeRotation.z = skeletonInfo->animationMove.baseShapeRotation.z = rotZ;
 }
 
 void cKF_SkeletonInfo_R_AnimationMove_ct_base(Vec3f* arg0, Vec3f* arg1, s16 arg2, s16 arg3, f32 arg4,
-                                              SkeletonInfoR* skeletonInfo, s32 arg6) {
+                                              SkeletonInfoR* skeletonInfo, s32 transformationFlag) {
     s32 var_v0;
 
-    skeletonInfo->animationMove.move_flag = arg6;
-    skeletonInfo->animationMove.correct_counter = (arg4 >= 0.0f) ? arg4 : -arg4;
-    skeletonInfo->animationMove.idle_world_pos = ZeroVec;
-    skeletonInfo->animationMove.d_correct_base_world_pos = ZeroVec;
+    skeletonInfo->animationMove.transformationFlag = transformationFlag;
+    skeletonInfo->animationMove.counter = (arg4 >= 0.0f) ? arg4 : -arg4;
+    skeletonInfo->animationMove.baseWorldPosition = ZeroVec;
+    skeletonInfo->animationMove.shapeWorldPositionCorrection = ZeroVec;
 
     if (arg0 != NULL) {
         if (arg1 == NULL) {
             arg1 = arg0;
         }
-        if (arg6 & 1) {
-            skeletonInfo->animationMove.idle_world_pos.x = arg1->x;
-            skeletonInfo->animationMove.idle_world_pos.z = arg1->z;
-            skeletonInfo->animationMove.d_correct_base_world_pos.x = arg0->x - arg1->x;
-            skeletonInfo->animationMove.d_correct_base_world_pos.z = arg0->z - arg1->z;
+        if (transformationFlag & 1) {
+            skeletonInfo->animationMove.baseWorldPosition.x = arg1->x;
+            skeletonInfo->animationMove.baseWorldPosition.z = arg1->z;
+            skeletonInfo->animationMove.shapeWorldPositionCorrection.x = arg0->x - arg1->x;
+            skeletonInfo->animationMove.shapeWorldPositionCorrection.z = arg0->z - arg1->z;
         }
-        if (arg6 & 2) {
-            skeletonInfo->animationMove.idle_world_pos.y = arg1->y;
-            skeletonInfo->animationMove.d_correct_base_world_pos.y = (f32)(arg0->y - arg1->y);
+        if (transformationFlag & 2) {
+            skeletonInfo->animationMove.baseWorldPosition.y = arg1->y;
+            skeletonInfo->animationMove.shapeWorldPositionCorrection.y = (f32)(arg0->y - arg1->y);
         }
     }
-    skeletonInfo->animationMove.idle_set_angleY = arg3;
-    skeletonInfo->animationMove.d_correct_base_set_angleY = 0;
-    if (arg6 & 4) {
+    skeletonInfo->animationMove.baseAngleY = arg3;
+    skeletonInfo->animationMove.shapeAngleCorrection = 0;
+    if (transformationFlag & 4) {
         var_v0 = arg2 - arg3;
         if (var_v0 >= 0x8001) {
             var_v0 = -(0x10000 - var_v0);
         } else if (var_v0 < -0x8000) {
             var_v0 = var_v0 + 0x10000;
         }
-        skeletonInfo->animationMove.d_correct_base_set_angleY = var_v0;
+        skeletonInfo->animationMove.shapeAngleCorrection = var_v0;
     }
 }
 
 void cKF_SkeletonInfo_R_AnimationMove_dt(SkeletonInfoR* skeletonInfo) {
-    s32 temp_v0;
-    Vec3f* temp_a1;
-    Vec3s* temp_v0_2;
-    Vec3s* temp_v1;
+    s32 transformationFlag = skeletonInfo->animationMove.transformationFlag;
+    Vec3s* rootJointTranslation = &skeletonInfo->jointTable[0];
+    Vec3f* baseShapeTranslation = &skeletonInfo->animationMove.baseShapeTranslation;
 
-    temp_v0 = skeletonInfo->animationMove.move_flag;
-    temp_v1 = &skeletonInfo->jointTable[0];
-    temp_a1 = &skeletonInfo->animationMove.baseShapeTrs;
-    if (temp_v0 & 1) {
-        temp_v1->x = temp_a1->x;
-        temp_v1->z = temp_a1->z;
+    if (transformationFlag & 1) {
+        rootJointTranslation->x = baseShapeTranslation->x;
+        rootJointTranslation->z = baseShapeTranslation->z;
     }
-    if (temp_v0 & 2) {
-        temp_v1->y = temp_a1->y;
+    if (transformationFlag & 2) {
+        rootJointTranslation->y = baseShapeTranslation->y;
     }
-    if (temp_v0 & 4) {
-        temp_v0_2 = &skeletonInfo->jointTable[1];
-        temp_v0_2->x = skeletonInfo->animationMove.base_data_angle.x;
-        temp_v0_2->y = skeletonInfo->animationMove.base_data_angle.y;
-        temp_v0_2->z = skeletonInfo->animationMove.base_data_angle.z;
+    if (transformationFlag & 4) {
+        Vec3s* rootJointRotation = &skeletonInfo->jointTable[1];
+
+        rootJointRotation->x = skeletonInfo->animationMove.baseShapeRotation.x;
+        rootJointRotation->y = skeletonInfo->animationMove.baseShapeRotation.y;
+        rootJointRotation->z = skeletonInfo->animationMove.baseShapeRotation.z;
     }
-    skeletonInfo->animationMove.move_flag = 0;
+    skeletonInfo->animationMove.transformationFlag = 0;
 }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/c_keyframe/cKF_SkeletonInfo_R_AnimationMove_base.s")
 void cKF_SkeletonInfo_R_AnimationMove_base(Vec3f* arg0, Vec3s* arg1, Vec3f* arg2, s16 arg3,
                                            SkeletonInfoR* skeletonInfo) {
-    u32 moveFlag = skeletonInfo->animationMove.move_flag;
-    f32 correct_counter = skeletonInfo->animationMove.correct_counter;
+    u32 transformationFlag = skeletonInfo->animationMove.transformationFlag;
+    f32 counter = skeletonInfo->animationMove.counter;
     f32 count;
     f32 var_ft4;
 
-    count = correct_counter + 1.0f;
+    count = counter + 1.0f;
     if (count > 1.0f) {
         var_ft4 = 1.0f / count;
     } else {
         var_ft4 = 0.0f;
     }
 
-    if (moveFlag & 4) {
-        f32 temp6 = skeletonInfo->animationMove.d_correct_base_set_angleY;
+    if (transformationFlag & 4) {
+        f32 temp6 = skeletonInfo->animationMove.shapeAngleCorrection;
 
         if (count > 1.0f) {
             temp6 *= var_ft4;
-            skeletonInfo->animationMove.d_correct_base_set_angleY -= (s16)temp6;
+            skeletonInfo->animationMove.shapeAngleCorrection -= (s16)temp6;
         } else {
-            skeletonInfo->animationMove.d_correct_base_set_angleY = 0;
+            skeletonInfo->animationMove.shapeAngleCorrection = 0;
         }
     }
     if (count > 1.0f) {
-        if (moveFlag & 1) {
+        if (transformationFlag & 1) {
             f32 posXTemp;
             f32 posZTemp;
 
-            posXTemp = skeletonInfo->animationMove.d_correct_base_world_pos.x;
+            posXTemp = skeletonInfo->animationMove.shapeWorldPositionCorrection.x;
             posXTemp *= var_ft4;
 
-            posZTemp = skeletonInfo->animationMove.d_correct_base_world_pos.z;
+            posZTemp = skeletonInfo->animationMove.shapeWorldPositionCorrection.z;
             posZTemp *= var_ft4;
 
-            skeletonInfo->animationMove.d_correct_base_world_pos.x -= posXTemp;
-            skeletonInfo->animationMove.d_correct_base_world_pos.z -= posZTemp;
+            skeletonInfo->animationMove.shapeWorldPositionCorrection.x -= posXTemp;
+            skeletonInfo->animationMove.shapeWorldPositionCorrection.z -= posZTemp;
         }
-        if (moveFlag & 2) {
+        if (transformationFlag & 2) {
             f32 posYTemp;
 
-            posYTemp = skeletonInfo->animationMove.d_correct_base_world_pos.y;
+            posYTemp = skeletonInfo->animationMove.shapeWorldPositionCorrection.y;
             posYTemp *= var_ft4;
 
-            skeletonInfo->animationMove.d_correct_base_world_pos.y -= posYTemp;
+            skeletonInfo->animationMove.shapeWorldPositionCorrection.y -= posYTemp;
         }
     } else {
-        skeletonInfo->animationMove.d_correct_base_world_pos.x = 0.0f;
-        skeletonInfo->animationMove.d_correct_base_world_pos.y = 0.0f;
-        skeletonInfo->animationMove.d_correct_base_world_pos.z = 0.0f;
+        skeletonInfo->animationMove.shapeWorldPositionCorrection.x = 0.0f;
+        skeletonInfo->animationMove.shapeWorldPositionCorrection.y = 0.0f;
+        skeletonInfo->animationMove.shapeWorldPositionCorrection.z = 0.0f;
     }
 
-    if ((arg1 != NULL) && (moveFlag & 4)) {
-        s32 sp8C = skeletonInfo->animationMove.idle_set_angleY;
-        s32 sp88 = skeletonInfo->animationMove.d_correct_base_set_angleY;
-        Vec3s* sp28 = &skeletonInfo->animationMove.renew_base_data_angle;
-        s32 sp80 = skeletonInfo->animationMove.base_data_angle.x;
+    if ((arg1 != NULL) && (transformationFlag & 4)) {
+        s32 sp8C = skeletonInfo->animationMove.baseAngleY;
+        s32 sp88 = skeletonInfo->animationMove.shapeAngleCorrection;
+        Vec3s* sp28 = &skeletonInfo->animationMove.updatedBaseShapeRotation;
+        s32 sp80 = skeletonInfo->animationMove.baseShapeRotation.x;
         s32 temp;
 
         Matrix_push();
@@ -1212,9 +1196,9 @@ void cKF_SkeletonInfo_R_AnimationMove_base(Vec3f* arg0, Vec3s* arg1, Vec3f* arg2
             var_a0 = arg1->x - arg3;
         }
 
-        if (moveFlag & 1) {
-            f32 baseTranslationXTemp = skeletonInfo->animationMove.baseShapeTrs.x;
-            f32 baseTranslationZTemp = skeletonInfo->animationMove.baseShapeTrs.z;
+        if (transformationFlag & 1) {
+            f32 baseTranslationXTemp = skeletonInfo->animationMove.baseShapeTranslation.x;
+            f32 baseTranslationZTemp = skeletonInfo->animationMove.baseShapeTranslation.z;
             f32 sin1 = sin_s(var_a0);
             f32 cos1 = cos_s(var_a0);
             s32 pad1;
@@ -1223,30 +1207,32 @@ void cKF_SkeletonInfo_R_AnimationMove_base(Vec3f* arg0, Vec3s* arg1, Vec3f* arg2
             f32 move_z = arg2->z * (sp78->z - ((-baseTranslationXTemp * sin1) + (baseTranslationZTemp * cos1)));
             f32 sin2 = sin_s(arg3);
             f32 cos2 = cos_s(arg3);
-            f32 correctBaseWorldXTemp = skeletonInfo->animationMove.d_correct_base_world_pos.x;
-            f32 correctBaseWorldZTemp = skeletonInfo->animationMove.d_correct_base_world_pos.z;
+            f32 correctBaseWorldXTemp = skeletonInfo->animationMove.shapeWorldPositionCorrection.x;
+            f32 correctBaseWorldZTemp = skeletonInfo->animationMove.shapeWorldPositionCorrection.z;
             s32 pad3;
             s32 pad4;
 
-            arg0->x = (skeletonInfo->animationMove.idle_world_pos.x + correctBaseWorldXTemp) + ((move_x * cos2) + (move_z * sin2));
-            arg0->z = (skeletonInfo->animationMove.idle_world_pos.z + correctBaseWorldZTemp) + ((-move_x * sin2) + (move_z * cos2));
+            arg0->x = (skeletonInfo->animationMove.baseWorldPosition.x + correctBaseWorldXTemp) +
+                      ((move_x * cos2) + (move_z * sin2));
+            arg0->z = (skeletonInfo->animationMove.baseWorldPosition.z + correctBaseWorldZTemp) +
+                      ((-move_x * sin2) + (move_z * cos2));
         }
 
-        if (moveFlag & 2) {
-            f32 yTemp = skeletonInfo->animationMove.baseShapeTrs.y;
+        if (transformationFlag & 2) {
+            f32 yTemp = skeletonInfo->animationMove.baseShapeTranslation.y;
             f32 temp3 = (arg2->y * (sp78->y - yTemp));
-            f32 new_var = skeletonInfo->animationMove.d_correct_base_world_pos.y;
+            f32 new_var = skeletonInfo->animationMove.shapeWorldPositionCorrection.y;
 
-            arg0->y = (skeletonInfo->animationMove.idle_world_pos.y + new_var) + temp3;
+            arg0->y = (skeletonInfo->animationMove.baseWorldPosition.y + new_var) + temp3;
         }
     }
-    correct_counter -= 1.0f;
+    counter -= 1.0f;
 
-    if (correct_counter < 0.0f) {
-        correct_counter = 0.0f;
+    if (counter < 0.0f) {
+        counter = 0.0f;
     }
 
-    skeletonInfo->animationMove.correct_counter = correct_counter;
+    skeletonInfo->animationMove.counter = counter;
 }
 
 void cKF_SkeletonInfo_R_AnimationMove_CulcTransToWorld(Vec3f* arg0, Vec3f* arg1, f32 arg2, f32 arg3, f32 arg4, s16 arg5,
