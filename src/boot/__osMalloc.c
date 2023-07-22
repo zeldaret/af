@@ -36,27 +36,23 @@ void arena_unlock(Arena* arena) {
     osRecvMesg(&arena->lock, NULL, OS_MESG_BLOCK);
 }
 
-#ifdef NON_EQUIVALENT
 ArenaNode* search_last_block(Arena* arena) {
-    ArenaNode* var_v1;
+    ArenaNode* last = NULL;
 
-    var_v1 = NULL;
     if (arena != NULL) {
         if ((arena->head != NULL) && (arena->head->magic == 0x7373)) {
-            ArenaNode* var_a0;
+            ArenaNode* iter;
 
-            var_a0 = arena->head;
-            while (var_a0 != NULL) {
-                var_v1 = var_a0;
-                var_a0 = ((var_a0->next != NULL) && (var_a0->next->magic == 0x7373)) ? var_a0->next : NULL;
+            iter = arena->head;
+            while (iter != NULL) {
+                last = iter;
+                iter = ((last->next != NULL) && (last->next->magic == 0x7373)) ? last->next : NULL;
             }
         }
     }
-    return var_v1;
+
+    return last;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/search_last_block.s")
-#endif
 
 void __osMallocInit(Arena* arena, void* heap, size_t size) {
     bzero(arena, sizeof(Arena));
