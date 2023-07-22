@@ -13,7 +13,7 @@ typedef struct ArenaNode {
 } ArenaNode; // size = 0x10
 
 // TODO: check size and members
-typedef struct {
+typedef struct Arena {
     /* 0x00 */ ArenaNode* head;
     /* 0x04 */ void* start;
     /* 0x08 */ OSMesgQueue lock;
@@ -36,7 +36,7 @@ void* __osMallocR(Arena* arena, size_t size);
 void __osFree_NoLock(Arena* arena, void* ptr);
 void __osFree(Arena* arena, void* ptr);
 void* __osRealloc(Arena* arena, void* ptr, size_t newSize);
-void __osGetFreeArena(Arena* arena, size_t* arg1, size_t* arg2, size_t* arg3);
+void __osGetFreeArena(Arena* arena, size_t* outMaxFree, size_t* outFree, size_t* outAlloc);
 void ArenaImpl_FaultClient(Arena* arena);
 s32 __osCheckArena(Arena* arena);
 

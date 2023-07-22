@@ -1,5 +1,6 @@
 #include "osmalloc.h"
 #include "alignment.h"
+#include "boot_functions.h"
 #include "libc/stdbool.h"
 #include "libc/stddef.h"
 #include "libc/stdint.h"
@@ -34,7 +35,27 @@ void arena_unlock(Arena* arena) {
     osRecvMesg(&arena->lock, NULL, OS_MESG_BLOCK);
 }
 
+#ifdef NON_EQUIVALENT
+ArenaNode* search_last_block(Arena* arena) {
+    ArenaNode* var_v1;
+
+    var_v1 = NULL;
+    if (arena != NULL) {
+        if ((arena->head != NULL) && (arena->head->magic == 0x7373)) {
+            ArenaNode* var_a0;
+
+            var_a0 = arena->head;
+            while (var_a0 != NULL) {
+                var_v1 = var_a0;
+                var_a0 = ((var_a0->next != NULL) && (var_a0->next->magic == 0x7373)) ? var_a0->next : NULL;
+            }
+        }
+    }
+    return var_v1;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/search_last_block.s")
+#endif
 
 void __osMallocInit(Arena* arena, void* heap, size_t size) {
     bzero(arena, sizeof(Arena));
@@ -201,7 +222,52 @@ void* __osMallocR(Arena* arena, size_t size) {
     return alloc;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/__osFree_NoLock.s")
+void __osFree_NoLock(Arena* arena UNUSED, void* ptr) {
+    ArenaNode* node;
+    ArenaNode* next;
+    ArenaNode* prev;
+
+    if (ptr == NULL) {
+        return;
+    }
+
+    node = (ArenaNode *)((uintptr_t)ptr - sizeof(ArenaNode));
+
+    if ((node == NULL) || (node->magic != NODE_MAGIC) || node->isFree) {
+        return;
+    }
+
+    next = ((node->next != NULL) && (node->next->magic == NODE_MAGIC)) ? node->next : NULL;
+    prev = ((node->prev != NULL) && (node->prev->magic == NODE_MAGIC)) ? node->prev : NULL;
+
+    node->isFree = true;
+
+    // Checks if the next node is contiguous to the current node and if it isn't currently allocated. Then merge the two nodes into one.
+    if (((uintptr_t)next == ((uintptr_t)node + node->size + sizeof(ArenaNode))) && next->isFree) {
+        ArenaNode* newNext;
+
+        newNext = ((next->next != NULL) && (next->next->magic == NODE_MAGIC)) ? next->next : NULL;
+
+        if (newNext != NULL) {
+            newNext->prev = node;
+        }
+
+        node->size += next->size + sizeof(ArenaNode);
+        node->next = newNext;
+
+        next = newNext;
+    }
+
+    // Checks if the previous node is contiguous to the current node and if it isn't currently allocated. Then merge the two nodes into one.
+    if ((prev != NULL) && prev->isFree && ((uintptr_t)node == ((uintptr_t)prev + prev->size + sizeof(ArenaNode)))) {
+        if (next != NULL) {
+            next->prev = prev;
+        }
+
+        prev->next = next;
+        prev->size += node->size + sizeof(ArenaNode);
+    }
+}
 
 void __osFree(Arena* arena, void* ptr) {
     arena_lock(arena);
@@ -211,9 +277,155 @@ void __osFree(Arena* arena, void* ptr) {
     arena_unlock(arena);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/__osRealloc.s")
+#ifdef NON_MATCHING
+void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/__osGetFreeArena.s")
+    newSize = (newSize + 0xF) & ~0xF;
+
+    osSyncPrintf("__osRealloc(%08x, %d)\n", ptr, newSize);
+
+    arena_lock(arena);
+
+    if (ptr == NULL) {
+        ptr = __osMallocNoLock(arena, newSize);
+    } else if (newSize == 0) {
+        __osFree_NoLock(arena, ptr);
+        ptr = NULL;
+    } else {
+        ArenaNode *temp_v1_2;
+        ArenaNode *var_v0;
+        ArenaNode *var_a1; // sp64
+        ArenaNode *var_v1;
+        ArenaNode *var_v1_2;
+        s32 var_a1_3;
+        ArenaNode *var_a1_2; // sp54
+        size_t temp_t0; // sp50
+        size_t temp_v1;
+        ArenaNode sp3C;
+        ArenaNode *temp_a3; // sp30
+
+        temp_a3 = (uintptr_t)ptr - 0x10;
+
+        if (newSize == temp_a3->size) {
+            // "Do nothing because the memory block size doesn't change"
+            osSyncPrintf("メモリブロックサイズが変わらないためなにもしません\n");
+        } else if (temp_a3->size < newSize) {
+            var_a1 = ((temp_a3->next != NULL) && (temp_a3->next->magic == 0x7373)) ? temp_a3->next : NULL;
+            temp_t0 = newSize - temp_a3->size;
+
+            if (((uintptr_t)var_a1 == ((uintptr_t)temp_a3 + temp_a3->size + 0x10)) && var_a1->isFree && (var_a1->size >= temp_t0)) {
+                // "Join because there is a free block after the current memory block"
+                osSyncPrintf("現メモリブロックの後ろにフリーブロックがあるので結合します\n");
+
+                var_a1->size -= temp_t0;
+
+                var_v1 = ((var_a1->next != NULL) && (var_a1->next->magic == 0x7373)) ? var_a1->next : NULL;
+
+                if (var_v1 != NULL) {
+                    var_v1->prev = (ArenaNode *) ((uintptr_t)var_a1 + temp_t0);
+                }
+
+                temp_a3->next = (uintptr_t)var_a1 + temp_t0;
+                temp_a3->size = newSize;
+                func_8003BA60_jp(temp_a3->next, var_a1, 0x10);
+            } else {
+                void *temp_v0_3;
+
+                // "Allocate a new memory block and move the contents"
+                osSyncPrintf("新たにメモリブロックを確保して内容を移動します\n");
+
+                temp_v0_3 = __osMallocNoLock(arena, newSize);
+                if (temp_v0_3 != NULL) {
+                    bcopy(ptr, temp_v0_3, temp_a3->size);
+                    __osFree_NoLock(arena, ptr);
+                }
+                ptr = temp_v0_3;
+            }
+        } else if (newSize < temp_a3->size) {
+            var_a1_2 = ((temp_a3->next != NULL) && (temp_a3->next->magic == 0x7373)) ?  temp_a3->next : NULL;
+
+            if ((var_a1_2 != NULL) && (var_a1_2->isFree != 0)) {
+                // "Increase the free block behind the current memory block"
+                osSyncPrintf("現メモリブロックの後ろのフリーブロックを大きくしました\n");
+
+                temp_v1_2 = (uintptr_t)temp_a3 + ((newSize + 0xF) & ~0xF) + 0x10;
+
+                sp3C = *var_a1_2;
+                *temp_v1_2 = sp3C;
+
+                temp_v1_2->size += temp_a3->size - newSize;
+                temp_a3->next = temp_v1_2;
+                temp_a3->size = newSize;
+
+                var_v0 = ((temp_v1_2->next != NULL) && (temp_v1_2->next->magic == 0x7373)) ? temp_v1_2->next : NULL;
+
+                if (var_v0 != NULL) {
+                    var_v0->prev = temp_v1_2;
+                }
+            } else if (newSize + 0x10 < temp_a3->size) {
+                // "Create because there is no free block after the current memory block"
+                osSyncPrintf("現メモリブロックの後ろにフリーブロックがないので生成します\n");
+
+                var_a1_3 = ((newSize + 0xF) & ~0xF) + 0x10;
+                var_v1_2 = (uintptr_t)temp_a3 + var_a1_3;
+
+                var_v1_2->next = ((temp_a3->next != NULL) && (temp_a3->next->magic == 0x7373)) ? temp_a3->next : NULL;
+
+                var_v1_2->prev = temp_a3;
+                var_v1_2->size = temp_a3->size - var_a1_3;
+                var_v1_2->isFree = 1;
+                var_v1_2->magic = 0x7373;
+
+                // if (1) { }
+
+                temp_a3->next = var_v1_2;
+                temp_a3->size = newSize;
+
+                var_v0 = ((var_v1_2->next != NULL) && (var_v1_2->next->magic == 0x7373)) ? var_v1_2->next : NULL;
+                if (var_v0 != NULL) {
+                    var_v0->prev = var_v1_2;
+                }
+            } else {
+                // "Not enough space to generate free blocks"
+                osSyncPrintf("フリーブロック生成するだけの空きがありません\n");
+                ptr = NULL;
+            }
+        }
+    }
+
+    arena_unlock(arena);
+
+    return ptr;
+}
+#else
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/__osRealloc.s")
+#endif
+
+void __osGetFreeArena(Arena* arena, size_t* outMaxFree, size_t* outFree, size_t* outAlloc) {
+    ArenaNode* iter;
+
+    arena_lock(arena);
+
+    *outMaxFree = 0;
+    *outFree = 0;
+    *outAlloc = 0;
+
+    iter = arena->head;
+    while (iter != NULL) {
+        if (iter->isFree) {
+            *outFree += iter->size;
+            if (*outMaxFree < iter->size) {
+                *outMaxFree = iter->size;
+            }
+        } else {
+            *outAlloc += iter->size;
+        }
+
+        iter = ((iter->next != NULL) && (iter->next->magic == 0x7373)) ? iter->next : NULL;
+    }
+
+    arena_unlock(arena);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/ArenaImpl_FaultClient.s")
 
