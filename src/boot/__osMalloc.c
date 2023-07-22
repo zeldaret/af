@@ -274,7 +274,6 @@ void __osFree(Arena* arena, void* ptr) {
     arena_unlock(arena);
 }
 
-#ifdef NON_MATCHING
 void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
     newSize = (newSize + 0xF) & ~0xF;
 
@@ -292,11 +291,11 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
         ArenaNode *var_v0;
         ArenaNode *var_a1; // sp64
         ArenaNode *var_v1;
-        ArenaNode *var_v1_2;
+        s32 pad UNUSED;
         s32 var_a1_3;
         ArenaNode *var_a1_2; // sp54
         size_t temp_t0; // sp50
-        size_t temp_v1 UNUSED;
+        s32 pad2 UNUSED;
         ArenaNode sp3C;
         ArenaNode *temp_a3; // sp30
 
@@ -344,7 +343,8 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
                 // "Increase the free block behind the current memory block"
                 osSyncPrintf("現メモリブロックの後ろのフリーブロックを大きくしました\n");
 
-                temp_v1_2 = (ArenaNode *)((uintptr_t)temp_a3 + ((newSize + 0xF) & ~0xF) + 0x10);
+                var_a1_3 = ((newSize + 0xF) & ~0xF) + 0x10;
+                temp_v1_2 = (ArenaNode *)((uintptr_t)temp_a3 + var_a1_3);
 
                 sp3C = *var_a1_2;
                 *temp_v1_2 = sp3C;
@@ -363,23 +363,23 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
                 osSyncPrintf("現メモリブロックの後ろにフリーブロックがないので生成します\n");
 
                 var_a1_3 = ((newSize + 0xF) & ~0xF) + 0x10;
-                var_v1_2 = (ArenaNode *)((uintptr_t)temp_a3 + var_a1_3);
+                temp_v1_2 = (ArenaNode *)((uintptr_t)temp_a3 + var_a1_3);
 
-                var_v1_2->next = ((temp_a3->next != NULL) && (temp_a3->next->magic == 0x7373)) ? temp_a3->next : NULL;
+                temp_v1_2->next = ((temp_a3->next != NULL) && (temp_a3->next->magic == 0x7373)) ? temp_a3->next : NULL;
 
-                var_v1_2->prev = temp_a3;
-                var_v1_2->size = temp_a3->size - var_a1_3;
-                var_v1_2->isFree = 1;
-                var_v1_2->magic = 0x7373;
+                temp_v1_2->prev = temp_a3;
+                temp_v1_2->size = temp_a3->size - var_a1_3;
+                temp_v1_2->isFree = 1;
+                temp_v1_2->magic = 0x7373;
 
                 // if (1) { }
 
-                temp_a3->next = var_v1_2;
+                temp_a3->next = temp_v1_2;
                 temp_a3->size = newSize;
 
-                var_v0 = ((var_v1_2->next != NULL) && (var_v1_2->next->magic == 0x7373)) ? var_v1_2->next : NULL;
+                var_v0 = ((temp_v1_2->next != NULL) && (temp_v1_2->next->magic == 0x7373)) ? temp_v1_2->next : NULL;
                 if (var_v0 != NULL) {
-                    var_v0->prev = var_v1_2;
+                    var_v0->prev = temp_v1_2;
                 }
             } else {
                 // "Not enough space to generate free blocks"
@@ -393,9 +393,6 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
 
     return ptr;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/__osRealloc.s")
-#endif
 
 void __osGetFreeArena(Arena* arena, size_t* outMaxFree, size_t* outFree, size_t* outAlloc) {
     ArenaNode* iter;
