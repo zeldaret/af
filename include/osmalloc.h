@@ -29,15 +29,15 @@ ArenaNode* search_last_block(Arena* arena);
 void __osMallocInit(Arena* arena, void* heap, size_t size);
 void __osMallocAddBlock(Arena* arena, void* heap, size_t size);
 void __osMallocCleanup(Arena* arena);
-// void __osMallocIsInitalized();
-// void __osMallocNoLock();
-// void __osMalloc();
+u8 __osMallocIsInitalized(Arena* arena);
+void* __osMallocNoLock(Arena* arena, size_t size);
+void* __osMalloc(Arena* arena, size_t size);
 // void __osMallocR();
-// void __osFree_NoLock();
-// void __osFree();
+void __osFree_NoLock(Arena* arena, void* ptr);
+void __osFree(Arena* arena, void* ptr);
 // void __osRealloc();
 // void __osGetFreeArena();
 // void ArenaImpl_FaultClient();
-// void __osCheckArena();
+s32 __osCheckArena(Arena* arena);
 
 #endif

@@ -10,6 +10,7 @@
 //#define CHECK_FREE_BLOCK (1 << 2)
 
 #define NODE_MAGIC (0x7373)
+// TODO: CHECK_MAGIC macro?
 
 //#define BLOCK_UNINIT_MAGIC (0xAB)
 //#define BLOCK_UNINIT_MAGIC_32 (0xABABABAB)
@@ -25,9 +26,13 @@ void arena_lock_init(Arena* arena) {
     osCreateMesgQueue(&arena->lock, B_80041A00_jp, ARRAY_COUNT(B_80041A00_jp));
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/arena_lock.s")
+void arena_lock(Arena* arena) {
+    osSendMesg(&arena->lock, NULL, OS_MESG_BLOCK);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/arena_unlock.s")
+void arena_unlock(Arena* arena) {
+    osRecvMesg(&arena->lock, NULL, OS_MESG_BLOCK);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/search_last_block.s")
 
@@ -86,17 +91,35 @@ void __osMallocCleanup(Arena* arena) {
     bzero(arena, sizeof(Arena));
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/__osMallocIsInitalized.s")
+u8 __osMallocIsInitalized(Arena* arena) {
+    return arena->isInit;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/__osMallocNoLock.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/__osMalloc.s")
+void* __osMalloc(Arena* arena, size_t size) {
+    void* alloc;
+
+    arena_lock(arena);
+
+    alloc = __osMallocNoLock(arena, size);
+
+    arena_unlock(arena);
+
+    return alloc;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/__osMallocR.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/__osFree_NoLock.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/__osFree.s")
+void __osFree(Arena* arena, void* ptr) {
+    arena_lock(arena);
+
+    __osFree_NoLock(arena, ptr);
+
+    arena_unlock(arena);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/__osRealloc.s")
 
@@ -104,4 +127,33 @@ void __osMallocCleanup(Arena* arena) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/ArenaImpl_FaultClient.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/__osCheckArena.s")
+s32 __osCheckArena(Arena* arena) {
+    ArenaNode* iter;
+    s32 err = false;
+
+    arena_lock(arena);
+
+    // "Checking the contents of the arena..."
+    osSyncPrintf("アリーナの内容をチェックしています．．． (%08x)\n", arena);
+
+    iter = arena->head;
+    while (iter != NULL) {
+        if ((iter != NULL) && (iter->magic == NODE_MAGIC)) {
+            // "Oops!!"
+            osSyncPrintf("おおっと！！ (%08x %08x)\n", iter, iter->magic);
+
+            err = true;
+            break;
+        }
+
+        iter = ((iter->next != NULL) && (iter->next->magic == NODE_MAGIC)) ? iter->next : NULL;
+    }
+
+    if (!err) {
+        osSyncPrintf("アリーナはまだ、いけそうです\n");
+    }
+
+    arena_unlock(arena);
+
+    return err;
+}
