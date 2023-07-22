@@ -20,18 +20,11 @@ typedef struct Arena {
     /* 0x22 */ u8 flag;
 } Arena; // size = 0x24
 
-void arena_lock_init(Arena* arena);
-void arena_lock(Arena* arena);
-void arena_unlock(Arena* arena);
-ArenaNode* search_last_block(Arena* arena);
 void __osMallocInit(Arena* arena, void* heap, size_t size);
-void __osMallocAddBlock(Arena* arena, void* heap, size_t size);
 void __osMallocCleanup(Arena* arena);
 u8 __osMallocIsInitalized(Arena* arena);
-void* __osMallocNoLock(Arena* arena, size_t size);
 void* __osMalloc(Arena* arena, size_t size);
 void* __osMallocR(Arena* arena, size_t size);
-void __osFree_NoLock(Arena* arena, void* ptr);
 void __osFree(Arena* arena, void* ptr);
 void* __osRealloc(Arena* arena, void* ptr, size_t newSize);
 void __osGetFreeArena(Arena* arena, size_t* outMaxFree, size_t* outFree, size_t* outAlloc);

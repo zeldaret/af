@@ -7,25 +7,15 @@
 #include "libc/stdint.h"
 #include "macros.h"
 
-//#define FILL_ALLOCBLOCK (1 << 0)
-//#define FILL_FREEBLOCK (1 << 1)
-//#define CHECK_FREE_BLOCK (1 << 2)
-
 #define NODE_MAGIC (0x7373)
 // TODO: CHECK_MAGIC macro?
 
-//#define BLOCK_UNINIT_MAGIC (0xAB)
-//#define BLOCK_UNINIT_MAGIC_32 (0xABABABAB)
-//#define BLOCK_ALLOC_MAGIC (0xCD)
-//#define BLOCK_ALLOC_MAGIC_32 (0xCDCDCDCD)
-//#define BLOCK_FREE_MAGIC (0xEF)
-//#define BLOCK_FREE_MAGIC_32 (0xEFEFEFEF)
+OSMesg sArenaLockMsg[1];
 
-// sArenaLockMsg
-extern OSMesg B_80041A00_jp[1];
+void __osMallocAddBlock(Arena* arena, void* heap, size_t size);
 
 void arena_lock_init(Arena* arena) {
-    osCreateMesgQueue(&arena->lock, B_80041A00_jp, ARRAY_COUNT(B_80041A00_jp));
+    osCreateMesgQueue(&arena->lock, sArenaLockMsg, ARRAY_COUNT(sArenaLockMsg));
 }
 
 void arena_lock(Arena* arena) {
@@ -40,13 +30,13 @@ ArenaNode* search_last_block(Arena* arena) {
     ArenaNode* last = NULL;
 
     if (arena != NULL) {
-        if ((arena->head != NULL) && (arena->head->magic == 0x7373)) {
+        if ((arena->head != NULL) && (arena->head->magic == NODE_MAGIC)) {
             ArenaNode* iter;
 
             iter = arena->head;
             while (iter != NULL) {
                 last = iter;
-                iter = ((last->next != NULL) && (last->next->magic == 0x7373)) ? last->next : NULL;
+                iter = ((last->next != NULL) && (last->next->magic == NODE_MAGIC)) ? last->next : NULL;
             }
         }
     }
@@ -129,17 +119,17 @@ void* __osMallocNoLock(Arena* arena, size_t size) {
                 ArenaNode* next;
 
                 newNode = (ArenaNode*)((uintptr_t)iter + blockSize);
-                newNode->next = ((iter->next != NULL) && (iter->next->magic == 0x7373)) ? iter->next : NULL;
+                newNode->next = ((iter->next != NULL) && (iter->next->magic == NODE_MAGIC)) ? iter->next : NULL;
 
                 newNode->prev = iter;
                 newNode->size = iter->size - blockSize;
                 newNode->isFree = 1;
-                newNode->magic = 0x7373;
+                newNode->magic = NODE_MAGIC;
 
                 iter->next = newNode;
                 iter->size = size;
 
-                next = ((newNode->next != NULL) && (newNode->next->magic == 0x7373)) ? newNode->next : NULL;
+                next = ((newNode->next != NULL) && (newNode->next->magic == NODE_MAGIC)) ? newNode->next : NULL;
                 if (next != NULL) {
                     next->prev = newNode;
                 }
@@ -150,7 +140,7 @@ void* __osMallocNoLock(Arena* arena, size_t size) {
             break;
         }
 
-        iter = ((iter->next != NULL) && (iter->next->magic == 0x7373)) ? iter->next : NULL;
+        iter = ((iter->next != NULL) && (iter->next->magic == NODE_MAGIC)) ? iter->next : NULL;
     }
 
     return alloc;
@@ -275,7 +265,7 @@ void __osFree(Arena* arena, void* ptr) {
 }
 
 void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
-    newSize = (newSize + 0xF) & ~0xF;
+    newSize = ALIGN16(newSize);
 
     osSyncPrintf("__osRealloc(%08x, %d)\n", ptr, newSize);
 
@@ -299,22 +289,22 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
         ArenaNode sp3C;
         ArenaNode *temp_a3; // sp30
 
-        temp_a3 = (ArenaNode *)((uintptr_t)ptr - 0x10);
+        temp_a3 = (ArenaNode *)((uintptr_t)ptr - sizeof(ArenaNode));
 
         if (newSize == temp_a3->size) {
             // "Do nothing because the memory block size doesn't change"
             osSyncPrintf("メモリブロックサイズが変わらないためなにもしません\n");
         } else if (temp_a3->size < newSize) {
-            var_a1 = ((temp_a3->next != NULL) && (temp_a3->next->magic == 0x7373)) ? temp_a3->next : NULL;
+            var_a1 = ((temp_a3->next != NULL) && (temp_a3->next->magic == NODE_MAGIC)) ? temp_a3->next : NULL;
             temp_t0 = newSize - temp_a3->size;
 
-            if (((uintptr_t)var_a1 == ((uintptr_t)temp_a3 + temp_a3->size + 0x10)) && var_a1->isFree && (var_a1->size >= temp_t0)) {
+            if (((uintptr_t)var_a1 == ((uintptr_t)temp_a3 + temp_a3->size + sizeof(ArenaNode))) && var_a1->isFree && (var_a1->size >= temp_t0)) {
                 // "Join because there is a free block after the current memory block"
                 osSyncPrintf("現メモリブロックの後ろにフリーブロックがあるので結合します\n");
 
                 var_a1->size -= temp_t0;
 
-                var_v1 = ((var_a1->next != NULL) && (var_a1->next->magic == 0x7373)) ? var_a1->next : NULL;
+                var_v1 = ((var_a1->next != NULL) && (var_a1->next->magic == NODE_MAGIC)) ? var_a1->next : NULL;
 
                 if (var_v1 != NULL) {
                     var_v1->prev = (ArenaNode *) ((uintptr_t)var_a1 + temp_t0);
@@ -322,7 +312,7 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
 
                 temp_a3->next = (ArenaNode *)((uintptr_t)var_a1 + temp_t0);
                 temp_a3->size = newSize;
-                func_8003BA60_jp(temp_a3->next, var_a1, 0x10);
+                func_8003BA60_jp(temp_a3->next, var_a1, sizeof(ArenaNode));
             } else {
                 void *temp_v0_3;
 
@@ -337,13 +327,13 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
                 ptr = temp_v0_3;
             }
         } else if (newSize < temp_a3->size) {
-            var_a1_2 = ((temp_a3->next != NULL) && (temp_a3->next->magic == 0x7373)) ?  temp_a3->next : NULL;
+            var_a1_2 = ((temp_a3->next != NULL) && (temp_a3->next->magic == NODE_MAGIC)) ?  temp_a3->next : NULL;
 
             if ((var_a1_2 != NULL) && (var_a1_2->isFree != 0)) {
                 // "Increase the free block behind the current memory block"
                 osSyncPrintf("現メモリブロックの後ろのフリーブロックを大きくしました\n");
 
-                var_a1_3 = ((newSize + 0xF) & ~0xF) + 0x10;
+                var_a1_3 = ALIGN16(newSize) + sizeof(ArenaNode);
                 temp_v1_2 = (ArenaNode *)((uintptr_t)temp_a3 + var_a1_3);
 
                 sp3C = *var_a1_2;
@@ -353,31 +343,31 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
                 temp_a3->next = temp_v1_2;
                 temp_a3->size = newSize;
 
-                var_v0 = ((temp_v1_2->next != NULL) && (temp_v1_2->next->magic == 0x7373)) ? temp_v1_2->next : NULL;
+                var_v0 = ((temp_v1_2->next != NULL) && (temp_v1_2->next->magic == NODE_MAGIC)) ? temp_v1_2->next : NULL;
 
                 if (var_v0 != NULL) {
                     var_v0->prev = temp_v1_2;
                 }
-            } else if (newSize + 0x10 < temp_a3->size) {
+            } else if (newSize + sizeof(ArenaNode) < temp_a3->size) {
                 // "Create because there is no free block after the current memory block"
                 osSyncPrintf("現メモリブロックの後ろにフリーブロックがないので生成します\n");
 
-                var_a1_3 = ((newSize + 0xF) & ~0xF) + 0x10;
+                var_a1_3 = ALIGN16(newSize) + sizeof(ArenaNode);
                 temp_v1_2 = (ArenaNode *)((uintptr_t)temp_a3 + var_a1_3);
 
-                temp_v1_2->next = ((temp_a3->next != NULL) && (temp_a3->next->magic == 0x7373)) ? temp_a3->next : NULL;
+                temp_v1_2->next = ((temp_a3->next != NULL) && (temp_a3->next->magic == NODE_MAGIC)) ? temp_a3->next : NULL;
 
                 temp_v1_2->prev = temp_a3;
                 temp_v1_2->size = temp_a3->size - var_a1_3;
                 temp_v1_2->isFree = 1;
-                temp_v1_2->magic = 0x7373;
+                temp_v1_2->magic = NODE_MAGIC;
 
                 // if (1) { }
 
                 temp_a3->next = temp_v1_2;
                 temp_a3->size = newSize;
 
-                var_v0 = ((temp_v1_2->next != NULL) && (temp_v1_2->next->magic == 0x7373)) ? temp_v1_2->next : NULL;
+                var_v0 = ((temp_v1_2->next != NULL) && (temp_v1_2->next->magic == NODE_MAGIC)) ? temp_v1_2->next : NULL;
                 if (var_v0 != NULL) {
                     var_v0->prev = temp_v1_2;
                 }
@@ -414,7 +404,7 @@ void __osGetFreeArena(Arena* arena, size_t* outMaxFree, size_t* outFree, size_t*
             *outAlloc += iter->size;
         }
 
-        iter = ((iter->next != NULL) && (iter->next->magic == 0x7373)) ? iter->next : NULL;
+        iter = ((iter->next != NULL) && (iter->next->magic == NODE_MAGIC)) ? iter->next : NULL;
     }
 
     arena_unlock(arena);
@@ -441,7 +431,7 @@ void ArenaImpl_FaultClient(Arena* arena) {
     FaultDrawer_Printf("Memory Block Region status size\n");
 
     for (iter = arena->head; iter != NULL; iter = next) {
-        if ((iter != NULL) && (iter->magic == 0x7373)) {
+        if ((iter != NULL) && (iter->magic == NODE_MAGIC)) {
             next = iter->next;
 
             FaultDrawer_Printf("%08x-%08x%c %s %08x", iter, (uintptr_t)iter + iter->size + sizeof(ArenaNode), (next == NULL) ? '$' : ((iter != next->prev) ? '!' : ' '), iter->isFree ? "F" : "A", iter->size);

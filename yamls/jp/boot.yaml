@@ -232,6 +232,8 @@
       - { start: 0x019D40, type: bss, vram: 0x800419A0, name: boot/gfxprint }
       - { start: 0x019D40, type: bss, vram: 0x800419B0, name: boot/mathf }
       - { start: 0x019D40, type: bss, vram: 0x800419C0, name: boot/800419C0 }
+      - { start: 0x019D40, type: .bss, vram: 0x80041A00, name: boot/__osMalloc }
+      - { start: 0x019D40, type: bss, vram: 0x80041A10, name: boot/80041A10 }
 
   - name: dmadata
     type: code
