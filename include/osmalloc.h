@@ -32,12 +32,12 @@ void __osMallocCleanup(Arena* arena);
 u8 __osMallocIsInitalized(Arena* arena);
 void* __osMallocNoLock(Arena* arena, size_t size);
 void* __osMalloc(Arena* arena, size_t size);
-// void __osMallocR();
+void* __osMallocR(Arena* arena, size_t size);
 void __osFree_NoLock(Arena* arena, void* ptr);
 void __osFree(Arena* arena, void* ptr);
-// void __osRealloc();
-// void __osGetFreeArena();
-// void ArenaImpl_FaultClient();
+void* __osRealloc(Arena* arena, void* ptr, size_t newSize);
+void __osGetFreeArena(Arena* arena, size_t* arg1, size_t* arg2, size_t* arg3);
+void ArenaImpl_FaultClient(Arena* arena);
 s32 __osCheckArena(Arena* arena);
 
 #endif

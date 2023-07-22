@@ -95,7 +95,48 @@ u8 __osMallocIsInitalized(Arena* arena) {
     return arena->isInit;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/__osMallocNoLock.s")
+void* __osMallocNoLock(Arena* arena, size_t size) {
+    ArenaNode* iter;
+    size_t blockSize;
+    void* alloc = NULL;
+
+    size = ALIGN16(size);
+    blockSize = ALIGN16(size) + sizeof(ArenaNode);
+
+    iter = arena->head;
+    while (iter != NULL) {
+        if (iter->isFree && (iter->size >= size)) {
+            if (blockSize < iter->size) {
+                ArenaNode* newNode;
+                ArenaNode* next;
+
+                newNode = (ArenaNode*)((uintptr_t)iter + blockSize);
+                newNode->next = ((iter->next != NULL) && (iter->next->magic == 0x7373)) ? iter->next : NULL;
+
+                newNode->prev = iter;
+                newNode->size = iter->size - blockSize;
+                newNode->isFree = 1;
+                newNode->magic = 0x7373;
+
+                iter->next = newNode;
+                iter->size = size;
+
+                next = ((newNode->next != NULL) && (newNode->next->magic == 0x7373)) ? newNode->next : NULL;
+                if (next != NULL) {
+                    next->prev = newNode;
+                }
+            }
+
+            iter->isFree = 0;
+            alloc = (void*)((uintptr_t)iter + sizeof(ArenaNode));
+            break;
+        }
+
+        iter = ((iter->next != NULL) && (iter->next->magic == 0x7373)) ? iter->next : NULL;
+    }
+
+    return alloc;
+}
 
 void* __osMalloc(Arena* arena, size_t size) {
     void* alloc;
@@ -109,7 +150,56 @@ void* __osMalloc(Arena* arena, size_t size) {
     return alloc;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/__osMallocR.s")
+void* __osMallocR(Arena* arena, size_t size) {
+    ArenaNode *newNode;
+    ArenaNode* temp_a0;
+    ArenaNode* next;
+    ArenaNode* iter;
+    ArenaNode* alloc;
+    size_t blockSize;
+
+    alloc = NULL;
+    size = ALIGN16(size);
+    blockSize = ALIGN16(size) + sizeof(ArenaNode);
+
+    arena_lock(arena);
+
+    iter = search_last_block(arena);
+    while (iter != NULL) {
+        if (iter->isFree && (iter->size >= size)) {
+            if (blockSize < iter->size) {
+                temp_a0 = (ArenaNode*)((uintptr_t)iter + (iter->size - size));
+
+                temp_a0->next = ((iter->next != NULL) && (iter->next->magic == NODE_MAGIC)) ? iter->next : NULL;
+                //! FAKE?
+                newNode = temp_a0;
+                newNode->prev = iter;
+                newNode->size = size;
+                newNode->magic = NODE_MAGIC;
+
+                iter->next = newNode;
+                iter->size -= blockSize;
+
+                next = ((newNode->next != NULL) && (newNode->next->magic == NODE_MAGIC)) ? newNode->next : NULL;
+                if (next != NULL) {
+                    next->prev = newNode;
+                }
+
+                iter = newNode;
+            }
+
+            iter->isFree = false;
+            alloc = (void*)((uintptr_t)iter + sizeof(ArenaNode));
+            break;
+        }
+
+        iter = ((iter->prev != NULL) && (iter->prev->magic == NODE_MAGIC)) ? iter->prev : NULL;
+    }
+
+    arena_unlock(arena);
+
+    return alloc;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/__osFree_NoLock.s")
 
