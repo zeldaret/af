@@ -1,6 +1,7 @@
 #include "osmalloc.h"
 #include "alignment.h"
 #include "boot_functions.h"
+#include "fault.h"
 #include "libc/stdbool.h"
 #include "libc/stddef.h"
 #include "libc/stdint.h"
@@ -279,7 +280,6 @@ void __osFree(Arena* arena, void* ptr) {
 
 #ifdef NON_MATCHING
 void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
-
     newSize = (newSize + 0xF) & ~0xF;
 
     osSyncPrintf("__osRealloc(%08x, %d)\n", ptr, newSize);
@@ -300,11 +300,11 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
         s32 var_a1_3;
         ArenaNode *var_a1_2; // sp54
         size_t temp_t0; // sp50
-        size_t temp_v1;
+        size_t temp_v1 UNUSED;
         ArenaNode sp3C;
         ArenaNode *temp_a3; // sp30
 
-        temp_a3 = (uintptr_t)ptr - 0x10;
+        temp_a3 = (ArenaNode *)((uintptr_t)ptr - 0x10);
 
         if (newSize == temp_a3->size) {
             // "Do nothing because the memory block size doesn't change"
@@ -325,7 +325,7 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
                     var_v1->prev = (ArenaNode *) ((uintptr_t)var_a1 + temp_t0);
                 }
 
-                temp_a3->next = (uintptr_t)var_a1 + temp_t0;
+                temp_a3->next = (ArenaNode *)((uintptr_t)var_a1 + temp_t0);
                 temp_a3->size = newSize;
                 func_8003BA60_jp(temp_a3->next, var_a1, 0x10);
             } else {
@@ -348,7 +348,7 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
                 // "Increase the free block behind the current memory block"
                 osSyncPrintf("現メモリブロックの後ろのフリーブロックを大きくしました\n");
 
-                temp_v1_2 = (uintptr_t)temp_a3 + ((newSize + 0xF) & ~0xF) + 0x10;
+                temp_v1_2 = (ArenaNode *)((uintptr_t)temp_a3 + ((newSize + 0xF) & ~0xF) + 0x10);
 
                 sp3C = *var_a1_2;
                 *temp_v1_2 = sp3C;
@@ -367,7 +367,7 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
                 osSyncPrintf("現メモリブロックの後ろにフリーブロックがないので生成します\n");
 
                 var_a1_3 = ((newSize + 0xF) & ~0xF) + 0x10;
-                var_v1_2 = (uintptr_t)temp_a3 + var_a1_3;
+                var_v1_2 = (ArenaNode *)((uintptr_t)temp_a3 + var_a1_3);
 
                 var_v1_2->next = ((temp_a3->next != NULL) && (temp_a3->next->magic == 0x7373)) ? temp_a3->next : NULL;
 
@@ -427,7 +427,52 @@ void __osGetFreeArena(Arena* arena, size_t* outMaxFree, size_t* outFree, size_t*
     arena_unlock(arena);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/__osMalloc/ArenaImpl_FaultClient.s")
+void ArenaImpl_FaultClient(Arena* arena) {
+    ArenaNode* iter;
+    ArenaNode* next;
+    size_t allocated;
+    size_t free;
+    size_t largestFree;
+
+    FaultDrawer_Printf("ARENA INFO (0x%08x)\n", arena);
+
+    if (!__osMallocIsInitalized(arena)) {
+        FaultDrawer_Printf("Arena is uninitalized\n", arena);
+        return;
+    }
+
+    largestFree = 0;
+    free = 0;
+    allocated = 0;
+
+    FaultDrawer_Printf("Memory Block Region status size\n");
+
+    for (iter = arena->head; iter != NULL; iter = next) {
+        if ((iter != NULL) && (iter->magic == 0x7373)) {
+            next = iter->next;
+
+            FaultDrawer_Printf("%08x-%08x%c %s %08x", iter, (uintptr_t)iter + iter->size + sizeof(ArenaNode), (next == NULL) ? '$' : ((iter != next->prev) ? '!' : ' '), iter->isFree ? "F" : "A", iter->size);
+            FaultDrawer_Printf("\n");
+            if (iter->isFree) {
+                free += iter->size;
+                if (largestFree < iter->size) {
+                    largestFree = iter->size;
+                }
+            } else {
+                allocated += iter->size;
+            }
+        } else {
+            FaultDrawer_SetFontColor(GPACK_RGBA5551(255, 0, 0, 1));
+            FaultDrawer_Printf("%08x Block Invalid\n", iter);
+            next = NULL;
+        }
+    }
+
+    FaultDrawer_SetFontColor(GPACK_RGBA5551(0, 255, 192, 1));
+    FaultDrawer_Printf("Total Alloc Block Size  %08x\n", allocated);
+    FaultDrawer_Printf("Total Free Block Size   %08x\n", free);
+    FaultDrawer_Printf("Largest Free Block Size %08x\n", largestFree);
+}
 
 s32 __osCheckArena(Arena* arena) {
     ArenaNode* iter;

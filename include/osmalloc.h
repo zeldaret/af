@@ -3,7 +3,6 @@
 
 #include "ultra64.h"
 
-// TODO: check size and members
 typedef struct ArenaNode {
     /* 0x0 */ s16 magic; // Should always be 0x7373
     /* 0x2 */ s16 isFree;
@@ -12,7 +11,6 @@ typedef struct ArenaNode {
     /* 0xC */ struct ArenaNode* prev;
 } ArenaNode; // size = 0x10
 
-// TODO: check size and members
 typedef struct Arena {
     /* 0x00 */ ArenaNode* head;
     /* 0x04 */ void* start;
