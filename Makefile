@@ -181,9 +181,9 @@ $(shell mkdir -p $(BUILD_DIR)/linker_scripts/$(VERSION) $(BUILD_DIR)/linker_scri
 
 
 # directory flags
+build/src/boot/O2/%.o: OPTFLAGS := -O2
 
 # per-file flags
-build/src/boot/loadfragment2.o: OPTFLAGS := -O2
 
 # cc & asm-processor
 build/src/%.o: CC := $(ASM_PROC) $(ASM_PROC_FLAGS) $(CC) -- $(AS) $(ASFLAGS) --
