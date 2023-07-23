@@ -8,7 +8,9 @@
 #include "macros.h"
 
 #define NODE_MAGIC (0x7373)
-// TODO: CHECK_MAGIC macro?
+#define IS_VALID_NODE(node) (((node) != NULL) && ((node)->magic == NODE_MAGIC))
+#define GET_NEXT_NODE(node) (IS_VALID_NODE((node)->next) ? (node)->next : NULL)
+#define GET_PREV_NODE(node) (IS_VALID_NODE((node)->prev) ? (node)->prev : NULL)
 
 OSMesg sArenaLockMsg[1];
 
@@ -30,13 +32,13 @@ ArenaNode* search_last_block(Arena* arena) {
     ArenaNode* last = NULL;
 
     if (arena != NULL) {
-        if ((arena->head != NULL) && (arena->head->magic == NODE_MAGIC)) {
+        if (IS_VALID_NODE(arena->head)) {
             ArenaNode* iter;
 
             iter = arena->head;
             while (iter != NULL) {
                 last = iter;
-                iter = ((last->next != NULL) && (last->next->magic == NODE_MAGIC)) ? last->next : NULL;
+                iter = GET_NEXT_NODE(last);
             }
         }
     }
@@ -148,7 +150,7 @@ void* __osMallocNoLock(Arena* arena, size_t size) {
                 ArenaNode* next;
 
                 newNode = (ArenaNode*)((uintptr_t)iter + blockSize);
-                newNode->next = ((iter->next != NULL) && (iter->next->magic == NODE_MAGIC)) ? iter->next : NULL;
+                newNode->next = GET_NEXT_NODE(iter);
 
                 newNode->prev = iter;
                 newNode->size = iter->size - blockSize;
@@ -158,7 +160,7 @@ void* __osMallocNoLock(Arena* arena, size_t size) {
                 iter->next = newNode;
                 iter->size = size;
 
-                next = ((newNode->next != NULL) && (newNode->next->magic == NODE_MAGIC)) ? newNode->next : NULL;
+                next = GET_NEXT_NODE(newNode);
                 if (next != NULL) {
                     next->prev = newNode;
                 }
@@ -169,7 +171,7 @@ void* __osMallocNoLock(Arena* arena, size_t size) {
             break;
         }
 
-        iter = ((iter->next != NULL) && (iter->next->magic == NODE_MAGIC)) ? iter->next : NULL;
+        iter = GET_NEXT_NODE(iter);
     }
 
     return alloc;
@@ -239,7 +241,7 @@ void* __osMallocR(Arena* arena, size_t size) {
             if (blockSize < iter->size) {
                 temp_a0 = (ArenaNode*)((uintptr_t)iter + (iter->size - size));
 
-                temp_a0->next = ((iter->next != NULL) && (iter->next->magic == NODE_MAGIC)) ? iter->next : NULL;
+                temp_a0->next = GET_NEXT_NODE(iter);
                 //! FAKE?
                 newNode = temp_a0;
                 newNode->prev = iter;
@@ -249,7 +251,7 @@ void* __osMallocR(Arena* arena, size_t size) {
                 iter->next = newNode;
                 iter->size -= blockSize;
 
-                next = ((newNode->next != NULL) && (newNode->next->magic == NODE_MAGIC)) ? newNode->next : NULL;
+                next = GET_NEXT_NODE(newNode);
                 if (next != NULL) {
                     next->prev = newNode;
                 }
@@ -262,7 +264,7 @@ void* __osMallocR(Arena* arena, size_t size) {
             break;
         }
 
-        iter = ((iter->prev != NULL) && (iter->prev->magic == NODE_MAGIC)) ? iter->prev : NULL;
+        iter = GET_PREV_NODE(iter);
     }
 
     arena_unlock(arena);
@@ -290,8 +292,8 @@ void __osFree_NoLock(Arena* arena UNUSED, void* ptr) {
         return;
     }
 
-    next = ((node->next != NULL) && (node->next->magic == NODE_MAGIC)) ? node->next : NULL;
-    prev = ((node->prev != NULL) && (node->prev->magic == NODE_MAGIC)) ? node->prev : NULL;
+    next = GET_NEXT_NODE(node);
+    prev = GET_PREV_NODE(node);
 
     node->isFree = true;
 
@@ -299,7 +301,7 @@ void __osFree_NoLock(Arena* arena UNUSED, void* ptr) {
     if (((uintptr_t)next == ((uintptr_t)node + node->size + sizeof(ArenaNode))) && next->isFree) {
         ArenaNode* newNext;
 
-        newNext = ((next->next != NULL) && (next->next->magic == NODE_MAGIC)) ? next->next : NULL;
+        newNext = GET_NEXT_NODE(next);
 
         if (newNext != NULL) {
             newNext->prev = node;
@@ -404,7 +406,7 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
         } else if (node->size < newSize) {
             // The requested size is bigger than the already allocated one.
 
-            next = ((node->next != NULL) && (node->next->magic == NODE_MAGIC)) ? node->next : NULL;
+            next = GET_NEXT_NODE(node);
             sizeDiff = newSize - node->size;
 
             // Checks if the next node is contiguous to the current allocated node and it has enough space to fit the new requested size
@@ -414,7 +416,7 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
 
                 next->size -= sizeDiff;
 
-                nextAux = ((next->next != NULL) && (next->next->magic == NODE_MAGIC)) ? next->next : NULL;
+                nextAux = GET_NEXT_NODE(next);
                 if (nextAux != NULL) {
                     nextAux->prev = (ArenaNode *) ((uintptr_t)next + sizeDiff);
                 }
@@ -443,7 +445,7 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
             ArenaNode *temp_v1_2;
             s32 pad2 UNUSED;
 
-            var_a1_2 = ((node->next != NULL) && (node->next->magic == NODE_MAGIC)) ?  node->next : NULL;
+            var_a1_2 = GET_NEXT_NODE(node);
 
             if ((var_a1_2 != NULL) && var_a1_2->isFree) {
                 // Decrease the size of the allocated pointer and pass that size to the next node.
@@ -461,7 +463,7 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
                 node->next = temp_v1_2;
                 node->size = newSize;
 
-                var_v0 = ((temp_v1_2->next != NULL) && (temp_v1_2->next->magic == NODE_MAGIC)) ? temp_v1_2->next : NULL;
+                var_v0 = GET_NEXT_NODE(temp_v1_2);
                 if (var_v0 != NULL) {
                     var_v0->prev = temp_v1_2;
                 }
@@ -474,7 +476,7 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
                 fullNodeSize = ALIGN16(newSize) + sizeof(ArenaNode);
                 temp_v1_2 = (ArenaNode *)((uintptr_t)node + fullNodeSize);
 
-                temp_v1_2->next = ((node->next != NULL) && (node->next->magic == NODE_MAGIC)) ? node->next : NULL;
+                temp_v1_2->next = GET_NEXT_NODE(node);
 
                 temp_v1_2->prev = node;
                 temp_v1_2->size = node->size - fullNodeSize;
@@ -484,7 +486,7 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
                 node->next = temp_v1_2;
                 node->size = newSize;
 
-                var_v0 = ((temp_v1_2->next != NULL) && (temp_v1_2->next->magic == NODE_MAGIC)) ? temp_v1_2->next : NULL;
+                var_v0 = GET_NEXT_NODE(temp_v1_2);
                 if (var_v0 != NULL) {
                     var_v0->prev = temp_v1_2;
                 }
@@ -529,7 +531,7 @@ void __osGetFreeArena(Arena* arena, size_t* outMaxFree, size_t* outFree, size_t*
             *outAlloc += iter->size;
         }
 
-        iter = ((iter->next != NULL) && (iter->next->magic == NODE_MAGIC)) ? iter->next : NULL;
+        iter = GET_NEXT_NODE(iter);
     }
 
     arena_unlock(arena);
@@ -559,7 +561,7 @@ void ArenaImpl_FaultClient(Arena* arena) {
     FaultDrawer_Printf("Memory Block Region status size\n");
 
     for (iter = arena->head; iter != NULL; iter = next) {
-        if ((iter != NULL) && (iter->magic == NODE_MAGIC)) {
+        if (IS_VALID_NODE(iter)) {
             next = iter->next;
 
             FaultDrawer_Printf("%08x-%08x%c %s %08x", iter, (uintptr_t)iter + iter->size + sizeof(ArenaNode), (next == NULL) ? '$' : ((iter != next->prev) ? '!' : ' '), iter->isFree ? "F" : "A", iter->size);
@@ -589,7 +591,7 @@ void ArenaImpl_FaultClient(Arena* arena) {
  * Checks the validity of every node of the \p arena.
  *
  * @param arena  The Arena to check.
- * @return s32   `false` if every pointer is valid. `1` otherwise.
+ * @return s32   `false` if every pointer is valid. `true` otherwise.
  */
 s32 __osCheckArena(Arena* arena) {
     ArenaNode* iter;
@@ -602,7 +604,8 @@ s32 __osCheckArena(Arena* arena) {
 
     iter = arena->head;
     while (iter != NULL) {
-        if ((iter != NULL) && (iter->magic == NODE_MAGIC)) {
+        //! @bug This condition should be inverted. Because of it, this function will report a valid Arena as being faulty.
+        if (IS_VALID_NODE(iter)) {
             // "Oops!!"
             osSyncPrintf("おおっと！！ (%08x %08x)\n", iter, iter->magic);
 
@@ -610,7 +613,7 @@ s32 __osCheckArena(Arena* arena) {
             break;
         }
 
-        iter = ((iter->next != NULL) && (iter->next->magic == NODE_MAGIC)) ? iter->next : NULL;
+        iter = GET_NEXT_NODE(iter);
     }
 
     if (!err) {
