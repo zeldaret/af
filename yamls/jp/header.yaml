@@ -49,5 +49,6 @@ options:
   include_macro_inc: False
   libultra_symbols: True
   hardware_regs: True
+  asm_emit_size_directive: False
 
 segments:
