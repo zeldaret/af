@@ -28,7 +28,7 @@ void func(void) {
     // ...
 }
 #else
-INCLUDE_ASM(void, "file", func, void);
+#pragma GLOBAL_ASM("file/func.s")
 #endif
 ```
 
@@ -43,7 +43,7 @@ void func(void) {
     // ...
 }
 #else
-INCLUDE_ASM(void, "file", func, void);
+#pragma GLOBAL_ASM("file/func.s")
 #endif
 ```
 
@@ -98,7 +98,7 @@ More detailed information can be found in the [Style Guide](docs/STYLE.md).
   - [ ] Macros and enum constants are `SCREAMING_SNAKE_CASE` (`DM_RAVINE_STATE_ACTIVE`)
   - [ ] Trailing commas in array and struct definitions chosen to make it look best
   
-  ## Submitting the Pull Request
+## Submitting the Pull Request
 
 Push commits to your fork of the repository on GitHub, and then open a pull request. Name the PR something sensible, like
 
