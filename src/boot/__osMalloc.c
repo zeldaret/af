@@ -44,6 +44,13 @@ ArenaNode* search_last_block(Arena* arena) {
     return last;
 }
 
+/**
+ * Initializes \p arena to manage the memory region \p heap.
+ *
+ * @param arena  The Arena to initialize.
+ * @param heap   The memory region to use as heap space.
+ * @param size   The size of the heap.
+ */
 void __osMallocInit(Arena* arena, void* heap, size_t size) {
     bzero(arena, sizeof(Arena));
 
@@ -95,14 +102,30 @@ void __osMallocAddBlock(Arena* arena, void* heap, size_t size) {
     arena_unlock(arena);
 }
 
+/**
+ * Clears the whole \p arena, invalidating every allocated pointer to it.
+ *
+ * @param arena  The Arena to clear.
+ */
 void __osMallocCleanup(Arena* arena) {
     bzero(arena, sizeof(Arena));
 }
 
+/**
+ * Returns whether or not the \p arena has been initialized.
+ *
+ * @param arena  The Arena to check.
+ * @return u8    `true` if the \p arena has been initialized. `false` otherwise.
+ */
 u8 __osMallocIsInitalized(Arena* arena) {
     return arena->isInit;
 }
 
+/**
+ * See the description of `__osMalloc`.
+ *
+ * The only difference is this function does not lock the arena, making it suitable for being reused from other functions of this file.
+ */
 void* __osMallocNoLock(Arena* arena, size_t size) {
     ArenaNode* iter;
     size_t blockSize;
@@ -111,9 +134,15 @@ void* __osMallocNoLock(Arena* arena, size_t size) {
     size = ALIGN16(size);
     blockSize = ALIGN16(size) + sizeof(ArenaNode);
 
+    // Start iterating from the head of the arena.
     iter = arena->head;
+
+    // Iterate over the arena looking for a big enough space of memory.
     while (iter != NULL) {
         if (iter->isFree && (iter->size >= size)) {
+
+            // If the block is larger than the requested size, then split it and just use the required size of the
+            // current block.
             if (blockSize < iter->size) {
                 ArenaNode* newNode;
                 ArenaNode* next;
@@ -123,7 +152,7 @@ void* __osMallocNoLock(Arena* arena, size_t size) {
 
                 newNode->prev = iter;
                 newNode->size = iter->size - blockSize;
-                newNode->isFree = 1;
+                newNode->isFree = true;
                 newNode->magic = NODE_MAGIC;
 
                 iter->next = newNode;
@@ -146,6 +175,20 @@ void* __osMallocNoLock(Arena* arena, size_t size) {
     return alloc;
 }
 
+/**
+ * Allocates at least \p size bytes of memory using the given \p arena.
+ * The block of memory will be allocated at the start of the first sufficiently large free block.
+ *
+ *  - If there's not enough space in the given \p arena, this function will fail, returning `NULL`.
+ *  - If \p size is zero, then an empty region of memory is returned.
+ *
+ * To avoid memory leaks, the returned pointer should be eventually deallocated using either `__osFree` or
+ * `__osRealloc`.
+ *
+ * @param[in, out] arena  The specific Arena to be used for the allocation.
+ * @param[in] size        The size in bytes that will be allocated.
+ * @return void*          On success, the allocated area of the \p arena memory. Otherwise, `NULL`.
+ */
 void* __osMalloc(Arena* arena, size_t size) {
     void* alloc;
 
@@ -158,6 +201,19 @@ void* __osMalloc(Arena* arena, size_t size) {
     return alloc;
 }
 
+/**
+ * Allocates at least \p size bytes of memory using the given \p arena.
+ * Unlike __osMalloc, the block of memory will be allocated from the end of the \p arena.
+ *
+ * - If there's not enough space in the given \p arena, this function will fail, returning `NULL`.
+ * - If \p size is zero, then an empty region of memory is returned.
+ *
+ * To avoid memory leaks, the returned pointer should be eventually deallocated using `__osFree` or `__osRealloc`.
+ *
+ * @param[in, out] arena  The specific Arena to be used for the allocation.
+ * @param[in] size        The size in bytes that will be allocated.
+ * @return void*          On success, the allocated area of the \p arena memory. Otherwise, `NULL`.
+ */
 void* __osMallocR(Arena* arena, size_t size) {
     ArenaNode *newNode;
     ArenaNode* temp_a0;
@@ -172,9 +228,14 @@ void* __osMallocR(Arena* arena, size_t size) {
 
     arena_lock(arena);
 
+    // Start iterating from the last block of the arena.
     iter = search_last_block(arena);
+
+    // Iterate in reverse the arena looking for a big enough space of memory.
     while (iter != NULL) {
         if (iter->isFree && (iter->size >= size)) {
+            // If the block is larger than the requested size, then split it and just use the required size of the
+            // current block.
             if (blockSize < iter->size) {
                 temp_a0 = (ArenaNode*)((uintptr_t)iter + (iter->size - size));
 
@@ -209,6 +270,11 @@ void* __osMallocR(Arena* arena, size_t size) {
     return alloc;
 }
 
+/**
+ * See the description of `__osFree`.
+ *
+ * The only difference is this function does not lock the arena, making it suitable for being reused from other functions of this file.
+ */
 void __osFree_NoLock(Arena* arena UNUSED, void* ptr) {
     ArenaNode* node;
     ArenaNode* next;
@@ -256,6 +322,18 @@ void __osFree_NoLock(Arena* arena UNUSED, void* ptr) {
     }
 }
 
+/**
+ * Deallocates the pointer \p ptr previously allocated by `__osMalloc`, `__osMallocR` or `__osRealloc`.
+ * If \p ptr is `NULL` or it has been already been freed, then this function does nothing.
+ *
+ * - The behaviour is undefined if \p ptr is not a memory region returned by one of the cited allocating
+ * functions.
+ * - The behaviour is undefined if \p ptr doesn't correspond to the given \p arena.
+ * - Any access to the freed pointer is undefined behaviour.
+ *
+ * @param[in, out] arena  The specific Arena to be used for the allocation.
+ * @param[in, out] ptr    The allocated memory block to deallocate.
+ */
 void __osFree(Arena* arena, void* ptr) {
     arena_lock(arena);
 
@@ -264,6 +342,31 @@ void __osFree(Arena* arena, void* ptr) {
     arena_unlock(arena);
 }
 
+/**
+ * Reallocates the pointer \p ptr.
+ * \p ptr must be either a pointer previously allocated by `__osMalloc`, `__osMallocR` or `__osRealloc` and
+ * not freed yet, or a `NULL` pointer.
+ *
+ * - If \p ptr is `NULL` a new pointer is allocated. See `__osMalloc` for more details.
+ * - If \p newSize is 0, then the given pointer is freed and `NULL` is returned. See `__osFree` for more details.
+ * - If \p newSize is the same than the currently allocated pointer then the original unmodified pointer is returned.
+ * - If \p newSize is bigger than the currently allocated allocated pointer, then the area of memory is expanded to a
+ * size big enough to fit the requested size.
+ * - If \p newSize is smaller than the currently allocated allocated pointer, then the area of memory is shrinked to an smaller size.
+ *
+ * Resizing the allocated space of the passed may fail, in which case `NULL` is returned.
+ *
+ * - The behaviour is undefined if \p ptr is not a memory region returned by one of the cited allocating
+ * functions.
+ * - The behaviour is undefined if \p ptr doesn't correspond to the given \p arena.
+ * - If the pointer is freed, then any access to the original freed pointer is undefined behaviour.
+ *
+ * @param[in, out] arena  The specific Arena to be used for the allocation.
+ * @param[in, out] ptr    The allocated memory block to deallocate.
+ * @param[in] newSize     The new requested size.
+ * @return void*          On success, the pointer to the reallocated area of memory. On failure, `NULL` is returned,
+ * and the original parameter \p ptr remains valid.
+ */
 void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
     newSize = ALIGN16(newSize);
 
@@ -272,100 +375,114 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
     arena_lock(arena);
 
     if (ptr == NULL) {
+        // if the `ptr` is NULL, then allocate a new pointer with the specified size
+        // if newSize is 0, then __osMalloc would return a NULL pointer
+
         ptr = __osMallocNoLock(arena, newSize);
     } else if (newSize == 0) {
+        // if the requested size is zero, then free the pointer
         __osFree_NoLock(arena, ptr);
         ptr = NULL;
     } else {
-        ArenaNode *temp_v1_2;
-        ArenaNode *var_v0;
-        ArenaNode *var_a1; // sp64
-        ArenaNode *var_v1;
+        ArenaNode *node;
+        ArenaNode *nextAux;
+        ArenaNode *next; // sp64
         s32 pad UNUSED;
-        s32 var_a1_3;
+        ArenaNode *var_v0;
+        s32 fullNodeSize;
         ArenaNode *var_a1_2; // sp54
-        size_t temp_t0; // sp50
-        s32 pad2 UNUSED;
-        ArenaNode sp3C;
-        ArenaNode *temp_a3; // sp30
+        size_t sizeDiff; // sp50
 
-        temp_a3 = (ArenaNode *)((uintptr_t)ptr - sizeof(ArenaNode));
+        // Gets the start of the ArenaNode pointer embedded
+        node = (ArenaNode *)((uintptr_t)ptr - sizeof(ArenaNode));
 
-        if (newSize == temp_a3->size) {
+        if (newSize == node->size) {
+            // If the requested size is the same as the already allocated one then do nothing.
+
             // "Do nothing because the memory block size doesn't change"
             osSyncPrintf("メモリブロックサイズが変わらないためなにもしません\n");
-        } else if (temp_a3->size < newSize) {
-            var_a1 = ((temp_a3->next != NULL) && (temp_a3->next->magic == NODE_MAGIC)) ? temp_a3->next : NULL;
-            temp_t0 = newSize - temp_a3->size;
+        } else if (node->size < newSize) {
+            // The requested size is bigger than the already allocated one.
 
-            if (((uintptr_t)var_a1 == ((uintptr_t)temp_a3 + temp_a3->size + sizeof(ArenaNode))) && var_a1->isFree && (var_a1->size >= temp_t0)) {
+            next = ((node->next != NULL) && (node->next->magic == NODE_MAGIC)) ? node->next : NULL;
+            sizeDiff = newSize - node->size;
+
+            // Checks if the next node is contiguous to the current allocated node and it has enough space to fit the new requested size
+            if (((uintptr_t)next == ((uintptr_t)node + node->size + sizeof(ArenaNode))) && next->isFree && (next->size >= sizeDiff)) {
                 // "Join because there is a free block after the current memory block"
                 osSyncPrintf("現メモリブロックの後ろにフリーブロックがあるので結合します\n");
 
-                var_a1->size -= temp_t0;
+                next->size -= sizeDiff;
 
-                var_v1 = ((var_a1->next != NULL) && (var_a1->next->magic == NODE_MAGIC)) ? var_a1->next : NULL;
-
-                if (var_v1 != NULL) {
-                    var_v1->prev = (ArenaNode *) ((uintptr_t)var_a1 + temp_t0);
+                nextAux = ((next->next != NULL) && (next->next->magic == NODE_MAGIC)) ? next->next : NULL;
+                if (nextAux != NULL) {
+                    nextAux->prev = (ArenaNode *) ((uintptr_t)next + sizeDiff);
                 }
 
-                temp_a3->next = (ArenaNode *)((uintptr_t)var_a1 + temp_t0);
-                temp_a3->size = newSize;
-                func_8003BA60_jp(temp_a3->next, var_a1, sizeof(ArenaNode));
+                node->next = (ArenaNode *)((uintptr_t)next + sizeDiff);
+                node->size = newSize;
+                func_8003BA60_jp(node->next, next, sizeof(ArenaNode));
             } else {
-                void *temp_v0_3;
+                // Create a new pointer and manually copy the data from the old pointer to the new one.
+                void *newPtr;
 
                 // "Allocate a new memory block and move the contents"
                 osSyncPrintf("新たにメモリブロックを確保して内容を移動します\n");
 
-                temp_v0_3 = __osMallocNoLock(arena, newSize);
-                if (temp_v0_3 != NULL) {
-                    bcopy(ptr, temp_v0_3, temp_a3->size);
+                newPtr = __osMallocNoLock(arena, newSize);
+                if (newPtr != NULL) {
+                    bcopy(ptr, newPtr, node->size);
                     __osFree_NoLock(arena, ptr);
                 }
-                ptr = temp_v0_3;
+                ptr = newPtr;
             }
-        } else if (newSize < temp_a3->size) {
-            var_a1_2 = ((temp_a3->next != NULL) && (temp_a3->next->magic == NODE_MAGIC)) ?  temp_a3->next : NULL;
+        } else if (newSize < node->size) {
+            // The requested size is smaller than the already allocated one.
 
-            if ((var_a1_2 != NULL) && (var_a1_2->isFree != 0)) {
+            ArenaNode sp3C;
+            ArenaNode *temp_v1_2;
+            s32 pad2 UNUSED;
+
+            var_a1_2 = ((node->next != NULL) && (node->next->magic == NODE_MAGIC)) ?  node->next : NULL;
+
+            if ((var_a1_2 != NULL) && var_a1_2->isFree) {
+                // Decrease the size of the allocated pointer and pass that size to the next node.
+
                 // "Increase the free block behind the current memory block"
                 osSyncPrintf("現メモリブロックの後ろのフリーブロックを大きくしました\n");
 
-                var_a1_3 = ALIGN16(newSize) + sizeof(ArenaNode);
-                temp_v1_2 = (ArenaNode *)((uintptr_t)temp_a3 + var_a1_3);
+                fullNodeSize = ALIGN16(newSize) + sizeof(ArenaNode);
+                temp_v1_2 = (ArenaNode *)((uintptr_t)node + fullNodeSize);
 
                 sp3C = *var_a1_2;
                 *temp_v1_2 = sp3C;
 
-                temp_v1_2->size += temp_a3->size - newSize;
-                temp_a3->next = temp_v1_2;
-                temp_a3->size = newSize;
+                temp_v1_2->size += node->size - newSize;
+                node->next = temp_v1_2;
+                node->size = newSize;
 
                 var_v0 = ((temp_v1_2->next != NULL) && (temp_v1_2->next->magic == NODE_MAGIC)) ? temp_v1_2->next : NULL;
-
                 if (var_v0 != NULL) {
                     var_v0->prev = temp_v1_2;
                 }
-            } else if (newSize + sizeof(ArenaNode) < temp_a3->size) {
+            } else if (newSize + sizeof(ArenaNode) < node->size) {
+                // Create a new node after the current one to allow shrinking it.
+
                 // "Create because there is no free block after the current memory block"
                 osSyncPrintf("現メモリブロックの後ろにフリーブロックがないので生成します\n");
 
-                var_a1_3 = ALIGN16(newSize) + sizeof(ArenaNode);
-                temp_v1_2 = (ArenaNode *)((uintptr_t)temp_a3 + var_a1_3);
+                fullNodeSize = ALIGN16(newSize) + sizeof(ArenaNode);
+                temp_v1_2 = (ArenaNode *)((uintptr_t)node + fullNodeSize);
 
-                temp_v1_2->next = ((temp_a3->next != NULL) && (temp_a3->next->magic == NODE_MAGIC)) ? temp_a3->next : NULL;
+                temp_v1_2->next = ((node->next != NULL) && (node->next->magic == NODE_MAGIC)) ? node->next : NULL;
 
-                temp_v1_2->prev = temp_a3;
-                temp_v1_2->size = temp_a3->size - var_a1_3;
-                temp_v1_2->isFree = 1;
+                temp_v1_2->prev = node;
+                temp_v1_2->size = node->size - fullNodeSize;
+                temp_v1_2->isFree = true;
                 temp_v1_2->magic = NODE_MAGIC;
 
-                // if (1) { }
-
-                temp_a3->next = temp_v1_2;
-                temp_a3->size = newSize;
+                node->next = temp_v1_2;
+                node->size = newSize;
 
                 var_v0 = ((temp_v1_2->next != NULL) && (temp_v1_2->next->magic == NODE_MAGIC)) ? temp_v1_2->next : NULL;
                 if (var_v0 != NULL) {
@@ -384,6 +501,14 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
     return ptr;
 }
 
+/**
+ * Gets the size of the largest free block, the total free space and the total allocated space.
+ *
+ * @param[in, out] arena   The Arena which will be used to get the values from.
+ * @param[out] outMaxFree  The size of the largest free block.
+ * @param[out] outFree     The total free space.
+ * @param[out] outAlloc    The total allocated space.
+ */
 void __osGetFreeArena(Arena* arena, size_t* outMaxFree, size_t* outFree, size_t* outAlloc) {
     ArenaNode* iter;
 
@@ -410,6 +535,9 @@ void __osGetFreeArena(Arena* arena, size_t* outMaxFree, size_t* outFree, size_t*
     arena_unlock(arena);
 }
 
+/**
+ * Fault Client for an Arena. Reports information about the state of the Arena in the crash debugger.
+ */
 void ArenaImpl_FaultClient(Arena* arena) {
     ArenaNode* iter;
     ArenaNode* next;
@@ -457,6 +585,12 @@ void ArenaImpl_FaultClient(Arena* arena) {
     FaultDrawer_Printf("Largest Free Block Size %08x\n", largestFree);
 }
 
+/**
+ * Checks the validity of every node of the \p arena.
+ *
+ * @param arena  The Arena to check.
+ * @return s32   `false` if every pointer is valid. `1` otherwise.
+ */
 s32 __osCheckArena(Arena* arena) {
     ArenaNode* iter;
     s32 err = false;
