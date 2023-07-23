@@ -65,7 +65,7 @@ void __osMallocInit(Arena* arena, void* heap, size_t size) {
 void __osMallocAddBlock(Arena* arena, void* heap, size_t size) {
     ptrdiff_t diff;
     s32 alignedSize;
-    ArenaNode *firstNode;
+    ArenaNode* firstNode;
     ArenaNode* lastNode;
 
     if (heap == NULL) {
@@ -126,7 +126,8 @@ u8 __osMallocIsInitalized(Arena* arena) {
 /**
  * See the description of `__osMalloc`.
  *
- * The only difference is this function does not lock the arena, making it suitable for being reused from other functions of this file.
+ * The only difference is this function does not lock the arena, making it suitable for being reused from other
+ * functions of this file.
  */
 void* __osMallocNoLock(Arena* arena, size_t size) {
     ArenaNode* iter;
@@ -217,7 +218,7 @@ void* __osMalloc(Arena* arena, size_t size) {
  * @return void*          On success, the allocated area of the \p arena memory. Otherwise, `NULL`.
  */
 void* __osMallocR(Arena* arena, size_t size) {
-    ArenaNode *newNode;
+    ArenaNode* newNode;
     ArenaNode* temp_a0;
     ArenaNode* next;
     ArenaNode* iter;
@@ -275,7 +276,8 @@ void* __osMallocR(Arena* arena, size_t size) {
 /**
  * See the description of `__osFree`.
  *
- * The only difference is this function does not lock the arena, making it suitable for being reused from other functions of this file.
+ * The only difference is this function does not lock the arena, making it suitable for being reused from other
+ * functions of this file.
  */
 void __osFree_NoLock(Arena* arena UNUSED, void* ptr) {
     ArenaNode* node;
@@ -286,7 +288,7 @@ void __osFree_NoLock(Arena* arena UNUSED, void* ptr) {
         return;
     }
 
-    node = (ArenaNode *)((uintptr_t)ptr - sizeof(ArenaNode));
+    node = (ArenaNode*)((uintptr_t)ptr - sizeof(ArenaNode));
 
     if ((node == NULL) || (node->magic != NODE_MAGIC) || node->isFree) {
         return;
@@ -297,7 +299,8 @@ void __osFree_NoLock(Arena* arena UNUSED, void* ptr) {
 
     node->isFree = true;
 
-    // Checks if the next node is contiguous to the current node and if it isn't currently allocated. Then merge the two nodes into one.
+    // Checks if the next node is contiguous to the current node and if it isn't currently allocated. Then merge the two
+    // nodes into one.
     if (((uintptr_t)next == ((uintptr_t)node + node->size + sizeof(ArenaNode))) && next->isFree) {
         ArenaNode* newNext;
 
@@ -313,7 +316,8 @@ void __osFree_NoLock(Arena* arena UNUSED, void* ptr) {
         next = newNext;
     }
 
-    // Checks if the previous node is contiguous to the current node and if it isn't currently allocated. Then merge the two nodes into one.
+    // Checks if the previous node is contiguous to the current node and if it isn't currently allocated. Then merge the
+    // two nodes into one.
     if ((prev != NULL) && prev->isFree && ((uintptr_t)node == ((uintptr_t)prev + prev->size + sizeof(ArenaNode)))) {
         if (next != NULL) {
             next->prev = prev;
@@ -354,7 +358,8 @@ void __osFree(Arena* arena, void* ptr) {
  * - If \p newSize is the same than the currently allocated pointer then the original unmodified pointer is returned.
  * - If \p newSize is bigger than the currently allocated allocated pointer, then the area of memory is expanded to a
  * size big enough to fit the requested size.
- * - If \p newSize is smaller than the currently allocated allocated pointer, then the area of memory is shrinked to an smaller size.
+ * - If \p newSize is smaller than the currently allocated allocated pointer, then the area of memory is shrinked to an
+ * smaller size.
  *
  * Resizing the allocated space of the passed may fail, in which case `NULL` is returned.
  *
@@ -369,7 +374,7 @@ void __osFree(Arena* arena, void* ptr) {
  * @return void*          On success, the pointer to the reallocated area of memory. On failure, `NULL` is returned,
  * and the original parameter \p ptr remains valid.
  */
-void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
+void* __osRealloc(Arena* arena, void* ptr, size_t newSize) {
     newSize = ALIGN16(newSize);
 
     osSyncPrintf("__osRealloc(%08x, %d)\n", ptr, newSize);
@@ -386,17 +391,17 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
         __osFree_NoLock(arena, ptr);
         ptr = NULL;
     } else {
-        ArenaNode *node;
-        ArenaNode *nextAux;
-        ArenaNode *next; // sp64
+        ArenaNode* node;
+        ArenaNode* nextAux;
+        ArenaNode* next; // sp64
         s32 pad UNUSED;
-        ArenaNode *var_v0;
+        ArenaNode* var_v0;
         s32 fullNodeSize;
-        ArenaNode *var_a1_2; // sp54
-        size_t sizeDiff; // sp50
+        ArenaNode* var_a1_2; // sp54
+        size_t sizeDiff;     // sp50
 
         // Gets the start of the ArenaNode pointer embedded
-        node = (ArenaNode *)((uintptr_t)ptr - sizeof(ArenaNode));
+        node = (ArenaNode*)((uintptr_t)ptr - sizeof(ArenaNode));
 
         if (newSize == node->size) {
             // If the requested size is the same as the already allocated one then do nothing.
@@ -409,8 +414,10 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
             next = GET_NEXT_NODE(node);
             sizeDiff = newSize - node->size;
 
-            // Checks if the next node is contiguous to the current allocated node and it has enough space to fit the new requested size
-            if (((uintptr_t)next == ((uintptr_t)node + node->size + sizeof(ArenaNode))) && next->isFree && (next->size >= sizeDiff)) {
+            // Checks if the next node is contiguous to the current allocated node and it has enough space to fit the
+            // new requested size
+            if (((uintptr_t)next == ((uintptr_t)node + node->size + sizeof(ArenaNode))) && next->isFree &&
+                (next->size >= sizeDiff)) {
                 // "Join because there is a free block after the current memory block"
                 osSyncPrintf("現メモリブロックの後ろにフリーブロックがあるので結合します\n");
 
@@ -418,15 +425,15 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
 
                 nextAux = GET_NEXT_NODE(next);
                 if (nextAux != NULL) {
-                    nextAux->prev = (ArenaNode *) ((uintptr_t)next + sizeDiff);
+                    nextAux->prev = (ArenaNode*)((uintptr_t)next + sizeDiff);
                 }
 
-                node->next = (ArenaNode *)((uintptr_t)next + sizeDiff);
+                node->next = (ArenaNode*)((uintptr_t)next + sizeDiff);
                 node->size = newSize;
                 func_8003BA60_jp(node->next, next, sizeof(ArenaNode));
             } else {
                 // Create a new pointer and manually copy the data from the old pointer to the new one.
-                void *newPtr;
+                void* newPtr;
 
                 // "Allocate a new memory block and move the contents"
                 osSyncPrintf("新たにメモリブロックを確保して内容を移動します\n");
@@ -442,7 +449,7 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
             // The requested size is smaller than the already allocated one.
 
             ArenaNode sp3C;
-            ArenaNode *temp_v1_2;
+            ArenaNode* temp_v1_2;
             s32 pad2 UNUSED;
 
             var_a1_2 = GET_NEXT_NODE(node);
@@ -454,7 +461,7 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
                 osSyncPrintf("現メモリブロックの後ろのフリーブロックを大きくしました\n");
 
                 fullNodeSize = ALIGN16(newSize) + sizeof(ArenaNode);
-                temp_v1_2 = (ArenaNode *)((uintptr_t)node + fullNodeSize);
+                temp_v1_2 = (ArenaNode*)((uintptr_t)node + fullNodeSize);
 
                 sp3C = *var_a1_2;
                 *temp_v1_2 = sp3C;
@@ -474,7 +481,7 @@ void *__osRealloc(Arena *arena, void *ptr, size_t newSize) {
                 osSyncPrintf("現メモリブロックの後ろにフリーブロックがないので生成します\n");
 
                 fullNodeSize = ALIGN16(newSize) + sizeof(ArenaNode);
-                temp_v1_2 = (ArenaNode *)((uintptr_t)node + fullNodeSize);
+                temp_v1_2 = (ArenaNode*)((uintptr_t)node + fullNodeSize);
 
                 temp_v1_2->next = GET_NEXT_NODE(node);
 
@@ -564,7 +571,9 @@ void ArenaImpl_FaultClient(Arena* arena) {
         if (IS_VALID_NODE(iter)) {
             next = iter->next;
 
-            FaultDrawer_Printf("%08x-%08x%c %s %08x", iter, (uintptr_t)iter + iter->size + sizeof(ArenaNode), (next == NULL) ? '$' : ((iter != next->prev) ? '!' : ' '), iter->isFree ? "F" : "A", iter->size);
+            FaultDrawer_Printf("%08x-%08x%c %s %08x", iter, (uintptr_t)iter + iter->size + sizeof(ArenaNode),
+                               (next == NULL) ? '$' : ((iter != next->prev) ? '!' : ' '), iter->isFree ? "F" : "A",
+                               iter->size);
             FaultDrawer_Printf("\n");
             if (iter->isFree) {
                 free += iter->size;
@@ -604,7 +613,8 @@ s32 __osCheckArena(Arena* arena) {
 
     iter = arena->head;
     while (iter != NULL) {
-        //! @bug This condition should be inverted. Because of it, this function will report a valid Arena as being faulty.
+        //! @bug This condition should be inverted. Because of it, this function will report a valid Arena as being
+        //! faulty.
         if (IS_VALID_NODE(iter)) {
             // "Oops!!"
             osSyncPrintf("おおっと！！ (%08x %08x)\n", iter, iter->magic);
