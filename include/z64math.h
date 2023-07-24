@@ -53,4 +53,9 @@ typedef union {
 #define SQ(x) ((x) * (x))
 #define CB(x) ((x) * (x) * (x))
 
+#define IS_ZERO(f) (fabsf(f) < 0.008f)
+
+// Calculate the floating point remainder of x / y.
+#define FMOD(x, y) ((x) - ((s32)((x) * (1.0f / (y))) * (f32)(y)))
+
 #endif

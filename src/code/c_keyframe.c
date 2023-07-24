@@ -11,15 +11,17 @@
  * FrameControl: A struct responsible for keeping track of the time component of animations. Animations use frames
  * (one thirtieth of a second) as a unit of time.
  *
- * Joint: A display list that represents a smaller part of the overall model. Joints have a hierarchal structure, where
- * joints can specify child joints. Each joint inherits it's parent's transformation. Joints are represented in multiple
- * spots. JointElemR stores the joint's display list. There's also a jointTable struct that gets passed in from outside
- * these structs, which stores all the joint's current transformations.
+ * Joint: A display list that represents a small section of the overall model. Joints have a hierarchal structure, where
+ * joints can specify child joints, and each joint inherits it's parent's transformation. Joints are represented in two
+ * places. A JointElemR struct stores the joint's display list. There's also a jointTable gets passed in from an actor.
+ * This is a Vec3s array, with the first vector storing the root translation, the second vector is the root rotation,
+ * and each vector after that is a joint's rotation.
  *
  * Morph: Normally switching from the previous animation to a new animation produces jarring motion as the joints jump
  * to the first frame of the new animation in a single frame. Morph allows the joints to interpolate between their old
  * position and the current animation's position over multiple frames (specified by morphCounter) to avoid this. If an
- * animation is using morph an array separate from jointTable, morphTable stores the the animation's joint rotations.
+ * animation is using morph an array separate from jointTable, morphTable stores the the animation's joint rotations for
+ * the current frame.
  *
  * BaseSkeletonR: A collection of JointElemR structs that make up the skeleton that will be animated.
  *
@@ -44,12 +46,7 @@
 float fabsf(float f);
 #pragma intrinsic(fabsf)
 
-#define IS_ZERO(f) (fabsf(f) < 0.008f)
-
-// Calculate the floating point remainder of x / y.
-#define FMOD(x, y) ((x) - ((s32)((x) * (1.0f / (y))) * (f32)(y)))
-
-UNK_TYPE* B_801458A0_jp[4];
+UNK_PTR* B_801458A0_jp[4];
 
 void cKF_FrameControl_zeroClear(FrameControl* frameControl) {
     bzero(frameControl, 0x18);
@@ -132,7 +129,7 @@ s32 cKF_FrameControl_passCheck_now(FrameControl* frameControl, f32 compareFrame)
 /**
  * Check if an animation that plays once has completed.
  *
- * @return 0 if the animation is still playing. 1 if the animation has completed.
+ * @return 0 if the animation is still playing. 1 if the animation mode is ANIMATION_STOP and has completed.
  */
 s32 cKF_FrameControl_stop_proc(FrameControl* frameControl) {
     f32 remainder;
@@ -155,7 +152,7 @@ s32 cKF_FrameControl_stop_proc(FrameControl* frameControl) {
 /**
  * Check if an animation that repeats has completed one loop.
  *
- * @return 0 if the animation is still playing. 2 if the loop has completed.
+ * @return 0 if the animation is still playing. 2 if the animation mode is ANIMATION_REPEAT and a loop has completed.
  */
 s32 cKF_FrameControl_repeat_proc(FrameControl* frameControl) {
     f32 remainder;
@@ -175,7 +172,8 @@ s32 cKF_FrameControl_repeat_proc(FrameControl* frameControl) {
 /**
  * Advance a FrameControl struct by 1 frame.
  *
- * @return 0 if the animation is still playing. 1 if the animation has completed. 2 if the animation repeated.
+ * @return 0 if the animation is still playing. 1 if the animation mode is ANIMATION_STOP and has completed. 2 if the
+ * animation mode is ANIMATION_REPEAT and a loop has completed.
  */
 s32 cKF_FrameControl_play(FrameControl* frameControl) {
     f32 speed;
@@ -381,10 +379,10 @@ void cKF_SkeletonInfo_R_init(SkeletonInfoR* skeletonInfo, BaseSkeletonR* skeleto
 }
 
 void cKF_SkeletonInfo_R_setAnim(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation) {
-    BaseAnimationR* anim = (BaseAnimationR*)Lib_SegmentedToVirtual(animation);
+    BaseAnimationR* newAnimation = (BaseAnimationR*)Lib_SegmentedToVirtual(animation);
 
-    skeletonInfo->animation = anim;
-    skeletonInfo->frameControl.duration = anim->duration;
+    skeletonInfo->animation = newAnimation;
+    skeletonInfo->frameControl.duration = newAnimation->duration;
 }
 
 void cKF_SkeletonInfo_R_morphJoint(SkeletonInfoR* skeletonInfo) {
@@ -723,8 +721,8 @@ void cKF_SkeletonInfo_R_init_reverse_setspeedandmorphandmode(SkeletonInfoR* skel
         1.0f, ((BaseAnimationR*)Lib_SegmentedToVirtual(animation))->duration, currentFrame, speed, mode, diffRotTable);
 }
 
-void func_80053384_jp(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, UNK_TYPE* arg6, UNK_TYPE* arg7,
-                      UNK_TYPE* arg8) {
+void func_80053384_jp(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, UNK_PTR* arg6, UNK_PTR* arg7,
+                      UNK_PTR* arg8) {
     if (arg3 != 0) {
         B_801458A0_jp[arg0] = PHYSICAL_TO_VIRTUAL(arg6);
     }
@@ -883,8 +881,8 @@ s32 cKF_SkeletonInfo_R_combine_play(SkeletonInfoR* skeletonInfo1, SkeletonInfoR*
     SkeletonInfoRCombineWork combine2;
     SkeletonInfoRCombineWork combine3;
     s32 var_s0;
-    UNK_TYPE* sp44;
-    UNK_TYPE* sp40;
+    UNK_PTR* sp44;
+    UNK_PTR* sp40;
     s32 var_v1;
 
     sp44 = NULL;
@@ -972,9 +970,9 @@ void cKF_SkeletonInfo_R_T_combine_play(s32* arg0, s32* arg1, s32* arg2, Skeleton
     SkeletonInfoRCombineWork sp8C;
     SkeletonInfoRCombineWork sp6C;
     SkeletonInfoRCombineWork sp4C;
-    UNK_TYPE* sp48 = NULL;
-    UNK_TYPE* sp44 = NULL;
-    UNK_TYPE* sp40 = NULL;
+    UNK_PTR* sp48 = NULL;
+    UNK_PTR* sp44 = NULL;
+    UNK_PTR* sp40 = NULL;
     Vec3s* var_v0;
 
     if ((skeletonInfo1 == NULL) || (skeletonInfo2 == NULL) || (skeletonInfo3 == NULL) || (arg6 < 0) || (arg6 >= 0x10) ||
