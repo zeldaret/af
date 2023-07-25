@@ -107,25 +107,6 @@ Floats usually need an `f` on the end to match, or IDO will use doubles. Our flo
 - We *always* use `{}` on conditional/loop blocks, even if they're one line (clang-tidy will enforce this).
 - When conditions are `&&`d or `||`d together, use brackets around each that includes an arithmetic comparison or bitwise operator (i.e. not `!var` or `func()`, but ones with `==` or `&` etc.)
 - Flag checks or functions that return booleans do not need the `== 0`/`!= 0`.
-- Prefer `if-else` over `if { return; }`, i.e.
-
-  ```c
-  if (cond) {
-      foo();
-  } else {
-      bar();
-  }
-  ```
-
-  over
-
-  ```c
-  if (cond) {
-      foo();
-      return;
-  }
-  bar();
-  ```
   
 ## Arrays
 
