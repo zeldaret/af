@@ -14,8 +14,8 @@ from typing import List
 
 
 # clang-format, clang-tidy and clang-apply-replacements default version
-# Version 11 is used when available for more consistency between contributors
-CLANG_VER = 11
+# This specific version is used when available, for more consistency between contributors
+CLANG_VER = 14
 
 # Clang-Format options (see .clang-format for rules applied)
 FORMAT_OPTS = "-i -style=file"
@@ -29,12 +29,10 @@ APPLY_OPTS = ""
 
 # Compiler options used with Clang-Tidy
 # Normal warnings are disabled with -Wno-everything to focus only on tidying
-INCLUDES = "-Iinclude -Isrc -Ibuild -I. -Ilib/ultralib/include -Ilib/ultralib/include/PR -Ibin/jp -Ibin/cn"
-DEFINES = "-D_LANGUAGE_C -DNON_MATCHING -D_MIPS_SZLONG=32"
+INCLUDES = "-Iinclude -Isrc -Ibuild -I."
+DEFINES = "-D_LANGUAGE_C -DNON_MATCHING"
 COMPILER_OPTS = f"-fno-builtin -std=gnu90 -m32 -Wno-everything {INCLUDES} {DEFINES}"
 
-
-VERBOSE = False
 
 def get_clang_executable(allowed_executables: List[str]):
     for executable in allowed_executables:
@@ -80,10 +78,7 @@ def run_clang_format(files: List[str]):
 
 def run_clang_tidy(files: List[str]):
     exec_str = f"{CLANG_TIDY} {TIDY_OPTS} {TIDY_FIX_OPTS} {' '.join(files)} -- {COMPILER_OPTS}"
-    if VERBOSE:
-        subprocess.run(exec_str, shell=True)
-    else:
-        subprocess.run(exec_str, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.run(exec_str, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
 def run_clang_tidy_with_export(tmp_dir: str, files: List[str]):
@@ -91,10 +86,7 @@ def run_clang_tidy_with_export(tmp_dir: str, files: List[str]):
     os.close(handle)
 
     exec_str = f"{CLANG_TIDY} {TIDY_OPTS} --export-fixes={tmp_file} {' '.join(files)} -- {COMPILER_OPTS}"
-    if VERBOSE:
-        subprocess.run(exec_str, shell=True)
-    else:
-        subprocess.run(exec_str, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.run(exec_str, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
 def run_clang_apply_replacements(tmp_dir: str):
@@ -154,6 +146,12 @@ def main():
     parser = argparse.ArgumentParser(description="Format files in the codebase to enforce most style rules")
     parser.add_argument("files", metavar="file", nargs="*")
     parser.add_argument(
+        "--show-paths",
+        dest="show_paths",
+        action="store_true",
+        help="Print the paths to the clang-* binaries used",
+    )
+    parser.add_argument(
         "-j",
         dest="jobs",
         type=int,
@@ -161,11 +159,14 @@ def main():
         default=1,
         help="number of jobs to run (default: 1 without -j, number of cpus with -j)",
     )
-    parser.add_argument("-v", "--verbose", action="store_true")
     args = parser.parse_args()
 
-    global VERBOSE
-    VERBOSE = args.verbose
+    if args.show_paths:
+        import shutil
+
+        print("CLANG_FORMAT             ->", shutil.which(CLANG_FORMAT))
+        print("CLANG_TIDY               ->", shutil.which(CLANG_TIDY))
+        print("CLANG_APPLY_REPLACEMENTS ->", shutil.which(CLANG_APPLY_REPLACEMENTS))
 
     nb_jobs = args.jobs or multiprocessing.cpu_count()
     if nb_jobs > 1:
