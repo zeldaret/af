@@ -23,7 +23,7 @@ extern DmaEntry gDmaDataTable[];
 // void func_80026828_jp();
 // void func_800269E4_jp();
 // void func_80026A64_jp();
-// void func_80026B44_jp();
+void DmaMgr_RequestSync(void* ram, void* vrom, size_t size);
 // void func_80026BC0_jp();
 // void func_80026C00_jp();
 // void func_80026C28_jp();
