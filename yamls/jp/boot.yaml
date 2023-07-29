@@ -29,7 +29,7 @@
       - [0x007A40, hasm, boot/fp]
       - [0x007BA0, asm, boot/malloc]
       - [0x007D70, asm, boot/qrand]
-      - [0x007F30, c, boot/__osMalloc]
+      - [0x007F30, c, boot/O2/__osMalloc]
       - [0x008C50, asm, boot/sprintf]
       - [0x008D20, asm, boot/printutils]
       - [0x008D80, asm, boot/sleep]
@@ -216,7 +216,7 @@
       - [0x019690, rodata, boot/019690]
       - [0x0196B0, rodata, boot/0196B0]
       - [0x0196C0, rodata, boot/0196C0]
-      - [0x019710, .rodata, boot/__osMalloc]
+      - [0x019710, .rodata, boot/O2/__osMalloc]
       - [0x0199D0, rodata, boot/0199D0]
       - [0x019AA0, rodata, boot/019AA0]
       - [0x019AF0, rodata, boot/019AF0]
@@ -234,7 +234,7 @@
       - { start: 0x019D40, type: bss, vram: 0x800419A0, name: boot/gfxprint }
       - { start: 0x019D40, type: bss, vram: 0x800419B0, name: boot/mathf }
       - { start: 0x019D40, type: bss, vram: 0x800419C0, name: boot/800419C0 }
-      - { start: 0x019D40, type: .bss, vram: 0x80041A00, name: boot/__osMalloc }
+      - { start: 0x019D40, type: .bss, vram: 0x80041A00, name: boot/O2/__osMalloc }
       - { start: 0x019D40, type: bss, vram: 0x80041A10, name: boot/80041A10 }
 
   - name: dmadata
