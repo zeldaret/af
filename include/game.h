@@ -2,6 +2,13 @@
 #define GAME_H
 
 #include "ultra64.h"
+#include "gfx.h"
+
+typedef struct GameState {
+    /* 0x00 */ GraphicsContext* gfxCtx;
+    /* 0x04 */ char pad[0x74];
+    /* 0x74 */ TwoHeadArena heap;
+} GameState; // size = ??
 
 // void func_800D2E00_jp();
 // void func_800D2E58_jp();

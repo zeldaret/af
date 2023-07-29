@@ -13,7 +13,7 @@
 // void Math_FAtanTaylorF();
 // void Math_FAtanContFracF();
 // void Math_FAtanF();
-// void Math_FAtan2F();
+f32 Math_FAtan2F(f32 y, f32 x);
 // void Math_FAsinF();
 // void Math_FAcosF();
 
