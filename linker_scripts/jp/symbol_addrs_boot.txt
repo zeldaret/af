@@ -7,7 +7,7 @@ bootproc = 0x80025CC0; // type:func
 
 func_80025DF0_jp = 0x80025DF0; // type:func
 func_80025E6C_jp = 0x80025E6C; // type:func
-func_80025FD0_jp = 0x80025FD0; // type:func
+Idle_ThreadEntry = 0x80025FD0; // type:func
 
 func_800260A0_jp = 0x800260A0; // type:func
 func_800261F4_jp = 0x800261F4; // type:func
@@ -271,7 +271,7 @@ D_8003BBC0_jp = 0x8003BBC0; // type:s8
 D_8003BBC4_jp = 0x8003BBC4; //
 D_FLT_8003BBC8_jp = 0x8003BBC8; // type:f32
 D_FLT_8003BBCC_jp = 0x8003BBCC; // type:f32
-D_8003BBD0_jp = 0x8003BBD0; //
+gCartHandle = 0x8003BBD0; //
 D_8003BBE0_jp = 0x8003BBE0; //
 D_8003BBF0_jp = 0x8003BBF0; //
 D_8003BC38_jp = 0x8003BC38; //
@@ -509,10 +509,10 @@ gBuildMakeOption = 0x8003E938; // type:asciz
 
 // .bss
 
-B_8003E940_jp = 0x8003E940; //
-B_8003ED40_jp = 0x8003ED40; //
-B_8003ED60_jp = 0x8003ED60; //
-B_8003ED80_jp = 0x8003ED80; //
+sIdleStack = 0x8003E940; //
+sIdleStackInfo = 0x8003ED40; //
+sBootStackInfo = 0x8003ED60; //
+sIdleThread = 0x8003ED80; //
 sBootStack = 0x8003EF30; //
 B_8003F330_jp = 0x8003F330; //
 B_8003F4E0_jp = 0x8003F4E0; //
