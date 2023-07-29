@@ -18,6 +18,8 @@ IDO_7_1_DIR := ido/$(DETECTED_OS)/7.1
 IDO_7_1     := $(IDO_7_1_DIR)/cc
 
 all: $(IDO_5_3) $(IDO_7_1)
+	$(MAKE) -C fado
+	$(MAKE) -C z64compress
 
 clean:
 	$(RM) -rf $(IDO_5_3_DIR) $(IDO_7_1_DIR)

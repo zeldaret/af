@@ -2,6 +2,16 @@
 #define Z_STD_DMA_H
 
 #include "ultra64.h"
+#include "other_types.h"
+
+typedef struct DmaEntry {
+    /* 0x0 */ RomOffset vromStart;
+    /* 0x4 */ RomOffset vromEnd;
+    /* 0x8 */ RomOffset romStart;
+    /* 0xC */ RomOffset romEnd;
+} DmaEntry; // size = 0x10
+
+extern DmaEntry gDmaDataTable[];
 
 // void func_800263F0_jp();
 // void DmaMgr_DmaRomToRam();

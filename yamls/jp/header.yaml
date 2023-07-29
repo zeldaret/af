@@ -50,5 +50,6 @@ options:
   libultra_symbols: True
   hardware_regs: True
   asm_emit_size_directive: False
+  segment_end_before_align: True
 
 segments:

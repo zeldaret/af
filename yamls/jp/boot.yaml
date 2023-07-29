@@ -2,7 +2,7 @@
     type: code
     start: 0x001060
     vram: 0x80025C60
-    follows_vram: entry
+    follows_vram: makerom
     bss_size: 0x5D50
     subsegments:
       - [0x001060, c, boot/boot_main]
@@ -239,7 +239,7 @@
     vram: 0x80044690
     follows_vram: boot
     subsegments:
-      - [0x019D40, data, dmadata/dmadata]
+      - [0x019D40, .data, dmadata/dmadata]
 
   - name: segment_027130
     type: bin
