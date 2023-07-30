@@ -3,6 +3,7 @@
     start: 0x675720
     vram: 0x80051A80
     follows_vram: dmadata
+    compress: True
     bss_size: 0x36C90
     subsegments:
       - [0x675720, c, code/c_keyframe]
@@ -77,8 +78,8 @@
       - [0x6F12E0, asm, code/6F12E0]
       - [0x6F2150, asm, code/6F2150]
       - [0x6F2EE0, asm, code/PreRender]
-      - [0x6F5180, asm, code/THA_GA]
-      - [0x6F5390, asm, code/TwoHeadArena]
+      - [0x6F5180, c, code/THA_GA]
+      - [0x6F5390, c, code/TwoHeadArena]
       - [0x6F5550, asm, code/6F5550]
       - [0x6F6230, asm, code/audioMgr]
       - [0x6F68B0, asm, code/cfbinfo]
@@ -99,7 +100,7 @@
       - [0x6FD840, asm, code/sys_math]
       - [0x6FDC40, asm, code/sys_math3d]
       - [0x703C30, asm, code/sys_math_atan]
-      - [0x703E70, asm, code/sys_matrix]
+      - [0x703E70, c, code/sys_matrix]
       - [0x706580, asm, code/sys_ucode]
       - [0x7065F0, asm, code/zurumode]
       - [0x7069C0, asm, code/audio_synthesis]
@@ -132,6 +133,7 @@
       - [0x726260, data, code/m_actor_shadow]
       - [0x72B7A0, data, code/m_lib]
       - [0x72B7D0, data, code/72B7D0]
+      - [0x733970, .data, code/sys_matrix]
       - [0x7339F0, data, code/sys_ucode]
       - [0x733A00, data, code/m_nmi_buff]
       - [0x733A10, data, code/733A10]
@@ -208,7 +210,7 @@
       - [0x73BD50, rodata, code/73BD50]
       - [0x73BD70, rodata, code/sys_math3d]
       - [0x73BE00, rodata, code/sys_math_atan]
-      - [0x73BE10, rodata, code/sys_matrix]
+      - [0x73BE10, .rodata, code/sys_matrix]
       - [0x73BE40, rodata, code/m_nmi_buff]
       - [0x73BE70, rodata, code/audio_synthesis]
       - [0x73BEA0, rodata, code/audio_heap]
@@ -225,5 +227,5 @@
       - { start: 0x73F4D0, type: bss, vram: 0x80143910, name: code/80143910 }
       - { start: 0x73F4D0, type: .bss, vram: 0x801458A0, name: code/c_keyframe }
       - { start: 0x73F4D0, type: bss, vram: 0x801458B0, name: code/801458B0 }
-      - { start: 0x73F4D0, type: bss, vram: 0x801462B0, name: code/sys_matrix }
+      - { start: 0x73F4D0, type: .bss, vram: 0x801462B0, name: code/sys_matrix }
       - { start: 0x73F4D0, type: bss, vram: 0x801462C0, name: code/801462C0 }
