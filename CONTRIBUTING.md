@@ -59,15 +59,9 @@ python3 ./tools/format.py
 
 To make sure the PR builds correctly with the current master, you need to merge `upstream/main` before you make the PR. While your branch is private (in particular, not used for a PR), you can rebase, but when your branch is public/used for a PR always merge main instead of rebasing: it makes it much easier for people to understand what you changed since the last review.
 
-The simplest way to do this is to use "Sync Fork" on your branch on the GitHub website.
+The simplest way to do this is to use "Sync Fork" on your branch on the GitHub website. Then sync the remote branch with your local branch using `git pull`. This tends to break things, and requires some modifications to get your branch to correctly compile again.
 
-Then sync the remote branch with your local branch:
-
-```bash
-git pull 
-```
-
-This tends to break things, that you have to fix to get it to compile correctly again.
+If the Sync Fork method doesn't work because there are merge conflicts, you can use `git merge upstream/main` instead. Manually resolve the conflicts with your text editor, make sure it builds, and then commit the changes.
 
 ## Checklist
 
