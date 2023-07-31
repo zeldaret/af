@@ -12,7 +12,7 @@
 // extern UNK_TYPE D_8003BBC4_jp;
 // extern UNK_TYPE D_FLT_8003BBC8_jp;
 // extern UNK_TYPE D_FLT_8003BBCC_jp;
-// extern UNK_TYPE D_8003BBD0_jp;
+// extern UNK_TYPE gCartHandle;
 // extern UNK_TYPE D_8003BBE0_jp;
 // extern UNK_TYPE D_8003BBF0_jp;
 // extern UNK_TYPE D_8003BC38_jp;
@@ -237,10 +237,10 @@
 
 // .bss
 
-// extern UNK_TYPE B_8003E940_jp;
-// extern UNK_TYPE B_8003ED40_jp;
-// extern UNK_TYPE B_8003ED60_jp;
-// extern UNK_TYPE B_8003ED80_jp;
+// extern UNK_TYPE sIdleStack;
+// extern UNK_TYPE sIdleStackInfo;
+// extern UNK_TYPE sBootStackInfo;
+// extern UNK_TYPE sIdleThread;
 // extern STACK(sBootStack, 0x400);
 // extern UNK_TYPE B_8003F330_jp;
 // extern UNK_TYPE B_8003F4E0_jp;
@@ -285,7 +285,7 @@
 // extern UNK_TYPE B_800419F0_jp;
 // extern UNK_TYPE B_80041A00_jp;
 
-// extern UNK_TYPE D_80044690_jp;
+// extern UNK_TYPE B_80044684_jp;
 
 
 #endif

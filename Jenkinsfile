@@ -50,6 +50,11 @@ pipeline {
                 sh 'bash -c "make -j uncompressed"'
             }
         }
+        stage('Build compressed') {
+            steps {
+                sh 'bash -c "make -j compressed"'
+            }
+        }
         stage('Upload to Frogress') {
             when {
                 branch 'main'

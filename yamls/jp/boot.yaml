@@ -2,7 +2,7 @@
     type: code
     start: 0x001060
     vram: 0x80025C60
-    follows_vram: entry
+    follows_vram: makerom
     bss_size: 0x5D50
     subsegments:
       - [0x001060, c, boot/boot_main]
@@ -20,7 +20,7 @@
       - [0x005BE0, asm, boot/stackcheck]
       - [0x005E30, asm, boot/gfxprint]
       - [0x006BA0, asm, boot/mtxuty-cvt]
-      - [0x006D10, asm, boot/006D10]
+      - [0x006D10, c, boot/O2/loadfragment2]
       - [0x007000, asm, boot/debug]
       - [0x007060, asm, boot/007060]
       - [0x0073A0, asm, boot/0073A0]
@@ -205,6 +205,7 @@
       - [0x016EF0, data, boot/rsp/rspboot]
 
       - [0x016FC0, data, boot/016FC0]
+      - [0x0170A0, .data, boot/logseverity]
       - [0x0170B0, data, boot/gfxprint]
       - [0x017960, data, boot/017960] # boot/007060 starts around here, but no idea where it ends
 
@@ -235,7 +236,7 @@
       - [0x018560, .data, ../lib/ultralib/src/io/vimgr]
 
 
-      - [0x018580, rodata, boot/018580]
+      - [0x018580, .rodata, boot/boot_main]
       - [0x018590, rodata, boot/018590]
       - [0x0185B0, rodata, boot/0185B0]
       - [0x0185D0, rodata, boot/0185D0]
@@ -262,8 +263,8 @@
 
       - [0x019D00, rodata, boot/build]
 
-
-      - { start: 0x019D40, type: bss, vram: 0x8003E940, name: boot/8003E940 }
+      - { start: 0x019D40, type: .bss, vram: 0x8003E940, name: boot/boot_main }
+      - { start: 0x019D40, type: bss, vram: 0x8003F330, name: boot/8003F330}
       - { start: 0x019D40, type: bss, vram: 0x800419A0, name: boot/gfxprint }
       - { start: 0x019D40, type: bss, vram: 0x800419B0, name: boot/mathf }
       - { start: 0x019D40, type: bss, vram: 0x800419C0, name: boot/800419C0 }
@@ -294,7 +295,7 @@
     vram: 0x80044690
     follows_vram: boot
     subsegments:
-      - [0x019D40, data, dmadata/dmadata]
+      - [0x019D40, .data, dmadata/dmadata]
 
   - name: segment_027130
     type: bin
