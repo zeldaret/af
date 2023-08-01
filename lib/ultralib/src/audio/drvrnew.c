@@ -17,16 +17,13 @@
  * DOD or NASA FAR Supplement. Unpublished - rights reserved under the
  * Copyright Laws of the United States.
  *====================================================================*/
-
 #include <libaudio.h>
 #include "synthInternals.h"
 #include <os.h>
 #include <stdio.h>
 #include "initfx.h"
-
 // TODO: this comes from a header
 #ident "$Revision: 1.49 $"
-
 /*
  * WARNING: THE FOLLOWING CONSTANT MUST BE KEPT IN SYNC
  * WITH SCALING IN MICROCODE!!!

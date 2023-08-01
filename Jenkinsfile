@@ -35,6 +35,11 @@ pipeline {
                 sh 'bash -c "make -j setup"'
             }
         }
+        stage('Lib') {
+            steps {
+                sh 'bash -c "make -j lib"'
+            }
+        }
         stage('Extract') {
             steps {
                 sh 'bash -c "make -j extract"'

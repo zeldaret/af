@@ -1102,9 +1102,9 @@ class ElfFile:
             if s.sh_type == SHT_SYMTAB:
                 assert not symtab , "Found more than one symtab section?"
                 symtab = s
-        assert symtab is not None , "Could not find symtab"
         self.symtab = symtab
-        self.symtab.late_init()
+        if self.symtab is not None:
+            self.symtab.late_init()
 
         # Late Init sections
         for s in self.sections:
@@ -1147,11 +1147,12 @@ if __name__ == "__main__":
     for i,s in enumerate(elf_file.sections,0):
         print(f"  [{i:2}] {s}")
     # Symbols Info Test
-    print("")
-    print(f"Symbol table '{elf_file.symtab.name}' contains {len(elf_file.symtab.symbol_entries)} entries")
-    print("   Num:    Value   Size    Type   Bind     Vis   Ndx        Name")
-    for i,sym in enumerate(elf_file.symtab.symbol_entries,0):
-        print(f"{i:6}: {sym}")
+    if elf_file.symtab is not None:
+        print("")
+        print(f"Symbol table '{elf_file.symtab.name}' contains {len(elf_file.symtab.symbol_entries)} entries")
+        print("   Num:    Value   Size    Type   Bind     Vis   Ndx        Name")
+        for i,sym in enumerate(elf_file.symtab.symbol_entries,0):
+            print(f"{i:6}: {sym}")
     # Relocations Info Test
     print("")
     for s in elf_file.sections:

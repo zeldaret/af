@@ -1,7 +1,7 @@
 #include "PR/os_internal.h"
 #include "controller.h"
 
-s32 osPfsSetLabel(OSPfs *pfs, u8 *label) {
+s32 osPfsSetLabel(OSPfs* pfs, u8* label) {
     int i;
     s32 ret;
 

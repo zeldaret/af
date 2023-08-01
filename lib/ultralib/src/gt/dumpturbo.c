@@ -18,13 +18,14 @@
 
 #include <ultra64.h>
 #include <gt.h>
+#include "macros.h"
 
 #undef  PRINTF
 #define PRINTF      rmonPrintf
 
 
 #define TX_MAX		100
-static u32	textures[TX_MAX];
+static u32	textures[TX_MAX] ALIGNED(8);
 static u32	numtextures;
 
 #define UNSEG_ADDR(sa)	((u32 *) (((globp)?				   \

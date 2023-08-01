@@ -1,4 +1,5 @@
-#include "PR/os_internal.h"
+#include "ultra64.h"
+#include "PR/os_internal_flash.h"
 
 void osFlashReadStatus(u8* flash_status) {
     u32 status;
@@ -12,6 +13,5 @@ void osFlashReadStatus(u8* flash_status) {
     osEPiReadIo(&__osFlashHandler, __osFlashHandler.baseAddress, &status);
 
     *flash_status = status & 0xFF;
-
     return;
 }

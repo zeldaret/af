@@ -28,11 +28,11 @@
 /* set read mode */
 #define FLASH_CMD_READ_ARRAY    0xF0000000
 
-extern s32 __osFlashVersion;
-extern OSPiHandle __osFlashHandler;
-extern OSMesgQueue __osFlashMessageQ;
-extern OSMesg __osFlashMsgBuf[1];
 extern OSIoMesg __osFlashMsg;
+extern OSMesgQueue __osFlashMessageQ;
+extern OSPiHandle __osFlashHandler;
+extern OSMesg __osFlashMsgBuf[1];
+extern s32 __osFlashVersion;
 extern u32 __osFlashID[4];
 
 u32 __osFlashGetAddr(u32 page_num);

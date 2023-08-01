@@ -17,24 +17,20 @@
  * DOD or NASA FAR Supplement. Unpublished - rights reserved under the
  * Copyright Laws of the United States.
  *====================================================================*/
-
 #include <libaudio.h>
 #include "synthInternals.h"
 #include <os.h>
 #include <stdio.h>
 #include <math.h>
 #include <assert.h>
-
 // TODO: these come from headers
 #ident "$Revision: 1.49 $"
 #ident "$Revision: 1.17 $"
-
 #ifdef AUD_PROFILE
 extern u32 cnt_index, env_num, env_cnt, env_max, env_min, lastCnt[];
 extern u32 rate_num, rate_cnt, rate_max, rate_min;
 extern u32 vol_num, vol_cnt, vol_max, vol_min;
 #endif
-
 #define EQPOWER_LENGTH 128
 static s16 eqpower[ EQPOWER_LENGTH ] = {
     32767,  32764,  32757,  32744,  32727,  32704,

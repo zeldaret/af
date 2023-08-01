@@ -1,7 +1,7 @@
 #include "PR/os_internal.h"
 #include "controller.h"
 
-s32 osEepromLongWrite(OSMesgQueue *mq, u8 address, u8 *buffer, int length) {
+s32 osEepromLongWrite(OSMesgQueue* mq, u8 address, u8* buffer, int length) {
     s32 ret = 0;
 
     while (length > 0) {
@@ -12,6 +12,6 @@ s32 osEepromLongWrite(OSMesgQueue *mq, u8 address, u8 *buffer, int length) {
         osSetTimer(&__osEepromTimer, 562500, 0, &__osEepromTimerQ, &__osEepromTimerMsg);
         osRecvMesg(&__osEepromTimerQ, NULL, OS_MESG_BLOCK);
     }
-    
+
     return ret;
 }

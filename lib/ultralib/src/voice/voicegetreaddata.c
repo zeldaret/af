@@ -29,7 +29,7 @@ s32 osVoiceGetReadData(OSVoiceHandle* hd, OSVoiceData* micdata) {
         case 2:
             hd->__mode = 2;
 
-            ERRCK(__osVoiceGetStatus(hd->__mq, hd->__channel, &stat))
+            ERRCK(__osVoiceGetStatus(hd->__mq, hd->__channel, &stat));
 
             if (stat & 2) {
                 return CONT_ERR_VOICE_NO_RESPONSE;

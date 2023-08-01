@@ -21,15 +21,13 @@ s32 __osContRamWrite(OSMesgQueue* mq, int channel, u16 address, u8* buffer, int 
     __osSiGetAccess();
 
     do {
-        ptr = __osPfsPifRam.ramarray;
+        ptr = (u8*)__osPfsPifRam.ramarray;
 
-        if (__osContLastCmd != CONT_CMD_WRITE_PAK || __osPfsLastChannel != channel) {
+        if (__osContLastCmd != CONT_CMD_WRITE_PAK || (u32)__osPfsLastChannel != channel) {
             __osContLastCmd = CONT_CMD_WRITE_PAK;
             __osPfsLastChannel = channel;
 
-            for (i = 0; i < channel; i++) {
-                *ptr++ = CONT_CMD_REQUEST_STATUS;
-            }
+            for (i = 0; i < channel; i++) { *ptr++ = CONT_CMD_REQUEST_STATUS; }
 
             __osPfsPifRam.pifstatus = CONT_CMD_EXE;
 

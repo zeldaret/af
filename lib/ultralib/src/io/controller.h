@@ -231,27 +231,27 @@ extern u8 __osMaxControllers;
 #define ERRCK(fn) \
     ret = fn;     \
     if (ret != 0) \
-        return ret;
+        return ret
 
 #define SET_ACTIVEBANK_TO_ZERO        \
     if (pfs->activebank != 0)         \
     {                                 \
-        ERRCK(__osPfsSelectBank(pfs, 0)) \
-    }
+        ERRCK(__osPfsSelectBank(pfs, 0)); \
+    } (void)0
 
 #define PFS_CHECK_ID                              \
     if (__osCheckId(pfs) == PFS_ERR_NEW_PACK) \
-        return PFS_ERR_NEW_PACK;
+        return PFS_ERR_NEW_PACK
 
 #define PFS_CHECK_STATUS                          \
     if ((pfs->status & PFS_INITIALIZED) == 0) \
-        return PFS_ERR_INVALID;
+        return PFS_ERR_INVALID
 
 #define PFS_GET_STATUS                      \
     __osSiGetAccess();                      \
     ret = __osPfsGetStatus(queue, channel); \
     __osSiRelAccess();                      \
     if (ret != 0)                           \
-        return ret;
+        return ret
 
 #endif

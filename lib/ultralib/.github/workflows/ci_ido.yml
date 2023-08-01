@@ -1,5 +1,4 @@
 # CI file for IDO builds
-# TODO: rename to `ci_ido.yml` when the repo has IDO support
 
 name: Build IDO libultra
 
@@ -15,16 +14,16 @@ jobs:
       fail-fast: false
       matrix:
         version: [L] # [E, F, G, H, I, I_patch, J, K, L]
-        suffix: [_rom] # [, _d, _rom]
+        suffix: [~, _rom] # [~, _d, _rom]
 
     steps:
-    - name: Checkout reposistory
+    - name: Checkout repository
       uses: actions/checkout@v3
       with:
         ref: ${{ github.event.pull_request.head.sha }}
 
     - name: Install package requirements
-      run: sudo apt-get install -y build-essential python3
+      run: sudo apt-get install -y build-essential python3 binutils-mips-linux-gnu
 
     - name: Get extra dependencies
       uses: actions/checkout@v3
