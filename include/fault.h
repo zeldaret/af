@@ -54,13 +54,13 @@
 // void FaultDrawer_UpdatePrintColor();
 // void FaultDrawer_SetForeColor();
 // void FaultDrawer_SetBackColor();
-// void FaultDrawer_SetFontColor();
+void FaultDrawer_SetFontColor(u16 color);
 // void FaultDrawer_SetCharPad();
 // void FaultDrawer_SetCursor();
 // void FaultDrawer_FillScreen();
 // void FaultDrawer_PrintCallback();
 // void FaultDrawer_VPrintf();
-// void FaultDrawer_Printf();
+void FaultDrawer_Printf(const char* fmt, ...);
 // void FaultDrawer_DrawText();
 // void FaultDrawer_SetDrawerFB();
 // void FaultDrawer_SetInputCallback();
