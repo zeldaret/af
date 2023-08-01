@@ -723,10 +723,9 @@ void cKF_SkeletonInfo_R_init_standard_setframeandspeedandmorphandmode(SkeletonIn
 void cKF_SkeletonInfo_R_init_reverse_setspeedandmorphandmode(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
                                                              Vec3s* diffRotTable, f32 currentFrame, f32 speed,
                                                              AnimationMode mode) {
-    BaseAnimationR* animationPtr = Lib_SegmentedToVirtual(animation);
-
-    cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, animationPtr->duration, 1.0f,
-                            animationPtr->duration, currentFrame, speed, mode, diffRotTable);
+    cKF_SkeletonInfo_R_init(
+        skeletonInfo, skeletonInfo->skeleton, animation, ((BaseAnimationR*)Lib_SegmentedToVirtual(animation))->duration,
+        1.0f, ((BaseAnimationR*)Lib_SegmentedToVirtual(animation))->duration, currentFrame, speed, mode, diffRotTable);
 }
 
 void func_80053384_jp(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, UNK_PTR* arg6, UNK_PTR* arg7,
