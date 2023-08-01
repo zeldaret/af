@@ -3,8 +3,8 @@
 
 #include "ultra64.h"
 
-void Idle_ThreadEntry(void* arg);
-
 extern OSViMode gViConfigMode;
+
+void Idle_ThreadEntry(void* arg);
 
 #endif

@@ -64,7 +64,6 @@ __osIntTable:
 EXPORT(__osCauseTable_pt)
     .byte 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0
     .byte 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0
-    .byte 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 #endif
 
 .data
@@ -109,7 +108,7 @@ LEAF(__ptExceptionPreamble)
     nop
     nop
 pt_next:
-    addiu   k0, %lo(__ptException)
+    addiu   k0, k0, %lo(__ptException)
     jr      k0
      nop
 .set reorder
@@ -194,14 +193,14 @@ STAY2(mfc0  t0, C0_CAUSE)
     andi    t2, t1, CAUSE_IP7
     beqz    t2, notIP7
     /* clear rdb write interrupt */
-    li      t1, RDB_WRITE_INTR_REG
+    la      t1, RDB_WRITE_INTR_REG
     sw      zero, (t1)
 IP7check:
 STAY2(mfc0  t0, C0_CAUSE)
     andi    t0, t0, CAUSE_IP7
     bne     zero, t0, IP7check
-    lui     t2, (RDB_BASE_REG >> 16)
-    lw      t0, (RDB_BASE_REG & 0xFFFF)(t2)
+    la      t2, RDB_BASE_REG
+    lw      t0, (t2)
     srl     t1, t0, 0x1a
     andi    t1, t1, 0x3f
     li      t2, RDB_TYPE_HtoG_DATA
@@ -331,14 +330,14 @@ notIP7:
     andi    t2, t1, CAUSE_IP6
     beqz    t2, savecontext
     /* clear rdb read interrupt */
-    li      t1, RDB_READ_INTR_REG
+    la      t1, RDB_READ_INTR_REG
     sw      zero, (t1)
     lw      t2, __osRdb_IP6_Ct
-    bnez    t2, 1f
+    bnez    t2, 2f
     li      t2, 1
     sw      t2, __osRdb_IP6_Empty
     b       rdbout
-1:
+2:
     addi    t2, t2, -1
     sw      t2, __osRdb_IP6_Ct
     lw      t0, __osRdb_IP6_Data
@@ -357,8 +356,8 @@ checkIP6:
 STAY2(mfc0  t0, C0_CAUSE)
     andi    t0, t0, CAUSE_IP6
     bne     zero, t0, checkIP6
-    lui     t0, (RDB_BASE_REG >> 16)
-    sw      t2, (RDB_BASE_REG & 0xFFFF)(t0)
+    la      t0, RDB_BASE_REG
+    sw      t2, (t0)
 rdbout:
     ld      t0, THREAD_GP8(k0)
     ld      t1, THREAD_GP9(k0)
@@ -368,11 +367,13 @@ rdbout:
 .set at
     lw      k1, THREAD_SR(k0)
 STAY2(mtc0  k1, C0_SR)
+.set noreorder
     nop
     nop
     nop
     nop
     eret
+.set reorder
 
 skip_kmc_mode:
 #endif
@@ -393,6 +394,7 @@ savecontext:
     sd      t1, THREAD_GP9(k0)
     ld      t1, THREAD_GP10(t0)
     sd      t1, THREAD_GP10(k0)
+3:
     sd      $2, THREAD_GP2(k0)
     sd      $3, THREAD_GP3(k0)
     sd      $4, THREAD_GP4(k0)
@@ -461,8 +463,8 @@ STAY2(mfc0  t0, C0_EPC)
     sw      t0, THREAD_PC(k0)
     lw      t0, THREAD_FP(k0)
     beqz    t0, 1f
-    cfc1    t0, fcr31
-    nop
+STAY2(cfc1  t0, fcr31)
+    NOP
     sw      t0, THREAD_FPCSR(k0)
     sdc1    $f0, THREAD_FP0(k0)
     sdc1    $f2, THREAD_FP2(k0)
@@ -484,8 +486,10 @@ STAY2(mfc0  t0, C0_EPC)
 STAY2(mfc0  t0, C0_CAUSE)
     sw      t0, THREAD_CAUSE(k0)
 
+.set noreorder
     li      t1, OS_STATE_RUNNABLE
     sh      t1, THREAD_STATE(k0)
+.set reorder
 
 #ifndef _FINALROM
     lw      a0, __os_Kdebug_Pkt
@@ -881,13 +885,13 @@ LEAF(__osEnqueueThread)
     lw      t8, 0(a0)
     lw      ta3, THREAD_PRI(a1)
     lw      ta2, THREAD_PRI(t8)
-    blt     ta2, ta3, 1f
-2:
+    blt     ta2, ta3, 2f
+1:
     move    t9, t8
     lw      t8, THREAD_NEXT(t8)
     lw      ta2, THREAD_PRI(t8)
-    bge     ta2, ta3, 2b
-1:
+    bge     ta2, ta3, 1b
+2:
     lw      t8, THREAD_NEXT(t9)
     sw      t8, THREAD_NEXT(a1)
     sw      a1, THREAD_NEXT(t9)
@@ -918,6 +922,7 @@ LEAF(__osDispatchThread)
     la      t0, __osThprofFunc
     lw      t0, (t0)
     beqz    t0, __osDispatchThreadSave
+1:
     lw      a0, __osPreviousThread
     lw      sp, __osThprofStack
     jalr    t0
@@ -993,6 +998,7 @@ STAY2(ctc1  k1, fcr31)
     ldc1    $f30, THREAD_FP30(k0)
     
 1:
+.set noreorder
     lw      k1, THREAD_RCP(k0)
     la      k0, __OSGlobalIntMask
     lw      k0, 0(k0)
@@ -1010,10 +1016,13 @@ STAY2(ctc1  k1, fcr31)
     nop
     nop
     eret
+.set reorder
 END(__osDispatchThread)
 
 LEAF(__osCleanupThread)
     move    a0, zero
+#if !defined(BBPLAYER) && !defined(__sgi)
     nop
+#endif
     jal     osDestroyThread
 END(__osCleanupThread)

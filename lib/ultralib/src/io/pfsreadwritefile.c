@@ -1,21 +1,19 @@
 #include "PR/os_internal.h"
 #include "controller.h"
 
-static s32 __osPfsGetNextPage(OSPfs *pfs, u8 *bank, __OSInode *inode, __OSInodeUnit *page) {
+static s32 __osPfsGetNextPage(OSPfs* pfs, u8* bank, __OSInode* inode, __OSInodeUnit* page) {
     s32 ret;
 
     if (page->inode_t.bank != *bank) {
         *bank = page->inode_t.bank;
         ERRCK(__osPfsRWInode(pfs, inode, 0, *bank));
     }
-    
+
     *page = inode->inode_page[page->inode_t.page];
-    
-    if (page->ipage < pfs->inode_start_page ||
-        page->inode_t.bank >= pfs->banks ||
-        page->inode_t.page <= 0 ||
+
+    if (page->ipage < pfs->inode_start_page || page->inode_t.bank >= pfs->banks || page->inode_t.page <= 0 ||
         page->inode_t.page >= ARRLEN(inode->inode_page)) {
-        
+
         if (page->ipage == 1) {
             return PFS_ERR_INVALID;
         }
@@ -24,26 +22,26 @@ static s32 __osPfsGetNextPage(OSPfs *pfs, u8 *bank, __OSInode *inode, __OSInodeU
     }
     return 0;
 }
-s32 osPfsReadWriteFile(OSPfs *pfs, s32 file_no, u8 flag, int offset, int size_in_bytes, u8 *data_buffer) {
+s32 osPfsReadWriteFile(OSPfs* pfs, s32 file_no, u8 flag, int offset, int size_in_bytes, u8* data_buffer) {
     s32 ret;
     __OSDir dir;
     __OSInode inode;
     __OSInodeUnit cur_page;
     int cur_block;
     int siz_block;
-    u8 *buffer;
+    u8* buffer;
     u8 bank;
     u16 blockno;
-    
-    if (file_no >= pfs->dir_size || file_no < 0) {
+
+    if ((file_no >= (s32)pfs->dir_size) || (file_no < 0)) {
         return PFS_ERR_INVALID;
     }
 
-    if (size_in_bytes <= 0 || ((size_in_bytes & (BLOCKSIZE - 1)) != 0)) {
+    if ((size_in_bytes <= 0) || ((size_in_bytes % BLOCKSIZE) != 0)) {
         return PFS_ERR_INVALID;
     }
-    
-    if (offset < 0 || ((offset & (BLOCKSIZE - 1)) != 0)) {
+
+    if ((offset < 0) || ((offset % BLOCKSIZE) != 0)) {
         return PFS_ERR_INVALID;
     }
 
@@ -51,26 +49,24 @@ s32 osPfsReadWriteFile(OSPfs *pfs, s32 file_no, u8 flag, int offset, int size_in
     PFS_CHECK_ID;
     SET_ACTIVEBANK_TO_ZERO;
     ERRCK(__osContRamRead(pfs->queue, pfs->channel, pfs->dir_table + file_no, (u8*)&dir));
-    
+
     if (dir.company_code == 0 || dir.game_code == 0) {
         return PFS_ERR_INVALID;
     }
 
-    if (dir.start_page.ipage < pfs->inode_start_page ||
-        dir.start_page.inode_t.bank >= pfs->banks ||
-        dir.start_page.inode_t.page <= 0 ||
-        dir.start_page.inode_t.page >= ARRLEN(inode.inode_page)) {
+    if (dir.start_page.ipage < pfs->inode_start_page || dir.start_page.inode_t.bank >= pfs->banks ||
+        dir.start_page.inode_t.page <= 0 || dir.start_page.inode_t.page >= ARRLEN(inode.inode_page)) {
         if ((dir.start_page.ipage == 1)) {
             return PFS_ERR_INVALID;
         }
 
         return PFS_ERR_INCONSISTENT;
     }
-    
+
     if (flag == PFS_READ && (dir.status & DIR_STATUS_OCCUPIED) == 0) {
         return PFS_ERR_BAD_DATA;
     }
-    
+
     bank = -1;
     cur_block = offset / BLOCKSIZE;
     cur_page = dir.start_page;
@@ -100,7 +96,7 @@ s32 osPfsReadWriteFile(OSPfs *pfs, s32 file_no, u8 flag, int offset, int size_in
         } else {
             ret = __osContRamWrite(pfs->queue, pfs->channel, blockno, buffer, FALSE);
         }
-        
+
         if (ret != 0) {
             return ret;
         }
@@ -115,5 +111,6 @@ s32 osPfsReadWriteFile(OSPfs *pfs, s32 file_no, u8 flag, int offset, int size_in
         ERRCK(__osContRamWrite(pfs->queue, pfs->channel, pfs->dir_table + file_no, (u8*)&dir, FALSE));
     }
 
-    return __osPfsGetStatus(pfs->queue, pfs->channel);
+    ret = __osPfsGetStatus(pfs->queue, pfs->channel);
+    return ret;
 }

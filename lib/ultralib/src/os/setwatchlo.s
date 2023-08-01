@@ -5,6 +5,6 @@
 .text
 LEAF(__osSetWatchLo)
     STAY2(mtc0 a0, C0_WATCHLO)
-    nop
+    NOP
     jr ra
 END(__osSetWatchLo)

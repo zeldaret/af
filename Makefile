@@ -20,6 +20,8 @@ RUN_CC_CHECK ?= 1
 CC_CHECK_COMP ?= gcc
 # Dump build object files
 OBJDUMP_BUILD ?= 0
+# Number of threads to compress with
+N_THREADS ?= $(shell nproc)
 
 # Set prefix to mips binutils binaries (mips-linux-gnu-ld => 'mips-linux-gnu-') - Change at your own risk!
 # In nearly all cases, not having 'mips-linux-gnu-*' binaries on the PATH is indicative of missing dependencies
@@ -155,6 +157,11 @@ else
     OBJCOPY_BIN = @:
 endif
 
+# rom compression flags
+COMPFLAGS := --threads $(N_THREADS)
+ifeq ($(NON_MATCHING),0)
+    COMPFLAGS += --matching
+endif
 
 #### Files ####
 
@@ -171,6 +178,23 @@ O_FILES       := $(foreach f,$(C_FILES:.c=.o),$(BUILD_DIR)/$f) \
                  $(foreach f,$(S_FILES:.s=.o),$(BUILD_DIR)/$f) \
                  $(foreach f,$(BIN_FILES:.bin=.o),$(BUILD_DIR)/$f)
 
+LIBULTRA_DIRS := $(shell find lib/ultralib/src -type d \
+                  -not -path "lib/ultralib/src/audio" \
+                  -not -path "lib/ultralib/src/error" \
+                  -not -path "lib/ultralib/src/gio" \
+                  -not -path "lib/ultralib/src/gt" \
+                  -not -path "lib/ultralib/src/host" \
+                  -not -path "lib/ultralib/src/log" \
+                  -not -path "lib/ultralib/src/rg" \
+                  -not -path "lib/ultralib/src/rmon" \
+                  -not -path "lib/ultralib/src/sched" \
+                  -not -path "lib/ultralib/src/voice")
+
+LIBULTRA_C    := $(foreach dir,$(LIBULTRA_DIRS),$(wildcard $(dir)/*.c))
+LIBULTRA_S    := $(foreach dir,$(LIBULTRA_DIRS),$(wildcard $(dir)/*.s))
+LIBULTRA_O    := $(foreach f,$(LIBULTRA_C:.c=.o),$(BUILD_DIR)/$f) \
+                 $(foreach f,$(LIBULTRA_S:.s=.o),$(BUILD_DIR)/$f)
+
 
 # Automatic dependency files
 DEP_FILES := $(O_FILES:.o=.d) \
@@ -181,6 +205,7 @@ $(shell mkdir -p $(BUILD_DIR)/linker_scripts/$(VERSION) $(BUILD_DIR)/linker_scri
 
 
 # directory flags
+build/src/boot/O2/%.o: OPTFLAGS := -O2
 
 # per-file flags
 
@@ -190,7 +215,7 @@ build/src/%.o: CC := $(ASM_PROC) $(ASM_PROC_FLAGS) $(CC) -- $(AS) $(ASFLAGS) --
 
 #### Main Targets ###
 
-all: uncompressed
+all: uncompressed compressed
 
 uncompressed: $(ROM)
 ifneq ($(COMPARE),0)
@@ -198,23 +223,23 @@ ifneq ($(COMPARE),0)
 	@md5sum -c $(TARGET)_uncompressed.$(VERSION).md5
 endif
 
-# TODO
-# compressed: $(ROMC)
-# ifneq ($(COMPARE),0)
-# 	@md5sum $(ROMC)
-# 	@md5sum -c $(TARGET).$(VERSION).md5
-# endif
+compressed: $(ROMC)
+ifneq ($(COMPARE),0)
+	@md5sum $(ROMC)
+	@md5sum -c $(TARGET).$(VERSION).md5
+endif
 
 clean:
 	$(RM) -r $(BUILD_DIR)/asm $(BUILD_DIR)/bin $(BUILD_DIR)/src $(ROM) $(ROMC) $(ELF)
 
 libclean:
-	$(RM) -r $(BUILD_DIR)/lib
+	$(MAKE) -C lib clean
 
 distclean: clean
 	$(RM) -r $(BUILD_DIR) asm/ bin/ .splat/
 	$(RM) -r linker_scripts/$(VERSION)/auto $(LD_SCRIPT)
 	$(MAKE) -C tools distclean
+	$(MAKE) -C lib distclean
 
 setup:
 	$(MAKE) -C tools
@@ -225,6 +250,9 @@ extract:
 	$(CAT) yamls/$(VERSION)/header.yaml yamls/$(VERSION)/makerom.yaml yamls/$(VERSION)/boot.yaml yamls/$(VERSION)/code.yaml yamls/$(VERSION)/overlays.yaml yamls/$(VERSION)/assets.yaml > $(SPLAT_YAML)
 	$(SPLAT) $(SPLAT_YAML)
 
+lib:
+	$(MAKE) -C lib
+
 diff-init: all
 	$(RM) -rf expected/
 	mkdir -p expected/
@@ -233,12 +261,13 @@ diff-init: all
 init:
 	$(MAKE) distclean
 	$(MAKE) setup
+	$(MAKE) lib
 	$(MAKE) extract
 	$(MAKE) all
 	$(MAKE) diff-init
 
-.PHONY: all compressed uncompressed clean distclean setup extract diff-init init
-.DEFAULT_GOAL := all
+.PHONY: all compressed uncompressed clean libclean distclean setup extract lib diff-init init
+.DEFAULT_GOAL := uncompressed
 # Prevent removing intermediate files
 .SECONDARY:
 
@@ -246,14 +275,18 @@ init:
 #### Various Recipes ####
 
 $(ROM): $(ELF)
-	$(OBJCOPY) -O binary --pad-to=0x1914000 --gap-fill=0xFF $< $@
+	$(OBJCOPY) -O binary --pad-to=0x1914000 --gap-fill=0x00 $< $@
+# TODO: update rom header checksum
+
+$(ROMC): $(ROM)
+	python3 tools/z64compress_wrapper.py $(COMPFLAGS) $< $@ $(ELF) $(SPLAT_YAML)
 
 # TODO: avoid using auto/undefined
-$(ELF): $(O_FILES) $(LD_SCRIPT) $(BUILD_DIR)/linker_scripts/$(VERSION)/hardware_regs.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/undefined_syms.ld $(BUILD_DIR)/linker_scripts/common_undef_syms.ld $(BUILD_DIR)/linker_scripts/libultra_syms.ld
+$(ELF): $(LIBULTRA_O) $(O_FILES) $(LD_SCRIPT) $(BUILD_DIR)/linker_scripts/$(VERSION)/hardware_regs.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/undefined_syms.ld $(BUILD_DIR)/linker_scripts/common_undef_syms.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_syms_auto.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_funcs_auto.ld
 	$(LD) $(LDFLAGS) -T $(LD_SCRIPT) \
-		-T $(BUILD_DIR)/linker_scripts/$(VERSION)/hardware_regs.ld -T $(BUILD_DIR)/linker_scripts/$(VERSION)/undefined_syms.ld -T $(BUILD_DIR)/linker_scripts/common_undef_syms.ld -T $(BUILD_DIR)/linker_scripts/libultra_syms.ld \
+		-T $(BUILD_DIR)/linker_scripts/$(VERSION)/hardware_regs.ld -T $(BUILD_DIR)/linker_scripts/$(VERSION)/undefined_syms.ld -T $(BUILD_DIR)/linker_scripts/common_undef_syms.ld \
+		-T $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_syms_auto.ld -T $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_funcs_auto.ld \
 		-Map $(LD_MAP) -o $@
-
 
 $(BUILD_DIR)/%.ld: %.ld
 	$(CPP) $(CPPFLAGS) $(BUILD_DEFINES) $(IINC) $< > $@
@@ -270,6 +303,11 @@ $(BUILD_DIR)/%.o: %.c
 	$(CC) -c $(CFLAGS) $(BUILD_DEFINES) $(IINC) $(WARNINGS) $(MIPS_VERSION) $(ENDIAN) $(COMMON_DEFINES) $(RELEASE_DEFINES) $(GBI_DEFINES) $(C_DEFINES) $(OPTFLAGS) -o $@ $<
 	$(OBJDUMP_CMD)
 	$(RM_MDEBUG)
+
+$(BUILD_DIR)/lib/%.o:
+ifneq ($(PERMUTER), 1)
+	$(error Library files has not been built, please run `$(MAKE) lib` first)
+endif
 
 -include $(DEP_FILES)
 

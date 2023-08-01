@@ -1,14 +1,14 @@
 #include "PR/os_internal.h"
 #include "controller.h"
 
-s32 corrupted_init(OSPfs *pfs, __OSInodeCache *cache);
-s32 corrupted(OSPfs *pfs, __OSInodeUnit fpage, __OSInodeCache *cache);
+s32 corrupted_init(OSPfs* pfs, __OSInodeCache* cache);
+s32 corrupted(OSPfs* pfs, __OSInodeUnit fpage, __OSInodeCache* cache);
 
-#define CHECK_IPAGE(p)                                                                                      \
+#define CHECK_IPAGE(p)                                                                                        \
     (((p).ipage >= pfs->inode_start_page) && ((p).inode_t.bank < pfs->banks) && ((p).inode_t.page >= 0x01) && \
      ((p).inode_t.page < 0x80))
 
-s32 osPfsChecker(OSPfs *pfs) {
+s32 osPfsChecker(OSPfs* pfs) {
     int j;
     s32 ret;
     __OSInodeUnit next_page;
@@ -50,7 +50,7 @@ s32 osPfsChecker(OSPfs *pfs) {
                 while (CHECK_IPAGE(next_page)) {
                     if (bank != next_page.inode_t.bank) {
                         bank = next_page.inode_t.bank;
-                        
+
                         if (oldbank != bank) {
                             ret = __osPfsRWInode(pfs, &tmp_inode, OS_READ, bank);
                             oldbank = bank;
@@ -61,12 +61,10 @@ s32 osPfsChecker(OSPfs *pfs) {
                         }
                     }
 
-                    cc = corrupted(pfs, next_page, &cache) - cl;
-                    
-                    if (cc != 0) {
+                    if ((cc = corrupted(pfs, next_page, &cache) - cl) != 0) {
                         break;
                     }
-                    
+
                     cl = 1;
                     next_page = tmp_inode.inode_page[next_page.inode_t.page];
                 }
@@ -127,7 +125,7 @@ s32 osPfsChecker(OSPfs *pfs) {
     return 0;
 }
 
-s32 corrupted_init(OSPfs *pfs, __OSInodeCache *cache) {
+s32 corrupted_init(OSPfs* pfs, __OSInodeCache* cache) {
     int i;
     int n;
     int offset;
@@ -145,7 +143,7 @@ s32 corrupted_init(OSPfs *pfs, __OSInodeCache *cache) {
         offset = bank > 0 ? 1 : pfs->inode_start_page;
 
         ret = __osPfsRWInode(pfs, &tmp_inode, OS_READ, bank);
-        
+
         if (ret != 0 && ret != PFS_ERR_INCONSISTENT) {
             return ret;
         }
@@ -154,7 +152,8 @@ s32 corrupted_init(OSPfs *pfs, __OSInodeCache *cache) {
             tpage = tmp_inode.inode_page[i];
 
             if (tpage.ipage >= pfs->inode_start_page && tpage.inode_t.bank != bank) {
-                n = ((tpage.inode_t.page & 0x7F) / PFS_SECTOR_SIZE) + ((tpage.inode_t.bank % PFS_BANK_LAPPED_BY) * BLOCKSIZE);
+                n = ((tpage.inode_t.page & 0x7F) / PFS_SECTOR_SIZE) +
+                    ((tpage.inode_t.bank % PFS_BANK_LAPPED_BY) * BLOCKSIZE);
                 cache->map[n] |= 1 << (bank % PFS_BANK_LAPPED_BY);
             }
         }
@@ -162,7 +161,7 @@ s32 corrupted_init(OSPfs *pfs, __OSInodeCache *cache) {
     return 0;
 }
 
-s32 corrupted(OSPfs *pfs, __OSInodeUnit fpage, __OSInodeCache *cache) {
+s32 corrupted(OSPfs* pfs, __OSInodeUnit fpage, __OSInodeCache* cache) {
     int j;
     int n;
     int hit;
@@ -180,7 +179,7 @@ s32 corrupted(OSPfs *pfs, __OSInodeUnit fpage, __OSInodeCache *cache) {
         if (bank == fpage.inode_t.bank || cache->map[n] & (1 << (bank % PFS_BANK_LAPPED_BY))) {
             if (bank != cache->bank) {
                 ret = __osPfsRWInode(pfs, &cache->inode, 0, bank);
-                
+
                 if (ret != 0 && ret != PFS_ERR_INCONSISTENT) {
                     return ret;
                 }

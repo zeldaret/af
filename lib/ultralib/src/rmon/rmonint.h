@@ -92,7 +92,7 @@ u32 __rmonReadWordAt(u32* addr);
 void __rmonMemcpy(u8* dest, u8* srce, u32 count);
 void __rmonCopyWords(u32* dest, u32* srce, u32 count);
 
-extern u8 __rmonUtilityBuffer[256];
+extern u8 __rmonUtilityBuffer[];
 
 /* rmonsio */
 

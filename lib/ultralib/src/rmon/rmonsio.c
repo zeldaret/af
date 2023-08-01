@@ -15,7 +15,7 @@
 // TODO: this comes from a header
 #ident "$Revision: 1.4 $"
 
-static OSMesgQueue IOmq;
+static OSMesgQueue IOmq ALIGNED(8);
 static OSMesg IOmsgs;
 
 void* __osRdb_DbgRead_Buf;

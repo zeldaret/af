@@ -27,7 +27,7 @@ func_80026814_jp = 0x80026814; // type:func
 func_80026828_jp = 0x80026828; // type:func
 func_800269E4_jp = 0x800269E4; // type:func
 func_80026A64_jp = 0x80026A64; // type:func
-func_80026B44_jp = 0x80026B44; // type:func
+DmaMgr_RequestSync = 0x80026B44; // type:func
 func_80026BC0_jp = 0x80026BC0; // type:func
 func_80026C00_jp = 0x80026C00; // type:func
 func_80026C28_jp = 0x80026C28; // type:func
@@ -153,7 +153,7 @@ gfxprint_printf = 0x8002B770; // type:func
 MtxConv_F2L = 0x8002B7A0; // type:func
 MtxConv_L2F = 0x8002B8E8; // type:func
 
-func_8002B910_jp = 0x8002B910; // type:func
+Overlay_Load = 0x8002B910; // type:func
 DoRelocation = 0x8002B9C0; // type:func
 
 _dbg_hungup = 0x8002BC00; // type:func
@@ -263,7 +263,6 @@ func_8003B9B0_jp = 0x8003B9B0; // type:func
 func_8003B9E0_jp = 0x8003B9E0; // type:func
 func_8003BA20_jp = 0x8003BA20; // type:func
 func_8003BA60_jp = 0x8003BA60; // type:func
-func_8003BAF0_jp = 0x8003BAF0; // type:func
 
 // .data
 
@@ -271,13 +270,15 @@ D_8003BBC0_jp = 0x8003BBC0; // type:s8
 gViConfigFeatures = 0x8003BBC4; //
 gViConfigXScale = 0x8003BBC8; // type:f32
 gViConfigYScale = 0x8003BBCC; // type:f32
-D_8003BBD0_jp = 0x8003BBD0; //
+gCartHandle = 0x8003BBD0; //
 D_8003BBE0_jp = 0x8003BBE0; //
 D_8003BBF0_jp = 0x8003BBF0; //
 D_8003BC38_jp = 0x8003BC38; //
 D_8003BC50_jp = 0x8003BC50; //
 D_8003BC90_jp = 0x8003BC90; //
 D_8003BC94_jp = 0x8003BC94; //
+
+gOverlayLogSeverity = 0x8003BCA0 // type:s32 size:0x4
 
 gfxprint_moji_tlut = 0x8003BCB0; // type:u8 size:0x80
 gfxprint_rainbow_tlut = 0x8003BD30; // type:u8 size:0x20
@@ -507,10 +508,10 @@ gBuildMakeOption = 0x8003E938; // type:asciz
 
 // .bss
 
-B_8003E940_jp = 0x8003E940; //
-B_8003ED40_jp = 0x8003ED40; //
-B_8003ED60_jp = 0x8003ED60; //
-B_8003ED80_jp = 0x8003ED80; //
+sIdleStack = 0x8003E940; //
+sIdleStackInfo = 0x8003ED40; //
+sBootStackInfo = 0x8003ED60; //
+sIdleThread = 0x8003ED80; //
 sBootStack = 0x8003EF30; //
 sMainThread = 0x8003F330; //
 sMainStack = 0x8003F4E0; //

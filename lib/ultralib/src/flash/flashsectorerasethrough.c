@@ -1,4 +1,5 @@
-#include "PR/os_internal.h"
+#include "ultra64.h"
+#include "PR/os_internal_flash.h"
 
 void osFlashSectorEraseThrough(u32 page_num) {
     // start sector erase operation

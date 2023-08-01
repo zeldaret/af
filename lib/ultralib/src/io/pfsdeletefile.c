@@ -1,8 +1,7 @@
 #include "PR/os_internal.h"
 #include "controller.h"
 
-s32 osPfsDeleteFile(OSPfs *pfs, u16 company_code, u32 game_code, u8 *game_name,
-                    u8 *ext_name) {
+s32 osPfsDeleteFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name, u8* ext_name) {
     s32 file_no;
     s32 ret;
     __OSInode inode;
@@ -45,7 +44,7 @@ s32 osPfsDeleteFile(OSPfs *pfs, u16 company_code, u32 game_code, u8 *game_name,
     return ret;
 }
 
-s32 __osPfsReleasePages(OSPfs *pfs, __OSInode *inode, u8 start_page, u8 bank, __OSInodeUnit *last_page) {
+s32 __osPfsReleasePages(OSPfs* pfs, __OSInode* inode, u8 start_page, u8 bank, __OSInodeUnit* last_page) {
     __OSInodeUnit next_page;
     __OSInodeUnit old_page;
     s32 ret = 0;

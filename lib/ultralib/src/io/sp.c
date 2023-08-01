@@ -11,7 +11,7 @@ int __osSpDeviceBusy() {
 
     if (stat & (SP_STATUS_DMA_BUSY | SP_STATUS_DMA_FULL | SP_STATUS_IO_FULL)) {
         return TRUE;
+    } else {
+        return FALSE;
     }
-
-    return FALSE;
 }

@@ -35,6 +35,11 @@ pipeline {
                 sh 'bash -c "make -j setup"'
             }
         }
+        stage('Lib') {
+            steps {
+                sh 'bash -c "make -j lib"'
+            }
+        }
         stage('Extract') {
             steps {
                 sh 'bash -c "make -j extract"'
@@ -43,6 +48,11 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'bash -c "make -j uncompressed"'
+            }
+        }
+        stage('Build compressed') {
+            steps {
+                sh 'bash -c "make -j compressed"'
             }
         }
         stage('Upload to Frogress') {

@@ -12,5 +12,6 @@ ABS(osCicId, 0x80000310)
 ABS(osVersion, 0x80000314)
 ABS(osMemSize, 0x80000318)
 ABS(osAppNMIBuffer, 0x8000031c)
-.fill 0x60
+
+.space 0x60
 /* padded to 0x60 in the object file */
