@@ -695,34 +695,38 @@ void cKF_Si3_draw_R_SV(PlayState* play, SkeletonInfoR* skeletonInfo, Mtx* mtx, D
 
 void cKF_SkeletonInfo_R_init_standard_repeat_speedsetandmorph(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
                                                               Vec3s* diffRotTable, f32 speed, f32 morphCounter) {
-    cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
-                            ((BaseAnimationR*)Lib_SegmentedToVirtual(animation))->duration, 1.0f, speed, morphCounter,
-                            ANIMATION_REPEAT, diffRotTable);
+    BaseAnimationR* animationPtr = Lib_SegmentedToVirtual(animation);
+
+    cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f, animationPtr->duration, 1.0f, speed,
+                            morphCounter, ANIMATION_REPEAT, diffRotTable);
 }
 
 void cKF_SkeletonInfo_R_init_standard_repeat_setframeandspeedandmorph(SkeletonInfoR* skeletonInfo,
                                                                       BaseAnimationR* animation, Vec3s* diffRotTable,
                                                                       f32 currentFrame, f32 speed, f32 morphCounter) {
-    cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
-                            ((BaseAnimationR*)Lib_SegmentedToVirtual(animation))->duration, currentFrame, speed,
-                            morphCounter, ANIMATION_REPEAT, diffRotTable);
+    BaseAnimationR* animationPtr = Lib_SegmentedToVirtual(animation);
+
+    cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f, animationPtr->duration, currentFrame,
+                            speed, morphCounter, ANIMATION_REPEAT, diffRotTable);
 }
 
 void cKF_SkeletonInfo_R_init_standard_setframeandspeedandmorphandmode(SkeletonInfoR* skeletonInfo,
                                                                       BaseAnimationR* animation, Vec3s* diffRotTable,
                                                                       f32 currentFrame, f32 speed, f32 morphCounter,
                                                                       AnimationMode mode) {
-    cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
-                            ((BaseAnimationR*)Lib_SegmentedToVirtual(animation))->duration, currentFrame, speed,
-                            morphCounter, mode, diffRotTable);
+    BaseAnimationR* animationPtr = Lib_SegmentedToVirtual(animation);
+
+    cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f, animationPtr->duration, currentFrame,
+                            speed, morphCounter, mode, diffRotTable);
 }
 
 void cKF_SkeletonInfo_R_init_reverse_setspeedandmorphandmode(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
                                                              Vec3s* diffRotTable, f32 currentFrame, f32 speed,
                                                              AnimationMode mode) {
-    cKF_SkeletonInfo_R_init(
-        skeletonInfo, skeletonInfo->skeleton, animation, ((BaseAnimationR*)Lib_SegmentedToVirtual(animation))->duration,
-        1.0f, ((BaseAnimationR*)Lib_SegmentedToVirtual(animation))->duration, currentFrame, speed, mode, diffRotTable);
+    BaseAnimationR* animationPtr = Lib_SegmentedToVirtual(animation);
+
+    cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, animationPtr->duration, 1.0f,
+                            animationPtr->duration, currentFrame, speed, mode, diffRotTable);
 }
 
 void func_80053384_jp(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, UNK_PTR* arg6, UNK_PTR* arg7,
