@@ -20,7 +20,7 @@
       - [0x68AB30, asm, code/68AB30]
       - [0x68B0D0, asm, code/m_collision_bg]
       - [0x69A7E0, asm, code/69A7E0]
-      - [0x69C6B0, asm, code/m_common_data]
+      - [0x69C6B0, c, code/m_common_data]
       - [0x69C770, asm, code/m_controller]
       - [0x69CB30, asm, code/69CB30]
       - [0x69DDF0, asm, code/m_debug_display]
@@ -223,6 +223,8 @@
       - [0x73CEE0, rodata, code/73CEE0]
 
       - { start: 0x73F4D0, type: bss, vram: 0x8011B830, name: code/8011B830 }
+      - { start: 0x74AB40, type: .bss, vram: 0x80126EA0, name: code/m_common_data }
+      - { start: 0x75B600, type: bss, vram: 0x80137960, name: code/80137960 }
       - { start: 0x73F4D0, type: bss, vram: 0x80143900, name: code/m_player_call }
       - { start: 0x73F4D0, type: bss, vram: 0x80143910, name: code/80143910 }
       - { start: 0x73F4D0, type: .bss, vram: 0x801462B0, name: code/sys_matrix }
