@@ -627,6 +627,7 @@ s32 __osCheckArena(Arena* arena) {
     }
 
     if (!err) {
+        // "Arena is still valid"
         osSyncPrintf("アリーナはまだ、いけそうです\n");
     }
 
