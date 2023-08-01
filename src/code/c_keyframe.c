@@ -43,13 +43,10 @@
 #include "sys_matrix.h"
 #include "sys_math3d.h"
 
-float fabsf(float f);
-#pragma intrinsic(fabsf)
-
 UNK_PTR* B_801458A0_jp[4];
 
 void cKF_FrameControl_zeroClear(FrameControl* frameControl) {
-    bzero(frameControl, 0x18);
+    bzero(frameControl, sizeof(FrameControl));
     frameControl->mode = ANIMATION_STOP;
     frameControl->duration = 1.0f;
     frameControl->currentFrame = 1.0f;
@@ -301,6 +298,7 @@ void cKF_SkeletonInfo_morphST(s16* joint, s16* morph, f32 t) {
         if (*joint != *morph) {
             f32 p0 = *joint;
             f32 p1 = *morph;
+
             *joint = p0 + (p1 - p0) * t;
         }
         joint++;
@@ -309,7 +307,7 @@ void cKF_SkeletonInfo_morphST(s16* joint, s16* morph, f32 t) {
 }
 
 void cKF_SkeletonInfo_R_zeroClear(SkeletonInfoR* skeletonInfo) {
-    bzero(skeletonInfo, 0x70);
+    bzero(skeletonInfo, sizeof(SkeletonInfoR));
 }
 
 void cKF_SkeletonInfo_R_ct(SkeletonInfoR* skeletonInfo, BaseSkeletonR* skeleton, BaseAnimationR* animation,
@@ -327,44 +325,50 @@ void cKF_SkeletonInfo_R_dt(SkeletonInfoR* skeletonInfo) {
 
 void cKF_SkeletonInfo_R_init_standard_stop(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
                                            Vec3s* diffRotTable) {
-    cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
-                            ((BaseAnimationR*)Lib_SegmentedToVirtual(animation))->duration, 1.0f, 1.0, 0.0f,
-                            ANIMATION_STOP, diffRotTable);
+    BaseAnimationR* animationPtr = Lib_SegmentedToVirtual(animation);
+
+    cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f, animationPtr->duration, 1.0f, 1.0,
+                            0.0f, ANIMATION_STOP, diffRotTable);
 }
 
 void cKF_SkeletonInfo_R_init_standard_stop_speedset(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
                                                     Vec3s* diffRotTable, f32 speed) {
-    cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
-                            ((BaseAnimationR*)Lib_SegmentedToVirtual(animation))->duration, 1.0f, speed, 0.0f,
-                            ANIMATION_STOP, diffRotTable);
+    BaseAnimationR* animationPtr = Lib_SegmentedToVirtual(animation);
+
+    cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f, animationPtr->duration, 1.0f, speed,
+                            0.0f, ANIMATION_STOP, diffRotTable);
 }
 
 void cKF_SkeletonInfo_R_init_standard_stop_morph(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
                                                  Vec3s* diffRotTable, f32 morphCounter) {
-    cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
-                            ((BaseAnimationR*)Lib_SegmentedToVirtual(animation))->duration, 1.0f, 1.0, morphCounter,
-                            ANIMATION_STOP, diffRotTable);
+    BaseAnimationR* animationPtr = Lib_SegmentedToVirtual(animation);
+
+    cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f, animationPtr->duration, 1.0f, 1.0,
+                            morphCounter, ANIMATION_STOP, diffRotTable);
 }
 
 void cKF_SkeletonInfo_R_init_standard_repeat(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
                                              Vec3s* diffRotTable) {
-    cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
-                            ((BaseAnimationR*)Lib_SegmentedToVirtual(animation))->duration, 1.0f, 1.0, 0.0f,
-                            ANIMATION_REPEAT, diffRotTable);
+    BaseAnimationR* animationPtr = Lib_SegmentedToVirtual(animation);
+
+    cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f, animationPtr->duration, 1.0f, 1.0,
+                            0.0f, ANIMATION_REPEAT, diffRotTable);
 }
 
 void cKF_SkeletonInfo_R_init_standard_repeat_speedset(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
                                                       Vec3s* diffRotTable, f32 speed) {
-    cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
-                            ((BaseAnimationR*)Lib_SegmentedToVirtual(animation))->duration, 1.0f, speed, 0.0f,
-                            ANIMATION_REPEAT, diffRotTable);
+    BaseAnimationR* animationPtr = Lib_SegmentedToVirtual(animation);
+
+    cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f, animationPtr->duration, 1.0f, speed,
+                            0.0f, ANIMATION_REPEAT, diffRotTable);
 }
 
 void cKF_SkeletonInfo_R_init_standard_repeat_morph(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
                                                    Vec3s* diffRotTable, f32 morphCounter) {
-    cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f,
-                            ((BaseAnimationR*)Lib_SegmentedToVirtual(animation))->duration, 1.0f, 1.0, morphCounter,
-                            ANIMATION_REPEAT, diffRotTable);
+    BaseAnimationR* animationPtr = Lib_SegmentedToVirtual(animation);
+
+    cKF_SkeletonInfo_R_init(skeletonInfo, skeletonInfo->skeleton, animation, 1.0f, animationPtr->duration, 1.0f, 1.0,
+                            morphCounter, ANIMATION_REPEAT, diffRotTable);
 }
 
 void cKF_SkeletonInfo_R_init(SkeletonInfoR* skeletonInfo, BaseSkeletonR* skeleton, BaseAnimationR* animation,
@@ -379,10 +383,10 @@ void cKF_SkeletonInfo_R_init(SkeletonInfoR* skeletonInfo, BaseSkeletonR* skeleto
 }
 
 void cKF_SkeletonInfo_R_setAnim(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation) {
-    BaseAnimationR* newAnimation = (BaseAnimationR*)Lib_SegmentedToVirtual(animation);
+    BaseAnimationR* animationPtr = Lib_SegmentedToVirtual(animation);
 
-    skeletonInfo->animation = newAnimation;
-    skeletonInfo->frameControl.duration = newAnimation->duration;
+    skeletonInfo->animation = animationPtr;
+    skeletonInfo->frameControl.duration = animationPtr->duration;
 }
 
 void cKF_SkeletonInfo_R_morphJoint(SkeletonInfoR* skeletonInfo) {
@@ -679,9 +683,9 @@ void cKF_Si3_draw_R_SV(PlayState* play, SkeletonInfoR* skeletonInfo, Mtx* mtx, D
         OPEN_DISPS(play->state.gfxCtx);
         do {
             gSPSegment(POLY_OPA_DISP++, 0x0D, mtx);
-            do {
-                gSPSegment(POLY_XLU_DISP++, 0x0D, mtx);
-            } while (0);
+        } while (0);
+        do {
+            gSPSegment(POLY_XLU_DISP++, 0x0D, mtx);
         } while (0);
         jointIndex = 0;
         cKF_Si3_draw_SV_R_child(play, skeletonInfo, &jointIndex, beforeCallback, afterCallback, arg, &mtx);
@@ -724,13 +728,13 @@ void cKF_SkeletonInfo_R_init_reverse_setspeedandmorphandmode(SkeletonInfoR* skel
 void func_80053384_jp(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, UNK_PTR* arg6, UNK_PTR* arg7,
                       UNK_PTR* arg8) {
     if (arg3 != 0) {
-        B_801458A0_jp[arg0] = PHYSICAL_TO_VIRTUAL(arg6);
+        B_801458A0_jp[arg0] = OS_PHYSICAL_TO_K0(arg6);
     }
     if (arg4 != 0) {
-        B_801458A0_jp[arg1] = PHYSICAL_TO_VIRTUAL(arg7);
+        B_801458A0_jp[arg1] = OS_PHYSICAL_TO_K0(arg7);
     }
     if (arg5 != 0) {
-        B_801458A0_jp[arg2] = PHYSICAL_TO_VIRTUAL(arg8);
+        B_801458A0_jp[arg2] = OS_PHYSICAL_TO_K0(arg8);
     }
 }
 
@@ -881,12 +885,9 @@ s32 cKF_SkeletonInfo_R_combine_play(SkeletonInfoR* skeletonInfo1, SkeletonInfoR*
     SkeletonInfoRCombineWork combine2;
     SkeletonInfoRCombineWork combine3;
     s32 var_s0;
-    UNK_PTR* sp44;
-    UNK_PTR* sp40;
+    UNK_PTR* sp44 = NULL;
+    UNK_PTR* sp40 = NULL;
     s32 var_v1;
-
-    sp44 = NULL;
-    sp40 = NULL;
 
     if ((skeletonInfo1 == NULL) || (skeletonInfo2 == NULL) || (arg2 < 0) || (arg2 >= 0x10) || (arg3 < 0) ||
         (arg3 >= 0x10) || (flag == NULL)) {
@@ -900,14 +901,14 @@ s32 cKF_SkeletonInfo_R_combine_play(SkeletonInfoR* skeletonInfo1, SkeletonInfoR*
     }
 
     if (arg4 != 0) {
-        sp44 = PHYSICAL_TO_VIRTUAL(B_801458A0_jp[arg2]);
-        B_801458A0_jp[arg2] = PHYSICAL_TO_VIRTUAL(arg4);
+        sp44 = OS_PHYSICAL_TO_K0(B_801458A0_jp[arg2]);
+        B_801458A0_jp[arg2] = OS_PHYSICAL_TO_K0(arg4);
         cKF_SkeletonInfo_R_combine_work_set(&combine3, skeletonInfo1);
     }
 
     if (arg5 != 0) {
-        sp40 = PHYSICAL_TO_VIRTUAL(B_801458A0_jp[arg3]);
-        B_801458A0_jp[arg3] = PHYSICAL_TO_VIRTUAL(arg5);
+        sp40 = OS_PHYSICAL_TO_K0(B_801458A0_jp[arg3]);
+        B_801458A0_jp[arg3] = OS_PHYSICAL_TO_K0(arg5);
         cKF_SkeletonInfo_R_combine_work_set(&combine2, skeletonInfo2);
         cKF_SkeletonInfo_R_combine_work_set(&combine1, skeletonInfo2);
     }
@@ -987,18 +988,18 @@ void cKF_SkeletonInfo_R_T_combine_play(s32* arg0, s32* arg1, s32* arg2, Skeleton
     }
 
     if (arg9 != 0) {
-        sp48 = PHYSICAL_TO_VIRTUAL(B_801458A0_jp[arg6]);
-        B_801458A0_jp[arg6] = PHYSICAL_TO_VIRTUAL(arg9);
+        sp48 = OS_PHYSICAL_TO_K0(B_801458A0_jp[arg6]);
+        B_801458A0_jp[arg6] = OS_PHYSICAL_TO_K0(arg9);
         cKF_SkeletonInfo_R_combine_work_set(&sp4C, skeletonInfo1);
     }
     if (argA != 0) {
-        sp44 = PHYSICAL_TO_VIRTUAL(B_801458A0_jp[arg7]);
-        B_801458A0_jp[arg7] = PHYSICAL_TO_VIRTUAL(argA);
+        sp44 = OS_PHYSICAL_TO_K0(B_801458A0_jp[arg7]);
+        B_801458A0_jp[arg7] = OS_PHYSICAL_TO_K0(argA);
         cKF_SkeletonInfo_R_combine_work_set(&sp6C, skeletonInfo2);
     }
     if (argB != 0) {
-        sp40 = PHYSICAL_TO_VIRTUAL(B_801458A0_jp[arg8]);
-        B_801458A0_jp[arg8] = PHYSICAL_TO_VIRTUAL(argB);
+        sp40 = OS_PHYSICAL_TO_K0(B_801458A0_jp[arg8]);
+        B_801458A0_jp[arg8] = OS_PHYSICAL_TO_K0(argB);
         cKF_SkeletonInfo_R_combine_work_set(&sp8C, skeletonInfo3);
     }
 
@@ -1199,16 +1200,14 @@ void cKF_SkeletonInfo_R_AnimationMove_base(Vec3f* arg0, Vec3s* arg1, Vec3f* arg2
             f32 baseTranslationZTemp = skeletonInfo->animationMove.baseShapeTranslation.z;
             f32 sin1 = sin_s(var_a0);
             f32 cos1 = cos_s(var_a0);
-            s32 pad1;
-            s32 pad2;
+            s32 pad[2];
             f32 move_x = arg2->x * (sp78->x - ((baseTranslationXTemp * cos1) + (baseTranslationZTemp * sin1)));
             f32 move_z = arg2->z * (sp78->z - ((-baseTranslationXTemp * sin1) + (baseTranslationZTemp * cos1)));
             f32 sin2 = sin_s(arg3);
             f32 cos2 = cos_s(arg3);
             f32 correctBaseWorldXTemp = skeletonInfo->animationMove.shapeWorldPositionCorrection.x;
             f32 correctBaseWorldZTemp = skeletonInfo->animationMove.shapeWorldPositionCorrection.z;
-            s32 pad3;
-            s32 pad4;
+            s32 pad2[2];
 
             arg0->x = (skeletonInfo->animationMove.baseWorldPosition.x + correctBaseWorldXTemp) +
                       ((move_x * cos2) + (move_z * sin2));
@@ -1235,13 +1234,12 @@ void cKF_SkeletonInfo_R_AnimationMove_base(Vec3f* arg0, Vec3s* arg1, Vec3f* arg2
 
 void cKF_SkeletonInfo_R_AnimationMove_CulcTransToWorld(Vec3f* arg0, Vec3f* arg1, f32 arg2, f32 arg3, f32 arg4, s16 arg5,
                                                        Vec3f* arg6, SkeletonInfoR* skeleton, s32 arg8) {
-    Vec3s* temp_v0;
+    Vec3s* temp_v0 = &skeleton->jointTable[0];
     f32 sp20;
     f32 sp1C;
     f32 sp18;
     f32 temp_fv0;
 
-    temp_v0 = &skeleton->jointTable[0];
     if (arg8 & 1) {
         sp20 = temp_v0->x - arg2;
         sp1C = temp_v0->z - arg4;

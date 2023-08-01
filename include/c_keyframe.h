@@ -6,7 +6,10 @@
 
 struct PlayState;
 
-typedef enum AnimationMode { ANIMATION_STOP = 0, ANIMATION_REPEAT = 1 } AnimationMode;
+typedef enum AnimationMode {
+    /* 0 */ ANIMATION_STOP,
+    /* 1 */ ANIMATION_REPEAT
+} AnimationMode;
 
 typedef struct {
     /* 0x00 */ f32 start;
@@ -14,7 +17,7 @@ typedef struct {
     /* 0x08 */ f32 duration;
     /* 0x0C */ f32 speed;
     /* 0x10 */ f32 currentFrame;
-    /* 0x14 */ s32 mode;
+    /* 0x14 */ AnimationMode mode;
 } FrameControl; // size = 0x18
 
 typedef struct {
