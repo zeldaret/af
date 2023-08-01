@@ -63,5 +63,5 @@ void Idle_ThreadEntry(void* arg) {
     osStartThread(&sMainThread);
     osSetThreadPri(NULL, OS_PRIORITY_IDLE);
 
-    for(;;) {}
+    for (;;) {}
 }

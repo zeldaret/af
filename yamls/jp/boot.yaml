@@ -238,7 +238,7 @@
 
 
       - [0x018580, .rodata, boot/boot_main]
-      - [0x018590, .rodata, ../src/boot/idle]
+      - [0x018590, .rodata, boot/idle]
       - [0x0185B0, rodata, boot/0185B0]
       - [0x0185D0, rodata, boot/0185D0]
       - [0x0187F0, rodata, boot/0187F0]
