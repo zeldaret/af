@@ -1,6 +1,6 @@
 #include "PR/os_internal.h"
 #include "osint.h"
 
-OSThread *__osGetCurrFaultedThread() {
+OSThread* __osGetCurrFaultedThread() {
     return __osFaultedThread;
 }

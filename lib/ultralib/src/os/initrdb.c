@@ -1,7 +1,8 @@
 #ifndef _FINALROM
+#include "PR/rdb.h"
 #include "PR/os_internal.h"
 
-void* __osRdb_IP6_Data;
+rdbPacket* __osRdb_IP6_Data;
 u32 __osRdb_IP6_Size;
 u32 __osRdb_IP6_Ct;
 u32 __osRdb_IP6_CurWrite;

@@ -15,10 +15,10 @@ jobs:
       fail-fast: false
       matrix:
         version: [ique_v1.5]
-        suffix: [_rom] # [, _d, _rom]
+        suffix: [_rom] # [~, _d, _rom]
 
     steps:
-    - name: Checkout reposistory
+    - name: Checkout repository
       uses: actions/checkout@v3
       with:
         ref: ${{ github.event.pull_request.head.sha }}

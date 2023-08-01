@@ -156,31 +156,31 @@
 
 #define SP_BASE_REG         0x04040000
 
-//! SP memory address (R/W): [11:0] DMEM/IMEM address, [12] 0=DMEM,1=IMEM
+/* SP memory address (R/W): [11:0] DMEM/IMEM address, [12] 0=DMEM,1=IMEM */
 #define SP_MEM_ADDR_REG     (SP_BASE_REG + 0x00)
 
-//! SP DRAM DMA address (R/W): [23:0] RDRAM address
+/* SP DRAM DMA address (R/W): [23:0] RDRAM address */
 #define SP_DRAM_ADDR_REG    (SP_BASE_REG + 0x04)
 
-//! SP read DMA length (R/W): [11:0] length, [19:12] count, [31:20] skip; RDRAM -> I/DMEM
+/* SP read DMA length (R/W): [11:0] length, [19:12] count, [31:20] skip; RDRAM -> I/DMEM */
 #define SP_RD_LEN_REG       (SP_BASE_REG + 0x08)
 
-//! SP write DMA length (R/W): [11:0] length, [19:12] count, [31:20] skip; I/DMEM -> RDRAM
+/* SP write DMA length (R/W): [11:0] length, [19:12] count, [31:20] skip; I/DMEM -> RDRAM */
 #define SP_WR_LEN_REG       (SP_BASE_REG + 0x0C)
 
-//! SP status (R/W): [14:0] valid bits; see below for write/read mode
+/* SP status (R/W): [14:0] valid bits; see below for write/read mode */
 #define SP_STATUS_REG       (SP_BASE_REG + 0x10)
 
-//! SP DMA full (R): [0] dma full
+/* SP DMA full (R): [0] dma full */
 #define SP_DMA_FULL_REG     (SP_BASE_REG + 0x14)
 
-//! SP DMA busy (R): [0] dma busy
+/* SP DMA busy (R): [0] dma busy */
 #define SP_DMA_BUSY_REG     (SP_BASE_REG + 0x18)
 
-//! SP semaphore (R/W): Read: [0] acquire semaphore; Write: [] release semaphore
+/* SP semaphore (R/W): Read: [0] acquire semaphore; Write: [] release semaphore */
 #define SP_SEMAPHORE_REG    (SP_BASE_REG + 0x1C)
 
-//! SP PC (R/W): [11:0] program counter
+/* SP PC (R/W): [11:0] program counter */
 #define SP_PC_REG       0x04080000
 
 /**
@@ -192,31 +192,31 @@
 /**
  * SP_STATUS_REG: write bits
  */
-#define SP_CLR_HALT         (1 <<  0)   // clear halt
-#define SP_SET_HALT         (1 <<  1)   //   set halt
-#define SP_CLR_BROKE        (1 <<  2)   // clear broke
-#define SP_CLR_INTR         (1 <<  3)   // clear interrupt
-#define SP_SET_INTR         (1 <<  4)   //   set interrupt
-#define SP_CLR_SSTEP        (1 <<  5)   // clear sstep
-#define SP_SET_SSTEP        (1 <<  6)   //   set sstep
-#define SP_CLR_INTR_BREAK   (1 <<  7)   // clear interrupt on break
-#define SP_SET_INTR_BREAK   (1 <<  8)   //   set interrupt on break
-#define SP_CLR_SIG0         (1 <<  9)   // clear signal 0
-#define SP_SET_SIG0         (1 << 10)   //   set signal 0
-#define SP_CLR_SIG1         (1 << 11)   // clear signal 1
-#define SP_SET_SIG1         (1 << 12)   //   set signal 1
-#define SP_CLR_SIG2         (1 << 13)   // clear signal 2
-#define SP_SET_SIG2         (1 << 14)   //   set signal 2
-#define SP_CLR_SIG3         (1 << 15)   // clear signal 3
-#define SP_SET_SIG3         (1 << 16)   //   set signal 3
-#define SP_CLR_SIG4         (1 << 17)   // clear signal 4
-#define SP_SET_SIG4         (1 << 18)   //   set signal 4
-#define SP_CLR_SIG5         (1 << 19)   // clear signal 5
-#define SP_SET_SIG5         (1 << 20)   //   set signal 5
-#define SP_CLR_SIG6         (1 << 21)   // clear signal 6
-#define SP_SET_SIG6         (1 << 22)   //   set signal 6
-#define SP_CLR_SIG7         (1 << 23)   // clear signal 7
-#define SP_SET_SIG7         (1 << 24)   //   set signal 7
+#define SP_CLR_HALT         (1 <<  0)   /* clear halt */
+#define SP_SET_HALT         (1 <<  1)   /*   set halt */
+#define SP_CLR_BROKE        (1 <<  2)   /* clear broke */
+#define SP_CLR_INTR         (1 <<  3)   /* clear interrupt */
+#define SP_SET_INTR         (1 <<  4)   /*   set interrupt */
+#define SP_CLR_SSTEP        (1 <<  5)   /* clear sstep */
+#define SP_SET_SSTEP        (1 <<  6)   /*   set sstep */
+#define SP_CLR_INTR_BREAK   (1 <<  7)   /* clear interrupt on break */
+#define SP_SET_INTR_BREAK   (1 <<  8)   /*   set interrupt on break */
+#define SP_CLR_SIG0         (1 <<  9)   /* clear signal 0 */
+#define SP_SET_SIG0         (1 << 10)   /*   set signal 0 */
+#define SP_CLR_SIG1         (1 << 11)   /* clear signal 1 */
+#define SP_SET_SIG1         (1 << 12)   /*   set signal 1 */
+#define SP_CLR_SIG2         (1 << 13)   /* clear signal 2 */
+#define SP_SET_SIG2         (1 << 14)   /*   set signal 2 */
+#define SP_CLR_SIG3         (1 << 15)   /* clear signal 3 */
+#define SP_SET_SIG3         (1 << 16)   /*   set signal 3 */
+#define SP_CLR_SIG4         (1 << 17)   /* clear signal 4 */
+#define SP_SET_SIG4         (1 << 18)   /*   set signal 4 */
+#define SP_CLR_SIG5         (1 << 19)   /* clear signal 5 */
+#define SP_SET_SIG5         (1 << 20)   /*   set signal 5 */
+#define SP_CLR_SIG6         (1 << 21)   /* clear signal 6 */
+#define SP_SET_SIG6         (1 << 22)   /*   set signal 6 */
+#define SP_CLR_SIG7         (1 << 23)   /* clear signal 7 */
+#define SP_SET_SIG7         (1 << 24)   /*   set signal 7 */
 
 /*
  * SP_STATUS_REG: read bits
@@ -264,44 +264,44 @@
 /*
  * SP_IBIST_REG: write bits
  */
-#define SP_IBIST_CHECK      (1 << 0)    // BIST check
-#define SP_IBIST_GO         (1 << 1)    // BIST go
-#define SP_IBIST_CLEAR      (1 << 2)    // BIST clear
+#define SP_IBIST_CHECK      (1 << 0)    /* BIST check */
+#define SP_IBIST_GO         (1 << 1)    /* BIST go */
+#define SP_IBIST_CLEAR      (1 << 2)    /* BIST clear */
 
 /*
  * SP_BIST_REG: read bits
  * First 2 bits are same as in write mode
  */
 #define SP_IBIST_DONE       (1 << 2)
-#define SP_IBIST_FAILED     0x78        // bits [6:3], BIST fail
+#define SP_IBIST_FAILED     0x78        /* bits [6:3], BIST fail */
 
 /**
  * Display Processor Command (DPC) Registers
  */
 #define DPC_BASE_REG        0x04100000
 
-//! DP CMD DMA start (R/W): [23:0] DMEM/RDRAM start address
+/* DP CMD DMA start (R/W): [23:0] DMEM/RDRAM start address */
 #define DPC_START_REG       (DPC_BASE_REG + 0x00)
 
-//! DP CMD DMA end (R/W): [23:0] DMEM/RDRAM end address
+/* DP CMD DMA end (R/W): [23:0] DMEM/RDRAM end address */
 #define DPC_END_REG         (DPC_BASE_REG + 0x04)
 
-//! DP CMD DMA end (R): [23:0] DMEM/RDRAM current address
+/* DP CMD DMA end (R): [23:0] DMEM/RDRAM current address */
 #define DPC_CURRENT_REG     (DPC_BASE_REG + 0x08)
 
-//! DP CMD status (R/W): [9:0] valid bits - see below for definitions
+/* DP CMD status (R/W): [9:0] valid bits - see below for definitions */
 #define DPC_STATUS_REG      (DPC_BASE_REG + 0x0C)
 
-//! DP clock counter (R): [23:0] clock counter
+/* DP clock counter (R): [23:0] clock counter */
 #define DPC_CLOCK_REG       (DPC_BASE_REG + 0x10)
 
-//! DP buffer busy counter (R): [23:0] clock counter
+/* DP buffer busy counter (R): [23:0] clock counter */
 #define DPC_BUFBUSY_REG     (DPC_BASE_REG + 0x14)
 
-//! DP pipe busy counter (R): [23:0] clock counter
+/* DP pipe busy counter (R): [23:0] clock counter */
 #define DPC_PIPEBUSY_REG    (DPC_BASE_REG + 0x18)
 
-//! DP TMEM load counter (R): [23:0] clock counter
+/* DP TMEM load counter (R): [23:0] clock counter */
 #define DPC_TMEM_REG        (DPC_BASE_REG + 0x1C)
 
 /**
@@ -338,16 +338,16 @@
  */
 #define DPS_BASE_REG            0x04200000
 
-//! DP tmem built-in self-test (R/W): [10:0] BIST status bits
+/* DP tmem built-in self-test (R/W): [10:0] BIST status bits */
 #define DPS_TBIST_REG           (DPS_BASE_REG + 0x00)
 
-//! DP span test mode (R/W): [0] Span buffer test access enable
+/* DP span test mode (R/W): [0] Span buffer test access enable */
 #define DPS_TEST_MODE_REG       (DPS_BASE_REG + 0x04)
 
-//! DP span buffer test address (R/W): [6:0] bits
+/* DP span buffer test address (R/W): [6:0] bits */
 #define DPS_BUFTEST_ADDR_REG    (DPS_BASE_REG + 0x08)
 
-//! DP span buffer test data (R/W): [31:0] span buffer data
+/* DP span buffer test data (R/W): [31:0] span buffer data */
 #define DPS_BUFTEST_DATA_REG    (DPS_BASE_REG + 0x0C)
 
 /*
@@ -362,7 +362,7 @@
  * First 2 bits are same as in write mode
  */
 #define DPS_TBIST_DONE      (1 << 2)
-#define DPS_TBIST_FAILED    0x7F8       // bits [10:3], BIST fail
+#define DPS_TBIST_FAILED    0x7F8       /* bits [10:3], BIST fail */
 
 /**
  * MIPS Interface (MI) Registers
@@ -395,11 +395,11 @@
 #define MI_MODE_EBUS    (1 << 8)    /* ebus test mode */
 #define MI_MODE_RDRAM   (1 << 9)    /* RDRAM reg mode */
 
-//! MI version (R): [7:0] io, [15:8] rac, [23:16] rdp, [31:24] rsp
+/* MI version (R): [7:0] io, [15:8] rac, [23:16] rdp, [31:24] rsp */
 #define MI_VERSION_REG  (MI_BASE_REG + 0x04)
 #define MI_NOOP_REG     MI_VERSION_REG
 
-//! MI interrupt (R): [5:0] valid bits - see below for bit patterns
+/* MI interrupt (R): [5:0] valid bits - see below for bit patterns */
 #define MI_INTR_REG     (MI_BASE_REG + 0x08)
 
 /* 
@@ -792,27 +792,27 @@
  */
 #define SI_BASE_REG             0x04800000
 
-//! SI DRAM address (R/W): [23:0] starting RDRAM address
+/* SI DRAM address (R/W): [23:0] starting RDRAM address */
 #define SI_DRAM_ADDR_REG        (SI_BASE_REG + 0x00)
 
-//! SI address read 64B (W): [] write begins a 64B DMA write PIF RAM -> RDRAM
+/* SI address read 64B (W): [] write begins a 64B DMA write PIF RAM -> RDRAM */
 #define SI_PIF_ADDR_RD64B_REG   (SI_BASE_REG + 0x04)
 
-//! Address SI_BASE_REG + (0x08, 0x0C, 0x14) are reserved
+/* Address SI_BASE_REG + (0x08, 0x0C, 0x14) are reserved */
 
-//! SI address write 64B (W): [] write begins a 64B DMA read RDRAM -> PIF RAM */
+/* SI address write 64B (W): [] write begins a 64B DMA read RDRAM -> PIF RAM */
 #define SI_PIF_ADDR_WR64B_REG   (SI_BASE_REG + 0x10)
 
-//! SI status (R/W): [] any write clears interrupt
+/* SI status (R/W): [] any write clears interrupt */
 #define SI_STATUS_REG           (SI_BASE_REG + 0x18)
 
 /*
  * SI_STATUS_REG: read bits
  */
-#define SI_STATUS_DMA_BUSY  (1 <<  0) // DMA in progress
-#define SI_STATUS_RD_BUSY   (1 <<  1) // IO access in progress
-#define SI_STATUS_DMA_ERROR (1 <<  3) // Overlapping DMA requests
-#define SI_STATUS_INTERRUPT (1 << 12) // Interrupt is set
+#define SI_STATUS_DMA_BUSY  (1 <<  0) /* DMA in progress */
+#define SI_STATUS_RD_BUSY   (1 <<  1) /* IO access in progress */
+#define SI_STATUS_DMA_ERROR (1 <<  3) /* Overlapping DMA requests */
+#define SI_STATUS_INTERRUPT (1 << 12) /* Interrupt is set */
 
 /**
  * Development Board GIO Control Registers 

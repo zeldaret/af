@@ -1,7 +1,7 @@
 #ifndef CONTROLLER_VOICE_H
 #define CONTROLLER_VOICE_H
 
-#include <PR/ultratypes.h>
+#include "PR/ultratypes.h"
 
 typedef struct {
     /* 0x0 */ u8 dummy;

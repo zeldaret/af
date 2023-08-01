@@ -4,8 +4,8 @@
 #include "controller_gbpak.h"
 
 OSTimer __osGbpakTimer;
-OSMesg __osGbpakTimerMsg;
 OSMesgQueue __osGbpakTimerQ ALIGNED(8);
+OSMesg __osGbpakTimerMsg;
 
 s32 osGbpakInit(OSMesgQueue* mq, OSPfs* pfs, int channel) {
     int i;
@@ -13,10 +13,10 @@ s32 osGbpakInit(OSMesgQueue* mq, OSPfs* pfs, int channel) {
     u8 temp[BLOCKSIZE];
 
     pfs->status = 0;
-    
+
     // Turn off the transfer pak
-    for (i = 0; i < BLOCKSIZE; i++) {
-        temp[i] = GB_POWER_OFF;
+    for (i = 0; i < BLOCKSIZE; temp[i++] = GB_POWER_OFF) {
+        ;
     }
 
     ret = __osContRamWrite(mq, channel, CONT_BLOCK_GB_POWER, temp, FALSE);
@@ -44,8 +44,8 @@ s32 osGbpakInit(OSMesgQueue* mq, OSPfs* pfs, int channel) {
     }
 
     // Turn on the transfer pak
-    for (i = 0; i < BLOCKSIZE; i++) {
-        temp[i] = GB_POWER_ON;
+    for (i = 0; i < BLOCKSIZE; temp[i++] = GB_POWER_ON) {
+        ;
     }
 
     ret = __osContRamWrite(mq, channel, CONT_BLOCK_GB_POWER, temp, FALSE);

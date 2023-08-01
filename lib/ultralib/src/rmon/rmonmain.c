@@ -69,11 +69,12 @@ void __rmonSendData(char* const block, unsigned int blockSize) {
                 __rmonIOputw(*(blockPointer++));
             }
         }
-    } else while (wordCount--) {
-        __rmonMemcpy((u8*)buffer.bufBytes, (u8*)blockPointer, sizeof(buffer));
-        __rmonIOputw(buffer.bufWord);
-        blockPointer++;
-    }
+    } else
+        while (wordCount--) {
+            __rmonMemcpy((u8*)buffer.bufBytes, (u8*)blockPointer, sizeof(buffer));
+            __rmonIOputw(buffer.bufWord);
+            blockPointer++;
+        }
     __rmonIOflush();
 }
 
@@ -90,10 +91,8 @@ void rmonMain(void) {
     __rmonInit();
     __rmonActive = TRUE;
 
-    state = 0;
-    newChars = 0;
-    inPointer = (void*)&inbuffer;
 
+    state = 0, newChars = 0, inPointer = (void*)&inbuffer;
     for (;;) {
         OSMesg work;
 
@@ -115,11 +114,11 @@ void rmonMain(void) {
         }
         if (somethingToDo & 0x10) {
             somethingToDo;
-            somethingToDo &= 0xEF;
+            somethingToDo &= (u8)~0x10;
         }
         if (somethingToDo & 0x20) {
             somethingToDo;
-            somethingToDo &= 0xDF;
+            somethingToDo &= (u8)~0x20;
         }
     }
 }

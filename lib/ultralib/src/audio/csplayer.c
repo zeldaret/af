@@ -43,11 +43,8 @@
 #include "seqp.h"
 #include "cseqp.h"
 #include "cseq.h"
-
 // TODO: this comes from a header
 #ident "$Revision: 1.17 $"
-
-
 static ALMicroTime      __CSPVoiceHandler(void *node);
 static void		__CSPHandleNextSeqEvent(ALCSPlayer *seqp);
 static void             __CSPHandleMIDIMsg(ALCSPlayer *seqp, ALEvent *event);

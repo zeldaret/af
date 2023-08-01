@@ -13,11 +13,11 @@
 #define OS_EVENTSTATE_MESSAGE_QUEUE 0
 #define OS_EVENTSTATE_MESSAGE 4
 
-// __osHwInt struct member offsets
+/* __osHwInt struct member offsets */
 #define HWINTR_CALLBACK 0x00
 #define HWINTR_SP       0x04
 
-// __osHwInt struct size
+/* __osHwInt struct size */
 #define HWINTR_SIZE     0x8
 
 #endif

@@ -2,7 +2,6 @@
  * 
  * Copyright 1995, Silicon Graphics, Inc.
  * All Rights Reserved.
- *
  * This is UNPUBLISHED PROPRIETARY SOURCE CODE of Silicon Graphics,
  * Inc.; the contents of this file may not be disclosed to third
  * parties, copied or duplicated in any form, in whole or in part,
@@ -16,11 +15,9 @@
  * DOD or NASA FAR Supplement. Unpublished - rights reserved under the
  * Copyright Laws of the United States.
  *====================================================================*/
- 
 #include <ultralog.h>
 #include <assert.h>
 #include <sched.h>
-
 // TODO: this comes from a header
 #ident "$Revision: 1.17 $"
 
