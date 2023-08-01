@@ -204,7 +204,7 @@
 
       - [0x016EF0, data, boot/rsp/rspboot]
 
-      - [0x016FC0, .data, ../src/boot/idle]
+      - [0x016FC0, .data, boot/idle]
       - [0x016FD0, data, boot/016FD0]
       - [0x0170A0, .data, boot/logseverity]
       - [0x0170B0, data, boot/gfxprint]
