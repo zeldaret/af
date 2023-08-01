@@ -74,7 +74,7 @@ More detailed information can be found in the [Style Guide](docs/STYLE.md).
 - [ ] Files with `NON_MATCHING` functions have equivalent behavior.
 - [ ] Overlays should have macros to define access to parameters if the parameter uses bitwise access. The params should have an enum when it makes sense.
 - [ ] Comments and variables have correct spelling.
-- [ ] Header files have prototypes for every function.
+- [ ] Function prototypes are in the appropriate header files. Prototypes for functions that aren't meant to be called outside of the file can be omitted.
 - [ ] The following should be declared in an Actor header file. There should be nothing else in the Actor header file.
   - [ ] Main Actor struct
   - [ ] Types used in the actor struct. Specific example would be actionFunc typedefs.
