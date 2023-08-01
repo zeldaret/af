@@ -269,7 +269,6 @@
       - { start: 0x019D40, type: bss, vram: 0x800419B0, name: boot/mathf }
       - { start: 0x019D40, type: bss, vram: 0x800419C0, name: boot/800419C0 }
       - { start: 0x019D40, type: .bss, vram: 0x80041A00, name: boot/O2/__osMalloc }
-      - { start: 0x019D40, type: bss, vram: 0x80041A10, name: boot/80041A10 }
 
       # libultra
       - { start: 0x019D40, type: .bss, vram: 0x80041A10, name: ../lib/ultralib/src/io/sptask }
