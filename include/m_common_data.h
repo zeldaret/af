@@ -3,10 +3,6 @@
 
 #include "ultra64.h"
 
-void common_data_reinit(void);
-void common_data_init(void);
-void common_data_clear(void);
-
 typedef struct CommonData {
     /* 0x00000 */ u8 unk_00000[0x10000];
     /* 0x10000 */ u8 unk_10000; // named "game_started" in AC GCN decomp
@@ -20,5 +16,11 @@ typedef struct CommonData {
     /* 0x10AB0 */ u8 unk_10AB0; // named "pad_connected" in AC GCN decomp
     /* 0x10AB1 */ u8 unk_10AB1[0x7];
 } CommonData; // size = 0x10AB8
+
+void common_data_reinit(void);
+void common_data_init(void);
+void common_data_clear(void);
+
+extern CommonData common_data;
 
 #endif
