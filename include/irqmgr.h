@@ -36,8 +36,8 @@ typedef struct {
 
 void irqmgr_AddClient(IrqmgrClient* client, OSMesgQueue* msgQueue);
 void irqmgr_RemoveClient(IrqmgrClient* client);
-void irqmgr_SendMesgToClients(void* msg);
-void irqmgr_JamMesgForClient(void* msg);
+void irqmgr_SendMesgToClients(IrqmgrMsg* msg);
+void irqmgr_JamMesgForClient(IrqmgrMsg* msg);
 void irqmgr_HandlePreNMI(void);
 void IrqMgr_CheckStacks(void);
 void irqmgr_HandlePreNMI450(void);

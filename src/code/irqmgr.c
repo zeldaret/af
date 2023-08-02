@@ -1,6 +1,7 @@
 
 #include "irqmgr.h"
 #include "stackcheck.h"
+#include "m_thread.h"
 #include "PR/os_internal.h"
 #include "macros.h"
 
@@ -22,11 +23,11 @@ void irqmgr_AddClient(IrqmgrClient* client, OSMesgQueue* msgQueue) {
     osSetIntMask(enable);
 
     if (this->prenmi >= 1) {
-        osSendMesg(client->msgQueue, (OSMesg) &this->msgPreNMI, OS_MESG_NOBLOCK);
+        osSendMesg(client->msgQueue, (OSMesg) & this->msgPreNMI, OS_MESG_NOBLOCK);
     }
 
     if (this->prenmi >= 2) {
-        osSendMesg(client->msgQueue, (OSMesg) &this->msgDelayPreNMI, OS_MESG_NOBLOCK);
+        osSendMesg(client->msgQueue, (OSMesg) & this->msgDelayPreNMI, OS_MESG_NOBLOCK);
     }
 }
 
@@ -51,7 +52,7 @@ void irqmgr_RemoveClient(IrqmgrClient* client) {
     osSetIntMask(enable);
 }
 
-void irqmgr_SendMesgToClients(void* msg) {
+void irqmgr_SendMesgToClients(IrqmgrMsg* msg) {
     IrqmgrClient* i;
     OSMesgQueue* msgQueue;
 
@@ -63,7 +64,7 @@ void irqmgr_SendMesgToClients(void* msg) {
     }
 }
 
-void irqmgr_JamMesgForClient(void* msg) {
+void irqmgr_JamMesgForClient(IrqmgrMsg* msg) {
     IrqmgrClient* i;
     OSMesgQueue* msgQueue;
 
@@ -92,6 +93,7 @@ void IrqMgr_CheckStacks(void) {
 
 void irqmgr_HandlePreNMI450(void) {
     u64 prenmi = 2;
+    
     ResetStatus = prenmi;
     this->prenmi = 2;
 
@@ -101,6 +103,7 @@ void irqmgr_HandlePreNMI450(void) {
 
 void irqmgr_HandlePreNMI480(void) {
     u32 res;
+
     osSetTimer(&this->timer, OS_USEC_TO_CYCLES(50000), 0, &this->_msgQueue, (OSMesg)IRQ_PRENMI500_MSG);
 
     res = osAfterPreNMI();
@@ -122,7 +125,7 @@ void irqmgr_HandleRetrace(void) {
         }
     }
     RetraceCount++;
-    irqmgr_SendMesgToClients(this);
+    irqmgr_SendMesgToClients(&this->msgRetrace);
 }
 
 void irqmgr_Main(void* arg) {
@@ -130,7 +133,7 @@ void irqmgr_Main(void* arg) {
     u8 exit = 0;
 
     while (!exit) {
-        osRecvMesg(&this->_msgQueue, &msg, 1);
+        osRecvMesg(&this->_msgQueue, &msg, OS_MESG_BLOCK);
         switch ((u32)msg) {
 
             case IRQ_RETRACE_MSG:
@@ -170,8 +173,8 @@ void CreateIRQManager(void* stack, OSPri priority, u8 retracecount) {
     this->prenmiTime = 0;
 
     osCreateMesgQueue(&this->_msgQueue, this->msgBuf, ARRAY_COUNT(this->msgBuf));
-    osSetEventMesg(0xE, &this->_msgQueue, (OSMesg)IRQ_PRENMI_MSG);
+    osSetEventMesg(OS_EVENT_PRENMI, &this->_msgQueue, (OSMesg)IRQ_PRENMI_MSG);
     osViSetEvent(&this->_msgQueue, (OSMesg)IRQ_RETRACE_MSG, retracecount);
-    osCreateThread(&this->thread, 9, irqmgr_Main, NULL, stack, priority);
+    osCreateThread(&this->thread, M_THREAD_ID_IRQMGR, irqmgr_Main, NULL, stack, priority);
     osStartThread(&this->thread);
 }
