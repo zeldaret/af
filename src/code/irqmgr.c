@@ -23,11 +23,11 @@ void irqmgr_AddClient(IrqmgrClient* client, OSMesgQueue* msgQueue) {
     osSetIntMask(enable);
 
     if (this->prenmi >= 1) {
-        osSendMesg(client->msgQueue, (OSMesg) & this->msgPreNMI, OS_MESG_NOBLOCK);
+        osSendMesg(client->msgQueue, (OSMesg)(&this->msgPreNMI), OS_MESG_NOBLOCK);
     }
 
     if (this->prenmi >= 2) {
-        osSendMesg(client->msgQueue, (OSMesg) & this->msgDelayPreNMI, OS_MESG_NOBLOCK);
+        osSendMesg(client->msgQueue, (OSMesg)(&this->msgDelayPreNMI), OS_MESG_NOBLOCK);
     }
 }
 
@@ -93,7 +93,7 @@ void IrqMgr_CheckStacks(void) {
 
 void irqmgr_HandlePreNMI450(void) {
     u64 prenmi = 2;
-    
+
     ResetStatus = prenmi;
     this->prenmi = 2;
 
