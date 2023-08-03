@@ -5212,10 +5212,12 @@ RO_FLT_801161F0_jp = 0x801161F0; // type:f32
 RO_FLT_801161F4_jp = 0x801161F4; // type:f32
 RO_FLT_801161F8_jp = 0x801161F8; // type:f32
 RO_FLT_801161FC_jp = 0x801161FC; // type:f32
+
 RO_STR_80116200_jp = 0x80116200; // type:asciz
 RO_STR_80116214_jp = 0x80116214; // type:asciz
 RO_STR_80116234_jp = 0x80116234; // type:asciz
-RO_8011624C_jp = 0x8011624C; //
+RO_STR_8011624C_jp = 0x8011624C; // type:asciz
+
 RO_FLT_80116250_jp = 0x80116250; // type:f32
 RO_FLT_80116254_jp = 0x80116254; // type:f32
 RO_FLT_80116258_jp = 0x80116258; // type:f32

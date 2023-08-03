@@ -1037,10 +1037,12 @@
 // extern UNK_TYPE RO_FLT_801161F4_jp;
 // extern UNK_TYPE RO_FLT_801161F8_jp;
 // extern UNK_TYPE RO_FLT_801161FC_jp;
+
 // extern UNK_TYPE RO_STR_80116200_jp;
 // extern UNK_TYPE RO_STR_80116214_jp;
 // extern UNK_TYPE RO_STR_80116234_jp;
-// extern UNK_TYPE RO_8011624C_jp;
+// extern UNK_TYPE RO_STR_8011624C_jp;
+
 // extern UNK_TYPE RO_FLT_80116250_jp;
 // extern UNK_TYPE RO_FLT_80116254_jp;
 // extern UNK_TYPE RO_FLT_80116258_jp;
