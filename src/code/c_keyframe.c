@@ -508,7 +508,7 @@ s32 cKF_SkeletonInfo_R_play(SkeletonInfoR* skeletonInfo) {
             }
 
             // Animations store angles in degrees * 10. These are converted to binary angles.
-            *jointComponent = FMOD(*jointComponent * 0.1f, 360.0f) * (0x10000 / 360.0f);
+            *jointComponent = DEG_TO_BINANG(FMOD(*jointComponent * 0.1f, 360.0f));
 
             ckcbIndex >>= 1;
             jointComponent++;
@@ -571,7 +571,7 @@ void cKF_Si3_draw_SV_R_child(PlayState* play, SkeletonInfoR* skeletonInfo, s32* 
     s32 i;
     Gfx* newDlist;
     Gfx* shape;
-    u8 jointElemFlag;
+    u8 displayBufferFlag;
     Vec3s rotation;
     Vec3s* joint = &skeletonInfo->jointTable[*jointIndex];
     Vec3f translation;
@@ -624,17 +624,17 @@ void cKF_Si3_draw_SV_R_child(PlayState* play, SkeletonInfoR* skeletonInfo, s32* 
     OPEN_DISPS(play->state.gfxCtx);
     Matrix_push();
     newDlist = shape = jointElem->shape;
-    jointElemFlag = jointElem->displayBufferFlag;
+    displayBufferFlag = jointElem->displayBufferFlag;
 
     if ((beforeCallback == NULL) ||
-        (beforeCallback != NULL && beforeCallback(play, skeletonInfo, *jointIndex, &newDlist, &jointElemFlag, arg,
+        (beforeCallback != NULL && beforeCallback(play, skeletonInfo, *jointIndex, &newDlist, &displayBufferFlag, arg,
                                                   &rotation, &translation) != NULL)) {
         Matrix_softcv3_mult(&translation, &rotation);
 
         if (newDlist != NULL) {
             _Matrix_to_Mtx(*mtx);
 
-            if (jointElemFlag & 1) {
+            if (displayBufferFlag & 1) {
                 gSPMatrix(POLY_XLU_DISP++, *mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
                 if (1) {}
                 gSPDisplayList(POLY_XLU_DISP++, newDlist);
@@ -657,7 +657,7 @@ void cKF_Si3_draw_SV_R_child(PlayState* play, SkeletonInfoR* skeletonInfo, s32* 
     }
 
     if (afterCallback != NULL) {
-        afterCallback(play, skeletonInfo, *jointIndex, &newDlist, &jointElemFlag, arg, &rotation, &translation);
+        afterCallback(play, skeletonInfo, *jointIndex, &newDlist, &displayBufferFlag, arg, &rotation, &translation);
     }
 
     (*jointIndex)++;
@@ -771,6 +771,7 @@ void cKF_SkeletonInfo_R_combine_translation(s16** joint, u32* flag, SkeletonInfo
                     **joint = combineWork->constValueTable[combineWork->ckcbIndex];
                 }
                 break;
+
             case 1:
                 if (*temp_s1->constKeyCheckBitTable & *flag) {
                     **joint =
@@ -780,6 +781,7 @@ void cKF_SkeletonInfo_R_combine_translation(s16** joint, u32* flag, SkeletonInfo
                     **joint = temp_s1->constValueTable[temp_s1->ckcbIndex];
                 }
                 break;
+
             case 2:
                 if (*temp_s2->constKeyCheckBitTable & *flag) {
                     **joint =
@@ -806,7 +808,7 @@ void cKF_SkeletonInfo_R_combine_translation(s16** joint, u32* flag, SkeletonInfo
             temp_s2->ckcbIndex += 1;
         }
         *flag >>= 1;
-        *joint += 1;
+        (*joint)++;
     }
 }
 
@@ -816,8 +818,6 @@ void cKF_SkeletonInfo_R_combine_rotation(s16** joint, u32* flag, SkeletonInfoRCo
     SkeletonInfoRCombineWork* temp_s1;
     s32 i;
     s32 j;
-    s16* temp_v0_5;
-    f32 temp_fv0;
 
     sp64 = combineWork;
     temp_s0 = &combineWork[1];
@@ -836,6 +836,7 @@ void cKF_SkeletonInfo_R_combine_rotation(s16** joint, u32* flag, SkeletonInfoRCo
                         **joint = combineWork->constValueTable[combineWork->ckcbIndex];
                     }
                     break;
+
                 case 1:
                     if (temp_s0->constKeyCheckBitTable[i] & *flag) {
                         **joint = cKF_KeyCalc(temp_s0->keyframeStartIndex,
@@ -845,6 +846,7 @@ void cKF_SkeletonInfo_R_combine_rotation(s16** joint, u32* flag, SkeletonInfoRCo
                         **joint = temp_s0->constValueTable[temp_s0->ckcbIndex];
                     }
                     break;
+
                 case 2:
                     if (temp_s1->constKeyCheckBitTable[i] & *flag) {
                         **joint = cKF_KeyCalc(temp_s1->keyframeStartIndex,
@@ -870,9 +872,7 @@ void cKF_SkeletonInfo_R_combine_rotation(s16** joint, u32* flag, SkeletonInfoRCo
             } else {
                 temp_s1->ckcbIndex++;
             }
-            temp_v0_5 = *joint;
-            temp_fv0 = *temp_v0_5 * 0.1f;
-            *temp_v0_5 = (s16)(s32)((temp_fv0 - ((f32)(s32)(temp_fv0 * 0.0027777778f) * 360.0f)) * 182.04445f);
+            **joint = DEG_TO_BINANG(FMOD(**joint * 0.1f, 360.0f));
             *flag >>= 1;
             *joint += 1;
         }
@@ -897,11 +897,7 @@ s32 cKF_SkeletonInfo_R_combine_play(SkeletonInfoR* skeletonInfo1, SkeletonInfoR*
         return 0;
     }
 
-    if (!(fabsf(skeletonInfo1->morphCounter) < 0.008f)) {
-        joint = (s16*)skeletonInfo1->morphTable;
-    } else {
-        joint = (s16*)skeletonInfo1->jointTable;
-    }
+    joint = (!IS_ZERO(skeletonInfo1->morphCounter)) ? (s16*)skeletonInfo1->morphTable : (s16*)skeletonInfo1->jointTable;
 
     if (arg4 != 0) {
         sp44 = OS_PHYSICAL_TO_K0(B_801458A0_jp[arg2]);
@@ -921,12 +917,7 @@ s32 cKF_SkeletonInfo_R_combine_play(SkeletonInfoR* skeletonInfo1, SkeletonInfoR*
     cKF_SkeletonInfo_R_combine_rotation(&joint, &spB0, &combine3, flag);
 
     if (skeletonInfo1->diffRotTable != NULL) {
-        if (!IS_ZERO(skeletonInfo1->morphCounter)) {
-            var_v0 = skeletonInfo1->morphTable;
-        } else {
-            var_v0 = skeletonInfo1->jointTable;
-        }
-
+        var_v0 = (!IS_ZERO(skeletonInfo1->morphCounter)) ? skeletonInfo1->morphTable : skeletonInfo1->jointTable;
         var_v0++;
 
         for (var_v1 = 0; var_v1 < skeletonInfo1->skeleton->numberOfJoints; var_v1++) {
@@ -984,11 +975,7 @@ void cKF_SkeletonInfo_R_T_combine_play(s32* arg0, s32* arg1, s32* arg2, Skeleton
         return;
     }
 
-    if (!IS_ZERO(skeletonInfo1->morphCounter)) {
-        spAC = (s16*)skeletonInfo1->morphTable;
-    } else {
-        spAC = (s16*)skeletonInfo1->jointTable;
-    }
+    spAC = (!IS_ZERO(skeletonInfo1->morphCounter)) ? (s16*)skeletonInfo1->morphTable : (s16*)skeletonInfo1->jointTable;
 
     if (arg9 != 0) {
         sp48 = OS_PHYSICAL_TO_K0(B_801458A0_jp[arg6]);
@@ -1011,12 +998,7 @@ void cKF_SkeletonInfo_R_T_combine_play(s32* arg0, s32* arg1, s32* arg2, Skeleton
     cKF_SkeletonInfo_R_combine_rotation(&spAC, &spB0, &sp4C, flag);
 
     if (skeletonInfo1->diffRotTable != NULL) {
-        if (!IS_ZERO(skeletonInfo1->morphCounter)) {
-            var_v0 = skeletonInfo1->morphTable;
-        } else {
-            var_v0 = skeletonInfo1->jointTable;
-        }
-
+        var_v0 = (!IS_ZERO(skeletonInfo1->morphCounter)) ? skeletonInfo1->morphTable : skeletonInfo1->jointTable;
         var_v0++;
 
         for (i = 0; i < skeletonInfo1->skeleton->numberOfJoints; i++) {
@@ -1068,7 +1050,7 @@ void cKF_SkeletonInfo_R_AnimationMove_ct_base(Vec3f* arg0, Vec3f* arg1, s16 arg2
     s32 var_v0;
 
     skeletonInfo->animationMove.transformationFlag = transformationFlag;
-    skeletonInfo->animationMove.counter = (arg4 >= 0.0f) ? arg4 : -arg4;
+    skeletonInfo->animationMove.counter = ABS(arg4);
     skeletonInfo->animationMove.baseWorldPosition = ZeroVec;
     skeletonInfo->animationMove.shapeWorldPositionCorrection = ZeroVec;
 
@@ -1091,7 +1073,7 @@ void cKF_SkeletonInfo_R_AnimationMove_ct_base(Vec3f* arg0, Vec3f* arg1, s16 arg2
     skeletonInfo->animationMove.shapeAngleCorrection = 0;
     if (transformationFlag & 4) {
         var_v0 = arg2 - arg3;
-        if (var_v0 >= 0x8001) {
+        if (var_v0 > 0x8000) {
             var_v0 = -(0x10000 - var_v0);
         } else if (var_v0 < -0x8000) {
             var_v0 = var_v0 + 0x10000;

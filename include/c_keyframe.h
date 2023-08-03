@@ -83,7 +83,7 @@ typedef struct {
     /* 0x1C */ s32 keyframeStartIndex;
 } SkeletonInfoRCombineWork; // size = 0x20
 
-typedef int (*DrawCallback)(struct PlayState*, SkeletonInfoR*, int, Gfx**, u8*, void*, Vec3s*, Vec3f*);
+typedef s32 (*DrawCallback)(struct PlayState* play, SkeletonInfoR* skeletonInfo, s32 jointIndex, Gfx** dlist, u8* displayBufferFlag, void*, Vec3s* rotation, Vec3f* translation);
 
 void cKF_FrameControl_zeroClear(FrameControl* frameControl);
 void cKF_FrameControl_ct(FrameControl* frameControl);
