@@ -253,7 +253,7 @@ extract:
 lib:
 	$(MAKE) -C lib
 
-diff-init: all
+diff-init: uncompressed
 	$(RM) -rf expected/
 	mkdir -p expected/
 	cp -r $(BUILD_DIR) expected/$(BUILD_DIR)
