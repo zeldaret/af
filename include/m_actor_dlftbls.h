@@ -9,4 +9,7 @@
 // void actor_dlftbls_init();
 // void actor_dlftbls_cleanup();
 
+// extern UNK_TYPE actor_dlftbls;
+// extern UNK_TYPE actor_dlftbls_num;
+
 #endif

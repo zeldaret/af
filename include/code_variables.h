@@ -15,11 +15,7 @@
 // extern UNK_TYPE D_80100C64_jp;
 // extern UNK_TYPE D_80100C68_jp;
 // extern UNK_TYPE D_80100C70_jp;
-// extern UNK_TYPE actor_dlftbls;
-// extern UNK_TYPE D_80100CA4_jp;
-// extern UNK_TYPE D_8010119C_jp;
-// extern UNK_TYPE D_801024F4_jp;
-// extern UNK_TYPE D_801025B0_jp;
+
 // extern UNK_TYPE D_801025C0_jp;
 // extern UNK_TYPE D_FLT_801025C8_jp;
 // extern UNK_TYPE set_raius_proc;
@@ -1037,11 +1033,6 @@
 // extern UNK_TYPE RO_FLT_801161F4_jp;
 // extern UNK_TYPE RO_FLT_801161F8_jp;
 // extern UNK_TYPE RO_FLT_801161FC_jp;
-
-// extern UNK_TYPE RO_STR_80116200_jp;
-// extern UNK_TYPE RO_STR_80116214_jp;
-// extern UNK_TYPE RO_STR_80116234_jp;
-// extern UNK_TYPE RO_STR_8011624C_jp;
 
 // extern UNK_TYPE RO_FLT_80116250_jp;
 // extern UNK_TYPE RO_FLT_80116254_jp;

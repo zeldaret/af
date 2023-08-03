@@ -4187,11 +4187,10 @@ D_80100C60_jp = 0x80100C60; //
 D_80100C64_jp = 0x80100C64; //
 D_80100C68_jp = 0x80100C68; //
 D_80100C70_jp = 0x80100C70; //
-actor_dlftbls = 0x80100C90; //
-D_80100CA4_jp = 0x80100CA4; //
-D_8010119C_jp = 0x8010119C; // type:u8
-D_801024F4_jp = 0x801024F4; // type:u8
-D_801025B0_jp = 0x801025B0; //
+
+actor_dlftbls = 0x80100C90; // size:0x1920
+actor_dlftbls_num = 0x801025B0; // size:0x4
+
 D_801025C0_jp = 0x801025C0; //
 D_FLT_801025C8_jp = 0x801025C8; // type:f32
 set_raius_proc = 0x801025F8; //

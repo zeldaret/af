@@ -6,7 +6,7 @@
 extern UNK_TYPE B_8011B890_jp;
 extern UNK_TYPE B_8011B8A0_jp;
 
-extern s32 D_801025B0_jp;
+extern s32 actor_dlftbls_num;
 
 struct Actor;
 struct PlayState;
@@ -48,11 +48,11 @@ void func_80058A18_jp(void *arg0, void *arg1) {
     size_t overlaySize;
 
     FaultDrawer_SetCharPad(-2, 0);
-    FaultDrawer_Printf("actor_dlftbls %u\n", D_801025B0_jp);
+    FaultDrawer_Printf("actor_dlftbls %u\n", actor_dlftbls_num);
     FaultDrawer_Printf("No. RamStart- RamEnd cn  Name\n");
 
     var_s0 = &actor_dlftbls;
-    for (i = 0; i < D_801025B0_jp; i++) {
+    for (i = 0; i < actor_dlftbls_num; i++) {
         overlaySize = (uintptr_t)var_s0->vramEnd - (uintptr_t)var_s0->vramStart;
 
         if (var_s0->loadedRamAddr != 0) {
@@ -70,7 +70,7 @@ uintptr_t func_80058AF0_jp(uintptr_t address, void *param) {
     size_t overlaySize;
     s32 i;
 
-    for (i = 0; i < D_801025B0_jp; i++, var_v0++) {
+    for (i = 0; i < actor_dlftbls_num; i++, var_v0++) {
         overlaySize = (uintptr_t)var_v0->vramEnd - (uintptr_t)var_v0->vramStart;
         loadedRamAddr = var_v0->loadedRamAddr;
         relocationDiff = (uintptr_t)var_v0->vramStart - (uintptr_t)loadedRamAddr;
@@ -86,7 +86,7 @@ uintptr_t func_80058AF0_jp(uintptr_t address, void *param) {
 }
 
 void actor_dlftbls_init(void) {
-    D_801025B0_jp = 0xC9;
+    actor_dlftbls_num = 0xC9;
     Fault_AddClient(&B_8011B890_jp, func_80058A18_jp, 0, 0);
     Fault_AddAddrConvClient(&B_8011B8A0_jp, func_80058AF0_jp, 0);
 }
@@ -94,5 +94,5 @@ void actor_dlftbls_init(void) {
 void actor_dlftbls_cleanup(void) {
     Fault_RemoveClient(&B_8011B890_jp);
     Fault_RemoveAddrConvClient(&B_8011B8A0_jp);
-    D_801025B0_jp = 0;
+    actor_dlftbls_num = 0;
 }
