@@ -467,16 +467,9 @@
 // extern UNK_TYPE D_80106D8C_jp;
 // extern UNK_TYPE D_80106DA0_jp;
 // extern UNK_TYPE D_80106E10_jp;
+
 // extern UNK_TYPE game_dlftbls;
-// extern UNK_TYPE D_80106E50_jp;
-// extern UNK_TYPE D_80106E80_jp;
-// extern UNK_TYPE D_80106EB0_jp;
-// extern UNK_TYPE D_80106EE0_jp;
-// extern UNK_TYPE D_80106F10_jp;
-// extern UNK_TYPE D_80106F40_jp;
-// extern UNK_TYPE D_80106F70_jp;
-// extern UNK_TYPE D_80106FA0_jp;
-// extern UNK_TYPE D_80106FD0_jp;
+
 // extern UNK_TYPE D_80107000_jp;
 // extern UNK_TYPE D_80107010_jp;
 // extern UNK_TYPE D_80107020_jp;
