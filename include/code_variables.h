@@ -1737,8 +1737,7 @@
 // extern UNK_TYPE B_8011B830_jp;
 // extern UNK_TYPE B_8011B83C_jp;
 // extern UNK_TYPE B_8011B850_jp;
-// extern UNK_TYPE B_8011B890_jp;
-// extern UNK_TYPE B_8011B8A0_jp;
+
 // extern UNK_TYPE B_8011B8B0_jp;
 // extern UNK_TYPE B_8011B8B4_jp;
 // extern UNK_TYPE B_8011B8B8_jp;
