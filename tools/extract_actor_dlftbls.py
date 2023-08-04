@@ -76,7 +76,9 @@ class ActorOverlay:
         result = f""
 
         if self.initInfo != 0:
-            result += f"D_{self.initInfo:08X}_cn,_{self.vromStart:08X}_Profile\n"
+            result += f"D_{self.initInfo:08X}_jp,_{self.vromStart:08X}_Profile\n"
+        if self.vromStart != 0:
+            result += f"ovl_{self.vromStart:08X},ovl__{self.vromStart:08X}\n"
 
         return result
 
@@ -88,25 +90,32 @@ def extractEntry(rom: bytes, offset: int, index: int) -> ActorOverlay:
 
 
 def ExtractActorTableMain():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("rom_path")
-    parser.add_argument("offset")
-    parser.add_argument("length")
+    parser = argparse.ArgumentParser(description="Actor table tool")
+    parser.add_argument("rom_path", help="Path to uncompressed rom")
+    parser.add_argument("offset", help="Raw offset to the actor table. Either dec or hex")
+    parser.add_argument("length", help="Amount of entries on the actor table. Either dec or hex")
+
+    parser.add_argument("--renames", help="Print a list of strings to rename instead of the actor table", action="store_true")
 
     args = parser.parse_args()
 
     rom_path = Path(args.rom_path)
     offset = int(args.offset, 0)
     length = int(args.length, 0)
+    renames = args.renames
 
     with rom_path.open("rb") as f:
         rom = f.read()
 
     for i in range(length):
         entry = extractEntry(rom, offset, i)
-        macroEntry = entry.macroEntry(i)
 
-        print(f"/* 0x{i:02X} */ {macroEntry}")
+        if renames:
+            print(entry.renames(), end="")
+
+        else:
+            macroEntry = entry.macroEntry(i)
+            print(f"/* 0x{i:02X} */ {macroEntry}")
 
 
 if __name__ == '__main__':

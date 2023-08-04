@@ -130,7 +130,7 @@
       - [0x723010, data, code/rsp/723010]
 
       - [0x7248D0, data, code/7248D0]
-      - [0x724930, data, code/m_actor_dlftbls]
+      - [0x724930, .data, code/m_actor_dlftbls]
       - [0x726260, data, code/m_actor_shadow]
       - [0x72B7A0, data, code/m_lib]
       - [0x72B7D0, data, code/72B7D0]
