@@ -3397,7 +3397,7 @@ _DW({									\
 		shifts);						\
 	gDPSetTileSize(pkt, G_TX_RENDERTILE, 0, 0,			\
 		((width)-1) << G_TEXTURE_IMAGE_FRAC,			\
-		((height)-1) << G_TEXTURE_IMAGE_FRAC)			\
+		((height)-1) << G_TEXTURE_IMAGE_FRAC);			\
 })
 
 #define	gDPLoadTextureBlockYuv(pkt, timg, fmt, siz, width, height,	\
@@ -3417,7 +3417,7 @@ _DW({									\
 		shifts);						\
 	gDPSetTileSize(pkt, G_TX_RENDERTILE, 0, 0,			\
 		((width)-1) << G_TEXTURE_IMAGE_FRAC,			\
-		((height)-1) << G_TEXTURE_IMAGE_FRAC)			\
+		((height)-1) << G_TEXTURE_IMAGE_FRAC);			\
 }
 
 /* Load fix rww 27jun95 */
@@ -3439,7 +3439,7 @@ _DW({									\
 		shifts);						\
 	gDPSetTileSize(pkt, G_TX_RENDERTILE, 0, 0,			\
 		((width)-1) << G_TEXTURE_IMAGE_FRAC,			\
-		((height)-1) << G_TEXTURE_IMAGE_FRAC)			\
+		((height)-1) << G_TEXTURE_IMAGE_FRAC);			\
 }
 
 /* 
@@ -3462,7 +3462,7 @@ _DW({									\
 		shifts);						\
 	gDPSetTileSize(pkt, rtile, 0, 0,				\
 		((width)-1) << G_TEXTURE_IMAGE_FRAC,			\
-		((height)-1) << G_TEXTURE_IMAGE_FRAC)			\
+		((height)-1) << G_TEXTURE_IMAGE_FRAC);			\
 }
 
 
@@ -3482,7 +3482,7 @@ _DW({									\
 		shifts);						\
 	gDPSetTileSize(pkt, G_TX_RENDERTILE, 0, 0,			\
 		((width)-1) << G_TEXTURE_IMAGE_FRAC,			\
-		((height)-1) << G_TEXTURE_IMAGE_FRAC)			\
+		((height)-1) << G_TEXTURE_IMAGE_FRAC);			\
 }
 
 /*
@@ -3504,7 +3504,7 @@ _DW({									\
 		maskt, shiftt, cms, masks, shifts);			\
 	gDPSetTileSize(pkt, G_TX_RENDERTILE, 0, 0,			\
 		((width)-1) << G_TEXTURE_IMAGE_FRAC,			\
-		((height)-1) << G_TEXTURE_IMAGE_FRAC)			\
+		((height)-1) << G_TEXTURE_IMAGE_FRAC);			\
 }
 
 /*
@@ -3526,7 +3526,7 @@ _DW({									\
 		maskt, shiftt, cms, masks, shifts);			\
 	gDPSetTileSize(pkt, rtile, 0, 0,				\
 		((width)-1) << G_TEXTURE_IMAGE_FRAC,			\
-		((height)-1) << G_TEXTURE_IMAGE_FRAC)			\
+		((height)-1) << G_TEXTURE_IMAGE_FRAC);			\
 }
 
 /*
@@ -3548,7 +3548,7 @@ _DW({									\
 		maskt, shiftt, cms, masks, shifts);			\
 	gDPSetTileSize(pkt, rtile, 0, 0,				\
 		((width)-1) << G_TEXTURE_IMAGE_FRAC,			\
-		((height)-1) << G_TEXTURE_IMAGE_FRAC)			\
+		((height)-1) << G_TEXTURE_IMAGE_FRAC);			\
 }
 
 #define	gsDPLoadTextureBlock(timg, fmt, siz, width, height,		\
@@ -3703,7 +3703,7 @@ _DW({									\
 		shifts);						\
 	gDPSetTileSize(pkt, G_TX_RENDERTILE, 0, 0,			\
 		((width)-1) << G_TEXTURE_IMAGE_FRAC,			\
-		((height)-1) << G_TEXTURE_IMAGE_FRAC)			\
+		((height)-1) << G_TEXTURE_IMAGE_FRAC);			\
 })
 
 /* Load fix rww 27jun95 */
@@ -3724,7 +3724,7 @@ _DW({									\
 		shifts);						\
 	gDPSetTileSize(pkt, G_TX_RENDERTILE, 0, 0,			\
 		((width)-1) << G_TEXTURE_IMAGE_FRAC,			\
-		((height)-1) << G_TEXTURE_IMAGE_FRAC)			\
+		((height)-1) << G_TEXTURE_IMAGE_FRAC);			\
 }
 
 /*
@@ -3746,7 +3746,7 @@ _DW({									\
 		shifts);						\
 	gDPSetTileSize(pkt, rtile, 0, 0,				\
 		((width)-1) << G_TEXTURE_IMAGE_FRAC,			\
-		((height)-1) << G_TEXTURE_IMAGE_FRAC)			\
+		((height)-1) << G_TEXTURE_IMAGE_FRAC);			\
 }
 
 /*
@@ -3768,7 +3768,7 @@ _DW({									\
 		shifts);						\
 	gDPSetTileSize(pkt, rtile, 0, 0,				\
 		((width)-1) << G_TEXTURE_IMAGE_FRAC,			\
-		((height)-1) << G_TEXTURE_IMAGE_FRAC)			\
+		((height)-1) << G_TEXTURE_IMAGE_FRAC);			\
 }
 
 
@@ -3788,7 +3788,7 @@ _DW({									\
 		shifts);						\
 	gDPSetTileSize(pkt, G_TX_RENDERTILE, 0, 0,			\
 		((width)-1) << G_TEXTURE_IMAGE_FRAC,			\
-		((height)-1) << G_TEXTURE_IMAGE_FRAC)			\
+		((height)-1) << G_TEXTURE_IMAGE_FRAC);			\
 }
 
 #define	gsDPLoadTextureBlock_4b(timg, fmt, width, height,		\
@@ -3913,7 +3913,7 @@ _DW({									\
 			(uls)<<G_TEXTURE_IMAGE_FRAC,			\
 			(ult)<<G_TEXTURE_IMAGE_FRAC,			\
 			(lrs)<<G_TEXTURE_IMAGE_FRAC,			\
-			(lrt)<<G_TEXTURE_IMAGE_FRAC)			\
+			(lrt)<<G_TEXTURE_IMAGE_FRAC);			\
 })
 
 #else /******** WORKAROUND hw 1 load tile bug ********/
@@ -3963,7 +3963,7 @@ _DW({									\
 			(uls)<<G_TEXTURE_IMAGE_FRAC,			\
 			(ult)<<G_TEXTURE_IMAGE_FRAC,			\
 			(lrs)<<G_TEXTURE_IMAGE_FRAC,			\
-			(lrt)<<G_TEXTURE_IMAGE_FRAC)			\
+			(lrt)<<G_TEXTURE_IMAGE_FRAC);			\
 })
 
 
@@ -4047,7 +4047,7 @@ _DW({									\
 			(uls)<<G_TEXTURE_IMAGE_FRAC,			\
 			(ult)<<G_TEXTURE_IMAGE_FRAC,			\
 			(lrs)<<G_TEXTURE_IMAGE_FRAC,			\
-			(lrt)<<G_TEXTURE_IMAGE_FRAC)			\
+			(lrt)<<G_TEXTURE_IMAGE_FRAC);			\
 }
 
 /*
@@ -4078,7 +4078,7 @@ _DW({									\
 			(uls)<<G_TEXTURE_IMAGE_FRAC,			\
 			(ult)<<G_TEXTURE_IMAGE_FRAC,			\
 			(lrs)<<G_TEXTURE_IMAGE_FRAC,			\
-			(lrt)<<G_TEXTURE_IMAGE_FRAC)			\
+			(lrt)<<G_TEXTURE_IMAGE_FRAC);			\
 })
 
 #define	gsDPLoadTextureTile_4b(timg, fmt, width, height,		\
