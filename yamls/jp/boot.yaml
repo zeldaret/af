@@ -8,8 +8,7 @@
       - [0x001060, c, boot/boot_main]
 
       - [0x0011F0, c, boot/idle]
-
-      - [0x0014A0, asm, boot/viconfig]
+      - [0x0014A0, c, boot/viconfig]
       - [0x001640, asm, boot/001640]
       - [0x0017F0, asm, boot/z_std_dma]
       - [0x0022A0, asm, boot/yaz0]
@@ -265,8 +264,9 @@
       - [0x019D00, rodata, boot/build]
 
       - { start: 0x019D40, type: .bss, vram: 0x8003E940, name: boot/boot_main }
-      - { start: 0x019D40, type: .bss, vram: 0x8003F330, name: boot/idle}
-      - { start: 0x019D40, type: bss, vram: 0x8003FF30, name: boot/8003FF30}
+      - { start: 0x019D40, type: .bss, vram: 0x8003F330, name: boot/idle }
+      - { start: 0x019D40, type: .bss, vram: 0x8003FF30, name: boot/viconfig }
+      - { start: 0x019D40, type: bss, vram: 0x8003FF40, name: boot/8003FF40 }
       - { start: 0x019D40, type: bss, vram: 0x800419A0, name: boot/gfxprint }
       - { start: 0x019D40, type: bss, vram: 0x800419B0, name: boot/mathf }
       - { start: 0x019D40, type: bss, vram: 0x800419C0, name: boot/800419C0 }

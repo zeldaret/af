@@ -3,7 +3,10 @@
 
 #include "ultra64.h"
 
-// void func_800260A0_jp();
-// void func_800261F4_jp();
+void ViConfig_UpdateVi(u32 arg0);
+void ViConfig_UpdateBlack(void);
+
+u8 gViConfigBlackNext;
+u8 gViConfigBlack;
 
 #endif

@@ -816,7 +816,7 @@
 // extern UNK_TYPE D_8010EF80_jp;
 // extern UNK_TYPE gamePT;
 // extern UNK_TYPE D_8010EFA0_jp;
-// extern UNK_TYPE D_8010EFB0_jp;
+extern vs32 D_8010EFB0_jp; // TODO: Determine where this goes
 // extern UNK_TYPE D_8010EFB8_jp;
 // extern UNK_TYPE D_8010EFC0_jp;
 // extern UNK_TYPE D_8010EFC8_jp;
