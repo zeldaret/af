@@ -1,8 +1,6 @@
 #ifndef LIBC_STDINT_H
 #define LIBC_STDINT_H
 
-#include "PR/ultratypes.h"
-
 typedef signed int intptr_t;
 typedef unsigned int uintptr_t;
 

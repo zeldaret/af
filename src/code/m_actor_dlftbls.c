@@ -46,9 +46,6 @@ ActorOverlay actor_dlftbls[] = {
 
 ActorId actor_dlftbls_num = 0;
 
-extern FaultClient B_8011B890_jp;
-extern FaultAddrConvClient B_8011B8A0_jp;
-
 void stub_80058A10(void) {
 }
 
@@ -93,6 +90,9 @@ uintptr_t func_80058AF0_jp(uintptr_t address, void *param UNUSED) {
 
     return 0;
 }
+
+FaultClient B_8011B890_jp;
+FaultAddrConvClient B_8011B8A0_jp;
 
 void actor_dlftbls_init(void) {
     actor_dlftbls_num = ACTOR_ID_MAX;
