@@ -6,6 +6,20 @@
 
 struct ActorInit;
 
+
+#define DEFINE_ACTOR(_name, enumValue, _allocType) enumValue,
+#define DEFINE_ACTOR_INTERNAL(_name, enumValue, _allocType) enumValue,
+#define DEFINE_ACTOR_UNSET(enumValue) enumValue,
+
+typedef enum ActorId {
+    #include "tables/actor_table.h"
+    /* 0xC9 */ ACTOR_ID_MAX
+} ActorId;
+
+#undef DEFINE_ACTOR
+#undef DEFINE_ACTOR_INTERNAL
+#undef DEFINE_ACTOR_UNSET
+
 typedef struct ActorOverlay {
     /* 0x00 */ uintptr_t vromStart;
     /* 0x04 */ uintptr_t vromEnd;
@@ -24,7 +38,7 @@ typedef struct ActorOverlay {
 // void actor_dlftbls_init();
 // void actor_dlftbls_cleanup();
 
-// extern UNK_TYPE actor_dlftbls;
-// extern UNK_TYPE actor_dlftbls_num;
+extern ActorOverlay actor_dlftbls[];
+extern ActorId actor_dlftbls_num;
 
 #endif

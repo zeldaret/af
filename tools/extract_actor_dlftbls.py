@@ -72,6 +72,14 @@ class ActorOverlay:
             return self._macroEntry_Internal(index)
         return self._macroEntry_Normal(index)
 
+    def renames(self) -> str:
+        result = f""
+
+        if self.initInfo != 0:
+            result += f"D_{self.initInfo:08X}_cn,_{self.vromStart:08X}_Profile\n"
+
+        return result
+
 
 def extractEntry(rom: bytes, offset: int, index: int) -> ActorOverlay:
     entry = struct.unpack_from(">IIIIIIIHb", rom, offset + ENTRY_SIZE * index)

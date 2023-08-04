@@ -35,7 +35,7 @@
 
 #define DEFINE_ACTOR_UNSET(_enumValue) { 0 },
 
-ActorOverlay actor_dlftbls[];
+extern ActorOverlay actor_dlftbls[];
 // ActorOverlay actor_dlftbls[] = {
 // #include "tables/actor_table.h"
 // };
@@ -44,7 +44,7 @@ ActorOverlay actor_dlftbls[];
 #undef DEFINE_ACTOR_INTERNAL
 #undef DEFINE_ACTOR_UNSET
 
-extern s32 actor_dlftbls_num;
+extern ActorId actor_dlftbls_num;
 
 extern UNK_TYPE B_8011B890_jp;
 extern UNK_TYPE B_8011B8A0_jp;
@@ -54,7 +54,7 @@ void stub_80058A10(void) {
 
 void func_80058A18_jp(void *arg0, void *arg1) {
     ActorOverlay *var_s0;
-    s32 i;
+    ActorId i;
     size_t overlaySize;
 
     FaultDrawer_SetCharPad(-2, 0);
@@ -78,7 +78,7 @@ uintptr_t func_80058AF0_jp(uintptr_t address, void *param) {
     size_t relocationDiff;
     void *loadedRamAddr;
     size_t overlaySize;
-    s32 i;
+    ActorId i;
 
     for (i = 0; i < actor_dlftbls_num; i++, var_v0++) {
         overlaySize = (uintptr_t)var_v0->vramEnd - (uintptr_t)var_v0->vramStart;
@@ -96,7 +96,7 @@ uintptr_t func_80058AF0_jp(uintptr_t address, void *param) {
 }
 
 void actor_dlftbls_init(void) {
-    actor_dlftbls_num = 0xC9;
+    actor_dlftbls_num = ACTOR_ID_MAX;
     Fault_AddClient(&B_8011B890_jp, func_80058A18_jp, 0, 0);
     Fault_AddAddrConvClient(&B_8011B8A0_jp, func_80058AF0_jp, 0);
 }
