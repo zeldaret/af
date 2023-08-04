@@ -35,7 +35,7 @@
 
 #define DEFINE_ACTOR_UNSET(_enumValue) { 0 },
 
-ActorOverlay actor_dlftbls[] = {
+ActorOverlay actor_dlftbls[ACTOR_ID_MAX] = {
 #include "tables/actor_table.h"
 };
 

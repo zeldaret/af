@@ -37,7 +37,7 @@ typedef struct ActorOverlay {
 void actor_dlftbls_init(void);
 void actor_dlftbls_cleanup(void);
 
-extern ActorOverlay actor_dlftbls[];
+extern ActorOverlay actor_dlftbls[ACTOR_ID_MAX];
 extern ActorId actor_dlftbls_num;
 
 #endif
