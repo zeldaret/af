@@ -698,9 +698,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x7AC420, asm, overlays/other_ovl/ovl_player_actor/ovl_player_actor]
-      - [0x7D7320, data, overlays/other_ovl/ovl_player_actor/ovl_player_actor]
-      - [0x7D9830, rodata, overlays/other_ovl/ovl_player_actor/ovl_player_actor]
+      - [0x7AC420, asm, overlays/actors/ovl_player_actor/ovl_player_actor]
+      - [0x7D7320, data, overlays/actors/ovl_player_actor/ovl_player_actor]
+      - [0x7D9830, rodata, overlays/actors/ovl_player_actor/ovl_player_actor]
   - name: ovl_player_actor_reloc
     type: code
     start: 0x7D9BA0
@@ -708,7 +708,7 @@
     follows_vram: ovl_player_actor
     compress: True
     subsegments:
-      - [0x7D9BA0, data, overlays/other_ovl/ovl_player_actor/ovl_player_actor_reloc]
+      - [0x7D9BA0, data, overlays/actors/ovl_player_actor/ovl_player_actor_reloc]
 
   - name: ovl__007DE050
     type: code
