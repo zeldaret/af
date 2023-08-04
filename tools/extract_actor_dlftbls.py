@@ -20,7 +20,7 @@ class ActorOverlay:
     vramStart: int      # void*
     vramEnd: int        # void*
     loadedRamAddr: int  # void*
-    initInfo: int       # ActorInit*
+    profile: int       # ActorProfile*
     name: int           # char*
     allocType: int      # u16
     numLoaded: int      # s8
@@ -31,7 +31,7 @@ class ActorOverlay:
         result += f"0x{self.vramStart:08X}, "
         result += f"0x{self.vramEnd:08X}, "
         result += f"0x{self.loadedRamAddr:08X}, "
-        result += f"0x{self.initInfo:08X}, "
+        result += f"0x{self.profile:08X}, "
         result += f"0x{self.name:08X}, "
         result += f"{self.allocType}, "
         result += f"{self.numLoaded}"
@@ -57,7 +57,7 @@ class ActorOverlay:
         return f"DEFINE_ACTOR(_{self.vromStart:08X}, ACTOR_{index}, {self.allocTypeStr()})"
 
     def isUnset(self) -> bool:
-        return self.initInfo == 0
+        return self.profile == 0
     def isInternal(self) -> bool:
         return not self.isUnset() and self.vromStart == 0
     def isNormal(self) -> bool:
@@ -75,8 +75,8 @@ class ActorOverlay:
     def renames(self) -> str:
         result = f""
 
-        if self.initInfo != 0:
-            result += f"D_{self.initInfo:08X}_jp,_{self.vromStart:08X}_Profile\n"
+        if self.profile != 0:
+            result += f"D_{self.profile:08X}_jp,_{self.vromStart:08X}_Profile\n"
         if self.vromStart != 0:
             result += f"ovl_{self.vromStart:08X},ovl__{self.vromStart:08X}\n"
 

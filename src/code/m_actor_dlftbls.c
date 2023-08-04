@@ -8,8 +8,8 @@
 // Segment and Profile declarations (also used in the table below)
 #define DEFINE_ACTOR(name, _enumValue, _allocType) \
     DECLARE_SEGMENT(ovl_##name);                   \
-    extern struct ActorInit name##_Profile;
-#define DEFINE_ACTOR_INTERNAL(name, _enumValue, _allocType) extern struct ActorInit name##_Profile;
+    extern struct ActorProfile name##_Profile;
+#define DEFINE_ACTOR_INTERNAL(name, _enumValue, _allocType) extern struct ActorProfile name##_Profile;
 #define DEFINE_ACTOR_UNSET(_enumValue)
 
 #include "tables/actor_table.h"

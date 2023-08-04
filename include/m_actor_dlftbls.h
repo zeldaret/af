@@ -4,7 +4,7 @@
 #include "ultra64.h"
 #include "libc/stdint.h"
 
-struct ActorInit;
+struct ActorProfile;
 
 
 #define DEFINE_ACTOR(_name, enumValue, _allocType) enumValue,
@@ -26,7 +26,7 @@ typedef struct ActorOverlay {
     /* 0x08 */ void* vramStart;
     /* 0x0C */ void* vramEnd;
     /* 0x10 */ void* loadedRamAddr;
-    /* 0x14 */ struct ActorInit* initInfo;
+    /* 0x14 */ struct ActorProfile* profile;
     /* 0x18 */ char* name;
     /* 0x1C */ u16 allocType;
     /* 0x1E */ s8 numLoaded;
