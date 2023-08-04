@@ -1,43 +1,53 @@
 #include "m_actor_dlftbls.h"
 #include "libc/stddef.h"
-#include "libc/stdint.h"
 #include "unk.h"
+#include "m_actor.h"
+#include "segment_symbols.h"
 
-extern UNK_TYPE B_8011B890_jp;
-extern UNK_TYPE B_8011B8A0_jp;
+// Segment and Profile declarations (also used in the table below)
+#define DEFINE_ACTOR(name, _enumValue, _allocType) \
+    DECLARE_SEGMENT(ovl_##name); \
+    extern struct ActorInit name##_Profile;
+#define DEFINE_ACTOR_INTERNAL(name, _enumValue, _allocType) \
+    extern struct ActorInit name##_Profile;
+#define DEFINE_ACTOR_UNSET(_enumValue)
+
+#include "tables/actor_table.h"
+
+#undef DEFINE_ACTOR
+#undef DEFINE_ACTOR_INTERNAL
+#undef DEFINE_ACTOR_UNSET
+
+// Actor Overlay Table definition
+#define DEFINE_ACTOR(name, _enumValue, allocType) \
+    { SEGMENT_ROM_START(ovl_##name),                          \
+      SEGMENT_ROM_END(ovl_##name),                            \
+      SEGMENT_VRAM_START(ovl_##name),                         \
+      SEGMENT_VRAM_END(ovl_##name),                           \
+      NULL,                                                   \
+      &name##_Profile,                                       \
+      NULL,                                                   \
+      allocType,                                              \
+      0 },
+
+#define DEFINE_ACTOR_INTERNAL(name, _enumValue, allocType) \
+    { 0, 0, NULL, NULL, NULL, &name##_Profile, NULL, allocType, 0 },
+
+#define DEFINE_ACTOR_UNSET(_enumValue) { 0 },
+
+ActorOverlay actor_dlftbls[];
+// ActorOverlay actor_dlftbls[] = {
+// #include "tables/actor_table.h"
+// };
+
+#undef DEFINE_ACTOR
+#undef DEFINE_ACTOR_INTERNAL
+#undef DEFINE_ACTOR_UNSET
 
 extern s32 actor_dlftbls_num;
 
-struct Actor;
-struct PlayState;
-
-typedef void(*ActorFunc)(struct Actor* this, struct PlayState* play);
-
-typedef struct ActorInit {
-    /* 0x00 */ s16 id;
-    /* 0x02 */ u8 type;
-    /* 0x04 */ u32 flags;
-    /* 0x08 */ s16 objectId;
-    /* 0x0C */ u32 instanceSize;
-    /* 0x10 */ ActorFunc init;
-    /* 0x14 */ ActorFunc destroy;
-    /* 0x18 */ ActorFunc update;
-    /* 0x1C */ ActorFunc draw;
-} ActorInit; // size = 0x20
-
-typedef struct ActorOverlay {
-    /* 0x00 */ uintptr_t vromStart;
-    /* 0x04 */ uintptr_t vromEnd;
-    /* 0x08 */ void* vramStart;
-    /* 0x0C */ void* vramEnd;
-    /* 0x10 */ void* loadedRamAddr; // original name: "allocp"
-    /* 0x14 */ ActorInit* initInfo;
-    /* 0x18 */ char* name;
-    /* 0x1C */ u16 allocType; // bit 0: don't allocate memory, use actorContext->0x250? bit 1: Always keep loaded?
-    /* 0x1E */ s8 numLoaded; // original name: "clients"
-} ActorOverlay; // size = 0x20
-
-extern ActorOverlay actor_dlftbls[];
+extern UNK_TYPE B_8011B890_jp;
+extern UNK_TYPE B_8011B8A0_jp;
 
 void stub_80058A10(void) {
 }

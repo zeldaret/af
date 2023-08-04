@@ -51,15 +51,24 @@ class ActorOverlay:
         return f"DEFINE_ACTOR_UNSET(ACTOR_UNSET_{index})"
 
     def _macroEntry_Internal(self, index: int) -> str:
-        return f"DEFINE_ACTOR_INTERNAL({self.vromStart:08X}, ACTOR_{index}, {self.allocTypeStr()})"
+        return f"DEFINE_ACTOR_INTERNAL(_{self.vromStart:08X}, ACTOR_{index}, {self.allocTypeStr()})"
 
     def _macroEntry_Normal(self, index: int) -> str:
-        return f"DEFINE_ACTOR({self.vromStart:08X}, ACTOR_{index}, {self.allocTypeStr()})"
+        return f"DEFINE_ACTOR(_{self.vromStart:08X}, ACTOR_{index}, {self.allocTypeStr()})"
+
+    def isUnset(self) -> bool:
+        return self.initInfo == 0
+    def isInternal(self) -> bool:
+        return not self.isUnset() and self.vromStart == 0
+    def isNormal(self) -> bool:
+        if self.isUnset() or self.isInternal():
+            return False
+        return True
 
     def macroEntry(self, index: int) -> str:
-        if self.initInfo == 0:
+        if self.isUnset():
             return self._macroEntry_Unset(index)
-        elif self.vromStart == 0:
+        elif self.isInternal():
             return self._macroEntry_Internal(index)
         return self._macroEntry_Normal(index)
 
@@ -87,8 +96,9 @@ def ExtractActorTableMain():
 
     for i in range(length):
         entry = extractEntry(rom, offset, i)
+        macroEntry = entry.macroEntry(i)
 
-        print(entry.macroEntry(i))
+        print(f"/* 0x{i:02X} */ {macroEntry}")
 
 
 if __name__ == '__main__':
