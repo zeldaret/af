@@ -10,7 +10,7 @@
       - [0x678660, asm, code/evw_anime]
       - [0x6792F0, asm, code/6792F0]
       - [0x67A020, asm, code/m_actor]
-      - [0x67C6B0, asm, code/m_actor_dlftbls]
+      - [0x67C6B0, c, code/m_actor_dlftbls]
       - [0x67C890, asm, code/m_actor_shadow]
       - [0x67D890, asm, code/67D890]
       - [0x67E840, asm, code/67E840]
@@ -130,6 +130,7 @@
       - [0x723010, data, code/rsp/723010]
 
       - [0x7248D0, data, code/7248D0]
+      - [0x724930, .data, code/m_actor_dlftbls]
       - [0x726260, data, code/m_actor_shadow]
       - [0x72B7A0, data, code/m_lib]
       - [0x72B7D0, data, code/72B7D0]
@@ -142,8 +143,7 @@
       - [0x739E00, rodata, code/739E00]
       - [0x739E50, rodata, code/m_actor]
       - [0x739E90, rodata, code/739E90]
-      - [0x739EA0, rodata, code/m_actor_dlftbls]
-      - [0x739EA0, rodata, code/739EA0]
+      - [0x739EA0, .rodata, code/m_actor_dlftbls]
       - [0x739EF0, rodata, code/739EF0]
       - [0x739F20, rodata, code/739F20]
       - [0x739F70, rodata, code/739F70]
@@ -223,6 +223,8 @@
       - [0x73CEE0, rodata, code/73CEE0]
 
       - { start: 0x73F4D0, type: bss, vram: 0x8011B830, name: code/8011B830 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x8011B890, name: code/m_actor_dlftbls }
+      - { start: 0x73F4D0, type: bss, vram: 0x8011B8B0, name: code/8011B8B0 }
       - { start: 0x74AB40, type: .bss, vram: 0x80126EA0, name: code/m_common_data }
       - { start: 0x75B600, type: bss, vram: 0x80137960, name: code/80137960 }
       - { start: 0x73F4D0, type: bss, vram: 0x80143900, name: code/m_player_call }

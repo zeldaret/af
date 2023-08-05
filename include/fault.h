@@ -3,15 +3,37 @@
 
 #include "ultra64.h"
 #include "attributes.h"
+#include "libc/stdint.h"
+
+
+typedef void (*FaultClientCallback)(void*, void*);
+
+// TODO: taken from MM, needs to be verified
+typedef struct FaultClient {
+    /* 0x0 */ struct FaultClient* next;
+    /* 0x4 */ FaultClientCallback callback;
+    /* 0x8 */ void* arg0;
+    /* 0xC */ void* arg1;
+} FaultClient; // size = 0x10
+
+
+typedef uintptr_t (*FaultAddrConvClientCallback)(uintptr_t, void*);
+
+// TODO: taken from MM, needs to be verified
+typedef struct FaultAddrConvClient {
+    /* 0x0 */ struct FaultAddrConvClient* next;
+    /* 0x4 */ FaultAddrConvClientCallback callback;
+    /* 0x8 */ void* arg;
+} FaultAddrConvClient; // size = 0xC
 
 // void Fault_SleepImpl();
 // void Fault_ClientProcessThread();
 // void Fault_ClientRunTask();
 // void Fault_ProcessClient();
-// void Fault_AddClient();
-// void Fault_RemoveClient();
-// void Fault_AddAddrConvClient();
-// void Fault_RemoveAddrConvClient();
+void Fault_AddClient(FaultClient* client, FaultClientCallback callback, void* arg0, void* arg1);
+void Fault_RemoveClient(FaultClient* client);
+void Fault_AddAddrConvClient(FaultAddrConvClient* client, FaultAddrConvClientCallback callback, void* arg);
+void Fault_RemoveAddrConvClient(FaultAddrConvClient* client);
 // void Fault_ConvertAddress();
 // void Fault_Sleep();
 // void Fault_PadCallback();
@@ -55,7 +77,7 @@
 // void FaultDrawer_SetForeColor();
 // void FaultDrawer_SetBackColor();
 void FaultDrawer_SetFontColor(u16 color);
-// void FaultDrawer_SetCharPad();
+void FaultDrawer_SetCharPad(s8 padW, s8 padH);
 // void FaultDrawer_SetCursor();
 // void FaultDrawer_FillScreen();
 // void FaultDrawer_PrintCallback();

@@ -15,11 +15,7 @@
 // extern UNK_TYPE D_80100C64_jp;
 // extern UNK_TYPE D_80100C68_jp;
 // extern UNK_TYPE D_80100C70_jp;
-// extern UNK_TYPE actor_dlftbls;
-// extern UNK_TYPE D_80100CA4_jp;
-// extern UNK_TYPE D_8010119C_jp;
-// extern UNK_TYPE D_801024F4_jp;
-// extern UNK_TYPE D_801025B0_jp;
+
 // extern UNK_TYPE D_801025C0_jp;
 // extern UNK_TYPE D_FLT_801025C8_jp;
 // extern UNK_TYPE set_raius_proc;
@@ -1037,10 +1033,7 @@ extern vs32 D_8010EFB0_jp; // TODO: Determine where this goes
 // extern UNK_TYPE RO_FLT_801161F4_jp;
 // extern UNK_TYPE RO_FLT_801161F8_jp;
 // extern UNK_TYPE RO_FLT_801161FC_jp;
-// extern UNK_TYPE RO_STR_80116200_jp;
-// extern UNK_TYPE RO_STR_80116214_jp;
-// extern UNK_TYPE RO_STR_80116234_jp;
-// extern UNK_TYPE RO_8011624C_jp;
+
 // extern UNK_TYPE RO_FLT_80116250_jp;
 // extern UNK_TYPE RO_FLT_80116254_jp;
 // extern UNK_TYPE RO_FLT_80116258_jp;
@@ -1744,8 +1737,7 @@ extern vs32 D_8010EFB0_jp; // TODO: Determine where this goes
 // extern UNK_TYPE B_8011B830_jp;
 // extern UNK_TYPE B_8011B83C_jp;
 // extern UNK_TYPE B_8011B850_jp;
-// extern UNK_TYPE B_8011B890_jp;
-// extern UNK_TYPE B_8011B8A0_jp;
+
 // extern UNK_TYPE B_8011B8B0_jp;
 // extern UNK_TYPE B_8011B8B4_jp;
 // extern UNK_TYPE B_8011B8B8_jp;
