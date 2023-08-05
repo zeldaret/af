@@ -14,7 +14,7 @@ typedef void (*GameStateFunc)(struct GameState* gameState);
 
 typedef struct GameState {
     /* 0x00 */ struct GraphicsContext* gfxCtx;
-    /* 0x04 */ UNK_TYPE unk_04;
+    /* 0x04 */ GameStateFunc main;
     /* 0x08 */ GameStateFunc destroy;
     /* 0x0C */ GameStateFunc init;
     /* 0x10 */ size_t size;
@@ -24,17 +24,17 @@ typedef struct GameState {
     /* 0x88 */ GameAlloc alloc;
     /* 0x9C */ UNK_TYPE1 unk_9C[0x3];
     /* 0x9F */ u8 running;
-    /* 0xA0 */ UNK_TYPE unk_A0;
+    /* 0xA0 */ s32 unk_A0;
 } GameState; // size >= 0xA4
 
-// void func_800D2E00_jp();
+void func_800D2E00_jp(GameState* gameState);
 // void func_800D2E58_jp();
 // void game_debug_draw_last();
-// void game_draw_first();
+void game_draw_first(struct GraphicsContext* gfxCtx);
 // void game_draw_last();
 // void game_get_controller();
 void SetGameFrame(s32 divisor);
-// void game_main();
+void game_main(GameState* gameState);
 void game_init_hyral(GameState* gameState, size_t size);
 void game_resize_hyral(GameState* gameState, size_t size);
 void game_ct(GameState* gameState, GameStateFunc init, struct GraphicsContext* gfxCtx);

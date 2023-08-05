@@ -3,6 +3,8 @@
 
 #include "ultra64.h"
 
+struct GameState;
+
 // void func_8005ABA0_jp();
 // void func_8005ABE0_jp();
 // void func_8005ACA8_jp();
@@ -176,7 +178,7 @@
 // void func_8005EE00_jp();
 // void func_8005EE20_jp();
 // void func_8005EEA0_jp();
-// void mBGM_main();
+void mBGM_main(struct GameState* gameState);
 // void mBGM_ct();
 void func_8005F020_jp(void);
 void mBGM_cleanup(void);

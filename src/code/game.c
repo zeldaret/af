@@ -6,6 +6,7 @@
 #include "graph.h"
 #include "debug.h"
 #include "malloc.h"
+#include "6EDD10.h"
 #include "code_variables.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "overlays/gamestates/ovl_famicom_emu/famicom_emu.h"
@@ -60,7 +61,28 @@ void SetGameFrame(s32 divisor) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_main.s")
+void game_main(GameState* gameState) {
+    GraphicsContext* gfxCtx = gameState->gfxCtx;
+    u8 temp = B_80145048_jp;
+
+    if (debug_mode->unk_110 != temp) {
+        SetGameFrame(debug_mode->unk_110);
+    }
+
+    game_draw_first(gfxCtx);
+    gfxCtx->unk_2F0 = 5;
+    mTM_time();
+    gfxCtx->unk_2F0 = 7;
+
+    gameState->main(gameState);
+
+    gfxCtx->unk_2F0 = 9;
+    mBGM_main(gameState);
+    gfxCtx->unk_2F0 = 0xA;
+    func_800D2E00_jp(gameState);
+
+    gameState->unk_A0++;
+}
 
 void game_init_hyral(GameState* gameState, size_t size) {
     void* buf = gamealloc_malloc(&gameState->alloc, size);
@@ -116,8 +138,7 @@ void game_ct(GameState* gameState, GameStateFunc init, GraphicsContext* gfxCtx) 
     mCon_ct(gameState);
 
     gameState->unk_A0 = 0;
-    gameState->unk_04 = 0;
-
+    gameState->main = NULL;
     gameState->destroy = NULL;
     gameState->running = true;
     gameState->unk_74 = 1;
