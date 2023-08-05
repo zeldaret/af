@@ -5,9 +5,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x73F4D0, asm, overlays/gamestates/ovl_select/ovl_select]
-      - [0x741030, data, overlays/gamestates/ovl_select/ovl_select]
-      - [0x741310, rodata, overlays/gamestates/ovl_select/ovl_select]
+      - [0x73F4D0, asm, overlays/gamestates/ovl_select/m_select]
+      - [0x741030, data, overlays/gamestates/ovl_select/m_select]
+      - [0x741310, rodata, overlays/gamestates/ovl_select/m_select]
   - name: ovl_select_reloc
     type: code
     start: 0x741A40
@@ -25,7 +25,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x741EA0, asm, overlays/gamestates/ovl_first_game/ovl_first_game]
+      - [0x741EA0, asm, overlays/gamestates/ovl_first_game/first_game]
   - name: ovl_first_game_reloc
     type: code
     start: 0x741F80
@@ -43,10 +43,10 @@
     compress: True
     bss_size: 0xF0
     subsegments:
-      - [0x741FB0, asm, overlays/gamestates/ovl_play/ovl_play]
-      - [0x7437F0, data, overlays/gamestates/ovl_play/ovl_play]
-      - [0x743890, rodata, overlays/gamestates/ovl_play/ovl_play]
-      - { start: 0x743950, type: bss, vram: 0x80804480, name: overlays/gamestates/ovl_play/ovl_play }
+      - [0x741FB0, asm, overlays/gamestates/ovl_play/m_play]
+      - [0x7437F0, data, overlays/gamestates/ovl_play/m_play]
+      - [0x743890, rodata, overlays/gamestates/ovl_play/m_play]
+      - { start: 0x743950, type: bss, vram: 0x80804480, name: overlays/gamestates/ovl_play/m_play }
   - name: ovl_play_reloc
     type: code
     start: 0x743950
@@ -64,7 +64,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x743B70, asm, overlays/gamestates/ovl_second_game/ovl_second_game]
+      - [0x743B70, asm, overlays/gamestates/ovl_second_game/second_game]
   - name: ovl_second_game_reloc
     type: code
     start: 0x743CA0
@@ -82,7 +82,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x743CD0, asm, overlays/gamestates/ovl_sys_romcheck/ovl_sys_romcheck]
+      - [0x743CD0, asm, overlays/gamestates/ovl_sys_romcheck/sys_romcheck]
   - name: ovl_sys_romcheck_reloc
     type: code
     start: 0x743FE0
@@ -100,10 +100,10 @@
     compress: True
     bss_size: 0x20170
     subsegments:
-      - [0x744020, asm, overlays/gamestates/ovl_trademark/ovl_trademark]
-      - [0x744F00, data, overlays/gamestates/ovl_trademark/ovl_trademark]
-      - [0x747910, rodata, overlays/gamestates/ovl_trademark/ovl_trademark]
-      - { start: 0x747940, type: bss, vram: 0x80808560, name: overlays/gamestates/ovl_trademark/ovl_trademark }
+      - [0x744020, asm, overlays/gamestates/ovl_trademark/m_trademark]
+      - [0x744F00, data, overlays/gamestates/ovl_trademark/m_trademark]
+      - [0x747910, rodata, overlays/gamestates/ovl_trademark/m_trademark]
+      - { start: 0x747940, type: bss, vram: 0x80808560, name: overlays/gamestates/ovl_trademark/m_trademark }
   - name: ovl_trademark_reloc
     type: code
     start: 0x747940
@@ -121,9 +121,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x747AA0, asm, overlays/gamestates/ovl_player_select/ovl_player_select]
-      - [0x748570, data, overlays/gamestates/ovl_player_select/ovl_player_select]
-      - [0x7485E0, rodata, overlays/gamestates/ovl_player_select/ovl_player_select]
+      - [0x747AA0, asm, overlays/gamestates/ovl_player_select/player_select]
+      - [0x748570, data, overlays/gamestates/ovl_player_select/player_select]
+      - [0x7485E0, rodata, overlays/gamestates/ovl_player_select/player_select]
   - name: ovl_player_select_reloc
     type: code
     start: 0x7485F0
@@ -141,9 +141,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x7486E0, asm, overlays/gamestates/ovl_save_menu/ovl_save_menu]
-      - [0x7490E0, data, overlays/gamestates/ovl_save_menu/ovl_save_menu]
-      - [0x7491E0, rodata, overlays/gamestates/ovl_save_menu/ovl_save_menu]
+      - [0x7486E0, asm, overlays/gamestates/ovl_save_menu/save_menu]
+      - [0x7490E0, data, overlays/gamestates/ovl_save_menu/save_menu]
+      - [0x7491E0, rodata, overlays/gamestates/ovl_save_menu/save_menu]
   - name: ovl_save_menu_reloc
     type: code
     start: 0x749200
@@ -161,10 +161,10 @@
     compress: True
     bss_size: 0x6370
     subsegments:
-      - [0x7492E0, asm, overlays/gamestates/ovl_famicom_emu/ovl_famicom_emu]
-      - [0x755010, data, overlays/gamestates/ovl_famicom_emu/ovl_famicom_emu]
-      - [0x771500, rodata, overlays/gamestates/ovl_famicom_emu/ovl_famicom_emu]
-      - { start: 0x771900, type: bss, vram: 0x80852690, name: overlays/gamestates/ovl_famicom_emu/ovl_famicom_emu }
+      - [0x7492E0, asm, overlays/gamestates/ovl_famicom_emu/famicom_emu]
+      - [0x755010, data, overlays/gamestates/ovl_famicom_emu/famicom_emu]
+      - [0x771500, rodata, overlays/gamestates/ovl_famicom_emu/famicom_emu]
+      - { start: 0x771900, type: bss, vram: 0x80852690, name: overlays/gamestates/ovl_famicom_emu/famicom_emu }
   - name: ovl_famicom_emu_reloc
     type: code
     start: 0x771900
@@ -182,8 +182,8 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x7745B0, asm, overlays/gamestates/ovl_prenmi/ovl_prenmi]
-      - [0x774970, rodata, overlays/gamestates/ovl_prenmi/ovl_prenmi]
+      - [0x7745B0, asm, overlays/gamestates/ovl_prenmi/m_prenmi]
+      - [0x774970, rodata, overlays/gamestates/ovl_prenmi/m_prenmi]
   - name: ovl_prenmi_reloc
     type: code
     start: 0x774980

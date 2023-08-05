@@ -1,15 +1,15 @@
 #include "game.h"
 #include "segment_symbols.h"
-#include "overlays/gamestates/ovl_select/select.h"
+#include "overlays/gamestates/ovl_select/m_select.h"
 #include "overlays/gamestates/ovl_first_game/first_game.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "overlays/gamestates/ovl_second_game/second_game.h"
 #include "overlays/gamestates/ovl_sys_romcheck/sys_romcheck.h"
-#include "overlays/gamestates/ovl_trademark/trademark.h"
+#include "overlays/gamestates/ovl_trademark/m_trademark.h"
 #include "overlays/gamestates/ovl_player_select/player_select.h"
 #include "overlays/gamestates/ovl_save_menu/save_menu.h"
 #include "overlays/gamestates/ovl_famicom_emu/famicom_emu.h"
-#include "overlays/gamestates/ovl_prenmi/prenmi.h"
+#include "overlays/gamestates/ovl_prenmi/m_prenmi.h"
 
 // Linker symbol declarations (used in the table below)
 #define DEFINE_GAMESTATE(_typeName, _enumName, segmentName) DECLARE_SEGMENT(ovl_##segmentName);
