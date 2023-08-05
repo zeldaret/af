@@ -20,7 +20,18 @@ extern f32 B_FLT_8014504C_jp;
 extern f32 B_FLT_80145050_jp;
 extern f32 B_FLT_80145054_jp;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/func_800D2E00_jp.s")
+extern s32 D_8010FD60_jp;
+
+void func_800D2E00_jp(GameState* gameState) {
+    if (D_8010FD60_jp >= 2) {
+        // TODO
+        Debug_mode_input(&gameState->unk_14[0x18]);
+    }
+
+    if (debug_mode->unk_0D4 != 0) {
+        func_800D88E0_jp(&B_80145020_jp);
+    }
+}
 
 const u16 RO_80117CE0_jp[] = {
     0xFFC1,
@@ -45,11 +56,115 @@ const u16 RO_80117CE0_jp[] = {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_debug_draw_last.s")
 
+#if 0
+void game_draw_first(GraphicsContext* gfxCtx) {
+    s32 temp_v0;
+    void* temp_t0;
+    void* temp_t0_10;
+    void* temp_t0_11;
+    void* temp_t0_12;
+    void* temp_t0_13;
+    void* temp_t0_14;
+    void* temp_t0_15;
+    void* temp_t0_16;
+    void* temp_t0_17;
+    void* temp_t0_18;
+    void* temp_t0_2;
+    void* temp_t0_3;
+    void* temp_t0_4;
+    void* temp_t0_5;
+    void* temp_t0_6;
+    void* temp_t0_7;
+    void* temp_t0_8;
+    void* temp_t0_9;
+
+    temp_v0 = gfxCtx->unk_8;
+    temp_t0 = gfxCtx->polyOpa.tha.head;
+    gfxCtx->polyOpa.tha.head = temp_t0 + 8;
+    temp_t0->unk_4 = 0;
+    temp_t0->unk_0 = 0xDB060000;
+    temp_t0_2 = gfxCtx->polyOpa.tha.head;
+    gfxCtx->polyOpa.tha.head = temp_t0_2 + 8;
+    temp_t0_2->unk_0 = 0xDB06003C;
+    temp_t0_2->unk_4 = (s32) gfxCtx->unk_2E4;
+    temp_t0_3 = gfxCtx->polyOpa.tha.head;
+    gfxCtx->polyOpa.tha.head = temp_t0_3 + 8;
+    temp_t0_3->unk_4 = temp_v0;
+    temp_t0_3->unk_0 = 0xDB060038;
+    temp_t0_4 = gfxCtx->polyXlu.tha.head;
+    gfxCtx->polyXlu.tha.head = temp_t0_4 + 8;
+    temp_t0_4->unk_4 = 0;
+    temp_t0_4->unk_0 = 0xDB060000;
+    temp_t0_5 = gfxCtx->polyXlu.tha.head;
+    gfxCtx->polyXlu.tha.head = temp_t0_5 + 8;
+    temp_t0_5->unk_0 = 0xDB06003C;
+    temp_t0_5->unk_4 = (s32) gfxCtx->unk_2E4;
+    temp_t0_6 = gfxCtx->polyXlu.tha.head;
+    gfxCtx->polyXlu.tha.head = temp_t0_6 + 8;
+    temp_t0_6->unk_4 = temp_v0;
+    temp_t0_6->unk_0 = 0xDB060038;
+    temp_t0_7 = gfxCtx->unk_288;
+    gfxCtx->unk_288 = (void* ) (temp_t0_7 + 8);
+    temp_t0_7->unk_4 = 0;
+    temp_t0_7->unk_0 = 0xDB060000;
+    temp_t0_8 = gfxCtx->unk_288;
+    gfxCtx->unk_288 = (void* ) (temp_t0_8 + 8);
+    temp_t0_8->unk_0 = 0xDB06003C;
+    temp_t0_8->unk_4 = (s32) gfxCtx->unk_2E4;
+    temp_t0_9 = gfxCtx->unk_288;
+    gfxCtx->unk_288 = (void* ) (temp_t0_9 + 8);
+    temp_t0_9->unk_4 = temp_v0;
+    temp_t0_9->unk_0 = 0xDB060038;
+    temp_t0_10 = gfxCtx->unk_2B8;
+    gfxCtx->unk_2B8 = (void* ) (temp_t0_10 + 8);
+    temp_t0_10->unk_4 = 0;
+    temp_t0_10->unk_0 = 0xDB060000;
+    temp_t0_11 = gfxCtx->unk_2B8;
+    gfxCtx->unk_2B8 = (void* ) (temp_t0_11 + 8);
+    temp_t0_11->unk_0 = 0xDB06003C;
+    temp_t0_11->unk_4 = (s32) gfxCtx->unk_2E4;
+    temp_t0_12 = gfxCtx->unk_2B8;
+    gfxCtx->unk_2B8 = (void* ) (temp_t0_12 + 8);
+    temp_t0_12->unk_4 = temp_v0;
+    temp_t0_12->unk_0 = 0xDB060038;
+    temp_t0_13 = gfxCtx->unk_2C8;
+    gfxCtx->unk_2C8 = (void* ) (temp_t0_13 + 8);
+    temp_t0_13->unk_4 = 0;
+    temp_t0_13->unk_0 = 0xDB060000;
+    temp_t0_14 = gfxCtx->unk_2C8;
+    gfxCtx->unk_2C8 = (void* ) (temp_t0_14 + 8);
+    temp_t0_14->unk_0 = 0xDB06003C;
+    temp_t0_14->unk_4 = (s32) gfxCtx->unk_2E4;
+    temp_t0_15 = gfxCtx->unk_2C8;
+    gfxCtx->unk_2C8 = (void* ) (temp_t0_15 + 8);
+    temp_t0_15->unk_4 = temp_v0;
+    temp_t0_15->unk_0 = 0xDB060038;
+    temp_t0_16 = gfxCtx->unk_2D8;
+    gfxCtx->unk_2D8 = (void* ) (temp_t0_16 + 8);
+    temp_t0_16->unk_4 = 0;
+    temp_t0_16->unk_0 = 0xDB060000;
+    temp_t0_17 = gfxCtx->unk_2D8;
+    gfxCtx->unk_2D8 = (void* ) (temp_t0_17 + 8);
+    temp_t0_17->unk_0 = 0xDB06003C;
+    temp_t0_17->unk_4 = (s32) gfxCtx->unk_2E4;
+    temp_t0_18 = gfxCtx->unk_2D8;
+    gfxCtx->unk_2D8 = (void* ) (temp_t0_18 + 8);
+    temp_t0_18->unk_4 = temp_v0;
+    temp_t0_18->unk_0 = 0xDB060038;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_draw_first.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_draw_last.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_get_controller.s")
+void game_get_controller(GameState* gameState) {
+    if (gameState->unk_74 == 1) {
+        padmgr_RequestPadData(gameState->unk_14, 1);
+    } else {
+        padmgr_ClearPadData(gameState->unk_14);
+    }
+}
 
 void SetGameFrame(s32 divisor) {
     if (divisor != B_80145048_jp) {

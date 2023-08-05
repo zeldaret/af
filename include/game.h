@@ -32,7 +32,7 @@ void func_800D2E00_jp(GameState* gameState);
 // void game_debug_draw_last();
 void game_draw_first(struct GraphicsContext* gfxCtx);
 // void game_draw_last();
-// void game_get_controller();
+void game_get_controller(GameState* gameState);
 void SetGameFrame(s32 divisor);
 void game_main(GameState* gameState);
 void game_init_hyral(GameState* gameState, size_t size);
