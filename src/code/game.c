@@ -7,6 +7,8 @@
 #include "debug.h"
 #include "malloc.h"
 #include "code_variables.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
+#include "overlays/gamestates/ovl_famicom_emu/famicom_emu.h"
 
 extern struct_80145020_jp B_80145020_jp;
 extern GameState* gamePT;
@@ -117,15 +119,15 @@ void game_ct(GameState* gameState, GameStateFunc init, GraphicsContext* gfxCtx) 
     gameState->unk_04 = 0;
 
     gameState->destroy = NULL;
-    gameState->unk_9F = 1;
+    gameState->running = true;
     gameState->unk_74 = 1;
 
     {
         s32 requiredScopeTemp UNUSED;
 
         gameState->gfxCtx = gfxCtx;
-        gameState->unk_0C = 0;
-        gameState->unk_10 = 0;
+        gameState->init = NULL;
+        gameState->size = 0;
     }
 
     gamealloc_init(&gameState->alloc);
@@ -155,14 +157,28 @@ void game_dt(GameState* gameState) {
     gamePT = NULL;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_get_next_game_init.s")
+GameStateFunc game_get_next_game_init(GameState* gameState) {
+    return gameState->init;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_get_next_game_class_size.s")
+size_t game_get_next_game_class_size(GameState* gameState) {
+    return gameState->size;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_is_doing.s")
+s32 game_is_doing(GameState* gameState) {
+    return gameState->running;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_getFreeBytes.s")
+s32 game_getFreeBytes(GameState* gameState) {
+    return THA_getFreeBytes(&gameState->heap);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_goto_next_game_play.s")
+void game_goto_next_game_play(GameState* gameState) {
+    STOP_GAMESTATE(gameState);
+    SET_NEXT_GAMESTATE(gameState, play_init, sizeof(PlayState));
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_goto_next_game_name_famicom_emu.s")
+void game_goto_next_game_name_famicom_emu(GameState* gameState) {
+    STOP_GAMESTATE(gameState);
+    SET_NEXT_GAMESTATE(gameState, famicom_emu_init, sizeof(FamicomEmuState));
+}
