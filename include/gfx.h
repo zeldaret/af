@@ -3,14 +3,25 @@
 
 #include "ultra64.h"
 #include "THA_GA.h"
+#include "unk.h"
 
 #define GRAPH_ALLOC(gfxCtx, size) ((void*)((gfxCtx)->polyOpa.d = (Gfx*)((u8*)(gfxCtx)->polyOpa.d - ALIGN16(size))))
 
 typedef struct GraphicsContext {
-    /* 0x000 */ char pad[0x290];
+    /* 0x000 */ UNK_TYPE1 unk_000[0x25C];
+    /* 0x25C */ OSViMode* unk_25C;
+    /* 0x260 */ UNK_TYPE1 unk_260[0x38];
     /* 0x298 */ TwoHeadGfxArena polyOpa;
     /* 0x2A8 */ TwoHeadGfxArena polyXlu;
-} GraphicsContext; // size = ??
+    /* 0x2B8 */ UNK_TYPE1 unk_2B8[0x34];
+    /* 0x2EC */ s32 unk_2EC;
+    /* 0x2F0 */ UNK_TYPE1 unk_2F0[0x2];
+    /* 0x2F2 */ UNK_TYPE1 unk_2F2;
+    /* 0x2F3 */ UNK_TYPE1 unk_2F3[0x1];
+    /* 0x2F4 */ UNK_TYPE1 unk_2F4[0x8];
+    /* 0x2FC */ f32 unk_2FC;
+    /* 0x300 */ f32 unk_300;
+} GraphicsContext; // size >= 0x304
 
 #define WORK_DISP __gfxCtx->work.p
 #define POLY_OPA_DISP __gfxCtx->polyOpa.p

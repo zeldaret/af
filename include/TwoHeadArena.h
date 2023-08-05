@@ -2,6 +2,7 @@
 #define TWO_HEAD_ARENA_H
 
 #include "ultra64.h"
+#include "libc/stdint.h"
 
 typedef struct TwoHeadArena {
     /* 0x00 */ size_t size;

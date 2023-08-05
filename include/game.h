@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "TwoHeadArena.h"
+#include "unk.h"
 
 struct GameState;
 struct GraphicsContext;
@@ -11,17 +12,24 @@ struct GraphicsContext;
 typedef void (*GameStateFunc)(struct GameState* gameState);
 
 typedef struct GameAlloc {
-    /* 0x00 */ UNK_TYPE1 unk_00[UNK_SIZE];
-} GameAlloc; // size >= 0
+    /* 0x00 */ UNK_TYPE1 unk_00[UNK_SIZE*4];
+} GameAlloc; // size >= 0x1
 
 typedef struct GameState {
     /* 0x00 */ struct GraphicsContext* gfxCtx;
-    /* 0x04 */ UNK_TYPE1 unk_04[0x4];
+    /* 0x04 */ UNK_TYPE unk_04;
     /* 0x08 */ GameStateFunc destroy;
-    /* 0x0C */ UNK_TYPE1 unk_0C[0x6C];
+    /* 0x0C */ UNK_TYPE unk_0C;
+    /* 0x10 */ UNK_TYPE unk_10;
+    /* 0x14 */ UNK_TYPE1 unk_14[0x60];
+    /* 0x74 */ u32 unk_74;
     /* 0x78 */ TwoHeadArena heap;
     /* 0x88 */ GameAlloc alloc;
-} GameState; // size >= 0x88
+    /* 0x8C */ UNK_TYPE1 unk_8C[0x10];
+    /* 0x9C */ UNK_TYPE1 unk_9C[0x3];
+    /* 0x9F */ UNK_TYPE1 unk_9F;
+    /* 0xA0 */ UNK_TYPE unk_A0;
+} GameState; // size >= 0xA4
 
 // void func_800D2E00_jp();
 // void func_800D2E58_jp();
@@ -33,7 +41,7 @@ typedef struct GameState {
 // void game_main();
 // void game_init_hyral();
 // void game_resize_hyral();
-// void game_ct();
+void game_ct(GameState* gameState, GameStateFunc init, struct GraphicsContext* gfxCtx);
 void game_dt(GameState* gameState);
 // void game_get_next_game_init();
 // void game_get_next_game_class_size();

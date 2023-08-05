@@ -1,8 +1,9 @@
-#include "global.h"
 #include "game.h"
+#include "global.h"
+#include "gfx.h"
 
 extern UNK_TYPE B_80145020_jp;
-extern UNK_PTR gamePT;
+extern GameState* gamePT;
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/func_800D2E00_jp.s")
 
@@ -43,7 +44,43 @@ const u16 RO_80117CE0_jp[] = {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_resize_hyral.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_ct.s")
+void game_ct(GameState* gameState, GameStateFunc init, GraphicsContext* gfxCtx) {
+    gamePT = gameState;
+
+    gfxCtx->unk_2F2 = 1;
+    gfxCtx->unk_25C = &osViModeNtscLan1;
+    gfxCtx->unk_2EC = 0x42;
+    gfxCtx->unk_2FC = 1.0f;
+    gfxCtx->unk_300 = 1.0f;
+
+    mCon_ct(gameState);
+
+    gameState->unk_A0 = 0;
+    gameState->unk_04 = 0;
+
+    gameState->destroy = NULL;
+    gameState->unk_9F = 1;
+    gameState->unk_74 = 1;
+
+    {
+        s32 requiredScopeTemp;
+
+        gameState->gfxCtx = gfxCtx;
+        gameState->unk_0C = 0;
+        gameState->unk_10 = 0;
+    }
+
+    gamealloc_init(&gameState->alloc);
+
+    game_init_hyral(gameState, 0x100000);
+    SetGameFrame(2);
+
+    init(gameState);
+
+    func_8005F020_jp();
+    func_800D88B0_jp(&B_80145020_jp);
+    func_800D3E14_jp(gameState->gfxCtx);
+}
 
 void game_dt(GameState* gameState) {
     mCon_dt(gameState);
