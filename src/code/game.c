@@ -4,9 +4,18 @@
 #include "67E840.h"
 #include "speed_meter.h"
 #include "graph.h"
+#include "debug.h"
+#include "malloc.h"
+#include "code_variables.h"
 
 extern struct_80145020_jp B_80145020_jp;
 extern GameState* gamePT;
+
+extern u8 B_80145048_jp;
+
+extern f32 B_FLT_8014504C_jp;
+extern f32 B_FLT_80145050_jp;
+extern f32 B_FLT_80145054_jp;
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/func_800D2E00_jp.s")
 
@@ -39,13 +48,59 @@ const u16 RO_80117CE0_jp[] = {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_get_controller.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/SetGameFrame.s")
+void SetGameFrame(s32 divisor) {
+    if (divisor != B_80145048_jp) {
+        B_80145048_jp = divisor;
+        B_FLT_8014504C_jp = (divisor & 0xFF);
+        B_FLT_80145050_jp = B_FLT_8014504C_jp / 2.0f;
+        B_FLT_80145054_jp = 1.0f / B_FLT_8014504C_jp;
+        debug_mode->unk_110 = divisor;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_main.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_init_hyral.s")
+void game_init_hyral(GameState* gameState, size_t size) {
+    void* buf = gamealloc_malloc(&gameState->alloc, size);
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_resize_hyral.s")
+    if (buf != NULL) {
+        THA_ct(&gameState->heap, buf, size);
+        return;
+    }
+
+    THA_ct(&gameState->heap, NULL, 0);
+    _dbg_hungup("../game.c", 462);
+}
+
+void game_resize_hyral(GameState* gameState, size_t size) {
+    GameAlloc *alloc = &gameState->alloc;
+    void* gameArena;
+    size_t maxFree;
+    size_t bytesFree;
+    size_t bytesAllocated;
+    void* heapStart = gameState->heap.start;
+
+    THA_dt(&gameState->heap);
+
+    gamealloc_free(alloc, heapStart);
+
+    // TODO: This seems like it was wrongly named
+    DisplayArena(&maxFree, &bytesFree, &bytesAllocated);
+    if (size == 0x7D0000) {
+        size = maxFree - sizeof(GameAllocEntry);
+    } else {
+        size = (maxFree - sizeof(GameAllocEntry) < size) ? maxFree - sizeof(GameAllocEntry) : size;
+    }
+
+    gameArena = gamealloc_malloc(alloc, size);
+    if (gameArena != NULL) {
+        THA_ct(&gameState->heap, gameArena, size);
+        return;
+    }
+
+    THA_ct(&gameState->heap, NULL, 0U);
+    _dbg_hungup("../game.c", 508);
+}
 
 void game_ct(GameState* gameState, GameStateFunc init, GraphicsContext* gfxCtx) {
     gamePT = gameState;
@@ -75,7 +130,7 @@ void game_ct(GameState* gameState, GameStateFunc init, GraphicsContext* gfxCtx) 
 
     gamealloc_init(&gameState->alloc);
 
-    game_init_hyral(gameState, 0x100000);
+    game_init_hyral(gameState, 0x100000); // 1 MiB
     SetGameFrame(2);
 
     init(gameState);

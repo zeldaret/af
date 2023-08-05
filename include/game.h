@@ -36,7 +36,7 @@ typedef struct GameState {
 void SetGameFrame(s32 divisor);
 // void game_main();
 void game_init_hyral(GameState* gameState, size_t size);
-// void game_resize_hyral();
+void game_resize_hyral(GameState* gameState, size_t size);
 void game_ct(GameState* gameState, GameStateFunc init, struct GraphicsContext* gfxCtx);
 void game_dt(GameState* gameState);
 // void game_get_next_game_init();

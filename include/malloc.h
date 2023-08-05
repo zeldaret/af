@@ -8,7 +8,7 @@
 // void realloc();
 // void free();
 // void calloc();
-// void DisplayArena();
+void DisplayArena(size_t* maxFree, size_t* bytesFree, size_t* bytesAllocated);
 // void GetFreeArena();
 // void MallocInit();
 // void MallocCleanup();
