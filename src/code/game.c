@@ -1,5 +1,8 @@
 #include "global.h"
+#include "game.h"
 
+extern UNK_TYPE B_80145020_jp;
+extern UNK_PTR gamePT;
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/func_800D2E00_jp.s")
 
@@ -42,7 +45,20 @@ const u16 RO_80117CE0_jp[] = {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_ct.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_dt.s")
+void game_dt(GameState* gameState) {
+    mCon_dt(gameState);
+    func_800D3E40_jp(gameState->gfxCtx);
+    mBGM_cleanup();
+
+    if (gameState->destroy != NULL) {
+        gameState->destroy(gameState);
+    }
+
+    func_800D88D4_jp(&B_80145020_jp);
+    THA_dt(&gameState->heap);
+    gamealloc_cleanup(&gameState->alloc);
+    gamePT = NULL;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_get_next_game_init.s")
 

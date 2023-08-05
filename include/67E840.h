@@ -179,7 +179,7 @@
 // void mBGM_main();
 // void mBGM_ct();
 // void func_8005F020_jp();
-// void func_8005F13C_jp();
+// void mBGM_cleanup();
 // void func_8005F250_jp();
 
 #endif
