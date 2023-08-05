@@ -7,6 +7,8 @@
 #include "debug.h"
 #include "malloc.h"
 #include "6EDD10.h"
+#include "padmgr.h"
+#include "69E2C0.h"
 #include "code_variables.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "overlays/gamestates/ovl_famicom_emu/famicom_emu.h"
@@ -24,8 +26,7 @@ extern s32 D_8010FD60_jp;
 
 void func_800D2E00_jp(GameState* gameState) {
     if (D_8010FD60_jp >= 2) {
-        // TODO
-        Debug_mode_input(&gameState->unk_14[0x18]);
+        Debug_mode_input(CONTROLLER2(gameState));
     }
 
     if (debug_mode->unk_0D4 != 0) {
@@ -160,9 +161,9 @@ void game_draw_first(GraphicsContext* gfxCtx) {
 
 void game_get_controller(GameState* gameState) {
     if (gameState->unk_74 == 1) {
-        padmgr_RequestPadData(gameState->unk_14, 1);
+        padmgr_RequestPadData(gameState->input, 1);
     } else {
-        padmgr_ClearPadData(gameState->unk_14);
+        padmgr_ClearPadData(gameState->input);
     }
 }
 

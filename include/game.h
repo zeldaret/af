@@ -4,6 +4,7 @@
 #include "ultra64.h"
 #include "TwoHeadArena.h"
 #include "gamealloc.h"
+#include "padutils.h"
 #include "unk.h"
 
 struct GameState;
@@ -18,7 +19,7 @@ typedef struct GameState {
     /* 0x08 */ GameStateFunc destroy;
     /* 0x0C */ GameStateFunc init;
     /* 0x10 */ size_t size;
-    /* 0x14 */ UNK_TYPE1 unk_14[0x60];
+    /* 0x14 */ Input input[MAXCONTROLLERS];
     /* 0x74 */ s32 unk_74;
     /* 0x78 */ TwoHeadArena heap;
     /* 0x88 */ GameAlloc alloc;
@@ -45,6 +46,12 @@ s32 game_is_doing(GameState* gameState);
 s32 game_getFreeBytes(GameState* gameState);
 void game_goto_next_game_play(GameState* gameState);
 void game_goto_next_game_name_famicom_emu(GameState* gameState);
+
+
+#define CONTROLLER1(gameState) (&(gameState)->input[0])
+#define CONTROLLER2(gameState) (&(gameState)->input[1])
+#define CONTROLLER3(gameState) (&(gameState)->input[2])
+#define CONTROLLER4(gameState) (&(gameState)->input[3])
 
 #define STOP_GAMESTATE(curState)     \
     do {                             \
