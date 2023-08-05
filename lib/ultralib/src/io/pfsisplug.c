@@ -1,6 +1,7 @@
 #include "macros.h"
 #include "PR/os_internal.h"
 #include "controller.h"
+#include "siint.h"
 
 OSPifRam __osPfsPifRam ALIGNED(16);
 
@@ -84,7 +85,7 @@ void __osPfsGetInitData(u8* pattern, OSContStatus* data) {
         requestformat = *((__OSContRequesFormat*)ptr);
         data->errno = CHNL_ERR(requestformat);
 
-        if (data->errno) {
+        if (data->errno != 0) {
             continue;
         }
 

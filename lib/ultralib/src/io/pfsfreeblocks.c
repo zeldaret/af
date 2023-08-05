@@ -1,7 +1,7 @@
 #include "PR/os_internal.h"
 #include "controller.h"
 
-s32 osPfsFreeBlocks(OSPfs *pfs, s32 *bytes_not_used) {
+s32 osPfsFreeBlocks(OSPfs* pfs, s32* bytes_not_used) {
     int j;
     int pages = 0;
     __OSInode inode;

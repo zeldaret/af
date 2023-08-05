@@ -12,7 +12,7 @@
 // extern UNK_TYPE D_8003BBC4_jp;
 // extern UNK_TYPE D_FLT_8003BBC8_jp;
 // extern UNK_TYPE D_FLT_8003BBCC_jp;
-// extern UNK_TYPE gCartHandle;
+extern OSPiHandle* gCartHandle; // TODO: Determine where this goes
 // extern UNK_TYPE D_8003BBE0_jp;
 // extern UNK_TYPE D_8003BBF0_jp;
 // extern UNK_TYPE D_8003BC38_jp;
@@ -248,8 +248,8 @@
 // extern UNK_TYPE B_8003FE00_jp;
 // extern UNK_TYPE B_8003FEC8_jp;
 // extern UNK_TYPE B_8003FEE0_jp;
-// extern UNK_TYPE B_8003FF30_jp;
-// extern UNK_TYPE B_8003FF31_jp;
+// extern UNK_TYPE gViConfigBlackNext;
+// extern UNK_TYPE gViConfigBlack;
 // extern UNK_TYPE B_8003FF40_jp;
 // extern UNK_TYPE B_8003FF5C_jp;
 // extern UNK_TYPE B_8003FF60_jp;
@@ -283,7 +283,6 @@
 
 // extern UNK_TYPE B_800419C0_jp;
 // extern UNK_TYPE B_800419F0_jp;
-// extern UNK_TYPE B_80041A00_jp;
 
 // extern UNK_TYPE B_80044684_jp;
 

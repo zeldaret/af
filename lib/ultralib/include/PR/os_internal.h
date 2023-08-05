@@ -39,7 +39,6 @@ extern "C" {
 #include "os_internal_thread.h"
 #include "os_internal_debug.h"
 #include "os_internal_host.h"
-#include "os_internal_flash.h"
 
 #endif /* _LANGUAGE_C */
 

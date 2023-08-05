@@ -3,8 +3,12 @@
 
 #include "ultra64.h"
 
-// void func_80025DF0_jp();
-// void func_80025E6C_jp();
+extern OSViMode gViConfigMode;
+
+extern u32 gViConfigFeatures;
+extern f32 gViConfigXScale;
+extern f32 gViConfigYScale;
+
 void Idle_ThreadEntry(void* arg);
 
 #endif

@@ -4,5 +4,4 @@
 #ident "$Revision: 1.4 $"
 
 void osAckRamromRead() {
-
 }

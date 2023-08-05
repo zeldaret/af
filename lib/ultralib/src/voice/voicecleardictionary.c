@@ -1,15 +1,17 @@
 #include "PR/os_internal.h"
 #include "io/controller.h"
 #include "PR/os_voice.h"
+#include "voiceinternal.h"
 
 s32 osVoiceClearDictionary(OSVoiceHandle* hd, u8 words) {
     s32 ret;
     u8 stat;
     u8 buf[4];
 
-    ERRCK(__osVoiceGetStatus(hd->__mq, hd->__channel, &stat));
-
-    if (stat & 2) {
+    ret = __osVoiceGetStatus(hd->__mq, hd->__channel, &stat);
+    if (ret != 0) {
+        return ret;
+    } else if (stat & 2) {
         return CONT_ERR_VOICE_NO_RESPONSE;
     }
 
@@ -25,4 +27,3 @@ s32 osVoiceClearDictionary(OSVoiceHandle* hd, u8 words) {
 
     return ret;
 }
-

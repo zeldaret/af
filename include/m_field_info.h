@@ -3,6 +3,8 @@
 
 #include "ultra64.h"
 
+struct CommonData;
+
 // void func_80087C30_jp();
 // void func_80087C40_jp();
 // void func_80087C64_jp();
@@ -203,7 +205,7 @@
 // void func_8008EEE8_jp();
 // void func_8008EF0C_jp();
 // void mFRm_CheckSaveData();
-// void mFRm_ClearSaveCheckData();
+void mFRm_ClearSaveCheckData(CommonData* common_data);
 // void func_8008EFDC_jp();
 // void func_8008F020_jp();
 // void func_8008F040_jp();

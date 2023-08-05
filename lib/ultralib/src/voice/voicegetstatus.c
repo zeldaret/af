@@ -2,6 +2,7 @@
 #include "io/controller.h"
 #include "PR/os_voice.h"
 #include "voiceinternal.h"
+#include "io/siint.h"
 
 s32 __osVoiceGetStatus(OSMesgQueue* mq, s32 port, u8* status) {
     __OSContRequesFormatShort header;
@@ -37,7 +38,7 @@ s32 __osVoiceGetStatus(OSMesgQueue* mq, s32 port, u8* status) {
 
         header = *((__OSContRequesFormatShort*)ptr);
 
-        ret = CHNL_ERR(header);
+        ret = (u8)CHNL_ERR(header);
         *status = header.status;
 
         if (ret == 0) {

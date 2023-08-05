@@ -11,7 +11,7 @@ ldiv_t ldiv(long num, long denom) {
     ret.rem = num - denom * ret.quot;
 
     if (ret.quot < 0 && ret.rem > 0) {
-        ret.quot++;
+        ret.quot += 1;
         ret.rem -= denom;
     }
 
@@ -25,7 +25,7 @@ lldiv_t lldiv(long long num, long long denom) {
     ret.rem = num - denom * ret.quot;
 
     if (ret.quot < 0 && ret.rem > 0) {
-        ret.quot++;
+        ret.quot += 1;
         ret.rem -= denom;
     }
 

@@ -61,11 +61,10 @@ osWritebackDCache = 0x8002FE00; // type:func size:0x74 (writebackdcache, true)
 __createSpeedParam = 0x8002FE80; // type:func size:0x9C (initialize, true)
 __osInitialize_common = 0x8002FF1C; // type:func size:0x2AC (initialize, true)
 __osInitialize_autodetect = 0x800301C8; // type:func size:0x8 (initialize, true)
-func_800301D0_jp = 0x800301D0; // type:func
 
 __osSetSR = 0x80030230; // type:func size:0x10 (setsr, true)
 __osGetSR = 0x80030240; // type:func size:0xC (getsr, true)
-func_80030250_jp = 0x80030250; // type:func
+osViGetNextFramebuffer = 0x80030250; // type:func size:0x3C (vigetnextframebuf, true)
 
 guPerspectiveF = 0x80030290; // type:func size:0x230 (perspective, true)
 guPerspective = 0x800304C0; // type:func size:0x58 (perspective, true)
@@ -85,7 +84,6 @@ __osPfsGetStatus = 0x80030C00; // type:func size:0xD0 (pfsgetstatus, true)
 __osPfsRequestOneChannel = 0x80030CD0; // type:func size:0xC4 (pfsgetstatus, true)
 __osPfsGetOneChannelData = 0x80030D94; // type:func size:0x98 (pfsgetstatus, true)
 
-func_80030E30_jp = 0x80030E30; // type:func
 guMtxIdentF = 0x80030E40; // type:func size:0x48 (mtxidentf, true)
 osViSetMode = 0x80030E90; // type:func size:0x58 (visetmode, true)
 osFlashInit = 0x80030EF0; // type:func size:0xF0 (flashinit, true)
@@ -117,7 +115,6 @@ __osCheckId = 0x80032BF0; // type:func size:0xD4 (contpfs, true)
 __osPfsRWInode = 0x80032CC4; // type:func size:0x2D4 (contpfs, true)
 
 osGetCount = 0x80032FA0; // type:func size:0xC (getcount, true)
-func_80032FB0_jp = 0x80032FB0; // type:func
 
 guMtxL2F = 0x80032FC0; // type:func size:0x68 (mtxl2f, true)
 osFlashReadStatus = 0x80033030; // type:func size:0x90 (flashreadstatus, true)
@@ -172,7 +169,7 @@ guRotate = 0x80035E54; // type:func size:0x4C (rotate, true)
 __osSetGlobalIntMask = 0x80035EA0; // type:func size:0x4C (setglobalintmask, true)
 osAiSetFrequency = 0x80035EF0; // type:func size:0x144 (aisetfreq, true)
 __osGetActiveQueue = 0x80036040; // type:func
-func_80036050_jp = 0x80036050; // type:func
+
 guNormalize = 0x80036060; // type:func size:0x54 (normalize, true)
 __osSetCompare = 0x800360C0; // type:func size:0xC (setcompare, true)
 
@@ -222,7 +219,6 @@ osAiGetLength = 0x80038D60; // type:func size:0xC (aigetlen, true)
 osEPiWriteIo = 0x80038D70; // type:func (flashallerase, false)
 osMapTLBRdb = 0x80038DC0; // type:func size:0x58 (maptlbrdb, true)
 osYieldThread = 0x80038E20; // type:func size:0x4C (yieldthread, true)
-func_80038E70_jp = 0x80038E70; // type:func
 
 guTranslate = 0x80038E80; // type:func size:0xC8 (translate, true)
 
@@ -246,7 +242,6 @@ __osSiRawWriteIo = 0x8003A780; // type:func (initialize, false)
 __osSpSetStatus = 0x8003A7D0; // type:func size:0xC (spsetstat, true)
 __osSpGetStatus = 0x8003A7E0; // type:func size:0xC (spgetstat, true)
 
-func_8003A7F0_jp = 0x8003A7F0; // type:func
 osCreateViManager = 0x8003A800; // type:func size:0x180 (vimgr, true)
 viMgrMain = 0x8003A980; // type:func
 __osViGetCurrentContext = 0x8003AB10; // type:func (vimgr, false)
@@ -276,7 +271,7 @@ osEepromWrite = 0x8003B2F0; // type:func size:0x1C4 (conteepwrite, true)
 __osPackEepWriteData = 0x8003B4B4; // type:func
 
 __osEepStatus = 0x8003B560; // type:func size:0x1A8 (conteepwrite, true)
-func_8003B710_jp = 0x8003B710; // type:func
+osViGetCurrentFramebuffer = 0x8003B710; // type:func size:0x3C (vigetcurrframebuf, true)
 __osSpSetPc = 0x8003B750; // type:func size:0x2C (spsetpc, true)
 osFlashReadArray = 0x8003B780; // type:func size:0x194 (flashreadarray, true)
 __osFlashGetAddr = 0x8003B920; // type:func size:0x24 (flashgetaddr, true)
@@ -297,7 +292,7 @@ __osActiveQueue = 0x8003CE2C; // size:0x4 (createthread, false)
 __osRunningThread = 0x8003CE30; // size:0x4 (destroythread, false)
 __osFaultedThread = 0x8003CE34; // (exceptasm, false)
 __osContinitialized = 0x8003CE40; // size:0x4 (controller, true)
-D_8003CE50_jp = 0x8003CE50; //
+__osSiAccessQueueEnabled = 0x8003CE50; // size:0x4 (siacs, true)
 
 osClockRate = 0x8003CE60; // size:0x8 (initialize, true)
 osViClock = 0x8003CE68; // size:0x4 (aisetfreq, false)
@@ -307,13 +302,13 @@ __osPiDevMgr = 0x8003CE80; // size:0x1C (epidma, false)
 __osPiTable = 0x8003CE9C; // size:0x4 (cartrominit, false)
 __osCurrentHandle = 0x8003CEA0; // (epirawdma, false)
 __osPiAccessQueueEnabled = 0x8003CEB0; // size:0x4 (pimgr, false)
-D_8003CEC0_jp = 0x8003CEC0; //
+osViModeNtscLpn1 = 0x8003CEC0; //
 __osPfsInodeCacheChannel = 0x8003CF10; // size:0x4 (contpfs, true)
 __osPfsInodeCacheBank = 0x8003CF14; // type:s8 size:0x1 (contpfs, true)
 __osPreNMI = 0x8003CF20; // size:0x4 (seteventmesg, true)
 
-D_8003CF30_jp = 0x8003CF30; //
-D_8003CF54_jp = 0x8003CF54; //
+spaces = 0x8003CF30; // (xprintf, false)
+zeros = 0x8003CF54; // (xprintf, false)
 
 __osTimerList = 0x8003CF80; // size:0x4 (settimer, false)
 
@@ -323,16 +318,17 @@ D_FLT_8003CFA0_jp = 0x8003CFA0; // type:f32
 osViModeNtscLan1 = 0x8003CFB0; // size:0x50 (vi, false)
 osViModeMpalLan1 = 0x8003D000; // size:0x50 (vi, false)
 
-D_8003D050_jp = 0x8003D050; // size:0x70 (vi, false)
+vi = 0x8003D050; // size:0x70 (vi, false)
 __osViCurr = 0x8003D0B0; // size:0x4 (vi, true)
 __osViNext = 0x8003D0B4; // size:0x4 (vi, true)
 
-D_8003D0C0_jp = 0x8003D0C0; // size:0x10 (cartrominit, false)
-D_8003D0D0_jp = 0x8003D0D0; //
+first = 0x8003D0C0; // size:0x10 (cartrominit, false)
+osViModeFpalLan1 = 0x8003D0D0; //
 
 __osPfsLastChannel = 0x8003D120; // size:0x4 (contramread, true)
 
-D_8003D130_jp = 0x8003D130; // size:0x30 (xlitob, false)
+ldigs = 0x8003D130; // size:0x14 (xlitob, false)
+udigs = 0x8003D144; // size:0x14 (xlitob, false)
 
 __osViDevMgr = 0x8003D160; // size:0x5 (vimgr, true)
 __additional_scanline = 0x8003D17C; // size:0x4 (vimgr, true)
@@ -342,13 +338,13 @@ __additional_scanline = 0x8003D17C; // size:0x4 (vimgr, true)
 
 __osRcpImTable = 0x8003E5D0; // type:u16 size:0x80 (setintmask, true)
 
-RO_DBL_8003E650_jp = 0x8003E650; // type:f64 (sinf, false)
-RO_DBL_8003E678_jp = 0x8003E678; // type:f64
-RO_DBL_8003E680_jp = 0x8003E680; // type:f64
-RO_DBL_8003E688_jp = 0x8003E688; // type:f64
-RO_FLT_8003E690_jp = 0x8003E690; // type:f32
+P = 0x8003E650; // type:f64 (sinf, false)
+rpi = 0x8003E678; // type:f64
+pihi = 0x8003E680; // type:f64
+pilo = 0x8003E688; // type:f64
+zero = 0x8003E690; // type:f32
 
-RO_8003E6A0_jp = 0x8003E6A0; // type:u8 (exceptasm, false)
+__osIntOffTable = 0x8003E6A0; // type:u8 (exceptasm, false)
 jtbl_8003E6C0_jp = 0x8003E6C0; // type:jtbl
 
 RO_DBL_8003E6F0_jp = 0x8003E6F0; // type:f64 (perspective, false)
@@ -363,11 +359,11 @@ RO_STR_8003E734_jp = 0x8003E734; // type:asciz
 RO_8003E73C_jp = 0x8003E73C; //
 jtbl_8003E754_jp = 0x8003E754; // type:jtbl
 
-RO_DBL_8003E830_jp = 0x8003E830; // type:f64 (cosf, false)
-RO_DBL_8003E858_jp = 0x8003E858; // type:f64
-RO_DBL_8003E860_jp = 0x8003E860; // type:f64
-RO_DBL_8003E868_jp = 0x8003E868; // type:f64
-RO_FLT_8003E870_jp = 0x8003E870; // type:f32
+P = 0x8003E830; // type:f64 (cosf, false)
+rpi = 0x8003E858; // type:f64
+pihi = 0x8003E860; // type:f64
+pilo = 0x8003E868; // type:f64
+zero = 0x8003E870; // type:f32
 
 __libm_qnan_f = 0x8003E880; // type:f32 size:0x4 (cosf, false)
 
@@ -379,24 +375,20 @@ __libm_qnan_f = 0x8003E880; // type:f32 size:0x4 (cosf, false)
 
 // .bss
 
-B_80041A10_jp = 0x80041A10; // size:0x40 (sptask, false)
+tmp_task = 0x80041A10; // size:0x40 (sptask, false)
 
 __osContPifRam = 0x80041A50; // size:0x40 (contquery, false)
 __osContLastCmd = 0x80041A90; // type:s8 size:0x1 size:0x1 (conteepread, false)
 __osMaxControllers = 0x80041A91; // type:s8 size:0x1 size:0x1 (contreaddata, false)
 
-B_80041A92_jp = 0x80041A92; //
-
+__osEepromTimer = 0x80041A92; //
 __osEepromTimerQ = 0x80041AB8; // size:0x18 (controller, true)
 __osEepromTimerMsg = 0x80041AD0; // size:0x4 (controller, true)
 
-B_80041AD4_jp = 0x80041AD4; //
-B_80041AE0_jp = 0x80041AE0; //
-B_80041AE8_jp = 0x80041AE8; //
+siAccessBuf = 0x80041AE0; //
+__osSiAccessQueue = 0x80041AE8; //
 
 __osFinalrom = 0x80041B00; // size:0x4 (initialize, true)
-
-B_80041B04_jp = 0x80041B04; //
 
 __osThreadSave = 0x80041B10; // (exceptasm, false)
 
@@ -407,45 +399,43 @@ __osFlashHandler = 0x80041D00; // size:0x74 (flashallerase, false)
 __osFlashMsgBuf = 0x80041D74; // size:0x4 (flashinit, true)
 __osFlashVersion = 0x80041D78; // size:0x4 (flashgetaddr, false)
 
-B_80041D7C_jp = 0x80041D7C; //
-
-B_80041D80_jp = 0x80041D80; //
+__MotorDataBuf = 0x80041D80; //
 
 __Dom1SpeedParam = 0x80041E80; // type:s8 size:0x74 (initialize, false)
 __Dom2SpeedParam = 0x80041EF8; // type:s8 size:0x74 (initialize, false)
-B_80041F6C_jp = 0x80041F6C; //
-B_80041F70_jp = 0x80041F70; //
-B_80043120_jp = 0x80043120; //
-B_80043138_jp = 0x80043138; //
-B_80043140_jp = 0x80043140; //
+piThread = 0x80041F70; //
+piThreadStack = 0x80042120;
+piEventQueue = 0x80043120; //
+piEventBuf = 0x80043138; //
 
+piAccessBuf = 0x80043140; //
 __osPiAccessQueue = 0x80043148; // size:0x18 (pimgr, false)
-__osPfsInodeCache = 0x80043160; // size:0x100 (contpfs, true)
-__osEventStateTab = 0x80043260; // size:0x78 (seteventmesg, true)
-B_800432D8_jp = 0x800432D8; //
-B_800432E0_jp = 0x800432E0; //
 
+__osPfsInodeCache = 0x80043160; // size:0x100 (contpfs, true)
+
+__osEventStateTab = 0x80043260; // size:0x78 (seteventmesg, true)
+
+__osBaseTimer = 0x800432E0; //
 __osCurrentTime = 0x80043300; // size:0x8 (gettime, false)
 __osBaseCounter = 0x80043308; // size:0x4 (gettime, false)
 __osViIntrCount = 0x8004330C; // size:0x4 (timerintr, true)
 __osTimerCounter = 0x80043310; // size:0x4 (settimer, false)
-B_80043314_jp = 0x80043314; //
 
 __osGbpakTimer = 0x80043320; // size:0x20 (gbpakinit, true)
 __osGbpakTimerQ = 0x80043340; // size:0x18 (gbpakinit, true)
 __osGbpakTimerMsg = 0x80043358; // size:0x4 (gbpakinit, true)
-B_8004335C_jp = 0x8004335C; //
 
 __osPfsPifRam = 0x80043360; // type:u8 size:0x40 (contramread, false)
 __CartRomHandle = 0x800433A0; // size:0x74 (cartrominit, true)
 
 
-B_80043420_jp = 0x80043420; // 0x1220 (vimgr, false)
-B_800445D0_jp = 0x800445D0; //
-B_800445E8_jp = 0x800445E8; //
-B_80044600_jp = 0x80044600; //
-B_80044618_jp = 0x80044618; //
-B_80044630_jp = 0x80044630; //
+viThread = 0x80043420; // size:0x1B0 (vimgr, false)
+viThreadStack = 0x800345D0
+viEventQueue = 0x800445D0; //
+viEventBuf = 0x800445E8; //
+viRetraceMsg = 0x80044600; //
+viCounterMsg = 0x80044618; //
+retrace = 0x80044630; //
 
 __osEepPifRam = 0x80044640; // type:s8 size:0x40 (conteepread, true)
 __osEepromRead16K = 0x80044680; // size:0x4 (conteepread, true)

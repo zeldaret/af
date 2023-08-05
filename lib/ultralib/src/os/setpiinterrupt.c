@@ -2,13 +2,13 @@
 
 struct __osHwInt {
     s32 (*handler)(void);
-    void *stackEnd;
+    void* stackEnd;
 };
 
 extern struct __osHwInt __osPiIntTable;
 
-void __osSetPIIntrRoutine(struct __osHwInt *ir) {
-    register u32 saveMask= __osDisableInt();
+void __osSetPIIntrRoutine(struct __osHwInt* ir) {
+    register u32 saveMask = __osDisableInt();
 
     __osPiIntTable.handler = ir->handler;
     __osPiIntTable.stackEnd = ir->stackEnd;

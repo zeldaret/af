@@ -7,21 +7,21 @@
 
 
 #define DECLARE_VRAM_SEGMENT(name) \
-    extern u32 name ## _VRAM[]; \
-    extern u32 name ## _VRAM_END[]
+    extern u8 name ## _VRAM[]; \
+    extern u8 name ## _VRAM_END[]
 
 #define DECLARE_ROM_SEGMENT(name) \
-    extern u32 name ## _ROM_START[]; \
-    extern u32 name ## _ROM_END[]
+    extern u8 name ## _ROM_START[]; \
+    extern u8 name ## _ROM_END[]
 
 #define DECLARE_DATA_SEGMENT(name)   \
-    extern u32 name ## _DATA_START[]; \
-    extern u32 name ## _DATA_END[]; \
-    extern u32 name ## _DATA_SIZE[]
+    extern u8 name ## _DATA_START[]; \
+    extern u8 name ## _DATA_END[]; \
+    extern u8 name ## _DATA_SIZE[]
 
 #define DECLARE_BSS_SEGMENT(name)   \
-    extern u32 name ## _BSS_START[]; \
-    extern u32 name ## _BSS_END[]
+    extern u8 name ## _BSS_START[]; \
+    extern u8 name ## _BSS_END[]
 
 #define DECLARE_SEGMENT(name) \
     DECLARE_VRAM_SEGMENT(name); \
@@ -36,6 +36,7 @@
 #define SEGMENT_ROM_START(segment) ((RomOffset)segment ## _ROM_START)
 #define SEGMENT_ROM_END(segment)   ((RomOffset)segment ## _ROM_END)
 #define SEGMENT_ROM_SIZE(segment)  (SEGMENT_ROM_END(segment) - SEGMENT_ROM_START(segment))
+#define SEGMENT_ROM_SIZE_ALT(segment)  ((size_t)(segment ## _ROM_END - segment ## _ROM_START))
 
 #define SEGMENT_DATA_SIZE_CONST(segment) ((RomOffset)segment ## _DATA_SIZE)
 

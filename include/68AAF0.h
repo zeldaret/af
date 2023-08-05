@@ -3,6 +3,6 @@
 
 #include "ultra64.h"
 
-// void clip_clear();
+void clip_clear(void);
 
 #endif

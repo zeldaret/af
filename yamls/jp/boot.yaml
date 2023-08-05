@@ -7,9 +7,8 @@
     subsegments:
       - [0x001060, c, boot/boot_main]
 
-      - [0x0011F0, asm, boot/idle]
-
-      - [0x0014A0, asm, boot/viconfig]
+      - [0x0011F0, c, boot/idle]
+      - [0x0014A0, c, boot/viconfig]
       - [0x001640, asm, boot/001640]
       - [0x0017F0, asm, boot/z_std_dma]
       - [0x0022A0, asm, boot/yaz0]
@@ -29,168 +28,170 @@
       - [0x007A40, hasm, boot/fp]
       - [0x007BA0, asm, boot/malloc]
       - [0x007D70, asm, boot/qrand]
-      - [0x007F30, asm, boot/__osMalloc]
+      - [0x007F30, c, boot/O2/__osMalloc]
       - [0x008C50, asm, boot/sprintf]
       - [0x008D20, asm, boot/printutils]
       - [0x008D80, asm, boot/sleep]
 
       # libultra
-      - [0x008F20, asm, libultra/sendmesg] # c
-      - [0x009070, asm, libultra/pfsfreeblocks] # c
-      - [0x009210, asm, libultra/stopthread] # c
-      - [0x0092D0, asm, libultra/flashreadid] # c
-      - [0x0093A0, asm, libultra/recvmesg] # c
-      - [0x0094E0, hasm, libultra/setintmask]
-      - [0x009580, hasm, libultra/getintmask]
-      - [0x0095E0, asm, libultra/scale] # c
-      - [0x009690, asm, libultra/sinf] # c
-      - [0x009850, asm, libultra/sins] # c
-      - [0x0098C0, asm, libultra/sptask] # c
-      - [0x009B80, asm, libultra/destroythread] # c
-      - [0x009C90, asm, libultra/ll] # c
-      - [0x009F50, hasm, libultra/exceptasm]
-      - [0x00A880, asm, libultra/thread] # c
-      - [0x00A8C0, hasm, libultra/bzero]
-      - [0x00A960, asm, libultra/controller] # c
-      - [0x00AC40, asm, libultra/siacs]
-      - [0x00AD00, asm, libultra/flashsectorerase] # c
-      - [0x00AE50, asm, libultra/createthread] # c
-      - [0x00AFA0, asm, libultra/contreaddata] # c
-      - [0x00B180, asm, libultra/virtualtophysical] # c
-      - [0x00B200, hasm, libultra/writebackdcache]
-      - [0x00B280, asm, libultra/initialize] # c
-      - [0x00B5D0, asm, boot/00B5D0] # PADDING
-      - [0x00B630, hasm, libultra/setsr]
-      - [0x00B640, hasm, libultra/getsr]
-      - [0x00B650, asm, boot/00B650]
-      - [0x00B690, asm, libultra/perspective] # c
-      - [0x00B920, asm, libultra/sprawdma] # c
-      - [0x00B9B0, asm, libultra/sirawdma] # c
-      - [0x00BA60, asm, libultra/epilinkhandle] # c
-      - [0x00BAB0, asm, libultra/viblack] # c
-      - [0x00BB20, asm, libultra/sirawread] # c
-      - [0x00BB70, asm, libultra/getthreadid] # c
-      - [0x00BB90, asm, libultra/sptaskyield] # c
-      - [0x00BBB0, asm, libultra/pfsreadwritefile] # c
-      - [0x00C000, asm, libultra/pfsgetstatus] # c
-      - [0x00C230, asm, boot/00C230] # PADDING
-      - [0x00C240, asm, libultra/mtxidentf] # c
-      - [0x00C290, asm, libultra/visetmode] # c
-      - [0x00C2F0, asm, libultra/flashinit] # c
-      - [0x00C3E0, asm, libultra/lookat] # c
-      - [0x00C700, asm, libultra/motor] # c
-      - [0x00CAD0, asm, libultra/pfsallocatefile] # c
-      - [0x00CF50, asm, libultra/stoptimer] # c
-      - [0x00D040, asm, libultra/probetlb] # c
-      - [0x00D100, asm, libultra/pimgr] # c
-      - [0x00D270, asm, libultra/piacs] # c
-      - [0x00D340, asm, libultra/devmgr] # c
-      - [0x00D820, asm, libultra/contpfs] # c
-      - [0x00E3A0, hasm, libultra/getcount]
-      - [0x00E3B0, asm, boot/00E3B0]
-      - [0x00E3C0, asm, libultra/mtxl2f] # c
-      - [0x00E430, asm, libultra/flashreadstatus] # c
-      - [0x00E4C0, asm, libultra/getmemsize] # c
-      - [0x00E5E0, asm, libultra/pfssearchfile] # c
-      - [0x00E7B0, asm, libultra/seteventmesg] # c
-      - [0x00E870, hasm, libultra/sqrtf]
-      - [0x00E880, asm, libultra/afterprenmi] # c
-      - [0x00E8A0, asm, libultra/contquery] # c
-      - [0x00E940, asm, libultra/lookathil] # c
-      - [0x00F1C0, asm, libultra/xprintf] # c
-      - [0x00FEA0, hasm, libultra/unmaptlball]
-      - [0x00FEF0, asm, libultra/epidma] # c
-      - [0x00FF90, asm, libultra/string] # c
-      - [0x010030, hasm, libultra/invaldcache]
-      - [0x0100E0, hasm, libultra/invalicache]
-      - [0x010160, asm, libultra/createmesgqueue] # c
-      - [0x010190, asm, libultra/pfsrepairid] # c
-      - [0x0101F0, asm, libultra/timerintr] # c
-      - [0x010620, asm, libultra/sp] # c
-      - [0x010650, asm, libultra/si] # c
-      - [0x010680, asm, libultra/mtxident] # c
-      - [0x0106D0, asm, libultra/jammesg] # c
-      - [0x010820, asm, libultra/setthreadpri] # c
-      - [0x010900, asm, libultra/getthreadpri] # c
-      - [0x010920, asm, libultra/epirawread] # c
-      - [0x010A80, asm, libultra/viswapbuf] # c
-      - [0x010AD0, asm, libultra/position] # c
-      - [0x010CE0, asm, libultra/epirawdma] # c
-      - [0x010EC0, asm, libultra/sptaskyielded] # c
-      - [0x010F20, hasm, libultra/bcmp]
-      - [0x011040, asm, libultra/gettime] # c
-      - [0x0110D0, asm, libultra/rotate] # c
-      - [0x0112A0, asm, libultra/setglobalintmask] # c
-      - [0x0112F0, asm, libultra/aisetfreq] # c
-      - [0x011440, asm, libultra/getactivequeue]
-      - [0x011450, asm, boot/011450] # PADDING
-      - [0x011460, asm, libultra/normalize] # c
-      - [0x0114C0, hasm, libultra/setcompare]
-      - [0x0114D0, asm, libultra/aigetstat] # c
-      - [0x0114E0, hasm, libultra/bcopy]
-      - [0x0117F0, asm, libultra/resetglobalintmask] # c
-      - [0x011850, asm, libultra/pfsdeletefile] # c
-      - [0x011AC0, asm, libultra/ortho] # c
-      - [0x011C80, asm, libultra/gbpakinit] # c
-      - [0x011EB0, asm, libultra/vi] # c
-      - [0x011FD0, asm, libultra/viswapcontext] # c
-      - [0x0122D0, hasm, libultra/interrupt]
-      - [0x012360, asm, libultra/pigetcmdq] # c
-      - [0x012390, asm, libultra/cosf] # c
-      - [0x012500, asm, libultra/epiread]
-      - [0x012550, asm, libultra/visetspecial] # c
-      - [0x0126B0, asm, libultra/coss] # c
-      - [0x0126E0, asm, libultra/flashwritearray] # c
-      - [0x012840, asm, libultra/flashallerase] # c
-      - [0x012980, asm, libultra/flashclearstatus] # c
-      - [0x0129D0, asm, libultra/visetevent] # c
-      - [0x012A30, asm, libultra/pfsisplug] # c
-      - [0x012D20, asm, libultra/flashwritebuffer] # c
-      - [0x012DB0, asm, libultra/pfsnumfiles] # c
-      - [0x012EE0, asm, libultra/cartrominit] # c
-      - [0x013040, asm, libultra/us2dex] # c
-      - [0x0131C0, asm, libultra/pfsselectbank] # c
-      - [0x013240, asm, libultra/contsetch] # c
-      - [0x0132A0, hasm, libultra/setfpccsr]
-      - [0x0132B0, hasm, libultra/getfpccsr]
-      - [0x0132C0, asm, libultra/pfsfilestate] # c
-      - [0x0134A0, asm, libultra/pfsinitpak] # c
-      - [0x0137B0, asm, libultra/pfschecker] # c
-      - [0x014160, asm, libultra/aigetlen] # c
-      - [0x014170, asm, libultra/epiwrite] # c
-      - [0x0141C0, hasm, libultra/maptlbrdb]
-      - [0x014220, asm, libultra/yieldthread] # c
-      - [0x014270, asm, boot/014270] # PADDING
-      - [0x014280, asm, libultra/translate] # c
-      - [0x014350, hasm, libultra/getcause]
-      - [0x014360, asm, libultra/contramwrite] # c
-      - [0x0145B0, asm, libultra/contramread] # c
-      - [0x0147E0, asm, libultra/crc] # c
-      - [0x014950, asm, libultra/epirawwrite] # c
-      - [0x014AB0, asm, libultra/settimer] # c
-      - [0x014C40, asm, libultra/xldtob] # c
-      - [0x015750, asm, libultra/ldiv] # c
-      - [0x0158E0, asm, libultra/xlitob] # c
-      - [0x015B80, asm, libultra/sirawwrite] # c
-      - [0x015BD0, asm, libultra/spsetstat] # c
-      - [0x015BE0, asm, libultra/spgetstat] # c
-      - [0x015BF0, asm, boot/015BF0] # PADDING
-      - [0x015C00, asm, libultra/vimgr] # c
-      - [0x015F10, asm, libultra/vigetcurrentcontext]
-      - [0x015F20, hasm, libultra/writebackdcacheall]
-      - [0x015F50, asm, libultra/getcurrfaultthread]
-      - [0x015F60, asm, libultra/mtxf2l] # c
-      - [0x015FD0, asm, libultra/startthread] # c
-      - [0x016120, asm, libultra/llcvt] # c
-      - [0x016330, asm, libultra/visetyscale] # c
-      - [0x016380, asm, libultra/visetxscale] # c
-      - [0x016490, asm, libultra/conteepread] # c
-      - [0x0166F0, asm, libultra/conteepwrite] # c
-      - [0x016B10, asm, boot/016B10]
-      - [0x016B50, asm, libultra/spsetpc] # c
-      - [0x016B80, asm, libultra/flashreadarray] # c
-      - [0x016D20, asm, libultra/flashgetaddr] # c
-      - [0x016D50, hasm, libultra/setwatchlo]
+      - [0x008F20, c, ../lib/ultralib/src/os/sendmesg]
+      - [0x009070, c, ../lib/ultralib/src/io/pfsfreeblocks]
+      - [0x009210, c, ../lib/ultralib/src/os/stopthread]
+      - [0x0092D0, c, ../lib/ultralib/src/flash/flashreadid]
+      - [0x0093A0, c, ../lib/ultralib/src/os/recvmesg]
+      - [0x0094E0, .hasm, ../../lib/ultralib/src/os/setintmask]
+      - [0x009580, .hasm, ../../lib/ultralib/src/os/getintmask]
+      - [0x0095E0, .hasm, ../../lib/ultralib/src/mgu/scale]
+      - [0x009690, c, ../lib/ultralib/src/gu/sinf]
+      - [0x009850, c, ../lib/ultralib/src/gu/sins]
+      - [0x0098C0, c, ../lib/ultralib/src/io/sptask]
+      - [0x009B80, c, ../lib/ultralib/src/os/destroythread]
+      - [0x009C90, c, ../lib/ultralib/src/libc/ll]
+      - [0x009F50, .hasm, ../../lib/ultralib/src/os/exceptasm]
+      - [0x00A880, c, ../lib/ultralib/src/os/thread]
+      - [0x00A8C0, .hasm, ../../lib/ultralib/src/libc/bzero]
+      - [0x00A960, c, ../lib/ultralib/src/io/controller]
+      - [0x00AC40, c, ../lib/ultralib/src/io/siacs]
+      - [0x00AD00, c, ../lib/ultralib/src/flash/flashsectorerase]
+      - [0x00AE50, c, ../lib/ultralib/src/os/createthread]
+      - [0x00AFA0, c, ../lib/ultralib/src/io/contreaddata]
+      - [0x00B180, c, ../lib/ultralib/src/os/virtualtophysical]
+      - [0x00B200, .hasm, ../../lib/ultralib/src/os/writebackdcache]
+      - [0x00B280, c, ../lib/ultralib/src/os/initialize]
+      - [0x00B5D0, .hasm, ../../lib/ultralib/src/os/parameters]
+      - [0x00B630, .hasm, ../../lib/ultralib/src/os/setsr]
+      - [0x00B640, .hasm, ../../lib/ultralib/src/os/getsr]
+      - [0x00B650, c, ../lib/ultralib/src/io/vigetnextframebuf]
+      - [0x00B690, c, ../lib/ultralib/src/gu/perspective]
+      - [0x00B920, c, ../lib/ultralib/src/io/sprawdma]
+      - [0x00B9B0, c, ../lib/ultralib/src/io/sirawdma]
+      - [0x00BA60, c, ../lib/ultralib/src/io/epilinkhandle]
+      - [0x00BAB0, c, ../lib/ultralib/src/io/viblack]
+      - [0x00BB20, c, ../lib/ultralib/src/io/sirawread]
+      - [0x00BB70, c, ../lib/ultralib/src/os/getthreadid]
+      - [0x00BB90, c, ../lib/ultralib/src/io/sptaskyield]
+      - [0x00BBB0, c, ../lib/ultralib/src/io/pfsreadwritefile]
+      - [0x00C000, c, ../lib/ultralib/src/io/pfsgetstatus]
+      - [0x00C230, asm, boot/padding00C230]
+      - [0x00C240, .hasm, ../../lib/ultralib/src/mgu/mtxidentf]
+      - [0x00C290, c, ../lib/ultralib/src/io/visetmode]
+      - [0x00C2F0, c, ../lib/ultralib/src/flash/flashinit]
+      - [0x00C3E0, c, ../lib/ultralib/src/gu/lookat]
+      - [0x00C700, c, ../lib/ultralib/src/io/motor]
+      - [0x00CAD0, c, ../lib/ultralib/src/io/pfsallocatefile]
+      - [0x00CF50, c, ../lib/ultralib/src/os/stoptimer]
+      - [0x00D040, .hasm, ../../lib/ultralib/src/os/probetlb]
+      - [0x00D100, c, ../lib/ultralib/src/io/pimgr]
+      - [0x00D270, c, ../lib/ultralib/src/io/piacs]
+      - [0x00D330, asm, boot/padding00D330]
+      - [0x00D340, c, ../lib/ultralib/src/io/devmgr]
+      - [0x00D750, c, ../lib/ultralib/src/io/pirawdma]
+      - [0x00D820, c, ../lib/ultralib/src/io/contpfs]
+      - [0x00E3A0, .hasm, ../../lib/ultralib/src/os/getcount]
+      - [0x00E3B0, asm, boot/padding00E3B0]
+      - [0x00E3C0, .hasm, ../../lib/ultralib/src/mgu/mtxl2f]
+      - [0x00E430, c, ../lib/ultralib/src/flash/flashreadstatus]
+      - [0x00E4C0, c, ../lib/ultralib/src/os/getmemsize]
+      - [0x00E5E0, c, ../lib/ultralib/src/io/pfssearchfile]
+      - [0x00E7B0, c, ../lib/ultralib/src/os/seteventmesg]
+      - [0x00E870, .hasm, ../../lib/ultralib/src/gu/sqrtf]
+      - [0x00E880, c, ../lib/ultralib/src/os/afterprenmi]
+      - [0x00E8A0, c, ../lib/ultralib/src/io/contquery]
+      - [0x00E940, c, ../lib/ultralib/src/gu/lookathil]
+      - [0x00F1C0, c, ../lib/ultralib/src/libc/xprintf]
+      - [0x00FEA0, .hasm, ../../lib/ultralib/src/os/unmaptlball]
+      - [0x00FEF0, c, ../lib/ultralib/src/io/epidma]
+      - [0x00FF90, c, ../lib/ultralib/src/libc/string]
+      - [0x010030, .hasm, ../../lib/ultralib/src/os/invaldcache]
+      - [0x0100E0, .hasm, ../../lib/ultralib/src/os/invalicache]
+      - [0x010160, c, ../lib/ultralib/src/os/createmesgqueue]
+      - [0x010190, c, ../lib/ultralib/src/io/pfsrepairid]
+      - [0x0101F0, c, ../lib/ultralib/src/os/timerintr]
+      - [0x010620, c, ../lib/ultralib/src/io/sp]
+      - [0x010650, c, ../lib/ultralib/src/io/si]
+      - [0x010680, .hasm, ../../lib/ultralib/src/mgu/mtxident]
+      - [0x0106D0, c, ../lib/ultralib/src/os/jammesg]
+      - [0x010820, c, ../lib/ultralib/src/os/setthreadpri]
+      - [0x010900, c, ../lib/ultralib/src/os/getthreadpri]
+      - [0x010920, c, ../lib/ultralib/src/io/epirawread]
+      - [0x010A80, c, ../lib/ultralib/src/io/viswapbuf]
+      - [0x010AD0, c, ../lib/ultralib/src/gu/position]
+      - [0x010CE0, c, ../lib/ultralib/src/io/epirawdma]
+      - [0x010EC0, c, ../lib/ultralib/src/io/sptaskyielded]
+      - [0x010F20, .hasm, ../../lib/ultralib/src/libc/bcmp]
+      - [0x011040, c, ../lib/ultralib/src/os/gettime]
+      - [0x0110D0, c, ../lib/ultralib/src/mgu/rotate]
+      - [0x0112A0, c, ../lib/ultralib/src/os/setglobalintmask]
+      - [0x0112F0, c, ../lib/ultralib/src/io/aisetfreq]
+      - [0x011440, c, ../lib/ultralib/src/os/getactivequeue]
+      - [0x011450, asm, boot/padding011450]
+      - [0x011460, .hasm, ../../lib/ultralib/src/mgu/normalize]
+      - [0x0114C0, .hasm, ../../lib/ultralib/src/os/setcompare]
+      - [0x0114D0, c, ../lib/ultralib/src/io/aigetstat]
+      - [0x0114E0, .hasm, ../../lib/ultralib/src/libc/bcopy]
+      - [0x0117F0, c, ../lib/ultralib/src/os/resetglobalintmask]
+      - [0x011850, c, ../lib/ultralib/src/io/pfsdeletefile]
+      - [0x011AC0, c, ../lib/ultralib/src/gu/ortho]
+      - [0x011C80, c, ../lib/ultralib/src/io/gbpakinit]
+      - [0x011EB0, c, ../lib/ultralib/src/io/vi]
+      - [0x011FD0, c, ../lib/ultralib/src/io/viswapcontext]
+      - [0x0122D0, .hasm, ../../lib/ultralib/src/os/interrupt]
+      - [0x012360, c, ../lib/ultralib/src/io/pigetcmdq]
+      - [0x012390, c, ../lib/ultralib/src/gu/cosf]
+      - [0x012500, c, ../lib/ultralib/src/io/epiread]
+      - [0x012550, c, ../lib/ultralib/src/io/visetspecial]
+      - [0x0126B0, c, ../lib/ultralib/src/gu/coss]
+      - [0x0126E0, c, ../lib/ultralib/src/flash/flashwritearray]
+      - [0x012840, c, ../lib/ultralib/src/flash/flashallerase]
+      - [0x012980, c, ../lib/ultralib/src/flash/flashclearstatus]
+      - [0x0129D0, c, ../lib/ultralib/src/io/visetevent]
+      - [0x012A30, c, ../lib/ultralib/src/io/pfsisplug]
+      - [0x012D20, c, ../lib/ultralib/src/flash/flashwritebuffer]
+      - [0x012DB0, c, ../lib/ultralib/src/io/pfsnumfiles]
+      - [0x012EE0, c, ../lib/ultralib/src/io/cartrominit]
+      - [0x013040, c, ../lib/ultralib/src/gu/us2dex]
+      - [0x0131C0, c, ../lib/ultralib/src/io/pfsselectbank]
+      - [0x013240, c, ../lib/ultralib/src/io/contsetch]
+      - [0x0132A0, .hasm, ../../lib/ultralib/src/os/setfpccsr]
+      - [0x0132B0, .hasm, ../../lib/ultralib/src/os/getfpccsr]
+      - [0x0132C0, c, ../lib/ultralib/src/io/pfsfilestate]
+      - [0x0134A0, c, ../lib/ultralib/src/io/pfsinitpak]
+      - [0x0137B0, c, ../lib/ultralib/src/io/pfschecker]
+      - [0x014160, c, ../lib/ultralib/src/io/aigetlen]
+      - [0x014170, c, ../lib/ultralib/src/io/epiwrite]
+      - [0x0141C0, .hasm, ../../lib/ultralib/src/os/maptlbrdb]
+      - [0x014220, c, ../lib/ultralib/src/os/yieldthread]
+      - [0x014270, asm, boot/padding014270]
+      - [0x014280, .hasm, ../../lib/ultralib/src/mgu/translate]
+      - [0x014350, .hasm, ../../lib/ultralib/src/os/getcause]
+      - [0x014360, c, ../lib/ultralib/src/io/contramwrite]
+      - [0x0145B0, c, ../lib/ultralib/src/io/contramread]
+      - [0x0147E0, c, ../lib/ultralib/src/io/crc]
+      - [0x014950, c, ../lib/ultralib/src/io/epirawwrite]
+      - [0x014AB0, c, ../lib/ultralib/src/os/settimer]
+      - [0x014C40, c, ../lib/ultralib/src/libc/xldtob]
+      - [0x015750, c, ../lib/ultralib/src/libc/ldiv]
+      - [0x0158E0, c, ../lib/ultralib/src/libc/xlitob]
+      - [0x015B80, c, ../lib/ultralib/src/io/sirawwrite]
+      - [0x015BD0, c, ../lib/ultralib/src/io/spsetstat]
+      - [0x015BE0, c, ../lib/ultralib/src/io/spgetstat]
+      - [0x015BF0, asm, boot/padding015BF0]
+      - [0x015C00, c, ../lib/ultralib/src/io/vimgr]
+      - [0x015F10, c, ../lib/ultralib/src/io/vigetcurrcontext]
+      - [0x015F20, .hasm, ../../lib/ultralib/src/os/writebackdcacheall]
+      - [0x015F50, c, ../lib/ultralib/src/os/getcurrfaultthread]
+      - [0x015F60, .hasm, ../../lib/ultralib/src/mgu/mtxf2l]
+      - [0x015FD0, c, ../lib/ultralib/src/os/startthread]
+      - [0x016120, c, ../lib/ultralib/src/libc/llcvt]
+      - [0x016330, c, ../lib/ultralib/src/io/visetyscale]
+      - [0x016380, c, ../lib/ultralib/src/io/visetxscale]
+      - [0x016490, c, ../lib/ultralib/src/io/conteepread]
+      - [0x0166F0, c, ../lib/ultralib/src/io/conteepwrite]
+      - [0x016B10, c, ../lib/ultralib/src/io/vigetcurrframebuf]
+      - [0x016B50, c, ../lib/ultralib/src/io/spsetpc]
+      - [0x016B80, c, ../lib/ultralib/src/flash/flashreadarray]
+      - [0x016D20, c, ../lib/ultralib/src/flash/flashgetaddr]
+      - [0x016D50, .hasm, ../../lib/ultralib/src/os/setwatchlo]
 
       # libido?
       - [0x016D60, asm, boot/016D60]
@@ -199,15 +200,44 @@
       - [0x016E20, asm, boot/016E20]
       - [0x016E60, asm, boot/016E60]
 
-      - [0x016EF0, data, libultra/rsp/rspboot]
 
-      - [0x016FC0, data, boot/016FC0]
+      - [0x016EF0, data, boot/rsp/rspboot]
+
+      - [0x016FC0, .data, boot/idle]
+      - [0x016FD0, data, boot/016FD0]
       - [0x0170A0, .data, boot/logseverity]
       - [0x0170B0, data, boot/gfxprint]
       - [0x017960, data, boot/017960] # boot/007060 starts around here, but no idea where it ends
 
+      # libultra
+      - [0x0179A0, .data, ../lib/ultralib/src/vimodes/vimodepallan1]
+      - [0x0179F0, .data, ../lib/ultralib/src/gu/sins]
+      - [0x0181F0, .data, ../lib/ultralib/src/os/exceptasm]
+      - [0x018220, .data, ../lib/ultralib/src/os/thread]
+      - [0x018240, .data, ../lib/ultralib/src/io/controller]
+      - [0x018250, .data, ../lib/ultralib/src/io/siacs]
+      - [0x018260, .data, ../lib/ultralib/src/os/initialize]
+      - [0x018280, .data, ../lib/ultralib/src/io/pimgr]
+      - [0x0182B0, .data, ../lib/ultralib/src/io/piacs]
+      - [0x0182C0, .data, ../lib/ultralib/src/vimodes/vimodentsclpn1]
+      - [0x018310, .data, ../lib/ultralib/src/io/contpfs]
+      - [0x018320, .data, ../lib/ultralib/src/os/seteventmesg]
+      - [0x018330, .data, ../lib/ultralib/src/libc/xprintf]
+      - [0x018380, .data, ../lib/ultralib/src/os/timerintr]
+      - [0x018390, .data, ../lib/ultralib/src/gu/position]
+      - [0x0183A0, .data, ../lib/ultralib/src/mgu/rotate]
+      - [0x0183B0, .data, ../lib/ultralib/src/vimodes/vimodentsclan1]
+      - [0x018400, .data, ../lib/ultralib/src/vimodes/vimodempallan1]
+      - [0x018450, .data, ../lib/ultralib/src/io/vi]
+      - [0x0184C0, .data, ../lib/ultralib/src/io/cartrominit]
+      - [0x0184D0, .data, ../lib/ultralib/src/vimodes/vimodefpallan1]
+      - [0x018520, .data, ../lib/ultralib/src/io/contramread]
+      - [0x018530, .data, ../lib/ultralib/src/libc/xlitob]
+      - [0x018560, .data, ../lib/ultralib/src/io/vimgr]
+
+
       - [0x018580, .rodata, boot/boot_main]
-      - [0x018590, rodata, boot/018590]
+      - [0x018590, .rodata, boot/idle]
       - [0x0185B0, rodata, boot/0185B0]
       - [0x0185D0, rodata, boot/0185D0]
       - [0x0187F0, rodata, boot/0187F0]
@@ -216,24 +246,51 @@
       - [0x019690, rodata, boot/019690]
       - [0x0196B0, rodata, boot/0196B0]
       - [0x0196C0, rodata, boot/0196C0]
-      - [0x019710, rodata, boot/019710]
-      - [0x0199D0, rodata, boot/0199D0]
-      - [0x019AA0, rodata, boot/019AA0]
-      - [0x019AF0, rodata, boot/019AF0]
-      - [0x019B00, rodata, boot/019B00]
-      - [0x019B20, rodata, boot/019B20]
-      - [0x019B30, rodata, boot/019B30]
-      - [0x019C30, rodata, boot/019C30]
-      - [0x019C80, rodata, boot/019C80]
-      - [0x019C90, rodata, boot/019C90]
-      - [0x019CF0, rodata, boot/019CF0]
+      - [0x019710, .rodata, boot/O2/__osMalloc]
+
+      # libultra
+      - [0x0199D0, .rodata, ../lib/ultralib/src/os/setintmask]
+      - [0x019A50, .rodata, ../lib/ultralib/src/gu/sinf]
+      - [0x019AA0, .rodata, ../lib/ultralib/src/os/exceptasm]
+      - [0x019AF0, .rodata, ../lib/ultralib/src/gu/perspective]
+      - [0x019B00, .rodata, ../lib/ultralib/src/io/devmgr]
+      - [0x019B20, .rodata, ../lib/ultralib/src/gu/lookathil]
+      - [0x019B30, .rodata, ../lib/ultralib/src/libc/xprintf]
+      - [0x019C30, .rodata, ../lib/ultralib/src/gu/cosf]
+      - [0x019C80, .rodata, ../lib/ultralib/src/gu/libm_vals]
+      - [0x019C90, .rodata, ../lib/ultralib/src/libc/xldtob]
+      - [0x019CF0, .rodata, ../lib/ultralib/src/libc/llcvt]
+
       - [0x019D00, rodata, boot/build]
 
       - { start: 0x019D40, type: .bss, vram: 0x8003E940, name: boot/boot_main }
-      - { start: 0x019D40, type: bss, vram: 0x8003F330, name: boot/8003F330}
+      - { start: 0x019D40, type: .bss, vram: 0x8003F330, name: boot/idle }
+      - { start: 0x019D40, type: .bss, vram: 0x8003FF30, name: boot/viconfig }
+      - { start: 0x019D40, type: bss, vram: 0x8003FF40, name: boot/8003FF40 }
       - { start: 0x019D40, type: bss, vram: 0x800419A0, name: boot/gfxprint }
       - { start: 0x019D40, type: bss, vram: 0x800419B0, name: boot/mathf }
       - { start: 0x019D40, type: bss, vram: 0x800419C0, name: boot/800419C0 }
+      - { start: 0x019D40, type: .bss, vram: 0x80041A00, name: boot/O2/__osMalloc }
+
+      # libultra
+      - { start: 0x019D40, type: .bss, vram: 0x80041A10, name: ../lib/ultralib/src/io/sptask }
+      - { start: 0x019D40, type: .bss, vram: 0x80041A50, name: ../lib/ultralib/src/io/controller }
+      - { start: 0x019D40, type: .bss, vram: 0x80041AE0, name: ../lib/ultralib/src/io/siacs }
+      - { start: 0x019D40, type: .bss, vram: 0x80041B00, name: ../lib/ultralib/src/os/initialize }
+      - { start: 0x019D40, type: .bss, vram: 0x80041B10, name: ../lib/ultralib/src/debug/kdebugserver }
+      - { start: 0x019D40, type: .bss, vram: 0x80041B10, name: ../lib/ultralib/src/flash/flashinit }
+      - { start: 0x019D40, type: .bss, vram: 0x80041D80, name: ../lib/ultralib/src/io/motor }
+      - { start: 0x019D40, type: .bss, vram: 0x80041E80, name: ../lib/ultralib/src/io/pimgr }
+      - { start: 0x019D40, type: .bss, vram: 0x80043140, name: ../lib/ultralib/src/io/piacs }
+      - { start: 0x019D40, type: .bss, vram: 0x80043160, name: ../lib/ultralib/src/io/contpfs }
+      - { start: 0x019D40, type: .bss, vram: 0x80043260, name: ../lib/ultralib/src/os/seteventmesg }
+      - { start: 0x019D40, type: .bss, vram: 0x800432E0, name: ../lib/ultralib/src/os/timerintr }
+      - { start: 0x019D40, type: .bss, vram: 0x80043320, name: ../lib/ultralib/src/io/gbpakinit }
+      - { start: 0x019D40, type: .bss, vram: 0x80043360, name: ../lib/ultralib/src/io/pfsisplug }
+      - { start: 0x019D40, type: .bss, vram: 0x800433A0, name: ../lib/ultralib/src/io/cartrominit }
+      - { start: 0x019D40, type: .bss, vram: 0x80043420, name: ../lib/ultralib/src/io/vimgr }
+      - { start: 0x019D40, type: .bss, vram: 0x80044640, name: ../lib/ultralib/src/io/conteepread }
+
 
   - name: dmadata
     type: code
