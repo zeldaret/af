@@ -2,6 +2,7 @@
 #define GFX_H
 
 #include "ultra64.h"
+#include "alignment.h"
 #include "THA_GA.h"
 #include "unk.h"
 
@@ -10,10 +11,10 @@
 typedef struct GraphicsContext {
     /* 0x000 */ UNK_TYPE1 unk_000[0x25C];
     /* 0x25C */ OSViMode* unk_25C;
-    /* 0x260 */ UNK_TYPE1 unk_260[0x38];
-    /* 0x298 */ TwoHeadGfxArena polyOpa;
-    /* 0x2A8 */ TwoHeadGfxArena polyXlu;
-    /* 0x2B8 */ UNK_TYPE1 unk_2B8[0x34];
+    /* 0x260 */ UNK_TYPE1 unk_260[0x30];
+    /* 0x290 */ TwoHeadGfxArena polyOpa;
+    /* 0x2A0 */ TwoHeadGfxArena polyXlu;
+    /* 0x2B0 */ UNK_TYPE1 unk_2B0[0x3C];
     /* 0x2EC */ s32 unk_2EC;
     /* 0x2F0 */ UNK_TYPE1 unk_2F0[0x2];
     /* 0x2F2 */ UNK_TYPE1 unk_2F2;

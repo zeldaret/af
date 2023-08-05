@@ -39,7 +39,6 @@
  * (APPLY), or to just overwrite it (NEW).
  */
 
-#include "global.h"
 #include "sys_matrix.h"
 #include "game.h"
 #include "z64math.h"
@@ -47,6 +46,7 @@
 #include "m_skin_matrix.h"
 #include "mathf.h"
 #include "m_lib.h"
+#include "gfx.h"
 
 // clang-format off
 

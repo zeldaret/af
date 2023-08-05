@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "TwoHeadArena.h"
+#include "gamealloc.h"
 #include "unk.h"
 
 struct GameState;
@@ -10,10 +11,6 @@ struct GraphicsContext;
 
 
 typedef void (*GameStateFunc)(struct GameState* gameState);
-
-typedef struct GameAlloc {
-    /* 0x00 */ UNK_TYPE1 unk_00[UNK_SIZE*4];
-} GameAlloc; // size >= 0x1
 
 typedef struct GameState {
     /* 0x00 */ struct GraphicsContext* gfxCtx;
@@ -25,7 +22,6 @@ typedef struct GameState {
     /* 0x74 */ u32 unk_74;
     /* 0x78 */ TwoHeadArena heap;
     /* 0x88 */ GameAlloc alloc;
-    /* 0x8C */ UNK_TYPE1 unk_8C[0x10];
     /* 0x9C */ UNK_TYPE1 unk_9C[0x3];
     /* 0x9F */ UNK_TYPE1 unk_9F;
     /* 0xA0 */ UNK_TYPE unk_A0;
@@ -37,9 +33,9 @@ typedef struct GameState {
 // void game_draw_first();
 // void game_draw_last();
 // void game_get_controller();
-// void SetGameFrame();
+void SetGameFrame(s32 divisor);
 // void game_main();
-// void game_init_hyral();
+void game_init_hyral(GameState* gameState, size_t size);
 // void game_resize_hyral();
 void game_ct(GameState* gameState, GameStateFunc init, struct GraphicsContext* gfxCtx);
 void game_dt(GameState* gameState);

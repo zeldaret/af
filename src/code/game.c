@@ -1,8 +1,11 @@
 #include "game.h"
-#include "global.h"
 #include "gfx.h"
+#include "m_controller.h"
+#include "67E840.h"
+#include "speed_meter.h"
+#include "graph.h"
 
-extern UNK_TYPE B_80145020_jp;
+extern struct_80145020_jp B_80145020_jp;
 extern GameState* gamePT;
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/func_800D2E00_jp.s")
@@ -63,7 +66,7 @@ void game_ct(GameState* gameState, GameStateFunc init, GraphicsContext* gfxCtx) 
     gameState->unk_74 = 1;
 
     {
-        s32 requiredScopeTemp;
+        s32 requiredScopeTemp UNUSED;
 
         gameState->gfxCtx = gfxCtx;
         gameState->unk_0C = 0;
