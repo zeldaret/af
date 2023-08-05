@@ -3,10 +3,10 @@
 
 #include "ultra64.h"
 
-// void malloc();
+void* malloc(size_t size);
 // void malloc_r();
 // void realloc();
-// void free();
+void free(void* ptr);
 // void calloc();
 // void DisplayArena();
 // void GetFreeArena();
