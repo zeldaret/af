@@ -470,7 +470,7 @@
 
 // extern UNK_TYPE game_dlftbls;
 
-// extern UNK_TYPE D_80107000_jp;
+// extern UNK_TYPE game_dlftbls_num;
 // extern UNK_TYPE D_80107010_jp;
 // extern UNK_TYPE D_80107020_jp;
 // extern UNK_TYPE D_801071A4_jp;

@@ -4645,7 +4645,7 @@ D_80106E10_jp = 0x80106E10; //
 
 game_dlftbls = 0x80106E20; // type:GameStateOverlay size:0x1E0
 
-D_80107000_jp = 0x80107000; //
+game_dlftbls_num = 0x80107000; //
 D_80107010_jp = 0x80107010; //
 D_80107020_jp = 0x80107020; //
 D_801071A4_jp = 0x801071A4; //

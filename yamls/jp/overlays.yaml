@@ -74,7 +74,7 @@
     subsegments:
       - [0x743CA0, data, overlays/gamestates/ovl_second_game/ovl_second_game_reloc]
 
-  - name: ovl__00743CD0
+  - name: ovl_sys_romcheck
     type: code
     start: 0x743CD0
     vram: 0x808048F0
@@ -82,21 +82,21 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x743CD0, asm, overlays/gamestates/ovl__00743CD0/ovl__00743CD0]
-  - name: ovl__00743CD0_reloc
+      - [0x743CD0, asm, overlays/gamestates/ovl_sys_romcheck/ovl_sys_romcheck]
+  - name: ovl_sys_romcheck_reloc
     type: code
     start: 0x743FE0
     vram: 0x80804C00
-    follows_vram: ovl__00743CD0
+    follows_vram: ovl_sys_romcheck
     compress: True
     subsegments:
-      - [0x743FE0, data, overlays/gamestates/ovl__00743CD0/ovl__00743CD0_reloc]
+      - [0x743FE0, data, overlays/gamestates/ovl_sys_romcheck/ovl_sys_romcheck_reloc]
 
   - name: ovl_trademark
     type: code
     start: 0x744020
     vram: 0x80804C40
-    follows_vram: ovl__00743CD0_reloc
+    follows_vram: ovl_sys_romcheck_reloc
     compress: True
     bss_size: 0x20170
     subsegments:
