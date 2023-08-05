@@ -1,88 +1,88 @@
-  - name: ovl__0073F4D0
+  - name: ovl_select
     type: code
     start: 0x73F4D0
     vram: 0x80800000
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x73F4D0, asm, overlays/other_ovl/ovl__0073F4D0/ovl__0073F4D0]
-      - [0x741030, data, overlays/other_ovl/ovl__0073F4D0/ovl__0073F4D0]
-      - [0x741310, rodata, overlays/other_ovl/ovl__0073F4D0/ovl__0073F4D0]
-  - name: ovl__0073F4D0_reloc
+      - [0x73F4D0, asm, overlays/gamestates/ovl_select/ovl_select]
+      - [0x741030, data, overlays/gamestates/ovl_select/ovl_select]
+      - [0x741310, rodata, overlays/gamestates/ovl_select/ovl_select]
+  - name: ovl_select_reloc
     type: code
     start: 0x741A40
     vram: 0x80802570
-    follows_vram: ovl__0073F4D0
+    follows_vram: ovl_select
     compress: True
     subsegments:
-      - [0x741A40, data, overlays/other_ovl/ovl__0073F4D0/ovl__0073F4D0_reloc]
+      - [0x741A40, data, overlays/gamestates/ovl_select/ovl_select_reloc]
 
-  - name: ovl__00741EA0
+  - name: ovl_first_game
     type: code
     start: 0x741EA0
     vram: 0x808029D0
-    follows_vram: ovl__0073F4D0_reloc
+    follows_vram: ovl_select_reloc
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x741EA0, asm, overlays/other_ovl/ovl__00741EA0/ovl__00741EA0]
-  - name: ovl__00741EA0_reloc
+      - [0x741EA0, asm, overlays/gamestates/ovl_first_game/ovl_first_game]
+  - name: ovl_first_game_reloc
     type: code
     start: 0x741F80
     vram: 0x80802AB0
-    follows_vram: ovl__00741EA0
+    follows_vram: ovl_first_game
     compress: True
     subsegments:
-      - [0x741F80, data, overlays/other_ovl/ovl__00741EA0/ovl__00741EA0_reloc]
+      - [0x741F80, data, overlays/gamestates/ovl_first_game/ovl_first_game_reloc]
 
-  - name: ovl__00741FB0
+  - name: ovl_play
     type: code
     start: 0x741FB0
     vram: 0x80802AE0
-    follows_vram: ovl__00741EA0_reloc
+    follows_vram: ovl_first_game_reloc
     compress: True
     bss_size: 0xF0
     subsegments:
-      - [0x741FB0, asm, overlays/other_ovl/ovl__00741FB0/ovl__00741FB0]
-      - [0x7437F0, data, overlays/other_ovl/ovl__00741FB0/ovl__00741FB0]
-      - [0x743890, rodata, overlays/other_ovl/ovl__00741FB0/ovl__00741FB0]
-      - { start: 0x743950, type: bss, vram: 0x80804480, name: overlays/other_ovl/ovl__00741FB0/ovl__00741FB0 }
-  - name: ovl__00741FB0_reloc
+      - [0x741FB0, asm, overlays/gamestates/ovl_play/ovl_play]
+      - [0x7437F0, data, overlays/gamestates/ovl_play/ovl_play]
+      - [0x743890, rodata, overlays/gamestates/ovl_play/ovl_play]
+      - { start: 0x743950, type: bss, vram: 0x80804480, name: overlays/gamestates/ovl_play/ovl_play }
+  - name: ovl_play_reloc
     type: code
     start: 0x743950
     vram: 0x80804570
-    follows_vram: ovl__00741FB0
+    follows_vram: ovl_play
     compress: True
     subsegments:
-      - [0x743950, data, overlays/other_ovl/ovl__00741FB0/ovl__00741FB0_reloc]
+      - [0x743950, data, overlays/gamestates/ovl_play/ovl_play_reloc]
 
-  - name: ovl__00743B70
+  - name: ovl_second_game
     type: code
     start: 0x743B70
     vram: 0x80804790
-    follows_vram: ovl__00741FB0_reloc
+    follows_vram: ovl_play_reloc
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x743B70, asm, overlays/other_ovl/ovl__00743B70/ovl__00743B70]
-  - name: ovl__00743B70_reloc
+      - [0x743B70, asm, overlays/gamestates/ovl_second_game/ovl_second_game]
+  - name: ovl_second_game_reloc
     type: code
     start: 0x743CA0
     vram: 0x808048C0
-    follows_vram: ovl__00743B70
+    follows_vram: ovl_second_game
     compress: True
     subsegments:
-      - [0x743CA0, data, overlays/other_ovl/ovl__00743B70/ovl__00743B70_reloc]
+      - [0x743CA0, data, overlays/gamestates/ovl_second_game/ovl_second_game_reloc]
 
   - name: ovl__00743CD0
     type: code
     start: 0x743CD0
     vram: 0x808048F0
-    follows_vram: ovl__00743B70_reloc
+    follows_vram: ovl_second_game_reloc
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x743CD0, asm, overlays/other_ovl/ovl__00743CD0/ovl__00743CD0]
+      - [0x743CD0, asm, overlays/gamestates/ovl__00743CD0/ovl__00743CD0]
   - name: ovl__00743CD0_reloc
     type: code
     start: 0x743FE0
@@ -90,9 +90,9 @@
     follows_vram: ovl__00743CD0
     compress: True
     subsegments:
-      - [0x743FE0, data, overlays/other_ovl/ovl__00743CD0/ovl__00743CD0_reloc]
+      - [0x743FE0, data, overlays/gamestates/ovl__00743CD0/ovl__00743CD0_reloc]
 
-  - name: ovl__00744020
+  - name: ovl_trademark
     type: code
     start: 0x744020
     vram: 0x80804C40
@@ -100,104 +100,104 @@
     compress: True
     bss_size: 0x20170
     subsegments:
-      - [0x744020, asm, overlays/other_ovl/ovl__00744020/ovl__00744020]
-      - [0x744F00, data, overlays/other_ovl/ovl__00744020/ovl__00744020]
-      - [0x747910, rodata, overlays/other_ovl/ovl__00744020/ovl__00744020]
-      - { start: 0x747940, type: bss, vram: 0x80808560, name: overlays/other_ovl/ovl__00744020/ovl__00744020 }
-  - name: ovl__00744020_reloc
+      - [0x744020, asm, overlays/gamestates/ovl_trademark/ovl_trademark]
+      - [0x744F00, data, overlays/gamestates/ovl_trademark/ovl_trademark]
+      - [0x747910, rodata, overlays/gamestates/ovl_trademark/ovl_trademark]
+      - { start: 0x747940, type: bss, vram: 0x80808560, name: overlays/gamestates/ovl_trademark/ovl_trademark }
+  - name: ovl_trademark_reloc
     type: code
     start: 0x747940
     vram: 0x808286D0
-    follows_vram: ovl__00744020
+    follows_vram: ovl_trademark
     compress: True
     subsegments:
-      - [0x747940, data, overlays/other_ovl/ovl__00744020/ovl__00744020_reloc]
+      - [0x747940, data, overlays/gamestates/ovl_trademark/ovl_trademark_reloc]
 
-  - name: ovl__00747AA0
+  - name: ovl_player_select
     type: code
     start: 0x747AA0
     vram: 0x80828830
-    follows_vram: ovl__00744020_reloc
+    follows_vram: ovl_trademark_reloc
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x747AA0, asm, overlays/other_ovl/ovl__00747AA0/ovl__00747AA0]
-      - [0x748570, data, overlays/other_ovl/ovl__00747AA0/ovl__00747AA0]
-      - [0x7485E0, rodata, overlays/other_ovl/ovl__00747AA0/ovl__00747AA0]
-  - name: ovl__00747AA0_reloc
+      - [0x747AA0, asm, overlays/gamestates/ovl_player_select/ovl_player_select]
+      - [0x748570, data, overlays/gamestates/ovl_player_select/ovl_player_select]
+      - [0x7485E0, rodata, overlays/gamestates/ovl_player_select/ovl_player_select]
+  - name: ovl_player_select_reloc
     type: code
     start: 0x7485F0
     vram: 0x80829380
-    follows_vram: ovl__00747AA0
+    follows_vram: ovl_player_select
     compress: True
     subsegments:
-      - [0x7485F0, data, overlays/other_ovl/ovl__00747AA0/ovl__00747AA0_reloc]
+      - [0x7485F0, data, overlays/gamestates/ovl_player_select/ovl_player_select_reloc]
 
-  - name: ovl__007486E0
+  - name: ovl_save_menu
     type: code
     start: 0x7486E0
     vram: 0x80829470
-    follows_vram: ovl__00747AA0_reloc
+    follows_vram: ovl_player_select_reloc
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x7486E0, asm, overlays/other_ovl/ovl__007486E0/ovl__007486E0]
-      - [0x7490E0, data, overlays/other_ovl/ovl__007486E0/ovl__007486E0]
-      - [0x7491E0, rodata, overlays/other_ovl/ovl__007486E0/ovl__007486E0]
-  - name: ovl__007486E0_reloc
+      - [0x7486E0, asm, overlays/gamestates/ovl_save_menu/ovl_save_menu]
+      - [0x7490E0, data, overlays/gamestates/ovl_save_menu/ovl_save_menu]
+      - [0x7491E0, rodata, overlays/gamestates/ovl_save_menu/ovl_save_menu]
+  - name: ovl_save_menu_reloc
     type: code
     start: 0x749200
     vram: 0x80829F90
-    follows_vram: ovl__007486E0
+    follows_vram: ovl_save_menu
     compress: True
     subsegments:
-      - [0x749200, data, overlays/other_ovl/ovl__007486E0/ovl__007486E0_reloc]
+      - [0x749200, data, overlays/gamestates/ovl_save_menu/ovl_save_menu_reloc]
 
-  - name: ovl__007492E0
+  - name: ovl_famicom_emu
     type: code
     start: 0x7492E0
     vram: 0x8082A070
-    follows_vram: ovl__007486E0_reloc
+    follows_vram: ovl_save_menu_reloc
     compress: True
     bss_size: 0x6370
     subsegments:
-      - [0x7492E0, asm, overlays/other_ovl/ovl__007492E0/ovl__007492E0]
-      - [0x755010, data, overlays/other_ovl/ovl__007492E0/ovl__007492E0]
-      - [0x771500, rodata, overlays/other_ovl/ovl__007492E0/ovl__007492E0]
-      - { start: 0x771900, type: bss, vram: 0x80852690, name: overlays/other_ovl/ovl__007492E0/ovl__007492E0 }
-  - name: ovl__007492E0_reloc
+      - [0x7492E0, asm, overlays/gamestates/ovl_famicom_emu/ovl_famicom_emu]
+      - [0x755010, data, overlays/gamestates/ovl_famicom_emu/ovl_famicom_emu]
+      - [0x771500, rodata, overlays/gamestates/ovl_famicom_emu/ovl_famicom_emu]
+      - { start: 0x771900, type: bss, vram: 0x80852690, name: overlays/gamestates/ovl_famicom_emu/ovl_famicom_emu }
+  - name: ovl_famicom_emu_reloc
     type: code
     start: 0x771900
     vram: 0x80858A00
-    follows_vram: ovl__007492E0
+    follows_vram: ovl_famicom_emu
     compress: True
     subsegments:
-      - [0x771900, data, overlays/other_ovl/ovl__007492E0/ovl__007492E0_reloc]
+      - [0x771900, data, overlays/gamestates/ovl_famicom_emu/ovl_famicom_emu_reloc]
 
-  - name: ovl__007745B0
+  - name: ovl_prenmi
     type: code
     start: 0x7745B0
     vram: 0x8085B6B0
-    follows_vram: ovl__007492E0_reloc
+    follows_vram: ovl_famicom_emu_reloc
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x7745B0, asm, overlays/other_ovl/ovl__007745B0/ovl__007745B0]
-      - [0x774970, rodata, overlays/other_ovl/ovl__007745B0/ovl__007745B0]
-  - name: ovl__007745B0_reloc
+      - [0x7745B0, asm, overlays/gamestates/ovl_prenmi/ovl_prenmi]
+      - [0x774970, rodata, overlays/gamestates/ovl_prenmi/ovl_prenmi]
+  - name: ovl_prenmi_reloc
     type: code
     start: 0x774980
     vram: 0x8085BA80
-    follows_vram: ovl__007745B0
+    follows_vram: ovl_prenmi
     compress: True
     subsegments:
-      - [0x774980, data, overlays/other_ovl/ovl__007745B0/ovl__007745B0_reloc]
+      - [0x774980, data, overlays/gamestates/ovl_prenmi/ovl_prenmi_reloc]
 
   - name: ovl_submenu
     type: code
     start: 0x7749C0
     vram: 0x8085BAC0
-    follows_vram: ovl__007745B0_reloc
+    follows_vram: ovl_prenmi_reloc
     compress: True
     bss_size: 0x10730
     subsegments:

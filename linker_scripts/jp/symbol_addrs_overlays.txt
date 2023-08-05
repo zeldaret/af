@@ -51,8 +51,8 @@ func_80801658_jp = 0x80801658; // type:func
 func_80801840_jp = 0x80801840; // type:func
 func_80801928_jp = 0x80801928; // type:func
 func_808019E4_jp = 0x808019E4; // type:func
-func_80801A28_jp = 0x80801A28; // type:func
-func_80801A34_jp = 0x80801A34; // type:func
+select_cleanup = 0x80801A28; // type:func
+select_init = 0x80801A34; // type:func
 
 // .data
 
@@ -178,8 +178,8 @@ jtbl_80802550_jp = 0x80802550; // type:jtbl
 // .text
 
 func_808029D0_jp = 0x808029D0; // type:func
-func_80802A20_jp = 0x80802A20; // type:func
-func_80802A2C_jp = 0x80802A2C; // type:func
+first_game_cleanup = 0x80802A20; // type:func
+first_game_init = 0x80802A2C; // type:func
 func_80802A60_jp = 0x80802A60; // type:func
 func_80802AE0_jp = 0x80802AE0; // type:func
 func_80802B40_jp = 0x80802B40; // type:func
@@ -197,8 +197,8 @@ func_80802E74_jp = 0x80802E74; // type:func
 func_808030D0_jp = 0x808030D0; // type:func
 func_80803124_jp = 0x80803124; // type:func
 func_80803174_jp = 0x80803174; // type:func
-func_80803210_jp = 0x80803210; // type:func
-func_808032F8_jp = 0x808032F8; // type:func
+play_cleanup = 0x80803210; // type:func
+play_init = 0x808032F8; // type:func
 func_80803544_jp = 0x80803544; // type:func
 func_8080367C_jp = 0x8080367C; // type:func
 func_80803810_jp = 0x80803810; // type:func
@@ -241,8 +241,8 @@ B_80804562_jp = 0x80804562; // type:s16
 // .text
 
 func_80804790_jp = 0x80804790; // type:func
-func_80804860_jp = 0x80804860; // type:func
-func_8080486C_jp = 0x8080486C; // type:func
+second_game_cleanup = 0x80804860; // type:func
+second_game_init = 0x8080486C; // type:func
 func_808048F0_jp = 0x808048F0; // type:func
 func_80804930_jp = 0x80804930; // type:func
 func_80804ADC_jp = 0x80804ADC; // type:func
@@ -261,8 +261,8 @@ func_808055F4_jp = 0x808055F4; // type:func
 func_80805658_jp = 0x80805658; // type:func
 func_808057D0_jp = 0x808057D0; // type:func
 func_80805888_jp = 0x80805888; // type:func
-func_8080590C_jp = 0x8080590C; // type:func
-func_80805968_jp = 0x80805968; // type:func
+trademark_cleanup = 0x8080590C; // type:func
+trademark_init = 0x80805968; // type:func
 
 // .data
 
@@ -326,8 +326,8 @@ func_80828C98_jp = 0x80828C98; // type:func
 func_80828E48_jp = 0x80828E48; // type:func
 func_80828F14_jp = 0x80828F14; // type:func
 func_80828FC4_jp = 0x80828FC4; // type:func
-func_80829008_jp = 0x80829008; // type:func
-func_80829014_jp = 0x80829014; // type:func
+player_select_cleanup = 0x80829008; // type:func
+player_select_init = 0x80829014; // type:func
 
 // .data
 
@@ -366,8 +366,8 @@ func_80829A80_jp = 0x80829A80; // type:func
 func_80829B60_jp = 0x80829B60; // type:func
 func_80829CC8_jp = 0x80829CC8; // type:func
 func_80829D70_jp = 0x80829D70; // type:func
-func_80829DB4_jp = 0x80829DB4; // type:func
-func_80829DC0_jp = 0x80829DC0; // type:func
+save_menu_cleanup = 0x80829DB4; // type:func
+save_menu_init = 0x80829DC0; // type:func
 
 // .data
 
@@ -465,8 +465,8 @@ func_8082D4E0_jp = 0x8082D4E0; // type:func
 func_8082D98C_jp = 0x8082D98C; // type:func
 func_8082DA58_jp = 0x8082DA58; // type:func
 func_8082DA64_jp = 0x8082DA64; // type:func
-func_8082DF6C_jp = 0x8082DF6C; // type:func
-func_8082E470_jp = 0x8082E470; // type:func
+famicom_emu_init = 0x8082DF6C; // type:func
+famicom_emu_cleanup = 0x8082E470; // type:func
 func_8082E4E0_jp = 0x8082E4E0; // type:func
 func_8082E590_jp = 0x8082E590; // type:func
 func_8082EA20_jp = 0x8082EA20; // type:func
@@ -801,8 +801,8 @@ B_80855800_jp = 0x80855800; //
 func_8085B6B0_jp = 0x8085B6B0; // type:func
 func_8085B718_jp = 0x8085B718; // type:func
 func_8085B9D4_jp = 0x8085B9D4; // type:func
-func_8085BA1C_jp = 0x8085BA1C; // type:func
-func_8085BA28_jp = 0x8085BA28; // type:func
+prenmi_cleanup = 0x8085BA1C; // type:func
+prenmi_init = 0x8085BA28; // type:func
 
 // .rodata
 
