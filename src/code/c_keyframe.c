@@ -618,9 +618,6 @@ void cKF_Si3_draw_SV_R_child(PlayState* play, SkeletonInfoR* skeletonInfo, s32* 
         }
     }
 
-    if (1) {}
-    if (1) {}
-
     OPEN_DISPS(play->state.gfxCtx);
     Matrix_push();
     newDlist = shape = jointElem->shape;
@@ -636,7 +633,6 @@ void cKF_Si3_draw_SV_R_child(PlayState* play, SkeletonInfoR* skeletonInfo, s32* 
 
             if (displayBufferFlag & 1) {
                 gSPMatrix(POLY_XLU_DISP++, *mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-                if (1) {}
                 gSPDisplayList(POLY_XLU_DISP++, newDlist);
             } else {
                 gSPMatrix(POLY_OPA_DISP++, *mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
@@ -647,11 +643,7 @@ void cKF_Si3_draw_SV_R_child(PlayState* play, SkeletonInfoR* skeletonInfo, s32* 
 
         } else if (shape != NULL) {
             _Matrix_to_Mtx(*mtx);
-
-            if (1) {
-                gSPMatrix(POLY_OPA_DISP++, *mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-            }
-
+            gSPMatrix(POLY_OPA_DISP++, *mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             (*mtx)++;
         }
     }
@@ -681,12 +673,8 @@ void cKF_Si3_draw_R_SV(PlayState* play, SkeletonInfoR* skeletonInfo, Mtx* mtx, D
 
     if (mtx != NULL) {
         OPEN_DISPS(play->state.gfxCtx);
-        do {
-            gSPSegment(POLY_OPA_DISP++, 0x0D, mtx);
-        } while (0);
-        do {
-            gSPSegment(POLY_XLU_DISP++, 0x0D, mtx);
-        } while (0);
+        gSPSegment(POLY_OPA_DISP++, 0x0D, mtx);
+        gSPSegment(POLY_XLU_DISP++, 0x0D, mtx);
         jointIndex = 0;
         cKF_Si3_draw_SV_R_child(play, skeletonInfo, &jointIndex, beforeCallback, afterCallback, arg, &mtx);
         CLOSE_DISPS(play->state.gfxCtx);
