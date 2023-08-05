@@ -9,6 +9,7 @@
 #include "6EDD10.h"
 #include "padmgr.h"
 #include "69E2C0.h"
+#include "gfxalloc.h"
 #include "code_variables.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "overlays/gamestates/ovl_famicom_emu/famicom_emu.h"
@@ -157,7 +158,21 @@ void game_draw_first(GraphicsContext* gfxCtx) {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_draw_first.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_draw_last.s")
+void game_draw_last(GraphicsContext* gfxCtx) {
+    Gfx* temp_a1;
+    Gfx* temp_a3;
+
+    OPEN_DISPS(gfxCtx);
+    temp_a1 = gfxopen(temp_a3 = POLY_OPA_DISP);
+
+    gSPDisplayList(OVERLAY_DISP++, temp_a1);
+    gSPEndDisplayList(temp_a1++);
+
+    gfxclose(temp_a3, temp_a1);
+    POLY_OPA_DISP = temp_a1;
+
+    CLOSE_DISPS(gfxCtx);
+}
 
 void game_get_controller(GameState* gameState) {
     if (gameState->unk_74 == 1) {

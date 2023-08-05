@@ -11,7 +11,8 @@
 typedef struct GraphicsContext {
     /* 0x000 */ UNK_TYPE1 unk_000[0x25C];
     /* 0x25C */ OSViMode* unk_25C;
-    /* 0x260 */ UNK_TYPE1 unk_260[0x30];
+    /* 0x260 */ UNK_TYPE1 unk_260[0x20];
+    /* 0x280 */ TwoHeadGfxArena overlay;
     /* 0x290 */ TwoHeadGfxArena polyOpa;
     /* 0x2A0 */ TwoHeadGfxArena polyXlu;
     /* 0x2B0 */ UNK_TYPE1 unk_2B0[0x3C];
