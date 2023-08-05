@@ -6,7 +6,20 @@
 #include "other_types.h"
 #include "unk.h"
 
+struct GameState;
 struct GraphicsContext;
+
+
+#define DEFINE_GAMESTATE_INTERNAL(typeName, enumName) enumName,
+#define DEFINE_GAMESTATE(typeName, enumName, name) DEFINE_GAMESTATE_INTERNAL(typeName, enumName)
+
+typedef enum GameStateId {
+#include "tables/gamestate_table.h"
+    /* 0x0A */ GAMESTATE_ID_MAX
+} GameStateId;
+
+#undef DEFINE_GAMESTATE
+#undef DEFINE_GAMESTATE_INTERNAL
 
 
 typedef void (*GameStateFunc)(struct GameState* gameState);
