@@ -87,7 +87,7 @@
       - [0x6F73C0, asm, code/gamealloc]
       - [0x6F7500, asm, code/gfxalloc]
       - [0x6F7580, asm, code/graph]
-      - [0x6F83B0, asm, code/irqmgr]
+      - [0x6F83B0, c, code/irqmgr]
       - [0x6F8A60, asm, code/6F8A60]
       - [0x6F9B10, asm, code/6F9B10]
       - [0x6FA030, asm, code/listalloc]

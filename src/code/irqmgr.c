@@ -8,7 +8,7 @@
 Irqmgr* this;
 Irqmgr irqmgr_class;
 
-vu32 ResetStatus = 0;
+vs32 ResetStatus = 0;
 volatile OSTime ResetTime = 0;
 volatile OSTime RetraceTime = 0;
 u32 RetraceCount = 0;
@@ -22,12 +22,14 @@ void irqmgr_AddClient(IrqmgrClient* client, OSMesgQueue* msgQueue) {
 
     osSetIntMask(enable);
 
+    // TODO: Figure out why the formatter doesn't accept this.
+
     if (this->prenmi >= 1) {
-        osSendMesg(client->msgQueue, (OSMesg)(&this->msgPreNMI), OS_MESG_NOBLOCK);
+        osSendMesg(client->msgQueue, (OSMesg) & this->msgPreNMI, OS_MESG_NOBLOCK);
     }
 
     if (this->prenmi >= 2) {
-        osSendMesg(client->msgQueue, (OSMesg)(&this->msgDelayPreNMI), OS_MESG_NOBLOCK);
+        osSendMesg(client->msgQueue, (OSMesg) & this->msgDelayPreNMI, OS_MESG_NOBLOCK);
     }
 }
 
