@@ -4,6 +4,7 @@
 #include "loadfragment.h"
 #include "malloc.h"
 #include "m_malloc.h"
+#include "sprintf.h"
 #include "z_std_dma.h"
 
 void* ovlmgr_Malloc(size_t size) {
@@ -26,7 +27,6 @@ void ovlmgr_Free(void* ptr) {
     }
 }
 
-//#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/ovlmgr/ovlmgr_LoadImpl.s")
 void ovlmgr_LoadImpl(void* vromStart, UNUSED UNK_TYPE arg1, void* vramStart, void* vramEnd, void* allocatedRamAddr,
                      struct OverlayRelocationSection* ovl, size_t size) {
     void* vromEnd;
