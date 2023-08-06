@@ -3,6 +3,10 @@
 
 #include "ultra64.h"
 
+typedef enum AllocType {
+    /* 0 */ ALLOCTYPE_NORMAL
+} AllocType;
+
 // void func_80056380_jp();
 // void projection_pos_set();
 // void Actor_world_to_eye();

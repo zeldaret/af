@@ -6,11 +6,11 @@
     compress: True
     bss_size: 0x36C90
     subsegments:
-      - [0x675720, asm, code/c_keyframe]
+      - [0x675720, c, code/c_keyframe]
       - [0x678660, asm, code/evw_anime]
       - [0x6792F0, asm, code/6792F0]
       - [0x67A020, asm, code/m_actor]
-      - [0x67C6B0, asm, code/m_actor_dlftbls]
+      - [0x67C6B0, c, code/m_actor_dlftbls]
       - [0x67C890, asm, code/m_actor_shadow]
       - [0x67D890, asm, code/67D890]
       - [0x67E840, asm, code/67E840]
@@ -20,7 +20,7 @@
       - [0x68AB30, asm, code/68AB30]
       - [0x68B0D0, asm, code/m_collision_bg]
       - [0x69A7E0, asm, code/69A7E0]
-      - [0x69C6B0, asm, code/m_common_data]
+      - [0x69C6B0, c, code/m_common_data]
       - [0x69C770, asm, code/m_controller]
       - [0x69CB30, asm, code/69CB30]
       - [0x69DDF0, asm, code/m_debug_display]
@@ -130,6 +130,7 @@
       - [0x723010, data, code/rsp/723010]
 
       - [0x7248D0, data, code/7248D0]
+      - [0x724930, .data, code/m_actor_dlftbls]
       - [0x726260, data, code/m_actor_shadow]
       - [0x72B7A0, data, code/m_lib]
       - [0x72B7D0, data, code/72B7D0]
@@ -141,12 +142,11 @@
       - [0x733A10, data, code/733A10]
       
 
-      - [0x739DB0, rodata, code/739DB0]
+      - [0x739DB0, .rodata, code/c_keyframe]
       - [0x739E00, rodata, code/739E00]
       - [0x739E50, rodata, code/m_actor]
       - [0x739E90, rodata, code/739E90]
-      - [0x739EA0, rodata, code/m_actor_dlftbls]
-      - [0x739EA0, rodata, code/739EA0]
+      - [0x739EA0, .rodata, code/m_actor_dlftbls]
       - [0x739EF0, rodata, code/739EF0]
       - [0x739F20, rodata, code/739F20]
       - [0x739F70, rodata, code/739F70]
@@ -226,10 +226,16 @@
       - [0x73CEE0, rodata, code/73CEE0]
 
       - { start: 0x73F4D0, type: bss, vram: 0x8011B830, name: code/8011B830 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x8011B890, name: code/m_actor_dlftbls }
+      - { start: 0x73F4D0, type: bss, vram: 0x8011B8B0, name: code/8011B8B0 }
+      - { start: 0x74AB40, type: .bss, vram: 0x80126EA0, name: code/m_common_data }
+      - { start: 0x75B600, type: bss, vram: 0x80137960, name: code/80137960 }
       - { start: 0x73F4D0, type: bss, vram: 0x80143900, name: code/m_player_call }
       - { start: 0x73F4D0, type: bss, vram: 0x80143910, name: code/80143910 }
       - { start: 0x73F4D0, type: bss, vram: 0x80145390, name: code/irqmgr }
       - { start: 0x73F4D0, type: bss, vram: 0x80145620, name: code/80145620}
+      - { start: 0x73F4D0, type: .bss, vram: 0x801458A0, name: code/c_keyframe }
+      - { start: 0x73F4D0, type: bss, vram: 0x801458B0, name: code/801458B0 }
       - { start: 0x73F4D0, type: .bss, vram: 0x801462B0, name: code/sys_matrix }
       - { start: 0x73F4D0, type: bss, vram: 0x801462C0, name: code/801462C0 }
 

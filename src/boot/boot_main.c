@@ -1,13 +1,10 @@
-#include "libc/stdint.h"
-#include "ultra64.h"
+#include "global.h"
 
 #include "idle.h"
 #include "m_thread.h"
 #include "segment_symbols.h"
 #include "stack.h"
 #include "stackcheck.h"
-
-extern OSPiHandle* gCartHandle; // TODO: Determine where this goes
 
 STACK(sIdleStack, 0x400);
 StackEntry sIdleStackInfo;
