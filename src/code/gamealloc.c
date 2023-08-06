@@ -29,7 +29,7 @@ void* gamealloc_malloc(GameAlloc* this, size_t size) {
 
 void gamealloc_free(GameAlloc* this, void* ptr) {
     if (ptr != NULL) {
-        GameAllocEntry* entry = &((GameAllocEntry*)ptr)[-1];
+        GameAllocEntry* entry = (GameAllocEntry*)ptr - 1;
 
         entry->prev->next = entry->next;
         entry->next->prev = entry->prev;
