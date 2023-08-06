@@ -11,6 +11,9 @@ else ifeq ($(UNAME_S),Darwin)
 endif
 
 
+WGET_FLAGS  ?= --quiet
+
+
 IDO_5_3_DIR := ido/$(DETECTED_OS)/5.3
 IDO_5_3     := $(IDO_5_3_DIR)/cc
 
@@ -31,12 +34,12 @@ distclean: clean
 
 
 $(IDO_5_3): | $(IDO_5_3_DIR)
-	wget https://github.com/decompals/ido-static-recomp/releases/latest/download/ido-5.3-recomp-$(DOWNLOAD_OS).tar.gz
+	wget $(WGET_FLAGS) https://github.com/decompals/ido-static-recomp/releases/latest/download/ido-5.3-recomp-$(DOWNLOAD_OS).tar.gz
 	tar xf ido-5.3-recomp-$(DOWNLOAD_OS).tar.gz -C $(IDO_5_3_DIR)
 	$(RM) ido-5.3-recomp-$(DOWNLOAD_OS).tar.gz
 
 $(IDO_7_1): | $(IDO_7_1_DIR)
-	wget https://github.com/decompals/ido-static-recomp/releases/latest/download/ido-7.1-recomp-$(DOWNLOAD_OS).tar.gz
+	wget $(WGET_FLAGS) https://github.com/decompals/ido-static-recomp/releases/latest/download/ido-7.1-recomp-$(DOWNLOAD_OS).tar.gz
 	tar xf ido-7.1-recomp-$(DOWNLOAD_OS).tar.gz -C $(IDO_7_1_DIR)
 	$(RM) ido-7.1-recomp-$(DOWNLOAD_OS).tar.gz
 
