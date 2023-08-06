@@ -1,0 +1,34 @@
+[01m[Ksrc/code/c_keyframe.c:[m[K In function ‘[01m[KcKF_SkeletonInfo_subRotInterpolation[m[K’:
+[01m[Ksrc/code/c_keyframe.c:272:9:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kpad[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  272 |     s32 [01;35m[Kpad[m[K;
+      |         [01;35m[K^~~[m[K
+[01m[Ksrc/code/c_keyframe.c:[m[K In function ‘[01m[KcKF_SkeletonInfo_R_dt[m[K’:
+[01m[Ksrc/code/c_keyframe.c:323:43:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[KskeletonInfo[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+  323 | void cKF_SkeletonInfo_R_dt([01;35m[KSkeletonInfoR* skeletonInfo[m[K) {
+      |                            [01;35m[K~~~~~~~~~~~~~~~^~~~~~~~~~~~[m[K
+In file included from [01m[Ksrc/code/c_keyframe.c:40[m[K:
+[01m[Ksrc/code/c_keyframe.c:[m[K In function ‘[01m[KcKF_Si3_draw_SV_R_child[m[K’:
+[01m[Kinclude/gfx.h:26:13:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[K__dispPad[m[K’ [[01;35m[K-Wunused-variable[m[K]
+   26 |         s32 [01;35m[K__dispPad[m[K
+      |             [01;35m[K^~~~~~~~~[m[K
+[01m[Ksrc/code/c_keyframe.c:621:5:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KOPEN_DISPS[m[K’
+  621 |     [01;36m[KOPEN_DISPS[m[K(play->state.gfxCtx);
+      |     [01;36m[K^~~~~~~~~~[m[K
+[01m[Ksrc/code/c_keyframe.c:[m[K In function ‘[01m[KcKF_Si3_draw_R_SV[m[K’:
+[01m[Kinclude/gfx.h:26:13:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[K__dispPad[m[K’ [[01;35m[K-Wunused-variable[m[K]
+   26 |         s32 [01;35m[K__dispPad[m[K
+      |             [01;35m[K^~~~~~~~~[m[K
+[01m[Ksrc/code/c_keyframe.c:675:9:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KOPEN_DISPS[m[K’
+  675 |         [01;36m[KOPEN_DISPS[m[K(play->state.gfxCtx);
+      |         [01;36m[K^~~~~~~~~~[m[K
+[01m[Ksrc/code/c_keyframe.c:[m[K In function ‘[01m[KcKF_SkeletonInfo_R_AnimationMove_base[m[K’:
+[01m[Ksrc/code/c_keyframe.c:1183:17:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kpad2[m[K’ [[01;35m[K-Wunused-variable[m[K]
+ 1183 |             s32 [01;35m[Kpad2[m[K[2];
+      |                 [01;35m[K^~~~[m[K
+[01m[Ksrc/code/c_keyframe.c:1176:17:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kpad[m[K’ [[01;35m[K-Wunused-variable[m[K]
+ 1176 |             s32 [01;35m[Kpad[m[K[2];
+      |                 [01;35m[K^~~[m[K
+[01m[Ksrc/code/irqmgr.c:[m[K In function ‘[01m[Kirqmgr_Main[m[K’:
+[01m[Ksrc/code/irqmgr.c:133:24:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Karg[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+  133 | void irqmgr_Main([01;35m[Kvoid* arg[m[K) {
+      |                  [01;35m[K~~~~~~^~~[m[K

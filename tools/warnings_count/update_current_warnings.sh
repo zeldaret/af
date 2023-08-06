@@ -7,8 +7,8 @@ DIR="$(dirname "$(readlink -f "$0")")"
 cd "$DIR/../.."
 
 make distclean
-make setup 2> tools/warnings_count/warnings_setup_current.txt
-make assets 2> tools/warnings_count/warnings_assets_current.txt
-make disasm 2> tools/warnings_count/warnings_disasm_current.txt
-make uncompressed 2> tools/warnings_count/warnings_build_current.txt
-make compressed 2> tools/warnings_count/warnings_compress_current.txt
+make WERROR=0 setup 2> tools/warnings_count/warnings_setup_current.txt
+make WERROR=0 lib 2> tools/warnings_count/warnings_lib_current.txt
+make WERROR=0 extract 2> tools/warnings_count/warnings_extract_current.txt
+make WERROR=0 uncompressed 2> tools/warnings_count/warnings_uncompressed_current.txt
+make WERROR=0 compressed 2> tools/warnings_count/warnings_compress_current.txt
