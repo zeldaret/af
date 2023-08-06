@@ -8,6 +8,19 @@ import sys
 import mapfile_parser
 from pathlib import Path
 
+def mapPathToSource(origName: Path) -> Path:
+    # Try to map built path to the source path
+    parts = origName.parts
+    if parts[0] == "build":
+        parts = parts[1:]
+
+    path = Path(*parts)
+    # Assume every file in the asm folder has .s extension, while everything else has .c extension
+    if path.parts[0] == "asm":
+        path = path.with_suffix(".s")
+    else:
+        path = path.with_suffix(".c")
+    return path
 
 @dataclasses.dataclass
 class Compared:
@@ -18,39 +31,10 @@ class Compared:
     expectedFile: mapfile_parser.File|None
     diff: int|None
 
-    @staticmethod
-    def mapPathToSource(origName: Path) -> Path:
-        # Try to map built path to the source path
-        parts = origName.parts
-        if parts[0] == "build":
-            parts = parts[1:]
 
-        path = Path(*parts)
-        # Assume every file in the asm folder has .s extension, while everything else has .c extension
-        if path.parts[0] == "asm":
-            path = path.with_suffix(".s")
-        else:
-            path = path.with_suffix(".c")
-        return path
-
-    def getBuildFileName(self) -> str:
-        if self.buildFile is None:
-            return ""
-
-        path = self.mapPathToSource(self.buildFile.filepath)
-        return str(path)
-
-    def getExpectedFileName(self) -> str:
-        if self.expectedFile is None:
-            return ""
-
-        path = self.mapPathToSource(self.expectedFile.filepath)
-        return str(path)
-
-
-def compareMapFiles(mapFileBuild: Path, mapFileExpected: Path) -> tuple[set[mapfile_parser.File], set[mapfile_parser.File], list[Compared]]:
-    badFiles = set()
-    missingFiles = set()
+def compareMapFiles(mapFileBuild: Path, mapFileExpected: Path) -> tuple[set[Path], set[Path], list[Compared]]:
+    badFiles: set[Path] = set()
+    missingFiles: set[Path] = set()
 
     print(f"Build mapfile:    {mapFileBuild}", file=sys.stderr)
     print(f"Expected mapfile: {mapFileExpected}", file=sys.stderr)
@@ -81,42 +65,55 @@ def compareMapFiles(mapFileBuild: Path, mapFileExpected: Path) -> tuple[set[mapf
                 comp = Compared(symbol, symbol.vram, file, symbol.vram, foundSymInfo.file, symbol.vram - foundSymInfo.symbol.vram)
                 comparedList.append(comp)
                 if comp.diff != 0:
-                    badFiles.add(file)
+                    badFiles.add(file.filepath)
             else:
-                missingFiles.add(file)
+                missingFiles.add(file.filepath)
                 comparedList.append(Compared(symbol, symbol.vram, file, -1, None, None))
 
     for file in expectedMap:
         for symbol in file:
             foundSymInfo = buildMap.findSymbolByName(symbol.name)
             if foundSymInfo is None:
-                missingFiles.add(file)
+                missingFiles.add(file.filepath)
                 comparedList.append(Compared(symbol, -1, None, symbol.vram, file, None))
 
     return badFiles, missingFiles, comparedList
 
 
-def printCsv(badFiles: set[mapfile_parser.File], missingFiles: set[mapfile_parser.File], comparedList: list[Compared], printAll = True):
+def printCsv(badFiles: set[Path], missingFiles: set[Path], comparedList: list[Compared], printAll = True):
     print("Symbol Name,Build Address,Build File,Expected Address,Expected File,Difference,GOOD/BAD/MISSING")
 
     # If it's bad or missing, don't need to do anything special.
     # If it's good, check for if it's in a file with bad or missing stuff, and check if print all is on. If none of these, print it.
 
     for symbolInfo in comparedList:
+        buildFile = symbolInfo.buildFile.filepath if symbolInfo.buildFile is not None else None
+        expectedFile = symbolInfo.expectedFile.filepath if symbolInfo.expectedFile is not None else None
+
+        buildFileName = ""
+        if buildFile is not None:
+            buildFileName = mapPathToSource(buildFile)
+
+        expectedFileName = ""
+        if expectedFile is not None:
+            expectedFileName = mapPathToSource(expectedFile)
+
         symbolGood = colorama.Fore.RED + "BAD" + colorama.Fore.RESET
         if symbolInfo.diff is None:
             symbolGood = colorama.Fore.YELLOW + "MISSING" + colorama.Fore.RESET
-            print(f"{symbolInfo.symbol.name},{symbolInfo.buildAddress:X},{symbolInfo.getBuildFileName()},{symbolInfo.expectedAddress:X},{symbolInfo.getExpectedFileName()},{symbolInfo.diff},{symbolGood}")
+            print(f"{symbolInfo.symbol.name},{symbolInfo.buildAddress:X},{buildFileName},{symbolInfo.expectedAddress:X},{expectedFileName},{symbolInfo.diff},{symbolGood}")
             continue
 
         if symbolInfo.diff == 0:
             symbolGood = colorama.Fore.GREEN + "GOOD" + colorama.Fore.RESET
-            if (not symbolInfo.buildFile in badFiles and not symbolInfo.expectedFile in badFiles) and (not symbolInfo.buildFile in badFiles and not symbolInfo.expectedFile in badFiles) and not printAll:
-                continue
+            if not buildFile in badFiles and not expectedFile in badFiles:
+                if not buildFile in badFiles and not expectedFile in badFiles:
+                    if not printAll:
+                        continue
 
-        if symbolInfo.buildFile != symbolInfo.expectedFile:
+        if buildFile != expectedFile:
             symbolGood += colorama.Fore.CYAN + " MOVED" + colorama.Fore.RESET
-        print(f"{symbolInfo.symbol.name},{symbolInfo.buildAddress:X},{symbolInfo.getBuildFileName()},{symbolInfo.expectedAddress:X},{symbolInfo.getExpectedFileName()},{symbolInfo.diff:X},{symbolGood}")
+        print(f"{symbolInfo.symbol.name},{symbolInfo.buildAddress:X},{buildFileName},{symbolInfo.expectedAddress:X},{expectedFileName},{symbolInfo.diff:X},{symbolGood}")
 
 
 def main():
@@ -150,7 +147,7 @@ def main():
             print(colorama.Fore.RED + "  BAD" + colorama.Style.RESET_ALL)
 
             for file in badFiles:
-                print(f"bss reordering in {file.filepath}", file=sys.stderr)
+                print(f"bss reordering in {mapPathToSource(file)}", file=sys.stderr)
             print("", file=sys.stderr)
 
             if not args.no_fun_allowed:
@@ -164,7 +161,7 @@ def main():
             print(colorama.Fore.YELLOW + "  MISSING" + colorama.Style.RESET_ALL)
 
             for file in missingFiles:
-                print(f"Symbols missing from {file}", file=sys.stderr)
+                print(f"Symbols missing from {mapPathToSource(file)}", file=sys.stderr)
             print("", file=sys.stderr)
 
             if not args.no_fun_allowed:
