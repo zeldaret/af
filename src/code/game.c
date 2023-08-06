@@ -15,18 +15,15 @@
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "overlays/gamestates/ovl_famicom_emu/famicom_emu.h"
 
-extern struct_80145020_jp B_80145020_jp;
-extern GameState* gamePT;
+GameState* gamePT = NULL;
 
-extern u8 B_80145048_jp;
-
-extern f32 B_FLT_8014504C_jp;
-extern f32 B_FLT_80145050_jp;
-extern f32 B_FLT_80145054_jp;
-
-extern s32 zurumode_flag;
-
-extern s16 B_80145040_jp;
+struct_80145020_jp B_80145020_jp;
+s16 B_80145040_jp;
+UNK_TYPE4 B_80145044_jp;
+u8 B_80145048_jp;
+f32 B_FLT_8014504C_jp;
+f32 B_FLT_80145050_jp;
+f32 B_FLT_80145054_jp;
 
 void func_800D2E00_jp(GameState* gameState) {
     if (zurumode_flag >= 2) {

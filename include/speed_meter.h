@@ -8,8 +8,8 @@ struct GameState;
 struct GraphicsContext;
 
 typedef struct struct_80145020_jp {
-    /* 0x0 */ UNK_TYPE1 unk_0[UNK_SIZE];
-} struct_80145020_jp; // size = ?, maybe 0x20?
+    /* 0x00 */ UNK_TYPE1 unk_00[0x20];
+} struct_80145020_jp; // size <= 0x20
 
 // void func_800D88A0_jp();
 void func_800D88B0_jp(struct_80145020_jp *arg0);

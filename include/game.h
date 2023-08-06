@@ -9,6 +9,7 @@
 
 struct GameState;
 struct GraphicsContext;
+struct struct_80145020_jp;
 
 
 typedef void (*GameStateFunc)(struct GameState* gameState);
@@ -46,6 +47,21 @@ s32 game_is_doing(GameState* gameState);
 s32 game_getFreeBytes(GameState* gameState);
 void game_goto_next_game_play(GameState* gameState);
 void game_goto_next_game_name_famicom_emu(GameState* gameState);
+
+
+// .data
+
+extern GameState* gamePT;
+
+// .bss
+
+extern struct struct_80145020_jp B_80145020_jp;
+extern s16 B_80145040_jp;
+extern UNK_TYPE4 B_80145044_jp;
+extern u8 B_80145048_jp;
+extern f32 B_FLT_8014504C_jp;
+extern f32 B_FLT_80145050_jp;
+extern f32 B_FLT_80145054_jp;
 
 
 #define CONTROLLER1(gameState) (&(gameState)->input[0])
