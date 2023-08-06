@@ -3,7 +3,7 @@
 
 #include "ultra64.h"
 
-// void malloc();
+void* malloc(size_t size);
 void* malloc_r(size_t size);
 // void realloc();
 void free(void* ptr);

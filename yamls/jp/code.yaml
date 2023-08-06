@@ -84,7 +84,7 @@
       - [0x6F6230, asm, code/audioMgr]
       - [0x6F68B0, asm, code/cfbinfo]
       - [0x6F6AA0, c, code/game]
-      - [0x6F73C0, asm, code/gamealloc]
+      - [0x6F73C0, c, code/gamealloc]
       - [0x6F7500, asm, code/gfxalloc]
       - [0x6F7580, asm, code/graph]
       - [0x6F83B0, c, code/irqmgr]
