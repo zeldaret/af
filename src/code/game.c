@@ -232,8 +232,7 @@ void game_resize_hyral(GameState* gameState, size_t size) {
 
     gamealloc_free(alloc, heapStart);
 
-    // TODO: This seems like it was wrongly named
-    DisplayArena(&maxFree, &bytesFree, &bytesAllocated);
+    GetFreeArena(&maxFree, &bytesFree, &bytesAllocated);
     if (size == 0x7D0000) {
         size = maxFree - sizeof(GameAllocEntry);
     } else {
