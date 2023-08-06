@@ -2,6 +2,7 @@
 #define GFX_H
 
 #include "ultra64.h"
+#include "attributes.h"
 #include "alignment.h"
 #include "THA_GA.h"
 #include "unk.h"
@@ -37,7 +38,7 @@ typedef struct GraphicsContext {
 #define OPEN_DISPS(gfxCtx)                  \
     {                                       \
         GraphicsContext* __gfxCtx = gfxCtx; \
-        s32 __dispPad
+        s32 __dispPad UNUSED
 
 #define CLOSE_DISPS(gfxCtx) \
     (void)0;                \

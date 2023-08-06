@@ -842,7 +842,7 @@ extern vs32 D_8010EFB0_jp; // TODO: Determine where this goes
 // extern UNK_TYPE D_8010FD54_jp;
 // extern UNK_TYPE D_8010FD58_jp;
 // extern UNK_TYPE D_8010FD5C_jp;
-// extern UNK_TYPE D_8010FD60_jp;
+// extern UNK_TYPE zurumode_flag;
 // extern UNK_TYPE D_8010FD70_jp;
 // extern UNK_TYPE D_80110000_jp;
 // extern UNK_TYPE D_80110D70_jp;

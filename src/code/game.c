@@ -10,6 +10,7 @@
 #include "padmgr.h"
 #include "69E2C0.h"
 #include "gfxalloc.h"
+#include "6E0F50.h"
 #include "code_variables.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "overlays/gamestates/ovl_famicom_emu/famicom_emu.h"
@@ -23,10 +24,12 @@ extern f32 B_FLT_8014504C_jp;
 extern f32 B_FLT_80145050_jp;
 extern f32 B_FLT_80145054_jp;
 
-extern s32 D_8010FD60_jp;
+extern s32 zurumode_flag;
+
+extern s16 B_80145040_jp;
 
 void func_800D2E00_jp(GameState* gameState) {
-    if (D_8010FD60_jp >= 2) {
+    if (zurumode_flag >= 2) {
         Debug_mode_input(CONTROLLER2(gameState));
     }
 
@@ -35,28 +38,89 @@ void func_800D2E00_jp(GameState* gameState) {
     }
 }
 
-const u16 RO_80117CE0_jp[] = {
-    0xFFC1,
-    0xFFC1,
-    0xFFC1,
-    0xFFC1,
-    0x7BDF,
-    0x7BDF,
-    0x07FF,
-    0xF83F,
-    0x7BDF,
-    0x7BDF,
-    0x7BDF,
-    0x7BDF,
-    0xF801,
-    0x7BDF,
-    0x07C1,
-    0x003F,
+const u16 RO_80117CE0_jp[0x10] = {
+    GPACK_RGBA5551(255, 255, 0, 1), // R_CBUTTONS
+    GPACK_RGBA5551(255, 255, 0, 1), // L_CBUTTONS
+    GPACK_RGBA5551(255, 255, 0, 1), // D_CBUTTONS
+    GPACK_RGBA5551(255, 255, 0, 1), // U_CBUTTONS
+    GPACK_RGBA5551(127, 127, 127, 1), // R_TRIG
+    GPACK_RGBA5551(127, 127, 127, 1), // L_TRIG
+    GPACK_RGBA5551(0, 255, 255, 1),
+    GPACK_RGBA5551(255, 0, 255, 1),
+    GPACK_RGBA5551(127, 127, 127, 1), // R_JPAD
+    GPACK_RGBA5551(127, 127, 127, 1), // L_JPAD
+    GPACK_RGBA5551(127, 127, 127, 1), // D_JPAD
+    GPACK_RGBA5551(127, 127, 127, 1), // U_JPAD
+    GPACK_RGBA5551(255, 0, 0, 1), // START_BUTTON
+    GPACK_RGBA5551(127, 127, 127, 1), // Z_TRIG
+    GPACK_RGBA5551(0, 255, 0, 1), // B_BUTTON
+    GPACK_RGBA5551(0, 0, 255, 1), // A_BUTTON
 };
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/func_800D2E58_jp.s")
+#ifdef NON_EQUIVALENT
+void func_800D2E58_jp(u16 button, Gfx** gfxP) {
+    Gfx* gfx; // var_s0
+    s32 var_s1;
+    s32 var_v0;
 
+    gfx = *gfxP;
+
+    gDPPipeSync(gfx++);
+    gDPSetOtherMode(gfx++, G_AD_PATTERN | G_CD_MAGICSQ | G_CK_NONE | G_TC_CONV | G_TF_POINT | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_NONE | G_CYC_FILL | G_PM_NPRIMITIVE, G_AC_NONE | G_ZS_PIXEL | G_RM_NOOP | G_RM_NOOP2);
+
+    for (var_v0 = 0, var_s1 = 1; var_s1 < 0x10; var_v0 = var_s1++) {
+        if (button & (1 << var_v0)) {
+            gDPSetFillColor(gfx++, RO_80117CE0_jp[var_v0] | (RO_80117CE0_jp[var_v0] << 0x10));
+
+            gfx = func_800BE12C_jp(gfx, (var_v0 * 4) + 0xE2, 0xDC, (var_s1 * 4) + 0xE2, 0xE0);
+
+            gDPPipeSync(gfx++);
+        }
+    }
+
+    *gfxP = gfx;
+}
+#else
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/func_800D2E58_jp.s")
+#endif
+
+#ifdef NON_MATCHING
+void game_debug_draw_last(GameState* gameState, GraphicsContext* gfxCtx) {
+    Gfx* sp3C;
+    Gfx* temp_a0; // sp38
+
+    if (zurumode_flag != 0) {
+        OPEN_DISPS(gfxCtx);
+
+        temp_a0 = POLY_OPA_DISP;
+        sp3C = gfxopen(temp_a0);
+
+        gSPDisplayList(OVERLAY_DISP++, sp3C);
+
+        B_80145040_jp = gameState->input[0].press.button | gameState->input[0].cur.button;
+
+        func_800D2E58_jp(B_80145040_jp, &sp3C);
+
+        gSPEndDisplayList(sp3C++);
+
+        gfxclose(temp_a0, sp3C);
+        gfxCtx->polyOpa.tha.head = sp3C;
+
+        CLOSE_DISPS(gfxCtx);
+    }
+
+    if (zurumode_flag != 0) {
+        Debug_mode_output(gfxCtx);
+    }
+
+    if (debug_mode->unk_0D4 != 0) {
+        func_800D8A54_jp(&B_80145020_jp, gfxCtx);
+        func_800D9018_jp(&B_80145020_jp, gfxCtx, gameState);
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_debug_draw_last.s")
+#endif
 
 #if 0
 void game_draw_first(GraphicsContext* gfxCtx) {
