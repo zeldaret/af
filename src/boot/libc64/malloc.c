@@ -1,29 +1,29 @@
 #include "malloc.h"
 #include "osmalloc.h"
 
-extern Arena B_800419C0_jp;
+Arena malloc_arena;
 
 void* malloc(size_t size) {
-    return __osMalloc(&B_800419C0_jp, size);
+    return __osMalloc(&malloc_arena, size);
 }
 
 void* malloc_r(size_t size) {
-    return __osMallocR(&B_800419C0_jp, size);
+    return __osMallocR(&malloc_arena, size);
 }
 
 void* realloc(void* ptr, size_t size) {
-    return __osRealloc(&B_800419C0_jp, ptr, size);
+    return __osRealloc(&malloc_arena, ptr, size);
 }
 
 void free(void* ptr) {
-    __osFree(&B_800419C0_jp, ptr);
+    __osFree(&malloc_arena, ptr);
 }
 
 void* calloc(s32 num, size_t size) {
     void* ptr;
     u32 n = num * size;
 
-    ptr = __osMalloc(&B_800419C0_jp, n);
+    ptr = __osMalloc(&malloc_arena, n);
     if (ptr != NULL) {
         bzero(ptr, n);
     }
@@ -31,21 +31,21 @@ void* calloc(s32 num, size_t size) {
 }
 
 void DisplayArena(size_t* outMaxFree, size_t* outFree, size_t* outAlloc) {
-    __osGetFreeArena(&B_800419C0_jp, outMaxFree, outFree, outAlloc);
+    __osGetFreeArena(&malloc_arena, outMaxFree, outFree, outAlloc);
 }
 
 s32 GetFreeArena(void) {
-    return __osCheckArena(&B_800419C0_jp);
+    return __osCheckArena(&malloc_arena);
 }
 
 void MallocInit(void* heap, size_t size) {
-    __osMallocInit(&B_800419C0_jp, heap, size);
+    __osMallocInit(&malloc_arena, heap, size);
 }
 
 void MallocCleanup(void) {
-    __osMallocCleanup(&B_800419C0_jp);
+    __osMallocCleanup(&malloc_arena);
 }
 
 s32 MallocIsInitialized(void) {
-    return __osMallocIsInitalized(&B_800419C0_jp);
+    return __osMallocIsInitalized(&malloc_arena);
 }
