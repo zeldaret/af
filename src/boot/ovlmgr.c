@@ -1,5 +1,6 @@
 #include "ovlmgr.h"
 
+#include "attributes.h"
 #include "fault.h"
 #include "loadfragment.h"
 #include "malloc.h"
