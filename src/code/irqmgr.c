@@ -5,10 +5,10 @@
 #include "PR/os_internal.h"
 #include "macros.h"
 
-Irqmgr* this;
 Irqmgr irqmgr_class;
+Irqmgr* this;
 
-vs32 ResetStatus = 0;
+vu32 ResetStatus = 0;
 volatile OSTime ResetTime = 0;
 volatile OSTime RetraceTime = 0;
 u32 RetraceCount = 0;
