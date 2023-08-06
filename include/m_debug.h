@@ -70,6 +70,44 @@ extern Debug_mode* debug_mode;
 #define REGADDR(reg, idx) (debug_mode->r[DEBUG_REG_SIZE * DEBUG_REG_GROUP * DEBUG_REG_##reg + (idx)])
 
 #define GETREG(reg, idx) ((s16)(REGADDR(reg, idx)))
-#define SETREG(reg, idx, val) (REGADDR(reg, idx) = (val))
+
+#define REG(r) GETREG(REG,r);
+#define SREG(r) GETREG(SREG,r);
+#define OREG(r) GETREG(OREG,r);
+#define PREG(r) GETREG(PREG,r);
+#define QREG(r) GETREG(QREG,r);
+#define MREG(r) GETREG(MREG,r);
+#define SBREG(r) GETREG(SBREG,r);
+#define DREG(r) GETREG(DREG,r);
+#define UREG(r) GETREG(UREG,r);
+#define IREG(r) GETREG(IREG,r);
+#define ZREG(r) GETREG(ZREG,r);
+#define CRV(r) GETREG(CRV,r);
+#define NS1(r) GETREG(NS1,r);
+#define SND(r) GETREG(SND,r);
+#define XREG(r) GETREG(XREG,r);
+#define CRV2(r) GETREG(CRV2,r);
+#define DEMOREG(r) GETREG(DEMOREG,r);
+#define TREG(r) GETREG(TREG,r);
+#define WREG(r) GETREG(WREG,r);
+#define AREG(r) GETREG(AREG,r);
+#define VREG(r) GETREG(VREG,r);
+#define HREG(r) GETREG(HREG,r);
+#define GREG(r) GETREG(GREG,r);
+#define mREG(r) GETREG(mREG,r);
+#define nREG(r) GETREG(nREG,r);
+#define BREG(r) GETREG(BREG,r);
+#define DORO(r) GETREG(DORO,r);
+#define kREG(r) GETREG(kREG,r);
+#define BAK(r) GETREG(BAK,r);
+#define PLAYERREG(r) GETREG(PLAYERREG,r);
+#define NMREG(r) GETREG(NMREG,r);
+#define NIIREG(r) GETREG(NIIREG,r);
+#define GENREG(r) GETREG(GENREG,r);
+#define MYKREG(r) GETREG(MYKREG,r);
+#define CAMREG(r) GETREG(CAMREG,r);
+#define SAKKREG(r) GETREG(SAKKREG,r);
+#define TAKREG(r) GETREG(TAKREG,r);
+#define PL2REG(r) GETREG(PL2REG,r);
 
 #endif
