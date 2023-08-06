@@ -1,5 +1,5 @@
-#include "malloc.h"
-#include "osmalloc.h"
+#include "libc64/malloc.h"
+#include "libc64/osmalloc.h"
 
 Arena malloc_arena;
 

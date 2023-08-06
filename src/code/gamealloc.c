@@ -1,5 +1,5 @@
 #include "gamealloc.h"
-#include "malloc.h"
+#include "libc64/malloc.h"
 #include "libc/stdint.h"
 
 void func_800D3720_jp(GameAlloc* this) {
