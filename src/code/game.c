@@ -68,7 +68,7 @@ void func_800D2E58_jp(u16 button, Gfx** gfxP) {
     gDPPipeSync(gfx++);
     gDPSetOtherMode(gfx++, G_AD_PATTERN | G_CD_MAGICSQ | G_CK_NONE | G_TC_CONV | G_TF_POINT | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_NONE | G_CYC_FILL | G_PM_NPRIMITIVE, G_AC_NONE | G_ZS_PIXEL | G_RM_NOOP | G_RM_NOOP2);
 
-    for (var_v0 = 0, var_s1 = 1; var_s1 < 0x10; var_v0 = var_s1++) {
+    for (var_v0 = 0, var_s1 = 1; var_s1 < 0x10; var_v0++, var_s1++) {
         if (button & (1 << var_v0)) {
             gDPSetFillColor(gfx++, RO_80117CE0_jp[var_v0] | (RO_80117CE0_jp[var_v0] << 0x10));
 
