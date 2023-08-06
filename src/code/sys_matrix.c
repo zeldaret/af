@@ -46,7 +46,6 @@
 #include "m_skin_matrix.h"
 #include "mathf.h"
 #include "m_lib.h"
-#include "gfx.h"
 
 // clang-format off
 

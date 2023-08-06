@@ -39,22 +39,22 @@ void func_800D2E00_jp(GameState* gameState) {
 }
 
 const u16 RO_80117CE0_jp[0x10] = {
-    GPACK_RGBA5551(255, 255, 0, 1), // R_CBUTTONS
-    GPACK_RGBA5551(255, 255, 0, 1), // L_CBUTTONS
-    GPACK_RGBA5551(255, 255, 0, 1), // D_CBUTTONS
-    GPACK_RGBA5551(255, 255, 0, 1), // U_CBUTTONS
+    GPACK_RGBA5551(255, 255, 0, 1),   // R_CBUTTONS
+    GPACK_RGBA5551(255, 255, 0, 1),   // L_CBUTTONS
+    GPACK_RGBA5551(255, 255, 0, 1),   // D_CBUTTONS
+    GPACK_RGBA5551(255, 255, 0, 1),   // U_CBUTTONS
     GPACK_RGBA5551(127, 127, 127, 1), // R_TRIG
     GPACK_RGBA5551(127, 127, 127, 1), // L_TRIG
-    GPACK_RGBA5551(0, 255, 255, 1),
-    GPACK_RGBA5551(255, 0, 255, 1),
+    GPACK_RGBA5551(0, 255, 255, 1),   //
+    GPACK_RGBA5551(255, 0, 255, 1),   //
     GPACK_RGBA5551(127, 127, 127, 1), // R_JPAD
     GPACK_RGBA5551(127, 127, 127, 1), // L_JPAD
     GPACK_RGBA5551(127, 127, 127, 1), // D_JPAD
     GPACK_RGBA5551(127, 127, 127, 1), // U_JPAD
-    GPACK_RGBA5551(255, 0, 0, 1), // START_BUTTON
+    GPACK_RGBA5551(255, 0, 0, 1),     // START_BUTTON
     GPACK_RGBA5551(127, 127, 127, 1), // Z_TRIG
-    GPACK_RGBA5551(0, 255, 0, 1), // B_BUTTON
-    GPACK_RGBA5551(0, 0, 255, 1), // A_BUTTON
+    GPACK_RGBA5551(0, 255, 0, 1),     // B_BUTTON
+    GPACK_RGBA5551(0, 0, 255, 1),     // A_BUTTON
 };
 
 #ifdef NON_EQUIVALENT
@@ -66,7 +66,10 @@ void func_800D2E58_jp(u16 button, Gfx** gfxP) {
     gfx = *gfxP;
 
     gDPPipeSync(gfx++);
-    gDPSetOtherMode(gfx++, G_AD_PATTERN | G_CD_MAGICSQ | G_CK_NONE | G_TC_CONV | G_TF_POINT | G_TT_NONE | G_TL_TILE | G_TD_CLAMP | G_TP_NONE | G_CYC_FILL | G_PM_NPRIMITIVE, G_AC_NONE | G_ZS_PIXEL | G_RM_NOOP | G_RM_NOOP2);
+    gDPSetOtherMode(gfx++,
+                    G_AD_PATTERN | G_CD_MAGICSQ | G_CK_NONE | G_TC_CONV | G_TF_POINT | G_TT_NONE | G_TL_TILE |
+                        G_TD_CLAMP | G_TP_NONE | G_CYC_FILL | G_PM_NPRIMITIVE,
+                    G_AC_NONE | G_ZS_PIXEL | G_RM_NOOP | G_RM_NOOP2);
 
     for (var_v0 = 0, var_s1 = 1; var_s1 < 0x10; var_v0++, var_s1++) {
         if (button & (1 << var_v0)) {
@@ -224,7 +227,7 @@ void game_init_hyral(GameState* gameState, size_t size) {
 }
 
 void game_resize_hyral(GameState* gameState, size_t size) {
-    GameAlloc *alloc = &gameState->alloc;
+    GameAlloc* alloc = &gameState->alloc;
     void* gameArena;
     size_t maxFree;
     size_t bytesFree;
