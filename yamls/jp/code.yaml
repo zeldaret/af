@@ -43,7 +43,7 @@
       - [0x6BA500, asm, code/6BA500]
       - [0x6BD560, asm, code/m_lib]
       - [0x6BEE80, asm, code/m_lights]
-      - [0x6BFC60, asm, code/m_malloc]
+      - [0x6BFC60, c, code/m_malloc]
       - [0x6BFE60, asm, code/6BFE60]
       - [0x6C05A0, asm, code/6C05A0]
       - [0x6C0690, asm, code/6C0690]
