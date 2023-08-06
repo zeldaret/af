@@ -9,7 +9,7 @@
 
       - [0x0011F0, c, boot/idle]
       - [0x0014A0, c, boot/viconfig]
-      - [0x001640, asm, boot/001640]
+      - [0x001640, c, boot/ovlmgr]
       - [0x0017F0, asm, boot/z_std_dma]
       - [0x0022A0, asm, boot/yaz0]
       - [0x0026C0, asm, boot/syncprintf]
@@ -238,7 +238,7 @@
 
       - [0x018580, .rodata, boot/boot_main]
       - [0x018590, .rodata, boot/idle]
-      - [0x0185B0, rodata, boot/0185B0]
+      - [0x0185B0, .rodata, boot/ovlmgr]
       - [0x0185D0, rodata, boot/0185D0]
       - [0x0187F0, rodata, boot/0187F0]
       - [0x018840, rodata, boot/018840]

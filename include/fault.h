@@ -44,7 +44,7 @@
 // void Fault_SetFrameBuffer();
 // void Fault_Init();
 // void Fault_HungupFaultClient();
-// NORETURN void Fault_AddHungupAndCrashImpl();
+NORETURN void Fault_AddHungupAndCrashImpl(const char* exp1, const char* exp2);
 // NORETURN void Fault_AddHungupAndCrash();
 
 // void FaultDrawer_SetOsSyncPrintfEnabled();

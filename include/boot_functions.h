@@ -4,12 +4,6 @@
 #include "ultra64.h"
 #include "unknown_structs.h"
 
-
-// void func_80026240_jp();
-// void func_8002628C_jp();
-// void func_800262D0_jp();
-// void func_800263C0_jp();
-
 // void func_8002B910_jp();
 // void DoRelocation();
 
