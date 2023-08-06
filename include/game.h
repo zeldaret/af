@@ -27,7 +27,7 @@ typedef struct GameState {
     /* 0x9C */ UNK_TYPE1 unk_9C[0x3];
     /* 0x9F */ u8 running;
     /* 0xA0 */ s32 unk_A0;
-} GameState; // size >= 0xA4
+} GameState; // size >= 0xA4, size <= 0xE0
 
 void func_800D2E00_jp(GameState* gameState);
 void func_800D2E58_jp(u16 arg0, Gfx **gfxP);

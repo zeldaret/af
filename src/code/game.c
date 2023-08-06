@@ -86,25 +86,25 @@ void func_800D2E58_jp(u16 button, Gfx** gfxP) {
 
 #ifdef NON_MATCHING
 void game_debug_draw_last(GameState* gameState, GraphicsContext* gfxCtx) {
-    Gfx* sp3C;
-    Gfx* temp_a0; // sp38
+    Gfx* gfx;
+    Gfx* gfxHead;
 
     if (zurumode_flag != 0) {
         OPEN_DISPS(gfxCtx);
 
-        temp_a0 = POLY_OPA_DISP;
-        sp3C = gfxopen(temp_a0);
+        gfxHead = POLY_OPA_DISP;
+        gfx = gfxopen(gfxHead);
 
-        gSPDisplayList(OVERLAY_DISP++, sp3C);
+        gSPDisplayList(OVERLAY_DISP++, gfx);
 
         B_80145040_jp = gameState->input[0].press.button | gameState->input[0].cur.button;
 
-        func_800D2E58_jp(B_80145040_jp, &sp3C);
+        func_800D2E58_jp(B_80145040_jp, &gfx);
 
-        gSPEndDisplayList(sp3C++);
+        gSPEndDisplayList(gfx++);
 
-        gfxclose(temp_a0, sp3C);
-        POLY_OPA_DISP = sp3C;
+        gfxclose(gfxHead, gfx);
+        POLY_OPA_DISP = gfx;
 
         CLOSE_DISPS(gfxCtx);
     }
@@ -155,17 +155,17 @@ void game_draw_first(GraphicsContext* gfxCtx) {
 }
 
 void game_draw_last(GraphicsContext* gfxCtx) {
-    Gfx* temp_a1;
-    Gfx* temp_a3;
+    Gfx* gfx;
+    Gfx* gfxHead;
 
     OPEN_DISPS(gfxCtx);
-    temp_a1 = gfxopen(temp_a3 = POLY_OPA_DISP);
+    gfx = gfxopen(gfxHead = POLY_OPA_DISP);
 
-    gSPDisplayList(OVERLAY_DISP++, temp_a1);
-    gSPEndDisplayList(temp_a1++);
+    gSPDisplayList(OVERLAY_DISP++, gfx);
+    gSPEndDisplayList(gfx++);
 
-    gfxclose(temp_a3, temp_a1);
-    POLY_OPA_DISP = temp_a1;
+    gfxclose(gfxHead, gfx);
+    POLY_OPA_DISP = gfx;
 
     CLOSE_DISPS(gfxCtx);
 }
@@ -249,7 +249,7 @@ void game_resize_hyral(GameState* gameState, size_t size) {
         return;
     }
 
-    THA_ct(&gameState->heap, NULL, 0U);
+    THA_ct(&gameState->heap, NULL, 0);
     _dbg_hungup("../game.c", 508);
 }
 
