@@ -3,6 +3,8 @@
 
 #include "ultra64.h"
 
+extern Vec3f ZeroVec;
+
 // void Math3d_normalizeXyz_t();
 // void func_800DA028_jp();
 // void func_800DA148_jp();

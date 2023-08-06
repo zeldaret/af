@@ -16,7 +16,7 @@
 // void ltruncf();
 // void ltrunc();
 // void nearbyintf();
-// void nearbyint();
+f64 nearbyint(f64 x);
 // void lnearbyintf();
 // void lnearbyint();
 // void roundf();
