@@ -269,7 +269,7 @@ s16 cKF_KeyCalc(s16 startIndex, s16 sequenceLength, Keyframe* dataSource, f32 cu
 
 void cKF_SkeletonInfo_subRotInterpolation(f32 t, s16* out, s16 jointRotation, s16 morphRotation) {
     u16 urot1 = jointRotation;
-    s32 pad;
+    s32 pad UNUSED;
     u16 urot2 = morphRotation;
     f32 f1 = jointRotation;
     f32 signedDiff = morphRotation - f1;
@@ -320,7 +320,7 @@ void cKF_SkeletonInfo_R_ct(SkeletonInfoR* skeletonInfo, BaseSkeletonR* skeleton,
     skeletonInfo->morphTable = morphTable;
 }
 
-void cKF_SkeletonInfo_R_dt(SkeletonInfoR* skeletonInfo) {
+void cKF_SkeletonInfo_R_dt(SkeletonInfoR* skeletonInfo UNUSED) {
 }
 
 void cKF_SkeletonInfo_R_init_standard_stop(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
@@ -1173,14 +1173,14 @@ void cKF_SkeletonInfo_R_AnimationMove_base(Vec3f* arg0, Vec3s* arg1, Vec3f* arg2
             f32 baseTranslationZTemp = skeletonInfo->animationMove.baseShapeTranslation.z;
             f32 sin1 = sin_s(var_a0);
             f32 cos1 = cos_s(var_a0);
-            s32 pad[2];
+            s32 pad[2] UNUSED;
             f32 move_x = arg2->x * (sp78->x - ((baseTranslationXTemp * cos1) + (baseTranslationZTemp * sin1)));
             f32 move_z = arg2->z * (sp78->z - ((-baseTranslationXTemp * sin1) + (baseTranslationZTemp * cos1)));
             f32 sin2 = sin_s(arg3);
             f32 cos2 = cos_s(arg3);
             f32 correctBaseWorldXTemp = skeletonInfo->animationMove.shapeWorldPositionCorrection.x;
             f32 correctBaseWorldZTemp = skeletonInfo->animationMove.shapeWorldPositionCorrection.z;
-            s32 pad2[2];
+            s32 pad2[2] UNUSED;
 
             arg0->x = (skeletonInfo->animationMove.baseWorldPosition.x + correctBaseWorldXTemp) +
                       ((move_x * cos2) + (move_z * sin2));
