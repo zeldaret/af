@@ -19,11 +19,11 @@ GameState* gamePT = NULL;
 
 struct_80145020_jp B_80145020_jp;
 s16 B_80145040_jp;
-UNK_TYPE4 B_80145044_jp;
-u8 B_80145048_jp;
-f32 B_FLT_8014504C_jp;
-f32 B_FLT_80145050_jp;
-f32 B_FLT_80145054_jp;
+GameState* game_class_p;
+u8 game_GameFrame;
+f32 game_GameFrameF;
+f32 game_GameFrame_2F;
+f32 game_GameFrame__1F;
 
 void func_800D2E00_jp(GameState* gameState) {
     if (zurumode_flag >= 2) {
@@ -179,21 +179,21 @@ void game_get_controller(GameState* gameState) {
 }
 
 void SetGameFrame(s32 divisor) {
-    if (divisor != B_80145048_jp) {
-        B_80145048_jp = divisor;
-        B_FLT_8014504C_jp = (divisor & 0xFF);
-        B_FLT_80145050_jp = B_FLT_8014504C_jp / 2.0f;
-        B_FLT_80145054_jp = 1.0f / B_FLT_8014504C_jp;
-        debug_mode->unk_110 = divisor;
+    if (divisor != game_GameFrame) {
+        game_GameFrame = divisor;
+        game_GameFrameF = (divisor & 0xFF);
+        game_GameFrame_2F = game_GameFrameF / 2.0f;
+        game_GameFrame__1F = 1.0f / game_GameFrameF;
+        debug_mode->gameframe = divisor;
     }
 }
 
 void game_main(GameState* gameState) {
     GraphicsContext* gfxCtx = gameState->gfxCtx;
-    u8 temp = B_80145048_jp;
+    u8 gameframe = game_GameFrame;
 
-    if (debug_mode->unk_110 != temp) {
-        SetGameFrame(debug_mode->unk_110);
+    if (debug_mode->gameframe != gameframe) {
+        SetGameFrame(debug_mode->gameframe);
     }
 
     game_draw_first(gfxCtx);

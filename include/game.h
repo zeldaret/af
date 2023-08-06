@@ -57,11 +57,11 @@ extern GameState* gamePT;
 
 extern struct struct_80145020_jp B_80145020_jp;
 extern s16 B_80145040_jp;
-extern UNK_TYPE4 B_80145044_jp;
-extern u8 B_80145048_jp;
-extern f32 B_FLT_8014504C_jp;
-extern f32 B_FLT_80145050_jp;
-extern f32 B_FLT_80145054_jp;
+extern GameState* game_class_p;
+extern u8 game_GameFrame;
+extern f32 game_GameFrameF;
+extern f32 game_GameFrame_2F;
+extern f32 game_GameFrame__1F;
 
 
 #define CONTROLLER1(gameState) (&(gameState)->input[0])
