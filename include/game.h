@@ -30,7 +30,7 @@ typedef struct GameState {
 } GameState; // size >= 0xA4, size <= 0xE0
 
 void func_800D2E00_jp(GameState* gameState);
-void func_800D2E58_jp(u16 arg0, Gfx **gfxP);
+void func_800D2E58_jp(u16 button, Gfx** gfxP);
 void game_debug_draw_last(GameState* gameState, struct GraphicsContext* gfxCtx);
 void game_draw_first(struct GraphicsContext* gfxCtx);
 void game_draw_last(struct GraphicsContext* gfxCtx);

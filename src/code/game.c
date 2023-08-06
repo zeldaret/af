@@ -14,6 +14,7 @@
 #include "code_variables.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "overlays/gamestates/ovl_famicom_emu/famicom_emu.h"
+#include "macros.h"
 
 GameState* gamePT = NULL;
 
@@ -54,11 +55,10 @@ const u16 RO_80117CE0_jp[0x10] = {
     GPACK_RGBA5551(0, 0, 255, 1),     // A_BUTTON
 };
 
-#ifdef NON_EQUIVALENT
 void func_800D2E58_jp(u16 button, Gfx** gfxP) {
-    Gfx* gfx; // var_s0
-    s32 var_s1;
-    s32 var_v0;
+    Gfx* gfx;
+    u32 i;
+    u32 j;
 
     gfx = *gfxP;
 
@@ -68,11 +68,11 @@ void func_800D2E58_jp(u16 button, Gfx** gfxP) {
                         G_TD_CLAMP | G_TP_NONE | G_CYC_FILL | G_PM_NPRIMITIVE,
                     G_AC_NONE | G_ZS_PIXEL | G_RM_NOOP | G_RM_NOOP2);
 
-    for (var_v0 = 0, var_s1 = 1; var_s1 < 0x10; var_v0++, var_s1++) {
-        if (button & (1 << var_v0)) {
-            gDPSetFillColor(gfx++, RO_80117CE0_jp[var_v0] | (RO_80117CE0_jp[var_v0] << 0x10));
-
-            gfx = func_800BE12C_jp(gfx, (var_v0 * 4) + 0xE2, 0xDC, (var_s1 * 4) + 0xE2, 0xE0);
+    for (i = 0; i < ARRAY_COUNT(RO_80117CE0_jp); i++) {
+        if (button & (1 << i)) {
+            j = i + 1;
+            gDPSetFillColor(gfx++, (RO_80117CE0_jp[i] << 0x10) | RO_80117CE0_jp[i]);
+            gfx = func_800BE12C_jp(gfx, (i * 4) + 226, 220, (j * 4) + 226, 224);
 
             gDPPipeSync(gfx++);
         }
@@ -80,11 +80,7 @@ void func_800D2E58_jp(u16 button, Gfx** gfxP) {
 
     *gfxP = gfx;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/func_800D2E58_jp.s")
-#endif
 
-#ifdef NON_MATCHING
 void game_debug_draw_last(GameState* gameState, GraphicsContext* gfxCtx) {
     Gfx* gfx;
     Gfx* gfxHead;
@@ -92,10 +88,14 @@ void game_debug_draw_last(GameState* gameState, GraphicsContext* gfxCtx) {
     if (zurumode_flag != 0) {
         OPEN_DISPS(gfxCtx);
 
-        gfxHead = POLY_OPA_DISP;
-        gfx = gfxopen(gfxHead);
+        {
+            UNUSED s32 requiredScopeTemp;
 
-        gSPDisplayList(OVERLAY_DISP++, gfx);
+            gfxHead = POLY_OPA_DISP;
+            gfx = gfxopen(gfxHead);
+
+            gSPDisplayList(OVERLAY_DISP++, gfx);
+        }
 
         B_80145040_jp = gameState->input[0].press.button | gameState->input[0].cur.button;
 
@@ -118,9 +118,6 @@ void game_debug_draw_last(GameState* gameState, GraphicsContext* gfxCtx) {
         func_800D9018_jp(&B_80145020_jp, gfxCtx, gameState);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_debug_draw_last.s")
-#endif
 
 void game_draw_first(GraphicsContext* gfxCtx) {
     void* temp_v0 = gfxCtx->unk_008;
