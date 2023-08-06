@@ -22,7 +22,7 @@ CC_CHECK_COMP ?= gcc
 OBJDUMP_BUILD ?= 0
 # Number of threads to compress with
 N_THREADS ?= $(shell nproc)
-# 
+# Not meant to be used by normal users. Toggles some options to improve the use of the warning checker system
 WARNINGS_CHECK ?= 0
 
 # Set prefix to mips binutils binaries (mips-linux-gnu-ld => 'mips-linux-gnu-') - Change at your own risk!
