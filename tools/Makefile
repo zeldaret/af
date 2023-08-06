@@ -1,3 +1,5 @@
+WARNINGS_CHECK ?= 0
+
 UNAME_S := $(shell uname -s)
 ifeq ($(OS),Windows_NT)
 	DETECTED_OS := windows
@@ -11,7 +13,11 @@ else ifeq ($(UNAME_S),Darwin)
 endif
 
 
-WGET_FLAGS  ?= --quiet
+WGET_FLAGS  ?=
+ifneq ($(WARNINGS_CHECK), 0)
+    WGET_FLAGS += --quiet
+endif
+
 
 
 IDO_5_3_DIR := ido/$(DETECTED_OS)/5.3

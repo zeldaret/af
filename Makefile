@@ -22,6 +22,8 @@ CC_CHECK_COMP ?= gcc
 OBJDUMP_BUILD ?= 0
 # Number of threads to compress with
 N_THREADS ?= $(shell nproc)
+# 
+WARNINGS_CHECK ?= 0
 
 # Set prefix to mips binutils binaries (mips-linux-gnu-ld => 'mips-linux-gnu-') - Change at your own risk!
 # In nearly all cases, not having 'mips-linux-gnu-*' binaries on the PATH is indicative of missing dependencies
@@ -163,6 +165,11 @@ ifeq ($(NON_MATCHING),0)
     COMPFLAGS += --matching
 endif
 
+SPLAT_FLAGS ?=
+ifneq ($(WARNINGS_CHECK), 0)
+    SPLAT_FLAGS += --stdout-only
+endif
+
 #### Files ####
 
 $(shell mkdir -p asm/$(VERSION) bin linker_scripts/$(VERSION)/auto)
@@ -242,13 +249,13 @@ distclean: clean
 	$(MAKE) -C lib distclean
 
 setup:
-	$(MAKE) -C tools
+	$(MAKE) -C tools WARNINGS_CHECK=$(WARNINGS_CHECK)
 	python3 tools/decompress_baserom.py
 
 extract:
 	$(RM) -r asm/$(VERSION) bin/$(VERSION)
 	$(CAT) yamls/$(VERSION)/header.yaml yamls/$(VERSION)/makerom.yaml yamls/$(VERSION)/boot.yaml yamls/$(VERSION)/code.yaml yamls/$(VERSION)/overlays.yaml yamls/$(VERSION)/assets.yaml > $(SPLAT_YAML)
-	$(SPLAT) $(SPLAT_YAML)
+	$(SPLAT) $(SPLAT_FLAGS) $(SPLAT_YAML)
 
 lib:
 	$(MAKE) -C lib
