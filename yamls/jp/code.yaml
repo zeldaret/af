@@ -134,7 +134,7 @@
       - [0x726260, data, code/m_actor_shadow]
       - [0x72B7A0, data, code/m_lib]
       - [0x72B7D0, data, code/72B7D0]
-      - [0x732C50, data, code/irqmgr]
+      - [0x732C50, .data, code/irqmgr]
       - [0x732C70, data, code/732C70]
       - [0x733970, .data, code/sys_matrix]
       - [0x7339F0, data, code/sys_ucode]
@@ -204,7 +204,7 @@
       - [0x73B960, rodata, code/73B960]
       - [0x73B980, rodata, code/73B980]
       - [0x73B9C0, rodata, code/73B9C0]
-      - [0x73BA50, rodata, code/irqmgr]
+      - [0x73BA50, .rodata, code/irqmgr]
       - [0x73BA70, rodata, code/73BA70]
       - [0x73BB10, rodata, code/73BB10]
       - [0x73BCA0, rodata, code/73BCA0]
@@ -232,7 +232,7 @@
       - { start: 0x75B600, type: bss, vram: 0x80137960, name: code/80137960 }
       - { start: 0x73F4D0, type: bss, vram: 0x80143900, name: code/m_player_call }
       - { start: 0x73F4D0, type: bss, vram: 0x80143910, name: code/80143910 }
-      - { start: 0x73F4D0, type: bss, vram: 0x80145390, name: code/irqmgr }
+      - { start: 0x73F4D0, type: .bss, vram: 0x80145390, name: code/irqmgr }
       - { start: 0x73F4D0, type: bss, vram: 0x80145620, name: code/80145620}
       - { start: 0x73F4D0, type: .bss, vram: 0x801458A0, name: code/c_keyframe }
       - { start: 0x73F4D0, type: bss, vram: 0x801458B0, name: code/801458B0 }
