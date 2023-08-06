@@ -1,11 +1,12 @@
 #include "global.h"
 #include "idle.h"
+#include "irqmgr.h"
 
 u8 gViConfigBlackNext;
 u8 gViConfigBlack;
 
 void ViConfig_UpdateVi(u32 black) {
-    if ((black || (D_8010EFB0_jp == 0)) && ((black != gViConfigBlack) || (black != gViConfigBlackNext))) {
+    if ((black || (ResetStatus == 0)) && ((black != gViConfigBlack) || (black != gViConfigBlackNext))) {
         if (black) {
             if (osTvType == OS_TV_PAL) {
                 osViSetMode(&osViModePalLan1);
