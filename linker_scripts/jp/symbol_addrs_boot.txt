@@ -12,10 +12,10 @@ Idle_ThreadEntry = 0x80025FD0; // type:func
 ViConfig_UpdateVi = 0x800260A0; // type:func
 ViConfig_UpdateBlack = 0x800261F4; // type:func
 
-func_80026240_jp = 0x80026240; // type:func
-func_8002628C_jp = 0x8002628C; // type:func
-func_800262D0_jp = 0x800262D0; // type:func
-func_800263C0_jp = 0x800263C0; // type:func
+ovlmgr_Malloc = 0x80026240; // type:func
+ovlmgr_Free = 0x8002628C; // type:func
+ovlmgr_LoadImpl = 0x800262D0; // type:func
+ovlmgr_Load = 0x800263C0; // type:func
 
 func_800263F0_jp = 0x800263F0; // type:func
 DmaMgr_DmaRomToRam = 0x80026500; // type:func
