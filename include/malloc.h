@@ -4,9 +4,9 @@
 #include "ultra64.h"
 
 // void malloc();
-// void malloc_r();
+void* malloc_r(size_t size);
 // void realloc();
-// void free();
+void free(void* ptr);
 // void calloc();
 void DisplayArena(size_t* maxFree, size_t* bytesFree, size_t* bytesAllocated);
 // void GetFreeArena();

@@ -6,7 +6,7 @@
     compress: True
     bss_size: 0x36C90
     subsegments:
-      - [0x675720, asm, code/c_keyframe]
+      - [0x675720, c, code/c_keyframe]
       - [0x678660, asm, code/evw_anime]
       - [0x6792F0, asm, code/6792F0]
       - [0x67A020, asm, code/m_actor]
@@ -141,7 +141,7 @@
       - [0x733A00, data, code/m_nmi_buff]
       - [0x733A10, data, code/733A10]
 
-      - [0x739DB0, rodata, code/739DB0]
+      - [0x739DB0, .rodata, code/c_keyframe]
       - [0x739E00, rodata, code/739E00]
       - [0x739E50, rodata, code/m_actor]
       - [0x739E90, rodata, code/739E90]
@@ -233,5 +233,7 @@
       - { start: 0x73F4D0, type: bss, vram: 0x80143910, name: code/80143910 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80145020, name: code/game }
       - { start: 0x73F4D0, type: bss, vram: 0x80145060, name: code/80145060 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x801458A0, name: code/c_keyframe }
+      - { start: 0x73F4D0, type: bss, vram: 0x801458B0, name: code/801458B0 }
       - { start: 0x73F4D0, type: .bss, vram: 0x801462B0, name: code/sys_matrix }
       - { start: 0x73F4D0, type: bss, vram: 0x801462C0, name: code/801462C0 }
