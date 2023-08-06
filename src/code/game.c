@@ -104,7 +104,7 @@ void game_debug_draw_last(GameState* gameState, GraphicsContext* gfxCtx) {
         gSPEndDisplayList(sp3C++);
 
         gfxclose(temp_a0, sp3C);
-        gfxCtx->polyOpa.tha.head = sp3C;
+        POLY_OPA_DISP = sp3C;
 
         CLOSE_DISPS(gfxCtx);
     }
@@ -122,105 +122,37 @@ void game_debug_draw_last(GameState* gameState, GraphicsContext* gfxCtx) {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_debug_draw_last.s")
 #endif
 
-#if 0
 void game_draw_first(GraphicsContext* gfxCtx) {
-    s32 temp_v0;
-    void* temp_t0;
-    void* temp_t0_10;
-    void* temp_t0_11;
-    void* temp_t0_12;
-    void* temp_t0_13;
-    void* temp_t0_14;
-    void* temp_t0_15;
-    void* temp_t0_16;
-    void* temp_t0_17;
-    void* temp_t0_18;
-    void* temp_t0_2;
-    void* temp_t0_3;
-    void* temp_t0_4;
-    void* temp_t0_5;
-    void* temp_t0_6;
-    void* temp_t0_7;
-    void* temp_t0_8;
-    void* temp_t0_9;
+    void* temp_v0 = gfxCtx->unk_008;
 
-    temp_v0 = gfxCtx->unk_8;
-    temp_t0 = gfxCtx->polyOpa.tha.head;
-    gfxCtx->polyOpa.tha.head = temp_t0 + 8;
-    temp_t0->unk_4 = 0;
-    temp_t0->unk_0 = 0xDB060000;
-    temp_t0_2 = gfxCtx->polyOpa.tha.head;
-    gfxCtx->polyOpa.tha.head = temp_t0_2 + 8;
-    temp_t0_2->unk_0 = 0xDB06003C;
-    temp_t0_2->unk_4 = (s32) gfxCtx->unk_2E4;
-    temp_t0_3 = gfxCtx->polyOpa.tha.head;
-    gfxCtx->polyOpa.tha.head = temp_t0_3 + 8;
-    temp_t0_3->unk_4 = temp_v0;
-    temp_t0_3->unk_0 = 0xDB060038;
-    temp_t0_4 = gfxCtx->polyXlu.tha.head;
-    gfxCtx->polyXlu.tha.head = temp_t0_4 + 8;
-    temp_t0_4->unk_4 = 0;
-    temp_t0_4->unk_0 = 0xDB060000;
-    temp_t0_5 = gfxCtx->polyXlu.tha.head;
-    gfxCtx->polyXlu.tha.head = temp_t0_5 + 8;
-    temp_t0_5->unk_0 = 0xDB06003C;
-    temp_t0_5->unk_4 = (s32) gfxCtx->unk_2E4;
-    temp_t0_6 = gfxCtx->polyXlu.tha.head;
-    gfxCtx->polyXlu.tha.head = temp_t0_6 + 8;
-    temp_t0_6->unk_4 = temp_v0;
-    temp_t0_6->unk_0 = 0xDB060038;
-    temp_t0_7 = gfxCtx->unk_288;
-    gfxCtx->unk_288 = (void* ) (temp_t0_7 + 8);
-    temp_t0_7->unk_4 = 0;
-    temp_t0_7->unk_0 = 0xDB060000;
-    temp_t0_8 = gfxCtx->unk_288;
-    gfxCtx->unk_288 = (void* ) (temp_t0_8 + 8);
-    temp_t0_8->unk_0 = 0xDB06003C;
-    temp_t0_8->unk_4 = (s32) gfxCtx->unk_2E4;
-    temp_t0_9 = gfxCtx->unk_288;
-    gfxCtx->unk_288 = (void* ) (temp_t0_9 + 8);
-    temp_t0_9->unk_4 = temp_v0;
-    temp_t0_9->unk_0 = 0xDB060038;
-    temp_t0_10 = gfxCtx->unk_2B8;
-    gfxCtx->unk_2B8 = (void* ) (temp_t0_10 + 8);
-    temp_t0_10->unk_4 = 0;
-    temp_t0_10->unk_0 = 0xDB060000;
-    temp_t0_11 = gfxCtx->unk_2B8;
-    gfxCtx->unk_2B8 = (void* ) (temp_t0_11 + 8);
-    temp_t0_11->unk_0 = 0xDB06003C;
-    temp_t0_11->unk_4 = (s32) gfxCtx->unk_2E4;
-    temp_t0_12 = gfxCtx->unk_2B8;
-    gfxCtx->unk_2B8 = (void* ) (temp_t0_12 + 8);
-    temp_t0_12->unk_4 = temp_v0;
-    temp_t0_12->unk_0 = 0xDB060038;
-    temp_t0_13 = gfxCtx->unk_2C8;
-    gfxCtx->unk_2C8 = (void* ) (temp_t0_13 + 8);
-    temp_t0_13->unk_4 = 0;
-    temp_t0_13->unk_0 = 0xDB060000;
-    temp_t0_14 = gfxCtx->unk_2C8;
-    gfxCtx->unk_2C8 = (void* ) (temp_t0_14 + 8);
-    temp_t0_14->unk_0 = 0xDB06003C;
-    temp_t0_14->unk_4 = (s32) gfxCtx->unk_2E4;
-    temp_t0_15 = gfxCtx->unk_2C8;
-    gfxCtx->unk_2C8 = (void* ) (temp_t0_15 + 8);
-    temp_t0_15->unk_4 = temp_v0;
-    temp_t0_15->unk_0 = 0xDB060038;
-    temp_t0_16 = gfxCtx->unk_2D8;
-    gfxCtx->unk_2D8 = (void* ) (temp_t0_16 + 8);
-    temp_t0_16->unk_4 = 0;
-    temp_t0_16->unk_0 = 0xDB060000;
-    temp_t0_17 = gfxCtx->unk_2D8;
-    gfxCtx->unk_2D8 = (void* ) (temp_t0_17 + 8);
-    temp_t0_17->unk_0 = 0xDB06003C;
-    temp_t0_17->unk_4 = (s32) gfxCtx->unk_2E4;
-    temp_t0_18 = gfxCtx->unk_2D8;
-    gfxCtx->unk_2D8 = (void* ) (temp_t0_18 + 8);
-    temp_t0_18->unk_4 = temp_v0;
-    temp_t0_18->unk_0 = 0xDB060038;
+    OPEN_DISPS(gfxCtx);
+
+    gSPSegment(POLY_OPA_DISP++, 0x00, NULL);
+    gSPSegment(POLY_OPA_DISP++, 0x0F, gfxCtx->unk_2E4);
+    gSPSegment(POLY_OPA_DISP++, 0x0E, temp_v0);
+
+    gSPSegment(POLY_XLU_DISP++, 0x00, NULL);
+    gSPSegment(POLY_XLU_DISP++, 0x0F, gfxCtx->unk_2E4);
+    gSPSegment(POLY_XLU_DISP++, 0x0E, temp_v0);
+
+    gSPSegment(OVERLAY_DISP++, 0x00, NULL);
+    gSPSegment(OVERLAY_DISP++, 0x0F, gfxCtx->unk_2E4);
+    gSPSegment(OVERLAY_DISP++, 0x0E, temp_v0);
+
+    gSPSegment(UNK_2B0_DISP++, 0x00, NULL);
+    gSPSegment(UNK_2B0_DISP++, 0x0F, gfxCtx->unk_2E4);
+    gSPSegment(UNK_2B0_DISP++, 0x0E, temp_v0);
+
+    gSPSegment(UNK_2C0_DISP++, 0x00, NULL);
+    gSPSegment(UNK_2C0_DISP++, 0x0F, gfxCtx->unk_2E4);
+    gSPSegment(UNK_2C0_DISP++, 0x0E, temp_v0);
+
+    gSPSegment(UNK_2D0_DISP++, 0x00, NULL);
+    gSPSegment(UNK_2D0_DISP++, 0x0F, gfxCtx->unk_2E4);
+    gSPSegment(UNK_2D0_DISP++, 0x0E, temp_v0);
+
+    CLOSE_DISPS(gfxCtx);
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/game/game_draw_first.s")
-#endif
 
 void game_draw_last(GraphicsContext* gfxCtx) {
     Gfx* temp_a1;
