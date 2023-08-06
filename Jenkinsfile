@@ -32,27 +32,52 @@ pipeline {
         }
         stage('Setup') {
             steps {
-                sh 'bash -c "make -j setup"'
+                sh 'bash -c "make -j setup 2> >(tee tools/warnings_count/warnings_setup_new.txt)"'
+            }
+        }
+        stage('Check setup warnings') {
+            steps {
+                sh 'bash -c "./tools/warnings_count/compare_warnings.sh setup"'
             }
         }
         stage('Lib') {
             steps {
-                sh 'bash -c "make -j lib"'
+                sh 'bash -c "make -j lib 2> >(tee tools/warnings_count/warnings_lib_new.txt)"'
+            }
+        }
+        stage('Check Lib warnings') {
+            steps {
+                sh 'bash -c "./tools/warnings_count/compare_warnings.sh lib"'
             }
         }
         stage('Extract') {
             steps {
-                sh 'bash -c "make -j extract"'
+                sh 'bash -c "make -j extract 2> >(tee tools/warnings_count/warnings_extract_new.txt)"'
+            }
+        }
+        stage('Check extraction warnings') {
+            steps {
+                sh 'bash -c "./tools/warnings_count/compare_warnings.sh extract"'
             }
         }
         stage('Build') {
             steps {
-                sh 'bash -c "make -j uncompressed"'
+                sh 'bash -c "make -j uncompressed 2> >(tee tools/warnings_count/warnings_uncompressed_new.txt)"'
+            }
+        }
+        stage('Check build uncompressed warnings') {
+            steps {
+                sh 'bash -c "./tools/warnings_count/compare_warnings.sh uncompressed"'
             }
         }
         stage('Build compressed') {
             steps {
-                sh 'bash -c "make -j compressed"'
+                sh 'bash -c "make -j compressed 2> >(tee tools/warnings_count/warnings_compress_new.txt)"'
+            }
+        }
+        stage('Check compress warnings') {
+            steps {
+                sh 'bash -c "./tools/warnings_count/compare_warnings.sh compress"'
             }
         }
         stage('Upload to Frogress') {
@@ -66,7 +91,7 @@ pipeline {
     }
     post {
         failure {
-            sh 'cat tools/check_format.txt'
+            sh 'cat tools/check_format.txt tools/warnings_count/warnings_setup_new.txt tools/warnings_count/warnings_lib_new.txt tools/warnings_count/warnings_extract_new.txt tools/warnings_count/warnings_uncompressed_new.txt tools/warnings_count/warnings_compress_new.txt'
         }
         always {
             cleanWs()
