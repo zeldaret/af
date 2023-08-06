@@ -2,8 +2,8 @@
 #include "osmalloc.h"
 #include "fault.h"
 
-extern FaultClient B_80141FC8_jp;
-extern Arena zelda_arena;
+Arena zelda_arena;
+FaultClient B_80141FC8_jp;
 
 void *zelda_malloc(size_t size) {
     return __osMalloc(&zelda_arena, size);
