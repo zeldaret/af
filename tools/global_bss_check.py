@@ -3,15 +3,52 @@ import colorama
 colorama.init()
 
 import argparse
-import collections
+import dataclasses
 import sys
 import mapfile_parser
 from pathlib import Path
 
 
-Compared = collections.namedtuple("Compared", [ "buildAddress", "buildFile", "expectedAddress", "expectedFile", "diff"])
+@dataclasses.dataclass
+class Compared:
+    symbol: mapfile_parser.Symbol
+    buildAddress: int
+    buildFile: mapfile_parser.File|None
+    expectedAddress: int
+    expectedFile: mapfile_parser.File|None
+    diff: int|None
 
-def compareMapFiles(mapFileBuild: Path, mapFileExpected: Path) -> tuple[set[mapfile_parser.File], set[mapfile_parser.File], collections.OrderedDict[mapfile_parser.Symbol, Compared]]:
+    @staticmethod
+    def mapPathToSource(origName: Path) -> Path:
+        # Try to map built path to the source path
+        parts = origName.parts
+        if parts[0] == "build":
+            parts = parts[1:]
+
+        path = Path(*parts)
+        # Assume every file in the asm folder has .s extension, while everything else has .c extension
+        if path.parts[0] == "asm":
+            path = path.with_suffix(".s")
+        else:
+            path = path.with_suffix(".c")
+        return path
+
+    def getBuildFileName(self) -> str:
+        if self.buildFile is None:
+            return ""
+
+        path = self.mapPathToSource(self.buildFile.filepath)
+        return str(path)
+
+    def getExpectedFileName(self) -> str:
+        if self.expectedFile is None:
+            return ""
+
+        path = self.mapPathToSource(self.expectedFile.filepath)
+        return str(path)
+
+
+def compareMapFiles(mapFileBuild: Path, mapFileExpected: Path) -> tuple[set[mapfile_parser.File], set[mapfile_parser.File], list[Compared]]:
     badFiles = set()
     missingFiles = set()
 
@@ -30,55 +67,56 @@ def compareMapFiles(mapFileBuild: Path, mapFileExpected: Path) -> tuple[set[mapf
     buildMap = mapfile_parser.MapFile()
     buildMap.readMapFile(mapFileBuild)
     buildMap = buildMap.filterBySegmentType(".bss")
+
     expectedMap = mapfile_parser.MapFile()
     expectedMap.readMapFile(mapFileExpected)
     expectedMap = expectedMap.filterBySegmentType(".bss")
 
-    comparedDict = collections.OrderedDict()
+    comparedList: list[Compared] = []
 
     for file in buildMap:
         for symbol in file:
             foundSymInfo = expectedMap.findSymbolByName(symbol.name)
             if foundSymInfo is not None:
-                comparedDict[symbol] = Compared( symbol.vram, file, symbol.vram, foundSymInfo.file, symbol.vram - foundSymInfo.symbol.vram )
-                if comparedDict[symbol].diff != 0:
+                comp = Compared(symbol, symbol.vram, file, symbol.vram, foundSymInfo.file, symbol.vram - foundSymInfo.symbol.vram)
+                comparedList.append(comp)
+                if comp.diff != 0:
                     badFiles.add(file)
             else:
                 missingFiles.add(file)
-                comparedDict[symbol] = Compared( symbol.vram, file, -1, "", "Unknown" )
+                comparedList.append(Compared(symbol, symbol.vram, file, -1, None, None))
 
     for file in expectedMap:
         for symbol in file:
             foundSymInfo = buildMap.findSymbolByName(symbol.name)
             if foundSymInfo is None:
                 missingFiles.add(file)
-                comparedDict[symbol] = Compared( -1, "", symbol.vram, file, "Unknown" )
+                comparedList.append(Compared(symbol, -1, None, symbol.vram, file, None))
 
-    return badFiles, missingFiles, comparedDict
+    return badFiles, missingFiles, comparedList
 
 
-def printCsv(badFiles, missingFiles, comparedDict, printAll = True):
+def printCsv(badFiles: set[mapfile_parser.File], missingFiles: set[mapfile_parser.File], comparedList: list[Compared], printAll = True):
     print("Symbol Name,Build Address,Build File,Expected Address,Expected File,Difference,GOOD/BAD/MISSING")
 
     # If it's bad or missing, don't need to do anything special.
     # If it's good, check for if it's in a file with bad or missing stuff, and check if print all is on. If none of these, print it.
 
-    for symbol in comparedDict:
-        symbolInfo = comparedDict[symbol]
+    for symbolInfo in comparedList:
         symbolGood = colorama.Fore.RED + "BAD" + colorama.Fore.RESET
-        if type(symbolInfo.diff) != int:
+        if symbolInfo.diff is None:
             symbolGood = colorama.Fore.YELLOW + "MISSING" + colorama.Fore.RESET
-            print(f"{symbol.name},{symbolInfo.buildAddress:X},{symbolInfo.buildFile.filepath},{symbolInfo.expectedAddress:X},{symbolInfo.expectedFile.filepath},{symbolInfo.diff},{symbolGood}")
+            print(f"{symbolInfo.symbol.name},{symbolInfo.buildAddress:X},{symbolInfo.getBuildFileName()},{symbolInfo.expectedAddress:X},{symbolInfo.getExpectedFileName()},{symbolInfo.diff},{symbolGood}")
             continue
 
         if symbolInfo.diff == 0:
             symbolGood = colorama.Fore.GREEN + "GOOD" + colorama.Fore.RESET
-            if (not symbolInfo.buildFile in badFiles and not symbolInfo.expectedFile in badFiles) and (not symbolInfo.buildFile in badFiles and not symbolInfo.expectedFile.filepath in badFiles) and not printAll:
+            if (not symbolInfo.buildFile in badFiles and not symbolInfo.expectedFile in badFiles) and (not symbolInfo.buildFile in badFiles and not symbolInfo.expectedFile in badFiles) and not printAll:
                 continue
 
         if symbolInfo.buildFile != symbolInfo.expectedFile:
             symbolGood += colorama.Fore.CYAN + " MOVED" + colorama.Fore.RESET
-        print(f"{symbol.name},{symbolInfo.buildAddress:X},{symbolInfo.buildFile.filepath},{symbolInfo.expectedAddress:X},{symbolInfo.expectedFile.filepath},{symbolInfo.diff:X},{symbolGood}")
+        print(f"{symbolInfo.symbol.name},{symbolInfo.buildAddress:X},{symbolInfo.getBuildFileName()},{symbolInfo.expectedAddress:X},{symbolInfo.getExpectedFileName()},{symbolInfo.diff:X},{symbolGood}")
 
 
 def main():
@@ -102,8 +140,8 @@ def main():
         mapfileExpectedPath = Path(args.mapFileExpected)
 
 
-    badFiles, missingFiles, comparedDict = compareMapFiles(mapfilePath, mapfileExpectedPath)
-    printCsv(badFiles, missingFiles, comparedDict, args.print_all)
+    badFiles, missingFiles, comparedList = compareMapFiles(mapfilePath, mapfileExpectedPath)
+    printCsv(badFiles, missingFiles, comparedList, args.print_all)
 
     if len(badFiles) + len(missingFiles) != 0:
         print("", file=sys.stderr)
