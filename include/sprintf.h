@@ -5,6 +5,6 @@
 
 // void proutSprintf();
 // void vsprintf();
-// void sprintf();
+int sprintf(char* dst, const char* fmt, ...);
 
 #endif
