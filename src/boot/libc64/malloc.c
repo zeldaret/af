@@ -30,11 +30,11 @@ void* calloc(s32 num, size_t size) {
     return ptr;
 }
 
-void DisplayArena(size_t* outMaxFree, size_t* outFree, size_t* outAlloc) {
+void GetFreeArena(size_t* outMaxFree, size_t* outFree, size_t* outAlloc) {
     __osGetFreeArena(&malloc_arena, outMaxFree, outFree, outAlloc);
 }
 
-s32 GetFreeArena(void) {
+s32 CheckArena(void) {
     return __osCheckArena(&malloc_arena);
 }
 
