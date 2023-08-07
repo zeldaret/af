@@ -25,7 +25,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x741EA0, asm, overlays/gamestates/ovl_first_game/first_game]
+      - [0x741EA0, c, overlays/gamestates/ovl_first_game/first_game]
   - name: ovl_first_game_reloc
     type: code
     start: 0x741F80
