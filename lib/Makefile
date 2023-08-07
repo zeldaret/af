@@ -133,5 +133,15 @@ $(BUILD_DIR)/ultralib/src/os/exceptasm.o: ultralib/src/os/exceptasm.s
 	python3 ../tools/set_o32abi_bit.py $@
 	$(MIPS_BINUTILS_PREFIX)objcopy --remove-section .mdebug $(@:.marker=.o)
 
+# This file already defines a GBI_DEFINE in the source code, so redefining it produces warnings
+$(BUILD_DIR)/ultralib/src/sp/spriteex2.o: ultralib/src/sp/spriteex2.c
+	$(CC) -c $(CFLAGS) $(IINC) -I $(dir $*) $(WARNINGS) $(MIPS_VERSION) $(COMMON_DEFINES) $(RELEASE_DEFINES) $(OPTFLAGS) -o $@ $<
+	$(MIPS_BINUTILS_PREFIX)objcopy --remove-section .mdebug $(@:.marker=.o)
+
+# This file already defines a GBI_DEFINE in the source code, so redefining it produces warnings
+$(BUILD_DIR)/ultralib/src/gu/us2dex2_emu.o: ultralib/src/gu/us2dex2_emu.c
+	$(CC) -c $(CFLAGS) $(IINC) -I $(dir $*) $(WARNINGS) $(MIPS_VERSION) $(COMMON_DEFINES) $(RELEASE_DEFINES) $(OPTFLAGS) -o $@ $<
+	$(MIPS_BINUTILS_PREFIX)objcopy --remove-section .mdebug $(@:.marker=.o)
+
 # Print target for debugging
 print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true

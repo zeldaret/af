@@ -1,4 +1,3 @@
-cfe: Warning 581: ultralib/src/sp/spriteex2.c:1: Macro F3DEX_GBI_2 redefined.
 cc: Warning: -mips3 should not be used for ucode 32-bit compiles
 cc: Warning: -mips3 should not be used for ucode 32-bit compiles
 cc: Warning: -mips3 should not be used for ucode 32-bit compiles
@@ -14,7 +13,6 @@ cfe: Warning 709: ultralib/src/libc/xldtob.c, line 163: Incompatible pointer typ
  ---------^
 The type pointed to by the left-hand side of simple assignment
 statement is incompatible with the type pointed to by the right-hand side.
-cfe: Warning 581: ultralib/src/gu/us2dex2_emu.c:9: Macro F3DEX_GBI_2 redefined.
 cc: Warning: -mips3 should not be used for ucode 32-bit compiles
 as1: Warning: ultralib/src/os/getintmask.s, line 21: Macro instruction used in branch delay slot
 as1: Warning: ultralib/src/os/interrupt.s, line 18: Macro instruction used in branch delay slot
