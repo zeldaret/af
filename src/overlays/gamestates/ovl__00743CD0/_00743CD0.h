@@ -1,0 +1,16 @@
+#ifndef _00743CD0_H
+#define _00743CD0_H
+
+#include "ultra64.h"
+#include "game.h"
+#include "unk.h"
+
+typedef struct _00743CD0State {
+    /* 0x00 */ GameState state;
+    /* 0xA4 */ UNK_TYPE1 unk_00[0x1B20-0xA4];
+} _00743CD0State; // size = 0x1B20
+
+void _00743CD0_init(GameState *thisx);
+void _00743CD0_cleanup(GameState *thisx);
+
+#endif
