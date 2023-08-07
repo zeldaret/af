@@ -179,7 +179,7 @@ struct GameState;
 // void func_8005EE20_jp();
 // void func_8005EEA0_jp();
 void mBGM_main(struct GameState* gameState);
-// void mBGM_ct();
+void mBGM_ct(void);
 void func_8005F020_jp(void);
 void mBGM_cleanup(void);
 // void func_8005F250_jp();
