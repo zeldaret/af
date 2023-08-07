@@ -234,7 +234,7 @@
       - { start: 0x73F4D0, type: .bss, vram: 0x80138E50, name: code/m_debug}
       - { start: 0x73F4D0, type: bss, vram: 0x80138E60, name: code/m_debug_display}
       - { start: 0x73F4D0, type: bss, vram: 0x80143900, name: code/m_player_call }
-      - { start: 0x73F4D0, type: bss, vram: 0x80143910, name: code/80143910 } 
+      - { start: 0x73F4D0, type: bss, vram: 0x80143910, name: code/80143910 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80145390, name: code/irqmgr }
       - { start: 0x73F4D0, type: bss, vram: 0x80145620, name: code/80145620}
       - { start: 0x73F4D0, type: .bss, vram: 0x801458A0, name: code/c_keyframe }

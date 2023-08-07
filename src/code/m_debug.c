@@ -4,10 +4,9 @@
 Debug_mode* debug_mode;
 
 void new_Debug_mode() {
-
     s32 i;
 
-    debug_mode = (Debug_mode*)malloc(sizeof(Debug_mode));
+    debug_mode = malloc(sizeof(Debug_mode));
 
     debug_mode->mode = 0;
     debug_mode->type = 0;
