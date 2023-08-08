@@ -1,4 +1,4 @@
-#include "osmalloc.h"
+#include "libc64/osmalloc.h"
 #include "alignment.h"
 #include "boot_functions.h"
 #include "fault.h"
