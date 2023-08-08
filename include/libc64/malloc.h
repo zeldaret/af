@@ -1,5 +1,5 @@
-#ifndef MALLOC_H
-#define MALLOC_H
+#ifndef LIBC64_MALLOC_H
+#define LIBC64_MALLOC_H
 
 #include "ultra64.h"
 

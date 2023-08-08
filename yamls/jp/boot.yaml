@@ -21,6 +21,7 @@
       - [0x006BA0, asm, boot/mtxuty-cvt]
       - [0x006D10, c, boot/O2/loadfragment2]
       - [0x007000, asm, boot/debug]
+
       - [0x007060, asm, boot/007060]
       - [0x0073A0, asm, boot/0073A0]
       - [0x0073F0, asm, boot/padsetup]
@@ -28,8 +29,8 @@
       - [0x007530, asm, boot/libc64/math64]
 
       - [0x007A40, hasm, boot/fp]
-      - [0x007BA0, asm, boot/malloc]
 
+      - [0x007BA0, asm, boot/libc64/malloc]
       - [0x007D70, asm, boot/libc64/qrand]
       - [0x007F30, c, boot/libc64/__osMalloc]
       - [0x008C50, asm, boot/libc64/sprintf]
@@ -251,6 +252,7 @@
       - [0x019690, rodata, boot/019690]
       - [0x0196B0, rodata, boot/0196B0]
       - [0x0196C0, rodata, boot/0196C0]
+
       - [0x019710, .rodata, boot/libc64/__osMalloc]
 
       # libultra
@@ -275,9 +277,7 @@
       - { start: 0x019D40, type: bss, vram: 0x800419A0, name: boot/gfxprint }
 
       - { start: 0x019D40, type: bss, vram: 0x800419B0, name: boot/libc64/math64 }
-
-      - { start: 0x019D40, type: bss, vram: 0x800419C0, name: boot/800419C0 }
-
+      - { start: 0x019D40, type: bss, vram: 0x800419C0, name: boot/libc64/malloc }
       - { start: 0x019D40, type: bss, vram: 0x800419F0, name: boot/libc64/qrand }
       - { start: 0x019D40, type: .bss, vram: 0x80041A00, name: boot/libc64/__osMalloc }
 
