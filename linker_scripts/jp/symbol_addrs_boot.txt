@@ -249,8 +249,8 @@ proutSprintf = 0x8002D850; // type:func
 vsprintf = 0x8002D874; // type:func
 sprintf = 0x8002D8C4; // type:func
 
-PrintUtils_VPrintf = 0x8002D920; // type:func
-PrintUtils_Printf = 0x8002D954; // type:func
+vaprintf = 0x8002D920; // type:func
+aprintf = 0x8002D954; // type:func
 
 csleep = 0x8002D980; // type:func
 nsleep = 0x8002D9EC; // type:func

@@ -28,9 +28,13 @@
       - [0x007A40, hasm, boot/fp]
       - [0x007BA0, asm, boot/malloc]
       - [0x007D70, asm, boot/qrand]
+
       - [0x007F30, c, boot/libc64/__osMalloc]
+
       - [0x008C50, asm, boot/sprintf]
-      - [0x008D20, asm, boot/printutils]
+
+      - [0x008D20, asm, boot/libc64/aprintf]
+
       - [0x008D80, asm, boot/sleep]
 
       # libultra
