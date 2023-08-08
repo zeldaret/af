@@ -31,11 +31,8 @@
       - [0x007BA0, asm, boot/malloc]
 
       - [0x007D70, asm, boot/libc64/qrand]
-
       - [0x007F30, c, boot/libc64/__osMalloc]
-
-      - [0x008C50, asm, boot/sprintf]
-
+      - [0x008C50, asm, boot/libc64/sprintf]
       - [0x008D20, asm, boot/libc64/aprintf]
       - [0x008D80, asm, boot/libc64/sleep]
 
