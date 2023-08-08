@@ -22,7 +22,7 @@ extern OSPiHandle* gCartHandle; // TODO: Determine where this goes
 
 // extern UNK_TYPE D_8003C560_jp;
 // extern UNK_TYPE D_FLT_8003C584_jp;
-// extern UNK_TYPE D_8003C590_jp;
+// extern UNK_TYPE __qrand_idum;
 
 
 // .rodata
@@ -282,7 +282,7 @@ extern OSPiHandle* gCartHandle; // TODO: Determine where this goes
 // extern UNK_TYPE B_80041998_jp;
 
 // extern UNK_TYPE B_800419C0_jp;
-// extern UNK_TYPE B_800419F0_jp;
+// extern UNK_TYPE __qrand_itemp;
 
 // extern UNK_TYPE B_80044684_jp;
 
