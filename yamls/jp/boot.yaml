@@ -24,7 +24,7 @@
       - [0x007060, asm, boot/007060]
       - [0x0073A0, asm, boot/0073A0]
       - [0x0073F0, asm, boot/padsetup]
-      - [0x007530, asm, boot/mathf]
+      - [0x007530, asm, boot/libc64/math64]
       - [0x007A40, hasm, boot/fp]
       - [0x007BA0, asm, boot/malloc]
       - [0x007D70, asm, boot/qrand]
@@ -272,7 +272,9 @@
       - { start: 0x019D40, type: .bss, vram: 0x8003FF30, name: boot/viconfig }
       - { start: 0x019D40, type: bss, vram: 0x8003FF40, name: boot/8003FF40 }
       - { start: 0x019D40, type: bss, vram: 0x800419A0, name: boot/gfxprint }
-      - { start: 0x019D40, type: bss, vram: 0x800419B0, name: boot/mathf }
+
+      - { start: 0x019D40, type: bss, vram: 0x800419B0, name: boot/libc64/math64 }
+
       - { start: 0x019D40, type: bss, vram: 0x800419C0, name: boot/800419C0 }
       - { start: 0x019D40, type: .bss, vram: 0x80041A00, name: boot/libc64/__osMalloc }
 

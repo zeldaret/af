@@ -1164,7 +1164,7 @@ void Matrix_to_rotate_new(MtxF* src, Vec3s* dest, s32 nonUniformScale) {
     temp = src->xz;
     temp *= temp;
     temp += SQ(src->zz);
-    dest->x = (Math_FAtan2F(-src->yz, sqrtf(temp))) * 10430.378f;
+    dest->x = (fatan2(-src->yz, sqrtf(temp))) * 10430.378f;
 
     if ((dest->x == 0x4000) || (dest->x == -0x4000)) {
         // cos(x) = 0 if either of these is true, and we get gimbal locking
@@ -1172,13 +1172,13 @@ void Matrix_to_rotate_new(MtxF* src, Vec3s* dest, s32 nonUniformScale) {
         // well-defined.
         dest->z = 0;
 
-        dest->y = Math_FAtan2F(-src->zx, src->xx) * 10430.378f;
+        dest->y = fatan2(-src->zx, src->xx) * 10430.378f;
     } else {
-        dest->y = Math_FAtan2F(src->xz, src->zz) * 10430.378f;
+        dest->y = fatan2(src->xz, src->zz) * 10430.378f;
 
         if (!nonUniformScale) {
             // assume the columns have the same normalisation
-            dest->z = Math_FAtan2F(src->yx, src->yy) * 10430.378f;
+            dest->z = fatan2(src->yx, src->yy) * 10430.378f;
         } else {
             temp = src->xx;
             temp2 = src->zx;
@@ -1204,7 +1204,7 @@ void Matrix_to_rotate_new(MtxF* src, Vec3s* dest, s32 nonUniformScale) {
             temp2 = temp3 / temp2; // yy in normalised column
 
             // for a rotation matrix, temp == yx and temp2 == yy which is the same as in the !nonUniformScale branch
-            dest->z = Math_FAtan2F(temp, temp2) * 10430.378f;
+            dest->z = fatan2(temp, temp2) * 10430.378f;
         }
     }
 }
@@ -1233,16 +1233,16 @@ void Matrix_to_rotate2_new(MtxF* src, Vec3s* dest, s32 nonUniformScale) {
     temp = src->xx;
     temp *= temp;
     temp += SQ(src->yx);
-    dest->y = Math_FAtan2F(-src->zx, sqrtf(temp)) * 10430.378f;
+    dest->y = fatan2(-src->zx, sqrtf(temp)) * 10430.378f;
 
     if ((dest->y == 0x4000) || (dest->y == -0x4000)) {
         dest->x = 0;
-        dest->z = Math_FAtan2F(-src->xy, src->yy) * 10430.378f;
+        dest->z = fatan2(-src->xy, src->yy) * 10430.378f;
     } else {
-        dest->z = Math_FAtan2F(src->yx, src->xx) * 10430.378f;
+        dest->z = fatan2(src->yx, src->xx) * 10430.378f;
 
         if (!nonUniformScale) {
-            dest->x = Math_FAtan2F(src->zy, src->zz) * 10430.378f;
+            dest->x = fatan2(src->zy, src->zz) * 10430.378f;
         } else {
             temp = src->xy;
             temp2 = src->yy;
@@ -1263,7 +1263,7 @@ void Matrix_to_rotate2_new(MtxF* src, Vec3s* dest, s32 nonUniformScale) {
             temp2 = sqrtf(temp2);
             temp2 = temp3 / temp2;
 
-            dest->x = Math_FAtan2F(temp, temp2) * 10430.378f;
+            dest->x = fatan2(temp, temp2) * 10430.378f;
         }
     }
 }

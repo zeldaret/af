@@ -181,8 +181,8 @@ Math_FNearbyIntF = 0x8002C1E4; // type:func
 Math_FAtanTaylorQF = 0x8002C204; // type:func
 Math_FAtanTaylorF = 0x8002C250; // type:func
 Math_FAtanContFracF = 0x8002C374; // type:func
-Math_FAtanF = 0x8002C4C0; // type:func
-Math_FAtan2F = 0x8002C500; // type:func
+fatan = 0x8002C4C0; // type:func
+fatan2 = 0x8002C500; // type:func
 Math_FAsinF = 0x8002C5E8; // type:func
 Math_FAcosF = 0x8002C618; // type:func
 
