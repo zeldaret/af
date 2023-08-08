@@ -15,7 +15,9 @@
       - [0x0026C0, asm, boot/syncprintf]
       - [0x002720, asm, boot/fault]
       - [0x004F70, asm, boot/fault_drawer]
-      - [0x0059F0, c, boot/O2/padutils]
+
+      - [0x0059F0, c, boot/libu64/pad]
+
       - [0x005BE0, asm, boot/stackcheck]
 
       - [0x005E30, asm, boot/libu64/gfxprint]
