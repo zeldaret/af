@@ -20,7 +20,7 @@
       - [0x005E30, asm, boot/gfxprint]
       - [0x006BA0, asm, boot/mtxuty-cvt]
       - [0x006D10, c, boot/O2/loadfragment2]
-      - [0x007000, asm, boot/debug]
+      - [0x007000, asm, boot/libu64/debug]
       - [0x007060, asm, boot/007060]
       - [0x0073A0, asm, boot/0073A0]
       - [0x0073F0, asm, boot/padsetup]
@@ -244,7 +244,7 @@
       - [0x018840, rodata, boot/018840]
       - [0x019250, rodata, boot/019250]
       - [0x019690, rodata, boot/019690]
-      - [0x0196B0, rodata, boot/0196B0]
+      - [0x0196B0, rodata, boot/libu64/debug]
       - [0x0196C0, rodata, boot/0196C0]
       - [0x019710, .rodata, boot/O2/__osMalloc]
 
