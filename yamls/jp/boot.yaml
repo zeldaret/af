@@ -37,8 +37,7 @@
       - [0x008C50, asm, boot/sprintf]
 
       - [0x008D20, asm, boot/libc64/aprintf]
-
-      - [0x008D80, asm, boot/sleep]
+      - [0x008D80, asm, boot/libc64/sleep]
 
       # libultra
       - [0x008F20, c, ../lib/ultralib/src/os/sendmesg]
