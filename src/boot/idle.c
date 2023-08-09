@@ -6,7 +6,7 @@
 #include "m_thread.h"
 #include "segment_symbols.h"
 #include "stack.h"
-#include "stackcheck.h"
+#include "libu64/stackcheck.h"
 #include "z_std_dma.h"
 
 OSThread sMainThread;
