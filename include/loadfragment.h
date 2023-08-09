@@ -1,5 +1,5 @@
-#ifndef LIBU64_LOADFRAGMENT_H
-#define LIBU64_LOADFRAGMENT_H
+#ifndef LOADFRAGMENT_H
+#define LOADFRAGMENT_H
 
 #include "ultra64.h"
 
