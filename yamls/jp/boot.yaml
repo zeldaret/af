@@ -19,9 +19,7 @@
       - [0x0059F0, c, boot/libu64/pad]
       - [0x005BE0, asm, boot/libu64/stackcheck]
       - [0x005E30, asm, boot/libu64/gfxprint]
-
-      - [0x006BA0, asm, boot/mtxuty-cvt]
-
+      - [0x006BA0, asm, boot/libu64/mtxuty-cvt]
       - [0x006D10, c, boot/libu64/loadfragment2]
       - [0x007000, asm, boot/libu64/debug]
 
