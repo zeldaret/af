@@ -4,9 +4,9 @@
 #include "ultra64.h"
 
 typedef enum {
-    /* 0 */	DEBUG_REG_START = 0,
+    /* 0 */ DEBUG_REG_START = 0,
     /* 0 */ DEBUG_REG_REG = DEBUG_REG_START, 
-    /* 1 */	DEBUG_REG_SREG,
+    /* 1 */ DEBUG_REG_SREG,
     /* 2 */ DEBUG_REG_OREG,
     /* 3 */ DEBUG_REG_PREG,
     /* 4 */ DEBUG_REG_QREG,
