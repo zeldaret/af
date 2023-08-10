@@ -281,7 +281,6 @@ extern OSPiHandle* gCartHandle; // TODO: Determine where this goes
 // extern UNK_TYPE B_80041995_jp;
 // extern UNK_TYPE B_80041998_jp;
 
-// extern UNK_TYPE B_800419C0_jp;
 // extern UNK_TYPE B_800419F0_jp;
 
 // extern UNK_TYPE B_80044684_jp;

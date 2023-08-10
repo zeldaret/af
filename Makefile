@@ -208,6 +208,8 @@ $(shell mkdir -p $(BUILD_DIR)/linker_scripts/$(VERSION) $(BUILD_DIR)/linker_scri
 build/src/boot/O2/%.o: OPTFLAGS := -O2
 build/src/boot/libu64/%.o: OPTFLAGS := -O2
 
+build/src/boot/libc64/%.o: OPTFLAGS := -O2
+
 # per-file flags
 
 # cc & asm-processor
