@@ -3,8 +3,10 @@
 
 #include "ultra64.h"
 
-// void mCon_ct();
-// void mCon_dt();
+struct GameState;
+
+void mCon_ct(struct GameState* gameState);
+void mCon_dt(struct GameState* gameState);
 // void mCon_calc();
 // void mCon_main();
 // void chkButton();

@@ -1,5 +1,5 @@
-#ifndef MTX_CONV_H
-#define MTX_CONV_H
+#ifndef LIBU64_MTX_CONV_H
+#define LIBU64_MTX_CONV_H
 
 #include "ultra64.h"
 

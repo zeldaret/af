@@ -39,7 +39,7 @@
 #include "m_lib.h"
 #include "gfx.h"
 #include "m_play.h"
-#include "fp.h"
+#include "libc64/fp.h"
 #include "sys_matrix.h"
 #include "sys_math3d.h"
 

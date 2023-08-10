@@ -467,17 +467,7 @@
 // extern UNK_TYPE D_80106D8C_jp;
 // extern UNK_TYPE D_80106DA0_jp;
 // extern UNK_TYPE D_80106E10_jp;
-// extern UNK_TYPE game_dlftbls;
-// extern UNK_TYPE D_80106E50_jp;
-// extern UNK_TYPE D_80106E80_jp;
-// extern UNK_TYPE D_80106EB0_jp;
-// extern UNK_TYPE D_80106EE0_jp;
-// extern UNK_TYPE D_80106F10_jp;
-// extern UNK_TYPE D_80106F40_jp;
-// extern UNK_TYPE D_80106F70_jp;
-// extern UNK_TYPE D_80106FA0_jp;
-// extern UNK_TYPE D_80106FD0_jp;
-// extern UNK_TYPE D_80107000_jp;
+
 // extern UNK_TYPE D_80107010_jp;
 // extern UNK_TYPE D_80107020_jp;
 // extern UNK_TYPE D_801071A4_jp;
@@ -810,7 +800,7 @@
 // extern UNK_TYPE D_8010EF60_jp;
 // extern UNK_TYPE D_8010EF70_jp;
 // extern UNK_TYPE D_8010EF80_jp;
-// extern UNK_TYPE gamePT;
+
 // extern UNK_TYPE D_8010EFA0_jp;
 extern vs32 D_8010EFB0_jp; // TODO: Determine where this goes
 // extern UNK_TYPE D_8010EFB8_jp;
@@ -842,7 +832,7 @@ extern vs32 D_8010EFB0_jp; // TODO: Determine where this goes
 // extern UNK_TYPE D_8010FD54_jp;
 // extern UNK_TYPE D_8010FD58_jp;
 // extern UNK_TYPE D_8010FD5C_jp;
-// extern UNK_TYPE D_8010FD60_jp;
+extern s32 zurumode_flag;
 // extern UNK_TYPE D_8010FD70_jp;
 // extern UNK_TYPE D_80110000_jp;
 // extern UNK_TYPE D_80110D70_jp;
@@ -1512,9 +1502,7 @@ extern vs32 D_8010EFB0_jp; // TODO: Determine where this goes
 // extern UNK_TYPE RO_STR_80117C80_jp;
 // extern UNK_TYPE RO_STR_80117CA0_jp;
 // extern UNK_TYPE RO_STR_80117CC0_jp;
-// extern UNK_TYPE RO_80117CE0_jp;
-// extern UNK_TYPE RO_STR_80117D00_jp;
-// extern UNK_TYPE RO_STR_80117D0C_jp;
+
 // extern UNK_TYPE RO_STR_80117D20_jp;
 // extern UNK_TYPE RO_STR_80117D3C_jp;
 // extern UNK_TYPE RO_STR_80117D50_jp;
@@ -1848,7 +1836,6 @@ extern vs32 D_8010EFB0_jp; // TODO: Determine where this goes
 // extern UNK_TYPE B_80138818_jp;
 // extern UNK_TYPE B_80138E40_jp;
 // extern UNK_TYPE B_80138E44_jp;
-// extern UNK_TYPE B_80138E50_jp;
 // extern UNK_TYPE debug_display;
 // extern UNK_TYPE B_80138E70_jp;
 // extern UNK_TYPE B_80138E73_jp;
@@ -1911,8 +1898,7 @@ extern vs32 D_8010EFB0_jp; // TODO: Determine where this goes
 // extern UNK_TYPE B_80141E04_jp;
 // extern UNK_TYPE B_80141E10_jp;
 // extern UNK_TYPE B_80141E18_jp;
-// extern UNK_TYPE zelda_arena;
-// extern UNK_TYPE B_80141FC8_jp;
+
 // extern UNK_TYPE B_80141FE0_jp;
 // extern UNK_TYPE B_80141FF0_jp;
 // extern UNK_TYPE B_80142410_jp;
@@ -2006,13 +1992,7 @@ extern vs32 D_8010EFB0_jp; // TODO: Determine where this goes
 // extern UNK_TYPE B_80144FB8_jp;
 // extern UNK_TYPE B_80144FC0_jp;
 // extern UNK_TYPE B_80145014_jp;
-// extern UNK_TYPE B_80145020_jp;
-// extern UNK_TYPE B_80145040_jp;
-// extern UNK_TYPE B_80145044_jp;
-// extern UNK_TYPE B_80145048_jp;
-// extern UNK_TYPE B_FLT_8014504C_jp;
-// extern UNK_TYPE B_FLT_80145050_jp;
-// extern UNK_TYPE B_FLT_80145054_jp;
+
 // extern UNK_TYPE B_80145060_jp;
 // extern UNK_TYPE B_80145070_jp;
 // extern UNK_TYPE B_80145080_jp;

@@ -4,7 +4,7 @@
 #include "m_thread.h"
 #include "segment_symbols.h"
 #include "stack.h"
-#include "stackcheck.h"
+#include "libu64/stackcheck.h"
 
 STACK(sIdleStack, 0x400);
 StackEntry sIdleStackInfo;

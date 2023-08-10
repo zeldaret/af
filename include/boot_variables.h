@@ -21,8 +21,8 @@ extern OSPiHandle* gCartHandle; // TODO: Determine where this goes
 // extern UNK_TYPE D_8003BC94_jp;
 
 // extern UNK_TYPE D_8003C560_jp;
-// extern UNK_TYPE D_FLT_8003C584_jp;
-// extern UNK_TYPE D_8003C590_jp;
+
+// extern UNK_TYPE __qrand_idum;
 
 
 // .rodata
@@ -193,18 +193,7 @@ extern OSPiHandle* gCartHandle; // TODO: Determine where this goes
 // extern UNK_TYPE RO_STR_8003E27C_jp;
 // extern UNK_TYPE jtbl_8003E290_jp;
 // extern UNK_TYPE RO_STR_8003E2B0_jp;
-// extern UNK_TYPE RO_FLT_8003E2C0_jp;
-// extern UNK_TYPE RO_FLT_8003E2E4_jp;
-// extern UNK_TYPE RO_FLT_8003E2E8_jp;
-// extern UNK_TYPE RO_FLT_8003E2EC_jp;
-// extern UNK_TYPE RO_FLT_8003E2F0_jp;
-// extern UNK_TYPE RO_FLT_8003E2F4_jp;
-// extern UNK_TYPE RO_FLT_8003E2F8_jp;
-// extern UNK_TYPE RO_FLT_8003E2FC_jp;
-// extern UNK_TYPE RO_FLT_8003E300_jp;
-// extern UNK_TYPE RO_FLT_8003E304_jp;
-// extern UNK_TYPE RO_FLT_8003E308_jp;
-// extern UNK_TYPE RO_FLT_8003E30C_jp;
+
 // extern UNK_TYPE RO_STR_8003E310_jp;
 // extern UNK_TYPE RO_STR_8003E328_jp;
 // extern UNK_TYPE RO_STR_8003E35C_jp;
@@ -280,9 +269,6 @@ extern OSPiHandle* gCartHandle; // TODO: Determine where this goes
 // extern UNK_TYPE B_80041982_jp;
 // extern UNK_TYPE B_80041995_jp;
 // extern UNK_TYPE B_80041998_jp;
-
-// extern UNK_TYPE B_800419C0_jp;
-// extern UNK_TYPE B_800419F0_jp;
 
 // extern UNK_TYPE B_80044684_jp;
 

@@ -1,5 +1,5 @@
-#ifndef GFX_PRINT_H
-#define GFX_PRINT_H
+#ifndef LIBU64_GFX_PRINT_H
+#define LIBU64_GFX_PRINT_H
 
 #include "ultra64.h"
 

@@ -1,5 +1,5 @@
-#ifndef SLEEP_H
-#define SLEEP_H
+#ifndef LIBC64_SLEEP_H
+#define LIBC64_SLEEP_H
 
 #include "ultra64.h"
 

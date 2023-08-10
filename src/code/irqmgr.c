@@ -1,5 +1,5 @@
 #include "irqmgr.h"
-#include "stackcheck.h"
+#include "libu64/stackcheck.h"
 #include "m_thread.h"
 #include "PR/os_internal.h"
 #include "macros.h"
