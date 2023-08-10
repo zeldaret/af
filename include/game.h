@@ -92,6 +92,12 @@ extern f32 game_GameFrame_2F;
 extern f32 game_GameFrame__1F;
 
 
+// m_game_dlftbls
+
+extern GameStateOverlay game_dlftbls[GAMESTATE_ID_MAX];
+extern GameStateId game_dlftbls_num;
+
+
 #define CONTROLLER1(gameState) (&(gameState)->input[0])
 #define CONTROLLER2(gameState) (&(gameState)->input[1])
 #define CONTROLLER3(gameState) (&(gameState)->input[2])
