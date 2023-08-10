@@ -39,7 +39,6 @@
  * (APPLY), or to just overwrite it (NEW).
  */
 
-#include "global.h"
 #include "sys_matrix.h"
 #include "game.h"
 #include "z64math.h"
