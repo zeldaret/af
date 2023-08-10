@@ -30,7 +30,7 @@
 
       - [0x007A40, hasm, boot/fp]
 
-      - [0x007BA0, asm, boot/libc64/malloc]
+      - [0x007BA0, c, boot/libc64/malloc]
       - [0x007D70, asm, boot/libc64/qrand]
       - [0x007F30, c, boot/libc64/__osMalloc]
       - [0x008C50, asm, boot/libc64/sprintf]

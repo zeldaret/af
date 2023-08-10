@@ -2,16 +2,19 @@
 #define LIBC64_MALLOC_H
 
 #include "ultra64.h"
+#include "libc64/osmalloc.h"
 
 void* malloc(size_t size);
 void* malloc_r(size_t size);
-// void realloc();
+void* realloc(void* ptr, size_t size);
 void free(void* ptr);
-// void calloc();
-// void DisplayArena();
-// void GetFreeArena();
-// void MallocInit();
-// void MallocCleanup();
-// void MallocIsInitialized();
+void* calloc(s32 num, size_t size);
+void GetFreeArena(size_t* outMaxFree, size_t* outFree, size_t* outAlloc);
+s32 CheckArena(void);
+void MallocInit(void* heap, size_t size);
+void MallocCleanup(void);
+s32 MallocIsInitialized(void);
+
+Arena malloc_arena;
 
 #endif

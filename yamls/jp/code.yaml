@@ -43,7 +43,7 @@
       - [0x6BA500, asm, code/6BA500]
       - [0x6BD560, asm, code/m_lib]
       - [0x6BEE80, asm, code/m_lights]
-      - [0x6BFC60, asm, code/m_malloc]
+      - [0x6BFC60, c, code/m_malloc]
       - [0x6BFE60, asm, code/6BFE60]
       - [0x6C05A0, asm, code/6C05A0]
       - [0x6C0690, asm, code/6C0690]
@@ -83,7 +83,7 @@
       - [0x6F5550, asm, code/6F5550]
       - [0x6F6230, asm, code/audioMgr]
       - [0x6F68B0, asm, code/cfbinfo]
-      - [0x6F6AA0, asm, code/game]
+      - [0x6F6AA0, c, code/game]
       - [0x6F73C0, c, code/gamealloc]
       - [0x6F7500, asm, code/gfxalloc]
       - [0x6F7580, asm, code/graph]
@@ -134,13 +134,14 @@
       - [0x726260, data, code/m_actor_shadow]
       - [0x72B7A0, data, code/m_lib]
       - [0x72B7D0, data, code/72B7D0]
+      - [0x732C30, .data, code/game]
+      - [0x732C40, data, code/732C40]
       - [0x732C50, .data, code/irqmgr]
       - [0x732C70, data, code/732C70]
       - [0x733970, .data, code/sys_matrix]
       - [0x7339F0, data, code/sys_ucode]
       - [0x733A00, data, code/m_nmi_buff]
       - [0x733A10, data, code/733A10]
-      
 
       - [0x739DB0, .rodata, code/c_keyframe]
       - [0x739E00, rodata, code/739E00]
@@ -202,7 +203,7 @@
       - [0x73B890, rodata, code/73B890]
       - [0x73B920, rodata, code/73B920]
       - [0x73B960, rodata, code/73B960]
-      - [0x73B980, rodata, code/73B980]
+      - [0x73B980, .rodata, code/game]
       - [0x73B9C0, rodata, code/73B9C0]
       - [0x73BA50, .rodata, code/irqmgr]
       - [0x73BA70, rodata, code/73BA70]
@@ -230,13 +231,15 @@
       - { start: 0x73F4D0, type: bss, vram: 0x8011B8B0, name: code/8011B8B0 }
       - { start: 0x74AB40, type: .bss, vram: 0x80126EA0, name: code/m_common_data }
       - { start: 0x75B600, type: bss, vram: 0x80137960, name: code/80137960 }
+      - { start: 0x75B600, type: .bss, vram: 0x80141FA0, name: code/m_malloc }
+      - { start: 0x75B600, type: bss, vram: 0x80141FE0, name: code/80141FE0 }
       - { start: 0x73F4D0, type: bss, vram: 0x80143900, name: code/m_player_call }
       - { start: 0x73F4D0, type: bss, vram: 0x80143910, name: code/80143910 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x80145020, name: code/game }
+      - { start: 0x73F4D0, type: bss, vram: 0x80145060, name: code/80145060 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80145390, name: code/irqmgr }
       - { start: 0x73F4D0, type: bss, vram: 0x80145620, name: code/80145620}
       - { start: 0x73F4D0, type: .bss, vram: 0x801458A0, name: code/c_keyframe }
       - { start: 0x73F4D0, type: bss, vram: 0x801458B0, name: code/801458B0 }
       - { start: 0x73F4D0, type: .bss, vram: 0x801462B0, name: code/sys_matrix }
       - { start: 0x73F4D0, type: bss, vram: 0x801462C0, name: code/801462C0 }
-
-      
