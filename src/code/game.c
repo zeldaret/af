@@ -156,6 +156,7 @@ void game_draw_last(GraphicsContext* gfxCtx) {
     Gfx* gfxHead;
 
     OPEN_DISPS(gfxCtx);
+
     gfx = gfxopen(gfxHead = POLY_OPA_DISP);
 
     gSPDisplayList(OVERLAY_DISP++, gfx);
