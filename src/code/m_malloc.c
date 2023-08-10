@@ -1,5 +1,5 @@
 #include "m_malloc.h"
-#include "osmalloc.h"
+#include "libc64/osmalloc.h"
 #include "fault.h"
 
 Arena zelda_arena;
