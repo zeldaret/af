@@ -1909,8 +1909,7 @@ extern struct_debug_mode *debug_mode;
 // extern UNK_TYPE B_80141E04_jp;
 // extern UNK_TYPE B_80141E10_jp;
 // extern UNK_TYPE B_80141E18_jp;
-// extern UNK_TYPE zelda_arena;
-// extern UNK_TYPE B_80141FC8_jp;
+
 // extern UNK_TYPE B_80141FE0_jp;
 // extern UNK_TYPE B_80141FF0_jp;
 // extern UNK_TYPE B_80142410_jp;
