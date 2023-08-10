@@ -13,6 +13,6 @@
 // void func_800CA2DC_jp();
 // void func_800CA350_jp();
 // void func_800CA570_jp();
-// void mTM_time();
+void mTM_time(void);
 
 #endif

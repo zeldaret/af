@@ -10,7 +10,9 @@
 
 
 #ifndef FALLTHROUGH
-    #if __STDC_VERSION__ >= 202000L
+    #ifdef PERMUTER
+        #define FALLTHROUGH
+    #elif __STDC_VERSION__ >= 202000L
         #define FALLTHROUGH [[fallthrough]]
     #else
         #define FALLTHROUGH __attribute__((fallthrough))
@@ -18,7 +20,9 @@
 #endif
 
 #ifndef NORETURN
-    #if __STDC_VERSION__ >= 202000L
+    #ifdef PERMUTER
+        #define NORETURN
+    #elif __STDC_VERSION__ >= 202000L
         #define NORETURN [[noreturn]]
     #elif __STDC_VERSION__ >= 201112L
         #define NORETURN _Noreturn
@@ -28,7 +32,9 @@
 #endif
 
 #ifndef UNUSED
-    #if __STDC_VERSION__ >= 202000L
+    #ifdef PERMUTER
+        #define UNUSED
+    #elif __STDC_VERSION__ >= 202000L
         #define UNUSED [[maybe_unused]]
     #else
         #define UNUSED __attribute__((unused))

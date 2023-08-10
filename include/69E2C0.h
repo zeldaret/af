@@ -3,15 +3,18 @@
 
 #include "ultra64.h"
 
+struct Input;
+struct GraphicsContext;
+
 // void func_8007A620_jp();
 // void func_8007A630_jp();
 // void Debug_Print_output();
 // void func_8007A74C_jp();
 // void Debug_Print2_output();
-// void Debug_mode_input();
+void Debug_mode_input(struct Input *input);
 // void Debug_mode_output_sub();
 // void Debug_mode_zelda_malloc_info_output();
-// void Debug_mode_output();
+void Debug_mode_output(struct GraphicsContext* gfxCtx);
 // void func_8007B410_jp();
 // void func_8007B44C_jp();
 // void func_8007B49C_jp();

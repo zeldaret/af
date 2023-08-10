@@ -2,28 +2,51 @@
 #define GFX_H
 
 #include "ultra64.h"
+#include "attributes.h"
+#include "alignment.h"
 #include "THA_GA.h"
+#include "unk.h"
 
 #define GRAPH_ALLOC(gfxCtx, size) ((void*)((gfxCtx)->polyOpa.d = (Gfx*)((u8*)(gfxCtx)->polyOpa.d - ALIGN16(size))))
 
 typedef struct GraphicsContext {
-    /* 0x000 */ char pad[0x290];
-    /* 0x298 */ TwoHeadGfxArena polyOpa;
-    /* 0x2A8 */ TwoHeadGfxArena polyXlu;
-} GraphicsContext; // size = ??
+    /* 0x000 */ UNK_TYPE1 unk_000[0x8];
+    /* 0x008 */ UNK_PTR unk_008;
+    /* 0x00C */ UNK_TYPE1 unk_00C[0x250];
+    /* 0x25C */ OSViMode* unk_25C;
+    /* 0x260 */ UNK_TYPE1 unk_260[0x20];
+    /* 0x280 */ TwoHeadGfxArena overlay;
+    /* 0x290 */ TwoHeadGfxArena polyOpa;
+    /* 0x2A0 */ TwoHeadGfxArena polyXlu;
+    /* 0x2B0 */ TwoHeadGfxArena unk_2B0;
+    /* 0x2C0 */ TwoHeadGfxArena unk_2C0;
+    /* 0x2D0 */ TwoHeadGfxArena unk_2D0;
+    /* 0x2E0 */ UNK_TYPE1 unk_2E0[0x4];
+    /* 0x2E4 */ s32 unk_2E4;
+    /* 0x2E8 */ UNK_TYPE1 unk_2E8[0x4];
+    /* 0x2EC */ s32 unk_2EC;
+    /* 0x2F0 */ u8 unk_2F0;
+    /* 0x2F1 */ UNK_TYPE1 unk_2F1[0x1];
+    /* 0x2F2 */ u8 unk_2F2;
+    /* 0x2F3 */ UNK_TYPE1 unk_2F3[0x1];
+    /* 0x2F4 */ UNK_TYPE1 unk_2F4[0x8];
+    /* 0x2FC */ f32 unk_2FC;
+    /* 0x300 */ f32 unk_300;
+} GraphicsContext; // size >= 0x304
 
-#define WORK_DISP __gfxCtx->work.p
+#define OVERLAY_DISP __gfxCtx->overlay.p
 #define POLY_OPA_DISP __gfxCtx->polyOpa.p
 #define POLY_XLU_DISP __gfxCtx->polyXlu.p
-#define OVERLAY_DISP __gfxCtx->overlay.p
-#define DEBUG_DISP __gfxCtx->debug.p
+#define UNK_2B0_DISP __gfxCtx->unk_2B0.p
+#define UNK_2C0_DISP __gfxCtx->unk_2C0.p
+#define UNK_2D0_DISP __gfxCtx->unk_2D0.p
 
 // __gfxCtx shouldn't be used directly.
 // Use the DISP macros defined above when writing to display buffers.
 #define OPEN_DISPS(gfxCtx)                  \
     {                                       \
         GraphicsContext* __gfxCtx = gfxCtx; \
-        s32 __dispPad
+        s32 __dispPad UNUSED
 
 #define CLOSE_DISPS(gfxCtx) \
     (void)0;                \
