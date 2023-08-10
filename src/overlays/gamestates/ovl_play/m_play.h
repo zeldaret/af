@@ -11,5 +11,6 @@ typedef struct PlayState {
 } PlayState; // size = 0x2410
 
 void play_init(GameState *thisx);
+void play_cleanup(GameState *thisx);
 
 #endif

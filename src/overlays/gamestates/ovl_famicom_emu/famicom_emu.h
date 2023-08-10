@@ -11,5 +11,6 @@ typedef struct FamicomEmuState {
 } FamicomEmuState; // size = 0xE0
 
 void famicom_emu_init(GameState *thisx);
+void famicom_emu_cleanup(GameState *thisx);
 
 #endif

@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "TwoHeadArena.h"
+#include "other_types.h"
 #include "gamealloc.h"
 #include "libu64/pad.h"
 #include "unk.h"
@@ -12,7 +13,34 @@ struct GraphicsContext;
 struct struct_80145020_jp;
 
 
+#define DEFINE_GAMESTATE_INTERNAL(typeName, enumName) enumName,
+#define DEFINE_GAMESTATE(typeName, enumName, name) DEFINE_GAMESTATE_INTERNAL(typeName, enumName)
+
+typedef enum GameStateId {
+#include "tables/gamestate_table.h"
+    /* 0x0A */ GAMESTATE_ID_MAX
+} GameStateId;
+
+#undef DEFINE_GAMESTATE
+#undef DEFINE_GAMESTATE_INTERNAL
+
+
 typedef void (*GameStateFunc)(struct GameState* gameState);
+
+typedef struct {
+    /* 0x00 */ void*         loadedRamAddr;
+    /* 0x04 */ RomOffset     vromStart;
+    /* 0x08 */ RomOffset     vromEnd;
+    /* 0x0C */ void*         vramStart;
+    /* 0x10 */ void*         vramEnd;
+    /* 0x14 */ UNK_PTR       unk_14;
+    /* 0x18 */ GameStateFunc init;    // initializes and executes the given context
+    /* 0x1C */ GameStateFunc destroy; // deconstructs the context, and sets the next context to load
+    /* 0x20 */ UNK_PTR       unk_20;
+    /* 0x24 */ UNK_PTR       unk_24;
+    /* 0x28 */ UNK_TYPE      unk_28;
+    /* 0x2C */ size_t        instanceSize;
+} GameStateOverlay; // size = 0x30
 
 typedef struct GameState {
     /* 0x00 */ struct GraphicsContext* gfxCtx;
@@ -62,6 +90,12 @@ extern u8 game_GameFrame;
 extern f32 game_GameFrameF;
 extern f32 game_GameFrame_2F;
 extern f32 game_GameFrame__1F;
+
+
+// m_game_dlftbls
+
+extern GameStateOverlay game_dlftbls[GAMESTATE_ID_MAX];
+extern GameStateId game_dlftbls_num;
 
 
 #define CONTROLLER1(gameState) (&(gameState)->input[0])
