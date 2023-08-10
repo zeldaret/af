@@ -293,7 +293,7 @@
       - { start: 0x019D40, type: bss, vram: 0x800419A0, name: boot/libu64/gfxprint }
 
       - { start: 0x019D40, type: bss, vram: 0x800419B0, name: boot/libc64/math64 }
-      - { start: 0x019D40, type: bss, vram: 0x800419C0, name: boot/libc64/malloc }
+      - { start: 0x019D40, type: .bss, vram: 0x800419C0, name: boot/libc64/malloc }
       - { start: 0x019D40, type: bss, vram: 0x800419F0, name: boot/libc64/qrand }
       - { start: 0x019D40, type: .bss, vram: 0x80041A00, name: boot/libc64/__osMalloc }
 

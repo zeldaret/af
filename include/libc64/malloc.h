@@ -2,7 +2,8 @@
 #define LIBC64_MALLOC_H
 
 #include "ultra64.h"
-#include "libc64/osmalloc.h"
+
+struct Arena;
 
 void* malloc(size_t size);
 void* malloc_r(size_t size);
@@ -15,6 +16,6 @@ void MallocInit(void* heap, size_t size);
 void MallocCleanup(void);
 s32 MallocIsInitialized(void);
 
-Arena malloc_arena;
+extern struct Arena malloc_arena;
 
 #endif

@@ -44,7 +44,7 @@
 #include "z64math.h"
 #include "gfx.h"
 #include "m_skin_matrix.h"
-#include "mathf.h"
+#include "libc64/math64.h"
 #include "m_lib.h"
 
 // clang-format off
