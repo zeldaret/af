@@ -7,8 +7,6 @@ zuruKeycheck zuruKeyCheck;
 s32 zurumode_flag = 0;
 
 s32 zurumode_update() {
-    s32 flag_now;
-
     zurumode_flag = (APPNMI_ZURUMODE_GET()) ? ((APPNMI_ZURUMODE2_GET()) ? 2 : 1) : 0;
 
     return zurumode_flag;
