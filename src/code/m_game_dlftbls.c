@@ -26,13 +26,13 @@
 
 #define DEFINE_GAMESTATE(typeName, _enumName, segmentName) \
     { NULL,                                                \
-      SEGMENT_ROM_START(ovl_##segmentName),     \
-      SEGMENT_ROM_END(ovl_##segmentName),       \
-      SEGMENT_VRAM_START(ovl_##segmentName),                    \
-      SEGMENT_VRAM_END(ovl_##segmentName),                      \
+      SEGMENT_ROM_START(ovl_##segmentName),                \
+      SEGMENT_ROM_END(ovl_##segmentName),                  \
+      SEGMENT_VRAM_START(ovl_##segmentName),               \
+      SEGMENT_VRAM_END(ovl_##segmentName),                 \
       NULL,                                                \
-      segmentName##_init,                                     \
-      segmentName##_cleanup,                                  \
+      segmentName##_init,                                  \
+      segmentName##_cleanup,                               \
       NULL,                                                \
       NULL,                                                \
       0,                                                   \
