@@ -3,8 +3,8 @@
 
 #include "ultra64.h"
 
-// void gfxopen();
-// void gfxclose();
+Gfx* gfxopen(Gfx* gfxHead);
+void gfxclose(Gfx* gfxHead, Gfx* gfx);
 // void gfxalloc();
 
 #endif

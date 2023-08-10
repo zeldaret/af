@@ -7,6 +7,7 @@
 #include "libc/stdbool.h"
 #include "libc/stddef.h"
 #include "libc/stdint.h"
+#include "libc/math.h"
 
 #include "attributes.h"
 #include "alignment.h"

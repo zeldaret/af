@@ -17,6 +17,6 @@ void StackCheck_Init(StackEntry* entry, void* stackTop, void* stackBottom, u32 i
 // void StackCheck_Cleanup();
 // void StackCheck_GetState();
 // void StackCheck_CheckAll();
-// void StackCheck_Check();
+void StackCheck_Check(StackEntry* entry);
 
 #endif
