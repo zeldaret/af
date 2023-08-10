@@ -3,16 +3,17 @@
 
 #include "ultra64.h"
 #include "libu64/pad.h"
+#include "unk.h"
 
-typedef struct padmgr{
-    /* 0x00 */ u8 _0;
-    /* 0x04 */ void (*rumbleRetraceCallback)(void*);
-    /* 0x08 */ void* rumbleRetraceArg;
-    /* 0x0C */ void (*inputRetraceCallback)(void*);
-    /* 0x10 */ void* inputRetraceArg;
-    /* 0x14 */ u8 _14[0x2B0 - 0x14];
+typedef struct Padmgr {
+    /* 0x000 */ u8 unk_000;
+    /* 0x004 */ void (*rumbleRetraceCallback)(void*);
+    /* 0x008 */ void* rumbleRetraceArg;
+    /* 0x00C */ void (*inputRetraceCallback)(void*);
+    /* 0x010 */ void* inputRetraceArg;
+    /* 0x014 */ UNK_TYPE1 unk_014[0x2B0 - 0x14];
     /* 0x2B0 */ OSContPad pads[MAXCONTROLLERS];
-    /* 0x2C8 */ u8 _2C8[0x480 - 0x2C8];
+    /* 0x2C8 */ UNK_TYPE1 unk_2C8[0x480 - 0x2C8];
 } Padmgr; // size = 0x480
 
 #define PADMGR_SET_RETRACE_CALLACK(callback, arg) \
@@ -25,8 +26,8 @@ typedef struct padmgr{
 do { \
   Padmgr* mgr = &padmgr_class; \
   if (mgr->inputRetraceCallback == (callback) && mgr->inputRetraceArg == (param)) { \
-    mgr->inputRetraceCallback = NULL; \
-    mgr->inputRetraceArg = NULL; \
+        mgr->inputRetraceCallback = NULL; \
+        mgr->inputRetraceArg = NULL; \
   } \
 } while (0)
 

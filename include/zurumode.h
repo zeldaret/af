@@ -32,11 +32,11 @@ enum zurumode_stage {
     /* 11 */ ZURUMODE_STAGE_FINAL = ZURUMODE_STAGE_11
 };
 
-s32 zurumode_update();
+s32 zurumode_update(void);
 s32 zerucheck_init(zuruKeycheck* keycheck);
 s32 zerucheck_key_check(zuruKeycheck* keycheck, u16 controller);
 void zurumode_callback(void* p);
-void zurumode_init();
-void zurumode_cleanup();
+void zurumode_init(void);
+void zurumode_cleanup(void);
 
 #endif

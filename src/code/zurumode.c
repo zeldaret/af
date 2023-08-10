@@ -179,26 +179,25 @@ s32 zerucheck_key_check(zuruKeycheck* keycheck, u16 controller) {
 }
 
 void zurumode_callback(void* p) {
+    Padmgr* pad = p;
 
-    if (zerucheck_key_check(&zuruKeyCheck, (u32)(((Padmgr*)p)->pads[1].button))) {
+    if (zerucheck_key_check(&zuruKeyCheck, (u32)((pad->pads[1].button)))) {
         zerucheck_init(&zuruKeyCheck);
         APPNMI_ZURUMODE_FLP();
         zurumode_update();
-        if ((u32)(((Padmgr*)p)->pads[0].button) & 0x80) {
+        if ((u32)(pad->pads[0].button) & 0x80) {
             APPNMI_ZURUMODE3_FLP();
         }
     }
 }
 
 void zurumode_init() {
-
     zurumode_update();
     zerucheck_init(&zuruKeyCheck);
     PADMGR_SET_RETRACE_CALLACK(&zurumode_callback, &padmgr_class);
 }
 
 void zurumode_cleanup() {
-
     PADMGR_UNSET_RETRACE_CALLACK(&zurumode_callback, &padmgr_class);
     zurumode_flag = 0;
 }
