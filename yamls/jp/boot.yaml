@@ -16,13 +16,13 @@
       - [0x002720, asm, boot/fault]
       - [0x004F70, asm, boot/fault_drawer]
 
-      # libu64
       - [0x0059F0, c, boot/libu64/pad]
       - [0x005BE0, asm, boot/libu64/stackcheck]
       - [0x005E30, asm, boot/libu64/gfxprint]
 
       - [0x006BA0, asm, boot/libu64/mtxuty-cvt]
 
+      # TODO: figure out if this file belong to libu64
       - [0x006D10, c, boot/O2/loadfragment2]
 
       - [0x007000, asm, boot/libu64/debug]
@@ -212,9 +212,9 @@
       - [0x016FC0, .data, boot/idle]
       - [0x016FD0, data, boot/016FD0]
 
-      # libu64
       - [0x017090, data, boot/libu64/stackcheck]
 
+      # TODO: figure out if this file belong to libu64
       - [0x0170A0, .data, boot/logseverity]
 
       - [0x0170B0, data, boot/libu64/gfxprint_data]
