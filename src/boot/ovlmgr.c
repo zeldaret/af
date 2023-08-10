@@ -3,7 +3,7 @@
 #include "attributes.h"
 #include "fault.h"
 #include "loadfragment.h"
-#include "malloc.h"
+#include "libc64/malloc.h"
 #include "m_malloc.h"
 #include "sprintf.h"
 #include "z_std_dma.h"
