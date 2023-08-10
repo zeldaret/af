@@ -1,18 +1,6 @@
 cc: Warning: -mips3 should not be used for ucode 32-bit compiles
 cc: Warning: -mips3 should not be used for ucode 32-bit compiles
 cc: Warning: -mips3 should not be used for ucode 32-bit compiles
-cfe: Warning 851: ultralib/src/libc/xldtob.c, line 119: constant initializer expression is invalid (refers to automatic variables).
-                     ldiv_t qr = ldiv(lo, 10);
- --------------------^
-All the expressions in an initializer for an object that has static storage
-duration or in the initializer list for an object that has aggregate or
-union type shall be constant expressions.  Otherwise, unexpected results 
-may occur.
-cfe: Warning 709: ultralib/src/libc/xldtob.c, line 163: Incompatible pointer type assignment
-     u16* ps = px;
- ---------^
-The type pointed to by the left-hand side of simple assignment
-statement is incompatible with the type pointed to by the right-hand side.
 cc: Warning: -mips3 should not be used for ucode 32-bit compiles
 as1: Warning: ultralib/src/os/getintmask.s, line 21: Macro instruction used in branch delay slot
 as1: Warning: ultralib/src/os/interrupt.s, line 18: Macro instruction used in branch delay slot
