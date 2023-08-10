@@ -97,7 +97,7 @@ void game_debug_draw_last(GameState* gameState, GraphicsContext* gfxCtx) {
             gSPDisplayList(OVERLAY_DISP++, gfx);
         }
 
-        B_80145040_jp = gameState->input[0].press.button | gameState->input[0].cur.button;
+        B_80145040_jp = CONTROLLER1(gameState)->press.button | CONTROLLER1(gameState)->cur.button;
 
         func_800D2E58_jp(B_80145040_jp, &gfx);
 
