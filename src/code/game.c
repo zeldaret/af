@@ -5,7 +5,7 @@
 #include "speed_meter.h"
 #include "graph.h"
 #include "debug.h"
-#include "malloc.h"
+#include "libc64/malloc.h"
 #include "6EDD10.h"
 #include "padmgr.h"
 #include "69E2C0.h"
