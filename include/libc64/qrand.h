@@ -1,5 +1,5 @@
-#ifndef QRAND_H
-#define QRAND_H
+#ifndef LIBC64_QRAND_H
+#define LIBC64_QRAND_H
 
 #include "ultra64.h"
 

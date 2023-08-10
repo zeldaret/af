@@ -1,5 +1,5 @@
-#ifndef SPRINTF_H
-#define SPRINTF_H
+#ifndef LIBC64_SPRINTF_H
+#define LIBC64_SPRINTF_H
 
 #include "ultra64.h"
 

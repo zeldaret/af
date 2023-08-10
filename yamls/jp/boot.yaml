@@ -30,14 +30,16 @@
       - [0x007060, asm, boot/007060]
       - [0x0073A0, asm, boot/0073A0]
       - [0x0073F0, asm, boot/padsetup]
-      - [0x007530, asm, boot/mathf]
-      - [0x007A40, hasm, boot/fp]
+
+      # libc64
+      - [0x007530, asm, boot/libc64/math64]
+      - [0x007A40, hasm, boot/libc64/fp]
       - [0x007BA0, c, boot/libc64/malloc]
-      - [0x007D70, asm, boot/qrand]
+      - [0x007D70, asm, boot/libc64/qrand]
       - [0x007F30, c, boot/libc64/__osMalloc]
-      - [0x008C50, asm, boot/sprintf]
-      - [0x008D20, asm, boot/printutils]
-      - [0x008D80, asm, boot/sleep]
+      - [0x008C50, asm, boot/libc64/sprintf]
+      - [0x008D20, asm, boot/libc64/aprintf]
+      - [0x008D80, asm, boot/libc64/sleep]
 
       # libultra
       - [0x008F20, c, ../lib/ultralib/src/os/sendmesg]
@@ -219,7 +221,11 @@
 
       - [0x0170B0, data, boot/libu64/gfxprint_data]
 
-      - [0x017960, data, boot/017960] # boot/007060 starts around here, but no idea where it ends
+      - [0x017960, data, boot/007060]
+
+      # libc64
+      - [0x017980, data, boot/libc64/fp]
+      - [0x017990, data, boot/libc64/qrand]
 
       # libultra
       - [0x0179A0, .data, ../lib/ultralib/src/vimodes/vimodepallan1]
@@ -260,7 +266,8 @@
       - [0x019690, rodata, boot/libu64/gfxprint]
       - [0x0196B0, rodata, boot/libu64/debug]
 
-      - [0x0196C0, rodata, boot/0196C0]
+      # libc64
+      - [0x0196C0, rodata, boot/libc64/math64]
       - [0x019710, .rodata, boot/libc64/__osMalloc]
 
       # libultra
@@ -286,9 +293,10 @@
       # libu64
       - { start: 0x019D40, type: bss, vram: 0x800419A0, name: boot/libu64/gfxprint }
 
-      - { start: 0x019D40, type: bss, vram: 0x800419B0, name: boot/mathf }
+      # libc64
+      - { start: 0x019D40, type: bss, vram: 0x800419B0, name: boot/libc64/math64 }
       - { start: 0x019D40, type: .bss, vram: 0x800419C0, name: boot/libc64/malloc }
-      - { start: 0x019D40, type: bss, vram: 0x800419F0, name: boot/800419F0 }
+      - { start: 0x019D40, type: bss, vram: 0x800419F0, name: boot/libc64/qrand }
       - { start: 0x019D40, type: .bss, vram: 0x80041A00, name: boot/libc64/__osMalloc }
 
       # libultra
