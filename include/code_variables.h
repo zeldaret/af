@@ -1836,7 +1836,6 @@ extern s32 zurumode_flag;
 // extern UNK_TYPE B_80138818_jp;
 // extern UNK_TYPE B_80138E40_jp;
 // extern UNK_TYPE B_80138E44_jp;
-extern struct_debug_mode *debug_mode;
 // extern UNK_TYPE debug_display;
 // extern UNK_TYPE B_80138E70_jp;
 // extern UNK_TYPE B_80138E73_jp;

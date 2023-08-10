@@ -23,6 +23,7 @@
       - [0x69C6B0, c, code/m_common_data]
       - [0x69C770, asm, code/m_controller]
       - [0x69CB30, asm, code/69CB30]
+      - [0x69DD60, c, code/m_debug]
       - [0x69DDF0, asm, code/m_debug_display]
       - [0x69E2C0, asm, code/69E2C0]
       - [0x6A0DE0, asm, code/6A0DE0]
@@ -234,6 +235,8 @@
       - { start: 0x73F4D0, type: bss, vram: 0x8011B8B0, name: code/8011B8B0 }
       - { start: 0x74AB40, type: .bss, vram: 0x80126EA0, name: code/m_common_data }
       - { start: 0x75B600, type: bss, vram: 0x80137960, name: code/80137960 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x80138E50, name: code/m_debug}
+      - { start: 0x73F4D0, type: bss, vram: 0x80138E60, name: code/m_debug_display}
       - { start: 0x75B600, type: .bss, vram: 0x80141FA0, name: code/m_malloc }
       - { start: 0x75B600, type: bss, vram: 0x80141FE0, name: code/80141FE0 }
       - { start: 0x73F4D0, type: bss, vram: 0x80143900, name: code/m_player_call }

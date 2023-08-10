@@ -39,6 +39,5 @@
 // void func_8007A008_jp();
 // void mCPk_get_pkinfo();
 // void func_8007A080_jp();
-// void new_Debug_mode();
 
 #endif

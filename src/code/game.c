@@ -1,6 +1,7 @@
 #include "game.h"
 #include "gfx.h"
 #include "m_controller.h"
+#include "m_debug.h"
 #include "67E840.h"
 #include "speed_meter.h"
 #include "graph.h"
@@ -31,7 +32,7 @@ void func_800D2E00_jp(GameState* gameState) {
         Debug_mode_input(CONTROLLER2(gameState));
     }
 
-    if (debug_mode->unk_0D4 != 0) {
+    if (SREG(0) != 0) {
         func_800D88E0_jp(&B_80145020_jp);
     }
 }
@@ -113,7 +114,7 @@ void game_debug_draw_last(GameState* gameState, GraphicsContext* gfxCtx) {
         Debug_mode_output(gfxCtx);
     }
 
-    if (debug_mode->unk_0D4 != 0) {
+    if (SREG(0) != 0) {
         func_800D8A54_jp(&B_80145020_jp, gfxCtx);
         func_800D9018_jp(&B_80145020_jp, gfxCtx, gameState);
     }
@@ -182,7 +183,7 @@ void SetGameFrame(s32 divisor) {
         game_GameFrameF = (divisor & 0xFF);
         game_GameFrame_2F = game_GameFrameF / 2.0f;
         game_GameFrame__1F = 1.0f / game_GameFrameF;
-        debug_mode->gameframe = divisor;
+        SREG(30) = divisor;
     }
 }
 
@@ -190,8 +191,8 @@ void game_main(GameState* gameState) {
     GraphicsContext* gfxCtx = gameState->gfxCtx;
     u8 gameframe = game_GameFrame;
 
-    if (debug_mode->gameframe != gameframe) {
-        SetGameFrame(debug_mode->gameframe);
+    if (SREG(30) != gameframe) {
+        SetGameFrame(SREG(30));
     }
 
     game_draw_first(gfxCtx);
