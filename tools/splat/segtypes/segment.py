@@ -304,6 +304,10 @@ class Segment:
     def is_noload() -> bool:
         return False
 
+    @staticmethod
+    def estimate_size(yaml: Union[Dict, List]) -> Optional[int]:
+        return None
+
     @property
     def needs_symbols(self) -> bool:
         return False
@@ -455,9 +459,6 @@ class Segment:
     def warn(self, msg: str):
         self.warnings.append(msg)
 
-    def max_length(self):
-        return None
-
     @staticmethod
     def get_default_name(addr) -> str:
         return f"{addr:X}"
@@ -501,6 +502,27 @@ class Segment:
             pass
         if len(items) == 0:
             return None
+        return items[0]
+
+    def retrieve_sym_type(
+        self, syms: Dict[int, List[Symbol]], addr: int, type: str
+    ) -> Optional[symbols.Symbol]:
+        if addr not in syms:
+            return None
+
+        items = syms[addr]
+
+        items = [
+            i
+            for i in items
+            if i.segment is None
+            or Segment.visible_ram(self, i.segment)
+            and (type == i.type)
+        ]
+
+        if len(items) == 0:
+            return None
+
         return items[0]
 
     def get_symbol(

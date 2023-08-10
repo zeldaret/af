@@ -1,3 +1,5 @@
+WARNINGS_CHECK ?= 0
+
 UNAME_S := $(shell uname -s)
 ifeq ($(OS),Windows_NT)
 	DETECTED_OS := windows
@@ -9,6 +11,13 @@ else ifeq ($(UNAME_S),Darwin)
 	DETECTED_OS := macos
 	DOWNLOAD_OS := macos-latest
 endif
+
+
+WGET_FLAGS  ?=
+ifneq ($(WARNINGS_CHECK), 0)
+    WGET_FLAGS += --quiet
+endif
+
 
 
 IDO_5_3_DIR := ido/$(DETECTED_OS)/5.3
@@ -31,12 +40,12 @@ distclean: clean
 
 
 $(IDO_5_3): | $(IDO_5_3_DIR)
-	wget https://github.com/decompals/ido-static-recomp/releases/latest/download/ido-5.3-recomp-$(DOWNLOAD_OS).tar.gz
+	wget $(WGET_FLAGS) https://github.com/decompals/ido-static-recomp/releases/latest/download/ido-5.3-recomp-$(DOWNLOAD_OS).tar.gz
 	tar xf ido-5.3-recomp-$(DOWNLOAD_OS).tar.gz -C $(IDO_5_3_DIR)
 	$(RM) ido-5.3-recomp-$(DOWNLOAD_OS).tar.gz
 
 $(IDO_7_1): | $(IDO_7_1_DIR)
-	wget https://github.com/decompals/ido-static-recomp/releases/latest/download/ido-7.1-recomp-$(DOWNLOAD_OS).tar.gz
+	wget $(WGET_FLAGS) https://github.com/decompals/ido-static-recomp/releases/latest/download/ido-7.1-recomp-$(DOWNLOAD_OS).tar.gz
 	tar xf ido-7.1-recomp-$(DOWNLOAD_OS).tar.gz -C $(IDO_7_1_DIR)
 	$(RM) ido-7.1-recomp-$(DOWNLOAD_OS).tar.gz
 

@@ -1,9 +1,9 @@
-
 #include "irqmgr.h"
 #include "libu64/stackcheck.h"
 #include "m_thread.h"
 #include "PR/os_internal.h"
 #include "macros.h"
+#include "attributes.h"
 
 Irqmgr irqmgr_class;
 Irqmgr* this;
@@ -130,7 +130,7 @@ void irqmgr_HandleRetrace(void) {
     irqmgr_SendMesgToClients(&this->msgRetrace);
 }
 
-void irqmgr_Main(void* arg) {
+void irqmgr_Main(void* arg UNUSED) {
     OSMesg msg = (OSMesg)0;
     u8 exit = 0;
 
