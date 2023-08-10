@@ -2,7 +2,7 @@
 #define PADMGR_H
 
 #include "ultra64.h"
-#include "padutils.h"
+#include "libu64/pad.h"
 
 // void padmgr_LockSerialMesgQ();
 // void padmgr_UnlockSerialMesgQ();

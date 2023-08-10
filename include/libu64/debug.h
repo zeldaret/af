@@ -1,5 +1,5 @@
-#ifndef DEBUG_H
-#define DEBUG_H
+#ifndef LIBU64_DEBUG_H
+#define LIBU64_DEBUG_H
 
 #include "ultra64.h"
 #include "attributes.h"

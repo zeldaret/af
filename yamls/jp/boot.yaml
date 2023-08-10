@@ -15,12 +15,17 @@
       - [0x0026C0, asm, boot/syncprintf]
       - [0x002720, asm, boot/fault]
       - [0x004F70, asm, boot/fault_drawer]
-      - [0x0059F0, c, boot/O2/padutils]
-      - [0x005BE0, asm, boot/stackcheck]
-      - [0x005E30, asm, boot/gfxprint]
-      - [0x006BA0, asm, boot/mtxuty-cvt]
+
+      - [0x0059F0, c, boot/libu64/pad]
+      - [0x005BE0, asm, boot/libu64/stackcheck]
+      - [0x005E30, asm, boot/libu64/gfxprint]
+
+      - [0x006BA0, asm, boot/libu64/mtxuty-cvt]
+
+      # TODO: figure out if this file belong to libu64
       - [0x006D10, c, boot/O2/loadfragment2]
-      - [0x007000, asm, boot/debug]
+
+      - [0x007000, asm, boot/libu64/debug]
 
       - [0x007060, asm, boot/007060]
       - [0x0073A0, asm, boot/0073A0]
@@ -209,8 +214,14 @@
 
       - [0x016FC0, .data, boot/idle]
       - [0x016FD0, data, boot/016FD0]
+
+      - [0x017090, data, boot/libu64/stackcheck]
+
+      # TODO: figure out if this file belong to libu64
       - [0x0170A0, .data, boot/logseverity]
-      - [0x0170B0, data, boot/gfxprint]
+
+      - [0x0170B0, data, boot/libu64/gfxprint_data]
+
       - [0x017960, data, boot/017960] # boot/007060 starts around here, but no idea where it ends
 
       - [0x017990, data, boot/libc64/qrand]
@@ -249,8 +260,11 @@
       - [0x0187F0, rodata, boot/0187F0]
       - [0x018840, rodata, boot/018840]
       - [0x019250, rodata, boot/019250]
-      - [0x019690, rodata, boot/019690]
-      - [0x0196B0, rodata, boot/0196B0]
+
+      # libu64
+      - [0x019690, rodata, boot/libu64/gfxprint]
+      - [0x0196B0, rodata, boot/libu64/debug]
+
       - [0x0196C0, rodata, boot/0196C0]
 
       - [0x019710, .rodata, boot/libc64/__osMalloc]
@@ -274,7 +288,9 @@
       - { start: 0x019D40, type: .bss, vram: 0x8003F330, name: boot/idle }
       - { start: 0x019D40, type: .bss, vram: 0x8003FF30, name: boot/viconfig }
       - { start: 0x019D40, type: bss, vram: 0x8003FF40, name: boot/8003FF40 }
-      - { start: 0x019D40, type: bss, vram: 0x800419A0, name: boot/gfxprint }
+
+      # libu64
+      - { start: 0x019D40, type: bss, vram: 0x800419A0, name: boot/libu64/gfxprint }
 
       - { start: 0x019D40, type: bss, vram: 0x800419B0, name: boot/libc64/math64 }
       - { start: 0x019D40, type: bss, vram: 0x800419C0, name: boot/libc64/malloc }

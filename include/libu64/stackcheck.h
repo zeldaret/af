@@ -1,5 +1,5 @@
-#ifndef STACK_CHECK_H
-#define STACK_CHECK_H
+#ifndef LIBU64_STACK_CHECK_H
+#define LIBU64_STACK_CHECK_H
 
 #include "ultra64.h"
 
