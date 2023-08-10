@@ -4,7 +4,7 @@
 #include "ultra64.h"
 #include "TwoHeadArena.h"
 #include "gamealloc.h"
-#include "padutils.h"
+#include "libu64/pad.h"
 #include "unk.h"
 
 struct GameState;

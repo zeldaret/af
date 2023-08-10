@@ -4,7 +4,7 @@
 #include "67E840.h"
 #include "speed_meter.h"
 #include "graph.h"
-#include "debug.h"
+#include "libu64/debug.h"
 #include "libc64/malloc.h"
 #include "6EDD10.h"
 #include "padmgr.h"

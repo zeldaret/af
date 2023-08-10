@@ -249,7 +249,7 @@ proutSprintf = 0x8002D850; // type:func
 vsprintf = 0x8002D874; // type:func
 sprintf = 0x8002D8C4; // type:func
 
-PrintUtils_VPrintf = 0x8002D920; // type:func
+vaprintf = 0x8002D920; // type:func
 PrintUtils_Printf = 0x8002D954; // type:func
 
 csleep = 0x8002D980; // type:func
@@ -275,8 +275,9 @@ D_8003BBE0_jp = 0x8003BBE0; //
 D_8003BBF0_jp = 0x8003BBF0; //
 D_8003BC38_jp = 0x8003BC38; //
 D_8003BC50_jp = 0x8003BC50; //
-D_8003BC90_jp = 0x8003BC90; //
-D_8003BC94_jp = 0x8003BC94; //
+
+D_8003BC90_jp = 0x8003BC90; // size:0x4
+D_8003BC94_jp = 0x8003BC94; // size:0x4
 
 gOverlayLogSeverity = 0x8003BCA0 // type:s32 size:0x4
 
