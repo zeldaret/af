@@ -1,5 +1,5 @@
-#ifndef FP_H
-#define FP_H
+#ifndef LIBC64_FP_H
+#define LIBC64_FP_H
 
 #include "ultra64.h"
 
@@ -23,5 +23,9 @@ f64 nearbyint(f64 x);
 // void round();
 // void lroundf();
 // void lround();
+
+extern f32 qNaN0x3FFFFF;
+extern f32 qNaN0x10000;
+extern f32 sNaN0x3FFFFF;
 
 #endif
