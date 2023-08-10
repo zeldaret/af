@@ -38,7 +38,7 @@
 // void fade_black_draw();
 // void func_800BE094_jp();
 // void func_800BE0E4_jp();
-// void func_800BE12C_jp();
+Gfx *func_800BE12C_jp(Gfx *gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 // void func_800BE184_jp();
 // void func_800BE1D4_jp();
 // void func_800BE27C_jp();

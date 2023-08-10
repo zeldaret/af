@@ -3,7 +3,7 @@
 
 #include "ultra64.h"
 
-// void PrintUtils_VPrintf();
+// void vaprintf();
 // void PrintUtils_Printf();
 
 #endif

@@ -1,5 +1,5 @@
 #include "m_debug.h"
-#include "malloc.h"
+#include "libc64/malloc.h"
 
 Debug_mode* debug_mode;
 

@@ -2,6 +2,7 @@
 #define PADMGR_H
 
 #include "ultra64.h"
+#include "libu64/pad.h"
 
 // void padmgr_LockSerialMesgQ();
 // void padmgr_UnlockSerialMesgQ();
@@ -17,8 +18,8 @@
 // void padmgr_HandleRetraceMsg();
 // void padmgr_HandlePreNMIMsg();
 // void padmgr_RequestPadData_NonLock();
-// void padmgr_RequestPadData();
-// void padmgr_ClearPadData();
+void padmgr_RequestPadData(Input inputs[4], s32 arg1);
+void padmgr_ClearPadData(Input inputs[4]);
 // void padmgr_MainProc();
 // void padmgr_Init();
 // void func_800D763C_jp();

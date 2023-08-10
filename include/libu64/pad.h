@@ -1,5 +1,5 @@
-#ifndef PAD_UTILS_H
-#define PAD_UTILS_H
+#ifndef LIBU64_PAD_H
+#define LIBU64_PAD_H
 
 #include "ultra64.h"
 

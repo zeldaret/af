@@ -13,6 +13,7 @@ root_dir = os.path.abspath(os.path.join(script_dir, ".."))
 CPP_FLAGS = [
     "-I.",
     "-Iinclude",
+    "-Isrc",
     "-Ibin",
     "-Ilib/ultralib/include",
     "-Ilib/ultralib/include/PR",

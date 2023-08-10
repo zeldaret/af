@@ -5,6 +5,7 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "include",
+                "src",
                 ".",
                 "lib/ultralib/include",
                 "lib/ultralib/include/PR"
