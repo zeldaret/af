@@ -186,7 +186,7 @@ void zurumode_callback(void* p) {
         zerucheck_init(&zuruKeyCheck);
         APPNMI_ZURUMODE_FLP();
         zurumode_update();
-        if ((mgr->pads[0].button) & RESET_BUTTON) {
+        if (mgr->pads[0].button & RESET_BUTTON) {
             APPNMI_ZURUMODE3_FLP();
         }
     }
