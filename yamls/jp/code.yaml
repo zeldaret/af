@@ -9,7 +9,7 @@
       - [0x675720, c, code/c_keyframe]
       - [0x678660, asm, code/evw_anime]
       - [0x6792F0, asm, code/6792F0]
-      - [0x67A020, asm, code/m_actor]
+      - [0x67A020, c, code/m_actor]
       - [0x67C6B0, c, code/m_actor_dlftbls]
       - [0x67C890, asm, code/m_actor_shadow]
       - [0x67D890, asm, code/67D890]
@@ -149,8 +149,7 @@
 
       - [0x739DB0, .rodata, code/c_keyframe]
       - [0x739E00, rodata, code/739E00]
-      - [0x739E50, rodata, code/m_actor]
-      - [0x739E90, rodata, code/739E90]
+      - [0x739E50, .rodata, code/m_actor]
       - [0x739EA0, .rodata, code/m_actor_dlftbls]
       - [0x739EF0, rodata, code/739EF0]
       - [0x739F20, rodata, code/739F20]
