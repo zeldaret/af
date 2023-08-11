@@ -51,11 +51,31 @@ typedef struct PosRot {
 } PosRot; // size = 0x14
 
 typedef struct Actor {
-    /* 0x000 */ UNK_TYPE1 unk_000[0x28];
+    /* 0x000 */ UNK_TYPE1 unk_000[0x24];
+    /* 0x024 */ UNK_TYPE1 unk_024[0x2];
+    /* 0x026 */ s8 unk_026; // objBankIndex
+    /* 0x027 */ UNK_TYPE1 unk_027[0x1];
     /* 0x028 */ PosRot world;
-    /* 0x03C */ UNK_TYPE1 unk_03C[0x11C];
+    /* 0x03C */ UNK_TYPE1 unk_03C[0x20];
+    /* 0x05C */ Vec3f unk_05C; // scale?
+    /* 0x068 */ UNK_TYPE1 unk_068[0x7C];
+    /* 0x0E4 */ f32 unk_0E4;
+    /* 0x0E8 */ s32 unk_0E8;
+    /* 0x0EC */ f32 unk_0EC;
+    /* 0x0F0 */ f32 unk_0F0;
+    /* 0x0F4 */ f32 unk_0F4;
+    /* 0x0F8 */ f32 unk_0F8;
+    /* 0x0FC */ s32 unk_0FC;
+    /* 0x100 */ Vec3f *unk_100; // maybe PosRot*
+    /* 0x104 */ s32 unk_104;
+    /* 0x108 */ s8 unk_108;
+    /* 0x109 */ s8 unk_109;
+    /* 0x10A */ s8 unk_10A;
+    /* 0x10B */ UNK_TYPE1 unk_10B[0x1];
+    /* 0x10C */ UNK_TYPE1 unk_10C[0x4C];
     /* 0x158 */ struct Actor* unk_158;
-} Actor; // size >= 0x15C, size <= 0x174
+    /* 0x15C */ ActorFunc init;
+} Actor; // size >= 0x160, size <= 0x174
 
 typedef struct ActorListEntry {
     /* 0x0 */ UNK_TYPE1 unk_0[0x4];
@@ -77,10 +97,10 @@ typedef struct ActorInfo {
 // void Actor_player_look_direction_check();
 // void Actor_display_position_set();
 // void Actor_data_bank_dma_end_check();
-// void Shape_Info_init();
+void Shape_Info_init(Actor* actor, f32 arg1, s32 arg2, f32 arg3, f32 arg4);
 // void Actor_foot_shadow_pos_set();
 // void Actor_delete();
-void Actor_ct(Actor* actor, struct PlayState* Play);
+void Actor_ct(Actor* actor, struct PlayState* play);
 // void Actor_dt();
 // void Actor_draw();
 // void Actor_draw_actor_no_culling_check();

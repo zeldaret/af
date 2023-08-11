@@ -252,24 +252,20 @@ s32 Actor_data_bank_dma_end_check(void* arg0, PlayState* arg1) {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_data_bank_dma_end_check.s")
 #endif
 
-#if 0
-void Shape_Info_init(void* arg0, f32 arg1, s32 arg2, f32 arg3, f32 arg4) {
-    arg0->unk_E4 = arg1;
-    arg0->unk_E8 = arg2;
-    arg0->unk_EC = arg3;
-    arg0->unk_108 = 1;
-    arg0->unk_FC = 0;
-    arg0->unk_F4 = 1.0f;
-    arg0->unk_F8 = 1.0f;
-    arg0->unk_10A = 0;
-    arg0->unk_100 = (void* ) (arg0 + 0x28);
-    arg0->unk_104 = -1;
-    arg0->unk_109 = 0;
-    arg0->unk_F0 = arg4;
+void Shape_Info_init(Actor* actor, f32 arg1, s32 arg2, f32 arg3, f32 arg4) {
+    actor->unk_0E4 = arg1;
+    actor->unk_0E8 = arg2;
+    actor->unk_0EC = arg3;
+    actor->unk_0F0 = arg4;
+    actor->unk_108 = 1;
+    actor->unk_0FC = 0;
+    actor->unk_0F4 = 1.0f;
+    actor->unk_0F8 = 1.0f;
+    actor->unk_10A = 0;
+    actor->unk_100 = &actor->world.pos;
+    actor->unk_104 = -1;
+    actor->unk_109 = 0;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Shape_Info_init.s")
-#endif
 
 #if 0
 void Actor_foot_shadow_pos_set(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
@@ -297,55 +293,76 @@ void Actor_delete(void* arg0) {
 #endif
 
 #if 0
-void Actor_ct(void* arg0, PlayState* arg1) {
-    ? sp34;
-    void* sp2C;
+//s32 Actor_data_bank_dma_end_check(Actor*, PlayState*); /* extern */
+//? Actor_world_to_eye(Actor*, ?, PosRot*);           /* extern */
+//? CollisionCheck_Status_ct(f32, s8*);               /* extern */
+//? Shape_Info_init(Actor*, f32, ?, f32, f32);        /* extern */
+//? xyz_t_move(s8*, PosRot*);                         /* extern */
+
+void Actor_ct(Actor* actor, PlayState* play) {
+    UNK_TYPE sp34;
+    s32* sp2C;                                      /* compiler-managed */
+    PosRot* temp_a2;
     s32 temp_v0_2;
-    void* temp_a0;
-    void* temp_a2;
+    s32* temp_a0;
     void* temp_v0;
     void* temp_v1;
 
-    temp_v0 = arg1 + (arg0->unk_26 * 0x54);
+#if 0
+    temp_v0 = play + (actor->unk_026 * 0x54);
     (temp_v0 + 0x110)->unk_50 = (s16) (temp_v0->unk_160 + 1);
-    if (arg0->unk_2 == 3) {
-        (*(&common_data + 0x1004C))->unk_14(&sp34, arg0->unk_6);
-        temp_a0 = arg1 + 0x110;
+#endif
+    if ((u8) actor->unk_000[2] == 3) {
+        #if 0
+        common_data.unk_1004C->unk_14(&sp34, actor->unk_6);
+        #endif
+        temp_a0 = &play->unk_0110;
         sp2C = temp_a0;
+        #if 0
         temp_v0_2 = mSc_bank_regist_check(temp_a0, sp36);
-        arg0->unk_708 = temp_v0_2;
+        actor->unk_708 = temp_v0_2;
+        #endif
         temp_v1 = temp_a0 + (temp_v0_2 * 0x54);
+        #if 0
         temp_v1->unk_50 = (s16) (temp_v1->unk_50 + 1);
+        #endif
     }
-    temp_a2 = arg0 + 0x28;
-    temp_a2->unk_0 = (s32) arg0->unk_C;
-    temp_a2->unk_4 = (s32) arg0->unk_10;
-    temp_a2->unk_8 = (s32) arg0->unk_14;
-    temp_a2->unk_C = (s32) arg0->unk_18;
-    temp_a2->unk_10 = (s32) arg0->unk_1C;
-    arg0->unk_DC = (unaligned s32) arg0->unk_34;
-    arg0->unk_E0 = (u16) arg0->unk_38;
+    temp_a2 = &actor->world;
+    #if 0
+    temp_a2->pos.x = actor->unk_C;
+    temp_a2->pos.y = actor->unk_10;
+    temp_a2->pos.z = actor->unk_14;
+    temp_a2->unk_C = (s32) actor->unk_18;
+    temp_a2->unk_10 = (s32) actor->unk_1C;
+    actor->unk_03C[0xA0] = (unaligned s32) actor->unk_34;
+    actor->unk_E0 = (u16) actor->world.rot.z;
+    #endif
     sp2C = temp_a2;
-    Actor_world_to_eye(arg0, 0.0f, temp_a2);
-    xyz_t_move(arg0 + 0x3C, sp2C);
-    arg0->unk_5C = 0.01f;
-    arg0->unk_60 = 0.01f;
-    arg0->unk_64 = 0.01f;
-    arg0->unk_7C = -20.0f;
-    arg0->unk_134 = 350.0f;
-    arg0->unk_140 = 350.0f;
-    arg0->unk_F4 = 1.0f;
-    arg0->unk_F8 = 1.0f;
-    arg0->unk_B8 = 3.4028235e38f;
-    arg0->unk_138 = 700.0f;
-    arg0->unk_13C = 1000.0f;
-    arg0->unk_144 = 55.0f;
-    CollisionCheck_Status_ct(1.0f, arg0 + 0xC4);
-    Shape_Info_init(arg0, 0.0f, 0, 0.0f, 0.0f);
-    if (Actor_data_bank_dma_end_check(arg0, arg1) == 1) {
-        B_801458B8_jp = (arg1 + (arg0->unk_26 * 0x54))->unk_114 + 0x80000000;
-        arg0->unk_15C(arg0, arg1);
-        arg0->unk_15C = NULL;
+    Actor_world_to_eye(actor, 0, temp_a2);
+    xyz_t_move(actor->unk_03C, sp2C);
+
+    actor->unk_05C.x = 0.01f;
+    actor->unk_05C.y = 0.01f;
+    actor->unk_05C.z = 0.01f;
+    #if 0
+    actor->unk_7C = -20.0f;
+    actor->unk_134 = 350.0f;
+    actor->unk_140 = 350.0f;
+    actor->unk_F4 = 1.0f;
+    actor->unk_F8 = 1.0f;
+    actor->unk_B8 = 3.4028235e38f;
+    actor->unk_138 = 700.0f;
+    actor->unk_13C = 1000.0f;
+    actor->unk_144 = 55.0f;
+    #endif
+    CollisionCheck_Status_ct(1.0f, &actor->unk_03C[0x88]);
+    Shape_Info_init(actor, 0.0f, 0, 0.0f, 0.0f);
+    if (Actor_data_bank_dma_end_check(actor, play) == 1) {
+        #if 0
+        B_801458B8_jp = (play + (actor->unk_026 * 0x54))->unk_114 + 0x80000000;
+        #endif
+        actor->init(actor, play);
+        actor->init = NULL;
     }
 }
 #else
