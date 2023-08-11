@@ -1,110 +1,1476 @@
-#include "global.h"
+#include "m_actor.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+#if 0
+? CollisionCheck_Status_Clear(void*);               /* extern */
+? CollisionCheck_Status_ct(f32, void*);             /* extern */
+? FaultDrawer_Printf(?*, void*, ?*);                /* extern */
+? FaultDrawer_SetCursor(?, ?);                      /* extern */
+? Fault_AddClient(?*, void (*)(void*, ?), void*, ?*); /* extern */
+? Fault_RemoveClient(?*);                           /* extern */
+s32 Global_light_read(void*, struct GraphicsContext*); /* extern */
+? Light_list_point_draw(PlayState*);                /* extern */
+? LightsN_disp(s32, struct GraphicsContext*);       /* extern */
+? Matrix_Position(s32, s32);                        /* extern */
+? Matrix_copy_MtxF(s8*, ?*);                        /* extern */
+? Matrix_scale(f32, f32, s32, ?);                   /* extern */
+? Matrix_softcv3_load(f32, f32, s32, void*);        /* extern */
+? Skin_Matrix_PrjMulVector(s8*, s32, s32, s32);     /* extern */
+? actor_dlftbls_cleanup();                          /* extern */
+? actor_dlftbls_init();                             /* extern */
+? chase_f(void*, s32, s32, void*);                  /* extern */
+f32 cos_s(s16);                                     /* extern */
+s32 func_8008B3E8_jp(?*, ?);                        /* extern */
+? func_8008E5F4_jp(s32, f32, s32);                  /* extern */
+? func_8009B884_jp(s32, s32, void*);                /* extern */
+? func_800C6144_jp(void*, s16);                     /* extern */
+void* get_player_actor_withoutCheck(PlayState*);    /* extern */
+f32 mCoBG_GetBgY_OnlyCenter_FromWpos2(s32, s32, s32, f32); /* extern */
+s32 mEv_CheckFirstJob();                            /* extern */
+? mFI_SetBearActor(PlayState*, s32, s32, s32, s32); /* extern */
+? mFI_SetFG_common(u16, s32, s32, s32, s32);        /* extern */
+? mNpc_SetNpcinfo(void*, s8);                       /* extern */
+s32 mSc_bank_regist_check(void*, s16);              /* extern */
+? mSc_regist_initial_exchange_bank(PlayState*);     /* extern */
+? mem_clear(void*, s32, ?);                         /* extern */
+? ovlmgr_Load(s32, s32, s32, s32, s32);             /* extern */
+s16 search_position_angleY(void*, void*);           /* extern */
+f32 search_position_distanceXZ(void*, void*);       /* extern */
+f32 sin_s(s16, void*);                              /* extern */
+? xyz_t_move(?*, void*);                            /* extern */
+? zelda_free(void*, void*);                         /* extern */
+void* zelda_malloc(s32, void*);                     /* extern */
+void* zelda_malloc_r(s32, void*);                   /* extern */
+void Actor_ct(void* arg0, PlayState* arg1);         /* static */
+void Actor_cull_check(void* arg0);                  /* static */
+s32 Actor_data_bank_dma_end_check(void* arg0, PlayState* arg1); /* static */
+s32 Actor_data_bank_regist_check(s32* arg0, void* arg1, u16 arg4, PlayState*, s32); /* static */
+void Actor_delete(void* arg0);                      /* static */
+void Actor_delete_check(void* arg0, PlayState* arg1); /* static */
+void Actor_display_position_set(s32 arg1, s16* arg2, s16* arg3); /* static */
+void Actor_draw(PlayState* arg0, void* arg1);       /* static */
+s32 Actor_draw_actor_no_culling_check(void* arg0);  /* static */
+? Actor_draw_actor_no_culling_check2(void* arg0, void* arg1, f32 arg2); /* static */
+void Actor_dt(void* arg0, PlayState* arg1);         /* static */
+void Actor_foot_shadow_pos_set(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5); /* static */
+void Actor_free_overlay_area(s32 arg0);             /* static */
+void Actor_get_overlay_area(void* arg0, ?* arg1, s32 arg2, u16); /* static */
+void* Actor_info_delete(s8* arg0, void* arg1, PlayState* arg2); /* static */
+void* Actor_info_fgName_search(s32 arg0, s32 arg1, s32 arg2); /* static */
+void* Actor_info_fgName_search_sub(void* arg0, s32 arg1, void*); /* static */
+void* Actor_info_make_actor(ActorInfo* arg0, PlayState* arg1, s16 arg2, f32 arg3, f32 arg4, f32 arg5, s32 arg6, s32 arg7, s32 arg8, s32 arg9, s32 argA, s32 argB, s32 argC, s32 argD, s32 argE, s32 argF); /* static */
+void* Actor_info_make_child_actor(void* arg1, ActorInfo* arg2, s16 arg3, s32 arg4, f32 arg5, f32 arg6, s16 arg7, s16 arg8, s16 arg9, s16 argA, u16 argB, s16 argC, s32 argD); /* static */
+void* Actor_info_name_search(s32 arg0, s16 arg1, s32 arg2); /* static */
+void* Actor_info_name_search_sub(void* arg0, s16 arg1, void*); /* static */
+void* Actor_info_part_delete(s8* arg0, void* arg1); /* static */
+void Actor_info_part_new(ActorInfo* arg0, void* arg1, u8 arg2); /* static */
+void Actor_info_save_actor(s32 arg0);               /* static */
+void Actor_init_actor_class(void* arg0, void* arg1, void* arg2, PlayState* arg3, s32 arg4, f32 arg5, f32 arg6, f32 arg7, s32 arg8, s32 arg9, s32 argA, s32 argB, s32 argC, s32 argD, s32 argE, s32 argF); /* static */
+s32 Actor_malloc_actor_class(void** arg0, void* arg1, void* arg2, ?* arg3, s32 arg4); /* static */
+s32 Actor_player_look_direction_check(void* arg0, s16 arg1, PlayState* arg2); /* static */
+void Actor_position_move(void* arg0);               /* static */
+void Actor_position_moveF(void* arg0);              /* static */
+void Actor_position_speed_set(void* arg0);          /* static */
+void Actor_world_to_eye(void* arg0, f32 arg1, void*); /* static */
+f32 HiliteReflect_init(void* arg3, f32*, s32);      /* static */
+f32 HiliteReflect_light_init(void* arg3);           /* static */
+void* HiliteReflect_new(void* arg0, f32* arg1, void* arg2, void* arg3, void* arg4, LookAt** arg5); /* static */
+f32 HiliteReflect_xlu_init(void* arg3, f32*, s32);  /* static */
+void Part_Break_init(void* arg0, s32 arg1, ? arg2); /* static */
+void Setpos_HiliteReflect_init(void* arg1);         /* static */
+void Setpos_HiliteReflect_light_init(void* arg1);   /* static */
+void Setpos_HiliteReflect_xlu_init(void* arg1);     /* static */
+void Shape_Info_init(void* arg0, f32 arg1, s32 arg2, f32 arg3, f32 arg4); /* static */
+void actor_free_check(void* arg0, u16 arg1);        /* static */
+void func_80056380_jp(void* arg0, ? arg1);          /* static */
+s32 func_80057940_jp(void** arg0, void* arg1, ?* arg2, s32 arg3, s32 arg4); /* static */
+s32 func_80057A8C_jp(s32* arg0, ? arg1, void* arg2, s32 arg3, u16 arg4); /* static */
+s32 func_80057B70_jp(s32* arg0, void* arg1, void* arg2, s32 arg3, u16 arg4); /* static */
+void projection_pos_set(s32 arg0, f32* arg3, f32*); /* static */
+void restore_fgdata(void* arg0, s32 arg1);          /* static */
+void restore_fgdata_all(s32 arg0);                  /* static */
+void restore_fgdata_one(void* arg0, PlayState*);    /* static */
+extern Mtx B_8011B850_jp;
+extern ? B_801458A0_jp;
+extern s32 B_801458B8_jp;
+extern s32 D_80100C70_jp;
+extern ? MtxF_clear;
+extern ? actor_dlftbls;
+extern ? common_data;
+extern void* debug_mode;
+static ? RO_801161E8_jp;                            /* unable to generate initializer; const */
+#endif
 
+#if 0
+void func_80056380_jp(void* arg0, ? arg1) {
+    if ((arg0 == NULL) || (arg0->unk_170 == 0)) {
+        FaultDrawer_SetCursor(0x30, 0x18);
+        FaultDrawer_Printf("ACTOR NAME is NULL");
+    }
+    FaultDrawer_SetCursor(0x30, 0x18);
+    FaultDrawer_Printf("ACTOR NAME %08x:%s", arg0, "");
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/func_80056380_jp.s")
+#endif
 
+#if 0
+void projection_pos_set(s32 arg0, f32* arg3) {
+    f32 temp_fv0;
+
+    Skin_Matrix_PrjMulVector(arg0 + 0x1E1C);
+    temp_fv0 = *arg3;
+    if (temp_fv0 < 1.0f) {
+        *arg3 = 1.0f;
+        return;
+    }
+    *arg3 = 1.0f / temp_fv0;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/projection_pos_set.s")
+#endif
 
+#if 0
+void Actor_world_to_eye(void* arg0, f32 arg1) {
+    arg0->unk_4C = (f32) (arg0->unk_2C + arg1);
+    arg0->unk_48 = (f32) arg0->unk_28;
+    arg0->unk_50 = (f32) arg0->unk_30;
+    arg0->unk_54 = (s16) arg0->unk_34;
+    arg0->unk_56 = (s16) arg0->unk_36;
+    arg0->unk_58 = (s16) arg0->unk_38;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_world_to_eye.s")
+#endif
 
+#if 0
+void Actor_position_move(void* arg0) {
+    f32 sp18;
+    f32 temp_fv0;
+
+    temp_fv0 = game_GameFrame_2F;
+    sp18 = temp_fv0;
+    gamePT->unk_1C58();
+    arg0->unk_28 = (f32) (arg0->unk_28 + ((arg0->unk_68 * temp_fv0) + arg0->unk_C4));
+    arg0->unk_2C = (f32) (arg0->unk_2C + ((arg0->unk_6C * temp_fv0) + arg0->unk_C8));
+    arg0->unk_30 = (f32) (arg0->unk_30 + ((arg0->unk_70 * temp_fv0) + arg0->unk_CC));
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_position_move.s")
+#endif
 
+#if 0
+void Actor_position_speed_set(void* arg0) {
+    arg0->unk_68 = (f32) (sin_s(arg0->unk_36, arg0) * arg0->unk_74);
+    arg0->unk_70 = (f32) (cos_s(arg0->unk_36) * arg0->unk_74);
+    chase_f(arg0 + 0x6C, arg0->unk_7C, arg0->unk_78, arg0);
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_position_speed_set.s")
+#endif
 
+#if 0
+void Actor_position_moveF(void* arg0) {
+    Actor_position_speed_set(arg0);
+    Actor_position_move(arg0);
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_position_moveF.s")
+#endif
 
+#if 0
+s32 Actor_player_look_direction_check(void* arg0, s16 arg1, PlayState* arg2) {
+    s16 temp_v1;
+    s16 var_a0;
+
+    temp_v1 = (arg0->unk_B6 + 0x8000) - get_player_actor_withoutCheck(arg2)->unk_DE;
+    var_a0 = -temp_v1;
+    if (temp_v1 >= 0) {
+        var_a0 = temp_v1;
+    }
+    return var_a0 < arg1;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_player_look_direction_check.s")
+#endif
 
+#if 0
+void Actor_display_position_set(s32 arg1, s16* arg2, s16* arg3) {
+    f32 sp1C;
+    f32 sp18;
+
+    projection_pos_set(arg1 + 0x28, &sp1C, &sp18);
+    *arg2 = (s16) (s32) ((sp1C * sp18 * 160.0f) + 160.0f);
+    *arg3 = (s16) (s32) ((sp20 * sp18 * -120.0f) + 120.0f);
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_display_position_set.s")
+#endif
 
+#if 0
+s32 Actor_data_bank_dma_end_check(void* arg0, PlayState* arg1) {
+    s32 temp_v0;
+    s32 var_v1;
+
+    temp_v0 = (s32) (arg0->unk_6 & 0xF000) >> 0xC;
+    if ((temp_v0 != 0xD) && (temp_v0 != 0xE)) {
+        var_v1 = (arg1 + (arg0->unk_26 * 0x54))->unk_110 > 0;
+    } else {
+        var_v1 = (*(&common_data + 0x1004C))->unk_F4(arg1 + 0x110, arg0, arg0, arg1);
+    }
+    return var_v1;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_data_bank_dma_end_check.s")
+#endif
 
+#if 0
+void Shape_Info_init(void* arg0, f32 arg1, s32 arg2, f32 arg3, f32 arg4) {
+    arg0->unk_E4 = arg1;
+    arg0->unk_E8 = arg2;
+    arg0->unk_EC = arg3;
+    arg0->unk_108 = 1;
+    arg0->unk_FC = 0;
+    arg0->unk_F4 = 1.0f;
+    arg0->unk_F8 = 1.0f;
+    arg0->unk_10A = 0;
+    arg0->unk_100 = (void* ) (arg0 + 0x28);
+    arg0->unk_104 = -1;
+    arg0->unk_109 = 0;
+    arg0->unk_F0 = arg4;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Shape_Info_init.s")
+#endif
 
+#if 0
+void Actor_foot_shadow_pos_set(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+    if (arg1 == arg2) {
+        Matrix_Position(arg3, arg0 + 0x10C);
+        return;
+    }
+    if (arg1 == arg4) {
+        Matrix_Position(arg5, arg0 + 0x118);
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_foot_shadow_pos_set.s")
+#endif
 
+#if 0
+void Actor_delete(void* arg0) {
+    if (arg0 != NULL) {
+        arg0->unk_164 = 0;
+        arg0->unk_168 = 0;
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_delete.s")
+#endif
 
+#if 0
+void Actor_ct(void* arg0, PlayState* arg1) {
+    ? sp34;
+    void* sp2C;
+    s32 temp_v0_2;
+    void* temp_a0;
+    void* temp_a2;
+    void* temp_v0;
+    void* temp_v1;
+
+    temp_v0 = arg1 + (arg0->unk_26 * 0x54);
+    (temp_v0 + 0x110)->unk_50 = (s16) (temp_v0->unk_160 + 1);
+    if (arg0->unk_2 == 3) {
+        (*(&common_data + 0x1004C))->unk_14(&sp34, arg0->unk_6);
+        temp_a0 = arg1 + 0x110;
+        sp2C = temp_a0;
+        temp_v0_2 = mSc_bank_regist_check(temp_a0, sp36);
+        arg0->unk_708 = temp_v0_2;
+        temp_v1 = temp_a0 + (temp_v0_2 * 0x54);
+        temp_v1->unk_50 = (s16) (temp_v1->unk_50 + 1);
+    }
+    temp_a2 = arg0 + 0x28;
+    temp_a2->unk_0 = (s32) arg0->unk_C;
+    temp_a2->unk_4 = (s32) arg0->unk_10;
+    temp_a2->unk_8 = (s32) arg0->unk_14;
+    temp_a2->unk_C = (s32) arg0->unk_18;
+    temp_a2->unk_10 = (s32) arg0->unk_1C;
+    arg0->unk_DC = (unaligned s32) arg0->unk_34;
+    arg0->unk_E0 = (u16) arg0->unk_38;
+    sp2C = temp_a2;
+    Actor_world_to_eye(arg0, 0.0f, temp_a2);
+    xyz_t_move(arg0 + 0x3C, sp2C);
+    arg0->unk_5C = 0.01f;
+    arg0->unk_60 = 0.01f;
+    arg0->unk_64 = 0.01f;
+    arg0->unk_7C = -20.0f;
+    arg0->unk_134 = 350.0f;
+    arg0->unk_140 = 350.0f;
+    arg0->unk_F4 = 1.0f;
+    arg0->unk_F8 = 1.0f;
+    arg0->unk_B8 = 3.4028235e38f;
+    arg0->unk_138 = 700.0f;
+    arg0->unk_13C = 1000.0f;
+    arg0->unk_144 = 55.0f;
+    CollisionCheck_Status_ct(1.0f, arg0 + 0xC4);
+    Shape_Info_init(arg0, 0.0f, 0, 0.0f, 0.0f);
+    if (Actor_data_bank_dma_end_check(arg0, arg1) == 1) {
+        B_801458B8_jp = (arg1 + (arg0->unk_26 * 0x54))->unk_114 + 0x80000000;
+        arg0->unk_15C(arg0, arg1);
+        arg0->unk_15C = NULL;
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_ct.s")
+#endif
 
+#if 0
+void Actor_dt(void* arg0, PlayState* arg1) {
+    ? (*temp_v0)(void*, PlayState*, void*);
+    ? (*temp_v0_2)(void*, PlayState*, void*);
+    s16 temp_a0;
+    s32 temp_v0_5;
+    void* temp_v0_3;
+    void* temp_v0_4;
+    void* temp_v0_6;
+
+    temp_v0 = arg0->unk_16C;
+    if (temp_v0 != NULL) {
+        temp_v0(arg0, arg1, arg0);
+        arg0->unk_16C = NULL;
+    }
+    temp_v0_2 = arg0->unk_160;
+    if (temp_v0_2 != NULL) {
+        temp_v0_2(arg0, arg1, arg0);
+        arg0->unk_160 = NULL;
+    }
+    temp_v0_3 = arg0->unk_150;
+    if ((temp_v0_3 != NULL) && (arg0 == temp_v0_3->unk_14C)) {
+        temp_v0_3->unk_14C = 0;
+    }
+    temp_v0_4 = arg0->unk_14C;
+    if ((temp_v0_4 != NULL) && (arg0 == temp_v0_4->unk_150)) {
+        temp_v0_4->unk_150 = 0;
+    }
+    temp_v0_5 = (s32) (arg0->unk_6 & 0xF000) >> 0xC;
+    if ((temp_v0_5 == 0xD) || (temp_v0_5 == 0xE)) {
+        (*(&common_data + 0x1004C))->unk_F0(arg1 + 0x110, arg0, arg0);
+        return;
+    }
+    temp_a0 = arg0->unk_26;
+    if (temp_a0 >= arg1->unk_190C) {
+        temp_v0_6 = arg1 + 0x110 + (temp_a0 * 0x54);
+        if (temp_v0_6->unk_50 > 0) {
+            arg0->unk_26 = -1;
+            temp_v0_6->unk_50 = (s16) (temp_v0_6->unk_50 - 1);
+        }
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_dt.s")
+#endif
 
+#if 0
+void Actor_draw(PlayState* arg0, void* arg1) {
+    ? sp48;
+    s32 sp44;
+    struct GraphicsContext* sp40;
+    ? (*temp_v0)(void*, s32, PlayState*);
+    s32 temp_a0;
+    s32 temp_a0_2;
+    struct GraphicsContext* temp_a1;
+    void* temp_v1;
+    void* temp_v1_2;
+    void* temp_v1_3;
+    void* var_a2;
+
+    Fault_AddClient(&sp48, func_80056380_jp, arg1, "Actor_draw");
+    temp_a1 = arg0->state.gfxCtx;
+    sp40 = temp_a1;
+    temp_a0 = Global_light_read(arg0 + 0x1C60, temp_a1);
+    if (arg1->unk_20 & 0x400000) {
+        var_a2 = NULL;
+    } else {
+        var_a2 = arg1 + 0x28;
+    }
+    sp44 = temp_a0;
+    func_8009B884_jp(temp_a0, arg0->unk_1C60, var_a2);
+    LightsN_disp(temp_a0, arg0->state.gfxCtx);
+    Matrix_softcv3_load(arg1->unk_28, arg1->unk_2C + (arg1->unk_E4 * arg1->unk_60), arg1->unk_30, arg1 + 0xDC);
+    Matrix_scale(arg1->unk_5C, arg1->unk_60, arg1->unk_64, 1);
+    temp_a0_2 = (arg0 + (arg1->unk_26 * 0x54))->unk_114;
+    B_801458B8_jp = temp_a0_2 + 0x80000000;
+    temp_v1 = sp40->unk_298;
+    sp40->unk_298 = (void* ) (temp_v1 + 8);
+    temp_v1->unk_4 = temp_a0_2;
+    temp_v1->unk_0 = 0xDB060018;
+    temp_v1_2 = sp40->unk_2A8;
+    sp40->unk_2A8 = (void* ) (temp_v1_2 + 8);
+    temp_v1_2->unk_4 = temp_a0_2;
+    temp_v1_2->unk_0 = 0xDB060018;
+    temp_v1_3 = sp40->unk_2C8;
+    sp40->unk_2C8 = (void* ) (temp_v1_3 + 8);
+    temp_v1_3->unk_4 = temp_a0_2;
+    temp_v1_3->unk_0 = 0xDB060018;
+    arg1->unk_168(arg1, arg0);
+    temp_v0 = arg1->unk_E8;
+    if (temp_v0 != NULL) {
+        temp_v0(arg1, sp44, arg0);
+    }
+    Fault_RemoveClient(&sp48);
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_draw.s")
+#endif
 
+#if 0
+void Actor_draw_actor_no_culling_check(void* arg0) {
+    Actor_draw_actor_no_culling_check2(arg0 + 0x124, arg0->unk_130);
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_draw_actor_no_culling_check.s")
+#endif
 
+#if 0
+? Actor_draw_actor_no_culling_check2(void* arg0, void* arg1, f32 arg2) {
+    ? var_v1;
+    f32 temp_fv0;
+    f32 temp_fv0_2;
+    f32 temp_fv1;
+    f32 var_fa1;
+
+    temp_fv1 = arg0->unk_140;
+    temp_fv0 = arg1->unk_8;
+    var_v1 = 0;
+    if ((-temp_fv1 < temp_fv0) && (temp_fv0 < (arg0->unk_13C + temp_fv1))) {
+        if (arg2 < 1.0f) {
+            var_fa1 = 1.0f;
+        } else {
+            var_fa1 = 1.0f / arg2;
+        }
+        if (((fabsf(arg1->unk_0) - arg0->unk_134) * var_fa1) < 1.0f) {
+            temp_fv0_2 = arg1->unk_4;
+            if ((((temp_fv0_2 + arg0->unk_138) * var_fa1) > -1.0f) && (((temp_fv0_2 - temp_fv1) * var_fa1) < 1.0f)) {
+                var_v1 = 1;
+            }
+        }
+    }
+    return var_v1;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_draw_actor_no_culling_check2.s")
+#endif
 
+#if 0
+void Actor_cull_check(void* arg0) {
+    if (Actor_draw_actor_no_culling_check() == 1) {
+        arg0->unk_20 = (s32) (arg0->unk_20 | 0x40);
+        return;
+    }
+    arg0->unk_20 = (s32) (arg0->unk_20 & ~0x40);
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_cull_check.s")
+#endif
 
+#if 0
+void Actor_delete_check(void* arg0, PlayState* arg1) {
+    s8 temp_v0;
+    s8 temp_v1;
+
+    if (!(arg0->unk_20 & 0x70) && (arg0->unk_6 != 0)) {
+        temp_v0 = arg0->unk_8;
+        if (temp_v0 >= 0) {
+            temp_v1 = arg0->unk_9;
+            if ((temp_v1 >= 0) && ((arg1->unk_00[0x40] != temp_v0) || (arg1->unk_00[0x41] != temp_v1))) {
+                Actor_delete();
+            }
+        }
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_delete_check.s")
+#endif
 
+#if 0
+
+void Actor_info_ct(PlayState* play, ActorInfo* actorInfo, struct ActorEntry* actorEntry) {
+    ?* var_v0;
+    s16 temp_a2;
+    s16 temp_a2_2;
+    s16* var_s0;
+    s32 var_s1;
+    s32 var_s1_2;
+    s32 var_s1_3;
+    u8 temp_v0_2;
+    u8 temp_v0_3;
+    void* temp_s1;
+    void* temp_v0;
+    void* var_s0_2;
+
+    bzero(actorInfo, 0x44);
+    actor_dlftbls_init();
+    Matrix_copy_MtxF(&play->unk_00[0x1DB8], &MtxF_clear);
+    Matrix_copy_MtxF(&play->unk_00[0x1D78], &MtxF_clear);
+    var_v0 = &actor_dlftbls;
+    var_s1 = 0;
+    do {
+        var_s1 += 1;
+        var_v0->unk_10 = 0;
+        var_v0->unk_1E = 0;
+        var_v0 += 0x20;
+    } while (var_s1 < 0xC9);
+    if (mEv_CheckFirstJob() == 1) {
+        *(&common_data + 0x107B6) = 0x5B;
+    }
+    temp_a2 = *(&common_data + 0x107B6);
+    if (temp_a2 != 0xC9) {
+        Actor_info_make_actor(actorInfo, play, temp_a2, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1, -1, -1);
+    }
+    *(&common_data + 0x107B6) = 0xC9;
+    temp_v0 = Actor_info_make_actor(actorInfo, play, actorEntry->unk_0, (f32) actorEntry->unk_2, (f32) actorEntry->unk_4, (f32) actorEntry->unk_6, (s32) actorEntry->unk_8, (s32) actorEntry->unk_A, (s32) actorEntry->unk_C, -1, -1, -1, 0, (s32) actorEntry->unk_E, -1, -1);
+    if (temp_v0 != NULL) {
+        temp_s1 = temp_v0 + 0x28;
+        temp_v0->unk_2C = mCoBG_GetBgY_OnlyCenter_FromWpos2(subroutine_arg0, temp_s1->unk_4, temp_s1->unk_8, 0.0f);
+        mFI_SetBearActor(play, subroutine_arg1, temp_s1->unk_4, temp_s1->unk_8, 0);
+    }
+    temp_a2_2 = *(&common_data + 0x1014E);
+    if (temp_a2_2 != 0) {
+        Actor_info_make_actor(actorInfo, play, temp_a2_2, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1, -1, -1);
+    }
+    temp_v0_2 = (u8) play->unk_00[0x1E02];
+    var_s1_2 = 0;
+    if (temp_v0_2 != 0) {
+        var_s0 = play->unk_1EB0;
+        if ((s32) temp_v0_2 > 0) {
+            do {
+                Actor_info_make_actor((ActorInfo* ) &play->unk_00[0x1BD4], play, *var_s0, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1, -1, -1);
+                var_s1_2 += 1;
+                var_s0 += 2;
+            } while (var_s1_2 < (s32) (u8) play->unk_00[0x1E02]);
+        }
+        play->unk_00[0x1E02] = 0;
+    }
+    mSc_regist_initial_exchange_bank(play);
+    temp_v0_3 = (u8) play->unk_00[0x1E01];
+    var_s1_3 = 0;
+    if (temp_v0_3 != 0) {
+        var_s0_2 = play->unk_1EAC;
+        if ((s32) temp_v0_3 > 0) {
+            do {
+                Actor_info_make_actor((ActorInfo* ) &play->unk_00[0x1BD4], play, var_s0_2->unk_0, (f32) var_s0_2->unk_2, (f32) var_s0_2->unk_4, (f32) var_s0_2->unk_6, (s32) var_s0_2->unk_8, (s32) var_s0_2->unk_A, (s32) var_s0_2->unk_C, -1, -1, -1, 0, (s32) var_s0_2->unk_E, -1, -1);
+                var_s1_3 += 1;
+                var_s0_2 += 0x10;
+            } while (var_s1_3 < (s32) (u8) play->unk_00[0x1E01]);
+        }
+        play->unk_00[0x1E01] = 0;
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_ct.s")
+#endif
 
+#if 0
+void Actor_info_dt(ActorInfo* actorInfo, PlayState* play) {
+    ActorInfo* var_s1;
+    s32 var_s4;
+
+    var_s4 = 0;
+    var_s1 = actorInfo;
+    do {
+        if (var_s1->unk_8 != NULL) {
+            do {
+                Actor_info_delete((s8* ) actorInfo, var_s1->unk_8, play);
+            } while (var_s1->unk_8 != NULL);
+        }
+        var_s4 += 8;
+        var_s1 += 8;
+    } while (var_s4 != 0x40);
+    actor_dlftbls_cleanup();
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_dt.s")
+#endif
 
+#if 0
+
+void Actor_info_call_actor(PlayState* play, ActorInfo* actorInfo) {
+    s32 sp50;
+    ActorInfo* sp4C;
+    f32 temp_fv0;
+    f32 temp_fv1;
+    s32 temp_t1;
+    s32 temp_t8;
+    void* temp_s2;
+    void* temp_s3;
+    void* temp_v0;
+    void* var_s0;
+    void* var_v1;
+
+    temp_v0 = get_player_actor_withoutCheck(play);
+    func_8008E5F4_jp(subroutine_arg0, temp_v0->unk_2C, temp_v0->unk_30);
+    sp50 = 0;
+    sp4C = actorInfo;
+    do {
+        var_s0 = sp4C->unk_8;
+        if (var_s0 != NULL) {
+            do {
+                play->state.unk_9C[1] = 0x97;
+                play->state.unk_9C[0] = (s8) var_s0->unk_0;
+                if (var_s0->unk_2C < -25000.0f) {
+                    var_s0->unk_2C = -25000.0f;
+                }
+                if (var_s0->unk_15C != NULL) {
+                    if (Actor_data_bank_dma_end_check(var_s0, play) == 1) {
+                        B_801458A0_jp.unk_18 = (s32) ((play + (var_s0->unk_26 * 0x54))->unk_114 + 0x80000000);
+                        play->state.unk_9C[1] = 0x98;
+                        var_s0->unk_15C(var_s0, play);
+                        play->state.unk_9C[1] = 0x99;
+                        var_s0->unk_15C = NULL;
+                    }
+                    goto block_18;
+                }
+                if (Actor_data_bank_dma_end_check(var_s0, play) == 0) {
+                    play->state.unk_9C[1] = 0x9A;
+                    Actor_delete(var_s0);
+                    play->state.unk_9C[1] = 0x9B;
+                    goto block_18;
+                }
+                temp_s2 = var_s0 + 0x28;
+                if (var_s0->unk_164 == NULL) {
+                    if (var_s0->unk_B5 == 0) {
+                        play->state.unk_9C[1] = 0x9C;
+                        var_v1 = Actor_info_delete(&play->unk_00[0x1BD4], var_s0, play);
+                        play->state.unk_9C[1] = 0x9D;
+                    } else {
+                        play->state.unk_9C[1] = 0x9E;
+                        Actor_dt(var_s0, play);
+                        play->state.unk_9C[1] = 0x9F;
+                        goto block_18;
+                    }
+                } else {
+                    play->state.unk_9C[1] = 0xA0;
+                    temp_s3 = temp_v0 + 0x28;
+                    xyz_t_move(var_s0 + 0x3C, temp_s2);
+                    temp_fv0 = search_position_distanceXZ(temp_s2, temp_s3);
+                    var_s0->unk_BC = temp_fv0;
+                    var_s0->unk_C0 = (f32) (temp_v0->unk_2C - var_s0->unk_2C);
+                    temp_fv1 = var_s0->unk_C0;
+                    var_s0->unk_B8 = (f32) ((temp_fv0 * temp_fv0) + (temp_fv1 * temp_fv1));
+                    temp_t8 = var_s0->unk_20 & 0xFEFFFFFF;
+                    var_s0->unk_B6 = search_position_angleY(temp_s2, temp_s3);
+                    var_s0->unk_20 = temp_t8;
+                    if ((temp_t8 & 0x50) || (var_s0->unk_2 == 3)) {
+                        B_801458A0_jp.unk_18 = (s32) ((play + (var_s0->unk_26 * 0x54))->unk_114 + 0x80000000);
+                        play->state.unk_9C[1] = 0xA1;
+                        var_s0->unk_164(var_s0, play);
+                        play->state.unk_9C[1] = 0xA2;
+                    }
+                    CollisionCheck_Status_Clear(var_s0 + 0xC4);
+block_18:
+                    var_v1 = var_s0->unk_158;
+                }
+                var_s0 = var_v1;
+            } while (var_v1 != NULL);
+        }
+        temp_t1 = sp50 + 8;
+        sp4C += 8;
+        sp50 = temp_t1;
+    } while (temp_t1 != 0x40);
+    play->state.unk_9C[1] = 0xA3;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_call_actor.s")
+#endif
 
+#if 0
+
+void Actor_info_draw_actor(PlayState* play, ActorInfo* actorInfo) {
+    ActorInfo* var_s5;
+    s32 (*temp_s4)(void*, PlayState*);
+    s32 temp_v0;
+    s32 var_s6;
+    void* var_s0;
+
+    temp_s4 = play->unk_2208;
+    var_s5 = actorInfo + 4;
+    var_s6 = 0;
+    do {
+        var_s0 = var_s5->unk_4;
+        if (var_s0 != NULL) {
+            do {
+                Skin_Matrix_PrjMulVector(&play->unk_00[0x1D78], var_s0 + 0x28, var_s0 + 0x124, var_s0 + 0x130);
+                Actor_cull_check(var_s0);
+                var_s0->unk_B5 = 0;
+                if ((temp_s4(var_s0, play) == 0) && (var_s0->unk_15C == 0) && (var_s0->unk_168 != 0)) {
+                    temp_v0 = var_s0->unk_20;
+                    if (temp_v0 & 0x60) {
+                        if (!(temp_v0 & 0x80) && (var_s0->unk_148 == 0) && (var_s0->unk_149 == 0)) {
+                            Actor_draw(play, var_s0);
+                            var_s0->unk_B5 = 1;
+                        }
+                    } else {
+                        Actor_delete_check(var_s0, play);
+                    }
+                }
+                var_s0 = var_s0->unk_158;
+            } while (var_s0 != NULL);
+        }
+        var_s6 += 1;
+        var_s5 += 8;
+    } while (var_s6 != 8);
+    if (debug_mode->unk_714 == 0) {
+        Light_list_point_draw(play);
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_draw_actor.s")
+#endif
 
+#if 0
+void Actor_info_part_new(ActorInfo* arg0, void* arg1, u8 arg2) {
+    s8 temp_a2;
+    void* temp_v0;
+    void* temp_v1;
+
+    temp_a2 = arg2 & 0xFF;
+    arg1->unk_2 = temp_a2;
+    temp_v0 = arg0 + (temp_a2 * 8);
+    arg0->placeholder += 1;
+    temp_v1 = temp_v0->unk_8;
+    temp_v0->unk_4 = (s32) (temp_v0->unk_4 + 1);
+    if (temp_v1 != NULL) {
+        temp_v1->unk_154 = arg1;
+    }
+    temp_v0->unk_8 = arg1;
+    arg1->unk_158 = temp_v1;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_part_new.s")
+#endif
 
+#if 0
+void* Actor_info_part_delete(s8* arg0, void* arg1) {
+    void* temp_v0;
+    void* temp_v1;
+    void* temp_v1_2;
+
+    *arg0 = (s32) (*arg0 - 1);
+    temp_v0 = arg0 + (arg1->unk_2 * 8);
+    temp_v0->unk_4 = (s32) (temp_v0->unk_4 - 1);
+    temp_v1_2 = arg1->unk_154;
+    if (temp_v1_2 != NULL) {
+        temp_v1_2->unk_158 = (void* ) arg1->unk_158;
+    } else {
+        (arg0 + (arg1->unk_2 * 8))->unk_8 = (void* ) arg1->unk_158;
+    }
+    temp_v1 = arg1->unk_158;
+    if (temp_v1 != NULL) {
+        temp_v1->unk_154 = (void* ) arg1->unk_154;
+    }
+    arg1->unk_154 = NULL;
+    arg1->unk_158 = NULL;
+    return temp_v1;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_part_delete.s")
+#endif
 
+#if 0
+void Actor_free_overlay_area(void* arg0) {
+    u16 temp_v0;
+
+    temp_v0 = arg0->unk_1C;
+    if (!(temp_v0 & 2)) {
+        if (temp_v0 & 1) {
+
+        } else {
+            zelda_free(arg0->unk_10, arg0);
+        }
+        arg0->unk_10 = NULL;
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_free_overlay_area.s")
+#endif
 
+#if 0
+void actor_free_check(void* arg0, u16 arg1) {
+    s32 temp_a1;
+    s32 temp_v0;
+
+    temp_a1 = arg1 & 0xFFFF;
+    if ((arg0->unk_1E == 0) && (temp_v0 = (s32) (temp_a1 & 0xF000) >> 0xC, (arg0->unk_10 != 0))) {
+        if (temp_v0 != 5) {
+            if ((temp_v0 == 0xD) || (temp_v0 == 0xE)) {
+                (*(&common_data + 0x1004C))->unk_8(temp_a1);
+                return;
+            }
+            Actor_free_overlay_area(temp_a1);
+        } else {
+            (*(&common_data + 0x10098))->unk_8(temp_a1);
+        }
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/actor_free_check.s")
+#endif
 
+#if 0
+void Actor_get_overlay_area(void* arg0, ?* arg1, s32 arg2) {
+    void* var_v0;
+
+    if (arg0->unk_1C & 2) {
+        var_v0 = zelda_malloc_r(arg2, arg0);
+    } else {
+        var_v0 = zelda_malloc(arg2, arg0);
+    }
+    arg0->unk_10 = var_v0;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_get_overlay_area.s")
+#endif
 
+#if 0
+
+s32 func_80057940_jp(void** arg0, void* arg1, ?* arg2, s32 arg3, u16 arg4) {
+    s32 temp_v1;
+    void* temp_v0;
+    void* temp_v0_2;
+    void* temp_v1_2;
+    void* var_v1;
+
+    if (arg1->unk_8 == 0) {
+        *arg0 = arg1->unk_14;
+        goto block_20;
+    }
+    if (arg1->unk_10 == 0) {
+        temp_v1 = (s32) (arg4 & 0xF000) >> 0xC;
+        if (temp_v1 != 5) {
+            if ((temp_v1 == 0xD) || (temp_v1 == 0xE)) {
+                temp_v0 = *(&common_data + 0x1004C);
+                if (temp_v0 != NULL) {
+                    temp_v0->unk_4(arg1, arg2, arg3, arg4);
+                } else {
+                    arg1->unk_10 = 0;
+                }
+            } else {
+                Actor_get_overlay_area(arg1, arg2, arg3, arg4);
+            }
+        } else {
+            temp_v1_2 = *(&common_data + 0x10098);
+            if (temp_v1_2 != NULL) {
+                temp_v1_2->unk_4(arg1, arg3, arg4);
+            }
+        }
+        if (arg1->unk_10 == 0) {
+            return 0;
+        }
+        ovlmgr_Load(arg1->unk_0, arg1->unk_4, arg1->unk_8, arg1->unk_C, arg1->unk_10);
+        arg1->unk_1E = 0;
+        goto block_17;
+    }
+block_17:
+    temp_v0_2 = arg1->unk_14;
+    var_v1 = NULL;
+    if (temp_v0_2 != NULL) {
+        var_v1 = temp_v0_2 - (arg1->unk_8 - arg1->unk_10);
+    }
+    *arg0 = var_v1;
+block_20:
+    return 1;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/func_80057940_jp.s")
+#endif
 
+#if 0
+
+s32 func_80057A8C_jp(s32* arg0, ? arg1, void* arg2, s32 arg3, u16 arg4) {
+    s16 sp92;
+    s16 sp90;
+    s32 sp88;
+    s16 sp24;
+    void* sp20;
+    s32 temp_v0;
+    s32 temp_v1;
+    void* temp_a0;
+
+    sp88 = 1;
+    (*(&common_data + 0x1004C))->unk_14(&sp24, arg4);
+    sp92 = sp24;
+    sp90 = sp26;
+    temp_a0 = arg3 + 0x110;
+    sp20 = temp_a0;
+    *arg0 = mSc_bank_regist_check(temp_a0, sp24);
+    temp_v0 = mSc_bank_regist_check(temp_a0, sp90);
+    temp_v1 = *arg0;
+    if ((temp_v1 < 0) || (temp_v0 < 0)) {
+        if (temp_v1 >= 0) {
+            sp92 = 0;
+        }
+        if (temp_v0 >= 0) {
+            sp90 = 0;
+        }
+        (*(&common_data + 0x1004C))->unk_EC(sp20, sp92, sp90);
+        actor_free_check(arg2, arg4);
+        sp88 = 0;
+    }
+    return sp88;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/func_80057A8C_jp.s")
+#endif
 
+#if 0
+s32 func_80057B70_jp(s32* arg0, void* arg1, void* arg2, s32 arg3, u16 arg4) {
+    s32 sp20;
+    void* sp1C;
+    s32 temp_v0;
+    s32 var_v1;
+    void* temp_a0;
+
+    temp_a0 = arg3 + 0x110;
+    sp1C = temp_a0;
+    sp20 = 1;
+    temp_v0 = mSc_bank_regist_check(temp_a0, arg1->unk_A);
+    var_v1 = 1;
+    *arg0 = temp_v0;
+    if (temp_v0 == -1) {
+        func_800C6144_jp(temp_a0, arg1->unk_A);
+        actor_free_check(arg2, arg4);
+        var_v1 = 0;
+    }
+    return var_v1;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/func_80057B70_jp.s")
+#endif
 
+#if 0
+s32 Actor_data_bank_regist_check(s32* arg0, void* arg1, u16 arg4) {
+    s32 var_v0;
+    s32 var_v1;
+
+    var_v1 = 1;
+    if (*arg0 == -1) {
+        if (arg1->unk_2 == 3) {
+            var_v0 = func_80057A8C_jp((s32* ) arg4);
+        } else {
+            var_v0 = func_80057B70_jp((s32* ) arg4);
+        }
+        var_v1 = var_v0;
+    }
+    return var_v1;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_data_bank_regist_check.s")
+#endif
 
+#if 0
+s32 Actor_malloc_actor_class(void** arg0, void* arg1, void* arg2, ?* arg3, u16 arg4) {
+    ? sp24;
+    s32 temp_v0;
+    s32 var_v0;
+
+    temp_v0 = (s32) (arg4 & 0xF000) >> 0xC;
+    if (temp_v0 != 5) {
+        if ((temp_v0 == 0xD) || (temp_v0 == 0xE)) {
+            *arg0 = (*(&common_data + 0x1004C))->unk_C(arg1->unk_C, arg3, 1);
+            (*(&common_data + 0x1004C))->unk_14(&sp24, arg4);
+        } else {
+            *arg0 = zelda_malloc(arg1->unk_C);
+        }
+    } else {
+        *arg0 = (*(&common_data + 0x10098))->unk_C();
+    }
+    var_v0 = 1;
+    if (*arg0 == NULL) {
+        actor_free_check(arg2, arg4);
+        var_v0 = 0;
+    }
+    return var_v0;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_malloc_actor_class.s")
+#endif
 
+#if 0
+void Actor_init_actor_class(void* arg0, void* arg1, void* arg2, PlayState* arg3, s32 arg4, f32 arg5, f32 arg6, f32 arg7, s16 arg8, s16 arg9, s16 argA, s8 argB, s8 argC, s16 argD, u16 argE, s16 argF) {
+    mem_clear(arg1->unk_C, 0);
+    arg0->unk_170 = arg2;
+    arg0->unk_0 = (s16) arg1->unk_0;
+    arg0->unk_20 = (s32) arg1->unk_4;
+    arg0->unk_26 = (s16) arg4;
+    arg0->unk_15C = (s32) arg1->unk_10;
+    arg0->unk_160 = (s32) arg1->unk_14;
+    arg0->unk_164 = (s32) arg1->unk_18;
+    arg0->unk_168 = (s32) arg1->unk_1C;
+    arg0->unk_16C = (s32) arg1->unk_20;
+    arg0->unk_24 = argF;
+    arg0->unk_4 = (s16) arg3->unk_E0;
+    arg0->unk_C = arg5;
+    arg0->unk_10 = arg6;
+    arg0->unk_14 = arg7;
+    arg0->unk_18 = arg8;
+    arg0->unk_1A = arg9;
+    arg0->unk_1C = argA;
+    arg0->unk_8 = argB;
+    arg0->unk_9 = argC;
+    arg0->unk_A = argD;
+    arg0->unk_6 = argE;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_init_actor_class.s")
+#endif
 
+#if 0
+void* Actor_info_make_actor(ActorInfo* arg0, PlayState* arg1, s16 arg2, f32 arg3, f32 arg4, f32 arg5, s16 arg6, s16 arg7, s16 arg8, s8 arg9, s8 argA, s16 argB, u16 argC, s16 argD, s8 argE, s32 argF) {
+    void* sp68;
+    void* sp64;
+    s32 temp_s0_2;
+    void* temp_s0;
+
+    temp_s0 = (arg2 << 5) + &actor_dlftbls;
+    if (arg0->placeholder >= 0xC9) {
+        return NULL;
+    }
+    if (func_80057940_jp(&sp64, temp_s0, &RO_801161E8_jp, temp_s0->unk_C - temp_s0->unk_8, (s32) argC) == 0) {
+        return NULL;
+    }
+    if (Actor_data_bank_regist_check(&argF, sp64, (u16) temp_s0, arg1, (s32) argC) == 0) {
+        return NULL;
+    }
+    if (Actor_malloc_actor_class(&sp68, sp64, temp_s0, &RO_801161E8_jp, (s32) argC) == 0) {
+        return NULL;
+    }
+    temp_s0->unk_1E = (s8) (temp_s0->unk_1E + 1);
+    Actor_init_actor_class(sp68, sp64, temp_s0, arg1, argF, arg3, arg4, arg5, (s32) arg6, (s32) arg7, (s32) arg8, (s32) arg9, (s32) argA, (s32) argB, (s32) argC, (s32) argD);
+    Actor_info_part_new(arg0, sp68, sp64->unk_2);
+    mNpc_SetNpcinfo(sp68, argE);
+    temp_s0_2 = B_801458B8_jp;
+    Actor_ct(sp68, arg1);
+    B_801458B8_jp = temp_s0_2;
+    return sp68;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_make_actor.s")
+#endif
 
+#if 0
+void* Actor_info_make_child_actor(void* arg1, ActorInfo* arg2, s16 arg3, s32 arg4, f32 arg5, f32 arg6, s16 arg7, s16 arg8, s16 arg9, s16 argA, u16 argB, s16 argC, s32 argD) {
+    void* temp_v0;
+
+    temp_v0 = Actor_info_make_actor(arg2, (PlayState* ) arg3, (s16) arg4, arg5, arg6, (bitwise f32) arg7, (s32) arg8, (s32) arg9, -1, -1, (s32) argA, (s32) argB, (s32) argC, -1, argD);
+    if (temp_v0 != NULL) {
+        arg1->unk_150 = temp_v0;
+        temp_v0->unk_14C = arg1;
+    }
+    return temp_v0;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_make_child_actor.s")
+#endif
 
+#if 0
+void restore_fgdata(void* arg0, s32 arg1) {
+    ? sp34;
+    s32 sp30;
+    u16 temp_t6;
+
+    temp_t6 = arg0->unk_6;
+    sp30 = (s32) temp_t6;
+    if ((temp_t6 != 0) && (arg0->unk_A == -1) && (arg0->unk_8 >= 0) && (arg0->unk_9 >= 0)) {
+        if (((s32) (temp_t6 & 0xF000) >> 0xC) == 8) {
+            xyz_t_move(&sp34, arg0 + 0xC);
+            if (func_8008B3E8_jp(&sp34, 0) == 1) {
+                mFI_SetFG_common(arg0->unk_6, subroutine_arg1, sp34.unk_4, sp34.unk_8, 0);
+            }
+        } else {
+            mFI_SetFG_common(unksp32, subroutine_arg1, arg0->unk_10, arg0->unk_14, 0);
+        }
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/restore_fgdata.s")
+#endif
 
+#if 0
+void restore_fgdata_one(void* arg0) {
+    if ((&D_80100C70_jp)[arg0->unk_2] == 1) {
+        restore_fgdata();
+        return;
+    }
+    if (arg0->unk_3 == (u8) 1) {
+        restore_fgdata();
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/restore_fgdata_one.s")
+#endif
 
+#if 0
+void restore_fgdata_all(s32 arg0) {
+    s32 var_s5;
+    s32* var_s4;
+    void* var_s0;
+    void* var_s0_2;
+    void* var_s3;
+
+    var_s4 = &D_80100C70_jp;
+    var_s5 = 0;
+    var_s3 = arg0 + 0x1C78;
+    do {
+        if (*var_s4 == 1) {
+            var_s0 = var_s3->unk_8;
+            if (var_s0 != NULL) {
+                do {
+                    restore_fgdata(var_s0, arg0);
+                    var_s0 = var_s0->unk_158;
+                } while (var_s0 != NULL);
+            }
+        } else {
+            var_s0_2 = var_s3->unk_8;
+            if (var_s0_2 != NULL) {
+                do {
+                    if (var_s0_2->unk_3 == (u8) 1) {
+                        restore_fgdata(var_s0_2, arg0);
+                    }
+                    var_s0_2 = var_s0_2->unk_158;
+                } while (var_s0_2 != NULL);
+            }
+        }
+        var_s5 += 8;
+        var_s4 += 4;
+        var_s3 += 8;
+    } while (var_s5 != 0x40);
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/restore_fgdata_all.s")
+#endif
 
+#if 0
+void Actor_info_save_actor(s32 arg0) {
+    ? (*temp_v0)(void*, s32);
+    s32 var_s2;
+    void* var_s0;
+    void* var_s3;
+
+    var_s2 = 0;
+    var_s3 = arg0 + 0x1C78;
+    do {
+        var_s0 = var_s3->unk_8;
+        if (var_s0 != NULL) {
+            do {
+                temp_v0 = var_s0->unk_16C;
+                if (temp_v0 != NULL) {
+                    temp_v0(var_s0, arg0);
+                    var_s0->unk_16C = NULL;
+                }
+                var_s0 = var_s0->unk_158;
+            } while (var_s0 != NULL);
+        }
+        var_s2 += 8;
+        var_s3 += 8;
+    } while (var_s2 != 0x40);
+    restore_fgdata_all(arg0);
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_save_actor.s")
+#endif
 
+#if 0
+void* Actor_info_delete(s8* arg0, void* arg1, PlayState* arg2) {
+    void* sp2C;
+    s32 sp20;
+    s32 temp_v1;
+    void* temp_s1;
+
+    sp20 = (s32) arg1->unk_6;
+    temp_s1 = arg1->unk_170;
+    restore_fgdata_one(arg1, arg2);
+    Actor_dt(arg1, arg2);
+    sp2C = Actor_info_part_delete(arg0, arg1);
+    temp_v1 = (s32) (sp20 & 0xF000) >> 0xC;
+    if (temp_v1 != 5) {
+        if ((temp_v1 == 0xD) || (temp_v1 == 0xE)) {
+            (*(&common_data + 0x1004C))->unk_10(arg1);
+        } else {
+            zelda_free(arg1);
+        }
+    } else {
+        (*(&common_data + 0x10098))->unk_10(arg1);
+    }
+    if (temp_s1->unk_8 != 0) {
+        temp_s1->unk_1E = (s8) (temp_s1->unk_1E - 1);
+        actor_free_check(temp_s1, arg1->unk_6);
+    }
+    return sp2C;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_delete.s")
+#endif
 
+#if 0
+void* Actor_info_name_search_sub(void* arg0, s16 arg1) {
+    void* var_a0;
+
+    var_a0 = arg0;
+    if (var_a0 != NULL) {
+loop_1:
+        if (arg1 != var_a0->unk_0) {
+            var_a0 = var_a0->unk_158;
+            if (var_a0 != NULL) {
+                goto loop_1;
+            }
+        }
+    }
+    return var_a0;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_name_search_sub.s")
+#endif
 
+#if 0
+void* Actor_info_name_search(s32 arg0, s16 arg1, s32 arg2) {
+    void* temp_a3;
+    void* var_v0;
+
+    temp_a3 = (arg0 + (arg2 * 8))->unk_8;
+    var_v0 = NULL;
+    if (temp_a3 != NULL) {
+        var_v0 = Actor_info_name_search_sub(temp_a3, arg1, temp_a3);
+    }
+    return var_v0;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_name_search.s")
+#endif
 
+#if 0
+void* Actor_info_fgName_search_sub(void* arg0, s32 arg1) {
+    void* var_a0;
+
+    var_a0 = arg0;
+    if (var_a0 != NULL) {
+loop_1:
+        if ((arg1 & 0xFFFF) != var_a0->unk_6) {
+            var_a0 = var_a0->unk_158;
+            if (var_a0 != NULL) {
+                goto loop_1;
+            }
+        }
+    }
+    return var_a0;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_fgName_search_sub.s")
+#endif
 
+#if 0
+void* Actor_info_fgName_search(s32 arg0, s32 arg1, s32 arg2) {
+    void* temp_a3;
+    void* var_v0;
+
+    temp_a3 = (arg0 + (arg2 * 8))->unk_8;
+    var_v0 = NULL;
+    if (temp_a3 != NULL) {
+        var_v0 = Actor_info_fgName_search_sub(temp_a3, arg1 & 0xFFFF, temp_a3);
+    }
+    return var_v0;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_fgName_search.s")
+#endif
 
+#if 0
+void Part_Break_init(void* arg0, s32 arg1, ? arg2) {
+    s32 sp28;
+    s32 sp24;
+    s32 sp20;
+    s32 temp_a0;
+    s32 temp_a0_2;
+    s32 temp_a0_3;
+    void* temp_a0_4;
+    void* temp_a0_5;
+    void* temp_a0_6;
+    void* temp_v0;
+    void* temp_v0_2;
+    void* temp_v0_3;
+
+    temp_a0 = (arg1 << 6) + 0x40;
+    sp28 = temp_a0;
+    temp_v0 = zelda_malloc(temp_a0);
+    arg0->unk_0 = temp_v0;
+    if (temp_v0 != NULL) {
+        temp_a0_2 = (arg1 * 4) + 4;
+        sp24 = temp_a0_2;
+        temp_v0_2 = zelda_malloc(temp_a0_2);
+        arg0->unk_C = temp_v0_2;
+        if (temp_v0_2 != NULL) {
+            temp_a0_3 = (arg1 * 2) + 2;
+            sp20 = temp_a0_3;
+            temp_v0_3 = zelda_malloc(temp_a0_3);
+            arg0->unk_4 = temp_v0_3;
+            if (temp_v0_3 != NULL) {
+                mem_clear(arg0->unk_0, sp28, 0);
+                mem_clear(arg0->unk_C, sp24, 0);
+                mem_clear(arg0->unk_4, sp20, 0);
+                arg0->unk_10 = 1;
+                return;
+            }
+        }
+    }
+    temp_a0_4 = arg0->unk_0;
+    if (temp_a0_4 != NULL) {
+        zelda_free(temp_a0_4);
+    }
+    temp_a0_5 = arg0->unk_C;
+    if (temp_a0_5 != NULL) {
+        zelda_free(temp_a0_5);
+    }
+    temp_a0_6 = arg0->unk_4;
+    if (temp_a0_6 != NULL) {
+        zelda_free(temp_a0_6);
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Part_Break_init.s")
+#endif
 
+#if 0
+void* HiliteReflect_new(void* arg0, f32* arg1, void* arg2, void* arg3, void* arg4, LookAt** arg5) {
+    LookAt* sp64;
+    LookAt* temp_a2;
+    LookAt* temp_s0;
+    LookAt* temp_v0;
+    LookAt* temp_v0_2;
+    f32 temp_fa0;
+    f32 temp_fv0;
+    f32 temp_fv0_2;
+    f32 temp_fv1;
+    f32 var_fa1;
+    void* temp_v1;
+    void* temp_v1_2;
+    void* temp_v1_3;
+
+    temp_s0 = arg3->unk_29C - 0x20;
+    arg3->unk_29C = temp_s0;
+    sp64 = temp_s0;
+    temp_fv0 = arg1->unk_0;
+    if ((arg0->unk_0 == temp_fv0) && (arg0->unk_8 == arg1->unk_8)) {
+        var_fa1 = temp_fv0 + 0.001f;
+    } else {
+        var_fa1 = temp_fv0;
+    }
+    temp_a2 = arg3->unk_29C - 0x10;
+    arg3->unk_29C = temp_a2;
+    *arg5 = temp_a2;
+    temp_fv0_2 = arg2->unk_0;
+    temp_fv1 = arg2->unk_4;
+    temp_fa0 = arg2->unk_8;
+    guLookAtHilite(&B_8011B850_jp, sp64, (Hilite* ) temp_a2, var_fa1, arg1->unk_4, arg1->unk_8, arg0->unk_0, arg0->unk_4, arg0->unk_8, 0.0f, 1.0f, 0.0f, temp_fv0_2, temp_fv1, temp_fa0, temp_fv0_2, temp_fv1, temp_fa0, 0x10, 0x10);
+    arg4->unk_0 = 0xDC08000A;
+    arg4->unk_4 = sp64;
+    temp_v1_2 = arg4 + 8;
+    temp_v1_2->unk_4 = &sp64->l[1];
+    temp_v1_2->unk_0 = 0xDC08030A;
+    temp_v1_3 = temp_v1_2 + 8;
+    temp_v1_3->unk_0 = 0xE7000000;
+    temp_v1_3->unk_4 = 0;
+    temp_v1 = temp_v1_3 + 8;
+    temp_v0 = *arg5;
+    temp_v1->unk_0 = (s32) ((temp_v0->unk_4 & 0xFFF) | 0xF2000000 | ((temp_v0->unk_0 & 0xFFF) << 0xC));
+    temp_v0_2 = *arg5;
+    temp_v1->unk_4 = (s32) (((temp_v0_2->unk_4 + 0x3C) & 0xFFF) | 0x01000000 | (((temp_v0_2->unk_0 + 0x3C) & 0xFFF) << 0xC));
+    return temp_v1 + 8;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/HiliteReflect_new.s")
+#endif
 
+#if 0
+f32 HiliteReflect_init(void* arg3) {
+    f32 sp2C;
+
+    arg3->unk_298 = HiliteReflect_new(arg3->unk_298, &sp2C);
+    return sp2C;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/HiliteReflect_init.s")
+#endif
 
+#if 0
+f32 HiliteReflect_xlu_init(void* arg3) {
+    f32 sp2C;
+
+    arg3->unk_2A8 = HiliteReflect_new(arg3->unk_2A8, &sp2C);
+    return sp2C;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/HiliteReflect_xlu_init.s")
+#endif
 
+#if 0
+f32 HiliteReflect_light_init(void* arg3) {
+    f32 sp2C;
+
+    arg3->unk_2D8 = HiliteReflect_new(arg3->unk_2D8, &sp2C);
+    return sp2C;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/HiliteReflect_light_init.s")
+#endif
 
+#if 0
+void Setpos_HiliteReflect_init(void* arg1) {
+    f32 sp2C;
+    f32 sp28;
+    f32 sp24;
+
+    sp24 = (f32) arg1->unk_1B9A;
+    sp28 = (f32) arg1->unk_1B9B;
+    sp2C = (f32) arg1->unk_1B9C;
+    HiliteReflect_init(arg1 + 0x1960, &sp24, arg1->unk_0);
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Setpos_HiliteReflect_init.s")
+#endif
 
+#if 0
+void Setpos_HiliteReflect_xlu_init(void* arg1) {
+    f32 sp2C;
+    f32 sp28;
+    f32 sp24;
+
+    sp24 = (f32) arg1->unk_1B9A;
+    sp28 = (f32) arg1->unk_1B9B;
+    sp2C = (f32) arg1->unk_1B9C;
+    HiliteReflect_xlu_init(arg1 + 0x1960, &sp24, arg1->unk_0);
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Setpos_HiliteReflect_xlu_init.s")
+#endif
 
+#if 0
+void Setpos_HiliteReflect_light_init(void* arg1) {
+    f32 sp2C;
+    f32 sp28;
+    f32 sp24;
+
+    sp24 = (f32) arg1->unk_1B9A;
+    sp28 = (f32) arg1->unk_1B9B;
+    sp2C = (f32) arg1->unk_1B9C;
+    HiliteReflect_xlu_init(arg1 + 0x1960, &sp24, arg1->unk_0);
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Setpos_HiliteReflect_light_init.s")
+#endif
 
+#if 0
+dlabel RO_801161E8_jp
+.word 0x00000000
+.word 0x00000000
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/RO_801161E8_jp.s")
+#endif

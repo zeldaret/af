@@ -3,9 +3,24 @@
 
 #include "ultra64.h"
 
+struct PlayState;
+struct ActorEntry;
+
 typedef enum AllocType {
     /* 0 */ ALLOCTYPE_NORMAL
 } AllocType;
+
+// a.k.a. ActorInit
+struct ActorProfile;
+
+typedef struct Actor {
+    /*  */ s32 placeholder;
+} Actor; // size >= ?
+
+// a.k.a. ActorContext
+typedef struct ActorInfo {
+    /*  */ s32 placeholder;
+} ActorInfo; // size >= ?
 
 // void func_80056380_jp();
 // void projection_pos_set();
@@ -26,10 +41,10 @@ typedef enum AllocType {
 // void Actor_draw_actor_no_culling_check2();
 // void Actor_cull_check();
 // void Actor_delete_check();
-// void Actor_info_ct();
-// void Actor_info_dt();
-// void Actor_info_call_actor();
-// void Actor_info_draw_actor();
+void Actor_info_ct(struct PlayState *play, ActorInfo *actorInfo, struct ActorEntry *actorEntry);
+void Actor_info_dt(ActorInfo *actorInfo, struct PlayState *play);
+void Actor_info_call_actor(struct PlayState *play, ActorInfo *actorInfo);
+void Actor_info_draw_actor(struct PlayState *play, ActorInfo *actorInfo);
 // void Actor_info_part_new();
 // void Actor_info_part_delete();
 // void Actor_free_overlay_area();
