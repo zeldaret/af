@@ -2,6 +2,7 @@
 #define M_COLLISION_BG_H
 
 #include "ultra64.h"
+#include "z64math.h"
 
 // void func_80067430_jp();
 // void func_800674B0_jp();
@@ -169,7 +170,7 @@
 // void func_80071884_jp();
 // void func_80071A08_jp();
 // void func_80071AB8_jp();
-// void mCoBG_GetBgY_OnlyCenter_FromWpos2();
+f32 mCoBG_GetBgY_OnlyCenter_FromWpos2(Vec3f arg0, f32 arg1);
 // void func_80071C1C_jp();
 // void func_80071DB4_jp();
 // void func_800721C8_jp();

@@ -1,4 +1,23 @@
 #include "m_actor.h"
+#include "m_actor_dlftbls.h"
+#include "m_collision_bg.h"
+#include "m_common_data.h"
+#include "m_debug.h"
+#include "m_field_info.h"
+#include "m_lights.h"
+#include "m_malloc.h"
+#include "m_lib.h"
+#include "m_skin_matrix.h"
+#include "m_player_lib.h"
+#include "m_npc.h"
+#include "m_scene.h"
+#include "fault.h"
+#include "sys_matrix.h"
+#include "ovlmgr.h"
+#include "69A7E0.h"
+#include "6A0DE0.h"
+#include "6E9650.h"
+#include "macros.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 #if 0
@@ -94,12 +113,13 @@ extern Mtx B_8011B850_jp;
 extern ? B_801458A0_jp;
 extern s32 B_801458B8_jp;
 extern s32 D_80100C70_jp;
-extern ? MtxF_clear;
 extern ? actor_dlftbls;
 extern ? common_data;
 extern void* debug_mode;
 static ? RO_801161E8_jp;                            /* unable to generate initializer; const */
 #endif
+
+extern MtxF MtxF_clear;
 
 #if 0
 void func_80056380_jp(void* arg0, ? arg1) {
@@ -492,105 +512,84 @@ void Actor_delete_check(void* arg0, PlayState* arg1) {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_delete_check.s")
 #endif
 
-#if 0
-
-void Actor_info_ct(PlayState* play, ActorInfo* actorInfo, struct ActorEntry* actorEntry) {
-    ?* var_v0;
-    s16 temp_a2;
-    s16 temp_a2_2;
+void Actor_info_ct(PlayState* play2, ActorInfo* actorInfo, ActorEntry* actorEntry) {
+    PlayState* play = play2;
+    Actor* temp_v0;
+    ActorOverlay* var_v0;
+    ActorEntry* var_s0_2;
     s16* var_s0;
     s32 var_s1;
-    s32 var_s1_2;
-    s32 var_s1_3;
-    u8 temp_v0_2;
-    u8 temp_v0_3;
-    void* temp_s1;
-    void* temp_v0;
-    void* var_s0_2;
 
-    bzero(actorInfo, 0x44);
+    bzero(actorInfo, sizeof(ActorInfo));
+
     actor_dlftbls_init();
-    Matrix_copy_MtxF(&play->unk_00[0x1DB8], &MtxF_clear);
-    Matrix_copy_MtxF(&play->unk_00[0x1D78], &MtxF_clear);
-    var_v0 = &actor_dlftbls;
-    var_s1 = 0;
-    do {
-        var_s1 += 1;
-        var_v0->unk_10 = 0;
-        var_v0->unk_1E = 0;
-        var_v0 += 0x20;
-    } while (var_s1 < 0xC9);
+    Matrix_copy_MtxF(&play->unk_1E5C, &MtxF_clear);
+    Matrix_copy_MtxF(&play->unk_1E1C, &MtxF_clear);
+
+    var_v0 = actor_dlftbls;
+    for (var_s1 = 0; var_s1 < 0xC9; var_s1++) {
+        var_v0->loadedRamAddr = NULL;
+        var_v0->numLoaded = 0;
+        var_v0++;
+    }
+
     if (mEv_CheckFirstJob() == 1) {
-        *(&common_data + 0x107B6) = 0x5B;
+        common_data.unk_107B6 = 0x5B;
     }
-    temp_a2 = *(&common_data + 0x107B6);
-    if (temp_a2 != 0xC9) {
-        Actor_info_make_actor(actorInfo, play, temp_a2, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1, -1, -1);
+
+    if (common_data.unk_107B6 != 0xC9) {
+        Actor_info_make_actor(actorInfo, play, common_data.unk_107B6, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1, -1, -1);
     }
-    *(&common_data + 0x107B6) = 0xC9;
-    temp_v0 = Actor_info_make_actor(actorInfo, play, actorEntry->unk_0, (f32) actorEntry->unk_2, (f32) actorEntry->unk_4, (f32) actorEntry->unk_6, (s32) actorEntry->unk_8, (s32) actorEntry->unk_A, (s32) actorEntry->unk_C, -1, -1, -1, 0, (s32) actorEntry->unk_E, -1, -1);
+    common_data.unk_107B6 = 0xC9;
+
+label:
+
+    temp_v0 = Actor_info_make_actor(actorInfo, play, actorEntry->id, actorEntry->pos.x, actorEntry->pos.y, actorEntry->pos.z, actorEntry->rot.x, actorEntry->rot.y, actorEntry->rot.z, -1, -1, -1, 0, actorEntry->params, -1, -1);
     if (temp_v0 != NULL) {
-        temp_s1 = temp_v0 + 0x28;
-        temp_v0->unk_2C = mCoBG_GetBgY_OnlyCenter_FromWpos2(subroutine_arg0, temp_s1->unk_4, temp_s1->unk_8, 0.0f);
-        mFI_SetBearActor(play, subroutine_arg1, temp_s1->unk_4, temp_s1->unk_8, 0);
+        temp_v0->world.pos.y = mCoBG_GetBgY_OnlyCenter_FromWpos2(temp_v0->world.pos, 0.0f);
+        mFI_SetBearActor(play, temp_v0->world.pos, 0);
     }
-    temp_a2_2 = *(&common_data + 0x1014E);
-    if (temp_a2_2 != 0) {
-        Actor_info_make_actor(actorInfo, play, temp_a2_2, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1, -1, -1);
+
+    if (common_data.unk_1014E != 0) {
+        Actor_info_make_actor(actorInfo, play, common_data.unk_1014E, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1, -1, -1);
     }
-    temp_v0_2 = (u8) play->unk_00[0x1E02];
-    var_s1_2 = 0;
-    if (temp_v0_2 != 0) {
+
+    if (play->unk_1EA6 != 0) {
         var_s0 = play->unk_1EB0;
-        if ((s32) temp_v0_2 > 0) {
-            do {
-                Actor_info_make_actor((ActorInfo* ) &play->unk_00[0x1BD4], play, *var_s0, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1, -1, -1);
-                var_s1_2 += 1;
-                var_s0 += 2;
-            } while (var_s1_2 < (s32) (u8) play->unk_00[0x1E02]);
+
+        for (var_s1 = 0; var_s1 < play->unk_1EA6; var_s1++) {
+            Actor_info_make_actor(&play->actorInfo, play, *var_s0, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1, -1, -1);
+            var_s0 += 1;
         }
-        play->unk_00[0x1E02] = 0;
+        play->unk_1EA6 = 0;
     }
+
     mSc_regist_initial_exchange_bank(play);
-    temp_v0_3 = (u8) play->unk_00[0x1E01];
-    var_s1_3 = 0;
-    if (temp_v0_3 != 0) {
+
+    if (play->unk_1EA5 != 0) {
         var_s0_2 = play->unk_1EAC;
-        if ((s32) temp_v0_3 > 0) {
-            do {
-                Actor_info_make_actor((ActorInfo* ) &play->unk_00[0x1BD4], play, var_s0_2->unk_0, (f32) var_s0_2->unk_2, (f32) var_s0_2->unk_4, (f32) var_s0_2->unk_6, (s32) var_s0_2->unk_8, (s32) var_s0_2->unk_A, (s32) var_s0_2->unk_C, -1, -1, -1, 0, (s32) var_s0_2->unk_E, -1, -1);
-                var_s1_3 += 1;
-                var_s0_2 += 0x10;
-            } while (var_s1_3 < (s32) (u8) play->unk_00[0x1E01]);
+        for (var_s1 = 0; var_s1 < play->unk_1EA5; var_s1++) {
+            Actor_info_make_actor(&play->actorInfo, play, var_s0_2->id, var_s0_2->pos.x, var_s0_2->pos.y, var_s0_2->pos.z, var_s0_2->rot.x, var_s0_2->rot.y, var_s0_2->rot.z, -1, -1, -1, 0, var_s0_2->params, -1, -1);
+            var_s0_2 += 1;
         }
-        play->unk_00[0x1E01] = 0;
+        play->unk_1EA5 = 0;
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_ct.s")
-#endif
 
-#if 0
 void Actor_info_dt(ActorInfo* actorInfo, PlayState* play) {
-    ActorInfo* var_s1;
-    s32 var_s4;
+    s32 i;
 
-    var_s4 = 0;
-    var_s1 = actorInfo;
-    do {
-        if (var_s1->unk_8 != NULL) {
-            do {
-                Actor_info_delete((s8* ) actorInfo, var_s1->unk_8, play);
-            } while (var_s1->unk_8 != NULL);
+    for (i = 0; i < ARRAY_COUNT(actorInfo->actorLists); i++) {
+        Actor* actor = actorInfo->actorLists[i].head;
+
+        while (actor != NULL) {
+            Actor_info_delete(actorInfo, actor, play);
+            actor = actorInfo->actorLists[i].head;
         }
-        var_s4 += 8;
-        var_s1 += 8;
-    } while (var_s4 != 0x40);
+    }
+
     actor_dlftbls_cleanup();
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_dt.s")
-#endif
 
 #if 0
 

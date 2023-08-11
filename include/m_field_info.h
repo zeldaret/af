@@ -2,8 +2,10 @@
 #define M_FIELD_INFO_H
 
 #include "ultra64.h"
+#include "z64math.h"
 
 struct CommonData;
+struct PlayState;
 
 // void func_80087C30_jp();
 // void func_80087C40_jp();
@@ -109,7 +111,7 @@ struct CommonData;
 // void func_8008B2D0_jp();
 // void func_8008B300_jp();
 // void func_8008B318_jp();
-// void mFI_SetBearActor();
+void mFI_SetBearActor(struct PlayState *play, Vec3f arg1, s32 arg2);
 // void func_8008B3E8_jp();
 // void func_8008B4C0_jp();
 // void func_8008B598_jp();

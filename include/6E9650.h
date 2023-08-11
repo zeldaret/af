@@ -3,6 +3,8 @@
 
 #include "ultra64.h"
 
+struct PlayState;
+
 // void func_800C59B0_jp();
 // void func_800C5A08_jp();
 // void func_800C5A60_jp();
@@ -19,7 +21,7 @@
 // void func_800C5F64_jp();
 // void mSc_bank_regist_check();
 // void func_800C6144_jp();
-// void mSc_regist_initial_exchange_bank();
+void mSc_regist_initial_exchange_bank(struct PlayState* play);
 // void func_800C62C4_jp();
 // void func_800C639C_jp();
 // void func_800C65E4_jp();

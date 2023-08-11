@@ -31,7 +31,7 @@
 // void func_8007D59C_jp();
 // void func_8007D5D4_jp();
 // void func_8007D650_jp();
-// void mEv_CheckFirstJob();
+s32 mEv_CheckFirstJob(void);
 // void func_8007D734_jp();
 // void func_8007D784_jp();
 // void func_8007D7BC_jp();
