@@ -3,7 +3,7 @@
 
 #include "ultra64.h"
 
-// void mem_copy();
+void mem_copy(void* dest, void* src, size_t size);
 // void mem_clear();
 // void mem_cmp();
 f32 cos_s(s16 angle);
