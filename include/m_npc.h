@@ -117,7 +117,7 @@
 // void func_800AB054_jp();
 // void func_800AB09C_jp();
 // void mNpc_SetNpcList();
-// void mNpc_SetNpcinfo();
+void mNpc_SetNpcinfo(struct Actor* actor, s8 arg1);
 // void func_800AB498_jp();
 // void func_800AB62C_jp();
 // void func_800AB6C8_jp();

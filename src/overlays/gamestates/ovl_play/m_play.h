@@ -6,7 +6,11 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct Actor;
 struct ActorEntry;
+struct PlayState;
+
+typedef UNK_RET (*PlayState_unk_2208)(struct Actor*, struct PlayState*);
 
 typedef struct PlayState {
     /* 0x0000 */ GameState state;
@@ -23,7 +27,9 @@ typedef struct PlayState {
     /* 0x1EA8 */ UNK_TYPE1 unk_1EA8[0x4];
     /* 0x1EAC */ struct ActorEntry *unk_1EAC;
     /* 0x1EB0 */ s16 *unk_1EB0;
-    /* 0x1EB4 */ UNK_TYPE1 unk_1EB4[0x55C];
+    /* 0x1EB4 */ UNK_TYPE1 unk_1EB4[0x354];
+    /* 0x2208 */ PlayState_unk_2208 unk_2208;
+    /* 0x220C */ UNK_TYPE1 unk_220C[0x204];
 } PlayState; // size = 0x2410
 
 void play_init(GameState *thisx);

@@ -683,22 +683,27 @@ block_18:
 #endif
 
 #if 0
+//? Actor_cull_check(Actor*);                         /* extern */
+//? Actor_delete_check(Actor*, PlayState*);           /* extern */
+//? Actor_draw(PlayState*, Actor*);                   /* extern */
+//? Light_list_point_draw(PlayState*);                /* extern */
+//? Skin_Matrix_PrjMulVector(MtxF*, PosRot*, void*, void*); /* extern */
 
 void Actor_info_draw_actor(PlayState* play, ActorInfo* actorInfo) {
-    ActorInfo* var_s5;
-    s32 (*temp_s4)(void*, PlayState*);
+    Actor* var_s0;
+    ActorListEntry* var_s5;
+    s32 (*temp_s4)(Actor*, PlayState*);
     s32 temp_v0;
     s32 var_s6;
-    void* var_s0;
 
     temp_s4 = play->unk_2208;
-    var_s5 = actorInfo + 4;
+    var_s5 = actorInfo->actorLists;
     var_s6 = 0;
     do {
-        var_s0 = var_s5->unk_4;
+        var_s0 = var_s5->head;
         if (var_s0 != NULL) {
             do {
-                Skin_Matrix_PrjMulVector(&play->unk_00[0x1D78], var_s0 + 0x28, var_s0 + 0x124, var_s0 + 0x130);
+                Skin_Matrix_PrjMulVector(&play->unk_1E1C, &var_s0->world, var_s0 + 0x124, var_s0 + 0x130);
                 Actor_cull_check(var_s0);
                 var_s0->unk_B5 = 0;
                 if ((temp_s4(var_s0, play) == 0) && (var_s0->unk_15C == 0) && (var_s0->unk_168 != 0)) {
@@ -718,7 +723,7 @@ void Actor_info_draw_actor(PlayState* play, ActorInfo* actorInfo) {
         var_s6 += 1;
         var_s5 += 8;
     } while (var_s6 != 8);
-    if (debug_mode->unk_714 == 0) {
+    if (debug_mode->r[0x380] == 0) {
         Light_list_point_draw(play);
     }
 }
@@ -1023,33 +1028,54 @@ void Actor_init_actor_class(void* arg0, void* arg1, void* arg2, PlayState* arg3,
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_init_actor_class.s")
 #endif
 
-#if 0
-void* Actor_info_make_actor(ActorInfo* arg0, PlayState* arg1, s16 arg2, f32 arg3, f32 arg4, f32 arg5, s16 arg6, s16 arg7, s16 arg8, s8 arg9, s8 argA, s16 argB, u16 argC, s16 argD, s8 argE, s32 argF) {
-    void* sp68;
-    void* sp64;
-    s32 temp_s0_2;
-    void* temp_s0;
+typedef struct struct_801161E8_jp {
+    /* 0x0 */ UNK_TYPE1 unk_0[0x8];
+} struct_801161E8_jp; // size <= 0x8
+extern const struct_801161E8_jp RO_801161E8_jp;
 
-    temp_s0 = (arg2 << 5) + &actor_dlftbls;
-    if (arg0->placeholder >= 0xC9) {
+UNK_RET Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay*, struct_801161E8_jp*, s32);
+UNK_RET func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, struct_801161E8_jp* arg2, s32 arg3, s32 arg4);
+
+extern s32 B_801458B8_jp; // gSegments[6]?
+
+#if 0
+// meh
+Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 arg9, s8 argA, s16 argB, u16 argC, s16 params, s8 argE, s32 argF) {
+    s32 pad;
+    Actor* sp68;
+    ActorProfile* profile; // sp64
+    ActorOverlay* temp_s0;
+
+    temp_s0 = &actor_dlftbls[actorId];
+    if (actorInfo->unk_00 >= 0xC9) {
         return NULL;
     }
-    if (func_80057940_jp(&sp64, temp_s0, &RO_801161E8_jp, temp_s0->unk_C - temp_s0->unk_8, (s32) argC) == 0) {
+
+    if (func_80057940_jp(&profile, temp_s0, &RO_801161E8_jp, (uintptr_t)temp_s0->vramEnd - (uintptr_t)temp_s0->vramStart, argC) == 0) {
         return NULL;
     }
-    if (Actor_data_bank_regist_check(&argF, sp64, (u16) temp_s0, arg1, (s32) argC) == 0) {
+    if (Actor_data_bank_regist_check(&argF, profile, temp_s0, play, argC) == 0) {
         return NULL;
     }
-    if (Actor_malloc_actor_class(&sp68, sp64, temp_s0, &RO_801161E8_jp, (s32) argC) == 0) {
+    if (Actor_malloc_actor_class(&sp68, profile, temp_s0, &RO_801161E8_jp,  argC) == 0) {
         return NULL;
     }
-    temp_s0->unk_1E = (s8) (temp_s0->unk_1E + 1);
-    Actor_init_actor_class(sp68, sp64, temp_s0, arg1, argF, arg3, arg4, arg5, (s32) arg6, (s32) arg7, (s32) arg8, (s32) arg9, (s32) argA, (s32) argB, (s32) argC, (s32) argD);
-    Actor_info_part_new(arg0, sp68, sp64->unk_2);
+
+    temp_s0->numLoaded += 1;
+    Actor_init_actor_class(sp68, profile, temp_s0, play, argF, x, y, z, rotX, rotY, rotZ, arg9, argA, argB, argC, params);
+
+    Actor_info_part_new(actorInfo, sp68, profile->type);
+
     mNpc_SetNpcinfo(sp68, argE);
-    temp_s0_2 = B_801458B8_jp;
-    Actor_ct(sp68, arg1);
-    B_801458B8_jp = temp_s0_2;
+
+    {
+        s32 temp_s0_2;
+
+        temp_s0_2 = B_801458B8_jp;
+        Actor_ct(sp68, play);
+        B_801458B8_jp = temp_s0_2;
+    }
+
     return sp68;
 }
 #else
