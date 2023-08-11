@@ -1033,25 +1033,23 @@ typedef struct struct_801161E8_jp {
 } struct_801161E8_jp; // size <= 0x8
 extern const struct_801161E8_jp RO_801161E8_jp;
 
-UNK_RET Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay*, struct_801161E8_jp*, s32);
-UNK_RET func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, struct_801161E8_jp* arg2, s32 arg3, s32 arg4);
+UNK_RET Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay*, const struct_801161E8_jp*, s32);
+UNK_RET func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const struct_801161E8_jp* arg2, s32 arg3, s32 arg4);
 
 extern s32 B_801458B8_jp; // gSegments[6]?
 
-#if 0
-// meh
 Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 arg9, s8 argA, s16 argB, u16 argC, s16 params, s8 argE, s32 argF) {
-    s32 pad;
+    u16 *new_var = &argC;
     Actor* sp68;
     ActorProfile* profile; // sp64
-    ActorOverlay* temp_s0;
+    ActorOverlay* temp_s0 = &actor_dlftbls[actorId];
+    size_t size = (uintptr_t)temp_s0->vramEnd - (uintptr_t)temp_s0->vramStart;
 
-    temp_s0 = &actor_dlftbls[actorId];
     if (actorInfo->unk_00 >= 0xC9) {
         return NULL;
     }
 
-    if (func_80057940_jp(&profile, temp_s0, &RO_801161E8_jp, (uintptr_t)temp_s0->vramEnd - (uintptr_t)temp_s0->vramStart, argC) == 0) {
+    if (func_80057940_jp(&profile, temp_s0, &RO_801161E8_jp, size, *new_var) == 0) {
         return NULL;
     }
     if (Actor_data_bank_regist_check(&argF, profile, temp_s0, play, argC) == 0) {
@@ -1078,9 +1076,6 @@ Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId,
 
     return sp68;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_make_actor.s")
-#endif
 
 #if 0
 void* Actor_info_make_child_actor(void* arg1, ActorInfo* arg2, s16 arg3, s32 arg4, f32 arg5, f32 arg6, s16 arg7, s16 arg8, s16 arg9, s16 argA, u16 argB, s16 argC, s32 argD) {
