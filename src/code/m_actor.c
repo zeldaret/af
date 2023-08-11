@@ -788,62 +788,45 @@ void* Actor_info_part_delete(s8* arg0, void* arg1) {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_part_delete.s")
 #endif
 
-#if 0
-void Actor_free_overlay_area(void* arg0) {
-    u16 temp_v0;
-
-    temp_v0 = arg0->unk_1C;
-    if (!(temp_v0 & 2)) {
-        if (temp_v0 & 1) {
-
+void Actor_free_overlay_area(ActorOverlay* overlayEntry) {
+    if (!(overlayEntry->allocType & ALLOCTYPE_PERMANENT)) {
+        if (overlayEntry->allocType & ALLOCTYPE_ABSOLUTE) {
+            overlayEntry->loadedRamAddr = NULL;
         } else {
-            zelda_free(arg0->unk_10, arg0);
-        }
-        arg0->unk_10 = NULL;
-    }
-}
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_free_overlay_area.s")
-#endif
-
-#if 0
-void actor_free_check(void* arg0, u16 arg1) {
-    s32 temp_a1;
-    s32 temp_v0;
-
-    temp_a1 = arg1 & 0xFFFF;
-    if ((arg0->unk_1E == 0) && (temp_v0 = (s32) (temp_a1 & 0xF000) >> 0xC, (arg0->unk_10 != 0))) {
-        if (temp_v0 != 5) {
-            if ((temp_v0 == 0xD) || (temp_v0 == 0xE)) {
-                (*(&common_data + 0x1004C))->unk_8(temp_a1);
-                return;
-            }
-            Actor_free_overlay_area(temp_a1);
-        } else {
-            (*(&common_data + 0x10098))->unk_8(temp_a1);
+            zelda_free(overlayEntry->loadedRamAddr);
+            overlayEntry->loadedRamAddr = NULL;
         }
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/actor_free_check.s")
-#endif
 
-#if 0
-void Actor_get_overlay_area(void* arg0, ?* arg1, s32 arg2) {
-    void* var_v0;
+void actor_free_check(ActorOverlay* overlayEntry, u16 arg1) {
+    if ((overlayEntry->numLoaded == 0) && (overlayEntry->loadedRamAddr != NULL)) {
+        switch ((arg1 & 0xF000) >> 0xC) {
+            case 0xD:
+            case 0xE:
+                common_data.unk_1004C->unk_08();
+                break;
 
-    if (arg0->unk_1C & 2) {
-        var_v0 = zelda_malloc_r(arg2, arg0);
+            case 0x5:
+                common_data.unk_10098->unk_08();
+                break;
+
+            default:
+                Actor_free_overlay_area(overlayEntry);
+                break;
+        }
+    }
+}
+
+void Actor_get_overlay_area(ActorOverlay* overlayEntry, const struct_801161E8_jp* arg1 UNUSED, size_t overlaySize) {
+    if (overlayEntry->allocType & ALLOCTYPE_PERMANENT) {
+        overlayEntry->loadedRamAddr = zelda_malloc_r(overlaySize);
     } else {
-        var_v0 = zelda_malloc(arg2, arg0);
+        overlayEntry->loadedRamAddr = zelda_malloc(overlaySize);
     }
-    arg0->unk_10 = var_v0;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_get_overlay_area.s")
-#endif
 
-s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const struct_801161E8_jp* arg2, s32 arg3, u16 arg4) {
+s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const struct_801161E8_jp* arg2, size_t overlaySize, u16 arg4) {
     if (overlayEntry->vramStart == NULL) {
         *profileP = overlayEntry->profile;
     } else {
@@ -852,7 +835,7 @@ s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const 
                 case 0xD:
                 case 0xE:
                     if (common_data.unk_1004C != NULL) {
-                        common_data.unk_1004C->unk_4(overlayEntry, arg2, arg3, arg4);
+                        common_data.unk_1004C->unk_04(overlayEntry, arg2, overlaySize, arg4);
                     } else {
                         overlayEntry->loadedRamAddr = NULL;
                     }
@@ -860,12 +843,12 @@ s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const 
 
                 case 5:
                     if (common_data.unk_10098 != NULL) {
-                        common_data.unk_10098->unk_4(overlayEntry, arg3);
+                        common_data.unk_10098->unk_4(overlayEntry, overlaySize);
                     }
                     break;
 
                 default:
-                    Actor_get_overlay_area(overlayEntry, arg2, arg3, arg4);
+                    Actor_get_overlay_area(overlayEntry, arg2, overlaySize);
                     break;
             }
 
@@ -883,36 +866,40 @@ s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const 
     return 1;
 }
 
-#if 0
+typedef struct CommonData_unk_1004C_unk_4_unk_14_arg0 {
+    /* 0x0 */ s16 unk_0;
+    /* 0x0 */ s16 unk_2;
+    /* 0x04 */ UNK_TYPE1 unk_04[0x5C];
+} CommonData_unk_1004C_unk_4_unk_14_arg0;
 
-s32 func_80057A8C_jp(s32* arg0, ? arg1, void* arg2, s32 arg3, u16 arg4) {
+// this function may be Actor_data_bank_regist_check_npc
+#if 0
+s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play, u16 arg4) {
     s16 sp92;
     s16 sp90;
+    s32 pad;
     s32 sp88;
-    s16 sp24;
-    void* sp20;
+    CommonData_unk_1004C_unk_4_unk_14_arg0 sp24;
     s32 temp_v0;
-    s32 temp_v1;
-    void* temp_a0;
 
     sp88 = 1;
-    (*(&common_data + 0x1004C))->unk_14(&sp24, arg4);
-    sp92 = sp24;
-    sp90 = sp26;
-    temp_a0 = arg3 + 0x110;
-    sp20 = temp_a0;
-    *arg0 = mSc_bank_regist_check(temp_a0, sp24);
-    temp_v0 = mSc_bank_regist_check(temp_a0, sp90);
-    temp_v1 = *arg0;
-    if ((temp_v1 < 0) || (temp_v0 < 0)) {
-        if (temp_v1 >= 0) {
+    common_data.unk_1004C->unk_14(&sp24, arg4);
+    sp92 = sp24.unk_0;
+    sp90 = sp24.unk_2;
+
+    *arg0 = mSc_bank_regist_check(&play->unk_0110, sp92);
+    temp_v0 = mSc_bank_regist_check(&play->unk_0110, sp90);
+
+    if ((*arg0 < 0) || (temp_v0 < 0)) {
+        if (*arg0 >= 0) {
             sp92 = 0;
         }
         if (temp_v0 >= 0) {
             sp90 = 0;
         }
-        (*(&common_data + 0x1004C))->unk_EC(sp20, sp92, sp90);
-        actor_free_check(arg2, arg4);
+
+        common_data.unk_1004C->unk_EC(&play->unk_0110, sp92, sp90);
+        actor_free_check(overlayEntry, arg4);
         sp88 = 0;
     }
     return sp88;
@@ -946,25 +933,18 @@ s32 func_80057B70_jp(s32* arg0, void* arg1, void* arg2, s32 arg3, u16 arg4) {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/func_80057B70_jp.s")
 #endif
 
-#if 0
-s32 Actor_data_bank_regist_check(s32* arg0, void* arg1, u16 arg4) {
-    s32 var_v0;
-    s32 var_v1;
+s32 Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play, u16 arg4) {
+    s32 var_v1 = 1;
 
-    var_v1 = 1;
     if (*arg0 == -1) {
-        if (arg1->unk_2 == 3) {
-            var_v0 = func_80057A8C_jp((s32* ) arg4);
+        if (profile->type == ACTORCAT_3) {
+            var_v1 = func_80057A8C_jp(arg0, profile, overlayEntry, play, arg4);
         } else {
-            var_v0 = func_80057B70_jp((s32* ) arg4);
+            var_v1 = func_80057B70_jp(arg0, profile, overlayEntry, play, arg4);
         }
-        var_v1 = var_v0;
     }
     return var_v1;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_data_bank_regist_check.s")
-#endif
 
 #if 0
 s32 Actor_malloc_actor_class(void** arg0, void* arg1, void* arg2, ?* arg3, u16 arg4) {

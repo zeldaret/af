@@ -19,7 +19,7 @@ struct PlayState;
 // void func_800C5EA0_jp();
 // void func_800C5F0C_jp();
 // void func_800C5F64_jp();
-// void mSc_bank_regist_check();
+s32 mSc_bank_regist_check(UNK_TYPE* arg0, s16 arg1);
 // void func_800C6144_jp();
 void mSc_regist_initial_exchange_bank(struct PlayState* play);
 // void func_800C62C4_jp();

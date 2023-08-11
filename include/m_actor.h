@@ -12,7 +12,9 @@ struct ActorOverlay;
 struct struct_801161E8_jp;
 
 typedef enum AllocType {
-    /* 0 */ ALLOCTYPE_NORMAL
+    /* 0 */ ALLOCTYPE_NORMAL,
+    /* 1 */ ALLOCTYPE_ABSOLUTE,
+    /* 2 */ ALLOCTYPE_PERMANENT
 } AllocType;
 
 typedef enum ActorType {
@@ -91,13 +93,13 @@ void Actor_info_dt(ActorInfo *actorInfo, struct PlayState *play);
 void Actor_info_draw_actor(struct PlayState *play, ActorInfo *actorInfo);
 void Actor_info_part_new(ActorInfo* actorInfo, Actor* actor, u8 arg2);
 // void Actor_info_part_delete();
-// void Actor_free_overlay_area();
-// void actor_free_check();
-void Actor_get_overlay_area(struct ActorOverlay* overlayEntry, const struct struct_801161E8_jp* arg1, s32 arg2, s32 arg3);
+void Actor_free_overlay_area(struct ActorOverlay* overlayEntry);
+void actor_free_check(struct ActorOverlay* overlayEntry, u16 arg1);
+void Actor_get_overlay_area(struct ActorOverlay* overlayEntry, const struct struct_801161E8_jp* arg1, size_t overlaySize);
 // void func_80057940_jp();
-// void func_80057A8C_jp();
-// void func_80057B70_jp();
-UNK_RET Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct PlayState* play, s32 arg4);
+s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct PlayState* play, u16 arg4);
+s32 func_80057B70_jp(s32* arg0, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct PlayState* play, u16 arg4);
+UNK_RET Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct PlayState* play, u16 arg4);
 // void Actor_malloc_actor_class();
 void Actor_init_actor_class(Actor* actor, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct PlayState* play, s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s32 argB, s32 argC, s32 argD, s32 argE, s32 params);
 Actor* Actor_info_make_actor(ActorInfo* actorInfo, struct PlayState* play, s16 arg2, f32 arg3, f32 arg4, f32 arg5, s16 arg6, s16 arg7, s16 arg8, s8 arg9, s8 argA, s16 argB, u16 argC, s16 argD, s8 argE, s32 argF);
