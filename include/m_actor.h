@@ -9,6 +9,7 @@ struct Actor;
 struct PlayState;
 struct ActorEntry;
 struct ActorOverlay;
+struct struct_801161E8_jp;
 
 typedef enum AllocType {
     /* 0 */ ALLOCTYPE_NORMAL
@@ -92,7 +93,7 @@ void Actor_info_part_new(ActorInfo* actorInfo, Actor* actor, u8 arg2);
 // void Actor_info_part_delete();
 // void Actor_free_overlay_area();
 // void actor_free_check();
-// void Actor_get_overlay_area();
+void Actor_get_overlay_area(struct ActorOverlay* overlayEntry, const struct struct_801161E8_jp* arg1, s32 arg2, s32 arg3);
 // void func_80057940_jp();
 // void func_80057A8C_jp();
 // void func_80057B70_jp();

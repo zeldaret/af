@@ -17,6 +17,7 @@
 #include "69A7E0.h"
 #include "6A0DE0.h"
 #include "6E9650.h"
+#include "unknown_structs.h"
 #include "macros.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
@@ -120,6 +121,13 @@ static ? RO_801161E8_jp;                            /* unable to generate initia
 #endif
 
 extern MtxF MtxF_clear;
+
+extern const struct_801161E8_jp RO_801161E8_jp;
+
+UNK_RET Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay*, const struct_801161E8_jp*, s32);
+// UNK_RET func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const struct_801161E8_jp* arg2, s32 arg3, s32 arg4);
+
+extern s32 B_801458B8_jp; // gSegments[6]?
 
 #if 0
 void func_80056380_jp(void* arg0, ? arg1) {
@@ -835,58 +843,45 @@ void Actor_get_overlay_area(void* arg0, ?* arg1, s32 arg2) {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_get_overlay_area.s")
 #endif
 
-#if 0
+s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const struct_801161E8_jp* arg2, s32 arg3, u16 arg4) {
+    if (overlayEntry->vramStart == NULL) {
+        *profileP = overlayEntry->profile;
+    } else {
+        if (overlayEntry->loadedRamAddr == NULL) {
+            switch ((arg4 & 0xF000) >> 0xC) {
+                case 0xD:
+                case 0xE:
+                    if (common_data.unk_1004C != NULL) {
+                        common_data.unk_1004C->unk_4(overlayEntry, arg2, arg3, arg4);
+                    } else {
+                        overlayEntry->loadedRamAddr = NULL;
+                    }
+                    break;
 
-s32 func_80057940_jp(void** arg0, void* arg1, ?* arg2, s32 arg3, u16 arg4) {
-    s32 temp_v1;
-    void* temp_v0;
-    void* temp_v0_2;
-    void* temp_v1_2;
-    void* var_v1;
+                case 5:
+                    if (common_data.unk_10098 != NULL) {
+                        common_data.unk_10098->unk_4(overlayEntry, arg3);
+                    }
+                    break;
 
-    if (arg1->unk_8 == 0) {
-        *arg0 = arg1->unk_14;
-        goto block_20;
-    }
-    if (arg1->unk_10 == 0) {
-        temp_v1 = (s32) (arg4 & 0xF000) >> 0xC;
-        if (temp_v1 != 5) {
-            if ((temp_v1 == 0xD) || (temp_v1 == 0xE)) {
-                temp_v0 = *(&common_data + 0x1004C);
-                if (temp_v0 != NULL) {
-                    temp_v0->unk_4(arg1, arg2, arg3, arg4);
-                } else {
-                    arg1->unk_10 = 0;
-                }
-            } else {
-                Actor_get_overlay_area(arg1, arg2, arg3, arg4);
+                default:
+                    Actor_get_overlay_area(overlayEntry, arg2, arg3, arg4);
+                    break;
             }
-        } else {
-            temp_v1_2 = *(&common_data + 0x10098);
-            if (temp_v1_2 != NULL) {
-                temp_v1_2->unk_4(arg1, arg3, arg4);
+
+            if (overlayEntry->loadedRamAddr == NULL) {
+                return 0;
             }
+
+            ovlmgr_Load((void* ) overlayEntry->vromStart, (s32) overlayEntry->vromEnd, overlayEntry->vramStart, overlayEntry->vramEnd, overlayEntry->loadedRamAddr);
+            overlayEntry->numLoaded = 0;
         }
-        if (arg1->unk_10 == 0) {
-            return 0;
-        }
-        ovlmgr_Load(arg1->unk_0, arg1->unk_4, arg1->unk_8, arg1->unk_C, arg1->unk_10);
-        arg1->unk_1E = 0;
-        goto block_17;
+
+        *profileP = (void*)(uintptr_t) ( (overlayEntry->profile != NULL) ? (void*) ((uintptr_t)overlayEntry->profile - (intptr_t)((uintptr_t)overlayEntry->vramStart - (uintptr_t)overlayEntry->loadedRamAddr)) : NULL );
     }
-block_17:
-    temp_v0_2 = arg1->unk_14;
-    var_v1 = NULL;
-    if (temp_v0_2 != NULL) {
-        var_v1 = temp_v0_2 - (arg1->unk_8 - arg1->unk_10);
-    }
-    *arg0 = var_v1;
-block_20:
+
     return 1;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/func_80057940_jp.s")
-#endif
 
 #if 0
 
@@ -1027,16 +1022,6 @@ void Actor_init_actor_class(void* arg0, void* arg1, void* arg2, PlayState* arg3,
 #else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_init_actor_class.s")
 #endif
-
-typedef struct struct_801161E8_jp {
-    /* 0x0 */ UNK_TYPE1 unk_0[0x8];
-} struct_801161E8_jp; // size <= 0x8
-extern const struct_801161E8_jp RO_801161E8_jp;
-
-UNK_RET Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay*, const struct_801161E8_jp*, s32);
-UNK_RET func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const struct_801161E8_jp* arg2, s32 arg3, s32 arg4);
-
-extern s32 B_801458B8_jp; // gSegments[6]?
 
 Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 arg9, s8 argA, s16 argB, u16 argC, s16 params, s8 argE, s32 argF) {
     u16 *new_var = &argC;
