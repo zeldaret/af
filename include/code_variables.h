@@ -2008,9 +2008,9 @@ extern s32 zurumode_flag;
 // extern UNK_TYPE B_80145880_jp;
 // extern UNK_TYPE B_80145898_jp;
 // extern UNK_TYPE B_8014589C_jp;
-// extern UNK_TYPE B_801458A0_jp;
-// extern UNK_TYPE B_801458B0_jp;
-// extern UNK_TYPE B_801458B8_jp;
+
+extern uintptr_t gSegments[NUM_SEGMENTS];
+
 // extern UNK_TYPE B_801458E0_jp;
 // extern UNK_TYPE B_801458EC_jp;
 // extern UNK_TYPE B_801458F0_jp;

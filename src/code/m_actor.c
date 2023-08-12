@@ -20,6 +20,7 @@
 #include "6A0DE0.h"
 #include "6E9650.h"
 #include "unknown_structs.h"
+#include "code_variables.h"
 #include "macros.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
@@ -113,8 +114,7 @@ void restore_fgdata(void* arg0, s32 arg1);          /* static */
 void restore_fgdata_all(s32 arg0);                  /* static */
 void restore_fgdata_one(void* arg0, PlayState*);    /* static */
 extern Mtx B_8011B850_jp;
-extern ? B_801458A0_jp;
-extern s32 B_801458B8_jp;
+extern ? gSegments;
 extern s32 restore_flag;
 extern ? actor_dlftbls;
 extern ? common_data;
@@ -128,8 +128,6 @@ extern MtxF MtxF_clear;
 extern const struct_801161E8_jp RO_801161E8_jp;
 
 // UNK_RET func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const struct_801161E8_jp* arg2, s32 arg3, s32 arg4);
-
-extern s32 B_801458B8_jp; // gSegments[6]?
 
 void func_80056380_jp(void* arg0, void* arg1 UNUSED) {
     Actor* actor = arg0;
@@ -359,7 +357,7 @@ void Actor_ct(Actor* actor, PlayState* play) {
     Shape_Info_init(actor, 0.0f, NULL, 0.0f, 0.0f);
     if (Actor_data_bank_dma_end_check(actor, play) == 1) {
         #if 0
-        B_801458B8_jp = (play + (actor->unk_026 * 0x54))->unk_114 + 0x80000000;
+        gSegments[6] = (play + (actor->unk_026 * 0x54))->unk_114 + 0x80000000;
         #endif
         actor->init(actor, play);
         actor->init = NULL;
@@ -436,7 +434,7 @@ void Actor_draw(PlayState* play, Actor* actor) {
 
     temp_a0_2 = play->unk_0110[actor->unk_026].unk_04;
 
-    B_801458B8_jp = OS_PHYSICAL_TO_K0(temp_a0_2);
+    gSegments[6] = OS_PHYSICAL_TO_K0(temp_a0_2);
 
     gSPSegment(POLY_OPA_DISP++, 0x06, temp_a0_2);
     gSPSegment(POLY_XLU_DISP++, 0x06, temp_a0_2);
@@ -593,7 +591,7 @@ void Actor_info_dt(ActorInfo* actorInfo, PlayState* play) {
 void* get_player_actor_withoutCheck(PlayState*);    /* extern */
 s16 search_position_angleY(PosRot*, void*);         /* extern */
 f32 search_position_distanceXZ(PosRot*, void*);     /* extern */
-extern ? B_801458A0_jp;
+extern ? gSegments;
 
 void Actor_info_call_actor(PlayState* arg0, void* arg1) {
     s32 sp50;
@@ -623,7 +621,7 @@ void Actor_info_call_actor(PlayState* arg0, void* arg1) {
                 }
                 if (var_s0->init != NULL) {
                     if (Actor_data_bank_dma_end_check(var_s0, arg0) == 1) {
-                        B_801458A0_jp.unk_18 = (void* ) (arg0->unk_0110[var_s0->unk_026].unk_04 + 0x80000000);
+                        gSegments.unk_18 = (void* ) (arg0->unk_0110[var_s0->unk_026].unk_04 + 0x80000000);
                         arg0->state.unk_9C[1] = 0x98;
                         var_s0->init(var_s0, arg0);
                         arg0->state.unk_9C[1] = 0x99;
@@ -662,7 +660,7 @@ void Actor_info_call_actor(PlayState* arg0, void* arg1) {
                     var_s0->unk_B6 = search_position_angleY(temp_s2, temp_s3);
                     var_s0->flags = temp_t8;
                     if ((temp_t8 & 0x50) || (var_s0->category == 3)) {
-                        B_801458A0_jp.unk_18 = (void* ) (arg0->unk_0110[var_s0->unk_026].unk_04 + 0x80000000);
+                        gSegments.unk_18 = (void* ) (arg0->unk_0110[var_s0->unk_026].unk_04 + 0x80000000);
                         arg0->state.unk_9C[1] = 0xA1;
                         var_s0->update(var_s0, arg0);
                         arg0->state.unk_9C[1] = 0xA2;
@@ -1020,9 +1018,9 @@ Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId,
     {
         s32 temp_s0_2;
 
-        temp_s0_2 = B_801458B8_jp;
+        temp_s0_2 = gSegments[6];
         Actor_ct(sp68, play);
-        B_801458B8_jp = temp_s0_2;
+        gSegments[6] = temp_s0_2;
     }
 
     return sp68;

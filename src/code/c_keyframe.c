@@ -43,8 +43,6 @@
 #include "sys_math3d.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-UNK_PTR* B_801458A0_jp[4];
-
 void cKF_FrameControl_zeroClear(FrameControl* frameControl) {
     bzero(frameControl, sizeof(FrameControl));
     frameControl->mode = ANIMATION_STOP;
@@ -719,13 +717,13 @@ void cKF_SkeletonInfo_R_init_reverse_setspeedandmorphandmode(SkeletonInfoR* skel
 void func_80053384_jp(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, UNK_PTR* arg6, UNK_PTR* arg7,
                       UNK_PTR* arg8) {
     if (arg3 != 0) {
-        B_801458A0_jp[arg0] = OS_PHYSICAL_TO_K0(arg6);
+        gSegments[arg0] = OS_PHYSICAL_TO_K0(arg6);
     }
     if (arg4 != 0) {
-        B_801458A0_jp[arg1] = OS_PHYSICAL_TO_K0(arg7);
+        gSegments[arg1] = OS_PHYSICAL_TO_K0(arg7);
     }
     if (arg5 != 0) {
-        B_801458A0_jp[arg2] = OS_PHYSICAL_TO_K0(arg8);
+        gSegments[arg2] = OS_PHYSICAL_TO_K0(arg8);
     }
 }
 
@@ -888,14 +886,14 @@ s32 cKF_SkeletonInfo_R_combine_play(SkeletonInfoR* skeletonInfo1, SkeletonInfoR*
     joint = (!IS_ZERO(skeletonInfo1->morphCounter)) ? (s16*)skeletonInfo1->morphTable : (s16*)skeletonInfo1->jointTable;
 
     if (arg4 != 0) {
-        sp44 = OS_PHYSICAL_TO_K0(B_801458A0_jp[arg2]);
-        B_801458A0_jp[arg2] = OS_PHYSICAL_TO_K0(arg4);
+        sp44 = OS_PHYSICAL_TO_K0(gSegments[arg2]);
+        gSegments[arg2] = OS_PHYSICAL_TO_K0(arg4);
         cKF_SkeletonInfo_R_combine_work_set(&combine3, skeletonInfo1);
     }
 
     if (arg5 != 0) {
-        sp40 = OS_PHYSICAL_TO_K0(B_801458A0_jp[arg3]);
-        B_801458A0_jp[arg3] = OS_PHYSICAL_TO_K0(arg5);
+        sp40 = OS_PHYSICAL_TO_K0(gSegments[arg3]);
+        gSegments[arg3] = OS_PHYSICAL_TO_K0(arg5);
         cKF_SkeletonInfo_R_combine_work_set(&combine2, skeletonInfo2);
         cKF_SkeletonInfo_R_combine_work_set(&combine1, skeletonInfo2);
     }
@@ -966,18 +964,18 @@ void cKF_SkeletonInfo_R_T_combine_play(s32* arg0, s32* arg1, s32* arg2, Skeleton
     spAC = (!IS_ZERO(skeletonInfo1->morphCounter)) ? (s16*)skeletonInfo1->morphTable : (s16*)skeletonInfo1->jointTable;
 
     if (arg9 != 0) {
-        sp48 = OS_PHYSICAL_TO_K0(B_801458A0_jp[arg6]);
-        B_801458A0_jp[arg6] = OS_PHYSICAL_TO_K0(arg9);
+        sp48 = OS_PHYSICAL_TO_K0(gSegments[arg6]);
+        gSegments[arg6] = OS_PHYSICAL_TO_K0(arg9);
         cKF_SkeletonInfo_R_combine_work_set(&sp4C, skeletonInfo1);
     }
     if (argA != 0) {
-        sp44 = OS_PHYSICAL_TO_K0(B_801458A0_jp[arg7]);
-        B_801458A0_jp[arg7] = OS_PHYSICAL_TO_K0(argA);
+        sp44 = OS_PHYSICAL_TO_K0(gSegments[arg7]);
+        gSegments[arg7] = OS_PHYSICAL_TO_K0(argA);
         cKF_SkeletonInfo_R_combine_work_set(&sp6C, skeletonInfo2);
     }
     if (argB != 0) {
-        sp40 = OS_PHYSICAL_TO_K0(B_801458A0_jp[arg8]);
-        B_801458A0_jp[arg8] = OS_PHYSICAL_TO_K0(argB);
+        sp40 = OS_PHYSICAL_TO_K0(gSegments[arg8]);
+        gSegments[arg8] = OS_PHYSICAL_TO_K0(argB);
         cKF_SkeletonInfo_R_combine_work_set(&sp8C, skeletonInfo3);
     }
 

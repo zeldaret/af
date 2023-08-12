@@ -244,7 +244,5 @@
       - { start: 0x73F4D0, type: bss, vram: 0x80145060, name: code/80145060 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80145390, name: code/irqmgr }
       - { start: 0x73F4D0, type: bss, vram: 0x80145620, name: code/80145620}
-      - { start: 0x73F4D0, type: .bss, vram: 0x801458A0, name: code/c_keyframe }
-      - { start: 0x73F4D0, type: bss, vram: 0x801458B0, name: code/801458B0 }
       - { start: 0x73F4D0, type: .bss, vram: 0x801462B0, name: code/sys_matrix }
       - { start: 0x73F4D0, type: bss, vram: 0x801462C0, name: code/801462C0 }
