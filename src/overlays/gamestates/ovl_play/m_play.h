@@ -18,7 +18,10 @@ typedef struct PlayState {
     /* 0x00A4 */ UNK_TYPE1 unk_00A4[0x3C];
     /* 0x00E0 */ s16 unk_00E0;
     /* 0x00E2 */ UNK_TYPE1 unk_00E2[0x2];
-    /* 0x00E4 */ UNK_TYPE1 unk_00E4[0x2C];
+    /* 0x00E4 */ s8 unk_00E4;
+    /* 0x00E5 */ s8 unk_00E5;
+    /* 0x00E6 */ UNK_TYPE1 unk_00E6[0x2];
+    /* 0x00E8 */ UNK_TYPE1 unk_00E8[0x28];
     /* 0x0110 */ PlayState_unk_0110 unk_0110[UNK_SIZE];
     /* 0x0164 */ UNK_TYPE1 unk_0164[0x17A8];
     /* 0x190C */ s32 unk_190C;

@@ -15,7 +15,8 @@ typedef struct CommonData_unk_1004C_unk_14_arg0 {
 } CommonData_unk_1004C_unk_14_arg0; // size >= 0x64
 
 typedef struct PlayState_unk_0110 {
-    /* 0x00 */ UNK_TYPE1 unk_00[0x4];
+    /* 0x00 */ s16 unk_00;
+    /* 0x02 */ UNK_TYPE1 unk_02[0x2];
     /* 0x04 */ void* unk_04;
     /* 0x08 */ UNK_TYPE1 unk_08[0x48];
     /* 0x50 */ s16 unk_50;
