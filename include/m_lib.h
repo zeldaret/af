@@ -20,7 +20,7 @@ f32 sin_s(s16 angle);
 // void stick_ratio_set();
 // void get_random_timer();
 // void get_random_pattern_timer();
-// void xyz_t_move();
+void xyz_t_move(Vec3f* dst, Vec3f* src);
 // void xyz_t_move_s_xyz();
 // void xyz_t_add();
 // void xyz_t_sub();

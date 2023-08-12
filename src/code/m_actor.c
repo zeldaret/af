@@ -14,6 +14,7 @@
 #include "fault.h"
 #include "sys_matrix.h"
 #include "ovlmgr.h"
+#include "gfx.h"
 #include "69A7E0.h"
 #include "6A0DE0.h"
 #include "6E9650.h"
@@ -113,13 +114,14 @@ void restore_fgdata_one(void* arg0, PlayState*);    /* static */
 extern Mtx B_8011B850_jp;
 extern ? B_801458A0_jp;
 extern s32 B_801458B8_jp;
-extern s32 D_80100C70_jp;
+extern s32 restore_flag;
 extern ? actor_dlftbls;
 extern ? common_data;
 extern void* debug_mode;
 static ? RO_801161E8_jp;                            /* unable to generate initializer; const */
 #endif
 
+extern s32 restore_flag[ACTORCAT_MAX];
 extern MtxF MtxF_clear;
 
 extern const struct_801161E8_jp RO_801161E8_jp;
@@ -128,18 +130,20 @@ extern const struct_801161E8_jp RO_801161E8_jp;
 
 extern s32 B_801458B8_jp; // gSegments[6]?
 
-#if 0
-void func_80056380_jp(void* arg0, ? arg1) {
-    if ((arg0 == NULL) || (arg0->unk_170 == 0)) {
+void func_80056380_jp(void* arg0, void* arg1 UNUSED) {
+    Actor* actor = arg0;
+    const char* name;
+
+    if ((actor == NULL) || (actor->overlayEntry == NULL)) {
+        //! @bug this will be overriden by the next printf
         FaultDrawer_SetCursor(0x30, 0x18);
         FaultDrawer_Printf("ACTOR NAME is NULL");
     }
+
     FaultDrawer_SetCursor(0x30, 0x18);
-    FaultDrawer_Printf("ACTOR NAME %08x:%s", arg0, "");
+    name = "";
+    FaultDrawer_Printf("ACTOR NAME %08x:%s", actor, name);
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/func_80056380_jp.s")
-#endif
 
 #if 0
 void projection_pos_set(s32 arg0, f32* arg3) {
@@ -368,46 +372,43 @@ void Actor_ct(Actor* actor, PlayState* play) {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_ct.s")
 #endif
 
-#if 0
-void Actor_dt(void* arg0, PlayState* arg1) {
-    ? (*temp_v0)(void*, PlayState*, void*);
-    ? (*temp_v0_2)(void*, PlayState*, void*);
-    s16 temp_a0;
-    s32 temp_v0_5;
-    void* temp_v0_3;
-    void* temp_v0_4;
-    void* temp_v0_6;
+#ifdef NON_EQUIVALENT
+void Actor_dt(Actor* actor, PlayState* play) {
+    if (actor->unk_16C != NULL) {
+        actor->unk_16C(actor, play);
+        actor->unk_16C = NULL;
+    }
 
-    temp_v0 = arg0->unk_16C;
-    if (temp_v0 != NULL) {
-        temp_v0(arg0, arg1, arg0);
-        arg0->unk_16C = NULL;
+    if (actor->destroy != NULL) {
+        actor->destroy(actor, play);
+        actor->destroy = NULL;
     }
-    temp_v0_2 = arg0->unk_160;
-    if (temp_v0_2 != NULL) {
-        temp_v0_2(arg0, arg1, arg0);
-        arg0->unk_160 = NULL;
+
+    if ((actor->unk_150 != NULL) && (actor == actor->unk_150->unk_14C)) {
+        actor->unk_150->unk_14C = NULL;
     }
-    temp_v0_3 = arg0->unk_150;
-    if ((temp_v0_3 != NULL) && (arg0 == temp_v0_3->unk_14C)) {
-        temp_v0_3->unk_14C = 0;
+
+    if ((actor->unk_14C != NULL) && (actor == actor->unk_14C->unk_150)) {
+        actor->unk_14C->unk_150 = NULL;
     }
-    temp_v0_4 = arg0->unk_14C;
-    if ((temp_v0_4 != NULL) && (arg0 == temp_v0_4->unk_150)) {
-        temp_v0_4->unk_150 = 0;
-    }
-    temp_v0_5 = (s32) (arg0->unk_6 & 0xF000) >> 0xC;
-    if ((temp_v0_5 == 0xD) || (temp_v0_5 == 0xE)) {
-        (*(&common_data + 0x1004C))->unk_F0(arg1 + 0x110, arg0, arg0);
-        return;
-    }
-    temp_a0 = arg0->unk_26;
-    if (temp_a0 >= arg1->unk_190C) {
-        temp_v0_6 = arg1 + 0x110 + (temp_a0 * 0x54);
-        if (temp_v0_6->unk_50 > 0) {
-            arg0->unk_26 = -1;
-            temp_v0_6->unk_50 = (s16) (temp_v0_6->unk_50 - 1);
-        }
+
+    switch ((actor->unk_006 & 0xF000) >> 0xC) {
+        case 0xD:
+        case 0xE:
+            common_data.unk_1004C->unk_F0(&play->unk_0110, actor);
+            break;
+
+        default:
+            if (actor->unk_026 >= play->unk_190C) {
+                PlayState_unk_0110* temp_v0_6;
+
+                temp_v0_6 = &play->unk_0110[actor->unk_026];
+                if (temp_v0_6->unk_50 > 0) {
+                    actor->unk_026 = -1;
+                    temp_v0_6->unk_50--;
+                }
+            }
+            break;
     }
 }
 #else
@@ -415,51 +416,54 @@ void Actor_dt(void* arg0, PlayState* arg1) {
 #endif
 
 #if 0
-void Actor_draw(PlayState* arg0, void* arg1) {
-    ? sp48;
+// s32 Global_light_read(s8*, struct GraphicsContext*); /* extern */
+// ? LightsN_disp(s32, struct GraphicsContext*);       /* extern */
+// ? func_8009B884_jp(s32, s32, PosRot*);              /* extern */
+
+void Actor_draw(PlayState* play, Actor* actor) {
+    FaultClient sp48;
     s32 sp44;
     struct GraphicsContext* sp40;
-    ? (*temp_v0)(void*, s32, PlayState*);
+    PosRot* var_a2;
     s32 temp_a0;
     s32 temp_a0_2;
+    s32 temp_v0;
     struct GraphicsContext* temp_a1;
-    void* temp_v1;
-    void* temp_v1_2;
-    void* temp_v1_3;
-    void* var_a2;
+    Gfx* temp_v1;
+    Gfx* temp_v1_2;
+    Gfx* temp_v1_3;
 
-    Fault_AddClient(&sp48, func_80056380_jp, arg1, "Actor_draw");
-    temp_a1 = arg0->state.gfxCtx;
+    Fault_AddClient(&sp48, func_80056380_jp, actor, "Actor_draw");
+    temp_a1 = play->state.gfxCtx;
     sp40 = temp_a1;
-    temp_a0 = Global_light_read(arg0 + 0x1C60, temp_a1);
-    if (arg1->unk_20 & 0x400000) {
+    temp_a0 = Global_light_read(&play->unk_1910[0x350], temp_a1);
+    if (actor->flags & 0x400000) {
         var_a2 = NULL;
     } else {
-        var_a2 = arg1 + 0x28;
+        var_a2 = &actor->world;
     }
     sp44 = temp_a0;
-    func_8009B884_jp(temp_a0, arg0->unk_1C60, var_a2);
-    LightsN_disp(temp_a0, arg0->state.gfxCtx);
-    Matrix_softcv3_load(arg1->unk_28, arg1->unk_2C + (arg1->unk_E4 * arg1->unk_60), arg1->unk_30, arg1 + 0xDC);
-    Matrix_scale(arg1->unk_5C, arg1->unk_60, arg1->unk_64, 1);
-    temp_a0_2 = (arg0 + (arg1->unk_26 * 0x54))->unk_114;
+
+    func_8009B884_jp(temp_a0, play->unk_1C60, var_a2);
+
+    LightsN_disp(temp_a0, play->state.gfxCtx);
+    Matrix_softcv3_load(actor->world.pos.x, actor->world.pos.y + (actor->unk_0E4 * actor->unk_05C.y), actor->world.pos.z, (Vec3s* ) &actor->unk_068[0x74]);
+    Matrix_scale(actor->unk_05C.x, actor->unk_05C.y, actor->unk_05C.z, 1U);
+
+    temp_a0_2 = play->unk_0110[actor->unk_026].unk_04;
+
     B_801458B8_jp = temp_a0_2 + 0x80000000;
-    temp_v1 = sp40->unk_298;
-    sp40->unk_298 = (void* ) (temp_v1 + 8);
-    temp_v1->unk_4 = temp_a0_2;
-    temp_v1->unk_0 = 0xDB060018;
-    temp_v1_2 = sp40->unk_2A8;
-    sp40->unk_2A8 = (void* ) (temp_v1_2 + 8);
-    temp_v1_2->unk_4 = temp_a0_2;
-    temp_v1_2->unk_0 = 0xDB060018;
-    temp_v1_3 = sp40->unk_2C8;
-    sp40->unk_2C8 = (void* ) (temp_v1_3 + 8);
-    temp_v1_3->unk_4 = temp_a0_2;
-    temp_v1_3->unk_0 = 0xDB060018;
-    arg1->unk_168(arg1, arg0);
-    temp_v0 = arg1->unk_E8;
-    if (temp_v0 != NULL) {
-        temp_v0(arg1, sp44, arg0);
+
+    gSPSegment(sp40->polyOpa.p++, 0x06, temp_a0_2);
+    gSPSegment(sp40->polyXlu.p++, 0x06, temp_a0_2);
+    gSPSegment(sp40->unk_2C0.p++, 0x06, temp_a0_2);
+
+    actor->draw(actor, play);
+    temp_v0 = actor->unk_0E8;
+    if (temp_v0 != 0) {
+        #if 0
+        ((? (*)(Actor*, s32, PlayState*)) temp_v0)(actor, sp44, play);
+        #endif
     }
     Fault_RemoveClient(&sp48);
 }
@@ -755,54 +759,46 @@ void Actor_info_draw_actor(PlayState* play, ActorInfo* actorInfo) {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_draw_actor.s")
 #endif
 
-#if 0
-void Actor_info_part_new(ActorInfo* arg0, void* arg1, u8 arg2) {
-    s8 temp_a2;
-    void* temp_v0;
-    void* temp_v1;
+void Actor_info_part_new(ActorInfo* actorInfo, Actor* actor, u8 category) {
+    Actor* temp_v1;
 
-    temp_a2 = arg2 & 0xFF;
-    arg1->unk_2 = temp_a2;
-    temp_v0 = arg0 + (temp_a2 * 8);
-    arg0->placeholder += 1;
-    temp_v1 = temp_v0->unk_8;
-    temp_v0->unk_4 = (s32) (temp_v0->unk_4 + 1);
+    actor->category = category;
+
+    actorInfo->unk_00++;
+
+    actorInfo->actorLists[category].unk_0++;
+    temp_v1 = actorInfo->actorLists[category].head;
     if (temp_v1 != NULL) {
-        temp_v1->unk_154 = arg1;
+        temp_v1->unk_154 = actor;
     }
-    temp_v0->unk_8 = arg1;
-    arg1->unk_158 = temp_v1;
+
+    actorInfo->actorLists[category].head = actor;
+    actor->unk_158 = temp_v1;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_part_new.s")
-#endif
 
-#if 0
-void* Actor_info_part_delete(s8* arg0, void* arg1) {
-    void* temp_v0;
-    void* temp_v1;
-    void* temp_v1_2;
+Actor* Actor_info_part_delete(ActorInfo* actorInfo, Actor* actor) {
+    Actor* newHead;
 
-    *arg0 = (s32) (*arg0 - 1);
-    temp_v0 = arg0 + (arg1->unk_2 * 8);
-    temp_v0->unk_4 = (s32) (temp_v0->unk_4 - 1);
-    temp_v1_2 = arg1->unk_154;
-    if (temp_v1_2 != NULL) {
-        temp_v1_2->unk_158 = (void* ) arg1->unk_158;
+    actorInfo->unk_00--;
+
+    actorInfo->actorLists[actor->category].unk_0--;
+
+    if (actor->unk_154 != NULL) {
+        actor->unk_154->unk_158 = actor->unk_158;
     } else {
-        (arg0 + (arg1->unk_2 * 8))->unk_8 = (void* ) arg1->unk_158;
+        actorInfo->actorLists[actor->category].head = actor->unk_158;
     }
-    temp_v1 = arg1->unk_158;
-    if (temp_v1 != NULL) {
-        temp_v1->unk_154 = (void* ) arg1->unk_154;
+
+    newHead = actor->unk_158;
+    if (newHead != NULL) {
+        newHead->unk_154 = actor->unk_154;
     }
-    arg1->unk_154 = NULL;
-    arg1->unk_158 = NULL;
-    return temp_v1;
+
+    actor->unk_154 = NULL;
+    actor->unk_158 = NULL;
+
+    return newHead;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_part_delete.s")
-#endif
 
 void Actor_free_overlay_area(ActorOverlay* overlayEntry) {
     if (!(overlayEntry->allocType & ALLOCTYPE_PERMANENT)) {
@@ -1079,42 +1075,38 @@ void* Actor_info_make_child_actor(void* arg1, ActorInfo* arg2, s16 arg3, s32 arg
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_make_child_actor.s")
 #endif
 
-#if 0
-void restore_fgdata(void* arg0, s32 arg1) {
-    ? sp34;
-    s32 sp30;
-    u16 temp_t6;
+void restore_fgdata(Actor* actor, PlayState* play UNUSED) {
+    Vec3f sp34;
 
-    temp_t6 = arg0->unk_6;
-    sp30 = (s32) temp_t6;
-    if ((temp_t6 != 0) && (arg0->unk_A == -1) && (arg0->unk_8 >= 0) && (arg0->unk_9 >= 0)) {
-        if (((s32) (temp_t6 & 0xF000) >> 0xC) == 8) {
-            xyz_t_move(&sp34, arg0 + 0xC);
-            if (func_8008B3E8_jp(&sp34, 0) == 1) {
-                mFI_SetFG_common(arg0->unk_6, subroutine_arg1, sp34.unk_4, sp34.unk_8, 0);
-            }
-        } else {
-            mFI_SetFG_common(unksp32, subroutine_arg1, arg0->unk_10, arg0->unk_14, 0);
-        }
-    }
-}
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/restore_fgdata.s")
-#endif
-
-#if 0
-void restore_fgdata_one(void* arg0) {
-    if ((&D_80100C70_jp)[arg0->unk_2] == 1) {
-        restore_fgdata();
+    if ((actor->unk_006 == 0) || (actor->unk_00A != -1)) {
         return;
     }
-    if (arg0->unk_3 == (u8) 1) {
-        restore_fgdata();
+
+    if ((actor->unk_008 < 0) || (actor->unk_009 < 0)) {
+        return;
+    }
+
+    switch ((actor->unk_006 & 0xF000) >> 0xC) {
+        case 8:
+            xyz_t_move(&sp34, &actor->home.pos);
+            if (func_8008B3E8_jp(&sp34, 0) == 1) {
+                mFI_SetFG_common(actor->unk_006, sp34, 0);
+            }
+            break;
+
+        default:
+            mFI_SetFG_common(actor->unk_006, actor->home.pos, 0);
+            break;
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/restore_fgdata_one.s")
-#endif
+
+void restore_fgdata_one(Actor* actor, PlayState* play) {
+    if (restore_flag[actor->category] == 1) {
+        restore_fgdata(actor, play);
+    } else if (actor->unk_003 == 1) {
+        restore_fgdata(actor, play);
+    }
+}
 
 #if 0
 void restore_fgdata_all(s32 arg0) {
@@ -1124,7 +1116,7 @@ void restore_fgdata_all(s32 arg0) {
     void* var_s0_2;
     void* var_s3;
 
-    var_s4 = &D_80100C70_jp;
+    var_s4 = &restore_flag;
     var_s5 = 0;
     var_s3 = arg0 + 0x1C78;
     do {
@@ -1186,37 +1178,41 @@ void Actor_info_save_actor(s32 arg0) {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_save_actor.s")
 #endif
 
-#if 0
-void* Actor_info_delete(s8* arg0, void* arg1, PlayState* arg2) {
-    void* sp2C;
-    s32 sp20;
-    s32 temp_v1;
-    void* temp_s1;
+Actor* Actor_info_delete(ActorInfo* actorInfo, Actor* actor, PlayState* play) {
+    Actor* newHead;
+    s32 pad UNUSED;
+    ActorOverlay* overlayEntry;
+    s32 sp20 = actor->unk_006;
 
-    sp20 = (s32) arg1->unk_6;
-    temp_s1 = arg1->unk_170;
-    restore_fgdata_one(arg1, arg2);
-    Actor_dt(arg1, arg2);
-    sp2C = Actor_info_part_delete(arg0, arg1);
-    temp_v1 = (s32) (sp20 & 0xF000) >> 0xC;
-    if (temp_v1 != 5) {
-        if ((temp_v1 == 0xD) || (temp_v1 == 0xE)) {
-            (*(&common_data + 0x1004C))->unk_10(arg1);
-        } else {
-            zelda_free(arg1);
-        }
-    } else {
-        (*(&common_data + 0x10098))->unk_10(arg1);
+    overlayEntry = actor->overlayEntry;
+
+    restore_fgdata_one(actor, play);
+    Actor_dt(actor, play);
+
+    newHead = Actor_info_part_delete(actorInfo, actor);
+
+    switch ((sp20 & 0xF000) >> 0xC) {
+        case 0xD:
+        case 0xE:
+            common_data.unk_1004C->unk_10(actor);
+            break;
+
+        case 5:
+            common_data.unk_10098->unk_10(actor);
+            break;
+
+        default:
+            zelda_free(actor);
+            break;
     }
-    if (temp_s1->unk_8 != 0) {
-        temp_s1->unk_1E = (s8) (temp_s1->unk_1E - 1);
-        actor_free_check(temp_s1, arg1->unk_6);
+
+    if (overlayEntry->vramStart != NULL) {
+        overlayEntry->numLoaded--;
+        actor_free_check(overlayEntry, actor->unk_006);
     }
-    return sp2C;
+
+    return newHead;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_delete.s")
-#endif
 
 #if 0
 void* Actor_info_name_search_sub(void* arg0, s16 arg1) {

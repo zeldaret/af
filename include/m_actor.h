@@ -52,12 +52,13 @@ typedef struct PosRot {
 
 typedef struct Actor {
     /* 0x000 */ s16 id;
-    /* 0x002 */ UNK_TYPE1 unk_002[0x2];
+    /* 0x002 */ u8 category;
+    /* 0x003 */ u8 unk_003;
     /* 0x004 */ u16 unk_004;
     /* 0x006 */ u16 unk_006;
     /* 0x008 */ s8 unk_008;
     /* 0x008 */ s8 unk_009;
-    /* 0x008 */ u16 unk_00A;
+    /* 0x008 */ s16 unk_00A;
     /* 0x00C */ PosRot home;
     /* 0x020 */ u32 flags;
     /* 0x024 */ s16 params;
@@ -79,7 +80,10 @@ typedef struct Actor {
     /* 0x109 */ s8 unk_109;
     /* 0x10A */ s8 unk_10A;
     /* 0x10B */ UNK_TYPE1 unk_10B[0x1];
-    /* 0x10C */ UNK_TYPE1 unk_10C[0x4C];
+    /* 0x10C */ UNK_TYPE1 unk_10C[0x40];
+    /* 0x14C */ struct Actor* unk_14C;
+    /* 0x150 */ struct Actor* unk_150;
+    /* 0x154 */ struct Actor* unk_154;
     /* 0x158 */ struct Actor* unk_158;
     /* 0x15C */ ActorFunc init;
     /* 0x160 */ ActorFunc destroy;
@@ -90,9 +94,9 @@ typedef struct Actor {
 } Actor; // size = 0x174
 
 typedef struct ActorListEntry {
-    /* 0x0 */ UNK_TYPE1 unk_0[0x4];
-    /* 0x8 */ Actor* head;
-} ActorListEntry; // size >= 0xC
+    /* 0x0 */ s32 unk_0;
+    /* 0x4 */ Actor* head;
+} ActorListEntry; // size = 0x8
 
 // a.k.a. ActorContext
 typedef struct ActorInfo {
@@ -113,8 +117,8 @@ void Shape_Info_init(Actor* actor, f32 arg1, s32 arg2, f32 arg3, f32 arg4);
 // void Actor_foot_shadow_pos_set();
 // void Actor_delete();
 void Actor_ct(Actor* actor, struct PlayState* play);
-// void Actor_dt();
-// void Actor_draw();
+void Actor_dt(Actor* actor, struct PlayState* play);
+void Actor_draw(struct PlayState* play, Actor* actor);
 // void Actor_draw_actor_no_culling_check();
 // void Actor_draw_actor_no_culling_check2();
 // void Actor_cull_check();
@@ -123,8 +127,8 @@ void Actor_info_ct(struct PlayState *play, ActorInfo *actorInfo, struct ActorEnt
 void Actor_info_dt(ActorInfo *actorInfo, struct PlayState *play);
 // void Actor_info_call_actor(struct PlayState *play, ??);
 void Actor_info_draw_actor(struct PlayState *play, ActorInfo *actorInfo);
-void Actor_info_part_new(ActorInfo* actorInfo, Actor* actor, u8 arg2);
-// void Actor_info_part_delete();
+void Actor_info_part_new(ActorInfo* actorInfo, Actor* actor, u8 type);
+Actor* Actor_info_part_delete(ActorInfo* actorInfo, Actor* actor);
 void Actor_free_overlay_area(struct ActorOverlay* overlayEntry);
 void actor_free_check(struct ActorOverlay* overlayEntry, u16 arg1);
 void Actor_get_overlay_area(struct ActorOverlay* overlayEntry, const struct struct_801161E8_jp* arg1, size_t overlaySize);
@@ -136,8 +140,8 @@ s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, struct Actor
 void Actor_init_actor_class(Actor* actor, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct PlayState* play, s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 argB, s8 argC, s16 argD, u16 argE, s16 params);
 Actor* Actor_info_make_actor(ActorInfo* actorInfo, struct PlayState* play, s16 arg2, f32 arg3, f32 arg4, f32 arg5, s16 arg6, s16 arg7, s16 arg8, s8 arg9, s8 argA, s16 argB, u16 argC, s16 argD, s8 argE, s32 argF);
 // void Actor_info_make_child_actor();
-// void restore_fgdata();
-// void restore_fgdata_one();
+void restore_fgdata(Actor* actor, struct PlayState* play);
+void restore_fgdata_one(Actor* actor, struct PlayState* play);
 // void restore_fgdata_all();
 // void Actor_info_save_actor();
 Actor* Actor_info_delete(ActorInfo* actorInfo, Actor* actor, struct PlayState* play);

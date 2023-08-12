@@ -4186,7 +4186,7 @@ D_80100C5C_jp = 0x80100C5C; //
 D_80100C60_jp = 0x80100C60; //
 D_80100C64_jp = 0x80100C64; //
 D_80100C68_jp = 0x80100C68; //
-D_80100C70_jp = 0x80100C70; //
+restore_flag = 0x80100C70; // size:0x20
 
 actor_dlftbls = 0x80100C90; // size:0x1920
 actor_dlftbls_num = 0x801025B0; // size:0x4

@@ -4,6 +4,7 @@
 #include "ultra64.h"
 #include "game.h"
 #include "m_actor.h"
+#include "unknown_structs.h"
 #include "unk.h"
 
 struct Actor;
@@ -18,8 +19,12 @@ typedef struct PlayState {
     /* 0x00E0 */ s16 unk_00E0;
     /* 0x00E2 */ UNK_TYPE1 unk_00E2[0x2];
     /* 0x00E4 */ UNK_TYPE1 unk_00E4[0x2C];
-    /* 0x0110 */ UNK_TYPE unk_0110;
-    /* 0x0114 */ UNK_TYPE1 unk_0114[0x1B64];
+    /* 0x0110 */ PlayState_unk_0110 unk_0110[UNK_SIZE];
+    /* 0x0164 */ UNK_TYPE1 unk_0164[0x17A8];
+    /* 0x190C */ s32 unk_190C;
+    /* 0x1910 */ UNK_TYPE1 unk_1910[0x350];
+    /* 0x1C60 */ UNK_TYPE4 unk_1C60;
+    /* 0x1C64 */ UNK_TYPE1 unk_1C64[0x14];
     /* 0x1C78 */ ActorInfo actorInfo;
     /* 0x1CBC */ UNK_TYPE1 unk_1CBC[0x160];
     /* 0x1E1C */ MtxF unk_1E1C; // viewProjectionMtxF

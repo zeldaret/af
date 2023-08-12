@@ -4,6 +4,7 @@
 #include "ultra64.h"
 #include "unk.h"
 
+struct Actor;
 struct ActorOverlay;
 struct struct_801161E8_jp;
 struct CommonData_unk_1004C_unk_14_arg0;
@@ -15,6 +16,7 @@ typedef UNK_RET (*CommonData_unk_1004C_unk_08)(void);
 // TODO: figure out if this is a generic memory allocation or if it is Actor specific
 typedef UNK_PTR (*CommonData_unk_1004C_unk_0C)(size_t, const struct struct_801161E8_jp*, s32);
 
+typedef UNK_RET (*CommonData_unk_1004C_unk_10)(struct Actor*);
 typedef UNK_RET (*CommonData_unk_1004C_unk_14)(struct CommonData_unk_1004C_unk_14_arg0*, u16);
 
 typedef struct CommonData_unk_1004C {
@@ -22,23 +24,27 @@ typedef struct CommonData_unk_1004C {
     /* 0x04 */ CommonData_unk_1004C_unk_04 unk_04;
     /* 0x08 */ CommonData_unk_1004C_unk_08 unk_08;
     /* 0x0C */ CommonData_unk_1004C_unk_0C unk_0C;
-    /* 0x10 */ UNK_TYPE1 unk_10[0x4];
+    /* 0x10 */ CommonData_unk_1004C_unk_10 unk_10;
     /* 0x14 */ CommonData_unk_1004C_unk_14 unk_14;
     /* 0x18 */ UNK_TYPE1 unk_18[0xD4];
     /* 0xEC */ UNK_FUN_PTR unk_EC;
-} CommonData_unk_1004C; // size >= 0xD0
+    /* 0xF0 */ UNK_FUN_PTR unk_F0;
+} CommonData_unk_1004C; // size >= 0xF4
 
 typedef UNK_RET (*CommonData_unk_10098_unk_4)(struct ActorOverlay*, size_t);
 typedef UNK_RET (*CommonData_unk_10098_unk_8)(void);
 
 // TODO: figure out if this is a generic memory allocation or if it is Actor specific
-typedef UNK_PTR (*CommonData_unk_10098_unk_08)(void);
+typedef UNK_PTR (*CommonData_unk_10098_unk_0C)(void);
+
+typedef UNK_RET (*CommonData_unk_10098_unk_10)(struct Actor*);
 
 typedef struct CommonData_unk_10098 {
     /* 0x00 */ UNK_TYPE1 unk_00[0x4];
     /* 0x04 */ CommonData_unk_10098_unk_4 unk_4;
     /* 0x08 */ CommonData_unk_10098_unk_8 unk_08;
-    /* 0x0C */ CommonData_unk_10098_unk_08 unk_0C;
+    /* 0x0C */ CommonData_unk_10098_unk_0C unk_0C;
+    /* 0x10 */ CommonData_unk_10098_unk_10 unk_10;
 } CommonData_unk_10098; // size >= 0x10
 
 

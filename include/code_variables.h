@@ -14,7 +14,7 @@
 // extern UNK_TYPE D_80100C60_jp;
 // extern UNK_TYPE D_80100C64_jp;
 // extern UNK_TYPE D_80100C68_jp;
-// extern UNK_TYPE D_80100C70_jp;
+// extern UNK_TYPE restore_flag;
 
 // extern UNK_TYPE D_801025C0_jp;
 // extern UNK_TYPE D_FLT_801025C8_jp;
