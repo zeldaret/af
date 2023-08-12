@@ -4,19 +4,26 @@
 #include "ultra64.h"
 #include "unk.h"
 
-struct struct_801161E8_jp;
 struct ActorOverlay;
+struct struct_801161E8_jp;
+struct CommonData_unk_1004C_unk_14_arg0;
 
 
-typedef UNK_RET (*CommonData_unk_1004C_unk_4)(struct ActorOverlay*, const struct struct_801161E8_jp*, size_t, s32);
-typedef UNK_RET (*CommonData_unk_1004C_unk_8)(void);
+typedef UNK_RET (*CommonData_unk_1004C_unk_04)(struct ActorOverlay*, const struct struct_801161E8_jp*, size_t, s32);
+typedef UNK_RET (*CommonData_unk_1004C_unk_08)(void);
+
+// TODO: figure out if this is a generic memory allocation or if it is Actor specific
+typedef UNK_PTR (*CommonData_unk_1004C_unk_0C)(size_t, const struct struct_801161E8_jp*, s32);
+
+typedef UNK_RET (*CommonData_unk_1004C_unk_14)(struct CommonData_unk_1004C_unk_14_arg0*, u16);
 
 typedef struct CommonData_unk_1004C {
     /* 0x00 */ UNK_TYPE1 unk_00[0x4];
-    /* 0x04 */ CommonData_unk_1004C_unk_4 unk_04;
-    /* 0x08 */ CommonData_unk_1004C_unk_8 unk_08;
-    /* 0x0C */ UNK_TYPE1 unk_0C[0x8];
-    /* 0x14 */ UNK_FUN_PTR unk_14;
+    /* 0x04 */ CommonData_unk_1004C_unk_04 unk_04;
+    /* 0x08 */ CommonData_unk_1004C_unk_08 unk_08;
+    /* 0x0C */ CommonData_unk_1004C_unk_0C unk_0C;
+    /* 0x10 */ UNK_TYPE1 unk_10[0x4];
+    /* 0x14 */ CommonData_unk_1004C_unk_14 unk_14;
     /* 0x18 */ UNK_TYPE1 unk_18[0xD4];
     /* 0xEC */ UNK_FUN_PTR unk_EC;
 } CommonData_unk_1004C; // size >= 0xD0
@@ -24,11 +31,15 @@ typedef struct CommonData_unk_1004C {
 typedef UNK_RET (*CommonData_unk_10098_unk_4)(struct ActorOverlay*, size_t);
 typedef UNK_RET (*CommonData_unk_10098_unk_8)(void);
 
+// TODO: figure out if this is a generic memory allocation or if it is Actor specific
+typedef UNK_PTR (*CommonData_unk_10098_unk_08)(void);
+
 typedef struct CommonData_unk_10098 {
-    /* 0x0 */ UNK_TYPE1 unk_0[0x4];
-    /* 0x4 */ CommonData_unk_10098_unk_4 unk_4;
-    /* 0x8 */ CommonData_unk_10098_unk_8 unk_08;
-} CommonData_unk_10098; // size >= 0xC
+    /* 0x00 */ UNK_TYPE1 unk_00[0x4];
+    /* 0x04 */ CommonData_unk_10098_unk_4 unk_4;
+    /* 0x08 */ CommonData_unk_10098_unk_8 unk_08;
+    /* 0x0C */ CommonData_unk_10098_unk_08 unk_0C;
+} CommonData_unk_10098; // size >= 0x10
 
 
 typedef struct CommonData {

@@ -124,7 +124,6 @@ extern MtxF MtxF_clear;
 
 extern const struct_801161E8_jp RO_801161E8_jp;
 
-UNK_RET Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay*, const struct_801161E8_jp*, s32);
 // UNK_RET func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const struct_801161E8_jp* arg2, s32 arg3, s32 arg4);
 
 extern s32 B_801458B8_jp; // gSegments[6]?
@@ -963,62 +962,68 @@ s32 Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, ActorOverlay*
     return var_v1;
 }
 
-#if 0
-s32 Actor_malloc_actor_class(void** arg0, void* arg1, void* arg2, ?* arg3, u16 arg4) {
-    ? sp24;
-    s32 temp_v0;
-    s32 var_v0;
+s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay* overlayEntry, const struct_801161E8_jp* arg3, u16 arg4) {
+    CommonData_unk_1004C_unk_14_arg0 sp24;
 
-    temp_v0 = (s32) (arg4 & 0xF000) >> 0xC;
-    if (temp_v0 != 5) {
-        if ((temp_v0 == 0xD) || (temp_v0 == 0xE)) {
-            *arg0 = (*(&common_data + 0x1004C))->unk_C(arg1->unk_C, arg3, 1);
-            (*(&common_data + 0x1004C))->unk_14(&sp24, arg4);
-        } else {
-            *arg0 = zelda_malloc(arg1->unk_C);
-        }
-    } else {
-        *arg0 = (*(&common_data + 0x10098))->unk_C();
-    }
-    var_v0 = 1;
-    if (*arg0 == NULL) {
-        actor_free_check(arg2, arg4);
-        var_v0 = 0;
-    }
-    return var_v0;
-}
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_malloc_actor_class.s")
-#endif
+    switch ((arg4 & 0xF000) >> 0xC) {
+        case 0xD:
+        case 0xE:
+            *actorP = common_data.unk_1004C->unk_0C(profile->instanceSize, arg3, 1);
 
-#if 0
-void Actor_init_actor_class(void* arg0, void* arg1, void* arg2, PlayState* arg3, s32 arg4, f32 arg5, f32 arg6, f32 arg7, s16 arg8, s16 arg9, s16 argA, s8 argB, s8 argC, s16 argD, u16 argE, s16 argF) {
-    mem_clear(arg1->unk_C, 0);
-    arg0->unk_170 = arg2;
-    arg0->unk_0 = (s16) arg1->unk_0;
-    arg0->unk_20 = (s32) arg1->unk_4;
-    arg0->unk_26 = (s16) arg4;
-    arg0->unk_15C = (s32) arg1->unk_10;
-    arg0->unk_160 = (s32) arg1->unk_14;
-    arg0->unk_164 = (s32) arg1->unk_18;
-    arg0->unk_168 = (s32) arg1->unk_1C;
-    arg0->unk_16C = (s32) arg1->unk_20;
-    arg0->unk_24 = argF;
-    arg0->unk_4 = (s16) arg3->unk_E0;
-    arg0->unk_C = arg5;
-    arg0->unk_10 = arg6;
-    arg0->unk_14 = arg7;
-    arg0->unk_18 = arg8;
-    arg0->unk_1A = arg9;
-    arg0->unk_1C = argA;
-    arg0->unk_8 = argB;
-    arg0->unk_9 = argC;
-    arg0->unk_A = argD;
-    arg0->unk_6 = argE;
+            //! FAKE
+            if ((profile != NULL) && (profile != NULL) && (profile != NULL)) {}
+
+            common_data.unk_1004C->unk_14(&sp24, arg4);
+            break;
+
+        case 0x5:
+            *actorP = common_data.unk_10098->unk_0C();
+            break;
+
+        default:
+            *actorP = zelda_malloc(profile->instanceSize);
+            break;
+    }
+
+    if (*actorP == NULL) {
+        actor_free_check(overlayEntry, arg4);
+        return 0;
+    }
+    return 1;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_init_actor_class.s")
-#endif
+
+void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play, s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 argB, s8 argC, s16 argD, u16 argE, s16 params) {
+    mem_clear(actor, profile->instanceSize, 0);
+
+    actor->overlayEntry = overlayEntry;
+
+    actor->id = profile->id;
+    actor->flags = profile->flags;
+
+    actor->unk_026 = arg4;
+
+    actor->init = profile->init;
+    actor->destroy = profile->destroy;
+    actor->update = profile->update;
+    actor->draw = profile->draw;
+    actor->unk_16C = profile->unk_20;
+
+    actor->params = params;
+
+    actor->unk_004 = play->unk_00E0;
+
+    actor->home.pos.x = x;
+    actor->home.pos.y = y;
+    actor->home.pos.z = z;
+    actor->home.rot.x = rotX;
+    actor->home.rot.y = rotY;
+    actor->home.rot.z = rotZ;
+
+    actor->unk_008 = argB;
+    actor->unk_009 = argC;
+    actor->unk_00A = argD;
+    actor->unk_006 = argE;
+}
 
 Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 arg9, s8 argA, s16 argB, u16 argC, s16 params, s8 argE, s32 argF) {
     u16 *new_var = &argC;
@@ -1041,7 +1046,7 @@ Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId,
         return NULL;
     }
 
-    temp_s0->numLoaded += 1;
+    temp_s0->numLoaded++;
     Actor_init_actor_class(sp68, profile, temp_s0, play, argF, x, y, z, rotX, rotY, rotZ, arg9, argA, argB, argC, params);
 
     Actor_info_part_new(actorInfo, sp68, profile->type);

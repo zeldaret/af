@@ -37,7 +37,7 @@ typedef struct ActorProfile {
     /* 0x02 */ u8 type;
     /* 0x04 */ u32 flags;
     /* 0x08 */ s16 objectId;
-    /* 0x0C */ u32 instanceSize;
+    /* 0x0C */ size_t instanceSize;
     /* 0x10 */ ActorFunc init;
     /* 0x14 */ ActorFunc destroy;
     /* 0x18 */ ActorFunc update;
@@ -51,10 +51,17 @@ typedef struct PosRot {
 } PosRot; // size = 0x14
 
 typedef struct Actor {
-    /* 0x000 */ UNK_TYPE1 unk_000[0x24];
-    /* 0x024 */ UNK_TYPE1 unk_024[0x2];
-    /* 0x026 */ s8 unk_026; // objBankIndex
-    /* 0x027 */ UNK_TYPE1 unk_027[0x1];
+    /* 0x000 */ s16 id;
+    /* 0x002 */ UNK_TYPE1 unk_002[0x2];
+    /* 0x004 */ u16 unk_004;
+    /* 0x006 */ u16 unk_006;
+    /* 0x008 */ s8 unk_008;
+    /* 0x008 */ s8 unk_009;
+    /* 0x008 */ u16 unk_00A;
+    /* 0x00C */ PosRot home;
+    /* 0x020 */ u32 flags;
+    /* 0x024 */ s16 params;
+    /* 0x026 */ s16 unk_026; // objBankIndex
     /* 0x028 */ PosRot world;
     /* 0x03C */ UNK_TYPE1 unk_03C[0x20];
     /* 0x05C */ Vec3f unk_05C; // scale?
@@ -75,7 +82,12 @@ typedef struct Actor {
     /* 0x10C */ UNK_TYPE1 unk_10C[0x4C];
     /* 0x158 */ struct Actor* unk_158;
     /* 0x15C */ ActorFunc init;
-} Actor; // size >= 0x160, size <= 0x174
+    /* 0x160 */ ActorFunc destroy;
+    /* 0x164 */ ActorFunc update;
+    /* 0x168 */ ActorFunc draw;
+    /* 0x16C */ ActorFunc unk_16C;
+    /* 0x170 */ struct ActorOverlay* overlayEntry;
+} Actor; // size = 0x174
 
 typedef struct ActorListEntry {
     /* 0x0 */ UNK_TYPE1 unk_0[0x4];
@@ -120,8 +132,8 @@ void Actor_get_overlay_area(struct ActorOverlay* overlayEntry, const struct stru
 s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct PlayState* play, u16 arg4);
 s32 func_80057B70_jp(s32* arg0, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct PlayState* play, u16 arg4);
 UNK_RET Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct PlayState* play, u16 arg4);
-// void Actor_malloc_actor_class();
-void Actor_init_actor_class(Actor* actor, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct PlayState* play, s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s32 argB, s32 argC, s32 argD, s32 argE, s32 params);
+s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, struct ActorOverlay* overlayEntry, const struct struct_801161E8_jp*, u16);
+void Actor_init_actor_class(Actor* actor, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct PlayState* play, s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 argB, s8 argC, s16 argD, u16 argE, s16 params);
 Actor* Actor_info_make_actor(ActorInfo* actorInfo, struct PlayState* play, s16 arg2, f32 arg3, f32 arg4, f32 arg5, s16 arg6, s16 arg7, s16 arg8, s8 arg9, s8 argA, s16 argB, u16 argC, s16 argD, s8 argE, s32 argF);
 // void Actor_info_make_child_actor();
 // void restore_fgdata();

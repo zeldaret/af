@@ -14,7 +14,10 @@ typedef UNK_RET (*PlayState_unk_2208)(struct Actor*, struct PlayState*);
 
 typedef struct PlayState {
     /* 0x0000 */ GameState state;
-    /* 0x00A4 */ UNK_TYPE1 unk_00A4[0x6C];
+    /* 0x00A4 */ UNK_TYPE1 unk_00A4[0x3C];
+    /* 0x00E0 */ s16 unk_00E0;
+    /* 0x00E2 */ UNK_TYPE1 unk_00E2[0x2];
+    /* 0x00E4 */ UNK_TYPE1 unk_00E4[0x2C];
     /* 0x0110 */ UNK_TYPE unk_0110;
     /* 0x0114 */ UNK_TYPE1 unk_0114[0x1B64];
     /* 0x1C78 */ ActorInfo actorInfo;
