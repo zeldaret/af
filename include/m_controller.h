@@ -3,6 +3,9 @@
 
 #include "ultra64.h"
 
+#define CHECK_BTN_ALL(state, combo) (~((state) | ~(combo)) == 0)
+#define RESET_BUTTON 0x80
+
 struct GameState;
 
 void mCon_ct(struct GameState* gameState);

@@ -1,6 +1,7 @@
 #include "zurumode.h"
 #include "m_nmi_buf.h"
 #include "padmgr.h"
+#include "m_controller.h"
 
 zuruKeycheck zuruKeyCheck;
 
@@ -185,7 +186,7 @@ void zurumode_callback(void* p) {
         zerucheck_init(&zuruKeyCheck);
         APPNMI_ZURUMODE_FLP();
         zurumode_update();
-        if ((mgr->pads[0].button) & 0x80) {
+        if (mgr->pads[0].button & RESET_BUTTON) {
             APPNMI_ZURUMODE3_FLP();
         }
     }
