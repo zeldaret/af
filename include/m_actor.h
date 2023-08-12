@@ -29,7 +29,8 @@ typedef enum ActorType {
     /* 8 */ ACTORCAT_MAX
 } ActorType;
 
-typedef void(*ActorFunc)(struct Actor* this, struct PlayState* play);
+typedef void (*ActorFunc)(struct Actor* this, struct PlayState* play);
+typedef UNK_RET (*Actor_unk_0E8)();
 
 // a.k.a. ActorInit
 typedef struct ActorProfile {
@@ -66,9 +67,14 @@ typedef struct Actor {
     /* 0x028 */ PosRot world;
     /* 0x03C */ UNK_TYPE1 unk_03C[0x20];
     /* 0x05C */ Vec3f unk_05C; // scale?
-    /* 0x068 */ UNK_TYPE1 unk_068[0x7C];
+    /* 0x068 */ UNK_TYPE1 unk_068[0x4C];
+    /* 0x0B4 */ UNK_TYPE1 unk_0B4[0x1];
+    /* 0x0B5 */ u8 unk_0B5; // isDrawn
+    /* 0x0B6 */ UNK_TYPE1 unk_0B6[0x2];
+    /* 0x0B8 */ UNK_TYPE1 unk_0B8[0x24];
+    /* 0x0DC */ Vec3s unk_0DC;
     /* 0x0E4 */ f32 unk_0E4;
-    /* 0x0E8 */ s32 unk_0E8;
+    /* 0x0E8 */ Actor_unk_0E8 unk_0E8;
     /* 0x0EC */ f32 unk_0EC;
     /* 0x0F0 */ f32 unk_0F0;
     /* 0x0F4 */ f32 unk_0F4;
@@ -80,7 +86,13 @@ typedef struct Actor {
     /* 0x109 */ s8 unk_109;
     /* 0x10A */ s8 unk_10A;
     /* 0x10B */ UNK_TYPE1 unk_10B[0x1];
-    /* 0x10C */ UNK_TYPE1 unk_10C[0x40];
+    /* 0x10C */ UNK_TYPE1 unk_10C[0x18];
+    /* 0x124 */ Vec3f unk_124; // projectedPos
+    /* 0x130 */ f32 unk_130; // projectedW
+    /* 0x134 */ UNK_TYPE1 unk_134[0x14];
+    /* 0x148 */ u8 unk_148;
+    /* 0x149 */ u8 unk_149;
+    /* 0x14A */ UNK_TYPE1 unk_14A[0x2];
     /* 0x14C */ struct Actor* unk_14C;
     /* 0x150 */ struct Actor* unk_150;
     /* 0x154 */ struct Actor* unk_154;
@@ -113,16 +125,16 @@ typedef struct ActorInfo {
 // void Actor_player_look_direction_check();
 // void Actor_display_position_set();
 // void Actor_data_bank_dma_end_check();
-void Shape_Info_init(Actor* actor, f32 arg1, s32 arg2, f32 arg3, f32 arg4);
+void Shape_Info_init(Actor* actor, f32 arg1, Actor_unk_0E8 arg2, f32 arg3, f32 arg4);
 // void Actor_foot_shadow_pos_set();
-// void Actor_delete();
+void Actor_delete(Actor* actor);
 void Actor_ct(Actor* actor, struct PlayState* play);
 void Actor_dt(Actor* actor, struct PlayState* play);
 void Actor_draw(struct PlayState* play, Actor* actor);
 // void Actor_draw_actor_no_culling_check();
 // void Actor_draw_actor_no_culling_check2();
-// void Actor_cull_check();
-// void Actor_delete_check();
+void Actor_cull_check(Actor* actor);
+void Actor_delete_check(Actor* actor, struct PlayState* play);
 void Actor_info_ct(struct PlayState *play, ActorInfo *actorInfo, struct ActorEntry *actorEntry);
 void Actor_info_dt(ActorInfo *actorInfo, struct PlayState *play);
 // void Actor_info_call_actor(struct PlayState *play, ??);

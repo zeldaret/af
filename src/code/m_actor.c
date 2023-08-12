@@ -255,7 +255,7 @@ s32 Actor_data_bank_dma_end_check(void* arg0, PlayState* arg1) {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_data_bank_dma_end_check.s")
 #endif
 
-void Shape_Info_init(Actor* actor, f32 arg1, s32 arg2, f32 arg3, f32 arg4) {
+void Shape_Info_init(Actor* actor, f32 arg1, Actor_unk_0E8 arg2, f32 arg3, f32 arg4) {
     actor->unk_0E4 = arg1;
     actor->unk_0E8 = arg2;
     actor->unk_0EC = arg3;
@@ -284,16 +284,12 @@ void Actor_foot_shadow_pos_set(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4,
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_foot_shadow_pos_set.s")
 #endif
 
-#if 0
-void Actor_delete(void* arg0) {
-    if (arg0 != NULL) {
-        arg0->unk_164 = 0;
-        arg0->unk_168 = 0;
+void Actor_delete(Actor* actor) {
+    if (actor != NULL) {
+        actor->update = NULL;
+        actor->draw = NULL;
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_delete.s")
-#endif
 
 #if 0
 //s32 Actor_data_bank_dma_end_check(Actor*, PlayState*); /* extern */
@@ -359,7 +355,7 @@ void Actor_ct(Actor* actor, PlayState* play) {
     actor->unk_144 = 55.0f;
     #endif
     CollisionCheck_Status_ct(1.0f, &actor->unk_03C[0x88]);
-    Shape_Info_init(actor, 0.0f, 0, 0.0f, 0.0f);
+    Shape_Info_init(actor, 0.0f, NULL, 0.0f, 0.0f);
     if (Actor_data_bank_dma_end_check(actor, play) == 1) {
         #if 0
         B_801458B8_jp = (play + (actor->unk_026 * 0x54))->unk_114 + 0x80000000;
@@ -417,54 +413,42 @@ void Actor_dt(Actor* actor, PlayState* play) {
 
 #if 0
 // s32 Global_light_read(s8*, struct GraphicsContext*); /* extern */
-// ? LightsN_disp(s32, struct GraphicsContext*);       /* extern */
-// ? func_8009B884_jp(s32, s32, PosRot*);              /* extern */
+// ? LightsN_disp(UNK_TYPE4, struct GraphicsContext*);       /* extern */
+void func_8009B884_jp(UNK_TYPE4, UNK_TYPE4, Vec3f*);              /* extern */
 
 void Actor_draw(PlayState* play, Actor* actor) {
     FaultClient sp48;
-    s32 sp44;
-    struct GraphicsContext* sp40;
-    PosRot* var_a2;
-    s32 temp_a0;
+    UNK_TYPE4 temp_a0; // sp44
     s32 temp_a0_2;
-    s32 temp_v0;
-    struct GraphicsContext* temp_a1;
-    Gfx* temp_v1;
-    Gfx* temp_v1_2;
-    Gfx* temp_v1_3;
 
     Fault_AddClient(&sp48, func_80056380_jp, actor, "Actor_draw");
-    temp_a1 = play->state.gfxCtx;
-    sp40 = temp_a1;
-    temp_a0 = Global_light_read(&play->unk_1910[0x350], temp_a1);
-    if (actor->flags & 0x400000) {
-        var_a2 = NULL;
-    } else {
-        var_a2 = &actor->world;
-    }
-    sp44 = temp_a0;
 
-    func_8009B884_jp(temp_a0, play->unk_1C60, var_a2);
+    OPEN_DISPS(play->state.gfxCtx);
+
+    temp_a0 = Global_light_read(&play->unk_1910[0x350], play->state.gfxCtx);
+
+    func_8009B884_jp(temp_a0, play->unk_1C60, (actor->flags & 0x400000) ? NULL : &actor->world.pos);
 
     LightsN_disp(temp_a0, play->state.gfxCtx);
-    Matrix_softcv3_load(actor->world.pos.x, actor->world.pos.y + (actor->unk_0E4 * actor->unk_05C.y), actor->world.pos.z, (Vec3s* ) &actor->unk_068[0x74]);
-    Matrix_scale(actor->unk_05C.x, actor->unk_05C.y, actor->unk_05C.z, 1U);
+    Matrix_softcv3_load(actor->world.pos.x, actor->world.pos.y + (actor->unk_0E4 * actor->unk_05C.y), actor->world.pos.z, &actor->unk_0DC);
+    Matrix_scale(actor->unk_05C.x, actor->unk_05C.y, actor->unk_05C.z, MTXMODE_APPLY);
 
     temp_a0_2 = play->unk_0110[actor->unk_026].unk_04;
 
-    B_801458B8_jp = temp_a0_2 + 0x80000000;
+    B_801458B8_jp = OS_PHYSICAL_TO_K0(temp_a0_2);
 
-    gSPSegment(sp40->polyOpa.p++, 0x06, temp_a0_2);
-    gSPSegment(sp40->polyXlu.p++, 0x06, temp_a0_2);
-    gSPSegment(sp40->unk_2C0.p++, 0x06, temp_a0_2);
+    gSPSegment(POLY_OPA_DISP++, 0x06, temp_a0_2);
+    gSPSegment(POLY_XLU_DISP++, 0x06, temp_a0_2);
+    gSPSegment(UNK_2C0_DISP++, 0x06, temp_a0_2);
 
     actor->draw(actor, play);
-    temp_v0 = actor->unk_0E8;
-    if (temp_v0 != 0) {
-        #if 0
-        ((? (*)(Actor*, s32, PlayState*)) temp_v0)(actor, sp44, play);
-        #endif
+
+    if (actor->unk_0E8 != NULL) {
+        actor->unk_0E8(actor, temp_a0, play);
     }
+
+    CLOSE_DISPS(play->state.gfxCtx);
+
     Fault_RemoveClient(&sp48);
 }
 #else
@@ -710,54 +694,48 @@ block_18:
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_call_actor.s")
 #endif
 
-#if 0
-//? Actor_cull_check(Actor*);                         /* extern */
-//? Actor_delete_check(Actor*, PlayState*);           /* extern */
-//? Actor_draw(PlayState*, Actor*);                   /* extern */
-//? Light_list_point_draw(PlayState*);                /* extern */
-//? Skin_Matrix_PrjMulVector(MtxF*, PosRot*, void*, void*); /* extern */
-
 void Actor_info_draw_actor(PlayState* play, ActorInfo* actorInfo) {
-    Actor* var_s0;
-    ActorListEntry* var_s5;
-    s32 (*temp_s4)(Actor*, PlayState*);
-    s32 temp_v0;
-    s32 var_s6;
+    PlayState_unk_2208 temp_s4 = play->unk_2208;
+    ActorListEntry* actorEntry = actorInfo->actorLists;
+    ActorType cat = 0;
 
-    temp_s4 = play->unk_2208;
-    var_s5 = actorInfo->actorLists;
-    var_s6 = 0;
-    do {
-        var_s0 = var_s5->head;
-        if (var_s0 != NULL) {
-            do {
-                Skin_Matrix_PrjMulVector(&play->unk_1E1C, &var_s0->world, var_s0 + 0x124, var_s0 + 0x130);
-                Actor_cull_check(var_s0);
-                var_s0->unk_B5 = 0;
-                if ((temp_s4(var_s0, play) == 0) && (var_s0->unk_15C == 0) && (var_s0->unk_168 != 0)) {
-                    temp_v0 = var_s0->unk_20;
-                    if (temp_v0 & 0x60) {
-                        if (!(temp_v0 & 0x80) && (var_s0->unk_148 == 0) && (var_s0->unk_149 == 0)) {
-                            Actor_draw(play, var_s0);
-                            var_s0->unk_B5 = 1;
-                        }
-                    } else {
-                        Actor_delete_check(var_s0, play);
-                    }
+    if (1) {}
+
+    for (; cat < ACTORCAT_MAX; cat++, actorEntry++) {
+        Actor* actor;
+
+        for (actor = actorEntry->head; actor != NULL; actor = actor->unk_158) {
+            s32 temp;
+
+            Skin_Matrix_PrjMulVector(&play->unk_1E1C, &actor->world.pos, &actor->unk_124, &actor->unk_130);
+            Actor_cull_check(actor);
+
+            temp = temp_s4(actor, play);
+            actor->unk_0B5 = 0;
+
+            if (temp != 0) {
+                continue;
+            }
+
+            if ((actor->init != NULL) || (actor->draw == NULL)) {
+                continue;
+            }
+
+            if (actor->flags & (0x40 | 0x20)) {
+                if (!(actor->flags & 0x80) && (actor->unk_148 == 0) && (actor->unk_149 == 0)) {
+                    Actor_draw(play, actor);
+                    actor->unk_0B5 = 1;
                 }
-                var_s0 = var_s0->unk_158;
-            } while (var_s0 != NULL);
+            } else {
+                Actor_delete_check(actor, play);
+            }
         }
-        var_s6 += 1;
-        var_s5 += 8;
-    } while (var_s6 != 8);
+    }
+
     if (debug_mode->r[0x380] == 0) {
         Light_list_point_draw(play);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_draw_actor.s")
-#endif
 
 void Actor_info_part_new(ActorInfo* actorInfo, Actor* actor, u8 category) {
     Actor* temp_v1;

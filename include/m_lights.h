@@ -3,6 +3,9 @@
 
 #include "ultra64.h"
 
+struct PlayState;
+
+
 // void func_8009B1E0_jp();
 // void func_8009B23C_jp();
 // void func_8009B2A0_jp();
@@ -27,6 +30,6 @@
 // void func_8009BBEC_jp();
 // void func_8009BC48_jp();
 // void func_8009BD90_jp();
-// void Light_list_point_draw();
+void Light_list_point_draw(struct PlayState* play);
 
 #endif
