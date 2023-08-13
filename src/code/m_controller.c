@@ -3,11 +3,12 @@
 #include "m_event.h"
 #include "m_lib.h"
 #include "sys_math_atan.h"
+#include "attributes.h"
 
-void mCon_ct(GameState* game) {
+void mCon_ct(UNUSED GameState* game) {
 }
 
-void mCon_dt(GameState* game) {
+void mCon_dt(UNUSED GameState* game) {
 }
 
 void mCon_calc(Controller* controller, f32 x, f32 y) {
@@ -41,7 +42,7 @@ void mCon_calc(Controller* controller, f32 x, f32 y) {
             }
 
             controller->moveAngle = theta;
-            { s32 requiredScopeTemp; }
+            { UNUSED s32 requiredScopeTemp; }
             controller->moveX = check_percent_abs(x, STICK_MIN, STICK_MAX, STICK_UNCORRECTED_SCALE, 0);
             controller->moveY = check_percent_abs(y, STICK_MIN, STICK_MAX, STICK_UNCORRECTED_SCALE, 0);
             controller->moveR = check_percent_abs(r, STICK_MIN, STICK_MAX, STICK_UNCORRECTED_SCALE, 0);
