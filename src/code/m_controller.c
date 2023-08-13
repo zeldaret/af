@@ -65,7 +65,7 @@ s32 chkButton(u16 mask) {
     if (mEv_CheckTitleDemo() > 0) {
         return 0;
     } else {
-        return mask == CONTROLLER1(gamePT)->cur.button & mask;
+        return mask == (CONTROLLER1(gamePT)->cur.button & mask);
     }
 }
 
@@ -81,7 +81,7 @@ s32 chkTrigger(u16 mask) {
     if (mEv_CheckTitleDemo() > 0) {
         return 0;
     } else {
-        return mask == CONTROLLER1(gamePT)->press.button & mask;
+        return mask == (CONTROLLER1(gamePT)->press.button & mask);
     }
 }
 
