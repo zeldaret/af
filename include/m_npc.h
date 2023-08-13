@@ -2,6 +2,15 @@
 #define M_NPC_H
 
 #include "ultra64.h"
+#include "m_actor.h"
+#include "unk.h"
+
+typedef struct Npc {
+    /* 0x000 */ Actor actor;
+    /* 0x174 */ UNK_TYPE1 unk_174[0x594];
+    /* 0x708 */ s32 unk_708;
+} Npc; // size >= 0x70C
+
 
 // void func_800A6810_jp();
 // void func_800A6920_jp();

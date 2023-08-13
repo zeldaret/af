@@ -1,6 +1,7 @@
 #include "m_actor.h"
 #include "m_actor_dlftbls.h"
 #include "m_collision_bg.h"
+#include "m_collision_obj.h"
 #include "m_common_data.h"
 #include "m_debug.h"
 #include "m_field_info.h"
@@ -16,7 +17,6 @@
 #include "sys_matrix.h"
 #include "ovlmgr.h"
 #include "gfx.h"
-#include "69A7E0.h"
 #include "6A0DE0.h"
 #include "6E9650.h"
 #include "unknown_structs.h"
@@ -178,9 +178,9 @@ void Actor_position_move(Actor* actor) {
 
     kankyo->unk_C0(actor);
 
-    actor->world.pos.x += actor->unk_068 * speedRate + actor->unk_0C4;
-    actor->world.pos.y += actor->unk_06C * speedRate + actor->unk_0C8;
-    actor->world.pos.z += actor->unk_070 * speedRate + actor->unk_0CC;
+    actor->world.pos.x += actor->unk_068 * speedRate + actor->unk_0C4.unk_00;
+    actor->world.pos.y += actor->unk_06C * speedRate + actor->unk_0C4.unk_04;
+    actor->world.pos.z += actor->unk_070 * speedRate + actor->unk_0C4.unk_08;
 }
 
 void Actor_position_speed_set(Actor* actor) {
@@ -245,19 +245,13 @@ void Shape_Info_init(Actor* actor, f32 arg1, Actor_unk_0E8 arg2, f32 arg3, f32 a
     actor->unk_109 = 0;
 }
 
-#if 0
-void Actor_foot_shadow_pos_set(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
-    if (arg1 == arg2) {
-        Matrix_Position(arg3, arg0 + 0x10C);
-        return;
-    }
-    if (arg1 == arg4) {
-        Matrix_Position(arg5, arg0 + 0x118);
+void Actor_foot_shadow_pos_set(Actor* actor, s32 limbIndex, s32 leftFootIndex, Vec3f* leftFootPos, s32 rightFootIndex, Vec3f* rightFootPos) {
+    if (limbIndex == leftFootIndex) {
+        Matrix_Position(leftFootPos, &actor->feetPos[FOOT_LEFT]);
+    } else if (limbIndex == rightFootIndex) {
+        Matrix_Position(rightFootPos, &actor->feetPos[FOOT_RIGHT]);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_foot_shadow_pos_set.s")
-#endif
 
 void Actor_delete(Actor* actor) {
     if (actor != NULL) {
@@ -266,82 +260,59 @@ void Actor_delete(Actor* actor) {
     }
 }
 
-#if 0
-//s32 Actor_data_bank_dma_end_check(Actor*, PlayState*); /* extern */
-//? Actor_world_to_eye(Actor*, ?, PosRot*);           /* extern */
-//? CollisionCheck_Status_ct(f32, s8*);               /* extern */
-//? Shape_Info_init(Actor*, f32, ?, f32, f32);        /* extern */
-//? xyz_t_move(s8*, PosRot*);                         /* extern */
-
 void Actor_ct(Actor* actor, PlayState* play) {
-    UNK_TYPE sp34;
-    s32* sp2C;                                      /* compiler-managed */
-    PosRot* temp_a2;
-    s32 temp_v0_2;
-    s32* temp_a0;
-    void* temp_v0;
-    void* temp_v1;
+    s32 pad[2] UNUSED;
+    PlayState_unk_0110* temp;
+    Npc* npc;
+    CommonData_unk_1004C_unk_14_arg0 sp34;
+    PlayState_unk_0110* temp_a0;
 
-#if 0
-    temp_v0 = play + (actor->unk_026 * 0x54);
-    (temp_v0 + 0x110)->unk_50 = (s16) (temp_v0->unk_160 + 1);
-#endif
-    if ((u8) actor->unk_000[2] == 3) {
-        #if 0
-        common_data.unk_1004C->unk_14(&sp34, actor->unk_6);
-        #endif
-        temp_a0 = &play->unk_0110;
-        sp2C = temp_a0;
-        #if 0
-        temp_v0_2 = mSc_bank_regist_check(temp_a0, sp36);
-        actor->unk_708 = temp_v0_2;
-        #endif
-        temp_v1 = temp_a0 + (temp_v0_2 * 0x54);
-        #if 0
-        temp_v1->unk_50 = (s16) (temp_v1->unk_50 + 1);
-        #endif
+    temp_a0 = play->unk_0110;
+
+    temp = temp_a0;
+    temp += actor->unk_026;
+    temp->unk_50++;
+
+    if (actor->category == ACTORCAT_NPC) {
+        npc = (Npc*)actor;
+
+        common_data.unk_1004C->unk_14(&sp34, npc->actor.unk_006);
+        npc->unk_708 = mSc_bank_regist_check(temp_a0, sp34.unk_02);
+        temp_a0[npc->unk_708].unk_50++;
     }
-    temp_a2 = &actor->world;
-    #if 0
-    temp_a2->pos.x = actor->unk_C;
-    temp_a2->pos.y = actor->unk_10;
-    temp_a2->pos.z = actor->unk_14;
-    temp_a2->unk_C = (s32) actor->unk_18;
-    temp_a2->unk_10 = (s32) actor->unk_1C;
-    actor->unk_03C[0xA0] = (unaligned s32) actor->unk_34;
-    actor->unk_E0 = (u16) actor->world.rot.z;
-    #endif
-    sp2C = temp_a2;
-    Actor_world_to_eye(actor, 0, temp_a2);
-    xyz_t_move(actor->unk_03C, sp2C);
+
+    actor->world = actor->home;
+    actor->unk_0DC = actor->world.rot;
+
+    Actor_world_to_eye(actor, 0.0f);
+    xyz_t_move(&actor->unk_03C, &actor->world.pos);
 
     actor->unk_05C.x = 0.01f;
     actor->unk_05C.y = 0.01f;
     actor->unk_05C.z = 0.01f;
-    #if 0
-    actor->unk_7C = -20.0f;
+
+    actor->unk_07C = -20.0f;
+    actor->unk_0B8 = FLT_MAX;
+
     actor->unk_134 = 350.0f;
-    actor->unk_140 = 350.0f;
-    actor->unk_F4 = 1.0f;
-    actor->unk_F8 = 1.0f;
-    actor->unk_B8 = 3.4028235e38f;
     actor->unk_138 = 700.0f;
+
+    actor->unk_0F4 = 1.0f;
+    actor->unk_0F8 = 1.0f;
+
     actor->unk_13C = 1000.0f;
+    actor->unk_140 = 350.0f;
     actor->unk_144 = 55.0f;
-    #endif
-    CollisionCheck_Status_ct(1.0f, &actor->unk_03C[0x88]);
+
+    CollisionCheck_Status_ct(&actor->unk_0C4);
     Shape_Info_init(actor, 0.0f, NULL, 0.0f, 0.0f);
+
     if (Actor_data_bank_dma_end_check(actor, play) == 1) {
-        #if 0
-        gSegments[6] = (play + (actor->unk_026 * 0x54))->unk_114 + 0x80000000;
-        #endif
+        gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(temp_a0[actor->unk_026].unk_04);
         actor->init(actor, play);
         actor->init = NULL;
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_ct.s")
-#endif
 
 #ifdef NON_EQUIVALENT
 void Actor_dt(Actor* actor, PlayState* play) {
@@ -410,7 +381,7 @@ void Actor_draw(PlayState* play, Actor* actor) {
 
     temp_a0_2 = play->unk_0110[actor->unk_026].unk_04;
 
-    gSegments[6] = OS_PHYSICAL_TO_K0(temp_a0_2);
+    gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(temp_a0_2);
 
     gSPSegment(POLY_OPA_DISP++, 0x06, temp_a0_2);
     gSPSegment(POLY_XLU_DISP++, 0x06, temp_a0_2);
@@ -877,7 +848,7 @@ s32 Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, ActorOverlay*
     s32 var_v1 = 1;
 
     if (*arg0 == -1) {
-        if (profile->type == ACTORCAT_3) {
+        if (profile->type == ACTORCAT_NPC) {
             var_v1 = func_80057A8C_jp(arg0, profile, overlayEntry, play, arg4);
         } else {
             var_v1 = func_80057B70_jp(arg0, profile, overlayEntry, play, arg4);

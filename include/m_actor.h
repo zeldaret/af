@@ -2,6 +2,7 @@
 #define M_ACTOR_H
 
 #include "ultra64.h"
+#include "m_collision_obj.h"
 #include "z64math.h"
 #include "unk.h"
 
@@ -20,14 +21,20 @@ typedef enum AllocType {
 typedef enum ActorType {
     /* 0 */ ACTORCAT_0,
     /* 1 */ ACTORCAT_1,
-    /* 2 */ ACTORCAT_2,
-    /* 3 */ ACTORCAT_3,
+    /* 2 */ ACTORCAT_PLAYER,
+    /* 3 */ ACTORCAT_NPC,
     /* 4 */ ACTORCAT_4,
     /* 5 */ ACTORCAT_5,
     /* 6 */ ACTORCAT_6,
     /* 7 */ ACTORCAT_7,
     /* 8 */ ACTORCAT_MAX
 } ActorType;
+
+typedef enum {
+    /* 0 */ FOOT_LEFT,
+    /* 1 */ FOOT_RIGHT,
+    /* 2 */ FOOT_MAX
+} ActorFootIndex;
 
 typedef void (*ActorFunc)(struct Actor* this, struct PlayState* play);
 typedef UNK_RET (*Actor_unk_0E8)();
@@ -66,7 +73,7 @@ typedef struct Actor {
     /* 0x024 */ s16 params;
     /* 0x026 */ s16 unk_026; // objBankIndex
     /* 0x028 */ PosRot world;
-    /* 0x03C */ UNK_TYPE1 unk_03C[0xC];
+    /* 0x03C */ Vec3f unk_03C;
     /* 0x048 */ PosRot eye;
     /* 0x05C */ Vec3f unk_05C; // scale?
     /* 0x068 */ f32 unk_068;
@@ -79,11 +86,9 @@ typedef struct Actor {
     /* 0x0B4 */ UNK_TYPE1 unk_0B4[0x1];
     /* 0x0B5 */ u8 unk_0B5; // isDrawn
     /* 0x0B6 */ s16 unk_0B6; // yawTowardsPlayer
-    /* 0x0B8 */ UNK_TYPE1 unk_0B8[0xC];
-    /* 0x0C4 */ f32 unk_0C4;
-    /* 0x0C8 */ f32 unk_0C8;
-    /* 0x0CC */ f32 unk_0CC;
-    /* 0x0D0 */ UNK_TYPE1 unk_0D0[0xC];
+    /* 0x0B8 */ f32 unk_0B8;
+    /* 0x0BC */ UNK_TYPE1 unk_0BC[0x8];
+    /* 0x0C4 */ CollisionCheck_Status unk_0C4;
     /* 0x0DC */ Vec3s unk_0DC;
     /* 0x0E4 */ f32 unk_0E4;
     /* 0x0E8 */ Actor_unk_0E8 unk_0E8;
@@ -98,14 +103,14 @@ typedef struct Actor {
     /* 0x109 */ s8 unk_109;
     /* 0x10A */ s8 unk_10A;
     /* 0x10B */ UNK_TYPE1 unk_10B[0x1];
-    /* 0x10C */ UNK_TYPE1 unk_10C[0x18];
+    /* 0x10C */ Vec3f feetPos[FOOT_MAX];
     /* 0x124 */ Vec3f unk_124; // projectedPos
     /* 0x130 */ f32 unk_130; // projectedW
     /* 0x134 */ f32 unk_134;
     /* 0x138 */ f32 unk_138;
     /* 0x13C */ f32 unk_13C;
     /* 0x140 */ f32 unk_140;
-    /* 0x144 */ UNK_TYPE1 unk_144[0x4];
+    /* 0x144 */ f32 unk_144;
     /* 0x148 */ u8 unk_148;
     /* 0x149 */ u8 unk_149;
     /* 0x14A */ UNK_TYPE1 unk_14A[0x2];
@@ -132,7 +137,7 @@ typedef struct ActorInfo {
     /* 0x00 */ ActorListEntry actorLists[ACTORCAT_MAX];
 } ActorInfo; // size = 0x44
 
-// void func_80056380_jp();
+void func_80056380_jp(void* arg0, void* arg1);
 // void projection_pos_set();
 void Actor_world_to_eye(Actor* actor, f32 arg1);
 void Actor_position_move(Actor* actor);
@@ -142,7 +147,7 @@ s32 Actor_player_look_direction_check(Actor* actor, s16 maxAngleDiff, struct Pla
 // void Actor_display_position_set();
 s32 Actor_data_bank_dma_end_check(Actor* actor, struct PlayState* play);
 void Shape_Info_init(Actor* actor, f32 arg1, Actor_unk_0E8 arg2, f32 arg3, f32 arg4);
-// void Actor_foot_shadow_pos_set();
+void Actor_foot_shadow_pos_set(Actor* actor, s32 limbIndex, s32 leftFootIndex, Vec3f* leftFootPos, s32 rightFootIndex, Vec3f* rightFootPos);
 void Actor_delete(Actor* actor);
 void Actor_ct(Actor* actor, struct PlayState* play);
 void Actor_dt(Actor* actor, struct PlayState* play);
