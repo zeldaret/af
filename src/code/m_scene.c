@@ -3,7 +3,9 @@
 //todo remove this
 #include "m_common_data.h"
 #include "TwoHeadArena.h"
-
+#include "m_lib.h"
+#include "m_submenu.h"
+#include "m_play.h"
 
 //   mSc_set_bank_status_after
 //   mSc_clear_bank_status
@@ -36,8 +38,7 @@
 //   goto_emu_game 
 //   return_emu_game 
 
-//todo: maybe _MAX is better than _COUNT?
-#define OBJECT_BANK_COUNT 73
+#define OBJECT_EXCHANGE_BANK_MAX 73
 
 typedef struct {
     /* 0x00 */ s16 id;
@@ -45,53 +46,60 @@ typedef struct {
     /* 0x08 */ s32 segment;
     /* 0x0C */ uintptr_t vrom;
     /* 0x10 */ size_t size;
-    /* 0x14 */ s32 unk14;
+    /* 0x14 */ UNK_TYPE unk14;
     /* 0x18 */ char pad18[0x1C];
     /* 0x34 */ OSMesgQueue unk34;
-    /* 0x4C */ void *unk4C;
+    /* 0x4C */ UNK_TYPE unk4C;
     /* 0x50 */ s16 unk50;
     /* 0x52 */ u8 unk52;
     /* 0x53 */ u8 unk53;
 } ObjectBank; // size = 0x54
+//better name might be status? 
 
 typedef struct {
-    /* 0x0000 */ ObjectBank bank[OBJECT_BANK_COUNT];
-    /* 0x17F4 */ s32 numberOfBanks;
-    /* 0x17F8 */ s32 unk17F8;
-    /* 0x17FC */ s32 unk17FC;
-    /* 0x1800 */ s32 unk1800;
-    /* 0x1804 */ u32 unk1804;
-    /* 0x1808 */ s32 unk1808;
-    /* 0x180C */ s32 unk180C;
-    /* 0x1810 */ u32 unk1810;
-    /* 0x1814 */ s32 unk1814;
-    /* 0x1818 */ s32 unk1818;
-    /* 0x181C */ s32 unk181C;
-    /* 0x1820 */ s32 unk1820;
-} ObjectExchange; // size = 
+    /* 0x0000 */ ObjectBank status[OBJECT_EXCHANGE_BANK_MAX];
+    /* 0x17F4 */ s32 num; 
+    /* 0x17F8 */ UNK_TYPE unk17F8;
+    /* 0x17FC */ UNK_TYPE unk17FC;
+    /* 0x1800 */ UNK_TYPE unk1800; // start pointers
+    /* 0x1804 */ UNK_TYPE unk1804; // end pointers
+    /* 0x1808 */ UNK_TYPE unk1808; // start pointers
+    /* 0x180C */ UNK_TYPE unk180C; // start pointers
+    /* 0x1810 */ UNK_TYPE unk1810; // end pointers
+    /* 0x1814 */ UNK_TYPE unk1814; // end pointers
+    /* 0x1818 */ UNK_TYPE unk1818;
+    /* 0x181C */ UNK_TYPE unk181C;
+    /* 0x1820 */ UNK_TYPE unk1820;
+} ObjectExchange; // size = 0x1824
+//better name objectexchangebank
 
 typedef struct {
     /* 0x0000 */ char unk0;
 } DoorInfo;
 
+typedef struct {
+    /* 0x0000 */ char unk0;
+    //object_bank
+} SceneInfo;
+
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C59B0_jp.s")
 s32 func_800C59B0_jp(ObjectExchange *objectExchange)
 {
-    ObjectBank *bank = &objectExchange->bank[objectExchange->unk17FC];
+    ObjectBank *status = &objectExchange->status[objectExchange->unk17FC];
     s32 ret = -1;
     s32 bankIndex = objectExchange->unk17FC;
     
-    if (bankIndex < OBJECT_BANK_COUNT)
+    if (bankIndex < OBJECT_EXCHANGE_BANK_MAX)
     {
         do {
-            if (bank->id == 0)
+            if (status->id == 0)
             {
                 ret = bankIndex;
                 break;
             }
-            bank++;
+            status++;
             bankIndex++;
-        } while (bankIndex != OBJECT_BANK_COUNT);
+        } while (bankIndex != OBJECT_EXCHANGE_BANK_MAX);
     }
   return ret;
 }
@@ -142,8 +150,8 @@ s32 func_800C5AA0_jp(void*, void*, s16);            /* extern */
 s32 func_800C5B74_jp(ObjectExchange* objectExchange, s16 id) {
     s32 ret = 0;
 
-    if (objectExchange->numberOfBanks < OBJECT_BANK_COUNT) {
-        ObjectBank* objectBank = &objectExchange->bank[objectExchange->numberOfBanks];
+    if (objectExchange->num < OBJECT_EXCHANGE_BANK_MAX) {
+        ObjectBank* objectBank = &objectExchange->status[objectExchange->num];
 
         if (func_800C5AA0_jp(objectBank, objectExchange, id) == 1)
         {
@@ -152,7 +160,7 @@ s32 func_800C5B74_jp(ObjectExchange* objectExchange, s16 id) {
             func_80026E10_jp((void*)objectBank->segment, objectBank->vrom, objectBank->size, "../m_scene.c", 317);
             func_800C5B30_jp(objectBank);
             objectBank->unk50 = 1;
-            objectExchange->numberOfBanks++;
+            objectExchange->num++;
             ret = 1;
         }
     }
@@ -184,10 +192,10 @@ void func_800C5C30_jp(s32 arg0)
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C5CC4_jp.s")
 u32 func_800C5CC4_jp(ObjectExchange* objectExchange, s16 id, s32 size) {
-    ObjectBank* objectBank = &objectExchange->bank[objectExchange->numberOfBanks];
+    ObjectBank* objectBank = &objectExchange->status[objectExchange->num];
     u32 var_a3 = 0;
     
-    if (objectExchange->numberOfBanks < OBJECT_BANK_COUNT) {
+    if (objectExchange->num < OBJECT_EXCHANGE_BANK_MAX) {
         var_a3 = (objectExchange->unk1800 + size + 0xF) & ~0xF;
         if (var_a3 >= objectExchange->unk1804) {
             var_a3 = 0;
@@ -200,7 +208,7 @@ u32 func_800C5CC4_jp(ObjectExchange* objectExchange, s16 id, s32 size) {
             objectBank->unk50 = 0;
             objectBank->unk53 = 3;
             objectExchange->unk1800 = var_a3;
-            objectExchange->numberOfBanks++;
+            objectExchange->num++;
         }
     }
     return var_a3;
@@ -218,7 +226,7 @@ u32 func_800C5CC4_jp(ObjectExchange* objectExchange, s16 id, s32 size) {
 //     var_v1 = temp_v0;
 //     if (common_data.unk10001 == 0) {
 //         temp_a2 = objectExchange->unk17FC;
-//         var_a1 = &objectExchange->bank[temp_a2];
+//         var_a1 = &objectExchange->status[temp_a2];
 //         var_v1 = (s32) (temp_v0 + 1) % 2;
 //         var_a3 = temp_a2;
 //         if (temp_a2 < 0x49) {
@@ -228,7 +236,7 @@ u32 func_800C5CC4_jp(ObjectExchange* objectExchange, s16 id, s32 size) {
 //                 var_v1 = temp_v0;
 //             } else {
 //                 var_a1++;
-//                 if (var_a3 != OBJECT_BANK_COUNT) {
+//                 if (var_a3 != OBJECT_EXCHANGE_BANK_MAX) {
 //                     goto loop_3;
 //                 }
 //             }
@@ -241,16 +249,16 @@ u32 func_800C5CC4_jp(ObjectExchange* objectExchange, s16 id, s32 size) {
 void func_800C5E10_jp(ObjectExchange *objectExchange) {
     s32 temp_s3 = objectExchange->unk181C;
     s32 var_s1 = objectExchange->unk17FC;
-    ObjectBank* objectBank = &objectExchange->bank[objectExchange->unk17FC];
+    ObjectBank* objectBank = &objectExchange->status[objectExchange->unk17FC];
     
-    if (var_s1 < OBJECT_BANK_COUNT) {
+    if (var_s1 < OBJECT_EXCHANGE_BANK_MAX) {
         do {
             if ((objectBank->id != 0) && (temp_s3 == objectBank->unk52)) {
                 func_800C5B5C_jp(objectBank);
                 objectBank++;
             }
             var_s1++;
-        } while (var_s1 != OBJECT_BANK_COUNT);
+        } while (var_s1 != OBJECT_EXCHANGE_BANK_MAX);
     }
 }
 
@@ -307,36 +315,36 @@ s32 func_800C5F0C_jp(ObjectBank* objectBank, ObjectExchange* objectExchange) {
 //     var_s2 = 0;
 //     do
 //     {
-//         if ((var_s2 >= arg0->unk17FC) && (var_s0->bank[0].id != 0) && (arg0->unk181C != var_s0->bank[0].unk52))
+//         if ((var_s2 >= arg0->unk17FC) && (var_s0->status[0].id != 0) && (arg0->unk181C != var_s0->status[0].unk52))
 //         {
-//             if (var_s0->bank[0].unk50 != 0)
+//             if (var_s0->status[0].unk50 != 0)
 //             {
-//                 if (var_s0->bank[0].unk53 != 2)
+//                 if (var_s0->status[0].unk53 != 2)
 //                 {
-//                     func_800C5F0C_jp(var_s0->bank, arg0);
+//                     func_800C5F0C_jp(var_s0->status, arg0);
 //                 }
 //             }
-//             else if (var_s0->bank[0].unk53 == 0)
+//             else if (var_s0->status[0].unk53 == 0)
 //             {
-//                 func_800C5B5C_jp(var_s0->bank);
+//                 func_800C5B5C_jp(var_s0->status);
 //             }
 //         }
-//         temp_v0 = var_s0->bank[0].unk53;
+//         temp_v0 = var_s0->status[0].unk53;
 //         switch (temp_v0)                            /* irregular */
 //         {
 //         case 1:
-//             temp_s1 = &var_s0->bank[0].unk34;
-//             if (var_s0->bank[0].unk14 == 0)
+//             temp_s1 = &var_s0->status[0].unk34;
+//             if (var_s0->status[0].unk14 == 0)
 //             {
-//                 osCreateMesgQueue(temp_s1, &var_s0->bank[0].unk4C, 1);
-//                 func_80026DCC_jp(&var_s0->bank[0].unk14, var_s0->bank[0].segment, var_s0->bank[0].vrom, var_s0->bank[0].size, 0, temp_s1, 0, "../m_scene.c", 0x265);
-//                 var_s0->bank[0].unk53 = 2;
+//                 osCreateMesgQueue(temp_s1, &var_s0->status[0].unk4C, 1);
+//                 func_80026DCC_jp(&var_s0->status[0].unk14, var_s0->status[0].segment, var_s0->status[0].vrom, var_s0->status[0].size, 0, temp_s1, 0, "../m_scene.c", 0x265);
+//                 var_s0->status[0].unk53 = 2;
 //             }
 //             break;
 //         case 2:
-//             if (osRecvMesg(&var_s0->bank[0].unk34, NULL, 0) == 0)
+//             if (osRecvMesg(&var_s0->status[0].unk34, NULL, 0) == 0)
 //             {
-//                 func_800C5B30_jp(var_s0->bank);
+//                 func_800C5B30_jp(var_s0->status);
 //             }
 //             break;
 //         }
@@ -357,7 +365,7 @@ s32 func_800C6144_jp(ObjectExchange* objectExchange, s16 arg1)
 
     if (temp_v0 != -1)
     {
-        ObjectBank* temp_a0 = &objectExchange->bank[temp_v0];
+        ObjectBank* temp_a0 = &objectExchange->status[temp_v0];
         
         if (func_800C5AA0_jp(temp_a0, objectExchange, arg1) == 1)
         {
@@ -407,7 +415,7 @@ typedef struct {
 //             func_800C6144_jp(temp_s0, *var_s1);
 //             var_s2 += 1;
 //             var_s1 += 2;
-//             temp_s0->numberOfBanks += 1;
+//             temp_s0->num += 1;
 //         } while (var_s2 < arg0->unk1EA7);
 //     // }
 //     temp_s0_2 = arg0 + 0x110;
@@ -431,7 +439,7 @@ typedef struct {
 //         temp_s0_2->unk1810 = temp_a0_2;
 //         temp_s0_2->unk1814 = temp_a0_2;
 //     }
-//     temp_s0_2->unk17FC = temp_s0_2->numberOfBanks;
+//     temp_s0_2->unk17FC = temp_s0_2->num;
 // }
 
 
@@ -468,37 +476,34 @@ typedef struct {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C639C_jp.s")
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C65E4_jp.s")
-extern s32 B_801458B0_jp;
+extern s32 B_801458B0_jp; // this is gsegments[4]
 
-typedef struct {
-    /* 0x00 */ char pad0[0x78];
-    /* 0x78 */ TwoHeadArena tha;
-} unkStruct2; // size = 0x54
-
-void func_800C65E4_jp(s32 arg0, ObjectExchange *arg1)
+//mSc_data_bank_ct
+void func_800C65E4_jp(PlayState* play, ObjectExchange *objectExchange)
 {
     s32 temp_v0;
     u32 temp_v1;
 
-    bzero(arg1, 0x1824);
-    arg1->unk17F8 = -1;
-    arg1->unk17FC = -1;
-    temp_v0 = THA_alloc16(arg0 + 0x78, 0x93400);
+    bzero(objectExchange, 0x1824);
+    objectExchange->unk17F8 = -1;
+    objectExchange->unk17FC = -1;
+    temp_v0 = THA_alloc16(&play->state.heap, 0x93400);
     temp_v1 = temp_v0 + 0x93400;
-    arg1->unk1800 = temp_v0;
-    arg1->unk1808 = temp_v0;
-    arg1->unk180C = temp_v0;
-    arg1->unk1804 = temp_v1;
-    arg1->unk1810 = temp_v1;
-    arg1->unk1814 = temp_v1;
-    func_800C5B74_jp(arg1, 3);
-    B_801458B0_jp = OS_PHYSICAL_TO_K0(arg1->bank[0].unk4);
+    objectExchange->unk1800 = temp_v0;
+    objectExchange->unk1808 = temp_v0;
+    objectExchange->unk180C = temp_v0;
+    objectExchange->unk1804 = temp_v1;
+    objectExchange->unk1810 = temp_v1;
+    objectExchange->unk1814 = temp_v1;
+    func_800C5B74_jp(objectExchange, 3); //gameplay_keep object 3
+    B_801458B0_jp = OS_PHYSICAL_TO_K0(objectExchange->status[0].unk4); 
 }
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C6678_jp.s")
+//mSc_decide_exchange_bank
 void func_800C6678_jp(ObjectExchange *objectExchange)
 {
-    objectExchange->unk17F8 = objectExchange->numberOfBanks;
+    objectExchange->unk17F8 = objectExchange->num;
     objectExchange->unk1818 = objectExchange->unk1800;
 }
 
@@ -528,7 +533,6 @@ void func_800C6678_jp(ObjectExchange *objectExchange)
 //     func_800C6690_jp(0x1B, 0xD01F);
 //     func_800C6690_jp(0x22, 0xD06A);
 // }
-
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C6960_jp.s")
 

@@ -1,5 +1,5 @@
-#ifndef C_6E80C0_H
-#define C_6E80C0_H
+#ifndef M_SUBMENU_H
+#define M_SUBMENU_H
 
 #include "ultra64.h"
 
@@ -40,7 +40,7 @@
 // void func_800C5798_jp();
 // void func_800C582C_jp();
 // void func_800C58B4_jp();
-// void func_800C592C_jp();
+void func_800C592C_jp();
 // void func_800C5960_jp();
 // void func_800C5984_jp();
 

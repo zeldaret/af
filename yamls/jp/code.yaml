@@ -67,7 +67,7 @@
       - [0x6E30B0, asm, code/6E30B0]
       - [0x6E6C90, asm, code/m_start_data_init]
       - [0x6E7AD0, asm, code/6E7AD0]
-      - [0x6E80C0, asm, code/6E80C0]
+      - [0x6E80C0, asm, code/m_submenu]
       - [0x6E9650, c, code/m_scene]
       - [0x6EAB20, asm, code/m_skin_matrix]
       - [0x6EC430, asm, code/m_snowman]
