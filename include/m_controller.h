@@ -35,7 +35,7 @@ struct GameState;
 
 void mCon_ct(struct GameState* gameState);
 void mCon_dt(struct GameState* gameState);
-void mCon_calc(Controller* /*controller*/, f32 x, f32 y);
+void mCon_calc(Controller* controller, f32 x, f32 y);
 void mCon_main(struct GameState* game);
 s32 chkButton(u16 mask);
 u16 getButton(void);

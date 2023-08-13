@@ -41,7 +41,7 @@ void mCon_calc(Controller* controller, f32 x, f32 y) {
             }
 
             controller->moveAngle = theta;
-            { s32 temp; }
+            { s32 requiredScopeTemp; }
             controller->moveX = check_percent_abs(x, STICK_MIN, STICK_MAX, STICK_UNCORRECTED_SCALE, 0);
             controller->moveY = check_percent_abs(y, STICK_MIN, STICK_MAX, STICK_UNCORRECTED_SCALE, 0);
             controller->moveR = check_percent_abs(r, STICK_MIN, STICK_MAX, STICK_UNCORRECTED_SCALE, 0);
