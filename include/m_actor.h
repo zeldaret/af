@@ -60,11 +60,11 @@ typedef struct PosRot {
 } PosRot; // size = 0x14
 
 typedef struct Actor {
-    /* 0x000 */ s16 id;
-    /* 0x002 */ u8 category;
+    /* 0x000 */ s16 id; // name?
+    /* 0x002 */ u8 category; // part?
     /* 0x003 */ u8 unk_003;
     /* 0x004 */ u16 unk_004;
-    /* 0x006 */ u16 unk_006;
+    /* 0x006 */ u16 fgName;
     /* 0x008 */ s8 unk_008;
     /* 0x008 */ s8 unk_009;
     /* 0x008 */ s16 unk_00A;
@@ -165,9 +165,9 @@ Actor* Actor_info_part_delete(ActorInfo* actorInfo, Actor* actor);
 void Actor_free_overlay_area(struct ActorOverlay* overlayEntry);
 void actor_free_check(struct ActorOverlay* overlayEntry, u16 arg1);
 void Actor_get_overlay_area(struct ActorOverlay* overlayEntry, const struct struct_801161E8_jp* arg1, size_t overlaySize);
-// void func_80057940_jp();
-s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct PlayState* play, u16 arg4);
-s32 func_80057B70_jp(s32* arg0, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct PlayState* play, u16 arg4);
+s32 func_80057940_jp(ActorProfile** profileP, struct ActorOverlay* overlayEntry, const struct struct_801161E8_jp* arg2, size_t overlaySize, u16 arg4);
+s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct PlayState* play, u16 fgName);
+s32 func_80057B70_jp(s32* arg0, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct PlayState* play, u16 fgName);
 UNK_RET Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct PlayState* play, u16 arg4);
 s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, struct ActorOverlay* overlayEntry, const struct struct_801161E8_jp*, u16);
 void Actor_init_actor_class(Actor* actor, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct PlayState* play, s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 argB, s8 argC, s16 argD, u16 argE, s16 params);
@@ -178,10 +178,10 @@ void restore_fgdata_one(Actor* actor, struct PlayState* play);
 void restore_fgdata_all(struct PlayState* play);
 void Actor_info_save_actor(struct PlayState* play);
 Actor* Actor_info_delete(ActorInfo* actorInfo, Actor* actor, struct PlayState* play);
-// void Actor_info_name_search_sub();
-// void Actor_info_name_search();
-// void Actor_info_fgName_search_sub();
-// void Actor_info_fgName_search();
+Actor* Actor_info_name_search_sub(Actor* actor, s16 arg1);
+Actor* Actor_info_name_search(ActorInfo* actorInfo, s16 arg1, ActorType cat);
+Actor* Actor_info_fgName_search_sub(Actor* actor, u16 fgName);
+Actor* Actor_info_fgName_search(ActorInfo* actorInfo, u16 fgName, ActorType cat);
 // void Part_Break_init();
 // void HiliteReflect_new();
 // void HiliteReflect_init();

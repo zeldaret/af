@@ -216,7 +216,7 @@ void Actor_display_position_set(s32 arg1, s16* arg2, s16* arg3) {
 s32 Actor_data_bank_dma_end_check(Actor* actor, PlayState* play) {
     s32 var_v1;
 
-    switch ((actor->unk_006 & 0xF000) >> 0xC) {
+    switch ((actor->fgName & 0xF000) >> 0xC) {
         case 0xD:
         case 0xE:
             var_v1 = common_data.unk_1004C->unk_F4(play->unk_0110, actor);
@@ -276,7 +276,7 @@ void Actor_ct(Actor* actor, PlayState* play) {
     if (actor->category == ACTORCAT_NPC) {
         npc = (Npc*)actor;
 
-        common_data.unk_1004C->unk_14(&sp34, npc->actor.unk_006);
+        common_data.unk_1004C->unk_14(&sp34, npc->actor.fgName);
         npc->unk_708 = mSc_bank_regist_check(temp_a0, sp34.unk_02);
         temp_a0[npc->unk_708].unk_50++;
     }
@@ -334,7 +334,7 @@ void Actor_dt(Actor* actor, PlayState* play) {
         actor->unk_14C->unk_150 = NULL;
     }
 
-    switch ((actor->unk_006 & 0xF000) >> 0xC) {
+    switch ((actor->fgName & 0xF000) >> 0xC) {
         case 0xD:
         case 0xE:
             common_data.unk_1004C->unk_F0(&play->unk_0110, actor);
@@ -438,7 +438,7 @@ void Actor_cull_check(Actor* actor) {
 }
 
 void Actor_delete_check(Actor* actor, PlayState* play) {
-    if ((actor->flags & (0x40 | 0x20 | 0x10)) || (actor->unk_006 == 0)) {
+    if ((actor->flags & (0x40 | 0x20 | 0x10)) || (actor->fgName == 0)) {
         return;
     }
 
@@ -724,9 +724,9 @@ void Actor_free_overlay_area(ActorOverlay* overlayEntry) {
     }
 }
 
-void actor_free_check(ActorOverlay* overlayEntry, u16 arg1) {
+void actor_free_check(ActorOverlay* overlayEntry, u16 fgName) {
     if ((overlayEntry->numLoaded == 0) && (overlayEntry->loadedRamAddr != NULL)) {
-        switch ((arg1 & 0xF000) >> 0xC) {
+        switch ((fgName & 0xF000) >> 0xC) {
             case 0xD:
             case 0xE:
                 common_data.unk_1004C->unk_08();
@@ -829,7 +829,7 @@ s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntr
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/func_80057A8C_jp.s")
 #endif
 
-s32 func_80057B70_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play, u16 arg4) {
+s32 func_80057B70_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play, u16 fgName) {
     s32 pad UNUSED;
     s32 ret = 1;
 
@@ -837,30 +837,30 @@ s32 func_80057B70_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntr
 
     if (*arg0 == -1) {
         func_800C6144_jp(play->unk_0110, profile->unk_0A);
-        actor_free_check(overlayEntry, arg4);
+        actor_free_check(overlayEntry, fgName);
         ret = 0;
     }
 
     return ret;
 }
 
-s32 Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play, u16 arg4) {
+s32 Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play, u16 fgName) {
     s32 var_v1 = 1;
 
     if (*arg0 == -1) {
         if (profile->type == ACTORCAT_NPC) {
-            var_v1 = func_80057A8C_jp(arg0, profile, overlayEntry, play, arg4);
+            var_v1 = func_80057A8C_jp(arg0, profile, overlayEntry, play, fgName);
         } else {
-            var_v1 = func_80057B70_jp(arg0, profile, overlayEntry, play, arg4);
+            var_v1 = func_80057B70_jp(arg0, profile, overlayEntry, play, fgName);
         }
     }
     return var_v1;
 }
 
-s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay* overlayEntry, const struct_801161E8_jp* arg3, u16 arg4) {
+s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay* overlayEntry, const struct_801161E8_jp* arg3, u16 fgName) {
     CommonData_unk_1004C_unk_14_arg0 sp24;
 
-    switch ((arg4 & 0xF000) >> 0xC) {
+    switch ((fgName & 0xF000) >> 0xC) {
         case 0xD:
         case 0xE:
             *actorP = common_data.unk_1004C->unk_0C(profile->instanceSize, arg3, 1);
@@ -868,7 +868,7 @@ s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay
             //! FAKE
             if ((profile != NULL) && (profile != NULL) && (profile != NULL)) {}
 
-            common_data.unk_1004C->unk_14(&sp24, arg4);
+            common_data.unk_1004C->unk_14(&sp24, fgName);
             break;
 
         case 0x5:
@@ -881,13 +881,13 @@ s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay
     }
 
     if (*actorP == NULL) {
-        actor_free_check(overlayEntry, arg4);
+        actor_free_check(overlayEntry, fgName);
         return 0;
     }
     return 1;
 }
 
-void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play, s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 argB, s8 argC, s16 argD, u16 argE, s16 params) {
+void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play, s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 argB, s8 argC, s16 argD, u16 fgName, s16 params) {
     mem_clear(actor, profile->instanceSize, 0);
 
     actor->overlayEntry = overlayEntry;
@@ -917,13 +917,13 @@ void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* o
     actor->unk_008 = argB;
     actor->unk_009 = argC;
     actor->unk_00A = argD;
-    actor->unk_006 = argE;
+    actor->fgName = fgName;
 }
 
-Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 arg9, s8 argA, s16 argB, u16 argC, s16 params, s8 argE, s32 argF) {
-    u16 *new_var = &argC;
+Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 arg9, s8 argA, s16 argB, u16 fgName, s16 params, s8 argE, s32 argF) {
+    u16 *new_var = &fgName;
     Actor* sp68;
-    ActorProfile* profile; // sp64
+    ActorProfile* profile;
     ActorOverlay* temp_s0 = &actor_dlftbls[actorId];
     size_t size = (uintptr_t)temp_s0->vramEnd - (uintptr_t)temp_s0->vramStart;
 
@@ -934,15 +934,15 @@ Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId,
     if (func_80057940_jp(&profile, temp_s0, &RO_801161E8_jp, size, *new_var) == 0) {
         return NULL;
     }
-    if (Actor_data_bank_regist_check(&argF, profile, temp_s0, play, argC) == 0) {
+    if (Actor_data_bank_regist_check(&argF, profile, temp_s0, play, fgName) == 0) {
         return NULL;
     }
-    if (Actor_malloc_actor_class(&sp68, profile, temp_s0, &RO_801161E8_jp,  argC) == 0) {
+    if (Actor_malloc_actor_class(&sp68, profile, temp_s0, &RO_801161E8_jp,  fgName) == 0) {
         return NULL;
     }
 
     temp_s0->numLoaded++;
-    Actor_init_actor_class(sp68, profile, temp_s0, play, argF, x, y, z, rotX, rotY, rotZ, arg9, argA, argB, argC, params);
+    Actor_init_actor_class(sp68, profile, temp_s0, play, argF, x, y, z, rotX, rotY, rotZ, arg9, argA, argB, fgName, params);
 
     Actor_info_part_new(actorInfo, sp68, profile->type);
 
@@ -959,8 +959,8 @@ Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId,
     return sp68;
 }
 
-Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, PlayState* play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s16 argA, u16 argB, s16 params, s32 argD) {
-    Actor* temp_v0 = Actor_info_make_actor(actorInfo, play, actorId, x, y, z, rotX, rotY, rotZ, -1, -1, argA, argB, params, -1, argD);
+Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, PlayState* play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s16 argA, u16 fgName, s16 params, s32 argD) {
+    Actor* temp_v0 = Actor_info_make_actor(actorInfo, play, actorId, x, y, z, rotX, rotY, rotZ, -1, -1, argA, fgName, params, -1, argD);
 
     if (temp_v0 != NULL) {
         arg1->unk_150 = temp_v0;
@@ -973,7 +973,7 @@ Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, PlayState*
 void restore_fgdata(Actor* actor, PlayState* play UNUSED) {
     Vec3f sp34;
 
-    if ((actor->unk_006 == 0) || (actor->unk_00A != -1)) {
+    if ((actor->fgName == 0) || (actor->unk_00A != -1)) {
         return;
     }
 
@@ -981,16 +981,16 @@ void restore_fgdata(Actor* actor, PlayState* play UNUSED) {
         return;
     }
 
-    switch ((actor->unk_006 & 0xF000) >> 0xC) {
+    switch ((actor->fgName & 0xF000) >> 0xC) {
         case 8:
             xyz_t_move(&sp34, &actor->home.pos);
             if (func_8008B3E8_jp(&sp34, 0) == 1) {
-                mFI_SetFG_common(actor->unk_006, sp34, 0);
+                mFI_SetFG_common(actor->fgName, sp34, 0);
             }
             break;
 
         default:
-            mFI_SetFG_common(actor->unk_006, actor->home.pos, 0);
+            mFI_SetFG_common(actor->fgName, actor->home.pos, 0);
             break;
     }
 }
@@ -1046,7 +1046,7 @@ Actor* Actor_info_delete(ActorInfo* actorInfo, Actor* actor, PlayState* play) {
     Actor* newHead;
     s32 pad UNUSED;
     ActorOverlay* overlayEntry;
-    s32 sp20 = actor->unk_006;
+    s32 fgName = actor->fgName;
 
     overlayEntry = actor->overlayEntry;
 
@@ -1055,7 +1055,7 @@ Actor* Actor_info_delete(ActorInfo* actorInfo, Actor* actor, PlayState* play) {
 
     newHead = Actor_info_part_delete(actorInfo, actor);
 
-    switch ((sp20 & 0xF000) >> 0xC) {
+    switch ((fgName & 0xF000) >> 0xC) {
         case 0xD:
         case 0xE:
             common_data.unk_1004C->unk_10(actor);
@@ -1072,83 +1072,48 @@ Actor* Actor_info_delete(ActorInfo* actorInfo, Actor* actor, PlayState* play) {
 
     if (overlayEntry->vramStart != NULL) {
         overlayEntry->numLoaded--;
-        actor_free_check(overlayEntry, actor->unk_006);
+        actor_free_check(overlayEntry, actor->fgName);
     }
 
     return newHead;
 }
 
-#if 0
-void* Actor_info_name_search_sub(void* arg0, s16 arg1) {
-    void* var_a0;
-
-    var_a0 = arg0;
-    if (var_a0 != NULL) {
-loop_1:
-        if (arg1 != var_a0->unk_0) {
-            var_a0 = var_a0->unk_158;
-            if (var_a0 != NULL) {
-                goto loop_1;
-            }
+Actor* Actor_info_name_search_sub(Actor* actor, s16 id) {
+    for (; actor != NULL; actor = actor->unk_158) {
+        if (id == actor->id) {
+            break;
         }
     }
-    return var_a0;
+    return actor;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_name_search_sub.s")
-#endif
 
-#if 0
-void* Actor_info_name_search(s32 arg0, s16 arg1, s32 arg2) {
-    void* temp_a3;
-    void* var_v0;
+Actor* Actor_info_name_search(ActorInfo* actorInfo, s16 id, ActorType cat) {
+    Actor* head = actorInfo->actorLists[cat].head;
 
-    temp_a3 = (arg0 + (arg2 * 8))->unk_8;
-    var_v0 = NULL;
-    if (temp_a3 != NULL) {
-        var_v0 = Actor_info_name_search_sub(temp_a3, arg1, temp_a3);
+    if (head != NULL) {
+        return Actor_info_name_search_sub(head, id);
     }
-    return var_v0;
+    return NULL;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_name_search.s")
-#endif
 
-#if 0
-void* Actor_info_fgName_search_sub(void* arg0, s32 arg1) {
-    void* var_a0;
-
-    var_a0 = arg0;
-    if (var_a0 != NULL) {
-loop_1:
-        if ((arg1 & 0xFFFF) != var_a0->unk_6) {
-            var_a0 = var_a0->unk_158;
-            if (var_a0 != NULL) {
-                goto loop_1;
-            }
+Actor* Actor_info_fgName_search_sub(Actor* actor, u16 fgName) {
+    for (; actor != NULL; actor = actor->unk_158) {
+        if (actor->fgName == fgName) {
+            break;
         }
     }
-    return var_a0;
+
+    return actor;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_fgName_search_sub.s")
-#endif
 
-#if 0
-void* Actor_info_fgName_search(s32 arg0, s32 arg1, s32 arg2) {
-    void* temp_a3;
-    void* var_v0;
+Actor* Actor_info_fgName_search(ActorInfo* actorInfo, u16 fgName, ActorType cat) {
+    Actor* head = actorInfo->actorLists[cat].head;
 
-    temp_a3 = (arg0 + (arg2 * 8))->unk_8;
-    var_v0 = NULL;
-    if (temp_a3 != NULL) {
-        var_v0 = Actor_info_fgName_search_sub(temp_a3, arg1 & 0xFFFF, temp_a3);
+    if (head != NULL) {
+        return Actor_info_fgName_search_sub(head, fgName);
     }
-    return var_v0;
+    return NULL;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_fgName_search.s")
-#endif
 
 #if 0
 void Part_Break_init(void* arg0, s32 arg1, ? arg2) {

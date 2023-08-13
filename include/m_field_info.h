@@ -94,7 +94,7 @@ struct PlayState;
 // void func_8008A74C_jp();
 // void func_8008A81C_jp();
 // void func_8008A960_jp();
-UNK_TYPE mFI_SetFG_common(u16 arg0, Vec3f arg1, s32 arg2);
+UNK_TYPE mFI_SetFG_common(u16 fgName, Vec3f arg1, s32 arg2);
 // void func_8008AA98_jp();
 // void func_8008AB14_jp();
 // void func_8008AC74_jp();
