@@ -5,6 +5,7 @@
 #include "segment_symbols.h"
 #include "stack.h"
 #include "libu64/stackcheck.h"
+#include "m_nmi_buf.h"
 
 STACK(sIdleStack, 0x400);
 StackEntry sIdleStackInfo;
@@ -32,11 +33,11 @@ void bootproc(void) {
     osMemSize = 0x400000; // 4MB
     osInitialize();
 
-    if (osAppNMIBuffer[15] & 4) {
-        osAppNMIBuffer[15] &= ~4;
-        osAppNMIBuffer[15] |= 2;
+    if (APPNMI_RESETEXEMPT2_GET()) {
+        APPNMI_RESETEXEMPT2_CLR();
+        APPNMI_RESETEXEMPT_SET();
     } else {
-        osAppNMIBuffer[15] &= ~2;
+        APPNMI_RESETEXEMPT_CLR();
     }
 
     osUnmapTLBAll();
