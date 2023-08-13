@@ -65,7 +65,7 @@
 // void func_800D2334_jp();
 // void func_800D2354_jp();
 // void func_800D2360_jp();
-// void func_800D236C_jp();
+// void sAdo_RoomType();
 // void func_800D2394_jp();
 // void func_800D23B4_jp();
 // void func_800D2438_jp();

@@ -211,9 +211,9 @@ func_80803F48_jp = 0x80803F48; // type:func
 func_8080407C_jp = 0x8080407C; // type:func
 func_80804138_jp = 0x80804138; // type:func
 func_808041A4_jp = 0x808041A4; // type:func
-func_808041C4_jp = 0x808041C4; // type:func
-func_80804240_jp = 0x80804240; // type:func
-func_80804288_jp = 0x80804288; // type:func
+Gameplay_Scene_Init = 0x808041C4; // type:func
+mPl_SceneNo2SoundRoomType = 0x80804240; // type:func
+Gameplay_Scene_Read = 0x80804288; // type:func
 
 // .data
 

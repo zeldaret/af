@@ -170,24 +170,18 @@ void Actor_world_to_eye(Actor* actor, f32 arg1) {
     actor->eye.rot.z = actor->world.rot.z;
 }
 
-#ifdef NON_MATCHING
-// missing useless instruction
 void Actor_position_move(Actor* actor) {
-    PlayState* play = (PlayState *)gamePT;
+    Kankyo* kankyo = &((PlayState *)gamePT)->kankyo;
     f32 speedRate;
-    // UNK_TYPE* unk_1B98 = &play->unk_1B98;
 
     speedRate = game_GameFrame_2F;
 
-    play->unk_1C58(actor);
+    kankyo->unk_C0(actor);
 
     actor->world.pos.x += actor->unk_068 * speedRate + actor->unk_0C4;
     actor->world.pos.y += actor->unk_06C * speedRate + actor->unk_0C8;
     actor->world.pos.z += actor->unk_070 * speedRate + actor->unk_0CC;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_position_move.s")
-#endif
 
 void Actor_position_speed_set(Actor* actor) {
     actor->unk_068 = sin_s(actor->world.rot.y) * actor->unk_074;

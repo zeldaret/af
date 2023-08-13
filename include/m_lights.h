@@ -20,7 +20,7 @@ struct PlayState;
 // void func_8009B884_jp();
 // void func_8009B954_jp();
 // void func_8009B9E0_jp();
-// void func_8009BA28_jp();
+// void Global_light_ct();
 // void func_8009BA94_jp();
 // void func_8009BAC0_jp();
 // void Global_light_read();

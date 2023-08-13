@@ -4,6 +4,7 @@
 #include "ultra64.h"
 #include "game.h"
 #include "m_actor.h"
+#include "m_kankyo.h"
 #include "unknown_structs.h"
 #include "unk.h"
 
@@ -27,10 +28,7 @@ typedef struct PlayState {
     /* 0x0164 */ UNK_TYPE1 unk_0164[0x17A8];
     /* 0x190C */ s32 unk_190C;
     /* 0x1910 */ UNK_TYPE1 unk_1910[0x288];
-    /* 0x1B98 */ UNK_TYPE unk_1B98;
-    /* 0x1B9C */ UNK_TYPE1 unk_1B9C[0xBC];
-    /* 0x1C58 */ PlayState_unk_1C58 unk_1C58;
-    /* 0x1C5C */ UNK_TYPE1 unk_1C5C[0x4];
+    /* 0x1B98 */ Kankyo kankyo;
     /* 0x1C60 */ UNK_TYPE4 unk_1C60;
     /* 0x1C64 */ UNK_TYPE1 unk_1C64[0x14];
     /* 0x1C78 */ ActorInfo actorInfo;

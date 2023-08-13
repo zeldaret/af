@@ -9,16 +9,16 @@
 // void func_80096B4C_jp();
 // void func_80096B64_jp();
 // void func_80096BF0_jp();
-// void func_80096C90_jp();
+// void mEnv_regist_nature();
 // void func_80096CA0_jp();
 // void func_80096CDC_jp();
 // void func_80096D60_jp();
 // void func_80096F5C_jp();
 // void func_80097048_jp();
-// void func_800970D4_jp();
-// void func_80097108_jp();
+// void mEnv_RoomTypeLightSet();
+// void Global_kankyo_ct();
 // void func_800971B4_jp();
-// void func_80097510_jp();
+// void mEnv_set_time();
 // void func_800976BC_jp();
 // void func_80097738_jp();
 // void func_800978EC_jp();
@@ -61,7 +61,7 @@
 // void mEnv_GetShadowPrimColor_Light();
 // void func_80099718_jp();
 // void func_80099728_jp();
-// void func_80099770_jp();
+// void mEnv_MakeWindowLightAlpha();
 // void func_800998AC_jp();
 
 #endif
