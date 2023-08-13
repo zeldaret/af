@@ -56,7 +56,7 @@ void Actor_world_to_eye(Actor* actor, f32 arg1) {
 }
 
 void Actor_position_move(Actor* actor) {
-    Kankyo* kankyo = &((PlayState *)gamePT)->kankyo;
+    Kankyo* kankyo = &((PlayState*)gamePT)->kankyo;
     f32 speedRate;
 
     speedRate = game_GameFrame_2F;
@@ -129,7 +129,8 @@ void Shape_Info_init(Actor* actor, f32 arg1, Shape_Info_unk_0C arg2, f32 arg3, f
     actor->shape.unk_2D = 0;
 }
 
-void Actor_foot_shadow_pos_set(Actor* actor, s32 limbIndex, s32 leftFootIndex, Vec3f* leftFootPos, s32 rightFootIndex, Vec3f* rightFootPos) {
+void Actor_foot_shadow_pos_set(Actor* actor, s32 limbIndex, s32 leftFootIndex, Vec3f* leftFootPos, s32 rightFootIndex,
+                               Vec3f* rightFootPos) {
     if (limbIndex == leftFootIndex) {
         Matrix_Position(leftFootPos, &actor->shape.feetPos[FOOT_LEFT]);
     } else if (limbIndex == rightFootIndex) {
@@ -221,9 +222,8 @@ void Actor_dt(Actor* actor, PlayState* play) {
         actor->parent->child = NULL;
     }
 
-
     temp_v0_6 = play->unk_0110;
-    if (0) { }
+    if (0) {}
 
     switch ((actor->fgName & 0xF000) >> 0xC) {
         case 0xD:
@@ -263,7 +263,8 @@ void Actor_draw(PlayState* play, Actor* actor) {
     LightsN_list_check(temp_a0, play->lightCtx.unk_0, (actor->flags & ACTOR_FLAG_400000) ? NULL : &actor->world.pos);
 
     LightsN_disp(temp_a0, play->state.gfxCtx);
-    Matrix_softcv3_load(actor->world.pos.x, actor->world.pos.y + (actor->shape.unk_08 * actor->scale.y), actor->world.pos.z, &actor->shape.rot);
+    Matrix_softcv3_load(actor->world.pos.x, actor->world.pos.y + (actor->shape.unk_08 * actor->scale.y),
+                        actor->world.pos.z, &actor->shape.rot);
     Matrix_scale(actor->scale.x, actor->scale.y, actor->scale.z, MTXMODE_APPLY);
 
     temp_a0_2 = play->unk_0110[actor->unk_026].segment;
@@ -366,27 +367,32 @@ void Actor_info_ct(PlayState* play2, ActorInfo* actorInfo, ActorEntry* actorEntr
     }
 
     if (common_data.unk_107B6 != 0xC9) {
-        Actor_info_make_actor(actorInfo, play, common_data.unk_107B6, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1, -1, -1);
+        Actor_info_make_actor(actorInfo, play, common_data.unk_107B6, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1, -1,
+                              -1);
     }
     common_data.unk_107B6 = 0xC9;
 
 label:
 
-    temp_v0 = Actor_info_make_actor(actorInfo, play, actorEntry->id, actorEntry->pos.x, actorEntry->pos.y, actorEntry->pos.z, actorEntry->rot.x, actorEntry->rot.y, actorEntry->rot.z, -1, -1, -1, 0, actorEntry->params, -1, -1);
+    temp_v0 = Actor_info_make_actor(actorInfo, play, actorEntry->id, actorEntry->pos.x, actorEntry->pos.y,
+                                    actorEntry->pos.z, actorEntry->rot.x, actorEntry->rot.y, actorEntry->rot.z, -1, -1,
+                                    -1, 0, actorEntry->params, -1, -1);
     if (temp_v0 != NULL) {
         temp_v0->world.pos.y = mCoBG_GetBgY_OnlyCenter_FromWpos2(temp_v0->world.pos, 0.0f);
         mFI_SetBearActor(play, temp_v0->world.pos, 0);
     }
 
     if (common_data.unk_1014E != 0) {
-        Actor_info_make_actor(actorInfo, play, common_data.unk_1014E, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1, -1, -1);
+        Actor_info_make_actor(actorInfo, play, common_data.unk_1014E, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1, -1,
+                              -1);
     }
 
     if (play->unk_1EA6 != 0) {
         var_s0 = play->unk_1EB0;
 
         for (var_s1 = 0; var_s1 < play->unk_1EA6; var_s1++) {
-            Actor_info_make_actor(&play->actorInfo, play, *var_s0, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1, -1, -1);
+            Actor_info_make_actor(&play->actorInfo, play, *var_s0, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1, -1,
+                                  -1);
             var_s0 += 1;
         }
         play->unk_1EA6 = 0;
@@ -397,7 +403,9 @@ label:
     if (play->unk_1EA5 != 0) {
         var_s0_2 = play->unk_1EAC;
         for (var_s1 = 0; var_s1 < play->unk_1EA5; var_s1++) {
-            Actor_info_make_actor(&play->actorInfo, play, var_s0_2->id, var_s0_2->pos.x, var_s0_2->pos.y, var_s0_2->pos.z, var_s0_2->rot.x, var_s0_2->rot.y, var_s0_2->rot.z, -1, -1, -1, 0, var_s0_2->params, -1, -1);
+            Actor_info_make_actor(&play->actorInfo, play, var_s0_2->id, var_s0_2->pos.x, var_s0_2->pos.y,
+                                  var_s0_2->pos.z, var_s0_2->rot.x, var_s0_2->rot.y, var_s0_2->rot.z, -1, -1, -1, 0,
+                                  var_s0_2->params, -1, -1);
             var_s0_2 += 1;
         }
         play->unk_1EA5 = 0;
@@ -614,7 +622,8 @@ void Actor_get_overlay_area(ActorOverlay* overlayEntry, const struct_801161E8_jp
     }
 }
 
-s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const struct_801161E8_jp* arg2, size_t overlaySize, u16 arg4) {
+s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const struct_801161E8_jp* arg2,
+                     size_t overlaySize, u16 arg4) {
     if (overlayEntry->vramStart == NULL) {
         *profileP = overlayEntry->profile;
     } else {
@@ -644,11 +653,16 @@ s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const 
                 return 0;
             }
 
-            ovlmgr_Load((void* ) overlayEntry->vromStart, (s32) overlayEntry->vromEnd, overlayEntry->vramStart, overlayEntry->vramEnd, overlayEntry->loadedRamAddr);
+            ovlmgr_Load((void*)overlayEntry->vromStart, (s32)overlayEntry->vromEnd, overlayEntry->vramStart,
+                        overlayEntry->vramEnd, overlayEntry->loadedRamAddr);
             overlayEntry->numLoaded = 0;
         }
 
-        *profileP = (void*)(uintptr_t) ( (overlayEntry->profile != NULL) ? (void*) ((uintptr_t)overlayEntry->profile - (intptr_t)((uintptr_t)overlayEntry->vramStart - (uintptr_t)overlayEntry->loadedRamAddr)) : NULL );
+        *profileP = (void*)(uintptr_t)((overlayEntry->profile != NULL)
+                                           ? (void*)((uintptr_t)overlayEntry->profile -
+                                                     (intptr_t)((uintptr_t)overlayEntry->vramStart -
+                                                                (uintptr_t)overlayEntry->loadedRamAddr))
+                                           : NULL);
     }
 
     return 1;
@@ -705,7 +719,8 @@ s32 func_80057B70_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntr
     return ret;
 }
 
-s32 Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play, u16 fgName) {
+s32 Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play,
+                                 u16 fgName) {
     s32 var_v1 = 1;
 
     if (*arg0 == -1) {
@@ -718,7 +733,8 @@ s32 Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, ActorOverlay*
     return var_v1;
 }
 
-s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay* overlayEntry, const struct_801161E8_jp* arg3, u16 fgName) {
+s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay* overlayEntry,
+                             const struct_801161E8_jp* arg3, u16 fgName) {
     CommonData_unk_1004C_unk_14_arg0 sp24;
 
     switch (ACTOR_FGNAME_GET_F000(fgName)) {
@@ -748,7 +764,9 @@ s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay
     return 1;
 }
 
-void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play, s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 argB, s8 argC, s16 argD, u16 fgName, s16 params) {
+void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play, s32 arg4,
+                            f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 argB, s8 argC, s16 argD, u16 fgName,
+                            s16 params) {
     mem_clear(actor, profile->instanceSize, 0);
 
     actor->overlayEntry = overlayEntry;
@@ -790,8 +808,10 @@ extern const struct_801161E8_jp RO_801161E8_jp;
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/RO_801161E8_jp.s")
 #endif
 
-Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 arg9, s8 argA, s16 argB, u16 fgName, s16 params, s8 argE, s32 argF) {
-    u16 *new_var = &fgName;
+Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX,
+                             s16 rotY, s16 rotZ, s8 arg9, s8 argA, s16 argB, u16 fgName, s16 params, s8 argE,
+                             s32 argF) {
+    u16* new_var = &fgName;
     Actor* sp68;
     ActorProfile* profile;
     ActorOverlay* temp_s0 = &actor_dlftbls[actorId];
@@ -807,12 +827,13 @@ Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId,
     if (Actor_data_bank_regist_check(&argF, profile, temp_s0, play, fgName) == 0) {
         return NULL;
     }
-    if (Actor_malloc_actor_class(&sp68, profile, temp_s0, &RO_801161E8_jp,  fgName) == 0) {
+    if (Actor_malloc_actor_class(&sp68, profile, temp_s0, &RO_801161E8_jp, fgName) == 0) {
         return NULL;
     }
 
     temp_s0->numLoaded++;
-    Actor_init_actor_class(sp68, profile, temp_s0, play, argF, x, y, z, rotX, rotY, rotZ, arg9, argA, argB, fgName, params);
+    Actor_init_actor_class(sp68, profile, temp_s0, play, argF, x, y, z, rotX, rotY, rotZ, arg9, argA, argB, fgName,
+                           params);
 
     Actor_info_part_new(actorInfo, sp68, profile->part);
 
@@ -829,8 +850,10 @@ Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId,
     return sp68;
 }
 
-Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, PlayState* play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s16 argA, u16 fgName, s16 params, s32 argD) {
-    Actor* temp_v0 = Actor_info_make_actor(actorInfo, play, actorId, x, y, z, rotX, rotY, rotZ, -1, -1, argA, fgName, params, -1, argD);
+Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, PlayState* play, s16 actorId, f32 x, f32 y, f32 z,
+                                   s16 rotX, s16 rotY, s16 rotZ, s16 argA, u16 fgName, s16 params, s32 argD) {
+    Actor* temp_v0 = Actor_info_make_actor(actorInfo, play, actorId, x, y, z, rotX, rotY, rotZ, -1, -1, argA, fgName,
+                                           params, -1, argD);
 
     if (temp_v0 != NULL) {
         arg1->child = temp_v0;
