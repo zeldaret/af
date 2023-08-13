@@ -56,7 +56,7 @@ typedef struct GameState {
     /* 0x9C */ UNK_TYPE1 unk_9C[0x3];
     /* 0x9F */ u8 running;
     /* 0xA0 */ s32 unk_A0;
-    /* 0xA4 */ UNK_TYPE1 unk_A4;
+    /* 0xA4 */ UNK_TYPE1 unk_A4[0x4];
     /* 0xA8 */ Controller controller;
 } GameState; // size = 0xE0
 

@@ -4,10 +4,10 @@
 #include "m_lib.h"
 #include "sys_math_atan.h"
 
-void mCon_ct(GameState* arg0) {
+void mCon_ct(GameState* game) {
 }
 
-void mCon_dt(GameState* arg0) {
+void mCon_dt(GameState* game) {
 }
 
 void mCon_calc(Controller* controller, f32 x, f32 y) {
@@ -65,7 +65,7 @@ s32 chkButton(u16 mask) {
     if (mEv_CheckTitleDemo() > 0) {
         return 0;
     } else {
-        return mask == (gamePT->input[0].cur.button & mask);
+        return mask == CONTROLLER1(gamePT)->cur.button & mask;
     }
 }
 
@@ -73,7 +73,7 @@ u16 getButton(void) {
     if (mEv_CheckTitleDemo() > 0) {
         return 0;
     } else {
-        return gamePT->input[0].cur.button;
+        return CONTROLLER1(gamePT)->cur.button;
     }
 }
 
@@ -81,7 +81,7 @@ s32 chkTrigger(u16 mask) {
     if (mEv_CheckTitleDemo() > 0) {
         return 0;
     } else {
-        return mask == (gamePT->input[0].press.button & mask);
+        return mask == CONTROLLER1(gamePT)->press.button & mask;
     }
 }
 
@@ -89,7 +89,7 @@ u16 getTrigger(void) {
     if (mEv_CheckTitleDemo() > 0) {
         return 0;
     } else {
-        return gamePT->input[0].press.button;
+        return CONTROLLER1(gamePT)->press.button;
     }
 }
 
@@ -97,7 +97,7 @@ s32 getJoystick_X(void) {
     if (mEv_CheckTitleDemo() > 0) {
         return 0;
     } else {
-        return gamePT->input[0].cur.stick_x;
+        return CONTROLLER1(gamePT)->cur.stick_x;
     }
 }
 
@@ -105,6 +105,6 @@ s32 getJoystick_Y(void) {
     if (mEv_CheckTitleDemo() > 0) {
         return 0;
     } else {
-        return gamePT->input[0].cur.stick_y;
+        return CONTROLLER1(gamePT)->cur.stick_y;
     }
 }

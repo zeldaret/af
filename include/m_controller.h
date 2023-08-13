@@ -29,7 +29,7 @@ typedef struct Controller {
     /* 0x2C */ f32 lastAdjustedX;
     /* 0x30 */ f32 lastAdjustedY;
     /* 0x34 */ f32 lastAdjustedR;
-} Controller;
+} Controller; // size = 0x38
 
 struct GameState;
 
