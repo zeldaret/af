@@ -11,6 +11,7 @@ struct PlayState;
 struct ActorEntry;
 struct ActorOverlay;
 struct struct_801161E8_jp;
+struct Lights;
 
 typedef enum AllocType {
     /* 0 */ ALLOCTYPE_NORMAL,
@@ -30,14 +31,22 @@ typedef enum ActorPart {
     /* 8 */ ACTOR_PART_MAX
 } ActorPart;
 
-typedef enum {
+typedef enum ActorFootIndex {
     /* 0 */ FOOT_LEFT,
     /* 1 */ FOOT_RIGHT,
     /* 2 */ FOOT_MAX
 } ActorFootIndex;
 
+// TODO: figure out if those values make sense as an enum or if they should be changed to defines
+typedef enum FgNameF000 {
+    /* 0x0 */ FGNAME_F000_0 = 0x0,
+    /* 0x5 */ FGNAME_F000_5 = 0x5,
+    /* 0x8 */ FGNAME_F000_8 = 0x8,
+    /* 0xD */ FGNAME_F000_D = 0xD,
+    /* 0xE */ FGNAME_F000_E
+} FgNameF000;
+
 typedef void (*ActorFunc)(struct Actor* this, struct PlayState* play);
-typedef UNK_RET (*Actor_unk_0E8)();
 
 // a.k.a. ActorInit
 typedef struct ActorProfile {
@@ -59,24 +68,25 @@ typedef struct PosRot {
     /* 0x0C */ Vec3s rot;
 } PosRot; // size = 0x14
 
+typedef void (*Shape_Info_unk_0C)(struct Actor*, struct Lights*, struct PlayState*);
+
 typedef struct Shape_Info {
-    /* 0x00 */ Vec3s unk_0DC;
-    /* 0x0DC */ 
-    /* 0x0E4 */ f32 unk_0E4;
-    /* 0x0E8 */ Actor_unk_0E8 unk_0E8;
-    /* 0x0EC */ f32 unk_0EC;
-    /* 0x0F0 */ f32 unk_0F0;
-    /* 0x0F4 */ f32 unk_0F4;
-    /* 0x0F8 */ f32 unk_0F8;
-    /* 0x0FC */ s32 unk_0FC;
-    /* 0x100 */ Vec3f *unk_100; // maybe PosRot*
-    /* 0x104 */ s32 unk_104;
-    /* 0x108 */ s8 unk_108;
-    /* 0x109 */ s8 unk_109;
-    /* 0x10A */ s8 unk_10A;
-    /* 0x10B */ UNK_TYPE1 unk_10B[0x1];
-    /* 0x10C */ Vec3f feetPos[FOOT_MAX];
-} Shape_Info;
+    /* 0x00 */ Vec3s rot;
+    /* 0x08 */ f32 unk_08;
+    /* 0x0C */ Shape_Info_unk_0C unk_0C;
+    /* 0x10 */ f32 unk_10;
+    /* 0x14 */ f32 unk_14;
+    /* 0x18 */ f32 unk_18;
+    /* 0x1C */ f32 unk_1C;
+    /* 0x20 */ s32 unk_20;
+    /* 0x24 */ Vec3f *unk_24; // maybe PosRot*
+    /* 0x28 */ s32 unk_28;
+    /* 0x2C */ s8 unk_2C;
+    /* 0x2D */ s8 unk_2D;
+    /* 0x2E */ s8 unk_2E;
+    /* 0x2F */ UNK_TYPE1 unk_2F[0x1];
+    /* 0x30 */ Vec3f feetPos[FOOT_MAX];
+} Shape_Info; // size = 0x48
 
 typedef struct Actor {
     /* 0x000 */ s16 name; // id
@@ -97,21 +107,21 @@ typedef struct Actor {
     /* 0x05C */ Vec3f scale;
     /* 0x068 */ Vec3f velocity;
     /* 0x074 */ f32 speed;
-    /* 0x078 */ f32 unk_078;
-    /* 0x07C */ f32 unk_07C;
+    /* 0x078 */ f32 gravity;
+    /* 0x07C */ f32 terminalVelocity;
     /* 0x080 */ UNK_TYPE1 unk_080[0x34];
     /* 0x0B4 */ UNK_TYPE1 unk_0B4[0x1];
-    /* 0x0B5 */ u8 unk_0B5; // isDrawn
-    /* 0x0B6 */ s16 unk_0B6; // yawTowardsPlayer
-    /* 0x0B8 */ f32 unk_0B8;
-    /* 0x0BC */ f32 unk_0BC;
-    /* 0x0C0 */ f32 unk_0C0;
+    /* 0x0B5 */ u8 isDrawn;
+    /* 0x0B6 */ s16 yawTowardsPlayer;
+    /* 0x0B8 */ f32 xyzDistToPlayerSq;
+    /* 0x0BC */ f32 xzDistToPlayer;
+    /* 0x0C0 */ f32 playerHeightRel;
     /* 0x0C4 */ CollisionCheck_Status colStatus; // made-up name
     /* 0x0DC */ Shape_Info shape;
-    /* 0x124 */ Vec3f unk_124; // projectedPos
-    /* 0x130 */ f32 unk_130; // projectedW
-    /* 0x134 */ f32 unk_134;
-    /* 0x138 */ f32 unk_138;
+    /* 0x124 */ Vec3f projectedPos;
+    /* 0x130 */ f32 projectedW;
+    /* 0x134 */ f32 uncullZoneScale;
+    /* 0x138 */ f32 uncullZoneDownward;
     /* 0x13C */ f32 unk_13C;
     /* 0x140 */ f32 unk_140;
     /* 0x144 */ f32 unk_144;
@@ -206,6 +216,8 @@ typedef struct ActorInfo {
 // 
 #define ACTOR_FLAG_80000000      (1 << 31)
 
+#define ACTOR_FGNAME_GET_F000(fgName) (((fgName) & 0xF000) >> 12)
+
 void func_80056380_jp(void* arg0, void* arg1);
 void projection_pos_set(struct PlayState* play, Vec3f* worldPos, Vec3f* projectedPos, f32* invW);
 void Actor_world_to_eye(Actor* actor, f32 arg1);
@@ -215,7 +227,7 @@ void Actor_position_moveF(Actor* actor);
 s32 Actor_player_look_direction_check(Actor* actor, s16 maxAngleDiff, struct PlayState* play);
 void Actor_display_position_set(struct PlayState* play, Actor* actor, s16* x, s16* y);
 s32 Actor_data_bank_dma_end_check(Actor* actor, struct PlayState* play);
-void Shape_Info_init(Actor* actor, f32 arg1, Actor_unk_0E8 arg2, f32 arg3, f32 arg4);
+void Shape_Info_init(Actor* actor, f32 arg1, Shape_Info_unk_0C arg2, f32 arg3, f32 arg4);
 void Actor_foot_shadow_pos_set(Actor* actor, s32 limbIndex, s32 leftFootIndex, Vec3f* leftFootPos, s32 rightFootIndex, Vec3f* rightFootPos);
 void Actor_delete(Actor* actor);
 void Actor_ct(Actor* actor, struct PlayState* play);

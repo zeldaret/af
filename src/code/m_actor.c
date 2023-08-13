@@ -72,7 +72,7 @@ void Actor_position_speed_set(Actor* actor) {
     actor->velocity.x = sin_s(actor->world.rot.y) * actor->speed;
     actor->velocity.z = cos_s(actor->world.rot.y) * actor->speed;
 
-    chase_f(&actor->velocity.y, actor->unk_07C, actor->unk_078);
+    chase_f(&actor->velocity.y, actor->terminalVelocity, actor->gravity);
 }
 
 void Actor_position_moveF(Actor* actor) {
@@ -81,7 +81,7 @@ void Actor_position_moveF(Actor* actor) {
 }
 
 s32 Actor_player_look_direction_check(Actor* actor, s16 maxAngleDiff, PlayState* play) {
-    s16 yawDiff = BINANG_ROT180(actor->unk_0B6) - get_player_actor_withoutCheck(play)->actor.shape.unk_0DC.y;
+    s16 yawDiff = BINANG_ROT180(actor->yawTowardsPlayer) - get_player_actor_withoutCheck(play)->actor.shape.rot.y;
 
     return ABS(yawDiff) < maxAngleDiff;
 }
@@ -100,9 +100,9 @@ void Actor_display_position_set(PlayState* play, Actor* actor, s16* x, s16* y) {
 s32 Actor_data_bank_dma_end_check(Actor* actor, PlayState* play) {
     s32 var_v1;
 
-    switch ((actor->fgName & 0xF000) >> 0xC) {
-        case 0xD:
-        case 0xE:
+    switch (ACTOR_FGNAME_GET_F000(actor->fgName)) {
+        case FGNAME_F000_D:
+        case FGNAME_F000_E:
             var_v1 = common_data.unk_1004C->unk_F4(play->unk_0110, actor);
             break;
 
@@ -114,19 +114,19 @@ s32 Actor_data_bank_dma_end_check(Actor* actor, PlayState* play) {
     return var_v1;
 }
 
-void Shape_Info_init(Actor* actor, f32 arg1, Actor_unk_0E8 arg2, f32 arg3, f32 arg4) {
-    actor->shape.unk_0E4 = arg1;
-    actor->shape.unk_0E8 = arg2;
-    actor->shape.unk_0EC = arg3;
-    actor->shape.unk_0F0 = arg4;
-    actor->shape.unk_108 = 1;
-    actor->shape.unk_0FC = 0;
-    actor->shape.unk_0F4 = 1.0f;
-    actor->shape.unk_0F8 = 1.0f;
-    actor->shape.unk_10A = 0;
-    actor->shape.unk_100 = &actor->world.pos;
-    actor->shape.unk_104 = -1;
-    actor->shape.unk_109 = 0;
+void Shape_Info_init(Actor* actor, f32 arg1, Shape_Info_unk_0C arg2, f32 arg3, f32 arg4) {
+    actor->shape.unk_08 = arg1;
+    actor->shape.unk_0C = arg2;
+    actor->shape.unk_10 = arg3;
+    actor->shape.unk_14 = arg4;
+    actor->shape.unk_2C = 1;
+    actor->shape.unk_20 = 0;
+    actor->shape.unk_18 = 1.0f;
+    actor->shape.unk_1C = 1.0f;
+    actor->shape.unk_2E = 0;
+    actor->shape.unk_24 = &actor->world.pos;
+    actor->shape.unk_28 = -1;
+    actor->shape.unk_2D = 0;
 }
 
 void Actor_foot_shadow_pos_set(Actor* actor, s32 limbIndex, s32 leftFootIndex, Vec3f* leftFootPos, s32 rightFootIndex, Vec3f* rightFootPos) {
@@ -166,7 +166,7 @@ void Actor_ct(Actor* actor, PlayState* play) {
     }
 
     actor->world = actor->home;
-    actor->shape.unk_0DC = actor->world.rot;
+    actor->shape.rot = actor->world.rot;
 
     Actor_world_to_eye(actor, 0.0f);
     xyz_t_move(&actor->prevPos, &actor->world.pos);
@@ -175,14 +175,14 @@ void Actor_ct(Actor* actor, PlayState* play) {
     actor->scale.y = 0.01f;
     actor->scale.z = 0.01f;
 
-    actor->unk_07C = -20.0f;
-    actor->unk_0B8 = FLT_MAX;
+    actor->terminalVelocity = -20.0f;
+    actor->xyzDistToPlayerSq = FLT_MAX;
 
-    actor->unk_134 = 350.0f;
-    actor->unk_138 = 700.0f;
+    actor->uncullZoneScale = 350.0f;
+    actor->uncullZoneDownward = 700.0f;
 
-    actor->shape.unk_0F4 = 1.0f;
-    actor->shape.unk_0F8 = 1.0f;
+    actor->shape.unk_18 = 1.0f;
+    actor->shape.unk_1C = 1.0f;
 
     actor->unk_13C = 1000.0f;
     actor->unk_140 = 350.0f;
@@ -249,25 +249,21 @@ void Actor_dt(Actor* actor, PlayState* play) {
 #endif
 
 #ifdef NON_EQUIVALENT
-UNK_TYPE4 Global_light_read(UNK_TYPE4*, struct GraphicsContext*);
-// ? LightsN_disp(UNK_TYPE4, struct GraphicsContext*);       /* extern */
-void func_8009B884_jp(UNK_TYPE4, UNK_TYPE4, Vec3f*);              /* extern */
-
 void Actor_draw(PlayState* play, Actor* actor) {
     FaultClient sp48;
-    UNK_TYPE4 temp_a0; // sp44
+    Lights* temp_a0; // sp44
     s32 temp_a0_2;
 
     Fault_AddClient(&sp48, func_80056380_jp, actor, "Actor_draw");
 
     OPEN_DISPS(play->state.gfxCtx);
 
-    temp_a0 = Global_light_read(&play->unk_1910[0x350], play->state.gfxCtx);
+    temp_a0 = Global_light_read(&play->lightCtx, play->state.gfxCtx);
 
-    func_8009B884_jp(temp_a0, play->unk_1C60, (actor->flags & ACTOR_FLAG_400000) ? NULL : &actor->world.pos);
+    LightsN_list_check(temp_a0, play->lightCtx.unk_0, (actor->flags & ACTOR_FLAG_400000) ? NULL : &actor->world.pos);
 
     LightsN_disp(temp_a0, play->state.gfxCtx);
-    Matrix_softcv3_load(actor->world.pos.x, actor->world.pos.y + (actor->shape.unk_0E4 * actor->scale.y), actor->world.pos.z, &actor->shape.unk_0DC);
+    Matrix_softcv3_load(actor->world.pos.x, actor->world.pos.y + (actor->shape.unk_08 * actor->scale.y), actor->world.pos.z, &actor->shape.rot);
     Matrix_scale(actor->scale.x, actor->scale.y, actor->scale.z, MTXMODE_APPLY);
 
     temp_a0_2 = play->unk_0110[actor->unk_026].segment;
@@ -280,8 +276,8 @@ void Actor_draw(PlayState* play, Actor* actor) {
 
     actor->draw(actor, play);
 
-    if (actor->shape.unk_0E8 != NULL) {
-        actor->shape.unk_0E8(actor, temp_a0, play);
+    if (actor->shape.unk_0C != NULL) {
+        actor->shape.unk_0C(actor, temp_a0, play);
     }
 
     CLOSE_DISPS(play->state.gfxCtx);
@@ -293,7 +289,7 @@ void Actor_draw(PlayState* play, Actor* actor) {
 #endif
 
 s32 Actor_draw_actor_no_culling_check(Actor* actor) {
-    return Actor_draw_actor_no_culling_check2(actor, &actor->unk_124, actor->unk_130);
+    return Actor_draw_actor_no_culling_check2(actor, &actor->projectedPos, actor->projectedW);
 }
 
 s32 Actor_draw_actor_no_culling_check2(Actor* actor, Vec3f* arg1, f32 arg2) {
@@ -308,8 +304,8 @@ s32 Actor_draw_actor_no_culling_check2(Actor* actor, Vec3f* arg1, f32 arg2) {
             var_fa1 = 1.0f / arg2;
         }
 
-        if (((fabsf(arg1->x) - actor->unk_134) * var_fa1) < 1.0f) {
-            if (((arg1->y + actor->unk_138) * var_fa1) > -1.0f) {
+        if (((fabsf(arg1->x) - actor->uncullZoneScale) * var_fa1) < 1.0f) {
+            if (((arg1->y + actor->uncullZoneDownward) * var_fa1) > -1.0f) {
                 if (((arg1->y - actor->unk_140) * var_fa1) < 1.0f) {
                     ret = 1;
                 }
@@ -459,7 +455,7 @@ void Actor_info_call_actor(PlayState* play, ActorInfo* actorInfo) {
                 play->state.unk_9D = 0x9B;
                 next = actor->next;
             } else if (actor->update == NULL) {
-                if (actor->unk_0B5 == 0) {
+                if (!actor->isDrawn) {
                     play->state.unk_9D = 0x9C;
                     next = Actor_info_delete(&play->actorInfo, actor, play);
                     play->state.unk_9D = 0x9D;
@@ -473,11 +469,11 @@ void Actor_info_call_actor(PlayState* play, ActorInfo* actorInfo) {
                 play->state.unk_9D = 0xA0;
                 xyz_t_move(&actor->prevPos, &actor->world.pos);
 
-                actor->unk_0BC = search_position_distanceXZ(&actor->world.pos, &player->actor.world.pos);
-                actor->unk_0C0 = player->actor.world.pos.y - actor->world.pos.y;
+                actor->xzDistToPlayer = search_position_distanceXZ(&actor->world.pos, &player->actor.world.pos);
+                actor->playerHeightRel = player->actor.world.pos.y - actor->world.pos.y;
 
-                actor->unk_0B8 = SQ(actor->unk_0BC) + SQ(actor->unk_0C0);
-                actor->unk_0B6 = search_position_angleY(&actor->world.pos, &player->actor.world.pos);
+                actor->xyzDistToPlayerSq = SQ(actor->xzDistToPlayer) + SQ(actor->playerHeightRel);
+                actor->yawTowardsPlayer = search_position_angleY(&actor->world.pos, &player->actor.world.pos);
 
                 actor->flags &= ~ACTOR_FLAG_1000000;
                 if ((actor->flags & (ACTOR_FLAG_40 | ACTOR_FLAG_10)) || (actor->part == ACTOR_PART_NPC)) {
@@ -509,11 +505,11 @@ void Actor_info_draw_actor(PlayState* play, ActorInfo* actorInfo) {
         for (actor = actorEntry->head; actor != NULL; actor = actor->next) {
             s32 temp;
 
-            Skin_Matrix_PrjMulVector(&play->unk_1E1C, &actor->world.pos, &actor->unk_124, &actor->unk_130);
+            Skin_Matrix_PrjMulVector(&play->unk_1E1C, &actor->world.pos, &actor->projectedPos, &actor->projectedW);
             Actor_cull_check(actor);
 
             temp = temp_s4(actor, play);
-            actor->unk_0B5 = 0;
+            actor->isDrawn = false;
 
             if (temp != 0) {
                 continue;
@@ -526,7 +522,7 @@ void Actor_info_draw_actor(PlayState* play, ActorInfo* actorInfo) {
             if (actor->flags & (ACTOR_FLAG_40 | ACTOR_FLAG_20)) {
                 if (!(actor->flags & ACTOR_FLAG_80) && (actor->unk_148 == 0) && (actor->unk_149 == 0)) {
                     Actor_draw(play, actor);
-                    actor->unk_0B5 = 1;
+                    actor->isDrawn = true;
                 }
             } else {
                 Actor_delete_check(actor, play);
@@ -593,13 +589,13 @@ void Actor_free_overlay_area(ActorOverlay* overlayEntry) {
 
 void actor_free_check(ActorOverlay* overlayEntry, u16 fgName) {
     if ((overlayEntry->numLoaded == 0) && (overlayEntry->loadedRamAddr != NULL)) {
-        switch ((fgName & 0xF000) >> 0xC) {
-            case 0xD:
-            case 0xE:
+        switch (ACTOR_FGNAME_GET_F000(fgName)) {
+            case FGNAME_F000_D:
+            case FGNAME_F000_E:
                 common_data.unk_1004C->unk_08();
                 break;
 
-            case 0x5:
+            case FGNAME_F000_5:
                 common_data.unk_10098->unk_08();
                 break;
 
@@ -725,9 +721,9 @@ s32 Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, ActorOverlay*
 s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay* overlayEntry, const struct_801161E8_jp* arg3, u16 fgName) {
     CommonData_unk_1004C_unk_14_arg0 sp24;
 
-    switch ((fgName & 0xF000) >> 0xC) {
-        case 0xD:
-        case 0xE:
+    switch (ACTOR_FGNAME_GET_F000(fgName)) {
+        case FGNAME_F000_D:
+        case FGNAME_F000_E:
             *actorP = common_data.unk_1004C->unk_0C(profile->instanceSize, arg3, 1);
 
             //! FAKE
@@ -736,7 +732,7 @@ s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay
             common_data.unk_1004C->unk_14(&sp24, fgName);
             break;
 
-        case 0x5:
+        case FGNAME_F000_5:
             *actorP = common_data.unk_10098->unk_0C();
             break;
 
@@ -855,8 +851,8 @@ void restore_fgdata(Actor* actor, PlayState* play UNUSED) {
         return;
     }
 
-    switch ((actor->fgName & 0xF000) >> 0xC) {
-        case 8:
+    switch (ACTOR_FGNAME_GET_F000(actor->fgName)) {
+        case FGNAME_F000_8:
             xyz_t_move(&sp34, &actor->home.pos);
             if (func_8008B3E8_jp(&sp34, 0) == 1) {
                 mFI_SetFG_common(actor->fgName, sp34, 0);
@@ -940,13 +936,13 @@ Actor* Actor_info_delete(ActorInfo* actorInfo, Actor* actor, PlayState* play) {
 
     newHead = Actor_info_part_delete(actorInfo, actor);
 
-    switch ((fgName & 0xF000) >> 0xC) {
-        case 0xD:
-        case 0xE:
+    switch (ACTOR_FGNAME_GET_F000(fgName)) {
+        case FGNAME_F000_D:
+        case FGNAME_F000_E:
             common_data.unk_1004C->unk_10(actor);
             break;
 
-        case 5:
+        case FGNAME_F000_5:
             common_data.unk_10098->unk_10(actor);
             break;
 
