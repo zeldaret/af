@@ -7,7 +7,7 @@
 
 typedef struct PlayState {
     /* 0x00 */ GameState state;
-    /* 0xA4 */ UNK_TYPE1 unk_00[0x236C];
+    /* 0xE0 */ UNK_TYPE1 unk_00[0x2410 - 0xE0];
 } PlayState; // size = 0x2410
 
 void play_init(GameState *thisx);

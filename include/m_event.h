@@ -1,5 +1,5 @@
-#ifndef C_6A0DE0_H
-#define C_6A0DE0_H
+#ifndef M_EVENT_H
+#define M_EVENT_H
 
 #include "ultra64.h"
 
@@ -39,7 +39,7 @@
 // void func_8007D848_jp();
 // void func_8007D880_jp();
 // void func_8007D8D4_jp();
-// void mEv_CheckTitleDemo();
+s32 mEv_CheckTitleDemo(void);
 // void func_8007D91C_jp();
 // void func_8007D930_jp();
 // void func_8007D9C8_jp();
