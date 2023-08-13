@@ -58,7 +58,7 @@ typedef struct GameState {
     /* 0xA0 */ s32 unk_A0;
     /* 0xA4 */ UNK_TYPE1 unk_A4;
     /* 0xA8 */ Controller controller;
-} GameState; // size >= 0xA4, size <= 0xE0
+} GameState; // size = 0xE0
 
 void func_800D2E00_jp(GameState* gameState);
 void func_800D2E58_jp(u16 button, Gfx** gfxP);
