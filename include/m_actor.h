@@ -87,7 +87,8 @@ typedef struct Actor {
     /* 0x0B5 */ u8 unk_0B5; // isDrawn
     /* 0x0B6 */ s16 unk_0B6; // yawTowardsPlayer
     /* 0x0B8 */ f32 unk_0B8;
-    /* 0x0BC */ UNK_TYPE1 unk_0BC[0x8];
+    /* 0x0BC */ f32 unk_0BC;
+    /* 0x0C0 */ f32 unk_0C0;
     /* 0x0C4 */ CollisionCheck_Status unk_0C4;
     /* 0x0DC */ Vec3s unk_0DC;
     /* 0x0E4 */ f32 unk_0E4;
@@ -158,7 +159,7 @@ void Actor_cull_check(Actor* actor);
 void Actor_delete_check(Actor* actor, struct PlayState* play);
 void Actor_info_ct(struct PlayState *play, ActorInfo *actorInfo, struct ActorEntry *actorEntry);
 void Actor_info_dt(ActorInfo *actorInfo, struct PlayState *play);
-// void Actor_info_call_actor(struct PlayState *play, ??);
+void Actor_info_call_actor(struct PlayState *play, ActorInfo* actorInfo);
 void Actor_info_draw_actor(struct PlayState *play, ActorInfo *actorInfo);
 void Actor_info_part_new(ActorInfo* actorInfo, Actor* actor, u8 type);
 Actor* Actor_info_part_delete(ActorInfo* actorInfo, Actor* actor);

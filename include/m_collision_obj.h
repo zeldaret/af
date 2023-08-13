@@ -73,7 +73,7 @@ typedef struct CollisionCheck_Status {
 // void func_80078748_jp();
 // void func_800787E8_jp();
 void CollisionCheck_Status_ct(CollisionCheck_Status* status);
-// void CollisionCheck_Status_Clear();
+void CollisionCheck_Status_Clear(CollisionCheck_Status* status);
 // void CollisionCheck_Status_set3();
 // void CollisionCheck_Uty_ActorWorldPosSetPipeC();
 // void func_800789BC_jp();

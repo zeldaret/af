@@ -2,6 +2,7 @@
 #define M_LIB_H
 
 #include "ultra64.h"
+#include "z64math.h"
 
 // void mem_copy();
 s32 mem_clear(void* ptr, size_t size, u8 value);
@@ -28,9 +29,9 @@ void xyz_t_move(Vec3f* dst, Vec3f* src);
 // void xyz_t_mult_v();
 // void search_position_distance();
 // void search_position_distance2();
-// void search_position_distanceXZ();
+f32 search_position_distanceXZ(Vec3f* arg0, Vec3f* arg1);
 // void search_position_high();
-// void search_position_angleY();
+s16 search_position_angleY(Vec3f* arg0, Vec3f* arg1);
 // void search_position_angleX();
 // void ValueSet_process();
 // void ValueSet__s_char();

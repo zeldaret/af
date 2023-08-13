@@ -527,102 +527,76 @@ void Actor_info_dt(ActorInfo* actorInfo, PlayState* play) {
     actor_dlftbls_cleanup();
 }
 
-#if 0
-? CollisionCheck_Status_Clear(s8*);                 /* extern */
-? func_8008E5F4_jp(s32, f32, s32);                  /* extern */
-void* get_player_actor_withoutCheck(PlayState*);    /* extern */
-s16 search_position_angleY(PosRot*, void*);         /* extern */
-f32 search_position_distanceXZ(PosRot*, void*);     /* extern */
-extern ? gSegments;
+void Actor_info_call_actor(PlayState* play, ActorInfo* actorInfo) {
+    s32 pad[1] UNUSED;
+    ActorType cat;
+    Player* player;
 
-void Actor_info_call_actor(PlayState* arg0, void* arg1) {
-    s32 sp50;
-    void* sp4C;
-    Actor* var_s0;
-    Actor* var_v1;
-    PosRot* temp_s2;
-    f32 temp_fv0;
-    f32 temp_fv1;
-    s32 temp_t1;
-    u32 temp_t8;
-    void* temp_s3;
-    void* temp_v0;
+    player = get_player_actor_withoutCheck(play);
+    func_8008E5F4_jp(player->actor.world.pos);
 
-    temp_v0 = get_player_actor_withoutCheck(arg0);
-    func_8008E5F4_jp(subroutine_arg0, temp_v0->unk_2C, temp_v0->unk_30);
-    sp50 = 0;
-    sp4C = arg1;
-    do {
-        var_s0 = sp4C->unk_8;
-        if (var_s0 != NULL) {
-            do {
-                arg0->state.unk_9C[1] = 0x97;
-                arg0->state.unk_9C[0] = (s8) var_s0->id;
-                if (var_s0->world.pos.y < -25000.0f) {
-                    var_s0->world.pos.y = -25000.0f;
+    for (cat = 0; cat < ACTORCAT_MAX; cat++) {
+        Actor* actor;
+        Actor* next;
+
+        for (actor = actorInfo->actorLists[cat].head; actor != NULL; actor = next) {
+            play->state.unk_9C = actor->id;
+            play->state.unk_9D = 0x97;
+            if (actor->world.pos.y < -25000.0f) {
+                actor->world.pos.y = -25000.0f;
+            }
+
+            if (actor->init != NULL) {
+                if (Actor_data_bank_dma_end_check(actor, play) == 1) {
+                    gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(play->unk_0110[actor->unk_026].unk_04);
+                    play->state.unk_9D = 0x98;
+                    actor->init(actor, play);
+                    play->state.unk_9D = 0x99;
+                    actor->init = NULL;
                 }
-                if (var_s0->init != NULL) {
-                    if (Actor_data_bank_dma_end_check(var_s0, arg0) == 1) {
-                        gSegments.unk_18 = (void* ) (arg0->unk_0110[var_s0->unk_026].unk_04 + 0x80000000);
-                        arg0->state.unk_9C[1] = 0x98;
-                        var_s0->init(var_s0, arg0);
-                        arg0->state.unk_9C[1] = 0x99;
-                        var_s0->init = NULL;
-                    }
-                    goto block_18;
-                }
-                if (Actor_data_bank_dma_end_check(var_s0, arg0) == 0) {
-                    arg0->state.unk_9C[1] = 0x9A;
-                    Actor_delete(var_s0);
-                    arg0->state.unk_9C[1] = 0x9B;
-                    goto block_18;
-                }
-                temp_s2 = &var_s0->world;
-                if (var_s0->update == NULL) {
-                    if (var_s0->unk_0B5 == 0) {
-                        arg0->state.unk_9C[1] = 0x9C;
-                        var_v1 = Actor_info_delete(&arg0->actorInfo, var_s0, arg0);
-                        arg0->state.unk_9C[1] = 0x9D;
-                    } else {
-                        arg0->state.unk_9C[1] = 0x9E;
-                        Actor_dt(var_s0, arg0);
-                        arg0->state.unk_9C[1] = 0x9F;
-                        goto block_18;
-                    }
+                next = actor->unk_158;
+            } else if (Actor_data_bank_dma_end_check(actor, play) == 0) {
+                play->state.unk_9D = 0x9A;
+                Actor_delete(actor);
+                play->state.unk_9D = 0x9B;
+                next = actor->unk_158;
+            } else if (actor->update == NULL) {
+                if (actor->unk_0B5 == 0) {
+                    play->state.unk_9D = 0x9C;
+                    next = Actor_info_delete(&play->actorInfo, actor, play);
+                    play->state.unk_9D = 0x9D;
                 } else {
-                    arg0->state.unk_9C[1] = 0xA0;
-                    temp_s3 = temp_v0 + 0x28;
-                    xyz_t_move((Vec3f* ) var_s0->unk_03C, &temp_s2->pos);
-                    temp_fv0 = search_position_distanceXZ(temp_s2, temp_s3);
-                    var_s0->unk_BC = temp_fv0;
-                    var_s0->unk_C0 = (f32) (temp_v0->unk_2C - var_s0->world.pos.y);
-                    temp_fv1 = var_s0->unk_C0;
-                    var_s0->unk_B8 = (f32) ((temp_fv0 * temp_fv0) + (temp_fv1 * temp_fv1));
-                    temp_t8 = var_s0->flags & 0xFEFFFFFF;
-                    var_s0->unk_B6 = search_position_angleY(temp_s2, temp_s3);
-                    var_s0->flags = temp_t8;
-                    if ((temp_t8 & 0x50) || (var_s0->category == 3)) {
-                        gSegments.unk_18 = (void* ) (arg0->unk_0110[var_s0->unk_026].unk_04 + 0x80000000);
-                        arg0->state.unk_9C[1] = 0xA1;
-                        var_s0->update(var_s0, arg0);
-                        arg0->state.unk_9C[1] = 0xA2;
-                    }
-                    CollisionCheck_Status_Clear(&var_s0->unk_0B8[0xC]);
-block_18:
-                    var_v1 = var_s0->unk_158;
+                    play->state.unk_9D = 0x9E;
+                    Actor_dt(actor, play);
+                    play->state.unk_9D = 0x9F;
+                    next = actor->unk_158;
                 }
-                var_s0 = var_v1;
-            } while (var_v1 != NULL);
+            } else {
+                play->state.unk_9D = 0xA0;
+                xyz_t_move(&actor->unk_03C, &actor->world.pos);
+
+                actor->unk_0BC = search_position_distanceXZ(&actor->world.pos, &player->actor.world.pos);
+                actor->unk_0C0 = player->actor.world.pos.y - actor->world.pos.y;
+
+                actor->unk_0B8 = SQ(actor->unk_0BC) + SQ(actor->unk_0C0);
+                actor->unk_0B6 = search_position_angleY(&actor->world.pos, &player->actor.world.pos);
+
+                actor->flags &= ~0x1000000;
+                if ((actor->flags & 0x50) || (actor->category == ACTORCAT_NPC)) {
+                    gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(play->unk_0110[actor->unk_026].unk_04);
+                    play->state.unk_9D = 0xA1;
+                    actor->update(actor, play);
+                    play->state.unk_9D = 0xA2;
+                }
+
+                CollisionCheck_Status_Clear(&actor->unk_0C4);
+                next = actor->unk_158;
+            }
         }
-        temp_t1 = sp50 + 8;
-        sp4C += 8;
-        sp50 = temp_t1;
-    } while (temp_t1 != 0x40);
-    arg0->state.unk_9C[1] = 0xA3;
+    }
+
+    play->state.unk_9D = 0xA3;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_info_call_actor.s")
-#endif
 
 void Actor_info_draw_actor(PlayState* play, ActorInfo* actorInfo) {
     PlayState_unk_2208 temp_s4 = play->unk_2208;
@@ -944,7 +918,7 @@ Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId,
     mNpc_SetNpcinfo(sp68, argE);
 
     {
-        s32 temp_s0_2;
+        uintptr_t temp_s0_2;
 
         temp_s0_2 = gSegments[6];
         Actor_ct(sp68, play);

@@ -189,7 +189,7 @@ s32 func_8008B3E8_jp(Vec3f* arg0, UNK_TYPE arg1);
 // void func_8008DF04_jp();
 // void func_8008E058_jp();
 // void func_8008E514_jp();
-// void func_8008E5F4_jp();
+void func_8008E5F4_jp(Vec3f arg0);
 // void mFI_PrintNowBGNum();
 // void mFI_PrintFgAttr();
 // void func_8008E8E0_jp();
