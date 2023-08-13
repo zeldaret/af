@@ -245,25 +245,26 @@ void Actor_dt(Actor* actor, PlayState* play) {
     }
 }
 #else
+void Actor_dt(Actor* actor, struct PlayState* play);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_dt.s")
 #endif
 
 #ifdef NON_EQUIVALENT
+// seems equivalent but it is hard to tell
 void Actor_draw(PlayState* play, Actor* actor) {
+    void* temp_a0_2;
     FaultClient sp48;
     Lights* temp_a0; // sp44
-    s32 temp_a0_2;
 
     Fault_AddClient(&sp48, func_80056380_jp, actor, "Actor_draw");
 
     OPEN_DISPS(play->state.gfxCtx);
 
     temp_a0 = Global_light_read(&play->lightCtx, play->state.gfxCtx);
-
     LightsN_list_check(temp_a0, play->lightCtx.unk_0, (actor->flags & ACTOR_FLAG_400000) ? NULL : &actor->world.pos);
-
     LightsN_disp(temp_a0, play->state.gfxCtx);
-    Matrix_softcv3_load(actor->world.pos.x, actor->world.pos.y + (actor->shape.unk_08 * actor->scale.y),
+
+    Matrix_softcv3_load(actor->world.pos.x, actor->world.pos.y + actor->shape.unk_08 * actor->scale.y,
                         actor->world.pos.z, &actor->shape.rot);
     Matrix_scale(actor->scale.x, actor->scale.y, actor->scale.z, MTXMODE_APPLY);
 
@@ -286,6 +287,7 @@ void Actor_draw(PlayState* play, Actor* actor) {
     Fault_RemoveClient(&sp48);
 }
 #else
+void Actor_draw(struct PlayState* play, Actor* actor);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_draw.s")
 #endif
 
@@ -513,7 +515,8 @@ void Actor_info_draw_actor(PlayState* play, ActorInfo* actorInfo) {
         for (actor = actorEntry->head; actor != NULL; actor = actor->next) {
             s32 temp;
 
-            Skin_Matrix_PrjMulVector(&play->viewProjectionMtxF, &actor->world.pos, &actor->projectedPos, &actor->projectedW);
+            Skin_Matrix_PrjMulVector(&play->viewProjectionMtxF, &actor->world.pos, &actor->projectedPos,
+                                     &actor->projectedW);
             Actor_cull_check(actor);
 
             temp = temp_s4(actor, play);
@@ -623,22 +626,22 @@ void Actor_get_overlay_area(ActorOverlay* overlayEntry, const struct_801161E8_jp
 }
 
 s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const struct_801161E8_jp* arg2,
-                     size_t overlaySize, u16 arg4) {
+                     size_t overlaySize, u16 fgName) {
     if (overlayEntry->vramStart == NULL) {
         *profileP = overlayEntry->profile;
     } else {
         if (overlayEntry->loadedRamAddr == NULL) {
-            switch ((arg4 & 0xF000) >> 0xC) {
-                case 0xD:
-                case 0xE:
+            switch (ACTOR_FGNAME_GET_F000(fgName)) {
+                case FGNAME_F000_D:
+                case FGNAME_F000_E:
                     if (common_data.unk_1004C != NULL) {
-                        common_data.unk_1004C->unk_04(overlayEntry, arg2, overlaySize, arg4);
+                        common_data.unk_1004C->unk_04(overlayEntry, arg2, overlaySize, fgName);
                     } else {
                         overlayEntry->loadedRamAddr = NULL;
                     }
                     break;
 
-                case 5:
+                case FGNAME_F000_5:
                     if (common_data.unk_10098 != NULL) {
                         common_data.unk_10098->unk_4(overlayEntry, overlaySize);
                     }
@@ -653,8 +656,8 @@ s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const 
                 return 0;
             }
 
-            ovlmgr_Load((void*)overlayEntry->vromStart, (s32)overlayEntry->vromEnd, overlayEntry->vramStart,
-                        overlayEntry->vramEnd, overlayEntry->loadedRamAddr);
+            ovlmgr_Load(overlayEntry->vromStart, overlayEntry->vromEnd, overlayEntry->vramStart, overlayEntry->vramEnd,
+                        overlayEntry->loadedRamAddr);
             overlayEntry->numLoaded = 0;
         }
 
@@ -799,14 +802,8 @@ void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* o
     actor->fgName = fgName;
 }
 
-#if 0
-dlabel RO_801161E8_jp
-.word 0x00000000
-.word 0x00000000
-#else
 extern const struct_801161E8_jp RO_801161E8_jp;
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/RO_801161E8_jp.s")
-#endif
 
 Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX,
                              s16 rotY, s16 rotZ, s8 arg9, s8 argA, s16 argB, u16 fgName, s16 params, s8 argE,
@@ -1070,7 +1067,8 @@ Gfx* HiliteReflect_new(Vec3f* object, Vec3f* eye, Vec3f* lightDir, GraphicsConte
 
     *hilite = GRAPH_ALLOC(gfxCtx, sizeof(Hilite));
 
-    guLookAtHilite(&B_8011B850_jp, sp64, *hilite, var_fa1, eye->y, eye->z, object->x, object->y, object->z, 0.0f, 1.0f, 0.0f, lightDir->x, lightDir->y, lightDir->z, lightDir->x, lightDir->y, lightDir->z, 0x10, 0x10);
+    guLookAtHilite(&B_8011B850_jp, sp64, *hilite, var_fa1, eye->y, eye->z, object->x, object->y, object->z, 0.0f, 1.0f,
+                   0.0f, lightDir->x, lightDir->y, lightDir->z, lightDir->x, lightDir->y, lightDir->z, 0x10, 0x10);
 
     gSPLookAt(gfx++, sp64);
 

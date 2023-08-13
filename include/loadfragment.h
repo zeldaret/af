@@ -2,6 +2,7 @@
 #define LOADFRAGMENT_H
 
 #include "ultra64.h"
+#include "other_types.h"
 
 extern s32 gOverlayLogSeverity;
 
@@ -33,6 +34,6 @@ typedef struct OverlayRelocationSection {
     /* 0x14 */ u32 relocations[1]; // size is nRelocations
 } OverlayRelocationSection; // size >= 0x18
 
-s32 Overlay_Load(void *vromStart, void *vromEnd, void *ovlStart, void *ovlEnd, void *vramStart, void *vramEnd, void *allocatedRamAddr, OverlayRelocationSection *ovlRelocs);
+s32 Overlay_Load(RomOffset vromStart, RomOffset vromEnd, void *ovlStart, void *ovlEnd, void *vramStart, void *vramEnd, void *allocatedRamAddr, OverlayRelocationSection *ovlRelocs);
 
 #endif

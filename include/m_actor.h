@@ -231,7 +231,6 @@ typedef struct ActorInfo {
 
 #define ACTOR_FGNAME_GET_F000(fgName) (((fgName) & 0xF000) >> 12)
 
-void func_80056380_jp(void* arg0, void* arg1);
 void projection_pos_set(struct PlayState* play, Vec3f* worldPos, Vec3f* projectedPos, f32* invW);
 void Actor_world_to_eye(Actor* actor, f32 arg1);
 void Actor_position_move(Actor* actor);
@@ -239,13 +238,9 @@ void Actor_position_speed_set(Actor* actor);
 void Actor_position_moveF(Actor* actor);
 s32 Actor_player_look_direction_check(Actor* actor, s16 maxAngleDiff, struct PlayState* play);
 void Actor_display_position_set(struct PlayState* play, Actor* actor, s16* x, s16* y);
-s32 Actor_data_bank_dma_end_check(Actor* actor, struct PlayState* play);
 void Shape_Info_init(Actor* actor, f32 arg1, Shape_Info_unk_0C arg2, f32 arg3, f32 arg4);
 void Actor_foot_shadow_pos_set(Actor* actor, s32 limbIndex, s32 leftFootIndex, Vec3f* leftFootPos, s32 rightFootIndex, Vec3f* rightFootPos);
 void Actor_delete(Actor* actor);
-void Actor_ct(Actor* actor, struct PlayState* play);
-void Actor_dt(Actor* actor, struct PlayState* play);
-void Actor_draw(struct PlayState* play, Actor* actor);
 s32 Actor_draw_actor_no_culling_check(Actor* actor);
 s32 Actor_draw_actor_no_culling_check2(Actor* actor, Vec3f* arg1, f32 arg2);
 void Actor_cull_check(Actor* actor);
@@ -254,16 +249,8 @@ void Actor_info_ct(struct PlayState* play2, ActorInfo* actorInfo, struct ActorEn
 void Actor_info_dt(ActorInfo* actorInfo, struct PlayState* play);
 void Actor_info_call_actor(struct PlayState* play, ActorInfo* actorInfo);
 void Actor_info_draw_actor(struct PlayState* play, ActorInfo* actorInfo);
-void Actor_info_part_new(ActorInfo* actorInfo, Actor* actor, u8 category);
-Actor* Actor_info_part_delete(ActorInfo* actorInfo, Actor* actor);
 void Actor_free_overlay_area(struct ActorOverlay* overlayEntry);
-void actor_free_check(struct ActorOverlay* overlayEntry, u16 fgName);
 void Actor_get_overlay_area(struct ActorOverlay* overlayEntry, const struct struct_801161E8_jp* arg1, size_t overlaySize);
-s32 func_80057940_jp(ActorProfile** profileP, struct ActorOverlay* overlayEntry, const struct struct_801161E8_jp* arg2, size_t overlaySize, u16 arg4);
-s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct PlayState* play, u16 fgName);
-s32 func_80057B70_jp(s32* arg0, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct PlayState* play, u16 fgName);
-UNK_RET Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct PlayState* play, u16 arg4);
-s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, struct ActorOverlay* overlayEntry, const struct struct_801161E8_jp* arg3, u16 fgName);
 void Actor_init_actor_class(Actor* actor, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct PlayState* play, s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 argB, s8 argC, s16 argD, u16 fgName, s16 params);
 Actor* Actor_info_make_actor(ActorInfo* actorInfo, struct PlayState* play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 arg9, s8 argA, s16 argB, u16 fgName, s16 params, s8 argE, s32 argF);
 Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, struct PlayState* play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s16 argA, u16 fgName, s16 params, s32 argD);
@@ -272,11 +259,9 @@ void restore_fgdata_one(Actor* actor, struct PlayState* play);
 void restore_fgdata_all(struct PlayState* play);
 void Actor_info_save_actor(struct PlayState* play);
 Actor* Actor_info_delete(ActorInfo* actorInfo, Actor* actor, struct PlayState* play);
-Actor* Actor_info_name_search_sub(Actor* actor, s16 name);
 Actor* Actor_info_name_search(ActorInfo* actorInfo, s16 name, ActorPart part);
-Actor* Actor_info_fgName_search_sub(Actor* actor, u16 fgName);
 Actor* Actor_info_fgName_search(ActorInfo* actorInfo, u16 fgName, ActorPart part);
-void Part_Break_init(Part_Break* partBreak, s32 arg1, UNK_TYPE arg2);
+void Part_Break_init(Part_Break* partBreak, s32 count, UNK_TYPE arg2);
 Gfx* HiliteReflect_new(Vec3f* object, Vec3f* eye, Vec3f* lightDir, struct GraphicsContext* gfxCtx, Gfx* gfx, Hilite** hilite);
 Hilite* HiliteReflect_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, struct GraphicsContext* gfxCtx);
 Hilite* HiliteReflect_xlu_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, struct GraphicsContext* gfxCtx);
