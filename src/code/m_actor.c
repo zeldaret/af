@@ -160,53 +160,44 @@ void projection_pos_set(s32 arg0, f32* arg3) {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/projection_pos_set.s")
 #endif
 
-#if 0
-void Actor_world_to_eye(void* arg0, f32 arg1) {
-    arg0->unk_4C = (f32) (arg0->unk_2C + arg1);
-    arg0->unk_48 = (f32) arg0->unk_28;
-    arg0->unk_50 = (f32) arg0->unk_30;
-    arg0->unk_54 = (s16) arg0->unk_34;
-    arg0->unk_56 = (s16) arg0->unk_36;
-    arg0->unk_58 = (s16) arg0->unk_38;
+void Actor_world_to_eye(Actor* actor, f32 arg1) {
+    actor->eye.pos.x = actor->world.pos.x;
+    actor->eye.pos.y = actor->world.pos.y + arg1;
+    actor->eye.pos.z = actor->world.pos.z;
+    actor->eye.rot.x = actor->world.rot.x;
+    actor->eye.rot.y = actor->world.rot.y;
+    actor->eye.rot.z = actor->world.rot.z;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_world_to_eye.s")
-#endif
 
-#if 0
-void Actor_position_move(void* arg0) {
-    f32 sp18;
-    f32 temp_fv0;
+#ifdef NON_MATCHING
+// missing useless instruction
+void Actor_position_move(Actor* actor) {
+    PlayState* play = (PlayState *)gamePT;
+    f32 speedRate;
+    // UNK_TYPE* unk_1B98 = &play->unk_1B98;
 
-    temp_fv0 = game_GameFrame_2F;
-    sp18 = temp_fv0;
-    gamePT->unk_1C58();
-    arg0->unk_28 = (f32) (arg0->unk_28 + ((arg0->unk_68 * temp_fv0) + arg0->unk_C4));
-    arg0->unk_2C = (f32) (arg0->unk_2C + ((arg0->unk_6C * temp_fv0) + arg0->unk_C8));
-    arg0->unk_30 = (f32) (arg0->unk_30 + ((arg0->unk_70 * temp_fv0) + arg0->unk_CC));
+    speedRate = game_GameFrame_2F;
+
+    play->unk_1C58(actor);
+
+    actor->world.pos.x += actor->unk_068 * speedRate + actor->unk_0C4;
+    actor->world.pos.y += actor->unk_06C * speedRate + actor->unk_0C8;
+    actor->world.pos.z += actor->unk_070 * speedRate + actor->unk_0CC;
 }
 #else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_position_move.s")
 #endif
 
-#if 0
-void Actor_position_speed_set(void* arg0) {
-    arg0->unk_68 = (f32) (sin_s(arg0->unk_36, arg0) * arg0->unk_74);
-    arg0->unk_70 = (f32) (cos_s(arg0->unk_36) * arg0->unk_74);
-    chase_f(arg0 + 0x6C, arg0->unk_7C, arg0->unk_78, arg0);
+void Actor_position_speed_set(Actor* actor) {
+    actor->unk_068 = sin_s(actor->world.rot.y) * actor->unk_074;
+    actor->unk_070 = cos_s(actor->world.rot.y) * actor->unk_074;
+    chase_f(&actor->unk_06C, actor->unk_07C, actor->unk_078);
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_position_speed_set.s")
-#endif
 
-#if 0
-void Actor_position_moveF(void* arg0) {
-    Actor_position_speed_set(arg0);
-    Actor_position_move(arg0);
+void Actor_position_moveF(Actor* actor) {
+    Actor_position_speed_set(actor);
+    Actor_position_move(actor);
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_position_moveF.s")
-#endif
 
 #if 0
 s32 Actor_player_look_direction_check(void* arg0, s16 arg1, PlayState* arg2) {
@@ -844,39 +835,35 @@ s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const 
     return 1;
 }
 
-typedef struct CommonData_unk_1004C_unk_4_unk_14_arg0 {
-    /* 0x0 */ s16 unk_0;
-    /* 0x0 */ s16 unk_2;
-    /* 0x04 */ UNK_TYPE1 unk_04[0x5C];
-} CommonData_unk_1004C_unk_4_unk_14_arg0;
-
 // this function may be Actor_data_bank_regist_check_npc
 #if 0
 s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play, u16 arg4) {
     s16 sp92;
     s16 sp90;
-    s32 pad;
     s32 sp88;
-    CommonData_unk_1004C_unk_4_unk_14_arg0 sp24;
+    CommonData_unk_1004C_unk_14_arg0 sp24;
+    PlayState_unk_0110* sp20;
+    PlayState_unk_0110* temp_a0;
     s32 temp_v0;
+    s32 temp_v1;
 
     sp88 = 1;
     common_data.unk_1004C->unk_14(&sp24, arg4);
-    sp92 = sp24.unk_0;
-    sp90 = sp24.unk_2;
-
-    *arg0 = mSc_bank_regist_check(&play->unk_0110, sp92);
-    temp_v0 = mSc_bank_regist_check(&play->unk_0110, sp90);
-
-    if ((*arg0 < 0) || (temp_v0 < 0)) {
-        if (*arg0 >= 0) {
+    sp92 = (s16) sp24;
+    sp90 = sp24.unk_02;
+    temp_a0 = play->unk_0110;
+    sp20 = temp_a0;
+    *arg0 = mSc_bank_regist_check(temp_a0, (s16) sp24);
+    temp_v0 = mSc_bank_regist_check(temp_a0, sp90);
+    temp_v1 = *arg0;
+    if ((temp_v1 < 0) || (temp_v0 < 0)) {
+        if (temp_v1 >= 0) {
             sp92 = 0;
         }
         if (temp_v0 >= 0) {
             sp90 = 0;
         }
-
-        common_data.unk_1004C->unk_EC(&play->unk_0110, sp92, sp90);
+        common_data.unk_1004C->unk_EC(sp20, sp92, sp90);
         actor_free_check(overlayEntry, arg4);
         sp88 = 0;
     }
@@ -886,30 +873,20 @@ s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntr
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/func_80057A8C_jp.s")
 #endif
 
-#if 0
-s32 func_80057B70_jp(s32* arg0, void* arg1, void* arg2, s32 arg3, u16 arg4) {
-    s32 sp20;
-    void* sp1C;
-    s32 temp_v0;
-    s32 var_v1;
-    void* temp_a0;
+s32 func_80057B70_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play, u16 arg4) {
+    s32 pad UNUSED;
+    s32 ret = 1;
 
-    temp_a0 = arg3 + 0x110;
-    sp1C = temp_a0;
-    sp20 = 1;
-    temp_v0 = mSc_bank_regist_check(temp_a0, arg1->unk_A);
-    var_v1 = 1;
-    *arg0 = temp_v0;
-    if (temp_v0 == -1) {
-        func_800C6144_jp(temp_a0, arg1->unk_A);
-        actor_free_check(arg2, arg4);
-        var_v1 = 0;
+    *arg0 = mSc_bank_regist_check(play->unk_0110, profile->unk_0A);
+
+    if (*arg0 == -1) {
+        func_800C6144_jp(play->unk_0110, profile->unk_0A);
+        actor_free_check(overlayEntry, arg4);
+        ret = 0;
     }
-    return var_v1;
+
+    return ret;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/func_80057B70_jp.s")
-#endif
 
 s32 Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play, u16 arg4) {
     s32 var_v1 = 1;

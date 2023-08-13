@@ -38,6 +38,7 @@ typedef struct ActorProfile {
     /* 0x02 */ u8 type;
     /* 0x04 */ u32 flags;
     /* 0x08 */ s16 objectId;
+    /* 0x0A */ s16 unk_0A;
     /* 0x0C */ size_t instanceSize;
     /* 0x10 */ ActorFunc init;
     /* 0x14 */ ActorFunc destroy;
@@ -65,13 +66,24 @@ typedef struct Actor {
     /* 0x024 */ s16 params;
     /* 0x026 */ s16 unk_026; // objBankIndex
     /* 0x028 */ PosRot world;
-    /* 0x03C */ UNK_TYPE1 unk_03C[0x20];
+    /* 0x03C */ UNK_TYPE1 unk_03C[0xC];
+    /* 0x048 */ PosRot eye;
     /* 0x05C */ Vec3f unk_05C; // scale?
-    /* 0x068 */ UNK_TYPE1 unk_068[0x4C];
+    /* 0x068 */ f32 unk_068;
+    /* 0x06C */ f32 unk_06C;
+    /* 0x070 */ f32 unk_070;
+    /* 0x074 */ f32 unk_074;
+    /* 0x078 */ f32 unk_078;
+    /* 0x07C */ f32 unk_07C;
+    /* 0x080 */ UNK_TYPE1 unk_080[0x34];
     /* 0x0B4 */ UNK_TYPE1 unk_0B4[0x1];
     /* 0x0B5 */ u8 unk_0B5; // isDrawn
     /* 0x0B6 */ UNK_TYPE1 unk_0B6[0x2];
-    /* 0x0B8 */ UNK_TYPE1 unk_0B8[0x24];
+    /* 0x0B8 */ UNK_TYPE1 unk_0B8[0xC];
+    /* 0x0C4 */ f32 unk_0C4;
+    /* 0x0C8 */ f32 unk_0C8;
+    /* 0x0CC */ f32 unk_0CC;
+    /* 0x0D0 */ UNK_TYPE1 unk_0D0[0xC];
     /* 0x0DC */ Vec3s unk_0DC;
     /* 0x0E4 */ f32 unk_0E4;
     /* 0x0E8 */ Actor_unk_0E8 unk_0E8;
@@ -122,10 +134,10 @@ typedef struct ActorInfo {
 
 // void func_80056380_jp();
 // void projection_pos_set();
-// void Actor_world_to_eye();
-// void Actor_position_move();
-// void Actor_position_speed_set();
-// void Actor_position_moveF();
+void Actor_world_to_eye(Actor* actor, f32 arg1);
+void Actor_position_move(Actor* actor);
+void Actor_position_speed_set(Actor* actor);
+void Actor_position_moveF(Actor* actor);
 // void Actor_player_look_direction_check();
 // void Actor_display_position_set();
 s32 Actor_data_bank_dma_end_check(Actor* actor, struct PlayState* play);
