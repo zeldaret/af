@@ -55,9 +55,9 @@ typedef struct CommonData_unk_10098 {
 
 
 typedef struct CommonData {
-    /* 0x00000 */ u8 unk_00000[0x10000];
+    /* 0x00000 */ UNK_TYPE1 unk_00000[0x10000];
     /* 0x10000 */ u8 unk_10000; // named "game_started" in AC GCN decomp
-    /* 0x10001 */ u8 unk_10001[0x3];
+    /* 0x10001 */ UNK_TYPE1 unk_10001[0x3];
     /* 0x10004 */ s32 unk_10004; // named "last_scene_no" in AC GCN decomp
     /* 0x10008 */ UNK_TYPE1 unk_10008[0x44];
     /* 0x1004C */ CommonData_unk_1004C *unk_1004C;
@@ -71,9 +71,9 @@ typedef struct CommonData {
     /* 0x10150 */ UNK_TYPE1 unk_10150[0x664];
     /* 0x107B4 */ UNK_TYPE1 unk_107B4[0x2];
     /* 0x107B6 */ s16 unk_107B6; // named "demo_profile" in AC GCN decomp (though it's an array of two s16s in that game)
-    /* 0x107B8 */ u8 unk_107B8[0x2F8];
+    /* 0x107B8 */ UNK_TYPE1 unk_107B8[0x2F8];
     /* 0x10AB0 */ u8 unk_10AB0; // named "pad_connected" in AC GCN decomp
-    /* 0x10AB1 */ u8 unk_10AB1[0x7];
+    /* 0x10AB1 */ UNK_TYPE1 unk_10AB1[0x7];
 } CommonData; // size = 0x10AB8
 
 void common_data_reinit(void);

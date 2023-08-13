@@ -34,8 +34,8 @@ typedef struct PlayState {
     /* 0x1C64 */ UNK_TYPE1 unk_1C64[0x14];
     /* 0x1C78 */ ActorInfo actorInfo;
     /* 0x1CBC */ UNK_TYPE1 unk_1CBC[0x160];
-    /* 0x1E1C */ MtxF unk_1E1C; // viewProjectionMtxF
-    /* 0x1E5C */ MtxF unk_1E5C; // billboardMtxF
+    /* 0x1E1C */ MtxF viewProjectionMtxF;
+    /* 0x1E5C */ MtxF billboardMtxF;
     /* 0x1E9C */ UNK_TYPE1 unk_1E9C[0x8];
     /* 0x1EA4 */ UNK_TYPE1 unk_1EA4[0x1];
     /* 0x1EA5 */ u8 unk_1EA5;

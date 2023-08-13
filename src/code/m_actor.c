@@ -41,7 +41,7 @@ void func_80056380_jp(void* arg0, void* arg1 UNUSED) {
 }
 
 void projection_pos_set(PlayState* play, Vec3f* worldPos, Vec3f* projectedPos, f32* invW) {
-    Skin_Matrix_PrjMulVector(&play->unk_1E1C, worldPos, projectedPos, invW);
+    Skin_Matrix_PrjMulVector(&play->viewProjectionMtxF, worldPos, projectedPos, invW);
 
     *invW = (*invW < 1.0f) ? 1.0f : (1.0f / *invW);
 }
@@ -352,8 +352,8 @@ void Actor_info_ct(PlayState* play2, ActorInfo* actorInfo, ActorEntry* actorEntr
     bzero(actorInfo, sizeof(ActorInfo));
 
     actor_dlftbls_init();
-    Matrix_copy_MtxF(&play->unk_1E5C, &MtxF_clear);
-    Matrix_copy_MtxF(&play->unk_1E1C, &MtxF_clear);
+    Matrix_copy_MtxF(&play->billboardMtxF, &MtxF_clear);
+    Matrix_copy_MtxF(&play->viewProjectionMtxF, &MtxF_clear);
 
     var_v0 = actor_dlftbls;
     for (var_s1 = 0; var_s1 < 0xC9; var_s1++) {
@@ -513,7 +513,7 @@ void Actor_info_draw_actor(PlayState* play, ActorInfo* actorInfo) {
         for (actor = actorEntry->head; actor != NULL; actor = actor->next) {
             s32 temp;
 
-            Skin_Matrix_PrjMulVector(&play->unk_1E1C, &actor->world.pos, &actor->projectedPos, &actor->projectedW);
+            Skin_Matrix_PrjMulVector(&play->viewProjectionMtxF, &actor->world.pos, &actor->projectedPos, &actor->projectedW);
             Actor_cull_check(actor);
 
             temp = temp_s4(actor, play);

@@ -79,7 +79,7 @@ typedef struct Shape_Info {
     /* 0x18 */ f32 unk_18;
     /* 0x1C */ f32 unk_1C;
     /* 0x20 */ s32 unk_20;
-    /* 0x24 */ Vec3f *unk_24; // maybe PosRot*
+    /* 0x24 */ Vec3f* unk_24; // maybe PosRot*
     /* 0x28 */ s32 unk_28;
     /* 0x2C */ s8 unk_2C;
     /* 0x2D */ s8 unk_2D;
@@ -89,8 +89,8 @@ typedef struct Shape_Info {
 } Shape_Info; // size = 0x48
 
 typedef struct Actor {
-    /* 0x000 */ s16 name; // id
-    /* 0x002 */ u8 part; // category
+    /* 0x000 */ s16 name;   // id
+    /* 0x002 */ u8 part;    // category
     /* 0x003 */ u8 unk_003; // If set to 1 then fgdata will be restored independently of the actor's part
     /* 0x004 */ u16 unk_004;
     /* 0x006 */ u16 fgName;
@@ -237,10 +237,10 @@ s32 Actor_draw_actor_no_culling_check(Actor* actor);
 s32 Actor_draw_actor_no_culling_check2(Actor* actor, Vec3f* arg1, f32 arg2);
 void Actor_cull_check(Actor* actor);
 void Actor_delete_check(Actor* actor, struct PlayState* play);
-void Actor_info_ct(struct PlayState *play2, ActorInfo *actorInfo, struct ActorEntry *actorEntry);
-void Actor_info_dt(ActorInfo *actorInfo, struct PlayState *play);
-void Actor_info_call_actor(struct PlayState *play, ActorInfo* actorInfo);
-void Actor_info_draw_actor(struct PlayState *play, ActorInfo *actorInfo);
+void Actor_info_ct(struct PlayState* play2, ActorInfo* actorInfo, struct ActorEntry* actorEntry);
+void Actor_info_dt(ActorInfo* actorInfo, struct PlayState* play);
+void Actor_info_call_actor(struct PlayState* play, ActorInfo* actorInfo);
+void Actor_info_draw_actor(struct PlayState* play, ActorInfo* actorInfo);
 void Actor_info_part_new(ActorInfo* actorInfo, Actor* actor, u8 category);
 Actor* Actor_info_part_delete(ActorInfo* actorInfo, Actor* actor);
 void Actor_free_overlay_area(struct ActorOverlay* overlayEntry);
