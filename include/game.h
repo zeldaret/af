@@ -52,7 +52,9 @@ typedef struct GameState {
     /* 0x74 */ s32 unk_74;
     /* 0x78 */ TwoHeadArena heap;
     /* 0x88 */ GameAlloc alloc;
-    /* 0x9C */ UNK_TYPE1 unk_9C[0x3];
+    /* 0x9C */ u8 unk_9C;
+    /* 0x9D */ u8 unk_9D;
+    /* 0x9E */ UNK_TYPE1 unk9E[0x1];
     /* 0x9F */ u8 running;
     /* 0xA0 */ s32 unk_A0;
 } GameState; // size >= 0xA4, size <= 0xE0

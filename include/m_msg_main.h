@@ -3,6 +3,8 @@
 
 #include "ultra64.h"
 
+struct PlayState;
+
 // void func_8009D1F0_jp();
 // void func_8009D200_jp();
 // void func_8009D210_jp();
@@ -281,11 +283,11 @@
 // void func_800A3190_jp();
 // void func_800A31D8_jp();
 // void func_800A3220_jp();
-// void func_800A32D0_jp();
-// void func_800A3304_jp();
+void func_800A32D0_jp(struct PlayState* play);
+void func_800A3304_jp(struct PlayState* play);
 // void func_800A332C_jp();
-// void func_800A339C_jp();
-// void func_800A33D8_jp();
+void func_800A339C_jp(struct PlayState* play);
+void func_800A33D8_jp(struct PlayState* play);
 // void func_800A3400_jp();
 // void func_800A3420_jp();
 // void func_800A345C_jp();

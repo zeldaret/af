@@ -5,6 +5,7 @@
 
 struct Input;
 struct GraphicsContext;
+struct PlayState;
 
 // void func_8007A620_jp();
 // void func_8007A630_jp();
@@ -70,14 +71,14 @@ void Debug_mode_output(struct GraphicsContext* gfxCtx);
 // void func_8007CB50_jp();
 // void func_8007CBEC_jp();
 // void func_8007CC9C_jp();
-// void func_8007CDB8_jp();
+void func_8007CDB8_jp(void);
 // void func_8007CDD8_jp();
 // void func_8007CF00_jp();
 // void func_8007CF34_jp();
 // void func_8007CF44_jp();
 // void func_8007CF84_jp();
-// void func_8007CFB4_jp();
-// void func_8007CFD8_jp();
+void func_8007CFB4_jp(struct PlayState* play);
+void func_8007CFD8_jp(struct PlayState* play);
 // void func_8007D030_jp();
 // void func_8007D048_jp();
 // void func_8007D080_jp();

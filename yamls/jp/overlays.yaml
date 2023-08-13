@@ -43,10 +43,10 @@
     compress: True
     bss_size: 0xF0
     subsegments:
-      - [0x741FB0, asm, overlays/gamestates/ovl_play/m_play]
-      - [0x7437F0, data, overlays/gamestates/ovl_play/m_play]
-      - [0x743890, rodata, overlays/gamestates/ovl_play/m_play]
-      - { start: 0x743950, type: bss, vram: 0x80804480, name: overlays/gamestates/ovl_play/m_play }
+      - [0x741FB0, c, overlays/gamestates/ovl_play/m_play]
+      - [0x7437F0, .data, overlays/gamestates/ovl_play/m_play]
+      - [0x743890, .rodata, overlays/gamestates/ovl_play/m_play]
+      - { start: 0x743950, type: .bss, vram: 0x80804480, name: overlays/gamestates/ovl_play/m_play }
   - name: ovl_play_reloc
     type: code
     start: 0x743950

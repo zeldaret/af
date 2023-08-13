@@ -3,6 +3,10 @@
 
 #include "ultra64.h"
 
+struct PlayState;
+struct Kankyo;
+struct LightContext;
+
 // void func_80096860_jp();
 // void func_800968C0_jp();
 // void func_80096B2C_jp();
@@ -16,7 +20,7 @@
 // void func_80096F5C_jp();
 // void func_80097048_jp();
 // void func_800970D4_jp();
-// void func_80097108_jp();
+void func_80097108_jp(struct PlayState* play, struct Kankyo* kankyo);
 // void func_800971B4_jp();
 // void func_80097510_jp();
 // void func_800976BC_jp();
@@ -34,7 +38,7 @@
 // void func_800981B8_jp();
 // void func_8009836C_jp();
 // void func_800983F0_jp();
-// void func_800984CC_jp();
+void func_800984CC_jp(struct PlayState* play, struct Kankyo* kankyo, struct LightContext* arg2);
 // void func_80098558_jp();
 // void func_8009867C_jp();
 // void func_80098794_jp();
@@ -42,7 +46,7 @@
 // void func_80098980_jp();
 // void func_80098990_jp();
 // void func_80098A90_jp();
-// void func_80098B50_jp();
+void func_80098B50_jp(void);
 // void func_80098CCC_jp();
 // void func_80098D88_jp();
 // void func_80098DE0_jp();

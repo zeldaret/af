@@ -3,6 +3,12 @@
 
 #include "ultra64.h"
 
+typedef struct PlayState2138 {
+    /* 0x00 */ char unk00[0xD0];
+} PlayState2138; // size = 0xD0
+
+struct PlayState;
+
 // void func_80076B40_jp();
 // void func_80076BA4_jp();
 // void func_80076BD4_jp();
@@ -40,9 +46,9 @@
 // void func_80077410_jp();
 // void func_800774B4_jp();
 // void func_80077580_jp();
-// void func_80077620_jp();
-// void func_80077640_jp();
-// void func_80077650_jp();
+void func_80077620_jp(struct PlayState* play, PlayState2138* arg1);
+void func_80077640_jp(struct PlayState* play, PlayState2138* arg1);
+void func_80077650_jp(struct PlayState* play, PlayState2138* arg1);
 // void CollisionCheck_setOC();
 // void func_80077794_jp();
 // void func_800777D0_jp();
@@ -52,7 +58,7 @@
 // void func_80077F20_jp();
 // void func_80077FF0_jp();
 // void func_80078014_jp();
-// void func_80078070_jp();
+void func_80078070_jp(struct PlayState* play, PlayState2138* arg1);
 // void func_80078214_jp();
 // void func_80078258_jp();
 // void func_8007841C_jp();

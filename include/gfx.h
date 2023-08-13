@@ -29,7 +29,8 @@ typedef struct GraphicsContext {
     /* 0x2F1 */ UNK_TYPE1 unk_2F1[0x1];
     /* 0x2F2 */ u8 unk_2F2;
     /* 0x2F3 */ UNK_TYPE1 unk_2F3[0x1];
-    /* 0x2F4 */ UNK_TYPE1 unk_2F4[0x8];
+    /* 0x2F4 */ s32 unk_2F4;
+    /* 0x2F8 */ s32 unk_2F8;
     /* 0x2FC */ f32 unk_2FC;
     /* 0x300 */ f32 unk_300;
 } GraphicsContext; // size >= 0x304
