@@ -126,8 +126,6 @@ static ? RO_801161E8_jp;                            /* unable to generate initia
 extern s32 restore_flag[ACTORCAT_MAX];
 extern MtxF MtxF_clear;
 
-extern const struct_801161E8_jp RO_801161E8_jp;
-
 // UNK_RET func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const struct_801161E8_jp* arg2, s32 arg3, s32 arg4);
 
 void func_80056380_jp(void* arg0, void* arg1 UNUSED) {
@@ -761,42 +759,39 @@ s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const 
 }
 
 // this function may be Actor_data_bank_regist_check_npc
-#if 0
-s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play, u16 arg4) {
+s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play, u16 fgName) {
+    s32 pad;
     s16 sp92;
     s16 sp90;
-    s32 sp88;
-    CommonData_unk_1004C_unk_14_arg0 sp24;
-    PlayState_unk_0110* sp20;
-    PlayState_unk_0110* temp_a0;
     s32 temp_v0;
-    s32 temp_v1;
+    s32 ret;
 
-    sp88 = 1;
-    common_data.unk_1004C->unk_14(&sp24, arg4);
-    sp92 = (s16) sp24;
-    sp90 = sp24.unk_02;
-    temp_a0 = play->unk_0110;
-    sp20 = temp_a0;
-    *arg0 = mSc_bank_regist_check(temp_a0, (s16) sp24);
-    temp_v0 = mSc_bank_regist_check(temp_a0, sp90);
-    temp_v1 = *arg0;
-    if ((temp_v1 < 0) || (temp_v0 < 0)) {
-        if (temp_v1 >= 0) {
+    ret = 1;
+
+    {
+        CommonData_unk_1004C_unk_14_arg0 sp24;
+        common_data.unk_1004C->unk_14(&sp24, fgName);
+
+        sp92 = sp24.unk_00;
+        sp90 = sp24.unk_02;
+    }
+
+    *arg0 = mSc_bank_regist_check(play->unk_0110, sp92);
+    temp_v0 = mSc_bank_regist_check(play->unk_0110, sp90);
+
+    if ((*arg0 < 0) || (temp_v0 < 0)) {
+        if (*arg0 >= 0) {
             sp92 = 0;
         }
         if (temp_v0 >= 0) {
             sp90 = 0;
         }
-        common_data.unk_1004C->unk_EC(sp20, sp92, sp90);
-        actor_free_check(overlayEntry, arg4);
-        sp88 = 0;
+        common_data.unk_1004C->unk_EC(play->unk_0110, sp92, sp90);
+        actor_free_check(overlayEntry, fgName);
+        ret = 0;
     }
-    return sp88;
+    return ret;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/func_80057A8C_jp.s")
-#endif
 
 s32 func_80057B70_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play, u16 fgName) {
     s32 pad UNUSED;
@@ -888,6 +883,15 @@ void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* o
     actor->unk_00A = argD;
     actor->fgName = fgName;
 }
+
+#if 0
+dlabel RO_801161E8_jp
+.word 0x00000000
+.word 0x00000000
+#else
+extern const struct_801161E8_jp RO_801161E8_jp;
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/RO_801161E8_jp.s")
+#endif
 
 Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 arg9, s8 argA, s16 argB, u16 fgName, s16 params, s8 argE, s32 argF) {
     u16 *new_var = &fgName;
@@ -1266,12 +1270,4 @@ void Setpos_HiliteReflect_light_init(void* arg1) {
 }
 #else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Setpos_HiliteReflect_light_init.s")
-#endif
-
-#if 0
-dlabel RO_801161E8_jp
-.word 0x00000000
-.word 0x00000000
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/RO_801161E8_jp.s")
 #endif

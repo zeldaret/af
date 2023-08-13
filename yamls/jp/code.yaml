@@ -158,7 +158,7 @@
       - [0x739FA0, rodata, code/739FA0]
       - [0x73A080, rodata, code/73A080]
       - [0x73A0F0, rodata, code/73A0F0]
-      - [0x73A480, rodata, code/m_collision_obj] # m_collision_obj
+      - [0x73A480, rodata, code/m_collision_obj]
       - [0x73A490, rodata, code/73A490]
       - [0x73A4A0, rodata, code/73A4A0]
       - [0x73A4D0, rodata, code/73A4D0]
