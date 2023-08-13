@@ -23,6 +23,7 @@
 #include "code_variables.h"
 #include "macros.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
+#include "overlays/actors/ovl_player_actor/m_player.h"
 
 #if 0
 ? CollisionCheck_Status_Clear(void*);               /* extern */
@@ -199,21 +200,11 @@ void Actor_position_moveF(Actor* actor) {
     Actor_position_move(actor);
 }
 
-#if 0
-s32 Actor_player_look_direction_check(void* arg0, s16 arg1, PlayState* arg2) {
-    s16 temp_v1;
-    s16 var_a0;
+s32 Actor_player_look_direction_check(Actor* actor, s16 maxAngleDiff, PlayState* play) {
+    s16 yawDiff = BINANG_ROT180(actor->unk_0B6) - get_player_actor_withoutCheck(play)->actor.unk_0DC.y;
 
-    temp_v1 = (arg0->unk_B6 + 0x8000) - get_player_actor_withoutCheck(arg2)->unk_DE;
-    var_a0 = -temp_v1;
-    if (temp_v1 >= 0) {
-        var_a0 = temp_v1;
-    }
-    return var_a0 < arg1;
+    return ABS(yawDiff) < maxAngleDiff;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_player_look_direction_check.s")
-#endif
 
 #if 0
 void Actor_display_position_set(s32 arg1, s16* arg2, s16* arg3) {

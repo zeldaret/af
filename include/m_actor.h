@@ -78,7 +78,7 @@ typedef struct Actor {
     /* 0x080 */ UNK_TYPE1 unk_080[0x34];
     /* 0x0B4 */ UNK_TYPE1 unk_0B4[0x1];
     /* 0x0B5 */ u8 unk_0B5; // isDrawn
-    /* 0x0B6 */ UNK_TYPE1 unk_0B6[0x2];
+    /* 0x0B6 */ s16 unk_0B6; // yawTowardsPlayer
     /* 0x0B8 */ UNK_TYPE1 unk_0B8[0xC];
     /* 0x0C4 */ f32 unk_0C4;
     /* 0x0C8 */ f32 unk_0C8;
@@ -138,7 +138,7 @@ void Actor_world_to_eye(Actor* actor, f32 arg1);
 void Actor_position_move(Actor* actor);
 void Actor_position_speed_set(Actor* actor);
 void Actor_position_moveF(Actor* actor);
-// void Actor_player_look_direction_check();
+s32 Actor_player_look_direction_check(Actor* actor, s16 maxAngleDiff, struct PlayState* play);
 // void Actor_display_position_set();
 s32 Actor_data_bank_dma_end_check(Actor* actor, struct PlayState* play);
 void Shape_Info_init(Actor* actor, f32 arg1, Actor_unk_0E8 arg2, f32 arg3, f32 arg4);

@@ -83,4 +83,9 @@ typedef union {
 #define BINANG_TO_RAD_ALT(binang) (((f32)(binang) / 0x8000) * (f32)M_PI)
 #define BINANG_TO_RAD_ALT2(binang) (((f32)(binang) * (f32)M_PI) / 0x8000)
 
+// Angle arithmetic macros
+#define BINANG_ROT180(angle) ((s16)(angle + 0x8000))
+#define BINANG_SUB(a, b) ((s16)(a - b))
+#define BINANG_ADD(a, b) ((s16)(a + b))
+
 #endif
