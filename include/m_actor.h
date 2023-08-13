@@ -138,13 +138,13 @@ typedef struct ActorInfo {
 } ActorInfo; // size = 0x44
 
 void func_80056380_jp(void* arg0, void* arg1);
-// void projection_pos_set();
+void projection_pos_set(struct PlayState* play, Vec3f* worldPos, Vec3f* projectedPos, f32* invW);
 void Actor_world_to_eye(Actor* actor, f32 arg1);
 void Actor_position_move(Actor* actor);
 void Actor_position_speed_set(Actor* actor);
 void Actor_position_moveF(Actor* actor);
 s32 Actor_player_look_direction_check(Actor* actor, s16 maxAngleDiff, struct PlayState* play);
-// void Actor_display_position_set();
+void Actor_display_position_set(struct PlayState* play, Actor* actor, s16* x, s16* y);
 s32 Actor_data_bank_dma_end_check(Actor* actor, struct PlayState* play);
 void Shape_Info_init(Actor* actor, f32 arg1, Actor_unk_0E8 arg2, f32 arg3, f32 arg4);
 void Actor_foot_shadow_pos_set(Actor* actor, s32 limbIndex, s32 leftFootIndex, Vec3f* leftFootPos, s32 rightFootIndex, Vec3f* rightFootPos);

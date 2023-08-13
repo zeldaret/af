@@ -145,21 +145,11 @@ void func_80056380_jp(void* arg0, void* arg1 UNUSED) {
     FaultDrawer_Printf("ACTOR NAME %08x:%s", actor, name);
 }
 
-#if 0
-void projection_pos_set(s32 arg0, f32* arg3) {
-    f32 temp_fv0;
+void projection_pos_set(PlayState* play, Vec3f* worldPos, Vec3f* projectedPos, f32* invW) {
+    Skin_Matrix_PrjMulVector(&play->unk_1E1C, worldPos, projectedPos, invW);
 
-    Skin_Matrix_PrjMulVector(arg0 + 0x1E1C);
-    temp_fv0 = *arg3;
-    if (temp_fv0 < 1.0f) {
-        *arg3 = 1.0f;
-        return;
-    }
-    *arg3 = 1.0f / temp_fv0;
+    *invW = (*invW < 1.0f) ? 1.0f : (1.0f / *invW);
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/projection_pos_set.s")
-#endif
 
 void Actor_world_to_eye(Actor* actor, f32 arg1) {
     actor->eye.pos.x = actor->world.pos.x;
@@ -200,18 +190,16 @@ s32 Actor_player_look_direction_check(Actor* actor, s16 maxAngleDiff, PlayState*
     return ABS(yawDiff) < maxAngleDiff;
 }
 
-#if 0
-void Actor_display_position_set(s32 arg1, s16* arg2, s16* arg3) {
-    f32 sp1C;
-    f32 sp18;
+void Actor_display_position_set(PlayState* play, Actor* actor, s16* x, s16* y) {
+    Vec3f projectedPos;
+    f32 invW;
 
-    projection_pos_set(arg1 + 0x28, &sp1C, &sp18);
-    *arg2 = (s16) (s32) ((sp1C * sp18 * 160.0f) + 160.0f);
-    *arg3 = (s16) (s32) ((sp20 * sp18 * -120.0f) + 120.0f);
+    projection_pos_set(play, &actor->world.pos, &projectedPos, &invW);
+
+    // Explicit cast to avoid implicit cast from f32 to s16
+    *x = (s32)PROJECTED_TO_SCREEN_X(projectedPos, invW);
+    *y = (s32)PROJECTED_TO_SCREEN_Y(projectedPos, invW);
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_display_position_set.s")
-#endif
 
 s32 Actor_data_bank_dma_end_check(Actor* actor, PlayState* play) {
     s32 var_v1;
@@ -316,6 +304,9 @@ void Actor_ct(Actor* actor, PlayState* play) {
 
 #ifdef NON_EQUIVALENT
 void Actor_dt(Actor* actor, PlayState* play) {
+    PlayState_unk_0110* temp_v0_6;
+    s32 new_var;
+
     if (actor->unk_16C != NULL) {
         actor->unk_16C(actor, play);
         actor->unk_16C = NULL;
@@ -334,17 +325,21 @@ void Actor_dt(Actor* actor, PlayState* play) {
         actor->unk_14C->unk_150 = NULL;
     }
 
+
+    temp_v0_6 = play->unk_0110;
+    if (0) { }
+
     switch ((actor->fgName & 0xF000) >> 0xC) {
         case 0xD:
         case 0xE:
-            common_data.unk_1004C->unk_F0(&play->unk_0110, actor);
+            common_data.unk_1004C->unk_F0(temp_v0_6, actor);
             break;
 
         default:
-            if (actor->unk_026 >= play->unk_190C) {
-                PlayState_unk_0110* temp_v0_6;
+            new_var = play->unk_190C;
 
-                temp_v0_6 = &play->unk_0110[actor->unk_026];
+            if (actor->unk_026 >= new_var) {
+                temp_v0_6 = &temp_v0_6[actor->unk_026];
                 if (temp_v0_6->unk_50 > 0) {
                     actor->unk_026 = -1;
                     temp_v0_6->unk_50--;

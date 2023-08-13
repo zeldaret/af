@@ -20,6 +20,7 @@ typedef UNK_PTR (*CommonData_unk_1004C_unk_0C)(size_t, const struct struct_80116
 typedef UNK_RET (*CommonData_unk_1004C_unk_10)(struct Actor*);
 typedef UNK_RET (*CommonData_unk_1004C_unk_14)(struct CommonData_unk_1004C_unk_14_arg0*, u16);
 
+typedef UNK_RET (*CommonData_unk_1004C_unk_F0)(struct PlayState_unk_0110*, struct Actor*);
 typedef s32 (*CommonData_unk_1004C_unk_F4)(struct PlayState_unk_0110*, struct Actor*);
 
 typedef struct CommonData_unk_1004C {
@@ -31,7 +32,7 @@ typedef struct CommonData_unk_1004C {
     /* 0x14 */ CommonData_unk_1004C_unk_14 unk_14;
     /* 0x18 */ UNK_TYPE1 unk_18[0xD4];
     /* 0xEC */ UNK_FUN_PTR unk_EC;
-    /* 0xF0 */ UNK_FUN_PTR unk_F0;
+    /* 0xF0 */ CommonData_unk_1004C_unk_F0 unk_F0;
     /* 0xF4 */ CommonData_unk_1004C_unk_F4 unk_F4;
 } CommonData_unk_1004C; // size >= 0xF8
 
