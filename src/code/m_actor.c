@@ -1076,131 +1076,81 @@ void Part_Break_init(void* arg0, s32 arg1, ? arg2) {
 
 Mtx B_8011B850_jp;
 
-#if 0
-void* HiliteReflect_new(void* arg0, f32* arg1, void* arg2, void* arg3, void* arg4, LookAt** arg5) {
-    LookAt* sp64;
-    LookAt* temp_a2;
-    LookAt* temp_s0;
-    LookAt* temp_v0;
-    LookAt* temp_v0_2;
-    f32 temp_fa0;
-    f32 temp_fv0;
-    f32 temp_fv0_2;
-    f32 temp_fv1;
-    f32 var_fa1;
-    void* temp_v1;
-    void* temp_v1_2;
-    void* temp_v1_3;
+Gfx* HiliteReflect_new(Vec3f* object, Vec3f* eye, Vec3f* lightDir, GraphicsContext* gfxCtx, Gfx* gfx, Hilite** hilite) {
+    LookAt* sp64 = GRAPH_ALLOC(gfxCtx, sizeof(LookAt));
+    f32 var_fa1 = ((eye->x == object->x) && (eye->z == object->z)) ? (eye->x + 0.001f) : eye->x;
 
-    temp_s0 = arg3->unk_29C - 0x20;
-    arg3->unk_29C = temp_s0;
-    sp64 = temp_s0;
-    temp_fv0 = arg1->unk_0;
-    if ((arg0->unk_0 == temp_fv0) && (arg0->unk_8 == arg1->unk_8)) {
-        var_fa1 = temp_fv0 + 0.001f;
-    } else {
-        var_fa1 = temp_fv0;
-    }
-    temp_a2 = arg3->unk_29C - 0x10;
-    arg3->unk_29C = temp_a2;
-    *arg5 = temp_a2;
-    temp_fv0_2 = arg2->unk_0;
-    temp_fv1 = arg2->unk_4;
-    temp_fa0 = arg2->unk_8;
-    guLookAtHilite(&B_8011B850_jp, sp64, (Hilite* ) temp_a2, var_fa1, arg1->unk_4, arg1->unk_8, arg0->unk_0, arg0->unk_4, arg0->unk_8, 0.0f, 1.0f, 0.0f, temp_fv0_2, temp_fv1, temp_fa0, temp_fv0_2, temp_fv1, temp_fa0, 0x10, 0x10);
-    arg4->unk_0 = 0xDC08000A;
-    arg4->unk_4 = sp64;
-    temp_v1_2 = arg4 + 8;
-    temp_v1_2->unk_4 = &sp64->l[1];
-    temp_v1_2->unk_0 = 0xDC08030A;
-    temp_v1_3 = temp_v1_2 + 8;
-    temp_v1_3->unk_0 = 0xE7000000;
-    temp_v1_3->unk_4 = 0;
-    temp_v1 = temp_v1_3 + 8;
-    temp_v0 = *arg5;
-    temp_v1->unk_0 = (s32) ((temp_v0->unk_4 & 0xFFF) | 0xF2000000 | ((temp_v0->unk_0 & 0xFFF) << 0xC));
-    temp_v0_2 = *arg5;
-    temp_v1->unk_4 = (s32) (((temp_v0_2->unk_4 + 0x3C) & 0xFFF) | 0x01000000 | (((temp_v0_2->unk_0 + 0x3C) & 0xFFF) << 0xC));
-    return temp_v1 + 8;
+    *hilite = GRAPH_ALLOC(gfxCtx, sizeof(Hilite));
+
+    guLookAtHilite(&B_8011B850_jp, sp64, *hilite, var_fa1, eye->y, eye->z, object->x, object->y, object->z, 0.0f, 1.0f, 0.0f, lightDir->x, lightDir->y, lightDir->z, lightDir->x, lightDir->y, lightDir->z, 0x10, 0x10);
+
+    gSPLookAt(gfx++, sp64);
+
+    gDPPipeSync(gfx++);
+    gDPSetHilite1Tile(gfx++, 1, *hilite, 0x10, 0x10);
+
+    return gfx;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/HiliteReflect_new.s")
-#endif
 
-#if 0
-f32 HiliteReflect_init(void* arg3) {
-    f32 sp2C;
+Hilite* HiliteReflect_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, GraphicsContext* gfxCtx) {
+    Hilite* hilite;
 
-    arg3->unk_298 = HiliteReflect_new(arg3->unk_298, &sp2C);
-    return sp2C;
+    OPEN_DISPS(gfxCtx);
+
+    POLY_OPA_DISP = HiliteReflect_new(object, eye, lightDir, gfxCtx, POLY_OPA_DISP, &hilite);
+
+    CLOSE_DISPS(gfxCtx);
+
+    return hilite;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/HiliteReflect_init.s")
-#endif
 
-#if 0
-f32 HiliteReflect_xlu_init(void* arg3) {
-    f32 sp2C;
+Hilite* HiliteReflect_xlu_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, GraphicsContext* gfxCtx) {
+    Hilite* hilite;
 
-    arg3->unk_2A8 = HiliteReflect_new(arg3->unk_2A8, &sp2C);
-    return sp2C;
+    OPEN_DISPS(gfxCtx);
+
+    POLY_XLU_DISP = HiliteReflect_new(object, eye, lightDir, gfxCtx, POLY_XLU_DISP, &hilite);
+
+    CLOSE_DISPS(gfxCtx);
+
+    return hilite;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/HiliteReflect_xlu_init.s")
-#endif
 
-#if 0
-f32 HiliteReflect_light_init(void* arg3) {
-    f32 sp2C;
+Hilite* HiliteReflect_light_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, GraphicsContext* gfxCtx) {
+    Hilite* hilite;
 
-    arg3->unk_2D8 = HiliteReflect_new(arg3->unk_2D8, &sp2C);
-    return sp2C;
+    OPEN_DISPS(gfxCtx);
+
+    LIGHT_DISP = HiliteReflect_new(object, eye, lightDir, gfxCtx, LIGHT_DISP, &hilite);
+
+    CLOSE_DISPS(gfxCtx);
+
+    return hilite;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/HiliteReflect_light_init.s")
-#endif
 
-#if 0
-void Setpos_HiliteReflect_init(void* arg1) {
-    f32 sp2C;
-    f32 sp28;
-    f32 sp24;
+Hilite* Setpos_HiliteReflect_init(Vec3f* object, PlayState* play) {
+    Vec3f sp24;
 
-    sp24 = (f32) arg1->unk_1B9A;
-    sp28 = (f32) arg1->unk_1B9B;
-    sp2C = (f32) arg1->unk_1B9C;
-    HiliteReflect_init(arg1 + 0x1960, &sp24, arg1->unk_0);
+    sp24.x = play->kankyo.unk_02;
+    sp24.y = play->kankyo.unk_03;
+    sp24.z = play->kankyo.unk_04;
+    return HiliteReflect_init(object, &play->unk_1960, &sp24, play->state.gfxCtx);
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Setpos_HiliteReflect_init.s")
-#endif
 
-#if 0
-void Setpos_HiliteReflect_xlu_init(void* arg1) {
-    f32 sp2C;
-    f32 sp28;
-    f32 sp24;
+Hilite* Setpos_HiliteReflect_xlu_init(Vec3f* object, PlayState* play) {
+    Vec3f sp24;
 
-    sp24 = (f32) arg1->unk_1B9A;
-    sp28 = (f32) arg1->unk_1B9B;
-    sp2C = (f32) arg1->unk_1B9C;
-    HiliteReflect_xlu_init(arg1 + 0x1960, &sp24, arg1->unk_0);
+    sp24.x = play->kankyo.unk_02;
+    sp24.y = play->kankyo.unk_03;
+    sp24.z = play->kankyo.unk_04;
+    return HiliteReflect_xlu_init(object, &play->unk_1960, &sp24, play->state.gfxCtx);
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Setpos_HiliteReflect_xlu_init.s")
-#endif
 
-#if 0
-void Setpos_HiliteReflect_light_init(void* arg1) {
-    f32 sp2C;
-    f32 sp28;
-    f32 sp24;
+Hilite* Setpos_HiliteReflect_light_init(Vec3f* object, PlayState* play) {
+    Vec3f sp24;
 
-    sp24 = (f32) arg1->unk_1B9A;
-    sp28 = (f32) arg1->unk_1B9B;
-    sp2C = (f32) arg1->unk_1B9C;
-    HiliteReflect_xlu_init(arg1 + 0x1960, &sp24, arg1->unk_0);
+    sp24.x = play->kankyo.unk_02;
+    sp24.y = play->kankyo.unk_03;
+    sp24.z = play->kankyo.unk_04;
+    return HiliteReflect_xlu_init(object, &play->unk_1960, &sp24, play->state.gfxCtx);
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Setpos_HiliteReflect_light_init.s")
-#endif

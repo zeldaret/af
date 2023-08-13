@@ -6,6 +6,7 @@
 #include "m_actor.h"
 #include "m_kankyo.h"
 #include "m_lights.h"
+#include "z64math.h"
 #include "unknown_structs.h"
 #include "unk.h"
 
@@ -28,7 +29,9 @@ typedef struct PlayState {
     /* 0x0110 */ PlayState_unk_0110 unk_0110[UNK_SIZE];
     /* 0x0164 */ UNK_TYPE1 unk_0164[0x17A8];
     /* 0x190C */ s32 unk_190C;
-    /* 0x1910 */ UNK_TYPE1 unk_1910[0x288];
+    /* 0x1910 */ UNK_TYPE1 unk_1910[0x50];
+    /* 0x1960 */ Vec3f unk_1960;
+    /* 0x196C */ UNK_TYPE1 unk_196C[0x22C];
     /* 0x1B98 */ Kankyo kankyo;
     /* 0x1C60 */ LightContext lightCtx;
     /* 0x1C64 */ UNK_TYPE1 unk_1C64[0x14];

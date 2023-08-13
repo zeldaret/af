@@ -12,6 +12,7 @@ struct ActorEntry;
 struct ActorOverlay;
 struct struct_801161E8_jp;
 struct Lights;
+struct GraphicsContext;
 
 typedef enum AllocType {
     /* 0 */ ALLOCTYPE_NORMAL,
@@ -264,12 +265,12 @@ Actor* Actor_info_name_search(ActorInfo* actorInfo, s16 name, ActorPart part);
 Actor* Actor_info_fgName_search_sub(Actor* actor, u16 fgName);
 Actor* Actor_info_fgName_search(ActorInfo* actorInfo, u16 fgName, ActorPart part);
 // void Part_Break_init();
-// void HiliteReflect_new();
-// void HiliteReflect_init();
-// void HiliteReflect_xlu_init();
-// void HiliteReflect_light_init();
-// void Setpos_HiliteReflect_init();
-// void Setpos_HiliteReflect_xlu_init();
-// void Setpos_HiliteReflect_light_init();
+Gfx* HiliteReflect_new(Vec3f* object, Vec3f* eye, Vec3f* lightDir, struct GraphicsContext* gfxCtx, Gfx* gfx, Hilite** hilite);
+Hilite* HiliteReflect_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, struct GraphicsContext* gfxCtx);
+Hilite* HiliteReflect_xlu_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, struct GraphicsContext* gfxCtx);
+Hilite* HiliteReflect_light_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, struct GraphicsContext* gfxCtx);
+Hilite* Setpos_HiliteReflect_init(Vec3f* object, struct PlayState* play);
+Hilite* Setpos_HiliteReflect_xlu_init(Vec3f* object, struct PlayState* play);
+Hilite* Setpos_HiliteReflect_light_init(Vec3f* object, struct PlayState* play);
 
 #endif

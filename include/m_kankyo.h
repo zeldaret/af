@@ -9,7 +9,12 @@ struct Actor;
 typedef void (*Kankyo_unk_C0)(struct Actor*);
 
 typedef struct Kankyo {
-    /* 0x00 */ UNK_TYPE1 unk_00[0xC0];
+    /* 0x00 */ UNK_TYPE1 unk_00[0x2];
+    /* 0x02 */ s8 unk_02;
+    /* 0x03 */ s8 unk_03;
+    /* 0x04 */ s8 unk_04;
+    /* 0x05 */ UNK_TYPE1 unk_05[0x3];
+    /* 0x08 */ UNK_TYPE1 unk_08[0xB8];
     /* 0xC0 */ Kankyo_unk_C0 unk_C0;
     /* 0xC4 */ UNK_TYPE1 unk_C4[0x4];
 } Kankyo; // size = 0xC8
