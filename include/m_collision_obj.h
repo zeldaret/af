@@ -2,13 +2,12 @@
 #define M_COLLISION_OBJ_H
 
 #include "ultra64.h"
+#include "z64math.h"
 #include "unk.h"
 
 
 typedef struct CollisionCheck_Status {
-    /* 0x00 */ f32 unk_00;
-    /* 0x04 */ f32 unk_04;
-    /* 0x08 */ f32 unk_08;
+    /* 0x00 */ Vec3f displacement;
     /* 0x0C */ UNK_TYPE1 unk_0C[0xC];
 } CollisionCheck_Status; // size >= 0x18
 

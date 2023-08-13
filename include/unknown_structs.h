@@ -19,7 +19,7 @@ typedef struct CommonData_unk_1004C_unk_14_arg0 {
 typedef struct PlayState_unk_0110 {
     /* 0x00 */ s16 unk_00;
     /* 0x02 */ UNK_TYPE1 unk_02[0x2];
-    /* 0x04 */ void* unk_04;
+    /* 0x04 */ void* segment;
     /* 0x08 */ UNK_TYPE1 unk_08[0x48];
     /* 0x50 */ s16 unk_50;
     /* 0x52 */ UNK_TYPE1 unk_52[0x2];

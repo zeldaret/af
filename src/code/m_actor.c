@@ -63,15 +63,16 @@ void Actor_position_move(Actor* actor) {
 
     kankyo->unk_C0(actor);
 
-    actor->world.pos.x += actor->unk_068 * speedRate + actor->unk_0C4.unk_00;
-    actor->world.pos.y += actor->unk_06C * speedRate + actor->unk_0C4.unk_04;
-    actor->world.pos.z += actor->unk_070 * speedRate + actor->unk_0C4.unk_08;
+    actor->world.pos.x += actor->velocity.x * speedRate + actor->colStatus.displacement.x;
+    actor->world.pos.y += actor->velocity.y * speedRate + actor->colStatus.displacement.y;
+    actor->world.pos.z += actor->velocity.z * speedRate + actor->colStatus.displacement.z;
 }
 
 void Actor_position_speed_set(Actor* actor) {
-    actor->unk_068 = sin_s(actor->world.rot.y) * actor->unk_074;
-    actor->unk_070 = cos_s(actor->world.rot.y) * actor->unk_074;
-    chase_f(&actor->unk_06C, actor->unk_07C, actor->unk_078);
+    actor->velocity.x = sin_s(actor->world.rot.y) * actor->speed;
+    actor->velocity.z = cos_s(actor->world.rot.y) * actor->speed;
+
+    chase_f(&actor->velocity.y, actor->unk_07C, actor->unk_078);
 }
 
 void Actor_position_moveF(Actor* actor) {
@@ -80,7 +81,7 @@ void Actor_position_moveF(Actor* actor) {
 }
 
 s32 Actor_player_look_direction_check(Actor* actor, s16 maxAngleDiff, PlayState* play) {
-    s16 yawDiff = BINANG_ROT180(actor->unk_0B6) - get_player_actor_withoutCheck(play)->actor.unk_0DC.y;
+    s16 yawDiff = BINANG_ROT180(actor->unk_0B6) - get_player_actor_withoutCheck(play)->actor.shape.unk_0DC.y;
 
     return ABS(yawDiff) < maxAngleDiff;
 }
@@ -114,25 +115,25 @@ s32 Actor_data_bank_dma_end_check(Actor* actor, PlayState* play) {
 }
 
 void Shape_Info_init(Actor* actor, f32 arg1, Actor_unk_0E8 arg2, f32 arg3, f32 arg4) {
-    actor->unk_0E4 = arg1;
-    actor->unk_0E8 = arg2;
-    actor->unk_0EC = arg3;
-    actor->unk_0F0 = arg4;
-    actor->unk_108 = 1;
-    actor->unk_0FC = 0;
-    actor->unk_0F4 = 1.0f;
-    actor->unk_0F8 = 1.0f;
-    actor->unk_10A = 0;
-    actor->unk_100 = &actor->world.pos;
-    actor->unk_104 = -1;
-    actor->unk_109 = 0;
+    actor->shape.unk_0E4 = arg1;
+    actor->shape.unk_0E8 = arg2;
+    actor->shape.unk_0EC = arg3;
+    actor->shape.unk_0F0 = arg4;
+    actor->shape.unk_108 = 1;
+    actor->shape.unk_0FC = 0;
+    actor->shape.unk_0F4 = 1.0f;
+    actor->shape.unk_0F8 = 1.0f;
+    actor->shape.unk_10A = 0;
+    actor->shape.unk_100 = &actor->world.pos;
+    actor->shape.unk_104 = -1;
+    actor->shape.unk_109 = 0;
 }
 
 void Actor_foot_shadow_pos_set(Actor* actor, s32 limbIndex, s32 leftFootIndex, Vec3f* leftFootPos, s32 rightFootIndex, Vec3f* rightFootPos) {
     if (limbIndex == leftFootIndex) {
-        Matrix_Position(leftFootPos, &actor->feetPos[FOOT_LEFT]);
+        Matrix_Position(leftFootPos, &actor->shape.feetPos[FOOT_LEFT]);
     } else if (limbIndex == rightFootIndex) {
-        Matrix_Position(rightFootPos, &actor->feetPos[FOOT_RIGHT]);
+        Matrix_Position(rightFootPos, &actor->shape.feetPos[FOOT_RIGHT]);
     }
 }
 
@@ -156,7 +157,7 @@ void Actor_ct(Actor* actor, PlayState* play) {
     temp += actor->unk_026;
     temp->unk_50++;
 
-    if (actor->category == ACTORCAT_NPC) {
+    if (actor->part == ACTOR_PART_NPC) {
         npc = (Npc*)actor;
 
         common_data.unk_1004C->unk_14(&sp34, npc->actor.fgName);
@@ -165,14 +166,14 @@ void Actor_ct(Actor* actor, PlayState* play) {
     }
 
     actor->world = actor->home;
-    actor->unk_0DC = actor->world.rot;
+    actor->shape.unk_0DC = actor->world.rot;
 
     Actor_world_to_eye(actor, 0.0f);
-    xyz_t_move(&actor->unk_03C, &actor->world.pos);
+    xyz_t_move(&actor->prevPos, &actor->world.pos);
 
-    actor->unk_05C.x = 0.01f;
-    actor->unk_05C.y = 0.01f;
-    actor->unk_05C.z = 0.01f;
+    actor->scale.x = 0.01f;
+    actor->scale.y = 0.01f;
+    actor->scale.z = 0.01f;
 
     actor->unk_07C = -20.0f;
     actor->unk_0B8 = FLT_MAX;
@@ -180,20 +181,20 @@ void Actor_ct(Actor* actor, PlayState* play) {
     actor->unk_134 = 350.0f;
     actor->unk_138 = 700.0f;
 
-    actor->unk_0F4 = 1.0f;
-    actor->unk_0F8 = 1.0f;
+    actor->shape.unk_0F4 = 1.0f;
+    actor->shape.unk_0F8 = 1.0f;
 
     actor->unk_13C = 1000.0f;
     actor->unk_140 = 350.0f;
     actor->unk_144 = 55.0f;
 
-    CollisionCheck_Status_ct(&actor->unk_0C4);
+    CollisionCheck_Status_ct(&actor->colStatus);
     Shape_Info_init(actor, 0.0f, NULL, 0.0f, 0.0f);
 
     if (Actor_data_bank_dma_end_check(actor, play) == 1) {
-        gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(temp_a0[actor->unk_026].unk_04);
-        actor->init(actor, play);
-        actor->init = NULL;
+        gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(temp_a0[actor->unk_026].segment);
+        actor->ct(actor, play);
+        actor->ct = NULL;
     }
 }
 
@@ -202,22 +203,22 @@ void Actor_dt(Actor* actor, PlayState* play) {
     PlayState_unk_0110* temp_v0_6;
     s32 new_var;
 
-    if (actor->unk_16C != NULL) {
-        actor->unk_16C(actor, play);
-        actor->unk_16C = NULL;
+    if (actor->save != NULL) {
+        actor->save(actor, play);
+        actor->save = NULL;
     }
 
-    if (actor->destroy != NULL) {
-        actor->destroy(actor, play);
-        actor->destroy = NULL;
+    if (actor->dt != NULL) {
+        actor->dt(actor, play);
+        actor->dt = NULL;
     }
 
-    if ((actor->unk_150 != NULL) && (actor == actor->unk_150->unk_14C)) {
-        actor->unk_150->unk_14C = NULL;
+    if ((actor->child != NULL) && (actor == actor->child->parent)) {
+        actor->child->parent = NULL;
     }
 
-    if ((actor->unk_14C != NULL) && (actor == actor->unk_14C->unk_150)) {
-        actor->unk_14C->unk_150 = NULL;
+    if ((actor->parent != NULL) && (actor == actor->parent->child)) {
+        actor->parent->child = NULL;
     }
 
 
@@ -263,13 +264,13 @@ void Actor_draw(PlayState* play, Actor* actor) {
 
     temp_a0 = Global_light_read(&play->unk_1910[0x350], play->state.gfxCtx);
 
-    func_8009B884_jp(temp_a0, play->unk_1C60, (actor->flags & 0x400000) ? NULL : &actor->world.pos);
+    func_8009B884_jp(temp_a0, play->unk_1C60, (actor->flags & ACTOR_FLAG_400000) ? NULL : &actor->world.pos);
 
     LightsN_disp(temp_a0, play->state.gfxCtx);
-    Matrix_softcv3_load(actor->world.pos.x, actor->world.pos.y + (actor->unk_0E4 * actor->unk_05C.y), actor->world.pos.z, &actor->unk_0DC);
-    Matrix_scale(actor->unk_05C.x, actor->unk_05C.y, actor->unk_05C.z, MTXMODE_APPLY);
+    Matrix_softcv3_load(actor->world.pos.x, actor->world.pos.y + (actor->shape.unk_0E4 * actor->scale.y), actor->world.pos.z, &actor->shape.unk_0DC);
+    Matrix_scale(actor->scale.x, actor->scale.y, actor->scale.z, MTXMODE_APPLY);
 
-    temp_a0_2 = play->unk_0110[actor->unk_026].unk_04;
+    temp_a0_2 = play->unk_0110[actor->unk_026].segment;
 
     gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(temp_a0_2);
 
@@ -279,8 +280,8 @@ void Actor_draw(PlayState* play, Actor* actor) {
 
     actor->draw(actor, play);
 
-    if (actor->unk_0E8 != NULL) {
-        actor->unk_0E8(actor, temp_a0, play);
+    if (actor->shape.unk_0E8 != NULL) {
+        actor->shape.unk_0E8(actor, temp_a0, play);
     }
 
     CLOSE_DISPS(play->state.gfxCtx);
@@ -321,14 +322,14 @@ s32 Actor_draw_actor_no_culling_check2(Actor* actor, Vec3f* arg1, f32 arg2) {
 
 void Actor_cull_check(Actor* actor) {
     if (Actor_draw_actor_no_culling_check(actor) == 1) {
-        actor->flags |= 0x40;
+        actor->flags |= ACTOR_FLAG_40;
     } else {
-        actor->flags &= ~0x40;
+        actor->flags &= ~ACTOR_FLAG_40;
     }
 }
 
 void Actor_delete_check(Actor* actor, PlayState* play) {
-    if ((actor->flags & (0x40 | 0x20 | 0x10)) || (actor->fgName == 0)) {
+    if ((actor->flags & (ACTOR_FLAG_40 | ACTOR_FLAG_20 | ACTOR_FLAG_10)) || (actor->fgName == 0)) {
         return;
     }
 
@@ -424,37 +425,39 @@ void Actor_info_dt(ActorInfo* actorInfo, PlayState* play) {
 
 void Actor_info_call_actor(PlayState* play, ActorInfo* actorInfo) {
     s32 pad[1] UNUSED;
-    ActorType cat;
+    ActorPart part;
     Player* player;
 
     player = get_player_actor_withoutCheck(play);
     func_8008E5F4_jp(player->actor.world.pos);
 
-    for (cat = 0; cat < ACTORCAT_MAX; cat++) {
+    for (part = 0; part < ACTOR_PART_MAX; part++) {
         Actor* actor;
         Actor* next;
 
-        for (actor = actorInfo->actorLists[cat].head; actor != NULL; actor = next) {
-            play->state.unk_9C = actor->id;
+        for (actor = actorInfo->actorLists[part].head; actor != NULL; actor = next) {
+            play->state.unk_9C = actor->name;
             play->state.unk_9D = 0x97;
+
             if (actor->world.pos.y < -25000.0f) {
                 actor->world.pos.y = -25000.0f;
             }
 
-            if (actor->init != NULL) {
+            if (actor->ct != NULL) {
                 if (Actor_data_bank_dma_end_check(actor, play) == 1) {
-                    gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(play->unk_0110[actor->unk_026].unk_04);
+                    gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(play->unk_0110[actor->unk_026].segment);
+
                     play->state.unk_9D = 0x98;
-                    actor->init(actor, play);
+                    actor->ct(actor, play);
                     play->state.unk_9D = 0x99;
-                    actor->init = NULL;
+                    actor->ct = NULL;
                 }
-                next = actor->unk_158;
+                next = actor->next;
             } else if (Actor_data_bank_dma_end_check(actor, play) == 0) {
                 play->state.unk_9D = 0x9A;
                 Actor_delete(actor);
                 play->state.unk_9D = 0x9B;
-                next = actor->unk_158;
+                next = actor->next;
             } else if (actor->update == NULL) {
                 if (actor->unk_0B5 == 0) {
                     play->state.unk_9D = 0x9C;
@@ -464,11 +467,11 @@ void Actor_info_call_actor(PlayState* play, ActorInfo* actorInfo) {
                     play->state.unk_9D = 0x9E;
                     Actor_dt(actor, play);
                     play->state.unk_9D = 0x9F;
-                    next = actor->unk_158;
+                    next = actor->next;
                 }
             } else {
                 play->state.unk_9D = 0xA0;
-                xyz_t_move(&actor->unk_03C, &actor->world.pos);
+                xyz_t_move(&actor->prevPos, &actor->world.pos);
 
                 actor->unk_0BC = search_position_distanceXZ(&actor->world.pos, &player->actor.world.pos);
                 actor->unk_0C0 = player->actor.world.pos.y - actor->world.pos.y;
@@ -476,16 +479,16 @@ void Actor_info_call_actor(PlayState* play, ActorInfo* actorInfo) {
                 actor->unk_0B8 = SQ(actor->unk_0BC) + SQ(actor->unk_0C0);
                 actor->unk_0B6 = search_position_angleY(&actor->world.pos, &player->actor.world.pos);
 
-                actor->flags &= ~0x1000000;
-                if ((actor->flags & 0x50) || (actor->category == ACTORCAT_NPC)) {
-                    gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(play->unk_0110[actor->unk_026].unk_04);
+                actor->flags &= ~ACTOR_FLAG_1000000;
+                if ((actor->flags & (ACTOR_FLAG_40 | ACTOR_FLAG_10)) || (actor->part == ACTOR_PART_NPC)) {
+                    gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(play->unk_0110[actor->unk_026].segment);
                     play->state.unk_9D = 0xA1;
                     actor->update(actor, play);
                     play->state.unk_9D = 0xA2;
                 }
 
-                CollisionCheck_Status_Clear(&actor->unk_0C4);
-                next = actor->unk_158;
+                CollisionCheck_Status_Clear(&actor->colStatus);
+                next = actor->next;
             }
         }
     }
@@ -496,14 +499,14 @@ void Actor_info_call_actor(PlayState* play, ActorInfo* actorInfo) {
 void Actor_info_draw_actor(PlayState* play, ActorInfo* actorInfo) {
     PlayState_unk_2208 temp_s4 = play->unk_2208;
     ActorListEntry* actorEntry = actorInfo->actorLists;
-    ActorType cat = 0;
+    ActorPart part = 0;
 
     if (1) {}
 
-    for (; cat < ACTORCAT_MAX; cat++, actorEntry++) {
+    for (; part < ACTOR_PART_MAX; part++, actorEntry++) {
         Actor* actor;
 
-        for (actor = actorEntry->head; actor != NULL; actor = actor->unk_158) {
+        for (actor = actorEntry->head; actor != NULL; actor = actor->next) {
             s32 temp;
 
             Skin_Matrix_PrjMulVector(&play->unk_1E1C, &actor->world.pos, &actor->unk_124, &actor->unk_130);
@@ -516,12 +519,12 @@ void Actor_info_draw_actor(PlayState* play, ActorInfo* actorInfo) {
                 continue;
             }
 
-            if ((actor->init != NULL) || (actor->draw == NULL)) {
+            if ((actor->ct != NULL) || (actor->draw == NULL)) {
                 continue;
             }
 
-            if (actor->flags & (0x40 | 0x20)) {
-                if (!(actor->flags & 0x80) && (actor->unk_148 == 0) && (actor->unk_149 == 0)) {
+            if (actor->flags & (ACTOR_FLAG_40 | ACTOR_FLAG_20)) {
+                if (!(actor->flags & ACTOR_FLAG_80) && (actor->unk_148 == 0) && (actor->unk_149 == 0)) {
                     Actor_draw(play, actor);
                     actor->unk_0B5 = 1;
                 }
@@ -539,18 +542,18 @@ void Actor_info_draw_actor(PlayState* play, ActorInfo* actorInfo) {
 void Actor_info_part_new(ActorInfo* actorInfo, Actor* actor, u8 category) {
     Actor* temp_v1;
 
-    actor->category = category;
+    actor->part = category;
 
     actorInfo->unk_00++;
 
     actorInfo->actorLists[category].unk_0++;
     temp_v1 = actorInfo->actorLists[category].head;
     if (temp_v1 != NULL) {
-        temp_v1->unk_154 = actor;
+        temp_v1->prev = actor;
     }
 
     actorInfo->actorLists[category].head = actor;
-    actor->unk_158 = temp_v1;
+    actor->next = temp_v1;
 }
 
 Actor* Actor_info_part_delete(ActorInfo* actorInfo, Actor* actor) {
@@ -558,21 +561,21 @@ Actor* Actor_info_part_delete(ActorInfo* actorInfo, Actor* actor) {
 
     actorInfo->unk_00--;
 
-    actorInfo->actorLists[actor->category].unk_0--;
+    actorInfo->actorLists[actor->part].unk_0--;
 
-    if (actor->unk_154 != NULL) {
-        actor->unk_154->unk_158 = actor->unk_158;
+    if (actor->prev != NULL) {
+        actor->prev->next = actor->next;
     } else {
-        actorInfo->actorLists[actor->category].head = actor->unk_158;
+        actorInfo->actorLists[actor->part].head = actor->next;
     }
 
-    newHead = actor->unk_158;
+    newHead = actor->next;
     if (newHead != NULL) {
-        newHead->unk_154 = actor->unk_154;
+        newHead->prev = actor->prev;
     }
 
-    actor->unk_154 = NULL;
-    actor->unk_158 = NULL;
+    actor->prev = NULL;
+    actor->next = NULL;
 
     return newHead;
 }
@@ -710,7 +713,7 @@ s32 Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, ActorOverlay*
     s32 var_v1 = 1;
 
     if (*arg0 == -1) {
-        if (profile->type == ACTORCAT_NPC) {
+        if (profile->part == ACTOR_PART_NPC) {
             var_v1 = func_80057A8C_jp(arg0, profile, overlayEntry, play, fgName);
         } else {
             var_v1 = func_80057B70_jp(arg0, profile, overlayEntry, play, fgName);
@@ -754,16 +757,16 @@ void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* o
 
     actor->overlayEntry = overlayEntry;
 
-    actor->id = profile->id;
+    actor->name = profile->name;
     actor->flags = profile->flags;
 
     actor->unk_026 = arg4;
 
-    actor->init = profile->init;
-    actor->destroy = profile->destroy;
+    actor->ct = profile->ct;
+    actor->dt = profile->dt;
     actor->update = profile->update;
     actor->draw = profile->draw;
-    actor->unk_16C = profile->unk_20;
+    actor->save = profile->save;
 
     actor->params = params;
 
@@ -815,7 +818,7 @@ Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId,
     temp_s0->numLoaded++;
     Actor_init_actor_class(sp68, profile, temp_s0, play, argF, x, y, z, rotX, rotY, rotZ, arg9, argA, argB, fgName, params);
 
-    Actor_info_part_new(actorInfo, sp68, profile->type);
+    Actor_info_part_new(actorInfo, sp68, profile->part);
 
     mNpc_SetNpcinfo(sp68, argE);
 
@@ -834,8 +837,8 @@ Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, PlayState*
     Actor* temp_v0 = Actor_info_make_actor(actorInfo, play, actorId, x, y, z, rotX, rotY, rotZ, -1, -1, argA, fgName, params, -1, argD);
 
     if (temp_v0 != NULL) {
-        arg1->unk_150 = temp_v0;
-        temp_v0->unk_14C = arg1;
+        arg1->child = temp_v0;
+        temp_v0->parent = arg1;
     }
 
     return temp_v0;
@@ -866,19 +869,19 @@ void restore_fgdata(Actor* actor, PlayState* play UNUSED) {
     }
 }
 
-s32 restore_flag[ACTORCAT_MAX] = {
-    1, // ACTORCAT_0
-    1, // ACTORCAT_1
-    0, // ACTORCAT_PLAYER
-    0, // ACTORCAT_NPC
-    0, // ACTORCAT_4
-    0, // ACTORCAT_5
-    0, // ACTORCAT_6
-    0, // ACTORCAT_7
+s32 restore_flag[ACTOR_PART_MAX] = {
+    1, // ACTOR_PART_0
+    1, // ACTOR_PART_1
+    0, // ACTOR_PART_PLAYER
+    0, // ACTOR_PART_NPC
+    0, // ACTOR_PART_4
+    0, // ACTOR_PART_5
+    0, // ACTOR_PART_6
+    0, // ACTOR_PART_7
 };
 
 void restore_fgdata_one(Actor* actor, PlayState* play) {
-    if (restore_flag[actor->category] == 1) {
+    if (restore_flag[actor->part] == 1) {
         restore_fgdata(actor, play);
     } else if (actor->unk_003 == 1) {
         restore_fgdata(actor, play);
@@ -887,17 +890,17 @@ void restore_fgdata_one(Actor* actor, PlayState* play) {
 
 void restore_fgdata_all(PlayState* play) {
     ActorInfo* actorInfo = &play->actorInfo;
-    ActorType cat;
+    ActorPart part;
 
-    for (cat = 0; cat < ACTORCAT_MAX; cat++) {
+    for (part = 0; part < ACTOR_PART_MAX; part++) {
         Actor* actor;
 
-        if (restore_flag[cat] == 1) {
-            for (actor = actorInfo->actorLists[cat].head; actor != NULL; actor = actor->unk_158) {
+        if (restore_flag[part] == 1) {
+            for (actor = actorInfo->actorLists[part].head; actor != NULL; actor = actor->next) {
                 restore_fgdata(actor, play);
             }
         } else {
-            for (actor = actorInfo->actorLists[cat].head; actor != NULL; actor = actor->unk_158) {
+            for (actor = actorInfo->actorLists[part].head; actor != NULL; actor = actor->next) {
                 if (actor->unk_003 == 1) {
                     restore_fgdata(actor, play);
                 }
@@ -908,15 +911,15 @@ void restore_fgdata_all(PlayState* play) {
 
 void Actor_info_save_actor(PlayState* play) {
     ActorInfo* actorInfo = &play->actorInfo;
-    ActorType cat;
+    ActorPart part;
 
-    for (cat = 0; cat < ACTORCAT_MAX; cat++) {
+    for (part = 0; part < ACTOR_PART_MAX; part++) {
         Actor* actor;
 
-        for (actor = actorInfo->actorLists[cat].head; actor != NULL; actor = actor->unk_158) {
-            if (actor->unk_16C != NULL) {
-                actor->unk_16C(actor, play);
-                actor->unk_16C = NULL;
+        for (actor = actorInfo->actorLists[part].head; actor != NULL; actor = actor->next) {
+            if (actor->save != NULL) {
+                actor->save(actor, play);
+                actor->save = NULL;
             }
         }
     }
@@ -960,26 +963,26 @@ Actor* Actor_info_delete(ActorInfo* actorInfo, Actor* actor, PlayState* play) {
     return newHead;
 }
 
-Actor* Actor_info_name_search_sub(Actor* actor, s16 id) {
-    for (; actor != NULL; actor = actor->unk_158) {
-        if (id == actor->id) {
+Actor* Actor_info_name_search_sub(Actor* actor, s16 name) {
+    for (; actor != NULL; actor = actor->next) {
+        if (name == actor->name) {
             break;
         }
     }
     return actor;
 }
 
-Actor* Actor_info_name_search(ActorInfo* actorInfo, s16 id, ActorType cat) {
-    Actor* head = actorInfo->actorLists[cat].head;
+Actor* Actor_info_name_search(ActorInfo* actorInfo, s16 name, ActorPart part) {
+    Actor* head = actorInfo->actorLists[part].head;
 
     if (head != NULL) {
-        return Actor_info_name_search_sub(head, id);
+        return Actor_info_name_search_sub(head, name);
     }
     return NULL;
 }
 
 Actor* Actor_info_fgName_search_sub(Actor* actor, u16 fgName) {
-    for (; actor != NULL; actor = actor->unk_158) {
+    for (; actor != NULL; actor = actor->next) {
         if (actor->fgName == fgName) {
             break;
         }
@@ -988,8 +991,8 @@ Actor* Actor_info_fgName_search_sub(Actor* actor, u16 fgName) {
     return actor;
 }
 
-Actor* Actor_info_fgName_search(ActorInfo* actorInfo, u16 fgName, ActorType cat) {
-    Actor* head = actorInfo->actorLists[cat].head;
+Actor* Actor_info_fgName_search(ActorInfo* actorInfo, u16 fgName, ActorPart part) {
+    Actor* head = actorInfo->actorLists[part].head;
 
     if (head != NULL) {
         return Actor_info_fgName_search_sub(head, fgName);
