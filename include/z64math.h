@@ -58,8 +58,6 @@ typedef union {
 // Calculate the floating point remainder of x / y.
 #define FMOD(x, y) ((x) - ((s32)((x) * (1.0f / (y))) * (f32)(y)))
 
-#define ABS(x) (x >= 0.0f) ? x : -x;
-
 // Casting a float to an integer, when the float value is larger than what the integer type can hold,
 // leads to undefined behavior. For example (f32)0x8000 doesn't fit in a s16, so it cannot be cast to s16.
 // This isn't an issue with IDO, but is one with for example GCC.

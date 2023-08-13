@@ -8,7 +8,7 @@
 // void func_800AEB9C_jp();
 // void func_800AEBC8_jp();
 // void func_800AEC74_jp();
-// void func_800AED08_jp();
+// void mNPS_schedule_manager();
 // void func_800AED68_jp();
 // void func_800AEDD0_jp();
 // void func_800AEE38_jp();
