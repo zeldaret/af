@@ -141,6 +141,18 @@ typedef struct Actor {
     /* 0x170 */ struct ActorOverlay* overlayEntry;
 } Actor; // size = 0x174
 
+typedef struct Part_Break_unk_00 {
+    /* 0x00 */ UNK_TYPE1 unk_00[0x40];
+} Part_Break_unk_00; // size = 0x40
+
+typedef struct Part_Break {
+    /* 0x00 */ Part_Break_unk_00* unk_00;
+    /* 0x04 */ u16* unk_04;
+    /* 0x08 */ UNK_TYPE1 unk_08[0x4];
+    /* 0x0C */ s32* unk_0C;
+    /* 0x10 */ s32 unk_10;
+} Part_Break; // size >= 0x14
+
 typedef struct ActorListEntry {
     /* 0x0 */ s32 unk_0;
     /* 0x4 */ Actor* head;
@@ -264,7 +276,7 @@ Actor* Actor_info_name_search_sub(Actor* actor, s16 name);
 Actor* Actor_info_name_search(ActorInfo* actorInfo, s16 name, ActorPart part);
 Actor* Actor_info_fgName_search_sub(Actor* actor, u16 fgName);
 Actor* Actor_info_fgName_search(ActorInfo* actorInfo, u16 fgName, ActorPart part);
-// void Part_Break_init();
+void Part_Break_init(Part_Break* partBreak, s32 arg1, UNK_TYPE arg2);
 Gfx* HiliteReflect_new(Vec3f* object, Vec3f* eye, Vec3f* lightDir, struct GraphicsContext* gfxCtx, Gfx* gfx, Hilite** hilite);
 Hilite* HiliteReflect_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, struct GraphicsContext* gfxCtx);
 Hilite* HiliteReflect_xlu_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, struct GraphicsContext* gfxCtx);

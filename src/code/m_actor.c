@@ -1019,60 +1019,48 @@ Actor* Actor_info_fgName_search(ActorInfo* actorInfo, u16 fgName, ActorPart part
     return NULL;
 }
 
-#if 0
-void Part_Break_init(void* arg0, s32 arg1, ? arg2) {
-    s32 sp28;
-    s32 sp24;
-    s32 sp20;
-    s32 temp_a0;
-    s32 temp_a0_2;
-    s32 temp_a0_3;
-    void* temp_a0_4;
-    void* temp_a0_5;
-    void* temp_a0_6;
-    void* temp_v0;
-    void* temp_v0_2;
-    void* temp_v0_3;
+// unused
+void Part_Break_init(Part_Break* partBreak, s32 count, s32 arg2 UNUSED) {
+    size_t size1;
+    size_t size2;
+    size_t size3;
 
-    temp_a0 = (arg1 << 6) + 0x40;
-    sp28 = temp_a0;
-    temp_v0 = zelda_malloc(temp_a0);
-    arg0->unk_0 = temp_v0;
-    if (temp_v0 != NULL) {
-        temp_a0_2 = (arg1 * 4) + 4;
-        sp24 = temp_a0_2;
-        temp_v0_2 = zelda_malloc(temp_a0_2);
-        arg0->unk_C = temp_v0_2;
-        if (temp_v0_2 != NULL) {
-            temp_a0_3 = (arg1 * 2) + 2;
-            sp20 = temp_a0_3;
-            temp_v0_3 = zelda_malloc(temp_a0_3);
-            arg0->unk_4 = temp_v0_3;
-            if (temp_v0_3 != NULL) {
-                mem_clear(arg0->unk_0, sp28, 0);
-                mem_clear(arg0->unk_C, sp24, 0);
-                mem_clear(arg0->unk_4, sp20, 0);
-                arg0->unk_10 = 1;
-                return;
-            }
-        }
+    size1 = (count + 1) * sizeof(Part_Break_unk_00);
+    partBreak->unk_00 = zelda_malloc(size1);
+    if (partBreak->unk_00 == NULL) {
+        goto cleanup;
     }
-    temp_a0_4 = arg0->unk_0;
-    if (temp_a0_4 != NULL) {
-        zelda_free(temp_a0_4);
+
+    size2 = (count + 1) * sizeof(s32);
+    partBreak->unk_0C = zelda_malloc(size2);
+    if (partBreak->unk_0C == NULL) {
+        goto cleanup;
     }
-    temp_a0_5 = arg0->unk_C;
-    if (temp_a0_5 != NULL) {
-        zelda_free(temp_a0_5);
+
+    size3 = (count + 1) * sizeof(u16);
+    partBreak->unk_04 = zelda_malloc(size3);
+    if (partBreak->unk_04 == NULL) {
+        goto cleanup;
     }
-    temp_a0_6 = arg0->unk_4;
-    if (temp_a0_6 != NULL) {
-        zelda_free(temp_a0_6);
+
+    mem_clear(partBreak->unk_00, size1, 0);
+    mem_clear(partBreak->unk_0C, size2, 0);
+    mem_clear(partBreak->unk_04, size3, 0);
+
+    partBreak->unk_10 = 1;
+    return;
+
+cleanup:
+    if (partBreak->unk_00 != NULL) {
+        zelda_free(partBreak->unk_00);
+    }
+    if (partBreak->unk_0C != NULL) {
+        zelda_free(partBreak->unk_0C);
+    }
+    if (partBreak->unk_04 != NULL) {
+        zelda_free(partBreak->unk_04);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Part_Break_init.s")
-#endif
 
 Mtx B_8011B850_jp;
 
