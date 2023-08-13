@@ -4,6 +4,7 @@
 #include "m_field_info.h"
 #include "m_police_box.h"
 #include "m_lib.h"
+#include "libc64/qrand.h"
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_snowman/mSN_check_life.s")
 // s32 mSN_check_life(u16 *arg0, s32 arg1)
@@ -117,7 +118,6 @@ void func_800C8BC4_jp(SnowmanInfo* snowmanInfo) {
 }
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_snowman/mSN_decide_msg.s")
-f32 fqrand(); //libc64 stuff
 
 void mSN_decide_msg(void)
 {
