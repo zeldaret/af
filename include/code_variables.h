@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "unknown_structs.h"
+#include "z64math.h"
 
 
 
@@ -14,7 +15,6 @@
 // extern UNK_TYPE D_80100C60_jp;
 // extern UNK_TYPE D_80100C64_jp;
 // extern UNK_TYPE D_80100C68_jp;
-// extern UNK_TYPE restore_flag;
 
 // extern UNK_TYPE D_801025C0_jp;
 // extern UNK_TYPE D_FLT_801025C8_jp;
@@ -827,7 +827,7 @@ extern vs32 D_8010EFB0_jp; // TODO: Determine where this goes
 // extern UNK_TYPE D_8010F4C0_jp;
 // extern UNK_TYPE D_8010FCC0_jp;
 // extern UNK_TYPE D_8010FCD0_jp;
-// extern UNK_TYPE MtxF_clear;
+extern MtxF MtxF_clear;
 // extern UNK_TYPE D_8010FD50_jp;
 // extern UNK_TYPE D_8010FD54_jp;
 // extern UNK_TYPE D_8010FD58_jp;
@@ -1724,7 +1724,6 @@ extern s32 zurumode_flag;
 
 // extern UNK_TYPE B_8011B830_jp;
 // extern UNK_TYPE B_8011B83C_jp;
-// extern UNK_TYPE B_8011B850_jp;
 
 // extern UNK_TYPE B_8011B8B0_jp;
 // extern UNK_TYPE B_8011B8B4_jp;

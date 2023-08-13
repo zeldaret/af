@@ -132,6 +132,7 @@
       - [0x723010, data, code/rsp/723010]
 
       - [0x7248D0, data, code/7248D0]
+      - [0x724910, .data, code/m_actor]
       - [0x724930, .data, code/m_actor_dlftbls]
       - [0x726260, data, code/m_actor_shadow]
       - [0x7262C0, data, code/7262C0]
@@ -231,6 +232,7 @@
       - [0x73CEE0, rodata, code/73CEE0]
 
       - { start: 0x73F4D0, type: bss, vram: 0x8011B830, name: code/8011B830 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x8011B850, name: code/m_actor }
       - { start: 0x73F4D0, type: .bss, vram: 0x8011B890, name: code/m_actor_dlftbls }
       - { start: 0x73F4D0, type: bss, vram: 0x8011B8B0, name: code/8011B8B0 }
       - { start: 0x74AB40, type: .bss, vram: 0x80126EA0, name: code/m_common_data }

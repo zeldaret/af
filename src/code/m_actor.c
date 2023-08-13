@@ -25,120 +25,17 @@
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "overlays/actors/ovl_player_actor/m_player.h"
 
-#if 0
-? CollisionCheck_Status_Clear(void*);               /* extern */
-? CollisionCheck_Status_ct(f32, void*);             /* extern */
-? FaultDrawer_Printf(?*, void*, ?*);                /* extern */
-? FaultDrawer_SetCursor(?, ?);                      /* extern */
-? Fault_AddClient(?*, void (*)(void*, ?), void*, ?*); /* extern */
-? Fault_RemoveClient(?*);                           /* extern */
-s32 Global_light_read(void*, struct GraphicsContext*); /* extern */
-? Light_list_point_draw(PlayState*);                /* extern */
-? LightsN_disp(s32, struct GraphicsContext*);       /* extern */
-? Matrix_Position(s32, s32);                        /* extern */
-? Matrix_copy_MtxF(s8*, ?*);                        /* extern */
-? Matrix_scale(f32, f32, s32, ?);                   /* extern */
-? Matrix_softcv3_load(f32, f32, s32, void*);        /* extern */
-? Skin_Matrix_PrjMulVector(s8*, s32, s32, s32);     /* extern */
-? actor_dlftbls_cleanup();                          /* extern */
-? actor_dlftbls_init();                             /* extern */
-? chase_f(void*, s32, s32, void*);                  /* extern */
-f32 cos_s(s16);                                     /* extern */
-s32 func_8008B3E8_jp(?*, ?);                        /* extern */
-? func_8008E5F4_jp(s32, f32, s32);                  /* extern */
-? func_8009B884_jp(s32, s32, void*);                /* extern */
-? func_800C6144_jp(void*, s16);                     /* extern */
-void* get_player_actor_withoutCheck(PlayState*);    /* extern */
-f32 mCoBG_GetBgY_OnlyCenter_FromWpos2(s32, s32, s32, f32); /* extern */
-s32 mEv_CheckFirstJob();                            /* extern */
-? mFI_SetBearActor(PlayState*, s32, s32, s32, s32); /* extern */
-? mFI_SetFG_common(u16, s32, s32, s32, s32);        /* extern */
-? mNpc_SetNpcinfo(void*, s8);                       /* extern */
-s32 mSc_bank_regist_check(void*, s16);              /* extern */
-? mSc_regist_initial_exchange_bank(PlayState*);     /* extern */
-? mem_clear(void*, s32, ?);                         /* extern */
-? ovlmgr_Load(s32, s32, s32, s32, s32);             /* extern */
-s16 search_position_angleY(void*, void*);           /* extern */
-f32 search_position_distanceXZ(void*, void*);       /* extern */
-f32 sin_s(s16, void*);                              /* extern */
-? xyz_t_move(?*, void*);                            /* extern */
-? zelda_free(void*, void*);                         /* extern */
-void* zelda_malloc(s32, void*);                     /* extern */
-void* zelda_malloc_r(s32, void*);                   /* extern */
-void Actor_ct(void* arg0, PlayState* arg1);         /* static */
-void Actor_cull_check(void* arg0);                  /* static */
-s32 Actor_data_bank_dma_end_check(void* arg0, PlayState* arg1); /* static */
-s32 Actor_data_bank_regist_check(s32* arg0, void* arg1, u16 arg4, PlayState*, s32); /* static */
-void Actor_delete(void* arg0);                      /* static */
-void Actor_delete_check(void* arg0, PlayState* arg1); /* static */
-void Actor_display_position_set(s32 arg1, s16* arg2, s16* arg3); /* static */
-void Actor_draw(PlayState* arg0, void* arg1);       /* static */
-s32 Actor_draw_actor_no_culling_check(void* arg0);  /* static */
-? Actor_draw_actor_no_culling_check2(void* arg0, void* arg1, f32 arg2); /* static */
-void Actor_dt(void* arg0, PlayState* arg1);         /* static */
-void Actor_foot_shadow_pos_set(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5); /* static */
-void Actor_free_overlay_area(s32 arg0);             /* static */
-void Actor_get_overlay_area(void* arg0, ?* arg1, s32 arg2, u16); /* static */
-void* Actor_info_delete(s8* arg0, void* arg1, PlayState* arg2); /* static */
-void* Actor_info_fgName_search(s32 arg0, s32 arg1, s32 arg2); /* static */
-void* Actor_info_fgName_search_sub(void* arg0, s32 arg1, void*); /* static */
-void* Actor_info_make_actor(ActorInfo* arg0, PlayState* arg1, s16 arg2, f32 arg3, f32 arg4, f32 arg5, s32 arg6, s32 arg7, s32 arg8, s32 arg9, s32 argA, s32 argB, s32 argC, s32 argD, s32 argE, s32 argF); /* static */
-void* Actor_info_make_child_actor(void* arg1, ActorInfo* arg2, s16 arg3, s32 arg4, f32 arg5, f32 arg6, s16 arg7, s16 arg8, s16 arg9, s16 argA, u16 argB, s16 argC, s32 argD); /* static */
-void* Actor_info_name_search(s32 arg0, s16 arg1, s32 arg2); /* static */
-void* Actor_info_name_search_sub(void* arg0, s16 arg1, void*); /* static */
-void* Actor_info_part_delete(s8* arg0, void* arg1); /* static */
-void Actor_info_part_new(ActorInfo* arg0, void* arg1, u8 arg2); /* static */
-void Actor_info_save_actor(s32 arg0);               /* static */
-void Actor_init_actor_class(void* arg0, void* arg1, void* arg2, PlayState* arg3, s32 arg4, f32 arg5, f32 arg6, f32 arg7, s32 arg8, s32 arg9, s32 argA, s32 argB, s32 argC, s32 argD, s32 argE, s32 argF); /* static */
-s32 Actor_malloc_actor_class(void** arg0, void* arg1, void* arg2, ?* arg3, s32 arg4); /* static */
-s32 Actor_player_look_direction_check(void* arg0, s16 arg1, PlayState* arg2); /* static */
-void Actor_position_move(void* arg0);               /* static */
-void Actor_position_moveF(void* arg0);              /* static */
-void Actor_position_speed_set(void* arg0);          /* static */
-void Actor_world_to_eye(void* arg0, f32 arg1, void*); /* static */
-f32 HiliteReflect_init(void* arg3, f32*, s32);      /* static */
-f32 HiliteReflect_light_init(void* arg3);           /* static */
-void* HiliteReflect_new(void* arg0, f32* arg1, void* arg2, void* arg3, void* arg4, LookAt** arg5); /* static */
-f32 HiliteReflect_xlu_init(void* arg3, f32*, s32);  /* static */
-void Part_Break_init(void* arg0, s32 arg1, ? arg2); /* static */
-void Setpos_HiliteReflect_init(void* arg1);         /* static */
-void Setpos_HiliteReflect_light_init(void* arg1);   /* static */
-void Setpos_HiliteReflect_xlu_init(void* arg1);     /* static */
-void Shape_Info_init(void* arg0, f32 arg1, s32 arg2, f32 arg3, f32 arg4); /* static */
-void actor_free_check(void* arg0, u16 arg1);        /* static */
-void func_80056380_jp(void* arg0, ? arg1);          /* static */
-s32 func_80057940_jp(void** arg0, void* arg1, ?* arg2, s32 arg3, s32 arg4); /* static */
-s32 func_80057A8C_jp(s32* arg0, ? arg1, void* arg2, s32 arg3, u16 arg4); /* static */
-s32 func_80057B70_jp(s32* arg0, void* arg1, void* arg2, s32 arg3, u16 arg4); /* static */
-void projection_pos_set(s32 arg0, f32* arg3, f32*); /* static */
-void restore_fgdata(void* arg0, s32 arg1);          /* static */
-void restore_fgdata_all(s32 arg0);                  /* static */
-void restore_fgdata_one(void* arg0, PlayState*);    /* static */
-extern Mtx B_8011B850_jp;
-extern ? gSegments;
-extern s32 restore_flag;
-extern ? actor_dlftbls;
-extern ? common_data;
-extern void* debug_mode;
-static ? RO_801161E8_jp;                            /* unable to generate initializer; const */
-#endif
-
-extern s32 restore_flag[ACTORCAT_MAX];
-extern MtxF MtxF_clear;
-
-// UNK_RET func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const struct_801161E8_jp* arg2, s32 arg3, s32 arg4);
-
 void func_80056380_jp(void* arg0, void* arg1 UNUSED) {
     Actor* actor = arg0;
     const char* name;
 
     if ((actor == NULL) || (actor->overlayEntry == NULL)) {
         //! @bug this will be overriden by the next printf
-        FaultDrawer_SetCursor(0x30, 0x18);
+        FaultDrawer_SetCursor(48, 24);
         FaultDrawer_Printf("ACTOR NAME is NULL");
     }
 
-    FaultDrawer_SetCursor(0x30, 0x18);
+    FaultDrawer_SetCursor(48, 24);
     name = "";
     FaultDrawer_Printf("ACTOR NAME %08x:%s", actor, name);
 }
@@ -300,7 +197,7 @@ void Actor_ct(Actor* actor, PlayState* play) {
     }
 }
 
-#ifdef NON_EQUIVALENT
+#ifdef NON_MATCHING
 void Actor_dt(Actor* actor, PlayState* play) {
     PlayState_unk_0110* temp_v0_6;
     s32 new_var;
@@ -351,7 +248,7 @@ void Actor_dt(Actor* actor, PlayState* play) {
 #endif
 
 #ifdef NON_EQUIVALENT
-// s32 Global_light_read(s8*, struct GraphicsContext*); /* extern */
+UNK_TYPE4 Global_light_read(UNK_TYPE4*, struct GraphicsContext*);
 // ? LightsN_disp(UNK_TYPE4, struct GraphicsContext*);       /* extern */
 void func_8009B884_jp(UNK_TYPE4, UNK_TYPE4, Vec3f*);              /* extern */
 
@@ -759,8 +656,8 @@ s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const 
 }
 
 // this function may be Actor_data_bank_regist_check_npc
-s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play, u16 fgName) {
-    s32 pad;
+s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile UNUSED, ActorOverlay* overlayEntry, PlayState* play, u16 fgName) {
+    s32 pad UNUSED;
     s16 sp92;
     s16 sp90;
     s32 temp_v0;
@@ -770,6 +667,7 @@ s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntr
 
     {
         CommonData_unk_1004C_unk_14_arg0 sp24;
+
         common_data.unk_1004C->unk_14(&sp24, fgName);
 
         sp92 = sp24.unk_00;
@@ -968,6 +866,17 @@ void restore_fgdata(Actor* actor, PlayState* play UNUSED) {
     }
 }
 
+s32 restore_flag[ACTORCAT_MAX] = {
+    1, // ACTORCAT_0
+    1, // ACTORCAT_1
+    0, // ACTORCAT_PLAYER
+    0, // ACTORCAT_NPC
+    0, // ACTORCAT_4
+    0, // ACTORCAT_5
+    0, // ACTORCAT_6
+    0, // ACTORCAT_7
+};
+
 void restore_fgdata_one(Actor* actor, PlayState* play) {
     if (restore_flag[actor->category] == 1) {
         restore_fgdata(actor, play);
@@ -1142,6 +1051,8 @@ void Part_Break_init(void* arg0, s32 arg1, ? arg2) {
 #else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Part_Break_init.s")
 #endif
+
+Mtx B_8011B850_jp;
 
 #if 0
 void* HiliteReflect_new(void* arg0, f32* arg1, void* arg2, void* arg3, void* arg4, LookAt** arg5) {
