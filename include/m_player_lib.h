@@ -32,7 +32,7 @@ struct PlayState;
 // void func_800B19C4_jp();
 // void func_800B1A28_jp();
 // void func_800B1A60_jp();
-void func_800B1AA0_jp(struct PlayState* play);
+void mPlib_Object_Exchange_keep_Player_dt(struct PlayState* play);
 // void func_800B1AE0_jp();
 // void func_800B1B3C_jp();
 // void func_800B1B6C_jp();

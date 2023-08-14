@@ -507,9 +507,9 @@ RO_DBL_8003E8E8_jp = 0x8003E8E8; // type:f64
 RO_8003E8F0_jp = 0x8003E8F0; // type:s64
 RO_8003E8F8_jp = 0x8003E8F8; // type:s64
 
-gBuildTeam = 0x8003E900; // type:asciz
-gBuildDate = 0x8003E924; // type:asciz
-gBuildMakeOption = 0x8003E938; // type:asciz
+__Creator__ = 0x8003E900; // type:asciz
+__DateTime__ = 0x8003E924; // type:asciz
+__MakeOption__ = 0x8003E938; // type:asciz
 
 // .bss
 

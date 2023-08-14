@@ -283,7 +283,7 @@
       - [0x019C90, .rodata, ../lib/ultralib/src/libc/xldtob]
       - [0x019CF0, .rodata, ../lib/ultralib/src/libc/llcvt]
 
-      - [0x019D00, rodata, boot/build]
+      - [0x019D00, rodata, boot/version]
 
       - { start: 0x019D40, type: .bss, vram: 0x8003E940, name: boot/boot_main }
       - { start: 0x019D40, type: .bss, vram: 0x8003F330, name: boot/idle }

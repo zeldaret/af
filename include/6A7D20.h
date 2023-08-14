@@ -3,13 +3,13 @@
 
 #include "ultra64.h"
 
-// void func_80084080_jp();
-// void func_800840AC_jp();
-// void func_8008418C_jp();
-// void func_800843C8_jp();
-// void func_80084480_jp();
-// void func_800844B0_jp();
+// void fbdemo_wipe1_init();
+// void fbdemo_wipe1_move();
+// void fbdemo_wipe1_draw();
+// void fbdemo_wipe1_startup();
+// void fbdemo_wipe1_settype();
+// void fbdemo_wipe1_setcolor_rgba8888();
 // void func_800844BC_jp();
-// void func_800844C8_jp();
+// void fbdemo_wipe1_is_finish();
 
 #endif

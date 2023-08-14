@@ -20,6 +20,6 @@ struct PlayState;
 // void func_800C98A0_jp();
 // void func_800C9D38_jp();
 // void func_800C9F88_jp();
-void func_800CA008_jp(struct PlayState* play);
+void mTRC_move(struct PlayState* play);
 
 #endif

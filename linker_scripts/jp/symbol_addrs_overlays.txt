@@ -181,39 +181,39 @@ func_808029D0_jp = 0x808029D0; // type:func
 first_game_cleanup = 0x80802A20; // type:func
 first_game_init = 0x80802A2C; // type:func
 func_80802A60_jp = 0x80802A60; // type:func
-func_80802AE0_jp = 0x80802AE0; // type:func
-func_80802B40_jp = 0x80802B40; // type:func
-func_80802B64_jp = 0x80802B64; // type:func
-func_80802B8C_jp = 0x80802B8C; // type:func
-func_80802BB8_jp = 0x80802BB8; // type:func
-func_80802BF4_jp = 0x80802BF4; // type:func
-func_80802C90_jp = 0x80802C90; // type:func
-func_80802CBC_jp = 0x80802CBC; // type:func
-func_80802D9C_jp = 0x80802D9C; // type:func
-func_80802DF0_jp = 0x80802DF0; // type:func
-func_80802E10_jp = 0x80802E10; // type:func
-func_80802E34_jp = 0x80802E34; // type:func
-func_80802E74_jp = 0x80802E74; // type:func
-func_808030D0_jp = 0x808030D0; // type:func
-func_80803124_jp = 0x80803124; // type:func
-func_80803174_jp = 0x80803174; // type:func
+Game_play_Reset_destiny = 0x80802AE0; // type:func
+event_title_flag_on = 0x80802B40; // type:func
+event_title_flag_off = 0x80802B64; // type:func
+Game_play_camera_proc = 0x80802B8C; // type:func
+Game_play_fbdemo_wipe_destroy = 0x80802BB8; // type:func
+Game_play_fbdemo_wipe_create_sub = 0x80802BF4; // type:func
+Game_play_fbdemo_wipe_create = 0x80802C90; // type:func
+Game_play_fbdemo_wipe_init = 0x80802CBC; // type:func
+Game_play_fbdemo_fade_in_move_end = 0x80802D9C; // type:func
+Game_play_fbdemo_fade_out_start_emu_move_end = 0x80802DF0; // type:func
+Game_play_fbdemo_fade_out_game_end_move_end = 0x80802E10; // type:func
+Game_play_change_scene_move_end = 0x80802E34; // type:func
+Game_play_fbdemo_wipe_move = 0x80802E74; // type:func
+Game_play_fbdemo_wipe_proc = 0x808030D0; // type:func
+game_play_set_fog = 0x80803124; // type:func
+Game_play_fbdemo_proc = 0x80803174; // type:func
 play_cleanup = 0x80803210; // type:func
 play_init = 0x808032F8; // type:func
-func_80803544_jp = 0x80803544; // type:func
-func_8080367C_jp = 0x8080367C; // type:func
+Game_play_move_fbdemo_not_move = 0x80803544; // type:func
+Game_play_move = 0x8080367C; // type:func
 func_80803810_jp = 0x80803810; // type:func
-func_808039D0_jp = 0x808039D0; // type:func
-func_80803A18_jp = 0x80803A18; // type:func
-func_80803A40_jp = 0x80803A40; // type:func
-func_80803B08_jp = 0x80803B08; // type:func
-func_80803E40_jp = 0x80803E40; // type:func
-func_80803F48_jp = 0x80803F48; // type:func
-func_8080407C_jp = 0x8080407C; // type:func
+setupFog = 0x808039D0; // type:func
+setupViewer = 0x80803A18; // type:func
+setupViewMatrix = 0x80803A40; // type:func
+makeBumpTexture = 0x80803B08; // type:func
+draw_version = 0x80803E40; // type:func
+Game_play_draw = 0x80803F48; // type:func
+play_main = 0x8080407C; // type:func
 func_80804138_jp = 0x80804138; // type:func
 func_808041A4_jp = 0x808041A4; // type:func
-func_808041C4_jp = 0x808041C4; // type:func
-func_80804240_jp = 0x80804240; // type:func
-func_80804288_jp = 0x80804288; // type:func
+Gameplay_Scene_Init = 0x808041C4; // type:func
+mPl_SceneNo2SoundRoomType = 0x80804240; // type:func
+Gameplay_Scene_Read = 0x80804288; // type:func
 
 // .data
 
@@ -233,10 +233,10 @@ jtbl_80804410_jp = 0x80804410; // type:jtbl
 
 // .bss
 
-B_80804480_jp = 0x80804480; //
+fbdemo = 0x80804480; //
 B_8080455C_jp = 0x8080455C; //
-B_80804560_jp = 0x80804560; // type:s16
-B_80804562_jp = 0x80804562; // type:s16
+S_back_title_timer = 0x80804560; // type:s16
+S_se_endcheck_timeout = 0x80804562; // type:s16
 
 // .text
 
