@@ -70,7 +70,7 @@
     align: 0x1000
   - [0xA21680]
 
-  - name: segment_00A22000
+  - name: object_00A22000
     type: bin
     start: 0xA22000
     # vram:
@@ -270,7 +270,7 @@
     align: 0x1000
   - [0xB35930]
 
-  - name: segment_00B36000
+  - name: object_00B36000
     type: bin
     start: 0xB36000
     # vram:
@@ -278,7 +278,7 @@
     align: 0x1000
   - [0xB67E20]
 
-  - name: segment_00B68000
+  - name: object_00B68000
     type: bin
     start: 0xB68000
     # vram:
@@ -286,7 +286,7 @@
     align: 0x1000
   - [0xB88000]
 
-  - name: segment_00B88000
+  - name: object_00B88000
     type: bin
     start: 0xB88000
     # vram:
@@ -302,7 +302,7 @@
     align: 0x1000
   - [0xB8A070]
 
-  - name: segment_00B8B000
+  - name: object_00B8B000
     type: bin
     start: 0xB8B000
     # vram:
@@ -310,7 +310,7 @@
     align: 0x1000
   - [0xB8ECE0]
 
-  - name: segment_00B8F000
+  - name: object_00B8F000
     type: bin
     start: 0xB8F000
     # vram:
@@ -438,7 +438,7 @@
     align: 0x1000
   - [0xD24970]
 
-  - name: segment_00D25000
+  - name: object_00D25000
     type: bin
     start: 0xD25000
     # vram:
@@ -446,7 +446,7 @@
     align: 0x1000
   - [0xD28540]
 
-  - name: segment_00D29000
+  - name: object_00D29000
     type: bin
     start: 0xD29000
     # vram:
@@ -454,7 +454,7 @@
     align: 0x1000
   - [0xD2C0A0]
 
-  - name: segment_00D2D000
+  - name: object_00D2D000
     type: bin
     start: 0xD2D000
     # vram:
@@ -462,7 +462,7 @@
     align: 0x1000
   - [0xD37440]
 
-  - name: segment_00D38000
+  - name: object_00D38000
     type: bin
     start: 0xD38000
     # vram:
@@ -470,7 +470,7 @@
     align: 0x1000
   - [0xD42440]
 
-  - name: segment_00D43000
+  - name: object_00D43000
     type: bin
     start: 0xD43000
     # vram:
@@ -478,7 +478,7 @@
     align: 0x1000
   - [0xD4CE90]
 
-  - name: segment_00D4D000
+  - name: object_00D4D000
     type: bin
     start: 0xD4D000
     # vram:
@@ -510,7 +510,7 @@
     align: 0x1000
   - [0xD5A1D0]
 
-  - name: segment_00D5B000
+  - name: object_00D5B000
     type: bin
     start: 0xD5B000
     # vram:
@@ -518,7 +518,7 @@
     align: 0x1000
   - [0xD5C3F0]
 
-  - name: segment_00D5D000
+  - name: object_00D5D000
     type: bin
     start: 0xD5D000
     # vram:
@@ -526,7 +526,7 @@
     align: 0x1000
   - [0xD5D2E0]
 
-  - name: segment_00D5E000
+  - name: object_00D5E000
     type: bin
     start: 0xD5E000
     # vram:
@@ -534,7 +534,7 @@
     align: 0x1000
   - [0xDF3480]
 
-  - name: segment_00DF4000
+  - name: object_00DF4000
     type: bin
     start: 0xDF4000
     # vram:
@@ -542,7 +542,7 @@
     align: 0x1000
   - [0xDF42F0]
 
-  - name: segment_00DF5000
+  - name: object_00DF5000
     type: bin
     start: 0xDF5000
     # vram:
@@ -550,7 +550,7 @@
     align: 0x1000
   - [0xDFF0D0]
 
-  - name: segment_00E00000
+  - name: object_00E00000
     type: bin
     start: 0xE00000
     # vram:
@@ -558,7 +558,7 @@
     align: 0x1000
   - [0xE00180]
 
-  - name: segment_00E01000
+  - name: object_00E01000
     type: bin
     start: 0xE01000
     # vram:
@@ -590,7 +590,7 @@
     align: 0x1000
   - [0xE04530]
 
-  - name: segment_00E05000
+  - name: object_00E05000
     type: bin
     start: 0xE05000
     # vram:
@@ -606,7 +606,7 @@
     align: 0x1000
   - [0xE0D0E0]
 
-  - name: segment_00E0E000
+  - name: object_00E0E000
     type: bin
     start: 0xE0E000
     # vram:
@@ -614,7 +614,7 @@
     align: 0x1000
   - [0xE60390]
 
-  - name: segment_00E61000
+  - name: object_00E61000
     type: bin
     start: 0xE61000
     # vram:
@@ -622,7 +622,7 @@
     align: 0x1000
   - [0xE63350]
 
-  - name: segment_00E64000
+  - name: object_00E64000
     type: bin
     start: 0xE64000
     # vram:
@@ -630,7 +630,7 @@
     align: 0x1000
   - [0xE65020]
 
-  - name: segment_00E66000
+  - name: object_00E66000
     type: bin
     start: 0xE66000
     # vram:
@@ -638,7 +638,7 @@
     align: 0x1000
   - [0xE68140]
 
-  - name: segment_00E69000
+  - name: object_00E69000
     type: bin
     start: 0xE69000
     # vram:
@@ -646,7 +646,7 @@
     align: 0x1000
   - [0xE6A020]
 
-  - name: segment_00E6B000
+  - name: object_00E6B000
     type: bin
     start: 0xE6B000
     # vram:
@@ -654,7 +654,7 @@
     align: 0x1000
   - [0xE6C020]
 
-  - name: segment_00E6D000
+  - name: object_00E6D000
     type: bin
     start: 0xE6D000
     # vram:
@@ -662,7 +662,7 @@
     align: 0x1000
   - [0xE6E020]
 
-  - name: segment_00E6F000
+  - name: object_00E6F000
     type: bin
     start: 0xE6F000
     # vram:
@@ -670,7 +670,7 @@
     align: 0x1000
   - [0xE70020]
 
-  - name: segment_00E71000
+  - name: object_00E71000
     type: bin
     start: 0xE71000
     # vram:
@@ -678,7 +678,7 @@
     align: 0x1000
   - [0xE72020]
 
-  - name: segment_00E73000
+  - name: object_00E73000
     type: bin
     start: 0xE73000
     # vram:
@@ -686,7 +686,7 @@
     align: 0x1000
   - [0xE755D0]
 
-  - name: segment_00E76000
+  - name: object_00E76000
     type: bin
     start: 0xE76000
     # vram:
@@ -694,7 +694,7 @@
     align: 0x1000
   - [0xE77020]
 
-  - name: segment_00E78000
+  - name: object_00E78000
     type: bin
     start: 0xE78000
     # vram:
@@ -702,7 +702,7 @@
     align: 0x1000
   - [0xE79FE0]
 
-  - name: segment_00E7A000
+  - name: object_00E7A000
     type: bin
     start: 0xE7A000
     # vram:
@@ -710,7 +710,7 @@
     align: 0x1000
   - [0xE7B620]
 
-  - name: segment_00E7C000
+  - name: object_00E7C000
     type: bin
     start: 0xE7C000
     # vram:
@@ -718,7 +718,7 @@
     align: 0x1000
   - [0xE7D620]
 
-  - name: segment_00E7E000
+  - name: object_00E7E000
     type: bin
     start: 0xE7E000
     # vram:
@@ -726,7 +726,7 @@
     align: 0x1000
   - [0xE7F620]
 
-  - name: segment_00E80000
+  - name: object_00E80000
     type: bin
     start: 0xE80000
     # vram:
@@ -734,7 +734,7 @@
     align: 0x1000
   - [0xE81620]
 
-  - name: segment_00E82000
+  - name: object_00E82000
     type: bin
     start: 0xE82000
     # vram:
@@ -742,7 +742,7 @@
     align: 0x1000
   - [0xE83620]
 
-  - name: segment_00E84000
+  - name: object_00E84000
     type: bin
     start: 0xE84000
     # vram:
@@ -750,7 +750,7 @@
     align: 0x1000
   - [0xE85620]
 
-  - name: segment_00E86000
+  - name: object_00E86000
     type: bin
     start: 0xE86000
     # vram:
@@ -758,7 +758,7 @@
     align: 0x1000
   - [0xE87620]
 
-  - name: segment_00E88000
+  - name: object_00E88000
     type: bin
     start: 0xE88000
     # vram:
@@ -766,7 +766,7 @@
     align: 0x1000
   - [0xE89620]
 
-  - name: segment_00E8A000
+  - name: object_00E8A000
     type: bin
     start: 0xE8A000
     # vram:
@@ -774,7 +774,7 @@
     align: 0x1000
   - [0xE8B620]
 
-  - name: segment_00E8C000
+  - name: object_00E8C000
     type: bin
     start: 0xE8C000
     # vram:
@@ -782,7 +782,7 @@
     align: 0x1000
   - [0xE8E1F0]
 
-  - name: segment_00E8F000
+  - name: object_00E8F000
     type: bin
     start: 0xE8F000
     # vram:
@@ -790,7 +790,7 @@
     align: 0x1000
   - [0xE90020]
 
-  - name: segment_00E91000
+  - name: object_00E91000
     type: bin
     start: 0xE91000
     # vram:
@@ -798,7 +798,7 @@
     align: 0x1000
   - [0xE92020]
 
-  - name: segment_00E93000
+  - name: object_00E93000
     type: bin
     start: 0xE93000
     # vram:
@@ -806,7 +806,7 @@
     align: 0x1000
   - [0xE94020]
 
-  - name: segment_00E95000
+  - name: object_00E95000
     type: bin
     start: 0xE95000
     # vram:
@@ -814,7 +814,7 @@
     align: 0x1000
   - [0xE96020]
 
-  - name: segment_00E97000
+  - name: object_00E97000
     type: bin
     start: 0xE97000
     # vram:
@@ -822,7 +822,7 @@
     align: 0x1000
   - [0xE98020]
 
-  - name: segment_00E99000
+  - name: object_00E99000
     type: bin
     start: 0xE99000
     # vram:
@@ -830,7 +830,7 @@
     align: 0x1000
   - [0xE9B020]
 
-  - name: segment_00E9C000
+  - name: object_00E9C000
     type: bin
     start: 0xE9C000
     # vram:
@@ -838,7 +838,7 @@
     align: 0x1000
   - [0xE9D020]
 
-  - name: segment_00E9E000
+  - name: object_00E9E000
     type: bin
     start: 0xE9E000
     # vram:
@@ -846,7 +846,7 @@
     align: 0x1000
   - [0xE9F020]
 
-  - name: segment_00EA0000
+  - name: object_00EA0000
     type: bin
     start: 0xEA0000
     # vram:
@@ -854,7 +854,7 @@
     align: 0x1000
   - [0xEA1020]
 
-  - name: segment_00EA2000
+  - name: object_00EA2000
     type: bin
     start: 0xEA2000
     # vram:
@@ -862,7 +862,7 @@
     align: 0x1000
   - [0xEA3020]
 
-  - name: segment_00EA4000
+  - name: object_00EA4000
     type: bin
     start: 0xEA4000
     # vram:
@@ -870,7 +870,7 @@
     align: 0x1000
   - [0xEA5020]
 
-  - name: segment_00EA6000
+  - name: object_00EA6000
     type: bin
     start: 0xEA6000
     # vram:
@@ -878,7 +878,7 @@
     align: 0x1000
   - [0xEA7020]
 
-  - name: segment_00EA8000
+  - name: object_00EA8000
     type: bin
     start: 0xEA8000
     # vram:
@@ -886,7 +886,7 @@
     align: 0x1000
   - [0xEA9020]
 
-  - name: segment_00EAA000
+  - name: object_00EAA000
     type: bin
     start: 0xEAA000
     # vram:
@@ -894,7 +894,7 @@
     align: 0x1000
   - [0xEAB020]
 
-  - name: segment_00EAC000
+  - name: object_00EAC000
     type: bin
     start: 0xEAC000
     # vram:
@@ -902,7 +902,7 @@
     align: 0x1000
   - [0xEAD020]
 
-  - name: segment_00EAE000
+  - name: object_00EAE000
     type: bin
     start: 0xEAE000
     # vram:
@@ -910,7 +910,7 @@
     align: 0x1000
   - [0xEAF020]
 
-  - name: segment_00EB0000
+  - name: object_00EB0000
     type: bin
     start: 0xEB0000
     # vram:
@@ -918,7 +918,7 @@
     align: 0x1000
   - [0xEB2100]
 
-  - name: segment_00EB3000
+  - name: object_00EB3000
     type: bin
     start: 0xEB3000
     # vram:
@@ -926,7 +926,7 @@
     align: 0x1000
   - [0xEB4020]
 
-  - name: segment_00EB5000
+  - name: object_00EB5000
     type: bin
     start: 0xEB5000
     # vram:
@@ -934,7 +934,7 @@
     align: 0x1000
   - [0xEB7060]
 
-  - name: segment_00EB8000
+  - name: object_00EB8000
     type: bin
     start: 0xEB8000
     # vram:
@@ -942,7 +942,7 @@
     align: 0x1000
   - [0xEB9620]
 
-  - name: segment_00EBA000
+  - name: object_00EBA000
     type: bin
     start: 0xEBA000
     # vram:
@@ -950,7 +950,7 @@
     align: 0x1000
   - [0xEBB620]
 
-  - name: segment_00EBC000
+  - name: object_00EBC000
     type: bin
     start: 0xEBC000
     # vram:
@@ -958,7 +958,7 @@
     align: 0x1000
   - [0xEBD620]
 
-  - name: segment_00EBE000
+  - name: object_00EBE000
     type: bin
     start: 0xEBE000
     # vram:
@@ -966,7 +966,7 @@
     align: 0x1000
   - [0xEBF620]
 
-  - name: segment_00EC0000
+  - name: object_00EC0000
     type: bin
     start: 0xEC0000
     # vram:
@@ -974,7 +974,7 @@
     align: 0x1000
   - [0xEC27D0]
 
-  - name: segment_00EC3000
+  - name: object_00EC3000
     type: bin
     start: 0xEC3000
     # vram:
@@ -982,7 +982,7 @@
     align: 0x1000
   - [0xEC4020]
 
-  - name: segment_00EC5000
+  - name: object_00EC5000
     type: bin
     start: 0xEC5000
     # vram:
@@ -990,7 +990,7 @@
     align: 0x1000
   - [0xEC6CF0]
 
-  - name: segment_00EC7000
+  - name: object_00EC7000
     type: bin
     start: 0xEC7000
     # vram:
@@ -998,7 +998,7 @@
     align: 0x1000
   - [0xEC8620]
 
-  - name: segment_00EC9000
+  - name: object_00EC9000
     type: bin
     start: 0xEC9000
     # vram:
@@ -1006,7 +1006,7 @@
     align: 0x1000
   - [0xECA620]
 
-  - name: segment_00ECB000
+  - name: object_00ECB000
     type: bin
     start: 0xECB000
     # vram:
@@ -1014,7 +1014,7 @@
     align: 0x1000
   - [0xECC620]
 
-  - name: segment_00ECD000
+  - name: object_00ECD000
     type: bin
     start: 0xECD000
     # vram:
@@ -1022,7 +1022,7 @@
     align: 0x1000
   - [0xECE620]
 
-  - name: segment_00ECF000
+  - name: object_00ECF000
     type: bin
     start: 0xECF000
     # vram:
@@ -1030,7 +1030,7 @@
     align: 0x1000
   - [0xED0620]
 
-  - name: segment_00ED1000
+  - name: object_00ED1000
     type: bin
     start: 0xED1000
     # vram:
@@ -1038,7 +1038,7 @@
     align: 0x1000
   - [0xED2620]
 
-  - name: segment_00ED3000
+  - name: object_00ED3000
     type: bin
     start: 0xED3000
     # vram:
@@ -1046,7 +1046,7 @@
     align: 0x1000
   - [0xED4620]
 
-  - name: segment_00ED5000
+  - name: object_00ED5000
     type: bin
     start: 0xED5000
     # vram:
@@ -1054,7 +1054,7 @@
     align: 0x1000
   - [0xED6620]
 
-  - name: segment_00ED7000
+  - name: object_00ED7000
     type: bin
     start: 0xED7000
     # vram:
@@ -1062,7 +1062,7 @@
     align: 0x1000
   - [0xED8620]
 
-  - name: segment_00ED9000
+  - name: object_00ED9000
     type: bin
     start: 0xED9000
     # vram:
@@ -1070,7 +1070,7 @@
     align: 0x1000
   - [0xEDA620]
 
-  - name: segment_00EDB000
+  - name: object_00EDB000
     type: bin
     start: 0xEDB000
     # vram:
@@ -1078,7 +1078,7 @@
     align: 0x1000
   - [0xEDC620]
 
-  - name: segment_00EDD000
+  - name: object_00EDD000
     type: bin
     start: 0xEDD000
     # vram:
@@ -1086,7 +1086,7 @@
     align: 0x1000
   - [0xEDE620]
 
-  - name: segment_00EDF000
+  - name: object_00EDF000
     type: bin
     start: 0xEDF000
     # vram:
@@ -1102,7 +1102,7 @@
     align: 0x1000
   - [0xEE2620]
 
-  - name: segment_00EE3000
+  - name: object_00EE3000
     type: bin
     start: 0xEE3000
     # vram:
@@ -1110,7 +1110,7 @@
     align: 0x1000
   - [0xEE57F0]
 
-  - name: segment_00EE6000
+  - name: object_00EE6000
     type: bin
     start: 0xEE6000
     # vram:
@@ -1118,7 +1118,7 @@
     align: 0x1000
   - [0xEE7020]
 
-  - name: segment_00EE8000
+  - name: object_00EE8000
     type: bin
     start: 0xEE8000
     # vram:
@@ -1126,7 +1126,7 @@
     align: 0x1000
   - [0xEE9020]
 
-  - name: segment_00EEA000
+  - name: object_00EEA000
     type: bin
     start: 0xEEA000
     # vram:
@@ -1134,7 +1134,7 @@
     align: 0x1000
   - [0xEEB020]
 
-  - name: segment_00EEC000
+  - name: object_00EEC000
     type: bin
     start: 0xEEC000
     # vram:
@@ -1142,7 +1142,7 @@
     align: 0x1000
   - [0xEED020]
 
-  - name: segment_00EEE000
+  - name: object_00EEE000
     type: bin
     start: 0xEEE000
     # vram:
@@ -1150,7 +1150,7 @@
     align: 0x1000
   - [0xEEF020]
 
-  - name: segment_00EF0000
+  - name: object_00EF0000
     type: bin
     start: 0xEF0000
     # vram:
@@ -1158,7 +1158,7 @@
     align: 0x1000
   - [0xEF1020]
 
-  - name: segment_00EF2000
+  - name: object_00EF2000
     type: bin
     start: 0xEF2000
     # vram:
@@ -1166,7 +1166,7 @@
     align: 0x1000
   - [0xEF3020]
 
-  - name: segment_00EF4000
+  - name: object_00EF4000
     type: bin
     start: 0xEF4000
     # vram:
@@ -1174,7 +1174,7 @@
     align: 0x1000
   - [0xEF5020]
 
-  - name: segment_00EF6000
+  - name: object_00EF6000
     type: bin
     start: 0xEF6000
     # vram:
@@ -1182,7 +1182,7 @@
     align: 0x1000
   - [0xEF7EF0]
 
-  - name: segment_00EF8000
+  - name: object_00EF8000
     type: bin
     start: 0xEF8000
     # vram:
@@ -1190,7 +1190,7 @@
     align: 0x1000
   - [0xEF9620]
 
-  - name: segment_00EFA000
+  - name: object_00EFA000
     type: bin
     start: 0xEFA000
     # vram:
@@ -1198,7 +1198,7 @@
     align: 0x1000
   - [0xEFB620]
 
-  - name: segment_00EFC000
+  - name: object_00EFC000
     type: bin
     start: 0xEFC000
     # vram:
@@ -1206,7 +1206,7 @@
     align: 0x1000
   - [0xEFD620]
 
-  - name: segment_00EFE000
+  - name: object_00EFE000
     type: bin
     start: 0xEFE000
     # vram:
@@ -1214,7 +1214,7 @@
     align: 0x1000
   - [0xEFF620]
 
-  - name: segment_00F00000
+  - name: object_00F00000
     type: bin
     start: 0xF00000
     # vram:
@@ -1222,7 +1222,7 @@
     align: 0x1000
   - [0xF01620]
 
-  - name: segment_00F02000
+  - name: object_00F02000
     type: bin
     start: 0xF02000
     # vram:
@@ -1230,7 +1230,7 @@
     align: 0x1000
   - [0xF03620]
 
-  - name: segment_00F04000
+  - name: object_00F04000
     type: bin
     start: 0xF04000
     # vram:
@@ -1238,7 +1238,7 @@
     align: 0x1000
   - [0xF05620]
 
-  - name: segment_00F06000
+  - name: object_00F06000
     type: bin
     start: 0xF06000
     # vram:
@@ -1246,7 +1246,7 @@
     align: 0x1000
   - [0xF07620]
 
-  - name: segment_00F08000
+  - name: object_00F08000
     type: bin
     start: 0xF08000
     # vram:
@@ -1254,7 +1254,7 @@
     align: 0x1000
   - [0xF09620]
 
-  - name: segment_00F0A000
+  - name: object_00F0A000
     type: bin
     start: 0xF0A000
     # vram:
@@ -1262,7 +1262,7 @@
     align: 0x1000
   - [0xF0C150]
 
-  - name: segment_00F0D000
+  - name: object_00F0D000
     type: bin
     start: 0xF0D000
     # vram:
@@ -1270,7 +1270,7 @@
     align: 0x1000
   - [0xF0E020]
 
-  - name: segment_00F0F000
+  - name: object_00F0F000
     type: bin
     start: 0xF0F000
     # vram:
@@ -1278,7 +1278,7 @@
     align: 0x1000
   - [0xF11020]
 
-  - name: segment_00F12000
+  - name: object_00F12000
     type: bin
     start: 0xF12000
     # vram:
@@ -1286,7 +1286,7 @@
     align: 0x1000
   - [0xF13620]
 
-  - name: segment_00F14000
+  - name: object_00F14000
     type: bin
     start: 0xF14000
     # vram:
@@ -1294,7 +1294,7 @@
     align: 0x1000
   - [0xF15620]
 
-  - name: segment_00F16000
+  - name: object_00F16000
     type: bin
     start: 0xF16000
     # vram:
@@ -1302,7 +1302,7 @@
     align: 0x1000
   - [0xF17620]
 
-  - name: segment_00F18000
+  - name: object_00F18000
     type: bin
     start: 0xF18000
     # vram:
@@ -1310,7 +1310,7 @@
     align: 0x1000
   - [0xF19620]
 
-  - name: segment_00F1A000
+  - name: object_00F1A000
     type: bin
     start: 0xF1A000
     # vram:
@@ -1318,7 +1318,7 @@
     align: 0x1000
   - [0xF1C1D0]
 
-  - name: segment_00F1D000
+  - name: object_00F1D000
     type: bin
     start: 0xF1D000
     # vram:
@@ -1326,7 +1326,7 @@
     align: 0x1000
   - [0xF1E020]
 
-  - name: segment_00F1F000
+  - name: object_00F1F000
     type: bin
     start: 0xF1F000
     # vram:
@@ -1334,7 +1334,7 @@
     align: 0x1000
   - [0xF20020]
 
-  - name: segment_00F21000
+  - name: object_00F21000
     type: bin
     start: 0xF21000
     # vram:
@@ -1342,7 +1342,7 @@
     align: 0x1000
   - [0xF22020]
 
-  - name: segment_00F23000
+  - name: object_00F23000
     type: bin
     start: 0xF23000
     # vram:
@@ -1350,7 +1350,7 @@
     align: 0x1000
   - [0xF24020]
 
-  - name: segment_00F25000
+  - name: object_00F25000
     type: bin
     start: 0xF25000
     # vram:
@@ -1358,7 +1358,7 @@
     align: 0x1000
   - [0xF26FB0]
 
-  - name: segment_00F27000
+  - name: object_00F27000
     type: bin
     start: 0xF27000
     # vram:
@@ -1366,7 +1366,7 @@
     align: 0x1000
   - [0xF28020]
 
-  - name: segment_00F29000
+  - name: object_00F29000
     type: bin
     start: 0xF29000
     # vram:
@@ -1374,7 +1374,7 @@
     align: 0x1000
   - [0xF2B630]
 
-  - name: segment_00F2C000
+  - name: object_00F2C000
     type: bin
     start: 0xF2C000
     # vram:
@@ -1382,7 +1382,7 @@
     align: 0x1000
   - [0xF2D020]
 
-  - name: segment_00F2E000
+  - name: object_00F2E000
     type: bin
     start: 0xF2E000
     # vram:
@@ -1390,7 +1390,7 @@
     align: 0x1000
   - [0xF30030]
 
-  - name: segment_00F31000
+  - name: object_00F31000
     type: bin
     start: 0xF31000
     # vram:
@@ -1398,7 +1398,7 @@
     align: 0x1000
   - [0xF32620]
 
-  - name: segment_00F33000
+  - name: object_00F33000
     type: bin
     start: 0xF33000
     # vram:
@@ -1406,7 +1406,7 @@
     align: 0x1000
   - [0xF34620]
 
-  - name: segment_00F35000
+  - name: object_00F35000
     type: bin
     start: 0xF35000
     # vram:
@@ -1414,7 +1414,7 @@
     align: 0x1000
   - [0xF36620]
 
-  - name: segment_00F37000
+  - name: object_00F37000
     type: bin
     start: 0xF37000
     # vram:
@@ -1422,7 +1422,7 @@
     align: 0x1000
   - [0xF38620]
 
-  - name: segment_00F39000
+  - name: object_00F39000
     type: bin
     start: 0xF39000
     # vram:
@@ -1430,7 +1430,7 @@
     align: 0x1000
   - [0xF3A620]
 
-  - name: segment_00F3B000
+  - name: object_00F3B000
     type: bin
     start: 0xF3B000
     # vram:
@@ -1438,7 +1438,7 @@
     align: 0x1000
   - [0xF3C620]
 
-  - name: segment_00F3D000
+  - name: object_00F3D000
     type: bin
     start: 0xF3D000
     # vram:
@@ -1446,7 +1446,7 @@
     align: 0x1000
   - [0xF3E620]
 
-  - name: segment_00F3F000
+  - name: object_00F3F000
     type: bin
     start: 0xF3F000
     # vram:
@@ -1454,7 +1454,7 @@
     align: 0x1000
   - [0xF40620]
 
-  - name: segment_00F41000
+  - name: object_00F41000
     type: bin
     start: 0xF41000
     # vram:
@@ -1462,7 +1462,7 @@
     align: 0x1000
   - [0xF42620]
 
-  - name: segment_00F43000
+  - name: object_00F43000
     type: bin
     start: 0xF43000
     # vram:
@@ -1470,7 +1470,7 @@
     align: 0x1000
   - [0xF44620]
 
-  - name: segment_00F45000
+  - name: object_00F45000
     type: bin
     start: 0xF45000
     # vram:
@@ -1478,7 +1478,7 @@
     align: 0x1000
   - [0xF473D0]
 
-  - name: segment_00F48000
+  - name: object_00F48000
     type: bin
     start: 0xF48000
     # vram:
@@ -1486,7 +1486,7 @@
     align: 0x1000
   - [0xF49020]
 
-  - name: segment_00F4A000
+  - name: object_00F4A000
     type: bin
     start: 0xF4A000
     # vram:
@@ -1494,7 +1494,7 @@
     align: 0x1000
   - [0xF4BEE0]
 
-  - name: segment_00F4C000
+  - name: object_00F4C000
     type: bin
     start: 0xF4C000
     # vram:
@@ -1502,7 +1502,7 @@
     align: 0x1000
   - [0xF4D620]
 
-  - name: segment_00F4E000
+  - name: object_00F4E000
     type: bin
     start: 0xF4E000
     # vram:
@@ -1510,7 +1510,7 @@
     align: 0x1000
   - [0xF4F620]
 
-  - name: segment_00F50000
+  - name: object_00F50000
     type: bin
     start: 0xF50000
     # vram:
@@ -1518,7 +1518,7 @@
     align: 0x1000
   - [0xF51620]
 
-  - name: segment_00F52000
+  - name: object_00F52000
     type: bin
     start: 0xF52000
     # vram:
@@ -1526,7 +1526,7 @@
     align: 0x1000
   - [0xF53620]
 
-  - name: segment_00F54000
+  - name: object_00F54000
     type: bin
     start: 0xF54000
     # vram:
@@ -1534,7 +1534,7 @@
     align: 0x1000
   - [0xF55620]
 
-  - name: segment_00F56000
+  - name: object_00F56000
     type: bin
     start: 0xF56000
     # vram:
@@ -1542,7 +1542,7 @@
     align: 0x1000
   - [0xF57620]
 
-  - name: segment_00F58000
+  - name: object_00F58000
     type: bin
     start: 0xF58000
     # vram:
@@ -1550,7 +1550,7 @@
     align: 0x1000
   - [0xF59620]
 
-  - name: segment_00F5A000
+  - name: object_00F5A000
     type: bin
     start: 0xF5A000
     # vram:
@@ -1558,7 +1558,7 @@
     align: 0x1000
   - [0xF5B620]
 
-  - name: segment_00F5C000
+  - name: object_00F5C000
     type: bin
     start: 0xF5C000
     # vram:
@@ -1566,7 +1566,7 @@
     align: 0x1000
   - [0xF5D620]
 
-  - name: segment_00F5E000
+  - name: object_00F5E000
     type: bin
     start: 0xF5E000
     # vram:
@@ -1574,7 +1574,7 @@
     align: 0x1000
   - [0xF5F620]
 
-  - name: segment_00F60000
+  - name: object_00F60000
     type: bin
     start: 0xF60000
     # vram:
@@ -1582,7 +1582,7 @@
     align: 0x1000
   - [0xF62140]
 
-  - name: segment_00F63000
+  - name: object_00F63000
     type: bin
     start: 0xF63000
     # vram:
@@ -1590,7 +1590,7 @@
     align: 0x1000
   - [0xF64620]
 
-  - name: segment_00F65000
+  - name: object_00F65000
     type: bin
     start: 0xF65000
     # vram:
@@ -1598,7 +1598,7 @@
     align: 0x1000
   - [0xF66620]
 
-  - name: segment_00F67000
+  - name: object_00F67000
     type: bin
     start: 0xF67000
     # vram:
@@ -1606,7 +1606,7 @@
     align: 0x1000
   - [0xF68620]
 
-  - name: segment_00F69000
+  - name: object_00F69000
     type: bin
     start: 0xF69000
     # vram:
@@ -1614,7 +1614,7 @@
     align: 0x1000
   - [0xF6A620]
 
-  - name: segment_00F6B000
+  - name: object_00F6B000
     type: bin
     start: 0xF6B000
     # vram:
@@ -1622,7 +1622,7 @@
     align: 0x1000
   - [0xF6C620]
 
-  - name: segment_00F6D000
+  - name: object_00F6D000
     type: bin
     start: 0xF6D000
     # vram:
@@ -1630,7 +1630,7 @@
     align: 0x1000
   - [0xF6E620]
 
-  - name: segment_00F6F000
+  - name: object_00F6F000
     type: bin
     start: 0xF6F000
     # vram:
@@ -1638,7 +1638,7 @@
     align: 0x1000
   - [0xF70A80]
 
-  - name: segment_00F71000
+  - name: object_00F71000
     type: bin
     start: 0xF71000
     # vram:
@@ -1646,7 +1646,7 @@
     align: 0x1000
   - [0xF72620]
 
-  - name: segment_00F73000
+  - name: object_00F73000
     type: bin
     start: 0xF73000
     # vram:
@@ -1654,7 +1654,7 @@
     align: 0x1000
   - [0xF74620]
 
-  - name: segment_00F75000
+  - name: object_00F75000
     type: bin
     start: 0xF75000
     # vram:
@@ -1662,7 +1662,7 @@
     align: 0x1000
   - [0xF76620]
 
-  - name: segment_00F77000
+  - name: object_00F77000
     type: bin
     start: 0xF77000
     # vram:
@@ -1670,7 +1670,7 @@
     align: 0x1000
   - [0xF78620]
 
-  - name: segment_00F79000
+  - name: object_00F79000
     type: bin
     start: 0xF79000
     # vram:
@@ -1678,7 +1678,7 @@
     align: 0x1000
   - [0xF7A620]
 
-  - name: segment_00F7B000
+  - name: object_00F7B000
     type: bin
     start: 0xF7B000
     # vram:
@@ -1686,7 +1686,7 @@
     align: 0x1000
   - [0xF7C620]
 
-  - name: segment_00F7D000
+  - name: object_00F7D000
     type: bin
     start: 0xF7D000
     # vram:
@@ -1694,7 +1694,7 @@
     align: 0x1000
   - [0xF7E620]
 
-  - name: segment_00F7F000
+  - name: object_00F7F000
     type: bin
     start: 0xF7F000
     # vram:
@@ -1702,7 +1702,7 @@
     align: 0x1000
   - [0xF80620]
 
-  - name: segment_00F81000
+  - name: object_00F81000
     type: bin
     start: 0xF81000
     # vram:
@@ -1710,7 +1710,7 @@
     align: 0x1000
   - [0xF82620]
 
-  - name: segment_00F83000
+  - name: object_00F83000
     type: bin
     start: 0xF83000
     # vram:
@@ -1718,7 +1718,7 @@
     align: 0x1000
   - [0xF84620]
 
-  - name: segment_00F85000
+  - name: object_00F85000
     type: bin
     start: 0xF85000
     # vram:
@@ -1726,7 +1726,7 @@
     align: 0x1000
   - [0xF86620]
 
-  - name: segment_00F87000
+  - name: object_00F87000
     type: bin
     start: 0xF87000
     # vram:
@@ -1734,7 +1734,7 @@
     align: 0x1000
   - [0xF88620]
 
-  - name: segment_00F89000
+  - name: object_00F89000
     type: bin
     start: 0xF89000
     # vram:
@@ -1742,7 +1742,7 @@
     align: 0x1000
   - [0xF8B760]
 
-  - name: segment_00F8C000
+  - name: object_00F8C000
     type: bin
     start: 0xF8C000
     # vram:
@@ -1750,7 +1750,7 @@
     align: 0x1000
   - [0xF8D020]
 
-  - name: segment_00F8E000
+  - name: object_00F8E000
     type: bin
     start: 0xF8E000
     # vram:
@@ -1758,7 +1758,7 @@
     align: 0x1000
   - [0xF90020]
 
-  - name: segment_00F91000
+  - name: object_00F91000
     type: bin
     start: 0xF91000
     # vram:
@@ -1766,7 +1766,7 @@
     align: 0x1000
   - [0xF92620]
 
-  - name: segment_00F93000
+  - name: object_00F93000
     type: bin
     start: 0xF93000
     # vram:
@@ -1774,7 +1774,7 @@
     align: 0x1000
   - [0xF94620]
 
-  - name: segment_00F95000
+  - name: object_00F95000
     type: bin
     start: 0xF95000
     # vram:
@@ -1782,7 +1782,7 @@
     align: 0x1000
   - [0xF96620]
 
-  - name: segment_00F97000
+  - name: object_00F97000
     type: bin
     start: 0xF97000
     # vram:
@@ -1790,7 +1790,7 @@
     align: 0x1000
   - [0xF98620]
 
-  - name: segment_00F99000
+  - name: object_00F99000
     type: bin
     start: 0xF99000
     # vram:
@@ -1798,7 +1798,7 @@
     align: 0x1000
   - [0xF9A620]
 
-  - name: segment_00F9B000
+  - name: object_00F9B000
     type: bin
     start: 0xF9B000
     # vram:
@@ -1806,7 +1806,7 @@
     align: 0x1000
   - [0xF9C620]
 
-  - name: segment_00F9D000
+  - name: object_00F9D000
     type: bin
     start: 0xF9D000
     # vram:
@@ -1814,7 +1814,7 @@
     align: 0x1000
   - [0xF9F620]
 
-  - name: segment_00FA0000
+  - name: object_00FA0000
     type: bin
     start: 0xFA0000
     # vram:
@@ -1822,7 +1822,7 @@
     align: 0x1000
   - [0xFA1620]
 
-  - name: segment_00FA2000
+  - name: object_00FA2000
     type: bin
     start: 0xFA2000
     # vram:
@@ -1830,7 +1830,7 @@
     align: 0x1000
   - [0xFA3620]
 
-  - name: segment_00FA4000
+  - name: object_00FA4000
     type: bin
     start: 0xFA4000
     # vram:
@@ -1838,7 +1838,7 @@
     align: 0x1000
   - [0xFA5620]
 
-  - name: segment_00FA6000
+  - name: object_00FA6000
     type: bin
     start: 0xFA6000
     # vram:
@@ -1846,7 +1846,7 @@
     align: 0x1000
   - [0xFA7620]
 
-  - name: segment_00FA8000
+  - name: object_00FA8000
     type: bin
     start: 0xFA8000
     # vram:
@@ -1854,7 +1854,7 @@
     align: 0x1000
   - [0xFA9BF0]
 
-  - name: segment_00FAA000
+  - name: object_00FAA000
     type: bin
     start: 0xFAA000
     # vram:
@@ -1862,7 +1862,7 @@
     align: 0x1000
   - [0xFAB620]
 
-  - name: segment_00FAC000
+  - name: object_00FAC000
     type: bin
     start: 0xFAC000
     # vram:
@@ -1870,7 +1870,7 @@
     align: 0x1000
   - [0xFAE200]
 
-  - name: segment_00FAF000
+  - name: object_00FAF000
     type: bin
     start: 0xFAF000
     # vram:
@@ -1878,7 +1878,7 @@
     align: 0x1000
   - [0xFB0020]
 
-  - name: segment_00FB1000
+  - name: object_00FB1000
     type: bin
     start: 0xFB1000
     # vram:
@@ -1886,7 +1886,7 @@
     align: 0x1000
   - [0xFB2A90]
 
-  - name: segment_00FB3000
+  - name: object_00FB3000
     type: bin
     start: 0xFB3000
     # vram:
@@ -1894,7 +1894,7 @@
     align: 0x1000
   - [0xFB3820]
 
-  - name: segment_00FB4000
+  - name: object_00FB4000
     type: bin
     start: 0xFB4000
     # vram:
@@ -1902,7 +1902,7 @@
     align: 0x1000
   - [0xFB6780]
 
-  - name: segment_00FB7000
+  - name: object_00FB7000
     type: bin
     start: 0xFB7000
     # vram:
@@ -1910,7 +1910,7 @@
     align: 0x1000
   - [0xFB8020]
 
-  - name: segment_00FB9000
+  - name: object_00FB9000
     type: bin
     start: 0xFB9000
     # vram:
@@ -1918,7 +1918,7 @@
     align: 0x1000
   - [0xFBA020]
 
-  - name: segment_00FBB000
+  - name: object_00FBB000
     type: bin
     start: 0xFBB000
     # vram:
@@ -1926,7 +1926,7 @@
     align: 0x1000
   - [0xFBC020]
 
-  - name: segment_00FBD000
+  - name: object_00FBD000
     type: bin
     start: 0xFBD000
     # vram:
@@ -1934,7 +1934,7 @@
     align: 0x1000
   - [0xFBE020]
 
-  - name: segment_00FBF000
+  - name: object_00FBF000
     type: bin
     start: 0xFBF000
     # vram:
@@ -1942,7 +1942,7 @@
     align: 0x1000
   - [0xFC0020]
 
-  - name: segment_00FC1000
+  - name: object_00FC1000
     type: bin
     start: 0xFC1000
     # vram:
@@ -1950,7 +1950,7 @@
     align: 0x1000
   - [0xFC2020]
 
-  - name: segment_00FC3000
+  - name: object_00FC3000
     type: bin
     start: 0xFC3000
     # vram:
@@ -1958,7 +1958,7 @@
     align: 0x1000
   - [0xFC4020]
 
-  - name: segment_00FC5000
+  - name: object_00FC5000
     type: bin
     start: 0xFC5000
     # vram:
@@ -1966,7 +1966,7 @@
     align: 0x1000
   - [0xFC73F0]
 
-  - name: segment_00FC8000
+  - name: object_00FC8000
     type: bin
     start: 0xFC8000
     # vram:
@@ -1974,7 +1974,7 @@
     align: 0x1000
   - [0xFC9020]
 
-  - name: segment_00FCA000
+  - name: object_00FCA000
     type: bin
     start: 0xFCA000
     # vram:
@@ -1982,7 +1982,7 @@
     align: 0x1000
   - [0xFCB020]
 
-  - name: segment_00FCC000
+  - name: object_00FCC000
     type: bin
     start: 0xFCC000
     # vram:
@@ -1990,7 +1990,7 @@
     align: 0x1000
   - [0xFCD020]
 
-  - name: segment_00FCE000
+  - name: object_00FCE000
     type: bin
     start: 0xFCE000
     # vram:
@@ -1998,7 +1998,7 @@
     align: 0x1000
   - [0xFCF020]
 
-  - name: segment_00FD0000
+  - name: object_00FD0000
     type: bin
     start: 0xFD0000
     # vram:
@@ -2006,7 +2006,7 @@
     align: 0x1000
   - [0xFD1020]
 
-  - name: segment_00FD2000
+  - name: object_00FD2000
     type: bin
     start: 0xFD2000
     # vram:
@@ -2014,7 +2014,7 @@
     align: 0x1000
   - [0xFD3020]
 
-  - name: segment_00FD4000
+  - name: object_00FD4000
     type: bin
     start: 0xFD4000
     # vram:
@@ -2022,7 +2022,7 @@
     align: 0x1000
   - [0xFD5020]
 
-  - name: segment_00FD6000
+  - name: object_00FD6000
     type: bin
     start: 0xFD6000
     # vram:
@@ -2030,7 +2030,7 @@
     align: 0x1000
   - [0xFD8030]
 
-  - name: segment_00FD9000
+  - name: object_00FD9000
     type: bin
     start: 0xFD9000
     # vram:
@@ -2038,7 +2038,7 @@
     align: 0x1000
   - [0xFDA620]
 
-  - name: segment_00FDB000
+  - name: object_00FDB000
     type: bin
     start: 0xFDB000
     # vram:
@@ -2046,7 +2046,7 @@
     align: 0x1000
   - [0xFDD7F0]
 
-  - name: segment_00FDE000
+  - name: object_00FDE000
     type: bin
     start: 0xFDE000
     # vram:
@@ -2054,7 +2054,7 @@
     align: 0x1000
   - [0xFDF020]
 
-  - name: segment_00FE0000
+  - name: object_00FE0000
     type: bin
     start: 0xFE0000
     # vram:
@@ -2062,7 +2062,7 @@
     align: 0x1000
   - [0xFE26C0]
 
-  - name: segment_00FE3000
+  - name: object_00FE3000
     type: bin
     start: 0xFE3000
     # vram:
@@ -2070,7 +2070,7 @@
     align: 0x1000
   - [0xFE4020]
 
-  - name: segment_00FE5000
+  - name: object_00FE5000
     type: bin
     start: 0xFE5000
     # vram:
@@ -2078,7 +2078,7 @@
     align: 0x1000
   - [0xFE6020]
 
-  - name: segment_00FE7000
+  - name: object_00FE7000
     type: bin
     start: 0xFE7000
     # vram:
@@ -2086,7 +2086,7 @@
     align: 0x1000
   - [0xFE8020]
 
-  - name: segment_00FE9000
+  - name: object_00FE9000
     type: bin
     start: 0xFE9000
     # vram:
@@ -2094,7 +2094,7 @@
     align: 0x1000
   - [0xFEA020]
 
-  - name: segment_00FEB000
+  - name: object_00FEB000
     type: bin
     start: 0xFEB000
     # vram:
@@ -2102,7 +2102,7 @@
     align: 0x1000
   - [0xFEC020]
 
-  - name: segment_00FED000
+  - name: object_00FED000
     type: bin
     start: 0xFED000
     # vram:
@@ -2110,7 +2110,7 @@
     align: 0x1000
   - [0xFEE020]
 
-  - name: segment_00FEF000
+  - name: object_00FEF000
     type: bin
     start: 0xFEF000
     # vram:
@@ -2118,7 +2118,7 @@
     align: 0x1000
   - [0xFF1670]
 
-  - name: segment_00FF2000
+  - name: object_00FF2000
     type: bin
     start: 0xFF2000
     # vram:
@@ -2126,7 +2126,7 @@
     align: 0x1000
   - [0xFF3020]
 
-  - name: segment_00FF4000
+  - name: object_00FF4000
     type: bin
     start: 0xFF4000
     # vram:
@@ -2134,7 +2134,7 @@
     align: 0x1000
   - [0xFF5F80]
 
-  - name: segment_00FF6000
+  - name: object_00FF6000
     type: bin
     start: 0xFF6000
     # vram:
@@ -2142,7 +2142,7 @@
     align: 0x1000
   - [0xFF7620]
 
-  - name: segment_00FF8000
+  - name: object_00FF8000
     type: bin
     start: 0xFF8000
     # vram:
@@ -2150,7 +2150,7 @@
     align: 0x1000
   - [0xFF9620]
 
-  - name: segment_00FFA000
+  - name: object_00FFA000
     type: bin
     start: 0xFFA000
     # vram:
@@ -2158,7 +2158,7 @@
     align: 0x1000
   - [0xFFB620]
 
-  - name: segment_00FFC000
+  - name: object_00FFC000
     type: bin
     start: 0xFFC000
     # vram:
@@ -2166,7 +2166,7 @@
     align: 0x1000
   - [0xFFD620]
 
-  - name: segment_00FFE000
+  - name: object_00FFE000
     type: bin
     start: 0xFFE000
     # vram:
@@ -2174,7 +2174,7 @@
     align: 0x1000
   - [0xFFF620]
 
-  - name: segment_01000000
+  - name: object_01000000
     type: bin
     start: 0x1000000
     # vram:
@@ -2182,7 +2182,7 @@
     align: 0x1000
   - [0x1002620]
 
-  - name: segment_01003000
+  - name: object_01003000
     type: bin
     start: 0x1003000
     # vram:
@@ -2190,7 +2190,7 @@
     align: 0x1000
   - [0x1004620]
 
-  - name: segment_01005000
+  - name: object_01005000
     type: bin
     start: 0x1005000
     # vram:
@@ -2198,7 +2198,7 @@
     align: 0x1000
   - [0x1006620]
 
-  - name: segment_01007000
+  - name: object_01007000
     type: bin
     start: 0x1007000
     # vram:
@@ -2206,7 +2206,7 @@
     align: 0x1000
   - [0x1008620]
 
-  - name: segment_01009000
+  - name: object_01009000
     type: bin
     start: 0x1009000
     # vram:
@@ -2214,7 +2214,7 @@
     align: 0x1000
   - [0x100ACB0]
 
-  - name: segment_0100B000
+  - name: object_0100B000
     type: bin
     start: 0x100B000
     # vram:
@@ -2222,7 +2222,7 @@
     align: 0x1000
   - [0x100C620]
 
-  - name: segment_0100D000
+  - name: object_0100D000
     type: bin
     start: 0x100D000
     # vram:
@@ -2230,7 +2230,7 @@
     align: 0x1000
   - [0x100EF80]
 
-  - name: segment_0100F000
+  - name: object_0100F000
     type: bin
     start: 0x100F000
     # vram:
@@ -2238,7 +2238,7 @@
     align: 0x1000
   - [0x1010020]
 
-  - name: segment_01011000
+  - name: object_01011000
     type: bin
     start: 0x1011000
     # vram:
@@ -2246,7 +2246,7 @@
     align: 0x1000
   - [0x1013270]
 
-  - name: segment_01014000
+  - name: object_01014000
     type: bin
     start: 0x1014000
     # vram:
@@ -2254,7 +2254,7 @@
     align: 0x1000
   - [0x1015020]
 
-  - name: segment_01016000
+  - name: object_01016000
     type: bin
     start: 0x1016000
     # vram:
@@ -2262,7 +2262,7 @@
     align: 0x1000
   - [0x1018220]
 
-  - name: segment_01019000
+  - name: object_01019000
     type: bin
     start: 0x1019000
     # vram:
@@ -2270,7 +2270,7 @@
     align: 0x1000
   - [0x101A620]
 
-  - name: segment_0101B000
+  - name: object_0101B000
     type: bin
     start: 0x101B000
     # vram:
@@ -2278,7 +2278,7 @@
     align: 0x1000
   - [0x101C620]
 
-  - name: segment_0101D000
+  - name: object_0101D000
     type: bin
     start: 0x101D000
     # vram:
@@ -2286,7 +2286,7 @@
     align: 0x1000
   - [0x101E620]
 
-  - name: segment_0101F000
+  - name: object_0101F000
     type: bin
     start: 0x101F000
     # vram:
@@ -2294,7 +2294,7 @@
     align: 0x1000
   - [0x1020620]
 
-  - name: segment_01021000
+  - name: object_01021000
     type: bin
     start: 0x1021000
     # vram:
@@ -2302,7 +2302,7 @@
     align: 0x1000
   - [0x1022620]
 
-  - name: segment_01023000
+  - name: object_01023000
     type: bin
     start: 0x1023000
     # vram:
@@ -2310,7 +2310,7 @@
     align: 0x1000
   - [0x1024620]
 
-  - name: segment_01025000
+  - name: object_01025000
     type: bin
     start: 0x1025000
     # vram:
@@ -2318,7 +2318,7 @@
     align: 0x1000
   - [0x1026620]
 
-  - name: segment_01027000
+  - name: object_01027000
     type: bin
     start: 0x1027000
     # vram:
@@ -2326,7 +2326,7 @@
     align: 0x1000
   - [0x1028620]
 
-  - name: segment_01029000
+  - name: object_01029000
     type: bin
     start: 0x1029000
     # vram:
@@ -2334,7 +2334,7 @@
     align: 0x1000
   - [0x102A620]
 
-  - name: segment_0102B000
+  - name: object_0102B000
     type: bin
     start: 0x102B000
     # vram:
@@ -2342,7 +2342,7 @@
     align: 0x1000
   - [0x102D800]
 
-  - name: segment_0102E000
+  - name: object_0102E000
     type: bin
     start: 0x102E000
     # vram:
@@ -2350,7 +2350,7 @@
     align: 0x1000
   - [0x102F020]
 
-  - name: segment_01030000
+  - name: object_01030000
     type: bin
     start: 0x1030000
     # vram:
@@ -2358,7 +2358,7 @@
     align: 0x1000
   - [0x1032280]
 
-  - name: segment_01033000
+  - name: object_01033000
     type: bin
     start: 0x1033000
     # vram:
@@ -2366,7 +2366,7 @@
     align: 0x1000
   - [0x1034020]
 
-  - name: segment_01035000
+  - name: object_01035000
     type: bin
     start: 0x1035000
     # vram:
@@ -2374,7 +2374,7 @@
     align: 0x1000
   - [0x1036020]
 
-  - name: segment_01037000
+  - name: object_01037000
     type: bin
     start: 0x1037000
     # vram:
@@ -2382,7 +2382,7 @@
     align: 0x1000
   - [0x1038020]
 
-  - name: segment_01039000
+  - name: object_01039000
     type: bin
     start: 0x1039000
     # vram:
@@ -2390,7 +2390,7 @@
     align: 0x1000
   - [0x103A020]
 
-  - name: segment_0103B000
+  - name: object_0103B000
     type: bin
     start: 0x103B000
     # vram:
@@ -2398,7 +2398,7 @@
     align: 0x1000
   - [0x103D210]
 
-  - name: segment_0103E000
+  - name: object_0103E000
     type: bin
     start: 0x103E000
     # vram:
@@ -2406,7 +2406,7 @@
     align: 0x1000
   - [0x103F020]
 
-  - name: segment_01040000
+  - name: object_01040000
     type: bin
     start: 0x1040000
     # vram:
@@ -2414,7 +2414,7 @@
     align: 0x1000
   - [0x1041020]
 
-  - name: segment_01042000
+  - name: object_01042000
     type: bin
     start: 0x1042000
     # vram:
@@ -2422,7 +2422,7 @@
     align: 0x1000
   - [0x1043020]
 
-  - name: segment_01044000
+  - name: object_01044000
     type: bin
     start: 0x1044000
     # vram:
@@ -2430,7 +2430,7 @@
     align: 0x1000
   - [0x1045020]
 
-  - name: segment_01046000
+  - name: object_01046000
     type: bin
     start: 0x1046000
     # vram:
@@ -2438,7 +2438,7 @@
     align: 0x1000
   - [0x1047020]
 
-  - name: segment_01048000
+  - name: object_01048000
     type: bin
     start: 0x1048000
     # vram:
@@ -2446,7 +2446,7 @@
     align: 0x1000
   - [0x1049020]
 
-  - name: segment_0104A000
+  - name: object_0104A000
     type: bin
     start: 0x104A000
     # vram:
@@ -2454,7 +2454,7 @@
     align: 0x1000
   - [0x104B020]
 
-  - name: segment_0104C000
+  - name: object_0104C000
     type: bin
     start: 0x104C000
     # vram:
@@ -2462,7 +2462,7 @@
     align: 0x1000
   - [0x104DCC0]
 
-  - name: segment_0104E000
+  - name: object_0104E000
     type: bin
     start: 0x104E000
     # vram:
@@ -2470,7 +2470,7 @@
     align: 0x1000
   - [0x104F620]
 
-  - name: segment_01050000
+  - name: object_01050000
     type: bin
     start: 0x1050000
     # vram:
@@ -2478,7 +2478,7 @@
     align: 0x1000
   - [0x1051620]
 
-  - name: segment_01052000
+  - name: object_01052000
     type: bin
     start: 0x1052000
     # vram:
@@ -2486,7 +2486,7 @@
     align: 0x1000
   - [0x1053620]
 
-  - name: segment_01054000
+  - name: object_01054000
     type: bin
     start: 0x1054000
     # vram:
@@ -2494,7 +2494,7 @@
     align: 0x1000
   - [0x1055620]
 
-  - name: segment_01056000
+  - name: object_01056000
     type: bin
     start: 0x1056000
     # vram:
@@ -2502,7 +2502,7 @@
     align: 0x1000
   - [0x1057620]
 
-  - name: segment_01058000
+  - name: object_01058000
     type: bin
     start: 0x1058000
     # vram:
@@ -2510,7 +2510,7 @@
     align: 0x1000
   - [0x1059620]
 
-  - name: segment_0105A000
+  - name: object_0105A000
     type: bin
     start: 0x105A000
     # vram:
@@ -2518,7 +2518,7 @@
     align: 0x1000
   - [0x105B620]
 
-  - name: segment_0105C000
+  - name: object_0105C000
     type: bin
     start: 0x105C000
     # vram:
@@ -2526,7 +2526,7 @@
     align: 0x1000
   - [0x105D620]
 
-  - name: segment_0105E000
+  - name: object_0105E000
     type: bin
     start: 0x105E000
     # vram:
@@ -2534,7 +2534,7 @@
     align: 0x1000
   - [0x105F620]
 
-  - name: segment_01060000
+  - name: object_01060000
     type: bin
     start: 0x1060000
     # vram:
@@ -2542,7 +2542,7 @@
     align: 0x1000
   - [0x1061620]
 
-  - name: segment_01062000
+  - name: object_01062000
     type: bin
     start: 0x1062000
     # vram:
@@ -2550,7 +2550,7 @@
     align: 0x1000
   - [0x1064170]
 
-  - name: segment_01065000
+  - name: object_01065000
     type: bin
     start: 0x1065000
     # vram:
@@ -2558,7 +2558,7 @@
     align: 0x1000
   - [0x1066620]
 
-  - name: segment_01067000
+  - name: object_01067000
     type: bin
     start: 0x1067000
     # vram:
@@ -2566,7 +2566,7 @@
     align: 0x1000
   - [0x1069770]
 
-  - name: segment_0106A000
+  - name: object_0106A000
     type: bin
     start: 0x106A000
     # vram:
@@ -2574,7 +2574,7 @@
     align: 0x1000
   - [0x106B620]
 
-  - name: segment_0106C000
+  - name: object_0106C000
     type: bin
     start: 0x106C000
     # vram:
@@ -2582,7 +2582,7 @@
     align: 0x1000
   - [0x106E590]
 
-  - name: segment_0106F000
+  - name: object_0106F000
     type: bin
     start: 0x106F000
     # vram:
@@ -2590,7 +2590,7 @@
     align: 0x1000
   - [0x1070020]
 
-  - name: segment_01071000
+  - name: object_01071000
     type: bin
     start: 0x1071000
     # vram:
@@ -2598,7 +2598,7 @@
     align: 0x1000
   - [0x10734D0]
 
-  - name: segment_01074000
+  - name: object_01074000
     type: bin
     start: 0x1074000
     # vram:
@@ -2606,7 +2606,7 @@
     align: 0x1000
   - [0x1075020]
 
-  - name: segment_01076000
+  - name: object_01076000
     type: bin
     start: 0x1076000
     # vram:
@@ -2614,7 +2614,7 @@
     align: 0x1000
   - [0x1078680]
 
-  - name: segment_01079000
+  - name: object_01079000
     type: bin
     start: 0x1079000
     # vram:
@@ -2622,7 +2622,7 @@
     align: 0x1000
   - [0x107A020]
 
-  - name: segment_0107B000
+  - name: object_0107B000
     type: bin
     start: 0x107B000
     # vram:
@@ -2630,7 +2630,7 @@
     align: 0x1000
   - [0x107CEF0]
 
-  - name: segment_0107D000
+  - name: object_0107D000
     type: bin
     start: 0x107D000
     # vram:
@@ -2638,7 +2638,7 @@
     align: 0x1000
   - [0x107E620]
 
-  - name: segment_0107F000
+  - name: object_0107F000
     type: bin
     start: 0x107F000
     # vram:
@@ -2646,7 +2646,7 @@
     align: 0x1000
   - [0x1080620]
 
-  - name: segment_01081000
+  - name: object_01081000
     type: bin
     start: 0x1081000
     # vram:
@@ -2654,7 +2654,7 @@
     align: 0x1000
   - [0x1082620]
 
-  - name: segment_01083000
+  - name: object_01083000
     type: bin
     start: 0x1083000
     # vram:
@@ -2662,7 +2662,7 @@
     align: 0x1000
   - [0x1084620]
 
-  - name: segment_01085000
+  - name: object_01085000
     type: bin
     start: 0x1085000
     # vram:
@@ -2670,7 +2670,7 @@
     align: 0x1000
   - [0x1086620]
 
-  - name: segment_01087000
+  - name: object_01087000
     type: bin
     start: 0x1087000
     # vram:
@@ -2678,7 +2678,7 @@
     align: 0x1000
   - [0x1088620]
 
-  - name: segment_01089000
+  - name: object_01089000
     type: bin
     start: 0x1089000
     # vram:
@@ -2686,7 +2686,7 @@
     align: 0x1000
   - [0x108A620]
 
-  - name: segment_0108B000
+  - name: object_0108B000
     type: bin
     start: 0x108B000
     # vram:
@@ -2694,7 +2694,7 @@
     align: 0x1000
   - [0x108C620]
 
-  - name: segment_0108D000
+  - name: object_0108D000
     type: bin
     start: 0x108D000
     # vram:
@@ -2702,7 +2702,7 @@
     align: 0x1000
   - [0x108E620]
 
-  - name: segment_0108F000
+  - name: object_0108F000
     type: bin
     start: 0x108F000
     # vram:
@@ -2710,7 +2710,7 @@
     align: 0x1000
   - [0x1090620]
 
-  - name: segment_01091000
+  - name: object_01091000
     type: bin
     start: 0x1091000
     # vram:
@@ -2718,7 +2718,7 @@
     align: 0x1000
   - [0x1093800]
 
-  - name: segment_01094000
+  - name: object_01094000
     type: bin
     start: 0x1094000
     # vram:
@@ -2726,7 +2726,7 @@
     align: 0x1000
   - [0x1095620]
 
-  - name: segment_01096000
+  - name: object_01096000
     type: bin
     start: 0x1096000
     # vram:
@@ -2734,7 +2734,7 @@
     align: 0x1000
   - [0x1097620]
 
-  - name: segment_01098000
+  - name: object_01098000
     type: bin
     start: 0x1098000
     # vram:
@@ -2742,7 +2742,7 @@
     align: 0x1000
   - [0x1099620]
 
-  - name: segment_0109A000
+  - name: object_0109A000
     type: bin
     start: 0x109A000
     # vram:
@@ -2750,7 +2750,7 @@
     align: 0x1000
   - [0x109B620]
 
-  - name: segment_0109C000
+  - name: object_0109C000
     type: bin
     start: 0x109C000
     # vram:
@@ -2758,7 +2758,7 @@
     align: 0x1000
   - [0x109DD60]
 
-  - name: segment_0109E000
+  - name: object_0109E000
     type: bin
     start: 0x109E000
     # vram:
@@ -2766,7 +2766,7 @@
     align: 0x1000
   - [0x109F620]
 
-  - name: segment_010A0000
+  - name: object_010A0000
     type: bin
     start: 0x10A0000
     # vram:
@@ -2774,7 +2774,7 @@
     align: 0x1000
   - [0x10A1C70]
 
-  - name: segment_010A2000
+  - name: object_010A2000
     type: bin
     start: 0x10A2000
     # vram:
@@ -2782,7 +2782,7 @@
     align: 0x1000
   - [0x10A3620]
 
-  - name: segment_010A4000
+  - name: object_010A4000
     type: bin
     start: 0x10A4000
     # vram:
@@ -2790,7 +2790,7 @@
     align: 0x1000
   - [0x10A5620]
 
-  - name: segment_010A6000
+  - name: object_010A6000
     type: bin
     start: 0x10A6000
     # vram:
@@ -2798,7 +2798,7 @@
     align: 0x1000
   - [0x10A7620]
 
-  - name: segment_010A8000
+  - name: object_010A8000
     type: bin
     start: 0x10A8000
     # vram:
@@ -2806,7 +2806,7 @@
     align: 0x1000
   - [0x10A9620]
 
-  - name: segment_010AA000
+  - name: object_010AA000
     type: bin
     start: 0x10AA000
     # vram:
@@ -2814,7 +2814,7 @@
     align: 0x1000
   - [0x10AB620]
 
-  - name: segment_010AC000
+  - name: object_010AC000
     type: bin
     start: 0x10AC000
     # vram:
@@ -2822,7 +2822,7 @@
     align: 0x1000
   - [0x10AD620]
 
-  - name: segment_010AE000
+  - name: object_010AE000
     type: bin
     start: 0x10AE000
     # vram:
@@ -2830,7 +2830,7 @@
     align: 0x1000
   - [0x10B0060]
 
-  - name: segment_010B1000
+  - name: object_010B1000
     type: bin
     start: 0x10B1000
     # vram:
@@ -2838,7 +2838,7 @@
     align: 0x1000
   - [0x10B2020]
 
-  - name: segment_010B3000
+  - name: object_010B3000
     type: bin
     start: 0x10B3000
     # vram:
@@ -2846,7 +2846,7 @@
     align: 0x1000
   - [0x10B5270]
 
-  - name: segment_010B6000
+  - name: object_010B6000
     type: bin
     start: 0x10B6000
     # vram:
@@ -2854,7 +2854,7 @@
     align: 0x1000
   - [0x10B7020]
 
-  - name: segment_010B8000
+  - name: object_010B8000
     type: bin
     start: 0x10B8000
     # vram:
@@ -2862,7 +2862,7 @@
     align: 0x1000
   - [0x10BA100]
 
-  - name: segment_010BB000
+  - name: object_010BB000
     type: bin
     start: 0x10BB000
     # vram:
@@ -2870,7 +2870,7 @@
     align: 0x1000
   - [0x10BC620]
 
-  - name: segment_010BD000
+  - name: object_010BD000
     type: bin
     start: 0x10BD000
     # vram:
@@ -2878,7 +2878,7 @@
     align: 0x1000
   - [0x10BE620]
 
-  - name: segment_010BF000
+  - name: object_010BF000
     type: bin
     start: 0x10BF000
     # vram:
@@ -2886,7 +2886,7 @@
     align: 0x1000
   - [0x10C0620]
 
-  - name: segment_010C1000
+  - name: object_010C1000
     type: bin
     start: 0x10C1000
     # vram:
@@ -2894,7 +2894,7 @@
     align: 0x1000
   - [0x10C2620]
 
-  - name: segment_010C3000
+  - name: object_010C3000
     type: bin
     start: 0x10C3000
     # vram:
@@ -2902,7 +2902,7 @@
     align: 0x1000
   - [0x10C4620]
 
-  - name: segment_010C5000
+  - name: object_010C5000
     type: bin
     start: 0x10C5000
     # vram:
@@ -2910,7 +2910,7 @@
     align: 0x1000
   - [0x10C6620]
 
-  - name: segment_010C7000
+  - name: object_010C7000
     type: bin
     start: 0x10C7000
     # vram:
@@ -2918,7 +2918,7 @@
     align: 0x1000
   - [0x10C8620]
 
-  - name: segment_010C9000
+  - name: object_010C9000
     type: bin
     start: 0x10C9000
     # vram:
@@ -2926,7 +2926,7 @@
     align: 0x1000
   - [0x10CA620]
 
-  - name: segment_010CB000
+  - name: object_010CB000
     type: bin
     start: 0x10CB000
     # vram:
@@ -2934,7 +2934,7 @@
     align: 0x1000
   - [0x10CC620]
 
-  - name: segment_010CD000
+  - name: object_010CD000
     type: bin
     start: 0x10CD000
     # vram:
@@ -2942,7 +2942,7 @@
     align: 0x1000
   - [0x10CE620]
 
-  - name: segment_010CF000
+  - name: object_010CF000
     type: bin
     start: 0x10CF000
     # vram:
@@ -2950,7 +2950,7 @@
     align: 0x1000
   - [0x10D1300]
 
-  - name: segment_010D2000
+  - name: object_010D2000
     type: bin
     start: 0x10D2000
     # vram:
@@ -2958,7 +2958,7 @@
     align: 0x1000
   - [0x10D3620]
 
-  - name: segment_010D4000
+  - name: object_010D4000
     type: bin
     start: 0x10D4000
     # vram:
@@ -2966,7 +2966,7 @@
     align: 0x1000
   - [0x10D60B0]
 
-  - name: segment_010D7000
+  - name: object_010D7000
     type: bin
     start: 0x10D7000
     # vram:
@@ -2974,7 +2974,7 @@
     align: 0x1000
   - [0x10D8020]
 
-  - name: segment_010D9000
+  - name: object_010D9000
     type: bin
     start: 0x10D9000
     # vram:
@@ -2982,7 +2982,7 @@
     align: 0x1000
   - [0x10DB500]
 
-  - name: segment_010DC000
+  - name: object_010DC000
     type: bin
     start: 0x10DC000
     # vram:
@@ -2990,7 +2990,7 @@
     align: 0x1000
   - [0x10DD020]
 
-  - name: segment_010DE000
+  - name: object_010DE000
     type: bin
     start: 0x10DE000
     # vram:
@@ -2998,7 +2998,7 @@
     align: 0x1000
   - [0x10DF020]
 
-  - name: segment_010E0000
+  - name: object_010E0000
     type: bin
     start: 0x10E0000
     # vram:
@@ -3006,7 +3006,7 @@
     align: 0x1000
   - [0x10E1020]
 
-  - name: segment_010E2000
+  - name: object_010E2000
     type: bin
     start: 0x10E2000
     # vram:
@@ -3014,7 +3014,7 @@
     align: 0x1000
   - [0x10E4710]
 
-  - name: segment_010E5000
+  - name: object_010E5000
     type: bin
     start: 0x10E5000
     # vram:
@@ -3022,7 +3022,7 @@
     align: 0x1000
   - [0x10E6620]
 
-  - name: segment_010E7000
+  - name: object_010E7000
     type: bin
     start: 0x10E7000
     # vram:
@@ -3030,7 +3030,7 @@
     align: 0x1000
   - [0x10E90D0]
 
-  - name: segment_010EA000
+  - name: object_010EA000
     type: bin
     start: 0x10EA000
     # vram:
@@ -3038,7 +3038,7 @@
     align: 0x1000
   - [0x10EB020]
 
-  - name: segment_010EC000
+  - name: object_010EC000
     type: bin
     start: 0x10EC000
     # vram:
@@ -3046,7 +3046,7 @@
     align: 0x1000
   - [0x10ED020]
 
-  - name: segment_010EE000
+  - name: object_010EE000
     type: bin
     start: 0x10EE000
     # vram:
@@ -3054,7 +3054,7 @@
     align: 0x1000
   - [0x10EF020]
 
-  - name: segment_010F0000
+  - name: object_010F0000
     type: bin
     start: 0x10F0000
     # vram:
@@ -3062,7 +3062,7 @@
     align: 0x1000
   - [0x10F1020]
 
-  - name: segment_010F2000
+  - name: object_010F2000
     type: bin
     start: 0x10F2000
     # vram:
@@ -3102,7 +3102,7 @@
     align: 0x1000
   - [0x11029E0]
 
-  - name: segment_01103000
+  - name: object_01103000
     type: bin
     start: 0x1103000
     # vram:
@@ -3110,7 +3110,7 @@
     align: 0x1000
   - [0x11054F0]
 
-  - name: segment_01106000
+  - name: object_01106000
     type: bin
     start: 0x1106000
     # vram:
@@ -3118,7 +3118,7 @@
     align: 0x1000
   - [0x1106A60]
 
-  - name: segment_01107000
+  - name: object_01107000
     type: bin
     start: 0x1107000
     # vram:
@@ -3126,7 +3126,7 @@
     align: 0x1000
   - [0x1107930]
 
-  - name: segment_01108000
+  - name: object_01108000
     type: bin
     start: 0x1108000
     # vram:
@@ -3134,7 +3134,7 @@
     align: 0x1000
   - [0x1108BF0]
 
-  - name: segment_01109000
+  - name: object_01109000
     type: bin
     start: 0x1109000
     # vram:
@@ -3142,7 +3142,7 @@
     align: 0x1000
   - [0x1109B30]
 
-  - name: segment_0110A000
+  - name: object_0110A000
     type: bin
     start: 0x110A000
     # vram:
@@ -3150,7 +3150,7 @@
     align: 0x1000
   - [0x110A9A0]
 
-  - name: segment_0110B000
+  - name: object_0110B000
     type: bin
     start: 0x110B000
     # vram:
@@ -3158,7 +3158,7 @@
     align: 0x1000
   - [0x110B930]
 
-  - name: segment_0110C000
+  - name: object_0110C000
     type: bin
     start: 0x110C000
     # vram:
@@ -3166,7 +3166,7 @@
     align: 0x1000
   - [0x110CBB0]
 
-  - name: segment_0110D000
+  - name: object_0110D000
     type: bin
     start: 0x110D000
     # vram:
@@ -3174,7 +3174,7 @@
     align: 0x1000
   - [0x110DB60]
 
-  - name: segment_0110E000
+  - name: object_0110E000
     type: bin
     start: 0x110E000
     # vram:
@@ -3182,7 +3182,7 @@
     align: 0x1000
   - [0x110E9D0]
 
-  - name: segment_0110F000
+  - name: object_0110F000
     type: bin
     start: 0x110F000
     # vram:
@@ -3190,7 +3190,7 @@
     align: 0x1000
   - [0x110F9D0]
 
-  - name: segment_01110000
+  - name: object_01110000
     type: bin
     start: 0x1110000
     # vram:
@@ -3198,7 +3198,7 @@
     align: 0x1000
   - [0x11109D0]
 
-  - name: segment_01111000
+  - name: object_01111000
     type: bin
     start: 0x1111000
     # vram:
@@ -3206,7 +3206,7 @@
     align: 0x1000
   - [0x11119D0]
 
-  - name: segment_01112000
+  - name: object_01112000
     type: bin
     start: 0x1112000
     # vram:
@@ -3214,7 +3214,7 @@
     align: 0x1000
   - [0x1112BD0]
 
-  - name: segment_01113000
+  - name: object_01113000
     type: bin
     start: 0x1113000
     # vram:
@@ -3222,7 +3222,7 @@
     align: 0x1000
   - [0x11139D0]
 
-  - name: segment_01114000
+  - name: object_01114000
     type: bin
     start: 0x1114000
     # vram:
@@ -3230,7 +3230,7 @@
     align: 0x1000
   - [0x1114930]
 
-  - name: segment_01115000
+  - name: object_01115000
     type: bin
     start: 0x1115000
     # vram:
@@ -3238,7 +3238,7 @@
     align: 0x1000
   - [0x1115AC0]
 
-  - name: segment_01116000
+  - name: object_01116000
     type: bin
     start: 0x1116000
     # vram:
@@ -3246,7 +3246,7 @@
     align: 0x1000
   - [0x1116930]
 
-  - name: segment_01117000
+  - name: object_01117000
     type: bin
     start: 0x1117000
     # vram:
@@ -3254,7 +3254,7 @@
     align: 0x1000
   - [0x1117AA0]
 
-  - name: segment_01118000
+  - name: object_01118000
     type: bin
     start: 0x1118000
     # vram:
@@ -3262,7 +3262,7 @@
     align: 0x1000
   - [0x1118800]
 
-  - name: segment_01119000
+  - name: object_01119000
     type: bin
     start: 0x1119000
     # vram:
@@ -3270,7 +3270,7 @@
     align: 0x1000
   - [0x1119AB0]
 
-  - name: segment_0111A000
+  - name: object_0111A000
     type: bin
     start: 0x111A000
     # vram:
@@ -3278,7 +3278,7 @@
     align: 0x1000
   - [0x111A8B0]
 
-  - name: segment_0111B000
+  - name: object_0111B000
     type: bin
     start: 0x111B000
     # vram:
@@ -3286,7 +3286,7 @@
     align: 0x1000
   - [0x111BB40]
 
-  - name: segment_0111C000
+  - name: object_0111C000
     type: bin
     start: 0x111C000
     # vram:
@@ -3294,7 +3294,7 @@
     align: 0x1000
   - [0x111C940]
 
-  - name: segment_0111D000
+  - name: object_0111D000
     type: bin
     start: 0x111D000
     # vram:
@@ -3302,7 +3302,7 @@
     align: 0x1000
   - [0x111DBD0]
 
-  - name: segment_0111E000
+  - name: object_0111E000
     type: bin
     start: 0x111E000
     # vram:
@@ -3310,7 +3310,7 @@
     align: 0x1000
   - [0x111E9C0]
 
-  - name: segment_0111F000
+  - name: object_0111F000
     type: bin
     start: 0x111F000
     # vram:
@@ -3318,7 +3318,7 @@
     align: 0x1000
   - [0x111F930]
 
-  - name: segment_01120000
+  - name: object_01120000
     type: bin
     start: 0x1120000
     # vram:
@@ -3326,7 +3326,7 @@
     align: 0x1000
   - [0x11209B0]
 
-  - name: segment_01121000
+  - name: object_01121000
     type: bin
     start: 0x1121000
     # vram:
@@ -3334,7 +3334,7 @@
     align: 0x1000
   - [0x1121B40]
 
-  - name: segment_01122000
+  - name: object_01122000
     type: bin
     start: 0x1122000
     # vram:
@@ -3342,7 +3342,7 @@
     align: 0x1000
   - [0x1122900]
 
-  - name: segment_01123000
+  - name: object_01123000
     type: bin
     start: 0x1123000
     # vram:
@@ -3350,7 +3350,7 @@
     align: 0x1000
   - [0x1123930]
 
-  - name: segment_01124000
+  - name: object_01124000
     type: bin
     start: 0x1124000
     # vram:
@@ -3358,7 +3358,7 @@
     align: 0x1000
   - [0x1124930]
 
-  - name: segment_01125000
+  - name: object_01125000
     type: bin
     start: 0x1125000
     # vram:
@@ -3366,7 +3366,7 @@
     align: 0x1000
   - [0x11259D0]
 
-  - name: segment_01126000
+  - name: object_01126000
     type: bin
     start: 0x1126000
     # vram:
@@ -3374,7 +3374,7 @@
     align: 0x1000
   - [0x1126930]
 
-  - name: segment_01127000
+  - name: object_01127000
     type: bin
     start: 0x1127000
     # vram:
@@ -3382,7 +3382,7 @@
     align: 0x1000
   - [0x1127A40]
 
-  - name: segment_01128000
+  - name: object_01128000
     type: bin
     start: 0x1128000
     # vram:
@@ -3390,7 +3390,7 @@
     align: 0x1000
   - [0x11285B0]
 
-  - name: segment_01129000
+  - name: object_01129000
     type: bin
     start: 0x1129000
     # vram:
@@ -3398,7 +3398,7 @@
     align: 0x1000
   - [0x1129A80]
 
-  - name: segment_0112A000
+  - name: object_0112A000
     type: bin
     start: 0x112A000
     # vram:
@@ -3406,7 +3406,7 @@
     align: 0x1000
   - [0x112A800]
 
-  - name: segment_0112B000
+  - name: object_0112B000
     type: bin
     start: 0x112B000
     # vram:
@@ -3414,7 +3414,7 @@
     align: 0x1000
   - [0x112B670]
 
-  - name: segment_0112C000
+  - name: object_0112C000
     type: bin
     start: 0x112C000
     # vram:
@@ -3422,7 +3422,7 @@
     align: 0x1000
   - [0x112C750]
 
-  - name: segment_0112D000
+  - name: object_0112D000
     type: bin
     start: 0x112D000
     # vram:
@@ -3430,7 +3430,7 @@
     align: 0x1000
   - [0x112E1E0]
 
-  - name: segment_0112F000
+  - name: object_0112F000
     type: bin
     start: 0x112F000
     # vram:
@@ -3438,7 +3438,7 @@
     align: 0x1000
   - [0x112F4A0]
 
-  - name: segment_01130000
+  - name: object_01130000
     type: bin
     start: 0x1130000
     # vram:
@@ -3446,7 +3446,7 @@
     align: 0x1000
   - [0x1130400]
 
-  - name: segment_01131000
+  - name: object_01131000
     type: bin
     start: 0x1131000
     # vram:
@@ -3454,7 +3454,7 @@
     align: 0x1000
   - [0x11331F0]
 
-  - name: segment_01134000
+  - name: object_01134000
     type: bin
     start: 0x1134000
     # vram:
@@ -3462,7 +3462,7 @@
     align: 0x1000
   - [0x1134AD0]
 
-  - name: segment_01135000
+  - name: object_01135000
     type: bin
     start: 0x1135000
     # vram:
@@ -3478,7 +3478,7 @@
     align: 0x1000
   - [0x113BCD0]
 
-  - name: segment_0113C000
+  - name: object_0113C000
     type: bin
     start: 0x113C000
     # vram:
@@ -3486,7 +3486,7 @@
     align: 0x1000
   - [0x113C100]
 
-  - name: segment_0113D000
+  - name: object_0113D000
     type: bin
     start: 0x113D000
     # vram:
@@ -3494,7 +3494,7 @@
     align: 0x1000
   - [0x1146950]
 
-  - name: segment_01147000
+  - name: object_01147000
     type: bin
     start: 0x1147000
     # vram:
@@ -3678,7 +3678,7 @@
     align: 0x1000
   - [0x11F3050]
 
-  - name: segment_011F4000
+  - name: object_011F4000
     type: bin
     start: 0x11F4000
     # vram:
@@ -3686,7 +3686,7 @@
     align: 0x1000
   - [0x11F4930]
 
-  - name: segment_011F5000
+  - name: object_011F5000
     type: bin
     start: 0x11F5000
     # vram:
@@ -5318,7 +5318,7 @@
     align: 0x1000
   - [0x13895F0]
 
-  - name: segment_0138A000
+  - name: object_0138A000
     type: bin
     start: 0x138A000
     # vram:
@@ -5406,7 +5406,7 @@
     align: 0x1000
   - [0x13A35D0]
 
-  - name: segment_013A4000
+  - name: object_013A4000
     type: bin
     start: 0x13A4000
     # vram:
@@ -5414,7 +5414,7 @@
     align: 0x1000
   - [0x13A42C0]
 
-  - name: segment_013A5000
+  - name: object_013A5000
     type: bin
     start: 0x13A5000
     # vram:
@@ -5422,7 +5422,7 @@
     align: 0x1000
   - [0x13A5470]
 
-  - name: segment_013A6000
+  - name: object_013A6000
     type: bin
     start: 0x13A6000
     # vram:
@@ -5454,7 +5454,7 @@
     align: 0x1000
   - [0x13AAC90]
 
-  - name: segment_013AB000
+  - name: object_013AB000
     type: bin
     start: 0x13AB000
     # vram:
@@ -5542,7 +5542,7 @@
     align: 0x1000
   - [0x13E2B40]
 
-  - name: segment_013E3000
+  - name: object_013E3000
     type: bin
     start: 0x13E3000
     # vram:
@@ -5574,7 +5574,7 @@
     align: 0x1000
   - [0x13EA760]
 
-  - name: segment_013EB000
+  - name: object_013EB000
     type: bin
     start: 0x13EB000
     # vram:
@@ -5638,7 +5638,7 @@
     align: 0x1000
   - [0x140B430]
 
-  - name: segment_0140C000
+  - name: object_0140C000
     type: bin
     start: 0x140C000
     # vram:
@@ -11182,7 +11182,7 @@
     align: 0x1000
   - [0x179D040]
 
-  - name: segment_0179E000
+  - name: object_0179E000
     type: bin
     start: 0x179E000
     # vram:
@@ -11190,7 +11190,7 @@
     align: 0x1000
   - [0x179E2C0]
 
-  - name: segment_0179F000
+  - name: object_0179F000
     type: bin
     start: 0x179F000
     # vram:
@@ -11198,7 +11198,7 @@
     align: 0x1000
   - [0x17A0590]
 
-  - name: segment_017A1000
+  - name: object_017A1000
     type: bin
     start: 0x17A1000
     # vram:
@@ -11206,7 +11206,7 @@
     align: 0x1000
   - [0x1829880]
 
-  - name: segment_0182A000
+  - name: object_0182A000
     type: bin
     start: 0x182A000
     # vram:
@@ -11222,7 +11222,7 @@
     align: 0x1000
   - [0x1870860]
 
-  - name: segment_01871000
+  - name: object_01871000
     type: bin
     start: 0x1871000
     # vram:
@@ -11230,7 +11230,7 @@
     align: 0x1000
   - [0x187FFA0]
 
-  - name: segment_01880000
+  - name: object_01880000
     type: bin
     start: 0x1880000
     # vram:
@@ -11238,7 +11238,7 @@
     align: 0x1000
   - [0x18830A0]
 
-  - name: segment_01884000
+  - name: object_01884000
     type: bin
     start: 0x1884000
     # vram:
@@ -11246,7 +11246,7 @@
     align: 0x1000
   - [0x18876C0]
 
-  - name: segment_01888000
+  - name: object_01888000
     type: bin
     start: 0x1888000
     # vram:

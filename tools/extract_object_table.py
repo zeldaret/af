@@ -38,6 +38,14 @@ class ObjectOverlay:
             return self._macroEntry_Unset(index)
         return self._macroEntry_Normal(index)
 
+    def renames(self) -> str:
+        result = f""
+
+        if self.vromStart != 0:
+            result += f'"segment_{self.vromStart:08X}": "object_{self.vromStart:08X}",\n'
+
+        return result
+
 
 def extractEntry(rom: bytes, offset: int, index: int) -> ObjectOverlay:
     entry = struct.unpack_from(">II", rom, offset + ENTRY_SIZE * index)
@@ -72,12 +80,12 @@ def ExtractActorTableMain():
         #         print(entry.rawstr())
 
         if renames:
-            # print(entry.renames(), end="")
+            print(entry.renames(), end="")
             pass
 
         else:
             macroEntry = entry.macroEntry(i)
-            print(f"/* 0x{i:02X} */ {macroEntry}")
+            print(f"/* 0x{i:03X} */ {macroEntry}")
             pass
 
 
