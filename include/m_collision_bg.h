@@ -104,7 +104,7 @@ void func_8006BB64_jp(void);
 // void func_8006C4B4_jp();
 // void func_8006C5A8_jp();
 // void func_8006C634_jp();
-void func_8006C740_jp(void);
+void mCoBG_CalcTimerDecalCircle(void);
 // void func_8006C7B4_jp();
 void func_8006C8D0_jp(void);
 // void func_8006C910_jp();

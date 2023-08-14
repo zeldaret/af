@@ -158,7 +158,7 @@ void Camera2_ClearActorTalking_Cull(struct PlayState* play);
 // void func_80064F28_jp();
 void func_80064F48_jp(struct PlayState* play);
 // void func_80064F84_jp();
-void func_80064FD8_jp(struct PlayState* play);
-void func_80065028_jp(struct PlayState* play);
+void Camera2_process(struct PlayState* play);
+void Camera2_draw(struct PlayState* play);
 
 #endif

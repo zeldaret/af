@@ -6,7 +6,7 @@
 struct PlayState;
 
 // void func_800BD2B0_jp();
-Gfx* func_800BD37C_jp(Gfx* gfx, u8 arg1, u8 arg2, u8 arg3, s32 arg4, s16 arg5, s16 arg6);
+Gfx* gfx_set_fog_nosync(Gfx* gfx, u8 arg1, u8 arg2, u8 arg3, s32 arg4, s16 arg5, s16 arg6);
 // void func_800BD3EC_jp();
 // void func_800BD428_jp();
 // void func_800BD448_jp();
@@ -35,7 +35,7 @@ Gfx* func_800BD720_jp(Gfx* gfx);
 // void func_800BDA20_jp();
 // void two_tex_scroll();
 void DisplayList_initialize(GraphicsContext* gfxCtx, u8 arg1, u8 arg2, u8 arg3, struct PlayState* play);
-void func_800BDF90_jp(Gfx** gfx, s32 arg1);
+void fade_rgba8888_draw(Gfx** gfx, s32 arg1);
 // void func_800BE030_jp();
 // void fade_black_draw();
 // void func_800BE094_jp();

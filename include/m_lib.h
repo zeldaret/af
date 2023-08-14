@@ -2,6 +2,7 @@
 #define M_LIB_H
 
 #include "ultra64.h"
+#include "unk.h"
 
 // void mem_copy();
 // void mem_clear();
@@ -52,7 +53,7 @@ f32 sin_s(s16 angle);
 // void add_calc_short_angle3();
 // void adds();
 // void rgba_t_move();
-void none_proc1(void);
+UNK_RET none_proc1(void);
 // void none_proc2();
 // void Cheap_gfx_display();
 // void Cheap_gfx_display_xlu();
