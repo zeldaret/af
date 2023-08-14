@@ -141,17 +141,15 @@ typedef struct Actor {
     /* 0x170 */ struct ActorOverlay* overlayEntry;
 } Actor; // size = 0x174
 
-typedef struct Part_Break_unk_00 {
-    /* 0x00 */ UNK_TYPE1 unk_00[0x40];
-} Part_Break_unk_00; // size = 0x40
-
+// Guessed from OoT's BodyBreak
 typedef struct Part_Break {
-    /* 0x00 */ Part_Break_unk_00* unk_00;
-    /* 0x04 */ u16* unk_04;
-    /* 0x08 */ UNK_TYPE1 unk_08[0x4];
-    /* 0x0C */ s32* unk_0C;
-    /* 0x10 */ s32 unk_10;
-} Part_Break; // size >= 0x14
+    /* 0x00 */ MtxF* matrices;
+    /* 0x04 */ s16* objectIds;
+    /* 0x08 */ s16 count;
+    /* 0x0C */ Gfx** dLists;
+    /* 0x10 */ s32 val;
+    /* 0x14 */ s32 prevLimbIndex;
+} Part_Break; // size = 0x18
 
 typedef struct ActorListEntry {
     /* 0x0 */ s32 unk_0;

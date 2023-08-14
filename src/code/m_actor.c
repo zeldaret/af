@@ -1019,44 +1019,44 @@ Actor* Actor_info_fgName_search(ActorInfo* actorInfo, u16 fgName, ActorPart part
 
 // unused
 void Part_Break_init(Part_Break* partBreak, s32 count, s32 arg2 UNUSED) {
-    size_t size1;
-    size_t size2;
-    size_t size3;
+    size_t matricesSize;
+    size_t dListsSize;
+    size_t objectIdsSize;
 
-    size1 = (count + 1) * sizeof(Part_Break_unk_00);
-    partBreak->unk_00 = zelda_malloc(size1);
-    if (partBreak->unk_00 == NULL) {
+    matricesSize = (count + 1) * sizeof(MtxF);
+    partBreak->matrices = zelda_malloc(matricesSize);
+    if (partBreak->matrices == NULL) {
         goto cleanup;
     }
 
-    size2 = (count + 1) * sizeof(s32);
-    partBreak->unk_0C = zelda_malloc(size2);
-    if (partBreak->unk_0C == NULL) {
+    dListsSize = (count + 1) * sizeof(Gfx*);
+    partBreak->dLists = zelda_malloc(dListsSize);
+    if (partBreak->dLists == NULL) {
         goto cleanup;
     }
 
-    size3 = (count + 1) * sizeof(u16);
-    partBreak->unk_04 = zelda_malloc(size3);
-    if (partBreak->unk_04 == NULL) {
+    objectIdsSize = (count + 1) * sizeof(s16);
+    partBreak->objectIds = zelda_malloc(objectIdsSize);
+    if (partBreak->objectIds == NULL) {
         goto cleanup;
     }
 
-    mem_clear(partBreak->unk_00, size1, 0);
-    mem_clear(partBreak->unk_0C, size2, 0);
-    mem_clear(partBreak->unk_04, size3, 0);
+    mem_clear(partBreak->matrices, matricesSize, 0);
+    mem_clear(partBreak->dLists, dListsSize, 0);
+    mem_clear(partBreak->objectIds, objectIdsSize, 0);
 
-    partBreak->unk_10 = 1;
+    partBreak->val = 1;
     return;
 
 cleanup:
-    if (partBreak->unk_00 != NULL) {
-        zelda_free(partBreak->unk_00);
+    if (partBreak->matrices != NULL) {
+        zelda_free(partBreak->matrices);
     }
-    if (partBreak->unk_0C != NULL) {
-        zelda_free(partBreak->unk_0C);
+    if (partBreak->dLists != NULL) {
+        zelda_free(partBreak->dLists);
     }
-    if (partBreak->unk_04 != NULL) {
-        zelda_free(partBreak->unk_04);
+    if (partBreak->objectIds != NULL) {
+        zelda_free(partBreak->objectIds);
     }
 }
 
