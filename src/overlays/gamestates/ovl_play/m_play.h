@@ -29,7 +29,6 @@ struct PlayState;
 typedef void (*PlayState_unk_1C58)(struct Actor*);
 typedef UNK_RET (*PlayState_unk_2208)(struct Actor*, struct PlayState*);
 
-typedef void (*PlayStateUnkFunc_Unk)();
 typedef void (*PlayStateUnkFunc_00)(void*);
 typedef void (*PlayStateUnkFunc_04)(void*, struct PlayState*);
 typedef void (*PlayStateUnkFunc_08)(void*, u8);
@@ -37,6 +36,7 @@ typedef void (*PlayStateUnkFunc_0C)(void*, Gfx**);
 typedef void (*PlayStateUnkFunc_10)(void*);
 typedef void (*PlayStateUnkFunc_14)(void*, s32);
 typedef void (*PlayStateUnkFunc_18)(void*, s32);
+typedef void (*PlayStateUnkFunc_1C)(void);
 typedef s32 (*PlayStateUnkFunc_20)(void*, struct PlayState*);
 
 typedef struct PlayStateUnkFuncsStruct {
@@ -47,7 +47,7 @@ typedef struct PlayStateUnkFuncsStruct {
     /* 0x10 */ PlayStateUnkFunc_10 unk_10;
     /* 0x14 */ PlayStateUnkFunc_14 unk_14;
     /* 0x18 */ PlayStateUnkFunc_18 unk_18;
-    /* 0x1C */ PlayStateUnkFunc_Unk unk_1C;
+    /* 0x1C */ PlayStateUnkFunc_1C unk_1C;
     /* 0x20 */ PlayStateUnkFunc_20 unk_20;
 } PlayStateUnkFuncsStruct; // size = 0x24
 
@@ -108,7 +108,7 @@ typedef struct PlayState {
     /* 0x1EE8 */ PlayState_Unk_1EE8 unk_1EE8;
     /* 0x2128 */ PlayState2128 unk_2128;
     /* 0x2138 */ PlayState2138 unk_2138;
-    /* 0x2208 */ void (*unk_2208)(void);
+    /* 0x2208 */ s32 (*unk_2208)(void);
     /* 0x220C */ s32 unk_220C;
     /* 0x2210 */ D_8010EAA0* unk_2210;
     /* 0x2214 */ UNK_TYPE1 unk_2214[0x1FC];

@@ -43,20 +43,20 @@ void Game_play_fbdemo_wipe_init(PlayState* play);
 void Game_play_fbdemo_wipe_move(PlayState* play);
 
 void fbdemo_wipe1_init(void*);
-void fbdemo_wipe1_move();
-void fbdemo_wipe1_draw(void*, u8);
-void fbdemo_wipe1_startup(void*, Gfx**);
-void fbdemo_wipe1_settype(void*);
+void fbdemo_wipe1_move(void*, u8);
+void fbdemo_wipe1_draw(void*, Gfx**);
+void fbdemo_wipe1_startup(void*);
+void fbdemo_wipe1_settype(void*, s32);
 void fbdemo_wipe1_setcolor_rgba8888(void*, s32);
-void fbdemo_wipe1_is_finish(void*, s32);
+s32 fbdemo_wipe1_is_finish(void*, PlayState* play);
 
 void fbdemo_triforce_init(void*);
-void fbdemo_triforce_move();
-void fbdemo_triforce_draw(void*, u8);
-void fbdemo_triforce_startup(void*, Gfx**);
-void fbdemo_triforce_settype(void*);
+void fbdemo_triforce_move(void*, u8);
+void fbdemo_triforce_draw(void*, Gfx**);
+void fbdemo_triforce_startup(void*);
+void fbdemo_triforce_settype(void*, s32);
 void fbdemo_triforce_setcolor_rgba8888(void*, s32);
-void fbdemo_triforce_is_finish(void*, s32);
+s32 fbdemo_triforce_is_finish(void*, PlayState* play);
 
 extern UNK_PTR* B_801458A0_jp[];
 extern void* B_801458B0_jp;
