@@ -39,7 +39,7 @@ typedef struct {
 // void gfx_SetUpCFB();
 void PreRender_setup_savebuf(PreRender* render, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
 void PreRender_init(PreRender* render);
-void PreRender_setup_renderbuf(PreRender* render, s32 arg1, s32 arg2, s32 arg3, void* arg4);
+void PreRender_setup_renderbuf(PreRender* render, s32 arg1, s32 arg2, void* arg3, void* arg4);
 void PreRender_cleanup(PreRender* render);
 // void PreRender_TransBufferCopy();
 // void PreRender_TransBuffer();

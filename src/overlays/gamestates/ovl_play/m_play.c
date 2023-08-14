@@ -209,7 +209,7 @@ void func_80802E34_jp(PlayState* play) {
 }
 
 void func_80802E74_jp(PlayState* play) {
-    s32 pad[2];
+    UNUSED s32 pad[2];
     s16 sp26 = 0;
     s32 sp20 = 1;
     PlayState_Unk_1EE8* sp18 = &play->unk_1EE8;
@@ -310,7 +310,7 @@ Gfx* func_80803124_jp(PlayState* play, Gfx* gfx) {
 }
 
 void func_80803174_jp(PlayState* play) {
-    s32 pad;
+    UNUSED s32 pad;
     GraphicsContext* gfxCtx = play->state.gfxCtx;
 
     switch (play->unk_1EE2) {
@@ -365,8 +365,7 @@ void play_init(GameState* gameState) {
     GraphicsContext* sp48 = play->state.gfxCtx;
     u32 temp_v1;
     u32 temp_v0_2;
-    s32 pad;
-    s32 pad2;
+    UNUSED s32 pad[2];
     u8 temp;
     s32 sp30;
 
@@ -392,7 +391,7 @@ void play_init(GameState* gameState) {
     play->unk_1CBC.unk_00 = 0;
     PreRender_init(&play->unk_1DC0);
     PreRender_setup_savebuf(&play->unk_1DC0, 0x140, 0xF0, 0, 0, 0);
-    PreRender_setup_renderbuf(&play->unk_1DC0, 0x140, 0xF0, 0, NULL);
+    PreRender_setup_renderbuf(&play->unk_1DC0, 0x140, 0xF0, NULL, NULL);
 
     if (1) {}
     play->unk_1EE2 = 0;
@@ -434,7 +433,7 @@ void play_init(GameState* gameState) {
 }
 
 void func_80803544_jp(PlayState* play) {
-    s32 pad[2];
+    UNUSED s32 pad[2];
 
     play->state.unk_9D = 0x8F;
     play->state.unk_9C = 1;
@@ -667,12 +666,12 @@ s32 func_80803B08_jp(PlayState* play, GraphicsContext* __gfxCtx, GraphicsContext
 
         gSPDisplayList(OVERLAY_DISP++, sp3C);
 
-        play->unk_1DC0.fbuf = gfxCtx2->unk_2E4;
-        play->unk_1DC0.fbufSave = gfxCtx2->unk_008;
+        play->unk_1DC0.fbuf = (u16*)gfxCtx2->unk_2E4;
+        play->unk_1DC0.fbufSave = (u16*)gfxCtx2->unk_008;
         PreRender_saveFrameBuffer(&play->unk_1DC0, &sp3C);
 
         if (play->unk_1CBC.unk_00 == 1) {
-            play->unk_1DC0.cvgSave = gfxCtx2->unk_2E4;
+            play->unk_1DC0.cvgSave = (u8*)gfxCtx2->unk_2E4;
             PreRender_saveCVG(&play->unk_1DC0, &sp3C);
             play->unk_1CBC.unk_00 = 2;
         } else {

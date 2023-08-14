@@ -22,7 +22,7 @@ typedef struct GraphicsContext {
     /* 0x2C0 */ TwoHeadGfxArena unk_2C0;
     /* 0x2D0 */ TwoHeadGfxArena unk_2D0;
     /* 0x2E0 */ UNK_TYPE1 unk_2E0[0x4];
-    /* 0x2E4 */ s32 unk_2E4;
+    /* 0x2E4 */ void* unk_2E4;
     /* 0x2E8 */ UNK_TYPE1 unk_2E8[0x4];
     /* 0x2EC */ s32 unk_2EC;
     /* 0x2F0 */ u8 unk_2F0;
