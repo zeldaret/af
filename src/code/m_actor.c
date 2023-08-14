@@ -193,7 +193,7 @@ void Actor_ct(Actor* actor, PlayState* play) {
     Shape_Info_init(actor, 0.0f, NULL, 0.0f, 0.0f);
 
     if (Actor_data_bank_dma_end_check(actor, play) == 1) {
-        gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(temp_a0[actor->unk_026].segment);
+        gSegments[6] = (uintptr_t)OS_K0_TO_PHYSICAL(temp_a0[actor->unk_026].segment);
         actor->ct(actor, play);
         actor->ct = NULL;
     }
@@ -452,7 +452,7 @@ void Actor_info_call_actor(PlayState* play, ActorInfo* actorInfo) {
 
             if (actor->ct != NULL) {
                 if (Actor_data_bank_dma_end_check(actor, play) == 1) {
-                    gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(play->unk_0110[actor->unk_026].segment);
+                    gSegments[6] = (uintptr_t)OS_K0_TO_PHYSICAL(play->unk_0110[actor->unk_026].segment);
 
                     play->state.unk_9D = 0x98;
                     actor->ct(actor, play);
@@ -488,7 +488,7 @@ void Actor_info_call_actor(PlayState* play, ActorInfo* actorInfo) {
 
                 actor->flags &= ~ACTOR_FLAG_1000000;
                 if ((actor->flags & (ACTOR_FLAG_40 | ACTOR_FLAG_10)) || (actor->part == ACTOR_PART_NPC)) {
-                    gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(play->unk_0110[actor->unk_026].segment);
+                    gSegments[6] = (uintptr_t)OS_K0_TO_PHYSICAL(play->unk_0110[actor->unk_026].segment);
                     play->state.unk_9D = 0xA1;
                     actor->update(actor, play);
                     play->state.unk_9D = 0xA2;
@@ -838,11 +838,11 @@ Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId,
     mNpc_SetNpcinfo(sp68, argE);
 
     {
-        uintptr_t temp_s0_2;
+        uintptr_t segmentTemp;
 
-        temp_s0_2 = gSegments[6];
+        segmentTemp = gSegments[6];
         Actor_ct(sp68, play);
-        gSegments[6] = temp_s0_2;
+        gSegments[6] = segmentTemp;
     }
 
     return sp68;

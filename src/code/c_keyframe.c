@@ -717,13 +717,13 @@ void cKF_SkeletonInfo_R_init_reverse_setspeedandmorphandmode(SkeletonInfoR* skel
 void func_80053384_jp(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, UNK_PTR* arg6, UNK_PTR* arg7,
                       UNK_PTR* arg8) {
     if (arg3 != 0) {
-        gSegments[arg0] = (uintptr_t)OS_PHYSICAL_TO_K0(arg6);
+        gSegments[arg0] = (uintptr_t)OS_K0_TO_PHYSICAL(arg6);
     }
     if (arg4 != 0) {
-        gSegments[arg1] = (uintptr_t)OS_PHYSICAL_TO_K0(arg7);
+        gSegments[arg1] = (uintptr_t)OS_K0_TO_PHYSICAL(arg7);
     }
     if (arg5 != 0) {
-        gSegments[arg2] = (uintptr_t)OS_PHYSICAL_TO_K0(arg8);
+        gSegments[arg2] = (uintptr_t)OS_K0_TO_PHYSICAL(arg8);
     }
 }
 
@@ -887,13 +887,13 @@ s32 cKF_SkeletonInfo_R_combine_play(SkeletonInfoR* skeletonInfo1, SkeletonInfoR*
 
     if (arg4 != 0) {
         sp44 = OS_PHYSICAL_TO_K0(gSegments[arg2]);
-        gSegments[arg2] = (uintptr_t)OS_PHYSICAL_TO_K0(arg4);
+        gSegments[arg2] = (uintptr_t)OS_K0_TO_PHYSICAL(arg4);
         cKF_SkeletonInfo_R_combine_work_set(&combine3, skeletonInfo1);
     }
 
     if (arg5 != 0) {
         sp40 = OS_PHYSICAL_TO_K0(gSegments[arg3]);
-        gSegments[arg3] = (uintptr_t)OS_PHYSICAL_TO_K0(arg5);
+        gSegments[arg3] = (uintptr_t)OS_K0_TO_PHYSICAL(arg5);
         cKF_SkeletonInfo_R_combine_work_set(&combine2, skeletonInfo2);
         cKF_SkeletonInfo_R_combine_work_set(&combine1, skeletonInfo2);
     }
@@ -965,17 +965,17 @@ void cKF_SkeletonInfo_R_T_combine_play(s32* arg0, s32* arg1, s32* arg2, Skeleton
 
     if (arg9 != 0) {
         sp48 = OS_PHYSICAL_TO_K0(gSegments[arg6]);
-        gSegments[arg6] = (uintptr_t)OS_PHYSICAL_TO_K0(arg9);
+        gSegments[arg6] = (uintptr_t)OS_K0_TO_PHYSICAL(arg9);
         cKF_SkeletonInfo_R_combine_work_set(&sp4C, skeletonInfo1);
     }
     if (argA != 0) {
         sp44 = OS_PHYSICAL_TO_K0(gSegments[arg7]);
-        gSegments[arg7] = (uintptr_t)OS_PHYSICAL_TO_K0(argA);
+        gSegments[arg7] = (uintptr_t)OS_K0_TO_PHYSICAL(argA);
         cKF_SkeletonInfo_R_combine_work_set(&sp6C, skeletonInfo2);
     }
     if (argB != 0) {
         sp40 = OS_PHYSICAL_TO_K0(gSegments[arg8]);
-        gSegments[arg8] = (uintptr_t)OS_PHYSICAL_TO_K0(argB);
+        gSegments[arg8] = (uintptr_t)OS_K0_TO_PHYSICAL(argB);
         cKF_SkeletonInfo_R_combine_work_set(&sp8C, skeletonInfo3);
     }
 
