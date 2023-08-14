@@ -211,9 +211,9 @@ func_80803F48_jp = 0x80803F48; // type:func
 func_8080407C_jp = 0x8080407C; // type:func
 func_80804138_jp = 0x80804138; // type:func
 func_808041A4_jp = 0x808041A4; // type:func
-func_808041C4_jp = 0x808041C4; // type:func
-func_80804240_jp = 0x80804240; // type:func
-func_80804288_jp = 0x80804288; // type:func
+Gameplay_Scene_Init = 0x808041C4; // type:func
+mPl_SceneNo2SoundRoomType = 0x80804240; // type:func
+Gameplay_Scene_Read = 0x80804288; // type:func
 
 // .data
 
@@ -8710,7 +8710,7 @@ func_80968F98_jp = 0x80968F98; // type:func
 func_80969040_jp = 0x80969040; // type:func
 func_80969114_jp = 0x80969114; // type:func
 func_809693EC_jp = 0x809693EC; // type:func
-D_80969690_jp = 0x80969690; // type:s16
+D_80969690_jp = 0x80969690; // type:s16 FAKE
 func_80969800_jp = 0x80969800; // type:func
 func_8096983C_jp = 0x8096983C; // type:func
 func_809698E8_jp = 0x809698E8; // type:func
@@ -13630,8 +13630,7 @@ func_80A04AA4_jp = 0x80A04AA4; // type:func
 
 // .data
 
-_008D2440_Profile = 0x80A04C00; //
-D_80A04C04_jp = 0x80A04C04; //
+_008D2440_Profile = 0x80A04C00; // size:0x24
 D_80A04C24_jp = 0x80A04C24; //
 D_80A04C38_jp = 0x80A04C38; //
 D_80A04C54_jp = 0x80A04C54; //

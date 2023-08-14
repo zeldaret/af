@@ -28,9 +28,9 @@ void ovlmgr_Free(void* ptr) {
     }
 }
 
-void ovlmgr_LoadImpl(void* vromStart, UNUSED UNK_TYPE arg1, void* vramStart, void* vramEnd, void* allocatedRamAddr,
-                     struct OverlayRelocationSection* ovl, size_t size) {
-    void* vromEnd;
+void ovlmgr_LoadImpl(RomOffset vromStart, UNUSED RomOffset vromEndUnused, void* vramStart, void* vramEnd,
+                     void* allocatedRamAddr, struct OverlayRelocationSection* ovl, size_t size) {
+    RomOffset vromEnd;
     void* ovlStart;
     void* ovlEnd;
     size_t ovlSize;
@@ -58,6 +58,6 @@ void ovlmgr_LoadImpl(void* vromStart, UNUSED UNK_TYPE arg1, void* vramStart, voi
     }
 }
 
-void ovlmgr_Load(void* vromStart, UNK_TYPE arg1, void* vramStart, void* vramEnd, void* allocatedRamAddr) {
-    ovlmgr_LoadImpl(vromStart, arg1, vramStart, vramEnd, allocatedRamAddr, NULL, 0);
+void ovlmgr_Load(RomOffset vromStart, RomOffset vromEnd, void* vramStart, void* vramEnd, void* allocatedRamAddr) {
+    ovlmgr_LoadImpl(vromStart, vromEnd, vramStart, vramEnd, allocatedRamAddr, NULL, 0);
 }
