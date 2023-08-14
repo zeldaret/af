@@ -140,6 +140,8 @@
       - [0x72ACB0, data, code/72ACB0]
       - [0x72B7A0, data, code/m_lib]
       - [0x72B7D0, data, code/72B7D0]
+      - [0x731A70, data, code/object_table]
+      - [0x732740, data, code/732740]
       - [0x732C30, .data, code/game]
       - [0x732C40, data, code/732C40]
       - [0x732C50, .data, code/irqmgr]
