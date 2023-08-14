@@ -7,7 +7,7 @@
 
 typedef struct TrademarkState {
     /* 0x00 */ GameState state;
-    /* 0xA4 */ UNK_TYPE1 unk_00[0x25A78-0xA4];
+    /* 0xE0 */ UNK_TYPE1 unk_00[0x25A78-0xE0];
 } TrademarkState; // size = 0x25A78
 
 void trademark_init(GameState *thisx);

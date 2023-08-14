@@ -7,7 +7,7 @@
 
 typedef struct PlayerSelectState {
     /* 0x00 */ GameState state;
-    /* 0xA4 */ UNK_TYPE1 unk_00[0x288-0xA4];
+    /* 0xE0 */ UNK_TYPE1 unk_00[0x288-0xE0];
 } PlayerSelectState; // size = 0x288
 
 void player_select_init(GameState *thisx);
