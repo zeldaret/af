@@ -86,27 +86,44 @@ s32 func_800C59B0_jp(ObjectExchangeBank *objectBank)
 {
     ObjectStatus *objectStatus = &objectBank->status[objectBank->unk17FC];
     s32 ret = -1;
-    s32 bankIndex = objectBank->unk17FC;
+    s32 statusIndex = objectBank->unk17FC;
     
-    if (bankIndex < OBJECT_EXCHANGE_BANK_MAX)
+    if (statusIndex < OBJECT_EXCHANGE_BANK_MAX)
     {
         do {
             if (objectStatus->id == 0)
             {
-                ret = bankIndex;
+                ret = statusIndex;
                 break;
             }
             objectStatus++;
-            bankIndex++;
-        } while (bankIndex != OBJECT_EXCHANGE_BANK_MAX);
+            statusIndex++;
+        } while (statusIndex != OBJECT_EXCHANGE_BANK_MAX);
     }
-  return ret;
+    return ret;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C5A08_jp.s")
-
-
-s32 func_800C5A08_jp(ObjectExchangeBank* objectBank);                          /* extern */
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C5A08_jp.s")
+s32 func_800C5A08_jp(ObjectExchangeBank *objectBank)
+{
+    ObjectStatus* objectStatus = &objectBank->status[objectBank->unk17FC];
+    s32 ret = -1;
+    s32 statusIndex = objectBank->unk17FC;
+    
+    if (statusIndex < OBJECT_EXCHANGE_BANK_MAX)
+    {
+        do {
+            if (objectStatus->unk50 == 0)
+            {
+                ret = statusIndex;
+                break;
+            }
+            objectStatus++;
+            statusIndex++;
+        } while (statusIndex != OBJECT_EXCHANGE_BANK_MAX);
+    }
+    return ret;
+}
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C5A60_jp.s")
 s32 func_800C5A60_jp(ObjectExchangeBank* objectBank) {
@@ -144,7 +161,7 @@ void func_800C5B5C_jp(ObjectStatus *objectStatus)
 void func_80026E10_jp(void*, uintptr_t, size_t, const char *file, s32);         /* extern */
 s32 func_800C5AA0_jp(void*, void*, s16);            /* extern */
 
-//objectspawn?
+//objectspawn equivalent
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C5B74_jp.s")
 s32 func_800C5B74_jp(ObjectExchangeBank* objectBank, s16 id) {
     s32 ret = 0;
