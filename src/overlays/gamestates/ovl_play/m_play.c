@@ -63,18 +63,39 @@ extern void* B_801458B0_jp;
 extern D_8010EAA0 scene_data_status[];
 
 PlayStateUnkFuncsStruct D_80804320_jp = {
-    fbdemo_wipe1_init, (void*)none_proc1, fbdemo_wipe1_move, fbdemo_wipe1_draw, fbdemo_wipe1_startup, fbdemo_wipe1_settype,
-    fbdemo_wipe1_setcolor_rgba8888, NULL,       fbdemo_wipe1_is_finish,
+    fbdemo_wipe1_init,
+    (void*)none_proc1,
+    fbdemo_wipe1_move,
+    fbdemo_wipe1_draw,
+    fbdemo_wipe1_startup,
+    fbdemo_wipe1_settype,
+    fbdemo_wipe1_setcolor_rgba8888,
+    NULL,
+    fbdemo_wipe1_is_finish,
 };
 
 PlayStateUnkFuncsStruct D_80804344_jp = {
-    fbdemo_triforce_init, (void*)none_proc1, fbdemo_triforce_move, fbdemo_triforce_draw, fbdemo_triforce_startup, fbdemo_triforce_settype,
-    fbdemo_triforce_setcolor_rgba8888, NULL,       fbdemo_triforce_is_finish,
+    fbdemo_triforce_init,
+    (void*)none_proc1,
+    fbdemo_triforce_move,
+    fbdemo_triforce_draw,
+    fbdemo_triforce_startup,
+    fbdemo_triforce_settype,
+    fbdemo_triforce_setcolor_rgba8888,
+    NULL,
+    fbdemo_triforce_is_finish,
 };
 
 PlayStateUnkFuncsStruct D_80804368_jp = {
-    fbdemo_fade_init, (void*)none_proc1, fbdemo_fade_move, fbdemo_fade_draw, fbdemo_fade_startup, fbdemo_fade_settype,
-    fbdemo_fade_setcolor_rgba8888, NULL,       fbdemo_fade_is_finish,
+    fbdemo_fade_init,
+    (void*)none_proc1,
+    fbdemo_fade_move,
+    fbdemo_fade_draw,
+    fbdemo_fade_startup,
+    fbdemo_fade_settype,
+    fbdemo_fade_setcolor_rgba8888,
+    NULL,
+    fbdemo_fade_is_finish,
 };
 
 PlayStateUnkFuncsStruct* D_8080438C_jp[] = {
@@ -306,7 +327,7 @@ void Game_play_fbdemo_wipe_proc(PlayState* play) {
 
 Gfx* game_play_set_fog(PlayState* play, Gfx* gfx) {
     return gfx_set_fog_nosync(gfx, play->unk_1C60.fogColor.r, play->unk_1C60.fogColor.g, play->unk_1C60.fogColor.b, 0,
-                            play->unk_1C60.fogNear, play->unk_1C60.zFar);
+                              play->unk_1C60.fogNear, play->unk_1C60.zFar);
 }
 
 void Game_play_fbdemo_proc(PlayState* play) {
