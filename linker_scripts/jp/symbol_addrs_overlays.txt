@@ -13630,8 +13630,7 @@ func_80A04AA4_jp = 0x80A04AA4; // type:func
 
 // .data
 
-_008D2440_Profile = 0x80A04C00; //
-D_80A04C04_jp = 0x80A04C04; //
+_008D2440_Profile = 0x80A04C00; // size:0x24
 D_80A04C24_jp = 0x80A04C24; //
 D_80A04C38_jp = 0x80A04C38; //
 D_80A04C54_jp = 0x80A04C54; //
