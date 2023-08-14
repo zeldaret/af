@@ -235,7 +235,7 @@ void Actor_dt(Actor* actor, PlayState* play) {
             new_var = play->unk_190C;
 
             if (actor->unk_026 >= new_var) {
-                temp_v0_6 = &temp_v0_6[actor->unk_026];
+                temp_v0_6 = &temp_v0_6[(void)0, actor->unk_026];
                 if (temp_v0_6->unk_50 > 0) {
                     actor->unk_026 = -1;
                     temp_v0_6->unk_50--;
@@ -249,47 +249,48 @@ void Actor_dt(Actor* actor, struct PlayState* play);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_dt.s")
 #endif
 
-#ifdef NON_EQUIVALENT
-// seems equivalent but it is hard to tell
 void Actor_draw(PlayState* play, Actor* actor) {
-    void* temp_a0_2;
-    FaultClient sp48;
-    Lights* temp_a0; // sp44
+    FaultClient faultClient;
+    Lights* light;
 
-    Fault_AddClient(&sp48, func_80056380_jp, actor, "Actor_draw");
+    Fault_AddClient(&faultClient, func_80056380_jp, actor, "Actor_draw");
+
+    //! FAKE
+    if (1) {}
+    if (1) {}
+    if (1) {}
+    if (1) {}
 
     OPEN_DISPS(play->state.gfxCtx);
 
-    temp_a0 = Global_light_read(&play->lightCtx, play->state.gfxCtx);
-    LightsN_list_check(temp_a0, play->lightCtx.unk_0, (actor->flags & ACTOR_FLAG_400000) ? NULL : &actor->world.pos);
-    LightsN_disp(temp_a0, play->state.gfxCtx);
+    light = Global_light_read(&play->lightCtx, play->state.gfxCtx);
+    LightsN_list_check(light, play->lightCtx.unk_0, (actor->flags & ACTOR_FLAG_400000) ? NULL : &actor->world.pos);
+    LightsN_disp(light, play->state.gfxCtx);
 
     Matrix_softcv3_load(actor->world.pos.x, actor->world.pos.y + actor->shape.unk_08 * actor->scale.y,
                         actor->world.pos.z, &actor->shape.rot);
     Matrix_scale(actor->scale.x, actor->scale.y, actor->scale.z, MTXMODE_APPLY);
 
-    temp_a0_2 = play->unk_0110[actor->unk_026].segment;
+    {
+        void* segment = play->unk_0110[(void)0, actor->unk_026].segment;
 
-    gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(temp_a0_2);
+        gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(segment);
 
-    gSPSegment(POLY_OPA_DISP++, 0x06, temp_a0_2);
-    gSPSegment(POLY_XLU_DISP++, 0x06, temp_a0_2);
-    gSPSegment(UNK_2C0_DISP++, 0x06, temp_a0_2);
+        gSPSegment(POLY_OPA_DISP++, 0x06, segment);
+        gSPSegment(POLY_XLU_DISP++, 0x06, segment);
+        gSPSegment(UNK_2C0_DISP++, 0x06, segment);
+    }
 
     actor->draw(actor, play);
 
     if (actor->shape.unk_0C != NULL) {
-        actor->shape.unk_0C(actor, temp_a0, play);
+        actor->shape.unk_0C(actor, light, play);
     }
 
     CLOSE_DISPS(play->state.gfxCtx);
 
-    Fault_RemoveClient(&sp48);
+    Fault_RemoveClient(&faultClient);
 }
-#else
-void Actor_draw(struct PlayState* play, Actor* actor);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_draw.s")
-#endif
 
 s32 Actor_draw_actor_no_culling_check(Actor* actor) {
     return Actor_draw_actor_no_culling_check2(actor, &actor->projectedPos, actor->projectedW);
