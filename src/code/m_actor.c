@@ -712,10 +712,10 @@ s32 func_80057B70_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntr
     s32 pad UNUSED;
     s32 ret = 1;
 
-    *arg0 = mSc_bank_regist_check(play->unk_0110, profile->unk_0A);
+    *arg0 = mSc_bank_regist_check(play->unk_0110, profile->objectId);
 
     if (*arg0 == -1) {
-        func_800C6144_jp(play->unk_0110, profile->unk_0A);
+        func_800C6144_jp(play->unk_0110, profile->objectId);
         actor_free_check(overlayEntry, fgName);
         ret = 0;
     }
