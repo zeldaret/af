@@ -61,7 +61,7 @@ void *Lib_SegmentedToVirtual(void *ptr); //original name unknown, taken from maj
 // void func_8009ADE0_jp();
 // void func_8009AE28_jp();
 // void func_8009AE44_jp();
-// void check_percent_abs();
+f32 check_percent_abs(f32 x, f32 min, f32 max, f32 scale, int shift_by_min);
 // void get_percent_forAccelBrake();
 // void Game_play_Projection_Trans();
 // void get_percent();

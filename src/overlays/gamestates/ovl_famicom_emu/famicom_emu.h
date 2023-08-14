@@ -7,7 +7,6 @@
 
 typedef struct FamicomEmuState {
     /* 0x00 */ GameState state;
-    /* 0xA4 */ UNK_TYPE1 unk_00[0x3C];
 } FamicomEmuState; // size = 0xE0
 
 void famicom_emu_init(GameState *thisx);
