@@ -7,7 +7,7 @@
 
 typedef struct MapSelectState {
     /* 0x00 */ GameState state;
-    /* 0xA4 */ UNK_TYPE1 unk_00[0x240-0xA4];
+    /* 0xE0 */ UNK_TYPE1 unk_00[0x240-0xE0];
 } MapSelectState; // size = 0x240
 
 void select_init(GameState *thisx);
