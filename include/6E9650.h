@@ -3,14 +3,8 @@
 
 #include "ultra64.h"
 
-typedef struct PlayState_unk_0110 {
-    /* 0x00 */ s16 unk_00;
-    /* 0x02 */ UNK_TYPE1 unk_02[0x2];
-    /* 0x04 */ void* unk_04;
-    /* 0x08 */ UNK_TYPE1 unk_08[0x48];
-    /* 0x50 */ s16 unk_50;
-    /* 0x52 */ UNK_TYPE1 unk_52[0x2];
-} PlayState_unk_0110; // size = 0x54
+struct PlayState;
+struct PlayState_unk_0110;
 
 // void func_800C59B0_jp();
 // void func_800C5A08_jp();
@@ -25,14 +19,14 @@ typedef struct PlayState_unk_0110 {
 // void func_800C5E10_jp();
 // void func_800C5EA0_jp();
 // void func_800C5F0C_jp();
-void mSc_dmacopy_data_bank(PlayState_unk_0110 arg0[]);
-// void mSc_bank_regist_check();
-// void func_800C6144_jp();
-// void mSc_regist_initial_exchange_bank();
+// void func_800C5F64_jp();
+s32 mSc_bank_regist_check(struct PlayState_unk_0110* arg0, s16 arg1);
+void func_800C6144_jp(struct PlayState_unk_0110* arg0, s16 arg1);
+void mSc_regist_initial_exchange_bank(struct PlayState* play);
 // void func_800C62C4_jp();
 // void func_800C639C_jp();
-void mSc_data_bank_ct(struct PlayState* play, PlayState_unk_0110 arg1[]);
-void mSc_decide_exchange_bank(PlayState_unk_0110 arg0[]);
+void mSc_data_bank_ct(struct PlayState* play, struct PlayState_unk_0110 arg1[]);
+void mSc_decide_exchange_bank(struct PlayState_unk_0110 arg0[]);
 // void func_800C6690_jp();
 void Scene_ct(struct PlayState* play, void* arg1);
 // void func_800C6960_jp();

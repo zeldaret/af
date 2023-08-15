@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 
+struct Player;
 struct PlayState;
 
 // void func_800B1160_jp();
@@ -38,7 +39,7 @@ void mPlib_Object_Exchange_keep_Player_dt(struct PlayState* play);
 // void func_800B1B6C_jp();
 // void func_800B1BB8_jp();
 // void func_800B1BE8_jp();
-// void get_player_actor_withoutCheck();
+struct Player* get_player_actor_withoutCheck(struct PlayState* play);
 // void func_800B1C90_jp();
 // void func_800B1CBC_jp();
 // void func_800B1CE0_jp();

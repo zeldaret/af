@@ -9,7 +9,7 @@
       - [0x675720, c, code/c_keyframe]
       - [0x678660, asm, code/evw_anime]
       - [0x6792F0, asm, code/6792F0]
-      - [0x67A020, asm, code/m_actor]
+      - [0x67A020, c, code/m_actor]
       - [0x67C6B0, c, code/m_actor_dlftbls]
       - [0x67C890, asm, code/m_actor_shadow]
       - [0x67D890, asm, code/67D890]
@@ -19,9 +19,9 @@
       - [0x68AAF0, asm, code/68AAF0]
       - [0x68AB30, asm, code/68AB30]
       - [0x68B0D0, asm, code/m_collision_bg]
-      - [0x69A7E0, asm, code/69A7E0]
+      - [0x69A7E0, asm, code/m_collision_obj]
       - [0x69C6B0, c, code/m_common_data]
-      - [0x69C770, asm, code/m_controller]
+      - [0x69C770, c, code/m_controller]
       - [0x69CB30, asm, code/69CB30]
       - [0x69DD60, c, code/m_debug]
       - [0x69DDF0, asm, code/m_debug_display]
@@ -42,6 +42,7 @@
       - [0x6B8F20, asm, code/6B8F20]
       - [0x6BA3B0, asm, code/m_item_name]
       - [0x6BA500, asm, code/6BA500]
+      - [0x6BA930, asm, code/m_kankyo]
       - [0x6BD560, asm, code/m_lib]
       - [0x6BEE80, asm, code/m_lights]
       - [0x6BFC60, c, code/m_malloc]
@@ -131,6 +132,7 @@
       - [0x723010, data, code/rsp/723010]
 
       - [0x7248D0, data, code/7248D0]
+      - [0x724910, .data, code/m_actor]
       - [0x724930, .data, code/m_actor_dlftbls]
       - [0x726260, data, code/m_actor_shadow]
       - [0x7262C0, data, code/7262C0]
@@ -149,8 +151,7 @@
 
       - [0x739DB0, .rodata, code/c_keyframe]
       - [0x739E00, rodata, code/739E00]
-      - [0x739E50, rodata, code/m_actor]
-      - [0x739E90, rodata, code/739E90]
+      - [0x739E50, .rodata, code/m_actor]
       - [0x739EA0, .rodata, code/m_actor_dlftbls]
       - [0x739EF0, rodata, code/739EF0]
       - [0x739F20, rodata, code/739F20]
@@ -158,8 +159,8 @@
       - [0x739FA0, rodata, code/739FA0]
       - [0x73A080, rodata, code/73A080]
       - [0x73A0F0, rodata, code/73A0F0]
-      - [0x73A480, rodata, code/73A480]
-      - [0x73A490, rodata, code/73A490]
+      - [0x73A480, rodata, code/m_collision_obj]
+      - [0x73A490, .rodata, code/m_controller]
       - [0x73A4A0, rodata, code/73A4A0]
       - [0x73A4D0, rodata, code/73A4D0]
       - [0x73A6A0, rodata, code/73A6A0]
@@ -177,7 +178,7 @@
       - [0x73AD40, rodata, code/73AD40]
       - [0x73AD50, rodata, code/73AD50]
       - [0x73AD70, rodata, code/73AD70]
-      - [0x73AD90, rodata, code/73AD90]
+      - [0x73AD90, rodata, code/m_kankyo]
       - [0x73AED0, rodata, code/m_lib]
       - [0x73AEE0, rodata, code/m_lights]
       - [0x73AEF0, rodata, code/m_msg_main]
@@ -231,6 +232,7 @@
       - [0x73CEE0, rodata, code/73CEE0]
 
       - { start: 0x73F4D0, type: bss, vram: 0x8011B830, name: code/8011B830 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x8011B850, name: code/m_actor }
       - { start: 0x73F4D0, type: .bss, vram: 0x8011B890, name: code/m_actor_dlftbls }
       - { start: 0x73F4D0, type: bss, vram: 0x8011B8B0, name: code/8011B8B0 }
       - { start: 0x74AB40, type: .bss, vram: 0x80126EA0, name: code/m_common_data }
@@ -247,8 +249,6 @@
       - { start: 0x73F4D0, type: bss, vram: 0x80143910, name: code/80143910 } 
       - { start: 0x73F4D0, type: .bss, vram: 0x80145390, name: code/irqmgr }
       - { start: 0x73F4D0, type: bss, vram: 0x80145620, name: code/80145620}
-      - { start: 0x73F4D0, type: .bss, vram: 0x801458A0, name: code/c_keyframe }
-      - { start: 0x73F4D0, type: bss, vram: 0x801458B0, name: code/801458B0 }
       - { start: 0x73F4D0, type: .bss, vram: 0x801462B0, name: code/sys_matrix }
       - { start: 0x73F4D0, type: bss, vram: 0x801462C0, name: code/801462C0 }
       - { start: 0x73F4D0, type: .bss, vram: 0x801492C0, name: code/zurumode }

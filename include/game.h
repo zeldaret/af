@@ -7,6 +7,7 @@
 #include "gamealloc.h"
 #include "libu64/pad.h"
 #include "unk.h"
+#include "m_controller.h"
 
 struct GameState;
 struct GraphicsContext;
@@ -57,7 +58,9 @@ typedef struct GameState {
     /* 0x9E */ UNK_TYPE1 unk9E[0x1];
     /* 0x9F */ u8 running;
     /* 0xA0 */ s32 unk_A0;
-} GameState; // size >= 0xA4, size <= 0xE0
+    /* 0xA4 */ UNK_TYPE1 unk_A4[0x4];
+    /* 0xA8 */ Controller controller;
+} GameState; // size = 0xE0
 
 void func_800D2E00_jp(GameState* gameState);
 void func_800D2E58_jp(u16 button, Gfx** gfxP);

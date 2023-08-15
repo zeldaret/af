@@ -7,7 +7,7 @@
 
 typedef struct _00743CD0State {
     /* 0x00 */ GameState state;
-    /* 0xA4 */ UNK_TYPE1 unk_00[0x1B20-0xA4];
+    /* 0xE0 */ UNK_TYPE1 unk_00[0x1B20-0xE0];
 } _00743CD0State; // size = 0x1B20
 
 void _00743CD0_init(GameState *thisx);

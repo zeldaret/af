@@ -78,7 +78,7 @@ NORETURN void Fault_AddHungupAndCrashImpl(const char* exp1, const char* exp2);
 // void FaultDrawer_SetBackColor();
 void FaultDrawer_SetFontColor(u16 color);
 void FaultDrawer_SetCharPad(s8 padW, s8 padH);
-// void FaultDrawer_SetCursor();
+void FaultDrawer_SetCursor(s32 arg0, s32 arg1);
 // void FaultDrawer_FillScreen();
 // void FaultDrawer_PrintCallback();
 // void FaultDrawer_VPrintf();

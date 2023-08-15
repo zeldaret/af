@@ -6,12 +6,20 @@
 #include "6E80C0.h"
 #include "ultra64.h"
 #include "game.h"
+<<<<<<< HEAD
 #include "gfx.h"
 #include "m_actor.h"
 #include "m_kankyo.h"
 #include "PreRender.h"
 #include "unknown_structs.h"
 #include "sys_matrix.h"
+=======
+#include "m_actor.h"
+#include "m_kankyo.h"
+#include "m_lights.h"
+#include "z64math.h"
+#include "unknown_structs.h"
+>>>>>>> main
 #include "unk.h"
 #include "m_common_data.h"
 #include "m_lib.h"
@@ -57,9 +65,15 @@ typedef struct PlayState_Unk_1EE8 {
     /* 0x21C */ PlayStateUnkFuncsStruct unk_21C;
 } PlayState_Unk_1EE8; // size = 0x240
 
+struct Actor;
+struct ActorEntry;
+struct PlayState;
+
+typedef void (*PlayState_unk_1C58)(struct Actor*);
+typedef UNK_RET (*PlayState_unk_2208)(struct Actor*, struct PlayState*);
+
 typedef struct PlayState {
     /* 0x0000 */ GameState state;
-    /* 0x00A4 */ UNK_TYPE1 unk_00A4[0x3C];
     /* 0x00E0 */ s16 unk_00E0;
     /* 0x00E2 */ UNK_TYPE1 unk_00E2[0x2];
     /* 0x00E4 */ s8 unk_00E4;
@@ -85,8 +99,8 @@ typedef struct PlayState {
     /* 0x1E10 */ s32 unk_1E10;
     /* 0x1E14 */ char unk_1E14[0x4];
     /* 0x1E18 */ s32 unk_1E18;
-    /* 0x1E1C */ MtxF unk_1E1C; // viewProjectionMtxF
-    /* 0x1E5C */ MtxF unk_1E5C; // billboardMtxF
+    /* 0x1E1C */ MtxF viewProjectionMtxF;
+    /* 0x1E5C */ MtxF billboardMtxF;
     /* 0x1E9C */ Mtx* unk_1E9C;
     /* 0x1EA0 */ s32 unk_1EA0;
     /* 0x1EA4 */ UNK_TYPE1 unk_1EA4[0x1];

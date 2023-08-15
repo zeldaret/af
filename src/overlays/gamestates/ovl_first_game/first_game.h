@@ -7,7 +7,6 @@
 
 typedef struct FirstGameState {
     /* 0x00 */ GameState state;
-    /* 0xA4 */ UNK_TYPE1 unk_00[0x3C];
 } FirstGameState; // size = 0xE0
 
 void first_game_init(GameState *thisx);

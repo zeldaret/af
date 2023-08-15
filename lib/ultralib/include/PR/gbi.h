@@ -2677,8 +2677,8 @@ _DW({									\
 
 #define gSPLookAt(pkt, la)						\
 _DW({									\
-	gSPLookAtX(pkt,la)						\
-	gSPLookAtY(pkt,(char *)(la)+16)					\
+	gSPLookAtX(pkt,la);						\
+	gSPLookAtY(pkt,(char *)(la)+16);					\
 })
 #define gsSPLookAt(la)							\
 	gsSPLookAtX(la),						\

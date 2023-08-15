@@ -1,5 +1,5 @@
-#ifndef C_6A0DE0_H
-#define C_6A0DE0_H
+#ifndef M_EVENT_H
+#define M_EVENT_H
 
 #include "ultra64.h"
 
@@ -42,7 +42,7 @@ typedef struct PlayState1EBC {
 // void func_8007D59C_jp();
 // void func_8007D5D4_jp();
 // void func_8007D650_jp();
-// void mEv_CheckFirstJob();
+s32 mEv_CheckFirstJob(void);
 // void func_8007D734_jp();
 // void func_8007D784_jp();
 // void func_8007D7BC_jp();

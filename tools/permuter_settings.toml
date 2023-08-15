@@ -11,6 +11,12 @@ NULL = "int"
 "G_[AC]C.*" = "int"
 OPEN_DISPS = "void"
 CLOSE_DISPS = "void"
+OVERLAY_DISP = "int"
+POLY_OPA_DISP = "int"
+POLY_XLU_DISP = "int"
+UNK_2B0_DISP = "int"
+UNK_2C0_DISP = "int"
+LIGHT_DISP = "int"
 
 [decompme.compilers]
 "tools/ido/linux/7.1/cc" = "ido7.1"

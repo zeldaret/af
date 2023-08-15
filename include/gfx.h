@@ -20,7 +20,7 @@ typedef struct GraphicsContext {
     /* 0x2A0 */ TwoHeadGfxArena polyXlu;
     /* 0x2B0 */ TwoHeadGfxArena unk_2B0;
     /* 0x2C0 */ TwoHeadGfxArena unk_2C0;
-    /* 0x2D0 */ TwoHeadGfxArena unk_2D0;
+    /* 0x2D0 */ TwoHeadGfxArena light;
     /* 0x2E0 */ UNK_TYPE1 unk_2E0[0x4];
     /* 0x2E4 */ void* unk_2E4;
     /* 0x2E8 */ UNK_TYPE1 unk_2E8[0x4];
@@ -40,7 +40,7 @@ typedef struct GraphicsContext {
 #define POLY_XLU_DISP __gfxCtx->polyXlu.p
 #define UNK_2B0_DISP __gfxCtx->unk_2B0.p
 #define UNK_2C0_DISP __gfxCtx->unk_2C0.p
-#define UNK_2D0_DISP __gfxCtx->unk_2D0.p
+#define LIGHT_DISP __gfxCtx->light.p
 
 // __gfxCtx shouldn't be used directly.
 // Use the DISP macros defined above when writing to display buffers.
