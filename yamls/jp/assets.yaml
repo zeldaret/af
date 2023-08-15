@@ -73,7 +73,7 @@
   - name: gameplay_keep
     type: bin # code
     start: 0xA22000
-    vram: 0x06000000
+    vram: 0x04000000
     exclusive_ram_id: objects
     compress: True
     align: 0x1000
