@@ -70,7 +70,7 @@
     align: 0x1000
   - [0xA21680]
 
-  - name: object_00A22000
+  - name: gameplay_keep
     type: bin # code
     start: 0xA22000
     vram: 0x06000000
@@ -78,7 +78,7 @@
     compress: True
     align: 0x1000
     # subsegments:
-    #   - [0xA22000, data, assets/objects/object_00A22000/object_00A22000]
+    #   - [0xA22000, data, assets/objects/gameplay_keep/gameplay_keep]
   - [0xA2FF30]
 
   - name: segment_00A30000
