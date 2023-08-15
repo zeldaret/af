@@ -68,8 +68,8 @@ rom:0x82D4A0 symbol:D_80100C30_jp reloc:MIPS_LO16 addend:-0x7D04
 // rom:0x875080 symbol:D_80981940_jp reloc:MIPS_HI16 addend:-0x182B0
 // rom:0x875088 symbol:D_80981940_jp reloc:MIPS_LO16 addend:-0x182B0
 
-// ovl__008ADF40 tries to load a branch target from another overlay.
+// ovl_Npc_Shop_Master tries to load a branch target from another overlay.
 // It is suspected to be a negative addend to an unknown symbol.
 // Use the first data symbol of this overlay in the meanwhile
-rom:0x8B136C symbol:_008ADF40_Profile reloc:MIPS_HI16 addend:-0xB560
-rom:0x8B137C symbol:_008ADF40_Profile reloc:MIPS_LO16 addend:-0xB560
+rom:0x8B136C symbol:Npc_Shop_Master_Profile reloc:MIPS_HI16 addend:-0xB560
+rom:0x8B137C symbol:Npc_Shop_Master_Profile reloc:MIPS_LO16 addend:-0xB560
