@@ -58,8 +58,6 @@ void fbdemo_triforce_settype(void*, s32);
 void fbdemo_triforce_setcolor_rgba8888(void*, s32);
 s32 fbdemo_triforce_is_finish(void*, PlayState* play);
 
-extern UNK_PTR* B_801458A0_jp[];
-extern void* B_801458B0_jp;
 extern D_8010EAA0 scene_data_status[];
 
 PlayStateUnkFuncsStruct D_80804320_jp = {
@@ -326,8 +324,8 @@ void Game_play_fbdemo_wipe_proc(PlayState* play) {
 }
 
 Gfx* game_play_set_fog(PlayState* play, Gfx* gfx) {
-    return gfx_set_fog_nosync(gfx, play->unk_1C60.fogColor.r, play->unk_1C60.fogColor.g, play->unk_1C60.fogColor.b, 0,
-                              play->unk_1C60.fogNear, play->unk_1C60.zFar);
+    return gfx_set_fog_nosync(gfx, play->lightCtx.fogColor.r, play->lightCtx.fogColor.g, play->lightCtx.fogColor.b, 0,
+                              play->lightCtx.fogNear, play->lightCtx.zFar);
 }
 
 void Game_play_fbdemo_proc(PlayState* play) {
@@ -426,7 +424,7 @@ void play_init(GameState* gameState) {
     }
     play->unk_1EE1 = temp;
 
-    Pause_ct(&play->unk_1C70);
+    Pause_ct(&play->pause);
     new_Matrix(&play->state);
     play->state.main = play_main;
     play->state.destroy = play_cleanup;
@@ -442,7 +440,7 @@ void play_init(GameState* gameState) {
     func_800C2EE0_jp();
     func_80087004_jp();
     Actor_info_ct(play, &play->actorInfo, play->unk_1EA8);
-    play->unk_2208 = none_proc1;
+    play->unk_2208 = (void*)none_proc1;
     mMsg_ct(play);
     mEv_2nd_init(&play->unk_1EBC);
     mTD_player_keydata_init(play);
@@ -495,12 +493,12 @@ void Game_play_move(PlayState* play) {
     play->state.unk_9D = 0x8D;
     play->state.unk_9C = 1;
     Game_play_Reset_destiny();
-    B_801458B0_jp = (void*)VIRTUAL_TO_PHYSICAL(play->unk_0110[0].unk_04);
-    B_801458A0_jp[2] = (void*)VIRTUAL_TO_PHYSICAL(play->unk_010C);
+    gSegments[4] = (uintptr_t)OS_K0_TO_PHYSICAL(play->unk_0110[0].segment);
+    gSegments[2] = (uintptr_t)OS_K0_TO_PHYSICAL(play->unk_010C);
     play->state.unk_9C = 2;
 
     if (zurumode_flag >= 2) {
-        var_v1 = Pause_proc(&play->unk_1C70, &play->state.input[1]) == 0;
+        var_v1 = Pause_proc(&play->pause, &play->state.input[1]) == 0;
     } else {
         var_v1 = 0;
     }
@@ -533,7 +531,7 @@ void Game_play_move(PlayState* play) {
 
     play->state.unk_9D = 0x93;
     play->state.unk_9C = 1;
-    Global_kankyo_set(play, &play->kankyo, &play->unk_1C60);
+    Global_kankyo_set(play, &play->kankyo, &play->lightCtx);
     play->state.unk_9C = 2;
     mEnv_WindMove();
     play->state.unk_9C = 3;
@@ -547,10 +545,10 @@ void Game_play_move(PlayState* play) {
 }
 
 void func_80803810_jp(PlayState* play, GraphicsContext* gfxCtx) {
-    void* temp_v0 = play->unk_0110[0].unk_04;
+    void* temp_v0 = play->unk_0110[0].segment;
 
-    B_801458A0_jp[4] = (void*)VIRTUAL_TO_PHYSICAL(temp_v0);
-    B_801458A0_jp[2] = (void*)VIRTUAL_TO_PHYSICAL(play->unk_010C);
+    gSegments[4] = (uintptr_t)OS_K0_TO_PHYSICAL(temp_v0);
+    gSegments[2] = (uintptr_t)OS_K0_TO_PHYSICAL(play->unk_010C);
 
     OPEN_DISPS(gfxCtx);
 
@@ -559,21 +557,21 @@ void func_80803810_jp(PlayState* play, GraphicsContext* gfxCtx) {
     gSPSegment(OVERLAY_DISP++, 0x00, NULL);
     gSPSegment(UNK_2B0_DISP++, 0x00, NULL);
     gSPSegment(UNK_2C0_DISP++, 0x00, NULL);
-    gSPSegment(UNK_2D0_DISP++, 0x00, NULL);
+    gSPSegment(LIGHT_DISP++, 0x00, NULL);
 
     gSPSegment(POLY_OPA_DISP++, 0x04, temp_v0);
     gSPSegment(POLY_XLU_DISP++, 0x04, temp_v0);
     gSPSegment(OVERLAY_DISP++, 0x04, temp_v0);
     gSPSegment(UNK_2B0_DISP++, 0x04, temp_v0);
     gSPSegment(UNK_2C0_DISP++, 0x04, temp_v0);
-    gSPSegment(UNK_2D0_DISP++, 0x04, temp_v0);
+    gSPSegment(LIGHT_DISP++, 0x04, temp_v0);
 
     gSPSegment(POLY_OPA_DISP++, 0x02, play->unk_010C);
     gSPSegment(POLY_XLU_DISP++, 0x02, play->unk_010C);
     gSPSegment(OVERLAY_DISP++, 0x02, play->unk_010C);
     gSPSegment(UNK_2B0_DISP++, 0x02, play->unk_010C);
     gSPSegment(UNK_2C0_DISP++, 0x02, play->unk_010C);
-    gSPSegment(UNK_2D0_DISP++, 0x02, play->unk_010C);
+    gSPSegment(LIGHT_DISP++, 0x02, play->unk_010C);
 
     CLOSE_DISPS(gfxCtx);
 }
@@ -588,20 +586,20 @@ void setupViewer(PlayState* play) {
 }
 
 void setupViewMatrix(PlayState* play, GraphicsContext* __gfxCtx, GraphicsContext* gfxCtx2) {
-    Matrix_MtxtoMtxF(&play->unk_1938.unk_0A0, &play->unk_1E5C);
-    Matrix_MtxtoMtxF(&play->unk_1938.unk_060, &play->unk_1E1C);
-    Skin_Matrix_MulMatrix(&play->unk_1E1C, &play->unk_1E5C, &play->unk_1E1C);
+    Matrix_MtxtoMtxF(&play->unk_1938.unk_0A0, &play->billboardMtxF);
+    Matrix_MtxtoMtxF(&play->unk_1938.unk_060, &play->viewProjectionMtxF);
+    Skin_Matrix_MulMatrix(&play->viewProjectionMtxF, &play->billboardMtxF, &play->viewProjectionMtxF);
 
-    play->unk_1E5C.mf[0][3] = 0.0f;
-    play->unk_1E5C.mf[1][3] = 0.0f;
-    play->unk_1E5C.mf[2][3] = 0.0f;
-    play->unk_1E5C.mf[3][0] = 0.0f;
-    play->unk_1E5C.mf[3][1] = 0.0f;
-    play->unk_1E5C.mf[3][2] = 0.0f;
+    play->billboardMtxF.mf[0][3] = 0.0f;
+    play->billboardMtxF.mf[1][3] = 0.0f;
+    play->billboardMtxF.mf[2][3] = 0.0f;
+    play->billboardMtxF.mf[3][0] = 0.0f;
+    play->billboardMtxF.mf[3][1] = 0.0f;
+    play->billboardMtxF.mf[3][2] = 0.0f;
 
-    Matrix_reverse(&play->unk_1E5C);
+    Matrix_reverse(&play->billboardMtxF);
 
-    play->unk_1E9C = _MtxF_to_Mtx(&play->unk_1E5C, (Mtx*)GRAPH_ALLOC(gfxCtx2, sizeof(MtxF) * 1));
+    play->unk_1E9C = _MtxF_to_Mtx(&play->billboardMtxF, (Mtx*)GRAPH_ALLOC(gfxCtx2, sizeof(MtxF) * 1));
 
     gSPSegment(POLY_OPA_DISP++, 0x01, play->unk_1E9C);
 }
@@ -667,9 +665,9 @@ s32 makeBumpTexture(PlayState* play, GraphicsContext* __gfxCtx, GraphicsContext*
     }
 
     {
-        LightsN* sp40 = Global_light_read(&play->unk_1C60, gfxCtx2);
+        Lights* sp40 = Global_light_read(&play->lightCtx, gfxCtx2);
 
-        LightsN_list_check(sp40, play->unk_1C60.listHead, 0);
+        LightsN_list_check(sp40, play->lightCtx.listHead, NULL);
         LightsN_disp(sp40, gfxCtx2);
     }
 
@@ -822,7 +820,7 @@ void Gameplay_Scene_Init(PlayState* play) {
     play->unk_1EA7 = 0;
     play->unk_1EB8 = 0;
     mSc_data_bank_ct(play, play->unk_0110);
-    Global_light_ct(&play->unk_1C60);
+    Global_light_ct(&play->lightCtx);
     Door_info_ct(&play->unk_1E10);
     common_data_clear();
     Scene_ct(play, play->unk_010C);
@@ -862,7 +860,7 @@ void Gameplay_Scene_Read(PlayState* play, s16 arg1) {
     play->unk_00E0 = arg1;
     play->unk_010C = func_80804138_jp(play, sp1C);
     sp1C->unk_13 = 0;
-    B_801458A0_jp[2] = (void*)VIRTUAL_TO_PHYSICAL(play->unk_010C);
+    gSegments[2] = (uintptr_t)OS_K0_TO_PHYSICAL(play->unk_010C);
     Gameplay_Scene_Init(play);
     sAdo_RoomType(mPl_SceneNo2SoundRoomType(common_data.unk_00014));
 }

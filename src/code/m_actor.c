@@ -264,7 +264,7 @@ void Actor_draw(PlayState* play, Actor* actor) {
     OPEN_DISPS(play->state.gfxCtx);
 
     light = Global_light_read(&play->lightCtx, play->state.gfxCtx);
-    LightsN_list_check(light, play->lightCtx.unk_0, (actor->flags & ACTOR_FLAG_400000) ? NULL : &actor->world.pos);
+    LightsN_list_check(light, play->lightCtx.listHead, (actor->flags & ACTOR_FLAG_400000) ? NULL : &actor->world.pos);
     LightsN_disp(light, play->state.gfxCtx);
 
     Matrix_softcv3_load(actor->world.pos.x, actor->world.pos.y + actor->shape.unk_08 * actor->scale.y,
@@ -1121,7 +1121,7 @@ Hilite* Setpos_HiliteReflect_init(Vec3f* object, PlayState* play) {
     sp24.x = play->kankyo.unk_02;
     sp24.y = play->kankyo.unk_03;
     sp24.z = play->kankyo.unk_04;
-    return HiliteReflect_init(object, &play->unk_1960, &sp24, play->state.gfxCtx);
+    return HiliteReflect_init(object, &play->unk_1938.unk_028, &sp24, play->state.gfxCtx);
 }
 
 Hilite* Setpos_HiliteReflect_xlu_init(Vec3f* object, PlayState* play) {
@@ -1130,7 +1130,7 @@ Hilite* Setpos_HiliteReflect_xlu_init(Vec3f* object, PlayState* play) {
     sp24.x = play->kankyo.unk_02;
     sp24.y = play->kankyo.unk_03;
     sp24.z = play->kankyo.unk_04;
-    return HiliteReflect_xlu_init(object, &play->unk_1960, &sp24, play->state.gfxCtx);
+    return HiliteReflect_xlu_init(object, &play->unk_1938.unk_028, &sp24, play->state.gfxCtx);
 }
 
 Hilite* Setpos_HiliteReflect_light_init(Vec3f* object, PlayState* play) {
@@ -1139,5 +1139,5 @@ Hilite* Setpos_HiliteReflect_light_init(Vec3f* object, PlayState* play) {
     sp24.x = play->kankyo.unk_02;
     sp24.y = play->kankyo.unk_03;
     sp24.z = play->kankyo.unk_04;
-    return HiliteReflect_xlu_init(object, &play->unk_1960, &sp24, play->state.gfxCtx);
+    return HiliteReflect_xlu_init(object, &play->unk_1938.unk_028, &sp24, play->state.gfxCtx);
 }

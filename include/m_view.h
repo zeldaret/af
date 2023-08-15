@@ -7,7 +7,9 @@ struct PlayState;
 struct GraphicsContext;
 
 typedef struct PlayState1938 {
-    /* 0x000 */ char unk000[0x60];
+    /* 0x000 */ char unk000[0x28];
+    /* 0x028 */ Vec3f unk_028;
+    /* 0x034 */ char unk034[0x2C];
     /* 0x060 */ Mtx unk_060;
     /* 0x0A0 */ Mtx unk_0A0;
     /* 0x0E0 */ char unk0E0[0x40];

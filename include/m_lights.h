@@ -4,6 +4,7 @@
 #include "ultra64.h"
 #include "z64math.h"
 #include "unk.h"
+#include "color.h"
 
 struct GraphicsContext;
 struct PlayState;
@@ -12,9 +13,17 @@ typedef struct Lights {
     /* 0x00 */ UNK_TYPE1 unk_00[0x80];
 } Lights; // size = 0x80
 
+typedef struct LightNode {
+    /* 0x00 */ char unk00[0xC];
+} LightNode; // size = 0xC
+
 typedef struct LightContext {
-    /* 0x0 */ UNK_TYPE4 unk_0;
-} LightContext; // size >= 0x4
+    /* 0x0 */ LightNode* listHead;
+    /* 0x4 */ Color_RGB8 ambient;
+    /* 0x7 */ Color_RGB8 fogColor;
+    /* 0xA */ s16 fogNear; // how close until fog starts taking effect. range 0 - 996
+    /* 0xC */ s16 zFar; // draw distance. range 0 - 12800
+} LightContext; // size = 0x10
 
 // void func_8009B1E0_jp();
 // void func_8009B23C_jp();
@@ -27,7 +36,7 @@ void LightsN_disp(Lights* light, struct GraphicsContext* gfxCtx);
 // void func_8009B534_jp();
 // void func_8009B72C_jp();
 // void func_8009B81C_jp();
-void LightsN_list_check(Lights* light, UNK_TYPE4 arg1, Vec3f* arg2);
+void LightsN_list_check(Lights* light, LightNode* lightNode, Vec3f* arg2);
 // void func_8009B954_jp();
 // void func_8009B9E0_jp();
 void Global_light_ct(LightContext* arg0);

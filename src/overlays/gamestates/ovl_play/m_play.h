@@ -1,25 +1,17 @@
 #ifndef M_PLAY_H
 #define M_PLAY_H
 
-#include "69A7E0.h"
-#include "6A0DE0.h"
+#include "m_collision_obj.h"
+#include "m_event.h"
 #include "6E80C0.h"
 #include "ultra64.h"
 #include "game.h"
-<<<<<<< HEAD
 #include "gfx.h"
 #include "m_actor.h"
 #include "m_kankyo.h"
 #include "PreRender.h"
 #include "unknown_structs.h"
 #include "sys_matrix.h"
-=======
-#include "m_actor.h"
-#include "m_kankyo.h"
-#include "m_lights.h"
-#include "z64math.h"
-#include "unknown_structs.h"
->>>>>>> main
 #include "unk.h"
 #include "m_common_data.h"
 #include "m_lib.h"
@@ -65,13 +57,6 @@ typedef struct PlayState_Unk_1EE8 {
     /* 0x21C */ PlayStateUnkFuncsStruct unk_21C;
 } PlayState_Unk_1EE8; // size = 0x240
 
-struct Actor;
-struct ActorEntry;
-struct PlayState;
-
-typedef void (*PlayState_unk_1C58)(struct Actor*);
-typedef UNK_RET (*PlayState_unk_2208)(struct Actor*, struct PlayState*);
-
 typedef struct PlayState {
     /* 0x0000 */ GameState state;
     /* 0x00E0 */ s16 unk_00E0;
@@ -88,8 +73,8 @@ typedef struct PlayState {
     /* 0x1938 */ PlayState1938 unk_1938;
     /* 0x1A60 */ UNK_TYPE1 unk_1A60[0x138];
     /* 0x1B98 */ Kankyo kankyo;
-    /* 0x1C60 */ LightContext unk_1C60;
-    /* 0x1C70 */ Pause unk_1C70;
+    /* 0x1C60 */ LightContext lightCtx;
+    /* 0x1C70 */ Pause pause;
     /* 0x1C78 */ ActorInfo actorInfo;
     /* 0x1CBC */ PlayState1CBC unk_1CBC;
     /* 0x1DAC */ s8 unk_1DAC;
@@ -122,7 +107,7 @@ typedef struct PlayState {
     /* 0x1EE8 */ PlayState_Unk_1EE8 unk_1EE8;
     /* 0x2128 */ PlayState2128 unk_2128;
     /* 0x2138 */ PlayState2138 unk_2138;
-    /* 0x2208 */ s32 (*unk_2208)(void);
+    /* 0x2208 */ PlayState_unk_2208 unk_2208;
     /* 0x220C */ s32 unk_220C;
     /* 0x2210 */ D_8010EAA0* unk_2210;
     /* 0x2214 */ UNK_TYPE1 unk_2214[0x1FC];

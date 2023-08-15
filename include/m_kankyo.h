@@ -5,6 +5,7 @@
 #include "unk.h"
 
 struct Actor;
+struct LightContext;
 
 typedef void (*Kankyo_unk_C0)(struct Actor*);
 
@@ -48,7 +49,7 @@ void Global_kankyo_ct(struct PlayState* play, struct Kankyo* kankyo);
 // void func_800981B8_jp();
 // void func_8009836C_jp();
 // void func_800983F0_jp();
-// void func_800984CC_jp();
+void Global_kankyo_set(struct PlayState* play, struct Kankyo* kankyo, struct LightContext* arg2);
 // void func_80098558_jp();
 // void func_8009867C_jp();
 // void func_80098794_jp();
@@ -56,7 +57,7 @@ void Global_kankyo_ct(struct PlayState* play, struct Kankyo* kankyo);
 // void func_80098980_jp();
 // void func_80098990_jp();
 // void func_80098A90_jp();
-// void func_80098B50_jp();
+void mEnv_WindMove(void);
 // void func_80098CCC_jp();
 // void func_80098D88_jp();
 // void func_80098DE0_jp();
