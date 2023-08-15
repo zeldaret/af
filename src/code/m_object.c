@@ -1,7 +1,6 @@
 #include "m_object.h"
 #include "segment_symbols.h"
 
-
 // Segment declarations (also used in the table below)
 #define DEFINE_OBJECT(name, _enumValue) DECLARE_ROM_SEGMENT(name);
 #define DEFINE_OBJECT_UNSET(_enumValue)
