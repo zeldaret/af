@@ -109,7 +109,7 @@ typedef struct PlayState {
     /* 0x2138 */ PlayState2138 unk_2138;
     /* 0x2208 */ PlayState_unk_2208 unk_2208;
     /* 0x220C */ s32 unk_220C;
-    /* 0x2210 */ D_8010EAA0* unk_2210;
+    /* 0x2210 */ Struct_8010EAA0* unk_2210;
     /* 0x2214 */ UNK_TYPE1 unk_2214[0x1FC];
 } PlayState; // size = 0x2410
 

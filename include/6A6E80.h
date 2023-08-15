@@ -18,13 +18,13 @@ void fbdemo_draw(Play80804480* arg0, Gfx** gfx);
 // void func_80083AB0_jp();
 void fbdemo_move(Play80804480* arg0);
 // void func_80083BF0_jp();
-// void fbdemo_triforce_startup();
-// void fbdemo_triforce_init();
+void fbdemo_triforce_startup(void*);
+void fbdemo_triforce_init(void*);
 // void func_80083CE8_jp();
-// void fbdemo_triforce_move();
-// void fbdemo_triforce_draw();
-// void fbdemo_triforce_is_finish();
-// void fbdemo_triforce_settype();
-// void fbdemo_triforce_setcolor_rgba8888();
+void fbdemo_triforce_move(void*, u8);
+void fbdemo_triforce_draw(void*, Gfx**);
+s32 fbdemo_triforce_is_finish(void*, PlayState* play);
+void fbdemo_triforce_settype(void*, s32);
+void fbdemo_triforce_setcolor_rgba8888(void*, s32);
 
 #endif
