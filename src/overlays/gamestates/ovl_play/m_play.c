@@ -678,12 +678,12 @@ s32 makeBumpTexture(PlayState* play, GraphicsContext* __gfxCtx, GraphicsContext*
 
         gSPDisplayList(OVERLAY_DISP++, sp3C);
 
-        play->unk_1DC0.fbuf = (u16*)gfxCtx2->unk_2E4;
-        play->unk_1DC0.fbufSave = (u16*)gfxCtx2->unk_008;
+        play->unk_1DC0.unk_10 = gfxCtx2->unk_2E4;
+        play->unk_1DC0.unk_14 = gfxCtx2->unk_008;
         PreRender_saveFrameBuffer(&play->unk_1DC0, &sp3C);
 
         if (play->unk_1CBC.unk_00 == 1) {
-            play->unk_1DC0.cvgSave = (u8*)gfxCtx2->unk_2E4;
+            play->unk_1DC0.unk_18 = gfxCtx2->unk_2E4;
             PreRender_saveCVG(&play->unk_1DC0, &sp3C);
             play->unk_1CBC.unk_00 = 2;
         } else {

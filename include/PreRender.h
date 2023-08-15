@@ -9,29 +9,11 @@ typedef struct ListAlloc {
 } ListAlloc; // size = 0x8
 
 typedef struct {
-    /* 0x00 */ u16 width;
-    /* 0x02 */ u16 height;
-    /* 0x04 */ u16 widthSave;
-    /* 0x06 */ u16 heightSave;
-    /* 0x08 */ char unk_8[8];
-    /* 0x10 */ u16* fbuf;
-    /* 0x14 */ u16* fbufSave;
-    /* 0x18 */ u8* cvgSave;
-    /* 0x1C */ u16* zbuf;
-    /* 0x20 */ u16* zbufSave;
-    /* 0x24 */ u16 ulxSave;
-    /* 0x26 */ u16 ulySave;
-    /* 0x28 */ u16 lrxSave;
-    /* 0x2A */ u16 lrySave;
-    /* 0x2C */ u16 ulx;
-    /* 0x2E */ u16 uly;
-    /* 0x30 */ u16 lrx;
-    /* 0x32 */ u16 lry;
-    /* 0x34 */ char unk_34[16];
-    /* 0x44 */ ListAlloc alloc;
-    /* 0x4C */ u8 unk_4C;
-    /* 0x4D */ u8 unk_4D;
-    /* 0x4E */ char unk_4E[2];
+    /* 0x00 */ char unk00[0x10];
+    /* 0x10 */ UNK_PTR unk_10;
+    /* 0x14 */ UNK_PTR unk_14;
+    /* 0x18 */ UNK_PTR unk_18;
+    /* 0x1C */ char unk1C[0x34];
 } PreRender; // size = 0x50
 
 // void wallpaper_draw1();
