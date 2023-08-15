@@ -74,7 +74,7 @@
     type: bin # code
     start: 0xA22000
     vram: 0x04000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_04
     compress: True
     align: 0x1000
     # subsegments:
@@ -277,7 +277,7 @@
     type: bin # code
     start: 0xB36000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
     # subsegments:
@@ -288,7 +288,7 @@
     type: bin # code
     start: 0xB68000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
     # subsegments:
@@ -299,7 +299,7 @@
     type: bin # code
     start: 0xB88000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
     # subsegments:
@@ -318,7 +318,7 @@
     type: bin # code
     start: 0xB8B000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
     # subsegments:
@@ -329,7 +329,7 @@
     type: bin # code
     start: 0xB8F000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
     # subsegments:
@@ -460,7 +460,7 @@
     type: bin # code
     start: 0xD25000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -471,7 +471,7 @@
     type: bin # code
     start: 0xD29000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -482,7 +482,7 @@
     type: bin # code
     start: 0xD2D000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -493,7 +493,7 @@
     type: bin # code
     start: 0xD38000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -504,7 +504,7 @@
     type: bin # code
     start: 0xD43000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -515,7 +515,7 @@
     type: bin # code
     start: 0xD4D000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -550,7 +550,7 @@
     type: bin # code
     start: 0xD5B000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
     # subsegments:
@@ -561,7 +561,7 @@
     type: bin # code
     start: 0xD5D000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
     # subsegments:
@@ -572,7 +572,7 @@
     type: bin # code
     start: 0xD5E000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
     # subsegments:
@@ -583,7 +583,7 @@
     type: bin # code
     start: 0xDF4000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
     # subsegments:
@@ -594,7 +594,7 @@
     type: bin # code
     start: 0xDF5000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
     # subsegments:
@@ -605,7 +605,7 @@
     type: bin # code
     start: 0xE00000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
     # subsegments:
@@ -616,7 +616,7 @@
     type: bin # code
     start: 0xE01000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -651,7 +651,7 @@
     type: bin # code
     start: 0xE05000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
     # subsegments:
@@ -670,7 +670,7 @@
     type: bin # code
     start: 0xE0E000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
     # subsegments:
@@ -681,7 +681,7 @@
     type: bin # code
     start: 0xE61000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -692,7 +692,7 @@
     type: bin # code
     start: 0xE64000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -703,7 +703,7 @@
     type: bin # code
     start: 0xE66000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -714,7 +714,7 @@
     type: bin # code
     start: 0xE69000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -725,7 +725,7 @@
     type: bin # code
     start: 0xE6B000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -736,7 +736,7 @@
     type: bin # code
     start: 0xE6D000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -747,7 +747,7 @@
     type: bin # code
     start: 0xE6F000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -758,7 +758,7 @@
     type: bin # code
     start: 0xE71000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -769,7 +769,7 @@
     type: bin # code
     start: 0xE73000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -780,7 +780,7 @@
     type: bin # code
     start: 0xE76000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -791,7 +791,7 @@
     type: bin # code
     start: 0xE78000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -802,7 +802,7 @@
     type: bin # code
     start: 0xE7A000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -813,7 +813,7 @@
     type: bin # code
     start: 0xE7C000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -824,7 +824,7 @@
     type: bin # code
     start: 0xE7E000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -835,7 +835,7 @@
     type: bin # code
     start: 0xE80000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -846,7 +846,7 @@
     type: bin # code
     start: 0xE82000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -857,7 +857,7 @@
     type: bin # code
     start: 0xE84000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -868,7 +868,7 @@
     type: bin # code
     start: 0xE86000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -879,7 +879,7 @@
     type: bin # code
     start: 0xE88000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -890,7 +890,7 @@
     type: bin # code
     start: 0xE8A000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -901,7 +901,7 @@
     type: bin # code
     start: 0xE8C000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -912,7 +912,7 @@
     type: bin # code
     start: 0xE8F000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -923,7 +923,7 @@
     type: bin # code
     start: 0xE91000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -934,7 +934,7 @@
     type: bin # code
     start: 0xE93000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -945,7 +945,7 @@
     type: bin # code
     start: 0xE95000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -956,7 +956,7 @@
     type: bin # code
     start: 0xE97000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -967,7 +967,7 @@
     type: bin # code
     start: 0xE99000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -978,7 +978,7 @@
     type: bin # code
     start: 0xE9C000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -989,7 +989,7 @@
     type: bin # code
     start: 0xE9E000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1000,7 +1000,7 @@
     type: bin # code
     start: 0xEA0000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1011,7 +1011,7 @@
     type: bin # code
     start: 0xEA2000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1022,7 +1022,7 @@
     type: bin # code
     start: 0xEA4000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1033,7 +1033,7 @@
     type: bin # code
     start: 0xEA6000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1044,7 +1044,7 @@
     type: bin # code
     start: 0xEA8000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1055,7 +1055,7 @@
     type: bin # code
     start: 0xEAA000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1066,7 +1066,7 @@
     type: bin # code
     start: 0xEAC000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1077,7 +1077,7 @@
     type: bin # code
     start: 0xEAE000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1088,7 +1088,7 @@
     type: bin # code
     start: 0xEB0000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1099,7 +1099,7 @@
     type: bin # code
     start: 0xEB3000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1110,7 +1110,7 @@
     type: bin # code
     start: 0xEB5000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1121,7 +1121,7 @@
     type: bin # code
     start: 0xEB8000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1132,7 +1132,7 @@
     type: bin # code
     start: 0xEBA000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1143,7 +1143,7 @@
     type: bin # code
     start: 0xEBC000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1154,7 +1154,7 @@
     type: bin # code
     start: 0xEBE000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1165,7 +1165,7 @@
     type: bin # code
     start: 0xEC0000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1176,7 +1176,7 @@
     type: bin # code
     start: 0xEC3000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1187,7 +1187,7 @@
     type: bin # code
     start: 0xEC5000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1198,7 +1198,7 @@
     type: bin # code
     start: 0xEC7000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1209,7 +1209,7 @@
     type: bin # code
     start: 0xEC9000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1220,7 +1220,7 @@
     type: bin # code
     start: 0xECB000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1231,7 +1231,7 @@
     type: bin # code
     start: 0xECD000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1242,7 +1242,7 @@
     type: bin # code
     start: 0xECF000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1253,7 +1253,7 @@
     type: bin # code
     start: 0xED1000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1264,7 +1264,7 @@
     type: bin # code
     start: 0xED3000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1275,7 +1275,7 @@
     type: bin # code
     start: 0xED5000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1286,7 +1286,7 @@
     type: bin # code
     start: 0xED7000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1297,7 +1297,7 @@
     type: bin # code
     start: 0xED9000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1308,7 +1308,7 @@
     type: bin # code
     start: 0xEDB000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1319,7 +1319,7 @@
     type: bin # code
     start: 0xEDD000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1330,7 +1330,7 @@
     type: bin # code
     start: 0xEDF000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1349,7 +1349,7 @@
     type: bin # code
     start: 0xEE3000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1360,7 +1360,7 @@
     type: bin # code
     start: 0xEE6000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1371,7 +1371,7 @@
     type: bin # code
     start: 0xEE8000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1382,7 +1382,7 @@
     type: bin # code
     start: 0xEEA000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1393,7 +1393,7 @@
     type: bin # code
     start: 0xEEC000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1404,7 +1404,7 @@
     type: bin # code
     start: 0xEEE000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1415,7 +1415,7 @@
     type: bin # code
     start: 0xEF0000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1426,7 +1426,7 @@
     type: bin # code
     start: 0xEF2000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1437,7 +1437,7 @@
     type: bin # code
     start: 0xEF4000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1448,7 +1448,7 @@
     type: bin # code
     start: 0xEF6000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1459,7 +1459,7 @@
     type: bin # code
     start: 0xEF8000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1470,7 +1470,7 @@
     type: bin # code
     start: 0xEFA000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1481,7 +1481,7 @@
     type: bin # code
     start: 0xEFC000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1492,7 +1492,7 @@
     type: bin # code
     start: 0xEFE000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1503,7 +1503,7 @@
     type: bin # code
     start: 0xF00000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1514,7 +1514,7 @@
     type: bin # code
     start: 0xF02000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1525,7 +1525,7 @@
     type: bin # code
     start: 0xF04000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1536,7 +1536,7 @@
     type: bin # code
     start: 0xF06000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1547,7 +1547,7 @@
     type: bin # code
     start: 0xF08000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1558,7 +1558,7 @@
     type: bin # code
     start: 0xF0A000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1569,7 +1569,7 @@
     type: bin # code
     start: 0xF0D000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1580,7 +1580,7 @@
     type: bin # code
     start: 0xF0F000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1591,7 +1591,7 @@
     type: bin # code
     start: 0xF12000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1602,7 +1602,7 @@
     type: bin # code
     start: 0xF14000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1613,7 +1613,7 @@
     type: bin # code
     start: 0xF16000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1624,7 +1624,7 @@
     type: bin # code
     start: 0xF18000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1635,7 +1635,7 @@
     type: bin # code
     start: 0xF1A000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1646,7 +1646,7 @@
     type: bin # code
     start: 0xF1D000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1657,7 +1657,7 @@
     type: bin # code
     start: 0xF1F000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1668,7 +1668,7 @@
     type: bin # code
     start: 0xF21000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1679,7 +1679,7 @@
     type: bin # code
     start: 0xF23000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1690,7 +1690,7 @@
     type: bin # code
     start: 0xF25000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1701,7 +1701,7 @@
     type: bin # code
     start: 0xF27000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1712,7 +1712,7 @@
     type: bin # code
     start: 0xF29000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1723,7 +1723,7 @@
     type: bin # code
     start: 0xF2C000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1734,7 +1734,7 @@
     type: bin # code
     start: 0xF2E000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1745,7 +1745,7 @@
     type: bin # code
     start: 0xF31000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1756,7 +1756,7 @@
     type: bin # code
     start: 0xF33000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1767,7 +1767,7 @@
     type: bin # code
     start: 0xF35000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1778,7 +1778,7 @@
     type: bin # code
     start: 0xF37000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1789,7 +1789,7 @@
     type: bin # code
     start: 0xF39000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1800,7 +1800,7 @@
     type: bin # code
     start: 0xF3B000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1811,7 +1811,7 @@
     type: bin # code
     start: 0xF3D000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1822,7 +1822,7 @@
     type: bin # code
     start: 0xF3F000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1833,7 +1833,7 @@
     type: bin # code
     start: 0xF41000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1844,7 +1844,7 @@
     type: bin # code
     start: 0xF43000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1855,7 +1855,7 @@
     type: bin # code
     start: 0xF45000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1866,7 +1866,7 @@
     type: bin # code
     start: 0xF48000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1877,7 +1877,7 @@
     type: bin # code
     start: 0xF4A000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1888,7 +1888,7 @@
     type: bin # code
     start: 0xF4C000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1899,7 +1899,7 @@
     type: bin # code
     start: 0xF4E000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1910,7 +1910,7 @@
     type: bin # code
     start: 0xF50000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1921,7 +1921,7 @@
     type: bin # code
     start: 0xF52000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1932,7 +1932,7 @@
     type: bin # code
     start: 0xF54000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1943,7 +1943,7 @@
     type: bin # code
     start: 0xF56000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1954,7 +1954,7 @@
     type: bin # code
     start: 0xF58000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1965,7 +1965,7 @@
     type: bin # code
     start: 0xF5A000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1976,7 +1976,7 @@
     type: bin # code
     start: 0xF5C000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1987,7 +1987,7 @@
     type: bin # code
     start: 0xF5E000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -1998,7 +1998,7 @@
     type: bin # code
     start: 0xF60000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2009,7 +2009,7 @@
     type: bin # code
     start: 0xF63000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2020,7 +2020,7 @@
     type: bin # code
     start: 0xF65000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2031,7 +2031,7 @@
     type: bin # code
     start: 0xF67000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2042,7 +2042,7 @@
     type: bin # code
     start: 0xF69000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2053,7 +2053,7 @@
     type: bin # code
     start: 0xF6B000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2064,7 +2064,7 @@
     type: bin # code
     start: 0xF6D000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2075,7 +2075,7 @@
     type: bin # code
     start: 0xF6F000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2086,7 +2086,7 @@
     type: bin # code
     start: 0xF71000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2097,7 +2097,7 @@
     type: bin # code
     start: 0xF73000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2108,7 +2108,7 @@
     type: bin # code
     start: 0xF75000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2119,7 +2119,7 @@
     type: bin # code
     start: 0xF77000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2130,7 +2130,7 @@
     type: bin # code
     start: 0xF79000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2141,7 +2141,7 @@
     type: bin # code
     start: 0xF7B000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2152,7 +2152,7 @@
     type: bin # code
     start: 0xF7D000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2163,7 +2163,7 @@
     type: bin # code
     start: 0xF7F000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2174,7 +2174,7 @@
     type: bin # code
     start: 0xF81000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2185,7 +2185,7 @@
     type: bin # code
     start: 0xF83000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2196,7 +2196,7 @@
     type: bin # code
     start: 0xF85000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2207,7 +2207,7 @@
     type: bin # code
     start: 0xF87000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2218,7 +2218,7 @@
     type: bin # code
     start: 0xF89000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2229,7 +2229,7 @@
     type: bin # code
     start: 0xF8C000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2240,7 +2240,7 @@
     type: bin # code
     start: 0xF8E000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2251,7 +2251,7 @@
     type: bin # code
     start: 0xF91000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2262,7 +2262,7 @@
     type: bin # code
     start: 0xF93000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2273,7 +2273,7 @@
     type: bin # code
     start: 0xF95000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2284,7 +2284,7 @@
     type: bin # code
     start: 0xF97000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2295,7 +2295,7 @@
     type: bin # code
     start: 0xF99000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2306,7 +2306,7 @@
     type: bin # code
     start: 0xF9B000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2317,7 +2317,7 @@
     type: bin # code
     start: 0xF9D000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2328,7 +2328,7 @@
     type: bin # code
     start: 0xFA0000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2339,7 +2339,7 @@
     type: bin # code
     start: 0xFA2000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2350,7 +2350,7 @@
     type: bin # code
     start: 0xFA4000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2361,7 +2361,7 @@
     type: bin # code
     start: 0xFA6000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2372,7 +2372,7 @@
     type: bin # code
     start: 0xFA8000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2383,7 +2383,7 @@
     type: bin # code
     start: 0xFAA000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2394,7 +2394,7 @@
     type: bin # code
     start: 0xFAC000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2405,7 +2405,7 @@
     type: bin # code
     start: 0xFAF000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2416,7 +2416,7 @@
     type: bin # code
     start: 0xFB1000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2427,7 +2427,7 @@
     type: bin # code
     start: 0xFB3000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2438,7 +2438,7 @@
     type: bin # code
     start: 0xFB4000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2449,7 +2449,7 @@
     type: bin # code
     start: 0xFB7000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2460,7 +2460,7 @@
     type: bin # code
     start: 0xFB9000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2471,7 +2471,7 @@
     type: bin # code
     start: 0xFBB000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2482,7 +2482,7 @@
     type: bin # code
     start: 0xFBD000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2493,7 +2493,7 @@
     type: bin # code
     start: 0xFBF000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2504,7 +2504,7 @@
     type: bin # code
     start: 0xFC1000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2515,7 +2515,7 @@
     type: bin # code
     start: 0xFC3000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2526,7 +2526,7 @@
     type: bin # code
     start: 0xFC5000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2537,7 +2537,7 @@
     type: bin # code
     start: 0xFC8000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2548,7 +2548,7 @@
     type: bin # code
     start: 0xFCA000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2559,7 +2559,7 @@
     type: bin # code
     start: 0xFCC000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2570,7 +2570,7 @@
     type: bin # code
     start: 0xFCE000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2581,7 +2581,7 @@
     type: bin # code
     start: 0xFD0000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2592,7 +2592,7 @@
     type: bin # code
     start: 0xFD2000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2603,7 +2603,7 @@
     type: bin # code
     start: 0xFD4000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2614,7 +2614,7 @@
     type: bin # code
     start: 0xFD6000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2625,7 +2625,7 @@
     type: bin # code
     start: 0xFD9000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2636,7 +2636,7 @@
     type: bin # code
     start: 0xFDB000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2647,7 +2647,7 @@
     type: bin # code
     start: 0xFDE000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2658,7 +2658,7 @@
     type: bin # code
     start: 0xFE0000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2669,7 +2669,7 @@
     type: bin # code
     start: 0xFE3000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2680,7 +2680,7 @@
     type: bin # code
     start: 0xFE5000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2691,7 +2691,7 @@
     type: bin # code
     start: 0xFE7000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2702,7 +2702,7 @@
     type: bin # code
     start: 0xFE9000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2713,7 +2713,7 @@
     type: bin # code
     start: 0xFEB000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2724,7 +2724,7 @@
     type: bin # code
     start: 0xFED000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2735,7 +2735,7 @@
     type: bin # code
     start: 0xFEF000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2746,7 +2746,7 @@
     type: bin # code
     start: 0xFF2000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2757,7 +2757,7 @@
     type: bin # code
     start: 0xFF4000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2768,7 +2768,7 @@
     type: bin # code
     start: 0xFF6000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2779,7 +2779,7 @@
     type: bin # code
     start: 0xFF8000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2790,7 +2790,7 @@
     type: bin # code
     start: 0xFFA000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2801,7 +2801,7 @@
     type: bin # code
     start: 0xFFC000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2812,7 +2812,7 @@
     type: bin # code
     start: 0xFFE000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2823,7 +2823,7 @@
     type: bin # code
     start: 0x1000000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2834,7 +2834,7 @@
     type: bin # code
     start: 0x1003000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2845,7 +2845,7 @@
     type: bin # code
     start: 0x1005000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2856,7 +2856,7 @@
     type: bin # code
     start: 0x1007000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2867,7 +2867,7 @@
     type: bin # code
     start: 0x1009000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2878,7 +2878,7 @@
     type: bin # code
     start: 0x100B000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2889,7 +2889,7 @@
     type: bin # code
     start: 0x100D000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2900,7 +2900,7 @@
     type: bin # code
     start: 0x100F000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2911,7 +2911,7 @@
     type: bin # code
     start: 0x1011000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2922,7 +2922,7 @@
     type: bin # code
     start: 0x1014000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2933,7 +2933,7 @@
     type: bin # code
     start: 0x1016000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2944,7 +2944,7 @@
     type: bin # code
     start: 0x1019000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2955,7 +2955,7 @@
     type: bin # code
     start: 0x101B000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2966,7 +2966,7 @@
     type: bin # code
     start: 0x101D000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2977,7 +2977,7 @@
     type: bin # code
     start: 0x101F000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2988,7 +2988,7 @@
     type: bin # code
     start: 0x1021000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -2999,7 +2999,7 @@
     type: bin # code
     start: 0x1023000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3010,7 +3010,7 @@
     type: bin # code
     start: 0x1025000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3021,7 +3021,7 @@
     type: bin # code
     start: 0x1027000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3032,7 +3032,7 @@
     type: bin # code
     start: 0x1029000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3043,7 +3043,7 @@
     type: bin # code
     start: 0x102B000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3054,7 +3054,7 @@
     type: bin # code
     start: 0x102E000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3065,7 +3065,7 @@
     type: bin # code
     start: 0x1030000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3076,7 +3076,7 @@
     type: bin # code
     start: 0x1033000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3087,7 +3087,7 @@
     type: bin # code
     start: 0x1035000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3098,7 +3098,7 @@
     type: bin # code
     start: 0x1037000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3109,7 +3109,7 @@
     type: bin # code
     start: 0x1039000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3120,7 +3120,7 @@
     type: bin # code
     start: 0x103B000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3131,7 +3131,7 @@
     type: bin # code
     start: 0x103E000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3142,7 +3142,7 @@
     type: bin # code
     start: 0x1040000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3153,7 +3153,7 @@
     type: bin # code
     start: 0x1042000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3164,7 +3164,7 @@
     type: bin # code
     start: 0x1044000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3175,7 +3175,7 @@
     type: bin # code
     start: 0x1046000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3186,7 +3186,7 @@
     type: bin # code
     start: 0x1048000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3197,7 +3197,7 @@
     type: bin # code
     start: 0x104A000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3208,7 +3208,7 @@
     type: bin # code
     start: 0x104C000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3219,7 +3219,7 @@
     type: bin # code
     start: 0x104E000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3230,7 +3230,7 @@
     type: bin # code
     start: 0x1050000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3241,7 +3241,7 @@
     type: bin # code
     start: 0x1052000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3252,7 +3252,7 @@
     type: bin # code
     start: 0x1054000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3263,7 +3263,7 @@
     type: bin # code
     start: 0x1056000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3274,7 +3274,7 @@
     type: bin # code
     start: 0x1058000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3285,7 +3285,7 @@
     type: bin # code
     start: 0x105A000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3296,7 +3296,7 @@
     type: bin # code
     start: 0x105C000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3307,7 +3307,7 @@
     type: bin # code
     start: 0x105E000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3318,7 +3318,7 @@
     type: bin # code
     start: 0x1060000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3329,7 +3329,7 @@
     type: bin # code
     start: 0x1062000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3340,7 +3340,7 @@
     type: bin # code
     start: 0x1065000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3351,7 +3351,7 @@
     type: bin # code
     start: 0x1067000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3362,7 +3362,7 @@
     type: bin # code
     start: 0x106A000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3373,7 +3373,7 @@
     type: bin # code
     start: 0x106C000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3384,7 +3384,7 @@
     type: bin # code
     start: 0x106F000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3395,7 +3395,7 @@
     type: bin # code
     start: 0x1071000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3406,7 +3406,7 @@
     type: bin # code
     start: 0x1074000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3417,7 +3417,7 @@
     type: bin # code
     start: 0x1076000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3428,7 +3428,7 @@
     type: bin # code
     start: 0x1079000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3439,7 +3439,7 @@
     type: bin # code
     start: 0x107B000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3450,7 +3450,7 @@
     type: bin # code
     start: 0x107D000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3461,7 +3461,7 @@
     type: bin # code
     start: 0x107F000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3472,7 +3472,7 @@
     type: bin # code
     start: 0x1081000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3483,7 +3483,7 @@
     type: bin # code
     start: 0x1083000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3494,7 +3494,7 @@
     type: bin # code
     start: 0x1085000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3505,7 +3505,7 @@
     type: bin # code
     start: 0x1087000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3516,7 +3516,7 @@
     type: bin # code
     start: 0x1089000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3527,7 +3527,7 @@
     type: bin # code
     start: 0x108B000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3538,7 +3538,7 @@
     type: bin # code
     start: 0x108D000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3549,7 +3549,7 @@
     type: bin # code
     start: 0x108F000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3560,7 +3560,7 @@
     type: bin # code
     start: 0x1091000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3571,7 +3571,7 @@
     type: bin # code
     start: 0x1094000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3582,7 +3582,7 @@
     type: bin # code
     start: 0x1096000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3593,7 +3593,7 @@
     type: bin # code
     start: 0x1098000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3604,7 +3604,7 @@
     type: bin # code
     start: 0x109A000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3615,7 +3615,7 @@
     type: bin # code
     start: 0x109C000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3626,7 +3626,7 @@
     type: bin # code
     start: 0x109E000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3637,7 +3637,7 @@
     type: bin # code
     start: 0x10A0000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3648,7 +3648,7 @@
     type: bin # code
     start: 0x10A2000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3659,7 +3659,7 @@
     type: bin # code
     start: 0x10A4000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3670,7 +3670,7 @@
     type: bin # code
     start: 0x10A6000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3681,7 +3681,7 @@
     type: bin # code
     start: 0x10A8000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3692,7 +3692,7 @@
     type: bin # code
     start: 0x10AA000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3703,7 +3703,7 @@
     type: bin # code
     start: 0x10AC000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3714,7 +3714,7 @@
     type: bin # code
     start: 0x10AE000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3725,7 +3725,7 @@
     type: bin # code
     start: 0x10B1000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3736,7 +3736,7 @@
     type: bin # code
     start: 0x10B3000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3747,7 +3747,7 @@
     type: bin # code
     start: 0x10B6000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3758,7 +3758,7 @@
     type: bin # code
     start: 0x10B8000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3769,7 +3769,7 @@
     type: bin # code
     start: 0x10BB000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3780,7 +3780,7 @@
     type: bin # code
     start: 0x10BD000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3791,7 +3791,7 @@
     type: bin # code
     start: 0x10BF000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3802,7 +3802,7 @@
     type: bin # code
     start: 0x10C1000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3813,7 +3813,7 @@
     type: bin # code
     start: 0x10C3000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3824,7 +3824,7 @@
     type: bin # code
     start: 0x10C5000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3835,7 +3835,7 @@
     type: bin # code
     start: 0x10C7000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3846,7 +3846,7 @@
     type: bin # code
     start: 0x10C9000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3857,7 +3857,7 @@
     type: bin # code
     start: 0x10CB000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3868,7 +3868,7 @@
     type: bin # code
     start: 0x10CD000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3879,7 +3879,7 @@
     type: bin # code
     start: 0x10CF000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3890,7 +3890,7 @@
     type: bin # code
     start: 0x10D2000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3901,7 +3901,7 @@
     type: bin # code
     start: 0x10D4000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3912,7 +3912,7 @@
     type: bin # code
     start: 0x10D7000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3923,7 +3923,7 @@
     type: bin # code
     start: 0x10D9000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3934,7 +3934,7 @@
     type: bin # code
     start: 0x10DC000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3945,7 +3945,7 @@
     type: bin # code
     start: 0x10DE000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3956,7 +3956,7 @@
     type: bin # code
     start: 0x10E0000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3967,7 +3967,7 @@
     type: bin # code
     start: 0x10E2000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3978,7 +3978,7 @@
     type: bin # code
     start: 0x10E5000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -3989,7 +3989,7 @@
     type: bin # code
     start: 0x10E7000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4000,7 +4000,7 @@
     type: bin # code
     start: 0x10EA000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4011,7 +4011,7 @@
     type: bin # code
     start: 0x10EC000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4022,7 +4022,7 @@
     type: bin # code
     start: 0x10EE000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4033,7 +4033,7 @@
     type: bin # code
     start: 0x10F0000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4044,7 +4044,7 @@
     type: bin # code
     start: 0x10F2000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4087,7 +4087,7 @@
     type: bin # code
     start: 0x1103000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4098,7 +4098,7 @@
     type: bin # code
     start: 0x1106000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4109,7 +4109,7 @@
     type: bin # code
     start: 0x1107000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4120,7 +4120,7 @@
     type: bin # code
     start: 0x1108000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4131,7 +4131,7 @@
     type: bin # code
     start: 0x1109000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4142,7 +4142,7 @@
     type: bin # code
     start: 0x110A000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4153,7 +4153,7 @@
     type: bin # code
     start: 0x110B000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4164,7 +4164,7 @@
     type: bin # code
     start: 0x110C000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4175,7 +4175,7 @@
     type: bin # code
     start: 0x110D000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4186,7 +4186,7 @@
     type: bin # code
     start: 0x110E000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4197,7 +4197,7 @@
     type: bin # code
     start: 0x110F000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4208,7 +4208,7 @@
     type: bin # code
     start: 0x1110000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4219,7 +4219,7 @@
     type: bin # code
     start: 0x1111000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4230,7 +4230,7 @@
     type: bin # code
     start: 0x1112000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4241,7 +4241,7 @@
     type: bin # code
     start: 0x1113000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4252,7 +4252,7 @@
     type: bin # code
     start: 0x1114000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4263,7 +4263,7 @@
     type: bin # code
     start: 0x1115000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4274,7 +4274,7 @@
     type: bin # code
     start: 0x1116000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4285,7 +4285,7 @@
     type: bin # code
     start: 0x1117000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4296,7 +4296,7 @@
     type: bin # code
     start: 0x1118000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4307,7 +4307,7 @@
     type: bin # code
     start: 0x1119000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4318,7 +4318,7 @@
     type: bin # code
     start: 0x111A000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4329,7 +4329,7 @@
     type: bin # code
     start: 0x111B000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4340,7 +4340,7 @@
     type: bin # code
     start: 0x111C000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4351,7 +4351,7 @@
     type: bin # code
     start: 0x111D000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4362,7 +4362,7 @@
     type: bin # code
     start: 0x111E000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4373,7 +4373,7 @@
     type: bin # code
     start: 0x111F000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4384,7 +4384,7 @@
     type: bin # code
     start: 0x1120000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4395,7 +4395,7 @@
     type: bin # code
     start: 0x1121000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4406,7 +4406,7 @@
     type: bin # code
     start: 0x1122000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4417,7 +4417,7 @@
     type: bin # code
     start: 0x1123000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4428,7 +4428,7 @@
     type: bin # code
     start: 0x1124000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4439,7 +4439,7 @@
     type: bin # code
     start: 0x1125000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4450,7 +4450,7 @@
     type: bin # code
     start: 0x1126000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4461,7 +4461,7 @@
     type: bin # code
     start: 0x1127000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4472,7 +4472,7 @@
     type: bin # code
     start: 0x1128000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4483,7 +4483,7 @@
     type: bin # code
     start: 0x1129000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4494,7 +4494,7 @@
     type: bin # code
     start: 0x112A000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4505,7 +4505,7 @@
     type: bin # code
     start: 0x112B000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4516,7 +4516,7 @@
     type: bin # code
     start: 0x112C000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4527,7 +4527,7 @@
     type: bin # code
     start: 0x112D000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4538,7 +4538,7 @@
     type: bin # code
     start: 0x112F000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4549,7 +4549,7 @@
     type: bin # code
     start: 0x1130000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4560,7 +4560,7 @@
     type: bin # code
     start: 0x1131000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4571,7 +4571,7 @@
     type: bin # code
     start: 0x1134000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4582,7 +4582,7 @@
     type: bin # code
     start: 0x1135000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4601,7 +4601,7 @@
     type: bin # code
     start: 0x113C000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4612,7 +4612,7 @@
     type: bin # code
     start: 0x113D000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
     # subsegments:
@@ -4623,7 +4623,7 @@
     type: bin # code
     start: 0x1147000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4810,7 +4810,7 @@
     type: bin # code
     start: 0x11F4000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -4821,7 +4821,7 @@
     type: bin # code
     start: 0x11F5000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -6456,7 +6456,7 @@
     type: bin # code
     start: 0x138A000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -6547,7 +6547,7 @@
     type: bin # code
     start: 0x13A4000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -6558,7 +6558,7 @@
     type: bin # code
     start: 0x13A5000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -6569,7 +6569,7 @@
     type: bin # code
     start: 0x13A6000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -6604,7 +6604,7 @@
     type: bin # code
     start: 0x13AB000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -6695,7 +6695,7 @@
     type: bin # code
     start: 0x13E3000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -6730,7 +6730,7 @@
     type: bin # code
     start: 0x13EB000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -6797,7 +6797,7 @@
     type: bin # code
     start: 0x140C000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -12344,7 +12344,7 @@
     type: bin # code
     start: 0x179E000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -12355,7 +12355,7 @@
     type: bin # code
     start: 0x179F000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -12366,7 +12366,7 @@
     type: bin # code
     start: 0x17A1000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
     # subsegments:
@@ -12377,7 +12377,7 @@
     type: bin # code
     start: 0x182A000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
     # subsegments:
@@ -12396,7 +12396,7 @@
     type: bin # code
     start: 0x1871000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
     # subsegments:
@@ -12407,7 +12407,7 @@
     type: bin # code
     start: 0x1880000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -12418,7 +12418,7 @@
     type: bin # code
     start: 0x1884000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
@@ -12429,7 +12429,7 @@
     type: bin # code
     start: 0x1888000
     vram: 0x06000000
-    exclusive_ram_id: objects
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
     # subsegments:
