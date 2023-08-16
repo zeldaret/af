@@ -10,7 +10,7 @@
 
 typedef enum ObjectId {
     #include "tables/object_table.h"
-    /* 0x19A */ OBJECT_ID_MAX // This value was guessed, it may be smaller
+    /* 0x19A */ OBJECT_ID_MAX // TODO: Figure out this value properly. This value was guessed, it may be smaller
 } ObjectId;
 
 #undef DEFINE_OBJECT
