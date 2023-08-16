@@ -23,7 +23,7 @@
 #include "code_variables.h"
 #include "macros.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
-#include "overlays/actors/ovl_player_actor/m_player.h"
+#include "overlays/actors/player_actor/m_player.h"
 
 void func_80056380_jp(void* arg0, void* arg1 UNUSED) {
     Actor* actor = arg0;
