@@ -28,7 +28,7 @@
       - [0x007000, asm, boot/libu64/debug]
 
       - [0x007060, asm, boot/007060]
-      - [0x0073A0, asm, boot/0073A0]
+      - [0x0073A0, c, boot/O2/0073A0]
       - [0x0073F0, asm, boot/padsetup]
 
       # libc64
