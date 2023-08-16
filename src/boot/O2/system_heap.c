@@ -1,6 +1,18 @@
-#include "global.h"
+/**
+ * @file system_heap.c
+ * 
+ * Original file name unknown, as well as all function names.
+ * 
+ * @note:
+ *  Only SystemHeap_Init() is used, and is essentially just a wrapper for SystemArena_Init().
+ *
+ */
+
+#include "system_heap.h"
+#include "libc/stdint.h"
 #include "libc64/osmalloc.h"
 #include "libc64/malloc.h"
+#include "unk.h"
 
 typedef void (*BlockFunc)(void*);
 typedef void (*BlockFunc1)(void*, u32);
@@ -11,31 +23,29 @@ typedef struct InitFunc {
     /* 0x4 */ void (*func)(void);
 } InitFunc; // size = 0x8
 
-extern void* D_8003C560_jp;
+void* sInitFuncs = NULL;
 
-void* D_8003C560_jp = NULL;
-
-char D_8003C564_jp[] = "";
+char sNew[] = "";
 
 UNK_TYPE1 D_8003C568_jp[] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7F, 0x80, 0x00, 0x00,
     0xFF, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
 
-void* func_8002BC60_jp(size_t size) {
+void* SystemHeap_Malloc(size_t size) {
     if (size == 0) {
         size = 1;
     }
     return __osMalloc(&malloc_arena, size);
 }
 
-void func_8002BC90_jp(void* ptr) {
-    if (ptr != 0) {
+void SystemHeap_Free(void* ptr) {
+    if (ptr != NULL) {
         __osFree(&malloc_arena, ptr);
     }
 }
 
-void func_8002BCBC_jp(void* blk, size_t nBlk, size_t blkSize, BlockFunc blockFunc) {
+void SystemHeap_RunBlockFunc(void* blk, size_t nBlk, size_t blkSize, BlockFunc blockFunc) {
     uintptr_t pos = (uintptr_t)blk;
 
     for (; pos < (uintptr_t)blk + (nBlk * blkSize); pos += (blkSize & ~0)) {
@@ -43,7 +53,7 @@ void func_8002BCBC_jp(void* blk, size_t nBlk, size_t blkSize, BlockFunc blockFun
     }
 }
 
-void func_8002BD2C_jp(void* blk, size_t nBlk, size_t blkSize, BlockFunc1 blockFunc) {
+void SystemHeap_RunBlockFunc1(void* blk, size_t nBlk, size_t blkSize, BlockFunc1 blockFunc) {
     uintptr_t pos = (uintptr_t)blk;
 
     for (; pos < (uintptr_t)blk + (nBlk * blkSize); pos += (blkSize & ~0)) {
@@ -51,9 +61,9 @@ void func_8002BD2C_jp(void* blk, size_t nBlk, size_t blkSize, BlockFunc1 blockFu
     }
 }
 
-void* func_8002BD9C_jp(void* blk, size_t nBlk, size_t blkSize, BlockFunc8 blockFunc) {
+void* SystemHeap_RunBlockFunc8(void* blk, size_t nBlk, size_t blkSize, BlockFunc8 blockFunc) {
     if (blk == NULL) {
-        blk = func_8002BC60_jp(nBlk * blkSize);
+        blk = SystemHeap_Malloc(nBlk * blkSize);
     }
 
     if ((blk != NULL) && (blockFunc != NULL)) {
@@ -67,7 +77,7 @@ void* func_8002BD9C_jp(void* blk, size_t nBlk, size_t blkSize, BlockFunc8 blockF
     return blk;
 }
 
-void func_8002BE6C_jp(void* blk, size_t nBlk, size_t blkSize, BlockFunc1 blockFunc, s32 shouldFree) {
+void SystemHeap_RunBlockFunc1Reverse(void* blk, size_t nBlk, size_t blkSize, BlockFunc1 blockFunc, s32 shouldFree) {
     uintptr_t pos;
     uintptr_t start;
     size_t maskedBlkSize;
@@ -88,12 +98,12 @@ void func_8002BE6C_jp(void* blk, size_t nBlk, size_t blkSize, BlockFunc1 blockFu
     }
 
     if (shouldFree) {
-        func_8002BC90_jp(blk);
+        SystemHeap_Free(blk);
     }
 }
 
-void func_8002BF08_jp(void) {
-    InitFunc* initFunc = (InitFunc*)&D_8003C560_jp;
+void SystemHeap_RunInits(void) {
+    InitFunc* initFunc = (InitFunc*)&sInitFuncs;
     u32 nextOffset = initFunc->nextOffset;
     InitFunc* prev = NULL;
 
@@ -109,10 +119,10 @@ void func_8002BF08_jp(void) {
         prev = initFunc;
     }
 
-    D_8003C560_jp = prev;
+    sInitFuncs = prev;
 }
 
-void func_8002BF78_jp(void* heap, size_t size) {
+void SystemHeap_Init(void* heap, size_t size) {
     MallocInit(heap, size);
-    func_8002BF08_jp();
+    SystemHeap_RunInits();
 }
