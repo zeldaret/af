@@ -10,7 +10,7 @@ void Broker_Design_Actor_draw(Actor* thisx, PlayState* play);
 ActorProfile Broker_Design_Profile = {
     /* */ ACTOR_BROKER_DESIGN,
     /* */ ACTOR_PART_4,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Broker_Design),

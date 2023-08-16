@@ -10,7 +10,7 @@ void aSMAN_actor_draw(Actor* thisx, PlayState* play);
 ActorProfile Snowman_Profile = {
     /* */ ACTOR_SNOWMAN,
     /* */ ACTOR_PART_4,
-    /* */ 16,
+    /* */ ACTOR_FLAG_10,
     /* */ 0x800D,
     /* */ OBJECT_25,
     /* */ sizeof(Snowman),

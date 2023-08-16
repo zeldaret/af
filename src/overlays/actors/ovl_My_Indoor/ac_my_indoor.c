@@ -10,7 +10,7 @@ void My_Indoor_Actor_draw(Actor* thisx, PlayState* play);
 ActorProfile My_Indoor_Profile = {
     /* */ ACTOR_MY_INDOOR,
     /* */ ACTOR_PART_5,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(My_Indoor),

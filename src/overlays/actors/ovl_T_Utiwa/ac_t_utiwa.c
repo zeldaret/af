@@ -10,7 +10,7 @@ void aTUT_actor_draw(Actor* thisx, PlayState* play);
 ActorProfile T_Utiwa_Profile = {
     /* */ ACTOR_T_UTIWA,
     /* */ ACTOR_PART_4,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
     /* */ OBJECT_53,
     /* */ sizeof(T_Utiwa),

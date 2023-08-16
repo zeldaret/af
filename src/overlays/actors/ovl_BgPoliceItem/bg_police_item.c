@@ -9,7 +9,7 @@ void bPI_actor_draw(Actor* thisx, PlayState* play);
 ActorProfile BgPoliceItem_Profile = {
     /* */ ACTOR_BG_POLICE_ITEM,
     /* */ ACTOR_PART_0,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(BgPoliceItem),

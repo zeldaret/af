@@ -10,7 +10,7 @@ void aTKC_actor_move(Actor* thisx, PlayState* play);
 ActorProfile Tokyoso_Control_Profile = {
     /* */ ACTOR_TOKYOSO_CONTROL,
     /* */ ACTOR_PART_7,
-    /* */ 16,
+    /* */ ACTOR_FLAG_10,
     /* */ 0x0000,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Tokyoso_Control),

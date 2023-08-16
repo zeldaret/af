@@ -11,7 +11,7 @@ void aEDSN_actor_save(Actor* thisx, PlayState* play);
 ActorProfile Ev_Designer_Profile = {
     /* */ ACTOR_EV_DESIGNER,
     /* */ ACTOR_PART_NPC,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0xD002,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Ev_Designer),

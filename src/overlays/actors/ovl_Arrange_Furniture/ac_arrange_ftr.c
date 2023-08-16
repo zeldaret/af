@@ -10,7 +10,7 @@ void Arrange_Furniture_Actor_draw(Actor* thisx, PlayState* play);
 ActorProfile Arrange_Furniture_Profile = {
     /* */ ACTOR_ARRANGE_FURNITURE,
     /* */ ACTOR_PART_4,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x8007,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Arrange_Furniture),

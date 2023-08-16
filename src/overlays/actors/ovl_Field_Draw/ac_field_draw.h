@@ -5,7 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct PlayState;
 struct Field_Draw;
+
+typedef void (*Field_DrawActionFunc)(struct Field_Draw*, struct PlayState*);
 
 typedef struct Field_Draw {
     /* 0x000 */ Actor actor;

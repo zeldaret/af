@@ -5,7 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct PlayState;
 struct Npc_Station_Master;
+
+typedef void (*Npc_Station_MasterActionFunc)(struct Npc_Station_Master*, struct PlayState*);
 
 typedef struct Npc_Station_Master {
     /* 0x000 */ Actor actor;

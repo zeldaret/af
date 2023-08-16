@@ -5,7 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct PlayState;
 struct Event_Manager;
+
+typedef void (*Event_ManagerActionFunc)(struct Event_Manager*, struct PlayState*);
 
 typedef struct Event_Manager {
     /* 0x000 */ Actor actor;

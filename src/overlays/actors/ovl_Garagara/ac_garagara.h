@@ -5,7 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct PlayState;
 struct Garagara;
+
+typedef void (*GaragaraActionFunc)(struct Garagara*, struct PlayState*);
 
 typedef struct Garagara {
     /* 0x000 */ Actor actor;

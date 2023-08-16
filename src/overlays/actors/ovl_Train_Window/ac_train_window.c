@@ -10,7 +10,7 @@ void Train_Window_Actor_draw(Actor* thisx, PlayState* play);
 ActorProfile Train_Window_Profile = {
     /* */ ACTOR_TRAIN_WINDOW,
     /* */ ACTOR_PART_0,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x8011,
     /* */ OBJECT_41,
     /* */ sizeof(Train_Window),

@@ -10,7 +10,7 @@ void aGYR_actor_draw(Actor* thisx, PlayState* play);
 ActorProfile Gyo_Release_Profile = {
     /* */ ACTOR_GTO_RELEASE,
     /* */ ACTOR_PART_4,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Gyo_Release),

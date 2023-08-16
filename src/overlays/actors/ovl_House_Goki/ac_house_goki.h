@@ -5,7 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct PlayState;
 struct House_Goki;
+
+typedef void (*House_GokiActionFunc)(struct House_Goki*, struct PlayState*);
 
 typedef struct House_Goki {
     /* 0x000 */ Actor actor;

@@ -5,7 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct PlayState;
 struct T_Tumbler;
+
+typedef void (*T_TumblerActionFunc)(struct T_Tumbler*, struct PlayState*);
 
 typedef struct T_Tumbler {
     /* 0x000 */ Actor actor;

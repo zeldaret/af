@@ -10,7 +10,7 @@ void Arrange_Room_Actor_draw(Actor* thisx, PlayState* play);
 ActorProfile Arrange_Room_Profile = {
     /* */ ACTOR_ARRANGE_ROOM,
     /* */ ACTOR_PART_5,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x8006,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Arrange_Room),

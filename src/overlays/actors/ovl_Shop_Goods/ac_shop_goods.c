@@ -10,7 +10,7 @@ void Shop_Goods_Actor_draw(Actor* thisx, PlayState* play);
 ActorProfile Shop_Goods_Profile = {
     /* */ ACTOR_SHOP_GOODS,
     /* */ ACTOR_PART_7,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
     /* */ OBJECT_30,
     /* */ sizeof(Shop_Goods),

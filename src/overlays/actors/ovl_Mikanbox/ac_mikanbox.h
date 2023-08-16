@@ -5,7 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct PlayState;
 struct Mikanbox;
+
+typedef void (*MikanboxActionFunc)(struct Mikanbox*, struct PlayState*);
 
 typedef struct Mikanbox {
     /* 0x000 */ Actor actor;

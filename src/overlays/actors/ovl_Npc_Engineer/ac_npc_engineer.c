@@ -11,7 +11,7 @@ void aNEG_actor_save(Actor* thisx, PlayState* play);
 ActorProfile Npc_Engineer_Profile = {
     /* */ ACTOR_NPC_ENGINEER,
     /* */ ACTOR_PART_NPC,
-    /* */ 536870928,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20000000,
     /* */ 0x0000,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Engineer),

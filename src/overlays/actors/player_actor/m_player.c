@@ -1,5 +1,4 @@
-#include "global.h"
-
+#include "m_player.h"
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B2D50_jp.s")
 

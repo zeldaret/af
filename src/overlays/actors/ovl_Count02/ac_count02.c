@@ -10,7 +10,7 @@ void func_805abe88(Actor* thisx, PlayState* play);
 ActorProfile Count02_Profile = {
     /* */ ACTOR_COUNT02,
     /* */ ACTOR_PART_0,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x5832,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Count02),

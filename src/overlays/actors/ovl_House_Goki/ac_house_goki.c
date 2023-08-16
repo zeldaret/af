@@ -10,7 +10,7 @@ void aHG_actor_draw(Actor* thisx, PlayState* play);
 ActorProfile House_Goki_Profile = {
     /* */ ACTOR_HOUSE_GOKI,
     /* */ ACTOR_PART_4,
-    /* */ 16,
+    /* */ ACTOR_FLAG_10,
     /* */ 0x0000,
     /* */ OBJECT_369,
     /* */ sizeof(House_Goki),

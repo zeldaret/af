@@ -5,7 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct PlayState;
 struct Countdown_Npc0;
+
+typedef void (*Countdown_Npc0ActionFunc)(struct Countdown_Npc0*, struct PlayState*);
 
 typedef struct Countdown_Npc0 {
     /* 0x000 */ Actor actor;

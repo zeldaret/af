@@ -5,7 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct PlayState;
 struct Ev_CarpetPeddler;
+
+typedef void (*Ev_CarpetPeddlerActionFunc)(struct Ev_CarpetPeddler*, struct PlayState*);
 
 typedef struct Ev_CarpetPeddler {
     /* 0x000 */ Actor actor;

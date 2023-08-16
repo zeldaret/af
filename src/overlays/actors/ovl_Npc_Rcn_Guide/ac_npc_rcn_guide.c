@@ -11,7 +11,7 @@ void aNRG_actor_save(Actor* thisx, PlayState* play);
 ActorProfile Npc_Rcn_Guide_Profile = {
     /* */ ACTOR_NPC_RCN_GUIDE,
     /* */ ACTOR_PART_NPC,
-    /* */ 536870928,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20000000,
     /* */ 0xD014,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Rcn_Guide),

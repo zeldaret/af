@@ -10,7 +10,7 @@ void My_Room_Actor_draw(Actor* thisx, PlayState* play);
 ActorProfile My_Room_Profile = {
     /* */ ACTOR_MY_ROOM,
     /* */ ACTOR_PART_4,
-    /* */ 536870960,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20 | ACTOR_FLAG_20000000,
     /* */ 0x8002,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(My_Room),

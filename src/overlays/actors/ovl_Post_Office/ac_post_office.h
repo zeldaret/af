@@ -5,7 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct PlayState;
 struct Post_Office;
+
+typedef void (*Post_OfficeActionFunc)(struct Post_Office*, struct PlayState*);
 
 typedef struct Post_Office {
     /* 0x000 */ Actor actor;

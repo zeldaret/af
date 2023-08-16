@@ -10,7 +10,7 @@ void aTRD_actor_draw(Actor* thisx, PlayState* play);
 ActorProfile TrainDoor_Profile = {
     /* */ ACTOR_TRAIN_DOOR,
     /* */ ACTOR_PART_4,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0xA011,
     /* */ OBJECT_11,
     /* */ sizeof(TrainDoor),

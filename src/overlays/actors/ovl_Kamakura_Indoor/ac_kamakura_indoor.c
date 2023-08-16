@@ -10,7 +10,7 @@ void Kamakura_Indoor_Actor_draw(Actor* thisx, PlayState* play);
 ActorProfile Kamakura_Indoor_Profile = {
     /* */ ACTOR_KAMAKURA_INDOOR,
     /* */ ACTOR_PART_5,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
     /* */ OBJECT_22,
     /* */ sizeof(Kamakura_Indoor),

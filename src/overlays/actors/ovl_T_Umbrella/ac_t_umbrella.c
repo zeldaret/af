@@ -10,7 +10,7 @@ void aTUMB_actor_draw(Actor* thisx, PlayState* play);
 ActorProfile T_Umbrella_Profile = {
     /* */ ACTOR_T_UMBRELLA,
     /* */ ACTOR_PART_4,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
     /* */ OBJECT_28,
     /* */ sizeof(T_Umbrella),

@@ -5,7 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct PlayState;
 struct Hatumode_Control;
+
+typedef void (*Hatumode_ControlActionFunc)(struct Hatumode_Control*, struct PlayState*);
 
 typedef struct Hatumode_Control {
     /* 0x000 */ Actor actor;

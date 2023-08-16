@@ -8,7 +8,7 @@ void aBC_actor_move(Actor* thisx, PlayState* play);
 ActorProfile Birth_Control_Profile = {
     /* */ ACTOR_BIRTH_CONTROL,
     /* */ ACTOR_PART_0,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Birth_Control),

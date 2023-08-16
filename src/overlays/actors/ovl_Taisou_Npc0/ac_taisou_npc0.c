@@ -11,7 +11,7 @@ void aTS0_actor_save(Actor* thisx, PlayState* play);
 ActorProfile Taisou_Npc0_Profile = {
     /* */ ACTOR_TAISOU_NPC0,
     /* */ ACTOR_PART_NPC,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Taisou_Npc0),

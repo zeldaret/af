@@ -10,7 +10,7 @@ void func_80A66978_jp(Actor* thisx, PlayState* play);
 ActorProfile Uki_Profile = {
     /* */ ACTOR_UKI,
     /* */ ACTOR_PART_4,
-    /* */ 16,
+    /* */ ACTOR_FLAG_10,
     /* */ 0x8012,
     /* */ OBJECT_48,
     /* */ sizeof(Uki),

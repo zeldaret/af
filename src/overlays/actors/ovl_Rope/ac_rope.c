@@ -10,7 +10,7 @@ void aRP_actor_draw(Actor* thisx, PlayState* play);
 ActorProfile Rope_Profile = {
     /* */ ACTOR_ROPE,
     /* */ ACTOR_PART_4,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
     /* */ OBJECT_394,
     /* */ sizeof(Rope),

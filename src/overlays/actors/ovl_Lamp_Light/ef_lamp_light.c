@@ -10,7 +10,7 @@ void Ef_Lamp_Light_actor_move(Actor* thisx, PlayState* play);
 ActorProfile Lamp_Light_Profile = {
     /* */ ACTOR_LAMP_LIGHT,
     /* */ ACTOR_PART_6,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Lamp_Light),

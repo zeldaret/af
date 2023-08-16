@@ -10,7 +10,7 @@ void aTNS_actor_draw(Actor* thisx, PlayState* play);
 ActorProfile T_NpcSao_Profile = {
     /* */ ACTOR_T_NPC_SAO,
     /* */ ACTOR_PART_4,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
     /* */ OBJECT_370,
     /* */ sizeof(T_NpcSao),

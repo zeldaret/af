@@ -10,7 +10,7 @@ void Ef_Room_SunshineR_actor_draw(Actor* thisx, PlayState* play);
 ActorProfile Room_Sunshine_Profile = {
     /* */ ACTOR_ROOM_SUNSHINE,
     /* */ ACTOR_PART_6,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
     /* */ OBJECT_5,
     /* */ sizeof(Room_Sunshine),

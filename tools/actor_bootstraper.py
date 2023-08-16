@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+
+# SPDX-FileCopyrightText: © 2023 ZeldaRET
+# SPDX-License-Identifier: MIT
+
 from pathlib import Path
 import rabbitizer
 
@@ -23,8 +28,6 @@ with profiles_txt.open() as f:
         else:
             entry = line.split(".word ")[1].strip()
             currentProfile.append(entry)
-
-# print(n64Profiles)
 
 def funcToDecl(func):
     if func == "NULL" or func == "none_proc1":
@@ -664,6 +667,52 @@ ActorPartEnum = [
     "ACTOR_PART_7",
 ]
 
+ActorFlags = {
+    (1 << 0): "ACTOR_FLAG_1",
+    (1 << 1): "ACTOR_FLAG_2",
+    (1 << 2): "ACTOR_FLAG_4",
+    (1 << 3): "ACTOR_FLAG_8",
+    (1 << 4): "ACTOR_FLAG_10",
+    (1 << 5): "ACTOR_FLAG_20",
+    (1 << 6): "ACTOR_FLAG_40",
+    (1 << 7): "ACTOR_FLAG_80",
+    (1 << 8): "ACTOR_FLAG_100",
+    (1 << 9): "ACTOR_FLAG_200",
+    (1 << 10): "ACTOR_FLAG_400",
+    (1 << 11): "ACTOR_FLAG_800",
+    (1 << 12): "ACTOR_FLAG_1000",
+    (1 << 13): "ACTOR_FLAG_2000",
+    (1 << 14): "ACTOR_FLAG_4000",
+    (1 << 15): "ACTOR_FLAG_8000",
+    (1 << 16): "ACTOR_FLAG_10000",
+    (1 << 17): "ACTOR_FLAG_20000",
+    (1 << 18): "ACTOR_FLAG_40000",
+    (1 << 19): "ACTOR_FLAG_80000",
+    (1 << 20): "ACTOR_FLAG_100000",
+    (1 << 21): "ACTOR_FLAG_200000",
+    (1 << 22): "ACTOR_FLAG_400000",
+    (1 << 23): "ACTOR_FLAG_800000",
+    (1 << 24): "ACTOR_FLAG_1000000",
+    (1 << 25): "ACTOR_FLAG_2000000",
+    (1 << 26): "ACTOR_FLAG_4000000",
+    (1 << 27): "ACTOR_FLAG_8000000",
+    (1 << 28): "ACTOR_FLAG_10000000",
+    (1 << 29): "ACTOR_FLAG_20000000",
+    (1 << 30): "ACTOR_FLAG_40000000",
+    (1 << 31): "ACTOR_FLAG_80000000",
+}
+
+def getOredFlags(flags: int):
+    if flags == 0:
+        return "0"
+
+    flagList = []
+    for i in range(32):
+        currentFlag = 1 << i
+        if flags & currentFlag:
+            flagList.append(ActorFlags[currentFlag])
+    return " | ".join(flagList)
+
 filepath: Path
 for profName, (filepath, prof) in n64Profiles.items():
     actorId = rabbitizer.Utils.from2Complement((int(prof[0], 0) >> 16) & 0xFFFF, 16)
@@ -702,8 +751,12 @@ for profName, (filepath, prof) in n64Profiles.items():
         f.write('#include "unk.h"\n')
         f.write('\n')
 
+        f.write(f"struct PlayState;\n")
         f.write(f"struct {structName};\n")
         f.write('\n')
+
+        f.write(f"typedef void (*{structName}ActionFunc)(struct {structName}*, struct PlayState*);\n")
+        f.write("\n")
 
         f.write(f"typedef struct {structName} {{\n")
 
@@ -747,7 +800,7 @@ for profName, (filepath, prof) in n64Profiles.items():
         f.write(f"ActorProfile {profName} = {{\n")
         f.write(f"    /* */ {ActorIdEnum[actorId]},\n")
         f.write(f"    /* */ {ActorPartEnum[part]},\n")
-        f.write(f"    /* */ {flags},\n")
+        f.write(f"    /* */ {getOredFlags(flags)},\n")
         f.write(f"    /* */ 0x{unk_08:04X},\n")
         f.write(f"    /* */ {ObjectEnum[objectId]},\n")
         f.write(f"    /* */ sizeof({structName}),\n")
@@ -761,38 +814,3 @@ for profName, (filepath, prof) in n64Profiles.items():
 
         for line in cFileLines:
             f.write(f"\n{line}")
-
-"""
-newNamesSet = set()
-
-for name, prof in n64Profiles.items():
-    gcnProf = gcnProfiles[name]
-
-    for i in range(4, 9):
-        oldName = prof[i]
-        newName = gcnProf[i]
-
-        if newName in {"none_proc1"}:
-            continue
-
-        if oldName == "0x00000000" and newName == "0x00000000":
-            continue
-
-        assert "+" not in oldName, f"{oldName}, {newName}"
-        assert newName not in newNamesSet, f"{oldName}, {newName}"
-        if newName == "0x00000000":
-            if oldName == "func_80A66978_jp":
-                continue
-
-        assert oldName != "0x00000000", f"{oldName}, {newName}"
-        assert newName != "0x00000000", f"{oldName}, {newName}"
-        # if oldName == "0x00000000" or newName == "0x00000000":
-        #     print(oldName, newName)
-
-
-        if oldName != newName:
-            print(f'"{oldName}": "{newName}",')
-            pass
-
-        newNamesSet.add(newName)
-"""

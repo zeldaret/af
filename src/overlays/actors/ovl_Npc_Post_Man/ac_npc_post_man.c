@@ -11,7 +11,7 @@ void aPMAN_actor_save(Actor* thisx, PlayState* play);
 ActorProfile Npc_Post_Man_Profile = {
     /* */ ACTOR_NPC_POST_MAN,
     /* */ ACTOR_PART_NPC,
-    /* */ 16,
+    /* */ ACTOR_FLAG_10,
     /* */ 0xD011,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Post_Man),

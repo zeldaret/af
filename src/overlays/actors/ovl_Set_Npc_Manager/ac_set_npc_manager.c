@@ -10,7 +10,7 @@ void aSNMgr_actor_move(Actor* thisx, PlayState* play);
 ActorProfile Set_Npc_Manager_Profile = {
     /* */ ACTOR_SET_NPC_MANAGER,
     /* */ ACTOR_PART_7,
-    /* */ 536870960,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20 | ACTOR_FLAG_20000000,
     /* */ 0x0000,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Set_Npc_Manager),

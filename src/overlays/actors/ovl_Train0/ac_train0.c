@@ -10,7 +10,7 @@ void func_805c04e0(Actor* thisx, PlayState* play);
 ActorProfile Train0_Profile = {
     /* */ ACTOR_TRAIN0,
     /* */ ACTOR_PART_0,
-    /* */ 536870928,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20000000,
     /* */ 0x580A,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Train0),

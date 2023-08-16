@@ -10,7 +10,7 @@ void eChryMgr_draw(Actor* thisx, PlayState* play);
 ActorProfile Ev_Cherry_Manager_Profile = {
     /* */ ACTOR_EV_CHERRY_MANAGER,
     /* */ ACTOR_PART_7,
-    /* */ 536870912,
+    /* */ ACTOR_FLAG_20000000,
     /* */ 0x0000,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Ev_Cherry_Manager),

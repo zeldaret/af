@@ -10,7 +10,7 @@ void bIT_actor_draw(Actor* thisx, PlayState* play);
 ActorProfile BgItem_Profile = {
     /* */ ACTOR_BG_ITEM,
     /* */ ACTOR_PART_0,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
     /* */ OBJECT_4,
     /* */ sizeof(BgItem),

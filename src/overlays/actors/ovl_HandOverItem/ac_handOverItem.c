@@ -10,7 +10,7 @@ void aHOI_actor_draw(Actor* thisx, PlayState* play);
 ActorProfile HandOverItem_Profile = {
     /* */ ACTOR_HAND_OVER_ITEM,
     /* */ ACTOR_PART_4,
-    /* */ 536870960,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20 | ACTOR_FLAG_20000000,
     /* */ 0x0000,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(HandOverItem),

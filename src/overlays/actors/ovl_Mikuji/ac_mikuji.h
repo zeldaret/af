@@ -5,7 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct PlayState;
 struct Mikuji;
+
+typedef void (*MikujiActionFunc)(struct Mikuji*, struct PlayState*);
 
 typedef struct Mikuji {
     /* 0x000 */ Actor actor;

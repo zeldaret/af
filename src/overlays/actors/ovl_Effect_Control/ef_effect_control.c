@@ -10,7 +10,7 @@ void eEC_actor_draw(Actor* thisx, PlayState* play);
 ActorProfile Effect_Control_Profile = {
     /* */ ACTOR_EFFECT_CONTROL,
     /* */ ACTOR_PART_7,
-    /* */ 536870960,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20 | ACTOR_FLAG_20000000,
     /* */ 0x0000,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Effect_Control),

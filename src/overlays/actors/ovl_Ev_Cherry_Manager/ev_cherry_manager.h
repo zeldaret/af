@@ -5,7 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct PlayState;
 struct Ev_Cherry_Manager;
+
+typedef void (*Ev_Cherry_ManagerActionFunc)(struct Ev_Cherry_Manager*, struct PlayState*);
 
 typedef struct Ev_Cherry_Manager {
     /* 0x000 */ Actor actor;

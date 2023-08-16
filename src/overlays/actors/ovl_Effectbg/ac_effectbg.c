@@ -10,7 +10,7 @@ void Effectbg_actor_draw(Actor* thisx, PlayState* play);
 ActorProfile Effectbg_Profile = {
     /* */ ACTOR_EFFECTBG,
     /* */ ACTOR_PART_6,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Effectbg),

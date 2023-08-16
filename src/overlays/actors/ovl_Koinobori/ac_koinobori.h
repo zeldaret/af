@@ -5,7 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct PlayState;
 struct Koinobori;
+
+typedef void (*KoinoboriActionFunc)(struct Koinobori*, struct PlayState*);
 
 typedef struct Koinobori {
     /* 0x000 */ Actor actor;

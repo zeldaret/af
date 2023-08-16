@@ -10,7 +10,7 @@ void aDUM_actor_draw(Actor* thisx, PlayState* play);
 ActorProfile Dump_Profile = {
     /* */ ACTOR_DUMP,
     /* */ ACTOR_PART_0,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x583A,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Dump),

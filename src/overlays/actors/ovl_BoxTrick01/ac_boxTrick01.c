@@ -10,7 +10,7 @@ void BoxTrick01_Actor_move(Actor* thisx, PlayState* play);
 ActorProfile BoxTrick01_Profile = {
     /* */ ACTOR_BOX_TRICK_01,
     /* */ ACTOR_PART_4,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x8004,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(BoxTrick01),

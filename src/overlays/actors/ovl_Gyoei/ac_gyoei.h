@@ -5,7 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct PlayState;
 struct Gyoei;
+
+typedef void (*GyoeiActionFunc)(struct Gyoei*, struct PlayState*);
 
 typedef struct Gyoei {
     /* 0x000 */ Actor actor;

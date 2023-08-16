@@ -10,7 +10,7 @@ void aTR1_actor_draw(Actor* thisx, PlayState* play);
 ActorProfile Train1_Profile = {
     /* */ ACTOR_TRAIN1,
     /* */ ACTOR_PART_0,
-    /* */ 536870928,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20000000,
     /* */ 0x580B,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Train1),

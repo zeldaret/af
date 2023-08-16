@@ -5,7 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct PlayState;
 struct Quest_Manager;
+
+typedef void (*Quest_ManagerActionFunc)(struct Quest_Manager*, struct PlayState*);
 
 typedef struct Quest_Manager {
     /* 0x000 */ Actor actor;

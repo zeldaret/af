@@ -11,7 +11,7 @@ void aEBRK_actor_save(Actor* thisx, PlayState* play);
 ActorProfile Ev_Broker_Profile = {
     /* */ ACTOR_EV_BROKER,
     /* */ ACTOR_PART_NPC,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0xD001,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Ev_Broker),

@@ -10,7 +10,7 @@ void House_Clock_Actor_draw(Actor* thisx, PlayState* play);
 ActorProfile House_Clock_Profile = {
     /* */ ACTOR_HOUSE_CLOCK,
     /* */ ACTOR_PART_5,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(House_Clock),

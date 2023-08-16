@@ -5,7 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct PlayState;
 struct Windmill;
+
+typedef void (*WindmillActionFunc)(struct Windmill*, struct PlayState*);
 
 typedef struct Windmill {
     /* 0x000 */ Actor actor;

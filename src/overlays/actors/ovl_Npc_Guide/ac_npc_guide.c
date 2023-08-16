@@ -11,7 +11,7 @@ void aNGD_actor_save(Actor* thisx, PlayState* play);
 ActorProfile Npc_Guide_Profile = {
     /* */ ACTOR_NPC_GUIDE,
     /* */ ACTOR_PART_NPC,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0xD004,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Guide),

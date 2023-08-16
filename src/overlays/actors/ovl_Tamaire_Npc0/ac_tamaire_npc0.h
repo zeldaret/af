@@ -5,7 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct PlayState;
 struct Tamaire_Npc0;
+
+typedef void (*Tamaire_Npc0ActionFunc)(struct Tamaire_Npc0*, struct PlayState*);
 
 typedef struct Tamaire_Npc0 {
     /* 0x000 */ Actor actor;

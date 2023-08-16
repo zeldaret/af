@@ -5,7 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct PlayState;
 struct BgCherryItem;
+
+typedef void (*BgCherryItemActionFunc)(struct BgCherryItem*, struct PlayState*);
 
 typedef struct BgCherryItem {
     /* 0x00000 */ Actor actor;

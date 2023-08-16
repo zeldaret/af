@@ -10,7 +10,7 @@ void aBEE_actor_draw(Actor* thisx, PlayState* play);
 ActorProfile Bee_Profile = {
     /* */ ACTOR_BEE,
     /* */ ACTOR_PART_4,
-    /* */ 16,
+    /* */ ACTOR_FLAG_10,
     /* */ 0x0000,
     /* */ OBJECT_392,
     /* */ sizeof(Bee),

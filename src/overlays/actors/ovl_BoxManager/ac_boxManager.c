@@ -10,7 +10,7 @@ void BoxManager_Actor_draw(Actor* thisx, PlayState* play);
 ActorProfile BoxManager_Profile = {
     /* */ ACTOR_BOX_MANAGER,
     /* */ ACTOR_PART_4,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x8005,
     /* */ OBJECT_20,
     /* */ sizeof(BoxManager),

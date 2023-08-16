@@ -11,7 +11,7 @@ void aMJN4_actor_save(Actor* thisx, PlayState* play);
 ActorProfile Npc_Majin4_Profile = {
     /* */ ACTOR_NPC_MAJIN4,
     /* */ ACTOR_PART_NPC,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0xD069,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Majin4),

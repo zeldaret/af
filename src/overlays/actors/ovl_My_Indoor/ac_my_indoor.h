@@ -5,7 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct PlayState;
 struct My_Indoor;
+
+typedef void (*My_IndoorActionFunc)(struct My_Indoor*, struct PlayState*);
 
 typedef struct My_Indoor {
     /* 0x000 */ Actor actor;

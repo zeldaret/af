@@ -10,7 +10,7 @@ void bWI_actor_draw(Actor* thisx, PlayState* play);
 ActorProfile BgWinterItem_Profile = {
     /* */ ACTOR_BG_WINTER_ITEM,
     /* */ ACTOR_PART_0,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
     /* */ OBJECT_37,
     /* */ sizeof(BgWinterItem),

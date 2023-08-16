@@ -10,7 +10,7 @@ void aFSN_actor_draw(Actor* thisx, PlayState* play);
 ActorProfile Fuusen_Profile = {
     /* */ ACTOR_FUUSEN,
     /* */ ACTOR_PART_7,
-    /* */ 16,
+    /* */ ACTOR_FLAG_10,
     /* */ 0x0000,
     /* */ OBJECT_400,
     /* */ sizeof(Fuusen),

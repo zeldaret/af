@@ -5,7 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct PlayState;
 struct MailBox;
+
+typedef void (*MailBoxActionFunc)(struct MailBox*, struct PlayState*);
 
 typedef struct MailBox {
     /* 0x000 */ Actor actor;

@@ -10,7 +10,7 @@ void Bg_Draw_Actor_draw(Actor* thisx, PlayState* play);
 ActorProfile Field_Draw_Profile = {
     /* */ ACTOR_FIELD_DRAW,
     /* */ ACTOR_PART_5,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Field_Draw),

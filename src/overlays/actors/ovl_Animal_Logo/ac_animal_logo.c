@@ -10,7 +10,7 @@ void aAL_actor_draw(Actor* thisx, PlayState* play);
 ActorProfile Animal_Logo_Profile = {
     /* */ ACTOR_ANIMAL_LOGO,
     /* */ ACTOR_PART_4,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Animal_Logo),

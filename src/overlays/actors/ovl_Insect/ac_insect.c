@@ -10,7 +10,7 @@ void aINS_actor_draw(Actor* thisx, PlayState* play);
 ActorProfile Insect_Profile = {
     /* */ ACTOR_INSECT,
     /* */ ACTOR_PART_7,
-    /* */ 48,
+    /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Insect),
