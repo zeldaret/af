@@ -29,7 +29,7 @@
 
       - [0x007060, asm, boot/007060]
       - [0x0073A0, asm, boot/0073A0]
-      - [0x0073F0, asm, boot/padsetup]
+      - [0x0073F0, c, boot/O2/padsetup]
 
       # libc64
       - [0x007530, asm, boot/libc64/math64]
