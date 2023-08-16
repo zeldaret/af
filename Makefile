@@ -24,6 +24,8 @@ OBJDUMP_BUILD ?= 0
 N_THREADS ?= $(shell nproc)
 # Not meant to be used by normal users. Toggles some options to improve the use of the warning checker system
 WARNINGS_CHECK ?= 0
+# Disassembles matched functions and migrated data as well
+FULL_DISASM ?= 0
 
 # Set prefix to mips binutils binaries (mips-linux-gnu-ld => 'mips-linux-gnu-') - Change at your own risk!
 # In nearly all cases, not having 'mips-linux-gnu-*' binaries on the PATH is indicative of missing dependencies
@@ -168,6 +170,10 @@ endif
 SPLAT_FLAGS ?=
 ifneq ($(WARNINGS_CHECK), 0)
     SPLAT_FLAGS += --stdout-only
+endif
+
+ifneq ($(FULL_DISASM), 0)
+	SPLAT_FLAGS += --disassemble-all
 endif
 
 #### Files ####
