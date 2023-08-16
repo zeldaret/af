@@ -3,6 +3,6 @@
 
 #include "ultra64.h"
 
-void GetCurrentMilliseconds(void);
+u32 GetCurrentMilliseconds(void);
 
 #endif

@@ -1,4 +1,4 @@
-#include "ultra64.h"
+#include "getcurrentms.h"
 
 // original name unknown
 u32 GetCurrentMilliseconds(void) {
