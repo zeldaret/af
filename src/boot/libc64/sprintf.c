@@ -14,15 +14,14 @@ int vsprintf(char* dst, char* fmt, va_list args) {
     }
     return ret;
 }
-
-int sprintf(char* dst, const char* fmt, ...) {
+int sprintf(char* s, const char* fmt, ...) {
     s32 ret;
     va_list args;
     va_start(args, fmt);
 
-    ret = _Printf((outfun*)proutPrintf, dst, fmt, args);
+    ret = _Printf((outfun*)proutPrintf, s, fmt, args);
     if (ret >= 0) {
-        dst[ret] = '\0';
+        s[ret] = '\0';
     }
 
     va_end(args);
