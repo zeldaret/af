@@ -14,7 +14,8 @@
 #define ABS(x) ((x) < 0 ? -(x) : (x))
 
 #define CLAMP(x, min, max) ((x) < (min) ? (min) : (x) > (max) ? (max) : (x))
-
+#define CLAMP_MAX(x, max) ((x) > (max) ? (max) : (x))
+#define CLAMP_MIN(x, min) ((x) < (min) ? (min) : (x))
 #define MEDIAN3(a1, a2, a3) \
     ((a2 >= a1) ? ((a3 >= a2) ? a2 : ((a1 >= a3) ? a1 : a3)) : ((a2 >= a3) ? a2 : ((a3 >= a1) ? a1 : a3)))
 
