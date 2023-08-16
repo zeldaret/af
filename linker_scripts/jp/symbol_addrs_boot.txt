@@ -2,7 +2,7 @@
 
 entrypoint = 0x80025C00; // type:func
 
-func_80025C60_jp = 0x80025C60; // type:func
+bootclear = 0x80025C60; // type:func
 bootproc = 0x80025CC0; // type:func
 
 Main_ThreadEntry = 0x80025DF0; // type:func
