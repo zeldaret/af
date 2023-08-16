@@ -5,7 +5,6 @@
  *    - Argument 0: Name of the actor overlay segment in the spec (without the ovl_ part)
  *    - Argument 1: Enum value for this actor
  *    - Argument 2: Allocation type (normal, permanent or absolute)
- *    - Argument 3: Actor name, as a string (used for debug prints)
  *
  * DEFINE_ACTOR_INTERNAL should be used for actors that aren't an overlay, with the same arguments as DEFINE_ACTOR
  *
