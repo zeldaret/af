@@ -8,11 +8,11 @@ void func_80A66978_jp(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Uki_Profile = {
-    /* */ 111,
+    /* */ ACTOR_UKI,
     /* */ ACTOR_PART_4,
     /* */ 16,
-    /* */ 32786,
-    /* */ 48,
+    /* */ 0x8012,
+    /* */ OBJECT_48,
     /* */ sizeof(Uki),
     /* */ aUKI_actor_ct,
     /* */ aUKI_actor_dt,

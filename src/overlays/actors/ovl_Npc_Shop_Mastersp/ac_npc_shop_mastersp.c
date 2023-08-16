@@ -9,11 +9,11 @@ void aSHM_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Npc_Shop_Mastersp_Profile = {
-    /* */ 116,
+    /* */ ACTOR_NPC_SHOP_MASTERSP,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53278,
-    /* */ 3,
+    /* */ 0xD01E,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Shop_Mastersp),
     /* */ aSHM_actor_ct,
     /* */ aSHM_actor_dt,

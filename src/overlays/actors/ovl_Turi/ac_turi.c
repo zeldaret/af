@@ -8,11 +8,11 @@ void aTUR_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Turi_Profile = {
-    /* */ 158,
+    /* */ ACTOR_TURI,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22583,
-    /* */ 3,
+    /* */ 0x5837,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Turi),
     /* */ aTUR_actor_ct,
     /* */ aTUR_actor_dt,

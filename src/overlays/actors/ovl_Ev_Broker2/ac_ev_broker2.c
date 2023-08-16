@@ -9,11 +9,11 @@ void aEBR2_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Ev_Broker2_Profile = {
-    /* */ 85,
+    /* */ ACTOR_EV_BROKER2,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53267,
-    /* */ 3,
+    /* */ 0xD013,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Ev_Broker2),
     /* */ aEBR2_actor_ct,
     /* */ aEBR2_actor_dt,

@@ -9,11 +9,11 @@ void aCD0_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Countdown_Npc0_Profile = {
-    /* */ 144,
+    /* */ ACTOR_COUNTDOWN_NPC0,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Countdown_Npc0),
     /* */ aCD0_actor_ct,
     /* */ aCD0_actor_dt,

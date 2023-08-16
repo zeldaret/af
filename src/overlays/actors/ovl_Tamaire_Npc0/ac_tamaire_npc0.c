@@ -9,11 +9,11 @@ void aTMN0_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Tamaire_Npc0_Profile = {
-    /* */ 150,
+    /* */ ACTOR_TAMAIRE_NPC0,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53331,
-    /* */ 3,
+    /* */ 0xD053,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Tamaire_Npc0),
     /* */ aTMN0_actor_ct,
     /* */ aTMN0_actor_dt,

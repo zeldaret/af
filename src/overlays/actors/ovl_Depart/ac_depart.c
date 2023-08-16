@@ -8,11 +8,11 @@ void aDPT_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Depart_Profile = {
-    /* */ 97,
+    /* */ ACTOR_DEPART,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22535,
-    /* */ 3,
+    /* */ 0x5807,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Depart),
     /* */ aDPT_actor_ct,
     /* */ aDPT_actor_dt,

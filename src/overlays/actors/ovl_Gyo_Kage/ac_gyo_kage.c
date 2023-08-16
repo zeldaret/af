@@ -8,11 +8,11 @@ void aGYO_KAGE_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Gyo_Kage_Profile = {
-    /* */ 133,
+    /* */ ACTOR_GYO_KAGE,
     /* */ ACTOR_PART_4,
     /* */ 48,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Gyo_Kage),
     /* */ aGYO_KAGE_actor_ct,
     /* */ aGYO_KAGE_actor_dt,

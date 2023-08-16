@@ -9,11 +9,11 @@ void aNOR_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Normal_Npc_Profile = {
-    /* */ 113,
+    /* */ ACTOR_NORMAL_NPC,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Normal_Npc),
     /* */ aNOR_actor_ct,
     /* */ aNOR_actor_dt,

@@ -8,11 +8,11 @@ void aSMAN_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Snowman_Profile = {
-    /* */ 27,
+    /* */ ACTOR_SNOWMAN,
     /* */ ACTOR_PART_4,
     /* */ 16,
-    /* */ 32781,
-    /* */ 25,
+    /* */ 0x800D,
+    /* */ OBJECT_25,
     /* */ sizeof(Snowman),
     /* */ aSMAN_actor_ct,
     /* */ aSMAN_actor_dt,

@@ -8,11 +8,11 @@ void aGOZ_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Goza_Profile = {
-    /* */ 124,
+    /* */ ACTOR_GOZA,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22570,
-    /* */ 3,
+    /* */ 0x582A,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Goza),
     /* */ aGOZ_actor_ct,
     /* */ func_80A76208_jp,

@@ -8,11 +8,11 @@ void aTUK_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Tukimi_Profile = {
-    /* */ 130,
+    /* */ ACTOR_TUKIMI,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22574,
-    /* */ 3,
+    /* */ 0x582E,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Tukimi),
     /* */ aTUK_actor_ct,
     /* */ aTUK_actor_dt,

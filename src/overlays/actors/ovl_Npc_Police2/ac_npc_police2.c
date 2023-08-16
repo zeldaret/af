@@ -9,11 +9,11 @@ void aPOL2_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Npc_Police2_Profile = {
-    /* */ 76,
+    /* */ ACTOR_NPC_POLICE2,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53264,
-    /* */ 3,
+    /* */ 0xD010,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Police2),
     /* */ aPOL2_actor_ct,
     /* */ aPOL2_actor_dt,

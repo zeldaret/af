@@ -9,11 +9,11 @@ void aNSO_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Npc_Sleep_Obaba_Profile = {
-    /* */ 31,
+    /* */ ACTORNPC_SLEEP_OBABA,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53304,
-    /* */ 3,
+    /* */ 0xD038,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Sleep_Obaba),
     /* */ aNSO_actor_ct,
     /* */ aNSO_actor_dt,

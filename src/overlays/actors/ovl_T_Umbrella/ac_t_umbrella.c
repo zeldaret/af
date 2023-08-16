@@ -8,11 +8,11 @@ void aTUMB_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile T_Umbrella_Profile = {
-    /* */ 47,
+    /* */ ACTOR_T_UMBRELLA,
     /* */ ACTOR_PART_4,
     /* */ 48,
-    /* */ 0,
-    /* */ 28,
+    /* */ 0x0000,
+    /* */ OBJECT_28,
     /* */ sizeof(T_Umbrella),
     /* */ aTUMB_actor_ct,
     /* */ (ActorFunc)none_proc1,

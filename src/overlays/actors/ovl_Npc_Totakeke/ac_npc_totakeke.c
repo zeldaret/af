@@ -9,11 +9,11 @@ void aNTT_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Npc_Totakeke_Profile = {
-    /* */ 153,
+    /* */ ACTOR_NPC_TOTAKEKE,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53341,
-    /* */ 3,
+    /* */ 0xD05D,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Totakeke),
     /* */ aNTT_actor_ct,
     /* */ aNTT_actor_dt,

@@ -9,11 +9,11 @@ void func_80528598(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Hanabi_Npc0_Profile = {
-    /* */ 25,
+    /* */ ACTOR_HANABI_NPC0,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Hanabi_Npc0),
     /* */ func_80528514,
     /* */ func_805285d0,

@@ -9,11 +9,11 @@ void aMIK_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Mikanbox_Profile = {
-    /* */ 172,
+    /* */ ACTOR_MIKANBOX,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22593,
-    /* */ 3,
+    /* */ 0x5841,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Mikanbox),
     /* */ func_805b3010,
     /* */ aMIK_actor_dt,

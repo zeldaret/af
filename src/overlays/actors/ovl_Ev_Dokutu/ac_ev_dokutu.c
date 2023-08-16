@@ -9,11 +9,11 @@ void aEVD_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Ev_Dokutu_Profile = {
-    /* */ 179,
+    /* */ ACTOR_EV_DOKUTU,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53356,
-    /* */ 3,
+    /* */ 0xD06C,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Ev_Dokutu),
     /* */ aEVD_actor_ct,
     /* */ aEVD_actor_dt,

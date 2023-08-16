@@ -9,11 +9,11 @@ void aPMAN_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Npc_Post_Man_Profile = {
-    /* */ 36,
+    /* */ ACTOR_NPC_POST_MAN,
     /* */ ACTOR_PART_NPC,
     /* */ 16,
-    /* */ 53265,
-    /* */ 3,
+    /* */ 0xD011,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Post_Man),
     /* */ aPMAN_actor_ct,
     /* */ aPMAN_actor_dt,

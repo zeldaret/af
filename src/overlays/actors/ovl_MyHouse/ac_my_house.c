@@ -8,11 +8,11 @@ void func_80A071A0_jp(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile MyHouse_Profile = {
-    /* */ 43,
+    /* */ ACTOR_MY_HOUSE,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22528,
-    /* */ 3,
+    /* */ 0x5800,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(MyHouse),
     /* */ func_80A05D50_jp,
     /* */ func_80A05F88_jp,

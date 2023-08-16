@@ -8,11 +8,11 @@ void func_805abe88(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Count02_Profile = {
-    /* */ 154,
+    /* */ ACTOR_COUNT02,
     /* */ ACTOR_PART_0,
     /* */ 48,
-    /* */ 22578,
-    /* */ 3,
+    /* */ 0x5832,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Count02),
     /* */ func_805ab8b8,
     /* */ func_805ab988,

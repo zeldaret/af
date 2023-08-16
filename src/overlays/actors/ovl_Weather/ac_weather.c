@@ -8,11 +8,11 @@ void Weather_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Weather_Profile = {
-    /* */ 55,
+    /* */ ACTOR_WEATHER,
     /* */ ACTOR_PART_7,
     /* */ 536870960,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Weather),
     /* */ Weather_Actor_ct,
     /* */ Weather_Actor_dt,

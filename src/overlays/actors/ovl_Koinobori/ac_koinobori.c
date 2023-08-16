@@ -8,11 +8,11 @@ void aKOI_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Koinobori_Profile = {
-    /* */ 163,
+    /* */ ACTOR_KOINOBORI,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22585,
-    /* */ 3,
+    /* */ 0x5839,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Koinobori),
     /* */ aKOI_actor_ct,
     /* */ aKOI_actor_dt,

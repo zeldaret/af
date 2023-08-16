@@ -9,11 +9,11 @@ void aEART_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Ev_Artist_Profile = {
-    /* */ 44,
+    /* */ ACTOR_EV_ARTIST,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53248,
-    /* */ 3,
+    /* */ 0xD000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Ev_Artist),
     /* */ aEART_actor_ct,
     /* */ aEART_actor_dt,

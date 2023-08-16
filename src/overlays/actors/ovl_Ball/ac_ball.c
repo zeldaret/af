@@ -8,11 +8,11 @@ void aBALL_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Ball_Profile = {
-    /* */ 9,
+    /* */ ACTOR_BALL,
     /* */ ACTOR_PART_4,
     /* */ 16,
-    /* */ 32769,
-    /* */ 3,
+    /* */ 0x8001,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Ball),
     /* */ aBALL_actor_ct,
     /* */ aBALL_actor_dt,

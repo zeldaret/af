@@ -8,11 +8,11 @@ void aBRS_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile BrShop_Profile = {
-    /* */ 54,
+    /* */ ACTOR_BR_SHOP,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22566,
-    /* */ 3,
+    /* */ 0x5826,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(BrShop),
     /* */ aBRS_actor_ct,
     /* */ aBRS_actor_dt,

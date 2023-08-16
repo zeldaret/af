@@ -8,11 +8,11 @@ void aCNV_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Conveni_Profile = {
-    /* */ 95,
+    /* */ ACTOR_CONVENI,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22533,
-    /* */ 3,
+    /* */ 0x5805,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Conveni),
     /* */ aCNV_actor_ct,
     /* */ aCNV_actor_dt,

@@ -6,11 +6,11 @@ void aTFL_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile T_Flag_Profile = {
-    /* */ 139,
+    /* */ ACTOR_T_FLAG,
     /* */ ACTOR_PART_4,
     /* */ 48,
-    /* */ 0,
-    /* */ 6,
+    /* */ 0x0000,
+    /* */ OBJECT_6,
     /* */ sizeof(T_Flag),
     /* */ (ActorFunc)none_proc1,
     /* */ (ActorFunc)none_proc1,

@@ -8,11 +8,11 @@ void aTNC_actor_move(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Tunahiki_Control_Profile = {
-    /* */ 160,
+    /* */ ACTOR_TUNAHIKI,
     /* */ ACTOR_PART_7,
     /* */ 16,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Tunahiki_Control),
     /* */ aTNC_actor_ct,
     /* */ aTNC_actor_dt,

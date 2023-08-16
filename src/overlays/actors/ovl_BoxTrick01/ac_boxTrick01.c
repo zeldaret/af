@@ -8,11 +8,11 @@ void BoxTrick01_Actor_move(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile BoxTrick01_Profile = {
-    /* */ 16,
+    /* */ ACTOR_BOX_TRICK_01,
     /* */ ACTOR_PART_4,
     /* */ 48,
-    /* */ 32772,
-    /* */ 3,
+    /* */ 0x8004,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(BoxTrick01),
     /* */ BoxTrick01_Actor_ct,
     /* */ BoxTrick01_Actor_dt,

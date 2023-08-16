@@ -8,11 +8,11 @@ void aYAT_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Yatai_Profile = {
-    /* */ 126,
+    /* */ ACTOR_YATAI,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22572,
-    /* */ 3,
+    /* */ 0x582C,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Yatai),
     /* */ aYAT_actor_ct,
     /* */ func_80A76EC4_jp,

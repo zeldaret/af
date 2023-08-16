@@ -9,11 +9,11 @@ void aNG2_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Npc_Guide2_Profile = {
-    /* */ 58,
+    /* */ ACTOR_NPC_GUIDE2,
     /* */ ACTOR_PART_NPC,
     /* */ 48,
-    /* */ 53253,
-    /* */ 3,
+    /* */ 0xD005,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Guide2),
     /* */ aNG2_actor_ct,
     /* */ aNG2_actor_dt,

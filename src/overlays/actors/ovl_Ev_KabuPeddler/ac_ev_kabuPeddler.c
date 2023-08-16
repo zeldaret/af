@@ -9,11 +9,11 @@ void aEKPD_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Ev_KabuPeddler_Profile = {
-    /* */ 62,
+    /* */ ACTOR_EV_KABU_PEDDLER,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53255,
-    /* */ 3,
+    /* */ 0xD007,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Ev_KabuPeddler),
     /* */ aEKPD_actor_ct,
     /* */ aEKPD_actor_dt,

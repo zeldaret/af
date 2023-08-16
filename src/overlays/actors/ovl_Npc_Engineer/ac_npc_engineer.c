@@ -9,11 +9,11 @@ void aNEG_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Npc_Engineer_Profile = {
-    /* */ 29,
+    /* */ ACTOR_NPC_ENGINEER,
     /* */ ACTOR_PART_NPC,
     /* */ 536870928,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Engineer),
     /* */ aNEG_actor_ct,
     /* */ aNEG_actor_dt,

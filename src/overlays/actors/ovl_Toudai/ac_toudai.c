@@ -8,11 +8,11 @@ void aTOU_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Toudai_Profile = {
-    /* */ 175,
+    /* */ ACTOR_TOUDAI,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22595,
-    /* */ 3,
+    /* */ 0x5843,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Toudai),
     /* */ aTOU_actor_ct,
     /* */ aTOU_actor_dt,

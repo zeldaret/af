@@ -9,11 +9,11 @@ void aTKN0_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Tokyoso_Npc0_Profile = {
-    /* */ 122,
+    /* */ ACTOR_TOKYOSO_NPC0,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53293,
-    /* */ 3,
+    /* */ 0xD02D,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Tokyoso_Npc0),
     /* */ aTKN0_actor_ct,
     /* */ aTKN0_actor_dt,

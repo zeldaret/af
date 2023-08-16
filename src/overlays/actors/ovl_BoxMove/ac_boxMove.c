@@ -8,11 +8,11 @@ void BoxMove_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile BoxMove_Profile = {
-    /* */ 15,
+    /* */ ACTOR_BOX_MOVE,
     /* */ ACTOR_PART_4,
     /* */ 0,
-    /* */ 0,
-    /* */ 17,
+    /* */ 0x0000,
+    /* */ OBJECT_17,
     /* */ sizeof(BoxMove),
     /* */ BoxMove_Actor_ct,
     /* */ BoxMove_Actor_dt,

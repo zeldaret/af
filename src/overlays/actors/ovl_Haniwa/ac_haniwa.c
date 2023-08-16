@@ -8,11 +8,11 @@ void aHNW_actor_init(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Haniwa_Profile = {
-    /* */ 10,
+    /* */ ACTOR_HANIWA,
     /* */ ACTOR_PART_4,
     /* */ 0,
-    /* */ 40964,
-    /* */ 12,
+    /* */ 0xA004,
+    /* */ OBJECT_12,
     /* */ sizeof(Haniwa),
     /* */ aHNW_actor_ct,
     /* */ aHNW_actor_dt,

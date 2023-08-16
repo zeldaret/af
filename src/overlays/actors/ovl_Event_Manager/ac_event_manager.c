@@ -9,11 +9,11 @@ void aEvMgr_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Event_Manager_Profile = {
-    /* */ 52,
+    /* */ ACTOR_EVENT_MANAGER,
     /* */ ACTOR_PART_0,
     /* */ 536870960,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Event_Manager),
     /* */ aEvMgr_ct,
     /* */ aEvMgr_dt,

@@ -8,11 +8,11 @@ void Airplane_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Airplane_Profile = {
-    /* */ 5,
+    /* */ ACTOR_AIRPLANE,
     /* */ ACTOR_PART_4,
     /* */ 48,
-    /* */ 32768,
-    /* */ 7,
+    /* */ 0x8000,
+    /* */ OBJECT_7,
     /* */ sizeof(Airplane),
     /* */ Airplane_Actor_ct,
     /* */ Airplane_Actor_dt,

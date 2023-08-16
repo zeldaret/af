@@ -9,11 +9,11 @@ void aNRST_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Npc_Restart_Profile = {
-    /* */ 176,
+    /* */ ACTOR_NPC_RESTART,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53354,
-    /* */ 3,
+    /* */ 0xD06A,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Restart),
     /* */ aNRST_actor_ct,
     /* */ aNRST_actor_dt,

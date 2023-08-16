@@ -8,11 +8,11 @@ void bCI_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile BgCherryItem_Profile = {
-    /* */ 79,
+    /* */ ACTOR_BG_CHERRY_ITEM,
     /* */ ACTOR_PART_0,
     /* */ 48,
-    /* */ 0,
-    /* */ 36,
+    /* */ 0x0000,
+    /* */ OBJECT_36,
     /* */ sizeof(BgCherryItem),
     /* */ bCI_actor_ct,
     /* */ bCI_actor_dt,

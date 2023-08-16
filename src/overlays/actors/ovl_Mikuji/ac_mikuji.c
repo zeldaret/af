@@ -8,11 +8,11 @@ void func_805b43f4(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Mikuji_Profile = {
-    /* */ 134,
+    /* */ ACTOR_MIKUJI,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22576,
-    /* */ 3,
+    /* */ 0x5830,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Mikuji),
     /* */ func_805b414c,
     /* */ func_80A82638_jp,

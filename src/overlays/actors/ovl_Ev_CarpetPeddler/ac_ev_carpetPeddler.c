@@ -9,11 +9,11 @@ void aECPD_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Ev_CarpetPeddler_Profile = {
-    /* */ 61,
+    /* */ ACTOR_EV_CARPET_PEDDLER,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53254,
-    /* */ 3,
+    /* */ 0xD006,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Ev_CarpetPeddler),
     /* */ aECPD_actor_ct,
     /* */ aECPD_actor_dt,

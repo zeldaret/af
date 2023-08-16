@@ -9,11 +9,11 @@ void aHM1_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Hanami_Npc1_Profile = {
-    /* */ 100,
+    /* */ ACTOR_HANAMI_NPC1,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Hanami_Npc1),
     /* */ aHM1_actor_ct,
     /* */ aHM1_actor_dt,

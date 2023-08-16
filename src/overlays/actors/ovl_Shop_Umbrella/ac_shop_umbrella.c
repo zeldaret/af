@@ -8,11 +8,11 @@ void Shop_Umbrella_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Shop_Umbrella_Profile = {
-    /* */ 128,
+    /* */ ACTOR_SHOP_UMBRELLA,
     /* */ ACTOR_PART_4,
     /* */ 48,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Shop_Umbrella),
     /* */ Shop_Umbrella_Actor_ct,
     /* */ Shop_Umbrella_Actor_dt,

@@ -8,11 +8,11 @@ void Fieldm_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Fieldm_Draw_Profile = {
-    /* */ 3,
+    /* */ ACTOR_FIELDM_DRAW,
     /* */ ACTOR_PART_4,
     /* */ 0,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Fieldm_Draw),
     /* */ Fieldm_Actor_ct,
     /* */ Fieldm_Actor_dt,

@@ -8,11 +8,11 @@ void Shop_Goods_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Shop_Goods_Profile = {
-    /* */ 53,
+    /* */ ACTOR_SHOP_GOODS,
     /* */ ACTOR_PART_7,
     /* */ 48,
-    /* */ 0,
-    /* */ 30,
+    /* */ 0x0000,
+    /* */ OBJECT_30,
     /* */ sizeof(Shop_Goods),
     /* */ Shop_Goods_Actor_ct,
     /* */ Shop_Goods_Actor_dt,

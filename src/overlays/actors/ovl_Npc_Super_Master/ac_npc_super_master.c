@@ -9,11 +9,11 @@ void aNSPM_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Npc_Super_Master_Profile = {
-    /* */ 66,
+    /* */ ACTOR_NPC_SUPER_MASTER,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53258,
-    /* */ 3,
+    /* */ 0xD00A,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Super_Master),
     /* */ aNSPM_actor_ct,
     /* */ aNSPM_actor_dt,

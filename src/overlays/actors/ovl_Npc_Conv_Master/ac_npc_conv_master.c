@@ -9,11 +9,11 @@ void aNCM_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Npc_Conv_Master_Profile = {
-    /* */ 65,
+    /* */ ACTOR_NPC_CONV_MASTER,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53257,
-    /* */ 3,
+    /* */ 0xD009,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Conv_Master),
     /* */ aNCM_actor_ct,
     /* */ aNCM_actor_dt,

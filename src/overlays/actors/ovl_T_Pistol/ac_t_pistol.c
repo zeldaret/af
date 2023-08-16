@@ -8,11 +8,11 @@ void aTPT_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile T_Pistol_Profile = {
-    /* */ 138,
+    /* */ ACTOR_T_PISTOL,
     /* */ ACTOR_PART_4,
     /* */ 48,
-    /* */ 0,
-    /* */ 16,
+    /* */ 0x0000,
+    /* */ OBJECT_16,
     /* */ sizeof(T_Pistol),
     /* */ aTPT_actor_ct,
     /* */ (ActorFunc)none_proc1,

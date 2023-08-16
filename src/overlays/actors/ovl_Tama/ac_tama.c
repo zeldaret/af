@@ -8,11 +8,11 @@ void aTAM_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Tama_Profile = {
-    /* */ 156,
+    /* */ ACTOR_TAMA,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22579,
-    /* */ 3,
+    /* */ 0x5833,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Tama),
     /* */ aTAM_actor_ct,
     /* */ func_80A8EF30_jp,

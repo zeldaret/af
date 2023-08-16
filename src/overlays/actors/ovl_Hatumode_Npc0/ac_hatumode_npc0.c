@@ -9,11 +9,11 @@ void func_8052ac70(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Hatumode_Npc0_Profile = {
-    /* */ 152,
+    /* */ ACTOR_HATUMODE_NPC0,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53336,
-    /* */ 3,
+    /* */ 0xD058,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Hatumode_Npc0),
     /* */ func_8052ab54,
     /* */ func_8052ac90,

@@ -8,11 +8,11 @@ void aLOT_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Lotus_Profile = {
-    /* */ 170,
+    /* */ ACTOR_LOTUS,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22592,
-    /* */ 3,
+    /* */ 0x5840,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Lotus),
     /* */ aLOT_actor_ct,
     /* */ aLOT_actor_dt,

@@ -9,11 +9,11 @@ void aHWN_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Halloween_Npc_Profile = {
-    /* */ 21,
+    /* */ ACTOR_HALLOWEEN_NPC,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Halloween_Npc),
     /* */ aHWN_actor_ct,
     /* */ aHWN_actor_dt,

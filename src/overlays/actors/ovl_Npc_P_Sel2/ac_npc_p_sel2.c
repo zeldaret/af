@@ -9,11 +9,11 @@ void aNPS2_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Npc_P_Sel2_Profile = {
-    /* */ 102,
+    /* */ ACTOR_NPC_P_SEL2,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53279,
-    /* */ 3,
+    /* */ 0xD01F,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_P_Sel2),
     /* */ aNPS2_actor_ct,
     /* */ aNPS2_actor_dt,

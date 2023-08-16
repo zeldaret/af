@@ -8,11 +8,11 @@ void aFLEW_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile FallSESW_Profile = {
-    /* */ 84,
+    /* */ ACTOR_FALL_SESW,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22542,
-    /* */ 3,
+    /* */ 0x580E,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(FallSESW),
     /* */ func_80A034A0_jp,
     /* */ func_80A034B0_jp,

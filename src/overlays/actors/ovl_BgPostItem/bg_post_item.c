@@ -7,11 +7,11 @@ void bPTI_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile BgPostItem_Profile = {
-    /* */ 82,
+    /* */ ACTOR_BG_POST_ITEM,
     /* */ ACTOR_PART_0,
     /* */ 48,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(BgPostItem),
     /* */ bPTI_actor_ct,
     /* */ (ActorFunc)none_proc1,

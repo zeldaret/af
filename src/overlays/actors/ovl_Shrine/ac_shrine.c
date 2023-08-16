@@ -8,11 +8,11 @@ void aSHR_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Shrine_Profile = {
-    /* */ 92,
+    /* */ ACTOR_SHRINE,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22565,
-    /* */ 3,
+    /* */ 0x5825,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Shrine),
     /* */ aSHR_actor_ct,
     /* */ aSHR_actor_dt,

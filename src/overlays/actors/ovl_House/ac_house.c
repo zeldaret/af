@@ -8,11 +8,11 @@ void aHUS_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile House_Profile = {
-    /* */ 40,
+    /* */ ACTOR_HOUSE,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 20480,
-    /* */ 3,
+    /* */ 0x5000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(House),
     /* */ aHUS_actor_ct,
     /* */ aHUS_actor_dt,

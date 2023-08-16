@@ -8,11 +8,11 @@ void eChryMgr_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Ev_Cherry_Manager_Profile = {
-    /* */ 120,
+    /* */ ACTOR_EV_CHERRY_MANAGER,
     /* */ ACTOR_PART_7,
     /* */ 536870912,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Ev_Cherry_Manager),
     /* */ eChryMgr_ct,
     /* */ eChryMgr_dt,

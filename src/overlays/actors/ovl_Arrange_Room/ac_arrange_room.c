@@ -8,11 +8,11 @@ void Arrange_Room_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Arrange_Room_Profile = {
-    /* */ 17,
+    /* */ ACTOR_ARRANGE_ROOM,
     /* */ ACTOR_PART_5,
     /* */ 48,
-    /* */ 32774,
-    /* */ 3,
+    /* */ 0x8006,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Arrange_Room),
     /* */ Arrange_Room_Actor_ct,
     /* */ Arrange_Room_Actor_dt,

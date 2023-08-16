@@ -9,11 +9,11 @@ void aKM0_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Kamakura_Npc0_Profile = {
-    /* */ 35,
+    /* */ ACTOR_KAMAKURA_NPC0,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Kamakura_Npc0),
     /* */ aKM0_actor_ct,
     /* */ aKM0_actor_dt,

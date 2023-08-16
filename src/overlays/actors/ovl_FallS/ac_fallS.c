@@ -8,11 +8,11 @@ void aFLS_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile FallS_Profile = {
-    /* */ 83,
+    /* */ ACTOR_FALL_S,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22541,
-    /* */ 3,
+    /* */ 0x580D,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(FallS),
     /* */ func_80A03230_jp,
     /* */ func_80A03240_jp,

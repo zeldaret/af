@@ -8,11 +8,11 @@ void aHG_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile House_Goki_Profile = {
-    /* */ 135,
+    /* */ ACTOR_HOUSE_GOKI,
     /* */ ACTOR_PART_4,
     /* */ 16,
-    /* */ 0,
-    /* */ 369,
+    /* */ 0x0000,
+    /* */ OBJECT_369,
     /* */ sizeof(House_Goki),
     /* */ aHG_actor_ct,
     /* */ func_80A83770_jp,

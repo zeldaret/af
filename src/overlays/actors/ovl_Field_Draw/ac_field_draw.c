@@ -8,11 +8,11 @@ void Bg_Draw_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Field_Draw_Profile = {
-    /* */ 4,
+    /* */ ACTOR_FIELD_DRAW,
     /* */ ACTOR_PART_5,
     /* */ 48,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Field_Draw),
     /* */ Bg_Draw_Actor_ct,
     /* */ Bg_Draw_Actor_dt,

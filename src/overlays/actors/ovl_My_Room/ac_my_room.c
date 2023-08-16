@@ -8,11 +8,11 @@ void My_Room_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile My_Room_Profile = {
-    /* */ 11,
+    /* */ ACTOR_MY_ROOM,
     /* */ ACTOR_PART_4,
     /* */ 536870960,
-    /* */ 32770,
-    /* */ 3,
+    /* */ 0x8002,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(My_Room),
     /* */ My_Room_Actor_ct,
     /* */ My_Room_Actor_dt,

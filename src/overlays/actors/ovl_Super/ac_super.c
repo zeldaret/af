@@ -8,11 +8,11 @@ void aSPR_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Super_Profile = {
-    /* */ 96,
+    /* */ ACTOR_SUPER,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22534,
-    /* */ 3,
+    /* */ 0x5806,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Super),
     /* */ aSPR_actor_ct,
     /* */ aSPR_actor_dt,

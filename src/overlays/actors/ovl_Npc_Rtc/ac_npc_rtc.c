@@ -9,11 +9,11 @@ void aNRTC_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Npc_Rtc_Profile = {
-    /* */ 174,
+    /* */ ACTOR_NPC_RTC,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53350,
-    /* */ 3,
+    /* */ 0xD066,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Rtc),
     /* */ aNRTC_actor_ct,
     /* */ aNRTC_actor_dt,

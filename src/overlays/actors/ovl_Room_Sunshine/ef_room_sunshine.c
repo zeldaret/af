@@ -8,11 +8,11 @@ void Ef_Room_SunshineR_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Room_Sunshine_Profile = {
-    /* */ 6,
+    /* */ ACTOR_ROOM_SUNSHINE,
     /* */ ACTOR_PART_6,
     /* */ 48,
-    /* */ 0,
-    /* */ 5,
+    /* */ 0x0000,
+    /* */ OBJECT_5,
     /* */ sizeof(Room_Sunshine),
     /* */ Ef_Room_Sunshine_actor_ct,
     /* */ (ActorFunc)none_proc1,

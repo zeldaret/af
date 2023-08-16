@@ -8,11 +8,11 @@ void aPOFF_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Post_Office_Profile = {
-    /* */ 56,
+    /* */ ACTOR_POST_OFFICE,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22536,
-    /* */ 3,
+    /* */ 0x5808,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Post_Office),
     /* */ aPOFF_actor_ct,
     /* */ aPOFF_actor_dt,

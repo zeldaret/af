@@ -9,11 +9,11 @@ void aESNT_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Ev_Santa_Profile = {
-    /* */ 75,
+    /* */ ACTOR_EV_SANTA,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53263,
-    /* */ 3,
+    /* */ 0xD00F,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Ev_Santa),
     /* */ aESNT_actor_ct,
     /* */ aESNT_actor_dt,

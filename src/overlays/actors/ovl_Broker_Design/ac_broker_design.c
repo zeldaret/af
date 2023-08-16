@@ -8,11 +8,11 @@ void Broker_Design_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Broker_Design_Profile = {
-    /* */ 86,
+    /* */ ACTOR_BROKER_DESIGN,
     /* */ ACTOR_PART_4,
     /* */ 48,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Broker_Design),
     /* */ Broker_Design_Actor_ct,
     /* */ Broker_Design_Actor_dt,

@@ -8,11 +8,11 @@ void aINS_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Insect_Profile = {
-    /* */ 59,
+    /* */ ACTOR_INSECT,
     /* */ ACTOR_PART_7,
     /* */ 48,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Insect),
     /* */ aINS_actor_ct,
     /* */ aINS_actor_dt,

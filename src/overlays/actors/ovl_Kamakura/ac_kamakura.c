@@ -8,11 +8,11 @@ void aKKR_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Kamakura_Profile = {
-    /* */ 106,
+    /* */ ACTOR_KAMAKURA,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22569,
-    /* */ 3,
+    /* */ 0x5829,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Kamakura),
     /* */ aKKR_actor_ct,
     /* */ aKKR_actor_dt,

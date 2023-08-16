@@ -8,11 +8,11 @@ void Shop_Manekin_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Shop_Manekin_Profile = {
-    /* */ 50,
+    /* */ ACTOR_SHOP_MANEKIN,
     /* */ ACTOR_PART_7,
     /* */ 48,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Shop_Manekin),
     /* */ Shop_Manekin_Actor_ct,
     /* */ Shop_Manekin_Actor_dt,

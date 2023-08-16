@@ -8,11 +8,11 @@ void Ef_Lamp_Light_actor_move(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Lamp_Light_Profile = {
-    /* */ 7,
+    /* */ ACTOR_LAMP_LIGHT,
     /* */ ACTOR_PART_6,
     /* */ 48,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Lamp_Light),
     /* */ Ef_Lamp_Light_actor_ct,
     /* */ Ef_Lamp_Light_actor_dt,

@@ -9,11 +9,11 @@ void aPG_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Npc_Post_Girl_Profile = {
-    /* */ 28,
+    /* */ ACTOR_NPC_POST_GIRL,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53251,
-    /* */ 3,
+    /* */ 0xD003,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Post_Girl),
     /* */ aPG_actor_ct,
     /* */ aPG_actor_dt,

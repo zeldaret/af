@@ -8,11 +8,11 @@ void Shop_Indoor_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Shop_Indoor_Profile = {
-    /* */ 51,
+    /* */ ACTOR_SHOP_INDOOR,
     /* */ ACTOR_PART_5,
     /* */ 48,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Shop_Indoor),
     /* */ Shop_Indoor_Actor_ct,
     /* */ Shop_Indoor_Actor_dt,

@@ -8,11 +8,11 @@ void aPSM_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Psnowman_Profile = {
-    /* */ 88,
+    /* */ ACTOR_PSNOWMAN,
     /* */ ACTOR_PART_4,
     /* */ 0,
-    /* */ 40968,
-    /* */ 25,
+    /* */ 0xA008,
+    /* */ OBJECT_25,
     /* */ sizeof(Psnowman),
     /* */ aPSM_actor_ct,
     /* */ aPSM_actor_dt,

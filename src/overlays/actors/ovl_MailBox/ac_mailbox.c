@@ -8,11 +8,11 @@ void aMBX_actor_init(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile MailBox_Profile = {
-    /* */ 39,
+    /* */ ACTOR_MAIL_BOX,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 40960,
-    /* */ 26,
+    /* */ 0xA000,
+    /* */ OBJECT_26,
     /* */ sizeof(MailBox),
     /* */ aMBX_actor_ct,
     /* */ aMBX_actor_dt,

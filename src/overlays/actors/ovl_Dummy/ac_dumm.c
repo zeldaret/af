@@ -8,11 +8,11 @@ void Dummy_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Dummy_Profile = {
-    /* */ 180,
+    /* */ ACTOR_DUMMY,
     /* */ ACTOR_PART_7,
     /* */ 48,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Dummy),
     /* */ Dummy_Actor_ct,
     /* */ Dummy_Actor_dt,

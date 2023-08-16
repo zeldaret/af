@@ -9,11 +9,11 @@ void aEPK_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Ev_Pumpkin_Profile = {
-    /* */ 22,
+    /* */ ACTOR_EV_PUMPKIN,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Ev_Pumpkin),
     /* */ aEPK_actor_ct,
     /* */ aEPK_actor_dt,

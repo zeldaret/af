@@ -9,11 +9,11 @@ void aMJN3_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Npc_Majin3_Profile = {
-    /* */ 30,
+    /* */ ACTOR_NPC_MAJIN3,
     /* */ ACTOR_PART_NPC,
     /* */ 48,
-    /* */ 53352,
-    /* */ 3,
+    /* */ 0xD068,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Majin3),
     /* */ aMJN3_actor_ct,
     /* */ aMJN3_actor_dt,

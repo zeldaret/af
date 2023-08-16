@@ -9,11 +9,11 @@ void aEDZ_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Ev_Dozaemon_Profile = {
-    /* */ 168,
+    /* */ ACTOR_EV_DOZAEMON,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53348,
-    /* */ 3,
+    /* */ 0xD064,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Ev_Dozaemon),
     /* */ aEDZ_actor_ct,
     /* */ aEDZ_actor_dt,

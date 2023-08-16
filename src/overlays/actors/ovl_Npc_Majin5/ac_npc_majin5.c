@@ -9,11 +9,11 @@ void aNMJ5_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Npc_Majin5_Profile = {
-    /* */ 177,
+    /* */ ACTOR_NPC_MAJIN5,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53355,
-    /* */ 3,
+    /* */ 0xD06B,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Majin5),
     /* */ aNMJ5_actor_ct,
     /* */ aNMJ5_actor_dt,

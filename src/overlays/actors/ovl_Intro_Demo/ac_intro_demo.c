@@ -8,11 +8,11 @@ void aID_actor_move(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Intro_Demo_Profile = {
-    /* */ 91,
+    /* */ ACTOR_INTRO_DEMO,
     /* */ ACTOR_PART_7,
     /* */ 536870928,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Intro_Demo),
     /* */ aID_actor_ct,
     /* */ aID_actor_dt,

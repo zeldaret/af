@@ -9,11 +9,11 @@ void aQMgr_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Quest_Manager_Profile = {
-    /* */ 38,
+    /* */ ACTOR_QUEST_MANAGER,
     /* */ ACTOR_PART_7,
     /* */ 536870960,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Quest_Manager),
     /* */ aQMgr_actor_ct,
     /* */ aQMgr_actor_dt,

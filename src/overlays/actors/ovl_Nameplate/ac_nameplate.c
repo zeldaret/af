@@ -7,11 +7,11 @@ void aNP_actor_init(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Nameplate_Profile = {
-    /* */ 165,
+    /* */ ACTOR_NAMEPLATE,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 40978,
-    /* */ 3,
+    /* */ 0xA012,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Nameplate),
     /* */ func_80A963C0_jp,
     /* */ func_80A963D0_jp,

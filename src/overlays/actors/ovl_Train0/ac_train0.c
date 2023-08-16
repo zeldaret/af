@@ -8,11 +8,11 @@ void func_805c04e0(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Train0_Profile = {
-    /* */ 72,
+    /* */ ACTOR_TRAIN0,
     /* */ ACTOR_PART_0,
     /* */ 536870928,
-    /* */ 22538,
-    /* */ 3,
+    /* */ 0x580A,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Train0),
     /* */ func_805bfc28,
     /* */ func_805bfcdc,

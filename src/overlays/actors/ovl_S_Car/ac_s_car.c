@@ -8,11 +8,11 @@ void aSCR_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile S_Car_Profile = {
-    /* */ 99,
+    /* */ ACTOR_S_CAR,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22568,
-    /* */ 3,
+    /* */ 0x5828,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(S_Car),
     /* */ aSCR_actor_ct,
     /* */ aSCR_actor_dt,

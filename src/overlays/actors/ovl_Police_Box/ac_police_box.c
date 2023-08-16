@@ -8,11 +8,11 @@ void aPBOX_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Police_Box_Profile = {
-    /* */ 77,
+    /* */ ACTOR_POLICE_BOX,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22540,
-    /* */ 3,
+    /* */ 0x580C,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Police_Box),
     /* */ aPBOX_actor_ct,
     /* */ func_80A078A4_jp,

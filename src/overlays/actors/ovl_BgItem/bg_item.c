@@ -8,11 +8,11 @@ void bIT_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile BgItem_Profile = {
-    /* */ 1,
+    /* */ ACTOR_BG_ITEM,
     /* */ ACTOR_PART_0,
     /* */ 48,
-    /* */ 0,
-    /* */ 4,
+    /* */ 0x0000,
+    /* */ OBJECT_4,
     /* */ sizeof(BgItem),
     /* */ bIT_actor_ct,
     /* */ bIT_actor_dt,

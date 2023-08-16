@@ -9,11 +9,11 @@ void aNMD_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Npc_Mamedanuki_Profile = {
-    /* */ 24,
+    /* */ ACTOR_NPC_MAMEDANUKI,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53286,
-    /* */ 3,
+    /* */ 0xD026,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Mamedanuki),
     /* */ aNMD_actor_ct,
     /* */ aNMD_actor_dt,

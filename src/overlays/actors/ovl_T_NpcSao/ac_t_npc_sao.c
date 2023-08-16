@@ -8,11 +8,11 @@ void aTNS_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile T_NpcSao_Profile = {
-    /* */ 109,
+    /* */ ACTOR_T_NPC_SAO,
     /* */ ACTOR_PART_4,
     /* */ 48,
-    /* */ 0,
-    /* */ 370,
+    /* */ 0x0000,
+    /* */ OBJECT_370,
     /* */ sizeof(T_NpcSao),
     /* */ aTNS_actor_ct,
     /* */ (ActorFunc)none_proc1,

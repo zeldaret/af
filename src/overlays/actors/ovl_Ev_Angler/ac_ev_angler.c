@@ -9,11 +9,11 @@ void aEANG_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Ev_Angler_Profile = {
-    /* */ 8,
+    /* */ ACTOR_EV_ANGLER,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53277,
-    /* */ 3,
+    /* */ 0xD01D,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Ev_Angler),
     /* */ aEANG_actor_ct,
     /* */ aEANG_actor_dt,

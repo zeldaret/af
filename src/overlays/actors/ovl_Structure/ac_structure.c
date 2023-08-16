@@ -8,11 +8,11 @@ void aSTR_actor_move(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Structure_Profile = {
-    /* */ 69,
+    /* */ ACTOR_STRUCTURE,
     /* */ ACTOR_PART_7,
     /* */ 48,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Structure),
     /* */ aSTR_actor_ct,
     /* */ aSTR_actor_dt,

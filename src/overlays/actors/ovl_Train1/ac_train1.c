@@ -8,11 +8,11 @@ void aTR1_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Train1_Profile = {
-    /* */ 73,
+    /* */ ACTOR_TRAIN1,
     /* */ ACTOR_PART_0,
     /* */ 536870928,
-    /* */ 22539,
-    /* */ 3,
+    /* */ 0x580B,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Train1),
     /* */ aTR1_actor_ct,
     /* */ aTR1_actor_dt,

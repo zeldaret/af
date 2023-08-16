@@ -8,11 +8,11 @@ void Arrange_Furniture_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Arrange_Furniture_Profile = {
-    /* */ 18,
+    /* */ ACTOR_ARRANGE_FURNITURE,
     /* */ ACTOR_PART_4,
     /* */ 48,
-    /* */ 32775,
-    /* */ 3,
+    /* */ 0x8007,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Arrange_Furniture),
     /* */ Arrange_Furniture_Actor_ct,
     /* */ Arrange_Furniture_Actor_dt,

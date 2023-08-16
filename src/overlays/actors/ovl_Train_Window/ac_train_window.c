@@ -8,11 +8,11 @@ void Train_Window_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Train_Window_Profile = {
-    /* */ 104,
+    /* */ ACTOR_TRAIN_WINDOW,
     /* */ ACTOR_PART_0,
     /* */ 48,
-    /* */ 32785,
-    /* */ 41,
+    /* */ 0x8011,
+    /* */ OBJECT_41,
     /* */ sizeof(Train_Window),
     /* */ Train_Window_Actor_ct,
     /* */ Train_Window_Actor_dt,

@@ -8,11 +8,11 @@ void aROD_actor_move(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Ride_Off_Demo_Profile = {
-    /* */ 23,
+    /* */ ACTOR_RIDE_OFF_DEMO,
     /* */ ACTOR_PART_7,
     /* */ 536870928,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Ride_Off_Demo),
     /* */ aROD_actor_ct,
     /* */ aROD_actor_dt,

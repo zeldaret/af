@@ -8,11 +8,11 @@ void aBEE_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Bee_Profile = {
-    /* */ 164,
+    /* */ ACTOR_BEE,
     /* */ ACTOR_PART_4,
     /* */ 16,
-    /* */ 0,
-    /* */ 392,
+    /* */ 0x0000,
+    /* */ OBJECT_392,
     /* */ sizeof(Bee),
     /* */ aBEE_actor_ct,
     /* */ func_80A93DD0_jp,

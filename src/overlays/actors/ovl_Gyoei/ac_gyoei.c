@@ -8,11 +8,11 @@ void aGYO_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Gyoei_Profile = {
-    /* */ 107,
+    /* */ ACTOR_GYOEI,
     /* */ ACTOR_PART_7,
     /* */ 48,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Gyoei),
     /* */ aGYO_actor_ct,
     /* */ aGYO_actor_dt,

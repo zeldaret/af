@@ -9,11 +9,11 @@ void aNDM_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Npc_Depart_Master_Profile = {
-    /* */ 67,
+    /* */ ACTOR_NPC_DEPART_MASTER,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53259,
-    /* */ 3,
+    /* */ 0xD00B,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Depart_Master),
     /* */ aNDM_actor_ct,
     /* */ aNDM_actor_dt,

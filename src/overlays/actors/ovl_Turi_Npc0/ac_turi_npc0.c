@@ -9,11 +9,11 @@ void aTR0_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Turi_Npc0_Profile = {
-    /* */ 146,
+    /* */ ACTOR_TURI_NPC0,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Turi_Npc0),
     /* */ func_805900b0,
     /* */ func_805901d8,

@@ -8,11 +8,11 @@ void func_80545604(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Npc2_Profile = {
-    /* */ 32,
+    /* */ ACTOR_NPC,
     /* */ ACTOR_PART_7,
     /* */ 48,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc2),
     /* */ func_80545034,
     /* */ func_805453b8,

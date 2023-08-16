@@ -9,11 +9,11 @@ void aEYMS_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Ev_Yomise_Profile = {
-    /* */ 121,
+    /* */ ACTOR_EV_YOMISE,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53292,
-    /* */ 3,
+    /* */ 0xD02C,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Ev_Yomise),
     /* */ aEYMS_actor_ct,
     /* */ aEYMS_actor_dt,

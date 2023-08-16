@@ -8,11 +8,11 @@ void Garagara_Actor_draw_dummy(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Garagara_Profile = {
-    /* */ 149,
+    /* */ ACTOR_GARAGARA,
     /* */ ACTOR_PART_5,
     /* */ 48,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Garagara),
     /* */ Garagara_Actor_ct,
     /* */ Garagara_Actor_dt,

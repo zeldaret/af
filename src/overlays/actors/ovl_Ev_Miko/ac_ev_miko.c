@@ -9,11 +9,11 @@ void aEMK_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Ev_Miko_Profile = {
-    /* */ 132,
+    /* */ ACTOR_EV_MIKO,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53309,
-    /* */ 3,
+    /* */ 0xD03D,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Ev_Miko),
     /* */ aEMK_actor_ct,
     /* */ aEMK_actor_dt,

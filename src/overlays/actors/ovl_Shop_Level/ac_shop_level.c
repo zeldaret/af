@@ -8,11 +8,11 @@ void Shop_Level_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Shop_Level_Profile = {
-    /* */ 41,
+    /* */ ACTOR_SHOP_LEVEL,
     /* */ ACTOR_PART_7,
     /* */ 536870960,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Shop_Level),
     /* */ Shop_Level_Actor_ct,
     /* */ Shop_Level_Actor_dt,

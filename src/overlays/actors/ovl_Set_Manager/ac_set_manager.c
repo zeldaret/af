@@ -8,11 +8,11 @@ void aSetMgr_move(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Set_Manager_Profile = {
-    /* */ 114,
+    /* */ ACTOR_SET_MANAGER,
     /* */ ACTOR_PART_7,
     /* */ 536870960,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Set_Manager),
     /* */ aSetMgr_ct,
     /* */ aSetMgr_dt,

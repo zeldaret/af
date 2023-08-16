@@ -8,11 +8,11 @@ void aRSV_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Reserve_Profile = {
-    /* */ 63,
+    /* */ ACTOR_RESERVE,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22544,
-    /* */ 3,
+    /* */ 0x5810,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Reserve),
     /* */ aRSV_actor_ct,
     /* */ func_80A09370_jp,

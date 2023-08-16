@@ -8,11 +8,11 @@ void aTHB_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile T_Hanabi_Profile = {
-    /* */ 94,
+    /* */ ACTOR_T_HANABI,
     /* */ ACTOR_PART_4,
     /* */ 48,
-    /* */ 0,
-    /* */ 53,
+    /* */ 0x0000,
+    /* */ OBJECT_53,
     /* */ sizeof(T_Hanabi),
     /* */ aTHB_actor_ct,
     /* */ aTHB_actor_dt,

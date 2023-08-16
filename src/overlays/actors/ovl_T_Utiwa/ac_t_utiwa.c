@@ -8,11 +8,11 @@ void aTUT_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile T_Utiwa_Profile = {
-    /* */ 87,
+    /* */ ACTOR_T_UTIWA,
     /* */ ACTOR_PART_4,
     /* */ 48,
-    /* */ 0,
-    /* */ 53,
+    /* */ 0x0000,
+    /* */ OBJECT_53,
     /* */ sizeof(T_Utiwa),
     /* */ aTUT_actor_ct,
     /* */ (ActorFunc)none_proc1,

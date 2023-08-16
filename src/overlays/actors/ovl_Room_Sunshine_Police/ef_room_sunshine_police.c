@@ -8,11 +8,11 @@ void Ef_Room_Sunshine_PoliceR_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Room_Sunshine_Police_Profile = {
-    /* */ 118,
+    /* */ ACTOR_ROOM_SUNSHINE_POLICE,
     /* */ ACTOR_PART_6,
     /* */ 48,
-    /* */ 0,
-    /* */ 44,
+    /* */ 0x0000,
+    /* */ OBJECT_44,
     /* */ sizeof(Room_Sunshine_Police),
     /* */ Ef_Room_Sunshine_Police_actor_ct,
     /* */ (ActorFunc)none_proc1,

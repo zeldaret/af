@@ -8,11 +8,11 @@ void aAL_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Animal_Logo_Profile = {
-    /* */ 171,
+    /* */ ACTOR_ANIMAL_LOGO,
     /* */ ACTOR_PART_4,
     /* */ 48,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Animal_Logo),
     /* */ aAL_actor_ct,
     /* */ aAL_actor_dt,

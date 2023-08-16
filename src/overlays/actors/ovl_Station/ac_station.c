@@ -8,11 +8,11 @@ void aSTA_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Station_Profile = {
-    /* */ 60,
+    /* */ ACTOR_STATION,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22537,
-    /* */ 3,
+    /* */ 0x5809,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Station),
     /* */ aSTA_actor_ct,
     /* */ aSTA_actor_dt,

@@ -9,11 +9,11 @@ void aTNN0_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Tunahiki_Npc0_Profile = {
-    /* */ 161,
+    /* */ ACTOR_TUNAHIKI_NPC0,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53343,
-    /* */ 3,
+    /* */ 0xD05F,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Tunahiki_Npc0),
     /* */ aTNN0_actor_ct,
     /* */ aTNN0_actor_dt,

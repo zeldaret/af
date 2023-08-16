@@ -8,11 +8,11 @@ void Ac_Sample_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Sample_Profile = {
-    /* */ 2,
+    /* */ ACTOR_SAMPLE,
     /* */ ACTOR_PART_4,
     /* */ 0,
-    /* */ 36864,
-    /* */ 12,
+    /* */ 0x9000,
+    /* */ OBJECT_12,
     /* */ sizeof(Sample),
     /* */ Ac_Sample_Actor_ct,
     /* */ Ac_Sample_Actor_dt,

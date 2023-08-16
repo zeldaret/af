@@ -9,11 +9,11 @@ void aEDSN_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Ev_Designer_Profile = {
-    /* */ 46,
+    /* */ ACTOR_EV_DESIGNER,
     /* */ ACTOR_PART_NPC,
     /* */ 48,
-    /* */ 53250,
-    /* */ 3,
+    /* */ 0xD002,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Ev_Designer),
     /* */ aEDSN_actor_ct,
     /* */ aEDSN_actor_dt,

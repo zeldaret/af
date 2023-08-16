@@ -9,11 +9,11 @@ void aNRG_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Npc_Rcn_Guide_Profile = {
-    /* */ 90,
+    /* */ ACTOR_NPC_RCN_GUIDE,
     /* */ ACTOR_PART_NPC,
     /* */ 536870928,
-    /* */ 53268,
-    /* */ 3,
+    /* */ 0xD014,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Rcn_Guide),
     /* */ aNRG_actor_ct,
     /* */ aNRG_actor_dt,

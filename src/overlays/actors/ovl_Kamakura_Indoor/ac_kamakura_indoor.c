@@ -8,11 +8,11 @@ void Kamakura_Indoor_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Kamakura_Indoor_Profile = {
-    /* */ 131,
+    /* */ ACTOR_KAMAKURA_INDOOR,
     /* */ ACTOR_PART_5,
     /* */ 48,
-    /* */ 0,
-    /* */ 22,
+    /* */ 0x0000,
+    /* */ OBJECT_22,
     /* */ sizeof(Kamakura_Indoor),
     /* */ Kamakura_Indoor_Actor_ct,
     /* */ Kamakura_Indoor_Actor_dt,

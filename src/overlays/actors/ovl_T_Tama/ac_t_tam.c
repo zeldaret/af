@@ -6,11 +6,11 @@ void aTTM_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile T_Tama_Profile = {
-    /* */ 13,
+    /* */ ACTOR_T_TAMA,
     /* */ ACTOR_PART_4,
     /* */ 48,
-    /* */ 0,
-    /* */ 391,
+    /* */ 0x0000,
+    /* */ OBJECT_391,
     /* */ sizeof(T_Tama),
     /* */ (ActorFunc)none_proc1,
     /* */ (ActorFunc)none_proc1,

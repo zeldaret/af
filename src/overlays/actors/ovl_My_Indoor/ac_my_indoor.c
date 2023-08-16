@@ -8,11 +8,11 @@ void My_Indoor_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile My_Indoor_Profile = {
-    /* */ 89,
+    /* */ ACTOR_MY_INDOOR,
     /* */ ACTOR_PART_5,
     /* */ 48,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(My_Indoor),
     /* */ My_Indoor_Actor_ct,
     /* */ My_Indoor_Actor_dt,

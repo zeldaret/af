@@ -8,11 +8,11 @@ void Ef_Room_Sunshine_PosthouseR_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Room_Sunshine_Posthouse_Profile = {
-    /* */ 117,
+    /* */ ACTOR_ROOM_SUNSHINE_POSTHOUSE,
     /* */ ACTOR_PART_6,
     /* */ 48,
-    /* */ 0,
-    /* */ 43,
+    /* */ 0x0000,
+    /* */ OBJECT_43,
     /* */ sizeof(Room_Sunshine_Posthouse),
     /* */ Ef_Room_Sunshine_Posthouse_actor_ct,
     /* */ (ActorFunc)none_proc1,

@@ -8,11 +8,11 @@ void aHTC_actor_move(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Hatumode_Control_Profile = {
-    /* */ 155,
+    /* */ ACTOR_HATUMODE_CONTROL,
     /* */ ACTOR_PART_7,
     /* */ 16,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Hatumode_Control),
     /* */ aHTC_actor_ct,
     /* */ aHTC_actor_dt,

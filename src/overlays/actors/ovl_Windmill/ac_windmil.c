@@ -8,11 +8,11 @@ void aWIN_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Windmill_Profile = {
-    /* */ 169,
+    /* */ ACTOR_WINDMILL,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22587,
-    /* */ 3,
+    /* */ 0x583B,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Windmill),
     /* */ func_80A9C3C0_jp,
     /* */ aWIN_actor_dt,

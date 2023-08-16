@@ -8,11 +8,11 @@ void aKAG_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Kago_Profile = {
-    /* */ 157,
+    /* */ ACTOR_KAGO,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22581,
-    /* */ 3,
+    /* */ 0x5835,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Kago),
     /* */ aKAG_actor_ct,
     /* */ func_80A8F340_jp,

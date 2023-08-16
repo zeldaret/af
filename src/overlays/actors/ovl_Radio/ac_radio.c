@@ -8,11 +8,11 @@ void aRAD_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Radio_Profile = {
-    /* */ 125,
+    /* */ ACTOR_RADIO,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22571,
-    /* */ 3,
+    /* */ 0x582B,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Radio),
     /* */ aRAD_actor_ct,
     /* */ func_80A76958_jp,

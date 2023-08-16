@@ -8,11 +8,11 @@ void aBGY_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Buggy_Profile = {
-    /* */ 93,
+    /* */ ACTOR_BUGGY,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22567,
-    /* */ 3,
+    /* */ 0x5827,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Buggy),
     /* */ aBGY_actor_ct,
     /* */ aBGY_actor_dt,

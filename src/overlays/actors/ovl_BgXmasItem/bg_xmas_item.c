@@ -8,11 +8,11 @@ void bXI_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile BgXmasItem_Profile = {
-    /* */ 81,
+    /* */ ACTOR_BG_XMAS_ITEM,
     /* */ ACTOR_PART_0,
     /* */ 48,
-    /* */ 0,
-    /* */ 38,
+    /* */ 0x0000,
+    /* */ OBJECT_38,
     /* */ sizeof(BgXmasItem),
     /* */ bXI_actor_ct,
     /* */ bXI_actor_dt,

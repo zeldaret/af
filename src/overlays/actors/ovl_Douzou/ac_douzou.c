@@ -8,11 +8,11 @@ void aDOU_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Douzou_Profile = {
-    /* */ 173,
+    /* */ ACTOR_DOUZOU,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 22594,
-    /* */ 3,
+    /* */ 0x5842,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Douzou),
     /* */ aDOU_actor_ct,
     /* */ aDOU_actor_dt,

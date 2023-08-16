@@ -8,11 +8,11 @@ void BoxManager_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile BoxManager_Profile = {
-    /* */ 14,
+    /* */ ACTOR_BOX_MANAGER,
     /* */ ACTOR_PART_4,
     /* */ 48,
-    /* */ 32773,
-    /* */ 20,
+    /* */ 0x8005,
+    /* */ OBJECT_20,
     /* */ sizeof(BoxManager),
     /* */ BoxManager_Actor_ct,
     /* */ BoxManager_Actor_dt,

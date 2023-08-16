@@ -9,11 +9,11 @@ void aSTM_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Npc_Station_Master_Profile = {
-    /* */ 74,
+    /* */ ACTOR_NPC_STATION_MASTER,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53262,
-    /* */ 3,
+    /* */ 0xD00E,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Npc_Station_Master),
     /* */ aSTM_actor_ct,
     /* */ aSTM_actor_dt,

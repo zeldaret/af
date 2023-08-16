@@ -8,11 +8,11 @@ void aTCR_actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile T_Cracker_Profile = {
-    /* */ 136,
+    /* */ ACTOR_T_CRACKER,
     /* */ ACTOR_PART_4,
     /* */ 48,
-    /* */ 0,
-    /* */ 395,
+    /* */ 0x0000,
+    /* */ OBJECT_395,
     /* */ sizeof(T_Cracker),
     /* */ aTCR_actor_ct,
     /* */ (ActorFunc)none_proc1,

@@ -8,11 +8,11 @@ void House_Clock_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile House_Clock_Profile = {
-    /* */ 159,
+    /* */ ACTOR_HOUSE_CLOCK,
     /* */ ACTOR_PART_5,
     /* */ 48,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(House_Clock),
     /* */ House_Clock_Actor_ct,
     /* */ House_Clock_Actor_dt,

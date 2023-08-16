@@ -9,11 +9,11 @@ void aTM1_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Tukimi_Npc1_Profile = {
-    /* */ 142,
+    /* */ ACTOR_TUKIMI_NPC1,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 0,
-    /* */ 3,
+    /* */ 0x0000,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Tukimi_Npc1),
     /* */ aTM1_actor_ct,
     /* */ aTM1_actor_dt,

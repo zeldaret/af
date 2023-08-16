@@ -8,11 +8,11 @@ void Mbg_Actor_draw(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Mbg_Profile = {
-    /* */ 12,
+    /* */ ACTOR_MBG,
     /* */ ACTOR_PART_0,
     /* */ 0,
-    /* */ 32771,
-    /* */ 3,
+    /* */ 0x8003,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Mbg),
     /* */ Mbg_Actor_ct,
     /* */ Mbg_Actor_dt,

@@ -9,11 +9,11 @@ void aEGPS_actor_save(Actor* thisx, PlayState* play);
 
 #if 0
 ActorProfile Ev_Gypsy_Profile = {
-    /* */ 70,
+    /* */ ACTOR_EV_GYPSY,
     /* */ ACTOR_PART_NPC,
     /* */ 0,
-    /* */ 53260,
-    /* */ 3,
+    /* */ 0xD00C,
+    /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Ev_Gypsy),
     /* */ aEGPS_actor_ct,
     /* */ aEGPS_actor_dt,
