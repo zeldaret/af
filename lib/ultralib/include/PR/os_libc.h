@@ -87,7 +87,7 @@ extern void     bzero(void *, int);
 
 /* Printf */
 
-extern int		sprintf(char *s, const char *fmt, ...);
+extern int sprintf(char* dst, const char* fmt, ...);
 extern void		osSyncPrintf(const char *fmt, ...);
 
 
