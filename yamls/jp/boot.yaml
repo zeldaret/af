@@ -27,7 +27,7 @@
 
       - [0x007000, asm, boot/libu64/debug]
 
-      - [0x007060, asm, boot/007060]
+      - [0x007060, c, boot/O2/007060]
       - [0x0073A0, asm, boot/0073A0]
       - [0x0073F0, asm, boot/padsetup]
 
@@ -221,7 +221,7 @@
 
       - [0x0170B0, data, boot/libu64/gfxprint_data]
 
-      - [0x017960, data, boot/007060]
+      - [0x017960, .data, boot/O2/007060]
 
       # libc64
       - [0x017980, data, boot/libc64/fp]
