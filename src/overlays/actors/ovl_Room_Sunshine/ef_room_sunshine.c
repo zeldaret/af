@@ -1,0 +1,18 @@
+#include "global.h"
+
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine/Ef_Room_Sunshine_actor_ct.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine/func_80965E38_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine/func_80965EE0_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine/func_80965FF0_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine/Ef_Room_SunshineR_actor_move.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine/func_80966120_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine/func_8096628C_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine/Ef_Room_SunshineR_actor_draw.s")

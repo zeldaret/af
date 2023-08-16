@@ -698,9 +698,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x7AC420, asm, overlays/actors/ovl_player_actor/ovl_player_actor]
-      - [0x7D7320, data, overlays/actors/ovl_player_actor/ovl_player_actor]
-      - [0x7D9830, rodata, overlays/actors/ovl_player_actor/ovl_player_actor]
+      - [0x7AC420, c, overlays/actors/ovl_player_actor/m_player]
+      - [0x7D7320, data, overlays/actors/ovl_player_actor/m_player]
+      - [0x7D9830, .rodata, overlays/actors/ovl_player_actor/m_player]
   - name: ovl_player_actor_reloc
     type: code
     start: 0x7D9BA0
@@ -708,7 +708,7 @@
     follows_vram: ovl_player_actor
     compress: True
     subsegments:
-      - [0x7D9BA0, data, overlays/actors/ovl_player_actor/ovl_player_actor_reloc]
+      - [0x7D9BA0, data, overlays/actors/ovl_player_actor/m_player_reloc]
 
   - name: ovl__007DE050
     type: code
@@ -878,9 +878,9 @@
     compress: True
     bss_size: 0x20
     subsegments:
-      - [0x7E4DF0, asm, overlays/actors/ovl_BgPoliceItem/bg_police_item]
+      - [0x7E4DF0, c, overlays/actors/ovl_BgPoliceItem/bg_police_item]
       - [0x7E5440, data, overlays/actors/ovl_BgPoliceItem/bg_police_item]
-      - [0x7E5580, rodata, overlays/actors/ovl_BgPoliceItem/bg_police_item]
+      - [0x7E5580, .rodata, overlays/actors/ovl_BgPoliceItem/bg_police_item]
       - { start: 0x7E55B0, type: bss, vram: 0x808EBEE0, name: overlays/actors/ovl_BgPoliceItem/bg_police_item }
   - name: ovl_BgPoliceItem_reloc
     type: code
@@ -899,9 +899,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x7E5640, asm, overlays/actors/ovl_BgPostItem/bg_post_item]
+      - [0x7E5640, c, overlays/actors/ovl_BgPostItem/bg_post_item]
       - [0x7E5800, data, overlays/actors/ovl_BgPostItem/bg_post_item]
-      - [0x7E5840, rodata, overlays/actors/ovl_BgPostItem/bg_post_item]
+      - [0x7E5840, .rodata, overlays/actors/ovl_BgPostItem/bg_post_item]
   - name: ovl_BgPostItem_reloc
     type: code
     start: 0x7E5850
@@ -919,9 +919,9 @@
     compress: True
     bss_size: 0x490
     subsegments:
-      - [0x7E5880, asm, overlays/actors/ovl_BgCherryItem/bg_cherry_item]
+      - [0x7E5880, c, overlays/actors/ovl_BgCherryItem/bg_cherry_item]
       - [0x7ED370, data, overlays/actors/ovl_BgCherryItem/bg_cherry_item]
-      - [0x7EF100, rodata, overlays/actors/ovl_BgCherryItem/bg_cherry_item]
+      - [0x7EF100, .rodata, overlays/actors/ovl_BgCherryItem/bg_cherry_item]
       - { start: 0x7EF1F0, type: bss, vram: 0x808F5B40, name: overlays/actors/ovl_BgCherryItem/bg_cherry_item }
   - name: ovl_BgCherryItem_reloc
     type: code
@@ -940,9 +940,9 @@
     compress: True
     bss_size: 0x490
     subsegments:
-      - [0x7F0350, asm, overlays/actors/ovl_BgWinterItem/bg_winter_item]
+      - [0x7F0350, c, overlays/actors/ovl_BgWinterItem/bg_winter_item]
       - [0x7F7F00, data, overlays/actors/ovl_BgWinterItem/bg_winter_item]
-      - [0x7F9C50, rodata, overlays/actors/ovl_BgWinterItem/bg_winter_item]
+      - [0x7F9C50, .rodata, overlays/actors/ovl_BgWinterItem/bg_winter_item]
       - { start: 0x7F9D60, type: bss, vram: 0x80900B40, name: overlays/actors/bg_winter_item/ovl_BgWinterItem }
   - name: ovl_BgWinterItem_reloc
     type: code
@@ -961,9 +961,9 @@
     compress: True
     bss_size: 0x490
     subsegments:
-      - [0x7FAEB0, asm, overlays/actors/ovl_BgXmasItem/bg_xmas_item]
+      - [0x7FAEB0, c, overlays/actors/ovl_BgXmasItem/bg_xmas_item]
       - [0x802E40, data, overlays/actors/ovl_BgXmasItem/bg_xmas_item]
-      - [0x804BD0, rodata, overlays/actors/ovl_BgXmasItem/bg_xmas_item]
+      - [0x804BD0, .rodata, overlays/actors/ovl_BgXmasItem/bg_xmas_item]
       - { start: 0x804CC0, type: bss, vram: 0x8090BF30, name: overlays/actors/ovl_BgXmasItem/bg_xmas_item }
   - name: ovl_BgXmasItem_reloc
     type: code
@@ -982,9 +982,9 @@
     compress: True
     bss_size: 0x490
     subsegments:
-      - [0x805E30, asm, overlays/actors/ovl_BgItem/bg_item]
+      - [0x805E30, c, overlays/actors/ovl_BgItem/bg_item]
       - [0x80D900, data, overlays/actors/ovl_BgItem/bg_item]
-      - [0x80F670, rodata, overlays/actors/ovl_BgItem/bg_item]
+      - [0x80F670, .rodata, overlays/actors/ovl_BgItem/bg_item]
       - { start: 0x80F760, type: bss, vram: 0x80916E60, name: overlays/actors/ovl_BgItem/bg_item }
   - name: ovl_BgItem_reloc
     type: code
@@ -1203,7 +1203,7 @@
     compress: True
     bss_size: 0x40
     subsegments:
-      - [0x82B3C0, asm, overlays/actors/ovl_Sample/ac_sample]
+      - [0x82B3C0, c, overlays/actors/ovl_Sample/ac_sample]
       - [0x82BA80, data, overlays/actors/ovl_Sample/ac_sample]
       - { start: 0x82BAE0, type: bss, vram: 0x80934660, name: overlays/actors/ovl_Sample/ac_sample }
   - name: ovl_Sample_reloc
@@ -1223,7 +1223,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x82BB80, asm, overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw]
+      - [0x82BB80, c, overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw]
       - [0x82BBC0, data, overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw]
   - name: ovl_Fieldm_Draw_reloc
     type: code
@@ -1242,9 +1242,9 @@
     compress: True
     bss_size: 0x360
     subsegments:
-      - [0x82BC20, asm, overlays/actors/ovl_Field_Draw/ac_field_draw]
+      - [0x82BC20, c, overlays/actors/ovl_Field_Draw/ac_field_draw]
       - [0x82CD20, data, overlays/actors/ovl_Field_Draw/ac_field_draw]
-      - [0x82CDC0, rodata, overlays/actors/ovl_Field_Draw/ac_field_draw]
+      - [0x82CDC0, .rodata, overlays/actors/ovl_Field_Draw/ac_field_draw]
       - { start: 0x82CDE0, type: bss, vram: 0x809359A0, name: overlays/actors/ovl_Field_Draw/ac_field_draw }
   - name: ovl_Field_Draw_reloc
     type: code
@@ -1263,7 +1263,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x82CED0, asm, overlays/actors/ovl_Birth_Control/ac_birth_control]
+      - [0x82CED0, c, overlays/actors/ovl_Birth_Control/ac_birth_control]
       - [0x82D730, data, overlays/actors/ovl_Birth_Control/ac_birth_control]
   - name: ovl_Birth_Control_reloc
     type: code
@@ -1282,9 +1282,9 @@
     compress: True
     bss_size: 0x22F0
     subsegments:
-      - [0x82D7F0, asm, overlays/actors/ovl_My_Room/ac_my_room]
+      - [0x82D7F0, c, overlays/actors/ovl_My_Room/ac_my_room]
       - [0x83E640, data, overlays/actors/ovl_My_Room/ac_my_room]
-      - [0x844220, rodata, overlays/actors/ovl_My_Room/ac_my_room]
+      - [0x844220, .rodata, overlays/actors/ovl_My_Room/ac_my_room]
       - { start: 0x844400, type: bss, vram: 0x8094D320, name: overlays/actors/ovl_My_Room/ac_my_room }
   - name: ovl_My_Room_reloc
     type: code
@@ -1303,9 +1303,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x845C40, asm, overlays/actors/ovl_Arrange_Room/ac_arrange_room]
+      - [0x845C40, c, overlays/actors/ovl_Arrange_Room/ac_arrange_room]
       - [0x846300, data, overlays/actors/ovl_Arrange_Room/ac_arrange_room]
-      - [0x846330, rodata, overlays/actors/ovl_Arrange_Room/ac_arrange_room]
+      - [0x846330, .rodata, overlays/actors/ovl_Arrange_Room/ac_arrange_room]
   - name: ovl_Arrange_Room_reloc
     type: code
     start: 0x8463A0
@@ -1323,7 +1323,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x846430, asm, overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr]
+      - [0x846430, c, overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr]
       - [0x846470, data, overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr]
   - name: ovl_Arrange_Furniture_reloc
     type: code
@@ -1342,7 +1342,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8464D0, asm, overlays/actors/ovl_Broker_Design/ac_broker_design]
+      - [0x8464D0, c, overlays/actors/ovl_Broker_Design/ac_broker_design]
       - [0x8467D0, data, overlays/actors/ovl_Broker_Design/ac_broker_design]
   - name: ovl_Broker_Design_reloc
     type: code
@@ -1361,9 +1361,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x846860, asm, overlays/actors/ovl_My_Indoor/ac_my_indoor]
+      - [0x846860, c, overlays/actors/ovl_My_Indoor/ac_my_indoor]
       - [0x8475A0, data, overlays/actors/ovl_My_Indoor/ac_my_indoor]
-      - [0x847630, rodata, overlays/actors/ovl_My_Indoor/ac_my_indoor]
+      - [0x847630, .rodata, overlays/actors/ovl_My_Indoor/ac_my_indoor]
   - name: ovl_My_Indoor_reloc
     type: code
     start: 0x8476A0
@@ -1381,9 +1381,9 @@
     compress: True
     bss_size: 0x10
     subsegments:
-      - [0x8477A0, asm, overlays/actors/ovl_Intro_Demo/ac_intro_demo]
+      - [0x8477A0, c, overlays/actors/ovl_Intro_Demo/ac_intro_demo]
       - [0x8483D0, data, overlays/actors/ovl_Intro_Demo/ac_intro_demo]
-      - [0x8484B0, rodata, overlays/actors/ovl_Intro_Demo/ac_intro_demo]
+      - [0x8484B0, .rodata, overlays/actors/ovl_Intro_Demo/ac_intro_demo]
       - { start: 0x8484C0, type: bss, vram: 0x809536D0, name: overlays/actors/ovl_Intro_Demo/ac_intro_demo }
   - name: ovl_Intro_Demo_reloc
     type: code
@@ -1402,9 +1402,9 @@
     compress: True
     bss_size: 0x10
     subsegments:
-      - [0x848600, asm, overlays/actors/ovl_Ride_Off_Demo/ac_ride_off_demo]
+      - [0x848600, c, overlays/actors/ovl_Ride_Off_Demo/ac_ride_off_demo]
       - [0x848AD0, data, overlays/actors/ovl_Ride_Off_Demo/ac_ride_off_demo]
-      - [0x848B30, rodata, overlays/actors/ovl_Ride_Off_Demo/ac_ride_off_demo]
+      - [0x848B30, .rodata, overlays/actors/ovl_Ride_Off_Demo/ac_ride_off_demo]
       - { start: 0x848B40, type: bss, vram: 0x80953D60, name: overlays/actors/ovl_Ride_Off_Demo/ac_ride_off_demo }
   - name: ovl_Ride_Off_Demo_reloc
     type: code
@@ -1423,7 +1423,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x848BF0, asm, overlays/actors/ovl_Shop_Design/ac_shop_design]
+      - [0x848BF0, c, overlays/actors/ovl_Shop_Design/ac_shop_design]
       - [0x849A50, data, overlays/actors/ovl_Shop_Design/ac_shop_design]
   - name: ovl_Shop_Design_reloc
     type: code
@@ -1442,7 +1442,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x849B50, asm, overlays/actors/ovl_Quest_Manager/ac_quest_manager]
+      - [0x849B50, c, overlays/actors/ovl_Quest_Manager/ac_quest_manager]
       - [0x84BF70, data, overlays/actors/ovl_Quest_Manager/ac_quest_manager]
   - name: ovl_Quest_Manager_reloc
     type: code
@@ -1461,7 +1461,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x84CBC0, asm, overlays/actors/ovl_Set_Manager/ac_set_manager]
+      - [0x84CBC0, c, overlays/actors/ovl_Set_Manager/ac_set_manager]
       - [0x84D0A0, data, overlays/actors/ovl_Set_Manager/ac_set_manager]
   - name: ovl_Set_Manager_reloc
     type: code
@@ -1480,7 +1480,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x84D180, asm, overlays/actors/ovl_Shop_Level/ac_shop_level]
+      - [0x84D180, c, overlays/actors/ovl_Shop_Level/ac_shop_level]
       - [0x84DE10, data, overlays/actors/ovl_Shop_Level/ac_shop_level]
   - name: ovl_Shop_Level_reloc
     type: code
@@ -1499,9 +1499,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x84E080, asm, overlays/actors/ovl_Shop_Manekin/ac_shop_manekin]
+      - [0x84E080, c, overlays/actors/ovl_Shop_Manekin/ac_shop_manekin]
       - [0x84F060, data, overlays/actors/ovl_Shop_Manekin/ac_shop_manekin]
-      - [0x84F0A0, rodata, overlays/actors/ovl_Shop_Manekin/ac_shop_manekin]
+      - [0x84F0A0, .rodata, overlays/actors/ovl_Shop_Manekin/ac_shop_manekin]
   - name: ovl_Shop_Manekin_reloc
     type: code
     start: 0x84F0E0
@@ -1519,9 +1519,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x84F180, asm, overlays/actors/ovl_Shop_Indoor/ac_shop_indoor]
+      - [0x84F180, c, overlays/actors/ovl_Shop_Indoor/ac_shop_indoor]
       - [0x8502E0, data, overlays/actors/ovl_Shop_Indoor/ac_shop_indoor]
-      - [0x850460, rodata, overlays/actors/ovl_Shop_Indoor/ac_shop_indoor]
+      - [0x850460, .rodata, overlays/actors/ovl_Shop_Indoor/ac_shop_indoor]
   - name: ovl_Shop_Indoor_reloc
     type: code
     start: 0x8504F0
@@ -1539,9 +1539,9 @@
     compress: True
     bss_size: 0x130
     subsegments:
-      - [0x850680, asm, overlays/actors/ovl_Event_Manager/ac_event_manager]
+      - [0x850680, c, overlays/actors/ovl_Event_Manager/ac_event_manager]
       - [0x8569D0, data, overlays/actors/ovl_Event_Manager/ac_event_manager]
-      - [0x8570E0, rodata, overlays/actors/ovl_Event_Manager/ac_event_manager]
+      - [0x8570E0, .rodata, overlays/actors/ovl_Event_Manager/ac_event_manager]
       - { start: 0x857100, type: bss, vram: 0x80962330, name: overlays/actors/ovl_Event_Manager/ac_event_manager }
   - name: ovl_Event_Manager_reloc
     type: code
@@ -1560,9 +1560,9 @@
     compress: True
     bss_size: 0x10
     subsegments:
-      - [0x8576C0, asm, overlays/actors/ovl_Shop_Goods/ac_shop_goods]
+      - [0x8576C0, c, overlays/actors/ovl_Shop_Goods/ac_shop_goods]
       - [0x858670, data, overlays/actors/ovl_Shop_Goods/ac_shop_goods]
-      - [0x858950, rodata, overlays/actors/ovl_Shop_Goods/ac_shop_goods]
+      - [0x858950, .rodata, overlays/actors/ovl_Shop_Goods/ac_shop_goods]
       - { start: 0x858960, type: bss, vram: 0x80963CC0, name: overlays/actors/ovl_Shop_Goods/ac_shop_goods }
   - name: ovl_Shop_Goods_reloc
     type: code
@@ -1581,9 +1581,9 @@
     compress: True
     bss_size: 0x30
     subsegments:
-      - [0x858A50, asm, overlays/actors/ovl_HandOverItem/ac_handOverItem]
+      - [0x858A50, c, overlays/actors/ovl_HandOverItem/ac_handOverItem]
       - [0x859740, data, overlays/actors/ovl_HandOverItem/ac_handOverItem]
-      - [0x85A150, rodata, overlays/actors/ovl_HandOverItem/ac_handOverItem]
+      - [0x85A150, .rodata, overlays/actors/ovl_HandOverItem/ac_handOverItem]
       - { start: 0x85A180, type: bss, vram: 0x809654F0, name: overlays/actors/ovl_HandOverItem/ac_handOverItem }
   - name: ovl_HandOverItem_reloc
     type: code
@@ -1602,7 +1602,7 @@
     compress: True
     bss_size: 0x10
     subsegments:
-      - [0x85A400, asm, overlays/actors/ovl_Tools/ac_tools]
+      - [0x85A400, c, overlays/actors/ovl_Tools/ac_tools]
       - [0x85A7A0, data, overlays/actors/ovl_Tools/ac_tools]
       - { start: 0x85A880, type: bss, vram: 0x80965C20, name: overlays/actors/ovl_Tools/ac_tools }
   - name: ovl_Tools_reloc
@@ -1622,9 +1622,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x85A8E0, asm, overlays/actors/ovl_Room_Sunshine/ef_room_sunshine]
+      - [0x85A8E0, c, overlays/actors/ovl_Room_Sunshine/ef_room_sunshine]
       - [0x85B0B0, data, overlays/actors/ovl_Room_Sunshine/ef_room_sunshine]
-      - [0x85B0E0, rodata, overlays/actors/ovl_Room_Sunshine/ef_room_sunshine]
+      - [0x85B0E0, .rodata, overlays/actors/ovl_Room_Sunshine/ef_room_sunshine]
   - name: ovl_Room_Sunshine_reloc
     type: code
     start: 0x85B0F0
@@ -1642,9 +1642,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x85B170, asm, overlays/actors/ovl_Room_Sunshine_Posthouse/ef_room_sunshine_posthouse]
+      - [0x85B170, c, overlays/actors/ovl_Room_Sunshine_Posthouse/ef_room_sunshine_posthouse]
       - [0x85B880, data, overlays/actors/ovl_Room_Sunshine_Posthouse/ef_room_sunshine_posthouse]
-      - [0x85B8B0, rodata, overlays/actors/ovl_Room_Sunshine_Posthouse/ef_room_sunshine_posthouse]
+      - [0x85B8B0, .rodata, overlays/actors/ovl_Room_Sunshine_Posthouse/ef_room_sunshine_posthouse]
   - name: ovl_Room_Sunshine_Posthouse_reloc
     type: code
     start: 0x85B8D0
@@ -1662,9 +1662,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x85B960, asm, overlays/actors/ovl_Room_Sunshine_Police/ef_room_sunshine_police]
+      - [0x85B960, c, overlays/actors/ovl_Room_Sunshine_Police/ef_room_sunshine_police]
       - [0x85C110, data, overlays/actors/ovl_Room_Sunshine_Police/ef_room_sunshine_police]
-      - [0x85C140, rodata, overlays/actors/ovl_Room_Sunshine_Police/ef_room_sunshine_police]
+      - [0x85C140, .rodata, overlays/actors/ovl_Room_Sunshine_Police/ef_room_sunshine_police]
   - name: ovl_Room_Sunshine_Police_reloc
     type: code
     start: 0x85C160
@@ -1682,7 +1682,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x85C200, asm, overlays/actors/ovl_Lamp_Light/ef_lamp_light]
+      - [0x85C200, c, overlays/actors/ovl_Lamp_Light/ef_lamp_light]
       - [0x85C4B0, data, overlays/actors/ovl_Lamp_Light/ef_lamp_light]
   - name: ovl_Lamp_Light_reloc
     type: code
@@ -1701,9 +1701,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x85C570, asm, overlays/actors/ovl_Airplane/ac_airplane]
+      - [0x85C570, c, overlays/actors/ovl_Airplane/ac_airplane]
       - [0x85D360, data, overlays/actors/ovl_Airplane/ac_airplane]
-      - [0x85D440, rodata, overlays/actors/ovl_Airplane/ac_airplane]
+      - [0x85D440, .rodata, overlays/actors/ovl_Airplane/ac_airplane]
   - name: ovl_Airplane_reloc
     type: code
     start: 0x85D4B0
@@ -1721,9 +1721,9 @@
     compress: True
     bss_size: 0x10
     subsegments:
-      - [0x85D660, asm, overlays/actors/ovl_Ball/ac_ball]
+      - [0x85D660, c, overlays/actors/ovl_Ball/ac_ball]
       - [0x85F500, data, overlays/actors/ovl_Ball/ac_ball]
-      - [0x85F550, rodata, overlays/actors/ovl_Ball/ac_ball]
+      - [0x85F550, .rodata, overlays/actors/ovl_Ball/ac_ball]
       - { start: 0x85F5D0, type: bss, vram: 0x8096A980, name: overlays/actors/ovl_Ball/ac_ball }
   - name: ovl_Ball_reloc
     type: code
@@ -1742,9 +1742,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x85F7D0, asm, overlays/actors/ovl_Haniwa/ac_haniwa]
+      - [0x85F7D0, c, overlays/actors/ovl_Haniwa/ac_haniwa]
       - [0x861050, data, overlays/actors/ovl_Haniwa/ac_haniwa]
-      - [0x861240, rodata, overlays/actors/ovl_Haniwa/ac_haniwa]
+      - [0x861240, .rodata, overlays/actors/ovl_Haniwa/ac_haniwa]
   - name: ovl_Haniwa_reloc
     type: code
     start: 0x861260
@@ -1762,7 +1762,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x861420, asm, overlays/actors/ovl_MailBox/ac_mailbox]
+      - [0x861420, c, overlays/actors/ovl_MailBox/ac_mailbox]
       - [0x8620E0, data, overlays/actors/ovl_MailBox/ac_mailbox]
   - name: ovl_MailBox_reloc
     type: code
@@ -1781,7 +1781,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8623E0, asm, overlays/actors/ovl_Rope/ac_rope]
+      - [0x8623E0, c, overlays/actors/ovl_Rope/ac_rope]
       - [0x8627E0, data, overlays/actors/ovl_Rope/ac_rope]
   - name: ovl_Rope_reloc
     type: code
@@ -1800,9 +1800,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x862870, asm, overlays/actors/ovl_Snowman/ac_snowman]
+      - [0x862870, c, overlays/actors/ovl_Snowman/ac_snowman]
       - [0x866880, data, overlays/actors/ovl_Snowman/ac_snowman]
-      - [0x866950, rodata, overlays/actors/ovl_Snowman/ac_snowman]
+      - [0x866950, .rodata, overlays/actors/ovl_Snowman/ac_snowman]
   - name: ovl_Snowman_reloc
     type: code
     start: 0x866A80
@@ -1820,9 +1820,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x866ED0, asm, overlays/actors/ovl_Psnowman/ac_psnowman]
+      - [0x866ED0, c, overlays/actors/ovl_Psnowman/ac_psnowman]
       - [0x867580, data, overlays/actors/ovl_Psnowman/ac_psnowman]
-      - [0x8675B0, rodata, overlays/actors/ovl_Psnowman/ac_psnowman]
+      - [0x8675B0, .rodata, overlays/actors/ovl_Psnowman/ac_psnowman]
   - name: ovl_Psnowman_reloc
     type: code
     start: 0x8675C0
@@ -1840,7 +1840,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x867620, asm, overlays/actors/ovl_TrainDoor/ac_train_door]
+      - [0x867620, c, overlays/actors/ovl_TrainDoor/ac_train_door]
       - [0x867850, data, overlays/actors/ovl_TrainDoor/ac_train_door]
   - name: ovl_TrainDoor_reloc
     type: code
@@ -1859,9 +1859,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8678C0, asm, overlays/actors/ovl_Mbg/ac_mbg]
+      - [0x8678C0, c, overlays/actors/ovl_Mbg/ac_mbg]
       - [0x867B00, data, overlays/actors/ovl_Mbg/ac_mbg]
-      - [0x867C10, rodata, overlays/actors/ovl_Mbg/ac_mbg]
+      - [0x867C10, .rodata, overlays/actors/ovl_Mbg/ac_mbg]
   - name: ovl_Mbg_reloc
     type: code
     start: 0x867C20
@@ -1879,7 +1879,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x867C60, asm, overlays/actors/ovl_BoxManager/ac_boxManager]
+      - [0x867C60, c, overlays/actors/ovl_BoxManager/ac_boxManager]
       - [0x867CA0, data, overlays/actors/ovl_BoxManager/ac_boxManager]
   - name: ovl_BoxManager_reloc
     type: code
@@ -1898,7 +1898,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x867D00, asm, overlays/actors/ovl_BoxMove/ac_boxMove]
+      - [0x867D00, c, overlays/actors/ovl_BoxMove/ac_boxMove]
       - [0x867D40, data, overlays/actors/ovl_BoxMove/ac_boxMove]
   - name: ovl_BoxMove_reloc
     type: code
@@ -1917,7 +1917,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x867DA0, asm, overlays/actors/ovl_BoxTrick01/ac_boxTrick01]
+      - [0x867DA0, c, overlays/actors/ovl_BoxTrick01/ac_boxTrick01]
       - [0x868040, data, overlays/actors/ovl_BoxTrick01/ac_boxTrick01]
   - name: ovl_BoxTrick01_reloc
     type: code
@@ -1936,9 +1936,9 @@
     compress: True
     bss_size: 0x10F70
     subsegments:
-      - [0x8681F0, asm, overlays/actors/ovl_Npc/ac_npc]
+      - [0x8681F0, c, overlays/actors/ovl_Npc/ac_npc]
       - [0x876580, data, overlays/actors/ovl_Npc/ac_npc]
-      - [0x878400, rodata, overlays/actors/ovl_Npc/ac_npc]
+      - [0x878400, .rodata, overlays/actors/ovl_Npc/ac_npc]
       - { start: 0x878550, type: bss, vram: 0x80983910, name: overlays/actors/ovl_Npc/ac_npc }
   - name: ovl_Npc_reloc
     type: code
@@ -1957,9 +1957,9 @@
     compress: True
     bss_size: 0x4C0
     subsegments:
-      - [0x8798C0, asm, overlays/actors/ovl_Npc2/ac_npc2]
+      - [0x8798C0, c, overlays/actors/ovl_Npc2/ac_npc2]
       - [0x884FF0, data, overlays/actors/ovl_Npc2/ac_npc2]
-      - [0x886E50, rodata, overlays/actors/ovl_Npc2/ac_npc2]
+      - [0x886E50, .rodata, overlays/actors/ovl_Npc2/ac_npc2]
       - { start: 0x886FA0, type: bss, vram: 0x809A32D0, name: overlays/actors/ovl_Npc2/ac_npc2 }
   - name: ovl_Npc2_reloc
     type: code
@@ -1978,7 +1978,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x887F90, asm, overlays/actors/ovl_Halloween_Npc/ac_halloween_npc]
+      - [0x887F90, c, overlays/actors/ovl_Halloween_Npc/ac_halloween_npc]
       - [0x889050, data, overlays/actors/ovl_Halloween_Npc/ac_halloween_npc]
   - name: ovl_Halloween_Npc_reloc
     type: code
@@ -1997,7 +1997,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x889270, asm, overlays/actors/ovl_Normal_Npc/ac_normal_npc]
+      - [0x889270, c, overlays/actors/ovl_Normal_Npc/ac_normal_npc]
       - [0x8893C0, data, overlays/actors/ovl_Normal_Npc/ac_normal_npc]
   - name: ovl_Normal_Npc_reloc
     type: code
@@ -2016,9 +2016,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x889440, asm, overlays/actors/ovl_Npc_Conv_Master/ac_npc_conv_master]
+      - [0x889440, c, overlays/actors/ovl_Npc_Conv_Master/ac_npc_conv_master]
       - [0x88CE90, data, overlays/actors/ovl_Npc_Conv_Master/ac_npc_conv_master]
-      - [0x88D770, rodata, overlays/actors/ovl_Npc_Conv_Master/ac_npc_conv_master]
+      - [0x88D770, .rodata, overlays/actors/ovl_Npc_Conv_Master/ac_npc_conv_master]
   - name: ovl_Npc_Conv_Master_reloc
     type: code
     start: 0x88D780
@@ -2036,9 +2036,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x88DD00, asm, overlays/actors/ovl_Npc_Depart_Master/ac_npc_depart_master]
+      - [0x88DD00, c, overlays/actors/ovl_Npc_Depart_Master/ac_npc_depart_master]
       - [0x8917D0, data, overlays/actors/ovl_Npc_Depart_Master/ac_npc_depart_master]
-      - [0x892060, rodata, overlays/actors/ovl_Npc_Depart_Master/ac_npc_depart_master]
+      - [0x892060, .rodata, overlays/actors/ovl_Npc_Depart_Master/ac_npc_depart_master]
   - name: ovl_Npc_Depart_Master_reloc
     type: code
     start: 0x892070
@@ -2056,7 +2056,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x892600, asm, overlays/actors/ovl_Npc_Engineer/ac_npc_engineer]
+      - [0x892600, c, overlays/actors/ovl_Npc_Engineer/ac_npc_engineer]
       - [0x892790, data, overlays/actors/ovl_Npc_Engineer/ac_npc_engineer]
   - name: ovl_Npc_Engineer_reloc
     type: code
@@ -2075,9 +2075,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x892810, asm, overlays/actors/ovl_Npc_Guide/ac_npc_guide]
+      - [0x892810, c, overlays/actors/ovl_Npc_Guide/ac_npc_guide]
       - [0x8944C0, data, overlays/actors/ovl_Npc_Guide/ac_npc_guide]
-      - [0x8947A0, rodata, overlays/actors/ovl_Npc_Guide/ac_npc_guide]
+      - [0x8947A0, .rodata, overlays/actors/ovl_Npc_Guide/ac_npc_guide]
   - name: ovl_Npc_Guide_reloc
     type: code
     start: 0x8947C0
@@ -2095,9 +2095,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x894A70, asm, overlays/actors/ovl_Npc_Guide2/ac_npc_guide2]
+      - [0x894A70, c, overlays/actors/ovl_Npc_Guide2/ac_npc_guide2]
       - [0x896510, data, overlays/actors/ovl_Npc_Guide2/ac_npc_guide2]
-      - [0x8967A0, rodata, overlays/actors/ovl_Npc_Guide2/ac_npc_guide2]
+      - [0x8967A0, .rodata, overlays/actors/ovl_Npc_Guide2/ac_npc_guide2]
   - name: ovl_Npc_Guide2_reloc
     type: code
     start: 0x8967C0
@@ -2115,9 +2115,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x896A30, asm, overlays/actors/ovl_Npc_Majin/ovl_Npc_Majin]
+      - [0x896A30, c, overlays/actors/ovl_Npc_Majin/ovl_Npc_Majin]
       - [0x897260, data, overlays/actors/ovl_Npc_Majin/ovl_Npc_Majin]
-      - [0x897340, rodata, overlays/actors/ovl_Npc_Majin/ovl_Npc_Majin]
+      - [0x897340, .rodata, overlays/actors/ovl_Npc_Majin/ovl_Npc_Majin]
   - name: ovl_Npc_Majin_reloc
     type: code
     start: 0x897350
@@ -2135,9 +2135,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x897450, asm, overlays/actors/ovl_Npc_Majin2/ac_npc_majin]
+      - [0x897450, c, overlays/actors/ovl_Npc_Majin2/ac_npc_majin]
       - [0x897F70, data, overlays/actors/ovl_Npc_Majin2/ac_npc_majin]
-      - [0x8980C0, rodata, overlays/actors/ovl_Npc_Majin2/ac_npc_majin]
+      - [0x8980C0, .rodata, overlays/actors/ovl_Npc_Majin2/ac_npc_majin]
   - name: ovl_Npc_Majin2_reloc
     type: code
     start: 0x8980D0
@@ -2155,9 +2155,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x898220, asm, overlays/actors/ovl_Npc_Majin3/ac_npc_majin3]
+      - [0x898220, c, overlays/actors/ovl_Npc_Majin3/ac_npc_majin3]
       - [0x898EF0, data, overlays/actors/ovl_Npc_Majin3/ac_npc_majin3]
-      - [0x899020, rodata, overlays/actors/ovl_Npc_Majin3/ac_npc_majin3]
+      - [0x899020, .rodata, overlays/actors/ovl_Npc_Majin3/ac_npc_majin3]
   - name: ovl_Npc_Majin3_reloc
     type: code
     start: 0x899040
@@ -2175,9 +2175,9 @@
     compress: True
     bss_size: 0x10
     subsegments:
-      - [0x8991B0, asm, overlays/actors/ovl_Npc_Majin4/ac_npc_majin4]
+      - [0x8991B0, c, overlays/actors/ovl_Npc_Majin4/ac_npc_majin4]
       - [0x899EF0, data, overlays/actors/ovl_Npc_Majin4/ac_npc_majin4]
-      - [0x89A010, rodata, overlays/actors/ovl_Npc_Majin4/ac_npc_majin4]
+      - [0x89A010, .rodata, overlays/actors/ovl_Npc_Majin4/ac_npc_majin4]
       - { start: 0x89A020, type: bss, vram: 0x809B6810, name: overlays/actors/ovl_Npc_Majin4/ac_npc_majin4 }
   - name: ovl_Npc_Majin4_reloc
     type: code
@@ -2196,9 +2196,9 @@
     compress: True
     bss_size: 0x10
     subsegments:
-      - [0x89A1B0, asm, overlays/actors/ovl_Npc_Mamedanuki/ac_npc_mamedanuki]
+      - [0x89A1B0, c, overlays/actors/ovl_Npc_Mamedanuki/ac_npc_mamedanuki]
       - [0x89D930, data, overlays/actors/ovl_Npc_Mamedanuki/ac_npc_mamedanuki]
-      - [0x8A0B40, rodata, overlays/actors/ovl_Npc_Mamedanuki/ac_npc_mamedanuki]
+      - [0x8A0B40, .rodata, overlays/actors/ovl_Npc_Mamedanuki/ac_npc_mamedanuki]
       - { start: 0x8A0B50, type: bss, vram: 0x809BD350, name: overlays/actors/ovl_Npc_Mamedanuki/ac_npc_mamedanuki }
   - name: ovl_Npc_Mamedanuki_reloc
     type: code
@@ -2217,7 +2217,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8A1160, asm, overlays/actors/ovl_Npc_P_Sel/ac_npc_p_sel]
+      - [0x8A1160, c, overlays/actors/ovl_Npc_P_Sel/ac_npc_p_sel]
       - [0x8A1D70, data, overlays/actors/ovl_Npc_P_Sel/ac_npc_p_sel]
   - name: ovl_Npc_P_Sel_reloc
     type: code
@@ -2236,9 +2236,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8A1F10, asm, overlays/actors/ovl_Npc_P_Sel2/ac_npc_p_sel2]
+      - [0x8A1F10, c, overlays/actors/ovl_Npc_P_Sel2/ac_npc_p_sel2]
       - [0x8A43B0, data, overlays/actors/ovl_Npc_P_Sel2/ac_npc_p_sel2]
-      - [0x8A4600, rodata, overlays/actors/ovl_Npc_P_Sel2/ac_npc_p_sel2]
+      - [0x8A4600, .rodata, overlays/actors/ovl_Npc_P_Sel2/ac_npc_p_sel2]
   - name: ovl_Npc_P_Sel2_reloc
     type: code
     start: 0x8A4630
@@ -2256,7 +2256,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8A4940, asm, overlays/actors/ovl_Npc_Police/ac_npc_police]
+      - [0x8A4940, c, overlays/actors/ovl_Npc_Police/ac_npc_police]
       - [0x8A5590, data, overlays/actors/ovl_Npc_Police/ac_npc_police]
   - name: ovl_Npc_Police_reloc
     type: code
@@ -2275,9 +2275,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8A5760, asm, overlays/actors/ovl_Npc_Police2/ac_npc_police2]
+      - [0x8A5760, c, overlays/actors/ovl_Npc_Police2/ac_npc_police2]
       - [0x8A6960, data, overlays/actors/ovl_Npc_Police2/ac_npc_police2]
-      - [0x8A6A40, rodata, overlays/actors/ovl_Npc_Police2/ac_npc_police2]
+      - [0x8A6A40, .rodata, overlays/actors/ovl_Npc_Police2/ac_npc_police2]
   - name: ovl_Npc_Police2_reloc
     type: code
     start: 0x8A6A60
@@ -2295,9 +2295,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8A6C10, asm, overlays/actors/ovl_Npc_Post_Girl/ac_npc_post_girl]
+      - [0x8A6C10, c, overlays/actors/ovl_Npc_Post_Girl/ac_npc_post_girl]
       - [0x8A87F0, data, overlays/actors/ovl_Npc_Post_Girl/ac_npc_post_girl]
-      - [0x8A89B0, rodata, overlays/actors/ovl_Npc_Post_Girl/ac_npc_post_girl]
+      - [0x8A89B0, .rodata, overlays/actors/ovl_Npc_Post_Girl/ac_npc_post_girl]
   - name: ovl_Npc_Post_Girl_reloc
     type: code
     start: 0x8A8A10
@@ -2315,9 +2315,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8A8C80, asm, overlays/actors/ovl_Npc_Post_Man/ac_npc_post_man]
+      - [0x8A8C80, c, overlays/actors/ovl_Npc_Post_Man/ac_npc_post_man]
       - [0x8A9F40, data, overlays/actors/ovl_Npc_Post_Man/ac_npc_post_man]
-      - [0x8AA140, rodata, overlays/actors/ovl_Npc_Post_Man/ac_npc_post_man]
+      - [0x8AA140, .rodata, overlays/actors/ovl_Npc_Post_Man/ac_npc_post_man]
   - name: ovl_Npc_Post_Man_reloc
     type: code
     start: 0x8AA170
@@ -2335,9 +2335,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8AA370, asm, overlays/actors/ovl_Npc_Rcn_Guide/ac_npc_rcn_guide]
+      - [0x8AA370, c, overlays/actors/ovl_Npc_Rcn_Guide/ac_npc_rcn_guide]
       - [0x8AB3E0, data, overlays/actors/ovl_Npc_Rcn_Guide/ac_npc_rcn_guide]
-      - [0x8AB5E0, rodata, overlays/actors/ovl_Npc_Rcn_Guide/ac_npc_rcn_guide]
+      - [0x8AB5E0, .rodata, overlays/actors/ovl_Npc_Rcn_Guide/ac_npc_rcn_guide]
   - name: ovl_Npc_Rcn_Guide_reloc
     type: code
     start: 0x8AB600
@@ -2355,9 +2355,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8AB7E0, asm, overlays/actors/ovl_Npc_Rcn_Guide2/ac_npc_rcn_guide2]
+      - [0x8AB7E0, c, overlays/actors/ovl_Npc_Rcn_Guide2/ac_npc_rcn_guide2]
       - [0x8AD6D0, data, overlays/actors/ovl_Npc_Rcn_Guide2/ac_npc_rcn_guide2]
-      - [0x8ADB70, rodata, overlays/actors/ovl_Npc_Rcn_Guide2/ac_npc_rcn_guide2]
+      - [0x8ADB70, .rodata, overlays/actors/ovl_Npc_Rcn_Guide2/ac_npc_rcn_guide2]
   - name: ovl_Npc_Rcn_Guide2_reloc
     type: code
     start: 0x8ADBA0
@@ -2375,9 +2375,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8ADF40, asm, overlays/actors/ovl_Npc_Shop_Master/ac_npc_shop_master]
+      - [0x8ADF40, c, overlays/actors/ovl_Npc_Shop_Master/ac_npc_shop_master]
       - [0x8B1920, data, overlays/actors/ovl_Npc_Shop_Master/ac_npc_shop_master]
-      - [0x8B2130, rodata, overlays/actors/ovl_Npc_Shop_Master/ac_npc_shop_master]
+      - [0x8B2130, .rodata, overlays/actors/ovl_Npc_Shop_Master/ac_npc_shop_master]
   - name: ovl_Npc_Shop_Master_reloc
     type: code
     start: 0x8B2140
@@ -2395,7 +2395,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8B26B0, asm, overlays/actors/ovl_Npc_Sleep_Obaba/ac_npc_sleep_obaba]
+      - [0x8B26B0, c, overlays/actors/ovl_Npc_Sleep_Obaba/ac_npc_sleep_obaba]
       - [0x8B2BA0, data, overlays/actors/ovl_Npc_Sleep_Obaba/ac_npc_sleep_obaba]
   - name: ovl_Npc_Sleep_Obaba_reloc
     type: code
@@ -2414,9 +2414,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8B2CE0, asm, overlays/actors/ovl_Npc_Super_Master/ac_npc_super_master]
+      - [0x8B2CE0, c, overlays/actors/ovl_Npc_Super_Master/ac_npc_super_master]
       - [0x8B6850, data, overlays/actors/ovl_Npc_Super_Master/ac_npc_super_master]
-      - [0x8B7400, rodata, overlays/actors/ovl_Npc_Super_Master/ac_npc_super_master]
+      - [0x8B7400, .rodata, overlays/actors/ovl_Npc_Super_Master/ac_npc_super_master]
   - name: ovl_Npc_Super_Master_reloc
     type: code
     start: 0x8B7410
@@ -2434,9 +2434,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8B79B0, asm, overlays/actors/ovl_Npc_Station_Master/ac_npc_station_master]
+      - [0x8B79B0, c, overlays/actors/ovl_Npc_Station_Master/ac_npc_station_master]
       - [0x8B8C70, data, overlays/actors/ovl_Npc_Station_Master/ac_npc_station_master]
-      - [0x8B8DF0, rodata, overlays/actors/ovl_Npc_Station_Master/ac_npc_station_master]
+      - [0x8B8DF0, .rodata, overlays/actors/ovl_Npc_Station_Master/ac_npc_station_master]
   - name: ovl_Npc_Station_Master_reloc
     type: code
     start: 0x8B8E00
@@ -2454,7 +2454,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8B8FC0, asm, overlays/actors/ovl_Ev_Angler/ac_ev_angler]
+      - [0x8B8FC0, c, overlays/actors/ovl_Ev_Angler/ac_ev_angler]
       - [0x8BA200, data, overlays/actors/ovl_Ev_Angler/ac_ev_angler]
   - name: ovl_Ev_Angler_reloc
     type: code
@@ -2473,7 +2473,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8BA3B0, asm, overlays/actors/ovl_Ev_Artist/ac_ev_artist]
+      - [0x8BA3B0, c, overlays/actors/ovl_Ev_Artist/ac_ev_artist]
       - [0x8BAD00, data, overlays/actors/ovl_Ev_Artist/ac_ev_artist]
   - name: ovl_Ev_Artist_reloc
     type: code
@@ -2492,9 +2492,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8BAE60, asm, overlays/actors/ovl_Ev_Broker/ac_ev_broker]
+      - [0x8BAE60, c, overlays/actors/ovl_Ev_Broker/ac_ev_broker]
       - [0x8BB8F0, data, overlays/actors/ovl_Ev_Broker/ac_ev_broker]
-      - [0x8BB980, rodata, overlays/actors/ovl_Ev_Broker/ac_ev_broker]
+      - [0x8BB980, .rodata, overlays/actors/ovl_Ev_Broker/ac_ev_broker]
   - name: ovl_Ev_Broker_reloc
     type: code
     start: 0x8BB990
@@ -2512,9 +2512,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8BBAA0, asm, overlays/actors/ovl_Ev_Broker2/ac_ev_broker2]
+      - [0x8BBAA0, c, overlays/actors/ovl_Ev_Broker2/ac_ev_broker2]
       - [0x8BD120, data, overlays/actors/ovl_Ev_Broker2/ac_ev_broker2]
-      - [0x8BD240, rodata, overlays/actors/ovl_Ev_Broker2/ac_ev_broker2]
+      - [0x8BD240, .rodata, overlays/actors/ovl_Ev_Broker2/ac_ev_broker2]
   - name: ovl_Ev_Broker2_reloc
     type: code
     start: 0x8BD250
@@ -2532,7 +2532,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8BD480, asm, overlays/actors/ovl_Ev_CarpetPeddler/ac_ev_carpetPeddler]
+      - [0x8BD480, c, overlays/actors/ovl_Ev_CarpetPeddler/ac_ev_carpetPeddler]
       - [0x8BE460, data, overlays/actors/ovl_Ev_CarpetPeddler/ac_ev_carpetPeddler]
   - name: ovl_Ev_CarpetPeddler_reloc
     type: code
@@ -2551,9 +2551,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8BE690, asm, overlays/actors/ovl_Ev_Designer/ac_ev_designer]
+      - [0x8BE690, c, overlays/actors/ovl_Ev_Designer/ac_ev_designer]
       - [0x8BF8D0, data, overlays/actors/ovl_Ev_Designer/ac_ev_designer]
-      - [0x8BFAA0, rodata, overlays/actors/ovl_Ev_Designer/ac_ev_designer]
+      - [0x8BFAA0, .rodata, overlays/actors/ovl_Ev_Designer/ac_ev_designer]
   - name: ovl_Ev_Designer_reloc
     type: code
     start: 0x8BFAB0
@@ -2571,7 +2571,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8BFC40, asm, overlays/actors/ovl_Ev_Gypsy/ac_ev_gypsy]
+      - [0x8BFC40, c, overlays/actors/ovl_Ev_Gypsy/ac_ev_gypsy]
       - [0x8C0260, data, overlays/actors/ovl_Ev_Gypsy/ac_ev_gypsy]
   - name: ovl_Ev_Gypsy_reloc
     type: code
@@ -2590,9 +2590,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8C03E0, asm, overlays/actors/ovl_Hanabi_Npc0/ac_hanabi_npc0]
+      - [0x8C03E0, c, overlays/actors/ovl_Hanabi_Npc0/ac_hanabi_npc0]
       - [0x8C0E60, data, overlays/actors/ovl_Hanabi_Npc0/ac_hanabi_npc0]
-      - [0x8C0F10, rodata, overlays/actors/ovl_Hanabi_Npc0/ac_hanabi_npc0]
+      - [0x8C0F10, .rodata, overlays/actors/ovl_Hanabi_Npc0/ac_hanabi_npc0]
   - name: ovl_Hanabi_Npc0_reloc
     type: code
     start: 0x8C0F20
@@ -2610,7 +2610,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8C1040, asm, overlays/actors/ovl_Hanabi_Npc1/ac_hanabi_npc1]
+      - [0x8C1040, c, overlays/actors/ovl_Hanabi_Npc1/ac_hanabi_npc1]
       - [0x8C1910, data, overlays/actors/ovl_Hanabi_Npc1/ac_hanabi_npc1]
   - name: ovl_Hanabi_Npc1_reloc
     type: code
@@ -2629,7 +2629,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8C1B30, asm, overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0]
+      - [0x8C1B30, c, overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0]
       - [0x8C22B0, data, overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0]
   - name: ovl_Hanami_Npc0_reloc
     type: code
@@ -2648,9 +2648,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8C2480, asm, overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1]
+      - [0x8C2480, c, overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1]
       - [0x8C2DB0, data, overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1]
-      - [0x8C2E50, rodata, overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1]
+      - [0x8C2E50, .rodata, overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1]
   - name: ovl_Hanami_Npc1_reloc
     type: code
     start: 0x8C2E60
@@ -2668,7 +2668,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8C2F70, asm, overlays/actors/ovl_Kamakura_Npc0/ac_kamakura_npc0]
+      - [0x8C2F70, c, overlays/actors/ovl_Kamakura_Npc0/ac_kamakura_npc0]
       - [0x8C3180, data, overlays/actors/ovl_Kamakura_Npc0/ac_kamakura_npc0]
   - name: ovl_Kamakura_Npc0_reloc
     type: code
@@ -2687,7 +2687,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8C3210, asm, overlays/actors/ovl_Tukimi_Npc0/ac_tukimi_npc0]
+      - [0x8C3210, c, overlays/actors/ovl_Tukimi_Npc0/ac_tukimi_npc0]
       - [0x8C3870, data, overlays/actors/ovl_Tukimi_Npc0/ac_tukimi_npc0]
   - name: ovl_Tukimi_Npc0_reloc
     type: code
@@ -2706,7 +2706,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8C3A00, asm, overlays/actors/ovl_Tukimi_Npc1/ac_tukimi_npc1]
+      - [0x8C3A00, c, overlays/actors/ovl_Tukimi_Npc1/ac_tukimi_npc1]
       - [0x8C4150, data, overlays/actors/ovl_Tukimi_Npc1/ac_tukimi_npc1]
   - name: ovl_Tukimi_Npc1_reloc
     type: code
@@ -2725,7 +2725,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8C4300, asm, overlays/actors/ovl_Countdown_Npc0/ac_countdown_npc0]
+      - [0x8C4300, c, overlays/actors/ovl_Countdown_Npc0/ac_countdown_npc0]
       - [0x8C4D90, data, overlays/actors/ovl_Countdown_Npc0/ac_countdown_npc0]
   - name: ovl_Countdown_Npc0_reloc
     type: code
@@ -2744,9 +2744,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8C4F70, asm, overlays/actors/ovl_Countdown_Npc1/ac_countdown_npc1]
+      - [0x8C4F70, c, overlays/actors/ovl_Countdown_Npc1/ac_countdown_npc1]
       - [0x8C6100, data, overlays/actors/ovl_Countdown_Npc1/ac_countdown_npc1]
-      - [0x8C6200, rodata, overlays/actors/ovl_Countdown_Npc1/ac_countdown_npc1]
+      - [0x8C6200, .rodata, overlays/actors/ovl_Countdown_Npc1/ac_countdown_npc1]
   - name: ovl_Countdown_Npc1_reloc
     type: code
     start: 0x8C6210
@@ -2764,7 +2764,7 @@
     compress: True
     bss_size: 0x20
     subsegments:
-      - [0x8C6390, asm, overlays/actors/ovl_Turi_Npc0/ac_turi_npc0]
+      - [0x8C6390, c, overlays/actors/ovl_Turi_Npc0/ac_turi_npc0]
       - [0x8C6B80, data, overlays/actors/ovl_Turi_Npc0/ac_turi_npc0]
       - { start: 0x8C6C50, type: bss, vram: 0x809E3460, name: overlays/actors/ovl_Turi_Npc0/ac_turi_npc0 }
   - name: ovl_Turi_Npc0_reloc
@@ -2784,9 +2784,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8C6D80, asm, overlays/actors/ovl_Taisou_Npc0/ac_taisou_npc0]
+      - [0x8C6D80, c, overlays/actors/ovl_Taisou_Npc0/ac_taisou_npc0]
       - [0x8C7D60, data, overlays/actors/ovl_Taisou_Npc0/ac_taisou_npc0]
-      - [0x8C7FC0, rodata, overlays/actors/ovl_Taisou_Npc0/ac_taisou_npc0]
+      - [0x8C7FC0, .rodata, overlays/actors/ovl_Taisou_Npc0/ac_taisou_npc0]
   - name: ovl_Taisou_Npc0_reloc
     type: code
     start: 0x8C7FD0
@@ -2804,7 +2804,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8C81F0, asm, overlays/actors/ovl_Ev_KabuPeddler/ac_ev_kabuPeddler]
+      - [0x8C81F0, c, overlays/actors/ovl_Ev_KabuPeddler/ac_ev_kabuPeddler]
       - [0x8C8CF0, data, overlays/actors/ovl_Ev_KabuPeddler/ac_ev_kabuPeddler]
   - name: ovl_Ev_KabuPeddler_reloc
     type: code
@@ -2823,7 +2823,7 @@
     compress: True
     bss_size: 0x10
     subsegments:
-      - [0x8C8F10, asm, overlays/actors/ovl_Ev_Miko/ac_ev_miko]
+      - [0x8C8F10, c, overlays/actors/ovl_Ev_Miko/ac_ev_miko]
       - [0x8C9A30, data, overlays/actors/ovl_Ev_Miko/ac_ev_miko]
       - { start: 0x8C9AC0, type: bss, vram: 0x809E62F0, name: overlays/actors/ovl_Ev_Miko/ac_ev_miko }
   - name: ovl_Ev_Miko_reloc
@@ -2843,7 +2843,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8C9BB0, asm, overlays/actors/ovl_Ev_Pumpkin/ac_ev_pumpkin]
+      - [0x8C9BB0, c, overlays/actors/ovl_Ev_Pumpkin/ac_ev_pumpkin]
       - [0x8CA7E0, data, overlays/actors/ovl_Ev_Pumpkin/ac_ev_pumpkin]
   - name: ovl_Ev_Pumpkin_reloc
     type: code
@@ -2862,7 +2862,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8CA950, asm, overlays/actors/ovl_Ev_Santa/ac_ev_santa]
+      - [0x8CA950, c, overlays/actors/ovl_Ev_Santa/ac_ev_santa]
       - [0x8CB460, data, overlays/actors/ovl_Ev_Santa/ac_ev_santa]
   - name: ovl_Ev_Santa_reloc
     type: code
@@ -2881,9 +2881,9 @@
     compress: True
     bss_size: 0x14AF0
     subsegments:
-      - [0x8CB690, asm, overlays/actors/ovl_Structure/ac_structure]
+      - [0x8CB690, c, overlays/actors/ovl_Structure/ac_structure]
       - [0x8CD000, data, overlays/actors/ovl_Structure/ac_structure]
-      - [0x8CD270, rodata, overlays/actors/ovl_Structure/ac_structure]
+      - [0x8CD270, .rodata, overlays/actors/ovl_Structure/ac_structure]
       - { start: 0x8CD350, type: bss, vram: 0x809E9B90, name: overlays/actors/ovl_Structure/ac_structure }
   - name: ovl_Structure_reloc
     type: code
@@ -2902,9 +2902,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8CD550, asm, overlays/actors/ovl_BrShop/ac_br_shop]
+      - [0x8CD550, c, overlays/actors/ovl_BrShop/ac_br_shop]
       - [0x8CE600, data, overlays/actors/ovl_BrShop/ac_br_shop]
-      - [0x8CE710, rodata, overlays/actors/ovl_BrShop/ac_br_shop]
+      - [0x8CE710, .rodata, overlays/actors/ovl_BrShop/ac_br_shop]
   - name: ovl_BrShop_reloc
     type: code
     start: 0x8CE770
@@ -2922,9 +2922,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8CE890, asm, overlays/actors/ovl_Buggy/ac_buggy]
+      - [0x8CE890, c, overlays/actors/ovl_Buggy/ac_buggy]
       - [0x8CF900, data, overlays/actors/ovl_Buggy/ac_buggy]
-      - [0x8CFA20, rodata, overlays/actors/ovl_Buggy/ac_buggy]
+      - [0x8CFA20, .rodata, overlays/actors/ovl_Buggy/ac_buggy]
   - name: ovl_Buggy_reloc
     type: code
     start: 0x8CFA70
@@ -2942,9 +2942,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8CFBA0, asm, overlays/actors/ovl_Conveni/ac_conveni]
+      - [0x8CFBA0, c, overlays/actors/ovl_Conveni/ac_conveni]
       - [0x8D0A00, data, overlays/actors/ovl_Conveni/ac_conveni]
-      - [0x8D0BC0, rodata, overlays/actors/ovl_Conveni/ac_conveni]
+      - [0x8D0BC0, .rodata, overlays/actors/ovl_Conveni/ac_conveni]
   - name: ovl_Conveni_reloc
     type: code
     start: 0x8D0BF0
@@ -2962,9 +2962,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8D0D20, asm, overlays/actors/ovl_Depart/ac_depart]
+      - [0x8D0D20, c, overlays/actors/ovl_Depart/ac_depart]
       - [0x8D1B90, data, overlays/actors/ovl_Depart/ac_depart]
-      - [0x8D1DB0, rodata, overlays/actors/ovl_Depart/ac_depart]
+      - [0x8D1DB0, .rodata, overlays/actors/ovl_Depart/ac_depart]
   - name: ovl_Depart_reloc
     type: code
     start: 0x8D1DD0
@@ -2982,7 +2982,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8D1F00, asm, overlays/actors/ovl_FallS/ac_fallS]
+      - [0x8D1F00, c, overlays/actors/ovl_FallS/ac_fallS]
       - [0x8D2110, data, overlays/actors/ovl_FallS/ac_fallS]
   - name: ovl_FallS_reloc
     type: code
@@ -3001,7 +3001,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8D2170, asm, overlays/actors/ovl_FallSESW/ac_fallSESW]
+      - [0x8D2170, c, overlays/actors/ovl_FallSESW/ac_fallSESW]
       - [0x8D23A0, data, overlays/actors/ovl_FallSESW/ac_fallSESW]
   - name: ovl_FallSESW_reloc
     type: code
@@ -3020,9 +3020,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8D2440, asm, overlays/actors/ovl_House/ac_house]
+      - [0x8D2440, c, overlays/actors/ovl_House/ac_house]
       - [0x8D38D0, data, overlays/actors/ovl_House/ac_house]
-      - [0x8D3B30, rodata, overlays/actors/ovl_House/ac_house]
+      - [0x8D3B30, .rodata, overlays/actors/ovl_House/ac_house]
   - name: ovl_House_reloc
     type: code
     start: 0x8D3B80
@@ -3040,9 +3040,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8D3D00, asm, overlays/actors/ovl_Kamakura/ac_kamakura]
+      - [0x8D3D00, c, overlays/actors/ovl_Kamakura/ac_kamakura]
       - [0x8D4840, data, overlays/actors/ovl_Kamakura/ac_kamakura]
-      - [0x8D4910, rodata, overlays/actors/ovl_Kamakura/ac_kamakura]
+      - [0x8D4910, .rodata, overlays/actors/ovl_Kamakura/ac_kamakura]
   - name: ovl_Kamakura_reloc
     type: code
     start: 0x8D4970
@@ -3060,9 +3060,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8D4A20, asm, overlays/actors/ovl_MyHouse/ac_my_house]
+      - [0x8D4A20, c, overlays/actors/ovl_MyHouse/ac_my_house]
       - [0x8D6040, data, overlays/actors/ovl_MyHouse/ac_my_house]
-      - [0x8D6310, rodata, overlays/actors/ovl_MyHouse/ac_my_house]
+      - [0x8D6310, .rodata, overlays/actors/ovl_MyHouse/ac_my_house]
   - name: ovl_MyHouse_reloc
     type: code
     start: 0x8D6340
@@ -3080,9 +3080,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8D6550, asm, overlays/actors/ovl_Police_Box/ac_police_box]
+      - [0x8D6550, c, overlays/actors/ovl_Police_Box/ac_police_box]
       - [0x8D6DD0, data, overlays/actors/ovl_Police_Box/ac_police_box]
-      - [0x8D6EB0, rodata, overlays/actors/ovl_Police_Box/ac_police_box]
+      - [0x8D6EB0, .rodata, overlays/actors/ovl_Police_Box/ac_police_box]
   - name: ovl_Police_Box_reloc
     type: code
     start: 0x8D6F10
@@ -3100,9 +3100,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8D6FC0, asm, overlays/actors/ovl_Post_Office/ac_post_office]
+      - [0x8D6FC0, c, overlays/actors/ovl_Post_Office/ac_post_office]
       - [0x8D7D30, data, overlays/actors/ovl_Post_Office/ac_post_office]
-      - [0x8D7EB0, rodata, overlays/actors/ovl_Post_Office/ac_post_office]
+      - [0x8D7EB0, .rodata, overlays/actors/ovl_Post_Office/ac_post_office]
   - name: ovl_Post_Office_reloc
     type: code
     start: 0x8D7ED0
@@ -3120,7 +3120,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8D8000, asm, overlays/actors/ovl_Reserve/ac_reserve]
+      - [0x8D8000, c, overlays/actors/ovl_Reserve/ac_reserve]
       - [0x8D8450, data, overlays/actors/ovl_Reserve/ac_reserve]
   - name: ovl_Reserve_reloc
     type: code
@@ -3139,9 +3139,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8D8510, asm, overlays/actors/ovl_S_Car/ac_s_car]
+      - [0x8D8510, c, overlays/actors/ovl_S_Car/ac_s_car]
       - [0x8D8D70, data, overlays/actors/ovl_S_Car/ac_s_car]
-      - [0x8D8E20, rodata, overlays/actors/ovl_S_Car/ac_s_car]
+      - [0x8D8E20, .rodata, overlays/actors/ovl_S_Car/ac_s_car]
   - name: ovl_S_Car_reloc
     type: code
     start: 0x8D8E40
@@ -3159,9 +3159,9 @@
     compress: True
     bss_size: 0x10
     subsegments:
-      - [0x8D8EC0, asm, overlays/actors/ovl_Shrine/ac_shrine]
+      - [0x8D8EC0, c, overlays/actors/ovl_Shrine/ac_shrine]
       - [0x8D9E80, data, overlays/actors/ovl_Shrine/ac_shrine]
-      - [0x8D9F70, rodata, overlays/actors/ovl_Shrine/ac_shrine]
+      - [0x8D9F70, .rodata, overlays/actors/ovl_Shrine/ac_shrine]
       - { start: 0x8D9FA0, type: bss, vram: 0x80A0B2D0, name: overlays/actors/ovl_Shrine/ac_shrine }
   - name: ovl_Shrine_reloc
     type: code
@@ -3180,9 +3180,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8DA0C0, asm, overlays/actors/ovl_Super/ac_super]
+      - [0x8DA0C0, c, overlays/actors/ovl_Super/ac_super]
       - [0x8DAF30, data, overlays/actors/ovl_Super/ac_super]
-      - [0x8DB150, rodata, overlays/actors/ovl_Super/ac_super]
+      - [0x8DB150, .rodata, overlays/actors/ovl_Super/ac_super]
   - name: ovl_Super_reloc
     type: code
     start: 0x8DB170
@@ -3200,9 +3200,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8DB2A0, asm, overlays/actors/ovl_Train0/ac_train0]
+      - [0x8DB2A0, c, overlays/actors/ovl_Train0/ac_train0]
       - [0x8DBE20, data, overlays/actors/ovl_Train0/ac_train0]
-      - [0x8DBE50, rodata, overlays/actors/ovl_Train0/ac_train0]
+      - [0x8DBE50, .rodata, overlays/actors/ovl_Train0/ac_train0]
   - name: ovl_Train0_reloc
     type: code
     start: 0x8DBE70
@@ -3220,9 +3220,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8DBF00, asm, overlays/actors/ovl_Train1/ac_train1]
+      - [0x8DBF00, c, overlays/actors/ovl_Train1/ac_train1]
       - [0x8DC690, data, overlays/actors/ovl_Train1/ac_train1]
-      - [0x8DC720, rodata, overlays/actors/ovl_Train1/ac_train1]
+      - [0x8DC720, .rodata, overlays/actors/ovl_Train1/ac_train1]
   - name: ovl_Train1_reloc
     type: code
     start: 0x8DC730
@@ -3240,9 +3240,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8DC7D0, asm, overlays/actors/ovl_Shop/ac_shop]
+      - [0x8DC7D0, c, overlays/actors/ovl_Shop/ac_shop]
       - [0x8DD660, data, overlays/actors/ovl_Shop/ac_shop]
-      - [0x8DD7B0, rodata, overlays/actors/ovl_Shop/ac_shop]
+      - [0x8DD7B0, .rodata, overlays/actors/ovl_Shop/ac_shop]
   - name: ovl_Shop_reloc
     type: code
     start: 0x8DD7E0
@@ -3260,9 +3260,9 @@
     compress: True
     bss_size: 0x10
     subsegments:
-      - [0x8DD910, asm, overlays/actors/ovl_Station/ac_station]
+      - [0x8DD910, c, overlays/actors/ovl_Station/ac_station]
       - [0x8DEB40, data, overlays/actors/ovl_Station/ac_station]
-      - [0x8DECF0, rodata, overlays/actors/ovl_Station/ac_station]
+      - [0x8DECF0, .rodata, overlays/actors/ovl_Station/ac_station]
       - { start: 0x8DED10, type: bss, vram: 0x80A10050, name: overlays/actors/ovl_Station/ac_station }
   - name: ovl_Station_reloc
     type: code
@@ -3281,9 +3281,9 @@
     compress: True
     bss_size: 0x5410
     subsegments:
-      - [0x8DEEC0, asm, overlays/actors/ovl_Insect/ac_insect]
+      - [0x8DEEC0, c, overlays/actors/ovl_Insect/ac_insect]
       - [0x8E0340, data, overlays/actors/ovl_Insect/ac_insect]
-      - [0x8E0850, rodata, overlays/actors/ovl_Insect/ac_insect]
+      - [0x8E0850, .rodata, overlays/actors/ovl_Insect/ac_insect]
       - { start: 0x8E0870, type: bss, vram: 0x80A11BC0, name: overlays/actors/ovl_Insect/ac_insect }
   - name: ovl_Insect_reloc
     type: code
@@ -3302,9 +3302,9 @@
     compress: True
     bss_size: 0x1DD0
     subsegments:
-      - [0x8E0A30, asm, overlays/actors/ovl_Effect_Control/ef_effect_control]
+      - [0x8E0A30, c, overlays/actors/ovl_Effect_Control/ef_effect_control]
       - [0x8E3430, data, overlays/actors/ovl_Effect_Control/ef_effect_control]
-      - [0x8E4120, rodata, overlays/actors/ovl_Effect_Control/ef_effect_control]
+      - [0x8E4120, .rodata, overlays/actors/ovl_Effect_Control/ef_effect_control]
       - { start: 0x8E4170, type: bss, vram: 0x80A1A8D0, name: overlays/actors/ovl_Effect_Control/ef_effect_control }
   - name: ovl_Effect_Control_reloc
     type: code
@@ -3323,9 +3323,9 @@
     compress: True
     bss_size: 0x10
     subsegments:
-      - [0x8E46A0, asm, overlays/actors/ovl_Effectbg/ac_effectbg]
+      - [0x8E46A0, c, overlays/actors/ovl_Effectbg/ac_effectbg]
       - [0x8E6460, data, overlays/actors/ovl_Effectbg/ac_effectbg]
-      - [0x8E65F0, rodata, overlays/actors/ovl_Effectbg/ac_effectbg]
+      - [0x8E65F0, .rodata, overlays/actors/ovl_Effectbg/ac_effectbg]
       - { start: 0x8E6640, type: bss, vram: 0x80A1EB70, name: overlays/actors/ovl_Effectbg/ac_effectbg }
   - name: ovl_Effectbg_reloc
     type: code
@@ -3344,9 +3344,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8E6770, asm, overlays/actors/ovl_T_Umbrella/ac_t_umbrella]
+      - [0x8E6770, c, overlays/actors/ovl_T_Umbrella/ac_t_umbrella]
       - [0x8E6C70, data, overlays/actors/ovl_T_Umbrella/ac_t_umbrella]
-      - [0x8E6F00, rodata, overlays/actors/ovl_T_Umbrella/ac_t_umbrella]
+      - [0x8E6F00, .rodata, overlays/actors/ovl_T_Umbrella/ac_t_umbrella]
   - name: ovl_T_Umbrella_reloc
     type: code
     start: 0x8E6F10
@@ -3364,9 +3364,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8E6FD0, asm, overlays/actors/ovl_T_Keitai/ac_t_keitai]
+      - [0x8E6FD0, c, overlays/actors/ovl_T_Keitai/ac_t_keitai]
       - [0x8E7420, data, overlays/actors/ovl_T_Keitai/ac_t_keitai]
-      - [0x8E74C0, rodata, overlays/actors/ovl_T_Keitai/ac_t_keitai]
+      - [0x8E74C0, .rodata, overlays/actors/ovl_T_Keitai/ac_t_keitai]
   - name: ovl_T_Keitai_reloc
     type: code
     start: 0x8E74D0
@@ -3384,9 +3384,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8E7560, asm, overlays/actors/ovl_T_Utiwa/ac_t_utiwa]
+      - [0x8E7560, c, overlays/actors/ovl_T_Utiwa/ac_t_utiwa]
       - [0x8E77C0, data, overlays/actors/ovl_T_Utiwa/ac_t_utiwa]
-      - [0x8E7820, rodata, overlays/actors/ovl_T_Utiwa/ac_t_utiwa]
+      - [0x8E7820, .rodata, overlays/actors/ovl_T_Utiwa/ac_t_utiwa]
   - name: ovl_T_Utiwa_reloc
     type: code
     start: 0x8E7830
@@ -3404,9 +3404,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8E78A0, asm, overlays/actors/ovl_T_Hanabi/ac_t_hanabi]
+      - [0x8E78A0, c, overlays/actors/ovl_T_Hanabi/ac_t_hanabi]
       - [0x8E7B10, data, overlays/actors/ovl_T_Hanabi/ac_t_hanabi]
-      - [0x8E7B70, rodata, overlays/actors/ovl_T_Hanabi/ac_t_hanabi]
+      - [0x8E7B70, .rodata, overlays/actors/ovl_T_Hanabi/ac_t_hanabi]
   - name: ovl_T_Hanabi_reloc
     type: code
     start: 0x8E7B80
@@ -3424,9 +3424,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8E7BF0, asm, overlays/actors/ovl_T_Cracker/ac_t_cracker]
+      - [0x8E7BF0, c, overlays/actors/ovl_T_Cracker/ac_t_cracker]
       - [0x8E7E50, data, overlays/actors/ovl_T_Cracker/ac_t_cracker]
-      - [0x8E7EB0, rodata, overlays/actors/ovl_T_Cracker/ac_t_cracker]
+      - [0x8E7EB0, .rodata, overlays/actors/ovl_T_Cracker/ac_t_cracker]
   - name: ovl_T_Cracker_reloc
     type: code
     start: 0x8E7EC0
@@ -3444,9 +3444,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8E7F30, asm, overlays/actors/ovl_T_Pistol/ac_t_pistol]
+      - [0x8E7F30, c, overlays/actors/ovl_T_Pistol/ac_t_pistol]
       - [0x8E8190, data, overlays/actors/ovl_T_Pistol/ac_t_pistol]
-      - [0x8E81F0, rodata, overlays/actors/ovl_T_Pistol/ac_t_pistol]
+      - [0x8E81F0, .rodata, overlays/actors/ovl_T_Pistol/ac_t_pistol]
   - name: ovl_T_Pistol_reloc
     type: code
     start: 0x8E8200
@@ -3464,9 +3464,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8E8270, asm, overlays/actors/ovl_T_Flag/ac_t_flag]
+      - [0x8E8270, c, overlays/actors/ovl_T_Flag/ac_t_flag]
       - [0x8E86A0, data, overlays/actors/ovl_T_Flag/ac_t_flag]
-      - [0x8E86D0, rodata, overlays/actors/ovl_T_Flag/ac_t_flag]
+      - [0x8E86D0, .rodata, overlays/actors/ovl_T_Flag/ac_t_flag]
   - name: ovl_T_Flag_reloc
     type: code
     start: 0x8E86E0
@@ -3484,9 +3484,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8E8720, asm, overlays/actors/ovl_T_Tumbler/ac_t_tumbler]
+      - [0x8E8720, c, overlays/actors/ovl_T_Tumbler/ac_t_tumbler]
       - [0x8E8980, data, overlays/actors/ovl_T_Tumbler/ac_t_tumbler]
-      - [0x8E89E0, rodata, overlays/actors/ovl_T_Tumbler/ac_t_tumbler]
+      - [0x8E89E0, .rodata, overlays/actors/ovl_T_Tumbler/ac_t_tumbler]
   - name: ovl_T_Tumbler_reloc
     type: code
     start: 0x8E89F0
@@ -3504,9 +3504,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8E8A60, asm, overlays/actors/ovl_T_NpcSao/ac_t_npc_sao]
+      - [0x8E8A60, c, overlays/actors/ovl_T_NpcSao/ac_t_npc_sao]
       - [0x8E8D70, data, overlays/actors/ovl_T_NpcSao/ac_t_npc_sao]
-      - [0x8E8DC0, rodata, overlays/actors/ovl_T_NpcSao/ac_t_npc_sao]
+      - [0x8E8DC0, .rodata, overlays/actors/ovl_T_NpcSao/ac_t_npc_sao]
   - name: ovl_T_NpcSao_reloc
     type: code
     start: 0x8E8DD0
@@ -3524,9 +3524,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8E8E20, asm, overlays/actors/ovl_T_Tama/ac_t_tam]
+      - [0x8E8E20, c, overlays/actors/ovl_T_Tama/ac_t_tam]
       - [0x8E9060, data, overlays/actors/ovl_T_Tama/ac_t_tam]
-      - [0x8E90D0, rodata, overlays/actors/ovl_T_Tama/ac_t_tam]
+      - [0x8E90D0, .rodata, overlays/actors/ovl_T_Tama/ac_t_tam]
   - name: ovl_T_Tama_reloc
     type: code
     start: 0x8E90E0
@@ -3544,9 +3544,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x8E9130, asm, overlays/actors/ovl_Weather/ac_weather]
+      - [0x8E9130, c, overlays/actors/ovl_Weather/ac_weather]
       - [0x8EA700, data, overlays/actors/ovl_Weather/ac_weather]
-      - [0x8EA7E0, rodata, overlays/actors/ovl_Weather/ac_weather]
+      - [0x8EA7E0, .rodata, overlays/actors/ovl_Weather/ac_weather]
   - name: ovl_Weather_reloc
     type: code
     start: 0x8EA800
@@ -3564,9 +3564,9 @@
     compress: True
     bss_size: 0x20
     subsegments:
-      - [0x8EA970, asm, overlays/actors/ovl_Set_Npc_Manager/ac_set_npc_manager]
+      - [0x8EA970, c, overlays/actors/ovl_Set_Npc_Manager/ac_set_npc_manager]
       - [0x8ED020, data, overlays/actors/ovl_Set_Npc_Manager/ac_set_npc_manager]
-      - [0x8ED0C0, rodata, overlays/actors/ovl_Set_Npc_Manager/ac_set_npc_manager]
+      - [0x8ED0C0, .rodata, overlays/actors/ovl_Set_Npc_Manager/ac_set_npc_manager]
       - { start: 0x8ED0E0, type: bss, vram: 0x80A25620, name: overlays/actors/ovl_Set_Npc_Manager/ac_set_npc_manager }
   - name: ovl_Set_Npc_Manager_reloc
     type: code
@@ -11281,9 +11281,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x920E00, asm, overlays/actors/ovl_Train_Window/ac_train_window]
+      - [0x920E00, c, overlays/actors/ovl_Train_Window/ac_train_window]
       - [0x922020, data, overlays/actors/ovl_Train_Window/ac_train_window]
-      - [0x922260, rodata, overlays/actors/ovl_Train_Window/ac_train_window]
+      - [0x922260, .rodata, overlays/actors/ovl_Train_Window/ac_train_window]
   - name: ovl_Train_Window_reloc
     type: code
     start: 0x922270
@@ -11339,9 +11339,9 @@
     compress: True
     bss_size: 0x7800
     subsegments:
-      - [0x922A10, asm, overlays/actors/ovl_Gyoei/ac_gyoei]
+      - [0x922A10, c, overlays/actors/ovl_Gyoei/ac_gyoei]
       - [0x923FE0, data, overlays/actors/ovl_Gyoei/ac_gyoei]
-      - [0x924550, rodata, overlays/actors/ovl_Gyoei/ac_gyoei]
+      - [0x924550, .rodata, overlays/actors/ovl_Gyoei/ac_gyoei]
       - { start: 0x924590, type: bss, vram: 0x80A5CAF0, name: overlays/actors/ovl_Gyoei/ac_gyoei }
   - name: ovl_Gyoei_reloc
     type: code
@@ -11540,9 +11540,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x924C40, asm, overlays/actors/ovl_Uki/ac_uki]
+      - [0x924C40, c, overlays/actors/ovl_Uki/ac_uki]
       - [0x926F40, data, overlays/actors/ovl_Uki/ac_uki]
-      - [0x927150, rodata, overlays/actors/ovl_Uki/ac_uki]
+      - [0x927150, .rodata, overlays/actors/ovl_Uki/ac_uki]
   - name: ovl_Uki_reloc
     type: code
     start: 0x927200
@@ -12685,7 +12685,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x92C850, asm, overlays/actors/ovl_Npc_Shop_Mastersp/ac_npc_shop_mastersp]
+      - [0x92C850, c, overlays/actors/ovl_Npc_Shop_Mastersp/ac_npc_shop_mastersp]
       - [0x92E640, data, overlays/actors/ovl_Npc_Shop_Mastersp/ac_npc_shop_mastersp]
   - name: ovl_Npc_Shop_Mastersp_reloc
     type: code
@@ -13045,7 +13045,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x932AA0, asm, overlays/actors/ovl_Ev_Cherry_Manager/ev_cherry_manager]
+      - [0x932AA0, c, overlays/actors/ovl_Ev_Cherry_Manager/ev_cherry_manager]
       - [0x932B00, data, overlays/actors/ovl_Ev_Cherry_Manager/ev_cherry_manager]
   - name: ovl_Ev_Cherry_Manager_reloc
     type: code
@@ -13064,7 +13064,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x932B60, asm, overlays/actors/ovl_Ev_Yomise/ac_ev_yomise]
+      - [0x932B60, c, overlays/actors/ovl_Ev_Yomise/ac_ev_yomise]
       - [0x933D10, data, overlays/actors/ovl_Ev_Yomise/ac_ev_yomise]
   - name: ovl_Ev_Yomise_reloc
     type: code
@@ -13083,7 +13083,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x933F00, asm, overlays/actors/ovl_Tokyoso_Npc0/ac_tokyoso_npc0]
+      - [0x933F00, c, overlays/actors/ovl_Tokyoso_Npc0/ac_tokyoso_npc0]
       - [0x934B60, data, overlays/actors/ovl_Tokyoso_Npc0/ac_tokyoso_npc0]
   - name: ovl_Tokyoso_Npc0_reloc
     type: code
@@ -13102,9 +13102,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x934D50, asm, overlays/actors/ovl_Tokyoso_Npc1/ac_tokyoso_npc1]
+      - [0x934D50, c, overlays/actors/ovl_Tokyoso_Npc1/ac_tokyoso_npc1]
       - [0x9361E0, data, overlays/actors/ovl_Tokyoso_Npc1/ac_tokyoso_npc1]
-      - [0x936300, rodata, overlays/actors/ovl_Tokyoso_Npc1/ac_tokyoso_npc1]
+      - [0x936300, .rodata, overlays/actors/ovl_Tokyoso_Npc1/ac_tokyoso_npc1]
   - name: ovl_Tokyoso_Npc1_reloc
     type: code
     start: 0x936310
@@ -13122,9 +13122,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x936470, asm, overlays/actors/ovl_Goza/ac_goza]
+      - [0x936470, c, overlays/actors/ovl_Goza/ac_goza]
       - [0x936A10, data, overlays/actors/ovl_Goza/ac_goza]
-      - [0x936AD0, rodata, overlays/actors/ovl_Goza/ac_goza]
+      - [0x936AD0, .rodata, overlays/actors/ovl_Goza/ac_goza]
   - name: ovl_Goza_reloc
     type: code
     start: 0x936B20
@@ -13142,7 +13142,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x936BC0, asm, overlays/actors/ovl_Radio/ac_radio]
+      - [0x936BC0, c, overlays/actors/ovl_Radio/ac_radio]
       - [0x937070, data, overlays/actors/ovl_Radio/ac_radio]
   - name: ovl_Radio_reloc
     type: code
@@ -13161,9 +13161,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x937120, asm, overlays/actors/ovl_Yatai/ac_yatai]
+      - [0x937120, c, overlays/actors/ovl_Yatai/ac_yatai]
       - [0x9376D0, data, overlays/actors/ovl_Yatai/ac_yatai]
-      - [0x9377F0, rodata, overlays/actors/ovl_Yatai/ac_yatai]
+      - [0x9377F0, .rodata, overlays/actors/ovl_Yatai/ac_yatai]
   - name: ovl_Yatai_reloc
     type: code
     start: 0x937820
@@ -13181,9 +13181,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x9378C0, asm, overlays/actors/ovl_Tokyoso_Control/ac_tokyoso_control]
+      - [0x9378C0, c, overlays/actors/ovl_Tokyoso_Control/ac_tokyoso_control]
       - [0x938D90, data, overlays/actors/ovl_Tokyoso_Control/ac_tokyoso_control]
-      - [0x938EB0, rodata, overlays/actors/ovl_Tokyoso_Control/ac_tokyoso_control]
+      - [0x938EB0, .rodata, overlays/actors/ovl_Tokyoso_Control/ac_tokyoso_control]
   - name: ovl_Tokyoso_Control_reloc
     type: code
     start: 0x938EC0
@@ -13348,9 +13348,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x9395F0, asm, overlays/actors/ovl_Shop_Umbrella/ac_shop_umbrella]
+      - [0x9395F0, c, overlays/actors/ovl_Shop_Umbrella/ac_shop_umbrella]
       - [0x93A540, data, overlays/actors/ovl_Shop_Umbrella/ac_shop_umbrella]
-      - [0x93A790, rodata, overlays/actors/ovl_Shop_Umbrella/ac_shop_umbrella]
+      - [0x93A790, .rodata, overlays/actors/ovl_Shop_Umbrella/ac_shop_umbrella]
   - name: ovl_Shop_Umbrella_reloc
     type: code
     start: 0x93A7D0
@@ -13386,9 +13386,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x93A920, asm, overlays/actors/ovl_Gyo_Release/ac_gyo_release]
+      - [0x93A920, c, overlays/actors/ovl_Gyo_Release/ac_gyo_release]
       - [0x93B5A0, data, overlays/actors/ovl_Gyo_Release/ac_gyo_release]
-      - [0x93BB50, rodata, overlays/actors/ovl_Gyo_Release/ac_gyo_release]
+      - [0x93BB50, .rodata, overlays/actors/ovl_Gyo_Release/ac_gyo_release]
   - name: ovl_Gyo_Release_reloc
     type: code
     start: 0x93BBC0
@@ -13994,9 +13994,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x93FC10, asm, overlays/actors/ovl_Tukimi/ac_tukimi]
+      - [0x93FC10, c, overlays/actors/ovl_Tukimi/ac_tukimi]
       - [0x940260, data, overlays/actors/ovl_Tukimi/ac_tukimi]
-      - [0x9402E0, rodata, overlays/actors/ovl_Tukimi/ac_tukimi]
+      - [0x9402E0, .rodata, overlays/actors/ovl_Tukimi/ac_tukimi]
   - name: ovl_Tukimi_reloc
     type: code
     start: 0x9402F0
@@ -14014,9 +14014,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x940380, asm, overlays/actors/ovl_Kamakura_Indoor/ac_kamakura_indoor]
+      - [0x940380, c, overlays/actors/ovl_Kamakura_Indoor/ac_kamakura_indoor]
       - [0x9414B0, data, overlays/actors/ovl_Kamakura_Indoor/ac_kamakura_indoor]
-      - [0x941970, rodata, overlays/actors/ovl_Kamakura_Indoor/ac_kamakura_indoor]
+      - [0x941970, .rodata, overlays/actors/ovl_Kamakura_Indoor/ac_kamakura_indoor]
   - name: ovl_Kamakura_Indoor_reloc
     type: code
     start: 0x9419B0
@@ -14070,9 +14070,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x941BF0, asm, overlays/actors/ovl_Gyo_Kage/ac_gyo_kage]
+      - [0x941BF0, c, overlays/actors/ovl_Gyo_Kage/ac_gyo_kage]
       - [0x9426D0, data, overlays/actors/ovl_Gyo_Kage/ac_gyo_kage]
-      - [0x942760, rodata, overlays/actors/ovl_Gyo_Kage/ac_gyo_kage]
+      - [0x942760, .rodata, overlays/actors/ovl_Gyo_Kage/ac_gyo_kage]
   - name: ovl_Gyo_Kage_reloc
     type: code
     start: 0x9427D0
@@ -14090,9 +14090,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x9428A0, asm, overlays/actors/ovl_Mikuji/ac_mikuji]
+      - [0x9428A0, c, overlays/actors/ovl_Mikuji/ac_mikuji]
       - [0x942DA0, data, overlays/actors/ovl_Mikuji/ac_mikuji]
-      - [0x942E20, rodata, overlays/actors/ovl_Mikuji/ac_mikuji]
+      - [0x942E20, .rodata, overlays/actors/ovl_Mikuji/ac_mikuji]
   - name: ovl_Mikuji_reloc
     type: code
     start: 0x942E50
@@ -14542,9 +14542,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x943960, asm, overlays/actors/ovl_House_Goki/ac_house_goki]
+      - [0x943960, c, overlays/actors/ovl_House_Goki/ac_house_goki]
       - [0x944840, data, overlays/actors/ovl_House_Goki/ac_house_goki]
-      - [0x944890, rodata, overlays/actors/ovl_House_Goki/ac_house_goki]
+      - [0x944890, .rodata, overlays/actors/ovl_House_Goki/ac_house_goki]
   - name: ovl_House_Goki_reloc
     type: code
     start: 0x9448A0
@@ -14709,9 +14709,9 @@
     compress: True
     bss_size: 0x10
     subsegments:
-      - [0x944E90, asm, overlays/actors/ovl_Count/ac_countdown]
+      - [0x944E90, c, overlays/actors/ovl_Count/ac_countdown]
       - [0x9458D0, data, overlays/actors/ovl_Count/ac_countdown]
-      - [0x9459C0, rodata, overlays/actors/ovl_Count/ac_countdown]
+      - [0x9459C0, .rodata, overlays/actors/ovl_Count/ac_countdown]
       - { start: 0x945A20, type: bss, vram: 0x80A85780, name: overlays/actors/ovl_Count/ac_countdown }
   - name: ovl_Count_reloc
     type: code
@@ -14730,9 +14730,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x945B10, asm, overlays/actors/ovl_Garagara/ac_garagara]
+      - [0x945B10, c, overlays/actors/ovl_Garagara/ac_garagara]
       - [0x946740, data, overlays/actors/ovl_Garagara/ac_garagara]
-      - [0x9467A0, rodata, overlays/actors/ovl_Garagara/ac_garagara]
+      - [0x9467A0, .rodata, overlays/actors/ovl_Garagara/ac_garagara]
   - name: ovl_Garagara_reloc
     type: code
     start: 0x9467E0
@@ -14750,7 +14750,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x946900, asm, overlays/actors/ovl_Tamaire_Npc0/ac_tamaire_npc0]
+      - [0x946900, c, overlays/actors/ovl_Tamaire_Npc0/ac_tamaire_npc0]
       - [0x947330, data, overlays/actors/ovl_Tamaire_Npc0/ac_tamaire_npc0]
   - name: ovl_Tamaire_Npc0_reloc
     type: code
@@ -14769,9 +14769,9 @@
     compress: True
     bss_size: 0x10
     subsegments:
-      - [0x9474F0, asm, overlays/actors/ovl_Tamaire_Npc1/ac_tamaire_npc1]
+      - [0x9474F0, c, overlays/actors/ovl_Tamaire_Npc1/ac_tamaire_npc1]
       - [0x948730, data, overlays/actors/ovl_Tamaire_Npc1/ac_tamaire_npc1]
-      - [0x948840, rodata, overlays/actors/ovl_Tamaire_Npc1/ac_tamaire_npc1]
+      - [0x948840, .rodata, overlays/actors/ovl_Tamaire_Npc1/ac_tamaire_npc1]
       - { start: 0x948850, type: bss, vram: 0x80A885C0, name: overlays/actors/ovl_Tamaire_Npc1/ac_tamaire_npc1 }
   - name: ovl_Tamaire_Npc1_reloc
     type: code
@@ -14790,7 +14790,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x948A20, asm, overlays/actors/ovl_Hatumode_Npc0/ac_hatumode_npc0]
+      - [0x948A20, c, overlays/actors/ovl_Hatumode_Npc0/ac_hatumode_npc0]
       - [0x9499E0, data, overlays/actors/ovl_Hatumode_Npc0/ac_hatumode_npc0]
   - name: ovl_Hatumode_Npc0_reloc
     type: code
@@ -14809,7 +14809,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x949BE0, asm, overlays/actors/ovl_Npc_Totakeke/ac_npc_totakeke]
+      - [0x949BE0, c, overlays/actors/ovl_Npc_Totakeke/ac_npc_totakeke]
       - [0x94B280, data, overlays/actors/ovl_Npc_Totakeke/ac_npc_totakeke]
   - name: ovl_Npc_Totakeke_reloc
     type: code
@@ -14828,7 +14828,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x94B4B0, asm, overlays/actors/ovl_Count02/ac_count02]
+      - [0x94B4B0, c, overlays/actors/ovl_Count02/ac_count02]
       - [0x94BED0, data, overlays/actors/ovl_Count02/ac_count02]
   - name: ovl_Count02_reloc
     type: code
@@ -14867,9 +14867,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x94D920, asm, overlays/actors/ovl_Hatumode_Control/ac_hatumode_control]
+      - [0x94D920, c, overlays/actors/ovl_Hatumode_Control/ac_hatumode_control]
       - [0x94ED60, data, overlays/actors/ovl_Hatumode_Control/ac_hatumode_control]
-      - [0x94EF60, rodata, overlays/actors/ovl_Hatumode_Control/ac_hatumode_control]
+      - [0x94EF60, .rodata, overlays/actors/ovl_Hatumode_Control/ac_hatumode_control]
   - name: ovl_Hatumode_Control_reloc
     type: code
     start: 0x94EF80
@@ -14887,7 +14887,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x94F170, asm, overlays/actors/ovl_Tama/ac_tama]
+      - [0x94F170, c, overlays/actors/ovl_Tama/ac_tama]
       - [0x94F4F0, data, overlays/actors/ovl_Tama/ac_tama]
   - name: ovl_Tama_reloc
     type: code
@@ -14906,7 +14906,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x94F570, asm, overlays/actors/ovl_Kago/ac_kago]
+      - [0x94F570, c, overlays/actors/ovl_Kago/ac_kago]
       - [0x94F960, data, overlays/actors/ovl_Kago/ac_kago]
   - name: ovl_Kago_reloc
     type: code
@@ -15020,9 +15020,9 @@
     compress: True
     bss_size: 0x10
     subsegments:
-      - [0x94FF70, asm, overlays/actors/ovl_Turi/ac_turi]
+      - [0x94FF70, c, overlays/actors/ovl_Turi/ac_turi]
       - [0x950A80, data, overlays/actors/ovl_Turi/ac_turi]
-      - [0x950BA0, rodata, overlays/actors/ovl_Turi/ac_turi]
+      - [0x950BA0, .rodata, overlays/actors/ovl_Turi/ac_turi]
       - { start: 0x950C50, type: bss, vram: 0x80A909D0, name: overlays/actors/ovl_Turi/ac_turi }
   - name: ovl_Turi_reloc
     type: code
@@ -15041,9 +15041,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x950DE0, asm, overlays/actors/ovl_House_Clock/ac_house_clock]
+      - [0x950DE0, c, overlays/actors/ovl_House_Clock/ac_house_clock]
       - [0x9517C0, data, overlays/actors/ovl_House_Clock/ac_house_clock]
-      - [0x951940, rodata, overlays/actors/ovl_House_Clock/ac_house_clock]
+      - [0x951940, .rodata, overlays/actors/ovl_House_Clock/ac_house_clock]
   - name: ovl_House_Clock_reloc
     type: code
     start: 0x951960
@@ -15061,9 +15061,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x951A70, asm, overlays/actors/ovl_Tunahiki_Control/ac_tunahiki_control]
+      - [0x951A70, c, overlays/actors/ovl_Tunahiki_Control/ac_tunahiki_control]
       - [0x951C80, data, overlays/actors/ovl_Tunahiki_Control/ac_tunahiki_control]
-      - [0x951CB0, rodata, overlays/actors/ovl_Tunahiki_Control/ac_tunahiki_control]
+      - [0x951CB0, .rodata, overlays/actors/ovl_Tunahiki_Control/ac_tunahiki_control]
   - name: ovl_Tunahiki_Control_reloc
     type: code
     start: 0x951CC0
@@ -15081,7 +15081,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x951D10, asm, overlays/actors/ovl_Tunahiki_Npc0/ac_tunahiki_npc0]
+      - [0x951D10, c, overlays/actors/ovl_Tunahiki_Npc0/ac_tunahiki_npc0]
       - [0x9525E0, data, overlays/actors/ovl_Tunahiki_Npc0/ac_tunahiki_npc0]
   - name: ovl_Tunahiki_Npc0_reloc
     type: code
@@ -15100,9 +15100,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x952730, asm, overlays/actors/ovl_Tunahiki_Npc1/ac_tunahiki_npc1]
+      - [0x952730, c, overlays/actors/ovl_Tunahiki_Npc1/ac_tunahiki_npc1]
       - [0x953620, data, overlays/actors/ovl_Tunahiki_Npc1/ac_tunahiki_npc1]
-      - [0x9536D0, rodata, overlays/actors/ovl_Tunahiki_Npc1/ac_tunahiki_npc1]
+      - [0x9536D0, .rodata, overlays/actors/ovl_Tunahiki_Npc1/ac_tunahiki_npc1]
   - name: ovl_Tunahiki_Npc1_reloc
     type: code
     start: 0x9536E0
@@ -15120,7 +15120,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x9537E0, asm, overlays/actors/ovl_Koinobori/ac_koinobori]
+      - [0x9537E0, c, overlays/actors/ovl_Koinobori/ac_koinobori]
       - [0x953CE0, data, overlays/actors/ovl_Koinobori/ac_koinobori]
   - name: ovl_Koinobori_reloc
     type: code
@@ -15193,9 +15193,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x953F30, asm, overlays/actors/ovl_Bee/ac_bee]
+      - [0x953F30, c, overlays/actors/ovl_Bee/ac_bee]
       - [0x954BC0, data, overlays/actors/ovl_Bee/ac_bee]
-      - [0x954C30, rodata, overlays/actors/ovl_Bee/ac_bee]
+      - [0x954C30, .rodata, overlays/actors/ovl_Bee/ac_bee]
   - name: ovl_Bee_reloc
     type: code
     start: 0x954C50
@@ -15233,7 +15233,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x956630, asm, overlays/actors/ovl_Nameplate/ac_nameplate]
+      - [0x956630, c, overlays/actors/ovl_Nameplate/ac_nameplate]
       - [0x956800, data, overlays/actors/ovl_Nameplate/ac_nameplate]
   - name: ovl_Nameplate_reloc
     type: code
@@ -15396,9 +15396,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x956BF0, asm, overlays/actors/ovl_Dump/ac_dump]
+      - [0x956BF0, c, overlays/actors/ovl_Dump/ac_dump]
       - [0x957260, data, overlays/actors/ovl_Dump/ac_dump]
-      - [0x957370, rodata, overlays/actors/ovl_Dump/ac_dump]
+      - [0x957370, .rodata, overlays/actors/ovl_Dump/ac_dump]
   - name: ovl_Dump_reloc
     type: code
     start: 0x957380
@@ -15582,9 +15582,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x958220, asm, overlays/actors/ovl_Ev_Dozaemon/ac_ev_dozaemon]
+      - [0x958220, c, overlays/actors/ovl_Ev_Dozaemon/ac_ev_dozaemon]
       - [0x958FF0, data, overlays/actors/ovl_Ev_Dozaemon/ac_ev_dozaemon]
-      - [0x959090, rodata, overlays/actors/ovl_Ev_Dozaemon/ac_ev_dozaemon]
+      - [0x959090, .rodata, overlays/actors/ovl_Ev_Dozaemon/ac_ev_dozaemon]
   - name: ovl_Ev_Dozaemon_reloc
     type: code
     start: 0x9590A0
@@ -15734,9 +15734,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x95C630, asm, overlays/actors/ovl_Windmill/ac_windmil]
+      - [0x95C630, c, overlays/actors/ovl_Windmill/ac_windmil]
       - [0x95CDB0, data, overlays/actors/ovl_Windmill/ac_windmil]
-      - [0x95CEB0, rodata, overlays/actors/ovl_Windmill/ac_windmil]
+      - [0x95CEB0, .rodata, overlays/actors/ovl_Windmill/ac_windmil]
   - name: ovl_Windmill_reloc
     type: code
     start: 0x95CF10
@@ -16069,9 +16069,9 @@
     compress: True
     bss_size: 0x20
     subsegments:
-      - [0x95EF10, asm, overlays/actors/ovl_Lotus/ac_lotus]
+      - [0x95EF10, c, overlays/actors/ovl_Lotus/ac_lotus]
       - [0x95F530, data, overlays/actors/ovl_Lotus/ac_lotus]
-      - [0x95F740, rodata, overlays/actors/ovl_Lotus/ac_lotus]
+      - [0x95F740, .rodata, overlays/actors/ovl_Lotus/ac_lotus]
       - { start: 0x95F750, type: bss, vram: 0x80A9F4E0, name: overlays/actors/ovl_Lotus/ac_lotus }
   - name: ovl_Lotus_reloc
     type: code
@@ -16110,9 +16110,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x95FEC0, asm, overlays/actors/ovl_Animal_Logo/ac_animal_logo]
+      - [0x95FEC0, c, overlays/actors/ovl_Animal_Logo/ac_animal_logo]
       - [0x962190, data, overlays/actors/ovl_Animal_Logo/ac_animal_logo]
-      - [0x962570, rodata, overlays/actors/ovl_Animal_Logo/ac_animal_logo]
+      - [0x962570, .rodata, overlays/actors/ovl_Animal_Logo/ac_animal_logo]
   - name: ovl_Animal_Logo_reloc
     type: code
     start: 0x9625A0
@@ -16226,9 +16226,9 @@
     compress: True
     bss_size: 0xE0
     subsegments:
-      - [0x963DF0, asm, overlays/actors/ovl_Mikanbox/ac_mikanbox]
+      - [0x963DF0, c, overlays/actors/ovl_Mikanbox/ac_mikanbox]
       - [0x964F80, data, overlays/actors/ovl_Mikanbox/ac_mikanbox]
-      - [0x965030, rodata, overlays/actors/ovl_Mikanbox/ac_mikanbox]
+      - [0x965030, .rodata, overlays/actors/ovl_Mikanbox/ac_mikanbox]
       - { start: 0x965040, type: bss, vram: 0x80AA4DF0, name: overlays/actors/ovl_Mikanbox/ac_mikanbox }
   - name: ovl_Mikanbox_reloc
     type: code
@@ -16322,9 +16322,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x965BE0, asm, overlays/actors/ovl_Douzou/ac_douzou]
+      - [0x965BE0, c, overlays/actors/ovl_Douzou/ac_douzou]
       - [0x966EF0, data, overlays/actors/ovl_Douzou/ac_douzou]
-      - [0x967120, rodata, overlays/actors/ovl_Douzou/ac_douzou]
+      - [0x967120, .rodata, overlays/actors/ovl_Douzou/ac_douzou]
   - name: ovl_Douzou_reloc
     type: code
     start: 0x967130
@@ -16895,7 +16895,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x96A290, asm, overlays/actors/ovl_Npc_Rtc/ac_npc_rtc]
+      - [0x96A290, c, overlays/actors/ovl_Npc_Rtc/ac_npc_rtc]
       - [0x96AE70, data, overlays/actors/ovl_Npc_Rtc/ac_npc_rtc]
   - name: ovl_Npc_Rtc_reloc
     type: code
@@ -16990,9 +16990,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x96B470, asm, overlays/actors/ovl_Toudai/ac_toudai]
+      - [0x96B470, c, overlays/actors/ovl_Toudai/ac_toudai]
       - [0x96C1D0, data, overlays/actors/ovl_Toudai/ac_toudai]
-      - [0x96C280, rodata, overlays/actors/ovl_Toudai/ac_toudai]
+      - [0x96C280, .rodata, overlays/actors/ovl_Toudai/ac_toudai]
   - name: ovl_Toudai_reloc
     type: code
     start: 0x96C2B0
@@ -17010,7 +17010,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x96C3A0, asm, overlays/actors/ovl_Npc_Restart/ac_npc_restart]
+      - [0x96C3A0, c, overlays/actors/ovl_Npc_Restart/ac_npc_restart]
       - [0x96CB50, data, overlays/actors/ovl_Npc_Restart/ac_npc_restart]
   - name: ovl_Npc_Restart_reloc
     type: code
@@ -17029,7 +17029,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x96CCF0, asm, overlays/actors/ovl_Npc_Majin5/ac_npc_majin5]
+      - [0x96CCF0, c, overlays/actors/ovl_Npc_Majin5/ac_npc_majin5]
       - [0x96D1B0, data, overlays/actors/ovl_Npc_Majin5/ac_npc_majin5]
   - name: ovl_Npc_Majin5_reloc
     type: code
@@ -17048,9 +17048,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x96D250, asm, overlays/actors/ovl_Fuusen/ac_fuusen]
+      - [0x96D250, c, overlays/actors/ovl_Fuusen/ac_fuusen]
       - [0x96E620, data, overlays/actors/ovl_Fuusen/ac_fuusen]
-      - [0x96E7B0, rodata, overlays/actors/ovl_Fuusen/ac_fuusen]
+      - [0x96E7B0, .rodata, overlays/actors/ovl_Fuusen/ac_fuusen]
   - name: ovl_Fuusen_reloc
     type: code
     start: 0x96E7D0
@@ -17107,7 +17107,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x96EB20, asm, overlays/actors/ovl_Ev_Dokutu/ac_ev_dokutu]
+      - [0x96EB20, c, overlays/actors/ovl_Ev_Dokutu/ac_ev_dokutu]
       - [0x96F210, data, overlays/actors/ovl_Ev_Dokutu/ac_ev_dokutu]
   - name: ovl_Ev_Dokutu_reloc
     type: code
@@ -17311,7 +17311,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x970880, asm, overlays/actors/ovl_Dummy/ac_dumm]
+      - [0x970880, c, overlays/actors/ovl_Dummy/ac_dumm]
       - [0x9708C0, data, overlays/actors/ovl_Dummy/ac_dumm]
   - name: ovl_Dummy_reloc
     type: code

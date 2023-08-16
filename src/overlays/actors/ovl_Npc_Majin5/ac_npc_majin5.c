@@ -1,0 +1,28 @@
+#include "global.h"
+
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5/aNMJ5_actor_ct.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5/aNMJ5_actor_save.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5/aNMJ5_actor_dt.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5/aNMJ5_actor_init.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5/func_80AACD34_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5/func_80AACDD0_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5/func_80AACE50_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5/func_80AACE60_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5/func_80AACED4_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5/func_80AACF1C_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5/func_80AACF5C_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5/func_80AACFC8_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5/func_80AAD010_jp.s")
