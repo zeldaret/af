@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_ev_pumpkin.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aEPK_actor_ct(Actor* thisx, PlayState* play);
+void aEPK_actor_dt(Actor* thisx, PlayState* play);
+void aEPK_actor_init(Actor* thisx, PlayState* play);
+void aEPK_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Ev_Pumpkin_Profile = {
+    /* */ 22,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(Ev_Pumpkin),
+    /* */ aEPK_actor_ct,
+    /* */ aEPK_actor_dt,
+    /* */ aEPK_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aEPK_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Ev_Pumpkin/ac_ev_pumpkin/aEPK_actor_ct.s")
 

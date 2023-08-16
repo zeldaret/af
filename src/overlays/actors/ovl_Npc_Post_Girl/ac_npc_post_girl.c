@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_npc_post_girl.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aPG_actor_ct(Actor* thisx, PlayState* play);
+void aPG_actor_dt(Actor* thisx, PlayState* play);
+void aPG_actor_init(Actor* thisx, PlayState* play);
+void aPG_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Npc_Post_Girl_Profile = {
+    /* */ 28,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 53251,
+    /* */ 3,
+    /* */ sizeof(Npc_Post_Girl),
+    /* */ aPG_actor_ct,
+    /* */ aPG_actor_dt,
+    /* */ aPG_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aPG_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Post_Girl/ac_npc_post_girl/aPG_actor_ct.s")
 

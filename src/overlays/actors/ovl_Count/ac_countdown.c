@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_countdown.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void func_805ac0ac(Actor* thisx, PlayState* play);
+void func_805ac120(Actor* thisx, PlayState* play);
+void func_805ac5ec(Actor* thisx, PlayState* play);
+void func_805ac7b0(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Count_Profile = {
+    /* */ 148,
+    /* */ ACTOR_PART_0,
+    /* */ 0,
+    /* */ 22577,
+    /* */ 3,
+    /* */ sizeof(Count),
+    /* */ func_805ac0ac,
+    /* */ func_805ac120,
+    /* */ func_805ac5ec,
+    /* */ func_805ac7b0,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Count/ac_countdown/func_805ac0ac.s")
 

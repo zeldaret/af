@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_turi.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aTUR_actor_ct(Actor* thisx, PlayState* play);
+void aTUR_actor_dt(Actor* thisx, PlayState* play);
+void aTUR_actor_init(Actor* thisx, PlayState* play);
+void aTUR_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Turi_Profile = {
+    /* */ 158,
+    /* */ ACTOR_PART_0,
+    /* */ 0,
+    /* */ 22583,
+    /* */ 3,
+    /* */ sizeof(Turi),
+    /* */ aTUR_actor_ct,
+    /* */ aTUR_actor_dt,
+    /* */ aTUR_actor_init,
+    /* */ aTUR_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Turi/ac_turi/aTUR_actor_ct.s")
 

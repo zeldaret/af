@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_npc_majin5.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aNMJ5_actor_ct(Actor* thisx, PlayState* play);
+void aNMJ5_actor_dt(Actor* thisx, PlayState* play);
+void aNMJ5_actor_init(Actor* thisx, PlayState* play);
+void aNMJ5_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Npc_Majin5_Profile = {
+    /* */ 177,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 53355,
+    /* */ 3,
+    /* */ sizeof(Npc_Majin5),
+    /* */ aNMJ5_actor_ct,
+    /* */ aNMJ5_actor_dt,
+    /* */ aNMJ5_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aNMJ5_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5/aNMJ5_actor_ct.s")
 

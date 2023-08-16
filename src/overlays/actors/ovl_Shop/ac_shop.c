@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_shop.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aSHOP_actor_ct(Actor* thisx, PlayState* play);
+void aSHOP_actor_dt(Actor* thisx, PlayState* play);
+void aSHOP_actor_init(Actor* thisx, PlayState* play);
+void aSHOP_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Shop_Profile = {
+    /* */ 42,
+    /* */ ACTOR_PART_0,
+    /* */ 0,
+    /* */ 22532,
+    /* */ 3,
+    /* */ sizeof(Shop),
+    /* */ aSHOP_actor_ct,
+    /* */ aSHOP_actor_dt,
+    /* */ aSHOP_actor_init,
+    /* */ aSHOP_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Shop/ac_shop/aSHOP_actor_ct.s")
 

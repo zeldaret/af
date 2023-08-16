@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_insect.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aINS_actor_ct(Actor* thisx, PlayState* play);
+void aINS_actor_dt(Actor* thisx, PlayState* play);
+void aINS_actor_move(Actor* thisx, PlayState* play);
+void aINS_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Insect_Profile = {
+    /* */ 59,
+    /* */ ACTOR_PART_7,
+    /* */ 48,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(Insect),
+    /* */ aINS_actor_ct,
+    /* */ aINS_actor_dt,
+    /* */ aINS_actor_move,
+    /* */ aINS_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Insect/ac_insect/aINS_actor_ct.s")
 

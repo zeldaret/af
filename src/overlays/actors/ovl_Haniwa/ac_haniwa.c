@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_haniwa.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aHNW_actor_ct(Actor* thisx, PlayState* play);
+void aHNW_actor_dt(Actor* thisx, PlayState* play);
+void aHNW_actor_init(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Haniwa_Profile = {
+    /* */ 10,
+    /* */ ACTOR_PART_4,
+    /* */ 0,
+    /* */ 40964,
+    /* */ 12,
+    /* */ sizeof(Haniwa),
+    /* */ aHNW_actor_ct,
+    /* */ aHNW_actor_dt,
+    /* */ aHNW_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Haniwa/ac_haniwa/aHNW_actor_ct.s")
 

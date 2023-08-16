@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_bee.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aBEE_actor_ct(Actor* thisx, PlayState* play);
+void func_80A93DD0_jp(Actor* thisx, PlayState* play);
+void aBEE_actor_move(Actor* thisx, PlayState* play);
+void aBEE_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Bee_Profile = {
+    /* */ 164,
+    /* */ ACTOR_PART_4,
+    /* */ 16,
+    /* */ 0,
+    /* */ 392,
+    /* */ sizeof(Bee),
+    /* */ aBEE_actor_ct,
+    /* */ func_80A93DD0_jp,
+    /* */ aBEE_actor_move,
+    /* */ aBEE_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Bee/ac_bee/aBEE_actor_ct.s")
 

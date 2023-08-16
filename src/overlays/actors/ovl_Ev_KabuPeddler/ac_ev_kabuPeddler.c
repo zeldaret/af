@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_ev_kabuPeddler.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aEKPD_actor_ct(Actor* thisx, PlayState* play);
+void aEKPD_actor_dt(Actor* thisx, PlayState* play);
+void aEKPD_actor_init(Actor* thisx, PlayState* play);
+void aEKPD_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Ev_KabuPeddler_Profile = {
+    /* */ 62,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 53255,
+    /* */ 3,
+    /* */ sizeof(Ev_KabuPeddler),
+    /* */ aEKPD_actor_ct,
+    /* */ aEKPD_actor_dt,
+    /* */ aEKPD_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aEKPD_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Ev_KabuPeddler/ac_ev_kabuPeddler/aEKPD_actor_ct.s")
 

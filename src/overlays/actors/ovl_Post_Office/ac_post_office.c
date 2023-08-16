@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_post_office.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aPOFF_actor_ct(Actor* thisx, PlayState* play);
+void aPOFF_actor_dt(Actor* thisx, PlayState* play);
+void aPOFF_actor_init(Actor* thisx, PlayState* play);
+void aPOFF_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Post_Office_Profile = {
+    /* */ 56,
+    /* */ ACTOR_PART_0,
+    /* */ 0,
+    /* */ 22536,
+    /* */ 3,
+    /* */ sizeof(Post_Office),
+    /* */ aPOFF_actor_ct,
+    /* */ aPOFF_actor_dt,
+    /* */ aPOFF_actor_init,
+    /* */ aPOFF_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Post_Office/ac_post_office/aPOFF_actor_ct.s")
 

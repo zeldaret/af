@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_shrine.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aSHR_actor_ct(Actor* thisx, PlayState* play);
+void aSHR_actor_dt(Actor* thisx, PlayState* play);
+void aSHR_actor_init(Actor* thisx, PlayState* play);
+void aSHR_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Shrine_Profile = {
+    /* */ 92,
+    /* */ ACTOR_PART_0,
+    /* */ 0,
+    /* */ 22565,
+    /* */ 3,
+    /* */ sizeof(Shrine),
+    /* */ aSHR_actor_ct,
+    /* */ aSHR_actor_dt,
+    /* */ aSHR_actor_init,
+    /* */ aSHR_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Shrine/ac_shrine/func_80A0A1F0_jp.s")
 

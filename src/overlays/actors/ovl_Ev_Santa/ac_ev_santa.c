@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_ev_santa.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aESNT_actor_ct(Actor* thisx, PlayState* play);
+void aESNT_actor_dt(Actor* thisx, PlayState* play);
+void aESNT_actor_init(Actor* thisx, PlayState* play);
+void aESNT_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Ev_Santa_Profile = {
+    /* */ 75,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 53263,
+    /* */ 3,
+    /* */ sizeof(Ev_Santa),
+    /* */ aESNT_actor_ct,
+    /* */ aESNT_actor_dt,
+    /* */ aESNT_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aESNT_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Ev_Santa/ac_ev_santa/aESNT_actor_ct.s")
 

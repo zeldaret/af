@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ef_effect_control.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void eEC_actor_ct(Actor* thisx, PlayState* play);
+void eEC_actor_dt(Actor* thisx, PlayState* play);
+void eEC_actor_move(Actor* thisx, PlayState* play);
+void eEC_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Effect_Control_Profile = {
+    /* */ 33,
+    /* */ ACTOR_PART_7,
+    /* */ 536870960,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(Effect_Control),
+    /* */ eEC_actor_ct,
+    /* */ eEC_actor_dt,
+    /* */ eEC_actor_move,
+    /* */ eEC_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Effect_Control/ef_effect_control/func_80A17190_jp.s")
 

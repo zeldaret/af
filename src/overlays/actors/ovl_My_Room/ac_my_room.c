@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_my_room.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void My_Room_Actor_ct(Actor* thisx, PlayState* play);
+void My_Room_Actor_dt(Actor* thisx, PlayState* play);
+void My_Room_Actor_move(Actor* thisx, PlayState* play);
+void My_Room_Actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile My_Room_Profile = {
+    /* */ 11,
+    /* */ ACTOR_PART_4,
+    /* */ 536870960,
+    /* */ 32770,
+    /* */ 3,
+    /* */ sizeof(My_Room),
+    /* */ My_Room_Actor_ct,
+    /* */ My_Room_Actor_dt,
+    /* */ My_Room_Actor_move,
+    /* */ My_Room_Actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_My_Room/ac_my_room/func_80936710_jp.s")
 

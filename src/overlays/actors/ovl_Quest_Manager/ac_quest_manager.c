@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_quest_manager.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aQMgr_actor_ct(Actor* thisx, PlayState* play);
+void aQMgr_actor_dt(Actor* thisx, PlayState* play);
+void aQMgr_actor_move_main(Actor* thisx, PlayState* play);
+void aQMgr_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Quest_Manager_Profile = {
+    /* */ 38,
+    /* */ ACTOR_PART_7,
+    /* */ 536870960,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(Quest_Manager),
+    /* */ aQMgr_actor_ct,
+    /* */ aQMgr_actor_dt,
+    /* */ aQMgr_actor_move_main,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aQMgr_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Quest_Manager/ac_quest_manager/func_80954D80_jp.s")
 

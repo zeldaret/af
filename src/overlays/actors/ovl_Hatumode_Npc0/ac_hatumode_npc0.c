@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_hatumode_npc0.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void func_8052ab54(Actor* thisx, PlayState* play);
+void func_8052ac90(Actor* thisx, PlayState* play);
+void func_8052ad14(Actor* thisx, PlayState* play);
+void func_8052ac70(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Hatumode_Npc0_Profile = {
+    /* */ 152,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 53336,
+    /* */ 3,
+    /* */ sizeof(Hatumode_Npc0),
+    /* */ func_8052ab54,
+    /* */ func_8052ac90,
+    /* */ func_8052ad14,
+    /* */ (ActorFunc)none_proc1,
+    /* */ func_8052ac70,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hatumode_Npc0/ac_hatumode_npc0/func_8052ab54.s")
 

@@ -1,5 +1,26 @@
-#include "global.h"
+#include "bg_winter_item.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void bWI_actor_ct(Actor* thisx, PlayState* play);
+void bWI_actor_dt(Actor* thisx, PlayState* play);
+void bWI_actor_move(Actor* thisx, PlayState* play);
+void bWI_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile BgWinterItem_Profile = {
+    /* */ 80,
+    /* */ ACTOR_PART_0,
+    /* */ 48,
+    /* */ 0,
+    /* */ 37,
+    /* */ sizeof(BgWinterItem),
+    /* */ bWI_actor_ct,
+    /* */ bWI_actor_dt,
+    /* */ bWI_actor_move,
+    /* */ bWI_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_BgWinterItem/bg_winter_item/func_808F7130_jp.s")
 

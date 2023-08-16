@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_kago.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aKAG_actor_ct(Actor* thisx, PlayState* play);
+void func_80A8F340_jp(Actor* thisx, PlayState* play);
+void aKAG_actor_init(Actor* thisx, PlayState* play);
+void aKAG_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Kago_Profile = {
+    /* */ 157,
+    /* */ ACTOR_PART_0,
+    /* */ 0,
+    /* */ 22581,
+    /* */ 3,
+    /* */ sizeof(Kago),
+    /* */ aKAG_actor_ct,
+    /* */ func_80A8F340_jp,
+    /* */ aKAG_actor_init,
+    /* */ aKAG_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Kago/ac_kago/aKAG_actor_ct.s")
 

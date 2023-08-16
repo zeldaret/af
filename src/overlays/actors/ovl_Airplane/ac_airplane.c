@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_airplane.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void Airplane_Actor_ct(Actor* thisx, PlayState* play);
+void Airplane_Actor_dt(Actor* thisx, PlayState* play);
+void Airplane_Actor_move(Actor* thisx, PlayState* play);
+void Airplane_Actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Airplane_Profile = {
+    /* */ 5,
+    /* */ ACTOR_PART_4,
+    /* */ 48,
+    /* */ 32768,
+    /* */ 7,
+    /* */ sizeof(Airplane),
+    /* */ Airplane_Actor_ct,
+    /* */ Airplane_Actor_dt,
+    /* */ Airplane_Actor_move,
+    /* */ Airplane_Actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Airplane/ac_airplane/Airplane_Actor_ct.s")
 

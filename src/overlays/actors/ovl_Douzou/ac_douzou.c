@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_douzou.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aDOU_actor_ct(Actor* thisx, PlayState* play);
+void aDOU_actor_dt(Actor* thisx, PlayState* play);
+void aDOU_actor_init(Actor* thisx, PlayState* play);
+void aDOU_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Douzou_Profile = {
+    /* */ 173,
+    /* */ ACTOR_PART_0,
+    /* */ 0,
+    /* */ 22594,
+    /* */ 3,
+    /* */ sizeof(Douzou),
+    /* */ aDOU_actor_ct,
+    /* */ aDOU_actor_dt,
+    /* */ aDOU_actor_init,
+    /* */ aDOU_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Douzou/ac_douzou/aDOU_actor_ct.s")
 

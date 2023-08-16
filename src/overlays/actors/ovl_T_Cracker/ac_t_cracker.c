@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_t_cracker.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aTCR_actor_ct(Actor* thisx, PlayState* play);
+void aTCR_actor_move(Actor* thisx, PlayState* play);
+void aTCR_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile T_Cracker_Profile = {
+    /* */ 136,
+    /* */ ACTOR_PART_4,
+    /* */ 48,
+    /* */ 0,
+    /* */ 395,
+    /* */ sizeof(T_Cracker),
+    /* */ aTCR_actor_ct,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aTCR_actor_move,
+    /* */ aTCR_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_T_Cracker/ac_t_cracker/aTCR_actor_ct.s")
 

@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_ride_off_demo.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aROD_actor_ct(Actor* thisx, PlayState* play);
+void aROD_actor_dt(Actor* thisx, PlayState* play);
+void aROD_actor_move(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Ride_Off_Demo_Profile = {
+    /* */ 23,
+    /* */ ACTOR_PART_7,
+    /* */ 536870928,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(Ride_Off_Demo),
+    /* */ aROD_actor_ct,
+    /* */ aROD_actor_dt,
+    /* */ aROD_actor_move,
+    /* */ (ActorFunc)none_proc1,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Ride_Off_Demo/ac_ride_off_demo/aROD_actor_ct.s")
 

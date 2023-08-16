@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_lotus.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aLOT_actor_ct(Actor* thisx, PlayState* play);
+void aLOT_actor_dt(Actor* thisx, PlayState* play);
+void aLOT_actor_init(Actor* thisx, PlayState* play);
+void aLOT_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Lotus_Profile = {
+    /* */ 170,
+    /* */ ACTOR_PART_0,
+    /* */ 0,
+    /* */ 22592,
+    /* */ 3,
+    /* */ sizeof(Lotus),
+    /* */ aLOT_actor_ct,
+    /* */ aLOT_actor_dt,
+    /* */ aLOT_actor_init,
+    /* */ aLOT_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Lotus/ac_lotus/aLOT_actor_ct.s")
 

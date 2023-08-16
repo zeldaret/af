@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_ev_broker2.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aEBR2_actor_ct(Actor* thisx, PlayState* play);
+void aEBR2_actor_dt(Actor* thisx, PlayState* play);
+void aEBR2_actor_init(Actor* thisx, PlayState* play);
+void aEBR2_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Ev_Broker2_Profile = {
+    /* */ 85,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 53267,
+    /* */ 3,
+    /* */ sizeof(Ev_Broker2),
+    /* */ aEBR2_actor_ct,
+    /* */ aEBR2_actor_dt,
+    /* */ aEBR2_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aEBR2_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Ev_Broker2/ac_ev_broker2/aEBR2_actor_ct.s")
 

@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_fallSESW.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void func_80A034A0_jp(Actor* thisx, PlayState* play);
+void func_80A034B0_jp(Actor* thisx, PlayState* play);
+void aFLEW_actor_move(Actor* thisx, PlayState* play);
+void aFLEW_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile FallSESW_Profile = {
+    /* */ 84,
+    /* */ ACTOR_PART_0,
+    /* */ 0,
+    /* */ 22542,
+    /* */ 3,
+    /* */ sizeof(FallSESW),
+    /* */ func_80A034A0_jp,
+    /* */ func_80A034B0_jp,
+    /* */ aFLEW_actor_move,
+    /* */ aFLEW_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_FallSESW/ac_fallSESW/func_80A034A0_jp.s")
 

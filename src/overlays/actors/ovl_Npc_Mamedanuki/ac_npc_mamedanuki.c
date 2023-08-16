@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_npc_mamedanuki.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aNMD_actor_ct(Actor* thisx, PlayState* play);
+void aNMD_actor_dt(Actor* thisx, PlayState* play);
+void aNMD_actor_init(Actor* thisx, PlayState* play);
+void aNMD_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Npc_Mamedanuki_Profile = {
+    /* */ 24,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 53286,
+    /* */ 3,
+    /* */ sizeof(Npc_Mamedanuki),
+    /* */ aNMD_actor_ct,
+    /* */ aNMD_actor_dt,
+    /* */ aNMD_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aNMD_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Mamedanuki/ac_npc_mamedanuki/aNMD_actor_ct.s")
 

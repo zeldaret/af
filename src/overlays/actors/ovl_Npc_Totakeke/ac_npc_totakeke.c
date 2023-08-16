@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_npc_totakeke.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aNTT_actor_ct(Actor* thisx, PlayState* play);
+void aNTT_actor_dt(Actor* thisx, PlayState* play);
+void aNTT_actor_init(Actor* thisx, PlayState* play);
+void aNTT_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Npc_Totakeke_Profile = {
+    /* */ 153,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 53341,
+    /* */ 3,
+    /* */ sizeof(Npc_Totakeke),
+    /* */ aNTT_actor_ct,
+    /* */ aNTT_actor_dt,
+    /* */ aNTT_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aNTT_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Totakeke/ac_npc_totakeke/aNTT_actor_ct.s")
 

@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ef_room_sunshine_police.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void Ef_Room_Sunshine_Police_actor_ct(Actor* thisx, PlayState* play);
+void Ef_Room_Sunshine_PoliceR_actor_move(Actor* thisx, PlayState* play);
+void Ef_Room_Sunshine_PoliceR_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Room_Sunshine_Police_Profile = {
+    /* */ 118,
+    /* */ ACTOR_PART_6,
+    /* */ 48,
+    /* */ 0,
+    /* */ 44,
+    /* */ sizeof(Room_Sunshine_Police),
+    /* */ Ef_Room_Sunshine_Police_actor_ct,
+    /* */ (ActorFunc)none_proc1,
+    /* */ Ef_Room_Sunshine_PoliceR_actor_move,
+    /* */ Ef_Room_Sunshine_PoliceR_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Room_Sunshine_Police/ef_room_sunshine_police/Ef_Room_Sunshine_Police_actor_ct.s")
 

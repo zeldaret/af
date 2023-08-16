@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_structure.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aSTR_actor_ct(Actor* thisx, PlayState* play);
+void aSTR_actor_dt(Actor* thisx, PlayState* play);
+void aSTR_actor_move(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Structure_Profile = {
+    /* */ 69,
+    /* */ ACTOR_PART_7,
+    /* */ 48,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(Structure),
+    /* */ aSTR_actor_ct,
+    /* */ aSTR_actor_dt,
+    /* */ aSTR_actor_move,
+    /* */ (ActorFunc)none_proc1,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Structure/ac_structure/aSTR_actor_ct.s")
 

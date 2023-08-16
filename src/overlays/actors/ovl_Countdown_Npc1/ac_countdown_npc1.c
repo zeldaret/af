@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_countdown_npc1.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aCD1_actor_ct(Actor* thisx, PlayState* play);
+void aCD1_actor_dt(Actor* thisx, PlayState* play);
+void aCD1_actor_init(Actor* thisx, PlayState* play);
+void aCD1_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Countdown_Npc1_Profile = {
+    /* */ 145,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(Countdown_Npc1),
+    /* */ aCD1_actor_ct,
+    /* */ aCD1_actor_dt,
+    /* */ aCD1_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aCD1_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Countdown_Npc1/ac_countdown_npc1/aCD1_actor_ct.s")
 

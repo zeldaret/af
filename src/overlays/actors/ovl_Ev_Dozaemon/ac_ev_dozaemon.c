@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_ev_dozaemon.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aEDZ_actor_ct(Actor* thisx, PlayState* play);
+void aEDZ_actor_dt(Actor* thisx, PlayState* play);
+void aEDZ_actor_init(Actor* thisx, PlayState* play);
+void aEDZ_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Ev_Dozaemon_Profile = {
+    /* */ 168,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 53348,
+    /* */ 3,
+    /* */ sizeof(Ev_Dozaemon),
+    /* */ aEDZ_actor_ct,
+    /* */ aEDZ_actor_dt,
+    /* */ aEDZ_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aEDZ_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Ev_Dozaemon/ac_ev_dozaemon/aEDZ_actor_ct.s")
 

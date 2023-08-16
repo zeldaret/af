@@ -1,5 +1,25 @@
-#include "global.h"
+#include "bg_police_item.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void bPI_actor_move(Actor* thisx, PlayState* play);
+void bPI_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile BgPoliceItem_Profile = {
+    /* */ 78,
+    /* */ ACTOR_PART_0,
+    /* */ 48,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(BgPoliceItem),
+    /* */ (ActorFunc)none_proc1,
+    /* */ (ActorFunc)none_proc1,
+    /* */ bPI_actor_move,
+    /* */ bPI_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_BgPoliceItem/bg_police_item/func_808EB720_jp.s")
 

@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_hanabi_npc1.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aHN1_actor_ct(Actor* thisx, PlayState* play);
+void aHN1_actor_dt(Actor* thisx, PlayState* play);
+void aHN1_actor_init(Actor* thisx, PlayState* play);
+void aHN1_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Hanabi_Npc1_Profile = {
+    /* */ 26,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(Hanabi_Npc1),
+    /* */ aHN1_actor_ct,
+    /* */ aHN1_actor_dt,
+    /* */ aHN1_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aHN1_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanabi_Npc1/ac_hanabi_npc1/aHN1_actor_ct.s")
 

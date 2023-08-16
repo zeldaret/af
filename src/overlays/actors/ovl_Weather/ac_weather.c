@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_weather.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void Weather_Actor_ct(Actor* thisx, PlayState* play);
+void Weather_Actor_dt(Actor* thisx, PlayState* play);
+void Weather_Actor_move(Actor* thisx, PlayState* play);
+void Weather_Actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Weather_Profile = {
+    /* */ 55,
+    /* */ ACTOR_PART_7,
+    /* */ 536870960,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(Weather),
+    /* */ Weather_Actor_ct,
+    /* */ Weather_Actor_dt,
+    /* */ Weather_Actor_move,
+    /* */ Weather_Actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Weather/ac_weather/func_80A21670_jp.s")
 

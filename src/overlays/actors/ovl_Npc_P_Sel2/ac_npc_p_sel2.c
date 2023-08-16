@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_npc_p_sel2.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aNPS2_actor_ct(Actor* thisx, PlayState* play);
+void aNPS2_actor_dt(Actor* thisx, PlayState* play);
+void aNPS2_actor_init(Actor* thisx, PlayState* play);
+void aNPS2_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Npc_P_Sel2_Profile = {
+    /* */ 102,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 53279,
+    /* */ 3,
+    /* */ sizeof(Npc_P_Sel2),
+    /* */ aNPS2_actor_ct,
+    /* */ aNPS2_actor_dt,
+    /* */ aNPS2_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aNPS2_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_P_Sel2/ac_npc_p_sel2/aNPS2_actor_ct.s")
 

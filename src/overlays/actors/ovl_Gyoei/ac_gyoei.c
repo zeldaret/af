@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_gyoei.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aGYO_actor_ct(Actor* thisx, PlayState* play);
+void aGYO_actor_dt(Actor* thisx, PlayState* play);
+void aGYO_actor_move(Actor* thisx, PlayState* play);
+void aGYO_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Gyoei_Profile = {
+    /* */ 107,
+    /* */ ACTOR_PART_7,
+    /* */ 48,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(Gyoei),
+    /* */ aGYO_actor_ct,
+    /* */ aGYO_actor_dt,
+    /* */ aGYO_actor_move,
+    /* */ aGYO_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Gyoei/ac_gyoei/aGYO_actor_ct.s")
 

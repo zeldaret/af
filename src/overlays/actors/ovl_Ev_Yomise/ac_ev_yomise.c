@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_ev_yomise.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aEYMS_actor_ct(Actor* thisx, PlayState* play);
+void aEYMS_actor_dt(Actor* thisx, PlayState* play);
+void aEYMS_actor_init(Actor* thisx, PlayState* play);
+void aEYMS_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Ev_Yomise_Profile = {
+    /* */ 121,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 53292,
+    /* */ 3,
+    /* */ sizeof(Ev_Yomise),
+    /* */ aEYMS_actor_ct,
+    /* */ aEYMS_actor_dt,
+    /* */ aEYMS_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aEYMS_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Ev_Yomise/ac_ev_yomise/aEYMS_actor_ct.s")
 

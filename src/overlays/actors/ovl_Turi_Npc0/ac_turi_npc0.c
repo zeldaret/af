@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_turi_npc0.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void func_805900b0(Actor* thisx, PlayState* play);
+void func_805901d8(Actor* thisx, PlayState* play);
+void aTR0_actor_init(Actor* thisx, PlayState* play);
+void aTR0_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Turi_Npc0_Profile = {
+    /* */ 146,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(Turi_Npc0),
+    /* */ func_805900b0,
+    /* */ func_805901d8,
+    /* */ aTR0_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aTR0_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Turi_Npc0/ac_turi_npc0/func_805900b0.s")
 

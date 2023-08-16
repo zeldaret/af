@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_buggy.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aBGY_actor_ct(Actor* thisx, PlayState* play);
+void aBGY_actor_dt(Actor* thisx, PlayState* play);
+void aBGY_actor_init(Actor* thisx, PlayState* play);
+void aBGY_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Buggy_Profile = {
+    /* */ 93,
+    /* */ ACTOR_PART_0,
+    /* */ 0,
+    /* */ 22567,
+    /* */ 3,
+    /* */ sizeof(Buggy),
+    /* */ aBGY_actor_ct,
+    /* */ aBGY_actor_dt,
+    /* */ aBGY_actor_init,
+    /* */ aBGY_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Buggy/ac_buggy/aBGY_actor_ct.s")
 

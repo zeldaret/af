@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_tokyoso_control.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aTKC_actor_ct(Actor* thisx, PlayState* play);
+void aTKC_actor_dt(Actor* thisx, PlayState* play);
+void aTKC_actor_move(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Tokyoso_Control_Profile = {
+    /* */ 127,
+    /* */ ACTOR_PART_7,
+    /* */ 16,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(Tokyoso_Control),
+    /* */ aTKC_actor_ct,
+    /* */ aTKC_actor_dt,
+    /* */ aTKC_actor_move,
+    /* */ (ActorFunc)none_proc1,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Tokyoso_Control/ac_tokyoso_control/aTKC_actor_ct.s")
 

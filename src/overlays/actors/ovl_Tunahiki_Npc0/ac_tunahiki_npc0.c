@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_tunahiki_npc0.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aTNN0_actor_ct(Actor* thisx, PlayState* play);
+void aTNN0_actor_dt(Actor* thisx, PlayState* play);
+void aTNN0_actor_init(Actor* thisx, PlayState* play);
+void aTNN0_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Tunahiki_Npc0_Profile = {
+    /* */ 161,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 53343,
+    /* */ 3,
+    /* */ sizeof(Tunahiki_Npc0),
+    /* */ aTNN0_actor_ct,
+    /* */ aTNN0_actor_dt,
+    /* */ aTNN0_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aTNN0_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Tunahiki_Npc0/ac_tunahiki_npc0/aTNN0_actor_ct.s")
 

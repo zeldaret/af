@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ef_lamp_light.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void Ef_Lamp_Light_actor_ct(Actor* thisx, PlayState* play);
+void Ef_Lamp_Light_actor_dt(Actor* thisx, PlayState* play);
+void Ef_Lamp_Light_actor_move(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Lamp_Light_Profile = {
+    /* */ 7,
+    /* */ ACTOR_PART_6,
+    /* */ 48,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(Lamp_Light),
+    /* */ Ef_Lamp_Light_actor_ct,
+    /* */ Ef_Lamp_Light_actor_dt,
+    /* */ Ef_Lamp_Light_actor_move,
+    /* */ (ActorFunc)none_proc1,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Lamp_Light/ef_lamp_light/Ef_Lamp_Light_actor_ct.s")
 

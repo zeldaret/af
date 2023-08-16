@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_t_hanabi.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aTHB_actor_ct(Actor* thisx, PlayState* play);
+void aTHB_actor_dt(Actor* thisx, PlayState* play);
+void aTHB_actor_move(Actor* thisx, PlayState* play);
+void aTHB_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile T_Hanabi_Profile = {
+    /* */ 94,
+    /* */ ACTOR_PART_4,
+    /* */ 48,
+    /* */ 0,
+    /* */ 53,
+    /* */ sizeof(T_Hanabi),
+    /* */ aTHB_actor_ct,
+    /* */ aTHB_actor_dt,
+    /* */ aTHB_actor_move,
+    /* */ aTHB_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_T_Hanabi/ac_t_hanabi/aTHB_actor_ct.s")
 

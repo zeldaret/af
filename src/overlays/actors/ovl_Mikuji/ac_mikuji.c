@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_mikuji.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void func_805b414c(Actor* thisx, PlayState* play);
+void func_80A82638_jp(Actor* thisx, PlayState* play);
+void func_805b437c(Actor* thisx, PlayState* play);
+void func_805b43f4(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Mikuji_Profile = {
+    /* */ 134,
+    /* */ ACTOR_PART_0,
+    /* */ 0,
+    /* */ 22576,
+    /* */ 3,
+    /* */ sizeof(Mikuji),
+    /* */ func_805b414c,
+    /* */ func_80A82638_jp,
+    /* */ func_805b437c,
+    /* */ func_805b43f4,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Mikuji/ac_mikuji/func_805b414c.s")
 

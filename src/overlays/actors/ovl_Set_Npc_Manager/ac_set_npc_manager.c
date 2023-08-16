@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_set_npc_manager.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aSNMgr_actor_ct(Actor* thisx, PlayState* play);
+void aSNMgr_actor_dt(Actor* thisx, PlayState* play);
+void aSNMgr_actor_move(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Set_Npc_Manager_Profile = {
+    /* */ 115,
+    /* */ ACTOR_PART_7,
+    /* */ 536870960,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(Set_Npc_Manager),
+    /* */ aSNMgr_actor_ct,
+    /* */ aSNMgr_actor_dt,
+    /* */ aSNMgr_actor_move,
+    /* */ (ActorFunc)none_proc1,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Set_Npc_Manager/ac_set_npc_manager/func_80A22EB0_jp.s")
 

@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_animal_logo.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aAL_actor_ct(Actor* thisx, PlayState* play);
+void aAL_actor_dt(Actor* thisx, PlayState* play);
+void aAL_actor_move(Actor* thisx, PlayState* play);
+void aAL_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Animal_Logo_Profile = {
+    /* */ 171,
+    /* */ ACTOR_PART_4,
+    /* */ 48,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(Animal_Logo),
+    /* */ aAL_actor_ct,
+    /* */ aAL_actor_dt,
+    /* */ aAL_actor_move,
+    /* */ aAL_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Animal_Logo/ac_animal_logo/func_80A9FC70_jp.s")
 

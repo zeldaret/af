@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_ev_carpetPeddler.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aECPD_actor_ct(Actor* thisx, PlayState* play);
+void aECPD_actor_dt(Actor* thisx, PlayState* play);
+void aECPD_actor_init(Actor* thisx, PlayState* play);
+void aECPD_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Ev_CarpetPeddler_Profile = {
+    /* */ 61,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 53254,
+    /* */ 3,
+    /* */ sizeof(Ev_CarpetPeddler),
+    /* */ aECPD_actor_ct,
+    /* */ aECPD_actor_dt,
+    /* */ aECPD_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aECPD_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Ev_CarpetPeddler/ac_ev_carpetPeddler/aECPD_actor_ct.s")
 

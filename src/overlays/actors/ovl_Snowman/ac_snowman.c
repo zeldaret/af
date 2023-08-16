@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_snowman.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aSMAN_actor_ct(Actor* thisx, PlayState* play);
+void aSMAN_actor_dt(Actor* thisx, PlayState* play);
+void aSMAN_actor_move(Actor* thisx, PlayState* play);
+void aSMAN_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Snowman_Profile = {
+    /* */ 27,
+    /* */ ACTOR_PART_4,
+    /* */ 16,
+    /* */ 32781,
+    /* */ 25,
+    /* */ sizeof(Snowman),
+    /* */ aSMAN_actor_ct,
+    /* */ aSMAN_actor_dt,
+    /* */ aSMAN_actor_move,
+    /* */ aSMAN_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/aSMAN_actor_ct.s")
 

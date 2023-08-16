@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_my_indoor.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void My_Indoor_Actor_ct(Actor* thisx, PlayState* play);
+void My_Indoor_Actor_dt(Actor* thisx, PlayState* play);
+void My_Indoor_Actor_move(Actor* thisx, PlayState* play);
+void My_Indoor_Actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile My_Indoor_Profile = {
+    /* */ 89,
+    /* */ ACTOR_PART_5,
+    /* */ 48,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(My_Indoor),
+    /* */ My_Indoor_Actor_ct,
+    /* */ My_Indoor_Actor_dt,
+    /* */ My_Indoor_Actor_move,
+    /* */ My_Indoor_Actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_My_Indoor/ac_my_indoor/func_80951A70_jp.s")
 

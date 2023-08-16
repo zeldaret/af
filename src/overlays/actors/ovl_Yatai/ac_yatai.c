@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_yatai.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aYAT_actor_ct(Actor* thisx, PlayState* play);
+void func_80A76EC4_jp(Actor* thisx, PlayState* play);
+void aYAT_actor_init(Actor* thisx, PlayState* play);
+void aYAT_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Yatai_Profile = {
+    /* */ 126,
+    /* */ ACTOR_PART_0,
+    /* */ 0,
+    /* */ 22572,
+    /* */ 3,
+    /* */ sizeof(Yatai),
+    /* */ aYAT_actor_ct,
+    /* */ func_80A76EC4_jp,
+    /* */ aYAT_actor_init,
+    /* */ aYAT_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Yatai/ac_yatai/aYAT_actor_ct.s")
 

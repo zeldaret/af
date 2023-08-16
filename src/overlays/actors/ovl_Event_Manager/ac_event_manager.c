@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_event_manager.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aEvMgr_ct(Actor* thisx, PlayState* play);
+void aEvMgr_dt(Actor* thisx, PlayState* play);
+void aEvMgr_move(Actor* thisx, PlayState* play);
+void aEvMgr_draw(Actor* thisx, PlayState* play);
+void aEvMgr_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Event_Manager_Profile = {
+    /* */ 52,
+    /* */ ACTOR_PART_0,
+    /* */ 536870960,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(Event_Manager),
+    /* */ aEvMgr_ct,
+    /* */ aEvMgr_dt,
+    /* */ aEvMgr_move,
+    /* */ aEvMgr_draw,
+    /* */ aEvMgr_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Event_Manager/ac_event_manager/func_8095B8B0_jp.s")
 

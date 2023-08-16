@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_npc_shop_mastersp.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aSHM_actor_ct(Actor* thisx, PlayState* play);
+void aSHM_actor_dt(Actor* thisx, PlayState* play);
+void aSHM_actor_init(Actor* thisx, PlayState* play);
+void aSHM_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Npc_Shop_Mastersp_Profile = {
+    /* */ 116,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 53278,
+    /* */ 3,
+    /* */ sizeof(Npc_Shop_Mastersp),
+    /* */ aSHM_actor_ct,
+    /* */ aSHM_actor_dt,
+    /* */ aSHM_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aSHM_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Shop_Mastersp/ac_npc_shop_mastersp/aSHM_actor_ct.s")
 

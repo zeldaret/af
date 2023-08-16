@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_my_house.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void func_80A05D50_jp(Actor* thisx, PlayState* play);
+void func_80A05F88_jp(Actor* thisx, PlayState* play);
+void func_80A06DF0_jp(Actor* thisx, PlayState* play);
+void func_80A071A0_jp(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile MyHouse_Profile = {
+    /* */ 43,
+    /* */ ACTOR_PART_0,
+    /* */ 0,
+    /* */ 22528,
+    /* */ 3,
+    /* */ sizeof(MyHouse),
+    /* */ func_80A05D50_jp,
+    /* */ func_80A05F88_jp,
+    /* */ func_80A06DF0_jp,
+    /* */ func_80A071A0_jp,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_MyHouse/ac_my_house/func_80A05D50_jp.s")
 

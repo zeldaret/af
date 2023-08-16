@@ -1,5 +1,26 @@
-#include "global.h"
+#include "bg_xmas_item.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void bXI_actor_ct(Actor* thisx, PlayState* play);
+void bXI_actor_dt(Actor* thisx, PlayState* play);
+void bXI_actor_move(Actor* thisx, PlayState* play);
+void bXI_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile BgXmasItem_Profile = {
+    /* */ 81,
+    /* */ ACTOR_PART_0,
+    /* */ 48,
+    /* */ 0,
+    /* */ 38,
+    /* */ sizeof(BgXmasItem),
+    /* */ bXI_actor_ct,
+    /* */ bXI_actor_dt,
+    /* */ bXI_actor_move,
+    /* */ bXI_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_BgXmasItem/bg_xmas_item/func_80902120_jp.s")
 

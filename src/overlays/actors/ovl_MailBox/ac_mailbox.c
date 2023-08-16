@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_mailbox.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aMBX_actor_ct(Actor* thisx, PlayState* play);
+void aMBX_actor_dt(Actor* thisx, PlayState* play);
+void aMBX_actor_init(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile MailBox_Profile = {
+    /* */ 39,
+    /* */ ACTOR_PART_0,
+    /* */ 0,
+    /* */ 40960,
+    /* */ 26,
+    /* */ sizeof(MailBox),
+    /* */ aMBX_actor_ct,
+    /* */ aMBX_actor_dt,
+    /* */ aMBX_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_MailBox/ac_mailbox/aMBX_actor_ct.s")
 

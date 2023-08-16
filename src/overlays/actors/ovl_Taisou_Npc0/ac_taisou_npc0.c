@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_taisou_npc0.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aTS0_actor_ct(Actor* thisx, PlayState* play);
+void aTS0_actor_dt(Actor* thisx, PlayState* play);
+void aTS0_actor_init(Actor* thisx, PlayState* play);
+void aTS0_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Taisou_Npc0_Profile = {
+    /* */ 147,
+    /* */ ACTOR_PART_NPC,
+    /* */ 48,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(Taisou_Npc0),
+    /* */ aTS0_actor_ct,
+    /* */ aTS0_actor_dt,
+    /* */ aTS0_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aTS0_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Taisou_Npc0/ac_taisou_npc0/aTS0_actor_ct.s")
 

@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_npc_police.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aPOL_actor_ct(Actor* thisx, PlayState* play);
+void aPOL_actor_dt(Actor* thisx, PlayState* play);
+void aPOL_actor_init(Actor* thisx, PlayState* play);
+void aPOL_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Npc_Police_Profile = {
+    /* */ 71,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 53261,
+    /* */ 3,
+    /* */ sizeof(Npc_Police),
+    /* */ aPOL_actor_ct,
+    /* */ aPOL_actor_dt,
+    /* */ aPOL_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aPOL_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Police/ac_npc_police/aPOL_actor_ct.s")
 

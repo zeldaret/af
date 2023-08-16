@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_npc_rcn_guide2.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aNRG2_actor_ct(Actor* thisx, PlayState* play);
+void aNRG2_actor_dt(Actor* thisx, PlayState* play);
+void aNRG2_actor_init(Actor* thisx, PlayState* play);
+void aNRG2_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Npc_Rcn_Guide2_Profile = {
+    /* */ 103,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 53273,
+    /* */ 3,
+    /* */ sizeof(Npc_Rcn_Guide2),
+    /* */ aNRG2_actor_ct,
+    /* */ aNRG2_actor_dt,
+    /* */ aNRG2_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aNRG2_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Rcn_Guide2/ac_npc_rcn_guide2/aNRG2_actor_ct.s")
 

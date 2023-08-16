@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_conveni.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aCNV_actor_ct(Actor* thisx, PlayState* play);
+void aCNV_actor_dt(Actor* thisx, PlayState* play);
+void aCNV_actor_init(Actor* thisx, PlayState* play);
+void aCNV_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Conveni_Profile = {
+    /* */ 95,
+    /* */ ACTOR_PART_0,
+    /* */ 0,
+    /* */ 22533,
+    /* */ 3,
+    /* */ sizeof(Conveni),
+    /* */ aCNV_actor_ct,
+    /* */ aCNV_actor_dt,
+    /* */ aCNV_actor_init,
+    /* */ aCNV_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Conveni/ac_conveni/aCNV_actor_ct.s")
 

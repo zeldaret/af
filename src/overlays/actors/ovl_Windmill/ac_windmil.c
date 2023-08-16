@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_windmil.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void func_80A9C3C0_jp(Actor* thisx, PlayState* play);
+void aWIN_actor_dt(Actor* thisx, PlayState* play);
+void aWIN_actor_init(Actor* thisx, PlayState* play);
+void aWIN_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Windmill_Profile = {
+    /* */ 169,
+    /* */ ACTOR_PART_0,
+    /* */ 0,
+    /* */ 22587,
+    /* */ 3,
+    /* */ sizeof(Windmill),
+    /* */ func_80A9C3C0_jp,
+    /* */ aWIN_actor_dt,
+    /* */ aWIN_actor_init,
+    /* */ aWIN_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Windmill/ac_windmil/func_80A9C3C0_jp.s")
 

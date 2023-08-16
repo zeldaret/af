@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_station.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aSTA_actor_ct(Actor* thisx, PlayState* play);
+void aSTA_actor_dt(Actor* thisx, PlayState* play);
+void aSTA_actor_init(Actor* thisx, PlayState* play);
+void aSTA_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Station_Profile = {
+    /* */ 60,
+    /* */ ACTOR_PART_0,
+    /* */ 0,
+    /* */ 22537,
+    /* */ 3,
+    /* */ sizeof(Station),
+    /* */ aSTA_actor_ct,
+    /* */ aSTA_actor_dt,
+    /* */ aSTA_actor_init,
+    /* */ aSTA_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Station/ac_station/aSTA_actor_ct.s")
 

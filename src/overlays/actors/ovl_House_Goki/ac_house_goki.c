@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_house_goki.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aHG_actor_ct(Actor* thisx, PlayState* play);
+void func_80A83770_jp(Actor* thisx, PlayState* play);
+void aHG_actor_move(Actor* thisx, PlayState* play);
+void aHG_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile House_Goki_Profile = {
+    /* */ 135,
+    /* */ ACTOR_PART_4,
+    /* */ 16,
+    /* */ 0,
+    /* */ 369,
+    /* */ sizeof(House_Goki),
+    /* */ aHG_actor_ct,
+    /* */ func_80A83770_jp,
+    /* */ aHG_actor_move,
+    /* */ aHG_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/aHG_actor_ct.s")
 

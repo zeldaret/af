@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_uki.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aUKI_actor_ct(Actor* thisx, PlayState* play);
+void aUKI_actor_dt(Actor* thisx, PlayState* play);
+void aUKI_actor_move(Actor* thisx, PlayState* play);
+void func_80A66978_jp(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Uki_Profile = {
+    /* */ 111,
+    /* */ ACTOR_PART_4,
+    /* */ 16,
+    /* */ 32786,
+    /* */ 48,
+    /* */ sizeof(Uki),
+    /* */ aUKI_actor_ct,
+    /* */ aUKI_actor_dt,
+    /* */ aUKI_actor_move,
+    /* */ func_80A66978_jp,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Uki/ac_uki/aUKI_actor_ct.s")
 

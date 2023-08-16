@@ -1,5 +1,26 @@
-#include "global.h"
+#include "bg_cherry_item.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void bCI_actor_ct(Actor* thisx, PlayState* play);
+void bCI_actor_dt(Actor* thisx, PlayState* play);
+void bCI_actor_move(Actor* thisx, PlayState* play);
+void bCI_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile BgCherryItem_Profile = {
+    /* */ 79,
+    /* */ ACTOR_PART_0,
+    /* */ 48,
+    /* */ 0,
+    /* */ 36,
+    /* */ sizeof(BgCherryItem),
+    /* */ bCI_actor_ct,
+    /* */ bCI_actor_dt,
+    /* */ bCI_actor_move,
+    /* */ bCI_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_BgCherryItem/bg_cherry_item/func_808EC1D0_jp.s")
 

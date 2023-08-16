@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_ev_designer.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aEDSN_actor_ct(Actor* thisx, PlayState* play);
+void aEDSN_actor_dt(Actor* thisx, PlayState* play);
+void aEDSN_actor_init(Actor* thisx, PlayState* play);
+void aEDSN_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Ev_Designer_Profile = {
+    /* */ 46,
+    /* */ ACTOR_PART_NPC,
+    /* */ 48,
+    /* */ 53250,
+    /* */ 3,
+    /* */ sizeof(Ev_Designer),
+    /* */ aEDSN_actor_ct,
+    /* */ aEDSN_actor_dt,
+    /* */ aEDSN_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aEDSN_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Ev_Designer/ac_ev_designer/aEDSN_actor_ct.s")
 

@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_ev_angler.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aEANG_actor_ct(Actor* thisx, PlayState* play);
+void aEANG_actor_dt(Actor* thisx, PlayState* play);
+void aEANG_actor_init(Actor* thisx, PlayState* play);
+void aEANG_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Ev_Angler_Profile = {
+    /* */ 8,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 53277,
+    /* */ 3,
+    /* */ sizeof(Ev_Angler),
+    /* */ aEANG_actor_ct,
+    /* */ aEANG_actor_dt,
+    /* */ aEANG_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aEANG_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Ev_Angler/ac_ev_angler/aEANG_actor_ct.s")
 

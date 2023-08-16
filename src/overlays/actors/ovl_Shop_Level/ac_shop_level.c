@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_shop_level.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void Shop_Level_Actor_ct(Actor* thisx, PlayState* play);
+void Shop_Level_Actor_dt(Actor* thisx, PlayState* play);
+void Shop_Level_Actor_move(Actor* thisx, PlayState* play);
+void Shop_Level_Actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Shop_Level_Profile = {
+    /* */ 41,
+    /* */ ACTOR_PART_7,
+    /* */ 536870960,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(Shop_Level),
+    /* */ Shop_Level_Actor_ct,
+    /* */ Shop_Level_Actor_dt,
+    /* */ Shop_Level_Actor_move,
+    /* */ Shop_Level_Actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Shop_Level/ac_shop_level/func_809583B0_jp.s")
 

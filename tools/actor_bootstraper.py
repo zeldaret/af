@@ -26,13 +26,34 @@ with profiles_txt.open() as f:
 
 # print(n64Profiles)
 
+def funcToDecl(func):
+    if func == "NULL" or func == "none_proc1":
+        return ""
+    return f"void {func}(Actor* thisx, PlayState* play);\n"
+
+def funcToProf(func):
+    if func == "none_proc1":
+        return f"(ActorFunc){func}"
+    return func
+
+ActorPartEnum = [
+    "ACTOR_PART_0",
+    "ACTOR_PART_1",
+    "ACTOR_PART_PLAYER",
+    "ACTOR_PART_NPC",
+    "ACTOR_PART_4",
+    "ACTOR_PART_5",
+    "ACTOR_PART_6",
+    "ACTOR_PART_7",
+]
+
 filepath: Path
-for name, (filepath, prof) in n64Profiles.items():
+for profName, (filepath, prof) in n64Profiles.items():
     actorId = rabbitizer.Utils.from2Complement((int(prof[0], 0) >> 16) & 0xFFFF, 16)
     part = (int(prof[0], 0) >> 8) & 0xFF
     assert (int(prof[0], 0) & 0xFF) == 0
     flags = int(prof[1], 0)
-    unk_08 = rabbitizer.Utils.from2Complement((int(prof[2], 0) >> 16) & 0xFFFF, 16)
+    unk_08 = (int(prof[2], 0) >> 16) & 0xFFFF
     objectId = rabbitizer.Utils.from2Complement(int(prof[2], 0) & 0xFFFF, 16)
     instanceSize = int(prof[3], 0)
     ct = prof[4] if prof[4] != "0x00000000" else "NULL"
@@ -41,7 +62,7 @@ for name, (filepath, prof) in n64Profiles.items():
     draw = prof[7] if prof[7] != "0x00000000" else "NULL"
     save = prof[8] if prof[8] != "0x00000000" else "NULL"
 
-    structName = name.replace("_Profile", "")
+    structName = profName.replace("_Profile", "")
 
     commentWidth = 3
     if instanceSize >= 0x1000:
@@ -79,6 +100,50 @@ for name, (filepath, prof) in n64Profiles.items():
 
         f.write("\n")
         f.write("#endif\n")
+
+
+    cFileLines = []
+    cFile = filepath.with_suffix(".c")
+    with cFile.open("r") as f:
+        for line in f:
+            if "#pragma GLOBAL_ASM(" in line:
+                cFileLines.append(line)
+
+    extraIncludes = ""
+    if "none_proc1" in {ct, dt, update, draw, save}:
+        extraIncludes += '#include "m_lib.h"\n'
+
+    with cFile.open("w") as f:
+        f.write(f'#include "{header.name}"\n')
+        f.write(extraIncludes)
+        f.write(f'#include "overlays/gamestates/ovl_play/m_play.h"\n')
+        f.write("\n")
+
+        f.write(funcToDecl(ct))
+        f.write(funcToDecl(dt))
+        f.write(funcToDecl(update))
+        f.write(funcToDecl(draw))
+        f.write(funcToDecl(save))
+        f.write("\n")
+
+        f.write("#if 0\n")
+        f.write(f"ActorProfile {profName} = {{\n")
+        f.write(f"    /* */ {actorId},\n")
+        f.write(f"    /* */ {ActorPartEnum[part]},\n")
+        f.write(f"    /* */ {flags},\n")
+        f.write(f"    /* */ {unk_08},\n")
+        f.write(f"    /* */ {objectId},\n")
+        f.write(f"    /* */ sizeof({structName}),\n")
+        f.write(f"    /* */ {funcToProf(ct)},\n")
+        f.write(f"    /* */ {funcToProf(dt)},\n")
+        f.write(f"    /* */ {funcToProf(update)},\n")
+        f.write(f"    /* */ {funcToProf(draw)},\n")
+        f.write(f"    /* */ {funcToProf(save)},\n")
+        f.write("};\n")
+        f.write("#endif\n")
+
+        for line in cFileLines:
+            f.write(f"\n{line}")
 
 """
 newNamesSet = set()

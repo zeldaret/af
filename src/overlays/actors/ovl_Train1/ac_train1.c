@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_train1.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aTR1_actor_ct(Actor* thisx, PlayState* play);
+void aTR1_actor_dt(Actor* thisx, PlayState* play);
+void aTR1_actor_move(Actor* thisx, PlayState* play);
+void aTR1_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Train1_Profile = {
+    /* */ 73,
+    /* */ ACTOR_PART_0,
+    /* */ 536870928,
+    /* */ 22539,
+    /* */ 3,
+    /* */ sizeof(Train1),
+    /* */ aTR1_actor_ct,
+    /* */ aTR1_actor_dt,
+    /* */ aTR1_actor_move,
+    /* */ aTR1_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Train1/ac_train1/aTR1_actor_ct.s")
 

@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_tamaire_npc0.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aTMN0_actor_ct(Actor* thisx, PlayState* play);
+void aTMN0_actor_dt(Actor* thisx, PlayState* play);
+void aTMN0_actor_init(Actor* thisx, PlayState* play);
+void aTMN0_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Tamaire_Npc0_Profile = {
+    /* */ 150,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 53331,
+    /* */ 3,
+    /* */ sizeof(Tamaire_Npc0),
+    /* */ aTMN0_actor_ct,
+    /* */ aTMN0_actor_dt,
+    /* */ aTMN0_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aTMN0_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Tamaire_Npc0/ac_tamaire_npc0/aTMN0_actor_ct.s")
 

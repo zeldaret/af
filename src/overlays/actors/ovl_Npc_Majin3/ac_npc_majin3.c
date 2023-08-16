@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_npc_majin3.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aMJN3_actor_ct(Actor* thisx, PlayState* play);
+void aMJN3_actor_dt(Actor* thisx, PlayState* play);
+void aMJN3_actor_init(Actor* thisx, PlayState* play);
+void aMJN3_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Npc_Majin3_Profile = {
+    /* */ 30,
+    /* */ ACTOR_PART_NPC,
+    /* */ 48,
+    /* */ 53352,
+    /* */ 3,
+    /* */ sizeof(Npc_Majin3),
+    /* */ aMJN3_actor_ct,
+    /* */ aMJN3_actor_dt,
+    /* */ aMJN3_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aMJN3_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Majin3/ac_npc_majin3/aMJN3_actor_ct.s")
 

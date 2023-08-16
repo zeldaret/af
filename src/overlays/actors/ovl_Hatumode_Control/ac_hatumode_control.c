@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_hatumode_control.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aHTC_actor_ct(Actor* thisx, PlayState* play);
+void aHTC_actor_dt(Actor* thisx, PlayState* play);
+void aHTC_actor_move(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Hatumode_Control_Profile = {
+    /* */ 155,
+    /* */ ACTOR_PART_7,
+    /* */ 16,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(Hatumode_Control),
+    /* */ aHTC_actor_ct,
+    /* */ aHTC_actor_dt,
+    /* */ aHTC_actor_move,
+    /* */ (ActorFunc)none_proc1,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hatumode_Control/ac_hatumode_control/aHTC_actor_ct.s")
 

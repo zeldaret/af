@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_house.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aHUS_actor_ct(Actor* thisx, PlayState* play);
+void aHUS_actor_dt(Actor* thisx, PlayState* play);
+void aHUS_actor_init(Actor* thisx, PlayState* play);
+void aHUS_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile House_Profile = {
+    /* */ 40,
+    /* */ ACTOR_PART_0,
+    /* */ 0,
+    /* */ 20480,
+    /* */ 3,
+    /* */ sizeof(House),
+    /* */ aHUS_actor_ct,
+    /* */ aHUS_actor_dt,
+    /* */ aHUS_actor_init,
+    /* */ aHUS_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House/ac_house/aHUS_actor_ct.s")
 

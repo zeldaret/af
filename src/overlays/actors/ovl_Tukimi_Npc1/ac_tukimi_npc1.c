@@ -1,5 +1,27 @@
-#include "global.h"
+#include "ac_tukimi_npc1.h"
+#include "m_lib.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aTM1_actor_ct(Actor* thisx, PlayState* play);
+void aTM1_actor_dt(Actor* thisx, PlayState* play);
+void aTM1_actor_init(Actor* thisx, PlayState* play);
+void aTM1_actor_save(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Tukimi_Npc1_Profile = {
+    /* */ 142,
+    /* */ ACTOR_PART_NPC,
+    /* */ 0,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(Tukimi_Npc1),
+    /* */ aTM1_actor_ct,
+    /* */ aTM1_actor_dt,
+    /* */ aTM1_actor_init,
+    /* */ (ActorFunc)none_proc1,
+    /* */ aTM1_actor_save,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Tukimi_Npc1/ac_tukimi_npc1/aTM1_actor_ct.s")
 

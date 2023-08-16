@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_boxMove.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void BoxMove_Actor_ct(Actor* thisx, PlayState* play);
+void BoxMove_Actor_dt(Actor* thisx, PlayState* play);
+void BoxMove_Actor_move(Actor* thisx, PlayState* play);
+void BoxMove_Actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile BoxMove_Profile = {
+    /* */ 15,
+    /* */ ACTOR_PART_4,
+    /* */ 0,
+    /* */ 0,
+    /* */ 17,
+    /* */ sizeof(BoxMove),
+    /* */ BoxMove_Actor_ct,
+    /* */ BoxMove_Actor_dt,
+    /* */ BoxMove_Actor_move,
+    /* */ BoxMove_Actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_BoxMove/ac_boxMove/BoxMove_Actor_ct.s")
 

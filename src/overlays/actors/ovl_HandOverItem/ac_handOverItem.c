@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_handOverItem.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void aHOI_actor_ct(Actor* thisx, PlayState* play);
+void aHOI_actor_dt(Actor* thisx, PlayState* play);
+void aHOI_actor_move(Actor* thisx, PlayState* play);
+void aHOI_actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile HandOverItem_Profile = {
+    /* */ 64,
+    /* */ ACTOR_PART_4,
+    /* */ 536870960,
+    /* */ 0,
+    /* */ 3,
+    /* */ sizeof(HandOverItem),
+    /* */ aHOI_actor_ct,
+    /* */ aHOI_actor_dt,
+    /* */ aHOI_actor_move,
+    /* */ aHOI_actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_HandOverItem/ac_handOverItem/aHOI_actor_ct.s")
 

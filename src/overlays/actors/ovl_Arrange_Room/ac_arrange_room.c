@@ -1,5 +1,26 @@
-#include "global.h"
+#include "ac_arrange_room.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
+void Arrange_Room_Actor_ct(Actor* thisx, PlayState* play);
+void Arrange_Room_Actor_dt(Actor* thisx, PlayState* play);
+void Arrange_Room_Actor_move(Actor* thisx, PlayState* play);
+void Arrange_Room_Actor_draw(Actor* thisx, PlayState* play);
+
+#if 0
+ActorProfile Arrange_Room_Profile = {
+    /* */ 17,
+    /* */ ACTOR_PART_5,
+    /* */ 48,
+    /* */ 32774,
+    /* */ 3,
+    /* */ sizeof(Arrange_Room),
+    /* */ Arrange_Room_Actor_ct,
+    /* */ Arrange_Room_Actor_dt,
+    /* */ Arrange_Room_Actor_move,
+    /* */ Arrange_Room_Actor_draw,
+    /* */ NULL,
+};
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Arrange_Room/ac_arrange_room/func_80950E50_jp.s")
 
