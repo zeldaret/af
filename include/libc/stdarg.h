@@ -1,5 +1,5 @@
-#ifndef STDARG_H
-#define STDARG_H
+#ifndef _STDARG_H
+#define _STDARG_H
 
 #include "ultra64.h"
 
