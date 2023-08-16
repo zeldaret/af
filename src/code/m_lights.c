@@ -6,8 +6,8 @@
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "6E0F50.h"
 
-extern Gfx D_400AA00[];
-extern Gfx D_400AA40[];
+extern Gfx D_400AA00[]; // point_light_init_model
+extern Gfx D_400AA40[]; // point_light_model
 
 static LightBuffer light_list_buf;
 
@@ -54,32 +54,32 @@ void func_8009B394_jp(LightsN* lights, u8 r, u8 g, u8 b) {
 void LightsN_disp(LightsN* lights, GraphicsContext* gfxCtx) {
     Light* light;
     s32 i;
-    Gfx* opa_gfx;
-    Gfx* xlu_gfx;
+    Gfx* opaGfx;
+    Gfx* xluGfx;
 
     OPEN_DISPS(gfxCtx);
 
-    opa_gfx = POLY_OPA_DISP;
-    xlu_gfx = POLY_XLU_DISP;
+    opaGfx = POLY_OPA_DISP;
+    xluGfx = POLY_XLU_DISP;
 
-    gSPNumLights(opa_gfx++, lights->diffuse_count);
-    gSPNumLights(xlu_gfx++, lights->diffuse_count);
+    gSPNumLights(opaGfx++, lights->diffuse_count);
+    gSPNumLights(xluGfx++, lights->diffuse_count);
 
     light = lights->lights.l;
 
     for (i = 0; i < lights->diffuse_count;) {
         i++;
-        gSPLight(opa_gfx++, light, i);
-        gSPLight(xlu_gfx++, light, i);
+        gSPLight(opaGfx++, light, i);
+        gSPLight(xluGfx++, light, i);
         light++;
     }
 
     i++;
-    gSPLight(opa_gfx++, &lights->lights.a.l, i);
-    gSPLight(xlu_gfx++, &lights->lights.a.l, i);
+    gSPLight(opaGfx++, &lights->lights.a.l, i);
+    gSPLight(xluGfx++, &lights->lights.a.l, i);
 
-    POLY_OPA_DISP = opa_gfx;
-    POLY_XLU_DISP = xlu_gfx;
+    POLY_OPA_DISP = opaGfx;
+    POLY_XLU_DISP = xluGfx;
 
     CLOSE_DISPS(gfxCtx);
 }
@@ -104,17 +104,17 @@ void LightsN__point_proc(LightsN* lights, LightParams* lightInfo, Vec3f* point) 
         xdiff = lightInfo->point.x - point->x;
         ydiff = lightInfo->point.y - point->y;
         zdiff = lightInfo->point.z - point->z;
-        pointd = (xdiff * xdiff) + (ydiff * ydiff) + (zdiff * zdiff);
+        pointd = SQ(xdiff) + SQ(ydiff) + SQ(zdiff);
 
         rad = lightInfo->point.radius;
 
-        if (pointd < (rad * rad)) {
+        if (pointd < SQ(rad)) {
             light = LightsN_new_diffuse(lights);
 
             if (light != NULL) {
                 pointd = sqrtf(pointd);
                 rad = pointd / rad;
-                rad = 1 - (rad * rad);
+                rad = 1 - SQ(rad);
 
                 light->l.col[0] = light->l.colc[0] = (s8)(lightInfo->point.color[0] * rad);
                 light->l.col[1] = light->l.colc[1] = (s8)(lightInfo->point.color[1] * rad);
@@ -130,13 +130,13 @@ void LightsN__point_proc(LightsN* lights, LightParams* lightInfo, Vec3f* point) 
     }
 }
 
-#ifdef NON_MATCHING
 void LightsN__P_point_proc(LightsN* lights, LightParams* lightInfo, UNUSED Vec3f* pos) {
     if (lightInfo->point.radius > 0) {
         Light* light = LightsN_new_diffuse(lights);
 
         if (light != NULL) {
-            f32 kq = 4500000 / SQ((f32)lightInfo->point.radius);
+            f32 kq = lightInfo->point.radius;
+            kq = 4500000 / SQ(kq);
 
             if (kq > 255) {
                 kq = 255;
@@ -163,10 +163,6 @@ void LightsN__P_point_proc(LightsN* lights, LightParams* lightInfo, UNUSED Vec3f
         }
     }
 }
-#else
-void LightsN__P_point_proc(LightsN* lights, LightParams* lightInfo, UNUSED Vec3f* pos);
-GLOBAL_ASM("asm/jp/nonmatchings/code/m_lights/LightsN__P_point_proc.s")
-#endif
 
 void LightsN__diffuse_proc(LightsN* lights, LightParams* lightInfo, UNUSED Vec3f* pos) {
     Light* light = LightsN_new_diffuse(lights);
@@ -229,63 +225,63 @@ void Light_list_buf_delete(LightNode* lightNode) {
     }
 }
 
-void Global_light_ct(LightContext* lightCtx) {
-    Global_light_list_ct(lightCtx);
-    Global_light_ambient_set(lightCtx, 0x50, 0x50, 0x50);
-    Global_light_fog_set(lightCtx, 0, 0, 0, 0x3E4, 0x640);
+void Global_light_ct(Global_light* glight) {
+    Global_light_list_ct(glight);
+    Global_light_ambient_set(glight, 0x50, 0x50, 0x50);
+    Global_light_fog_set(glight, 0, 0, 0, 0x3E4, 0x640);
     bzero(&light_list_buf, sizeof(LightBuffer));
 }
 
-void Global_light_ambient_set(LightContext* lightCtx, u8 r, u8 g, u8 b) {
-    lightCtx->ambientColor[0] = r;
-    lightCtx->ambientColor[1] = g;
-    lightCtx->ambientColor[2] = b;
+void Global_light_ambient_set(Global_light* glight, u8 r, u8 g, u8 b) {
+    glight->ambientColor[0] = r;
+    glight->ambientColor[1] = g;
+    glight->ambientColor[2] = b;
 }
 
-void Global_light_fog_set(LightContext* lightCtx, u8 r, u8 g, u8 b, s16 near, s16 far) {
-    lightCtx->fogColor[0] = r;
-    lightCtx->fogColor[1] = g;
-    lightCtx->fogColor[2] = b;
-    lightCtx->fogNear = near;
-    lightCtx->fogFar = far;
+void Global_light_fog_set(Global_light* glight, u8 r, u8 g, u8 b, s16 near, s16 far) {
+    glight->fogColor[0] = r;
+    glight->fogColor[1] = g;
+    glight->fogColor[2] = b;
+    glight->fogNear = near;
+    glight->fogFar = far;
 }
 
-LightsN* Global_light_read(LightContext* lightCtx, struct GraphicsContext* gfxCtx) {
-    return new_LightsN(gfxCtx, lightCtx->ambientColor[0], lightCtx->ambientColor[1], lightCtx->ambientColor[2]);
+LightsN* Global_light_read(Global_light* glight, struct GraphicsContext* gfxCtx) {
+    return new_LightsN(gfxCtx, glight->ambientColor[0], glight->ambientColor[1], glight->ambientColor[2]);
 }
 
-void Global_light_list_ct(LightContext* lightCtx) {
-    lightCtx->list = NULL;
+void Global_light_list_ct(Global_light* glight) {
+    glight->list = NULL;
 }
 
-void func_8009BB40_jp(LightContext* lightCtx) {
-    while (lightCtx->list != NULL) {
-        Global_light_list_delete(lightCtx, lightCtx->list);
-        lightCtx->list = lightCtx->list->next;
+void Global_light_list_dt(Global_light* glight) {
+    while (glight->list != NULL) {
+        Global_light_list_delete(glight, glight->list);
+        glight->list = glight->list->next;
     }
 }
 
-LightNode* Global_light_list_new(UNUSED PlayState* play, LightContext* lightCtx, Lights* light) {
+LightNode* Global_light_list_new(UNUSED PlayState* play, Global_light* glight, Lights* light) {
     LightNode* newNode = Light_list_buf_new();
 
     if (newNode != NULL) {
         newNode->info = light;
         newNode->prev = NULL;
-        newNode->next = lightCtx->list;
-        if (lightCtx->list != NULL) {
-            lightCtx->list->prev = newNode;
+        newNode->next = glight->list;
+        if (glight->list != NULL) {
+            glight->list->prev = newNode;
         }
-        lightCtx->list = newNode;
+        glight->list = newNode;
     }
     return newNode;
 }
 
-void Global_light_list_delete(LightContext* lightCtx, LightNode* lightNode) {
+void Global_light_list_delete(Global_light* glight, LightNode* lightNode) {
     if (lightNode != NULL) {
         if (lightNode->prev != NULL) {
             lightNode->prev->next = lightNode->next;
         } else {
-            lightCtx->list = lightNode->next;
+            glight->list = lightNode->next;
         }
         if (lightNode->next != NULL) {
             lightNode->next->prev = lightNode->prev;
@@ -332,7 +328,7 @@ LightsN* new_LightsN(GraphicsContext* gfxCtx, u8 r, u8 g, u8 b) {
 }
 
 void Light_list_point_draw(PlayState* play) {
-    LightNode* lightNode = play->lightCtx.list;
+    LightNode* lightNode = play->glight.list;
     Gfx* gfx;
 
     OPEN_DISPS(play->state.gfxCtx);
@@ -346,7 +342,7 @@ void Light_list_point_draw(PlayState* play) {
         LightParams* lightParams = &lightNode->info->lights;
 
         if ((lightNode->info->type == 2) && (lightParams->point.drawGlow != 0)) {
-            f32 rad = (lightParams->point.radius * lightParams->point.radius) * 0.0000026f;
+            f32 rad = SQ(lightParams->point.radius) * 0.0000026f;
 
             gDPSetPrimColor(gfx++, 0, 0, lightParams->point.color[0], lightParams->point.color[1],
                             lightParams->point.color[2], 50);

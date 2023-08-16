@@ -73,7 +73,7 @@ typedef struct Game_Play {
     /* 0x1938 */ Game_Play1938 unk_1938;
     /* 0x1A60 */ UNK_TYPE1 unk_1A60[0x138];
     /* 0x1B98 */ Kankyo kankyo;
-    /* 0x1C60 */ LightContext lightCtx;
+    /* 0x1C60 */ Global_light glight;
     /* 0x1C70 */ Pause pause;
     /* 0x1C78 */ ActorInfo actorInfo;
     /* 0x1CBC */ Game_Play1CBC unk_1CBC;

@@ -53,17 +53,13 @@ typedef struct LightsN {
     /* 0x08 */ Lightsn lights;
 }LightsN; // size = 0x80
 
-typedef struct LightNode {
-    /* 0x00 */ char unk00[0xC];
-} LightNode; // size = 0xC
-
-typedef struct LightContext {
+typedef struct Global_light {
     /* 0x0 */ LightNode* list;
     /* 0x4 */ u8 ambientColor[3];
     /* 0x7 */ u8 fogColor[3];
     /* 0xA */ s16 fogNear;
     /* 0xC */ s16 fogFar; 
-} LightContext; // size = 0x10
+} Global_light; // size = 0x10
 
 typedef void (*light_point_proc)(LightsN*, LightParams*, Vec3f*);
 typedef void (*light_P_point_proc)(LightsN*, LightParams*, Vec3f*);
@@ -82,14 +78,14 @@ void LightsN__diffuse_proc(LightsN* lights, LightParams* lightInfo, Vec3f* pos);
 void LightsN_list_check(LightsN* lights, LightNode* node, Vec3f* pos);
 LightNode* Light_list_buf_new(void);
 void Light_list_buf_delete(LightNode* lightNode);
-void Global_light_ct(LightContext* lightCtx);
-void Global_light_ambient_set(LightContext* lightCtx, u8 r, u8 g, u8 b);
-void Global_light_fog_set(LightContext* lightCtx, u8 r, u8 g, u8 b, s16 near, s16 far);
-LightsN* Global_light_read(LightContext* lightCtx, struct GraphicsContext* gfxCtx);
-void Global_light_list_ct(LightContext* lightCtx);
-void func_8009BB40_jp(LightContext* lightCtx);
-LightNode* Global_light_list_new(struct Game_Play* play, LightContext* lightCtx, Lights* light);
-void Global_light_list_delete(LightContext* lightCtx, LightNode* lightNode);
+void Global_light_ct(Global_light* glight);
+void Global_light_ambient_set(Global_light* glight, u8 r, u8 g, u8 b);
+void Global_light_fog_set(Global_light* glight, u8 r, u8 g, u8 b, s16 near, s16 far);
+LightsN* Global_light_read(Global_light* glight, struct GraphicsContext* gfxCtx);
+void Global_light_list_ct(Global_light* glight);
+void Global_light_list_dt(Global_light* glight);
+LightNode* Global_light_list_new(struct Game_Play* play, Global_light* glight, Lights* light);
+void Global_light_list_delete(Global_light* glight, LightNode* lightNode);
 LightsN* func_8009BC48_jp(struct GraphicsContext* gfxCtx, u8 ambient_r, u8 ambient_g, u8 ambient_b, u8 count, u8 light_r,
                           u8 light_g, u8 light_b, s8 dir_x, s8 dir_y, s8 dir_z);
 LightsN* new_LightsN(struct GraphicsContext* gfxCtx, u8 r, u8 g, u8 b);
