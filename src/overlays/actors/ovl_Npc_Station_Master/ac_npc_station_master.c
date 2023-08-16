@@ -31,6 +31,7 @@ ActorProfile Npc_Station_Master_Profile = {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Station_Master/ac_npc_station_master/aSTM_actor_init.s")
 
+// clang-format off
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Station_Master/ac_npc_station_master/func_809D4320_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Station_Master/ac_npc_station_master/func_809D43BC_jp.s")
@@ -116,3 +117,4 @@ ActorProfile Npc_Station_Master_Profile = {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Station_Master/ac_npc_station_master/func_809D5418_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Station_Master/ac_npc_station_master/func_809D5448_jp.s")
+// clang-format on

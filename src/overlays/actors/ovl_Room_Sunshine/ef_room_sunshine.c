@@ -30,10 +30,14 @@ ActorProfile Room_Sunshine_Profile = {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine/func_80965FF0_jp.s")
 
+// clang-format off
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine/Ef_Room_SunshineR_actor_move.s")
+// clang-format on
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine/func_80966120_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine/func_8096628C_jp.s")
 
+// clang-format off
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine/Ef_Room_SunshineR_actor_draw.s")
+// clang-format on
