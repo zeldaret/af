@@ -53,7 +53,7 @@ s16 search_position_angleY(Vec3f* arg0, Vec3f* arg1);
 // void add_calc_short_angle3();
 // void adds();
 // void rgba_t_move();
-// void none_proc1();
+UNK_RET none_proc1(void);
 // void none_proc2();
 // void Cheap_gfx_display();
 // void Cheap_gfx_display_xlu();

@@ -3,6 +3,8 @@
 
 #include "ultra64.h"
 
+struct PlayState;
+
 // void func_8005F390_jp();
 // void func_8005F3DC_jp();
 // void func_8005F4E4_jp();
@@ -41,7 +43,7 @@
 // void func_80060970_jp();
 // void func_80060A6C_jp();
 // void func_80060B18_jp();
-// void Camera2_ClearActorTalking_Cull();
+void Camera2_ClearActorTalking_Cull(struct PlayState* play);
 // void func_80060D1C_jp();
 // void func_80060D58_jp();
 // void func_80060D6C_jp();
@@ -154,9 +156,9 @@
 // void func_80064EF0_jp();
 // void func_80064F08_jp();
 // void func_80064F28_jp();
-// void func_80064F48_jp();
+void func_80064F48_jp(struct PlayState* play);
 // void func_80064F84_jp();
-// void func_80064FD8_jp();
-// void func_80065028_jp();
+void Camera2_process(struct PlayState* play);
+void Camera2_draw(struct PlayState* play);
 
 #endif

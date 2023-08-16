@@ -34,8 +34,8 @@
 // void func_80086F08_jp();
 // void func_80086FA8_jp();
 // void func_80086FEC_jp();
-// void func_80087004_jp();
-// void func_80087280_jp();
+void func_80087004_jp(void);
+void func_80087280_jp(void);
 // void func_80087380_jp();
 // void func_80087420_jp();
 // void func_800874CC_jp();

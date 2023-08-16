@@ -5,6 +5,7 @@
 #include "unk.h"
 
 struct Actor;
+struct LightContext;
 
 typedef void (*Kankyo_unk_C0)(struct Actor*);
 
@@ -14,7 +15,11 @@ typedef struct Kankyo {
     /* 0x03 */ s8 unk_03;
     /* 0x04 */ s8 unk_04;
     /* 0x05 */ UNK_TYPE1 unk_05[0x3];
-    /* 0x08 */ UNK_TYPE1 unk_08[0xB8];
+    /* 0x08 */ UNK_TYPE1 unk_08[0xA6];
+    /* 0xAE */ u8 unk_AE;
+    /* 0xAF */ u8 unk_AF;
+    /* 0xB0 */ u8 unk_B0;
+    /* 0xB1 */ UNK_TYPE1 unk_B1[0xF];
     /* 0xC0 */ Kankyo_unk_C0 unk_C0;
     /* 0xC4 */ UNK_TYPE1 unk_C4[0x4];
 } Kankyo; // size = 0xC8
@@ -26,7 +31,7 @@ typedef struct Kankyo {
 // void func_80096F5C_jp();
 // void func_80097048_jp();
 // void mEnv_RoomTypeLightSet();
-// void Global_kankyo_ct();
+void Global_kankyo_ct(struct PlayState* play, struct Kankyo* kankyo);
 // void mEnv_MakeShadowInfo();
 // void mEnv_set_time();
 // void func_800976BC_jp();
@@ -44,7 +49,7 @@ typedef struct Kankyo {
 // void func_800981B8_jp();
 // void func_8009836C_jp();
 // void func_800983F0_jp();
-// void func_800984CC_jp();
+void Global_kankyo_set(struct PlayState* play, struct Kankyo* kankyo, struct LightContext* arg2);
 // void func_80098558_jp();
 // void func_8009867C_jp();
 // void func_80098794_jp();
@@ -52,7 +57,7 @@ typedef struct Kankyo {
 // void func_80098980_jp();
 // void func_80098990_jp();
 // void func_80098A90_jp();
-// void func_80098B50_jp();
+void mEnv_WindMove(void);
 // void func_80098CCC_jp();
 // void func_80098D88_jp();
 // void func_80098DE0_jp();

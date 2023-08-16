@@ -5,7 +5,7 @@
 
 // void qrand();
 // void sqrand();
-// void fqrand();
+f32 fqrand(void);
 // void fqrand2();
 // void sqrand_r();
 // void qrand_r();

@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 
+struct PlayState;
 struct GameState;
 
 // void func_8005ABA0_jp();
@@ -108,7 +109,7 @@ struct GameState;
 // void func_8005DCCC_jp();
 // void mBGMPsComp_make_ps_lost_fanfare();
 // void func_8005DD5C_jp();
-// void func_8005DDE4_jp();
+void mBGMPsComp_make_ps_wipe(s32 arg0, struct PlayState* play);
 // void func_8005DE0C_jp();
 // void func_8005DE60_jp();
 // void func_8005DE88_jp();

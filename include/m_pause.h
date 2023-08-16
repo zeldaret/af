@@ -4,7 +4,7 @@
 #include "ultra64.h"
 #include "libu64/pad.h"
 
-typedef struct Pause{
+typedef struct Pause {
     /* 0x0 */ s32 enabled;
     /* 0x4 */ s32 timer;
 } Pause; // size = 0x8

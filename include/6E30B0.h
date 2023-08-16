@@ -77,6 +77,6 @@
 // void func_800C2D8C_jp();
 // void func_800C2DF0_jp();
 // void func_800C2E80_jp();
-// void func_800C2EE0_jp();
+void func_800C2EE0_jp(void);
 
 #endif

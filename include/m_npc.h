@@ -103,7 +103,7 @@ typedef struct Npc {
 // void func_800A9F9C_jp();
 // void func_800AA028_jp();
 // void func_800AA0B8_jp();
-// void func_800AA124_jp();
+void func_800AA124_jp(void);
 // void func_800AA14C_jp();
 // void mNpc_GetLooks();
 // void func_800AA218_jp();
