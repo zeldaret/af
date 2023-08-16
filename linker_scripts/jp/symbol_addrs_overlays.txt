@@ -8749,8 +8749,8 @@ RO_FLT_8096A934_jp = 0x8096A934; // type:f32
 RO_FLT_8096A938_jp = 0x8096A938; // type:f32
 RO_FLT_8096A93C_jp = 0x8096A93C; // type:f32
 RO_FLT_8096A940_jp = 0x8096A940; // type:f32
-RO_FLT_8096A944_jp = 0x8096A944; // type:f32
-RO_FLT_8096A948_jp = 0x8096A948; // type:f32
+RO_FLT_8096A944_jp = 0x8096A944; // type:f32 force_migration:True This symbol includes two floats instead of one as a workaround to make this file to match
+// RO_FLT_8096A948_jp = 0x8096A948; // type:f32
 RO_FLT_8096A94C_jp = 0x8096A94C; // type:f32
 RO_FLT_8096A950_jp = 0x8096A950; // type:f32
 RO_FLT_8096A954_jp = 0x8096A954; // type:f32
@@ -11638,7 +11638,8 @@ RO_FLT_809C6964_jp = 0x809C6964; // type:f32
 RO_FLT_809C6968_jp = 0x809C6968; // type:f32
 RO_FLT_809C696C_jp = 0x809C696C; // type:f32
 RO_FLT_809C6970_jp = 0x809C6970; // type:f32
-RO_FLT_809C6974_jp = 0x809C6974; // type:f32
+RO_FLT_809C6974_jp = 0x809C6974; // type:f32 size:0x4
+RO_809C6978_JP = 0x809C6978; // workaround for late rodata being too big for func_809C6480_jp. This is just file pad so it can be completely ignored
 
 // .text
 
