@@ -3,10 +3,6 @@
 
 #include "ultra64.h"
 
-struct PlayState;
-struct Kankyo;
-struct LightContext;
-
 // void func_80096860_jp();
 // void func_800968C0_jp();
 // void func_80096B2C_jp();

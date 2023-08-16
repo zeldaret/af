@@ -423,6 +423,7 @@ void play_init(GameState* gameState) {
     sp30 = THA_getFreeBytes(&play->state.heap);
     temp_v0_2 = (u32)THA_alloc16(&play->state.heap, sp30);
     temp_v1 = ALIGN16(temp_v0_2);
+    //! FAKE
     zelda_InitArena((void*)(temp_v1 & 0xFFFFFFFF), (sp30 - temp_v1) + temp_v0_2);
     func_800C2EE0_jp();
     func_80087004_jp();
@@ -486,7 +487,7 @@ void Game_play_move(PlayState* play) {
     play->state.unk_9C = 2;
 
     if (zurumode_flag >= 2) {
-        var_v1 = Pause_proc(&play->pause, &play->state.input[1]) == 0;
+        var_v1 = Pause_proc(&play->pause, CONTROLLER2(&play->state)) == 0;
     } else {
         var_v1 = 0;
     }
@@ -578,6 +579,7 @@ void setupViewer(PlayState* play) {
 }
 
 void setupViewMatrix(PlayState* play, GraphicsContext* __gfxCtx, GraphicsContext* gfxCtx2) {
+    // TODO: A way to fit OPEN_DISPS/CLOSE_DISPS on the stack
     Matrix_MtxtoMtxF(&play->unk_1938.unk_0A0, &play->billboardMtxF);
     Matrix_MtxtoMtxF(&play->unk_1938.unk_060, &play->viewProjectionMtxF);
     Skin_Matrix_MulMatrix(&play->viewProjectionMtxF, &play->billboardMtxF, &play->viewProjectionMtxF);
@@ -591,12 +593,13 @@ void setupViewMatrix(PlayState* play, GraphicsContext* __gfxCtx, GraphicsContext
 
     Matrix_reverse(&play->billboardMtxF);
 
-    play->unk_1E9C = _MtxF_to_Mtx(&play->billboardMtxF, (Mtx*)GRAPH_ALLOC(gfxCtx2, sizeof(MtxF) * 1));
+    play->unk_1E9C = _MtxF_to_Mtx(&play->billboardMtxF, GRAPH_ALLOC(gfxCtx2, sizeof(MtxF) * 1));
 
     gSPSegment(POLY_OPA_DISP++, 0x01, play->unk_1E9C);
 }
 
 s32 makeBumpTexture(PlayState* play, GraphicsContext* __gfxCtx, GraphicsContext* gfxCtx2) {
+    // TODO: A way to fit OPEN_DISPS/CLOSE_DISPS on the stack
     {
         Gfx* sp194;
         Gfx* sp190;
@@ -708,7 +711,7 @@ void draw_version(GraphicsContext* gfxCtx) {
     OPEN_DISPS(gfxCtx);
 
     temp_s0 = func_800BD720_jp(OVERLAY_DISP);
-    printer = (gfxprint*)alloca(sizeof(gfxprint));
+    printer = alloca(sizeof(gfxprint));
 
     gfxprint_init(printer);
     gfxprint_open(printer, temp_s0);
