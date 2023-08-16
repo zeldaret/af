@@ -5,7 +5,7 @@
 #include "z64math.h"
 #include "unk.h"
 
-// void mem_copy();
+void mem_copy(u8* dst, u8* src, u32 size);
 s32 mem_clear(void* ptr, size_t size, u8 value);
 // void mem_cmp();
 f32 cos_s(s16 angle);

@@ -6,10 +6,10 @@
 // void func_80066E90_jp();
 // void func_80066EB8_jp();
 // void func_80066F1C_jp();
-// void func_80066F4C_jp();
+void mNW_InitMyOriginal(void);
 // void func_80066F8C_jp();
 // void func_8006700C_jp();
-// void func_800670C0_jp();
+void mCkRh_DecideNowGokiFamilyCount(s32 player_no);
 // void func_80067190_jp();
 // void func_80067264_jp();
 // void func_80067338_jp();

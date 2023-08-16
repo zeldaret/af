@@ -26,6 +26,7 @@
 #include "6E0F50.h"
 #include "6D2720.h"
 #include "m_lights.h"
+#include "m_private.h"
 #include "m_skin_matrix.h"
 #include "gfxalloc.h"
 #include "version.h"
@@ -98,12 +99,12 @@ static u16 S_back_title_timer;
 static u16 S_se_endcheck_timeout;
 
 void Game_play_Reset_destiny(void) {
-    CommonData10138_Sub* temp = &common_data.unk_10138->unk_A86;
-    u8* one = &common_data.unk_1011F;
-    u8* two = &common_data.unk_10121;
+    Private_Sub_A86* temp = &common_data.now_private->unk_A86;
+    u8* day = &common_data.time.rtc_time.day;
+    u8* month = &common_data.time.rtc_time.month;
 
     if ((temp->unk_08 != 0) &&
-        ((common_data.unk_10122 != temp->unk_06) || (*two != temp->unk_05) || (*one != temp->unk_03))) {
+        ((common_data.time.rtc_time.year != temp->unk_06) || (*month != temp->unk_05) || (*day != temp->unk_03))) {
         temp->unk_08 = 0;
     }
 }
@@ -353,13 +354,13 @@ void play_cleanup(Game* gameState) {
     }
 
     Actor_info_dt(&game_play->actorInfo, game_play);
-    mEv_finish(&game_play->unk_1EBC);
+    mEv_finish(&game_play->event);
     func_800AA124_jp();
     mSM_submenu_dt(&game_play->unk_1CBC);
     game_play->unk_1DAC = -1;
     mSM_submenu_ovlptr_cleanup(&game_play->unk_1CBC);
     mPlib_Object_Exchange_keep_Player_dt(game_play);
-    mHsRm_GetHuusuiRoom(0, common_data.unk_10003);
+    mHsRm_GetHuusuiRoom(0, common_data.player_no);
     func_80087280_jp();
     zelda_CleanupArena();
 }
@@ -384,7 +385,7 @@ void play_init(Game* gameState) {
     func_800B594C_jp();
     func_800C49D4_jp(game_play);
     func_8007CFD8_jp(game_play);
-    func_8007F858_jp(&game_play->unk_1EBC);
+    mEv_init(&game_play->event);
     initView(&game_play->unk_1938, gfxCtx);
     func_80064F48_jp(game_play);
     func_80077620_jp(game_play, &game_play->unk_2138);
@@ -430,7 +431,7 @@ void play_init(Game* gameState) {
     Actor_info_ct(game_play, &game_play->actorInfo, game_play->unk_1EA8);
     game_play->unk_2208 = (void*)none_proc1;
     mMsg_ct(game_play);
-    mEv_2nd_init(&game_play->unk_1EBC);
+    mEv_2nd_init(&game_play->event);
     mTD_player_keydata_init(game_play);
     Balloon_init(game_play);
     func_800A65C4_jp();
@@ -449,7 +450,7 @@ void Game_play_move_fbdemo_not_move(Game_Play* game_play) {
         game_play->state.unk_9C = 2;
         mDemo_Main(game_play);
         game_play->state.unk_9C = 3;
-        mEv_run(&game_play->unk_1EBC);
+        mEv_run(&game_play->event);
     }
     game_play->state.unk_9C = 4;
     mDemo_stock_clear();

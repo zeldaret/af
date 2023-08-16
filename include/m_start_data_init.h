@@ -2,23 +2,42 @@
 #define M_START_DATA_INIT_H
 
 #include "ultra64.h"
+#include "game.h"
+#include "m_actor.h"
 
-// void func_800C2FF0_jp();
-// void func_800C3054_jp();
-// void func_800C3118_jp();
-// void func_800C31D0_jp();
-// void func_800C327C_jp();
-// void func_800C3398_jp();
-// void func_800C33CC_jp();
-// void func_800C3418_jp();
-// void func_800C3488_jp();
-// void func_800C34D0_jp();
-// void func_800C37BC_jp();
-// void func_800C3970_jp();
-// void func_800C3AAC_jp();
-// void func_800C3BB4_jp();
-// void mSDI_StartInitAfter();
-// void mSDI_StartInitBefore();
-// void func_800C3DA8_jp();
+enum {
+    mSDI_INIT_MODE_NEW,
+    mSDI_INIT_MODE_NEW_PLAYER,
+    mSDI_INIT_MODE_FROM,
+    mSDI_INIT_MODE_PAK,
+    mSDI_INIT_MODE_ERR,
+    
+    mSDI_INIT_MODE_NUM
+};
+
+enum {
+    mSDI_MALLOC_FLAG_GAME,
+    mSDI_MALLOC_FLAG_ZELDA,
+
+    mSDI_MALLOC_FLAG_NUM
+};
+
+void famicom_emu_initial_common_data(void);
+void decide_fruit(mActor_name_t* fruit);
+void decide_fish_location(u8* fish_location);
+void title_game_haniwa_data_init(void);
+void mSDI_ClearMoneyPlayerHomeStationBlock(void);
+void mSDI_PullTreeUT(mActor_name_t* item_p);
+void mSDI_PullTreeBlock(u16* items_p, s32 ut);
+void mSDI_PullTree(void);
+void mSDI_PullTreeUnderPlayerBlock(void);
+s32 mSDI_StartInitNew(GameState* gameState, s32 player_no, s32 malloc_flag);
+s32 mSDI_StartInitFrom(GameState* gameState, s32 player_no, s32 malloc_flag);
+s32 mSDI_StartInitNewPlayer(GameState* gameState, s32 player_no, s32 malloc_flag);
+s32 mSDI_StartInitPak(GameState* gameState, s32 player_no, s32 malloc_flag);
+s32 mSDI_StartInitErr(GameState* gameState, s32 player_no, s32 malloc_flag);
+void mSDI_StartInitAfter(GameState* gameState, s32 renewal_reserve_flag, s32 malloc_flag);
+s32 mSDI_StartInitBefore(GameState* gameState, s32 player_no, s32 init_mode, s32 malloc_flag);
+s32 mSDI_StartDataInit(GameState* gameState, s32 player_no, s32 init_mode);
 
 #endif

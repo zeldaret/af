@@ -5,12 +5,21 @@
 #include "m_actor.h"
 #include "unk.h"
 
+#define ANIMAL_NUM_MAX 15 /* Maximum number of villagers possible in town */
+
+typedef struct npc_list_s {
+    /* 0x00 */ char unk00[0x38];
+} mNpc_NpcList_c; // size = 0x38
+
+typedef struct animal_s {
+  /* 0x000 */ char unk000[0x528]; /* this villager's ID */
+} Animal_c; // size = 0x528
+
 typedef struct Npc {
     /* 0x000 */ Actor actor;
     /* 0x174 */ UNK_TYPE1 unk_174[0x594];
     /* 0x708 */ s32 unk_708;
 } Npc; // size >= 0x70C
-
 
 // void func_800A6810_jp();
 // void func_800A6920_jp();
@@ -33,7 +42,7 @@ typedef struct Npc {
 // void func_800A6DB0_jp();
 // void func_800A6DD0_jp();
 // void func_800A6E0C_jp();
-// void func_800A6E40_jp();
+void mNpc_RenewalAnimalMemory(void);
 // void func_800A6F48_jp();
 // void func_800A6FF4_jp();
 // void func_800A706C_jp();
@@ -82,7 +91,7 @@ typedef struct Npc {
 // void func_800A9028_jp();
 // void func_800A9110_jp();
 // void func_800A918C_jp();
-// void func_800A91DC_jp();
+void func_800A91DC_jp(void);
 // void func_800A9364_jp();
 // void func_800A93AC_jp();
 // void func_800A9468_jp();
@@ -123,9 +132,9 @@ void func_800AA124_jp(void);
 // void func_800AAC88_jp();
 // void func_800AADE8_jp();
 // void func_800AAEFC_jp();
-// void func_800AB054_jp();
-// void func_800AB09C_jp();
-// void mNpc_SetNpcList();
+void func_800AB054_jp(void);
+void func_800AB09C_jp(void);
+void mNpc_SetNpcList(mNpc_NpcList_c* npclist, Animal_c* animals, s32 count, s32 malloc_flag);
 void mNpc_SetNpcinfo(struct Actor* actor, s8 arg1);
 // void func_800AB498_jp();
 // void func_800AB62C_jp();
@@ -137,10 +146,10 @@ void mNpc_SetNpcinfo(struct Actor* actor, s8 arg1);
 // void func_800ABA14_jp();
 // void func_800ABAA8_jp();
 // void func_800ABAF0_jp();
-// void func_800ABB14_jp();
+s32 mNpc_GetInAnimalP(void);
 // void func_800ABB24_jp();
 // void func_800ABCF8_jp();
-// void func_800ABD90_jp();
+void mNpc_SetRemoveAnimalNo(Animal_c* animal);
 // void func_800ABE30_jp();
 // void func_800ABF40_jp();
 // void func_800AC1A0_jp();
@@ -149,10 +158,10 @@ void mNpc_SetNpcinfo(struct Actor* actor, s8 arg1);
 // void func_800AC284_jp();
 // void func_800AC358_jp();
 // void func_800AC488_jp();
-// void func_800AC558_jp();
+void mNpc_SendRegisteredGoodbyMail(void);
 // void func_800AC57C_jp();
 // void func_800AC804_jp();
-// void func_800AC898_jp();
+void mNpc_SetReturnAnimal(s32 arg0);
 // void func_800ACB24_jp();
 // void func_800ACB54_jp();
 // void func_800ACC38_jp();
@@ -170,7 +179,7 @@ void mNpc_SetNpcinfo(struct Actor* actor, s8 arg1);
 // void func_800AD1E0_jp();
 // void func_800AD22C_jp();
 // void func_800AD2B8_jp();
-// void func_800AD2C4_jp();
+void mNpc_InitNpcAllInfo(s32 arg0);
 // void func_800AD338_jp();
 // void func_800AD3BC_jp();
 // void func_800AD4B8_jp();
@@ -178,14 +187,14 @@ void mNpc_SetNpcinfo(struct Actor* actor, s8 arg1);
 // void func_800AD6D4_jp();
 // void func_800AD8C4_jp();
 // void func_800AD954_jp();
-// void func_800AD9FC_jp();
+void func_800AD9FC_jp(void);
 // void func_800ADBE4_jp();
 // void func_800ADC28_jp();
 // void func_800ADC8C_jp();
 // void func_800ADD20_jp();
 // void func_800ADEFC_jp();
 // void func_800AE110_jp();
-// void func_800AE134_jp();
+void mNpc_ClearTalkInfo(void);
 // void func_800AE1A0_jp();
 // void func_800AE1B8_jp();
 // void func_800AE1D8_jp();
