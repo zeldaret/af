@@ -9,7 +9,7 @@
 extern Gfx D_400AA00[]; // point_light_init_model
 extern Gfx D_400AA40[]; // point_light_model
 
-static LightBuffer light_list_buf;
+LightBuffer light_list_buf;
 
 void point_data_set(Lights* lights, s16 x, s16 y, s16 z, u8 r, u8 g, u8 b, s16 radius, s32 type) {
     lights->type = type;
@@ -19,11 +19,11 @@ void point_data_set(Lights* lights, s16 x, s16 y, s16 z, u8 r, u8 g, u8 b, s16 r
     Light_point_color_set(lights, r, g, b, radius);
 }
 
-void func_8009B23C_jp(Lights* lights, s16 x, s16 y, s16 z, u8 r, u8 g, u8 b, s16 radius) {
+void Light_point_ct(Lights* lights, s16 x, s16 y, s16 z, u8 r, u8 g, u8 b, s16 radius) {
     point_data_set(lights, x, y, z, r, g, b, radius, 0);
 }
 
-void func_8009B2A0_jp(Lights* lights, s16 x, s16 y, s16 z, u8 r, u8 g, u8 b, s16 radius) {
+void Light_point2_ct(Lights* lights, s16 x, s16 y, s16 z, u8 r, u8 g, u8 b, s16 radius) {
     point_data_set(lights, x, y, z, r, g, b, radius, 2);
 }
 
@@ -44,7 +44,7 @@ void Light_diffuse_ct(Lights* lights, s8 x, s8 y, s8 z, u8 r, u8 g, u8 b) {
     lights->lights.diffuse.color[2] = b;
 }
 
-void func_8009B394_jp(LightsN* lights, u8 r, u8 g, u8 b) {
+void LightsN_ct(LightsN* lights, u8 r, u8 g, u8 b) {
     lights->lights.a.l.col[0] = lights->lights.a.l.colc[0] = r;
     lights->lights.a.l.col[1] = lights->lights.a.l.colc[1] = g;
     lights->lights.a.l.col[2] = lights->lights.a.l.colc[2] = b;
@@ -290,8 +290,8 @@ void Global_light_list_delete(Global_light* glight, LightNode* lightNode) {
     }
 }
 
-LightsN* func_8009BC48_jp(GraphicsContext* gfxCtx, u8 ambient_r, u8 ambient_g, u8 ambient_b, u8 count, u8 light_r,
-                          u8 light_g, u8 light_b, s8 dir_x, s8 dir_y, s8 dir_z) {
+LightsN* new_Lights(GraphicsContext* gfxCtx, u8 ambient_r, u8 ambient_g, u8 ambient_b, u8 count, u8 light_r, u8 light_g,
+                    u8 light_b, s8 dir_x, s8 dir_y, s8 dir_z) {
     LightsN* lights = GRAPH_ALLOC(gfxCtx, sizeof(LightsN) * 1);
     s32 i;
 

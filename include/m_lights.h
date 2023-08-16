@@ -65,11 +65,11 @@ typedef void (*light_point_proc)(LightsN*, LightParams*, Vec3f*);
 typedef void (*light_P_point_proc)(LightsN*, LightParams*, Vec3f*);
 
 void point_data_set(Lights* lights, s16 x, s16 y, s16 z, u8 r, u8 g, u8 b, s16 radius, s32 type);
-void func_8009B23C_jp(Lights* lights, s16 x, s16 y, s16 z, u8 r, u8 g, u8 b, s16 radius);
-void func_8009B2A0_jp(Lights* lights, s16 x, s16 y, s16 z, u8 r, u8 g, u8 b, s16 radius);
+void Light_point_ct(Lights* lights, s16 x, s16 y, s16 z, u8 r, u8 g, u8 b, s16 radius);
+void Light_point2_ct(Lights* lights, s16 x, s16 y, s16 z, u8 r, u8 g, u8 b, s16 radius);
 void Light_point_color_set(Lights* lights, u8 r, u8 g, u8 b, s16 radius);
 void Light_diffuse_ct(Lights* lights, s8 x, s8 y, s8 z, u8 r, u8 g, u8 b);
-void func_8009B394_jp(LightsN* lights, u8 r, u8 g, u8 b);
+void LightsN_ct(LightsN* lights, u8 r, u8 g, u8 b);
 void LightsN_disp(LightsN* lights, struct GraphicsContext* gfxCtx);
 Light* LightsN_new_diffuse(LightsN* lights);
 void LightsN__point_proc(LightsN* lights, LightParams* lightInfo, Vec3f* point);
@@ -86,7 +86,7 @@ void Global_light_list_ct(Global_light* glight);
 void Global_light_list_dt(Global_light* glight);
 LightNode* Global_light_list_new(struct Game_Play* play, Global_light* glight, Lights* light);
 void Global_light_list_delete(Global_light* glight, LightNode* lightNode);
-LightsN* func_8009BC48_jp(struct GraphicsContext* gfxCtx, u8 ambient_r, u8 ambient_g, u8 ambient_b, u8 count, u8 light_r,
+LightsN* new_Lights(struct GraphicsContext* gfxCtx, u8 ambient_r, u8 ambient_g, u8 ambient_b, u8 count, u8 light_r,
                           u8 light_g, u8 light_b, s8 dir_x, s8 dir_y, s8 dir_z);
 LightsN* new_LightsN(struct GraphicsContext* gfxCtx, u8 r, u8 g, u8 b);
 void Light_list_point_draw(struct Game_Play* play);
