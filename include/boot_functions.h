@@ -16,8 +16,6 @@
 // void func_8002BF08_jp();
 // void func_8002BF78_jp();
 
-// void func_8002BFA0_jp();
-
 // void func_8003B960_jp();
 // void func_8003B9B0_jp();
 // void func_8003B9E0_jp();

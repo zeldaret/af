@@ -168,7 +168,7 @@ func_8002BE6C_jp = 0x8002BE6C; // type:func
 func_8002BF08_jp = 0x8002BF08; // type:func
 func_8002BF78_jp = 0x8002BF78; // type:func
 
-func_8002BFA0_jp = 0x8002BFA0; // type:func
+GetCurrentMilliseconds = 0x8002BFA0; // type:func
 
 PadSetup_Init = 0x8002BFF0; // type:func
 

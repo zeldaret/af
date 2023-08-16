@@ -1,5 +1,6 @@
 #include "ultra64.h"
 
-u32 func_8002BFA0_jp(void) {
+// original name unknown
+u32 GetCurrentMilliseconds(void) {
     return (osGetTime() * 1000ULL) / OS_CPU_COUNTER;
 }
