@@ -48,6 +48,9 @@ ActorProfile Ball_Profile = {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Ball/ac_ball/func_809699D8_jp.s")
 
+// TODO: this function includes an unreferenced float. It was forced to be in this function to
+// be able to build and match the file. It needs to be figured out where to put this float and
+// how to handle this when this file gets decompiled.
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Ball/ac_ball/func_80969DE8_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Ball/ac_ball/func_80969FBC_jp.s")
