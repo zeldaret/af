@@ -3070,7 +3070,7 @@
     follows_vram: ovl_MyHouse
     compress: True
     subsegments:
-      - [0x8D6340, data, overlays/actors/ovl_MyHouse/ac_my_house]
+      - [0x8D6340, data, overlays/actors/ovl_MyHouse/ac_my_house_reloc]
 
   - name: ovl_Police_Box
     type: code
