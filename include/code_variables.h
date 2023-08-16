@@ -774,7 +774,7 @@
 // extern UNK_TYPE D_8010DD80_jp;
 // extern UNK_TYPE D_8010DDAC_jp;
 // extern UNK_TYPE D_8010DDBC_jp;
-// extern UNK_TYPE D_8010DDD0_jp;
+
 // extern UNK_TYPE D_8010ED60_jp;
 // extern UNK_TYPE D_8010EDA0_jp;
 // extern UNK_TYPE D_8010EDA4_jp;
