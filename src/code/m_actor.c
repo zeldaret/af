@@ -251,7 +251,7 @@ void Actor_dt(Actor* actor, struct Game_Play* game_play);
 
 void Actor_draw(Game_Play* game_play, Actor* actor) {
     FaultClient faultClient;
-    Lights* light;
+    LightsN* light;
 
     Fault_AddClient(&faultClient, func_80056380_jp, actor, "Actor_draw");
 
@@ -264,8 +264,7 @@ void Actor_draw(Game_Play* game_play, Actor* actor) {
     OPEN_DISPS(game_play->state.gfxCtx);
 
     light = Global_light_read(&game_play->lightCtx, game_play->state.gfxCtx);
-    LightsN_list_check(light, game_play->lightCtx.listHead,
-                       (actor->flags & ACTOR_FLAG_400000) ? NULL : &actor->world.pos);
+    LightsN_list_check(light, game_play->lightCtx.list, (actor->flags & ACTOR_FLAG_400000) ? NULL : &actor->world.pos);
     LightsN_disp(light, game_play->state.gfxCtx);
 
     Matrix_softcv3_load(actor->world.pos.x, actor->world.pos.y + actor->shape.unk_08 * actor->scale.y,

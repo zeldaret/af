@@ -11,7 +11,7 @@ struct Game_Play;
 struct ActorEntry;
 struct ActorOverlay;
 struct struct_801161E8_jp;
-struct Lights;
+struct LightsN;
 struct GraphicsContext;
 
 typedef enum AllocType {
@@ -69,7 +69,7 @@ typedef struct PosRot {
     /* 0x0C */ Vec3s rot;
 } PosRot; // size = 0x14
 
-typedef void (*Shape_Info_unk_0C)(struct Actor*, struct Lights*, struct Game_Play*);
+typedef void (*Shape_Info_unk_0C)(struct Actor*, struct LightsN*, struct Game_Play*);
 
 typedef struct Shape_Info {
     /* 0x00 */ Vec3s rot;
