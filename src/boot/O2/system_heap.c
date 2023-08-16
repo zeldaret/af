@@ -1,8 +1,8 @@
 /**
  * @file system_heap.c
- * 
+ *
  * Original file name unknown, as well as all function names.
- * 
+ *
  * @note:
  *  Only SystemHeap_Init() is used, and is essentially just a wrapper for SystemArena_Init().
  *
