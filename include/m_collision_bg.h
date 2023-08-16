@@ -92,7 +92,7 @@
 // void func_8006B97C_jp();
 // void func_8006BAA8_jp();
 // void func_8006BAE4_jp();
-// void func_8006BB64_jp();
+void func_8006BB64_jp(void);
 // void func_8006BB9C_jp();
 // void func_8006BBE8_jp();
 // void func_8006BBF8_jp();
@@ -105,9 +105,9 @@
 // void func_8006C4B4_jp();
 // void func_8006C5A8_jp();
 // void func_8006C634_jp();
-// void func_8006C740_jp();
+void mCoBG_CalcTimerDecalCircle(void);
 // void func_8006C7B4_jp();
-// void func_8006C8D0_jp();
+void func_8006C8D0_jp(void);
 // void func_8006C910_jp();
 // void func_8006C980_jp();
 // void func_8006D3B0_jp();

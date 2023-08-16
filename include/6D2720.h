@@ -32,6 +32,6 @@
 // void func_800AFCAC_jp();
 // void func_800AFCD8_jp();
 // void func_800AFDA8_jp();
-// void func_800B0010_jp();
+void func_800B0010_jp(void);
 
 #endif

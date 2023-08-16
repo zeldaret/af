@@ -5,6 +5,14 @@
 #include "libc/stdint.h"
 #include "libc/stdbool.h"
 #include "unk.h"
+#include "other_types.h"
+
+typedef struct Struct_8010EAA0 {
+    /* 0x00 */ RomOffset unk_00;
+    /* 0x04 */ RomOffset unk_04;
+    /* 0x08 */ char unk08[0xB];
+    /* 0x13 */ u8 unk_13;
+} Struct_8010EAA0;  // size = 0x14
 
 typedef struct struct_801161E8_jp {
     /* 0x0 */ UNK_TYPE1 unk_0[0x8];

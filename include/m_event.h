@@ -3,6 +3,17 @@
 
 #include "ultra64.h"
 
+typedef struct PlayState1EBC {
+    /* 0x00 */ u8 unk_00;
+    /* 0x01 */ u8 unk_01;
+    /* 0x02 */ u8 unk_02;
+    /* 0x03 */ u8 unk_03;
+    /* 0x04 */ s16 unk_04;
+    /* 0x06 */ s16 unk_06;
+    /* 0x08 */ s32 unk_08;
+    /* 0x0C */ s32 unk_0C;
+} PlayState1EBC; // size = 0x10
+
 // void func_8007D140_jp();
 // void func_8007D180_jp();
 // void func_8007D1A8_jp();
@@ -81,12 +92,12 @@ s32 mEv_CheckTitleDemo(void);
 // void func_8007F358_jp();
 // void func_8007F6A0_jp();
 // void func_8007F764_jp();
-// void func_8007F858_jp();
+void func_8007F858_jp(PlayState1EBC* arg0);
 // void func_8007F8A4_jp();
-// void func_8007F8DC_jp();
+void mEv_2nd_init(PlayState1EBC* arg0);
 // void func_8007F950_jp();
-// void func_8007F988_jp();
-// void func_8007FB44_jp();
+void mEv_run(PlayState1EBC* arg0);
+void mEv_finish(PlayState1EBC* arg0);
 // void func_8007FCB8_jp();
 // void func_8007FD40_jp();
 // void func_8007FDA8_jp();

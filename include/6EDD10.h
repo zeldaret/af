@@ -4,7 +4,7 @@
 #include "ultra64.h"
 
 // void func_800CA070_jp();
-// void mTM_set_season();
+void mTM_set_season(void);
 // void func_800CA230_jp();
 // void func_800CA240_jp();
 // void func_800CA278_jp();

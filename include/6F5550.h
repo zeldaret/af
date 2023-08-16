@@ -3,6 +3,9 @@
 
 #include "ultra64.h"
 
+struct PlayState;
+struct PlayState_Unk_1EE8;
+
 // void func_800D18B0_jp();
 // void func_800D195C_jp();
 // void func_800D197C_jp();
@@ -61,18 +64,18 @@
 // void func_800D22A4_jp();
 // void func_800D22CC_jp();
 // void func_800D22F4_jp();
-// void func_800D2314_jp();
-// void func_800D2334_jp();
+s32 sAdo_BgmFadeoutCheck(void);
+s32 func_800D2334_jp(struct PlayState_Unk_1EE8* arg0, struct PlayState* play);
 // void func_800D2354_jp();
 // void func_800D2360_jp();
-// void sAdo_RoomType();
+void sAdo_RoomType(u8 arg0);
 // void func_800D2394_jp();
 // void func_800D23B4_jp();
 // void func_800D2438_jp();
 // void func_800D24C4_jp();
 // void func_800D24EC_jp();
 // void func_800D252C_jp();
-// void func_800D2568_jp();
+void func_800D2568_jp(s32 arg0);
 // void func_800D2578_jp();
 
 #endif
