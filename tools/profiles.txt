@@ -1,0 +1,1947 @@
+asm/jp/data/overlays/actors/ovl_Tunahiki_Npc0/ac_tunahiki_npc0.data.s:dlabel Tunahiki_Npc0_Profile
+asm/jp/data/overlays/actors/ovl_Tunahiki_Npc0/ac_tunahiki_npc0.data.s-/* 9525E0 80A92370 */ .word 0x00A10300
+asm/jp/data/overlays/actors/ovl_Tunahiki_Npc0/ac_tunahiki_npc0.data.s-/* 9525E4 80A92374 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Tunahiki_Npc0/ac_tunahiki_npc0.data.s-/* 9525E8 80A92378 */ .word 0xD05F0003
+asm/jp/data/overlays/actors/ovl_Tunahiki_Npc0/ac_tunahiki_npc0.data.s-/* 9525EC 80A9237C */ .word 0x00000950
+asm/jp/data/overlays/actors/ovl_Tunahiki_Npc0/ac_tunahiki_npc0.data.s-/* 9525F0 80A92380 */ .word aTNN0_actor_ct
+asm/jp/data/overlays/actors/ovl_Tunahiki_Npc0/ac_tunahiki_npc0.data.s-/* 9525F4 80A92384 */ .word aTNN0_actor_dt
+asm/jp/data/overlays/actors/ovl_Tunahiki_Npc0/ac_tunahiki_npc0.data.s-/* 9525F8 80A92388 */ .word aTNN0_actor_init
+asm/jp/data/overlays/actors/ovl_Tunahiki_Npc0/ac_tunahiki_npc0.data.s-/* 9525FC 80A9238C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Tunahiki_Npc0/ac_tunahiki_npc0.data.s-/* 952600 80A92390 */ .word aTNN0_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Npc_P_Sel2/ac_npc_p_sel2.data.s:dlabel Npc_P_Sel2_Profile
+asm/jp/data/overlays/actors/ovl_Npc_P_Sel2/ac_npc_p_sel2.data.s-/* 8A43B0 809C0BC0 */ .word 0x00660300
+asm/jp/data/overlays/actors/ovl_Npc_P_Sel2/ac_npc_p_sel2.data.s-/* 8A43B4 809C0BC4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Npc_P_Sel2/ac_npc_p_sel2.data.s-/* 8A43B8 809C0BC8 */ .word 0xD01F0003
+asm/jp/data/overlays/actors/ovl_Npc_P_Sel2/ac_npc_p_sel2.data.s-/* 8A43BC 809C0BCC */ .word 0x00000954
+asm/jp/data/overlays/actors/ovl_Npc_P_Sel2/ac_npc_p_sel2.data.s-/* 8A43C0 809C0BD0 */ .word aNPS2_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_P_Sel2/ac_npc_p_sel2.data.s-/* 8A43C4 809C0BD4 */ .word aNPS2_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_P_Sel2/ac_npc_p_sel2.data.s-/* 8A43C8 809C0BD8 */ .word aNPS2_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_P_Sel2/ac_npc_p_sel2.data.s-/* 8A43CC 809C0BDC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_P_Sel2/ac_npc_p_sel2.data.s-/* 8A43D0 809C0BE0 */ .word aNPS2_actor_save
+--
+asm/jp/data/overlays/actors/ovl_T_NpcSao/ac_t_npc_sao.data.s:dlabel T_NpcSao_Profile
+asm/jp/data/overlays/actors/ovl_T_NpcSao/ac_t_npc_sao.data.s-/* 8E8D70 80A212B0 */ .word 0x006D0400
+asm/jp/data/overlays/actors/ovl_T_NpcSao/ac_t_npc_sao.data.s-/* 8E8D74 80A212B4 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_T_NpcSao/ac_t_npc_sao.data.s-/* 8E8D78 80A212B8 */ .word 0x00000172
+asm/jp/data/overlays/actors/ovl_T_NpcSao/ac_t_npc_sao.data.s-/* 8E8D7C 80A212BC */ .word 0x000001DC
+asm/jp/data/overlays/actors/ovl_T_NpcSao/ac_t_npc_sao.data.s-/* 8E8D80 80A212C0 */ .word aTNS_actor_ct
+asm/jp/data/overlays/actors/ovl_T_NpcSao/ac_t_npc_sao.data.s-/* 8E8D84 80A212C4 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_T_NpcSao/ac_t_npc_sao.data.s-/* 8E8D88 80A212C8 */ .word aTNS_actor_move
+asm/jp/data/overlays/actors/ovl_T_NpcSao/ac_t_npc_sao.data.s-/* 8E8D8C 80A212CC */ .word aTNS_actor_draw
+asm/jp/data/overlays/actors/ovl_T_NpcSao/ac_t_npc_sao.data.s-/* 8E8D90 80A212D0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Tools/ac_tools.data.s:dlabel Tools_Profile
+asm/jp/data/overlays/actors/ovl_Tools/ac_tools.data.s-/* 85A7A0 80965B40 */ .word 0x00440700
+asm/jp/data/overlays/actors/ovl_Tools/ac_tools.data.s-/* 85A7A4 80965B44 */ .word 0x20000030
+asm/jp/data/overlays/actors/ovl_Tools/ac_tools.data.s-/* 85A7A8 80965B48 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Tools/ac_tools.data.s-/* 85A7AC 80965B4C */ .word 0x00000174
+asm/jp/data/overlays/actors/ovl_Tools/ac_tools.data.s-/* 85A7B0 80965B50 */ .word aTOL_actor_ct
+asm/jp/data/overlays/actors/ovl_Tools/ac_tools.data.s-/* 85A7B4 80965B54 */ .word aTOL_actor_dt
+asm/jp/data/overlays/actors/ovl_Tools/ac_tools.data.s-/* 85A7B8 80965B58 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Tools/ac_tools.data.s-/* 85A7BC 80965B5C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Tools/ac_tools.data.s-/* 85A7C0 80965B60 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Dump/ac_dump.data.s:dlabel Dump_Profile
+asm/jp/data/overlays/actors/ovl_Dump/ac_dump.data.s-/* 957260 80A96FF0 */ .word 0x00A60000
+asm/jp/data/overlays/actors/ovl_Dump/ac_dump.data.s-/* 957264 80A96FF4 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Dump/ac_dump.data.s-/* 957268 80A96FF8 */ .word 0x583A0003
+asm/jp/data/overlays/actors/ovl_Dump/ac_dump.data.s-/* 95726C 80A96FFC */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Dump/ac_dump.data.s-/* 957270 80A97000 */ .word aDUM_actor_ct
+asm/jp/data/overlays/actors/ovl_Dump/ac_dump.data.s-/* 957274 80A97004 */ .word aDUM_actor_dt
+asm/jp/data/overlays/actors/ovl_Dump/ac_dump.data.s-/* 957278 80A97008 */ .word aDUM_actor_init
+asm/jp/data/overlays/actors/ovl_Dump/ac_dump.data.s-/* 95727C 80A9700C */ .word aDUM_actor_draw
+asm/jp/data/overlays/actors/ovl_Dump/ac_dump.data.s-/* 957280 80A97010 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Nameplate/ac_nameplate.data.s:dlabel Nameplate_Profile
+asm/jp/data/overlays/actors/ovl_Nameplate/ac_nameplate.data.s-/* 956800 80A96590 */ .word 0x00A50000
+asm/jp/data/overlays/actors/ovl_Nameplate/ac_nameplate.data.s-/* 956804 80A96594 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Nameplate/ac_nameplate.data.s-/* 956808 80A96598 */ .word 0xA0120003
+asm/jp/data/overlays/actors/ovl_Nameplate/ac_nameplate.data.s-/* 95680C 80A9659C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Nameplate/ac_nameplate.data.s-/* 956810 80A965A0 */ .word func_80A963C0_jp
+asm/jp/data/overlays/actors/ovl_Nameplate/ac_nameplate.data.s-/* 956814 80A965A4 */ .word func_80A963D0_jp
+asm/jp/data/overlays/actors/ovl_Nameplate/ac_nameplate.data.s-/* 956818 80A965A8 */ .word aNP_actor_init
+asm/jp/data/overlays/actors/ovl_Nameplate/ac_nameplate.data.s-/* 95681C 80A965AC */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Nameplate/ac_nameplate.data.s-/* 956820 80A965B0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Yatai/ac_yatai.data.s:dlabel Yatai_Profile
+asm/jp/data/overlays/actors/ovl_Yatai/ac_yatai.data.s-/* 9376D0 80A77430 */ .word 0x007E0000
+asm/jp/data/overlays/actors/ovl_Yatai/ac_yatai.data.s-/* 9376D4 80A77434 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Yatai/ac_yatai.data.s-/* 9376D8 80A77438 */ .word 0x582C0003
+asm/jp/data/overlays/actors/ovl_Yatai/ac_yatai.data.s-/* 9376DC 80A7743C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Yatai/ac_yatai.data.s-/* 9376E0 80A77440 */ .word aYAT_actor_ct
+asm/jp/data/overlays/actors/ovl_Yatai/ac_yatai.data.s-/* 9376E4 80A77444 */ .word func_80A76EC4_jp
+asm/jp/data/overlays/actors/ovl_Yatai/ac_yatai.data.s-/* 9376E8 80A77448 */ .word aYAT_actor_init
+asm/jp/data/overlays/actors/ovl_Yatai/ac_yatai.data.s-/* 9376EC 80A7744C */ .word aYAT_actor_draw
+asm/jp/data/overlays/actors/ovl_Yatai/ac_yatai.data.s-/* 9376F0 80A77450 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_MailBox/ac_mailbox.data.s:dlabel MailBox_Profile
+asm/jp/data/overlays/actors/ovl_MailBox/ac_mailbox.data.s-/* 8620E0 8096D4A0 */ .word 0x00270000
+asm/jp/data/overlays/actors/ovl_MailBox/ac_mailbox.data.s-/* 8620E4 8096D4A4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_MailBox/ac_mailbox.data.s-/* 8620E8 8096D4A8 */ .word 0xA000001A
+asm/jp/data/overlays/actors/ovl_MailBox/ac_mailbox.data.s-/* 8620EC 8096D4AC */ .word 0x00000320
+asm/jp/data/overlays/actors/ovl_MailBox/ac_mailbox.data.s-/* 8620F0 8096D4B0 */ .word aMBX_actor_ct
+asm/jp/data/overlays/actors/ovl_MailBox/ac_mailbox.data.s-/* 8620F4 8096D4B4 */ .word aMBX_actor_dt
+asm/jp/data/overlays/actors/ovl_MailBox/ac_mailbox.data.s-/* 8620F8 8096D4B8 */ .word aMBX_actor_init
+asm/jp/data/overlays/actors/ovl_MailBox/ac_mailbox.data.s-/* 8620FC 8096D4BC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_MailBox/ac_mailbox.data.s-/* 862100 8096D4C0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Tama/ac_tama.data.s:dlabel Tama_Profile
+asm/jp/data/overlays/actors/ovl_Tama/ac_tama.data.s-/* 94F4F0 80A8F270 */ .word 0x009C0000
+asm/jp/data/overlays/actors/ovl_Tama/ac_tama.data.s-/* 94F4F4 80A8F274 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Tama/ac_tama.data.s-/* 94F4F8 80A8F278 */ .word 0x58330003
+asm/jp/data/overlays/actors/ovl_Tama/ac_tama.data.s-/* 94F4FC 80A8F27C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Tama/ac_tama.data.s-/* 94F500 80A8F280 */ .word aTAM_actor_ct
+asm/jp/data/overlays/actors/ovl_Tama/ac_tama.data.s-/* 94F504 80A8F284 */ .word func_80A8EF30_jp
+asm/jp/data/overlays/actors/ovl_Tama/ac_tama.data.s-/* 94F508 80A8F288 */ .word aTAM_actor_init
+asm/jp/data/overlays/actors/ovl_Tama/ac_tama.data.s-/* 94F50C 80A8F28C */ .word aTAM_actor_draw
+asm/jp/data/overlays/actors/ovl_Tama/ac_tama.data.s-/* 94F510 80A8F290 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Ev_Angler/ac_ev_angler.data.s:dlabel Ev_Angler_Profile
+asm/jp/data/overlays/actors/ovl_Ev_Angler/ac_ev_angler.data.s-/* 8BA200 809D6A10 */ .word 0x00080300
+asm/jp/data/overlays/actors/ovl_Ev_Angler/ac_ev_angler.data.s-/* 8BA204 809D6A14 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Ev_Angler/ac_ev_angler.data.s-/* 8BA208 809D6A18 */ .word 0xD01D0003
+asm/jp/data/overlays/actors/ovl_Ev_Angler/ac_ev_angler.data.s-/* 8BA20C 809D6A1C */ .word 0x0000094C
+asm/jp/data/overlays/actors/ovl_Ev_Angler/ac_ev_angler.data.s-/* 8BA210 809D6A20 */ .word aEANG_actor_ct
+asm/jp/data/overlays/actors/ovl_Ev_Angler/ac_ev_angler.data.s-/* 8BA214 809D6A24 */ .word aEANG_actor_dt
+asm/jp/data/overlays/actors/ovl_Ev_Angler/ac_ev_angler.data.s-/* 8BA218 809D6A28 */ .word aEANG_actor_init
+asm/jp/data/overlays/actors/ovl_Ev_Angler/ac_ev_angler.data.s-/* 8BA21C 809D6A2C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Ev_Angler/ac_ev_angler.data.s-/* 8BA220 809D6A30 */ .word aEANG_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Npc_Shop_Mastersp/ac_npc_shop_mastersp.data.s:dlabel Npc_Shop_Mastersp_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Shop_Mastersp/ac_npc_shop_mastersp.data.s-/* 92E640 80A6E3A0 */ .word 0x00740300
+asm/jp/data/overlays/actors/ovl_Npc_Shop_Mastersp/ac_npc_shop_mastersp.data.s-/* 92E644 80A6E3A4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Npc_Shop_Mastersp/ac_npc_shop_mastersp.data.s-/* 92E648 80A6E3A8 */ .word 0xD01E0003
+asm/jp/data/overlays/actors/ovl_Npc_Shop_Mastersp/ac_npc_shop_mastersp.data.s-/* 92E64C 80A6E3AC */ .word 0x00000998
+asm/jp/data/overlays/actors/ovl_Npc_Shop_Mastersp/ac_npc_shop_mastersp.data.s-/* 92E650 80A6E3B0 */ .word aSHM_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Shop_Mastersp/ac_npc_shop_mastersp.data.s-/* 92E654 80A6E3B4 */ .word aSHM_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Shop_Mastersp/ac_npc_shop_mastersp.data.s-/* 92E658 80A6E3B8 */ .word aSHM_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Shop_Mastersp/ac_npc_shop_mastersp.data.s-/* 92E65C 80A6E3BC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Shop_Mastersp/ac_npc_shop_mastersp.data.s-/* 92E660 80A6E3C0 */ .word aSHM_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Event_Manager/ac_event_manager.data.s:dlabel Event_Manager_Profile
+asm/jp/data/overlays/actors/ovl_Event_Manager/ac_event_manager.data.s-/* 8570BC 809622EC */ .word 0x00340000
+asm/jp/data/overlays/actors/ovl_Event_Manager/ac_event_manager.data.s-/* 8570C0 809622F0 */ .word 0x20000030
+asm/jp/data/overlays/actors/ovl_Event_Manager/ac_event_manager.data.s-/* 8570C4 809622F4 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Event_Manager/ac_event_manager.data.s-/* 8570C8 809622F8 */ .word 0x00000250
+asm/jp/data/overlays/actors/ovl_Event_Manager/ac_event_manager.data.s-/* 8570CC 809622FC */ .word aEvMgr_ct
+asm/jp/data/overlays/actors/ovl_Event_Manager/ac_event_manager.data.s-/* 8570D0 80962300 */ .word aEvMgr_dt
+asm/jp/data/overlays/actors/ovl_Event_Manager/ac_event_manager.data.s-/* 8570D4 80962304 */ .word aEvMgr_move
+asm/jp/data/overlays/actors/ovl_Event_Manager/ac_event_manager.data.s-/* 8570D8 80962308 */ .word aEvMgr_draw
+asm/jp/data/overlays/actors/ovl_Event_Manager/ac_event_manager.data.s-/* 8570DC 8096230C */ .word aEvMgr_save
+--
+asm/jp/data/overlays/actors/ovl_Hatumode_Npc0/ac_hatumode_npc0.data.s:dlabel Hatumode_Npc0_Profile
+asm/jp/data/overlays/actors/ovl_Hatumode_Npc0/ac_hatumode_npc0.data.s-/* 9499E0 80A89760 */ .word 0x00980300
+asm/jp/data/overlays/actors/ovl_Hatumode_Npc0/ac_hatumode_npc0.data.s-/* 9499E4 80A89764 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Hatumode_Npc0/ac_hatumode_npc0.data.s-/* 9499E8 80A89768 */ .word 0xD0580003
+asm/jp/data/overlays/actors/ovl_Hatumode_Npc0/ac_hatumode_npc0.data.s-/* 9499EC 80A8976C */ .word 0x00000950
+asm/jp/data/overlays/actors/ovl_Hatumode_Npc0/ac_hatumode_npc0.data.s-/* 9499F0 80A89770 */ .word func_8052ab54
+asm/jp/data/overlays/actors/ovl_Hatumode_Npc0/ac_hatumode_npc0.data.s-/* 9499F4 80A89774 */ .word func_8052ac90
+asm/jp/data/overlays/actors/ovl_Hatumode_Npc0/ac_hatumode_npc0.data.s-/* 9499F8 80A89778 */ .word func_8052ad14
+asm/jp/data/overlays/actors/ovl_Hatumode_Npc0/ac_hatumode_npc0.data.s-/* 9499FC 80A8977C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Hatumode_Npc0/ac_hatumode_npc0.data.s-/* 949A00 80A89780 */ .word func_8052ac70
+--
+asm/jp/data/overlays/actors/ovl_Windmill/ac_windmil.data.s:dlabel Windmill_Profile
+asm/jp/data/overlays/actors/ovl_Windmill/ac_windmil.data.s-/* 95CDB0 80A9CB40 */ .word 0x00A90000
+asm/jp/data/overlays/actors/ovl_Windmill/ac_windmil.data.s-/* 95CDB4 80A9CB44 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Windmill/ac_windmil.data.s-/* 95CDB8 80A9CB48 */ .word 0x583B0003
+asm/jp/data/overlays/actors/ovl_Windmill/ac_windmil.data.s-/* 95CDBC 80A9CB4C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Windmill/ac_windmil.data.s-/* 95CDC0 80A9CB50 */ .word func_80A9C3C0_jp
+asm/jp/data/overlays/actors/ovl_Windmill/ac_windmil.data.s-/* 95CDC4 80A9CB54 */ .word aWIN_actor_dt
+asm/jp/data/overlays/actors/ovl_Windmill/ac_windmil.data.s-/* 95CDC8 80A9CB58 */ .word aWIN_actor_init
+asm/jp/data/overlays/actors/ovl_Windmill/ac_windmil.data.s-/* 95CDCC 80A9CB5C */ .word aWIN_actor_draw
+asm/jp/data/overlays/actors/ovl_Windmill/ac_windmil.data.s-/* 95CDD0 80A9CB60 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Toudai/ac_toudai.data.s:dlabel Toudai_Profile
+asm/jp/data/overlays/actors/ovl_Toudai/ac_toudai.data.s-/* 96C1D0 80AAC060 */ .word 0x00AF0000
+asm/jp/data/overlays/actors/ovl_Toudai/ac_toudai.data.s-/* 96C1D4 80AAC064 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Toudai/ac_toudai.data.s-/* 96C1D8 80AAC068 */ .word 0x58430003
+asm/jp/data/overlays/actors/ovl_Toudai/ac_toudai.data.s-/* 96C1DC 80AAC06C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Toudai/ac_toudai.data.s-/* 96C1E0 80AAC070 */ .word aTOU_actor_ct
+asm/jp/data/overlays/actors/ovl_Toudai/ac_toudai.data.s-/* 96C1E4 80AAC074 */ .word aTOU_actor_dt
+asm/jp/data/overlays/actors/ovl_Toudai/ac_toudai.data.s-/* 96C1E8 80AAC078 */ .word aTOU_actor_init
+asm/jp/data/overlays/actors/ovl_Toudai/ac_toudai.data.s-/* 96C1EC 80AAC07C */ .word aTOU_actor_draw
+asm/jp/data/overlays/actors/ovl_Toudai/ac_toudai.data.s-/* 96C1F0 80AAC080 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Count02/ac_count02.data.s:dlabel Count02_Profile
+asm/jp/data/overlays/actors/ovl_Count02/ac_count02.data.s-/* 94BED0 80A8BC50 */ .word 0x009A0000
+asm/jp/data/overlays/actors/ovl_Count02/ac_count02.data.s-/* 94BED4 80A8BC54 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Count02/ac_count02.data.s-/* 94BED8 80A8BC58 */ .word 0x58320003
+asm/jp/data/overlays/actors/ovl_Count02/ac_count02.data.s-/* 94BEDC 80A8BC5C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Count02/ac_count02.data.s-/* 94BEE0 80A8BC60 */ .word func_805ab8b8
+asm/jp/data/overlays/actors/ovl_Count02/ac_count02.data.s-/* 94BEE4 80A8BC64 */ .word func_805ab988
+asm/jp/data/overlays/actors/ovl_Count02/ac_count02.data.s-/* 94BEE8 80A8BC68 */ .word func_805abdac
+asm/jp/data/overlays/actors/ovl_Count02/ac_count02.data.s-/* 94BEEC 80A8BC6C */ .word func_805abe88
+asm/jp/data/overlays/actors/ovl_Count02/ac_count02.data.s-/* 94BEF0 80A8BC70 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Npc_Sleep_Obaba/ac_npc_sleep_obaba.data.s:dlabel Npc_Sleep_Obaba_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Sleep_Obaba/ac_npc_sleep_obaba.data.s-/* 8B2BA0 809CF3B0 */ .word 0x001F0300
+asm/jp/data/overlays/actors/ovl_Npc_Sleep_Obaba/ac_npc_sleep_obaba.data.s-/* 8B2BA4 809CF3B4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Npc_Sleep_Obaba/ac_npc_sleep_obaba.data.s-/* 8B2BA8 809CF3B8 */ .word 0xD0380003
+asm/jp/data/overlays/actors/ovl_Npc_Sleep_Obaba/ac_npc_sleep_obaba.data.s-/* 8B2BAC 809CF3BC */ .word 0x00000940
+asm/jp/data/overlays/actors/ovl_Npc_Sleep_Obaba/ac_npc_sleep_obaba.data.s-/* 8B2BB0 809CF3C0 */ .word aNSO_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Sleep_Obaba/ac_npc_sleep_obaba.data.s-/* 8B2BB4 809CF3C4 */ .word aNSO_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Sleep_Obaba/ac_npc_sleep_obaba.data.s-/* 8B2BB8 809CF3C8 */ .word aNSO_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Sleep_Obaba/ac_npc_sleep_obaba.data.s-/* 8B2BBC 809CF3CC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Sleep_Obaba/ac_npc_sleep_obaba.data.s-/* 8B2BC0 809CF3D0 */ .word aNSO_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Insect/ac_insect.data.s:dlabel Insect_Profile
+asm/jp/data/overlays/actors/ovl_Insect/ac_insect.data.s-/* 8E0344 80A11694 */ .word 0x003B0700
+asm/jp/data/overlays/actors/ovl_Insect/ac_insect.data.s-/* 8E0348 80A11698 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Insect/ac_insect.data.s-/* 8E034C 80A1169C */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Insect/ac_insect.data.s-/* 8E0350 80A116A0 */ .word 0x000008F8
+asm/jp/data/overlays/actors/ovl_Insect/ac_insect.data.s-/* 8E0354 80A116A4 */ .word aINS_actor_ct
+asm/jp/data/overlays/actors/ovl_Insect/ac_insect.data.s-/* 8E0358 80A116A8 */ .word aINS_actor_dt
+asm/jp/data/overlays/actors/ovl_Insect/ac_insect.data.s-/* 8E035C 80A116AC */ .word aINS_actor_move
+asm/jp/data/overlays/actors/ovl_Insect/ac_insect.data.s-/* 8E0360 80A116B0 */ .word aINS_actor_draw
+asm/jp/data/overlays/actors/ovl_Insect/ac_insect.data.s-/* 8E0364 80A116B4 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Train_Window/ac_train_window.data.s:dlabel Train_Window_Profile
+asm/jp/data/overlays/actors/ovl_Train_Window/ac_train_window.data.s-/* 922214 80A5A774 */ .word 0x00680000
+asm/jp/data/overlays/actors/ovl_Train_Window/ac_train_window.data.s-/* 922218 80A5A778 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Train_Window/ac_train_window.data.s-/* 92221C 80A5A77C */ .word 0x80110029
+asm/jp/data/overlays/actors/ovl_Train_Window/ac_train_window.data.s-/* 922220 80A5A780 */ .word 0x000001B4
+asm/jp/data/overlays/actors/ovl_Train_Window/ac_train_window.data.s-/* 922224 80A5A784 */ .word Train_Window_Actor_ct
+asm/jp/data/overlays/actors/ovl_Train_Window/ac_train_window.data.s-/* 922228 80A5A788 */ .word Train_Window_Actor_dt
+asm/jp/data/overlays/actors/ovl_Train_Window/ac_train_window.data.s-/* 92222C 80A5A78C */ .word Train_Window_Actor_move
+asm/jp/data/overlays/actors/ovl_Train_Window/ac_train_window.data.s-/* 922230 80A5A790 */ .word Train_Window_Actor_draw
+asm/jp/data/overlays/actors/ovl_Train_Window/ac_train_window.data.s-/* 922234 80A5A794 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Psnowman/ac_psnowman.data.s:dlabel Psnowman_Profile
+asm/jp/data/overlays/actors/ovl_Psnowman/ac_psnowman.data.s-/* 867580 80972940 */ .word 0x00580400
+asm/jp/data/overlays/actors/ovl_Psnowman/ac_psnowman.data.s-/* 867584 80972944 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Psnowman/ac_psnowman.data.s-/* 867588 80972948 */ .word 0xA0080019
+asm/jp/data/overlays/actors/ovl_Psnowman/ac_psnowman.data.s-/* 86758C 8097294C */ .word 0x00000198
+asm/jp/data/overlays/actors/ovl_Psnowman/ac_psnowman.data.s-/* 867590 80972950 */ .word aPSM_actor_ct
+asm/jp/data/overlays/actors/ovl_Psnowman/ac_psnowman.data.s-/* 867594 80972954 */ .word aPSM_actor_dt
+asm/jp/data/overlays/actors/ovl_Psnowman/ac_psnowman.data.s-/* 867598 80972958 */ .word aPSM_actor_move
+asm/jp/data/overlays/actors/ovl_Psnowman/ac_psnowman.data.s-/* 86759C 8097295C */ .word aPSM_actor_draw
+asm/jp/data/overlays/actors/ovl_Psnowman/ac_psnowman.data.s-/* 8675A0 80972960 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Intro_Demo/ac_intro_demo.data.s:dlabel Intro_Demo_Profile
+asm/jp/data/overlays/actors/ovl_Intro_Demo/ac_intro_demo.data.s-/* 8483D0 809535E0 */ .word 0x005B0700
+asm/jp/data/overlays/actors/ovl_Intro_Demo/ac_intro_demo.data.s-/* 8483D4 809535E4 */ .word 0x20000010
+asm/jp/data/overlays/actors/ovl_Intro_Demo/ac_intro_demo.data.s-/* 8483D8 809535E8 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Intro_Demo/ac_intro_demo.data.s-/* 8483DC 809535EC */ .word 0x000001AC
+asm/jp/data/overlays/actors/ovl_Intro_Demo/ac_intro_demo.data.s-/* 8483E0 809535F0 */ .word aID_actor_ct
+asm/jp/data/overlays/actors/ovl_Intro_Demo/ac_intro_demo.data.s-/* 8483E4 809535F4 */ .word aID_actor_dt
+asm/jp/data/overlays/actors/ovl_Intro_Demo/ac_intro_demo.data.s-/* 8483E8 809535F8 */ .word aID_actor_move
+asm/jp/data/overlays/actors/ovl_Intro_Demo/ac_intro_demo.data.s-/* 8483EC 809535FC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Intro_Demo/ac_intro_demo.data.s-/* 8483F0 80953600 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Kago/ac_kago.data.s:dlabel Kago_Profile
+asm/jp/data/overlays/actors/ovl_Kago/ac_kago.data.s-/* 94F960 80A8F6E0 */ .word 0x009D0000
+asm/jp/data/overlays/actors/ovl_Kago/ac_kago.data.s-/* 94F964 80A8F6E4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Kago/ac_kago.data.s-/* 94F968 80A8F6E8 */ .word 0x58350003
+asm/jp/data/overlays/actors/ovl_Kago/ac_kago.data.s-/* 94F96C 80A8F6EC */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Kago/ac_kago.data.s-/* 94F970 80A8F6F0 */ .word aKAG_actor_ct
+asm/jp/data/overlays/actors/ovl_Kago/ac_kago.data.s-/* 94F974 80A8F6F4 */ .word func_80A8F340_jp
+asm/jp/data/overlays/actors/ovl_Kago/ac_kago.data.s-/* 94F978 80A8F6F8 */ .word aKAG_actor_init
+asm/jp/data/overlays/actors/ovl_Kago/ac_kago.data.s-/* 94F97C 80A8F6FC */ .word aKAG_actor_draw
+asm/jp/data/overlays/actors/ovl_Kago/ac_kago.data.s-/* 94F980 80A8F700 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Halloween_Npc/ac_halloween_npc.data.s:dlabel Halloween_Npc_Profile
+asm/jp/data/overlays/actors/ovl_Halloween_Npc/ac_halloween_npc.data.s-/* 889050 809A5840 */ .word 0x00150300
+asm/jp/data/overlays/actors/ovl_Halloween_Npc/ac_halloween_npc.data.s-/* 889054 809A5844 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Halloween_Npc/ac_halloween_npc.data.s-/* 889058 809A5848 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Halloween_Npc/ac_halloween_npc.data.s-/* 88905C 809A584C */ .word 0x00000950
+asm/jp/data/overlays/actors/ovl_Halloween_Npc/ac_halloween_npc.data.s-/* 889060 809A5850 */ .word aHWN_actor_ct
+asm/jp/data/overlays/actors/ovl_Halloween_Npc/ac_halloween_npc.data.s-/* 889064 809A5854 */ .word aHWN_actor_dt
+asm/jp/data/overlays/actors/ovl_Halloween_Npc/ac_halloween_npc.data.s-/* 889068 809A5858 */ .word aHWN_actor_init
+asm/jp/data/overlays/actors/ovl_Halloween_Npc/ac_halloween_npc.data.s-/* 88906C 809A585C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Halloween_Npc/ac_halloween_npc.data.s-/* 889070 809A5860 */ .word aHWN_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Ev_Yomise/ac_ev_yomise.data.s:dlabel Ev_Yomise_Profile
+asm/jp/data/overlays/actors/ovl_Ev_Yomise/ac_ev_yomise.data.s-/* 933D10 80A73A70 */ .word 0x00790300
+asm/jp/data/overlays/actors/ovl_Ev_Yomise/ac_ev_yomise.data.s-/* 933D14 80A73A74 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Ev_Yomise/ac_ev_yomise.data.s-/* 933D18 80A73A78 */ .word 0xD02C0003
+asm/jp/data/overlays/actors/ovl_Ev_Yomise/ac_ev_yomise.data.s-/* 933D1C 80A73A7C */ .word 0x00000954
+asm/jp/data/overlays/actors/ovl_Ev_Yomise/ac_ev_yomise.data.s-/* 933D20 80A73A80 */ .word aEYMS_actor_ct
+asm/jp/data/overlays/actors/ovl_Ev_Yomise/ac_ev_yomise.data.s-/* 933D24 80A73A84 */ .word aEYMS_actor_dt
+asm/jp/data/overlays/actors/ovl_Ev_Yomise/ac_ev_yomise.data.s-/* 933D28 80A73A88 */ .word aEYMS_actor_init
+asm/jp/data/overlays/actors/ovl_Ev_Yomise/ac_ev_yomise.data.s-/* 933D2C 80A73A8C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Ev_Yomise/ac_ev_yomise.data.s-/* 933D30 80A73A90 */ .word aEYMS_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Countdown_Npc0/ac_countdown_npc0.data.s:dlabel Countdown_Npc0_Profile
+asm/jp/data/overlays/actors/ovl_Countdown_Npc0/ac_countdown_npc0.data.s-/* 8C4D90 809E15A0 */ .word 0x00900300
+asm/jp/data/overlays/actors/ovl_Countdown_Npc0/ac_countdown_npc0.data.s-/* 8C4D94 809E15A4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Countdown_Npc0/ac_countdown_npc0.data.s-/* 8C4D98 809E15A8 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Countdown_Npc0/ac_countdown_npc0.data.s-/* 8C4D9C 809E15AC */ .word 0x00000944
+asm/jp/data/overlays/actors/ovl_Countdown_Npc0/ac_countdown_npc0.data.s-/* 8C4DA0 809E15B0 */ .word aCD0_actor_ct
+asm/jp/data/overlays/actors/ovl_Countdown_Npc0/ac_countdown_npc0.data.s-/* 8C4DA4 809E15B4 */ .word aCD0_actor_dt
+asm/jp/data/overlays/actors/ovl_Countdown_Npc0/ac_countdown_npc0.data.s-/* 8C4DA8 809E15B8 */ .word aCD0_actor_init
+asm/jp/data/overlays/actors/ovl_Countdown_Npc0/ac_countdown_npc0.data.s-/* 8C4DAC 809E15BC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Countdown_Npc0/ac_countdown_npc0.data.s-/* 8C4DB0 809E15C0 */ .word aCD0_actor_save
+--
+asm/jp/data/overlays/actors/ovl_BoxMove/ac_boxMove.data.s:dlabel BoxMove_Profile
+asm/jp/data/overlays/actors/ovl_BoxMove/ac_boxMove.data.s-/* 867D40 80973100 */ .word 0x000F0400
+asm/jp/data/overlays/actors/ovl_BoxMove/ac_boxMove.data.s-/* 867D44 80973104 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_BoxMove/ac_boxMove.data.s-/* 867D48 80973108 */ .word 0x00000011
+asm/jp/data/overlays/actors/ovl_BoxMove/ac_boxMove.data.s-/* 867D4C 8097310C */ .word 0x0000028C
+asm/jp/data/overlays/actors/ovl_BoxMove/ac_boxMove.data.s-/* 867D50 80973110 */ .word BoxMove_Actor_ct
+asm/jp/data/overlays/actors/ovl_BoxMove/ac_boxMove.data.s-/* 867D54 80973114 */ .word BoxMove_Actor_dt
+asm/jp/data/overlays/actors/ovl_BoxMove/ac_boxMove.data.s-/* 867D58 80973118 */ .word BoxMove_Actor_move
+asm/jp/data/overlays/actors/ovl_BoxMove/ac_boxMove.data.s-/* 867D5C 8097311C */ .word BoxMove_Actor_draw
+asm/jp/data/overlays/actors/ovl_BoxMove/ac_boxMove.data.s-/* 867D60 80973120 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Dummy/ac_dumm.data.s:dlabel Dummy_Profile
+asm/jp/data/overlays/actors/ovl_Dummy/ac_dumm.data.s-/* 9708C0 80AB0760 */ .word 0x00B40700
+asm/jp/data/overlays/actors/ovl_Dummy/ac_dumm.data.s-/* 9708C4 80AB0764 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Dummy/ac_dumm.data.s-/* 9708C8 80AB0768 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Dummy/ac_dumm.data.s-/* 9708CC 80AB076C */ .word 0x00000174
+asm/jp/data/overlays/actors/ovl_Dummy/ac_dumm.data.s-/* 9708D0 80AB0770 */ .word Dummy_Actor_ct
+asm/jp/data/overlays/actors/ovl_Dummy/ac_dumm.data.s-/* 9708D4 80AB0774 */ .word Dummy_Actor_dt
+asm/jp/data/overlays/actors/ovl_Dummy/ac_dumm.data.s-/* 9708D8 80AB0778 */ .word Dummy_Actor_move
+asm/jp/data/overlays/actors/ovl_Dummy/ac_dumm.data.s-/* 9708DC 80AB077C */ .word Dummy_Actor_draw
+asm/jp/data/overlays/actors/ovl_Dummy/ac_dumm.data.s-/* 9708E0 80AB0780 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Countdown_Npc1/ac_countdown_npc1.data.s:dlabel Countdown_Npc1_Profile
+asm/jp/data/overlays/actors/ovl_Countdown_Npc1/ac_countdown_npc1.data.s-/* 8C6100 809E2910 */ .word 0x00910300
+asm/jp/data/overlays/actors/ovl_Countdown_Npc1/ac_countdown_npc1.data.s-/* 8C6104 809E2914 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Countdown_Npc1/ac_countdown_npc1.data.s-/* 8C6108 809E2918 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Countdown_Npc1/ac_countdown_npc1.data.s-/* 8C610C 809E291C */ .word 0x00000954
+asm/jp/data/overlays/actors/ovl_Countdown_Npc1/ac_countdown_npc1.data.s-/* 8C6110 809E2920 */ .word aCD1_actor_ct
+asm/jp/data/overlays/actors/ovl_Countdown_Npc1/ac_countdown_npc1.data.s-/* 8C6114 809E2924 */ .word aCD1_actor_dt
+asm/jp/data/overlays/actors/ovl_Countdown_Npc1/ac_countdown_npc1.data.s-/* 8C6118 809E2928 */ .word aCD1_actor_init
+asm/jp/data/overlays/actors/ovl_Countdown_Npc1/ac_countdown_npc1.data.s-/* 8C611C 809E292C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Countdown_Npc1/ac_countdown_npc1.data.s-/* 8C6120 809E2930 */ .word aCD1_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Npc_Rtc/ac_npc_rtc.data.s:dlabel Npc_Rtc_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Rtc/ac_npc_rtc.data.s-/* 96AE70 80AAAD00 */ .word 0x00AE0300
+asm/jp/data/overlays/actors/ovl_Npc_Rtc/ac_npc_rtc.data.s-/* 96AE74 80AAAD04 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Npc_Rtc/ac_npc_rtc.data.s-/* 96AE78 80AAAD08 */ .word 0xD0660003
+asm/jp/data/overlays/actors/ovl_Npc_Rtc/ac_npc_rtc.data.s-/* 96AE7C 80AAAD0C */ .word 0x00000960
+asm/jp/data/overlays/actors/ovl_Npc_Rtc/ac_npc_rtc.data.s-/* 96AE80 80AAAD10 */ .word aNRTC_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Rtc/ac_npc_rtc.data.s-/* 96AE84 80AAAD14 */ .word aNRTC_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Rtc/ac_npc_rtc.data.s-/* 96AE88 80AAAD18 */ .word aNRTC_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Rtc/ac_npc_rtc.data.s-/* 96AE8C 80AAAD1C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Rtc/ac_npc_rtc.data.s-/* 96AE90 80AAAD20 */ .word aNRTC_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Reserve/ac_reserve.data.s:dlabel Reserve_Profile
+asm/jp/data/overlays/actors/ovl_Reserve/ac_reserve.data.s-/* 8D8450 80A09780 */ .word 0x003F0000
+asm/jp/data/overlays/actors/ovl_Reserve/ac_reserve.data.s-/* 8D8454 80A09784 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Reserve/ac_reserve.data.s-/* 8D8458 80A09788 */ .word 0x58100003
+asm/jp/data/overlays/actors/ovl_Reserve/ac_reserve.data.s-/* 8D845C 80A0978C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Reserve/ac_reserve.data.s-/* 8D8460 80A09790 */ .word aRSV_actor_ct
+asm/jp/data/overlays/actors/ovl_Reserve/ac_reserve.data.s-/* 8D8464 80A09794 */ .word func_80A09370_jp
+asm/jp/data/overlays/actors/ovl_Reserve/ac_reserve.data.s-/* 8D8468 80A09798 */ .word aRSV_actor_init
+asm/jp/data/overlays/actors/ovl_Reserve/ac_reserve.data.s-/* 8D846C 80A0979C */ .word aRSV_actor_draw
+asm/jp/data/overlays/actors/ovl_Reserve/ac_reserve.data.s-/* 8D8470 80A097A0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Ev_Santa/ac_ev_santa.data.s:dlabel Ev_Santa_Profile
+asm/jp/data/overlays/actors/ovl_Ev_Santa/ac_ev_santa.data.s-/* 8CB460 809E7CA0 */ .word 0x004B0300
+asm/jp/data/overlays/actors/ovl_Ev_Santa/ac_ev_santa.data.s-/* 8CB464 809E7CA4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Ev_Santa/ac_ev_santa.data.s-/* 8CB468 809E7CA8 */ .word 0xD00F0003
+asm/jp/data/overlays/actors/ovl_Ev_Santa/ac_ev_santa.data.s-/* 8CB46C 809E7CAC */ .word 0x00000954
+asm/jp/data/overlays/actors/ovl_Ev_Santa/ac_ev_santa.data.s-/* 8CB470 809E7CB0 */ .word aESNT_actor_ct
+asm/jp/data/overlays/actors/ovl_Ev_Santa/ac_ev_santa.data.s-/* 8CB474 809E7CB4 */ .word aESNT_actor_dt
+asm/jp/data/overlays/actors/ovl_Ev_Santa/ac_ev_santa.data.s-/* 8CB478 809E7CB8 */ .word aESNT_actor_init
+asm/jp/data/overlays/actors/ovl_Ev_Santa/ac_ev_santa.data.s-/* 8CB47C 809E7CBC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Ev_Santa/ac_ev_santa.data.s-/* 8CB480 809E7CC0 */ .word aESNT_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Gyo_Release/ac_gyo_release.data.s:dlabel Gyo_Release_Profile
+asm/jp/data/overlays/actors/ovl_Gyo_Release/ac_gyo_release.data.s-/* 93B5A0 80A7B300 */ .word 0x00810400
+asm/jp/data/overlays/actors/ovl_Gyo_Release/ac_gyo_release.data.s-/* 93B5A4 80A7B304 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Gyo_Release/ac_gyo_release.data.s-/* 93B5A8 80A7B308 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Gyo_Release/ac_gyo_release.data.s-/* 93B5AC 80A7B30C */ .word 0x000001BC
+asm/jp/data/overlays/actors/ovl_Gyo_Release/ac_gyo_release.data.s-/* 93B5B0 80A7B310 */ .word aGYR_actor_ct
+asm/jp/data/overlays/actors/ovl_Gyo_Release/ac_gyo_release.data.s-/* 93B5B4 80A7B314 */ .word aGYR_actor_dt
+asm/jp/data/overlays/actors/ovl_Gyo_Release/ac_gyo_release.data.s-/* 93B5B8 80A7B318 */ .word aGYR_actor_move
+asm/jp/data/overlays/actors/ovl_Gyo_Release/ac_gyo_release.data.s-/* 93B5BC 80A7B31C */ .word aGYR_actor_draw
+asm/jp/data/overlays/actors/ovl_Gyo_Release/ac_gyo_release.data.s-/* 93B5C0 80A7B320 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Ev_Broker/ac_ev_broker.data.s:dlabel Ev_Broker_Profile
+asm/jp/data/overlays/actors/ovl_Ev_Broker/ac_ev_broker.data.s-/* 8BB8F0 809D8100 */ .word 0x002D0300
+asm/jp/data/overlays/actors/ovl_Ev_Broker/ac_ev_broker.data.s-/* 8BB8F4 809D8104 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Ev_Broker/ac_ev_broker.data.s-/* 8BB8F8 809D8108 */ .word 0xD0010003
+asm/jp/data/overlays/actors/ovl_Ev_Broker/ac_ev_broker.data.s-/* 8BB8FC 809D810C */ .word 0x00000950
+asm/jp/data/overlays/actors/ovl_Ev_Broker/ac_ev_broker.data.s-/* 8BB900 809D8110 */ .word aEBRK_actor_ct
+asm/jp/data/overlays/actors/ovl_Ev_Broker/ac_ev_broker.data.s-/* 8BB904 809D8114 */ .word aEBRK_actor_dt
+asm/jp/data/overlays/actors/ovl_Ev_Broker/ac_ev_broker.data.s-/* 8BB908 809D8118 */ .word aEBRK_actor_init
+asm/jp/data/overlays/actors/ovl_Ev_Broker/ac_ev_broker.data.s-/* 8BB90C 809D811C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Ev_Broker/ac_ev_broker.data.s-/* 8BB910 809D8120 */ .word aEBRK_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Shop_Level/ac_shop_level.data.s:dlabel Shop_Level_Profile
+asm/jp/data/overlays/actors/ovl_Shop_Level/ac_shop_level.data.s-/* 84DE10 80959040 */ .word 0x00290700
+asm/jp/data/overlays/actors/ovl_Shop_Level/ac_shop_level.data.s-/* 84DE14 80959044 */ .word 0x20000030
+asm/jp/data/overlays/actors/ovl_Shop_Level/ac_shop_level.data.s-/* 84DE18 80959048 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Shop_Level/ac_shop_level.data.s-/* 84DE1C 8095904C */ .word 0x0000017C
+asm/jp/data/overlays/actors/ovl_Shop_Level/ac_shop_level.data.s-/* 84DE20 80959050 */ .word Shop_Level_Actor_ct
+asm/jp/data/overlays/actors/ovl_Shop_Level/ac_shop_level.data.s-/* 84DE24 80959054 */ .word Shop_Level_Actor_dt
+asm/jp/data/overlays/actors/ovl_Shop_Level/ac_shop_level.data.s-/* 84DE28 80959058 */ .word Shop_Level_Actor_move
+asm/jp/data/overlays/actors/ovl_Shop_Level/ac_shop_level.data.s-/* 84DE2C 8095905C */ .word Shop_Level_Actor_draw
+asm/jp/data/overlays/actors/ovl_Shop_Level/ac_shop_level.data.s-/* 84DE30 80959060 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Shop_Umbrella/ac_shop_umbrella.data.s:dlabel Shop_Umbrella_Profile
+asm/jp/data/overlays/actors/ovl_Shop_Umbrella/ac_shop_umbrella.data.s-/* 93A740 80A7A4A0 */ .word 0x00800400
+asm/jp/data/overlays/actors/ovl_Shop_Umbrella/ac_shop_umbrella.data.s-/* 93A744 80A7A4A4 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Shop_Umbrella/ac_shop_umbrella.data.s-/* 93A748 80A7A4A8 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Shop_Umbrella/ac_shop_umbrella.data.s-/* 93A74C 80A7A4AC */ .word 0x00000190
+asm/jp/data/overlays/actors/ovl_Shop_Umbrella/ac_shop_umbrella.data.s-/* 93A750 80A7A4B0 */ .word Shop_Umbrella_Actor_ct
+asm/jp/data/overlays/actors/ovl_Shop_Umbrella/ac_shop_umbrella.data.s-/* 93A754 80A7A4B4 */ .word Shop_Umbrella_Actor_dt
+asm/jp/data/overlays/actors/ovl_Shop_Umbrella/ac_shop_umbrella.data.s-/* 93A758 80A7A4B8 */ .word Shop_Umbrella_Actor_move
+asm/jp/data/overlays/actors/ovl_Shop_Umbrella/ac_shop_umbrella.data.s-/* 93A75C 80A7A4BC */ .word Shop_Umbrella_Actor_draw
+asm/jp/data/overlays/actors/ovl_Shop_Umbrella/ac_shop_umbrella.data.s-/* 93A760 80A7A4C0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Ev_Dozaemon/ac_ev_dozaemon.data.s:dlabel Ev_Dozaemon_Profile
+asm/jp/data/overlays/actors/ovl_Ev_Dozaemon/ac_ev_dozaemon.data.s-/* 958FF0 80A98D80 */ .word 0x00A80300
+asm/jp/data/overlays/actors/ovl_Ev_Dozaemon/ac_ev_dozaemon.data.s-/* 958FF4 80A98D84 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Ev_Dozaemon/ac_ev_dozaemon.data.s-/* 958FF8 80A98D88 */ .word 0xD0640003
+asm/jp/data/overlays/actors/ovl_Ev_Dozaemon/ac_ev_dozaemon.data.s-/* 958FFC 80A98D8C */ .word 0x0000094C
+asm/jp/data/overlays/actors/ovl_Ev_Dozaemon/ac_ev_dozaemon.data.s-/* 959000 80A98D90 */ .word aEDZ_actor_ct
+asm/jp/data/overlays/actors/ovl_Ev_Dozaemon/ac_ev_dozaemon.data.s-/* 959004 80A98D94 */ .word aEDZ_actor_dt
+asm/jp/data/overlays/actors/ovl_Ev_Dozaemon/ac_ev_dozaemon.data.s-/* 959008 80A98D98 */ .word aEDZ_actor_init
+asm/jp/data/overlays/actors/ovl_Ev_Dozaemon/ac_ev_dozaemon.data.s-/* 95900C 80A98D9C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Ev_Dozaemon/ac_ev_dozaemon.data.s-/* 959010 80A98DA0 */ .word aEDZ_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0.data.s:dlabel Hanami_Npc0_Profile
+asm/jp/data/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0.data.s-/* 8C22B0 809DEAC0 */ .word 0x00620300
+asm/jp/data/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0.data.s-/* 8C22B4 809DEAC4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0.data.s-/* 8C22B8 809DEAC8 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0.data.s-/* 8C22BC 809DEACC */ .word 0x00000948
+asm/jp/data/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0.data.s-/* 8C22C0 809DEAD0 */ .word aHM0_actor_ct
+asm/jp/data/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0.data.s-/* 8C22C4 809DEAD4 */ .word aHM0_actor_dt
+asm/jp/data/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0.data.s-/* 8C22C8 809DEAD8 */ .word aHM0_actor_init
+asm/jp/data/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0.data.s-/* 8C22CC 809DEADC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0.data.s-/* 8C22D0 809DEAE0 */ .word aHM0_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine.data.s:dlabel Room_Sunshine_Profile
+asm/jp/data/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine.data.s-/* 85B0B0 80966460 */ .word 0x00060600
+asm/jp/data/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine.data.s-/* 85B0B4 80966464 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine.data.s-/* 85B0B8 80966468 */ .word 0x00000005
+asm/jp/data/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine.data.s-/* 85B0BC 8096646C */ .word 0x00000178
+asm/jp/data/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine.data.s-/* 85B0C0 80966470 */ .word Ef_Room_Sunshine_actor_ct
+asm/jp/data/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine.data.s-/* 85B0C4 80966474 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine.data.s-/* 85B0C8 80966478 */ .word Ef_Room_SunshineR_actor_move
+asm/jp/data/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine.data.s-/* 85B0CC 8096647C */ .word Ef_Room_SunshineR_actor_draw
+asm/jp/data/overlays/actors/ovl_Room_Sunshine/ef_room_sunshine.data.s-/* 85B0D0 80966480 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Count/ac_countdown.data.s:dlabel Count_Profile
+asm/jp/data/overlays/actors/ovl_Count/ac_countdown.data.s-/* 9458D0 80A85630 */ .word 0x00940000
+asm/jp/data/overlays/actors/ovl_Count/ac_countdown.data.s-/* 9458D4 80A85634 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Count/ac_countdown.data.s-/* 9458D8 80A85638 */ .word 0x58310003
+asm/jp/data/overlays/actors/ovl_Count/ac_countdown.data.s-/* 9458DC 80A8563C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Count/ac_countdown.data.s-/* 9458E0 80A85640 */ .word func_805ac0ac
+asm/jp/data/overlays/actors/ovl_Count/ac_countdown.data.s-/* 9458E4 80A85644 */ .word func_805ac120
+asm/jp/data/overlays/actors/ovl_Count/ac_countdown.data.s-/* 9458E8 80A85648 */ .word func_805ac5ec
+asm/jp/data/overlays/actors/ovl_Count/ac_countdown.data.s-/* 9458EC 80A8564C */ .word func_805ac7b0
+asm/jp/data/overlays/actors/ovl_Count/ac_countdown.data.s-/* 9458F0 80A85650 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Sample/ac_sample.data.s:dlabel Sample_Profile
+asm/jp/data/overlays/actors/ovl_Sample/ac_sample.data.s-/* 82BAB4 80934634 */ .word 0x00020400
+asm/jp/data/overlays/actors/ovl_Sample/ac_sample.data.s-/* 82BAB8 80934638 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Sample/ac_sample.data.s-/* 82BABC 8093463C */ .word 0x9000000C
+asm/jp/data/overlays/actors/ovl_Sample/ac_sample.data.s-/* 82BAC0 80934640 */ .word 0x0000026C
+asm/jp/data/overlays/actors/ovl_Sample/ac_sample.data.s-/* 82BAC4 80934644 */ .word Ac_Sample_Actor_ct
+asm/jp/data/overlays/actors/ovl_Sample/ac_sample.data.s-/* 82BAC8 80934648 */ .word Ac_Sample_Actor_dt
+asm/jp/data/overlays/actors/ovl_Sample/ac_sample.data.s-/* 82BACC 8093464C */ .word Ac_Sample_Actor_main
+asm/jp/data/overlays/actors/ovl_Sample/ac_sample.data.s-/* 82BAD0 80934650 */ .word Ac_Sample_Actor_draw
+asm/jp/data/overlays/actors/ovl_Sample/ac_sample.data.s-/* 82BAD4 80934654 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Shop/ac_shop.data.s:dlabel Shop_Profile
+asm/jp/data/overlays/actors/ovl_Shop/ac_shop.data.s-/* 8DD660 80A0E9A0 */ .word 0x002A0000
+asm/jp/data/overlays/actors/ovl_Shop/ac_shop.data.s-/* 8DD664 80A0E9A4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Shop/ac_shop.data.s-/* 8DD668 80A0E9A8 */ .word 0x58040003
+asm/jp/data/overlays/actors/ovl_Shop/ac_shop.data.s-/* 8DD66C 80A0E9AC */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Shop/ac_shop.data.s-/* 8DD670 80A0E9B0 */ .word aSHOP_actor_ct
+asm/jp/data/overlays/actors/ovl_Shop/ac_shop.data.s-/* 8DD674 80A0E9B4 */ .word aSHOP_actor_dt
+asm/jp/data/overlays/actors/ovl_Shop/ac_shop.data.s-/* 8DD678 80A0E9B8 */ .word aSHOP_actor_init
+asm/jp/data/overlays/actors/ovl_Shop/ac_shop.data.s-/* 8DD67C 80A0E9BC */ .word aSHOP_actor_draw
+asm/jp/data/overlays/actors/ovl_Shop/ac_shop.data.s-/* 8DD680 80A0E9C0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr.data.s:dlabel Arrange_Furniture_Profile
+asm/jp/data/overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr.data.s-/* 846470 80951680 */ .word 0x00120400
+asm/jp/data/overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr.data.s-/* 846474 80951684 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr.data.s-/* 846478 80951688 */ .word 0x80070003
+asm/jp/data/overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr.data.s-/* 84647C 8095168C */ .word 0x00000278
+asm/jp/data/overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr.data.s-/* 846480 80951690 */ .word Arrange_Furniture_Actor_ct
+asm/jp/data/overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr.data.s-/* 846484 80951694 */ .word Arrange_Furniture_Actor_dt
+asm/jp/data/overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr.data.s-/* 846488 80951698 */ .word Arrange_Furniture_Actor_move
+asm/jp/data/overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr.data.s-/* 84648C 8095169C */ .word Arrange_Furniture_Actor_draw
+asm/jp/data/overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr.data.s-/* 846490 809516A0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_TrainDoor/ac_train_door.data.s:dlabel TrainDoor_Profile
+asm/jp/data/overlays/actors/ovl_TrainDoor/ac_train_door.data.s-/* 867850 80972C10 */ .word 0x00130400
+asm/jp/data/overlays/actors/ovl_TrainDoor/ac_train_door.data.s-/* 867854 80972C14 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_TrainDoor/ac_train_door.data.s-/* 867858 80972C18 */ .word 0xA011000B
+asm/jp/data/overlays/actors/ovl_TrainDoor/ac_train_door.data.s-/* 86785C 80972C1C */ .word 0x00000244
+asm/jp/data/overlays/actors/ovl_TrainDoor/ac_train_door.data.s-/* 867860 80972C20 */ .word aTRD_actor_ct
+asm/jp/data/overlays/actors/ovl_TrainDoor/ac_train_door.data.s-/* 867864 80972C24 */ .word aTRD_actor_dt
+asm/jp/data/overlays/actors/ovl_TrainDoor/ac_train_door.data.s-/* 867868 80972C28 */ .word aTRD_actor_move
+asm/jp/data/overlays/actors/ovl_TrainDoor/ac_train_door.data.s-/* 86786C 80972C2C */ .word aTRD_actor_draw
+asm/jp/data/overlays/actors/ovl_TrainDoor/ac_train_door.data.s-/* 867870 80972C30 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Koinobori/ac_koinobori.data.s:dlabel Koinobori_Profile
+asm/jp/data/overlays/actors/ovl_Koinobori/ac_koinobori.data.s-/* 953CE0 80A93A70 */ .word 0x00A30000
+asm/jp/data/overlays/actors/ovl_Koinobori/ac_koinobori.data.s-/* 953CE4 80A93A74 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Koinobori/ac_koinobori.data.s-/* 953CE8 80A93A78 */ .word 0x58390003
+asm/jp/data/overlays/actors/ovl_Koinobori/ac_koinobori.data.s-/* 953CEC 80A93A7C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Koinobori/ac_koinobori.data.s-/* 953CF0 80A93A80 */ .word aKOI_actor_ct
+asm/jp/data/overlays/actors/ovl_Koinobori/ac_koinobori.data.s-/* 953CF4 80A93A84 */ .word aKOI_actor_dt
+asm/jp/data/overlays/actors/ovl_Koinobori/ac_koinobori.data.s-/* 953CF8 80A93A88 */ .word aKOI_actor_init
+asm/jp/data/overlays/actors/ovl_Koinobori/ac_koinobori.data.s-/* 953CFC 80A93A8C */ .word aKOI_actor_draw
+asm/jp/data/overlays/actors/ovl_Koinobori/ac_koinobori.data.s-/* 953D00 80A93A90 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Set_Npc_Manager/ac_set_npc_manager.data.s:dlabel Set_Npc_Manager_Profile
+asm/jp/data/overlays/actors/ovl_Set_Npc_Manager/ac_set_npc_manager.data.s-/* 8ED09C 80A255DC */ .word 0x00730700
+asm/jp/data/overlays/actors/ovl_Set_Npc_Manager/ac_set_npc_manager.data.s-/* 8ED0A0 80A255E0 */ .word 0x20000030
+asm/jp/data/overlays/actors/ovl_Set_Npc_Manager/ac_set_npc_manager.data.s-/* 8ED0A4 80A255E4 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Set_Npc_Manager/ac_set_npc_manager.data.s-/* 8ED0A8 80A255E8 */ .word 0x000003A8
+asm/jp/data/overlays/actors/ovl_Set_Npc_Manager/ac_set_npc_manager.data.s-/* 8ED0AC 80A255EC */ .word aSNMgr_actor_ct
+asm/jp/data/overlays/actors/ovl_Set_Npc_Manager/ac_set_npc_manager.data.s-/* 8ED0B0 80A255F0 */ .word aSNMgr_actor_dt
+asm/jp/data/overlays/actors/ovl_Set_Npc_Manager/ac_set_npc_manager.data.s-/* 8ED0B4 80A255F4 */ .word aSNMgr_actor_move
+asm/jp/data/overlays/actors/ovl_Set_Npc_Manager/ac_set_npc_manager.data.s-/* 8ED0B8 80A255F8 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Set_Npc_Manager/ac_set_npc_manager.data.s-/* 8ED0BC 80A255FC */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Structure/ac_structure.data.s:dlabel Structure_Profile
+asm/jp/data/overlays/actors/ovl_Structure/ac_structure.data.s-/* 8CD000 809E9840 */ .word 0x00450700
+asm/jp/data/overlays/actors/ovl_Structure/ac_structure.data.s-/* 8CD004 809E9844 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Structure/ac_structure.data.s-/* 8CD008 809E9848 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Structure/ac_structure.data.s-/* 8CD00C 809E984C */ .word 0x0000017C
+asm/jp/data/overlays/actors/ovl_Structure/ac_structure.data.s-/* 8CD010 809E9850 */ .word aSTR_actor_ct
+asm/jp/data/overlays/actors/ovl_Structure/ac_structure.data.s-/* 8CD014 809E9854 */ .word aSTR_actor_dt
+asm/jp/data/overlays/actors/ovl_Structure/ac_structure.data.s-/* 8CD018 809E9858 */ .word aSTR_actor_move
+asm/jp/data/overlays/actors/ovl_Structure/ac_structure.data.s-/* 8CD01C 809E985C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Structure/ac_structure.data.s-/* 8CD020 809E9860 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Uki/ac_uki.data.s:dlabel Uki_Profile
+asm/jp/data/overlays/actors/ovl_Uki/ac_uki.data.s-/* 926F40 80A66CA0 */ .word 0x006F0400
+asm/jp/data/overlays/actors/ovl_Uki/ac_uki.data.s-/* 926F44 80A66CA4 */ .word 0x00000010
+asm/jp/data/overlays/actors/ovl_Uki/ac_uki.data.s-/* 926F48 80A66CA8 */ .word 0x80120030
+asm/jp/data/overlays/actors/ovl_Uki/ac_uki.data.s-/* 926F4C 80A66CAC */ .word 0x000002B8
+asm/jp/data/overlays/actors/ovl_Uki/ac_uki.data.s-/* 926F50 80A66CB0 */ .word aUKI_actor_ct
+asm/jp/data/overlays/actors/ovl_Uki/ac_uki.data.s-/* 926F54 80A66CB4 */ .word aUKI_actor_dt
+asm/jp/data/overlays/actors/ovl_Uki/ac_uki.data.s-/* 926F58 80A66CB8 */ .word aUKI_actor_move
+asm/jp/data/overlays/actors/ovl_Uki/ac_uki.data.s-/* 926F5C 80A66CBC */ .word func_80A66978_jp
+asm/jp/data/overlays/actors/ovl_Uki/ac_uki.data.s-/* 926F60 80A66CC0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Animal_Logo/ac_animal_logo.data.s:dlabel Animal_Logo_Profile
+asm/jp/data/overlays/actors/ovl_Animal_Logo/ac_animal_logo.data.s-/* 962190 80AA1F40 */ .word 0x00AB0400
+asm/jp/data/overlays/actors/ovl_Animal_Logo/ac_animal_logo.data.s-/* 962194 80AA1F44 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Animal_Logo/ac_animal_logo.data.s-/* 962198 80AA1F48 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Animal_Logo/ac_animal_logo.data.s-/* 96219C 80AA1F4C */ .word 0x00000328
+asm/jp/data/overlays/actors/ovl_Animal_Logo/ac_animal_logo.data.s-/* 9621A0 80AA1F50 */ .word aAL_actor_ct
+asm/jp/data/overlays/actors/ovl_Animal_Logo/ac_animal_logo.data.s-/* 9621A4 80AA1F54 */ .word aAL_actor_dt
+asm/jp/data/overlays/actors/ovl_Animal_Logo/ac_animal_logo.data.s-/* 9621A8 80AA1F58 */ .word aAL_actor_move
+asm/jp/data/overlays/actors/ovl_Animal_Logo/ac_animal_logo.data.s-/* 9621AC 80AA1F5C */ .word aAL_actor_draw
+asm/jp/data/overlays/actors/ovl_Animal_Logo/ac_animal_logo.data.s-/* 9621B0 80AA1F60 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Radio/ac_radio.data.s:dlabel Radio_Profile
+asm/jp/data/overlays/actors/ovl_Radio/ac_radio.data.s-/* 937070 80A76DD0 */ .word 0x007D0000
+asm/jp/data/overlays/actors/ovl_Radio/ac_radio.data.s-/* 937074 80A76DD4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Radio/ac_radio.data.s-/* 937078 80A76DD8 */ .word 0x582B0003
+asm/jp/data/overlays/actors/ovl_Radio/ac_radio.data.s-/* 93707C 80A76DDC */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Radio/ac_radio.data.s-/* 937080 80A76DE0 */ .word aRAD_actor_ct
+asm/jp/data/overlays/actors/ovl_Radio/ac_radio.data.s-/* 937084 80A76DE4 */ .word func_80A76958_jp
+asm/jp/data/overlays/actors/ovl_Radio/ac_radio.data.s-/* 937088 80A76DE8 */ .word aRAD_actor_init
+asm/jp/data/overlays/actors/ovl_Radio/ac_radio.data.s-/* 93708C 80A76DEC */ .word aRAD_actor_draw
+asm/jp/data/overlays/actors/ovl_Radio/ac_radio.data.s-/* 937090 80A76DF0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Npc_Guide/ac_npc_guide.data.s:dlabel Npc_Guide_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Guide/ac_npc_guide.data.s-/* 8944C0 809B0CB0 */ .word 0x00390300
+asm/jp/data/overlays/actors/ovl_Npc_Guide/ac_npc_guide.data.s-/* 8944C4 809B0CB4 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Npc_Guide/ac_npc_guide.data.s-/* 8944C8 809B0CB8 */ .word 0xD0040003
+asm/jp/data/overlays/actors/ovl_Npc_Guide/ac_npc_guide.data.s-/* 8944CC 809B0CBC */ .word 0x00000974
+asm/jp/data/overlays/actors/ovl_Npc_Guide/ac_npc_guide.data.s-/* 8944D0 809B0CC0 */ .word aNGD_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Guide/ac_npc_guide.data.s-/* 8944D4 809B0CC4 */ .word aNGD_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Guide/ac_npc_guide.data.s-/* 8944D8 809B0CC8 */ .word aNGD_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Guide/ac_npc_guide.data.s-/* 8944DC 809B0CCC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Guide/ac_npc_guide.data.s-/* 8944E0 809B0CD0 */ .word aNGD_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Gyoei/ac_gyoei.data.s:dlabel Gyoei_Profile
+asm/jp/data/overlays/actors/ovl_Gyoei/ac_gyoei.data.s-/* 923FE4 80A5C544 */ .word 0x006B0700
+asm/jp/data/overlays/actors/ovl_Gyoei/ac_gyoei.data.s-/* 923FE8 80A5C548 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Gyoei/ac_gyoei.data.s-/* 923FEC 80A5C54C */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Gyoei/ac_gyoei.data.s-/* 923FF0 80A5C550 */ .word 0x0000063C
+asm/jp/data/overlays/actors/ovl_Gyoei/ac_gyoei.data.s-/* 923FF4 80A5C554 */ .word aGYO_actor_ct
+asm/jp/data/overlays/actors/ovl_Gyoei/ac_gyoei.data.s-/* 923FF8 80A5C558 */ .word aGYO_actor_dt
+asm/jp/data/overlays/actors/ovl_Gyoei/ac_gyoei.data.s-/* 923FFC 80A5C55C */ .word aGYO_actor_move
+asm/jp/data/overlays/actors/ovl_Gyoei/ac_gyoei.data.s-/* 924000 80A5C560 */ .word aGYO_actor_draw
+asm/jp/data/overlays/actors/ovl_Gyoei/ac_gyoei.data.s-/* 924004 80A5C564 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Tokyoso_Npc0/ac_tokyoso_npc0.data.s:dlabel Tokyoso_Npc0_Profile
+asm/jp/data/overlays/actors/ovl_Tokyoso_Npc0/ac_tokyoso_npc0.data.s-/* 934B60 80A748C0 */ .word 0x007A0300
+asm/jp/data/overlays/actors/ovl_Tokyoso_Npc0/ac_tokyoso_npc0.data.s-/* 934B64 80A748C4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Tokyoso_Npc0/ac_tokyoso_npc0.data.s-/* 934B68 80A748C8 */ .word 0xD02D0003
+asm/jp/data/overlays/actors/ovl_Tokyoso_Npc0/ac_tokyoso_npc0.data.s-/* 934B6C 80A748CC */ .word 0x00000950
+asm/jp/data/overlays/actors/ovl_Tokyoso_Npc0/ac_tokyoso_npc0.data.s-/* 934B70 80A748D0 */ .word aTKN0_actor_ct
+asm/jp/data/overlays/actors/ovl_Tokyoso_Npc0/ac_tokyoso_npc0.data.s-/* 934B74 80A748D4 */ .word aTKN0_actor_dt
+asm/jp/data/overlays/actors/ovl_Tokyoso_Npc0/ac_tokyoso_npc0.data.s-/* 934B78 80A748D8 */ .word aTKN0_actor_init
+asm/jp/data/overlays/actors/ovl_Tokyoso_Npc0/ac_tokyoso_npc0.data.s-/* 934B7C 80A748DC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Tokyoso_Npc0/ac_tokyoso_npc0.data.s-/* 934B80 80A748E0 */ .word aTKN0_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Weather/ac_weather.data.s:dlabel Weather_Profile
+asm/jp/data/overlays/actors/ovl_Weather/ac_weather.data.s-/* 8EA798 80A22CD8 */ .word 0x00370700
+asm/jp/data/overlays/actors/ovl_Weather/ac_weather.data.s-/* 8EA79C 80A22CDC */ .word 0x20000030
+asm/jp/data/overlays/actors/ovl_Weather/ac_weather.data.s-/* 8EA7A0 80A22CE0 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Weather/ac_weather.data.s-/* 8EA7A4 80A22CE4 */ .word 0x000001E4
+asm/jp/data/overlays/actors/ovl_Weather/ac_weather.data.s-/* 8EA7A8 80A22CE8 */ .word Weather_Actor_ct
+asm/jp/data/overlays/actors/ovl_Weather/ac_weather.data.s-/* 8EA7AC 80A22CEC */ .word Weather_Actor_dt
+asm/jp/data/overlays/actors/ovl_Weather/ac_weather.data.s-/* 8EA7B0 80A22CF0 */ .word Weather_Actor_move
+asm/jp/data/overlays/actors/ovl_Weather/ac_weather.data.s-/* 8EA7B4 80A22CF4 */ .word Weather_Actor_draw
+asm/jp/data/overlays/actors/ovl_Weather/ac_weather.data.s-/* 8EA7B8 80A22CF8 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Tunahiki_Control/ac_tunahiki_control.data.s:dlabel Tunahiki_Control_Profile
+asm/jp/data/overlays/actors/ovl_Tunahiki_Control/ac_tunahiki_control.data.s-/* 951C80 80A91A10 */ .word 0x00A00700
+asm/jp/data/overlays/actors/ovl_Tunahiki_Control/ac_tunahiki_control.data.s-/* 951C84 80A91A14 */ .word 0x00000010
+asm/jp/data/overlays/actors/ovl_Tunahiki_Control/ac_tunahiki_control.data.s-/* 951C88 80A91A18 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Tunahiki_Control/ac_tunahiki_control.data.s-/* 951C8C 80A91A1C */ .word 0x0000017C
+asm/jp/data/overlays/actors/ovl_Tunahiki_Control/ac_tunahiki_control.data.s-/* 951C90 80A91A20 */ .word aTNC_actor_ct
+asm/jp/data/overlays/actors/ovl_Tunahiki_Control/ac_tunahiki_control.data.s-/* 951C94 80A91A24 */ .word aTNC_actor_dt
+asm/jp/data/overlays/actors/ovl_Tunahiki_Control/ac_tunahiki_control.data.s-/* 951C98 80A91A28 */ .word aTNC_actor_move
+asm/jp/data/overlays/actors/ovl_Tunahiki_Control/ac_tunahiki_control.data.s-/* 951C9C 80A91A2C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Tunahiki_Control/ac_tunahiki_control.data.s-/* 951CA0 80A91A30 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_S_Car/ac_s_car.data.s:dlabel S_Car_Profile
+asm/jp/data/overlays/actors/ovl_S_Car/ac_s_car.data.s-/* 8D8D70 80A0A0A0 */ .word 0x00630000
+asm/jp/data/overlays/actors/ovl_S_Car/ac_s_car.data.s-/* 8D8D74 80A0A0A4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_S_Car/ac_s_car.data.s-/* 8D8D78 80A0A0A8 */ .word 0x58280003
+asm/jp/data/overlays/actors/ovl_S_Car/ac_s_car.data.s-/* 8D8D7C 80A0A0AC */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_S_Car/ac_s_car.data.s-/* 8D8D80 80A0A0B0 */ .word aSCR_actor_ct
+asm/jp/data/overlays/actors/ovl_S_Car/ac_s_car.data.s-/* 8D8D84 80A0A0B4 */ .word aSCR_actor_dt
+asm/jp/data/overlays/actors/ovl_S_Car/ac_s_car.data.s-/* 8D8D88 80A0A0B8 */ .word aSCR_actor_init
+asm/jp/data/overlays/actors/ovl_S_Car/ac_s_car.data.s-/* 8D8D8C 80A0A0BC */ .word aSCR_actor_draw
+asm/jp/data/overlays/actors/ovl_S_Car/ac_s_car.data.s-/* 8D8D90 80A0A0C0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Mbg/ac_mbg.data.s:dlabel Mbg_Profile
+asm/jp/data/overlays/actors/ovl_Mbg/ac_mbg.data.s-/* 867BE0 80972FA0 */ .word 0x000C0000
+asm/jp/data/overlays/actors/ovl_Mbg/ac_mbg.data.s-/* 867BE4 80972FA4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Mbg/ac_mbg.data.s-/* 867BE8 80972FA8 */ .word 0x80030003
+asm/jp/data/overlays/actors/ovl_Mbg/ac_mbg.data.s-/* 867BEC 80972FAC */ .word 0x000001B0
+asm/jp/data/overlays/actors/ovl_Mbg/ac_mbg.data.s-/* 867BF0 80972FB0 */ .word Mbg_Actor_ct
+asm/jp/data/overlays/actors/ovl_Mbg/ac_mbg.data.s-/* 867BF4 80972FB4 */ .word Mbg_Actor_dt
+asm/jp/data/overlays/actors/ovl_Mbg/ac_mbg.data.s-/* 867BF8 80972FB8 */ .word Mbg_Actor_move
+asm/jp/data/overlays/actors/ovl_Mbg/ac_mbg.data.s-/* 867BFC 80972FBC */ .word Mbg_Actor_draw
+asm/jp/data/overlays/actors/ovl_Mbg/ac_mbg.data.s-/* 867C00 80972FC0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Shop_Goods/ac_shop_goods.data.s:dlabel Shop_Goods_Profile
+asm/jp/data/overlays/actors/ovl_Shop_Goods/ac_shop_goods.data.s-/* 85892C 80963C8C */ .word 0x00350700
+asm/jp/data/overlays/actors/ovl_Shop_Goods/ac_shop_goods.data.s-/* 858930 80963C90 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Shop_Goods/ac_shop_goods.data.s-/* 858934 80963C94 */ .word 0x0000001E
+asm/jp/data/overlays/actors/ovl_Shop_Goods/ac_shop_goods.data.s-/* 858938 80963C98 */ .word 0x00000240
+asm/jp/data/overlays/actors/ovl_Shop_Goods/ac_shop_goods.data.s-/* 85893C 80963C9C */ .word Shop_Goods_Actor_ct
+asm/jp/data/overlays/actors/ovl_Shop_Goods/ac_shop_goods.data.s-/* 858940 80963CA0 */ .word Shop_Goods_Actor_dt
+asm/jp/data/overlays/actors/ovl_Shop_Goods/ac_shop_goods.data.s-/* 858944 80963CA4 */ .word Shop_Goods_Actor_move
+asm/jp/data/overlays/actors/ovl_Shop_Goods/ac_shop_goods.data.s-/* 858948 80963CA8 */ .word Shop_Goods_Actor_draw
+asm/jp/data/overlays/actors/ovl_Shop_Goods/ac_shop_goods.data.s-/* 85894C 80963CAC */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Kamakura/ac_kamakura.data.s:dlabel Kamakura_Profile
+asm/jp/data/overlays/actors/ovl_Kamakura/ac_kamakura.data.s-/* 8D4840 80A05B70 */ .word 0x006A0000
+asm/jp/data/overlays/actors/ovl_Kamakura/ac_kamakura.data.s-/* 8D4844 80A05B74 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Kamakura/ac_kamakura.data.s-/* 8D4848 80A05B78 */ .word 0x58290003
+asm/jp/data/overlays/actors/ovl_Kamakura/ac_kamakura.data.s-/* 8D484C 80A05B7C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Kamakura/ac_kamakura.data.s-/* 8D4850 80A05B80 */ .word aKKR_actor_ct
+asm/jp/data/overlays/actors/ovl_Kamakura/ac_kamakura.data.s-/* 8D4854 80A05B84 */ .word aKKR_actor_dt
+asm/jp/data/overlays/actors/ovl_Kamakura/ac_kamakura.data.s-/* 8D4858 80A05B88 */ .word aKKR_actor_init
+asm/jp/data/overlays/actors/ovl_Kamakura/ac_kamakura.data.s-/* 8D485C 80A05B8C */ .word aKKR_actor_draw
+asm/jp/data/overlays/actors/ovl_Kamakura/ac_kamakura.data.s-/* 8D4860 80A05B90 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_BoxTrick01/ac_boxTrick01.data.s:dlabel BoxTrick01_Profile
+asm/jp/data/overlays/actors/ovl_BoxTrick01/ac_boxTrick01.data.s-/* 868040 80973400 */ .word 0x00100400
+asm/jp/data/overlays/actors/ovl_BoxTrick01/ac_boxTrick01.data.s-/* 868044 80973404 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_BoxTrick01/ac_boxTrick01.data.s-/* 868048 80973408 */ .word 0x80040003
+asm/jp/data/overlays/actors/ovl_BoxTrick01/ac_boxTrick01.data.s-/* 86804C 8097340C */ .word 0x0000017C
+asm/jp/data/overlays/actors/ovl_BoxTrick01/ac_boxTrick01.data.s-/* 868050 80973410 */ .word BoxTrick01_Actor_ct
+asm/jp/data/overlays/actors/ovl_BoxTrick01/ac_boxTrick01.data.s-/* 868054 80973414 */ .word BoxTrick01_Actor_dt
+asm/jp/data/overlays/actors/ovl_BoxTrick01/ac_boxTrick01.data.s-/* 868058 80973418 */ .word BoxTrick01_Actor_move
+asm/jp/data/overlays/actors/ovl_BoxTrick01/ac_boxTrick01.data.s-/* 86805C 8097341C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_BoxTrick01/ac_boxTrick01.data.s-/* 868060 80973420 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Quest_Manager/ac_quest_manager.data.s:dlabel Quest_Manager_Profile
+asm/jp/data/overlays/actors/ovl_Quest_Manager/ac_quest_manager.data.s-/* 84C87C 80957AAC */ .word 0x00260700
+asm/jp/data/overlays/actors/ovl_Quest_Manager/ac_quest_manager.data.s-/* 84C880 80957AB0 */ .word 0x20000030
+asm/jp/data/overlays/actors/ovl_Quest_Manager/ac_quest_manager.data.s-/* 84C884 80957AB4 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Quest_Manager/ac_quest_manager.data.s-/* 84C888 80957AB8 */ .word 0x000008D8
+asm/jp/data/overlays/actors/ovl_Quest_Manager/ac_quest_manager.data.s-/* 84C88C 80957ABC */ .word aQMgr_actor_ct
+asm/jp/data/overlays/actors/ovl_Quest_Manager/ac_quest_manager.data.s-/* 84C890 80957AC0 */ .word aQMgr_actor_dt
+asm/jp/data/overlays/actors/ovl_Quest_Manager/ac_quest_manager.data.s-/* 84C894 80957AC4 */ .word aQMgr_actor_move_main
+asm/jp/data/overlays/actors/ovl_Quest_Manager/ac_quest_manager.data.s-/* 84C898 80957AC8 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Quest_Manager/ac_quest_manager.data.s-/* 84C89C 80957ACC */ .word aQMgr_actor_save
+--
+asm/jp/data/overlays/actors/ovl_HandOverItem/ac_handOverItem.data.s:dlabel HandOverItem_Profile
+asm/jp/data/overlays/actors/ovl_HandOverItem/ac_handOverItem.data.s-/* 859740 80964AB0 */ .word 0x00400400
+asm/jp/data/overlays/actors/ovl_HandOverItem/ac_handOverItem.data.s-/* 859744 80964AB4 */ .word 0x20000030
+asm/jp/data/overlays/actors/ovl_HandOverItem/ac_handOverItem.data.s-/* 859748 80964AB8 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_HandOverItem/ac_handOverItem.data.s-/* 85974C 80964ABC */ .word 0x000001F8
+asm/jp/data/overlays/actors/ovl_HandOverItem/ac_handOverItem.data.s-/* 859750 80964AC0 */ .word aHOI_actor_ct
+asm/jp/data/overlays/actors/ovl_HandOverItem/ac_handOverItem.data.s-/* 859754 80964AC4 */ .word aHOI_actor_dt
+asm/jp/data/overlays/actors/ovl_HandOverItem/ac_handOverItem.data.s-/* 859758 80964AC8 */ .word aHOI_actor_move
+asm/jp/data/overlays/actors/ovl_HandOverItem/ac_handOverItem.data.s-/* 85975C 80964ACC */ .word aHOI_actor_draw
+asm/jp/data/overlays/actors/ovl_HandOverItem/ac_handOverItem.data.s-/* 859760 80964AD0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_BgPoliceItem/bg_police_item.data.s:dlabel BgPoliceItem_Profile
+asm/jp/data/overlays/actors/ovl_BgPoliceItem/bg_police_item.data.s-/* 7E5440 808EBD70 */ .word 0x004E0000
+asm/jp/data/overlays/actors/ovl_BgPoliceItem/bg_police_item.data.s-/* 7E5444 808EBD74 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_BgPoliceItem/bg_police_item.data.s-/* 7E5448 808EBD78 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_BgPoliceItem/bg_police_item.data.s-/* 7E544C 808EBD7C */ .word 0x00004634
+asm/jp/data/overlays/actors/ovl_BgPoliceItem/bg_police_item.data.s-/* 7E5450 808EBD80 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_BgPoliceItem/bg_police_item.data.s-/* 7E5454 808EBD84 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_BgPoliceItem/bg_police_item.data.s-/* 7E5458 808EBD88 */ .word bPI_actor_move
+asm/jp/data/overlays/actors/ovl_BgPoliceItem/bg_police_item.data.s-/* 7E545C 808EBD8C */ .word bPI_actor_draw
+asm/jp/data/overlays/actors/ovl_BgPoliceItem/bg_police_item.data.s-/* 7E5460 808EBD90 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Garagara/ac_garagara.data.s:dlabel Garagara_Profile
+asm/jp/data/overlays/actors/ovl_Garagara/ac_garagara.data.s-/* 946740 80A864B0 */ .word 0x00950500
+asm/jp/data/overlays/actors/ovl_Garagara/ac_garagara.data.s-/* 946744 80A864B4 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Garagara/ac_garagara.data.s-/* 946748 80A864B8 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Garagara/ac_garagara.data.s-/* 94674C 80A864BC */ .word 0x000003F8
+asm/jp/data/overlays/actors/ovl_Garagara/ac_garagara.data.s-/* 946750 80A864C0 */ .word Garagara_Actor_ct
+asm/jp/data/overlays/actors/ovl_Garagara/ac_garagara.data.s-/* 946754 80A864C4 */ .word Garagara_Actor_dt
+asm/jp/data/overlays/actors/ovl_Garagara/ac_garagara.data.s-/* 946758 80A864C8 */ .word Garagara_Actor_move_dummy
+asm/jp/data/overlays/actors/ovl_Garagara/ac_garagara.data.s-/* 94675C 80A864CC */ .word Garagara_Actor_draw_dummy
+asm/jp/data/overlays/actors/ovl_Garagara/ac_garagara.data.s-/* 946760 80A864D0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_T_Hanabi/ac_t_hanabi.data.s:dlabel T_Hanabi_Profile
+asm/jp/data/overlays/actors/ovl_T_Hanabi/ac_t_hanabi.data.s-/* 8E7B10 80A20050 */ .word 0x005E0400
+asm/jp/data/overlays/actors/ovl_T_Hanabi/ac_t_hanabi.data.s-/* 8E7B14 80A20054 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_T_Hanabi/ac_t_hanabi.data.s-/* 8E7B18 80A20058 */ .word 0x00000035
+asm/jp/data/overlays/actors/ovl_T_Hanabi/ac_t_hanabi.data.s-/* 8E7B1C 80A2005C */ .word 0x000001D0
+asm/jp/data/overlays/actors/ovl_T_Hanabi/ac_t_hanabi.data.s-/* 8E7B20 80A20060 */ .word aTHB_actor_ct
+asm/jp/data/overlays/actors/ovl_T_Hanabi/ac_t_hanabi.data.s-/* 8E7B24 80A20064 */ .word aTHB_actor_dt
+asm/jp/data/overlays/actors/ovl_T_Hanabi/ac_t_hanabi.data.s-/* 8E7B28 80A20068 */ .word aTHB_actor_move
+asm/jp/data/overlays/actors/ovl_T_Hanabi/ac_t_hanabi.data.s-/* 8E7B2C 80A2006C */ .word aTHB_actor_draw
+asm/jp/data/overlays/actors/ovl_T_Hanabi/ac_t_hanabi.data.s-/* 8E7B30 80A20070 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Effectbg/ac_effectbg.data.s:dlabel Effectbg_Profile
+asm/jp/data/overlays/actors/ovl_Effectbg/ac_effectbg.data.s-/* 8E65C8 80A1EAF8 */ .word 0x00770600
+asm/jp/data/overlays/actors/ovl_Effectbg/ac_effectbg.data.s-/* 8E65CC 80A1EAFC */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Effectbg/ac_effectbg.data.s-/* 8E65D0 80A1EB00 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Effectbg/ac_effectbg.data.s-/* 8E65D4 80A1EB04 */ .word 0x00000CF0
+asm/jp/data/overlays/actors/ovl_Effectbg/ac_effectbg.data.s-/* 8E65D8 80A1EB08 */ .word Effectbg_actor_ct
+asm/jp/data/overlays/actors/ovl_Effectbg/ac_effectbg.data.s-/* 8E65DC 80A1EB0C */ .word Effectbg_actor_dt
+asm/jp/data/overlays/actors/ovl_Effectbg/ac_effectbg.data.s-/* 8E65E0 80A1EB10 */ .word Effectbg_actor_move
+asm/jp/data/overlays/actors/ovl_Effectbg/ac_effectbg.data.s-/* 8E65E4 80A1EB14 */ .word Effectbg_actor_draw
+asm/jp/data/overlays/actors/ovl_Effectbg/ac_effectbg.data.s-/* 8E65E8 80A1EB18 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Ev_Gypsy/ac_ev_gypsy.data.s:dlabel Ev_Gypsy_Profile
+asm/jp/data/overlays/actors/ovl_Ev_Gypsy/ac_ev_gypsy.data.s-/* 8C0260 809DCA70 */ .word 0x00460300
+asm/jp/data/overlays/actors/ovl_Ev_Gypsy/ac_ev_gypsy.data.s-/* 8C0264 809DCA74 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Ev_Gypsy/ac_ev_gypsy.data.s-/* 8C0268 809DCA78 */ .word 0xD00C0003
+asm/jp/data/overlays/actors/ovl_Ev_Gypsy/ac_ev_gypsy.data.s-/* 8C026C 809DCA7C */ .word 0x00000948
+asm/jp/data/overlays/actors/ovl_Ev_Gypsy/ac_ev_gypsy.data.s-/* 8C0270 809DCA80 */ .word aEGPS_actor_ct
+asm/jp/data/overlays/actors/ovl_Ev_Gypsy/ac_ev_gypsy.data.s-/* 8C0274 809DCA84 */ .word aEGPS_actor_dt
+asm/jp/data/overlays/actors/ovl_Ev_Gypsy/ac_ev_gypsy.data.s-/* 8C0278 809DCA88 */ .word aEGPS_actor_init
+asm/jp/data/overlays/actors/ovl_Ev_Gypsy/ac_ev_gypsy.data.s-/* 8C027C 809DCA8C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Ev_Gypsy/ac_ev_gypsy.data.s-/* 8C0280 809DCA90 */ .word aEGPS_actor_save
+--
+asm/jp/data/overlays/actors/ovl_T_Tama/ac_t_tam.data.s:dlabel T_Tama_Profile
+asm/jp/data/overlays/actors/ovl_T_Tama/ac_t_tam.data.s-/* 8E9060 80A215A0 */ .word 0x000D0400
+asm/jp/data/overlays/actors/ovl_T_Tama/ac_t_tam.data.s-/* 8E9064 80A215A4 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_T_Tama/ac_t_tam.data.s-/* 8E9068 80A215A8 */ .word 0x00000187
+asm/jp/data/overlays/actors/ovl_T_Tama/ac_t_tam.data.s-/* 8E906C 80A215AC */ .word 0x000001C8
+asm/jp/data/overlays/actors/ovl_T_Tama/ac_t_tam.data.s-/* 8E9070 80A215B0 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_T_Tama/ac_t_tam.data.s-/* 8E9074 80A215B4 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_T_Tama/ac_t_tam.data.s-/* 8E9078 80A215B8 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_T_Tama/ac_t_tam.data.s-/* 8E907C 80A215BC */ .word aTTM_actor_draw
+asm/jp/data/overlays/actors/ovl_T_Tama/ac_t_tam.data.s-/* 8E9080 80A215C0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Post_Office/ac_post_office.data.s:dlabel Post_Office_Profile
+asm/jp/data/overlays/actors/ovl_Post_Office/ac_post_office.data.s-/* 8D7D30 80A09060 */ .word 0x00380000
+asm/jp/data/overlays/actors/ovl_Post_Office/ac_post_office.data.s-/* 8D7D34 80A09064 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Post_Office/ac_post_office.data.s-/* 8D7D38 80A09068 */ .word 0x58080003
+asm/jp/data/overlays/actors/ovl_Post_Office/ac_post_office.data.s-/* 8D7D3C 80A0906C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Post_Office/ac_post_office.data.s-/* 8D7D40 80A09070 */ .word aPOFF_actor_ct
+asm/jp/data/overlays/actors/ovl_Post_Office/ac_post_office.data.s-/* 8D7D44 80A09074 */ .word aPOFF_actor_dt
+asm/jp/data/overlays/actors/ovl_Post_Office/ac_post_office.data.s-/* 8D7D48 80A09078 */ .word aPOFF_actor_init
+asm/jp/data/overlays/actors/ovl_Post_Office/ac_post_office.data.s-/* 8D7D4C 80A0907C */ .word aPOFF_actor_draw
+asm/jp/data/overlays/actors/ovl_Post_Office/ac_post_office.data.s-/* 8D7D50 80A09080 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_T_Umbrella/ac_t_umbrella.data.s:dlabel T_Umbrella_Profile
+asm/jp/data/overlays/actors/ovl_T_Umbrella/ac_t_umbrella.data.s-/* 8E6C70 80A1F1B0 */ .word 0x002F0400
+asm/jp/data/overlays/actors/ovl_T_Umbrella/ac_t_umbrella.data.s-/* 8E6C74 80A1F1B4 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_T_Umbrella/ac_t_umbrella.data.s-/* 8E6C78 80A1F1B8 */ .word 0x0000001C
+asm/jp/data/overlays/actors/ovl_T_Umbrella/ac_t_umbrella.data.s-/* 8E6C7C 80A1F1BC */ .word 0x000001F0
+asm/jp/data/overlays/actors/ovl_T_Umbrella/ac_t_umbrella.data.s-/* 8E6C80 80A1F1C0 */ .word aTUMB_actor_ct
+asm/jp/data/overlays/actors/ovl_T_Umbrella/ac_t_umbrella.data.s-/* 8E6C84 80A1F1C4 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_T_Umbrella/ac_t_umbrella.data.s-/* 8E6C88 80A1F1C8 */ .word aTUMB_actor_move
+asm/jp/data/overlays/actors/ovl_T_Umbrella/ac_t_umbrella.data.s-/* 8E6C8C 80A1F1CC */ .word aTUMB_actor_draw
+asm/jp/data/overlays/actors/ovl_T_Umbrella/ac_t_umbrella.data.s-/* 8E6C90 80A1F1D0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Ev_Miko/ac_ev_miko.data.s:dlabel Ev_Miko_Profile
+asm/jp/data/overlays/actors/ovl_Ev_Miko/ac_ev_miko.data.s-/* 8C9A30 809E6260 */ .word 0x00840300
+asm/jp/data/overlays/actors/ovl_Ev_Miko/ac_ev_miko.data.s-/* 8C9A34 809E6264 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Ev_Miko/ac_ev_miko.data.s-/* 8C9A38 809E6268 */ .word 0xD03D0003
+asm/jp/data/overlays/actors/ovl_Ev_Miko/ac_ev_miko.data.s-/* 8C9A3C 809E626C */ .word 0x00000948
+asm/jp/data/overlays/actors/ovl_Ev_Miko/ac_ev_miko.data.s-/* 8C9A40 809E6270 */ .word aEMK_actor_ct
+asm/jp/data/overlays/actors/ovl_Ev_Miko/ac_ev_miko.data.s-/* 8C9A44 809E6274 */ .word aEMK_actor_dt
+asm/jp/data/overlays/actors/ovl_Ev_Miko/ac_ev_miko.data.s-/* 8C9A48 809E6278 */ .word aEMK_actor_init
+asm/jp/data/overlays/actors/ovl_Ev_Miko/ac_ev_miko.data.s-/* 8C9A4C 809E627C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Ev_Miko/ac_ev_miko.data.s-/* 8C9A50 809E6280 */ .word aEMK_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Shrine/ac_shrine.data.s:dlabel Shrine_Profile
+asm/jp/data/overlays/actors/ovl_Shrine/ac_shrine.data.s-/* 8D9E80 80A0B1B0 */ .word 0x005C0000
+asm/jp/data/overlays/actors/ovl_Shrine/ac_shrine.data.s-/* 8D9E84 80A0B1B4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Shrine/ac_shrine.data.s-/* 8D9E88 80A0B1B8 */ .word 0x58250003
+asm/jp/data/overlays/actors/ovl_Shrine/ac_shrine.data.s-/* 8D9E8C 80A0B1BC */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Shrine/ac_shrine.data.s-/* 8D9E90 80A0B1C0 */ .word aSHR_actor_ct
+asm/jp/data/overlays/actors/ovl_Shrine/ac_shrine.data.s-/* 8D9E94 80A0B1C4 */ .word aSHR_actor_dt
+asm/jp/data/overlays/actors/ovl_Shrine/ac_shrine.data.s-/* 8D9E98 80A0B1C8 */ .word aSHR_actor_init
+asm/jp/data/overlays/actors/ovl_Shrine/ac_shrine.data.s-/* 8D9E9C 80A0B1CC */ .word aSHR_actor_draw
+asm/jp/data/overlays/actors/ovl_Shrine/ac_shrine.data.s-/* 8D9EA0 80A0B1D0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Npc_Post_Man/ac_npc_post_man.data.s:dlabel Npc_Post_Man_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Post_Man/ac_npc_post_man.data.s-/* 8A9F40 809C6750 */ .word 0x00240300
+asm/jp/data/overlays/actors/ovl_Npc_Post_Man/ac_npc_post_man.data.s-/* 8A9F44 809C6754 */ .word 0x00000010
+asm/jp/data/overlays/actors/ovl_Npc_Post_Man/ac_npc_post_man.data.s-/* 8A9F48 809C6758 */ .word 0xD0110003
+asm/jp/data/overlays/actors/ovl_Npc_Post_Man/ac_npc_post_man.data.s-/* 8A9F4C 809C675C */ .word 0x0000094C
+asm/jp/data/overlays/actors/ovl_Npc_Post_Man/ac_npc_post_man.data.s-/* 8A9F50 809C6760 */ .word aPMAN_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Post_Man/ac_npc_post_man.data.s-/* 8A9F54 809C6764 */ .word aPMAN_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Post_Man/ac_npc_post_man.data.s-/* 8A9F58 809C6768 */ .word aPMAN_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Post_Man/ac_npc_post_man.data.s-/* 8A9F5C 809C676C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Post_Man/ac_npc_post_man.data.s-/* 8A9F60 809C6770 */ .word aPMAN_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw.data.s:dlabel Fieldm_Draw_Profile
+asm/jp/data/overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw.data.s-/* 82BBC0 80934780 */ .word 0x00030400
+asm/jp/data/overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw.data.s-/* 82BBC4 80934784 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw.data.s-/* 82BBC8 80934788 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw.data.s-/* 82BBCC 8093478C */ .word 0x00000184
+asm/jp/data/overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw.data.s-/* 82BBD0 80934790 */ .word Fieldm_Actor_ct
+asm/jp/data/overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw.data.s-/* 82BBD4 80934794 */ .word Fieldm_Actor_dt
+asm/jp/data/overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw.data.s-/* 82BBD8 80934798 */ .word Fieldm_Actor_move
+asm/jp/data/overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw.data.s-/* 82BBDC 8093479C */ .word Fieldm_Actor_draw
+asm/jp/data/overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw.data.s-/* 82BBE0 809347A0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Birth_Control/ac_birth_control.data.s:dlabel Birth_Control_Profile
+asm/jp/data/overlays/actors/ovl_Birth_Control/ac_birth_control.data.s-/* 82D730 80936650 */ .word 0x00310000
+asm/jp/data/overlays/actors/ovl_Birth_Control/ac_birth_control.data.s-/* 82D734 80936654 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Birth_Control/ac_birth_control.data.s-/* 82D738 80936658 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Birth_Control/ac_birth_control.data.s-/* 82D73C 8093665C */ .word 0x00000180
+asm/jp/data/overlays/actors/ovl_Birth_Control/ac_birth_control.data.s-/* 82D740 80936660 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Birth_Control/ac_birth_control.data.s-/* 82D744 80936664 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Birth_Control/ac_birth_control.data.s-/* 82D748 80936668 */ .word aBC_actor_move
+asm/jp/data/overlays/actors/ovl_Birth_Control/ac_birth_control.data.s-/* 82D74C 8093666C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Birth_Control/ac_birth_control.data.s-/* 82D750 80936670 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_My_Room/ac_my_room.data.s:dlabel My_Room_Profile
+asm/jp/data/overlays/actors/ovl_My_Room/ac_my_room.data.s-/* 83E64C 8094756C */ .word 0x000B0400
+asm/jp/data/overlays/actors/ovl_My_Room/ac_my_room.data.s-/* 83E650 80947570 */ .word 0x20000030
+asm/jp/data/overlays/actors/ovl_My_Room/ac_my_room.data.s-/* 83E654 80947574 */ .word 0x80020003
+asm/jp/data/overlays/actors/ovl_My_Room/ac_my_room.data.s-/* 83E658 80947578 */ .word 0x000004E0
+asm/jp/data/overlays/actors/ovl_My_Room/ac_my_room.data.s-/* 83E65C 8094757C */ .word My_Room_Actor_ct
+asm/jp/data/overlays/actors/ovl_My_Room/ac_my_room.data.s-/* 83E660 80947580 */ .word My_Room_Actor_dt
+asm/jp/data/overlays/actors/ovl_My_Room/ac_my_room.data.s-/* 83E664 80947584 */ .word My_Room_Actor_move
+asm/jp/data/overlays/actors/ovl_My_Room/ac_my_room.data.s-/* 83E668 80947588 */ .word My_Room_Actor_draw
+asm/jp/data/overlays/actors/ovl_My_Room/ac_my_room.data.s-/* 83E66C 8094758C */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Npc_Police2/ac_npc_police2.data.s:dlabel Npc_Police2_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Police2/ac_npc_police2.data.s-/* 8A6960 809C3170 */ .word 0x004C0300
+asm/jp/data/overlays/actors/ovl_Npc_Police2/ac_npc_police2.data.s-/* 8A6964 809C3174 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Npc_Police2/ac_npc_police2.data.s-/* 8A6968 809C3178 */ .word 0xD0100003
+asm/jp/data/overlays/actors/ovl_Npc_Police2/ac_npc_police2.data.s-/* 8A696C 809C317C */ .word 0x00000948
+asm/jp/data/overlays/actors/ovl_Npc_Police2/ac_npc_police2.data.s-/* 8A6970 809C3180 */ .word aPOL2_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Police2/ac_npc_police2.data.s-/* 8A6974 809C3184 */ .word aPOL2_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Police2/ac_npc_police2.data.s-/* 8A6978 809C3188 */ .word aPOL2_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Police2/ac_npc_police2.data.s-/* 8A697C 809C318C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Police2/ac_npc_police2.data.s-/* 8A6980 809C3190 */ .word aPOL2_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Turi/ac_turi.data.s:dlabel Turi_Profile
+asm/jp/data/overlays/actors/ovl_Turi/ac_turi.data.s-/* 950A80 80A90800 */ .word 0x009E0000
+asm/jp/data/overlays/actors/ovl_Turi/ac_turi.data.s-/* 950A84 80A90804 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Turi/ac_turi.data.s-/* 950A88 80A90808 */ .word 0x58370003
+asm/jp/data/overlays/actors/ovl_Turi/ac_turi.data.s-/* 950A8C 80A9080C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Turi/ac_turi.data.s-/* 950A90 80A90810 */ .word aTUR_actor_ct
+asm/jp/data/overlays/actors/ovl_Turi/ac_turi.data.s-/* 950A94 80A90814 */ .word aTUR_actor_dt
+asm/jp/data/overlays/actors/ovl_Turi/ac_turi.data.s-/* 950A98 80A90818 */ .word aTUR_actor_init
+asm/jp/data/overlays/actors/ovl_Turi/ac_turi.data.s-/* 950A9C 80A9081C */ .word aTUR_actor_draw
+asm/jp/data/overlays/actors/ovl_Turi/ac_turi.data.s-/* 950AA0 80A90820 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Train1/ac_train1.data.s:dlabel Train1_Profile
+asm/jp/data/overlays/actors/ovl_Train1/ac_train1.data.s-/* 8DC690 80A0D9D0 */ .word 0x00490000
+asm/jp/data/overlays/actors/ovl_Train1/ac_train1.data.s-/* 8DC694 80A0D9D4 */ .word 0x20000010
+asm/jp/data/overlays/actors/ovl_Train1/ac_train1.data.s-/* 8DC698 80A0D9D8 */ .word 0x580B0003
+asm/jp/data/overlays/actors/ovl_Train1/ac_train1.data.s-/* 8DC69C 80A0D9DC */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Train1/ac_train1.data.s-/* 8DC6A0 80A0D9E0 */ .word aTR1_actor_ct
+asm/jp/data/overlays/actors/ovl_Train1/ac_train1.data.s-/* 8DC6A4 80A0D9E4 */ .word aTR1_actor_dt
+asm/jp/data/overlays/actors/ovl_Train1/ac_train1.data.s-/* 8DC6A8 80A0D9E8 */ .word aTR1_actor_move
+asm/jp/data/overlays/actors/ovl_Train1/ac_train1.data.s-/* 8DC6AC 80A0D9EC */ .word aTR1_actor_draw
+asm/jp/data/overlays/actors/ovl_Train1/ac_train1.data.s-/* 8DC6B0 80A0D9F0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Npc_Majin2/ac_npc_majin.data.s:dlabel Npc_Majin2_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Majin2/ac_npc_majin.data.s-/* 897F70 809B4760 */ .word 0x00700300
+asm/jp/data/overlays/actors/ovl_Npc_Majin2/ac_npc_majin.data.s-/* 897F74 809B4764 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Npc_Majin2/ac_npc_majin.data.s-/* 897F78 809B4768 */ .word 0xD0650003
+asm/jp/data/overlays/actors/ovl_Npc_Majin2/ac_npc_majin.data.s-/* 897F7C 809B476C */ .word 0x00000950
+asm/jp/data/overlays/actors/ovl_Npc_Majin2/ac_npc_majin.data.s-/* 897F80 809B4770 */ .word aMJN2_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Majin2/ac_npc_majin.data.s-/* 897F84 809B4774 */ .word aMJN2_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Majin2/ac_npc_majin.data.s-/* 897F88 809B4778 */ .word aMJN2_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Majin2/ac_npc_majin.data.s-/* 897F8C 809B477C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Majin2/ac_npc_majin.data.s-/* 897F90 809B4780 */ .word aMJN2_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Npc_Police/ac_npc_police.data.s:dlabel Npc_Police_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Police/ac_npc_police.data.s-/* 8A5590 809C1DA0 */ .word 0x00470300
+asm/jp/data/overlays/actors/ovl_Npc_Police/ac_npc_police.data.s-/* 8A5594 809C1DA4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Npc_Police/ac_npc_police.data.s-/* 8A5598 809C1DA8 */ .word 0xD00D0003
+asm/jp/data/overlays/actors/ovl_Npc_Police/ac_npc_police.data.s-/* 8A559C 809C1DAC */ .word 0x0000094C
+asm/jp/data/overlays/actors/ovl_Npc_Police/ac_npc_police.data.s-/* 8A55A0 809C1DB0 */ .word aPOL_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Police/ac_npc_police.data.s-/* 8A55A4 809C1DB4 */ .word aPOL_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Police/ac_npc_police.data.s-/* 8A55A8 809C1DB8 */ .word aPOL_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Police/ac_npc_police.data.s-/* 8A55AC 809C1DBC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Police/ac_npc_police.data.s-/* 8A55B0 809C1DC0 */ .word aPOL_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Broker_Design/ac_broker_design.data.s:dlabel Broker_Design_Profile
+asm/jp/data/overlays/actors/ovl_Broker_Design/ac_broker_design.data.s-/* 8467D0 809519E0 */ .word 0x00560400
+asm/jp/data/overlays/actors/ovl_Broker_Design/ac_broker_design.data.s-/* 8467D4 809519E4 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Broker_Design/ac_broker_design.data.s-/* 8467D8 809519E8 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Broker_Design/ac_broker_design.data.s-/* 8467DC 809519EC */ .word 0x0000017C
+asm/jp/data/overlays/actors/ovl_Broker_Design/ac_broker_design.data.s-/* 8467E0 809519F0 */ .word Broker_Design_Actor_ct
+asm/jp/data/overlays/actors/ovl_Broker_Design/ac_broker_design.data.s-/* 8467E4 809519F4 */ .word Broker_Design_Actor_dt
+asm/jp/data/overlays/actors/ovl_Broker_Design/ac_broker_design.data.s-/* 8467E8 809519F8 */ .word Broker_Design_Actor_move
+asm/jp/data/overlays/actors/ovl_Broker_Design/ac_broker_design.data.s-/* 8467EC 809519FC */ .word Broker_Design_Actor_draw
+asm/jp/data/overlays/actors/ovl_Broker_Design/ac_broker_design.data.s-/* 8467F0 80951A00 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Ride_Off_Demo/ac_ride_off_demo.data.s:dlabel Ride_Off_Demo_Profile
+asm/jp/data/overlays/actors/ovl_Ride_Off_Demo/ac_ride_off_demo.data.s-/* 848AD0 80953CF0 */ .word 0x00170700
+asm/jp/data/overlays/actors/ovl_Ride_Off_Demo/ac_ride_off_demo.data.s-/* 848AD4 80953CF4 */ .word 0x20000010
+asm/jp/data/overlays/actors/ovl_Ride_Off_Demo/ac_ride_off_demo.data.s-/* 848AD8 80953CF8 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Ride_Off_Demo/ac_ride_off_demo.data.s-/* 848ADC 80953CFC */ .word 0x0000018C
+asm/jp/data/overlays/actors/ovl_Ride_Off_Demo/ac_ride_off_demo.data.s-/* 848AE0 80953D00 */ .word aROD_actor_ct
+asm/jp/data/overlays/actors/ovl_Ride_Off_Demo/ac_ride_off_demo.data.s-/* 848AE4 80953D04 */ .word aROD_actor_dt
+asm/jp/data/overlays/actors/ovl_Ride_Off_Demo/ac_ride_off_demo.data.s-/* 848AE8 80953D08 */ .word aROD_actor_move
+asm/jp/data/overlays/actors/ovl_Ride_Off_Demo/ac_ride_off_demo.data.s-/* 848AEC 80953D0C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Ride_Off_Demo/ac_ride_off_demo.data.s-/* 848AF0 80953D10 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Npc_P_Sel/ac_npc_p_sel.data.s:dlabel Npc_P_Sel_Profile
+asm/jp/data/overlays/actors/ovl_Npc_P_Sel/ac_npc_p_sel.data.s-/* 8A1D70 809BE580 */ .word 0x00650300
+asm/jp/data/overlays/actors/ovl_Npc_P_Sel/ac_npc_p_sel.data.s-/* 8A1D74 809BE584 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Npc_P_Sel/ac_npc_p_sel.data.s-/* 8A1D78 809BE588 */ .word 0xD0180003
+asm/jp/data/overlays/actors/ovl_Npc_P_Sel/ac_npc_p_sel.data.s-/* 8A1D7C 809BE58C */ .word 0x00000954
+asm/jp/data/overlays/actors/ovl_Npc_P_Sel/ac_npc_p_sel.data.s-/* 8A1D80 809BE590 */ .word aNPS_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_P_Sel/ac_npc_p_sel.data.s-/* 8A1D84 809BE594 */ .word aNPS_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_P_Sel/ac_npc_p_sel.data.s-/* 8A1D88 809BE598 */ .word aNPS_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_P_Sel/ac_npc_p_sel.data.s-/* 8A1D8C 809BE59C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_P_Sel/ac_npc_p_sel.data.s-/* 8A1D90 809BE5A0 */ .word aNPS_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Hanabi_Npc1/ac_hanabi_npc1.data.s:dlabel Hanabi_Npc1_Profile
+asm/jp/data/overlays/actors/ovl_Hanabi_Npc1/ac_hanabi_npc1.data.s-/* 8C1910 809DE120 */ .word 0x001A0300
+asm/jp/data/overlays/actors/ovl_Hanabi_Npc1/ac_hanabi_npc1.data.s-/* 8C1914 809DE124 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Hanabi_Npc1/ac_hanabi_npc1.data.s-/* 8C1918 809DE128 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Hanabi_Npc1/ac_hanabi_npc1.data.s-/* 8C191C 809DE12C */ .word 0x0000094C
+asm/jp/data/overlays/actors/ovl_Hanabi_Npc1/ac_hanabi_npc1.data.s-/* 8C1920 809DE130 */ .word aHN1_actor_ct
+asm/jp/data/overlays/actors/ovl_Hanabi_Npc1/ac_hanabi_npc1.data.s-/* 8C1924 809DE134 */ .word aHN1_actor_dt
+asm/jp/data/overlays/actors/ovl_Hanabi_Npc1/ac_hanabi_npc1.data.s-/* 8C1928 809DE138 */ .word aHN1_actor_init
+asm/jp/data/overlays/actors/ovl_Hanabi_Npc1/ac_hanabi_npc1.data.s-/* 8C192C 809DE13C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Hanabi_Npc1/ac_hanabi_npc1.data.s-/* 8C1930 809DE140 */ .word aHN1_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Npc_Rcn_Guide/ac_npc_rcn_guide.data.s:dlabel Npc_Rcn_Guide_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Rcn_Guide/ac_npc_rcn_guide.data.s-/* 8AB3E0 809C7BF0 */ .word 0x005A0300
+asm/jp/data/overlays/actors/ovl_Npc_Rcn_Guide/ac_npc_rcn_guide.data.s-/* 8AB3E4 809C7BF4 */ .word 0x20000010
+asm/jp/data/overlays/actors/ovl_Npc_Rcn_Guide/ac_npc_rcn_guide.data.s-/* 8AB3E8 809C7BF8 */ .word 0xD0140003
+asm/jp/data/overlays/actors/ovl_Npc_Rcn_Guide/ac_npc_rcn_guide.data.s-/* 8AB3EC 809C7BFC */ .word 0x00000958
+asm/jp/data/overlays/actors/ovl_Npc_Rcn_Guide/ac_npc_rcn_guide.data.s-/* 8AB3F0 809C7C00 */ .word aNRG_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Rcn_Guide/ac_npc_rcn_guide.data.s-/* 8AB3F4 809C7C04 */ .word aNRG_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Rcn_Guide/ac_npc_rcn_guide.data.s-/* 8AB3F8 809C7C08 */ .word aNRG_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Rcn_Guide/ac_npc_rcn_guide.data.s-/* 8AB3FC 809C7C0C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Rcn_Guide/ac_npc_rcn_guide.data.s-/* 8AB400 809C7C10 */ .word aNRG_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Lamp_Light/ef_lamp_light.data.s:dlabel Lamp_Light_Profile
+asm/jp/data/overlays/actors/ovl_Lamp_Light/ef_lamp_light.data.s-/* 85C4B0 80967860 */ .word 0x00070600
+asm/jp/data/overlays/actors/ovl_Lamp_Light/ef_lamp_light.data.s-/* 85C4B4 80967864 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Lamp_Light/ef_lamp_light.data.s-/* 85C4B8 80967868 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Lamp_Light/ef_lamp_light.data.s-/* 85C4BC 8096786C */ .word 0x0000018C
+asm/jp/data/overlays/actors/ovl_Lamp_Light/ef_lamp_light.data.s-/* 85C4C0 80967870 */ .word Ef_Lamp_Light_actor_ct
+asm/jp/data/overlays/actors/ovl_Lamp_Light/ef_lamp_light.data.s-/* 85C4C4 80967874 */ .word Ef_Lamp_Light_actor_dt
+asm/jp/data/overlays/actors/ovl_Lamp_Light/ef_lamp_light.data.s-/* 85C4C8 80967878 */ .word Ef_Lamp_Light_actor_move
+asm/jp/data/overlays/actors/ovl_Lamp_Light/ef_lamp_light.data.s-/* 85C4CC 8096787C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Lamp_Light/ef_lamp_light.data.s-/* 85C4D0 80967880 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Train0/ac_train0.data.s:dlabel Train0_Profile
+asm/jp/data/overlays/actors/ovl_Train0/ac_train0.data.s-/* 8DBE20 80A0D160 */ .word 0x00480000
+asm/jp/data/overlays/actors/ovl_Train0/ac_train0.data.s-/* 8DBE24 80A0D164 */ .word 0x20000010
+asm/jp/data/overlays/actors/ovl_Train0/ac_train0.data.s-/* 8DBE28 80A0D168 */ .word 0x580A0003
+asm/jp/data/overlays/actors/ovl_Train0/ac_train0.data.s-/* 8DBE2C 80A0D16C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Train0/ac_train0.data.s-/* 8DBE30 80A0D170 */ .word func_805bfc28
+asm/jp/data/overlays/actors/ovl_Train0/ac_train0.data.s-/* 8DBE34 80A0D174 */ .word func_805bfcdc
+asm/jp/data/overlays/actors/ovl_Train0/ac_train0.data.s-/* 8DBE38 80A0D178 */ .word func_805c03ec
+asm/jp/data/overlays/actors/ovl_Train0/ac_train0.data.s-/* 8DBE3C 80A0D17C */ .word func_805c04e0
+asm/jp/data/overlays/actors/ovl_Train0/ac_train0.data.s-/* 8DBE40 80A0D180 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Goza/ac_goza.data.s:dlabel Goza_Profile
+asm/jp/data/overlays/actors/ovl_Goza/ac_goza.data.s-/* 936A10 80A76770 */ .word 0x007C0000
+asm/jp/data/overlays/actors/ovl_Goza/ac_goza.data.s-/* 936A14 80A76774 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Goza/ac_goza.data.s-/* 936A18 80A76778 */ .word 0x582A0003
+asm/jp/data/overlays/actors/ovl_Goza/ac_goza.data.s-/* 936A1C 80A7677C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Goza/ac_goza.data.s-/* 936A20 80A76780 */ .word aGOZ_actor_ct
+asm/jp/data/overlays/actors/ovl_Goza/ac_goza.data.s-/* 936A24 80A76784 */ .word func_80A76208_jp
+asm/jp/data/overlays/actors/ovl_Goza/ac_goza.data.s-/* 936A28 80A76788 */ .word aGOZ_actor_init
+asm/jp/data/overlays/actors/ovl_Goza/ac_goza.data.s-/* 936A2C 80A7678C */ .word aGOZ_actor_draw
+asm/jp/data/overlays/actors/ovl_Goza/ac_goza.data.s-/* 936A30 80A76790 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Ev_KabuPeddler/ac_ev_kabuPeddler.data.s:dlabel Ev_KabuPeddler_Profile
+asm/jp/data/overlays/actors/ovl_Ev_KabuPeddler/ac_ev_kabuPeddler.data.s-/* 8C8CF0 809E5520 */ .word 0x003E0300
+asm/jp/data/overlays/actors/ovl_Ev_KabuPeddler/ac_ev_kabuPeddler.data.s-/* 8C8CF4 809E5524 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Ev_KabuPeddler/ac_ev_kabuPeddler.data.s-/* 8C8CF8 809E5528 */ .word 0xD0070003
+asm/jp/data/overlays/actors/ovl_Ev_KabuPeddler/ac_ev_kabuPeddler.data.s-/* 8C8CFC 809E552C */ .word 0x00000948
+asm/jp/data/overlays/actors/ovl_Ev_KabuPeddler/ac_ev_kabuPeddler.data.s-/* 8C8D00 809E5530 */ .word aEKPD_actor_ct
+asm/jp/data/overlays/actors/ovl_Ev_KabuPeddler/ac_ev_kabuPeddler.data.s-/* 8C8D04 809E5534 */ .word aEKPD_actor_dt
+asm/jp/data/overlays/actors/ovl_Ev_KabuPeddler/ac_ev_kabuPeddler.data.s-/* 8C8D08 809E5538 */ .word aEKPD_actor_init
+asm/jp/data/overlays/actors/ovl_Ev_KabuPeddler/ac_ev_kabuPeddler.data.s-/* 8C8D0C 809E553C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Ev_KabuPeddler/ac_ev_kabuPeddler.data.s-/* 8C8D10 809E5540 */ .word aEKPD_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1.data.s:dlabel Hanami_Npc1_Profile
+asm/jp/data/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1.data.s-/* 8C2DB0 809DF5C0 */ .word 0x00640300
+asm/jp/data/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1.data.s-/* 8C2DB4 809DF5C4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1.data.s-/* 8C2DB8 809DF5C8 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1.data.s-/* 8C2DBC 809DF5CC */ .word 0x00000944
+asm/jp/data/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1.data.s-/* 8C2DC0 809DF5D0 */ .word aHM1_actor_ct
+asm/jp/data/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1.data.s-/* 8C2DC4 809DF5D4 */ .word aHM1_actor_dt
+asm/jp/data/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1.data.s-/* 8C2DC8 809DF5D8 */ .word aHM1_actor_init
+asm/jp/data/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1.data.s-/* 8C2DCC 809DF5DC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1.data.s-/* 8C2DD0 809DF5E0 */ .word aHM1_actor_save
+--
+asm/jp/data/overlays/actors/ovl_House_Goki/ac_house_goki.data.s:dlabel House_Goki_Profile
+asm/jp/data/overlays/actors/ovl_House_Goki/ac_house_goki.data.s-/* 944840 80A845A0 */ .word 0x00870400
+asm/jp/data/overlays/actors/ovl_House_Goki/ac_house_goki.data.s-/* 944844 80A845A4 */ .word 0x00000010
+asm/jp/data/overlays/actors/ovl_House_Goki/ac_house_goki.data.s-/* 944848 80A845A8 */ .word 0x00000171
+asm/jp/data/overlays/actors/ovl_House_Goki/ac_house_goki.data.s-/* 94484C 80A845AC */ .word 0x0000019C
+asm/jp/data/overlays/actors/ovl_House_Goki/ac_house_goki.data.s-/* 944850 80A845B0 */ .word aHG_actor_ct
+asm/jp/data/overlays/actors/ovl_House_Goki/ac_house_goki.data.s-/* 944854 80A845B4 */ .word func_80A83770_jp
+asm/jp/data/overlays/actors/ovl_House_Goki/ac_house_goki.data.s-/* 944858 80A845B8 */ .word aHG_actor_move
+asm/jp/data/overlays/actors/ovl_House_Goki/ac_house_goki.data.s-/* 94485C 80A845BC */ .word aHG_actor_draw
+asm/jp/data/overlays/actors/ovl_House_Goki/ac_house_goki.data.s-/* 944860 80A845C0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Fuusen/ac_fuusen.data.s:dlabel Fuusen_Profile
+asm/jp/data/overlays/actors/ovl_Fuusen/ac_fuusen.data.s-/* 96E620 80AAE4B0 */ .word 0x00B20700
+asm/jp/data/overlays/actors/ovl_Fuusen/ac_fuusen.data.s-/* 96E624 80AAE4B4 */ .word 0x00000010
+asm/jp/data/overlays/actors/ovl_Fuusen/ac_fuusen.data.s-/* 96E628 80AAE4B8 */ .word 0x00000190
+asm/jp/data/overlays/actors/ovl_Fuusen/ac_fuusen.data.s-/* 96E62C 80AAE4BC */ .word 0x00000448
+asm/jp/data/overlays/actors/ovl_Fuusen/ac_fuusen.data.s-/* 96E630 80AAE4C0 */ .word aFSN_actor_ct
+asm/jp/data/overlays/actors/ovl_Fuusen/ac_fuusen.data.s-/* 96E634 80AAE4C4 */ .word aFSN_actor_dt
+asm/jp/data/overlays/actors/ovl_Fuusen/ac_fuusen.data.s-/* 96E638 80AAE4C8 */ .word aFSN_actor_move
+asm/jp/data/overlays/actors/ovl_Fuusen/ac_fuusen.data.s-/* 96E63C 80AAE4CC */ .word aFSN_actor_draw
+asm/jp/data/overlays/actors/ovl_Fuusen/ac_fuusen.data.s-/* 96E640 80AAE4D0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Room_Sunshine_Posthouse/ef_room_sunshine_posthouse.data.s:dlabel Room_Sunshine_Posthouse_Profile
+asm/jp/data/overlays/actors/ovl_Room_Sunshine_Posthouse/ef_room_sunshine_posthouse.data.s-/* 85B880 80966C30 */ .word 0x00750600
+asm/jp/data/overlays/actors/ovl_Room_Sunshine_Posthouse/ef_room_sunshine_posthouse.data.s-/* 85B884 80966C34 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Room_Sunshine_Posthouse/ef_room_sunshine_posthouse.data.s-/* 85B888 80966C38 */ .word 0x0000002B
+asm/jp/data/overlays/actors/ovl_Room_Sunshine_Posthouse/ef_room_sunshine_posthouse.data.s-/* 85B88C 80966C3C */ .word 0x00000178
+asm/jp/data/overlays/actors/ovl_Room_Sunshine_Posthouse/ef_room_sunshine_posthouse.data.s-/* 85B890 80966C40 */ .word Ef_Room_Sunshine_Posthouse_actor_ct
+asm/jp/data/overlays/actors/ovl_Room_Sunshine_Posthouse/ef_room_sunshine_posthouse.data.s-/* 85B894 80966C44 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Room_Sunshine_Posthouse/ef_room_sunshine_posthouse.data.s-/* 85B898 80966C48 */ .word Ef_Room_Sunshine_PosthouseR_actor_move
+asm/jp/data/overlays/actors/ovl_Room_Sunshine_Posthouse/ef_room_sunshine_posthouse.data.s-/* 85B89C 80966C4C */ .word Ef_Room_Sunshine_PosthouseR_actor_draw
+asm/jp/data/overlays/actors/ovl_Room_Sunshine_Posthouse/ef_room_sunshine_posthouse.data.s-/* 85B8A0 80966C50 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Npc_Rcn_Guide2/ac_npc_rcn_guide2.data.s:dlabel Npc_Rcn_Guide2_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Rcn_Guide2/ac_npc_rcn_guide2.data.s-/* 8AD6D0 809C9EE0 */ .word 0x00670300
+asm/jp/data/overlays/actors/ovl_Npc_Rcn_Guide2/ac_npc_rcn_guide2.data.s-/* 8AD6D4 809C9EE4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Npc_Rcn_Guide2/ac_npc_rcn_guide2.data.s-/* 8AD6D8 809C9EE8 */ .word 0xD0190003
+asm/jp/data/overlays/actors/ovl_Npc_Rcn_Guide2/ac_npc_rcn_guide2.data.s-/* 8AD6DC 809C9EEC */ .word 0x00000960
+asm/jp/data/overlays/actors/ovl_Npc_Rcn_Guide2/ac_npc_rcn_guide2.data.s-/* 8AD6E0 809C9EF0 */ .word aNRG2_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Rcn_Guide2/ac_npc_rcn_guide2.data.s-/* 8AD6E4 809C9EF4 */ .word aNRG2_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Rcn_Guide2/ac_npc_rcn_guide2.data.s-/* 8AD6E8 809C9EF8 */ .word aNRG2_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Rcn_Guide2/ac_npc_rcn_guide2.data.s-/* 8AD6EC 809C9EFC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Rcn_Guide2/ac_npc_rcn_guide2.data.s-/* 8AD6F0 809C9F00 */ .word aNRG2_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Room_Sunshine_Police/ef_room_sunshine_police.data.s:dlabel Room_Sunshine_Police_Profile
+asm/jp/data/overlays/actors/ovl_Room_Sunshine_Police/ef_room_sunshine_police.data.s-/* 85C110 809674C0 */ .word 0x00760600
+asm/jp/data/overlays/actors/ovl_Room_Sunshine_Police/ef_room_sunshine_police.data.s-/* 85C114 809674C4 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Room_Sunshine_Police/ef_room_sunshine_police.data.s-/* 85C118 809674C8 */ .word 0x0000002C
+asm/jp/data/overlays/actors/ovl_Room_Sunshine_Police/ef_room_sunshine_police.data.s-/* 85C11C 809674CC */ .word 0x00000178
+asm/jp/data/overlays/actors/ovl_Room_Sunshine_Police/ef_room_sunshine_police.data.s-/* 85C120 809674D0 */ .word Ef_Room_Sunshine_Police_actor_ct
+asm/jp/data/overlays/actors/ovl_Room_Sunshine_Police/ef_room_sunshine_police.data.s-/* 85C124 809674D4 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Room_Sunshine_Police/ef_room_sunshine_police.data.s-/* 85C128 809674D8 */ .word Ef_Room_Sunshine_PoliceR_actor_move
+asm/jp/data/overlays/actors/ovl_Room_Sunshine_Police/ef_room_sunshine_police.data.s-/* 85C12C 809674DC */ .word Ef_Room_Sunshine_PoliceR_actor_draw
+asm/jp/data/overlays/actors/ovl_Room_Sunshine_Police/ef_room_sunshine_police.data.s-/* 85C130 809674E0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Npc_Guide2/ac_npc_guide2.data.s:dlabel Npc_Guide2_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Guide2/ac_npc_guide2.data.s-/* 896510 809B2D00 */ .word 0x003A0300
+asm/jp/data/overlays/actors/ovl_Npc_Guide2/ac_npc_guide2.data.s-/* 896514 809B2D04 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Npc_Guide2/ac_npc_guide2.data.s-/* 896518 809B2D08 */ .word 0xD0050003
+asm/jp/data/overlays/actors/ovl_Npc_Guide2/ac_npc_guide2.data.s-/* 89651C 809B2D0C */ .word 0x00000974
+asm/jp/data/overlays/actors/ovl_Npc_Guide2/ac_npc_guide2.data.s-/* 896520 809B2D10 */ .word aNG2_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Guide2/ac_npc_guide2.data.s-/* 896524 809B2D14 */ .word aNG2_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Guide2/ac_npc_guide2.data.s-/* 896528 809B2D18 */ .word aNG2_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Guide2/ac_npc_guide2.data.s-/* 89652C 809B2D1C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Guide2/ac_npc_guide2.data.s-/* 896530 809B2D20 */ .word aNG2_actor_save
+--
+asm/jp/data/overlays/actors/ovl_My_Indoor/ac_my_indoor.data.s:dlabel My_Indoor_Profile
+asm/jp/data/overlays/actors/ovl_My_Indoor/ac_my_indoor.data.s-/* 847600 80952810 */ .word 0x00590500
+asm/jp/data/overlays/actors/ovl_My_Indoor/ac_my_indoor.data.s-/* 847604 80952814 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_My_Indoor/ac_my_indoor.data.s-/* 847608 80952818 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_My_Indoor/ac_my_indoor.data.s-/* 84760C 8095281C */ .word 0x000001B8
+asm/jp/data/overlays/actors/ovl_My_Indoor/ac_my_indoor.data.s-/* 847610 80952820 */ .word My_Indoor_Actor_ct
+asm/jp/data/overlays/actors/ovl_My_Indoor/ac_my_indoor.data.s-/* 847614 80952824 */ .word My_Indoor_Actor_dt
+asm/jp/data/overlays/actors/ovl_My_Indoor/ac_my_indoor.data.s-/* 847618 80952828 */ .word My_Indoor_Actor_move
+asm/jp/data/overlays/actors/ovl_My_Indoor/ac_my_indoor.data.s-/* 84761C 8095282C */ .word My_Indoor_Actor_draw
+asm/jp/data/overlays/actors/ovl_My_Indoor/ac_my_indoor.data.s-/* 847620 80952830 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_T_Keitai/ac_t_keitai.data.s:dlabel T_Keitai_Profile
+asm/jp/data/overlays/actors/ovl_T_Keitai/ac_t_keitai.data.s-/* 8E745C 80A1F99C */ .word 0x00140400
+asm/jp/data/overlays/actors/ovl_T_Keitai/ac_t_keitai.data.s-/* 8E7460 80A1F9A0 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_T_Keitai/ac_t_keitai.data.s-/* 8E7464 80A1F9A4 */ .word 0x0000002D
+asm/jp/data/overlays/actors/ovl_T_Keitai/ac_t_keitai.data.s-/* 8E7468 80A1F9A8 */ .word 0x00000274
+asm/jp/data/overlays/actors/ovl_T_Keitai/ac_t_keitai.data.s-/* 8E746C 80A1F9AC */ .word aTKT_actor_ct
+asm/jp/data/overlays/actors/ovl_T_Keitai/ac_t_keitai.data.s-/* 8E7470 80A1F9B0 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_T_Keitai/ac_t_keitai.data.s-/* 8E7474 80A1F9B4 */ .word aTKT_actor_move
+asm/jp/data/overlays/actors/ovl_T_Keitai/ac_t_keitai.data.s-/* 8E7478 80A1F9B8 */ .word aTKT_actor_draw
+asm/jp/data/overlays/actors/ovl_T_Keitai/ac_t_keitai.data.s-/* 8E747C 80A1F9BC */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Buggy/ac_buggy.data.s:dlabel Buggy_Profile
+asm/jp/data/overlays/actors/ovl_Buggy/ac_buggy.data.s-/* 8CF900 80A00C30 */ .word 0x005D0000
+asm/jp/data/overlays/actors/ovl_Buggy/ac_buggy.data.s-/* 8CF904 80A00C34 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Buggy/ac_buggy.data.s-/* 8CF908 80A00C38 */ .word 0x58270003
+asm/jp/data/overlays/actors/ovl_Buggy/ac_buggy.data.s-/* 8CF90C 80A00C3C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Buggy/ac_buggy.data.s-/* 8CF910 80A00C40 */ .word aBGY_actor_ct
+asm/jp/data/overlays/actors/ovl_Buggy/ac_buggy.data.s-/* 8CF914 80A00C44 */ .word aBGY_actor_dt
+asm/jp/data/overlays/actors/ovl_Buggy/ac_buggy.data.s-/* 8CF918 80A00C48 */ .word aBGY_actor_init
+asm/jp/data/overlays/actors/ovl_Buggy/ac_buggy.data.s-/* 8CF91C 80A00C4C */ .word aBGY_actor_draw
+asm/jp/data/overlays/actors/ovl_Buggy/ac_buggy.data.s-/* 8CF920 80A00C50 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_FallS/ac_fallS.data.s:dlabel FallS_Profile
+asm/jp/data/overlays/actors/ovl_FallS/ac_fallS.data.s-/* 8D2110 80A03440 */ .word 0x00530000
+asm/jp/data/overlays/actors/ovl_FallS/ac_fallS.data.s-/* 8D2114 80A03444 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_FallS/ac_fallS.data.s-/* 8D2118 80A03448 */ .word 0x580D0003
+asm/jp/data/overlays/actors/ovl_FallS/ac_fallS.data.s-/* 8D211C 80A0344C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_FallS/ac_fallS.data.s-/* 8D2120 80A03450 */ .word func_80A03230_jp
+asm/jp/data/overlays/actors/ovl_FallS/ac_fallS.data.s-/* 8D2124 80A03454 */ .word func_80A03240_jp
+asm/jp/data/overlays/actors/ovl_FallS/ac_fallS.data.s-/* 8D2128 80A03458 */ .word aFLS_actor_move
+asm/jp/data/overlays/actors/ovl_FallS/ac_fallS.data.s-/* 8D212C 80A0345C */ .word aFLS_actor_draw
+asm/jp/data/overlays/actors/ovl_FallS/ac_fallS.data.s-/* 8D2130 80A03460 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Turi_Npc0/ac_turi_npc0.data.s:dlabel Turi_Npc0_Profile
+asm/jp/data/overlays/actors/ovl_Turi_Npc0/ac_turi_npc0.data.s-/* 8C6B84 809E3394 */ .word 0x00920300
+asm/jp/data/overlays/actors/ovl_Turi_Npc0/ac_turi_npc0.data.s-/* 8C6B88 809E3398 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Turi_Npc0/ac_turi_npc0.data.s-/* 8C6B8C 809E339C */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Turi_Npc0/ac_turi_npc0.data.s-/* 8C6B90 809E33A0 */ .word 0x00000940
+asm/jp/data/overlays/actors/ovl_Turi_Npc0/ac_turi_npc0.data.s-/* 8C6B94 809E33A4 */ .word func_805900b0
+asm/jp/data/overlays/actors/ovl_Turi_Npc0/ac_turi_npc0.data.s-/* 8C6B98 809E33A8 */ .word func_805901d8
+asm/jp/data/overlays/actors/ovl_Turi_Npc0/ac_turi_npc0.data.s-/* 8C6B9C 809E33AC */ .word aTR0_actor_init
+asm/jp/data/overlays/actors/ovl_Turi_Npc0/ac_turi_npc0.data.s-/* 8C6BA0 809E33B0 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Turi_Npc0/ac_turi_npc0.data.s-/* 8C6BA4 809E33B4 */ .word aTR0_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Tamaire_Npc0/ac_tamaire_npc0.data.s:dlabel Tamaire_Npc0_Profile
+asm/jp/data/overlays/actors/ovl_Tamaire_Npc0/ac_tamaire_npc0.data.s-/* 947330 80A870A0 */ .word 0x00960300
+asm/jp/data/overlays/actors/ovl_Tamaire_Npc0/ac_tamaire_npc0.data.s-/* 947334 80A870A4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Tamaire_Npc0/ac_tamaire_npc0.data.s-/* 947338 80A870A8 */ .word 0xD0530003
+asm/jp/data/overlays/actors/ovl_Tamaire_Npc0/ac_tamaire_npc0.data.s-/* 94733C 80A870AC */ .word 0x00000950
+asm/jp/data/overlays/actors/ovl_Tamaire_Npc0/ac_tamaire_npc0.data.s-/* 947340 80A870B0 */ .word aTMN0_actor_ct
+asm/jp/data/overlays/actors/ovl_Tamaire_Npc0/ac_tamaire_npc0.data.s-/* 947344 80A870B4 */ .word aTMN0_actor_dt
+asm/jp/data/overlays/actors/ovl_Tamaire_Npc0/ac_tamaire_npc0.data.s-/* 947348 80A870B8 */ .word aTMN0_actor_init
+asm/jp/data/overlays/actors/ovl_Tamaire_Npc0/ac_tamaire_npc0.data.s-/* 94734C 80A870BC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Tamaire_Npc0/ac_tamaire_npc0.data.s-/* 947350 80A870C0 */ .word aTMN0_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Npc_Restart/ac_npc_restart.data.s:dlabel Npc_Restart_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Restart/ac_npc_restart.data.s-/* 96CB50 80AAC9E0 */ .word 0x00B00300
+asm/jp/data/overlays/actors/ovl_Npc_Restart/ac_npc_restart.data.s-/* 96CB54 80AAC9E4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Npc_Restart/ac_npc_restart.data.s-/* 96CB58 80AAC9E8 */ .word 0xD06A0003
+asm/jp/data/overlays/actors/ovl_Npc_Restart/ac_npc_restart.data.s-/* 96CB5C 80AAC9EC */ .word 0x00000950
+asm/jp/data/overlays/actors/ovl_Npc_Restart/ac_npc_restart.data.s-/* 96CB60 80AAC9F0 */ .word aNRST_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Restart/ac_npc_restart.data.s-/* 96CB64 80AAC9F4 */ .word aNRST_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Restart/ac_npc_restart.data.s-/* 96CB68 80AAC9F8 */ .word aNRST_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Restart/ac_npc_restart.data.s-/* 96CB6C 80AAC9FC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Restart/ac_npc_restart.data.s-/* 96CB70 80AACA00 */ .word aNRST_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Npc_Shop_Master/ac_npc_shop_master.data.s:dlabel Npc_Shop_Master_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Shop_Master/ac_npc_shop_master.data.s-/* 8B1920 809CE130 */ .word 0x00300300
+asm/jp/data/overlays/actors/ovl_Npc_Shop_Master/ac_npc_shop_master.data.s-/* 8B1924 809CE134 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Npc_Shop_Master/ac_npc_shop_master.data.s-/* 8B1928 809CE138 */ .word 0xD0080003
+asm/jp/data/overlays/actors/ovl_Npc_Shop_Master/ac_npc_shop_master.data.s-/* 8B192C 809CE13C */ .word 0x0000096C
+asm/jp/data/overlays/actors/ovl_Npc_Shop_Master/ac_npc_shop_master.data.s-/* 8B1930 809CE140 */ .word aNSM_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Shop_Master/ac_npc_shop_master.data.s-/* 8B1934 809CE144 */ .word aNSM_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Shop_Master/ac_npc_shop_master.data.s-/* 8B1938 809CE148 */ .word aNSM_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Shop_Master/ac_npc_shop_master.data.s-/* 8B193C 809CE14C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Shop_Master/ac_npc_shop_master.data.s-/* 8B1940 809CE150 */ .word aNSM_actor_save
+--
+asm/jp/data/overlays/actors/ovl_FallSESW/ac_fallSESW.data.s:dlabel FallSESW_Profile
+asm/jp/data/overlays/actors/ovl_FallSESW/ac_fallSESW.data.s-/* 8D23A0 80A036D0 */ .word 0x00540000
+asm/jp/data/overlays/actors/ovl_FallSESW/ac_fallSESW.data.s-/* 8D23A4 80A036D4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_FallSESW/ac_fallSESW.data.s-/* 8D23A8 80A036D8 */ .word 0x580E0003
+asm/jp/data/overlays/actors/ovl_FallSESW/ac_fallSESW.data.s-/* 8D23AC 80A036DC */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_FallSESW/ac_fallSESW.data.s-/* 8D23B0 80A036E0 */ .word func_80A034A0_jp
+asm/jp/data/overlays/actors/ovl_FallSESW/ac_fallSESW.data.s-/* 8D23B4 80A036E4 */ .word func_80A034B0_jp
+asm/jp/data/overlays/actors/ovl_FallSESW/ac_fallSESW.data.s-/* 8D23B8 80A036E8 */ .word aFLEW_actor_move
+asm/jp/data/overlays/actors/ovl_FallSESW/ac_fallSESW.data.s-/* 8D23BC 80A036EC */ .word aFLEW_actor_draw
+asm/jp/data/overlays/actors/ovl_FallSESW/ac_fallSESW.data.s-/* 8D23C0 80A036F0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Npc_Totakeke/ac_npc_totakeke.data.s:dlabel Npc_Totakeke_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Totakeke/ac_npc_totakeke.data.s-/* 94B280 80A8B000 */ .word 0x00990300
+asm/jp/data/overlays/actors/ovl_Npc_Totakeke/ac_npc_totakeke.data.s-/* 94B284 80A8B004 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Npc_Totakeke/ac_npc_totakeke.data.s-/* 94B288 80A8B008 */ .word 0xD05D0003
+asm/jp/data/overlays/actors/ovl_Npc_Totakeke/ac_npc_totakeke.data.s-/* 94B28C 80A8B00C */ .word 0x00000950
+asm/jp/data/overlays/actors/ovl_Npc_Totakeke/ac_npc_totakeke.data.s-/* 94B290 80A8B010 */ .word aNTT_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Totakeke/ac_npc_totakeke.data.s-/* 94B294 80A8B014 */ .word aNTT_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Totakeke/ac_npc_totakeke.data.s-/* 94B298 80A8B018 */ .word aNTT_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Totakeke/ac_npc_totakeke.data.s-/* 94B29C 80A8B01C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Totakeke/ac_npc_totakeke.data.s-/* 94B2A0 80A8B020 */ .word aNTT_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Kamakura_Npc0/ac_kamakura_npc0.data.s:dlabel Kamakura_Npc0_Profile
+asm/jp/data/overlays/actors/ovl_Kamakura_Npc0/ac_kamakura_npc0.data.s-/* 8C3180 809DF990 */ .word 0x00230300
+asm/jp/data/overlays/actors/ovl_Kamakura_Npc0/ac_kamakura_npc0.data.s-/* 8C3184 809DF994 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Kamakura_Npc0/ac_kamakura_npc0.data.s-/* 8C3188 809DF998 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Kamakura_Npc0/ac_kamakura_npc0.data.s-/* 8C318C 809DF99C */ .word 0x00000938
+asm/jp/data/overlays/actors/ovl_Kamakura_Npc0/ac_kamakura_npc0.data.s-/* 8C3190 809DF9A0 */ .word aKM0_actor_ct
+asm/jp/data/overlays/actors/ovl_Kamakura_Npc0/ac_kamakura_npc0.data.s-/* 8C3194 809DF9A4 */ .word aKM0_actor_dt
+asm/jp/data/overlays/actors/ovl_Kamakura_Npc0/ac_kamakura_npc0.data.s-/* 8C3198 809DF9A8 */ .word aKM0_actor_init
+asm/jp/data/overlays/actors/ovl_Kamakura_Npc0/ac_kamakura_npc0.data.s-/* 8C319C 809DF9AC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Kamakura_Npc0/ac_kamakura_npc0.data.s-/* 8C31A0 809DF9B0 */ .word aKM0_actor_save
+--
+asm/jp/data/overlays/actors/ovl_BgPostItem/bg_post_item.data.s:dlabel BgPostItem_Profile
+asm/jp/data/overlays/actors/ovl_BgPostItem/bg_post_item.data.s-/* 7E5800 808EC150 */ .word 0x00520000
+asm/jp/data/overlays/actors/ovl_BgPostItem/bg_post_item.data.s-/* 7E5804 808EC154 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_BgPostItem/bg_post_item.data.s-/* 7E5808 808EC158 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_BgPostItem/bg_post_item.data.s-/* 7E580C 808EC15C */ .word 0x00000178
+asm/jp/data/overlays/actors/ovl_BgPostItem/bg_post_item.data.s-/* 7E5810 808EC160 */ .word bPTI_actor_ct
+asm/jp/data/overlays/actors/ovl_BgPostItem/bg_post_item.data.s-/* 7E5814 808EC164 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_BgPostItem/bg_post_item.data.s-/* 7E5818 808EC168 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_BgPostItem/bg_post_item.data.s-/* 7E581C 808EC16C */ .word bPTI_actor_draw
+asm/jp/data/overlays/actors/ovl_BgPostItem/bg_post_item.data.s-/* 7E5820 808EC170 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Super/ac_super.data.s:dlabel Super_Profile
+asm/jp/data/overlays/actors/ovl_Super/ac_super.data.s-/* 8DAF30 80A0C270 */ .word 0x00600000
+asm/jp/data/overlays/actors/ovl_Super/ac_super.data.s-/* 8DAF34 80A0C274 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Super/ac_super.data.s-/* 8DAF38 80A0C278 */ .word 0x58060003
+asm/jp/data/overlays/actors/ovl_Super/ac_super.data.s-/* 8DAF3C 80A0C27C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Super/ac_super.data.s-/* 8DAF40 80A0C280 */ .word aSPR_actor_ct
+asm/jp/data/overlays/actors/ovl_Super/ac_super.data.s-/* 8DAF44 80A0C284 */ .word aSPR_actor_dt
+asm/jp/data/overlays/actors/ovl_Super/ac_super.data.s-/* 8DAF48 80A0C288 */ .word aSPR_actor_init
+asm/jp/data/overlays/actors/ovl_Super/ac_super.data.s-/* 8DAF4C 80A0C28C */ .word aSPR_actor_draw
+asm/jp/data/overlays/actors/ovl_Super/ac_super.data.s-/* 8DAF50 80A0C290 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Field_Draw/ac_field_draw.data.s:dlabel Field_Draw_Profile
+asm/jp/data/overlays/actors/ovl_Field_Draw/ac_field_draw.data.s-/* 82CD20 809358E0 */ .word 0x00040500
+asm/jp/data/overlays/actors/ovl_Field_Draw/ac_field_draw.data.s-/* 82CD24 809358E4 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Field_Draw/ac_field_draw.data.s-/* 82CD28 809358E8 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Field_Draw/ac_field_draw.data.s-/* 82CD2C 809358EC */ .word 0x000001E4
+asm/jp/data/overlays/actors/ovl_Field_Draw/ac_field_draw.data.s-/* 82CD30 809358F0 */ .word Bg_Draw_Actor_ct
+asm/jp/data/overlays/actors/ovl_Field_Draw/ac_field_draw.data.s-/* 82CD34 809358F4 */ .word Bg_Draw_Actor_dt
+asm/jp/data/overlays/actors/ovl_Field_Draw/ac_field_draw.data.s-/* 82CD38 809358F8 */ .word Bg_Draw_Actor_move
+asm/jp/data/overlays/actors/ovl_Field_Draw/ac_field_draw.data.s-/* 82CD3C 809358FC */ .word Bg_Draw_Actor_draw
+asm/jp/data/overlays/actors/ovl_Field_Draw/ac_field_draw.data.s-/* 82CD40 80935900 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Npc_Post_Girl/ac_npc_post_girl.data.s:dlabel Npc_Post_Girl_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Post_Girl/ac_npc_post_girl.data.s-/* 8A87F0 809C5000 */ .word 0x001C0300
+asm/jp/data/overlays/actors/ovl_Npc_Post_Girl/ac_npc_post_girl.data.s-/* 8A87F4 809C5004 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Npc_Post_Girl/ac_npc_post_girl.data.s-/* 8A87F8 809C5008 */ .word 0xD0030003
+asm/jp/data/overlays/actors/ovl_Npc_Post_Girl/ac_npc_post_girl.data.s-/* 8A87FC 809C500C */ .word 0x00000958
+asm/jp/data/overlays/actors/ovl_Npc_Post_Girl/ac_npc_post_girl.data.s-/* 8A8800 809C5010 */ .word aPG_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Post_Girl/ac_npc_post_girl.data.s-/* 8A8804 809C5014 */ .word aPG_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Post_Girl/ac_npc_post_girl.data.s-/* 8A8808 809C5018 */ .word aPG_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Post_Girl/ac_npc_post_girl.data.s-/* 8A880C 809C501C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Post_Girl/ac_npc_post_girl.data.s-/* 8A8810 809C5020 */ .word aPG_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Ev_CarpetPeddler/ac_ev_carpetPeddler.data.s:dlabel Ev_CarpetPeddler_Profile
+asm/jp/data/overlays/actors/ovl_Ev_CarpetPeddler/ac_ev_carpetPeddler.data.s-/* 8BE460 809DAC70 */ .word 0x003D0300
+asm/jp/data/overlays/actors/ovl_Ev_CarpetPeddler/ac_ev_carpetPeddler.data.s-/* 8BE464 809DAC74 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Ev_CarpetPeddler/ac_ev_carpetPeddler.data.s-/* 8BE468 809DAC78 */ .word 0xD0060003
+asm/jp/data/overlays/actors/ovl_Ev_CarpetPeddler/ac_ev_carpetPeddler.data.s-/* 8BE46C 809DAC7C */ .word 0x00000954
+asm/jp/data/overlays/actors/ovl_Ev_CarpetPeddler/ac_ev_carpetPeddler.data.s-/* 8BE470 809DAC80 */ .word aECPD_actor_ct
+asm/jp/data/overlays/actors/ovl_Ev_CarpetPeddler/ac_ev_carpetPeddler.data.s-/* 8BE474 809DAC84 */ .word aECPD_actor_dt
+asm/jp/data/overlays/actors/ovl_Ev_CarpetPeddler/ac_ev_carpetPeddler.data.s-/* 8BE478 809DAC88 */ .word aECPD_actor_init
+asm/jp/data/overlays/actors/ovl_Ev_CarpetPeddler/ac_ev_carpetPeddler.data.s-/* 8BE47C 809DAC8C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Ev_CarpetPeddler/ac_ev_carpetPeddler.data.s-/* 8BE480 809DAC90 */ .word aECPD_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Police_Box/ac_police_box.data.s:dlabel Police_Box_Profile
+asm/jp/data/overlays/actors/ovl_Police_Box/ac_police_box.data.s-/* 8D6DD0 80A08100 */ .word 0x004D0000
+asm/jp/data/overlays/actors/ovl_Police_Box/ac_police_box.data.s-/* 8D6DD4 80A08104 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Police_Box/ac_police_box.data.s-/* 8D6DD8 80A08108 */ .word 0x580C0003
+asm/jp/data/overlays/actors/ovl_Police_Box/ac_police_box.data.s-/* 8D6DDC 80A0810C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Police_Box/ac_police_box.data.s-/* 8D6DE0 80A08110 */ .word aPBOX_actor_ct
+asm/jp/data/overlays/actors/ovl_Police_Box/ac_police_box.data.s-/* 8D6DE4 80A08114 */ .word func_80A078A4_jp
+asm/jp/data/overlays/actors/ovl_Police_Box/ac_police_box.data.s-/* 8D6DE8 80A08118 */ .word aPBOX_actor_init
+asm/jp/data/overlays/actors/ovl_Police_Box/ac_police_box.data.s-/* 8D6DEC 80A0811C */ .word aPBOX_actor_draw
+asm/jp/data/overlays/actors/ovl_Police_Box/ac_police_box.data.s-/* 8D6DF0 80A08120 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Bee/ac_bee.data.s:dlabel Bee_Profile
+asm/jp/data/overlays/actors/ovl_Bee/ac_bee.data.s-/* 954BC0 80A94950 */ .word 0x00A40400
+asm/jp/data/overlays/actors/ovl_Bee/ac_bee.data.s-/* 954BC4 80A94954 */ .word 0x00000010
+asm/jp/data/overlays/actors/ovl_Bee/ac_bee.data.s-/* 954BC8 80A94958 */ .word 0x00000188
+asm/jp/data/overlays/actors/ovl_Bee/ac_bee.data.s-/* 954BCC 80A9495C */ .word 0x00000450
+asm/jp/data/overlays/actors/ovl_Bee/ac_bee.data.s-/* 954BD0 80A94960 */ .word aBEE_actor_ct
+asm/jp/data/overlays/actors/ovl_Bee/ac_bee.data.s-/* 954BD4 80A94964 */ .word func_80A93DD0_jp
+asm/jp/data/overlays/actors/ovl_Bee/ac_bee.data.s-/* 954BD8 80A94968 */ .word aBEE_actor_move
+asm/jp/data/overlays/actors/ovl_Bee/ac_bee.data.s-/* 954BDC 80A9496C */ .word aBEE_actor_draw
+asm/jp/data/overlays/actors/ovl_Bee/ac_bee.data.s-/* 954BE0 80A94970 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Station/ac_station.data.s:dlabel Station_Profile
+asm/jp/data/overlays/actors/ovl_Station/ac_station.data.s-/* 8DEB40 80A0FE80 */ .word 0x003C0000
+asm/jp/data/overlays/actors/ovl_Station/ac_station.data.s-/* 8DEB44 80A0FE84 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Station/ac_station.data.s-/* 8DEB48 80A0FE88 */ .word 0x58090003
+asm/jp/data/overlays/actors/ovl_Station/ac_station.data.s-/* 8DEB4C 80A0FE8C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Station/ac_station.data.s-/* 8DEB50 80A0FE90 */ .word aSTA_actor_ct
+asm/jp/data/overlays/actors/ovl_Station/ac_station.data.s-/* 8DEB54 80A0FE94 */ .word aSTA_actor_dt
+asm/jp/data/overlays/actors/ovl_Station/ac_station.data.s-/* 8DEB58 80A0FE98 */ .word aSTA_actor_init
+asm/jp/data/overlays/actors/ovl_Station/ac_station.data.s-/* 8DEB5C 80A0FE9C */ .word aSTA_actor_draw
+asm/jp/data/overlays/actors/ovl_Station/ac_station.data.s-/* 8DEB60 80A0FEA0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Douzou/ac_douzou.data.s:dlabel Douzou_Profile
+asm/jp/data/overlays/actors/ovl_Douzou/ac_douzou.data.s-/* 966EF0 80AA6D80 */ .word 0x00AD0000
+asm/jp/data/overlays/actors/ovl_Douzou/ac_douzou.data.s-/* 966EF4 80AA6D84 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Douzou/ac_douzou.data.s-/* 966EF8 80AA6D88 */ .word 0x58420003
+asm/jp/data/overlays/actors/ovl_Douzou/ac_douzou.data.s-/* 966EFC 80AA6D8C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Douzou/ac_douzou.data.s-/* 966F00 80AA6D90 */ .word aDOU_actor_ct
+asm/jp/data/overlays/actors/ovl_Douzou/ac_douzou.data.s-/* 966F04 80AA6D94 */ .word aDOU_actor_dt
+asm/jp/data/overlays/actors/ovl_Douzou/ac_douzou.data.s-/* 966F08 80AA6D98 */ .word aDOU_actor_init
+asm/jp/data/overlays/actors/ovl_Douzou/ac_douzou.data.s-/* 966F0C 80AA6D9C */ .word aDOU_actor_draw
+asm/jp/data/overlays/actors/ovl_Douzou/ac_douzou.data.s-/* 966F10 80AA6DA0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Tunahiki_Npc1/ac_tunahiki_npc1.data.s:dlabel Tunahiki_Npc1_Profile
+asm/jp/data/overlays/actors/ovl_Tunahiki_Npc1/ac_tunahiki_npc1.data.s-/* 953620 80A933B0 */ .word 0x00A20300
+asm/jp/data/overlays/actors/ovl_Tunahiki_Npc1/ac_tunahiki_npc1.data.s-/* 953624 80A933B4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Tunahiki_Npc1/ac_tunahiki_npc1.data.s-/* 953628 80A933B8 */ .word 0xD0600003
+asm/jp/data/overlays/actors/ovl_Tunahiki_Npc1/ac_tunahiki_npc1.data.s-/* 95362C 80A933BC */ .word 0x0000094C
+asm/jp/data/overlays/actors/ovl_Tunahiki_Npc1/ac_tunahiki_npc1.data.s-/* 953630 80A933C0 */ .word aTNN1_actor_ct
+asm/jp/data/overlays/actors/ovl_Tunahiki_Npc1/ac_tunahiki_npc1.data.s-/* 953634 80A933C4 */ .word aTNN1_actor_dt
+asm/jp/data/overlays/actors/ovl_Tunahiki_Npc1/ac_tunahiki_npc1.data.s-/* 953638 80A933C8 */ .word aTNN1_actor_init
+asm/jp/data/overlays/actors/ovl_Tunahiki_Npc1/ac_tunahiki_npc1.data.s-/* 95363C 80A933CC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Tunahiki_Npc1/ac_tunahiki_npc1.data.s-/* 953640 80A933D0 */ .word aTNN1_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Shop_Indoor/ac_shop_indoor.data.s:dlabel Shop_Indoor_Profile
+asm/jp/data/overlays/actors/ovl_Shop_Indoor/ac_shop_indoor.data.s-/* 850410 8095B640 */ .word 0x00330500
+asm/jp/data/overlays/actors/ovl_Shop_Indoor/ac_shop_indoor.data.s-/* 850414 8095B644 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Shop_Indoor/ac_shop_indoor.data.s-/* 850418 8095B648 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Shop_Indoor/ac_shop_indoor.data.s-/* 85041C 8095B64C */ .word 0x000001AC
+asm/jp/data/overlays/actors/ovl_Shop_Indoor/ac_shop_indoor.data.s-/* 850420 8095B650 */ .word Shop_Indoor_Actor_ct
+asm/jp/data/overlays/actors/ovl_Shop_Indoor/ac_shop_indoor.data.s-/* 850424 8095B654 */ .word Shop_Indoor_Actor_dt
+asm/jp/data/overlays/actors/ovl_Shop_Indoor/ac_shop_indoor.data.s-/* 850428 8095B658 */ .word Shop_Indoor_Actor_move
+asm/jp/data/overlays/actors/ovl_Shop_Indoor/ac_shop_indoor.data.s-/* 85042C 8095B65C */ .word Shop_Indoor_Actor_draw
+asm/jp/data/overlays/actors/ovl_Shop_Indoor/ac_shop_indoor.data.s-/* 850430 8095B660 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Arrange_Room/ac_arrange_room.data.s:dlabel Arrange_Room_Profile
+asm/jp/data/overlays/actors/ovl_Arrange_Room/ac_arrange_room.data.s-/* 846300 80951510 */ .word 0x00110500
+asm/jp/data/overlays/actors/ovl_Arrange_Room/ac_arrange_room.data.s-/* 846304 80951514 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Arrange_Room/ac_arrange_room.data.s-/* 846308 80951518 */ .word 0x80060003
+asm/jp/data/overlays/actors/ovl_Arrange_Room/ac_arrange_room.data.s-/* 84630C 8095151C */ .word 0x00000190
+asm/jp/data/overlays/actors/ovl_Arrange_Room/ac_arrange_room.data.s-/* 846310 80951520 */ .word Arrange_Room_Actor_ct
+asm/jp/data/overlays/actors/ovl_Arrange_Room/ac_arrange_room.data.s-/* 846314 80951524 */ .word Arrange_Room_Actor_dt
+asm/jp/data/overlays/actors/ovl_Arrange_Room/ac_arrange_room.data.s-/* 846318 80951528 */ .word Arrange_Room_Actor_move
+asm/jp/data/overlays/actors/ovl_Arrange_Room/ac_arrange_room.data.s-/* 84631C 8095152C */ .word Arrange_Room_Actor_draw
+asm/jp/data/overlays/actors/ovl_Arrange_Room/ac_arrange_room.data.s-/* 846320 80951530 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Npc/ac_npc.data.s:dlabel Npc_Profile
+asm/jp/data/overlays/actors/ovl_Npc/ac_npc.data.s-/* 87658C 8098194C */ .word 0x00200700
+asm/jp/data/overlays/actors/ovl_Npc/ac_npc.data.s-/* 876590 80981950 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Npc/ac_npc.data.s-/* 876594 80981954 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Npc/ac_npc.data.s-/* 876598 80981958 */ .word 0x0000093C
+asm/jp/data/overlays/actors/ovl_Npc/ac_npc.data.s-/* 87659C 8098195C */ .word func_8053a354
+asm/jp/data/overlays/actors/ovl_Npc/ac_npc.data.s-/* 8765A0 80981960 */ .word func_8053a6fc
+asm/jp/data/overlays/actors/ovl_Npc/ac_npc.data.s-/* 8765A4 80981964 */ .word func_8053aab0
+asm/jp/data/overlays/actors/ovl_Npc/ac_npc.data.s-/* 8765A8 80981968 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc/ac_npc.data.s-/* 8765AC 8098196C */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_House_Clock/ac_house_clock.data.s:dlabel House_Clock_Profile
+asm/jp/data/overlays/actors/ovl_House_Clock/ac_house_clock.data.s-/* 951910 80A916A0 */ .word 0x009F0500
+asm/jp/data/overlays/actors/ovl_House_Clock/ac_house_clock.data.s-/* 951914 80A916A4 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_House_Clock/ac_house_clock.data.s-/* 951918 80A916A8 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_House_Clock/ac_house_clock.data.s-/* 95191C 80A916AC */ .word 0x000005B8
+asm/jp/data/overlays/actors/ovl_House_Clock/ac_house_clock.data.s-/* 951920 80A916B0 */ .word House_Clock_Actor_ct
+asm/jp/data/overlays/actors/ovl_House_Clock/ac_house_clock.data.s-/* 951924 80A916B4 */ .word House_Clock_Actor_dt
+asm/jp/data/overlays/actors/ovl_House_Clock/ac_house_clock.data.s-/* 951928 80A916B8 */ .word House_Clock_Actor_move
+asm/jp/data/overlays/actors/ovl_House_Clock/ac_house_clock.data.s-/* 95192C 80A916BC */ .word House_Clock_Actor_draw
+asm/jp/data/overlays/actors/ovl_House_Clock/ac_house_clock.data.s-/* 951930 80A916C0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Tukimi_Npc1/ac_tukimi_npc1.data.s:dlabel Tukimi_Npc1_Profile
+asm/jp/data/overlays/actors/ovl_Tukimi_Npc1/ac_tukimi_npc1.data.s-/* 8C4150 809E0960 */ .word 0x008E0300
+asm/jp/data/overlays/actors/ovl_Tukimi_Npc1/ac_tukimi_npc1.data.s-/* 8C4154 809E0964 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Tukimi_Npc1/ac_tukimi_npc1.data.s-/* 8C4158 809E0968 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Tukimi_Npc1/ac_tukimi_npc1.data.s-/* 8C415C 809E096C */ .word 0x0000093C
+asm/jp/data/overlays/actors/ovl_Tukimi_Npc1/ac_tukimi_npc1.data.s-/* 8C4160 809E0970 */ .word aTM1_actor_ct
+asm/jp/data/overlays/actors/ovl_Tukimi_Npc1/ac_tukimi_npc1.data.s-/* 8C4164 809E0974 */ .word aTM1_actor_dt
+asm/jp/data/overlays/actors/ovl_Tukimi_Npc1/ac_tukimi_npc1.data.s-/* 8C4168 809E0978 */ .word aTM1_actor_init
+asm/jp/data/overlays/actors/ovl_Tukimi_Npc1/ac_tukimi_npc1.data.s-/* 8C416C 809E097C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Tukimi_Npc1/ac_tukimi_npc1.data.s-/* 8C4170 809E0980 */ .word aTM1_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Npc_Majin/ovl_Npc_Majin.data.s:dlabel Npc_Majin_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Majin/ovl_Npc_Majin.data.s-/* 897260 809B3A50 */ .word 0x006C0300
+asm/jp/data/overlays/actors/ovl_Npc_Majin/ovl_Npc_Majin.data.s-/* 897264 809B3A54 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Npc_Majin/ovl_Npc_Majin.data.s-/* 897268 809B3A58 */ .word 0xD03E0003
+asm/jp/data/overlays/actors/ovl_Npc_Majin/ovl_Npc_Majin.data.s-/* 89726C 809B3A5C */ .word 0x0000094C
+asm/jp/data/overlays/actors/ovl_Npc_Majin/ovl_Npc_Majin.data.s-/* 897270 809B3A60 */ .word aMJN_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Majin/ovl_Npc_Majin.data.s-/* 897274 809B3A64 */ .word aMJN_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Majin/ovl_Npc_Majin.data.s-/* 897278 809B3A68 */ .word aMJN_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Majin/ovl_Npc_Majin.data.s-/* 89727C 809B3A6C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Majin/ovl_Npc_Majin.data.s-/* 897280 809B3A70 */ .word aMJN_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Ev_Cherry_Manager/ev_cherry_manager.data.s:dlabel Ev_Cherry_Manager_Profile
+asm/jp/data/overlays/actors/ovl_Ev_Cherry_Manager/ev_cherry_manager.data.s-/* 932B00 80A72860 */ .word 0x00780700
+asm/jp/data/overlays/actors/ovl_Ev_Cherry_Manager/ev_cherry_manager.data.s-/* 932B04 80A72864 */ .word 0x20000000
+asm/jp/data/overlays/actors/ovl_Ev_Cherry_Manager/ev_cherry_manager.data.s-/* 932B08 80A72868 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Ev_Cherry_Manager/ev_cherry_manager.data.s-/* 932B0C 80A7286C */ .word 0x00000174
+asm/jp/data/overlays/actors/ovl_Ev_Cherry_Manager/ev_cherry_manager.data.s-/* 932B10 80A72870 */ .word eChryMgr_ct
+asm/jp/data/overlays/actors/ovl_Ev_Cherry_Manager/ev_cherry_manager.data.s-/* 932B14 80A72874 */ .word eChryMgr_dt
+asm/jp/data/overlays/actors/ovl_Ev_Cherry_Manager/ev_cherry_manager.data.s-/* 932B18 80A72878 */ .word eChryMgr_move
+asm/jp/data/overlays/actors/ovl_Ev_Cherry_Manager/ev_cherry_manager.data.s-/* 932B1C 80A7287C */ .word eChryMgr_draw
+asm/jp/data/overlays/actors/ovl_Ev_Cherry_Manager/ev_cherry_manager.data.s-/* 932B20 80A72880 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_T_Cracker/ac_t_cracker.data.s:dlabel T_Cracker_Profile
+asm/jp/data/overlays/actors/ovl_T_Cracker/ac_t_cracker.data.s-/* 8E7E50 80A20390 */ .word 0x00880400
+asm/jp/data/overlays/actors/ovl_T_Cracker/ac_t_cracker.data.s-/* 8E7E54 80A20394 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_T_Cracker/ac_t_cracker.data.s-/* 8E7E58 80A20398 */ .word 0x0000018B
+asm/jp/data/overlays/actors/ovl_T_Cracker/ac_t_cracker.data.s-/* 8E7E5C 80A2039C */ .word 0x000001D0
+asm/jp/data/overlays/actors/ovl_T_Cracker/ac_t_cracker.data.s-/* 8E7E60 80A203A0 */ .word aTCR_actor_ct
+asm/jp/data/overlays/actors/ovl_T_Cracker/ac_t_cracker.data.s-/* 8E7E64 80A203A4 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_T_Cracker/ac_t_cracker.data.s-/* 8E7E68 80A203A8 */ .word aTCR_actor_move
+asm/jp/data/overlays/actors/ovl_T_Cracker/ac_t_cracker.data.s-/* 8E7E6C 80A203AC */ .word aTCR_actor_draw
+asm/jp/data/overlays/actors/ovl_T_Cracker/ac_t_cracker.data.s-/* 8E7E70 80A203B0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_T_Flag/ac_t_flag.data.s:dlabel T_Flag_Profile
+asm/jp/data/overlays/actors/ovl_T_Flag/ac_t_flag.data.s-/* 8E86A0 80A20BE0 */ .word 0x008B0400
+asm/jp/data/overlays/actors/ovl_T_Flag/ac_t_flag.data.s-/* 8E86A4 80A20BE4 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_T_Flag/ac_t_flag.data.s-/* 8E86A8 80A20BE8 */ .word 0x00000006
+asm/jp/data/overlays/actors/ovl_T_Flag/ac_t_flag.data.s-/* 8E86AC 80A20BEC */ .word 0x000001DC
+asm/jp/data/overlays/actors/ovl_T_Flag/ac_t_flag.data.s-/* 8E86B0 80A20BF0 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_T_Flag/ac_t_flag.data.s-/* 8E86B4 80A20BF4 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_T_Flag/ac_t_flag.data.s-/* 8E86B8 80A20BF8 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_T_Flag/ac_t_flag.data.s-/* 8E86BC 80A20BFC */ .word aTFL_actor_draw
+asm/jp/data/overlays/actors/ovl_T_Flag/ac_t_flag.data.s-/* 8E86C0 80A20C00 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5.data.s:dlabel Npc_Majin5_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5.data.s-/* 96D1B0 80AAD040 */ .word 0x00B10300
+asm/jp/data/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5.data.s-/* 96D1B4 80AAD044 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5.data.s-/* 96D1B8 80AAD048 */ .word 0xD06B0003
+asm/jp/data/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5.data.s-/* 96D1BC 80AAD04C */ .word 0x00000938
+asm/jp/data/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5.data.s-/* 96D1C0 80AAD050 */ .word aNMJ5_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5.data.s-/* 96D1C4 80AAD054 */ .word aNMJ5_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5.data.s-/* 96D1C8 80AAD058 */ .word aNMJ5_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5.data.s-/* 96D1CC 80AAD05C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Majin5/ac_npc_majin5.data.s-/* 96D1D0 80AAD060 */ .word aNMJ5_actor_save
+--
+asm/jp/data/overlays/actors/ovl_House/ac_house.data.s:dlabel House_Profile
+asm/jp/data/overlays/actors/ovl_House/ac_house.data.s-/* 8D38D0 80A04C00 */ .word 0x00280000
+asm/jp/data/overlays/actors/ovl_House/ac_house.data.s-/* 8D38D4 80A04C04 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_House/ac_house.data.s-/* 8D38D8 80A04C08 */ .word 0x50000003
+asm/jp/data/overlays/actors/ovl_House/ac_house.data.s-/* 8D38DC 80A04C0C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_House/ac_house.data.s-/* 8D38E0 80A04C10 */ .word aHUS_actor_ct
+asm/jp/data/overlays/actors/ovl_House/ac_house.data.s-/* 8D38E4 80A04C14 */ .word aHUS_actor_dt
+asm/jp/data/overlays/actors/ovl_House/ac_house.data.s-/* 8D38E8 80A04C18 */ .word aHUS_actor_init
+asm/jp/data/overlays/actors/ovl_House/ac_house.data.s-/* 8D38EC 80A04C1C */ .word aHUS_actor_draw
+asm/jp/data/overlays/actors/ovl_House/ac_house.data.s-/* 8D38F0 80A04C20 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Snowman/ac_snowman.data.s:dlabel Snowman_Profile
+asm/jp/data/overlays/actors/ovl_Snowman/ac_snowman.data.s-/* 866880 80971C40 */ .word 0x001B0400
+asm/jp/data/overlays/actors/ovl_Snowman/ac_snowman.data.s-/* 866884 80971C44 */ .word 0x00000010
+asm/jp/data/overlays/actors/ovl_Snowman/ac_snowman.data.s-/* 866888 80971C48 */ .word 0x800D0019
+asm/jp/data/overlays/actors/ovl_Snowman/ac_snowman.data.s-/* 86688C 80971C4C */ .word 0x000001FC
+asm/jp/data/overlays/actors/ovl_Snowman/ac_snowman.data.s-/* 866890 80971C50 */ .word aSMAN_actor_ct
+asm/jp/data/overlays/actors/ovl_Snowman/ac_snowman.data.s-/* 866894 80971C54 */ .word aSMAN_actor_dt
+asm/jp/data/overlays/actors/ovl_Snowman/ac_snowman.data.s-/* 866898 80971C58 */ .word aSMAN_actor_move
+asm/jp/data/overlays/actors/ovl_Snowman/ac_snowman.data.s-/* 86689C 80971C5C */ .word aSMAN_actor_draw
+asm/jp/data/overlays/actors/ovl_Snowman/ac_snowman.data.s-/* 8668A0 80971C60 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Airplane/ac_airplane.data.s:dlabel Airplane_Profile
+asm/jp/data/overlays/actors/ovl_Airplane/ac_airplane.data.s-/* 85D360 80968710 */ .word 0x00050400
+asm/jp/data/overlays/actors/ovl_Airplane/ac_airplane.data.s-/* 85D364 80968714 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Airplane/ac_airplane.data.s-/* 85D368 80968718 */ .word 0x80000007
+asm/jp/data/overlays/actors/ovl_Airplane/ac_airplane.data.s-/* 85D36C 8096871C */ .word 0x000001C8
+asm/jp/data/overlays/actors/ovl_Airplane/ac_airplane.data.s-/* 85D370 80968720 */ .word Airplane_Actor_ct
+asm/jp/data/overlays/actors/ovl_Airplane/ac_airplane.data.s-/* 85D374 80968724 */ .word Airplane_Actor_dt
+asm/jp/data/overlays/actors/ovl_Airplane/ac_airplane.data.s-/* 85D378 80968728 */ .word Airplane_Actor_move
+asm/jp/data/overlays/actors/ovl_Airplane/ac_airplane.data.s-/* 85D37C 8096872C */ .word Airplane_Actor_draw
+asm/jp/data/overlays/actors/ovl_Airplane/ac_airplane.data.s-/* 85D380 80968730 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Gyo_Kage/ac_gyo_kage.data.s:dlabel Gyo_Kage_Profile
+asm/jp/data/overlays/actors/ovl_Gyo_Kage/ac_gyo_kage.data.s-/* 9426D0 80A82430 */ .word 0x00850400
+asm/jp/data/overlays/actors/ovl_Gyo_Kage/ac_gyo_kage.data.s-/* 9426D4 80A82434 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Gyo_Kage/ac_gyo_kage.data.s-/* 9426D8 80A82438 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Gyo_Kage/ac_gyo_kage.data.s-/* 9426DC 80A8243C */ .word 0x000001AC
+asm/jp/data/overlays/actors/ovl_Gyo_Kage/ac_gyo_kage.data.s-/* 9426E0 80A82440 */ .word aGYO_KAGE_actor_ct
+asm/jp/data/overlays/actors/ovl_Gyo_Kage/ac_gyo_kage.data.s-/* 9426E4 80A82444 */ .word aGYO_KAGE_actor_dt
+asm/jp/data/overlays/actors/ovl_Gyo_Kage/ac_gyo_kage.data.s-/* 9426E8 80A82448 */ .word aGYO_KAGE_actor_move
+asm/jp/data/overlays/actors/ovl_Gyo_Kage/ac_gyo_kage.data.s-/* 9426EC 80A8244C */ .word aGYO_KAGE_actor_draw
+asm/jp/data/overlays/actors/ovl_Gyo_Kage/ac_gyo_kage.data.s-/* 9426F0 80A82450 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Npc_Engineer/ac_npc_engineer.data.s:dlabel Npc_Engineer_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Engineer/ac_npc_engineer.data.s-/* 892790 809AEF80 */ .word 0x001D0300
+asm/jp/data/overlays/actors/ovl_Npc_Engineer/ac_npc_engineer.data.s-/* 892794 809AEF84 */ .word 0x20000010
+asm/jp/data/overlays/actors/ovl_Npc_Engineer/ac_npc_engineer.data.s-/* 892798 809AEF88 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Npc_Engineer/ac_npc_engineer.data.s-/* 89279C 809AEF8C */ .word 0x00000938
+asm/jp/data/overlays/actors/ovl_Npc_Engineer/ac_npc_engineer.data.s-/* 8927A0 809AEF90 */ .word aNEG_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Engineer/ac_npc_engineer.data.s-/* 8927A4 809AEF94 */ .word aNEG_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Engineer/ac_npc_engineer.data.s-/* 8927A8 809AEF98 */ .word aNEG_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Engineer/ac_npc_engineer.data.s-/* 8927AC 809AEF9C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Engineer/ac_npc_engineer.data.s-/* 8927B0 809AEFA0 */ .word aNEG_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Npc_Super_Master/ac_npc_super_master.data.s:dlabel Npc_Super_Master_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Super_Master/ac_npc_super_master.data.s-/* 8B6850 809D3060 */ .word 0x00420300
+asm/jp/data/overlays/actors/ovl_Npc_Super_Master/ac_npc_super_master.data.s-/* 8B6854 809D3064 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Npc_Super_Master/ac_npc_super_master.data.s-/* 8B6858 809D3068 */ .word 0xD00A0003
+asm/jp/data/overlays/actors/ovl_Npc_Super_Master/ac_npc_super_master.data.s-/* 8B685C 809D306C */ .word 0x0000096C
+asm/jp/data/overlays/actors/ovl_Npc_Super_Master/ac_npc_super_master.data.s-/* 8B6860 809D3070 */ .word aNSPM_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Super_Master/ac_npc_super_master.data.s-/* 8B6864 809D3074 */ .word aNSPM_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Super_Master/ac_npc_super_master.data.s-/* 8B6868 809D3078 */ .word aNSPM_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Super_Master/ac_npc_super_master.data.s-/* 8B686C 809D307C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Super_Master/ac_npc_super_master.data.s-/* 8B6870 809D3080 */ .word aNSPM_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Shop_Design/ac_shop_design.data.s:dlabel Shop_Design_Profile
+asm/jp/data/overlays/actors/ovl_Shop_Design/ac_shop_design.data.s-/* 849A50 80954C80 */ .word 0x00250700
+asm/jp/data/overlays/actors/ovl_Shop_Design/ac_shop_design.data.s-/* 849A54 80954C84 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Shop_Design/ac_shop_design.data.s-/* 849A58 80954C88 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Shop_Design/ac_shop_design.data.s-/* 849A5C 80954C8C */ .word 0x0000018C
+asm/jp/data/overlays/actors/ovl_Shop_Design/ac_shop_design.data.s-/* 849A60 80954C90 */ .word Shop_Design_Actor_ct
+asm/jp/data/overlays/actors/ovl_Shop_Design/ac_shop_design.data.s-/* 849A64 80954C94 */ .word Shop_Design_Actor_dt
+asm/jp/data/overlays/actors/ovl_Shop_Design/ac_shop_design.data.s-/* 849A68 80954C98 */ .word Shop_Design_Actor_move
+asm/jp/data/overlays/actors/ovl_Shop_Design/ac_shop_design.data.s-/* 849A6C 80954C9C */ .word Shop_Design_Actor_draw
+asm/jp/data/overlays/actors/ovl_Shop_Design/ac_shop_design.data.s-/* 849A70 80954CA0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_MyHouse/ac_my_house.data.s:dlabel MyHouse_Profile
+asm/jp/data/overlays/actors/ovl_MyHouse/ac_my_house.data.s-/* 8D6040 80A07370 */ .word 0x002B0000
+asm/jp/data/overlays/actors/ovl_MyHouse/ac_my_house.data.s-/* 8D6044 80A07374 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_MyHouse/ac_my_house.data.s-/* 8D6048 80A07378 */ .word 0x58000003
+asm/jp/data/overlays/actors/ovl_MyHouse/ac_my_house.data.s-/* 8D604C 80A0737C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_MyHouse/ac_my_house.data.s-/* 8D6050 80A07380 */ .word func_80A05D50_jp
+asm/jp/data/overlays/actors/ovl_MyHouse/ac_my_house.data.s-/* 8D6054 80A07384 */ .word func_80A05F88_jp
+asm/jp/data/overlays/actors/ovl_MyHouse/ac_my_house.data.s-/* 8D6058 80A07388 */ .word func_80A06DF0_jp
+asm/jp/data/overlays/actors/ovl_MyHouse/ac_my_house.data.s-/* 8D605C 80A0738C */ .word func_80A071A0_jp
+asm/jp/data/overlays/actors/ovl_MyHouse/ac_my_house.data.s-/* 8D6060 80A07390 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Lotus/ac_lotus.data.s:dlabel Lotus_Profile
+asm/jp/data/overlays/actors/ovl_Lotus/ac_lotus.data.s-/* 95F530 80A9F2C0 */ .word 0x00AA0000
+asm/jp/data/overlays/actors/ovl_Lotus/ac_lotus.data.s-/* 95F534 80A9F2C4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Lotus/ac_lotus.data.s-/* 95F538 80A9F2C8 */ .word 0x58400003
+asm/jp/data/overlays/actors/ovl_Lotus/ac_lotus.data.s-/* 95F53C 80A9F2CC */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Lotus/ac_lotus.data.s-/* 95F540 80A9F2D0 */ .word aLOT_actor_ct
+asm/jp/data/overlays/actors/ovl_Lotus/ac_lotus.data.s-/* 95F544 80A9F2D4 */ .word aLOT_actor_dt
+asm/jp/data/overlays/actors/ovl_Lotus/ac_lotus.data.s-/* 95F548 80A9F2D8 */ .word aLOT_actor_init
+asm/jp/data/overlays/actors/ovl_Lotus/ac_lotus.data.s-/* 95F54C 80A9F2DC */ .word aLOT_actor_draw
+asm/jp/data/overlays/actors/ovl_Lotus/ac_lotus.data.s-/* 95F550 80A9F2E0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Conveni/ac_conveni.data.s:dlabel Conveni_Profile
+asm/jp/data/overlays/actors/ovl_Conveni/ac_conveni.data.s-/* 8D0A00 80A01D30 */ .word 0x005F0000
+asm/jp/data/overlays/actors/ovl_Conveni/ac_conveni.data.s-/* 8D0A04 80A01D34 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Conveni/ac_conveni.data.s-/* 8D0A08 80A01D38 */ .word 0x58050003
+asm/jp/data/overlays/actors/ovl_Conveni/ac_conveni.data.s-/* 8D0A0C 80A01D3C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Conveni/ac_conveni.data.s-/* 8D0A10 80A01D40 */ .word aCNV_actor_ct
+asm/jp/data/overlays/actors/ovl_Conveni/ac_conveni.data.s-/* 8D0A14 80A01D44 */ .word aCNV_actor_dt
+asm/jp/data/overlays/actors/ovl_Conveni/ac_conveni.data.s-/* 8D0A18 80A01D48 */ .word aCNV_actor_init
+asm/jp/data/overlays/actors/ovl_Conveni/ac_conveni.data.s-/* 8D0A1C 80A01D4C */ .word aCNV_actor_draw
+asm/jp/data/overlays/actors/ovl_Conveni/ac_conveni.data.s-/* 8D0A20 80A01D50 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_BrShop/ac_br_shop.data.s:dlabel BrShop_Profile
+asm/jp/data/overlays/actors/ovl_BrShop/ac_br_shop.data.s-/* 8CE600 809FF930 */ .word 0x00360000
+asm/jp/data/overlays/actors/ovl_BrShop/ac_br_shop.data.s-/* 8CE604 809FF934 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_BrShop/ac_br_shop.data.s-/* 8CE608 809FF938 */ .word 0x58260003
+asm/jp/data/overlays/actors/ovl_BrShop/ac_br_shop.data.s-/* 8CE60C 809FF93C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_BrShop/ac_br_shop.data.s-/* 8CE610 809FF940 */ .word aBRS_actor_ct
+asm/jp/data/overlays/actors/ovl_BrShop/ac_br_shop.data.s-/* 8CE614 809FF944 */ .word aBRS_actor_dt
+asm/jp/data/overlays/actors/ovl_BrShop/ac_br_shop.data.s-/* 8CE618 809FF948 */ .word aBRS_actor_init
+asm/jp/data/overlays/actors/ovl_BrShop/ac_br_shop.data.s-/* 8CE61C 809FF94C */ .word aBRS_actor_draw
+asm/jp/data/overlays/actors/ovl_BrShop/ac_br_shop.data.s-/* 8CE620 809FF950 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Tukimi_Npc0/ac_tukimi_npc0.data.s:dlabel Tukimi_Npc0_Profile
+asm/jp/data/overlays/actors/ovl_Tukimi_Npc0/ac_tukimi_npc0.data.s-/* 8C3870 809E0080 */ .word 0x008D0300
+asm/jp/data/overlays/actors/ovl_Tukimi_Npc0/ac_tukimi_npc0.data.s-/* 8C3874 809E0084 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Tukimi_Npc0/ac_tukimi_npc0.data.s-/* 8C3878 809E0088 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Tukimi_Npc0/ac_tukimi_npc0.data.s-/* 8C387C 809E008C */ .word 0x00000938
+asm/jp/data/overlays/actors/ovl_Tukimi_Npc0/ac_tukimi_npc0.data.s-/* 8C3880 809E0090 */ .word aTM0_actor_ct
+asm/jp/data/overlays/actors/ovl_Tukimi_Npc0/ac_tukimi_npc0.data.s-/* 8C3884 809E0094 */ .word aTM0_actor_dt
+asm/jp/data/overlays/actors/ovl_Tukimi_Npc0/ac_tukimi_npc0.data.s-/* 8C3888 809E0098 */ .word aTM0_actor_init
+asm/jp/data/overlays/actors/ovl_Tukimi_Npc0/ac_tukimi_npc0.data.s-/* 8C388C 809E009C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Tukimi_Npc0/ac_tukimi_npc0.data.s-/* 8C3890 809E00A0 */ .word aTM0_actor_save
+--
+asm/jp/data/overlays/actors/ovl_T_Pistol/ac_t_pistol.data.s:dlabel T_Pistol_Profile
+asm/jp/data/overlays/actors/ovl_T_Pistol/ac_t_pistol.data.s-/* 8E8190 80A206D0 */ .word 0x008A0400
+asm/jp/data/overlays/actors/ovl_T_Pistol/ac_t_pistol.data.s-/* 8E8194 80A206D4 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_T_Pistol/ac_t_pistol.data.s-/* 8E8198 80A206D8 */ .word 0x00000010
+asm/jp/data/overlays/actors/ovl_T_Pistol/ac_t_pistol.data.s-/* 8E819C 80A206DC */ .word 0x000001D0
+asm/jp/data/overlays/actors/ovl_T_Pistol/ac_t_pistol.data.s-/* 8E81A0 80A206E0 */ .word aTPT_actor_ct
+asm/jp/data/overlays/actors/ovl_T_Pistol/ac_t_pistol.data.s-/* 8E81A4 80A206E4 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_T_Pistol/ac_t_pistol.data.s-/* 8E81A8 80A206E8 */ .word aTPT_actor_move
+asm/jp/data/overlays/actors/ovl_T_Pistol/ac_t_pistol.data.s-/* 8E81AC 80A206EC */ .word aTPT_actor_draw
+asm/jp/data/overlays/actors/ovl_T_Pistol/ac_t_pistol.data.s-/* 8E81B0 80A206F0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_BgWinterItem/bg_winter_item.data.s:dlabel BgWinterItem_Profile
+asm/jp/data/overlays/actors/ovl_BgWinterItem/bg_winter_item.data.s-/* 7F7F00 808FECE0 */ .word 0x00500000
+asm/jp/data/overlays/actors/ovl_BgWinterItem/bg_winter_item.data.s-/* 7F7F04 808FECE4 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_BgWinterItem/bg_winter_item.data.s-/* 7F7F08 808FECE8 */ .word 0x00000025
+asm/jp/data/overlays/actors/ovl_BgWinterItem/bg_winter_item.data.s-/* 7F7F0C 808FECEC */ .word 0x00012EA0
+asm/jp/data/overlays/actors/ovl_BgWinterItem/bg_winter_item.data.s-/* 7F7F10 808FECF0 */ .word bWI_actor_ct
+asm/jp/data/overlays/actors/ovl_BgWinterItem/bg_winter_item.data.s-/* 7F7F14 808FECF4 */ .word bWI_actor_dt
+asm/jp/data/overlays/actors/ovl_BgWinterItem/bg_winter_item.data.s-/* 7F7F18 808FECF8 */ .word bWI_actor_move
+asm/jp/data/overlays/actors/ovl_BgWinterItem/bg_winter_item.data.s-/* 7F7F1C 808FECFC */ .word bWI_actor_draw
+asm/jp/data/overlays/actors/ovl_BgWinterItem/bg_winter_item.data.s-/* 7F7F20 808FED00 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Npc2/ac_npc2.data.s:dlabel Npc2_Profile
+asm/jp/data/overlays/actors/ovl_Npc2/ac_npc2.data.s-/* 884FFC 809A132C */ .word 0x00200700
+asm/jp/data/overlays/actors/ovl_Npc2/ac_npc2.data.s-/* 885000 809A1330 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Npc2/ac_npc2.data.s-/* 885004 809A1334 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Npc2/ac_npc2.data.s-/* 885008 809A1338 */ .word 0x00000A44
+asm/jp/data/overlays/actors/ovl_Npc2/ac_npc2.data.s-/* 88500C 809A133C */ .word func_80545034
+asm/jp/data/overlays/actors/ovl_Npc2/ac_npc2.data.s-/* 885010 809A1340 */ .word func_805453b8
+asm/jp/data/overlays/actors/ovl_Npc2/ac_npc2.data.s-/* 885014 809A1344 */ .word func_80545604
+asm/jp/data/overlays/actors/ovl_Npc2/ac_npc2.data.s-/* 885018 809A1348 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc2/ac_npc2.data.s-/* 88501C 809A134C */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_BoxManager/ac_boxManager.data.s:dlabel BoxManager_Profile
+asm/jp/data/overlays/actors/ovl_BoxManager/ac_boxManager.data.s-/* 867CA0 80973060 */ .word 0x000E0400
+asm/jp/data/overlays/actors/ovl_BoxManager/ac_boxManager.data.s-/* 867CA4 80973064 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_BoxManager/ac_boxManager.data.s-/* 867CA8 80973068 */ .word 0x80050014
+asm/jp/data/overlays/actors/ovl_BoxManager/ac_boxManager.data.s-/* 867CAC 8097306C */ .word 0x000001F8
+asm/jp/data/overlays/actors/ovl_BoxManager/ac_boxManager.data.s-/* 867CB0 80973070 */ .word BoxManager_Actor_ct
+asm/jp/data/overlays/actors/ovl_BoxManager/ac_boxManager.data.s-/* 867CB4 80973074 */ .word BoxManager_Actor_dt
+asm/jp/data/overlays/actors/ovl_BoxManager/ac_boxManager.data.s-/* 867CB8 80973078 */ .word BoxManager_Actor_move
+asm/jp/data/overlays/actors/ovl_BoxManager/ac_boxManager.data.s-/* 867CBC 8097307C */ .word BoxManager_Actor_draw
+asm/jp/data/overlays/actors/ovl_BoxManager/ac_boxManager.data.s-/* 867CC0 80973080 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Shop_Manekin/ac_shop_manekin.data.s:dlabel Shop_Manekin_Profile
+asm/jp/data/overlays/actors/ovl_Shop_Manekin/ac_shop_manekin.data.s-/* 84F060 8095A290 */ .word 0x00320700
+asm/jp/data/overlays/actors/ovl_Shop_Manekin/ac_shop_manekin.data.s-/* 84F064 8095A294 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Shop_Manekin/ac_shop_manekin.data.s-/* 84F068 8095A298 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Shop_Manekin/ac_shop_manekin.data.s-/* 84F06C 8095A29C */ .word 0x000001A0
+asm/jp/data/overlays/actors/ovl_Shop_Manekin/ac_shop_manekin.data.s-/* 84F070 8095A2A0 */ .word Shop_Manekin_Actor_ct
+asm/jp/data/overlays/actors/ovl_Shop_Manekin/ac_shop_manekin.data.s-/* 84F074 8095A2A4 */ .word Shop_Manekin_Actor_dt
+asm/jp/data/overlays/actors/ovl_Shop_Manekin/ac_shop_manekin.data.s-/* 84F078 8095A2A8 */ .word Shop_Manekin_Actor_move
+asm/jp/data/overlays/actors/ovl_Shop_Manekin/ac_shop_manekin.data.s-/* 84F07C 8095A2AC */ .word Shop_Manekin_Actor_draw
+asm/jp/data/overlays/actors/ovl_Shop_Manekin/ac_shop_manekin.data.s-/* 84F080 8095A2B0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_T_Tumbler/ac_t_tumbler.data.s:dlabel T_Tumbler_Profile
+asm/jp/data/overlays/actors/ovl_T_Tumbler/ac_t_tumbler.data.s-/* 8E8980 80A20EC0 */ .word 0x008C0400
+asm/jp/data/overlays/actors/ovl_T_Tumbler/ac_t_tumbler.data.s-/* 8E8984 80A20EC4 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_T_Tumbler/ac_t_tumbler.data.s-/* 8E8988 80A20EC8 */ .word 0x00000173
+asm/jp/data/overlays/actors/ovl_T_Tumbler/ac_t_tumbler.data.s-/* 8E898C 80A20ECC */ .word 0x000001D0
+asm/jp/data/overlays/actors/ovl_T_Tumbler/ac_t_tumbler.data.s-/* 8E8990 80A20ED0 */ .word aTTB_actor_ct
+asm/jp/data/overlays/actors/ovl_T_Tumbler/ac_t_tumbler.data.s-/* 8E8994 80A20ED4 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_T_Tumbler/ac_t_tumbler.data.s-/* 8E8998 80A20ED8 */ .word aTTB_actor_move
+asm/jp/data/overlays/actors/ovl_T_Tumbler/ac_t_tumbler.data.s-/* 8E899C 80A20EDC */ .word aTTB_actor_draw
+asm/jp/data/overlays/actors/ovl_T_Tumbler/ac_t_tumbler.data.s-/* 8E89A0 80A20EE0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Kamakura_Indoor/ac_kamakura_indoor.data.s:dlabel Kamakura_Indoor_Profile
+asm/jp/data/overlays/actors/ovl_Kamakura_Indoor/ac_kamakura_indoor.data.s-/* 9414B0 80A81210 */ .word 0x00830500
+asm/jp/data/overlays/actors/ovl_Kamakura_Indoor/ac_kamakura_indoor.data.s-/* 9414B4 80A81214 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Kamakura_Indoor/ac_kamakura_indoor.data.s-/* 9414B8 80A81218 */ .word 0x00000016
+asm/jp/data/overlays/actors/ovl_Kamakura_Indoor/ac_kamakura_indoor.data.s-/* 9414BC 80A8121C */ .word 0x00000200
+asm/jp/data/overlays/actors/ovl_Kamakura_Indoor/ac_kamakura_indoor.data.s-/* 9414C0 80A81220 */ .word Kamakura_Indoor_Actor_ct
+asm/jp/data/overlays/actors/ovl_Kamakura_Indoor/ac_kamakura_indoor.data.s-/* 9414C4 80A81224 */ .word Kamakura_Indoor_Actor_dt
+asm/jp/data/overlays/actors/ovl_Kamakura_Indoor/ac_kamakura_indoor.data.s-/* 9414C8 80A81228 */ .word Kamakura_Indoor_Actor_move
+asm/jp/data/overlays/actors/ovl_Kamakura_Indoor/ac_kamakura_indoor.data.s-/* 9414CC 80A8122C */ .word Kamakura_Indoor_Actor_draw
+asm/jp/data/overlays/actors/ovl_Kamakura_Indoor/ac_kamakura_indoor.data.s-/* 9414D0 80A81230 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Npc_Mamedanuki/ac_npc_mamedanuki.data.s:dlabel Npc_Mamedanuki_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Mamedanuki/ac_npc_mamedanuki.data.s-/* 89D934 809BA134 */ .word 0x00180300
+asm/jp/data/overlays/actors/ovl_Npc_Mamedanuki/ac_npc_mamedanuki.data.s-/* 89D938 809BA138 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Npc_Mamedanuki/ac_npc_mamedanuki.data.s-/* 89D93C 809BA13C */ .word 0xD0260003
+asm/jp/data/overlays/actors/ovl_Npc_Mamedanuki/ac_npc_mamedanuki.data.s-/* 89D940 809BA140 */ .word 0x0000096C
+asm/jp/data/overlays/actors/ovl_Npc_Mamedanuki/ac_npc_mamedanuki.data.s-/* 89D944 809BA144 */ .word aNMD_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Mamedanuki/ac_npc_mamedanuki.data.s-/* 89D948 809BA148 */ .word aNMD_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Mamedanuki/ac_npc_mamedanuki.data.s-/* 89D94C 809BA14C */ .word aNMD_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Mamedanuki/ac_npc_mamedanuki.data.s-/* 89D950 809BA150 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Mamedanuki/ac_npc_mamedanuki.data.s-/* 89D954 809BA154 */ .word aNMD_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Mikuji/ac_mikuji.data.s:dlabel Mikuji_Profile
+asm/jp/data/overlays/actors/ovl_Mikuji/ac_mikuji.data.s-/* 942DA0 80A82B00 */ .word 0x00860000
+asm/jp/data/overlays/actors/ovl_Mikuji/ac_mikuji.data.s-/* 942DA4 80A82B04 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Mikuji/ac_mikuji.data.s-/* 942DA8 80A82B08 */ .word 0x58300003
+asm/jp/data/overlays/actors/ovl_Mikuji/ac_mikuji.data.s-/* 942DAC 80A82B0C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Mikuji/ac_mikuji.data.s-/* 942DB0 80A82B10 */ .word func_805b414c
+asm/jp/data/overlays/actors/ovl_Mikuji/ac_mikuji.data.s-/* 942DB4 80A82B14 */ .word func_80A82638_jp
+asm/jp/data/overlays/actors/ovl_Mikuji/ac_mikuji.data.s-/* 942DB8 80A82B18 */ .word func_805b437c
+asm/jp/data/overlays/actors/ovl_Mikuji/ac_mikuji.data.s-/* 942DBC 80A82B1C */ .word func_805b43f4
+asm/jp/data/overlays/actors/ovl_Mikuji/ac_mikuji.data.s-/* 942DC0 80A82B20 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Npc_Depart_Master/ac_npc_depart_master.data.s:dlabel Npc_Depart_Master_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Depart_Master/ac_npc_depart_master.data.s-/* 8917D0 809ADFC0 */ .word 0x00430300
+asm/jp/data/overlays/actors/ovl_Npc_Depart_Master/ac_npc_depart_master.data.s-/* 8917D4 809ADFC4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Npc_Depart_Master/ac_npc_depart_master.data.s-/* 8917D8 809ADFC8 */ .word 0xD00B0003
+asm/jp/data/overlays/actors/ovl_Npc_Depart_Master/ac_npc_depart_master.data.s-/* 8917DC 809ADFCC */ .word 0x0000096C
+asm/jp/data/overlays/actors/ovl_Npc_Depart_Master/ac_npc_depart_master.data.s-/* 8917E0 809ADFD0 */ .word aNDM_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Depart_Master/ac_npc_depart_master.data.s-/* 8917E4 809ADFD4 */ .word aNDM_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Depart_Master/ac_npc_depart_master.data.s-/* 8917E8 809ADFD8 */ .word aNDM_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Depart_Master/ac_npc_depart_master.data.s-/* 8917EC 809ADFDC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Depart_Master/ac_npc_depart_master.data.s-/* 8917F0 809ADFE0 */ .word aNDM_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Set_Manager/ac_set_manager.data.s:dlabel Set_Manager_Profile
+asm/jp/data/overlays/actors/ovl_Set_Manager/ac_set_manager.data.s-/* 84D0E0 80958310 */ .word 0x00720700
+asm/jp/data/overlays/actors/ovl_Set_Manager/ac_set_manager.data.s-/* 84D0E4 80958314 */ .word 0x20000030
+asm/jp/data/overlays/actors/ovl_Set_Manager/ac_set_manager.data.s-/* 84D0E8 80958318 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Set_Manager/ac_set_manager.data.s-/* 84D0EC 8095831C */ .word 0x000042E8
+asm/jp/data/overlays/actors/ovl_Set_Manager/ac_set_manager.data.s-/* 84D0F0 80958320 */ .word aSetMgr_ct
+asm/jp/data/overlays/actors/ovl_Set_Manager/ac_set_manager.data.s-/* 84D0F4 80958324 */ .word aSetMgr_dt
+asm/jp/data/overlays/actors/ovl_Set_Manager/ac_set_manager.data.s-/* 84D0F8 80958328 */ .word aSetMgr_move
+asm/jp/data/overlays/actors/ovl_Set_Manager/ac_set_manager.data.s-/* 84D0FC 8095832C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Set_Manager/ac_set_manager.data.s-/* 84D100 80958330 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Npc_Majin4/ac_npc_majin4.data.s:dlabel Npc_Majin4_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Majin4/ac_npc_majin4.data.s-/* 899EF0 809B66E0 */ .word 0x00690300
+asm/jp/data/overlays/actors/ovl_Npc_Majin4/ac_npc_majin4.data.s-/* 899EF4 809B66E4 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Npc_Majin4/ac_npc_majin4.data.s-/* 899EF8 809B66E8 */ .word 0xD0690003
+asm/jp/data/overlays/actors/ovl_Npc_Majin4/ac_npc_majin4.data.s-/* 899EFC 809B66EC */ .word 0x00000954
+asm/jp/data/overlays/actors/ovl_Npc_Majin4/ac_npc_majin4.data.s-/* 899F00 809B66F0 */ .word aMJN4_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Majin4/ac_npc_majin4.data.s-/* 899F04 809B66F4 */ .word aMJN4_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Majin4/ac_npc_majin4.data.s-/* 899F08 809B66F8 */ .word aMJN4_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Majin4/ac_npc_majin4.data.s-/* 899F0C 809B66FC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Majin4/ac_npc_majin4.data.s-/* 899F10 809B6700 */ .word aMJN4_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Mikanbox/ac_mikanbox.data.s:dlabel Mikanbox_Profile
+asm/jp/data/overlays/actors/ovl_Mikanbox/ac_mikanbox.data.s-/* 964F80 80AA4D30 */ .word 0x00AC0000
+asm/jp/data/overlays/actors/ovl_Mikanbox/ac_mikanbox.data.s-/* 964F84 80AA4D34 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Mikanbox/ac_mikanbox.data.s-/* 964F88 80AA4D38 */ .word 0x58410003
+asm/jp/data/overlays/actors/ovl_Mikanbox/ac_mikanbox.data.s-/* 964F8C 80AA4D3C */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Mikanbox/ac_mikanbox.data.s-/* 964F90 80AA4D40 */ .word func_805b3010
+asm/jp/data/overlays/actors/ovl_Mikanbox/ac_mikanbox.data.s-/* 964F94 80AA4D44 */ .word aMIK_actor_dt
+asm/jp/data/overlays/actors/ovl_Mikanbox/ac_mikanbox.data.s-/* 964F98 80AA4D48 */ .word func_805b3e58
+asm/jp/data/overlays/actors/ovl_Mikanbox/ac_mikanbox.data.s-/* 964F9C 80AA4D4C */ .word func_805b4054
+asm/jp/data/overlays/actors/ovl_Mikanbox/ac_mikanbox.data.s-/* 964FA0 80AA4D50 */ .word aMIK_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Ev_Designer/ac_ev_designer.data.s:dlabel Ev_Designer_Profile
+asm/jp/data/overlays/actors/ovl_Ev_Designer/ac_ev_designer.data.s-/* 8BF8D0 809DC0E0 */ .word 0x002E0300
+asm/jp/data/overlays/actors/ovl_Ev_Designer/ac_ev_designer.data.s-/* 8BF8D4 809DC0E4 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Ev_Designer/ac_ev_designer.data.s-/* 8BF8D8 809DC0E8 */ .word 0xD0020003
+asm/jp/data/overlays/actors/ovl_Ev_Designer/ac_ev_designer.data.s-/* 8BF8DC 809DC0EC */ .word 0x00000958
+asm/jp/data/overlays/actors/ovl_Ev_Designer/ac_ev_designer.data.s-/* 8BF8E0 809DC0F0 */ .word aEDSN_actor_ct
+asm/jp/data/overlays/actors/ovl_Ev_Designer/ac_ev_designer.data.s-/* 8BF8E4 809DC0F4 */ .word aEDSN_actor_dt
+asm/jp/data/overlays/actors/ovl_Ev_Designer/ac_ev_designer.data.s-/* 8BF8E8 809DC0F8 */ .word aEDSN_actor_init
+asm/jp/data/overlays/actors/ovl_Ev_Designer/ac_ev_designer.data.s-/* 8BF8EC 809DC0FC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Ev_Designer/ac_ev_designer.data.s-/* 8BF8F0 809DC100 */ .word aEDSN_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Npc_Station_Master/ac_npc_station_master.data.s:dlabel Npc_Station_Master_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Station_Master/ac_npc_station_master.data.s-/* 8B8C70 809D5480 */ .word 0x004A0300
+asm/jp/data/overlays/actors/ovl_Npc_Station_Master/ac_npc_station_master.data.s-/* 8B8C74 809D5484 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Npc_Station_Master/ac_npc_station_master.data.s-/* 8B8C78 809D5488 */ .word 0xD00E0003
+asm/jp/data/overlays/actors/ovl_Npc_Station_Master/ac_npc_station_master.data.s-/* 8B8C7C 809D548C */ .word 0x00000950
+asm/jp/data/overlays/actors/ovl_Npc_Station_Master/ac_npc_station_master.data.s-/* 8B8C80 809D5490 */ .word aSTM_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Station_Master/ac_npc_station_master.data.s-/* 8B8C84 809D5494 */ .word aSTM_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Station_Master/ac_npc_station_master.data.s-/* 8B8C88 809D5498 */ .word aSTM_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Station_Master/ac_npc_station_master.data.s-/* 8B8C8C 809D549C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Station_Master/ac_npc_station_master.data.s-/* 8B8C90 809D54A0 */ .word aSTM_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Npc_Majin3/ac_npc_majin3.data.s:dlabel Npc_Majin3_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Majin3/ac_npc_majin3.data.s-/* 898EF0 809B56E0 */ .word 0x001E0300
+asm/jp/data/overlays/actors/ovl_Npc_Majin3/ac_npc_majin3.data.s-/* 898EF4 809B56E4 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Npc_Majin3/ac_npc_majin3.data.s-/* 898EF8 809B56E8 */ .word 0xD0680003
+asm/jp/data/overlays/actors/ovl_Npc_Majin3/ac_npc_majin3.data.s-/* 898EFC 809B56EC */ .word 0x00000958
+asm/jp/data/overlays/actors/ovl_Npc_Majin3/ac_npc_majin3.data.s-/* 898F00 809B56F0 */ .word aMJN3_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Majin3/ac_npc_majin3.data.s-/* 898F04 809B56F4 */ .word aMJN3_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Majin3/ac_npc_majin3.data.s-/* 898F08 809B56F8 */ .word aMJN3_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Majin3/ac_npc_majin3.data.s-/* 898F0C 809B56FC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Majin3/ac_npc_majin3.data.s-/* 898F10 809B5700 */ .word aMJN3_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Tokyoso_Control/ac_tokyoso_control.data.s:dlabel Tokyoso_Control_Profile
+asm/jp/data/overlays/actors/ovl_Tokyoso_Control/ac_tokyoso_control.data.s-/* 938D90 80A78AF0 */ .word 0x007F0700
+asm/jp/data/overlays/actors/ovl_Tokyoso_Control/ac_tokyoso_control.data.s-/* 938D94 80A78AF4 */ .word 0x00000010
+asm/jp/data/overlays/actors/ovl_Tokyoso_Control/ac_tokyoso_control.data.s-/* 938D98 80A78AF8 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Tokyoso_Control/ac_tokyoso_control.data.s-/* 938D9C 80A78AFC */ .word 0x000001A8
+asm/jp/data/overlays/actors/ovl_Tokyoso_Control/ac_tokyoso_control.data.s-/* 938DA0 80A78B00 */ .word aTKC_actor_ct
+asm/jp/data/overlays/actors/ovl_Tokyoso_Control/ac_tokyoso_control.data.s-/* 938DA4 80A78B04 */ .word aTKC_actor_dt
+asm/jp/data/overlays/actors/ovl_Tokyoso_Control/ac_tokyoso_control.data.s-/* 938DA8 80A78B08 */ .word aTKC_actor_move
+asm/jp/data/overlays/actors/ovl_Tokyoso_Control/ac_tokyoso_control.data.s-/* 938DAC 80A78B0C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Tokyoso_Control/ac_tokyoso_control.data.s-/* 938DB0 80A78B10 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_BgItem/bg_item.data.s:dlabel BgItem_Profile
+asm/jp/data/overlays/actors/ovl_BgItem/bg_item.data.s-/* 80D900 80915000 */ .word 0x00010000
+asm/jp/data/overlays/actors/ovl_BgItem/bg_item.data.s-/* 80D904 80915004 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_BgItem/bg_item.data.s-/* 80D908 80915008 */ .word 0x00000004
+asm/jp/data/overlays/actors/ovl_BgItem/bg_item.data.s-/* 80D90C 8091500C */ .word 0x00012EA8
+asm/jp/data/overlays/actors/ovl_BgItem/bg_item.data.s-/* 80D910 80915010 */ .word bIT_actor_ct
+asm/jp/data/overlays/actors/ovl_BgItem/bg_item.data.s-/* 80D914 80915014 */ .word bIT_actor_dt
+asm/jp/data/overlays/actors/ovl_BgItem/bg_item.data.s-/* 80D918 80915018 */ .word bIT_actor_move
+asm/jp/data/overlays/actors/ovl_BgItem/bg_item.data.s-/* 80D91C 8091501C */ .word bIT_actor_draw
+asm/jp/data/overlays/actors/ovl_BgItem/bg_item.data.s-/* 80D920 80915020 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_BgCherryItem/bg_cherry_item.data.s:dlabel BgCherryItem_Profile
+asm/jp/data/overlays/actors/ovl_BgCherryItem/bg_cherry_item.data.s-/* 7ED370 808F3CC0 */ .word 0x004F0000
+asm/jp/data/overlays/actors/ovl_BgCherryItem/bg_cherry_item.data.s-/* 7ED374 808F3CC4 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_BgCherryItem/bg_cherry_item.data.s-/* 7ED378 808F3CC8 */ .word 0x00000024
+asm/jp/data/overlays/actors/ovl_BgCherryItem/bg_cherry_item.data.s-/* 7ED37C 808F3CCC */ .word 0x00012EA8
+asm/jp/data/overlays/actors/ovl_BgCherryItem/bg_cherry_item.data.s-/* 7ED380 808F3CD0 */ .word bCI_actor_ct
+asm/jp/data/overlays/actors/ovl_BgCherryItem/bg_cherry_item.data.s-/* 7ED384 808F3CD4 */ .word bCI_actor_dt
+asm/jp/data/overlays/actors/ovl_BgCherryItem/bg_cherry_item.data.s-/* 7ED388 808F3CD8 */ .word bCI_actor_move
+asm/jp/data/overlays/actors/ovl_BgCherryItem/bg_cherry_item.data.s-/* 7ED38C 808F3CDC */ .word bCI_actor_draw
+asm/jp/data/overlays/actors/ovl_BgCherryItem/bg_cherry_item.data.s-/* 7ED390 808F3CE0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Hatumode_Control/ac_hatumode_control.data.s:dlabel Hatumode_Control_Profile
+asm/jp/data/overlays/actors/ovl_Hatumode_Control/ac_hatumode_control.data.s-/* 94ED60 80A8EAE0 */ .word 0x009B0700
+asm/jp/data/overlays/actors/ovl_Hatumode_Control/ac_hatumode_control.data.s-/* 94ED64 80A8EAE4 */ .word 0x00000010
+asm/jp/data/overlays/actors/ovl_Hatumode_Control/ac_hatumode_control.data.s-/* 94ED68 80A8EAE8 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Hatumode_Control/ac_hatumode_control.data.s-/* 94ED6C 80A8EAEC */ .word 0x0000018C
+asm/jp/data/overlays/actors/ovl_Hatumode_Control/ac_hatumode_control.data.s-/* 94ED70 80A8EAF0 */ .word aHTC_actor_ct
+asm/jp/data/overlays/actors/ovl_Hatumode_Control/ac_hatumode_control.data.s-/* 94ED74 80A8EAF4 */ .word aHTC_actor_dt
+asm/jp/data/overlays/actors/ovl_Hatumode_Control/ac_hatumode_control.data.s-/* 94ED78 80A8EAF8 */ .word aHTC_actor_move
+asm/jp/data/overlays/actors/ovl_Hatumode_Control/ac_hatumode_control.data.s-/* 94ED7C 80A8EAFC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Hatumode_Control/ac_hatumode_control.data.s-/* 94ED80 80A8EB00 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Tukimi/ac_tukimi.data.s:dlabel Tukimi_Profile
+asm/jp/data/overlays/actors/ovl_Tukimi/ac_tukimi.data.s-/* 940260 80A7FFC0 */ .word 0x00820000
+asm/jp/data/overlays/actors/ovl_Tukimi/ac_tukimi.data.s-/* 940264 80A7FFC4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Tukimi/ac_tukimi.data.s-/* 940268 80A7FFC8 */ .word 0x582E0003
+asm/jp/data/overlays/actors/ovl_Tukimi/ac_tukimi.data.s-/* 94026C 80A7FFCC */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Tukimi/ac_tukimi.data.s-/* 940270 80A7FFD0 */ .word aTUK_actor_ct
+asm/jp/data/overlays/actors/ovl_Tukimi/ac_tukimi.data.s-/* 940274 80A7FFD4 */ .word aTUK_actor_dt
+asm/jp/data/overlays/actors/ovl_Tukimi/ac_tukimi.data.s-/* 940278 80A7FFD8 */ .word aTUK_actor_init
+asm/jp/data/overlays/actors/ovl_Tukimi/ac_tukimi.data.s-/* 94027C 80A7FFDC */ .word aTUK_actor_draw
+asm/jp/data/overlays/actors/ovl_Tukimi/ac_tukimi.data.s-/* 940280 80A7FFE0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Ev_Pumpkin/ac_ev_pumpkin.data.s:dlabel Ev_Pumpkin_Profile
+asm/jp/data/overlays/actors/ovl_Ev_Pumpkin/ac_ev_pumpkin.data.s-/* 8CA7E0 809E7020 */ .word 0x00160300
+asm/jp/data/overlays/actors/ovl_Ev_Pumpkin/ac_ev_pumpkin.data.s-/* 8CA7E4 809E7024 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Ev_Pumpkin/ac_ev_pumpkin.data.s-/* 8CA7E8 809E7028 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Ev_Pumpkin/ac_ev_pumpkin.data.s-/* 8CA7EC 809E702C */ .word 0x00000948
+asm/jp/data/overlays/actors/ovl_Ev_Pumpkin/ac_ev_pumpkin.data.s-/* 8CA7F0 809E7030 */ .word aEPK_actor_ct
+asm/jp/data/overlays/actors/ovl_Ev_Pumpkin/ac_ev_pumpkin.data.s-/* 8CA7F4 809E7034 */ .word aEPK_actor_dt
+asm/jp/data/overlays/actors/ovl_Ev_Pumpkin/ac_ev_pumpkin.data.s-/* 8CA7F8 809E7038 */ .word aEPK_actor_init
+asm/jp/data/overlays/actors/ovl_Ev_Pumpkin/ac_ev_pumpkin.data.s-/* 8CA7FC 809E703C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Ev_Pumpkin/ac_ev_pumpkin.data.s-/* 8CA800 809E7040 */ .word aEPK_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Effect_Control/ef_effect_control.data.s:dlabel Effect_Control_Profile
+asm/jp/data/overlays/actors/ovl_Effect_Control/ef_effect_control.data.s-/* 8E40D0 80A1A830 */ .word 0x00210700
+asm/jp/data/overlays/actors/ovl_Effect_Control/ef_effect_control.data.s-/* 8E40D4 80A1A834 */ .word 0x20000030
+asm/jp/data/overlays/actors/ovl_Effect_Control/ef_effect_control.data.s-/* 8E40D8 80A1A838 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Effect_Control/ef_effect_control.data.s-/* 8E40DC 80A1A83C */ .word 0x000001BC
+asm/jp/data/overlays/actors/ovl_Effect_Control/ef_effect_control.data.s-/* 8E40E0 80A1A840 */ .word eEC_actor_ct
+asm/jp/data/overlays/actors/ovl_Effect_Control/ef_effect_control.data.s-/* 8E40E4 80A1A844 */ .word eEC_actor_dt
+asm/jp/data/overlays/actors/ovl_Effect_Control/ef_effect_control.data.s-/* 8E40E8 80A1A848 */ .word eEC_actor_move
+asm/jp/data/overlays/actors/ovl_Effect_Control/ef_effect_control.data.s-/* 8E40EC 80A1A84C */ .word eEC_actor_draw
+asm/jp/data/overlays/actors/ovl_Effect_Control/ef_effect_control.data.s-/* 8E40F0 80A1A850 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Ev_Artist/ac_ev_artist.data.s:dlabel Ev_Artist_Profile
+asm/jp/data/overlays/actors/ovl_Ev_Artist/ac_ev_artist.data.s-/* 8BAD00 809D7510 */ .word 0x002C0300
+asm/jp/data/overlays/actors/ovl_Ev_Artist/ac_ev_artist.data.s-/* 8BAD04 809D7514 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Ev_Artist/ac_ev_artist.data.s-/* 8BAD08 809D7518 */ .word 0xD0000003
+asm/jp/data/overlays/actors/ovl_Ev_Artist/ac_ev_artist.data.s-/* 8BAD0C 809D751C */ .word 0x00000948
+asm/jp/data/overlays/actors/ovl_Ev_Artist/ac_ev_artist.data.s-/* 8BAD10 809D7520 */ .word aEART_actor_ct
+asm/jp/data/overlays/actors/ovl_Ev_Artist/ac_ev_artist.data.s-/* 8BAD14 809D7524 */ .word aEART_actor_dt
+asm/jp/data/overlays/actors/ovl_Ev_Artist/ac_ev_artist.data.s-/* 8BAD18 809D7528 */ .word aEART_actor_init
+asm/jp/data/overlays/actors/ovl_Ev_Artist/ac_ev_artist.data.s-/* 8BAD1C 809D752C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Ev_Artist/ac_ev_artist.data.s-/* 8BAD20 809D7530 */ .word aEART_actor_save
+--
+asm/jp/data/overlays/actors/ovl_BgXmasItem/bg_xmas_item.data.s:dlabel BgXmasItem_Profile
+asm/jp/data/overlays/actors/ovl_BgXmasItem/bg_xmas_item.data.s-/* 802E40 8090A0B0 */ .word 0x00510000
+asm/jp/data/overlays/actors/ovl_BgXmasItem/bg_xmas_item.data.s-/* 802E44 8090A0B4 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_BgXmasItem/bg_xmas_item.data.s-/* 802E48 8090A0B8 */ .word 0x00000026
+asm/jp/data/overlays/actors/ovl_BgXmasItem/bg_xmas_item.data.s-/* 802E4C 8090A0BC */ .word 0x00013EB8
+asm/jp/data/overlays/actors/ovl_BgXmasItem/bg_xmas_item.data.s-/* 802E50 8090A0C0 */ .word bXI_actor_ct
+asm/jp/data/overlays/actors/ovl_BgXmasItem/bg_xmas_item.data.s-/* 802E54 8090A0C4 */ .word bXI_actor_dt
+asm/jp/data/overlays/actors/ovl_BgXmasItem/bg_xmas_item.data.s-/* 802E58 8090A0C8 */ .word bXI_actor_move
+asm/jp/data/overlays/actors/ovl_BgXmasItem/bg_xmas_item.data.s-/* 802E5C 8090A0CC */ .word bXI_actor_draw
+asm/jp/data/overlays/actors/ovl_BgXmasItem/bg_xmas_item.data.s-/* 802E60 8090A0D0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Rope/ac_rope.data.s:dlabel Rope_Profile
+asm/jp/data/overlays/actors/ovl_Rope/ac_rope.data.s-/* 8627E0 8096DBA0 */ .word 0x00A70400
+asm/jp/data/overlays/actors/ovl_Rope/ac_rope.data.s-/* 8627E4 8096DBA4 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Rope/ac_rope.data.s-/* 8627E8 8096DBA8 */ .word 0x0000018A
+asm/jp/data/overlays/actors/ovl_Rope/ac_rope.data.s-/* 8627EC 8096DBAC */ .word 0x00000174
+asm/jp/data/overlays/actors/ovl_Rope/ac_rope.data.s-/* 8627F0 8096DBB0 */ .word aRP_actor_ct
+asm/jp/data/overlays/actors/ovl_Rope/ac_rope.data.s-/* 8627F4 8096DBB4 */ .word aRP_actor_dt
+asm/jp/data/overlays/actors/ovl_Rope/ac_rope.data.s-/* 8627F8 8096DBB8 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Rope/ac_rope.data.s-/* 8627FC 8096DBBC */ .word aRP_actor_draw
+asm/jp/data/overlays/actors/ovl_Rope/ac_rope.data.s-/* 862800 8096DBC0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Tokyoso_Npc1/ac_tokyoso_npc1.data.s:dlabel Tokyoso_Npc1_Profile
+asm/jp/data/overlays/actors/ovl_Tokyoso_Npc1/ac_tokyoso_npc1.data.s-/* 9361E0 80A75F40 */ .word 0x007B0300
+asm/jp/data/overlays/actors/ovl_Tokyoso_Npc1/ac_tokyoso_npc1.data.s-/* 9361E4 80A75F44 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Tokyoso_Npc1/ac_tokyoso_npc1.data.s-/* 9361E8 80A75F48 */ .word 0xD02E0003
+asm/jp/data/overlays/actors/ovl_Tokyoso_Npc1/ac_tokyoso_npc1.data.s-/* 9361EC 80A75F4C */ .word 0x00000958
+asm/jp/data/overlays/actors/ovl_Tokyoso_Npc1/ac_tokyoso_npc1.data.s-/* 9361F0 80A75F50 */ .word aTKN1_actor_ct
+asm/jp/data/overlays/actors/ovl_Tokyoso_Npc1/ac_tokyoso_npc1.data.s-/* 9361F4 80A75F54 */ .word aTKN1_actor_dt
+asm/jp/data/overlays/actors/ovl_Tokyoso_Npc1/ac_tokyoso_npc1.data.s-/* 9361F8 80A75F58 */ .word aTKN1_actor_init
+asm/jp/data/overlays/actors/ovl_Tokyoso_Npc1/ac_tokyoso_npc1.data.s-/* 9361FC 80A75F5C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Tokyoso_Npc1/ac_tokyoso_npc1.data.s-/* 936200 80A75F60 */ .word aTKN1_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Normal_Npc/ac_normal_npc.data.s:dlabel Normal_Npc_Profile
+asm/jp/data/overlays/actors/ovl_Normal_Npc/ac_normal_npc.data.s-/* 8893C0 809A5BB0 */ .word 0x00710300
+asm/jp/data/overlays/actors/ovl_Normal_Npc/ac_normal_npc.data.s-/* 8893C4 809A5BB4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Normal_Npc/ac_normal_npc.data.s-/* 8893C8 809A5BB8 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Normal_Npc/ac_normal_npc.data.s-/* 8893CC 809A5BBC */ .word 0x00000938
+asm/jp/data/overlays/actors/ovl_Normal_Npc/ac_normal_npc.data.s-/* 8893D0 809A5BC0 */ .word aNOR_actor_ct
+asm/jp/data/overlays/actors/ovl_Normal_Npc/ac_normal_npc.data.s-/* 8893D4 809A5BC4 */ .word aNOR_actor_dt
+asm/jp/data/overlays/actors/ovl_Normal_Npc/ac_normal_npc.data.s-/* 8893D8 809A5BC8 */ .word aNOR_actor_init
+asm/jp/data/overlays/actors/ovl_Normal_Npc/ac_normal_npc.data.s-/* 8893DC 809A5BCC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Normal_Npc/ac_normal_npc.data.s-/* 8893E0 809A5BD0 */ .word aNOR_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Npc_Conv_Master/ac_npc_conv_master.data.s:dlabel Npc_Conv_Master_Profile
+asm/jp/data/overlays/actors/ovl_Npc_Conv_Master/ac_npc_conv_master.data.s-/* 88CE90 809A9680 */ .word 0x00410300
+asm/jp/data/overlays/actors/ovl_Npc_Conv_Master/ac_npc_conv_master.data.s-/* 88CE94 809A9684 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Npc_Conv_Master/ac_npc_conv_master.data.s-/* 88CE98 809A9688 */ .word 0xD0090003
+asm/jp/data/overlays/actors/ovl_Npc_Conv_Master/ac_npc_conv_master.data.s-/* 88CE9C 809A968C */ .word 0x0000096C
+asm/jp/data/overlays/actors/ovl_Npc_Conv_Master/ac_npc_conv_master.data.s-/* 88CEA0 809A9690 */ .word aNCM_actor_ct
+asm/jp/data/overlays/actors/ovl_Npc_Conv_Master/ac_npc_conv_master.data.s-/* 88CEA4 809A9694 */ .word aNCM_actor_dt
+asm/jp/data/overlays/actors/ovl_Npc_Conv_Master/ac_npc_conv_master.data.s-/* 88CEA8 809A9698 */ .word aNCM_actor_init
+asm/jp/data/overlays/actors/ovl_Npc_Conv_Master/ac_npc_conv_master.data.s-/* 88CEAC 809A969C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Npc_Conv_Master/ac_npc_conv_master.data.s-/* 88CEB0 809A96A0 */ .word aNCM_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Hanabi_Npc0/ac_hanabi_npc0.data.s:dlabel Hanabi_Npc0_Profile
+asm/jp/data/overlays/actors/ovl_Hanabi_Npc0/ac_hanabi_npc0.data.s-/* 8C0E60 809DD670 */ .word 0x00190300
+asm/jp/data/overlays/actors/ovl_Hanabi_Npc0/ac_hanabi_npc0.data.s-/* 8C0E64 809DD674 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Hanabi_Npc0/ac_hanabi_npc0.data.s-/* 8C0E68 809DD678 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Hanabi_Npc0/ac_hanabi_npc0.data.s-/* 8C0E6C 809DD67C */ .word 0x00000948
+asm/jp/data/overlays/actors/ovl_Hanabi_Npc0/ac_hanabi_npc0.data.s-/* 8C0E70 809DD680 */ .word func_80528514
+asm/jp/data/overlays/actors/ovl_Hanabi_Npc0/ac_hanabi_npc0.data.s-/* 8C0E74 809DD684 */ .word func_805285d0
+asm/jp/data/overlays/actors/ovl_Hanabi_Npc0/ac_hanabi_npc0.data.s-/* 8C0E78 809DD688 */ .word func_80528608
+asm/jp/data/overlays/actors/ovl_Hanabi_Npc0/ac_hanabi_npc0.data.s-/* 8C0E7C 809DD68C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Hanabi_Npc0/ac_hanabi_npc0.data.s-/* 8C0E80 809DD690 */ .word func_80528598
+--
+asm/jp/data/overlays/actors/ovl_Depart/ac_depart.data.s:dlabel Depart_Profile
+asm/jp/data/overlays/actors/ovl_Depart/ac_depart.data.s-/* 8D1B90 80A02EC0 */ .word 0x00610000
+asm/jp/data/overlays/actors/ovl_Depart/ac_depart.data.s-/* 8D1B94 80A02EC4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Depart/ac_depart.data.s-/* 8D1B98 80A02EC8 */ .word 0x58070003
+asm/jp/data/overlays/actors/ovl_Depart/ac_depart.data.s-/* 8D1B9C 80A02ECC */ .word 0x000002D8
+asm/jp/data/overlays/actors/ovl_Depart/ac_depart.data.s-/* 8D1BA0 80A02ED0 */ .word aDPT_actor_ct
+asm/jp/data/overlays/actors/ovl_Depart/ac_depart.data.s-/* 8D1BA4 80A02ED4 */ .word aDPT_actor_dt
+asm/jp/data/overlays/actors/ovl_Depart/ac_depart.data.s-/* 8D1BA8 80A02ED8 */ .word aDPT_actor_init
+asm/jp/data/overlays/actors/ovl_Depart/ac_depart.data.s-/* 8D1BAC 80A02EDC */ .word aDPT_actor_draw
+asm/jp/data/overlays/actors/ovl_Depart/ac_depart.data.s-/* 8D1BB0 80A02EE0 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_T_Utiwa/ac_t_utiwa.data.s:dlabel T_Utiwa_Profile
+asm/jp/data/overlays/actors/ovl_T_Utiwa/ac_t_utiwa.data.s-/* 8E77C0 80A1FD00 */ .word 0x00570400
+asm/jp/data/overlays/actors/ovl_T_Utiwa/ac_t_utiwa.data.s-/* 8E77C4 80A1FD04 */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_T_Utiwa/ac_t_utiwa.data.s-/* 8E77C8 80A1FD08 */ .word 0x00000035
+asm/jp/data/overlays/actors/ovl_T_Utiwa/ac_t_utiwa.data.s-/* 8E77CC 80A1FD0C */ .word 0x000001D0
+asm/jp/data/overlays/actors/ovl_T_Utiwa/ac_t_utiwa.data.s-/* 8E77D0 80A1FD10 */ .word aTUT_actor_ct
+asm/jp/data/overlays/actors/ovl_T_Utiwa/ac_t_utiwa.data.s-/* 8E77D4 80A1FD14 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_T_Utiwa/ac_t_utiwa.data.s-/* 8E77D8 80A1FD18 */ .word aTUT_actor_move
+asm/jp/data/overlays/actors/ovl_T_Utiwa/ac_t_utiwa.data.s-/* 8E77DC 80A1FD1C */ .word aTUT_actor_draw
+asm/jp/data/overlays/actors/ovl_T_Utiwa/ac_t_utiwa.data.s-/* 8E77E0 80A1FD20 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Ev_Dokutu/ac_ev_dokutu.data.s:dlabel Ev_Dokutu_Profile
+asm/jp/data/overlays/actors/ovl_Ev_Dokutu/ac_ev_dokutu.data.s-/* 96F210 80AAF0B0 */ .word 0x00B30300
+asm/jp/data/overlays/actors/ovl_Ev_Dokutu/ac_ev_dokutu.data.s-/* 96F214 80AAF0B4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Ev_Dokutu/ac_ev_dokutu.data.s-/* 96F218 80AAF0B8 */ .word 0xD06C0003
+asm/jp/data/overlays/actors/ovl_Ev_Dokutu/ac_ev_dokutu.data.s-/* 96F21C 80AAF0BC */ .word 0x0000094C
+asm/jp/data/overlays/actors/ovl_Ev_Dokutu/ac_ev_dokutu.data.s-/* 96F220 80AAF0C0 */ .word aEVD_actor_ct
+asm/jp/data/overlays/actors/ovl_Ev_Dokutu/ac_ev_dokutu.data.s-/* 96F224 80AAF0C4 */ .word aEVD_actor_dt
+asm/jp/data/overlays/actors/ovl_Ev_Dokutu/ac_ev_dokutu.data.s-/* 96F228 80AAF0C8 */ .word aEVD_actor_init
+asm/jp/data/overlays/actors/ovl_Ev_Dokutu/ac_ev_dokutu.data.s-/* 96F22C 80AAF0CC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Ev_Dokutu/ac_ev_dokutu.data.s-/* 96F230 80AAF0D0 */ .word aEVD_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Tamaire_Npc1/ac_tamaire_npc1.data.s:dlabel Tamaire_Npc1_Profile
+asm/jp/data/overlays/actors/ovl_Tamaire_Npc1/ac_tamaire_npc1.data.s-/* 948730 80A884A0 */ .word 0x00970300
+asm/jp/data/overlays/actors/ovl_Tamaire_Npc1/ac_tamaire_npc1.data.s-/* 948734 80A884A4 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Tamaire_Npc1/ac_tamaire_npc1.data.s-/* 948738 80A884A8 */ .word 0xD0540003
+asm/jp/data/overlays/actors/ovl_Tamaire_Npc1/ac_tamaire_npc1.data.s-/* 94873C 80A884AC */ .word 0x00000958
+asm/jp/data/overlays/actors/ovl_Tamaire_Npc1/ac_tamaire_npc1.data.s-/* 948740 80A884B0 */ .word aTMN1_actor_ct
+asm/jp/data/overlays/actors/ovl_Tamaire_Npc1/ac_tamaire_npc1.data.s-/* 948744 80A884B4 */ .word aTMN1_actor_dt
+asm/jp/data/overlays/actors/ovl_Tamaire_Npc1/ac_tamaire_npc1.data.s-/* 948748 80A884B8 */ .word aTMN1_actor_init
+asm/jp/data/overlays/actors/ovl_Tamaire_Npc1/ac_tamaire_npc1.data.s-/* 94874C 80A884BC */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Tamaire_Npc1/ac_tamaire_npc1.data.s-/* 948750 80A884C0 */ .word aTMN1_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Haniwa/ac_haniwa.data.s:dlabel Haniwa_Profile
+asm/jp/data/overlays/actors/ovl_Haniwa/ac_haniwa.data.s-/* 861050 8096C410 */ .word 0x000A0400
+asm/jp/data/overlays/actors/ovl_Haniwa/ac_haniwa.data.s-/* 861054 8096C414 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Haniwa/ac_haniwa.data.s-/* 861058 8096C418 */ .word 0xA004000C
+asm/jp/data/overlays/actors/ovl_Haniwa/ac_haniwa.data.s-/* 86105C 8096C41C */ .word 0x00000288
+asm/jp/data/overlays/actors/ovl_Haniwa/ac_haniwa.data.s-/* 861060 8096C420 */ .word aHNW_actor_ct
+asm/jp/data/overlays/actors/ovl_Haniwa/ac_haniwa.data.s-/* 861064 8096C424 */ .word aHNW_actor_dt
+asm/jp/data/overlays/actors/ovl_Haniwa/ac_haniwa.data.s-/* 861068 8096C428 */ .word aHNW_actor_init
+asm/jp/data/overlays/actors/ovl_Haniwa/ac_haniwa.data.s-/* 86106C 8096C42C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Haniwa/ac_haniwa.data.s-/* 861070 8096C430 */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Ev_Broker2/ac_ev_broker2.data.s:dlabel Ev_Broker2_Profile
+asm/jp/data/overlays/actors/ovl_Ev_Broker2/ac_ev_broker2.data.s-/* 8BD120 809D9930 */ .word 0x00550300
+asm/jp/data/overlays/actors/ovl_Ev_Broker2/ac_ev_broker2.data.s-/* 8BD124 809D9934 */ .word 0x00000000
+asm/jp/data/overlays/actors/ovl_Ev_Broker2/ac_ev_broker2.data.s-/* 8BD128 809D9938 */ .word 0xD0130003
+asm/jp/data/overlays/actors/ovl_Ev_Broker2/ac_ev_broker2.data.s-/* 8BD12C 809D993C */ .word 0x0000094C
+asm/jp/data/overlays/actors/ovl_Ev_Broker2/ac_ev_broker2.data.s-/* 8BD130 809D9940 */ .word aEBR2_actor_ct
+asm/jp/data/overlays/actors/ovl_Ev_Broker2/ac_ev_broker2.data.s-/* 8BD134 809D9944 */ .word aEBR2_actor_dt
+asm/jp/data/overlays/actors/ovl_Ev_Broker2/ac_ev_broker2.data.s-/* 8BD138 809D9948 */ .word aEBR2_actor_init
+asm/jp/data/overlays/actors/ovl_Ev_Broker2/ac_ev_broker2.data.s-/* 8BD13C 809D994C */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Ev_Broker2/ac_ev_broker2.data.s-/* 8BD140 809D9950 */ .word aEBR2_actor_save
+--
+asm/jp/data/overlays/actors/ovl_Ball/ac_ball.data.s:dlabel Ball_Profile
+asm/jp/data/overlays/actors/ovl_Ball/ac_ball.data.s-/* 85F50C 8096A8BC */ .word 0x00090400
+asm/jp/data/overlays/actors/ovl_Ball/ac_ball.data.s-/* 85F510 8096A8C0 */ .word 0x00000010
+asm/jp/data/overlays/actors/ovl_Ball/ac_ball.data.s-/* 85F514 8096A8C4 */ .word 0x80010003
+asm/jp/data/overlays/actors/ovl_Ball/ac_ball.data.s-/* 85F518 8096A8C8 */ .word 0x0000020C
+asm/jp/data/overlays/actors/ovl_Ball/ac_ball.data.s-/* 85F51C 8096A8CC */ .word aBALL_actor_ct
+asm/jp/data/overlays/actors/ovl_Ball/ac_ball.data.s-/* 85F520 8096A8D0 */ .word aBALL_actor_dt
+asm/jp/data/overlays/actors/ovl_Ball/ac_ball.data.s-/* 85F524 8096A8D4 */ .word aBALL_actor_move
+asm/jp/data/overlays/actors/ovl_Ball/ac_ball.data.s-/* 85F528 8096A8D8 */ .word aBALL_actor_draw
+asm/jp/data/overlays/actors/ovl_Ball/ac_ball.data.s-/* 85F52C 8096A8DC */ .word 0x00000000
+--
+asm/jp/data/overlays/actors/ovl_Taisou_Npc0/ac_taisou_npc0.data.s:dlabel Taisou_Npc0_Profile
+asm/jp/data/overlays/actors/ovl_Taisou_Npc0/ac_taisou_npc0.data.s-/* 8C7ED8 809E4708 */ .word 0x00930300
+asm/jp/data/overlays/actors/ovl_Taisou_Npc0/ac_taisou_npc0.data.s-/* 8C7EDC 809E470C */ .word 0x00000030
+asm/jp/data/overlays/actors/ovl_Taisou_Npc0/ac_taisou_npc0.data.s-/* 8C7EE0 809E4710 */ .word 0x00000003
+asm/jp/data/overlays/actors/ovl_Taisou_Npc0/ac_taisou_npc0.data.s-/* 8C7EE4 809E4714 */ .word 0x00000950
+asm/jp/data/overlays/actors/ovl_Taisou_Npc0/ac_taisou_npc0.data.s-/* 8C7EE8 809E4718 */ .word aTS0_actor_ct
+asm/jp/data/overlays/actors/ovl_Taisou_Npc0/ac_taisou_npc0.data.s-/* 8C7EEC 809E471C */ .word aTS0_actor_dt
+asm/jp/data/overlays/actors/ovl_Taisou_Npc0/ac_taisou_npc0.data.s-/* 8C7EF0 809E4720 */ .word aTS0_actor_init
+asm/jp/data/overlays/actors/ovl_Taisou_Npc0/ac_taisou_npc0.data.s-/* 8C7EF4 809E4724 */ .word none_proc1
+asm/jp/data/overlays/actors/ovl_Taisou_Npc0/ac_taisou_npc0.data.s-/* 8C7EF8 809E4728 */ .word aTS0_actor_save
+--

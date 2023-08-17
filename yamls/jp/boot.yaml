@@ -29,7 +29,7 @@
 
       - [0x007060, asm, boot/007060]
       - [0x0073A0, c, boot/O2/getcurrentms]
-      - [0x0073F0, asm, boot/padsetup]
+      - [0x0073F0, c, boot/O2/padsetup]
 
       # libc64
       - [0x007530, asm, boot/libc64/math64]
@@ -37,7 +37,7 @@
       - [0x007BA0, c, boot/libc64/malloc]
       - [0x007D70, asm, boot/libc64/qrand]
       - [0x007F30, c, boot/libc64/__osMalloc]
-      - [0x008C50, asm, boot/libc64/sprintf]
+      - [0x008C50, c, boot/libc64/sprintf]
       - [0x008D20, c, boot/libc64/aprintf]
       - [0x008D80, c, boot/libc64/sleep]
 

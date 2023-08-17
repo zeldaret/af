@@ -54,7 +54,7 @@ typedef struct ActorProfile {
     /* 0x00 */ s16 name;
     /* 0x02 */ u8 part;
     /* 0x04 */ u32 flags;
-    /* 0x08 */ s16 unk_08;
+    /* 0x08 */ u16 unk_08;
     /* 0x0A */ s16 objectId;
     /* 0x0C */ size_t instanceSize;
     /* 0x10 */ ActorFunc ct;
