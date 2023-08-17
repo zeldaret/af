@@ -8,8 +8,12 @@
 
 typedef struct CollisionCheck_Status {
     /* 0x00 */ Vec3f displacement;
-    /* 0x0C */ UNK_TYPE1 unk_0C[0xC];
-} CollisionCheck_Status; // size >= 0x18
+    /* 0x0C */ UNK_TYPE1 unk_0C[0x8];
+    /* 0x14 */ u8 unk_14;
+    /* 0x15 */ u8 unk_15;
+    /* 0x16 */ u8 unk_16;
+    /* 0x17 */ u8 unk_17;
+} CollisionCheck_Status; // size = 0x18
 
 
 typedef struct Game_Play2138_unk_08 {
@@ -18,7 +22,7 @@ typedef struct Game_Play2138_unk_08 {
     /* 0x08 */ u8 unk_08;
     /* 0x09 */ u8 unk_09;
     /* 0x0A */ u8 unk_0A;
-} Game_Play2138_unk_08; // size >= 0xB
+} Game_Play2138_unk_08; // size >= 0xB, size <= 0xC
 
 typedef struct Game_Play2138 {
     /* 0x00 */ u16 unk_00;
@@ -71,18 +75,18 @@ void CollisionCheck_dt(struct Game_Play* game_play, Game_Play2138* arg1);
 void CollisionCheck_clear(struct Game_Play* game_play, Game_Play2138* arg1);
 // void CollisionCheck_setOC();
 // void func_80077794_jp();
-// void func_800777D0_jp();
-void func_80077B6C_jp(struct Game_Play* game_play, Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3);
-void func_80077D6C_jp(struct Game_Play* game_play, Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3);
-void func_80077EF4_jp(struct Game_Play* game_play, Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3);
-void func_80077F20_jp(struct Game_Play* game_play, Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3);
+// void CollisionCheck_setOC_HitInfo();
+void CollisionCheck_OC_JntSph_Vs_JntSph(struct Game_Play* game_play, Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3);
+void CollisionCheck_OC_JntSph_Vs_Pipe(struct Game_Play* game_play, Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3);
+void CollisionCheck_OC_Pipe_Vs_JntSph(struct Game_Play* game_play, Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3);
+void CollisionCheck_OC_Pipe_Vs_Pipe(struct Game_Play* game_play, Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3);
 s32 CollisionCheck_Check1ClObjNoOC(Game_Play2138_unk_08* arg0);
 s32 CollisionCheck_Check2ClObjNoOC(Game_Play2138_unk_08* arg0, Game_Play2138_unk_08* arg1);
 void CollisionCheck_OC(struct Game_Play* game_play, Game_Play2138* arg1);
 // void func_80078214_jp();
-// void func_80078258_jp();
-// void func_8007841C_jp();
-// void func_80078568_jp();
+// void CollisionCheck_OCC_Tris_Vs_JntSph();
+// void CollisionCheck_OCC_Tris_Vs_Pipe();
+// void CollisionCheck_Check1ClObjNoOCC();
 void CollisionCheck_OCC(struct Game_Play* game_play, Game_Play2138* arg1);
 // void func_8007870C_jp();
 // void func_8007872C_jp();

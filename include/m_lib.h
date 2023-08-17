@@ -23,7 +23,7 @@ s32 chase_f(f32* arg0, f32 arg1, f32 arg2);
 // void get_random_timer();
 // void get_random_pattern_timer();
 void xyz_t_move(Vec3f* dst, Vec3f* src);
-// void xyz_t_move_s_xyz();
+void xyz_t_move_s_xyz(Vec3f* dst, Vec3s* src);
 // void xyz_t_add();
 // void xyz_t_sub();
 // void xyz_t_sub_ss();
