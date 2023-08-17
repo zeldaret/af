@@ -75,7 +75,7 @@ MtxF* Matrix_now;   // Top of the stack.
 /**
  * Create the matrix stack and set the pointer to the top of it.
  */
-void new_Matrix(GameState* gameState) {
+void new_Matrix(Game* gameState) {
     Matrix_now = THA_alloc16(&gameState->heap, MATRIX_STACK_SIZE * sizeof(MtxF));
     Matrix_stack = Matrix_now;
 }

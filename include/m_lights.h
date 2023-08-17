@@ -7,7 +7,7 @@
 #include "color.h"
 
 struct GraphicsContext;
-struct PlayState;
+struct Game_Play;
 
 typedef struct Lights {
     /* 0x00 */ UNK_TYPE1 unk_00[0x80];
@@ -49,6 +49,6 @@ Lights* Global_light_read(LightContext* lightCtx, struct GraphicsContext* gfxCtx
 // void func_8009BBEC_jp();
 // void func_8009BC48_jp();
 // void func_8009BD90_jp();
-void Light_list_point_draw(struct PlayState* play);
+void Light_list_point_draw(struct Game_Play* game_play);
 
 #endif

@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "z64math.h"
+#include "unk.h"
 
 // void mem_copy();
 s32 mem_clear(void* ptr, size_t size, u8 value);

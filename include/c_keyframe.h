@@ -4,7 +4,7 @@
 #include "ultra64.h"
 #include "z64math.h"
 
-struct PlayState;
+struct Game_Play;
 
 typedef enum AnimationMode {
     /* 0 */ ANIMATION_STOP,
@@ -83,7 +83,7 @@ typedef struct {
     /* 0x1C */ s32 keyframeStartIndex;
 } SkeletonInfoRCombineWork; // size = 0x20
 
-typedef s32 (*DrawCallback)(struct PlayState* play, SkeletonInfoR* skeletonInfo, s32 jointIndex, Gfx** dlist, u8* displayBufferFlag, void*, Vec3s* rotation, Vec3f* translation);
+typedef s32 (*DrawCallback)(struct Game_Play* game_play, SkeletonInfoR* skeletonInfo, s32 jointIndex, Gfx** dlist, u8* displayBufferFlag, void*, Vec3s* rotation, Vec3f* translation);
 
 void cKF_FrameControl_zeroClear(FrameControl* frameControl);
 void cKF_FrameControl_ct(FrameControl* frameControl);
@@ -117,9 +117,9 @@ void cKF_SkeletonInfo_R_init(SkeletonInfoR* skeletonInfo, BaseSkeletonR* skeleto
 void cKF_SkeletonInfo_R_setAnim(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation);
 void cKF_SkeletonInfo_R_morphJoint(SkeletonInfoR* skeletonInfo);
 s32 cKF_SkeletonInfo_R_play(SkeletonInfoR* skeletonInfo);
-void cKF_Si3_draw_SV_R_child(struct PlayState* play, SkeletonInfoR* skeletonInfo, s32* jointIndex,
+void cKF_Si3_draw_SV_R_child(struct Game_Play* game_play, SkeletonInfoR* skeletonInfo, s32* jointIndex,
                              DrawCallback beforeCallback, DrawCallback afterCallback, void* arg, Mtx** mtx);
-void cKF_Si3_draw_R_SV(struct PlayState* play, SkeletonInfoR* skeletonInfo, Mtx* mtx, DrawCallback beforeCallback,
+void cKF_Si3_draw_R_SV(struct Game_Play* game_play, SkeletonInfoR* skeletonInfo, Mtx* mtx, DrawCallback beforeCallback,
                        DrawCallback afterCallback, void* arg);
 void cKF_SkeletonInfo_R_init_standard_repeat_speedsetandmorph(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
                                                               Vec3s* diffRotTable, f32 speed, f32 morphCounter);

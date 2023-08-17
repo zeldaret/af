@@ -23,6 +23,7 @@ extern OSPiHandle* gCartHandle; // TODO: Determine where this goes
 // extern UNK_TYPE __qrand_idum;
 
 
+
 // .rodata
 
 // extern UNK_TYPE RO_STR_8003D180_jp;
