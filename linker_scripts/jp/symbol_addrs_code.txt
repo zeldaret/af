@@ -6087,7 +6087,6 @@ B_FLT_80141DF8_jp = 0x80141DF8; // type:f32
 B_FLT_80141DFC_jp = 0x80141DFC; // type:f32
 B_80141E00_jp = 0x80141E00; //
 B_80141E04_jp = 0x80141E04; // type:s16
-light_list_buf = 0x80141E10; // size:0x188
 zelda_arena = 0x80141FA0; //
 B_80141FC8_jp = 0x80141FC8; //
 B_80141FE0_jp = 0x80141FE0; //
