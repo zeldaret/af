@@ -44,7 +44,7 @@ f32 fqrand_r(u32* p) {
 
 f32 fqrand2_r(u32* p) {
     u32 t = *p * 0x19660D + 0x3C6EF35F;
-    
+
     __qrand_itemp = (*p = t) >> 9 | 0x3F800000;
     return *(float*)&__qrand_itemp - 1.5f;
 }
