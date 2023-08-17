@@ -73,7 +73,7 @@ extern Vec3f ZeroVec;
 // void func_800DDCAC_jp();
 // void func_800DDDF4_jp();
 // void func_800DDFFC_jp();
-// void func_800DE13C_jp();
+s32 func_800DE13C_jp(Vec3s*, Vec3f*, Vec3f*);
 // void func_800DE55C_jp();
 // void func_800DE618_jp();
 s32 Math3D_pipeCrossTriangle_cp(s16* arg0, Vec3f* arg1, Vec3f* arg2);

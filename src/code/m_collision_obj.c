@@ -267,7 +267,35 @@ void CollisionCheck_OC(struct Game_Play* game_play, Game_Play2138* arg1) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/CollisionCheck_setOCC_HitInfo.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/CollisionCheck_OCC_Tris_Vs_JntSph.s")
+void CollisionCheck_OCC_Tris_Vs_JntSph(struct Game_Play* game_play, UNUSED Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3) {
+    JntSph_unk_10* var_s6;
+    Tris* tris = (Tris*)arg2;
+    JntSph* jntSph = (JntSph*)arg3;
+
+    if ((tris->unk_0C <= 0) || (tris->unk_10 == NULL) || (jntSph->unk_0C <= 0) || (jntSph->unk_10 == NULL)) {
+        return;
+    }
+
+    for (var_s6 = jntSph->unk_10; var_s6 < &jntSph->unk_10[jntSph->unk_0C]; var_s6++) {
+        Tris_unk_10* var_s0;
+        Vec3f sp74;
+
+        if (!(var_s6->unk_00 & 1)) {
+            continue;
+        }
+
+        for (var_s0 = tris->unk_10; var_s0 < &tris->unk_10[tris->unk_0C]; var_s0++) {
+            if (func_800DE13C_jp(&var_s6->unk_0C, &var_s0->unk_04, &sp74) != 0) {
+                Vec3f sp68;
+                Vec3f sp5C;
+
+                xyz_t_move_s_xyz(&sp68, &var_s6->unk_0C);
+                CollisionCheck_workTrisElemCenter(var_s0, &sp5C);
+                CollisionCheck_setOCC_HitInfo(game_play, &tris->unk_00, var_s0, &sp5C, &jntSph->unk_00, &var_s6->unk_00, &sp68, &sp74);
+            }
+        }
+    }
+}
 
 void CollisionCheck_OCC_Tris_Vs_Pipe(struct Game_Play* game_play, UNUSED Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3) {
     Tris* tris = (Tris*)arg2;
