@@ -13,7 +13,7 @@ StackEntry sBootStackInfo;
 OSThread sIdleThread;
 STACK(sBootStack, 0x400);
 
-// Unknown original name
+// original name unknown
 void bootclear(void) {
     s32 size = (uintptr_t)bootclear - BOOT_ADDRESS_ULTRA;
 
