@@ -1,10 +1,10 @@
 #include "ac_shrine.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aSHR_actor_ct(Actor* thisx, PlayState* play);
-void aSHR_actor_dt(Actor* thisx, PlayState* play);
-void aSHR_actor_init(Actor* thisx, PlayState* play);
-void aSHR_actor_draw(Actor* thisx, PlayState* play);
+void aSHR_actor_ct(Actor* thisx, Game_Play* game_play);
+void aSHR_actor_dt(Actor* thisx, Game_Play* game_play);
+void aSHR_actor_init(Actor* thisx, Game_Play* game_play);
+void aSHR_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Shrine_Profile = {

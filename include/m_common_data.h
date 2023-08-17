@@ -7,9 +7,9 @@
 struct Actor;
 struct ActorOverlay;
 struct struct_801161E8_jp;
-struct PlayState_unk_0110;
+struct Game_Play_unk_0110;
 struct CommonData_unk_1004C_unk_14_arg0;
-struct PlayState;
+struct Game_Play;
 
 typedef UNK_RET (*CommonData_unk_1004C_unk_04)(struct ActorOverlay*, const struct struct_801161E8_jp*, size_t, s32);
 typedef UNK_RET (*CommonData_unk_1004C_unk_08)(void);
@@ -20,9 +20,9 @@ typedef UNK_PTR (*CommonData_unk_1004C_unk_0C)(size_t, const struct struct_80116
 typedef UNK_RET (*CommonData_unk_1004C_unk_10)(struct Actor*);
 typedef UNK_RET (*CommonData_unk_1004C_unk_14)(struct CommonData_unk_1004C_unk_14_arg0*, u16);
 
-typedef UNK_RET (*CommonData_unk_1004C_unk_EC)(struct PlayState_unk_0110*, s16, s16);
-typedef UNK_RET (*CommonData_unk_1004C_unk_F0)(struct PlayState_unk_0110*, struct Actor*);
-typedef s32 (*CommonData_unk_1004C_unk_F4)(struct PlayState_unk_0110*, struct Actor*);
+typedef UNK_RET (*CommonData_unk_1004C_unk_EC)(struct Game_Play_unk_0110*, s16, s16);
+typedef UNK_RET (*CommonData_unk_1004C_unk_F0)(struct Game_Play_unk_0110*, struct Actor*);
+typedef s32 (*CommonData_unk_1004C_unk_F4)(struct Game_Play_unk_0110*, struct Actor*);
 
 typedef struct CommonData_unk_1004C {
     /* 0x00 */ UNK_TYPE1 unk_00[0x4];
@@ -67,7 +67,7 @@ typedef struct CommonData10138 {
     /* 0xA86 */ CommonData10138_Sub unk_A86;
 } CommonData10138; // size >= 0xA90
 
-typedef void (*CommonData_100E4_Func)(struct PlayState*);
+typedef void (*CommonData_100E4_Func)(struct Game_Play*);
 
 typedef struct CommonData {
     /* 0x00000 */ u8 unk00000[0x14];

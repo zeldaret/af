@@ -1,10 +1,10 @@
 #include "ac_sample.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void Ac_Sample_Actor_ct(Actor* thisx, PlayState* play);
-void Ac_Sample_Actor_dt(Actor* thisx, PlayState* play);
-void Ac_Sample_Actor_main(Actor* thisx, PlayState* play);
-void Ac_Sample_Actor_draw(Actor* thisx, PlayState* play);
+void Ac_Sample_Actor_ct(Actor* thisx, Game_Play* game_play);
+void Ac_Sample_Actor_dt(Actor* thisx, Game_Play* game_play);
+void Ac_Sample_Actor_main(Actor* thisx, Game_Play* game_play);
+void Ac_Sample_Actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Sample_Profile = {

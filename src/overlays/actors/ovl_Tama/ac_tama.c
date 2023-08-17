@@ -1,10 +1,10 @@
 #include "ac_tama.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aTAM_actor_ct(Actor* thisx, PlayState* play);
-void func_80A8EF30_jp(Actor* thisx, PlayState* play);
-void aTAM_actor_init(Actor* thisx, PlayState* play);
-void aTAM_actor_draw(Actor* thisx, PlayState* play);
+void aTAM_actor_ct(Actor* thisx, Game_Play* game_play);
+void func_80A8EF30_jp(Actor* thisx, Game_Play* game_play);
+void aTAM_actor_init(Actor* thisx, Game_Play* game_play);
+void aTAM_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Tama_Profile = {

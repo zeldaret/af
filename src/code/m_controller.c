@@ -5,10 +5,10 @@
 #include "sys_math_atan.h"
 #include "attributes.h"
 
-void mCon_ct(UNUSED GameState* game) {
+void mCon_ct(UNUSED Game* game) {
 }
 
-void mCon_dt(UNUSED GameState* game) {
+void mCon_dt(UNUSED Game* game) {
 }
 
 void mCon_calc(Controller* controller, f32 x, f32 y) {
@@ -54,7 +54,7 @@ void mCon_calc(Controller* controller, f32 x, f32 y) {
     }
 }
 
-void mCon_main(GameState* game) {
+void mCon_main(Game* game) {
     Controller* controller = &game->controller;
     f32 x = getJoystick_X();
     f32 y = getJoystick_Y();

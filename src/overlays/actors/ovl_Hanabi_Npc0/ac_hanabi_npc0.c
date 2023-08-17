@@ -2,10 +2,10 @@
 #include "m_lib.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void func_80528514(Actor* thisx, PlayState* play);
-void func_805285d0(Actor* thisx, PlayState* play);
-void func_80528608(Actor* thisx, PlayState* play);
-void func_80528598(Actor* thisx, PlayState* play);
+void func_80528514(Actor* thisx, Game_Play* game_play);
+void func_805285d0(Actor* thisx, Game_Play* game_play);
+void func_80528608(Actor* thisx, Game_Play* game_play);
+void func_80528598(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Hanabi_Npc0_Profile = {

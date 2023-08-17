@@ -22,7 +22,7 @@
 
 // Gamestate Overlay Table definition
 #define DEFINE_GAMESTATE_INTERNAL(typeName, _enumName) \
-    { NULL, 0, 0, NULL, NULL, NULL, typeName##_Init, typeName##_Destroy, NULL, NULL, 0, sizeof(typeName##State) },
+    { NULL, 0, 0, NULL, NULL, NULL, typeName##_Init, typeName##_Destroy, NULL, NULL, 0, sizeof(Game_##typeName) },
 
 #define DEFINE_GAMESTATE(typeName, _enumName, segmentName) \
     { NULL,                                                \
@@ -36,7 +36,7 @@
       NULL,                                                \
       NULL,                                                \
       0,                                                   \
-      sizeof(typeName##State) },
+      sizeof(Game_##typeName) },
 
 GameStateOverlay game_dlftbls[GAMESTATE_ID_MAX] = {
 #include "tables/gamestate_table.h"

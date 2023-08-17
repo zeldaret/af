@@ -12,22 +12,22 @@ typedef struct CollisionCheck_Status {
 } CollisionCheck_Status; // size >= 0x18
 
 
-typedef struct PlayState2138_unk_08 {
+typedef struct Game_Play2138_unk_08 {
     /* 0x00 */ UNK_TYPE4 unk_00;
     /* 0x00 */ UNK_TYPE1 unk_04[0x4];
     /* 0x08 */ u8 unk_08;
     /* 0x09 */ u8 unk_09;
     /* 0x0A */ u8 unk_0A;
-} PlayState2138_unk_08; // size >= 0xB
+} Game_Play2138_unk_08; // size >= 0xB
 
-typedef struct PlayState2138 {
+typedef struct Game_Play2138 {
     /* 0x00 */ u16 unk_00;
     /* 0x02 */ UNK_TYPE1 unk_02[0x2];
     /* 0x04 */ UNK_TYPE4 unk_04;
-    /* 0x08 */ PlayState2138_unk_08 *unk_08[50];
-} PlayState2138; // size = 0xD0
+    /* 0x08 */ Game_Play2138_unk_08 *unk_08[50];
+} Game_Play2138; // size = 0xD0
 
-struct PlayState;
+struct Game_Play;
 
 // void func_80076B40_jp();
 // void func_80076BA4_jp();
@@ -66,24 +66,24 @@ struct PlayState;
 // void func_80077410_jp();
 // void func_800774B4_jp();
 // void func_80077580_jp();
-void func_80077620_jp(struct PlayState* play, PlayState2138* arg1);
-void CollisionCheck_dt(struct PlayState* play, PlayState2138* arg1);
-void CollisionCheck_clear(struct PlayState* play, PlayState2138* arg1);
+void func_80077620_jp(struct Game_Play* game_play, Game_Play2138* arg1);
+void CollisionCheck_dt(struct Game_Play* game_play, Game_Play2138* arg1);
+void CollisionCheck_clear(struct Game_Play* game_play, Game_Play2138* arg1);
 // void CollisionCheck_setOC();
 // void func_80077794_jp();
 // void func_800777D0_jp();
-void func_80077B6C_jp(struct PlayState* play, PlayState2138* arg1, PlayState2138_unk_08* arg2, PlayState2138_unk_08* arg3);
-void func_80077D6C_jp(struct PlayState* play, PlayState2138* arg1, PlayState2138_unk_08* arg2, PlayState2138_unk_08* arg3);
-void func_80077EF4_jp(struct PlayState* play, PlayState2138* arg1, PlayState2138_unk_08* arg2, PlayState2138_unk_08* arg3);
-void func_80077F20_jp(struct PlayState* play, PlayState2138* arg1, PlayState2138_unk_08* arg2, PlayState2138_unk_08* arg3);
-s32 CollisionCheck_Check1ClObjNoOC(PlayState2138_unk_08* arg0);
-s32 CollisionCheck_Check2ClObjNoOC(PlayState2138_unk_08* arg0, PlayState2138_unk_08* arg1);
-void CollisionCheck_OC(struct PlayState* play, PlayState2138* arg1);
+void func_80077B6C_jp(struct Game_Play* game_play, Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3);
+void func_80077D6C_jp(struct Game_Play* game_play, Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3);
+void func_80077EF4_jp(struct Game_Play* game_play, Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3);
+void func_80077F20_jp(struct Game_Play* game_play, Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3);
+s32 CollisionCheck_Check1ClObjNoOC(Game_Play2138_unk_08* arg0);
+s32 CollisionCheck_Check2ClObjNoOC(Game_Play2138_unk_08* arg0, Game_Play2138_unk_08* arg1);
+void CollisionCheck_OC(struct Game_Play* game_play, Game_Play2138* arg1);
 // void func_80078214_jp();
 // void func_80078258_jp();
 // void func_8007841C_jp();
 // void func_80078568_jp();
-void CollisionCheck_OCC(struct PlayState* play, PlayState2138* arg1);
+void CollisionCheck_OCC(struct Game_Play* game_play, Game_Play2138* arg1);
 // void func_8007870C_jp();
 // void func_8007872C_jp();
 // void func_80078748_jp();

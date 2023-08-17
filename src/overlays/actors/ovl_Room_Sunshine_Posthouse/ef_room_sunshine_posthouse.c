@@ -2,9 +2,9 @@
 #include "m_lib.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void Ef_Room_Sunshine_Posthouse_actor_ct(Actor* thisx, PlayState* play);
-void Ef_Room_Sunshine_PosthouseR_actor_move(Actor* thisx, PlayState* play);
-void Ef_Room_Sunshine_PosthouseR_actor_draw(Actor* thisx, PlayState* play);
+void Ef_Room_Sunshine_Posthouse_actor_ct(Actor* thisx, Game_Play* game_play);
+void Ef_Room_Sunshine_PosthouseR_actor_move(Actor* thisx, Game_Play* game_play);
+void Ef_Room_Sunshine_PosthouseR_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Room_Sunshine_Posthouse_Profile = {

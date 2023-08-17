@@ -2,7 +2,7 @@
 #include "m_lib.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aBC_actor_move(Actor* thisx, PlayState* play);
+void aBC_actor_move(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Birth_Control_Profile = {

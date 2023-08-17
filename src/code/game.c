@@ -17,17 +17,17 @@
 #include "overlays/gamestates/ovl_famicom_emu/famicom_emu.h"
 #include "macros.h"
 
-GameState* gamePT = NULL;
+Game* gamePT = NULL;
 
 struct_80145020_jp B_80145020_jp;
 s16 B_80145040_jp;
-GameState* game_class_p;
+Game* game_class_p;
 u8 game_GameFrame;
 f32 game_GameFrameF;
 f32 game_GameFrame_2F;
 f32 game_GameFrame__1F;
 
-void func_800D2E00_jp(GameState* gameState) {
+void func_800D2E00_jp(Game* gameState) {
     if (zurumode_flag >= 2) {
         Debug_mode_input(CONTROLLER2(gameState));
     }
@@ -82,7 +82,7 @@ void func_800D2E58_jp(u16 button, Gfx** gfxP) {
     *gfxP = gfx;
 }
 
-void game_debug_draw_last(GameState* gameState, GraphicsContext* gfxCtx) {
+void game_debug_draw_last(Game* gameState, GraphicsContext* gfxCtx) {
     Gfx* gfx;
     Gfx* gfxHead;
 
@@ -172,7 +172,7 @@ void game_draw_last(GraphicsContext* gfxCtx) {
     CLOSE_DISPS(gfxCtx);
 }
 
-void game_get_controller(GameState* gameState) {
+void game_get_controller(Game* gameState) {
     if (gameState->unk_74 == 1) {
         padmgr_RequestPadData(gameState->input, 1);
     } else {
@@ -190,7 +190,7 @@ void SetGameFrame(s32 divisor) {
     }
 }
 
-void game_main(GameState* gameState) {
+void game_main(Game* gameState) {
     GraphicsContext* gfxCtx = gameState->gfxCtx;
     u8 gameframe = game_GameFrame;
 
@@ -213,7 +213,7 @@ void game_main(GameState* gameState) {
     gameState->unk_A0++;
 }
 
-void game_init_hyral(GameState* gameState, size_t size) {
+void game_init_hyral(Game* gameState, size_t size) {
     void* buf = gamealloc_malloc(&gameState->alloc, size);
 
     if (buf != NULL) {
@@ -225,7 +225,7 @@ void game_init_hyral(GameState* gameState, size_t size) {
     _dbg_hungup("../game.c", 462);
 }
 
-void game_resize_hyral(GameState* gameState, size_t size) {
+void game_resize_hyral(Game* gameState, size_t size) {
     GameAlloc* alloc = &gameState->alloc;
     void* gameArena;
     size_t maxFree;
@@ -254,7 +254,7 @@ void game_resize_hyral(GameState* gameState, size_t size) {
     _dbg_hungup("../game.c", 508);
 }
 
-void game_ct(GameState* gameState, GameStateFunc init, GraphicsContext* gfxCtx) {
+void game_ct(Game* gameState, GameStateFunc init, GraphicsContext* gfxCtx) {
     gamePT = gameState;
 
     gfxCtx->unk_2F2 = 1;
@@ -291,7 +291,7 @@ void game_ct(GameState* gameState, GameStateFunc init, GraphicsContext* gfxCtx) 
     func_800D3E14_jp(gameState->gfxCtx);
 }
 
-void game_dt(GameState* gameState) {
+void game_dt(Game* gameState) {
     mCon_dt(gameState);
     func_800D3E40_jp(gameState->gfxCtx);
     mBGM_cleanup();
@@ -306,28 +306,28 @@ void game_dt(GameState* gameState) {
     gamePT = NULL;
 }
 
-GameStateFunc game_get_next_game_init(GameState* gameState) {
+GameStateFunc game_get_next_game_init(Game* gameState) {
     return gameState->init;
 }
 
-size_t game_get_next_game_class_size(GameState* gameState) {
+size_t game_get_next_game_class_size(Game* gameState) {
     return gameState->size;
 }
 
-s32 game_is_doing(GameState* gameState) {
+s32 game_is_doing(Game* gameState) {
     return gameState->running;
 }
 
-s32 game_getFreeBytes(GameState* gameState) {
+s32 game_getFreeBytes(Game* gameState) {
     return THA_getFreeBytes(&gameState->heap);
 }
 
-void game_goto_next_game_play(GameState* gameState) {
+void game_goto_next_game_play(Game* gameState) {
     STOP_GAMESTATE(gameState);
-    SET_NEXT_GAMESTATE(gameState, play_init, sizeof(PlayState));
+    SET_NEXT_GAMESTATE(gameState, play_init, sizeof(Game_Play));
 }
 
-void game_goto_next_game_name_famicom_emu(GameState* gameState) {
+void game_goto_next_game_name_famicom_emu(Game* gameState) {
     STOP_GAMESTATE(gameState);
-    SET_NEXT_GAMESTATE(gameState, famicom_emu_init, sizeof(FamicomEmuState));
+    SET_NEXT_GAMESTATE(gameState, famicom_emu_init, sizeof(Game_FamicomEmu));
 }

@@ -1,10 +1,10 @@
 #include "ac_post_office.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aPOFF_actor_ct(Actor* thisx, PlayState* play);
-void aPOFF_actor_dt(Actor* thisx, PlayState* play);
-void aPOFF_actor_init(Actor* thisx, PlayState* play);
-void aPOFF_actor_draw(Actor* thisx, PlayState* play);
+void aPOFF_actor_ct(Actor* thisx, Game_Play* game_play);
+void aPOFF_actor_dt(Actor* thisx, Game_Play* game_play);
+void aPOFF_actor_init(Actor* thisx, Game_Play* game_play);
+void aPOFF_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Post_Office_Profile = {

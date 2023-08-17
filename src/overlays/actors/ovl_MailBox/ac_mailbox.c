@@ -2,9 +2,9 @@
 #include "m_lib.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aMBX_actor_ct(Actor* thisx, PlayState* play);
-void aMBX_actor_dt(Actor* thisx, PlayState* play);
-void aMBX_actor_init(Actor* thisx, PlayState* play);
+void aMBX_actor_ct(Actor* thisx, Game_Play* game_play);
+void aMBX_actor_dt(Actor* thisx, Game_Play* game_play);
+void aMBX_actor_init(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile MailBox_Profile = {
