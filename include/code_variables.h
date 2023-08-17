@@ -185,7 +185,7 @@
 // extern UNK_TYPE D_801046C4_jp;
 // extern UNK_TYPE D_801046D0_jp;
 // extern UNK_TYPE D_80104710_jp;
-// extern UNK_TYPE D_8010471C_jp;
+// extern UNK_TYPE oc_collision_function;
 // extern UNK_TYPE D_80104740_jp;
 // extern UNK_TYPE D_80104764_jp;
 // extern UNK_TYPE D_80104770_jp;
@@ -1823,8 +1823,8 @@ extern s32 zurumode_flag;
 // extern UNK_TYPE B_80126D5C_jp;
 // extern UNK_TYPE B_80126D60_jp;
 // extern UNK_TYPE B_80126E60_jp;
-// extern UNK_TYPE B_80126E70_jp;
-// extern UNK_TYPE B_80126E74_jp;
+// extern UNK_TYPE mco_work;
+
 // extern UNK_TYPE B_80126E9C_jp;
 
 // extern UNK_TYPE B_80137960_jp;

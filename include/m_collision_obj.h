@@ -13,8 +13,10 @@ typedef struct CollisionCheck_Status {
 
 
 typedef struct PlayState2138_unk_08 {
-    /* 0x00 */ UNK_TYPE1 unk_00[0x8];
-    /* 0x08 */ UNK_TYPE1 unk_08[0x2];
+    /* 0x00 */ UNK_TYPE4 unk_00;
+    /* 0x00 */ UNK_TYPE1 unk_04[0x4];
+    /* 0x08 */ u8 unk_08;
+    /* 0x09 */ u8 unk_09;
     /* 0x0A */ u8 unk_0A;
 } PlayState2138_unk_08; // size >= 0xB
 
@@ -70,18 +72,18 @@ void CollisionCheck_clear(struct PlayState* play, PlayState2138* arg1);
 // void CollisionCheck_setOC();
 // void func_80077794_jp();
 // void func_800777D0_jp();
-// void func_80077B6C_jp();
-// void func_80077D6C_jp();
-// void func_80077EF4_jp();
-// void func_80077F20_jp();
-// void func_80077FF0_jp();
-// void func_80078014_jp();
+void func_80077B6C_jp(struct PlayState* play, PlayState2138* arg1, PlayState2138_unk_08* arg2, PlayState2138_unk_08* arg3);
+void func_80077D6C_jp(struct PlayState* play, PlayState2138* arg1, PlayState2138_unk_08* arg2, PlayState2138_unk_08* arg3);
+void func_80077EF4_jp(struct PlayState* play, PlayState2138* arg1, PlayState2138_unk_08* arg2, PlayState2138_unk_08* arg3);
+void func_80077F20_jp(struct PlayState* play, PlayState2138* arg1, PlayState2138_unk_08* arg2, PlayState2138_unk_08* arg3);
+s32 CollisionCheck_Check1ClObjNoOC(PlayState2138_unk_08* arg0);
+s32 CollisionCheck_Check2ClObjNoOC(PlayState2138_unk_08* arg0, PlayState2138_unk_08* arg1);
 void CollisionCheck_OC(struct PlayState* play, PlayState2138* arg1);
 // void func_80078214_jp();
 // void func_80078258_jp();
 // void func_8007841C_jp();
 // void func_80078568_jp();
-// void func_8007858C_jp();
+void CollisionCheck_OCC(struct PlayState* play, PlayState2138* arg1);
 // void func_8007870C_jp();
 // void func_8007872C_jp();
 // void func_80078748_jp();

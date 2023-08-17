@@ -2,8 +2,16 @@
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "macros.h"
 
-extern s32 B_80126E70_jp;
-extern UNK_PTR B_80126E74_jp[10]; // TODO: this may be an array of pointers to PlayState2138_unk_08
+typedef struct struct_mco_work {
+    /* 0x00 */ s32 unk_00;
+    /* 0x04 */ UNK_PTR unk_04[10];  // TODO: this may be an array of pointers to PlayState2138_unk_08
+} struct_mco_work; // size = 0x2C
+
+extern struct_mco_work mco_work;
+
+typedef void (*OcCollisionFunc)(PlayState*, PlayState2138*, PlayState2138_unk_08*, PlayState2138_unk_08*);
+
+extern OcCollisionFunc oc_collision_function[][3];
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80076B40_jp.s")
 
@@ -102,8 +110,8 @@ void CollisionCheck_clear(UNUSED PlayState* play, PlayState2138* arg1) {
         *var_v0 = 0;
     }
 
-    B_80126E70_jp = 0;
-    for (var_v0_2 = B_80126E74_jp; (void*)var_v0_2 < (void*)&B_80126E74_jp[10]; var_v0_2++) {
+    mco_work.unk_00 = 0;
+    for (var_v0_2 = mco_work.unk_04; (void*)var_v0_2 < (void*)&mco_work.unk_04[10]; var_v0_2++) {
         *var_v0_2 = 0;
     }
 }
@@ -122,11 +130,22 @@ void CollisionCheck_clear(UNUSED PlayState* play, PlayState2138* arg1) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80077F20_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80077FF0_jp.s")
+s32 CollisionCheck_Check1ClObjNoOC(PlayState2138_unk_08* arg0) {
+    if (!(arg0->unk_08 & 1)) {
+        return 1;
+    }
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80078014_jp.s")
-
-extern UNK_TYPE D_8010471C_jp[][3];
+s32 CollisionCheck_Check2ClObjNoOC(PlayState2138_unk_08* arg0, PlayState2138_unk_08* arg1) {
+    if (!(arg0->unk_08 & arg1->unk_09 & 0x38) || !(arg0->unk_09 & arg1->unk_08 & 0x38)) {
+        return 1;
+    }
+    if (arg0->unk_00 == arg1->unk_00) {
+        return 1;
+    }
+    return 0;
+}
 
 void CollisionCheck_OC(PlayState* play, PlayState2138* arg1) {
     PlayState2138_unk_08** var_s2;
@@ -134,18 +153,18 @@ void CollisionCheck_OC(PlayState* play, PlayState2138* arg1) {
     for (var_s2 = arg1->unk_08; var_s2 < &arg1->unk_08[arg1->unk_04]; var_s2++) {
         PlayState2138_unk_08** var_s0;
 
-        if ((*var_s2 == NULL) || (func_80077FF0_jp(*var_s2) == 1)) {
+        if ((*var_s2 == NULL) || (CollisionCheck_Check1ClObjNoOC(*var_s2) == 1)) {
             continue;
         }
 
         for (var_s0 = var_s2 + 1; var_s0 < &arg1->unk_08[arg1->unk_04]; var_s0++) {
-            void (*temp_v0)(PlayState*, PlayState2138*, PlayState2138_unk_08*, PlayState2138_unk_08*);
+            OcCollisionFunc temp_v0;
 
-            if ((*var_s0 == NULL) || (func_80077FF0_jp(*var_s0) == 1) || (func_80078014_jp(*var_s2, *var_s0) == 1)) {
+            if ((*var_s0 == NULL) || (CollisionCheck_Check1ClObjNoOC(*var_s0) == 1) || (CollisionCheck_Check2ClObjNoOC(*var_s2, *var_s0) == 1)) {
                 continue;
             }
 
-            temp_v0 = D_8010471C_jp[(*var_s2)->unk_0A][(*var_s0)->unk_0A];
+            temp_v0 = oc_collision_function[(*var_s2)->unk_0A][(*var_s0)->unk_0A];
             if (temp_v0 == NULL) {
                 continue;
             }
@@ -154,7 +173,7 @@ void CollisionCheck_OC(PlayState* play, PlayState2138* arg1) {
         }
     }
 
-    func_8007858C_jp(play, arg1);
+    CollisionCheck_OCC(play, arg1);
 }
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80078214_jp.s")
@@ -165,7 +184,7 @@ void CollisionCheck_OC(PlayState* play, PlayState2138* arg1) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80078568_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_8007858C_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/CollisionCheck_OCC.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_8007870C_jp.s")
 
