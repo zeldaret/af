@@ -1893,8 +1893,6 @@ extern s32 zurumode_flag;
 // extern UNK_TYPE B_FLT_80141DFC_jp;
 // extern UNK_TYPE B_80141E00_jp;
 // extern UNK_TYPE B_80141E04_jp;
-// extern UNK_TYPE light_list_buf;
-// extern UNK_TYPE B_80141E18_jp;
 
 // extern UNK_TYPE B_80141FE0_jp;
 // extern UNK_TYPE B_80141FF0_jp;
