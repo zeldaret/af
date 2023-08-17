@@ -6,11 +6,11 @@
 #include "unk.h"
 
 typedef struct SaveMenuState {
-    /* 0x00 */ GameState state;
+    /* 0x00 */ Game state;
     /* 0xE0 */ UNK_TYPE1 unk_00[0x230-0xE0];
 } SaveMenuState; // size = 0x230
 
-void save_menu_init(GameState *thisx);
-void save_menu_cleanup(GameState *thisx);
+void save_menu_init(Game *thisx);
+void save_menu_cleanup(Game *thisx);
 
 #endif

@@ -58,7 +58,7 @@ typedef struct PlayState_Unk_1EE8 {
 } PlayState_Unk_1EE8; // size = 0x240
 
 typedef struct PlayState {
-    /* 0x0000 */ GameState state;
+    /* 0x0000 */ Game state;
     /* 0x00E0 */ s16 unk_00E0;
     /* 0x00E2 */ UNK_TYPE1 unk_00E2[0x2];
     /* 0x00E4 */ s8 unk_00E4;
@@ -113,7 +113,7 @@ typedef struct PlayState {
     /* 0x2214 */ UNK_TYPE1 unk_2214[0x1FC];
 } PlayState; // size = 0x2410
 
-void play_init(GameState* gameState);
-void play_cleanup(GameState* gameState);
+void play_init(Game* gameState);
+void play_cleanup(Game* gameState);
 
 #endif

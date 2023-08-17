@@ -6,10 +6,10 @@
 #include "unk.h"
 
 typedef struct FamicomEmuState {
-    /* 0x00 */ GameState state;
+    /* 0x00 */ Game state;
 } FamicomEmuState; // size = 0xE0
 
-void famicom_emu_init(GameState *thisx);
-void famicom_emu_cleanup(GameState *thisx);
+void famicom_emu_init(Game *thisx);
+void famicom_emu_cleanup(Game *thisx);
 
 #endif

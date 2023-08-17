@@ -6,10 +6,10 @@
 #include "unk.h"
 
 typedef struct SecondGameState {
-    /* 0x00 */ GameState state;
+    /* 0x00 */ Game state;
 } SecondGameState; // size = 0xE0
 
-void second_game_init(GameState *thisx);
-void second_game_cleanup(GameState *thisx);
+void second_game_init(Game *thisx);
+void second_game_cleanup(Game *thisx);
 
 #endif
