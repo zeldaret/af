@@ -36,21 +36,37 @@ typedef struct JntSph_unk_10 {
 // TODO: rename
 typedef struct JntSph {
     /* 0x00 */ Game_Play2138_unk_08 unk_00;
-
-    s32 unk_0C;
-    JntSph_unk_10* unk_10;
-} JntSph; // size >= 0xC
+    /* 0x0C */ s32 unk_0C;
+    /* 0x10 */ JntSph_unk_10* unk_10;
+} JntSph; // size >= 0x14
 
 // TODO: rename
 typedef struct Pipe {
     /* 0x00 */ Game_Play2138_unk_08 unk_00;
     /* 0x0C */ u8 unk_0C;
     /* 0x0D */ UNK_TYPE1 unk_0D[0x1];
-    /* 0x0E */ u8 unk_0E;
-    /* 0x0F */ UNK_TYPE1 unk_0F[0x1];
-    /* 0x10 */ UNK_TYPE1 unk_10[0x4];
+    /* 0x0E */ s16 unk_0E;
+    /* 0x10 */ s16 unk_10;
+    /* 0x12 */ UNK_TYPE1 unk_12[0x2];
     /* 0x14 */ Vec3s unk_14;
 } Pipe; // size >= 0x1C
+
+
+typedef struct Tris_unk_10 {
+    /* 0x00 */ UNK_TYPE1 unk_00[0x04];
+    /* 0x04 */ Vec3f unk_04;
+    /* 0x10 */ Vec3f unk_10;
+    /* 0x1C */ Vec3f unk_1C;
+    /* 0x28 */ UNK_TYPE1 unk_28[0x1C];
+} Tris_unk_10; // size = 0x44
+
+// TODO: rename
+typedef struct Tris {
+    /* 0x00 */ Game_Play2138_unk_08 unk_00;
+
+    UNK_TYPE unk_0C;
+    Tris_unk_10* unk_10;
+} Tris; // size >= 0x
 
 typedef struct Game_Play2138 {
     /* 0x00 */ u16 unk_00;
@@ -61,7 +77,7 @@ typedef struct Game_Play2138 {
 
 struct Game_Play;
 
-// void func_80076B40_jp();
+// void CollisionCheck_workTrisElemCenter();
 // void func_80076BA4_jp();
 // void func_80076BD4_jp();
 // void func_80076BE8_jp();
@@ -102,7 +118,7 @@ void func_80077620_jp(struct Game_Play* game_play, Game_Play2138* arg1);
 void CollisionCheck_dt(struct Game_Play* game_play, Game_Play2138* arg1);
 void CollisionCheck_clear(struct Game_Play* game_play, Game_Play2138* arg1);
 // void CollisionCheck_setOC();
-// void func_80077794_jp();
+// void get_type();
 void CollisionCheck_setOC_HitInfo(Game_Play2138_unk_08* arg0, u8* arg1, Vec3f* arg2, Game_Play2138_unk_08* arg3, u8* arg4, Vec3f* arg5, f32 arg6);
 void CollisionCheck_OC_JntSph_Vs_JntSph(struct Game_Play* game_play, Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3);
 void CollisionCheck_OC_JntSph_Vs_Pipe(struct Game_Play* game_play, Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3);
@@ -111,9 +127,9 @@ void CollisionCheck_OC_Pipe_Vs_Pipe(struct Game_Play* game_play, Game_Play2138* 
 s32 CollisionCheck_Check1ClObjNoOC(Game_Play2138_unk_08* arg0);
 s32 CollisionCheck_Check2ClObjNoOC(Game_Play2138_unk_08* arg0, Game_Play2138_unk_08* arg1);
 void CollisionCheck_OC(struct Game_Play* game_play, Game_Play2138* arg1);
-// void func_80078214_jp();
-void CollisionCheck_OCC_Tris_Vs_JntSph(struct Game_Play*, Game_Play2138*, Game_Play2138_unk_08*, Game_Play2138_unk_08*);
-void CollisionCheck_OCC_Tris_Vs_Pipe(struct Game_Play*, Game_Play2138*, Game_Play2138_unk_08*, Game_Play2138_unk_08*);
+void CollisionCheck_setOCC_HitInfo(struct Game_Play* game_play, Game_Play2138_unk_08* arg1, Tris_unk_10* arg2, Vec3f* arg3, Game_Play2138_unk_08* arg4, u8* arg5, Vec3f* arg6, Vec3f* arg7);
+void CollisionCheck_OCC_Tris_Vs_JntSph(struct Game_Play* game_play, Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3);
+void CollisionCheck_OCC_Tris_Vs_Pipe(struct Game_Play* game_play, Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3);
 s32 CollisionCheck_Check1ClObjNoOCC(Game_Play2138_unk_08* arg0);
 void CollisionCheck_OCC(struct Game_Play* game_play, Game_Play2138* arg1);
 // void func_8007870C_jp();

@@ -20,7 +20,11 @@ extern CollisionCheck_Status D_80104770_jp;
 
 extern CollisionVsFunc occ_collision_function[][3];
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80076B40_jp.s")
+void CollisionCheck_workTrisElemCenter(Tris_unk_10* arg0, Vec3f* arg1) {
+    arg1->x = (arg0->unk_1C.x + (arg0->unk_04.x + arg0->unk_10.x)) * (1.0f / 3.0f);
+    arg1->y = (arg0->unk_1C.y + (arg0->unk_04.y + arg0->unk_10.y)) * (1.0f / 3.0f);
+    arg1->z = (arg0->unk_1C.z + (arg0->unk_04.z + arg0->unk_10.z)) * (1.0f / 3.0f);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80076BA4_jp.s")
 
@@ -124,7 +128,7 @@ void CollisionCheck_clear(UNUSED struct Game_Play* game_play, Game_Play2138* arg
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/CollisionCheck_setOC.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80077794_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/get_type.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/CollisionCheck_setOC_HitInfo.s")
 
@@ -261,13 +265,44 @@ void CollisionCheck_OC(struct Game_Play* game_play, Game_Play2138* arg1) {
     CollisionCheck_OCC(game_play, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80078214_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/CollisionCheck_setOCC_HitInfo.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/CollisionCheck_OCC_Tris_Vs_JntSph.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/CollisionCheck_OCC_Tris_Vs_Pipe.s")
+void CollisionCheck_OCC_Tris_Vs_Pipe(struct Game_Play* game_play, UNUSED Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3) {
+    Tris* tris = (Tris*)arg2;
+    Pipe* pipe = (Pipe*)arg3;
+    Tris_unk_10* var_s0;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/CollisionCheck_Check1ClObjNoOCC.s")
+    if ((pipe->unk_0E <= 0) || (pipe->unk_10 <= 0) || !(pipe->unk_0C & 1)) {
+        return;
+    }
+
+    if ((tris->unk_0C <= 0) || (tris->unk_10 == NULL)) {
+        return;
+    }
+
+    for (var_s0 = tris->unk_10; var_s0 < &tris->unk_10[tris->unk_0C]; var_s0++) {
+        Vec3f sp68;
+
+        if (Math3D_pipeCrossTriangle_cp(&pipe->unk_0E, &var_s0->unk_04, &sp68) != 0) {
+            Vec3f sp5C;
+            Vec3f sp50;
+
+            CollisionCheck_workTrisElemCenter(var_s0, &sp50);
+            xyz_t_move_s_xyz(&sp5C, &pipe->unk_14);
+            CollisionCheck_setOCC_HitInfo(game_play, &tris->unk_00, var_s0, &sp50, &pipe->unk_00, &pipe->unk_0C, &sp5C, &sp68);
+            break;
+        }
+    }
+}
+
+s32 CollisionCheck_Check1ClObjNoOCC(Game_Play2138_unk_08* arg0) {
+    if (!(arg0->unk_09 & 2)) {
+        return 1;
+    }
+    return 0;
+}
 
 void CollisionCheck_OCC(struct Game_Play* game_play, Game_Play2138* arg1) {
     Game_Play2138_unk_08** var_s2;
