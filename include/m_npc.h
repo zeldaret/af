@@ -7,11 +7,11 @@
 
 #define ANIMAL_NUM_MAX 15 /* Maximum number of villagers possible in town */
 
-typedef struct npc_list_s {
+typedef struct mNpc_NpcList_c {
     /* 0x00 */ char unk00[0x38];
 } mNpc_NpcList_c; // size = 0x38
 
-typedef struct animal_s {
+typedef struct Animal_c {
   /* 0x000 */ char unk000[0x528];
 } Animal_c; // size = 0x528
 

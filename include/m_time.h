@@ -40,7 +40,7 @@ typedef enum mTM_TERM{
     /* 15 */ mTM_TERM_15,
     /* 16 */ mTM_TERM_16,
     /* 17 */ mTM_TERM_17,
-    
+
     /* 18 */ mTM_TERM_NUM
 } mTM_TERM;
 
@@ -60,7 +60,7 @@ typedef enum mTM_RENEW_TIME{
 
 #define mTM_MINUTES_IN_HOUR 60
 
-typedef struct time_calendar_term_s {
+typedef struct mTM_calendar_term_t {
     /* 0x00 */ lbRTC_month_t month;
     /* 0x01 */ lbRTC_day_t day;
     /* 0x02 */ u16 season;
