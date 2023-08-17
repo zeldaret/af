@@ -1,5 +1,9 @@
 #include "m_collision_obj.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
+#include "macros.h"
 
+extern s32 B_80126E70_jp;
+extern UNK_PTR B_80126E74_jp[10]; // TODO: this may be an array of pointers to PlayState2138_unk_08
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80076B40_jp.s")
 
@@ -75,11 +79,34 @@
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80077580_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80077620_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/CollisionCheck_dt.s")
+void func_80077620_jp(PlayState* play, PlayState2138* arg1) {
+    arg1->unk_00 = 0;
+    CollisionCheck_clear(play, arg1);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/CollisionCheck_clear.s")
+void CollisionCheck_dt(UNUSED PlayState* play, UNUSED PlayState2138* arg1) {
+
+}
+
+void CollisionCheck_clear(UNUSED PlayState* play, PlayState2138* arg1) {
+    PlayState2138_unk_08** var_v0;
+    UNK_PTR* var_v0_2;
+
+    if (arg1->unk_00 & 1) {
+        return;
+    }
+
+    arg1->unk_04 = 0;
+    for (var_v0 = arg1->unk_08; var_v0 < &arg1->unk_08[ARRAY_COUNT(arg1->unk_08)]; var_v0++) {
+        *var_v0 = 0;
+    }
+
+    B_80126E70_jp = 0;
+    for (var_v0_2 = B_80126E74_jp; (void*)var_v0_2 < (void*)&B_80126E74_jp[10]; var_v0_2++) {
+        *var_v0_2 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/CollisionCheck_setOC.s")
 
