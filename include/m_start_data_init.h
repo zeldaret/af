@@ -31,13 +31,13 @@ void mSDI_PullTreeUT(mActor_name_t* item_p);
 void mSDI_PullTreeBlock(u16* items_p, s32 ut);
 void mSDI_PullTree(void);
 void mSDI_PullTreeUnderPlayerBlock(void);
-s32 mSDI_StartInitNew(GameState* gameState, s32 player_no, s32 malloc_flag);
-s32 mSDI_StartInitFrom(GameState* gameState, s32 player_no, s32 malloc_flag);
-s32 mSDI_StartInitNewPlayer(GameState* gameState, s32 player_no, s32 malloc_flag);
-s32 mSDI_StartInitPak(GameState* gameState, s32 player_no, s32 malloc_flag);
-s32 mSDI_StartInitErr(GameState* gameState, s32 player_no, s32 malloc_flag);
-void mSDI_StartInitAfter(GameState* gameState, s32 renewal_reserve_flag, s32 malloc_flag);
-s32 mSDI_StartInitBefore(GameState* gameState, s32 player_no, s32 init_mode, s32 malloc_flag);
-s32 mSDI_StartDataInit(GameState* gameState, s32 player_no, s32 init_mode);
+s32 mSDI_StartInitNew(Game* game, s32 player_no, s32 malloc_flag);
+s32 mSDI_StartInitFrom(Game* game, s32 player_no, s32 malloc_flag);
+s32 mSDI_StartInitNewPlayer(Game* game, s32 player_no, s32 malloc_flag);
+s32 mSDI_StartInitPak(Game* game, s32 player_no, s32 malloc_flag);
+s32 mSDI_StartInitErr(Game* game, s32 player_no, s32 malloc_flag);
+void mSDI_StartInitAfter(Game* game, s32 renewal_reserve_flag, s32 malloc_flag);
+s32 mSDI_StartInitBefore(Game* game, s32 player_no, s32 init_mode, s32 malloc_flag);
+s32 mSDI_StartDataInit(Game* game, s32 player_no, s32 init_mode);
 
 #endif

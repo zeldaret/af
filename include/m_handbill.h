@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 
+struct Game;
 struct Game_Play;
 
 void Balloon_init(struct Game_Play* game_play);
@@ -11,7 +12,7 @@ void Balloon_move(struct Game_Play* game_play);
 // void func_80092B8C_jp();
 // void func_80092BA0_jp();
 // void func_80092BE8_jp();
-void mHsRm_GetHuusuiRoom(GameState* gameState, s32 player_no);
+void mHsRm_GetHuusuiRoom(struct Game* game_play, s32 player_no);
 // void func_80092D10_jp();
 // void func_80092E14_jp();
 // void func_80092E80_jp();

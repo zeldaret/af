@@ -39,7 +39,7 @@
 #include "6A7D20.h"
 #include "m_scene_table.h"
 
-void play_main(Game* gameState);
+void play_main(Game* game);
 void Gameplay_Scene_Read(Game_Play* game_play, s16 arg1);
 void Game_play_fbdemo_wipe_create(Game_Play* game_play);
 void Game_play_fbdemo_wipe_init(Game_Play* game_play);
@@ -334,8 +334,8 @@ void Game_play_fbdemo_proc(Game_Play* game_play) {
     }
 }
 
-void play_cleanup(Game* gameState) {
-    Game_Play* game_play = (Game_Play*)gameState;
+void play_cleanup(Game* game) {
+    Game_Play* game_play = (Game_Play*)game;
 
     func_800A3304_jp(game_play);
     game_play->state.gfxCtx->unk_2F4 = 0;
@@ -365,8 +365,8 @@ void play_cleanup(Game* gameState) {
     zelda_CleanupArena();
 }
 
-void play_init(Game* gameState) {
-    Game_Play* game_play = (Game_Play*)gameState;
+void play_init(Game* game) {
+    Game_Play* game_play = (Game_Play*)game;
     GraphicsContext* gfxCtx = game_play->state.gfxCtx;
     u32 temp_v1;
     u32 temp_v0_2;
@@ -777,8 +777,8 @@ label:;
     }
 }
 
-void play_main(Game* gameState) {
-    Game_Play* game_play = (Game_Play*)gameState;
+void play_main(Game* game) {
+    Game_Play* game_play = (Game_Play*)game;
 
     game_play->state.unk_9D = 0x6E;
     game_play->state.unk_9C = 0;

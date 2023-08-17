@@ -184,11 +184,11 @@ void mSDI_PullTreeUnderPlayerBlock(void) {
     mSDI_PullTreeUT(&items[16 + 8]);
 }
 
-s32 mSDI_StartInitNew(GameState* gameState, s32 player_no, s32 malloc_flag) {
-    PlayState* play = (PlayState*)gameState;
+s32 mSDI_StartInitNew(Game* game_, s32 player_no, s32 malloc_flag) {
+    Game_Play* game_play =(Game_Play*)game_;
     Private_c* priv;
     Private_c* priv_p;
-    GameState* game = NULL;
+    Game* game = NULL;
     s32 i;
     UNUSED s32 pad[2];
 
@@ -203,7 +203,7 @@ s32 mSDI_StartInitNew(GameState* gameState, s32 player_no, s32 malloc_flag) {
 
     decide_fruit(&common_data.fruit);
     if (malloc_flag == 0) {
-        game = gameState;
+        game = game_;
     }
 
     bzero(&common_data.deposit, sizeof(common_data.deposit));
@@ -219,7 +219,7 @@ s32 mSDI_StartInitNew(GameState* gameState, s32 player_no, s32 malloc_flag) {
     mMld_SetDefaultMelody();
     mLd_LandDataInit();
     mEv_ClearEventSaveInfo(&common_data.event_save_data);
-    mEv_init(&play->event);
+    mEv_init(&game_play->event);
     mNpc_InitNpcAllInfo(malloc_flag);
 
     for (i = 0; i < PLAYER_NUM; i++) {
@@ -255,15 +255,15 @@ s32 mSDI_StartInitNew(GameState* gameState, s32 player_no, s32 malloc_flag) {
 
     mPr_SetPossessionItem(common_data.now_private, 0, ITM_MONEY_1000, mPr_ITEM_COND_QUEST);
     mNW_InitMyOriginal();
-    mEv_2nd_init(&play->event);
+    mEv_2nd_init(&game_play->event);
     famicom_emu_initial_common_data();
     return TRUE;
 }
 
-s32 mSDI_StartInitFrom(GameState* gameState, s32 player_no, s32 malloc_flag) {
-    PlayState* play = (PlayState*)gameState;
+s32 mSDI_StartInitFrom(Game* game_, s32 player_no, s32 malloc_flag) {
+    Game_Play* game_play =(Game_Play*)game_;
     Private_c* priv;
-    GameState* game = gameState;
+    Game* game = game_;
     s32 res = FALSE;
 
     if (malloc_flag != 0) {
@@ -280,7 +280,7 @@ s32 mSDI_StartInitFrom(GameState* gameState, s32 player_no, s32 malloc_flag) {
                 common_data.now_private = priv;
                 common_data.player_no = player_no;
                 mFM_SetBlockKindLoadCombi(game);
-                mEv_init_force(&play->event);
+                mEv_init_force(&game_play->event);
                 mHsRm_GetHuusuiRoom(game, player_no);
                 mSP_ExchangeLineUp_InGame(game);
                 mNpc_SetRemoveAnimalNo(common_data.animals);
@@ -313,8 +313,8 @@ s32 mSDI_StartInitFrom(GameState* gameState, s32 player_no, s32 malloc_flag) {
     return res;
 }
 
-s32 mSDI_StartInitNewPlayer(GameState* gameState, s32 player_no, s32 malloc_flag) {
-    PlayState* play = (PlayState*)gameState;
+s32 mSDI_StartInitNewPlayer(Game* game, s32 player_no, s32 malloc_flag) {
+    Game_Play* game_play =(Game_Play*)game;
     Private_c* priv;
     s32 res = FALSE;
     UNUSED s32 pad;
@@ -331,12 +331,12 @@ s32 mSDI_StartInitNewPlayer(GameState* gameState, s32 player_no, s32 malloc_flag
             common_data.player_no = player_no;
             common_data.now_private->gender = mPr_SEX_MALE;
             if (malloc_flag == 0) {
-                mFM_SetBlockKindLoadCombi(gameState);
-                mEv_init_force(&play->event);
-                mSP_ExchangeLineUp_InGame(gameState);
+                mFM_SetBlockKindLoadCombi(game);
+                mEv_init_force(&game_play->event);
+                mSP_ExchangeLineUp_InGame(game);
             } else {
                 mFM_SetBlockKindLoadCombi(NULL);
-                mEv_init_force(&play->event);
+                mEv_init_force(&game_play->event);
                 mSP_ExchangeLineUp_InGame(NULL);
             }
             mNpc_SetRemoveAnimalNo(common_data.animals);
@@ -347,9 +347,9 @@ s32 mSDI_StartInitNewPlayer(GameState* gameState, s32 player_no, s32 malloc_flag
     return res;
 }
 
-s32 mSDI_StartInitPak(GameState* gameState, s32 player_no, s32 malloc_flag) {
-    GameState* game = gameState;
-    PlayState* play = (PlayState*)gameState;
+s32 mSDI_StartInitPak(Game* game_, s32 player_no, s32 malloc_flag) {
+    Game* game = game_;
+    Game_Play* game_play =(Game_Play*)game;
     UNUSED s32 pad;
     s32 res = FALSE;
     s32 sp1C;
@@ -366,7 +366,7 @@ s32 mSDI_StartInitPak(GameState* gameState, s32 player_no, s32 malloc_flag) {
         sp1C = mCPk_get_pkinfo();
         if ((func_80078E90_jp(sp1C, 0) == TRUE) && (func_800B8D64_jp(player_no, sp1C) == TRUE)) {
             mFM_SetBlockKindLoadCombi(game);
-            mEv_init_force(&play->event);
+            mEv_init_force(&game_play->event);
             mHsRm_GetHuusuiRoom(game, player_no);
             mSP_ExchangeLineUp_InGame(game);
             mNpc_SetRemoveAnimalNo(common_data.animals);
@@ -381,12 +381,12 @@ s32 mSDI_StartInitPak(GameState* gameState, s32 player_no, s32 malloc_flag) {
     return res;
 }
 
-s32 mSDI_StartInitErr(UNUSED GameState* gameState, UNUSED s32 player_no, UNUSED s32 malloc_flag) {
+s32 mSDI_StartInitErr(UNUSED Game* game, UNUSED s32 player_no, UNUSED s32 malloc_flag) {
     return TRUE;
 }
 
-void mSDI_StartInitAfter(GameState* gameState, s32 renewal_reserve_flag, s32 malloc_flag) {
-    PlayState* play = (PlayState*)gameState;
+void mSDI_StartInitAfter(Game* game, s32 renewal_reserve_flag, s32 malloc_flag) {
+    Game_Play* game_play =(Game_Play*)game;
 
     common_data.house_owner_name = -1;
     common_data.last_field_id = -1;
@@ -396,10 +396,10 @@ void mSDI_StartInitAfter(GameState* gameState, s32 renewal_reserve_flag, s32 mal
     mTM_renewal_renew_time();
     mEv_ClearEventInfo();
     mEnv_DecideWeather_NormalGameStart();
-    func_800B7680_jp(play);
+    func_800B7680_jp(game_play);
     mTM_set_season();
     func_80084DA4_jp();
-    mEv_2nd_init(&play->event);
+    mEv_2nd_init(&game_play->event);
     func_800AD9FC_jp();
     func_80096B64_jp();
     func_800AB054_jp();
@@ -414,7 +414,7 @@ void mSDI_StartInitAfter(GameState* gameState, s32 renewal_reserve_flag, s32 mal
     mNpcW_InitNpcWalk(&common_data.npc_walk);
     mHm_CheckRehouseOrder();
     decide_fish_location(&common_data.fish_location);
-    mTRC_init(play);
+    mTRC_init(game_play);
     common_data.goki_shocked_flag = FALSE;
     func_800A6548_jp();
     func_800B9B2C_jp();
@@ -428,18 +428,18 @@ void mSDI_StartInitAfter(GameState* gameState, s32 renewal_reserve_flag, s32 mal
     mPr_RenewalMapInfo(common_data.now_private->maps, mPr_FOREIGN_MAP_COUNT, &common_data.land_info);
 }
 
-typedef s32 (*mSDI_INIT_PROC)(GameState*, s32, s32);
+typedef s32 (*mSDI_INIT_PROC)(Game*, s32, s32);
 
-s32 mSDI_StartInitBefore(GameState* gameState, s32 player_no, s32 init_mode, s32 malloc_flag) {
+s32 mSDI_StartInitBefore(Game* game, s32 player_no, s32 init_mode, s32 malloc_flag) {
     static mSDI_INIT_PROC init_proc[mSDI_INIT_MODE_NUM] = {
         mSDI_StartInitNew, mSDI_StartInitNewPlayer, mSDI_StartInitFrom, mSDI_StartInitPak, mSDI_StartInitErr,
     };
 
     mEv_UnSetGateway();
-    return init_proc[init_mode](gameState, player_no, malloc_flag);
+    return init_proc[init_mode](game, player_no, malloc_flag);
 }
 
-s32 mSDI_StartDataInit(GameState* gameState, s32 player_no, s32 init_mode) {
+s32 mSDI_StartDataInit(Game* game, s32 player_no, s32 init_mode) {
     static int renew_reserve_mode_table[mSDI_INIT_MODE_NUM] = {
         TRUE, FALSE, FALSE, FALSE, FALSE,
     };
@@ -449,9 +449,9 @@ s32 mSDI_StartDataInit(GameState* gameState, s32 player_no, s32 init_mode) {
         init_mode = mSDI_INIT_MODE_NEW;
     }
 
-    res = mSDI_StartInitBefore(gameState, player_no, init_mode, mSDI_MALLOC_FLAG_ZELDA);
+    res = mSDI_StartInitBefore(game, player_no, init_mode, mSDI_MALLOC_FLAG_ZELDA);
     if (res == TRUE) {
-        mSDI_StartInitAfter(gameState, renew_reserve_mode_table[init_mode], mSDI_MALLOC_FLAG_ZELDA);
+        mSDI_StartInitAfter(game, renew_reserve_mode_table[init_mode], mSDI_MALLOC_FLAG_ZELDA);
     }
 
     return res;

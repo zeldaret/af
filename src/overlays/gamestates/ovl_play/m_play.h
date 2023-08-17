@@ -113,7 +113,7 @@ typedef struct Game_Play {
     /* 0x2214 */ UNK_TYPE1 unk_2214[0x1FC];
 } Game_Play; // size = 0x2410
 
-void play_init(Game* gameState);
-void play_cleanup(Game* gameState);
+void play_init(Game* game);
+void play_cleanup(Game* game);
 
 #endif

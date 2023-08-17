@@ -3,7 +3,7 @@
 
 #include "ultra64.h"
 
-struct GameState;
+struct Game;
 
 // void func_800BF410_jp();
 // void func_800BF480_jp();
@@ -39,7 +39,7 @@ struct GameState;
 // void func_800C0E98_jp();
 // void func_800C1070_jp();
 // void func_800C1230_jp();
-void mSP_ExchangeLineUp_InGame(struct GameState* gameState);
+void mSP_ExchangeLineUp_InGame(struct Game* game);
 // void func_800C1498_jp();
 // void func_800C15A8_jp();
 // void func_800C1610_jp();

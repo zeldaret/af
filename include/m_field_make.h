@@ -3,7 +3,7 @@
 
 #include "ultra64.h"
 
-struct GameState;
+struct Game;
 
 #define BLOCK_X_NUM 7
 #define BLOCK_Z_NUM 10
@@ -56,8 +56,8 @@ typedef struct mFM_fg_c {
 void func_80087004_jp(void);
 void func_80087280_jp(void);
 // void func_80087380_jp();
-void mFM_SetBlockKindLoadCombi(struct GameState* gameState);
-void mFM_InitFgCombiSaveData(struct GameState* gameState);
+void mFM_SetBlockKindLoadCombi(struct Game* game);
+void mFM_InitFgCombiSaveData(struct Game* game);
 // void func_80087754_jp();
 // void func_8008775C_jp();
 // void func_80087788_jp();
