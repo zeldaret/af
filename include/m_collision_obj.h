@@ -24,6 +24,23 @@ typedef struct Game_Play2138_unk_08 {
     /* 0x0A */ u8 unk_0A;
 } Game_Play2138_unk_08; // size >= 0xB, size <= 0xC
 
+typedef struct JntSph_unk_10 {
+    /* 0x00 */ u8 unk_00;
+    /* 0x01 */ UNK_TYPE1 unk_01[0x3];
+    /* 0x04 */ UNK_TYPE1 unk_04[0x8];
+    /* 0x0C */ Vec3s unk_0C;
+    /* 0x12 */ UNK_TYPE1 unk_12[0x2];
+    /* 0x14 */ UNK_TYPE1 unk_14[0x8];
+} JntSph_unk_10; // size = 0x1C
+
+// TODO: rename
+typedef struct JntSph {
+    /* 0x00 */ Game_Play2138_unk_08 unk_00;
+
+    s32 unk_0C;
+    JntSph_unk_10* unk_10;
+} JntSph; // size >= 0xC
+
 // TODO: rename
 typedef struct Pipe {
     /* 0x00 */ Game_Play2138_unk_08 unk_00;
