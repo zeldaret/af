@@ -149,7 +149,7 @@ static int _enc_find(struct yazCtx *ctx, uint8_t *array, uint8_t *needle, int ne
 
 static int *_enc_search(struct yazCtx *ctx, uint8_t *data, uint32_t pos, uint32_t sz, uint32_t cap/*=0x111*/) {
 	int *return_data = ctx->return_data;
-	// this is necessary unless pos is signed, so let's game_play it safe
+	// this is necessary unless pos is signed, so let's play it safe
 	int mp = (pos>0x1000)?(pos-0x1000):0;
 	int ml = min(cap, sz - pos);
 	if(ml<3) {
