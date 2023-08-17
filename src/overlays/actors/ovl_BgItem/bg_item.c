@@ -1,10 +1,10 @@
 #include "bg_item.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void bIT_actor_ct(Actor* thisx, PlayState* play);
-void bIT_actor_dt(Actor* thisx, PlayState* play);
-void bIT_actor_move(Actor* thisx, PlayState* play);
-void bIT_actor_draw(Actor* thisx, PlayState* play);
+void bIT_actor_ct(Actor* thisx, Game_Play* game_play);
+void bIT_actor_dt(Actor* thisx, Game_Play* game_play);
+void bIT_actor_move(Actor* thisx, Game_Play* game_play);
+void bIT_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile BgItem_Profile = {

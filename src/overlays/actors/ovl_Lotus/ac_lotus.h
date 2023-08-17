@@ -5,10 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
-struct PlayState;
+struct Game_Play;
 struct Lotus;
 
-typedef void (*LotusActionFunc)(struct Lotus*, struct PlayState*);
+typedef void (*LotusActionFunc)(struct Lotus*, struct Game_Play*);
 
 typedef struct Lotus {
     /* 0x000 */ Actor actor;

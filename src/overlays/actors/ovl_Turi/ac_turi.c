@@ -1,10 +1,10 @@
 #include "ac_turi.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aTUR_actor_ct(Actor* thisx, PlayState* play);
-void aTUR_actor_dt(Actor* thisx, PlayState* play);
-void aTUR_actor_init(Actor* thisx, PlayState* play);
-void aTUR_actor_draw(Actor* thisx, PlayState* play);
+void aTUR_actor_ct(Actor* thisx, Game_Play* game_play);
+void aTUR_actor_dt(Actor* thisx, Game_Play* game_play);
+void aTUR_actor_init(Actor* thisx, Game_Play* game_play);
+void aTUR_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Turi_Profile = {

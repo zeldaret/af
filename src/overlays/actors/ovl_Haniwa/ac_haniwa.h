@@ -5,10 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
-struct PlayState;
+struct Game_Play;
 struct Haniwa;
 
-typedef void (*HaniwaActionFunc)(struct Haniwa*, struct PlayState*);
+typedef void (*HaniwaActionFunc)(struct Haniwa*, struct Game_Play*);
 
 typedef struct Haniwa {
     /* 0x000 */ Actor actor;

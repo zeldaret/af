@@ -5,10 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
-struct PlayState;
+struct Game_Play;
 struct Gyo_Release;
 
-typedef void (*Gyo_ReleaseActionFunc)(struct Gyo_Release*, struct PlayState*);
+typedef void (*Gyo_ReleaseActionFunc)(struct Gyo_Release*, struct Game_Play*);
 
 typedef struct Gyo_Release {
     /* 0x000 */ Actor actor;

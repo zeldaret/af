@@ -4,7 +4,7 @@
 #include "ultra64.h"
 
 struct Player;
-struct PlayState;
+struct Game_Play;
 
 // void func_800B1160_jp();
 // void func_800B11B0_jp();
@@ -33,13 +33,13 @@ struct PlayState;
 // void func_800B19C4_jp();
 // void func_800B1A28_jp();
 // void func_800B1A60_jp();
-void mPlib_Object_Exchange_keep_Player_dt(struct PlayState* play);
+void mPlib_Object_Exchange_keep_Player_dt(struct Game_Play* game_play);
 // void func_800B1AE0_jp();
 // void func_800B1B3C_jp();
 // void func_800B1B6C_jp();
 // void func_800B1BB8_jp();
 // void func_800B1BE8_jp();
-struct Player* get_player_actor_withoutCheck(struct PlayState* play);
+struct Player* get_player_actor_withoutCheck(struct Game_Play* game_play);
 // void func_800B1C90_jp();
 // void func_800B1CBC_jp();
 // void func_800B1CE0_jp();

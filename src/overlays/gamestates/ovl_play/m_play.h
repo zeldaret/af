@@ -24,41 +24,41 @@
 
 struct Actor;
 struct ActorEntry;
-struct PlayState;
+struct Game_Play;
 
-typedef void (*PlayState_unk_1C58)(struct Actor*);
-typedef UNK_RET (*PlayState_unk_2208)(struct Actor*, struct PlayState*);
+typedef void (*Game_Play_unk_1C58)(struct Actor*);
+typedef UNK_RET (*Game_Play_unk_2208)(struct Actor*, struct Game_Play*);
 
-typedef void (*PlayStateUnkFunc_00)(void*);
-typedef void (*PlayStateUnkFunc_04)(void*, struct PlayState*);
-typedef void (*PlayStateUnkFunc_08)(void*, u8);
-typedef void (*PlayStateUnkFunc_0C)(void*, Gfx**);
-typedef void (*PlayStateUnkFunc_10)(void*);
-typedef void (*PlayStateUnkFunc_14)(void*, s32);
-typedef void (*PlayStateUnkFunc_18)(void*, s32);
-typedef void (*PlayStateUnkFunc_1C)(void);
-typedef s32 (*PlayStateUnkFunc_20)(void*, struct PlayState*);
+typedef void (*Game_PlayUnkFunc_00)(void*);
+typedef void (*Game_PlayUnkFunc_04)(void*, struct Game_Play*);
+typedef void (*Game_PlayUnkFunc_08)(void*, u8);
+typedef void (*Game_PlayUnkFunc_0C)(void*, Gfx**);
+typedef void (*Game_PlayUnkFunc_10)(void*);
+typedef void (*Game_PlayUnkFunc_14)(void*, s32);
+typedef void (*Game_PlayUnkFunc_18)(void*, s32);
+typedef void (*Game_PlayUnkFunc_1C)(void);
+typedef s32 (*Game_PlayUnkFunc_20)(void*, struct Game_Play*);
 
-typedef struct PlayStateUnkFuncsStruct {
-    /* 0x00 */ PlayStateUnkFunc_00 unk_00;
-    /* 0x04 */ PlayStateUnkFunc_04 unk_04;
-    /* 0x08 */ PlayStateUnkFunc_08 unk_08;
-    /* 0x0C */ PlayStateUnkFunc_0C unk_0C;
-    /* 0x10 */ PlayStateUnkFunc_10 unk_10;
-    /* 0x14 */ PlayStateUnkFunc_14 unk_14;
-    /* 0x18 */ PlayStateUnkFunc_18 unk_18;
-    /* 0x1C */ PlayStateUnkFunc_1C unk_1C;
-    /* 0x20 */ PlayStateUnkFunc_20 unk_20;
-} PlayStateUnkFuncsStruct; // size = 0x24
+typedef struct Game_PlayUnkFuncsStruct {
+    /* 0x00 */ Game_PlayUnkFunc_00 unk_00;
+    /* 0x04 */ Game_PlayUnkFunc_04 unk_04;
+    /* 0x08 */ Game_PlayUnkFunc_08 unk_08;
+    /* 0x0C */ Game_PlayUnkFunc_0C unk_0C;
+    /* 0x10 */ Game_PlayUnkFunc_10 unk_10;
+    /* 0x14 */ Game_PlayUnkFunc_14 unk_14;
+    /* 0x18 */ Game_PlayUnkFunc_18 unk_18;
+    /* 0x1C */ Game_PlayUnkFunc_1C unk_1C;
+    /* 0x20 */ Game_PlayUnkFunc_20 unk_20;
+} Game_PlayUnkFuncsStruct; // size = 0x24
 
-typedef struct PlayState_Unk_1EE8 {
+typedef struct Game_Play_Unk_1EE8 {
     /* 0x000 */ char unk000[0x218];
     /* 0x218 */ s32 unk_218;
-    /* 0x21C */ PlayStateUnkFuncsStruct unk_21C;
-} PlayState_Unk_1EE8; // size = 0x240
+    /* 0x21C */ Game_PlayUnkFuncsStruct unk_21C;
+} Game_Play_Unk_1EE8; // size = 0x240
 
-typedef struct PlayState {
-    /* 0x0000 */ GameState state;
+typedef struct Game_Play {
+    /* 0x0000 */ Game state;
     /* 0x00E0 */ s16 unk_00E0;
     /* 0x00E2 */ UNK_TYPE1 unk_00E2[0x2];
     /* 0x00E4 */ s8 unk_00E4;
@@ -66,17 +66,17 @@ typedef struct PlayState {
     /* 0x00E6 */ UNK_TYPE1 unk_00E6[0x2];
     /* 0x00E8 */ UNK_TYPE1 unk_00E8[0x24];
     /* 0x010C */ void* unk_010C;
-    /* 0x0110 */ PlayState_unk_0110 unk_0110[UNK_SIZE];
+    /* 0x0110 */ Game_Play_unk_0110 unk_0110[UNK_SIZE];
     /* 0x0164 */ UNK_TYPE1 unk_0164[0x17A8];
     /* 0x190C */ s32 unk_190C;
     /* 0x1910 */ UNK_TYPE1 unk_1910[0x28];
-    /* 0x1938 */ PlayState1938 unk_1938;
+    /* 0x1938 */ Game_Play1938 unk_1938;
     /* 0x1A60 */ UNK_TYPE1 unk_1A60[0x138];
     /* 0x1B98 */ Kankyo kankyo;
     /* 0x1C60 */ LightContext lightCtx;
     /* 0x1C70 */ Pause pause;
     /* 0x1C78 */ ActorInfo actorInfo;
-    /* 0x1CBC */ PlayState1CBC unk_1CBC;
+    /* 0x1CBC */ Game_Play1CBC unk_1CBC;
     /* 0x1DAC */ s8 unk_1DAC;
     /* 0x1DAD */ UNK_TYPE1 unk_1DAD[0x3];
     /* 0x1DB0 */ UNK_TYPE1 unk_1DB0[0x10];
@@ -97,23 +97,23 @@ typedef struct PlayState {
     /* 0x1EB0 */ s16 *unk_1EB0;
     /* 0x1EB4 */ UNK_TYPE1 unk_1EB4[0x4];
     /* 0x1EB8 */ s32 unk_1EB8;
-    /* 0x1EBC */ PlayState1EBC unk_1EBC;
+    /* 0x1EBC */ Game_Play1EBC unk_1EBC;
     /* 0x1ECC */ UNK_TYPE1 unk_1ECC[0x14];
     /* 0x1EE0 */ u8 unk_1EE0;
     /* 0x1EE1 */ u8 unk_1EE1;
     /* 0x1EE2 */ u8 unk_1EE2;
     /* 0x1EE3 */ u8 unk_1EE3;
     /* 0x1EE4 */ UNK_TYPE1 unk_1EE4[0x4];
-    /* 0x1EE8 */ PlayState_Unk_1EE8 unk_1EE8;
-    /* 0x2128 */ PlayState2128 unk_2128;
-    /* 0x2138 */ PlayState2138 unk_2138;
-    /* 0x2208 */ PlayState_unk_2208 unk_2208;
+    /* 0x1EE8 */ Game_Play_Unk_1EE8 unk_1EE8;
+    /* 0x2128 */ Game_Play2128 unk_2128;
+    /* 0x2138 */ Game_Play2138 unk_2138;
+    /* 0x2208 */ Game_Play_unk_2208 unk_2208;
     /* 0x220C */ s32 unk_220C;
     /* 0x2210 */ Struct_8010EAA0* unk_2210;
     /* 0x2214 */ UNK_TYPE1 unk_2214[0x1FC];
-} PlayState; // size = 0x2410
+} Game_Play; // size = 0x2410
 
-void play_init(GameState* gameState);
-void play_cleanup(GameState* gameState);
+void play_init(Game* gameState);
+void play_cleanup(Game* gameState);
 
 #endif

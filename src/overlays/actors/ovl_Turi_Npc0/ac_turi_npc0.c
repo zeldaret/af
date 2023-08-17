@@ -2,10 +2,10 @@
 #include "m_lib.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void func_805900b0(Actor* thisx, PlayState* play);
-void func_805901d8(Actor* thisx, PlayState* play);
-void aTR0_actor_init(Actor* thisx, PlayState* play);
-void aTR0_actor_save(Actor* thisx, PlayState* play);
+void func_805900b0(Actor* thisx, Game_Play* game_play);
+void func_805901d8(Actor* thisx, Game_Play* game_play);
+void aTR0_actor_init(Actor* thisx, Game_Play* game_play);
+void aTR0_actor_save(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Turi_Npc0_Profile = {

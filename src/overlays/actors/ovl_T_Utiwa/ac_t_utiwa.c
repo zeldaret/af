@@ -2,9 +2,9 @@
 #include "m_lib.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aTUT_actor_ct(Actor* thisx, PlayState* play);
-void aTUT_actor_move(Actor* thisx, PlayState* play);
-void aTUT_actor_draw(Actor* thisx, PlayState* play);
+void aTUT_actor_ct(Actor* thisx, Game_Play* game_play);
+void aTUT_actor_move(Actor* thisx, Game_Play* game_play);
+void aTUT_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile T_Utiwa_Profile = {
