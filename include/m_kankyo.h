@@ -5,7 +5,7 @@
 #include "unk.h"
 
 struct Actor;
-struct LightContext;
+struct Global_light;
 
 typedef void (*Kankyo_unk_C0)(struct Actor*);
 
@@ -49,7 +49,7 @@ void Global_kankyo_ct(struct Game_Play* game_play, struct Kankyo* kankyo);
 // void func_800981B8_jp();
 // void func_8009836C_jp();
 // void func_800983F0_jp();
-void Global_kankyo_set(struct Game_Play* game_play, struct Kankyo* kankyo, struct LightContext* arg2);
+void Global_kankyo_set(struct Game_Play* game_play, struct Kankyo* kankyo, struct Global_light* arg2);
 // void func_80098558_jp();
 // void func_8009867C_jp();
 // void func_80098794_jp();

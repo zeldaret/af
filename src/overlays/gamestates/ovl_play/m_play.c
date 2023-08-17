@@ -309,8 +309,8 @@ void Game_play_fbdemo_wipe_proc(Game_Play* game_play) {
 }
 
 Gfx* game_play_set_fog(Game_Play* game_play, Gfx* gfx) {
-    return gfx_set_fog_nosync(gfx, game_play->lightCtx.fogColor.r, game_play->lightCtx.fogColor.g,
-                              game_play->lightCtx.fogColor.b, 0, game_play->lightCtx.fogNear, game_play->lightCtx.zFar);
+    return gfx_set_fog_nosync(gfx, game_play->glight.fogColor[0], game_play->glight.fogColor[1],
+                              game_play->glight.fogColor[2], 0, game_play->glight.fogNear, game_play->glight.fogFar);
 }
 
 void Game_play_fbdemo_proc(Game_Play* game_play) {
@@ -520,7 +520,7 @@ void Game_play_move(Game_Play* game_play) {
 
     game_play->state.unk_9D = 0x93;
     game_play->state.unk_9C = 1;
-    Global_kankyo_set(game_play, &game_play->kankyo, &game_play->lightCtx);
+    Global_kankyo_set(game_play, &game_play->kankyo, &game_play->glight);
     game_play->state.unk_9C = 2;
     mEnv_WindMove();
     game_play->state.unk_9C = 3;
@@ -661,9 +661,9 @@ s32 makeBumpTexture(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsCon
     }
 
     {
-        Lights* sp40 = Global_light_read(&game_play->lightCtx, gfxCtx2);
+        LightsN* sp40 = Global_light_read(&game_play->glight, gfxCtx2);
 
-        LightsN_list_check(sp40, game_play->lightCtx.listHead, NULL);
+        LightsN_list_check(sp40, game_play->glight.list, NULL);
         LightsN_disp(sp40, gfxCtx2);
     }
 
@@ -825,7 +825,7 @@ void Gameplay_Scene_Init(Game_Play* game_play) {
     game_play->unk_1EA7 = 0;
     game_play->unk_1EB8 = 0;
     mSc_data_bank_ct(game_play, game_play->unk_0110);
-    Global_light_ct(&game_play->lightCtx);
+    Global_light_ct(&game_play->glight);
     Door_info_ct(&game_play->unk_1E10);
     common_data_clear();
     Scene_ct(game_play, game_play->unk_010C);

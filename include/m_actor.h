@@ -243,7 +243,7 @@ s32 Actor_draw_actor_no_culling_check(Actor* actor);
 s32 Actor_draw_actor_no_culling_check2(Actor* actor, Vec3f* arg1, f32 arg2);
 void Actor_cull_check(Actor* actor);
 void Actor_delete_check(Actor* actor, struct Game_Play* game_play);
-void Actor_info_ct(struct Game_Play* play2, ActorInfo* actorInfo, struct ActorEntry* actorEntry);
+void Actor_info_ct(struct Game_Play* game_play2, ActorInfo* actorInfo, struct ActorEntry* actorEntry);
 void Actor_info_dt(ActorInfo* actorInfo, struct Game_Play* game_play);
 void Actor_info_call_actor(struct Game_Play* game_play, ActorInfo* actorInfo);
 void Actor_info_draw_actor(struct Game_Play* game_play, ActorInfo* actorInfo);

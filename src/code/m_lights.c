@@ -178,9 +178,16 @@ void LightsN__diffuse_proc(LightsN* lights, LightParams* lightInfo, UNUSED Vec3f
 }
 
 void LightsN_list_check(LightsN* lights, LightNode* node, Vec3f* pos) {
-    static light_point_proc poslight_type_proc[] = { LightsN__point_proc, LightsN__diffuse_proc, LightsN__point_proc };
-    static light_P_point_proc light_type_proc[] = { LightsN__P_point_proc, LightsN__diffuse_proc,
-                                                    LightsN__P_point_proc };
+    static light_point_proc poslight_type_proc[] = {
+        LightsN__point_proc,
+        LightsN__diffuse_proc,
+        LightsN__point_proc,
+    };
+    static light_P_point_proc light_type_proc[] = {
+        LightsN__P_point_proc,
+        LightsN__diffuse_proc,
+        LightsN__P_point_proc,
+    };
 
     if (pos == NULL) {
         while (node != NULL) {
@@ -261,7 +268,7 @@ void Global_light_list_dt(Global_light* glight) {
     }
 }
 
-LightNode* Global_light_list_new(UNUSED PlayState* play, Global_light* glight, Lights* light) {
+LightNode* Global_light_list_new(UNUSED Game_Play* play, Global_light* glight, Lights* light) {
     LightNode* newNode = Light_list_buf_new();
 
     if (newNode != NULL) {
@@ -327,11 +334,11 @@ LightsN* new_LightsN(GraphicsContext* gfxCtx, u8 r, u8 g, u8 b) {
     return lights;
 }
 
-void Light_list_point_draw(PlayState* play) {
-    LightNode* lightNode = play->glight.list;
+void Light_list_point_draw(Game_Play* game_play) {
+    LightNode* lightNode = game_play->glight.list;
     Gfx* gfx;
 
-    OPEN_DISPS(play->state.gfxCtx);
+    OPEN_DISPS(game_play->state.gfxCtx);
     gfx = func_800BD7C0_jp(POLY_XLU_DISP);
 
     gDPSetAlphaDither(gfx++, G_AD_NOISE);
@@ -341,7 +348,7 @@ void Light_list_point_draw(PlayState* play) {
     while (lightNode != NULL) {
         LightParams* lightParams = &lightNode->info->lights;
 
-        if ((lightNode->info->type == 2) && (lightParams->point.drawGlow != 0)) {
+        if ((lightNode->info->type == 2) && lightParams->point.drawGlow) {
             f32 rad = SQ(lightParams->point.radius) * 0.0000026f;
 
             gDPSetPrimColor(gfx++, 0, 0, lightParams->point.color[0], lightParams->point.color[1],
@@ -350,7 +357,7 @@ void Light_list_point_draw(PlayState* play) {
             Matrix_translate(lightParams->point.x, lightParams->point.y, lightParams->point.z, 0);
             Matrix_scale(rad, rad, rad, 1);
 
-            gSPMatrix(gfx++, _Matrix_to_Mtx_new(play->state.gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+            gSPMatrix(gfx++, _Matrix_to_Mtx_new(game_play->state.gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             gSPDisplayList(gfx++, D_400AA40);
         }
         lightNode = lightNode->next;
@@ -358,5 +365,5 @@ void Light_list_point_draw(PlayState* play) {
 
     POLY_XLU_DISP = gfx;
 
-    CLOSE_DISPS(play->state.gfxCtx);
+    CLOSE_DISPS(game_play->state.gfxCtx);
 }
