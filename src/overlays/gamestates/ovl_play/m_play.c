@@ -309,8 +309,8 @@ void Game_play_fbdemo_wipe_proc(Game_Play* game_play) {
 }
 
 Gfx* game_play_set_fog(Game_Play* game_play, Gfx* gfx) {
-    return gfx_set_fog_nosync(gfx, game_play->lightCtx.fogColor.r, game_play->lightCtx.fogColor.g, game_play->lightCtx.fogColor.b, 0,
-                              game_play->lightCtx.fogNear, game_play->lightCtx.zFar);
+    return gfx_set_fog_nosync(gfx, game_play->lightCtx.fogColor.r, game_play->lightCtx.fogColor.g,
+                              game_play->lightCtx.fogColor.b, 0, game_play->lightCtx.fogNear, game_play->lightCtx.zFar);
 }
 
 void Game_play_fbdemo_proc(Game_Play* game_play) {

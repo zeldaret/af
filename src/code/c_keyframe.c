@@ -563,8 +563,8 @@ s32 cKF_SkeletonInfo_R_play(SkeletonInfoR* skeletonInfo) {
  *
  * @param jointIndex The index of the jointElem to draw.
  */
-void cKF_Si3_draw_SV_R_child(Game_Play* game_play, SkeletonInfoR* skeletonInfo, s32* jointIndex, DrawCallback beforeCallback,
-                             DrawCallback afterCallback, void* arg, Mtx** mtx) {
+void cKF_Si3_draw_SV_R_child(Game_Play* game_play, SkeletonInfoR* skeletonInfo, s32* jointIndex,
+                             DrawCallback beforeCallback, DrawCallback afterCallback, void* arg, Mtx** mtx) {
     JointElemR* jointElem = *jointIndex + (JointElemR*)Lib_SegmentedToVirtual(skeletonInfo->skeleton->jointElemTable);
     s32 i;
     Gfx* newDlist;
@@ -622,8 +622,8 @@ void cKF_Si3_draw_SV_R_child(Game_Play* game_play, SkeletonInfoR* skeletonInfo, 
     displayBufferFlag = jointElem->displayBufferFlag;
 
     if ((beforeCallback == NULL) ||
-        (beforeCallback != NULL && beforeCallback(game_play, skeletonInfo, *jointIndex, &newDlist, &displayBufferFlag, arg,
-                                                  &rotation, &translation) != NULL)) {
+        (beforeCallback != NULL && beforeCallback(game_play, skeletonInfo, *jointIndex, &newDlist, &displayBufferFlag,
+                                                  arg, &rotation, &translation) != NULL)) {
         Matrix_softcv3_mult(&translation, &rotation);
 
         if (newDlist != NULL) {
@@ -647,7 +647,8 @@ void cKF_Si3_draw_SV_R_child(Game_Play* game_play, SkeletonInfoR* skeletonInfo, 
     }
 
     if (afterCallback != NULL) {
-        afterCallback(game_play, skeletonInfo, *jointIndex, &newDlist, &displayBufferFlag, arg, &rotation, &translation);
+        afterCallback(game_play, skeletonInfo, *jointIndex, &newDlist, &displayBufferFlag, arg, &rotation,
+                      &translation);
     }
 
     (*jointIndex)++;

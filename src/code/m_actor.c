@@ -264,7 +264,8 @@ void Actor_draw(Game_Play* game_play, Actor* actor) {
     OPEN_DISPS(game_play->state.gfxCtx);
 
     light = Global_light_read(&game_play->lightCtx, game_play->state.gfxCtx);
-    LightsN_list_check(light, game_play->lightCtx.listHead, (actor->flags & ACTOR_FLAG_400000) ? NULL : &actor->world.pos);
+    LightsN_list_check(light, game_play->lightCtx.listHead,
+                       (actor->flags & ACTOR_FLAG_400000) ? NULL : &actor->world.pos);
     LightsN_disp(light, game_play->state.gfxCtx);
 
     Matrix_softcv3_load(actor->world.pos.x, actor->world.pos.y + actor->shape.unk_08 * actor->scale.y,
@@ -370,8 +371,8 @@ void Actor_info_ct(Game_Play* play2, ActorInfo* actorInfo, ActorEntry* actorEntr
     }
 
     if (common_data.unk_107B6 != 0xC9) {
-        Actor_info_make_actor(actorInfo, game_play, common_data.unk_107B6, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1, -1,
-                              -1);
+        Actor_info_make_actor(actorInfo, game_play, common_data.unk_107B6, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1,
+                              -1, -1);
     }
     common_data.unk_107B6 = 0xC9;
 
@@ -386,16 +387,16 @@ label:
     }
 
     if (common_data.unk_1014E != 0) {
-        Actor_info_make_actor(actorInfo, game_play, common_data.unk_1014E, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1, -1,
-                              -1);
+        Actor_info_make_actor(actorInfo, game_play, common_data.unk_1014E, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1,
+                              -1, -1);
     }
 
     if (game_play->unk_1EA6 != 0) {
         var_s0 = game_play->unk_1EB0;
 
         for (var_s1 = 0; var_s1 < game_play->unk_1EA6; var_s1++) {
-            Actor_info_make_actor(&game_play->actorInfo, game_play, *var_s0, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1, -1,
-                                  -1);
+            Actor_info_make_actor(&game_play->actorInfo, game_play, *var_s0, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0,
+                                  -1, -1, -1);
             var_s0 += 1;
         }
         game_play->unk_1EA6 = 0;
@@ -673,7 +674,8 @@ s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const 
 }
 
 // this function may be Actor_data_bank_regist_check_npc
-s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile UNUSED, ActorOverlay* overlayEntry, Game_Play* game_play, u16 fgName) {
+s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile UNUSED, ActorOverlay* overlayEntry, Game_Play* game_play,
+                     u16 fgName) {
     s32 pad UNUSED;
     s16 sp92;
     s16 sp90;
@@ -768,9 +770,9 @@ s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay
     return 1;
 }
 
-void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* overlayEntry, Game_Play* game_play, s32 arg4,
-                            f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 argB, s8 argC, s16 argD, u16 fgName,
-                            s16 params) {
+void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* overlayEntry, Game_Play* game_play,
+                            s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 argB, s8 argC, s16 argD,
+                            u16 fgName, s16 params) {
     mem_clear(actor, profile->instanceSize, 0);
 
     actor->overlayEntry = overlayEntry;
@@ -848,10 +850,10 @@ Actor* Actor_info_make_actor(ActorInfo* actorInfo, Game_Play* game_play, s16 act
     return sp68;
 }
 
-Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, Game_Play* game_play, s16 actorId, f32 x, f32 y, f32 z,
-                                   s16 rotX, s16 rotY, s16 rotZ, s16 argA, u16 fgName, s16 params, s32 argD) {
-    Actor* temp_v0 = Actor_info_make_actor(actorInfo, game_play, actorId, x, y, z, rotX, rotY, rotZ, -1, -1, argA, fgName,
-                                           params, -1, argD);
+Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, Game_Play* game_play, s16 actorId, f32 x, f32 y,
+                                   f32 z, s16 rotX, s16 rotY, s16 rotZ, s16 argA, u16 fgName, s16 params, s32 argD) {
+    Actor* temp_v0 = Actor_info_make_actor(actorInfo, game_play, actorId, x, y, z, rotX, rotY, rotZ, -1, -1, argA,
+                                           fgName, params, -1, argD);
 
     if (temp_v0 != NULL) {
         arg1->child = temp_v0;
