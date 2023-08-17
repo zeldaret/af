@@ -47,28 +47,23 @@ ActorProfile Toudai_Profile = {
 
 void func_80AAB488_jp(Toudai* this, s32);                     /* extern */
 void func_80AAB918_jp(Toudai* this, s32);                     /* extern */
-extern BaseSkeletonR* D_80AAC0AC_jp;
+extern BaseSkeletonR* D_80AAC0AC_jp[];
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Toudai/ac_toudai/aTOU_actor_ct.s")
-// void aTOU_actor_ct(Actor *thisx, PlayState *play)
-// {
-//     Toudai* this = THIS;
-//     s32 sp30;
-//     // SkeletonInfoR *sp2C;
-//     // SkeletonInfoR *temp_a0;
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Toudai/ac_toudai/aTOU_actor_ct.s")
+void aTOU_actor_ct(Actor *thisx, PlayState *play)
+{
+    Toudai* this = THIS;
+    s32 sp30;
 
-//     sp30 = (common_data.unk1010C == 3);
-//     // temp_a0 = thisx + 0x178;
-//     // gSegments[6] = common_data.unk_10098->unkAC(0x2D) + 0x80000000;
-//     gSegments[6] = OS_K0_TO_PHYSICAL(common_data.unk_10098);
-//     // sp2C = temp_a0;
-//     cKF_SkeletonInfo_R_ct(&this->skeletonInfo, &D_80AAC0AC_jp[sp30], NULL, &this->jointTable, &this->morphTable);
-//     func_80AAB488_jp(this, 1);
-//     func_80AAB918_jp(this, 0);
-//     cKF_SkeletonInfo_R_play(&this->skeletonInfo);
-//     this->actor.world.pos.x -= 20.0f;
-//     this->actor.world.pos.z -= 20.0f;
-// }
+    sp30 = (common_data.unk1010C == 3);
+    gSegments[6] = OS_K0_TO_PHYSICAL(common_data.unk_10098->unk_AC(0x2D));
+    cKF_SkeletonInfo_R_ct(&this->skeletonInfo, D_80AAC0AC_jp[sp30], NULL, &this->jointTable, &this->morphTable);
+    func_80AAB488_jp(this, 1);
+    func_80AAB918_jp(this, 0);
+    cKF_SkeletonInfo_R_play(&this->skeletonInfo);
+    this->actor.world.pos.x -= 20.0f;
+    this->actor.world.pos.z -= 20.0f;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Toudai/ac_toudai/aTOU_actor_dt.s")
 
@@ -86,16 +81,16 @@ extern BaseSkeletonR* D_80AAC0AC_jp;
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Toudai/ac_toudai/func_80AAB918_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Toudai/ac_toudai/func_80AAB9C8_jp.s")
-// void func_80AAB9C8_jp(Toudai *this, PlayState *play)
-// {
-//     // gSegments[6] = common_data.unk_10098->unkAC(0x2D) + 0x80000000;
-//     gSegments[6] = common_data.unk_10098;
-//     this->unk174 = cKF_SkeletonInfo_R_play(&this->skeletonInfo);
-//     this->unk1E8 = this->skeletonInfo.frameControl.currentFrame;
-//     this->unk2A0(this, play);
-//     func_80AAB60C_jp(this);
-// }
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Toudai/ac_toudai/func_80AAB9C8_jp.s")
+void func_80AAB9C8_jp(Toudai *this, PlayState *play)
+{
+    // gSegments[6] = common_data.unk_10098->unkAC(0x2D) + 0x80000000;
+    gSegments[6] = OS_K0_TO_PHYSICAL(common_data.unk_10098->unk_AC(0x2D));
+    this->unk174 = cKF_SkeletonInfo_R_play(&this->skeletonInfo);
+    this->unk1E8 = this->skeletonInfo.frameControl.currentFrame;
+    this->unk2A0(this, play);
+    func_80AAB60C_jp(this);
+}
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Toudai/ac_toudai/aTOU_actor_init.s")
 void func_80AAB9C8_jp(Toudai *this, PlayState *play); /* extern */

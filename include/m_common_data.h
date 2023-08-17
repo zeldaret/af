@@ -45,12 +45,16 @@ typedef UNK_PTR (*CommonData_unk_10098_unk_0C)(void);
 
 typedef UNK_RET (*CommonData_unk_10098_unk_10)(struct Actor*);
 
+typedef UNK_RET (*CommonData_unk_10098_unk_AC)(UNK_TYPE);
+
 typedef struct CommonData_unk_10098 {
     /* 0x00 */ UNK_TYPE1 unk_00[0x4];
     /* 0x04 */ CommonData_unk_10098_unk_4 unk_4;
     /* 0x08 */ CommonData_unk_10098_unk_8 unk_08;
     /* 0x0C */ CommonData_unk_10098_unk_0C unk_0C;
     /* 0x10 */ CommonData_unk_10098_unk_10 unk_10;
+    /* 0x14 */ s8 unk_14[0x98];
+    /* 0xAC */ CommonData_unk_10098_unk_AC unk_AC;
 } CommonData_unk_10098; // size >= 0x10
 
 typedef struct CommonData10138_Sub {
@@ -68,6 +72,8 @@ typedef struct CommonData10138 {
 } CommonData10138; // size >= 0xA90
 
 typedef void (*CommonData_100E4_Func)(struct PlayState*);
+
+
 
 typedef struct CommonData {
     /* 0x00000 */ u8 unk00000[0x14];
