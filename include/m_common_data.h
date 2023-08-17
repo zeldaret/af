@@ -84,7 +84,9 @@ typedef struct CommonData {
     /* 0x10098 */ CommonData_unk_10098 *unk_10098;
     /* 0x1009C */ UNK_TYPE1 unk_1009C[0x48];
     /* 0x100E4 */ CommonData_100E4_Func* unk_100E4;
-    /* 0x100E8 */ u8 unk100E8[0x37];
+    /* 0x100E8 */ u8 unk100E8[0x24];
+    /* 0x1010C */ u32 unk1010C;
+    /* 0x10110 */ u8 unk10110[0xF];
     /* 0x1011F */ u8 unk_1011F;
     /* 0x10120 */ u8 unk10120[0x1];
     /* 0x10121 */ u8 unk_10121;
