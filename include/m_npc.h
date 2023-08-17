@@ -12,14 +12,8 @@ typedef struct npc_list_s {
 } mNpc_NpcList_c; // size = 0x38
 
 typedef struct animal_s {
-  /* 0x000 */ char unk000[0x528]; /* this villager's ID */
+  /* 0x000 */ char unk000[0x528];
 } Animal_c; // size = 0x528
-
-typedef struct Npc {
-    /* 0x000 */ Actor actor;
-    /* 0x174 */ UNK_TYPE1 unk_174[0x594];
-    /* 0x708 */ s32 unk_708;
-} Npc; // size >= 0x70C
 
 // void func_800A6810_jp();
 // void func_800A6920_jp();

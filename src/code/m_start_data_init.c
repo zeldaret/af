@@ -92,7 +92,6 @@ void title_game_haniwa_data_init(void) {
     }
 }
 
-#ifdef NON_MATCHING
 void mSDI_ClearMoneyPlayerHomeStationBlock(void) {
     static s32 block_num[2][2] = {
         { 2, 1 }, /* Player home */
@@ -106,11 +105,13 @@ void mSDI_ClearMoneyPlayerHomeStationBlock(void) {
     s32 ut_z;
     mActor_name_t item;
     s32 i;
+    s32 depositOffset;
 
     for (i = 0; i < 2; i++) {
         block_z = block_num[i][1];
         block_x = block_num[i][0];
 
+        depositOffset = block_num[i][1] * FG_BLOCK_X_NUM + block_x;
         items = common_data.fg[block_z][block_x].items[0];
 
         if (items != NULL) {
@@ -119,7 +120,7 @@ void mSDI_ClearMoneyPlayerHomeStationBlock(void) {
                     item = *items;
 
                     if (item >= ITM_MONEY_START && item <= ITM_MONEY_END) {
-                        u16* deposit = common_data.deposit[block_z * FG_BLOCK_X_NUM + block_x];
+                        u16* deposit = common_data.deposit[depositOffset];
 
                         mPB_keep_item(item);
                         *items = EMPTY_NO;
@@ -135,13 +136,6 @@ void mSDI_ClearMoneyPlayerHomeStationBlock(void) {
         }
     }
 }
-#else
-static s32 block_num[2][2] = {
-    { 2, 1 }, /* Player home */
-    { 2, 0 }  /* Station */
-};
-GLOBAL_ASM("asm/jp/nonmatchings/code/m_start_data_init/mSDI_ClearMoneyPlayerHomeStationBlock.s")
-#endif
 
 void mSDI_PullTreeUT(mActor_name_t* item_p) {
     if ((*item_p >= TREE_SAPLING && *item_p <= TREE_30000BELLS) ||
