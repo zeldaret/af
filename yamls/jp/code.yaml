@@ -63,7 +63,7 @@
       - [0x6DA460, asm, code/6DA460]
       - [0x6DB420, asm, code/6DB420]
       - [0x6DE300, asm, code/6DE300]
-      - [0x6E0F50, asm, code/6E0F50]
+      - [0x6E0F50, asm, code/m_rcp]
       - [0x6E2300, asm, code/6E2300]
       - [0x6E30B0, asm, code/6E30B0]
       - [0x6E6C90, asm, code/m_start_data_init]

@@ -22,7 +22,11 @@ typedef struct Toudai {
     /* 0x246 */ Vec3s morphTable; //todo make the right array size
     /* 0x24C */ UNK_TYPE1 unk24C[0x54];
     /* 0x2A0 */ ToudaiActionFunc unk2A0;
-    /* 0x2A4 */ UNK_TYPE1 unk2A4[0x38];
+    /* 0x2A4 */ UNK_TYPE1 unk2A4[0x10];
+    /* 0x2B4 */ UNK_TYPE unk2B4;
+    /* 0x2B8 */ UNK_TYPE1 unk2B8[0x4];
+    /* 0x2BC */ UNK_TYPE unk2BC;
+    /* 0x2C0 */ UNK_TYPE1 unk2C0[0x18];
 } Toudai; // size = 0x2D8
 
 #endif

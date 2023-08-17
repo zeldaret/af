@@ -18,7 +18,7 @@ Gfx* gfx_set_fog_nosync(Gfx* gfx, u8 arg1, u8 arg2, u8 arg3, s32 arg4, s16 arg5,
 // void func_800BD538_jp();
 // void func_800BD598_jp();
 // void func_800BD5C0_jp();
-// void func_800BD5E8_jp();
+void func_800BD5E8_jp(Gfx* gfx);
 // void func_800BD648_jp();
 // void func_800BD68C_jp();
 // void func_800BD6D0_jp();

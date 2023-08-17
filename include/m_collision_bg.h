@@ -215,7 +215,7 @@ f32 mCoBG_GetBgY_OnlyCenter_FromWpos2(Vec3f arg0, f32 arg1);
 // void func_800739FC_jp();
 // void func_80073C38_jp();
 // void func_80073CC0_jp();
-// void mCoBG_SetPluss5PointOffset_file();
+void mCoBG_SetPluss5PointOffset_file();
 // void func_80074090_jp();
 // void func_80074174_jp();
 // void func_800741DC_jp();

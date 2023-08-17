@@ -37,6 +37,13 @@ typedef struct CommonData_unk_1004C {
     /* 0xF4 */ CommonData_unk_1004C_unk_F4 unk_F4;
 } CommonData_unk_1004C; // size >= 0xF8
 
+typedef UNK_RET (*CommonData_unk_10080_unk_4)(struct PlayState*, UNK_TYPE, UNK_TYPE);
+
+typedef struct CommonData_unk_10080 {
+    /* 0x00 */ UNK_TYPE1 unk_00[0x4];
+    /* 0x04 */ CommonData_unk_10080_unk_4 unk_4;
+} CommonData_unk_10080; // size >= 0x10
+
 typedef UNK_RET (*CommonData_unk_10098_unk_4)(struct ActorOverlay*, size_t);
 typedef UNK_RET (*CommonData_unk_10098_unk_8)(void);
 
@@ -45,7 +52,9 @@ typedef UNK_PTR (*CommonData_unk_10098_unk_0C)(void);
 
 typedef UNK_RET (*CommonData_unk_10098_unk_10)(struct Actor*);
 
+typedef UNK_RET (*CommonData_unk_10098_unk_A8)(UNK_TYPE, UNK_TYPE, UNK_TYPE, UNK_TYPE);
 typedef UNK_RET (*CommonData_unk_10098_unk_AC)(UNK_TYPE);
+typedef UNK_RET (*CommonData_unk_10098_unk_450)(UNK_TYPE);
 
 typedef struct CommonData_unk_10098 {
     /* 0x00 */ UNK_TYPE1 unk_00[0x4];
@@ -53,8 +62,13 @@ typedef struct CommonData_unk_10098 {
     /* 0x08 */ CommonData_unk_10098_unk_8 unk_08;
     /* 0x0C */ CommonData_unk_10098_unk_0C unk_0C;
     /* 0x10 */ CommonData_unk_10098_unk_10 unk_10;
-    /* 0x14 */ s8 unk_14[0x98];
+    /* 0x14 */ s8 unk_14[0x94];
+    /* 0xA8 */ CommonData_unk_10098_unk_A8 unk_A8;
     /* 0xAC */ CommonData_unk_10098_unk_AC unk_AC;
+    /* 0xB0 */ UNK_TYPE unk_B0;
+    /* 0x450 */ CommonData_unk_10098_unk_450 unk_450;
+    /* 0x454 */ UNK_TYPE unk_454;
+    /* 0x86C */ UNK_TYPE unk_86C;
 } CommonData_unk_10098; // size >= 0x10
 
 typedef struct CommonData10138_Sub {
@@ -86,13 +100,17 @@ typedef struct CommonData {
     /* 0x10004 */ s32 unk_10004; // named "last_scene_no" in AC GCN decomp
     /* 0x10008 */ UNK_TYPE1 unk_10008[0x44];
     /* 0x1004C */ CommonData_unk_1004C *unk_1004C;
-    /* 0x10050 */ UNK_TYPE1 unk_10050[0x48];
+    /* 0x10050 */ UNK_TYPE1 unk_10050[0x30];
+    /* 0x10080 */ CommonData_unk_10080 *unk_10080;
+    /* 0x10084 */ UNK_TYPE1 unk_10084[0x14];
     /* 0x10098 */ CommonData_unk_10098 *unk_10098;
     /* 0x1009C */ UNK_TYPE1 unk_1009C[0x48];
     /* 0x100E4 */ CommonData_100E4_Func* unk_100E4;
     /* 0x100E8 */ u8 unk100E8[0x24];
     /* 0x1010C */ u32 unk1010C;
-    /* 0x10110 */ u8 unk10110[0xF];
+    /* 0x10110 */ u8 unk10110[0x8];
+    /* 0x10118 */ UNK_TYPE unk10118;
+    /* 0x1011C */ u8 unk1011C[0x3];
     /* 0x1011F */ u8 unk_1011F;
     /* 0x10120 */ u8 unk10120[0x1];
     /* 0x10121 */ u8 unk_10121;
