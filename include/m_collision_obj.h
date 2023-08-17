@@ -13,8 +13,10 @@ typedef struct CollisionCheck_Status {
 
 
 typedef struct PlayState2138_unk_08 {
-    /* 0x00 */ UNK_TYPE unk_00;
-} PlayState2138_unk_08; // size = ?
+    /* 0x00 */ UNK_TYPE1 unk_00[0x8];
+    /* 0x08 */ UNK_TYPE1 unk_08[0x2];
+    /* 0x0A */ u8 unk_0A;
+} PlayState2138_unk_08; // size >= 0xB
 
 typedef struct PlayState2138 {
     /* 0x00 */ u16 unk_00;

@@ -126,7 +126,36 @@ void CollisionCheck_clear(UNUSED PlayState* play, PlayState2138* arg1) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80078014_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/CollisionCheck_OC.s")
+extern UNK_TYPE D_8010471C_jp[][3];
+
+void CollisionCheck_OC(PlayState* play, PlayState2138* arg1) {
+    PlayState2138_unk_08** var_s2;
+
+    for (var_s2 = arg1->unk_08; var_s2 < &arg1->unk_08[arg1->unk_04]; var_s2++) {
+        PlayState2138_unk_08** var_s0;
+
+        if ((*var_s2 == NULL) || (func_80077FF0_jp(*var_s2) == 1)) {
+            continue;
+        }
+
+        for (var_s0 = var_s2 + 1; var_s0 < &arg1->unk_08[arg1->unk_04]; var_s0++) {
+            void (*temp_v0)(PlayState*, PlayState2138*, PlayState2138_unk_08*, PlayState2138_unk_08*);
+
+            if ((*var_s0 == NULL) || (func_80077FF0_jp(*var_s0) == 1) || (func_80078014_jp(*var_s2, *var_s0) == 1)) {
+                continue;
+            }
+
+            temp_v0 = D_8010471C_jp[(*var_s2)->unk_0A][(*var_s0)->unk_0A];
+            if (temp_v0 == NULL) {
+                continue;
+            }
+
+            temp_v0(play, arg1, *var_s2, *var_s0);
+        }
+    }
+
+    func_8007858C_jp(play, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80078214_jp.s")
 
