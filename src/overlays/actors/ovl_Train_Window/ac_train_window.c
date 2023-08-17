@@ -1,10 +1,10 @@
 #include "ac_train_window.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void Train_Window_Actor_ct(Actor* thisx, PlayState* play);
-void Train_Window_Actor_dt(Actor* thisx, PlayState* play);
-void Train_Window_Actor_move(Actor* thisx, PlayState* play);
-void Train_Window_Actor_draw(Actor* thisx, PlayState* play);
+void Train_Window_Actor_ct(Actor* thisx, Game_Play* play);
+void Train_Window_Actor_dt(Actor* thisx, Game_Play* play);
+void Train_Window_Actor_move(Actor* thisx, Game_Play* play);
+void Train_Window_Actor_draw(Actor* thisx, Game_Play* play);
 
 #if 0
 ActorProfile Train_Window_Profile = {

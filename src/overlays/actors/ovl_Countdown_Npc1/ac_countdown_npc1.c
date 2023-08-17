@@ -2,10 +2,10 @@
 #include "m_lib.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aCD1_actor_ct(Actor* thisx, PlayState* play);
-void aCD1_actor_dt(Actor* thisx, PlayState* play);
-void aCD1_actor_init(Actor* thisx, PlayState* play);
-void aCD1_actor_save(Actor* thisx, PlayState* play);
+void aCD1_actor_ct(Actor* thisx, Game_Play* play);
+void aCD1_actor_dt(Actor* thisx, Game_Play* play);
+void aCD1_actor_init(Actor* thisx, Game_Play* play);
+void aCD1_actor_save(Actor* thisx, Game_Play* play);
 
 #if 0
 ActorProfile Countdown_Npc1_Profile = {

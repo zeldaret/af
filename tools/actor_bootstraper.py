@@ -32,7 +32,7 @@ with profiles_txt.open() as f:
 def funcToDecl(func):
     if func == "NULL" or func == "none_proc1":
         return ""
-    return f"void {func}(Actor* thisx, PlayState* play);\n"
+    return f"void {func}(Actor* thisx, Game_Play* play);\n"
 
 def funcToProf(func):
     if func == "none_proc1":
@@ -751,11 +751,11 @@ for profName, (filepath, prof) in n64Profiles.items():
         f.write('#include "unk.h"\n')
         f.write('\n')
 
-        f.write(f"struct PlayState;\n")
+        f.write(f"struct Game_Play;\n")
         f.write(f"struct {structName};\n")
         f.write('\n')
 
-        f.write(f"typedef void (*{structName}ActionFunc)(struct {structName}*, struct PlayState*);\n")
+        f.write(f"typedef void (*{structName}ActionFunc)(struct {structName}*, struct Game_Play*);\n")
         f.write("\n")
 
         f.write(f"typedef struct {structName} {{\n")

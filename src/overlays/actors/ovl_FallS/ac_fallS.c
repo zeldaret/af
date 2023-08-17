@@ -1,10 +1,10 @@
 #include "ac_fallS.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void func_80A03230_jp(Actor* thisx, PlayState* play);
-void func_80A03240_jp(Actor* thisx, PlayState* play);
-void aFLS_actor_move(Actor* thisx, PlayState* play);
-void aFLS_actor_draw(Actor* thisx, PlayState* play);
+void func_80A03230_jp(Actor* thisx, Game_Play* play);
+void func_80A03240_jp(Actor* thisx, Game_Play* play);
+void aFLS_actor_move(Actor* thisx, Game_Play* play);
+void aFLS_actor_draw(Actor* thisx, Game_Play* play);
 
 #if 0
 ActorProfile FallS_Profile = {

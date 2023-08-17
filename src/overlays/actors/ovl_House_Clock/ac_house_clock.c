@@ -1,10 +1,10 @@
 #include "ac_house_clock.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void House_Clock_Actor_ct(Actor* thisx, PlayState* play);
-void House_Clock_Actor_dt(Actor* thisx, PlayState* play);
-void House_Clock_Actor_move(Actor* thisx, PlayState* play);
-void House_Clock_Actor_draw(Actor* thisx, PlayState* play);
+void House_Clock_Actor_ct(Actor* thisx, Game_Play* play);
+void House_Clock_Actor_dt(Actor* thisx, Game_Play* play);
+void House_Clock_Actor_move(Actor* thisx, Game_Play* play);
+void House_Clock_Actor_draw(Actor* thisx, Game_Play* play);
 
 #if 0
 ActorProfile House_Clock_Profile = {

@@ -1,10 +1,10 @@
 #include "bg_winter_item.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void bWI_actor_ct(Actor* thisx, PlayState* play);
-void bWI_actor_dt(Actor* thisx, PlayState* play);
-void bWI_actor_move(Actor* thisx, PlayState* play);
-void bWI_actor_draw(Actor* thisx, PlayState* play);
+void bWI_actor_ct(Actor* thisx, Game_Play* play);
+void bWI_actor_dt(Actor* thisx, Game_Play* play);
+void bWI_actor_move(Actor* thisx, Game_Play* play);
+void bWI_actor_draw(Actor* thisx, Game_Play* play);
 
 #if 0
 ActorProfile BgWinterItem_Profile = {

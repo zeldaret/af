@@ -2,9 +2,9 @@
 #include "m_lib.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aSTR_actor_ct(Actor* thisx, PlayState* play);
-void aSTR_actor_dt(Actor* thisx, PlayState* play);
-void aSTR_actor_move(Actor* thisx, PlayState* play);
+void aSTR_actor_ct(Actor* thisx, Game_Play* play);
+void aSTR_actor_dt(Actor* thisx, Game_Play* play);
+void aSTR_actor_move(Actor* thisx, Game_Play* play);
 
 #if 0
 ActorProfile Structure_Profile = {

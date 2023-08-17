@@ -1,9 +1,9 @@
 #include "ac_nameplate.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void func_80A963C0_jp(Actor* thisx, PlayState* play);
-void func_80A963D0_jp(Actor* thisx, PlayState* play);
-void aNP_actor_init(Actor* thisx, PlayState* play);
+void func_80A963C0_jp(Actor* thisx, Game_Play* play);
+void func_80A963D0_jp(Actor* thisx, Game_Play* play);
+void aNP_actor_init(Actor* thisx, Game_Play* play);
 
 #if 0
 ActorProfile Nameplate_Profile = {

@@ -563,7 +563,7 @@ s32 cKF_SkeletonInfo_R_play(SkeletonInfoR* skeletonInfo) {
  *
  * @param jointIndex The index of the jointElem to draw.
  */
-void cKF_Si3_draw_SV_R_child(PlayState* play, SkeletonInfoR* skeletonInfo, s32* jointIndex, DrawCallback beforeCallback,
+void cKF_Si3_draw_SV_R_child(Game_Play* play, SkeletonInfoR* skeletonInfo, s32* jointIndex, DrawCallback beforeCallback,
                              DrawCallback afterCallback, void* arg, Mtx** mtx) {
     JointElemR* jointElem = *jointIndex + (JointElemR*)Lib_SegmentedToVirtual(skeletonInfo->skeleton->jointElemTable);
     s32 i;
@@ -665,7 +665,7 @@ void cKF_Si3_draw_SV_R_child(PlayState* play, SkeletonInfoR* skeletonInfo, s32* 
  *
  * This function calls cKF_Si3_draw_SV_R_child() to recursively draw each joint.
  */
-void cKF_Si3_draw_R_SV(PlayState* play, SkeletonInfoR* skeletonInfo, Mtx* mtx, DrawCallback beforeCallback,
+void cKF_Si3_draw_R_SV(Game_Play* play, SkeletonInfoR* skeletonInfo, Mtx* mtx, DrawCallback beforeCallback,
                        DrawCallback afterCallback, void* arg) {
     s32 jointIndex;
 

@@ -1,10 +1,10 @@
 #include "ac_airplane.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void Airplane_Actor_ct(Actor* thisx, PlayState* play);
-void Airplane_Actor_dt(Actor* thisx, PlayState* play);
-void Airplane_Actor_move(Actor* thisx, PlayState* play);
-void Airplane_Actor_draw(Actor* thisx, PlayState* play);
+void Airplane_Actor_ct(Actor* thisx, Game_Play* play);
+void Airplane_Actor_dt(Actor* thisx, Game_Play* play);
+void Airplane_Actor_move(Actor* thisx, Game_Play* play);
+void Airplane_Actor_draw(Actor* thisx, Game_Play* play);
 
 #if 0
 ActorProfile Airplane_Profile = {

@@ -2,7 +2,7 @@
 #include "m_lib.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aTFL_actor_draw(Actor* thisx, PlayState* play);
+void aTFL_actor_draw(Actor* thisx, Game_Play* play);
 
 #if 0
 ActorProfile T_Flag_Profile = {

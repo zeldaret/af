@@ -1,10 +1,10 @@
 #include "ac_bee.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aBEE_actor_ct(Actor* thisx, PlayState* play);
-void func_80A93DD0_jp(Actor* thisx, PlayState* play);
-void aBEE_actor_move(Actor* thisx, PlayState* play);
-void aBEE_actor_draw(Actor* thisx, PlayState* play);
+void aBEE_actor_ct(Actor* thisx, Game_Play* play);
+void func_80A93DD0_jp(Actor* thisx, Game_Play* play);
+void aBEE_actor_move(Actor* thisx, Game_Play* play);
+void aBEE_actor_draw(Actor* thisx, Game_Play* play);
 
 #if 0
 ActorProfile Bee_Profile = {

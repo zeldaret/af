@@ -2,9 +2,9 @@
 #include "m_lib.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aHTC_actor_ct(Actor* thisx, PlayState* play);
-void aHTC_actor_dt(Actor* thisx, PlayState* play);
-void aHTC_actor_move(Actor* thisx, PlayState* play);
+void aHTC_actor_ct(Actor* thisx, Game_Play* play);
+void aHTC_actor_dt(Actor* thisx, Game_Play* play);
+void aHTC_actor_move(Actor* thisx, Game_Play* play);
 
 #if 0
 ActorProfile Hatumode_Control_Profile = {

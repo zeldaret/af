@@ -39,12 +39,12 @@
 #include "m_scene_table.h"
 
 void play_main(Game* gameState);
-void Gameplay_Scene_Read(PlayState* play, s16 arg1);
-void Game_play_fbdemo_wipe_create(PlayState* play);
-void Game_play_fbdemo_wipe_init(PlayState* play);
-void Game_play_fbdemo_wipe_move(PlayState* play);
+void Gameplay_Scene_Read(Game_Play* play, s16 arg1);
+void Game_play_fbdemo_wipe_create(Game_Play* play);
+void Game_play_fbdemo_wipe_init(Game_Play* play);
+void Game_play_fbdemo_wipe_move(Game_Play* play);
 
-PlayStateUnkFuncsStruct D_80804320_jp = {
+Game_PlayUnkFuncsStruct D_80804320_jp = {
     fbdemo_wipe1_init,
     (void*)none_proc1,
     fbdemo_wipe1_move,
@@ -56,7 +56,7 @@ PlayStateUnkFuncsStruct D_80804320_jp = {
     fbdemo_wipe1_is_finish,
 };
 
-PlayStateUnkFuncsStruct D_80804344_jp = {
+Game_PlayUnkFuncsStruct D_80804344_jp = {
     fbdemo_triforce_init,
     (void*)none_proc1,
     fbdemo_triforce_move,
@@ -68,7 +68,7 @@ PlayStateUnkFuncsStruct D_80804344_jp = {
     fbdemo_triforce_is_finish,
 };
 
-PlayStateUnkFuncsStruct D_80804368_jp = {
+Game_PlayUnkFuncsStruct D_80804368_jp = {
     fbdemo_fade_init,
     (void*)none_proc1,
     fbdemo_fade_move,
@@ -80,12 +80,12 @@ PlayStateUnkFuncsStruct D_80804368_jp = {
     fbdemo_fade_is_finish,
 };
 
-PlayStateUnkFuncsStruct* D_8080438C_jp[] = {
+Game_PlayUnkFuncsStruct* D_8080438C_jp[] = {
     &D_80804320_jp, &D_80804344_jp, &D_80804368_jp, &D_80804368_jp, &D_80804344_jp, &D_80804344_jp, &D_80804368_jp,
 };
 
-typedef void (*PlayStateUnkFunc)(PlayState* play);
-PlayStateUnkFunc D_808043A8_jp[] = {
+typedef void (*Game_PlayUnkFunc)(Game_Play* play);
+Game_PlayUnkFunc D_808043A8_jp[] = {
     (void*)none_proc1,
     Game_play_fbdemo_wipe_create,
     Game_play_fbdemo_wipe_init,
@@ -121,28 +121,28 @@ void event_title_flag_off(void) {
     }
 }
 
-void Game_play_camera_proc(PlayState* play) {
+void Game_play_camera_proc(Game_Play* play) {
     Camera2_ClearActorTalking_Cull(play);
     Camera2_process(play);
 }
 
-void Game_play_fbdemo_wipe_destroy(PlayState* play) {
+void Game_play_fbdemo_wipe_destroy(Game_Play* play) {
     play->unk_1EE8.unk_21C.unk_04(&play->unk_1EE8, play);
     play->unk_1EE3 = 0;
     play->unk_1EE8.unk_218 = -1;
 }
 
-void Game_play_fbdemo_wipe_create_sub(PlayState* play) {
+void Game_play_fbdemo_wipe_create_sub(Game_Play* play) {
     s32 sp1C = play->unk_1EE1;
 
-    bzero(&play->unk_1EE8, sizeof(PlayState_Unk_1EE8));
+    bzero(&play->unk_1EE8, sizeof(Game_Play_Unk_1EE8));
     if (sp1C >= 7) {
         sp1C = 1;
     }
     play->unk_1EE8.unk_218 = sp1C;
 
     {
-        PlayStateUnkFuncsStruct* temp_v0 = D_8080438C_jp[sp1C];
+        Game_PlayUnkFuncsStruct* temp_v0 = D_8080438C_jp[sp1C];
 
         play->unk_1EE8.unk_21C.unk_00 = temp_v0->unk_00;
         play->unk_1EE8.unk_21C.unk_04 = temp_v0->unk_04;
@@ -155,13 +155,13 @@ void Game_play_fbdemo_wipe_create_sub(PlayState* play) {
     }
 }
 
-void Game_play_fbdemo_wipe_create(PlayState* play) {
+void Game_play_fbdemo_wipe_create(Game_Play* play) {
     Game_play_fbdemo_wipe_create_sub(play);
     Game_play_fbdemo_wipe_init(play);
 }
 
-void Game_play_fbdemo_wipe_init(PlayState* play) {
-    PlayState_Unk_1EE8* temp_s0 = &play->unk_1EE8;
+void Game_play_fbdemo_wipe_init(Game_Play* play) {
+    Game_Play_Unk_1EE8* temp_s0 = &play->unk_1EE8;
     u8 var_v0;
 
     play->unk_1EE8.unk_21C.unk_00(temp_s0);
@@ -186,7 +186,7 @@ void Game_play_fbdemo_wipe_init(PlayState* play) {
     S_se_endcheck_timeout = 300;
 }
 
-void Game_play_fbdemo_fade_in_move_end(PlayState* play) {
+void Game_play_fbdemo_fade_in_move_end(Game_Play* play) {
     Game_play_fbdemo_wipe_destroy(play);
     if (play->unk_1EE2 == 3) {
         fbdemo_cleanup(&fbdemo);
@@ -195,27 +195,27 @@ void Game_play_fbdemo_fade_in_move_end(PlayState* play) {
     }
 }
 
-void Game_play_fbdemo_fade_out_start_emu_move_end(PlayState* play) {
+void Game_play_fbdemo_fade_out_start_emu_move_end(Game_Play* play) {
     STOP_GAMESTATE(&play->state);
-    SET_NEXT_GAMESTATE(&play->state, famicom_emu_init, sizeof(FamicomEmuState));
+    SET_NEXT_GAMESTATE(&play->state, famicom_emu_init, sizeof(Game_FamicomEmu));
 }
 
-void Game_play_fbdemo_fade_out_game_end_move_end(PlayState* play) {
+void Game_play_fbdemo_fade_out_game_end_move_end(Game_Play* play) {
     STOP_GAMESTATE(&play->state);
-    SET_NEXT_GAMESTATE(&play->state, trademark_init, sizeof(TrademarkState));
+    SET_NEXT_GAMESTATE(&play->state, trademark_init, sizeof(Game_Trademark));
 }
 
-void Game_play_change_scene_move_end(PlayState* play) {
+void Game_play_change_scene_move_end(Game_Play* play) {
     game_goto_next_game_play(&play->state);
     common_data.unk_10004 = common_data.unk_00014;
     common_data.unk_00014 = play->unk_1E18;
 }
 
-void Game_play_fbdemo_wipe_move(PlayState* play) {
+void Game_play_fbdemo_wipe_move(Game_Play* play) {
     UNUSED s32 pad[2];
     s16 sp26 = 0;
     s32 sp20 = 1;
-    PlayState_Unk_1EE8* sp18 = &play->unk_1EE8;
+    Game_Play_Unk_1EE8* sp18 = &play->unk_1EE8;
 
     if (play->unk_1EE8.unk_21C.unk_20(sp18, play) != 0) {
         if ((play->unk_1EE0 != 1) && (play->unk_1EE0 != 11)) {
@@ -301,19 +301,19 @@ void Game_play_fbdemo_wipe_move(PlayState* play) {
     }
 }
 
-void Game_play_fbdemo_wipe_proc(PlayState* play) {
+void Game_play_fbdemo_wipe_proc(Game_Play* play) {
     if ((play->unk_1EE3 == 0) && (play->unk_1EE0 != 0)) {
         play->unk_1EE3 = 1;
     }
     D_808043A8_jp[play->unk_1EE3](play);
 }
 
-Gfx* game_play_set_fog(PlayState* play, Gfx* gfx) {
+Gfx* game_play_set_fog(Game_Play* play, Gfx* gfx) {
     return gfx_set_fog_nosync(gfx, play->lightCtx.fogColor.r, play->lightCtx.fogColor.g, play->lightCtx.fogColor.b, 0,
                               play->lightCtx.fogNear, play->lightCtx.zFar);
 }
 
-void Game_play_fbdemo_proc(PlayState* play) {
+void Game_play_fbdemo_proc(Game_Play* play) {
     UNUSED s32 pad;
     GraphicsContext* gfxCtx = play->state.gfxCtx;
 
@@ -334,7 +334,7 @@ void Game_play_fbdemo_proc(PlayState* play) {
 }
 
 void play_cleanup(Game* gameState) {
-    PlayState* play = (PlayState*)gameState;
+    Game_Play* play = (Game_Play*)gameState;
 
     func_800A3304_jp(play);
     play->state.gfxCtx->unk_2F4 = 0;
@@ -365,7 +365,7 @@ void play_cleanup(Game* gameState) {
 }
 
 void play_init(Game* gameState) {
-    PlayState* play = (PlayState*)gameState;
+    Game_Play* play = (Game_Play*)gameState;
     GraphicsContext* gfxCtx = play->state.gfxCtx;
     u32 temp_v1;
     u32 temp_v0_2;
@@ -439,7 +439,7 @@ void play_init(Game* gameState) {
     event_title_flag_off();
 }
 
-void Game_play_move_fbdemo_not_move(PlayState* play) {
+void Game_play_move_fbdemo_not_move(Game_Play* play) {
     UNUSED s32 pad[2];
 
     play->state.unk_9D = 0x8F;
@@ -475,8 +475,8 @@ void Game_play_move_fbdemo_not_move(PlayState* play) {
     fbdemo_fade_move(&play->unk_2128, game_GameFrame);
 }
 
-void Game_play_move(PlayState* play) {
-    PlayState_unk_0110* p = play->unk_0110;
+void Game_play_move(Game_Play* play) {
+    Game_Play_unk_0110* p = play->unk_0110;
     s32 var_v1;
 
     play->state.unk_9D = 0x8D;
@@ -533,7 +533,7 @@ void Game_play_move(PlayState* play) {
     play->state.unk_9C = 0;
 }
 
-void func_80803810_jp(PlayState* play, GraphicsContext* gfxCtx) {
+void func_80803810_jp(Game_Play* play, GraphicsContext* gfxCtx) {
     void* temp_v0 = play->unk_0110[0].segment;
 
     gSegments[4] = (uintptr_t)OS_K0_TO_PHYSICAL(temp_v0);
@@ -565,7 +565,7 @@ void func_80803810_jp(PlayState* play, GraphicsContext* gfxCtx) {
     CLOSE_DISPS(gfxCtx);
 }
 
-void setupFog(PlayState* play, GraphicsContext* gfxCtx) {
+void setupFog(Game_Play* play, GraphicsContext* gfxCtx) {
     OPEN_DISPS(gfxCtx);
 
     POLY_OPA_DISP = game_play_set_fog(play, POLY_OPA_DISP);
@@ -574,11 +574,11 @@ void setupFog(PlayState* play, GraphicsContext* gfxCtx) {
     CLOSE_DISPS(gfxCtx);
 }
 
-void setupViewer(PlayState* play) {
+void setupViewer(Game_Play* play) {
     showView(&play->unk_1938, 0xF, play);
 }
 
-void setupViewMatrix(PlayState* play, GraphicsContext* __gfxCtx, GraphicsContext* gfxCtx2) {
+void setupViewMatrix(Game_Play* play, GraphicsContext* __gfxCtx, GraphicsContext* gfxCtx2) {
     // TODO: A way to fit OPEN_DISPS/CLOSE_DISPS on the stack
     Matrix_MtxtoMtxF(&play->unk_1938.unk_0A0, &play->billboardMtxF);
     Matrix_MtxtoMtxF(&play->unk_1938.unk_060, &play->viewProjectionMtxF);
@@ -598,7 +598,7 @@ void setupViewMatrix(PlayState* play, GraphicsContext* __gfxCtx, GraphicsContext
     gSPSegment(POLY_OPA_DISP++, 0x01, play->unk_1E9C);
 }
 
-s32 makeBumpTexture(PlayState* play, GraphicsContext* __gfxCtx, GraphicsContext* gfxCtx2) {
+s32 makeBumpTexture(Game_Play* play, GraphicsContext* __gfxCtx, GraphicsContext* gfxCtx2) {
     // TODO: A way to fit OPEN_DISPS/CLOSE_DISPS on the stack
     {
         Gfx* sp194;
@@ -609,7 +609,7 @@ s32 makeBumpTexture(PlayState* play, GraphicsContext* __gfxCtx, GraphicsContext*
         gSPDisplayList(OVERLAY_DISP++, sp194);
 
         if (play->unk_1EE3 == 3) {
-            PlayState1938 sp60;
+            Game_Play1938 sp60;
             ScissorViewArg1 sp50;
 
             initView(&sp60, gfxCtx2);
@@ -729,7 +729,7 @@ void draw_version(GraphicsContext* gfxCtx) {
     CLOSE_DISPS(gfxCtx);
 }
 
-void Game_play_draw(PlayState* play) {
+void Game_play_draw(Game_Play* play) {
     GraphicsContext* gfxCtx = play->state.gfxCtx;
     u8 sp2B = 0;
     u8 sp2A = 0;
@@ -777,7 +777,7 @@ label:;
 }
 
 void play_main(Game* gameState) {
-    PlayState* play = (PlayState*)gameState;
+    Game_Play* play = (Game_Play*)gameState;
 
     play->state.unk_9D = 0x6E;
     play->state.unk_9C = 0;
@@ -806,7 +806,7 @@ void play_main(Game* gameState) {
     play->state.unk_9D = 0xBE;
 }
 
-void* func_80804138_jp(PlayState* play, Struct_8010EAA0* arg1) {
+void* func_80804138_jp(Game_Play* play, Struct_8010EAA0* arg1) {
     u32 sp24 = arg1->unk_04 - arg1->unk_00;
     void* sp20 = THA_alloc16(&play->state.heap, sp24);
 
@@ -814,11 +814,11 @@ void* func_80804138_jp(PlayState* play, Struct_8010EAA0* arg1) {
     return sp20;
 }
 
-void func_808041A4_jp(PlayState* play) {
+void func_808041A4_jp(Game_Play* play) {
     Global_kankyo_ct(play, &play->kankyo);
 }
 
-void Gameplay_Scene_Init(PlayState* play) {
+void Gameplay_Scene_Init(Game_Play* play) {
     play->unk_1EA8 = NULL;
     play->unk_1EA5 = 0;
     play->unk_1EA6 = 0;
@@ -857,7 +857,7 @@ s32 mPl_SceneNo2SoundRoomType(s32 arg0) {
     }
 }
 
-void Gameplay_Scene_Read(PlayState* play, s16 arg1) {
+void Gameplay_Scene_Read(Game_Play* play, s16 arg1) {
     Struct_8010EAA0* sp1C = &scene_data_status[arg1];
 
     sp1C->unk_13 = 0;

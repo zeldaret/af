@@ -5,9 +5,9 @@
 #include "game.h"
 #include "unk.h"
 
-typedef struct FirstGameState {
+typedef struct Game_FirstGame {
     /* 0x00 */ Game state;
-} FirstGameState; // size = 0xE0
+} Game_FirstGame; // size = 0xE0
 
 void first_game_init(Game *thisx);
 void first_game_cleanup(Game *thisx);

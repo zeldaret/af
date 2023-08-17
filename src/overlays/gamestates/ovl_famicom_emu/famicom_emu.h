@@ -5,9 +5,9 @@
 #include "game.h"
 #include "unk.h"
 
-typedef struct FamicomEmuState {
+typedef struct Game_FamicomEmu {
     /* 0x00 */ Game state;
-} FamicomEmuState; // size = 0xE0
+} Game_FamicomEmu; // size = 0xE0
 
 void famicom_emu_init(Game *thisx);
 void famicom_emu_cleanup(Game *thisx);

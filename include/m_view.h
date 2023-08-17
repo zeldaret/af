@@ -3,10 +3,10 @@
 
 #include "ultra64.h"
 
-struct PlayState;
+struct Game_Play;
 struct GraphicsContext;
 
-typedef struct PlayState1938 {
+typedef struct Game_Play1938 {
     /* 0x000 */ char unk000[0x28];
     /* 0x028 */ Vec3f unk_028;
     /* 0x034 */ char unk034[0x2C];
@@ -15,7 +15,7 @@ typedef struct PlayState1938 {
     /* 0x0E0 */ char unk0E0[0x40];
     /* 0x120 */ s32 unk_120;
     /* 0x124 */ char unk124[0x4];
-} PlayState1938; // size = 0x128
+} Game_Play1938; // size = 0x128
 
 typedef struct ScissorViewArg1 {
     /* 0x00 */ s32 unk_00;
@@ -25,26 +25,26 @@ typedef struct ScissorViewArg1 {
 } ScissorViewArg1; // size = 0x10
 
 // void set_viewport();
-void initView(PlayState1938* arg0, struct GraphicsContext* gfxCtx);
+void initView(Game_Play1938* arg0, struct GraphicsContext* gfxCtx);
 // void setLookAtView();
 // void getLookAtView();
 // void setScaleView();
 // void getScaleView();
 // void setPerspectiveView();
 // void getPerspectiveView();
-void setScissorView(PlayState1938* arg0, ScissorViewArg1* arg1);
+void setScissorView(Game_Play1938* arg0, ScissorViewArg1* arg1);
 // void getScissorView();
 // void setScissorX();
 // void setScissorOvl();
 // void setScissor();
 // void stretchViewInit();
 // void do_stretch_view();
-void showView(PlayState1938* arg0, s32 arg1, struct PlayState* play);
+void showView(Game_Play1938* arg0, s32 arg1, struct Game_Play* play);
 // void showPerspectiveView();
 // void showOrthoView();
 // void showOverLayView();
 // void showPerspectiveOverLayView();
 // void showOrthoView1();
-void showView1(PlayState1938* arg0, s32 arg1, Gfx** gfx);
+void showView1(Game_Play1938* arg0, s32 arg1, Gfx** gfx);
 
 #endif

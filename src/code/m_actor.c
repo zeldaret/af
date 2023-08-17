@@ -40,7 +40,7 @@ void func_80056380_jp(void* arg0, void* arg1 UNUSED) {
     FaultDrawer_Printf("ACTOR NAME %08x:%s", actor, name);
 }
 
-void projection_pos_set(PlayState* play, Vec3f* worldPos, Vec3f* projectedPos, f32* invW) {
+void projection_pos_set(Game_Play* play, Vec3f* worldPos, Vec3f* projectedPos, f32* invW) {
     Skin_Matrix_PrjMulVector(&play->viewProjectionMtxF, worldPos, projectedPos, invW);
 
     *invW = (*invW < 1.0f) ? 1.0f : (1.0f / *invW);
@@ -56,7 +56,7 @@ void Actor_world_to_eye(Actor* actor, f32 arg1) {
 }
 
 void Actor_position_move(Actor* actor) {
-    Kankyo* kankyo = &((PlayState*)gamePT)->kankyo;
+    Kankyo* kankyo = &((Game_Play*)gamePT)->kankyo;
     f32 speedRate;
 
     speedRate = game_GameFrame_2F;
@@ -80,13 +80,13 @@ void Actor_position_moveF(Actor* actor) {
     Actor_position_move(actor);
 }
 
-s32 Actor_player_look_direction_check(Actor* actor, s16 maxAngleDiff, PlayState* play) {
+s32 Actor_player_look_direction_check(Actor* actor, s16 maxAngleDiff, Game_Play* play) {
     s16 yawDiff = BINANG_ROT180(actor->yawTowardsPlayer) - get_player_actor_withoutCheck(play)->actor.shape.rot.y;
 
     return ABS(yawDiff) < maxAngleDiff;
 }
 
-void Actor_display_position_set(PlayState* play, Actor* actor, s16* x, s16* y) {
+void Actor_display_position_set(Game_Play* play, Actor* actor, s16* x, s16* y) {
     Vec3f projectedPos;
     f32 invW;
 
@@ -97,7 +97,7 @@ void Actor_display_position_set(PlayState* play, Actor* actor, s16* x, s16* y) {
     *y = (s32)PROJECTED_TO_SCREEN_Y(projectedPos, invW);
 }
 
-s32 Actor_data_bank_dma_end_check(Actor* actor, PlayState* play) {
+s32 Actor_data_bank_dma_end_check(Actor* actor, Game_Play* play) {
     s32 var_v1;
 
     switch (ACTOR_FGNAME_GET_F000(actor->fgName)) {
@@ -145,12 +145,12 @@ void Actor_delete(Actor* actor) {
     }
 }
 
-void Actor_ct(Actor* actor, PlayState* play) {
+void Actor_ct(Actor* actor, Game_Play* play) {
     s32 pad[2] UNUSED;
-    PlayState_unk_0110* temp;
+    Game_Play_unk_0110* temp;
     Npc* npc;
     CommonData_unk_1004C_unk_14_arg0 sp34;
-    PlayState_unk_0110* temp_a0;
+    Game_Play_unk_0110* temp_a0;
 
     temp_a0 = play->unk_0110;
 
@@ -200,8 +200,8 @@ void Actor_ct(Actor* actor, PlayState* play) {
 }
 
 #ifdef NON_MATCHING
-void Actor_dt(Actor* actor, PlayState* play) {
-    PlayState_unk_0110* temp_v0_6;
+void Actor_dt(Actor* actor, Game_Play* play) {
+    Game_Play_unk_0110* temp_v0_6;
     s32 new_var;
 
     if (actor->save != NULL) {
@@ -245,11 +245,11 @@ void Actor_dt(Actor* actor, PlayState* play) {
     }
 }
 #else
-void Actor_dt(Actor* actor, struct PlayState* play);
+void Actor_dt(Actor* actor, struct Game_Play* play);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_dt.s")
 #endif
 
-void Actor_draw(PlayState* play, Actor* actor) {
+void Actor_draw(Game_Play* play, Actor* actor) {
     FaultClient faultClient;
     Lights* light;
 
@@ -328,7 +328,7 @@ void Actor_cull_check(Actor* actor) {
     }
 }
 
-void Actor_delete_check(Actor* actor, PlayState* play) {
+void Actor_delete_check(Actor* actor, Game_Play* play) {
     if ((actor->flags & (ACTOR_FLAG_40 | ACTOR_FLAG_20 | ACTOR_FLAG_10)) || (actor->fgName == 0)) {
         return;
     }
@@ -344,8 +344,8 @@ void Actor_delete_check(Actor* actor, PlayState* play) {
     Actor_delete(actor);
 }
 
-void Actor_info_ct(PlayState* play2, ActorInfo* actorInfo, ActorEntry* actorEntry) {
-    PlayState* play = play2;
+void Actor_info_ct(Game_Play* play2, ActorInfo* actorInfo, ActorEntry* actorEntry) {
+    Game_Play* play = play2;
     Actor* temp_v0;
     ActorOverlay* var_v0;
     ActorEntry* var_s0_2;
@@ -415,7 +415,7 @@ label:
     }
 }
 
-void Actor_info_dt(ActorInfo* actorInfo, PlayState* play) {
+void Actor_info_dt(ActorInfo* actorInfo, Game_Play* play) {
     s32 i;
 
     for (i = 0; i < ARRAY_COUNT(actorInfo->actorLists); i++) {
@@ -430,7 +430,7 @@ void Actor_info_dt(ActorInfo* actorInfo, PlayState* play) {
     actor_dlftbls_cleanup();
 }
 
-void Actor_info_call_actor(PlayState* play, ActorInfo* actorInfo) {
+void Actor_info_call_actor(Game_Play* play, ActorInfo* actorInfo) {
     s32 pad[1] UNUSED;
     ActorPart part;
     Player* player;
@@ -503,8 +503,8 @@ void Actor_info_call_actor(PlayState* play, ActorInfo* actorInfo) {
     play->state.unk_9D = 0xA3;
 }
 
-void Actor_info_draw_actor(PlayState* play, ActorInfo* actorInfo) {
-    PlayState_unk_2208 temp_s4 = play->unk_2208;
+void Actor_info_draw_actor(Game_Play* play, ActorInfo* actorInfo) {
+    Game_Play_unk_2208 temp_s4 = play->unk_2208;
     ActorListEntry* actorEntry = actorInfo->actorLists;
     ActorPart part = 0;
 
@@ -673,7 +673,7 @@ s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const 
 }
 
 // this function may be Actor_data_bank_regist_check_npc
-s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile UNUSED, ActorOverlay* overlayEntry, PlayState* play, u16 fgName) {
+s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile UNUSED, ActorOverlay* overlayEntry, Game_Play* play, u16 fgName) {
     s32 pad UNUSED;
     s16 sp92;
     s16 sp90;
@@ -708,7 +708,7 @@ s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile UNUSED, ActorOverlay* over
     return ret;
 }
 
-s32 func_80057B70_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play, u16 fgName) {
+s32 func_80057B70_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, Game_Play* play, u16 fgName) {
     s32 pad UNUSED;
     s32 ret = 1;
 
@@ -723,7 +723,7 @@ s32 func_80057B70_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntr
     return ret;
 }
 
-s32 Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play,
+s32 Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, Game_Play* play,
                                  u16 fgName) {
     s32 var_v1 = 1;
 
@@ -768,7 +768,7 @@ s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay
     return 1;
 }
 
-void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* overlayEntry, PlayState* play, s32 arg4,
+void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* overlayEntry, Game_Play* play, s32 arg4,
                             f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 argB, s8 argC, s16 argD, u16 fgName,
                             s16 params) {
     mem_clear(actor, profile->instanceSize, 0);
@@ -806,7 +806,7 @@ void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* o
 extern const struct_801161E8_jp RO_801161E8_jp;
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/RO_801161E8_jp.s")
 
-Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX,
+Actor* Actor_info_make_actor(ActorInfo* actorInfo, Game_Play* play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX,
                              s16 rotY, s16 rotZ, s8 arg9, s8 argA, s16 argB, u16 fgName, s16 params, s8 argE,
                              s32 argF) {
     u16* new_var = &fgName;
@@ -848,7 +848,7 @@ Actor* Actor_info_make_actor(ActorInfo* actorInfo, PlayState* play, s16 actorId,
     return sp68;
 }
 
-Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, PlayState* play, s16 actorId, f32 x, f32 y, f32 z,
+Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, Game_Play* play, s16 actorId, f32 x, f32 y, f32 z,
                                    s16 rotX, s16 rotY, s16 rotZ, s16 argA, u16 fgName, s16 params, s32 argD) {
     Actor* temp_v0 = Actor_info_make_actor(actorInfo, play, actorId, x, y, z, rotX, rotY, rotZ, -1, -1, argA, fgName,
                                            params, -1, argD);
@@ -861,7 +861,7 @@ Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, PlayState*
     return temp_v0;
 }
 
-void restore_fgdata(Actor* actor, PlayState* play UNUSED) {
+void restore_fgdata(Actor* actor, Game_Play* play UNUSED) {
     Vec3f sp34;
 
     if ((actor->fgName == 0) || (actor->unk_00A != -1)) {
@@ -897,7 +897,7 @@ s32 restore_flag[ACTOR_PART_MAX] = {
     0, // ACTOR_PART_7
 };
 
-void restore_fgdata_one(Actor* actor, PlayState* play) {
+void restore_fgdata_one(Actor* actor, Game_Play* play) {
     if (restore_flag[actor->part] == 1) {
         restore_fgdata(actor, play);
     } else if (actor->unk_003 == 1) {
@@ -905,7 +905,7 @@ void restore_fgdata_one(Actor* actor, PlayState* play) {
     }
 }
 
-void restore_fgdata_all(PlayState* play) {
+void restore_fgdata_all(Game_Play* play) {
     ActorInfo* actorInfo = &play->actorInfo;
     ActorPart part;
 
@@ -926,7 +926,7 @@ void restore_fgdata_all(PlayState* play) {
     }
 }
 
-void Actor_info_save_actor(PlayState* play) {
+void Actor_info_save_actor(Game_Play* play) {
     ActorInfo* actorInfo = &play->actorInfo;
     ActorPart part;
 
@@ -944,7 +944,7 @@ void Actor_info_save_actor(PlayState* play) {
     restore_fgdata_all(play);
 }
 
-Actor* Actor_info_delete(ActorInfo* actorInfo, Actor* actor, PlayState* play) {
+Actor* Actor_info_delete(ActorInfo* actorInfo, Actor* actor, Game_Play* play) {
     Actor* newHead;
     s32 pad UNUSED;
     ActorOverlay* overlayEntry;
@@ -1115,7 +1115,7 @@ Hilite* HiliteReflect_light_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, Gra
     return hilite;
 }
 
-Hilite* Setpos_HiliteReflect_init(Vec3f* object, PlayState* play) {
+Hilite* Setpos_HiliteReflect_init(Vec3f* object, Game_Play* play) {
     Vec3f sp24;
 
     sp24.x = play->kankyo.unk_02;
@@ -1124,7 +1124,7 @@ Hilite* Setpos_HiliteReflect_init(Vec3f* object, PlayState* play) {
     return HiliteReflect_init(object, &play->unk_1938.unk_028, &sp24, play->state.gfxCtx);
 }
 
-Hilite* Setpos_HiliteReflect_xlu_init(Vec3f* object, PlayState* play) {
+Hilite* Setpos_HiliteReflect_xlu_init(Vec3f* object, Game_Play* play) {
     Vec3f sp24;
 
     sp24.x = play->kankyo.unk_02;
@@ -1133,7 +1133,7 @@ Hilite* Setpos_HiliteReflect_xlu_init(Vec3f* object, PlayState* play) {
     return HiliteReflect_xlu_init(object, &play->unk_1938.unk_028, &sp24, play->state.gfxCtx);
 }
 
-Hilite* Setpos_HiliteReflect_light_init(Vec3f* object, PlayState* play) {
+Hilite* Setpos_HiliteReflect_light_init(Vec3f* object, Game_Play* play) {
     Vec3f sp24;
 
     sp24.x = play->kankyo.unk_02;

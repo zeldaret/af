@@ -2,9 +2,9 @@
 #include "m_lib.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aTNC_actor_ct(Actor* thisx, PlayState* play);
-void aTNC_actor_dt(Actor* thisx, PlayState* play);
-void aTNC_actor_move(Actor* thisx, PlayState* play);
+void aTNC_actor_ct(Actor* thisx, Game_Play* play);
+void aTNC_actor_dt(Actor* thisx, Game_Play* play);
+void aTNC_actor_move(Actor* thisx, Game_Play* play);
 
 #if 0
 ActorProfile Tunahiki_Control_Profile = {

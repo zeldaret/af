@@ -1,10 +1,10 @@
 #include "ac_arrange_room.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void Arrange_Room_Actor_ct(Actor* thisx, PlayState* play);
-void Arrange_Room_Actor_dt(Actor* thisx, PlayState* play);
-void Arrange_Room_Actor_move(Actor* thisx, PlayState* play);
-void Arrange_Room_Actor_draw(Actor* thisx, PlayState* play);
+void Arrange_Room_Actor_ct(Actor* thisx, Game_Play* play);
+void Arrange_Room_Actor_dt(Actor* thisx, Game_Play* play);
+void Arrange_Room_Actor_move(Actor* thisx, Game_Play* play);
+void Arrange_Room_Actor_draw(Actor* thisx, Game_Play* play);
 
 #if 0
 ActorProfile Arrange_Room_Profile = {

@@ -1,10 +1,10 @@
 #include "ac_kago.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aKAG_actor_ct(Actor* thisx, PlayState* play);
-void func_80A8F340_jp(Actor* thisx, PlayState* play);
-void aKAG_actor_init(Actor* thisx, PlayState* play);
-void aKAG_actor_draw(Actor* thisx, PlayState* play);
+void aKAG_actor_ct(Actor* thisx, Game_Play* play);
+void func_80A8F340_jp(Actor* thisx, Game_Play* play);
+void aKAG_actor_init(Actor* thisx, Game_Play* play);
+void aKAG_actor_draw(Actor* thisx, Game_Play* play);
 
 #if 0
 ActorProfile Kago_Profile = {

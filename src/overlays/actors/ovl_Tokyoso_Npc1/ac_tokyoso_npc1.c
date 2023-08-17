@@ -2,10 +2,10 @@
 #include "m_lib.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aTKN1_actor_ct(Actor* thisx, PlayState* play);
-void aTKN1_actor_dt(Actor* thisx, PlayState* play);
-void aTKN1_actor_init(Actor* thisx, PlayState* play);
-void aTKN1_actor_save(Actor* thisx, PlayState* play);
+void aTKN1_actor_ct(Actor* thisx, Game_Play* play);
+void aTKN1_actor_dt(Actor* thisx, Game_Play* play);
+void aTKN1_actor_init(Actor* thisx, Game_Play* play);
+void aTKN1_actor_save(Actor* thisx, Game_Play* play);
 
 #if 0
 ActorProfile Tokyoso_Npc1_Profile = {

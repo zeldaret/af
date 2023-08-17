@@ -324,10 +324,10 @@ s32 game_getFreeBytes(Game* gameState) {
 
 void game_goto_next_game_play(Game* gameState) {
     STOP_GAMESTATE(gameState);
-    SET_NEXT_GAMESTATE(gameState, play_init, sizeof(PlayState));
+    SET_NEXT_GAMESTATE(gameState, play_init, sizeof(Game_Play));
 }
 
 void game_goto_next_game_name_famicom_emu(Game* gameState) {
     STOP_GAMESTATE(gameState);
-    SET_NEXT_GAMESTATE(gameState, famicom_emu_init, sizeof(FamicomEmuState));
+    SET_NEXT_GAMESTATE(gameState, famicom_emu_init, sizeof(Game_FamicomEmu));
 }

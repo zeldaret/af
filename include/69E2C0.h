@@ -5,7 +5,7 @@
 
 struct Input;
 struct GraphicsContext;
-struct PlayState;
+struct Game_Play;
 
 // void func_8007A620_jp();
 // void func_8007A630_jp();
@@ -77,8 +77,8 @@ void mDemo_stock_clear(void);
 // void func_8007CF34_jp();
 // void func_8007CF44_jp();
 // void func_8007CF84_jp();
-void mDemo_Main(struct PlayState* play);
-void func_8007CFD8_jp(struct PlayState* play);
+void mDemo_Main(struct Game_Play* play);
+void func_8007CFD8_jp(struct Game_Play* play);
 // void func_8007D030_jp();
 // void func_8007D048_jp();
 // void func_8007D080_jp();
