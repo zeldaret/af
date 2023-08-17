@@ -36,7 +36,7 @@
       NULL,                                                \
       NULL,                                                \
       0,                                                   \
-      sizeof(typeName##State) },
+      sizeof(Game_##typeName) },
 
 GameStateOverlay game_dlftbls[GAMESTATE_ID_MAX] = {
 #include "tables/gamestate_table.h"
