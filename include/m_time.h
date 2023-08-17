@@ -10,46 +10,48 @@
 #define mTM_MIN_YEAR 2001
 #define mTM_MAX_YEAR 2030
 
-enum {
-  mTM_SEASON_BEGIN = 0,
-  mTM_SEASON_SPRING = mTM_SEASON_BEGIN,
-  mTM_SEASON_SUMMER,
-  mTM_SEASON_AUTUMN,
-  mTM_SEASON_WINTER,
-  mTM_SEASON_NUM
-};
+typedef enum mTM_SEASON{
+    /* 0 */ mTM_SEASON_BEGIN = 0,
+    /* 0 */ mTM_SEASON_SPRING = mTM_SEASON_BEGIN,
+    /* 1 */ mTM_SEASON_SUMMER,
+    /* 2 */ mTM_SEASON_AUTUMN,
+    /* 3 */ mTM_SEASON_WINTER,
 
-enum {
-  mTM_TERM_BEGIN = 0,
-  mTM_TERM_0 = mTM_TERM_BEGIN,
-  mTM_TERM_1,
-  mTM_TERM_2,
-  mTM_TERM_3,
-  mTM_TERM_4,
-  mTM_TERM_5,
-  mTM_TERM_6,
-  mTM_TERM_7,
-  mTM_TERM_8,
-  mTM_TERM_9,
-  mTM_TERM_10,
-  mTM_TERM_11,
-  mTM_TERM_12,
-  mTM_TERM_13,
-  mTM_TERM_14,
-  mTM_TERM_15,
-  mTM_TERM_16,
-  mTM_TERM_17,
-  mTM_TERM_NUM
-};
+    /* 4 */ mTM_SEASON_NUM
+} mTM_SEASON;
+
+typedef enum mTM_TERM{
+    /* 0 */ mTM_TERM_BEGIN = 0,
+    /* 0 */ mTM_TERM_0 = mTM_TERM_BEGIN,
+    /* 1 */ mTM_TERM_1,
+    /* 2 */ mTM_TERM_2,
+    /* 3 */ mTM_TERM_3,
+    /* 4 */ mTM_TERM_4,
+    /* 5 */ mTM_TERM_5,
+    /* 6 */ mTM_TERM_6,
+    /* 7 */ mTM_TERM_7,
+    /* 8 */ mTM_TERM_8,
+    /* 9 */ mTM_TERM_9,
+    /* 10 */ mTM_TERM_10,
+    /* 11 */ mTM_TERM_11,
+    /* 12 */ mTM_TERM_12,
+    /* 13 */ mTM_TERM_13,
+    /* 14 */ mTM_TERM_14,
+    /* 15 */ mTM_TERM_15,
+    /* 16 */ mTM_TERM_16,
+    /* 17 */ mTM_TERM_17,
+    
+    /* 18 */ mTM_TERM_NUM
+} mTM_TERM;
 
 #define mTM_RENEW_TIME_NONE 0
 #define mTM_RENEW_TIME_ALL 0xFF
 
-enum {
-  mTM_RENEW_TIME_BEGIN = 0,
-  mTM_RENEW_TIME_WEATHER = mTM_RENEW_TIME_BEGIN,
-  mTM_RENEW_TIME_DAILY
-};
+typedef enum mTM_RENEW_TIME{
+  /* 0 */ mTM_RENEW_TIME_BEGIN = 0,
+  /* 0 */ mTM_RENEW_TIME_WEATHER = mTM_RENEW_TIME_BEGIN,
+  /* 1 */ mTM_RENEW_TIME_DAILY
+} mTM_RENEW_TIME;
 
 #define mTM_SECONDS_IN_MINUTE 60
 #define mTM_SECONDS_IN_HOUR 60*60

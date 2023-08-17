@@ -36,52 +36,52 @@ typedef struct lbRTC_ymd_t {
     /* 0x03 */ lbRTC_day_t day;
 } lbRTC_ymd_t; // size = 0x4
 
-enum WEEKDAYS {
-    lbRTC_WEEKDAYS_BEGIN = 0,
-    lbRTC_SUNDAY = lbRTC_WEEKDAYS_BEGIN,
-    lbRTC_MONDAY,
-    lbRTC_TUESDAY,
-    lbRTC_WEDNESDAY,
-    lbRTC_THURSDAY,
-    lbRTC_FRIDAY,
-    lbRTC_SATURDAY,
-    lbRTC_WEEK,
-    lbRTC_WEEKDAYS_MAX = lbRTC_WEEK
-};
+typedef enum WEEKDAYS {
+    /* 0 */ lbRTC_WEEKDAYS_BEGIN = 0,
+    /* 0 */ lbRTC_SUNDAY = lbRTC_WEEKDAYS_BEGIN,
+    /* 1 */ lbRTC_MONDAY,
+    /* 2 */ lbRTC_TUESDAY,
+    /* 3 */ lbRTC_WEDNESDAY,
+    /* 4 */ lbRTC_THURSDAY,
+    /* 5 */ lbRTC_FRIDAY,
+    /* 6 */ lbRTC_SATURDAY,
+    /* 7 */ lbRTC_WEEK,
+    /* 7 */ lbRTC_WEEKDAYS_MAX = lbRTC_WEEK
+} WEEKDAYS;
 
-enum MONTHS {
-    lbRTC_MONTHS_BEGIN = 0,
-    lbRTC_JANUARY = 1,
-    lbRTC_FEBRUARY,
-    lbRTC_MARCH,
-    lbRTC_APRIL,
-    lbRTC_MAY,
-    lbRTC_JUNE,
-    lbRTC_JULY,
-    lbRTC_AUGUST,
-    lbRTC_SEPTEMBER,
-    lbRTC_OCTOBER,
-    lbRTC_NOVEMBER,
-    lbRTC_DECEMBER,
-    lbRTC_MONTHS_MAX = lbRTC_DECEMBER
-};
+typedef enum MONTHS {
+    /* 0 */ lbRTC_MONTHS_BEGIN = 0,
+    /* 1 */ lbRTC_JANUARY = 1,
+    /* 2 */ lbRTC_FEBRUARY,
+    /* 3 */ lbRTC_MARCH,
+    /* 4 */ lbRTC_APRIL,
+    /* 5 */ lbRTC_MAY,
+    /* 6 */ lbRTC_JUNE,
+    /* 7 */ lbRTC_JULY,
+    /* 8 */ lbRTC_AUGUST,
+    /* 9 */ lbRTC_SEPTEMBER,
+    /* 10 */ lbRTC_OCTOBER,
+    /* 11 */ lbRTC_NOVEMBER,
+    /* 12 */ lbRTC_DECEMBER,
+    /* 12 */ lbRTC_MONTHS_MAX = lbRTC_DECEMBER
+} MONTHS;
 
-enum RTC_EQUALITY {
+typedef enum RTC_EQUALITY {
     lbRTC_LESS = -1,
     lbRTC_EQUAL = 0,
     lbRTC_OVER = 1
-};
+} RTC_EQUALITY;
 
-enum RTC_EQUALITY_FLAGS {
-    lbRTC_CHECK_NONE = 0,           /* 0x00 */
-    
-    lbRTC_CHECK_SECONDS = 1 << 0,   /* 0x01 */
-    lbRTC_CHECK_MINUTES = 1 << 1,   /* 0x02 */
-    lbRTC_CHECK_HOURS = 1 << 2,     /* 0x04 */
-    lbRTC_CHECK_WEEKDAYS = 1 << 3,  /* 0x08 */
-    lbRTC_CHECK_DAYS = 1 << 4,      /* 0x10 */
-    lbRTC_CHECK_MONTHS = 1 << 5,    /* 0x20 */
-    lbRTC_CHECK_YEARS = 1 << 6,     /* 0x40 */
+typedef enum RTC_EQUALITY_FLAGS {
+    /* 0x00 */lbRTC_CHECK_NONE = 0,
+
+    /* 0x01 */lbRTC_CHECK_SECONDS = 1 << 0,   
+    /* 0x02 */lbRTC_CHECK_MINUTES = 1 << 1,   
+    /* 0x04 */lbRTC_CHECK_HOURS = 1 << 2,     
+    /* 0x08 */lbRTC_CHECK_WEEKDAYS = 1 << 3,  
+    /* 0x10 */lbRTC_CHECK_DAYS = 1 << 4,      
+    /* 0x20 */lbRTC_CHECK_MONTHS = 1 << 5,    
+    /* 0x40 */lbRTC_CHECK_YEARS = 1 << 6,     
     
     /* 0x7F */
     lbRTC_CHECK_ALL = lbRTC_CHECK_SECONDS |
@@ -91,7 +91,7 @@ enum RTC_EQUALITY_FLAGS {
                       lbRTC_CHECK_DAYS |
                       lbRTC_CHECK_MONTHS |
                       lbRTC_CHECK_YEARS
-};
+} RTC_EQUALITY_FLAGS;
 
 #define lbRTC_HOURS_PER_DAY 24
 #define lbRTC_MINUTES_PER_HOUR 60

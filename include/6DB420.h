@@ -44,7 +44,7 @@ s32 mPr_CheckPrivate(struct Private_c* private);
 // void func_800B86EC_jp();
 // void func_800B88EC_jp();
 // void func_800B8A88_jp();
-void mPr_SetPossessionItem(struct Private_c* priv, int idx, mActor_name_t item, u32 cond);
+void mPr_SetPossessionItem(struct Private_c* priv, int idx, u16 item, u32 cond);
 // void func_800B8B8C_jp();
 // void func_800B8BE4_jp();
 // void func_800B8C10_jp();

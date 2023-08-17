@@ -14,8 +14,6 @@ struct struct_801161E8_jp;
 struct Lights;
 struct GraphicsContext;
 
-typedef u16 mActor_name_t;
-
 typedef enum AllocType {
     /* 0 */ ALLOCTYPE_NORMAL,
     /* 1 */ ALLOCTYPE_ABSOLUTE,

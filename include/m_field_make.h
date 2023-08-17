@@ -19,7 +19,7 @@ struct Game;
 #define UT_TOTAL_NUM (UT_X_NUM * UT_Z_NUM)
 
 typedef struct mFM_fg_c {
-  /* 0x000 */ mActor_name_t items[UT_Z_NUM][UT_X_NUM];
+  /* 0x000 */ u16 items[UT_Z_NUM][UT_X_NUM];
 } mFM_fg_c; // size = 0x200
 
 // void func_80084ED0_jp();

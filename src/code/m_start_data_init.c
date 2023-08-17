@@ -100,10 +100,10 @@ void mSDI_ClearMoneyPlayerHomeStationBlock(void) {
 
     s32 block_z;
     s32 block_x;
-    mActor_name_t* items;
+    u16* items;
     s32 ut_x;
     s32 ut_z;
-    mActor_name_t item;
+    u16 item;
     s32 i;
     s32 depositOffset;
 
@@ -137,7 +137,7 @@ void mSDI_ClearMoneyPlayerHomeStationBlock(void) {
     }
 }
 
-void mSDI_PullTreeUT(mActor_name_t* item_p) {
+void mSDI_PullTreeUT(u16* item_p) {
     if ((*item_p >= TREE_SAPLING && *item_p <= TREE_30000BELLS) ||
         (*item_p >= TREE_100BELLS_SAPLING && *item_p <= TREE_100BELLS)) {
         *item_p = EMPTY_NO;
@@ -176,7 +176,7 @@ void mSDI_PullTreeUnderPlayerBlock(void) {
      * ...
      **/
 
-    mActor_name_t* items = &common_data.fg[2][2].items[0][0];
+    u16* items = &common_data.fg[2][2].items[0][0];
 
     mSDI_PullTreeUT(&items[7]);
     mSDI_PullTreeUT(&items[8]);
@@ -185,7 +185,7 @@ void mSDI_PullTreeUnderPlayerBlock(void) {
 }
 
 s32 mSDI_StartInitNew(Game* game_, s32 player_no, s32 malloc_flag) {
-    Game_Play* game_play =(Game_Play*)game_;
+    Game_Play* game_play = (Game_Play*)game_;
     Private_c* priv;
     Private_c* priv_p;
     Game* game = NULL;
@@ -261,7 +261,7 @@ s32 mSDI_StartInitNew(Game* game_, s32 player_no, s32 malloc_flag) {
 }
 
 s32 mSDI_StartInitFrom(Game* game_, s32 player_no, s32 malloc_flag) {
-    Game_Play* game_play =(Game_Play*)game_;
+    Game_Play* game_play = (Game_Play*)game_;
     Private_c* priv;
     Game* game = game_;
     s32 res = FALSE;
@@ -314,7 +314,7 @@ s32 mSDI_StartInitFrom(Game* game_, s32 player_no, s32 malloc_flag) {
 }
 
 s32 mSDI_StartInitNewPlayer(Game* game, s32 player_no, s32 malloc_flag) {
-    Game_Play* game_play =(Game_Play*)game;
+    Game_Play* game_play = (Game_Play*)game;
     Private_c* priv;
     s32 res = FALSE;
     UNUSED s32 pad;
@@ -349,7 +349,7 @@ s32 mSDI_StartInitNewPlayer(Game* game, s32 player_no, s32 malloc_flag) {
 
 s32 mSDI_StartInitPak(Game* game_, s32 player_no, s32 malloc_flag) {
     Game* game = game_;
-    Game_Play* game_play =(Game_Play*)game;
+    Game_Play* game_play = (Game_Play*)game;
     UNUSED s32 pad;
     s32 res = FALSE;
     s32 sp1C;
@@ -386,7 +386,7 @@ s32 mSDI_StartInitErr(UNUSED Game* game, UNUSED s32 player_no, UNUSED s32 malloc
 }
 
 void mSDI_StartInitAfter(Game* game, s32 renewal_reserve_flag, s32 malloc_flag) {
-    Game_Play* game_play =(Game_Play*)game;
+    Game_Play* game_play = (Game_Play*)game;
 
     common_data.house_owner_name = -1;
     common_data.last_field_id = -1;

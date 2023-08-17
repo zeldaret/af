@@ -6,22 +6,22 @@
 #define mAGrw_DUMP_WIDTH 4
 #define mAGrw_DUMP_HEIGHT 4
 
-enum {
-  mAGrw_XMAS_PROC_CLEAR,
-  mAGrw_XMAS_PROC_SET,
+typedef enum mAGrw_XMAS_PROC {
+  /* 0 */ mAGrw_XMAS_PROC_CLEAR,
+  /* 1 */ mAGrw_XMAS_PROC_SET,
 
-  mAGrw_XMAS_PROC_NUM
-};
+  /* 2 */ mAGrw_XMAS_PROC_NUM
+} mAGrw_XMAS_PROC;
 
-enum {
-  mAGrw_FRUIT_APPLE,
-  mAGrw_FRUIT_CHERRY,
-  mAGrw_FRUIT_PEAR,
-  mAGrw_FRUIT_PEACH,
-  mAGrw_FRUIT_ORANGE,
+typedef enum mAGrw_FRUIT {
+  /* 0 */ mAGrw_FRUIT_APPLE,
+  /* 1 */ mAGrw_FRUIT_CHERRY,
+  /* 2 */ mAGrw_FRUIT_PEAR,
+  /* 3 */ mAGrw_FRUIT_PEACH,
+  /* 4 */ mAGrw_FRUIT_ORANGE,
 
-  mAGrw_FRUIT_NUM
-};
+  /* 5 */ mAGrw_FRUIT_NUM
+} mAGrw_FRUIT;
 
 #define mAGrw_XMAS_LIGHTS_MAX_BLOCK 3
 #define mAGrw_CEDAR_BLOCK_Z_MIN 0

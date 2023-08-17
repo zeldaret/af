@@ -18,13 +18,13 @@
  * H1 H3 H2 H0
  **/
 
-enum {
-  mHS_HOUSE0, /* Top-left house */
-  mHS_HOUSE1, /* Top-right house */
-  mHS_HOUSE2, /* Bottom-left house */
-  mHS_HOUSE3, /* Bottom-right house */
+typedef enum mHS_HOUSE {
+  /* 0 */ mHS_HOUSE0, /* Top-left house */
+  /* 1 */ mHS_HOUSE1, /* Top-right house */
+  /* 2 */ mHS_HOUSE2, /* Bottom-left house */
+  /* 3 */ mHS_HOUSE3, /* Bottom-right house */
 
-  mHS_HOUSE_NUM
-};
+  /* 4 */ mHS_HOUSE_NUM
+} mHS_HOUSE;
 
 #endif

@@ -122,7 +122,7 @@ typedef struct CommonData {
     /* 0x0EC70 */ u8 unk0EC70[0x134];
     /* 0x0EDA4 */ mEv_event_save_c event_save_data;
     /* 0x0EE40 */ u8 unk0EE40[0x118];
-    /* 0x0EF58 */ mActor_name_t fruit;
+    /* 0x0EF58 */ u16 fruit;
     /* 0x0EF5A */ u8 unk0EF5A[0x4DE];
     /* 0x0F438 */ u8 station_type; /* train station type */
     /* 0x0F439 */ u8 unk0F439[0x3];
