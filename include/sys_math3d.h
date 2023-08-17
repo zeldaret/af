@@ -2,6 +2,14 @@
 #define SYS_MATH_3D_H
 
 #include "ultra64.h"
+#include "unk.h"
+
+typedef struct Math3D_pipeCrossTriangle_cp_arg0 {
+    /* 0x0 */ s16 unk_0;
+    /* 0x2 */ s16 unk_2;
+    /* 0x4 */ UNK_TYPE1 unk_4[0x2];
+    /* 0x6 */ Vec3s unk_6;
+} Math3D_pipeCrossTriangle_cp_arg0; // size >= 0xC
 
 extern Vec3f ZeroVec;
 
@@ -76,14 +84,14 @@ extern Vec3f ZeroVec;
 s32 func_800DE13C_jp(Vec3s*, Vec3f*, Vec3f*);
 // void func_800DE55C_jp();
 // void func_800DE618_jp();
-s32 Math3D_pipeCrossTriangle_cp(s16* arg0, Vec3f* arg1, Vec3f* arg2);
+s32 Math3D_pipeCrossTriangle_cp(Math3D_pipeCrossTriangle_cp_arg0* arg0, Vec3f* arg1, Vec3f* arg2);
 // void func_800DF46C_jp();
 // void func_800DF48C_jp();
 s32 Math3D_sphereCrossSphere_cl(Vec3s* arg0, Vec3s* arg1, f32* arg2);
 // void func_800DF4CC_jp();
-s32 Math3D_sphereVsPipe_cl(Vec3s* arg0, s16* arg1, f32* arg2);
+s32 Math3D_sphereVsPipe_cl(Vec3s* arg0, Math3D_pipeCrossTriangle_cp_arg0* arg1, f32* arg2);
 // void func_800DF5C4_jp();
-s32 Math3D_pipeVsPipe_cl(s16* arg0, s16* arg1, f32* arg2);
+s32 Math3D_pipeVsPipe_cl(Math3D_pipeCrossTriangle_cp_arg0* arg0, Math3D_pipeCrossTriangle_cp_arg0* arg1, f32* arg2);
 // void Math3D_pipeVsPipe_cl_cc();
 // void func_800DF924_jp();
 // void func_800DFCA4_jp();

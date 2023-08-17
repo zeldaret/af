@@ -26,17 +26,27 @@ void CollisionCheck_workTrisElemCenter(Tris_unk_10* arg0, Vec3f* arg1) {
     arg1->z = (arg0->unk_1C.z + (arg0->unk_04.z + arg0->unk_10.z)) * (1.0f / 3.0f);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80076BA4_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/ClObj_ct.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80076BD4_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80076BE8_jp.s")
+s32 ClObj_set4(struct Game_Play* game_play, Game_Play2138_unk_08* arg1, struct Actor* actor, ClObj_set4_arg3* arg3) {
+    arg1->actor = actor;
+    arg1->unk_08 = arg3->unk_0;
+    arg1->unk_09 = arg3->unk_1;
+    arg1->unk_0A = arg3->unk_2;
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80076C14_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80076C3C_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/ClObjElem_ct.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80076C4C_jp.s")
+s32 ClObjElem_set(ClObjPipe_set5_arg3_unk_3* arg0, ClObjPipe_set5_arg3_unk_3* arg1) {
+    arg0->unk_0 = arg1->unk_0;
+
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80076C60_jp.s")
 
@@ -62,17 +72,30 @@ void CollisionCheck_workTrisElemCenter(Tris_unk_10* arg0, Vec3f* arg1) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80076F9C_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_8007703C_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/ClObjPipeAttr_ct.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80077078_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_8007708C_jp.s")
+s32 ClObjPipeAttr_set(struct Game_Play* game_play, ClObjPipeAttr_set_arg2* arg1, ClObjPipeAttr_set_arg2* arg2) {
+    *arg1 = *arg2;
+    return 1;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_800770CC_jp.s")
+s32 ClObjPipe_ct(struct Game_Play* game_play, Pipe* pipe) {
+    ClObj_ct(game_play, &pipe->unk_00);
+    ClObjElem_ct(&pipe->unk_0C);
+    ClObjPipeAttr_ct(game_play, &pipe->unk_0E);
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80077118_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80077158_jp.s")
+s32 ClObjPipe_set5(struct Game_Play* game_play, Pipe* pipe, struct Actor* actor, ClObjPipe_set5_arg3* arg3) {
+    ClObj_set4(game_play, &pipe->unk_00, actor, &arg3->unk_0);
+    ClObjElem_set(&pipe->unk_0C, &arg3->unk_3);
+    ClObjPipeAttr_set(game_play, &pipe->unk_0E, &arg3->unk_4);
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_800771BC_jp.s")
 
@@ -126,7 +149,39 @@ void CollisionCheck_clear(UNUSED struct Game_Play* game_play, Game_Play2138* arg
     }
 }
 
+typedef UNK_RET (*OcClearFunc)(struct Game_Play*, Game_Play2138*);
+
+extern OcClearFunc OCClearFunctionTable[];
+
+#if 0
+s32 CollisionCheck_setOC(struct Game_Play* game_play, Game_Play2138* arg1, Game_Play2138_unk_08* arg2) {
+    s32 temp_v1;
+    void* temp_v1_2;
+
+    if (_Game_play_isPause(game_play, arg1) == 1) {
+        return -1;
+    }
+
+    OCClearFunctionTable[arg2->unk_0A](game_play, arg2);
+
+    temp_v1_2 = arg2->unk_00;
+    if ((temp_v1_2 != NULL) && (temp_v1_2->unk_164 == 0)) {
+        return -1;
+    }
+    temp_v1 = arg1->unk_04;
+    if (temp_v1 >= 0x32) {
+        return -1;
+    }
+    if (arg1->unk_00 & 1) {
+        return -1;
+    }
+    arg1->unk_08[temp_v1] = (Game_Play2138_unk_08* ) arg2;
+    arg1->unk_04 += 1;
+    return temp_v1;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/CollisionCheck_setOC.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/get_type.s")
 
@@ -230,7 +285,7 @@ s32 CollisionCheck_Check2ClObjNoOC(Game_Play2138_unk_08* arg0, Game_Play2138_unk
     if (!(arg0->unk_08 & arg1->unk_09 & 0x38) || !(arg0->unk_09 & arg1->unk_08 & 0x38)) {
         return 1;
     }
-    if (arg0->unk_00 == arg1->unk_00) {
+    if (arg0->actor == arg1->actor) {
         return 1;
     }
     return 0;
@@ -265,7 +320,13 @@ void CollisionCheck_OC(struct Game_Play* game_play, Game_Play2138* arg1) {
     CollisionCheck_OCC(game_play, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/CollisionCheck_setOCC_HitInfo.s")
+void CollisionCheck_setOCC_HitInfo(struct Game_Play* game_play, Game_Play2138_unk_08* arg1, Tris_unk_10* arg2, Vec3f* arg3, Game_Play2138_unk_08* arg4, u8* arg5, Vec3f* arg6, Vec3f* arg7) {
+    arg1->unk_04 = arg4->actor;
+    arg1->unk_09 |= 4;
+    arg2->unk_38.x =  arg7->x;
+    arg2->unk_38.y =  arg7->y;
+    arg2->unk_38.z =  arg7->z;
+}
 
 void CollisionCheck_OCC_Tris_Vs_JntSph(struct Game_Play* game_play, UNUSED Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3) {
     JntSph_unk_10* var_s6;
@@ -339,21 +400,21 @@ void CollisionCheck_OCC(struct Game_Play* game_play, Game_Play2138* arg1) {
         return;
     }
 
-    for (var_s2 = mco_work.unk_04; (u32) var_s2 < (u32) &mco_work.unk_04[mco_work.unk_00]; var_s2++) {
+    for (var_s2 = mco_work.unk_04; var_s2 < &mco_work.unk_04[mco_work.unk_00]; var_s2++) {
         Game_Play2138_unk_08** var_s0;
 
         if ((*var_s2 == NULL) || (CollisionCheck_Check1ClObjNoOCC(*var_s2) == 1)) {
             continue;
         }
 
-        for (var_s0 = arg1->unk_08; (u32) var_s0 < (u32) &arg1->unk_08[arg1->unk_04]; var_s0++) {
+        for (var_s0 = arg1->unk_08; var_s0 < &arg1->unk_08[arg1->unk_04]; var_s0++) {
             CollisionVsFunc temp_v0;
 
             if ((*var_s0) == NULL) {
                 continue;
             }
 
-            if ((*var_s2)->unk_00 == (*var_s0)->unk_00) {
+            if ((*var_s2)->actor == (*var_s0)->actor) {
                 continue;
             }
 

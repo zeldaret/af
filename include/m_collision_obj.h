@@ -5,6 +5,9 @@
 #include "z64math.h"
 #include "unk.h"
 
+struct Actor;
+struct Game_Play;
+
 
 typedef struct CollisionCheck_Status {
     /* 0x00 */ Vec3f displacement;
@@ -17,8 +20,8 @@ typedef struct CollisionCheck_Status {
 
 
 typedef struct Game_Play2138_unk_08 {
-    /* 0x00 */ UNK_TYPE4 unk_00;
-    /* 0x00 */ UNK_TYPE1 unk_04[0x4];
+    /* 0x00 */ struct Actor* actor;
+    /* 0x00 */ UNK_TYPE4 unk_04;
     /* 0x08 */ u8 unk_08;
     /* 0x09 */ u8 unk_09;
     /* 0x0A */ u8 unk_0A;
@@ -40,6 +43,10 @@ typedef struct JntSph {
     /* 0x10 */ JntSph_unk_10* unk_10;
 } JntSph; // size >= 0x14
 
+typedef struct ClObjPipeAttr_set_arg2 {
+    /* 0x0 */ UNK_TYPE1 unk_0[0xC];
+} ClObjPipeAttr_set_arg2; // size = 0xC
+
 // TODO: rename
 typedef struct Pipe {
     /* 0x00 */ Game_Play2138_unk_08 unk_00;
@@ -57,16 +64,16 @@ typedef struct Tris_unk_10 {
     /* 0x04 */ Vec3f unk_04;
     /* 0x10 */ Vec3f unk_10;
     /* 0x1C */ Vec3f unk_1C;
-    /* 0x28 */ UNK_TYPE1 unk_28[0x1C];
+    /* 0x28 */ UNK_TYPE1 unk_28[0x10];
+    /* 0x38 */ Vec3f unk_38;
 } Tris_unk_10; // size = 0x44
 
 // TODO: rename
 typedef struct Tris {
     /* 0x00 */ Game_Play2138_unk_08 unk_00;
-
-    UNK_TYPE unk_0C;
-    Tris_unk_10* unk_10;
-} Tris; // size >= 0x
+    /* 0x0C */ UNK_TYPE unk_0C;
+    /* 0x10 */ Tris_unk_10* unk_10;
+} Tris; // size >= 0x14
 
 typedef struct Game_Play2138 {
     /* 0x00 */ u16 unk_00;
@@ -75,15 +82,29 @@ typedef struct Game_Play2138 {
     /* 0x08 */ Game_Play2138_unk_08 *unk_08[50];
 } Game_Play2138; // size = 0xD0
 
-struct Game_Play;
+typedef struct ClObj_set4_arg3 {
+    /* 0x0 */ u8 unk_0;
+    /* 0x1 */ u8 unk_1;
+    /* 0x2 */ u8 unk_2;
+} ClObj_set4_arg3; // size >= 0x3
+
+typedef struct ClObjPipe_set5_arg3_unk_3 {
+    /* 0x0 */ u8 unk_0;
+} ClObjPipe_set5_arg3_unk_3; // size = 0x1
+
+typedef struct ClObjPipe_set5_arg3 {
+    /* 0x0 */ ClObj_set4_arg3 unk_0;
+    /* 0x3 */ ClObjPipe_set5_arg3_unk_3 unk_3;
+    /* 0x4 */ ClObjPipeAttr_set_arg2 unk_4;
+} ClObjPipe_set5_arg3; // size >= 0x10
 
 // void CollisionCheck_workTrisElemCenter();
-// void func_80076BA4_jp();
+s32 ClObj_ct(struct Game_Play* game_play, Game_Play2138_unk_08* arg1);
 // void func_80076BD4_jp();
-// void func_80076BE8_jp();
+s32 ClObj_set4(struct Game_Play* game_play, Game_Play2138_unk_08* arg1, struct Actor* actor, ClObj_set4_arg3* arg3);
 // void func_80076C14_jp();
-// void func_80076C3C_jp();
-// void func_80076C4C_jp();
+s32 ClObjElem_ct(u8* arg0);
+s32 ClObjElem_set(ClObjPipe_set5_arg3_unk_3* arg0, ClObjPipe_set5_arg3_unk_3* arg1);
 // void func_80076C60_jp();
 // void func_80076C78_jp();
 // void func_80076CC0_jp();
@@ -96,12 +117,12 @@ struct Game_Play;
 // void func_80076E2C_jp();
 // void func_80076ED0_jp();
 // void func_80076F9C_jp();
-// void func_8007703C_jp();
+// void ClObjPipeAttr_ct();
 // void func_80077078_jp();
-// void func_8007708C_jp();
-// void func_800770CC_jp();
+// s32 ClObjPipeAttr_set(struct Game_Play* game_play, s16* arg1, ClObjPipeAttr_set_arg2* arg2);
+s32 ClObjPipe_ct(struct Game_Play* game_play, Pipe* pipe);
 // void func_80077118_jp();
-// void func_80077158_jp();
+s32 ClObjPipe_set5(struct Game_Play* game_play, Pipe* pipe, struct Actor* actor, ClObjPipe_set5_arg3* arg3);
 // void func_800771BC_jp();
 // void func_800771FC_jp();
 // void func_80077248_jp();
@@ -117,7 +138,7 @@ struct Game_Play;
 void func_80077620_jp(struct Game_Play* game_play, Game_Play2138* arg1);
 void CollisionCheck_dt(struct Game_Play* game_play, Game_Play2138* arg1);
 void CollisionCheck_clear(struct Game_Play* game_play, Game_Play2138* arg1);
-// void CollisionCheck_setOC();
+s32 CollisionCheck_setOC(struct Game_Play* game_play, Game_Play2138* arg1, Game_Play2138_unk_08* arg2);
 // void get_type();
 void CollisionCheck_setOC_HitInfo(Game_Play2138_unk_08* arg0, u8* arg1, Vec3f* arg2, Game_Play2138_unk_08* arg3, u8* arg4, Vec3f* arg5, f32 arg6);
 void CollisionCheck_OC_JntSph_Vs_JntSph(struct Game_Play* game_play, Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3);
