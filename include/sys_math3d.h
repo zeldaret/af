@@ -79,7 +79,7 @@ extern Vec3f ZeroVec;
 // void func_800DEFEC_jp();
 // void func_800DF46C_jp();
 // void func_800DF48C_jp();
-// void Math3D_sphereCrossSphere_cl();
+s32 Math3D_sphereCrossSphere_cl(Vec3s* arg0, Vec3s* arg1, f32* arg2);
 // void func_800DF4CC_jp();
 s32 Math3D_sphereVsPipe_cl(Vec3s* arg0, u8* arg1, f32* arg2);
 // void func_800DF5C4_jp();

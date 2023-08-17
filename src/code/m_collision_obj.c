@@ -128,61 +128,37 @@ void CollisionCheck_clear(UNUSED struct Game_Play* game_play, Game_Play2138* arg
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/CollisionCheck_setOC_HitInfo.s")
 
-#if 0
-void CollisionCheck_OC_JntSph_Vs_JntSph(struct Game_Play* game_play, Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3) {
-    Game_Play2138_unk_08* sp84;
+void CollisionCheck_OC_JntSph_Vs_JntSph(UNUSED struct Game_Play* game_play, UNUSED Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3) {
+    JntSph* jntSphA = (JntSph*)arg2;
+    JntSph* jntSphB = (JntSph*)arg3;
+    JntSph_unk_10* var_s0;
+    JntSph_unk_10* var_s4;
     f32 sp74;
     Vec3f sp68;
     Vec3f sp5C;
-    Vec3s* temp_s1;
-    Vec3s* temp_s2;
-    s32 temp_v1;
-    u32 temp_v0;
-    u32 var_s0;
-    u32 var_s4;
-    u32 var_v0;
-    u32 var_v0_2;
 
-    sp84 = arg2;
-    temp_v1 = arg2->unk_C;
-    if (temp_v1 > 0) {
-        temp_v0 = arg2->unk_10;
-        if ((temp_v0 != 0) && (arg3->unk_C > 0) && (arg3->unk_10 != 0)) {
-            var_s4 = temp_v0;
-            if (temp_v0 < (u32) (temp_v0 + (temp_v1 * 0x1C))) {
-                do {
-                    if (!(*var_s4 & 1)) {
-                        var_v0 = sp84->unk_10 + (sp84->unk_C * 0x1C);
-                    } else {
-                        var_s0 = arg3->unk_10;
-                        if (var_s0 < (u32) (var_s0 + (arg3->unk_C * 0x1C))) {
-                            do {
-                                temp_s1 = var_s4 + 0xC;
-                                temp_s2 = var_s0 + 0xC;
-                                if (!(*var_s0 & 1)) {
-                                    var_v0_2 = arg3->unk_10 + (arg3->unk_C * 0x1C);
-                                } else {
-                                    if (Math3D_sphereCrossSphere_cl(temp_s1, temp_s2, &sp74) == 1) {
-                                        xyz_t_move_s_xyz(&sp68, temp_s1);
-                                        xyz_t_move_s_xyz(&sp5C, temp_s2);
-                                        CollisionCheck_setOC_HitInfo(arg2, (u8* ) var_s4, &sp68, arg3, (u8* ) var_s0, &sp5C, sp74);
-                                    }
-                                    var_v0_2 = arg3->unk_10 + (arg3->unk_C * 0x1C);
-                                }
-                                var_s0 += 0x1C;
-                            } while (var_s0 < var_v0_2);
-                        }
-                        var_v0 = sp84->unk_10 + (sp84->unk_C * 0x1C);
-                    }
-                    var_s4 += 0x1C;
-                } while (var_s4 < var_v0);
+    if ((jntSphA->unk_0C <= 0) || (jntSphA->unk_10 == NULL) || (jntSphB->unk_0C <= 0) || (jntSphB->unk_10 == NULL)) {
+        return;
+    }
+
+    for (var_s4 = jntSphA->unk_10; var_s4 < &jntSphA->unk_10[jntSphA->unk_0C]; var_s4++) {
+        if (!(var_s4->unk_00 & 1)) {
+            continue;
+        }
+
+        for (var_s0 = jntSphB->unk_10; var_s0 < &jntSphB->unk_10[jntSphB->unk_0C]; var_s0++) {
+            if (!(var_s0->unk_00 & 1)) {
+                continue;
+            }
+
+            if (Math3D_sphereCrossSphere_cl(&var_s4->unk_0C, &var_s0->unk_0C, &sp74) == 1) {
+                xyz_t_move_s_xyz(&sp68, &var_s4->unk_0C);
+                xyz_t_move_s_xyz(&sp5C, &var_s0->unk_0C);
+                CollisionCheck_setOC_HitInfo(&jntSphA->unk_00, &var_s4->unk_00, &sp68, &jntSphB->unk_00, &var_s0->unk_00, &sp5C, sp74);
             }
         }
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/CollisionCheck_OC_JntSph_Vs_JntSph.s")
-#endif
 
 void CollisionCheck_OC_JntSph_Vs_Pipe(UNUSED struct Game_Play* game_play, UNUSED Game_Play2138* arg1, Game_Play2138_unk_08* arg2, Game_Play2138_unk_08* arg3) {
     JntSph* jntSph = (JntSph*)arg2;
