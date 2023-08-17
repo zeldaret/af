@@ -1,10 +1,10 @@
 #include "ac_reserve.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aRSV_actor_ct(Actor* thisx, Game_Play* play);
-void func_80A09370_jp(Actor* thisx, Game_Play* play);
-void aRSV_actor_init(Actor* thisx, Game_Play* play);
-void aRSV_actor_draw(Actor* thisx, Game_Play* play);
+void aRSV_actor_ct(Actor* thisx, Game_Play* game_play);
+void func_80A09370_jp(Actor* thisx, Game_Play* game_play);
+void aRSV_actor_init(Actor* thisx, Game_Play* game_play);
+void aRSV_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Reserve_Profile = {

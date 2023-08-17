@@ -1,10 +1,10 @@
 #include "ac_shop.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aSHOP_actor_ct(Actor* thisx, Game_Play* play);
-void aSHOP_actor_dt(Actor* thisx, Game_Play* play);
-void aSHOP_actor_init(Actor* thisx, Game_Play* play);
-void aSHOP_actor_draw(Actor* thisx, Game_Play* play);
+void aSHOP_actor_ct(Actor* thisx, Game_Play* game_play);
+void aSHOP_actor_dt(Actor* thisx, Game_Play* game_play);
+void aSHOP_actor_init(Actor* thisx, Game_Play* game_play);
+void aSHOP_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Shop_Profile = {

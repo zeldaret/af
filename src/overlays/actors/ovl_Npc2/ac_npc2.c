@@ -2,9 +2,9 @@
 #include "m_lib.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void func_80545034(Actor* thisx, Game_Play* play);
-void func_805453b8(Actor* thisx, Game_Play* play);
-void func_80545604(Actor* thisx, Game_Play* play);
+void func_80545034(Actor* thisx, Game_Play* game_play);
+void func_805453b8(Actor* thisx, Game_Play* game_play);
+void func_80545604(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Npc2_Profile = {

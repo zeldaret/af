@@ -1,10 +1,10 @@
 #include "ac_train0.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void func_805bfc28(Actor* thisx, Game_Play* play);
-void func_805bfcdc(Actor* thisx, Game_Play* play);
-void func_805c03ec(Actor* thisx, Game_Play* play);
-void func_805c04e0(Actor* thisx, Game_Play* play);
+void func_805bfc28(Actor* thisx, Game_Play* game_play);
+void func_805bfcdc(Actor* thisx, Game_Play* game_play);
+void func_805c03ec(Actor* thisx, Game_Play* game_play);
+void func_805c04e0(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Train0_Profile = {

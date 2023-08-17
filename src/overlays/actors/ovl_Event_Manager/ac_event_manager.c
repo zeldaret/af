@@ -1,11 +1,11 @@
 #include "ac_event_manager.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aEvMgr_ct(Actor* thisx, Game_Play* play);
-void aEvMgr_dt(Actor* thisx, Game_Play* play);
-void aEvMgr_move(Actor* thisx, Game_Play* play);
-void aEvMgr_draw(Actor* thisx, Game_Play* play);
-void aEvMgr_save(Actor* thisx, Game_Play* play);
+void aEvMgr_ct(Actor* thisx, Game_Play* game_play);
+void aEvMgr_dt(Actor* thisx, Game_Play* game_play);
+void aEvMgr_move(Actor* thisx, Game_Play* game_play);
+void aEvMgr_draw(Actor* thisx, Game_Play* game_play);
+void aEvMgr_save(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Event_Manager_Profile = {

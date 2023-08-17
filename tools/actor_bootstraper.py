@@ -32,7 +32,7 @@ with profiles_txt.open() as f:
 def funcToDecl(func):
     if func == "NULL" or func == "none_proc1":
         return ""
-    return f"void {func}(Actor* thisx, Game_Play* play);\n"
+    return f"void {func}(Actor* thisx, Game_Play* game_play);\n"
 
 def funcToProf(func):
     if func == "none_proc1":

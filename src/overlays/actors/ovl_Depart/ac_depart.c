@@ -1,10 +1,10 @@
 #include "ac_depart.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aDPT_actor_ct(Actor* thisx, Game_Play* play);
-void aDPT_actor_dt(Actor* thisx, Game_Play* play);
-void aDPT_actor_init(Actor* thisx, Game_Play* play);
-void aDPT_actor_draw(Actor* thisx, Game_Play* play);
+void aDPT_actor_ct(Actor* thisx, Game_Play* game_play);
+void aDPT_actor_dt(Actor* thisx, Game_Play* game_play);
+void aDPT_actor_init(Actor* thisx, Game_Play* game_play);
+void aDPT_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Depart_Profile = {

@@ -2,9 +2,9 @@
 #include "m_lib.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aSetMgr_ct(Actor* thisx, Game_Play* play);
-void aSetMgr_dt(Actor* thisx, Game_Play* play);
-void aSetMgr_move(Actor* thisx, Game_Play* play);
+void aSetMgr_ct(Actor* thisx, Game_Play* game_play);
+void aSetMgr_dt(Actor* thisx, Game_Play* game_play);
+void aSetMgr_move(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Set_Manager_Profile = {

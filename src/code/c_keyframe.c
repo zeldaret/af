@@ -529,7 +529,7 @@ s32 cKF_SkeletonInfo_R_play(SkeletonInfoR* skeletonInfo) {
         return cKF_FrameControl_play(&skeletonInfo->frameControl);
 
     } else if (skeletonInfo->morphCounter > 0.0f) {
-        // A positive morphCounter will wait to play the animation until the morph has finished.
+        // A positive morphCounter will wait to game_play the animation until the morph has finished.
         cKF_SkeletonInfo_R_morphJoint(skeletonInfo);
 
         skeletonInfo->morphCounter -= 1.0f;
@@ -539,7 +539,7 @@ s32 cKF_SkeletonInfo_R_play(SkeletonInfoR* skeletonInfo) {
         return 0;
 
     } else {
-        // A negative morphCounter will play the animation and morph at the same time.
+        // A negative morphCounter will game_play the animation and morph at the same time.
         cKF_SkeletonInfo_R_morphJoint(skeletonInfo);
 
         skeletonInfo->morphCounter += 1.0f;
@@ -563,7 +563,7 @@ s32 cKF_SkeletonInfo_R_play(SkeletonInfoR* skeletonInfo) {
  *
  * @param jointIndex The index of the jointElem to draw.
  */
-void cKF_Si3_draw_SV_R_child(Game_Play* play, SkeletonInfoR* skeletonInfo, s32* jointIndex, DrawCallback beforeCallback,
+void cKF_Si3_draw_SV_R_child(Game_Play* game_play, SkeletonInfoR* skeletonInfo, s32* jointIndex, DrawCallback beforeCallback,
                              DrawCallback afterCallback, void* arg, Mtx** mtx) {
     JointElemR* jointElem = *jointIndex + (JointElemR*)Lib_SegmentedToVirtual(skeletonInfo->skeleton->jointElemTable);
     s32 i;
@@ -616,13 +616,13 @@ void cKF_Si3_draw_SV_R_child(Game_Play* play, SkeletonInfoR* skeletonInfo, s32* 
         }
     }
 
-    OPEN_DISPS(play->state.gfxCtx);
+    OPEN_DISPS(game_play->state.gfxCtx);
     Matrix_push();
     newDlist = shape = jointElem->shape;
     displayBufferFlag = jointElem->displayBufferFlag;
 
     if ((beforeCallback == NULL) ||
-        (beforeCallback != NULL && beforeCallback(play, skeletonInfo, *jointIndex, &newDlist, &displayBufferFlag, arg,
+        (beforeCallback != NULL && beforeCallback(game_play, skeletonInfo, *jointIndex, &newDlist, &displayBufferFlag, arg,
                                                   &rotation, &translation) != NULL)) {
         Matrix_softcv3_mult(&translation, &rotation);
 
@@ -647,17 +647,17 @@ void cKF_Si3_draw_SV_R_child(Game_Play* play, SkeletonInfoR* skeletonInfo, s32* 
     }
 
     if (afterCallback != NULL) {
-        afterCallback(play, skeletonInfo, *jointIndex, &newDlist, &displayBufferFlag, arg, &rotation, &translation);
+        afterCallback(game_play, skeletonInfo, *jointIndex, &newDlist, &displayBufferFlag, arg, &rotation, &translation);
     }
 
     (*jointIndex)++;
 
     for (i = 0; i < jointElem->numberOfChildren; i++) {
-        cKF_Si3_draw_SV_R_child(play, skeletonInfo, jointIndex, beforeCallback, afterCallback, arg, mtx);
+        cKF_Si3_draw_SV_R_child(game_play, skeletonInfo, jointIndex, beforeCallback, afterCallback, arg, mtx);
     }
 
     Matrix_pull();
-    CLOSE_DISPS(play->state.gfxCtx);
+    CLOSE_DISPS(game_play->state.gfxCtx);
 }
 
 /**
@@ -665,17 +665,17 @@ void cKF_Si3_draw_SV_R_child(Game_Play* play, SkeletonInfoR* skeletonInfo, s32* 
  *
  * This function calls cKF_Si3_draw_SV_R_child() to recursively draw each joint.
  */
-void cKF_Si3_draw_R_SV(Game_Play* play, SkeletonInfoR* skeletonInfo, Mtx* mtx, DrawCallback beforeCallback,
+void cKF_Si3_draw_R_SV(Game_Play* game_play, SkeletonInfoR* skeletonInfo, Mtx* mtx, DrawCallback beforeCallback,
                        DrawCallback afterCallback, void* arg) {
     s32 jointIndex;
 
     if (mtx != NULL) {
-        OPEN_DISPS(play->state.gfxCtx);
+        OPEN_DISPS(game_play->state.gfxCtx);
         gSPSegment(POLY_OPA_DISP++, 0x0D, mtx);
         gSPSegment(POLY_XLU_DISP++, 0x0D, mtx);
         jointIndex = 0;
-        cKF_Si3_draw_SV_R_child(play, skeletonInfo, &jointIndex, beforeCallback, afterCallback, arg, &mtx);
-        CLOSE_DISPS(play->state.gfxCtx);
+        cKF_Si3_draw_SV_R_child(game_play, skeletonInfo, &jointIndex, beforeCallback, afterCallback, arg, &mtx);
+        CLOSE_DISPS(game_play->state.gfxCtx);
     }
 }
 

@@ -2,10 +2,10 @@
 #include "m_lib.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aHN1_actor_ct(Actor* thisx, Game_Play* play);
-void aHN1_actor_dt(Actor* thisx, Game_Play* play);
-void aHN1_actor_init(Actor* thisx, Game_Play* play);
-void aHN1_actor_save(Actor* thisx, Game_Play* play);
+void aHN1_actor_ct(Actor* thisx, Game_Play* game_play);
+void aHN1_actor_dt(Actor* thisx, Game_Play* game_play);
+void aHN1_actor_init(Actor* thisx, Game_Play* game_play);
+void aHN1_actor_save(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Hanabi_Npc1_Profile = {

@@ -1,10 +1,10 @@
 #include "ac_koinobori.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aKOI_actor_ct(Actor* thisx, Game_Play* play);
-void aKOI_actor_dt(Actor* thisx, Game_Play* play);
-void aKOI_actor_init(Actor* thisx, Game_Play* play);
-void aKOI_actor_draw(Actor* thisx, Game_Play* play);
+void aKOI_actor_ct(Actor* thisx, Game_Play* game_play);
+void aKOI_actor_dt(Actor* thisx, Game_Play* game_play);
+void aKOI_actor_init(Actor* thisx, Game_Play* game_play);
+void aKOI_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Koinobori_Profile = {

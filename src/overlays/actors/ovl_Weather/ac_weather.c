@@ -1,10 +1,10 @@
 #include "ac_weather.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void Weather_Actor_ct(Actor* thisx, Game_Play* play);
-void Weather_Actor_dt(Actor* thisx, Game_Play* play);
-void Weather_Actor_move(Actor* thisx, Game_Play* play);
-void Weather_Actor_draw(Actor* thisx, Game_Play* play);
+void Weather_Actor_ct(Actor* thisx, Game_Play* game_play);
+void Weather_Actor_dt(Actor* thisx, Game_Play* game_play);
+void Weather_Actor_move(Actor* thisx, Game_Play* game_play);
+void Weather_Actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Weather_Profile = {

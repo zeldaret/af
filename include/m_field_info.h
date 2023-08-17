@@ -111,7 +111,7 @@ UNK_TYPE mFI_SetFG_common(u16 fgName, Vec3f arg1, s32 arg2);
 // void func_8008B2D0_jp();
 // void func_8008B300_jp();
 // void func_8008B318_jp();
-void mFI_SetBearActor(struct Game_Play* play, Vec3f arg1, s32 arg2);
+void mFI_SetBearActor(struct Game_Play* game_play, Vec3f arg1, s32 arg2);
 s32 func_8008B3E8_jp(Vec3f* arg0, UNK_TYPE arg1);
 // void func_8008B4C0_jp();
 // void func_8008B598_jp();

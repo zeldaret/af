@@ -2,9 +2,9 @@
 #include "m_lib.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aTPT_actor_ct(Actor* thisx, Game_Play* play);
-void aTPT_actor_move(Actor* thisx, Game_Play* play);
-void aTPT_actor_draw(Actor* thisx, Game_Play* play);
+void aTPT_actor_ct(Actor* thisx, Game_Play* game_play);
+void aTPT_actor_move(Actor* thisx, Game_Play* game_play);
+void aTPT_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile T_Pistol_Profile = {

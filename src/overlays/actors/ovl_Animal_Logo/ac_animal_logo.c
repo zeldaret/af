@@ -1,10 +1,10 @@
 #include "ac_animal_logo.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aAL_actor_ct(Actor* thisx, Game_Play* play);
-void aAL_actor_dt(Actor* thisx, Game_Play* play);
-void aAL_actor_move(Actor* thisx, Game_Play* play);
-void aAL_actor_draw(Actor* thisx, Game_Play* play);
+void aAL_actor_ct(Actor* thisx, Game_Play* game_play);
+void aAL_actor_dt(Actor* thisx, Game_Play* game_play);
+void aAL_actor_move(Actor* thisx, Game_Play* game_play);
+void aAL_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Animal_Logo_Profile = {

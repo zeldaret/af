@@ -6,8 +6,8 @@
 struct Game_Play;
 
 void func_800CBF80_jp(void);
-void watch_my_step_move(struct Game_Play* play);
-void watch_my_step_draw(struct Game_Play* play);
+void watch_my_step_move(struct Game_Play* game_play);
+void watch_my_step_draw(struct Game_Play* game_play);
 // void func_800CC9C4_jp();
 // void func_800CC9EC_jp();
 // void func_800CCB44_jp();

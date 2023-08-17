@@ -1,10 +1,10 @@
 #include "ac_field_draw.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void Bg_Draw_Actor_ct(Actor* thisx, Game_Play* play);
-void Bg_Draw_Actor_dt(Actor* thisx, Game_Play* play);
-void Bg_Draw_Actor_move(Actor* thisx, Game_Play* play);
-void Bg_Draw_Actor_draw(Actor* thisx, Game_Play* play);
+void Bg_Draw_Actor_ct(Actor* thisx, Game_Play* game_play);
+void Bg_Draw_Actor_dt(Actor* thisx, Game_Play* game_play);
+void Bg_Draw_Actor_move(Actor* thisx, Game_Play* game_play);
+void Bg_Draw_Actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Field_Draw_Profile = {

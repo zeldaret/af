@@ -5,8 +5,8 @@
 
 struct Game_Play;
 
-void Balloon_init(struct Game_Play* play);
-void Balloon_move(struct Game_Play* play);
+void Balloon_init(struct Game_Play* game_play);
+void Balloon_move(struct Game_Play* game_play);
 // void func_80092B7C_jp();
 // void func_80092B8C_jp();
 // void func_80092BA0_jp();

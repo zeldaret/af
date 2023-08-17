@@ -15,6 +15,6 @@ void fbdemo_fade_draw(void* arg0, Gfx** gfx);
 void fbdemo_fade_startup(void* arg0);
 void fbdemo_fade_settype(void* arg0, s32 arg1);
 void fbdemo_fade_setcolor_rgba8888(void* arg0, s32 arg1);
-s32 fbdemo_fade_is_finish(void* arg0, struct Game_Play* play);
+s32 fbdemo_fade_is_finish(void* arg0, struct Game_Play* game_play);
 
 #endif

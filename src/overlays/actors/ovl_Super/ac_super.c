@@ -1,10 +1,10 @@
 #include "ac_super.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aSPR_actor_ct(Actor* thisx, Game_Play* play);
-void aSPR_actor_dt(Actor* thisx, Game_Play* play);
-void aSPR_actor_init(Actor* thisx, Game_Play* play);
-void aSPR_actor_draw(Actor* thisx, Game_Play* play);
+void aSPR_actor_ct(Actor* thisx, Game_Play* game_play);
+void aSPR_actor_dt(Actor* thisx, Game_Play* game_play);
+void aSPR_actor_init(Actor* thisx, Game_Play* game_play);
+void aSPR_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Super_Profile = {

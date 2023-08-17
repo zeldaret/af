@@ -1,10 +1,10 @@
 #include "ac_gyo_release.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aGYR_actor_ct(Actor* thisx, Game_Play* play);
-void aGYR_actor_dt(Actor* thisx, Game_Play* play);
-void aGYR_actor_move(Actor* thisx, Game_Play* play);
-void aGYR_actor_draw(Actor* thisx, Game_Play* play);
+void aGYR_actor_ct(Actor* thisx, Game_Play* game_play);
+void aGYR_actor_dt(Actor* thisx, Game_Play* game_play);
+void aGYR_actor_move(Actor* thisx, Game_Play* game_play);
+void aGYR_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Gyo_Release_Profile = {

@@ -2,9 +2,9 @@
 #include "m_lib.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aTUMB_actor_ct(Actor* thisx, Game_Play* play);
-void aTUMB_actor_move(Actor* thisx, Game_Play* play);
-void aTUMB_actor_draw(Actor* thisx, Game_Play* play);
+void aTUMB_actor_ct(Actor* thisx, Game_Play* game_play);
+void aTUMB_actor_move(Actor* thisx, Game_Play* game_play);
+void aTUMB_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile T_Umbrella_Profile = {

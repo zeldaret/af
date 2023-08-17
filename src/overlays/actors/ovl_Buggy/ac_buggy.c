@@ -1,10 +1,10 @@
 #include "ac_buggy.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aBGY_actor_ct(Actor* thisx, Game_Play* play);
-void aBGY_actor_dt(Actor* thisx, Game_Play* play);
-void aBGY_actor_init(Actor* thisx, Game_Play* play);
-void aBGY_actor_draw(Actor* thisx, Game_Play* play);
+void aBGY_actor_ct(Actor* thisx, Game_Play* game_play);
+void aBGY_actor_dt(Actor* thisx, Game_Play* game_play);
+void aBGY_actor_init(Actor* thisx, Game_Play* game_play);
+void aBGY_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Buggy_Profile = {

@@ -2,9 +2,9 @@
 #include "m_lib.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void Ef_Room_Sunshine_Police_actor_ct(Actor* thisx, Game_Play* play);
-void Ef_Room_Sunshine_PoliceR_actor_move(Actor* thisx, Game_Play* play);
-void Ef_Room_Sunshine_PoliceR_actor_draw(Actor* thisx, Game_Play* play);
+void Ef_Room_Sunshine_Police_actor_ct(Actor* thisx, Game_Play* game_play);
+void Ef_Room_Sunshine_PoliceR_actor_move(Actor* thisx, Game_Play* game_play);
+void Ef_Room_Sunshine_PoliceR_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Room_Sunshine_Police_Profile = {

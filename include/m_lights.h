@@ -49,6 +49,6 @@ Lights* Global_light_read(LightContext* lightCtx, struct GraphicsContext* gfxCtx
 // void func_8009BBEC_jp();
 // void func_8009BC48_jp();
 // void func_8009BD90_jp();
-void Light_list_point_draw(struct Game_Play* play);
+void Light_list_point_draw(struct Game_Play* game_play);
 
 #endif
