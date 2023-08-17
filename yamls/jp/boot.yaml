@@ -35,7 +35,7 @@
       - [0x007530, asm, boot/libc64/math64]
       - [0x007A40, hasm, boot/libc64/fp]
       - [0x007BA0, c, boot/libc64/malloc]
-      - [0x007D70, asm, boot/libc64/qrand]
+      - [0x007D70, c, boot/libc64/qrand]
       - [0x007F30, c, boot/libc64/__osMalloc]
       - [0x008C50, c, boot/libc64/sprintf]
       - [0x008D20, c, boot/libc64/aprintf]
@@ -225,7 +225,7 @@
 
       # libc64
       - [0x017980, data, boot/libc64/fp]
-      - [0x017990, data, boot/libc64/qrand]
+      - [0x017990, .data, boot/libc64/qrand]
 
       # libultra
       - [0x0179A0, .data, ../lib/ultralib/src/vimodes/vimodepallan1]
@@ -296,7 +296,7 @@
       # libc64
       - { start: 0x019D40, type: bss, vram: 0x800419B0, name: boot/libc64/math64 }
       - { start: 0x019D40, type: .bss, vram: 0x800419C0, name: boot/libc64/malloc }
-      - { start: 0x019D40, type: bss, vram: 0x800419F0, name: boot/libc64/qrand }
+      - { start: 0x019D40, type: .bss, vram: 0x800419F0, name: boot/libc64/qrand }
       - { start: 0x019D40, type: .bss, vram: 0x80041A00, name: boot/libc64/__osMalloc }
 
       # libultra
