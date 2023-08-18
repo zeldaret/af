@@ -7,9 +7,10 @@
 #include "libc/stdint.h"
 #include "other_types.h"
 #include "unk.h"
+#include "m_mail.h"
 
 struct Game_Play;
-struct mSM;
+struct Mail_c;
 
 typedef enum mSMMoveProcIndex {
     /* 0 */ MSM_MOVE_PROC_WAIT,
@@ -58,7 +59,7 @@ typedef struct mSM {
     /* 0x2C */ UNK_TYPE1 unk_2C[0x4];
     /* 0x30 */ mSM_unk_30 play; // name based on mSM_move_Play, consider renaming
     /* 0x34 */ mSM_unk_34 draw;
-    /* 0x38 */ mMl mail;
+    /* 0x38 */ Mail_c mail;
     /* 0xDC */ u8 unk_DC;
     /* 0xDD */ u8 unk_DD;
     /* 0xDE */ u8 unk_DE;

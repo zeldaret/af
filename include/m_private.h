@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "m_quest.h"
+#include "lb_rtc.h"
 
 #define mPr_FOREIGN_MAP_COUNT 8
 #define PLAYER_NUM 4
@@ -26,14 +27,15 @@ typedef enum mPr_ITEM_COND{
 #define mPr_DELIVERY_QUEST_NUM mPr_POCKETS_SLOT_COUNT
 #define mPr_ERRAND_QUEST_NUM 5
 
-typedef struct Private_Sub_A86 {
-    /* 0x00 */ char unk00[0x3];
-    /* 0x03 */ u8 unk_03;
-    /* 0x04 */ char unk04[0x1];
-    /* 0x05 */ u8 unk_05;
-    /* 0x06 */ u16 unk_06;
-    /* 0x08 */ u8 unk_08;
-} Private_Sub_A86; // size >= 0xA
+typedef struct mPr_destiny_c {
+    /* 0x00 */ lbRTC_time_c received_time; /* time fortune was received */
+    /* 0x08 */ u8 type; /* fortune type */ 
+} mPr_destiny_c; // size = 0xA
+
+typedef struct mPr_animal_memory_c {
+  /* 0x00 */ u16 npc_id;
+  /* 0x01 */ u8 land_name[LAND_NAME_SIZE];
+} mPr_animal_memory_c; // size = 0x8
 
 typedef struct mPr_map_info_c {
   /* 0x00 */ char unk00[0x8];
@@ -49,7 +51,7 @@ typedef struct PrivateInventory {
 } PrivateInventory; // size = 0x2C
 
 typedef struct Private_c {
-    /* 0x000 */ char unk000[0x10];
+    /* 0x000 */ PersonalID_c player_ID;
     /* 0x010 */ s8 gender;
     /* 0x011 */ char unk011[0x3];
     /* 0x014 */ PrivateInventory inventory;
@@ -58,8 +60,12 @@ typedef struct Private_c {
     /* 0x3EC */ char unk3EC[0x688];
     /* 0xA74 */ u8 exists;
     /* 0xA75 */ char unkA75[0x11];
-    /* 0xA86 */ Private_Sub_A86 unk_A86;
-    /* 0xA90 */ char unkA8F[0xF8];
+    /* 0xA86 */ mPr_destiny_c destiny; /* player fortune, seemingly called destiny */
+    /* 0xA90 */ char unkA8F[0x3C];
+    /* 0xACC */ Anmremail_c remail; /* scheduled mail received from a foreign villager? */
+    /* 0xADE */ char unkADE[0x6];
+    /* 0xAE4 */ mPr_animal_memory_c animal_memory; /* id and town of last animal to move to another town */
+    /* 0xAEC */ char unkAEC[0x9C];
     /* 0xB88 */ mPr_map_info_c maps[mPr_FOREIGN_MAP_COUNT]; /* maps 'collected' for foreign towns */
     /* 0xBC8 */ char unkBC8[0x8];
 } Private_c; // size = 0xBD0

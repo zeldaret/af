@@ -4,14 +4,18 @@
 #include "ultra64.h"
 #include "unk.h"
 
+struct mQst_contest_c;
 struct mQst_delivery_c;
 struct mQst_errand_c;
 struct mQst_not_saved_c;
+struct mRF_gate_c;
+struct Mail_nm_c;
+struct mQst_base_c;
 
-// void func_800BA660_jp();
+void func_800BA660_jp(struct mQst_base_c* base);
 void mQst_ClearDelivery(struct mQst_delivery_c* deliveries, s32 count);
 void mQst_ClearErrand(struct mQst_errand_c* errands, s32 count);
-// void func_800BA778_jp();
+void func_800BA778_jp(struct mQst_contest_c* quest);
 void mQst_ClearNotSaveQuest(struct mQst_not_saved_c* quest);
 // void func_800BA7E8_jp();
 // void func_800BA8A0_jp();
@@ -31,7 +35,7 @@ UNK_RET mQst_CheckLimitbyPossessionIdx(s32 arg0);
 // void func_800BB270_jp();
 // void func_800BB3A4_jp();
 // void func_800BB4B0_jp();
-// void func_800BB5DC_jp();
+s32 func_800BB5DC_jp(s32 arg0);
 // void func_800BB634_jp();
 // void func_800BB658_jp();
 // void func_800BB67C_jp();
@@ -41,8 +45,8 @@ UNK_RET mQst_CheckLimitbyPossessionIdx(s32 arg0);
 // void func_800BB86C_jp();
 // void func_800BB990_jp();
 // void func_800BBAB0_jp();
-// void func_800BBB30_jp();
-// void func_800BBBEC_jp();
+void func_800BBB30_jp(struct mQst_contest_c* contest, struct Mail_nm_c* mail_name, u8* body, u16 present);
+struct mQst_errand_c* func_800BBBEC_jp(void);
 // void func_800BBCBC_jp();
 // void func_800BBD00_jp();
 // void func_800BBD68_jp();
@@ -61,7 +65,7 @@ UNK_RET mQst_CheckLimitbyPossessionIdx(s32 arg0);
 // void func_800BC33C_jp();
 // void func_800BC368_jp();
 // void func_800BC394_jp();
-// void func_800BC414_jp();
+s32 func_800BC414_jp(s32 arg0);
 // void func_800BC454_jp();
 // void func_800BC528_jp();
 // void func_800BC5D4_jp();
@@ -81,7 +85,7 @@ UNK_RET mQst_CheckLimitbyPossessionIdx(s32 arg0);
 // void func_800BCEA4_jp();
 // void func_800BCF64_jp();
 // void func_800BCFA4_jp();
-// void func_800BCFC8_jp();
+struct mRF_gate_c* mRF_BlockTypeDirect2GateData(s32* gate_count, u8 block_type, s32 direct);
 // void func_800BD02C_jp();
 // void func_800BD1E4_jp();
 

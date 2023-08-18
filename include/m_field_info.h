@@ -6,11 +6,29 @@
 
 struct CommonData;
 struct Game_Play;
+struct Actor;
+
+/* Pointer to array of these structs at offset 0x148 in g_fdinfo */
+typedef struct Struct_g_fdinfo_148 {
+    /* 0x0000 */ char unk000[0x20];
+    /* 0x0020 */ s32 unk_020[16][16];
+    /* 0x0420 */ char unk420[0x164];
+    /* 0x0584 */ u16* unk_584; // [16][16]
+    /* 0x0588 */ char unk588[0x8C];
+} Struct_g_fdinfo_148; // size = 0x614
+
+typedef struct FieldInfo_Unk_Struct {
+    /* 0x00 */ u16 house_owner_name;
+    /* 0x02 */ u8 unk_02;
+    /* 0x03 */ u8 unk_03;
+    /* 0x04 */ u8 npc_id;
+    /* 0x06 */ s16 unk_06;
+} FieldInfo_Unk_Struct; // size = 0x8
 
 // void func_80087C30_jp();
 // void func_80087C40_jp();
-// void func_80087C64_jp();
-// void mFI_GetFieldId();
+Struct_g_fdinfo_148* func_80087C64_jp(void);
+u16 mFI_GetFieldId(void);
 // void func_80087C9C_jp();
 // void func_80087D30_jp();
 // void func_80087DC8_jp();
@@ -30,15 +48,15 @@ struct Game_Play;
 // void func_80088458_jp();
 // void func_800884E0_jp();
 // void func_800885A8_jp();
-// void func_80088710_jp();
-// void func_80088780_jp();
+s32 mFI_Wpos2BlockNum(s32* block_x, s32* block_z, Vec3f world_pos);
+s32 func_80088780_jp(s32* block_x, s32* block_z, s32* ut_x, s32* ut_z, Vec3f arg4);
 // void func_8008883C_jp();
 // void func_800888AC_jp();
 // void func_80088938_jp();
 // void func_800889D8_jp();
 // void func_80088A58_jp();
 // void func_80088B3C_jp();
-// void func_80088BC0_jp();
+void func_80088BC0_jp(f32* x, f32* z, u8 ut_x, u8 ut_z);
 // void func_80088BFC_jp();
 // void func_80088C74_jp();
 // void func_80088CBC_jp();
@@ -57,15 +75,15 @@ struct Game_Play;
 // void func_8008907C_jp();
 // void func_80089114_jp();
 // void func_800891AC_jp();
-// void func_80089268_jp();
+u8 mFI_BkNum2BlockType(s32 block_x, s32 block_z);
 // void func_800892CC_jp();
 // void func_8008930C_jp();
 // void func_80089348_jp();
 // void func_800893C8_jp();
 // void func_80089404_jp();
-// void func_80089440_jp();
+s32 mFI_BlockKind2BkNum(s32* block_x, s32* block_z, u32 block_kind);
 // void func_800894D0_jp();
-// void func_80089538_jp();
+u32* func_80089538_jp(s32 arg0, s32 arg1);
 // void func_800895B8_jp();
 // void func_80089698_jp();
 // void func_80089704_jp();
@@ -84,7 +102,7 @@ struct Game_Play;
 // void func_80089E84_jp();
 // void func_80089EF8_jp();
 // void func_8008A000_jp();
-// void func_8008A33C_jp();
+u16* func_8008A33C_jp(UNK_TYPE arg0, UNK_TYPE arg1);
 // void func_8008A3BC_jp();
 // void func_8008A410_jp();
 // void func_8008A4F8_jp();
@@ -124,19 +142,19 @@ s32 func_8008B3E8_jp(Vec3f* arg0, UNK_TYPE arg1);
 // void func_8008BAEC_jp();
 // void func_8008BB64_jp();
 // void func_8008BBF0_jp();
-// void func_8008BC64_jp();
+void func_8008BC64_jp(s16 arg0, u8 arg1, u8 arg2);
 // void func_8008BCFC_jp();
-// void func_8008BD98_jp();
+void func_8008BD98_jp(struct Actor* actor);
 // void func_8008BDCC_jp();
-// void func_8008BE00_jp();
+s32 func_8008BE00_jp(FieldInfo_Unk_Struct* arg0, s32 count);
 // void func_8008BE38_jp();
 // void func_8008BF34_jp();
 // void func_8008BFC4_jp();
 // void func_8008C058_jp();
-// void func_8008C0FC_jp();
+s32 func_8008C0FC_jp(s32 arg0);
 // void func_8008C120_jp();
 // void func_8008C130_jp();
-// void func_8008C1E0_jp();
+u16* func_8008C1E0_jp(s32 x, s32 z);
 // void func_8008C344_jp();
 // void func_8008C390_jp();
 // void func_8008C3B0_jp();
@@ -178,7 +196,7 @@ void func_8008C478_jp(u16* deposit, int ut_x, int ut_z);
 // void func_8008D3A4_jp();
 // void func_8008D574_jp();
 // void func_8008D6E0_jp();
-// void func_8008D7B0_jp();
+s32 func_8008D7B0_jp(u16 arg0);
 // void func_8008D884_jp();
 // void func_8008D928_jp();
 // void func_8008DA4C_jp();

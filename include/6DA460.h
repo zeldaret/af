@@ -4,12 +4,13 @@
 #include "ultra64.h"
 
 struct Game_Play;
+struct Mail_c;
 
 // void func_800B67C0_jp();
 // void func_800B6838_jp();
-// void func_800B68E8_jp();
+s32 func_800B68E8_jp(void);
 // void func_800B690C_jp();
-// void func_800B6A3C_jp();
+s32 func_800B6A3C_jp(struct Mail_c* mail, s32 arg1);
 // void func_800B6AC8_jp();
 // void func_800B6B94_jp();
 // void func_800B6C14_jp();

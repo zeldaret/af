@@ -4,6 +4,6 @@
 #include "ultra64.h"
 
 // void func_80096710_jp();
-// void func_80096740_jp();
+void func_80096740_jp(u8* header, u16 arg1);
 
 #endif

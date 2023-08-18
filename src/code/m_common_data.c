@@ -6,14 +6,14 @@
 CommonData common_data;
 
 void common_data_reinit(void) {
-    u8 sp1F = common_data.unk_10AB0;
+    u8 sp1F = common_data.pad_connected;
 
     bzero(&common_data, sizeof(CommonData));
-    common_data.unk_1014B = -1;
-    common_data.unk_10000 = 1;
-    common_data.unk_10004 = -1;
-    common_data.unk_107B6 = 0xC9;
-    common_data.unk_10AB0 = sp1F;
+    common_data.wipeType = -1;
+    common_data.game_started = 1;
+    common_data.last_scene_no = -1;
+    common_data.demo_profile = 0xC9;
+    common_data.pad_connected = sp1F;
     mFRm_ClearSaveCheckData(&common_data);
 }
 

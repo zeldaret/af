@@ -22,9 +22,9 @@
 // void func_80082910_jp();
 // void func_800829D4_jp();
 // void func_80082B4C_jp();
-// void func_80082BD8_jp();
+void func_80082BD8_jp(u16* arg0, s32 arg1, s32 arg2, s32 arg3);
 // void func_80082C30_jp();
-// void func_80082CC8_jp();
+s32 func_80082CC8_jp(u16 arg0);
 // void func_80082DA0_jp();
 // void func_80082E40_jp();
 

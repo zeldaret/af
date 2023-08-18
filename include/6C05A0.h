@@ -3,6 +3,6 @@
 
 #include "ultra64.h"
 
-// void func_8009C900_jp();
+s32 func_8009C900_jp(s32* arg0, u8* bost, s32 arg2);
 
 #endif

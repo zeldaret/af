@@ -20,11 +20,11 @@
 #include "6DA460.h"
 #include "6ECD90.h"
 #include "6BA500.h"
+#include "6D3CB0.h"
 #include "libc64/qrand.h"
 #include "m_controller.h"
 #include "m_debug_display.h"
 #include "6E0F50.h"
-#include "6D2720.h"
 #include "m_lights.h"
 #include "m_private.h"
 #include "m_skin_matrix.h"
@@ -99,13 +99,13 @@ static u16 S_back_title_timer;
 static u16 S_se_endcheck_timeout;
 
 void Game_play_Reset_destiny(void) {
-    Private_Sub_A86* temp = &common_data.now_private->unk_A86;
+    mPr_destiny_c* destiny = &common_data.now_private->destiny;
     u8* day = &common_data.time.rtc_time.day;
     u8* month = &common_data.time.rtc_time.month;
 
-    if ((temp->unk_08 != 0) &&
-        ((common_data.time.rtc_time.year != temp->unk_06) || (*month != temp->unk_05) || (*day != temp->unk_03))) {
-        temp->unk_08 = 0;
+    if ((destiny->type != 0) && ((common_data.time.rtc_time.year != destiny->received_time.year) ||
+                                 (*month != destiny->received_time.month) || (*day != destiny->received_time.day))) {
+        destiny->type = 0;
     }
 }
 
@@ -208,8 +208,8 @@ void Game_play_fbdemo_fade_out_game_end_move_end(Game_Play* game_play) {
 
 void Game_play_change_scene_move_end(Game_Play* game_play) {
     game_goto_next_game_play(&game_play->state);
-    common_data.unk_10004 = common_data.unk_00014;
-    common_data.unk_00014 = game_play->unk_1E18;
+    common_data.last_scene_no = common_data.save.unk_00014;
+    common_data.save.unk_00014 = game_play->unk_1E18;
 }
 
 void Game_play_fbdemo_wipe_move(Game_Play* game_play) {
@@ -406,9 +406,9 @@ void play_init(Game* game) {
     game_play->unk_1EE0 = 1;
 
     temp = 1;
-    if (common_data.unk_1014B != 0xFF) {
-        temp = common_data.unk_1014B;
-        common_data.unk_1014B = 0xFF;
+    if (common_data.wipeType != 0xFF) {
+        temp = common_data.wipeType;
+        common_data.wipeType = 0xFF;
     }
     game_play->unk_1EE1 = temp;
 
@@ -868,5 +868,5 @@ void Gameplay_Scene_Read(Game_Play* game_play, s16 arg1) {
     sp1C->unk_13 = 0;
     gSegments[2] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_010C);
     Gameplay_Scene_Init(game_play);
-    sAdo_RoomType(mPl_SceneNo2SoundRoomType(common_data.unk_00014));
+    sAdo_RoomType(mPl_SceneNo2SoundRoomType(common_data.save.unk_00014));
 }

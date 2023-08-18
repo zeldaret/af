@@ -22,6 +22,10 @@ typedef struct mFM_fg_c {
   /* 0x000 */ u16 items[UT_Z_NUM][UT_X_NUM];
 } mFM_fg_c; // size = 0x200
 
+typedef struct FieldMake_Unk_Struct{
+    /* 0x000 */ u16* unk_000[398];
+} FieldMake_Unk_Struct; // size = 0x638
+
 // void func_80084ED0_jp();
 // void func_80084FAC_jp();
 // void func_800850E4_jp();
@@ -63,6 +67,6 @@ void mFM_InitFgCombiSaveData(struct Game* game);
 // void func_80087788_jp();
 // void func_800877CC_jp();
 void mFM_RenewalReserve(void);
-// void func_800879B0_jp();
+s16 func_800879B0_jp(s32 block_x, s32 block_z);
 
 #endif

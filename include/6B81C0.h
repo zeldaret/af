@@ -14,7 +14,7 @@ void mHm_SetNowHome(void);
 // void func_80094A04_jp();
 void mHm_CheckRehouseOrder(void);
 void mHS_house_init(void);
-// void func_80094BF4_jp();
+s32 func_80094BF4_jp(s32 player_no);
 // void func_80094C10_jp();
 // void func_80094C44_jp();
 // void func_80094CAC_jp();

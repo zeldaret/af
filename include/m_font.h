@@ -1,0 +1,453 @@
+#ifndef M_FONT_H
+#define M_FONT_H
+
+#include "ultra64.h"
+
+#define CHAR_INVERT_EXCLAMATION 0
+#define CHAR_INVERT_QUESTIONMARK 1
+#define CHAR_DIAERESIS_A 2
+#define CHAR_GRAVE_A 3
+#define CHAR_ACUTE_A 4
+#define CHAR_CIRCUMFLEX_A 5
+#define CHAR_TILDE_A 6
+#define CHAR_ANGSTROM_A 7
+#define CHAR_CEDILLA 8
+#define CHAR_GRAVE_E 9
+#define CHAR_ACUTE_E 10
+#define CHAR_CIRCUMFLEX_E 11
+#define CHAR_DIARESIS_E 12
+#define CHAR_GRAVE_I 13
+#define CHAR_ACUTE_I 14
+#define CHAR_CIRCUMFLEX_I 15
+#define CHAR_DIARESIS_I 16
+#define CHAR_ETH 17                 /* Đ */
+#define CHAR_TILDE_N 18
+#define CHAR_GRAVE_O 19
+#define CHAR_ACUTE_O 20
+#define CHAR_CIRCUMFLEX_O 21
+#define CHAR_TILDE_O 22
+#define CHAR_DIARESIS_O 23
+#define CHAR_OE 24                   /* Ø */
+#define CHAR_GRAVE_U 25
+#define CHAR_ACUTE_U 26
+#define CHAR_CIRCUMFLEX_U 27
+#define CHAR_DIARESIS_U 28
+#define CHAR_LOWER_BETA 29           /* β */
+#define CHAR_THORN 30                /* Þ */
+#define CHAR_GRAVE_a 31
+#define CHAR_SPACE 32                /* ' ' */
+#define CHAR_EXCLAMATION 33
+#define CHAR_QUOTATION 34
+#define CHAR_ACUTE_a 35
+#define CHAR_CIRCUMFLEX_a 36
+#define CHAR_PERCENT 37
+#define CHAR_AMPERSAND 38
+#define CHAR_APOSTROPHE 39
+#define CHAR_OPEN_PARENTHESIS 40
+#define CHAR_CLOSE_PARENTHESIS 41
+#define CHAR_TILDE 42
+#define CHAR_SYMBOL_HEART 43
+#define CHAR_COMMA 44
+#define CHAR_DASH 45
+#define CHAR_PERIOD 46
+#define CHAR_SYMBOL_MUSIC_NOTE 47
+#define CHAR_ZERO 48
+#define CHAR_ONE 49
+#define CHAR_TWO 50
+#define CHAR_THREE 51
+#define CHAR_FOUR 52
+#define CHAR_FIVE 53
+#define CHAR_SIX 54
+#define CHAR_SEVEN 55
+#define CHAR_EIGHT 56
+#define CHAR_NINE 57
+#define CHAR_COLON 58
+#define CHAR_SYMBOL_DROPLET 59
+#define CHAR_LESS_THAN 60
+#define CHAR_EQUALS 61
+#define CHAR_GREATER_THAN 62
+#define CHAR_QUESTIONMARK 63
+#define CHAR_AT_SIGN 64
+#define CHAR_A 65
+#define CHAR_B 66
+#define CHAR_C 67
+#define CHAR_D 68
+#define CHAR_E 69
+#define CHAR_F 70
+#define CHAR_G 71
+#define CHAR_H 72
+#define CHAR_I 73
+#define CHAR_J 74
+#define CHAR_K 75
+#define CHAR_L 76
+#define CHAR_M 77
+#define CHAR_N 78
+#define CHAR_O 79
+#define CHAR_P 80
+#define CHAR_Q 81
+#define CHAR_R 82
+#define CHAR_S 83
+#define CHAR_T 84
+#define CHAR_U 85
+#define CHAR_V 86
+#define CHAR_W 87
+#define CHAR_X 88
+#define CHAR_Y 89
+#define CHAR_Z 90
+#define CHAR_TILDE_a 91
+#define CHAR_SYMBOL_ANNOYED 92
+#define CHAR_DIARESIS_a 93
+#define CHAR_ANGSTROM_a 94
+#define CHAR_UNDERSCORE 95
+#define CHAR_LOWER_CEDILLA 96
+#define CHAR_a 97
+#define CHAR_b 98
+#define CHAR_c 99
+#define CHAR_d 100
+#define CHAR_e 101
+#define CHAR_f 102
+#define CHAR_g 103
+#define CHAR_h 104
+#define CHAR_i 105
+#define CHAR_j 106
+#define CHAR_k 107
+#define CHAR_l 108
+#define CHAR_m 109
+#define CHAR_n 110
+#define CHAR_o 111
+#define CHAR_p 112
+#define CHAR_q 113
+#define CHAR_r 114
+#define CHAR_s 115
+#define CHAR_t 116
+#define CHAR_u 117
+#define CHAR_v 118
+#define CHAR_w 119
+#define CHAR_x 120
+#define CHAR_y 121
+#define CHAR_z 122
+#define CHAR_GRAVE_e 123
+#define CHAR_ACUTE_e 124
+#define CHAR_CIRCUMFLEX_e 125
+#define CHAR_DIARESIS_e 126
+#define CHAR_CONTROL_CODE 127
+#define CHAR_MESSAGE_TAG 128
+#define CHAR_GRAVE_i 129
+#define CHAR_ACUTE_i 130
+#define CHAR_CIRCUMFLEX_i 131
+#define CHAR_DIARESIS_i 132
+#define CHAR_INTERPUNCT 133           /* · */
+#define CHAR_LOWER_ETH 134            /* đ */
+#define CHAR_TILDE_n 135
+#define CHAR_GRAVE_o 136
+#define CHAR_ACUTE_o 137
+#define CHAR_CIRCUMFLEX_o 138
+#define CHAR_TILDE_o 139
+#define CHAR_DIARESIS_o 140
+#define CHAR_oe 141
+#define CHAR_GRAVE_u 142
+#define CHAR_ACUTE_u 143
+#define CHAR_HYPHEN 144
+#define CHAR_CIRCUMFLEX_u 145
+#define CHAR_DIARESIS_u 146
+#define CHAR_ACUTE_y 147
+#define CHAR_DIARESIS_y 148
+#define CHAR_LOWER_THORN 149
+#define CHAR_ACUTE_Y 150
+#define CHAR_BROKEN_BAR 151           /* ¦ */
+#define CHAR_SILCROW 152              /* § */
+#define CHAR_FEMININE_ORDINAL 153
+#define CHAR_MASCULINE_ORDINAL 154        /* ° */
+#define CHAR_DOUBLE_VERTICAL_BAR 155
+#define CHAR_LATIN_MU 156
+#define CHAR_SUPERSCRIPT_THREE 157
+#define CHAR_SUPERSCRIPT_TWO 158
+#define CHAR_SUPRESCRIPT_ONE 159
+#define CHAR_MACRON_SYMBOL 160
+#define CHAR_LOGICAL_NEGATION 161
+#define CHAR_ASH 162
+#define CHAR_LOWER_ASH 163
+#define CHAR_INVERT_QUOTATION 164
+#define CHAR_GUILLEMET_OPEN 165
+#define CHAR_GUILLEMET_CLOSE 166
+#define CHAR_SYMBOL_SUN 167
+#define CHAR_SYMBOL_CLOUD 168
+#define CHAR_SYMBOL_UMBRELLA 169
+#define CHAR_SYMBOL_WIND 170
+#define CHAR_SYMBOL_SNOWMAN 171
+#define CHAR_LINES_CONVERGE_RIGHT 172
+#define CHAR_LINES_CONVERGE_LEFT 173
+#define CHAR_FORWARD_SLASH 174
+#define CHAR_INFINITY 175
+#define CHAR_CIRCLE 176
+#define CHAR_CROSS 177
+#define CHAR_SQUARE 178
+#define CHAR_TRIANGLE 179
+#define CHAR_PLUS 180
+#define CHAR_SYMBOL_LIGTNING 181 // ?? maybe electric also?
+#define CHAR_MARS_SYMBOL 182 // aka male symbol
+#define CHAR_VENUS_SYMBOL 183 // aka female symbol
+#define CHAR_SYMBOL_FLOWER 184
+#define CHAR_SYMBOL_STAR 185
+#define CHAR_SYMBOL_SKULL 186
+#define CHAR_SYMBOL_SURPRISE 187
+#define CHAR_SYMBOL_HAPPY 188
+#define CHAR_SYMBOL_SAD 189
+#define CHAR_SYMBOL_ANGRY 190
+#define CHAR_SYMBOL_SMILE 191
+#define CHAR_DIMENSION_SIGN 192 // multiplication character
+#define CHAR_OBELUS_SIGN 193 // division character
+#define CHAR_SYMBOL_HAMMER 194
+#define CHAR_SYMBOL_RIBBON 195
+#define CHAR_SYMBOL_MAIL 196
+#define CHAR_SYMBOL_MONEY 197
+#define CHAR_SYMBOL_PAW 198
+#define CHAR_SYMBOL_SQUIRREL 199 // might be dog? would make a bit more sense ig
+#define CHAR_SYMBOL_CAT 200
+#define CHAR_SYMBOL_RABBIT 201
+#define CHAR_SYMBOL_OCTOPUS 202 // could also be bird...?
+#define CHAR_SYMBOL_COW 203
+#define CHAR_SYMBOL_PIG 204
+#define CHAR_NEW_LINE 205
+#define CHAR_SYMBOL_FISH 206
+#define CHAR_SYMBOL_BUG 207
+#define CHAR_SEMICOLON 208
+#define CHAR_HASHTAG 209
+#define CHAR_SPACE_2 210 // Short space
+#define CHAR_SPACE_3 211 // Wide space
+#define CHAR_SYMBOL_KEY 212
+/* Begin EU-only symbols, unused in AC */
+#define CHAR_LEFT_QUOTATION 213
+#define CHAR_RIGHT_QUOTATION 214
+#define CHAR_LEFT_APOSTROPHE 215
+#define CHAR_RIGHT_APOSTROPHE 216
+#define CHAR_ETHEL 217
+#define CHAR_LOWER_ETHEL 218
+#define CHAR_ORDINAL_e 219
+#define CHAR_ORDINAL_er 220
+#define CHAR_ORDINAL_re 221
+#define CHAR_BACKSLASH 222
+/* Unused characters */
+#define CHAR_223 223
+#define CHAR_224 224
+#define CHAR_225 225
+#define CHAR_226 226
+#define CHAR_227 227
+#define CHAR_228 228
+#define CHAR_229 229
+#define CHAR_230 230
+#define CHAR_231 231
+#define CHAR_232 232
+#define CHAR_233 233
+#define CHAR_234 234
+#define CHAR_235 235
+#define CHAR_236 236
+#define CHAR_237 237
+#define CHAR_238 238
+#define CHAR_239 239
+#define CHAR_240 240
+#define CHAR_241 241
+#define CHAR_242 242
+#define CHAR_243 243
+#define CHAR_244 244
+#define CHAR_245 245
+#define CHAR_246 246
+#define CHAR_247 247
+#define CHAR_248 248
+#define CHAR_249 249
+#define CHAR_250 250
+#define CHAR_251 251
+#define CHAR_252 252
+#define CHAR_253 253
+#define CHAR_254 254
+#define CHAR_255 255
+
+#define TOTAL_CHARS 256
+
+#define mFont_MARKTYPE_VERT_ARROW 0
+#define mFont_MARKTYPE_HORI_ARROW 1
+#define mFont_MARKTYPE_CURSOR 2
+#define mFont_MARKTYPE_NEXT 3
+#define mFont_MARKTYPE_CHOICE 4
+#define mFont_MARKTYPE_TOTAL 5
+
+#define mFont_MODE_POLY 0
+#define mFont_MODE_FONT 1
+
+typedef enum mFont_CONT_CODE{
+  /* 0 */ mFont_CONT_CODE_BEGIN = 0,
+  /* 0 */ mFont_CONT_CODE_LAST = mFont_CONT_CODE_BEGIN,
+  /* 1 */ mFont_CONT_CODE_CONINTUE,
+  /* 2 */ mFont_CONT_CODE_CLEAR,
+  /* 3 */ mFont_CONT_CODE_CURSOR_SET_TIME,
+  /* 4 */ mFont_CONT_CODE_BUTTON,
+  /* 5 */ mFont_CONT_CODE_COLOR,
+  /* 6 */ mFont_CONT_CODE_ABLE_CANCEL,
+  /* 7 */ mFont_CONT_CODE_UNABLE_CANCEL,
+  /* 8 */ mFont_CONT_CODE_SET_DEMO_ORDER_PLAYER,
+  /* 9 */ mFont_CONT_CODE_SET_DEMO_ORDER_NPC0,
+  /* 10 */ mFont_CONT_CODE_SET_DEMO_ORDER_NPC1,
+  /* 11 */ mFont_CONT_CODE_SET_DEMO_ORDER_NPC2,
+  /* 12 */ mFont_CONT_CODE_SET_DEMO_ORDER_QUEST,
+  /* 13 */ mFont_CONT_CODE_SET_SELECT_WINDOW,
+  /* 14 */ mFont_CONT_CODE_SET_NEXT_MESSAGE_F,
+  /* 15 */ mFont_CONT_CODE_SET_NEXT_MESSAGE_0,
+  /* 16 */ mFont_CONT_CODE_SET_NEXT_MESSAGE_1,
+  /* 17 */ mFont_CONT_CODE_SET_NEXT_MESSAGE_2,
+  /* 18 */ mFont_CONT_CODE_SET_NEXT_MESSAGE_3,
+  /* 19 */ mFont_CONT_CODE_SET_NEXT_MESSAGE_RANDOM_2,
+  /* 20 */ mFont_CONT_CODE_SET_NEXT_MESSAGE_RANDOM_3,
+  /* 20 */ mFont_CONT_CODE_SET_NEXT_MESSAGE_RANDOM_4,
+  /* 21 */ mFont_CONT_CODE_SET_SELECT_STRING_2,
+  /* 22 */ mFont_CONT_CODE_SET_SELECT_STRING_3,
+  /* 23 */ mFont_CONT_CODE_SET_SELECT_STRING_4,
+  /* 24 */ mFont_CONT_CODE_SET_FORCE_NEXT,
+  /* 25 */ mFont_CONT_CODE_PUT_STRING_PLAYER_NAME,
+  /* 26 */ mFont_CONT_CODE_PUT_STRING_TALK_NAME,
+  /* 27 */ mFont_CONT_CODE_PUT_STRING_TAIL,
+  /* 28 */ mFont_CONT_CODE_PUT_STRING_YEAR,
+  /* 29 */ mFont_CONT_CODE_PUT_STRING_MONTH,
+  /* 30 */ mFont_CONT_CODE_PUT_STRING_WEEK,
+  /* 31 */ mFont_CONT_CODE_PUT_STRING_DAY,
+  /* 32 */ mFont_CONT_CODE_PUT_STRING_HOUR,
+  /* 33 */ mFont_CONT_CODE_PUT_STRING_MIN,
+  /* 34 */ mFont_CONT_CODE_PUT_STRING_SEC,
+  /* 35 */ mFont_CONT_CODE_PUT_STRING_FREE0,
+  /* 36 */ mFont_CONT_CODE_PUT_STRING_FREE1,
+  /* 37 */ mFont_CONT_CODE_PUT_STRING_FREE2,
+  /* 38 */ mFont_CONT_CODE_PUT_STRING_FREE3,
+  /* 39 */ mFont_CONT_CODE_PUT_STRING_FREE4,
+  /* 40 */ mFont_CONT_CODE_PUT_STRING_FREE5,
+  /* 41 */ mFont_CONT_CODE_PUT_STRING_FREE6,
+  /* 42 */ mFont_CONT_CODE_PUT_STRING_FREE7,
+  /* 43 */ mFont_CONT_CODE_PUT_STRING_FREE8,
+  /* 44 */ mFont_CONT_CODE_PUT_STRING_FREE9,
+  /* 45 */ mFont_CONT_CODE_PUT_STRING_DETERMINATION,
+  /* 46 */ mFont_CONT_CODE_PUT_STRING_COUNTRY_NAME,
+  /* 47 */ mFont_CONT_CODE_PUT_STRING_RANDOM_NUMBER_2,
+  /* 48 */ mFont_CONT_CODE_PUT_STRING_ITEM0,
+  /* 49 */ mFont_CONT_CODE_PUT_STRING_ITEM1,
+  /* 50 */ mFont_CONT_CODE_PUT_STRING_ITEM2,
+  /* 51 */ mFont_CONT_CODE_PUT_STRING_ITEM3,
+  /* 52 */ mFont_CONT_CODE_PUT_STRING_ITEM4,
+  /* 53 */ mFont_CONT_CODE_PUT_STRING_FREE10,
+  /* 54 */ mFont_CONT_CODE_PUT_STRING_FREE11,
+  /* 55 */ mFont_CONT_CODE_PUT_STRING_FREE12,
+  /* 56 */ mFont_CONT_CODE_PUT_STRING_FREE13,
+  /* 57 */ mFont_CONT_CODE_PUT_STRING_FREE14,
+  /* 58 */ mFont_CONT_CODE_PUT_STRING_FREE15,
+  /* 59 */ mFont_CONT_CODE_PUT_STRING_FREE16,
+  /* 60 */ mFont_CONT_CODE_PUT_STRING_FREE17,
+  /* 61 */ mFont_CONT_CODE_PUT_STRING_FREE18,
+  /* 62 */ mFont_CONT_CODE_PUT_STRING_FREE19,
+  /* 63 */ mFont_CONT_CODE_PUT_STRING_MAIL,
+  /* 64 */ mFont_CONT_CODE_SET_PLAYER_DESTINY0,
+  /* 65 */ mFont_CONT_CODE_SET_PLAYER_DESTINY1,
+  /* 66 */ mFont_CONT_CODE_SET_PLAYER_DESTINY2,
+  /* 67 */ mFont_CONT_CODE_SET_PLAYER_DESTINY3,
+  /* 68 */ mFont_CONT_CODE_SET_PLAYER_DESTINY4,
+  /* 69 */ mFont_CONT_CODE_SET_PLAYER_DESTINY5,
+  /* 70 */ mFont_CONT_CODE_SET_PLAYER_DESTINY6,
+  /* 71 */ mFont_CONT_CODE_SET_PLAYER_DESTINY7,
+  /* 72 */ mFont_CONT_CODE_SET_PLAYER_DESTINY8,
+  /* 73 */ mFont_CONT_CODE_SET_PLAYER_DESTINY9,
+  /* 74 */ mFont_CONT_CODE_SET_MESSAGE_CONTENTS_NORMAL,
+  /* 75 */ mFont_CONT_CODE_SET_MESSAGE_CONTENTS_ANGRY,
+  /* 76 */ mFont_CONT_CODE_SET_MESSAGE_CONTENTS_SAD,
+  /* 77 */ mFont_CONT_CODE_SET_MESSAGE_CONTENTS_FUN,
+  /* 78 */ mFont_CONT_CODE_SET_MESSAGE_CONTENTS_SLEEPY,
+  /* 79 */ mFont_CONT_CODE_SET_COLOR_CHAR,
+  /* 80 */ mFont_CONT_CODE_SOUND_CUT,
+  /* 81 */ mFont_CONT_CODE_SET_LINE_OFFSET,
+  /* 82 */ mFont_CONT_CODE_SET_LINE_TYPE,
+  /* 83 */ mFont_CONT_CODE_SET_CHAR_SCALE,
+  /* 84 */ mFont_CONT_CODE_BUTTON2,
+  /* 85 */ mFont_CONT_CODE_BGM_MAKE,
+  /* 86 */ mFont_CONT_CODE_BGM_DELETE,
+  /* 87 */ mFont_CONT_CODE_MSG_TIME_END,
+  /* 88 */ mFont_CONT_CODE_SOUND_TRG_SYS,
+  /* 89 */ mFont_CONT_CODE_SET_LINE_SCALE,
+  /* 90 */ mFont_CONT_CODE_SOUND_NO_PAGE,
+  /* 91 */ mFont_CONT_CODE_VOICE_TRUE,
+  /* 92 */ mFont_CONT_CODE_VOICE_FALSE,
+  /* 93 */ mFont_CONT_CODE_SELECT_NO_B,
+  /* 94 */ mFont_CONT_CODE_GIVE_OPEN,
+  /* 95 */ mFont_CONT_CODE_GIVE_CLOSE,
+  /* 96 */ mFont_CONT_CODE_SET_MESSAGE_CONTENTS_GLOOMY,
+  /* 97 */ mFont_CONT_CODE_SELECT_NO_B_CLOSE,
+  /* 98 */ mFont_CONT_CODE_SET_NEXT_MESSAGE_RANDOM_SECTION,
+  /* 99 */ mFont_CONT_CODE_AGB_DUMMY0,
+  /* 100 */ mFont_CONT_CODE_AGB_DUMMY1,
+  /* 101 */ mFont_CONT_CODE_AGB_DUMMY2,
+  /* 102 */ mFont_CONT_CODE_SPACE,
+  /* 103 */ mFont_CONT_CODE_AGB_DUMMY3,
+  /* 104 */ mFont_CONT_CODE_AGB_DUMMY4,
+  /* 105 */ mFont_CONT_CODE_AGB_MALE_FEMALE_CHECK,
+  /* 106 */ mFont_CONT_CODE_AGB_DUMMY5,
+  /* 107 */ mFont_CONT_CODE_AGB_DUMMY6,
+  /* 108 */ mFont_CONT_CODE_AGB_DUMMY7,
+  /* 109 */ mFont_CONT_CODE_AGB_DUMMY8,
+  /* 110 */ mFont_CONT_CODE_AGB_DUMMY9,
+  /* 111 */ mFont_CONT_CODE_AGB_DUMMY10,
+  /* 112 */ mFont_CONT_CODE_PUT_STRING_ISLAND_NAME,
+  /* 113 */ mFont_CONT_CODE_SET_CURSOR_JUST,
+  /* 114 */ mFont_CONT_CODE_CLR_CURSOR_JUST,
+  /* 115 */ mFont_CONT_CODE_CUT_ARTICLE,
+  /* 116 */ mFont_CONT_CODE_CAPITAL_LETTER,
+  /* 117 */ mFont_CONT_CODE_PUT_STRING_AM_PM,
+  /* 118 */ mFont_CONT_CODE_SET_NEXT_MESSAGE_4,
+  /* 119 */ mFont_CONT_CODE_SET_NEXT_MESSAGE_5,
+  /* 120 */ mFont_CONT_CODE_SET_SELECT_STRING_5,
+  /* 121 */ mFont_CONT_CODE_SET_SELECT_STRING_6,
+
+  /* 122 */ mFont_CONT_CODE_NUM,
+  /* 256 */ mFont_CONT_CODE_END = 256
+} mFont_CONT_CODE;
+
+// TODO: figure out the other values for this
+typedef enum mFont_CONT_ATTRIBUTE{
+  /* 0 */ mFont_CONT_ATTRIBUTE_0,
+  /* 1 */ mFont_CONT_ATTRIBUTE_DEMO,
+  /* 2 */ mFont_CONT_ATTRIBUTE_STRING,
+  /* 3 */ mFont_CONT_ATTRIBUTE_3,
+  /* 4 */ mFont_CONT_ATTRIBUTE_SENTENCE,
+  /* 5 */ mFont_CONT_ATTRIBUTE_CHARACTER,
+  /* 6 */ mFont_CONT_ATTRIBUTE_BGM,
+  /* 7 */ mFont_CONT_ATTRIBUTE_SE,
+  /* 8 */ mFont_CONT_ATTRIBUTE_AGB_DUMMY,
+
+  /* 9 */ mFont_CONT_ATTRIBUTE_END
+} mFont_CONT_ATTRIBUTE;
+
+typedef enum mFont_LineType {
+  /* 0 */ mFont_LineType_Top,
+  /* 1 */ mFont_LineType_Center,
+  /* 2 */ mFont_LineType_Bottom,
+  
+  /* 3 */ mFont_LineType_End
+}mFont_LineType;
+
+#define mFont_CHAR_FLAG_CUT 1
+#define mFont_CHAR_FLAG_USE_POLY 2
+#define mFont_CHAR_FLAG_SCALE 4
+#define mFont_CHAR_FLAG_SCALE_RESET 8
+
+#define mFont_SENTENCE_FLAG_CUT 1
+#define mFont_SENTENCE_FLAG_REVERT 2
+#define mFont_SENTENCE_FLAG_USE_POLY 4
+#define mFont_SENTENCE_FLAG_3 8
+#define mFont_SENTENCE_FLAG_NO_COMBINE 16
+#define mFont_SENTENCE_FLAG_NO_COLOR 32
+#define mFont_SENTENCE_SKIP_DRAW_NEW_LINE 64
+#define mFont_SENTENCE_FLAG_VOICE_SE 128
+#define mFont_SENTENCE_FLAG_8 256
+
+#define mFont_TEX_CHAR_WIDTH 12
+#define mFont_TEX_CHAR_HEIGHT 16
+
+#define mFont_TEX_CHAR_WIDTH_F32 12.0f
+#define mFont_TEX_CHAR_HEIGHT_F32 16.0f
+
+#define mFont_SCALE_F 16.0f
+
+#endif

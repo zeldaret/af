@@ -3,6 +3,18 @@
 
 #include "ultra64.h"
 
+#define mEv_STATUS_ACTIVE     (1 << 0) /* event is active */
+#define mEv_STATUS_STOP       (1 << 1) /* event is stopped */
+#define mEv_STATUS_SHOW       (1 << 2) /* event is shown */
+#define mEv_STATUS_PLAYSOUND  (1 << 3) /* event should play sound */
+#define mEv_STATUS_RUN        (1 << 4) /* event should run */
+#define mEv_STATUS_ERROR      (1 << 5) /* event is in error state */
+#define mEv_STATUS_TALK       (1 << 6) /* event requires talking to player */
+
+typedef enum mEv_EVENT {
+    mEv_EVENT_UNK_D = 13,
+} mEv_EVENT;
+
 typedef struct mEv_event_save_c {
     /* 0x00 */ char unk00[0x9C];
 } mEv_event_save_c; // size >= 0x9C
@@ -108,14 +120,14 @@ void mEv_finish(Event* event);
 // void func_8007FE0C_jp();
 // void func_8007FE74_jp();
 // void func_8007FEBC_jp();
-// void func_8007FF08_jp();
+s32 mEv_check_status(s32 event, s32 status);
 // void func_8007FF8C_jp();
 // void func_8007FFC4_jp();
 // void func_80080000_jp();
 // void func_80080040_jp();
 // void func_80080080_jp();
 // void func_80080200_jp();
-// void func_8008033C_jp();
+u8* func_8008033C_jp(s32 arg0, s32 arg1);
 // void func_800804AC_jp();
 // void func_800806A0_jp();
 // void func_800807E0_jp();

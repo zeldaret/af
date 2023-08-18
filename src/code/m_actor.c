@@ -366,14 +366,14 @@ void Actor_info_ct(Game_Play* game_play2, ActorInfo* actorInfo, ActorEntry* acto
     }
 
     if (mEv_CheckFirstJob() == 1) {
-        common_data.unk_107B6 = 0x5B;
+        common_data.demo_profile = 0x5B;
     }
 
-    if (common_data.unk_107B6 != 0xC9) {
-        Actor_info_make_actor(actorInfo, game_play, common_data.unk_107B6, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1,
-                              -1, -1);
+    if (common_data.demo_profile != 0xC9) {
+        Actor_info_make_actor(actorInfo, game_play, common_data.demo_profile, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0,
+                              -1, -1, -1);
     }
-    common_data.unk_107B6 = 0xC9;
+    common_data.demo_profile = 0xC9;
 
 label:
 

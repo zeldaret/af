@@ -8,7 +8,6 @@
 #include "6BA500.h"
 #include "6C0690.h"
 #include "6C97F0.h"
-#include "6D2720.h"
 #include "6D9D80.h"
 #include "6DA460.h"
 #include "6DB420.h"
@@ -40,7 +39,7 @@
 #include "sys_math.h"
 
 void famicom_emu_initial_common_data(void) {
-    FamicomEmuCommonData* famicom = &common_data.famicom_emu_common_data;
+    FamicomEmuCommonData* famicom = &common_data.save.famicom_emu_common_data;
 
     famicom->unk_00 = 0;
     famicom->unk_02 = 0x3E8;
@@ -81,9 +80,9 @@ void title_game_haniwa_data_init(void) {
     func_800C3F70_jp(haniwa_buf, HANIWA_MESSAGE_LEN, 0x55C);
 
     for (i = 0; i < mHS_HOUSE_NUM; i++) {
-        haniwa = &common_data.homes[i].haniwa;
+        haniwa = &common_data.save.homes[i].haniwa;
 
-        mem_copy(common_data.homes[i].haniwa.message, haniwa_buf, HANIWA_MESSAGE_LEN);
+        mem_copy(common_data.save.homes[i].haniwa.message, haniwa_buf, HANIWA_MESSAGE_LEN);
 
         for (j = 0; j < HANIWA_ITEM_HOLD_NUM; j++) {
             haniwa->items[j].item = EMPTY_NO;
@@ -112,7 +111,7 @@ void mSDI_ClearMoneyPlayerHomeStationBlock(void) {
         block_x = block_num[i][0];
 
         depositOffset = block_num[i][1] * FG_BLOCK_X_NUM + block_x;
-        items = common_data.fg[block_z][block_x].items[0];
+        items = common_data.save.fg[block_z][block_x].items[0];
 
         if (items != NULL) {
             for (ut_z = 0; ut_z < UT_Z_NUM; ut_z++) {
@@ -120,7 +119,7 @@ void mSDI_ClearMoneyPlayerHomeStationBlock(void) {
                     item = *items;
 
                     if (item >= ITM_MONEY_START && item <= ITM_MONEY_END) {
-                        u16* deposit = common_data.deposit[depositOffset];
+                        u16* deposit = common_data.save.deposit[depositOffset];
 
                         mPB_keep_item(item);
                         *items = EMPTY_NO;
@@ -158,7 +157,7 @@ void mSDI_PullTree(void) {
 
     for (block_z = 0; block_z < FG_BLOCK_Z_NUM; block_z++) {
         /* Clear trees against the cliffs on the left and right town cliff borders */
-        fg_block = &common_data.fg[block_z][0];
+        fg_block = &common_data.save.fg[block_z][0];
         mSDI_PullTreeBlock(fg_block->items[0], 0);
         mSDI_PullTreeBlock((fg_block + FG_BLOCK_X_NUM - 1)->items[0], UT_X_NUM - 1);
     }
@@ -176,7 +175,7 @@ void mSDI_PullTreeUnderPlayerBlock(void) {
      * ...
      **/
 
-    u16* items = &common_data.fg[2][2].items[0][0];
+    u16* items = &common_data.save.fg[2][2].items[0][0];
 
     mSDI_PullTreeUT(&items[7]);
     mSDI_PullTreeUT(&items[8]);
@@ -195,18 +194,18 @@ s32 mSDI_StartInitNew(Game* game2, s32 player_no, s32 malloc_flag) {
     common_data.scene_from_title_demo = SCENE_START_DEMO;
     lbRTC_GetTime(&common_data.time.rtc_time);
 
-    priv = &common_data.private[player_no];
+    priv = &common_data.save.private[player_no];
     common_data.now_private = priv;
     common_data.player_no = player_no;
 
     common_data.now_private->gender = mPr_SEX_MALE;
 
-    decide_fruit(&common_data.fruit);
+    decide_fruit(&common_data.save.fruit);
     if (malloc_flag == 0) {
         game = game2;
     }
 
-    bzero(&common_data.deposit, sizeof(common_data.deposit));
+    bzero(&common_data.save.deposit, sizeof(common_data.save.deposit));
 
     mFM_InitFgCombiSaveData(game);
     mSDI_PullTree();
@@ -214,11 +213,11 @@ s32 mSDI_StartInitNew(Game* game2, s32 player_no, s32 malloc_flag) {
     mFM_SetBlockKindLoadCombi(game);
     mAGrw_ChangeTree2FruitTree();
 
-    priv_p = &common_data.private[0];
+    priv_p = &common_data.save.private[0];
 
     mMld_SetDefaultMelody();
     mLd_LandDataInit();
-    mEv_ClearEventSaveInfo(&common_data.event_save_data);
+    mEv_ClearEventSaveInfo(&common_data.save.event_save_data);
     mEv_init(&game_play->event);
     mNpc_InitNpcAllInfo(malloc_flag);
 
@@ -230,27 +229,27 @@ s32 mSDI_StartInitNew(Game* game2, s32 player_no, s32 malloc_flag) {
     priv_p += player_no;
     priv_p -= PLAYER_NUM;
     mPr_InitPrivateInfo(priv_p);
-    mNpc_SetRemoveAnimalNo(common_data.animals);
+    mNpc_SetRemoveAnimalNo(common_data.save.animals);
     title_game_haniwa_data_init();
     mPB_police_box_init(game);
     mSN_snowman_init();
     mHS_house_init();
 
-    lbRTC_TimeCopy(&common_data.unk_0F7FC, &mTM_rtcTime_clear_code);
-    lbRTC_TimeCopy(&common_data.unk_0F89C, &mTM_rtcTime_clear_code);
-    lbRTC_TimeCopy(&common_data.unk_0F8A4, &mTM_rtcTime_clear_code);
+    lbRTC_TimeCopy(&common_data.save.unk_0F7FC, &mTM_rtcTime_clear_code);
+    lbRTC_TimeCopy(&common_data.save.unk_0F89C, &mTM_rtcTime_clear_code);
+    lbRTC_TimeCopy(&common_data.save.unk_0F8A4, &mTM_rtcTime_clear_code);
 
     for (i = 0; i < PLAYER_NUM; i++) {
-        common_data.homes[i].unk_022 &= (u16)~0xC0;
-        common_data.homes[i].unk_022 &= 0xCF;
-        common_data.homes[i].unk_022 &= 0xF7;
-        common_data.homes[i].unk_024 = i;
+        common_data.save.homes[i].unk_022 &= (u16)~0xC0;
+        common_data.save.homes[i].unk_022 &= 0xCF;
+        common_data.save.homes[i].unk_022 &= 0xF7;
+        common_data.save.homes[i].unk_024 = i;
     }
 
-    common_data.station_type = RANDOM_F(15);
+    common_data.save.station_type = RANDOM_F(15);
 
     for (i = 0; i < PLAYER_NUM; i++) {
-        mPr_ClearMotherMailInfo(&common_data.mother_mail[i]);
+        mPr_ClearMotherMailInfo(&common_data.save.mother_mail[i]);
     }
 
     mPr_SetPossessionItem(common_data.now_private, 0, ITM_MONEY_1000, mPr_ITEM_COND_QUEST);
@@ -274,7 +273,7 @@ s32 mSDI_StartInitFrom(Game* game2, s32 player_no, s32 malloc_flag) {
     lbRTC_GetTime(&common_data.time.rtc_time);
 
     if (mFRm_CheckSaveData() == TRUE) {
-        priv = &common_data.private[player_no];
+        priv = &common_data.save.private[player_no];
         if (mPr_CheckPrivate(priv) == TRUE) {
             if (priv->exists == TRUE) {
                 common_data.now_private = priv;
@@ -283,7 +282,7 @@ s32 mSDI_StartInitFrom(Game* game2, s32 player_no, s32 malloc_flag) {
                 mEv_init_force(&game_play->event);
                 mHsRm_GetHuusuiRoom(game, player_no);
                 mSP_ExchangeLineUp_InGame(game);
-                mNpc_SetRemoveAnimalNo(common_data.animals);
+                mNpc_SetRemoveAnimalNo(common_data.save.animals);
                 mCkRh_DecideNowGokiFamilyCount(player_no);
                 mMkRm_MarkRoom(game);
                 res = TRUE;
@@ -295,7 +294,7 @@ s32 mSDI_StartInitFrom(Game* game2, s32 player_no, s32 malloc_flag) {
                 mFM_SetBlockKindLoadCombi(game);
                 mHsRm_GetHuusuiRoom(game, player_no);
                 mSP_ExchangeLineUp_InGame(game);
-                mNpc_SetRemoveAnimalNo(common_data.animals);
+                mNpc_SetRemoveAnimalNo(common_data.save.animals);
 
                 bzero(priv->inventory.pockets, sizeof(priv->inventory.pockets));
                 priv->inventory.lotto_ticket_expiry_month = 0;
@@ -322,7 +321,7 @@ s32 mSDI_StartInitNewPlayer(Game* game, s32 player_no, s32 malloc_flag) {
     common_data.scene_from_title_demo = SCENE_START_DEMO2;
     lbRTC_GetTime(&common_data.time.rtc_time);
 
-    priv = &common_data.private[player_no];
+    priv = &common_data.save.private[player_no];
     if (mFRm_CheckSaveData() == TRUE) {
         if (mPr_CheckPrivate(priv) != TRUE) {
             mPr_InitPrivateInfo(priv);
@@ -339,7 +338,7 @@ s32 mSDI_StartInitNewPlayer(Game* game, s32 player_no, s32 malloc_flag) {
                 mEv_init_force(&game_play->event);
                 mSP_ExchangeLineUp_InGame(NULL);
             }
-            mNpc_SetRemoveAnimalNo(common_data.animals);
+            mNpc_SetRemoveAnimalNo(common_data.save.animals);
             mSDI_ClearMoneyPlayerHomeStationBlock();
             res = TRUE;
         }
@@ -369,7 +368,7 @@ s32 mSDI_StartInitPak(Game* game2, s32 player_no, s32 malloc_flag) {
             mEv_init_force(&game_play->event);
             mHsRm_GetHuusuiRoom(game, player_no);
             mSP_ExchangeLineUp_InGame(game);
-            mNpc_SetRemoveAnimalNo(common_data.animals);
+            mNpc_SetRemoveAnimalNo(common_data.save.animals);
             mNpc_SetReturnAnimal(mNpc_GetInAnimalP());
             mNpc_SendRegisteredGoodbyMail();
             mCkRh_DecideNowGokiFamilyCount(player_no);
@@ -404,7 +403,7 @@ void mSDI_StartInitAfter(Game* game, s32 renewal_reserve_flag, s32 malloc_flag) 
     func_80096B64_jp();
     func_800AB054_jp();
     func_800AB09C_jp();
-    mNpc_SetNpcList(common_data.npclist, common_data.animals, ANIMAL_NUM_MAX, malloc_flag);
+    mNpc_SetNpcList(common_data.npclist, common_data.save.animals, ANIMAL_NUM_MAX, malloc_flag);
     mNpc_ClearTalkInfo();
     if (renewal_reserve_flag == 1) {
         mFM_RenewalReserve();
@@ -425,7 +424,7 @@ void mSDI_StartInitAfter(Game* game, s32 renewal_reserve_flag, s32 malloc_flag) 
     func_8008DCF8_jp();
     func_800A4D10_jp();
     mSN_decide_msg();
-    mPr_RenewalMapInfo(common_data.now_private->maps, mPr_FOREIGN_MAP_COUNT, &common_data.land_info);
+    mPr_RenewalMapInfo(common_data.now_private->maps, mPr_FOREIGN_MAP_COUNT, &common_data.save.land_info);
 }
 
 typedef s32 (*mSDI_INIT_PROC)(Game*, s32, s32);

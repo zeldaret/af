@@ -47,11 +47,13 @@ typedef struct Haniwa_c {
 } Haniwa_c; // size = 0x5C
 
 typedef struct mHm_hs_c {
-    /* 0x000 */ char unk000[0x22];
+    /* 0x000 */ PersonalID_c ownerID; /* owner player's ID */
+    /* 0x010 */ char unk010[0x12];
     /* 0x022 */ u8 unk_022;
     /* 0x023 */ char unk023[0x1];
     /* 0x024 */ u8 unk_024;
-    /* 0x025 */ char unk025[0xABB];
+    /* 0x025 */ char unk025[0x453];
+    /* 0x478 */ Mail_c mailbox[HOME_MAILBOX_SIZE]; /* mailbox */
     /* 0xAE0 */ Haniwa_c haniwa;
     /* 0xB3C */ char unkB3C[0xC];
 } mHm_hs_c; // size = 0xB48
