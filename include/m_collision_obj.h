@@ -12,11 +12,11 @@ struct Game_Play;
 
 typedef struct CollisionCheck_Status {
     /* 0x00 */ Vec3f displacement;
-    s16 unk_0C;
-    s16 unk_0E;
-    s16 unk_10;
-    u8 unk_12;
-    u8 unk_13;
+    /* 0x0C */ s16 unk_0C;
+    /* 0x0E */ s16 unk_0E;
+    /* 0x10 */ s16 unk_10;
+    /* 0x12 */ u8 unk_12;
+    /* 0x13 */ u8 unk_13;
     /* 0x14 */ u8 unk_14;
     /* 0x15 */ u8 unk_15;
     /* 0x16 */ u8 unk_16;
@@ -185,14 +185,14 @@ void CollisionCheck_OCC_Tris_Vs_JntSph(struct Game_Play* game_play, Game_Play213
 void CollisionCheck_OCC_Tris_Vs_Pipe(struct Game_Play* game_play, Game_Play2138* arg1, ClObj* arg2, ClObj* arg3);
 s32 CollisionCheck_Check1ClObjNoOCC(ClObj* arg0);
 void CollisionCheck_OCC(struct Game_Play* game_play, Game_Play2138* arg1);
-// void func_8007870C_jp();
-// void func_8007872C_jp();
-// void func_80078748_jp();
+s32 ClObjTrisElem_OCCClear(struct Game_Play* game_play, Tris_unk_10*);
+void ClObj_OCCClear(struct Game_Play* game_play, ClObj* arg1);
+s32 ClObjTris_OCCClear(struct Game_Play* game_play, ClObj* arg1);
 s32 CollisionCheck_setOCC(struct Game_Play* game_play, Game_Play2138* arg1, ClObj* arg2);
 void CollisionCheck_Status_ct(CollisionCheck_Status* status);
 void CollisionCheck_Status_Clear(CollisionCheck_Status* status);
 void CollisionCheck_Status_set3(CollisionCheck_Status* status, CollisionCheck_Status_set3_arg1* arg1);
 void CollisionCheck_Uty_ActorWorldPosSetPipeC(struct Actor* actor, Pipe* pipe);
-// void CollisionCheck_Uty_setTrisPos_ad();
+s32 CollisionCheck_Uty_setTrisPos_ad(struct Game_Play* game_play, Tris* tris, s32 arg2, ClObjTris_set5_nzm_arg3_unk_8_unk_04* arg3);
 
 #endif

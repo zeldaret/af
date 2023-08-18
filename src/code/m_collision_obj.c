@@ -552,12 +552,30 @@ void CollisionCheck_OCC(struct Game_Play* game_play, Game_Play2138* arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_8007870C_jp.s")
+s32 ClObjTrisElem_OCCClear(UNUSED struct Game_Play* game_play, Tris_unk_10* arg1) {
+    arg1->unk_04.unk_34.x = 0.0f;
+    arg1->unk_04.unk_34.y = 0.0f;
+    arg1->unk_04.unk_34.z = 0.0f;
+    return 1;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_8007872C_jp.s")
+void ClObj_OCCClear(UNUSED struct Game_Play* game_play, ClObj* arg1) {
+    arg1->unk_04 = NULL;
+    arg1->unk_09 &= ~0x4;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80078748_jp.s")
+s32 ClObjTris_OCCClear(struct Game_Play* game_play, ClObj* arg1) {
+    Tris* tris = (Tris*)arg1;
+    Tris_unk_10* var_s0;
 
+    ClObj_OCCClear(game_play, &tris->unk_00);
+
+    for (var_s0 = tris->unk_10; var_s0 < &tris->unk_10[tris->unk_0C]; var_s0++) {
+        ClObjTrisElem_OCCClear(game_play, var_s0);
+    }
+
+    return 1;
+}
 
 s32 CollisionCheck_setOCC(struct Game_Play* game_play, Game_Play2138* arg1, ClObj* arg2) {
     s32 temp_v0;
@@ -619,4 +637,8 @@ void CollisionCheck_Uty_ActorWorldPosSetPipeC(Actor* actor, Pipe* pipe) {
     pipe->unk_0E.unk_6.z = (s16) (s32) actor->world.pos.z;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/CollisionCheck_Uty_setTrisPos_ad.s")
+s32 CollisionCheck_Uty_setTrisPos_ad(struct Game_Play* game_play, Tris* tris, s32 arg2, ClObjTris_set5_nzm_arg3_unk_8_unk_04* arg3) {
+    Tris_unk_10* temp = &tris->unk_10[arg2];
+
+    return ClObjTrisElemAttr_set(game_play, &temp->unk_04, arg3);
+}
