@@ -2,8 +2,9 @@
 #include "m_actor.h"
 #include "m_lib.h"
 #include "sys_math3d.h"
-// #include "overlays/gamestates/ovl_play/m_play.h"
+#include "libc/math.h"
 #include "attributes.h"
+// #include "overlays/gamestates/ovl_play/m_play.h"
 #include "macros.h"
 
 typedef struct struct_mco_work {
@@ -307,9 +308,125 @@ s32 CollisionCheck_setOC(struct Game_Play* game_play, Game_Play2138* arg1, ClObj
     return temp_v1;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/get_type.s")
+s32 get_type(u8 arg0) {
+    if (arg0 == 0xFF) {
+        return 0;
+    }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/CollisionCheck_setOC_HitInfo.s")
+    if (arg0 == 0xFE) {
+        return 1;
+    }
+
+    return 2;
+}
+
+void CollisionCheck_setOC_HitInfo(ClObj* arg0, ClObjElem* arg1, Vec3f* arg2, ClObj* arg3, ClObjElem* arg4, Vec3f* arg5, f32 arg6) {
+    f32 temp_fa1; // sp4C
+    f32 temp_fv0_2;
+    f32 temp_ft5;
+    f32 sp40;
+    f32 var_fa0;
+    f32 var_fa1;
+    f32 sp34;
+    f32 var_ft4;
+    f32 var_fv1;
+    s32 temp_v0;
+    Actor* temp_t0; // sp24
+    Actor* temp_t1; // sp20
+    UNUSED s32 pad[1];
+    s32 sp18;
+
+    temp_t0 = arg0->actor;
+    temp_t1 = arg3->actor;
+
+    arg0->unk_04 = temp_t1;
+    arg0->unk_08 |= 2;
+    arg1->unk_0 |= 2;
+
+    if (arg3->unk_09 & 8) {
+        arg0->unk_09 |= 1;
+    }
+
+    arg3->unk_04 = temp_t0;
+    arg3->unk_08 |= 2;
+    arg4->unk_0 |= 2;
+    if (arg0->unk_09 & 8) {
+        arg3->unk_09 |= 1;
+    }
+
+    if ((temp_t0 == NULL) || (temp_t1 == NULL) || (arg0->unk_08 & 4) || (arg3->unk_08 & 4)) {
+        return;
+    }
+
+    sp18 = get_type(temp_t0->colStatus.unk_12);
+    temp_v0 = get_type(temp_t1->colStatus.unk_12);
+
+    var_fa1 = temp_t0->colStatus.unk_12;
+    var_ft4 = temp_t1->colStatus.unk_12;
+
+    sp34 = var_fa1 + var_ft4;
+    if (fabsf(sp34) < 0.008f) {
+        var_fa1 = var_ft4 = 1.0f;
+        sp34 = 2.0f;
+    }
+
+    temp_ft5 = arg5->x - arg2->x;
+    temp_fa1 = arg5->z - arg2->z;
+    sp40 = sqrtf(SQ(temp_ft5) + SQ(temp_fa1));
+
+    if (sp18 == 0) {
+        if (temp_v0 == 0) {
+            return;
+        }
+        var_fv1 = 0.0f;
+        var_fa0 = 1.0f;
+    } else if (sp18 == 1) {
+        if (temp_v0 == 0) {
+            var_fv1 = 1.0f;
+            var_fa0 = 0.0f;
+        } else if (temp_v0 == 1) {
+            var_fv1 = 0.5f;
+            var_fa0 = 0.5f;
+        } else {
+            var_fv1 = 0.0f;
+            var_fa0 = 1.0f;
+        }
+    } else {
+        if (temp_v0 == 2) {
+            temp_fv0_2 = 1.0f / sp34;
+            var_fv1 = var_ft4 * temp_fv0_2;
+            var_fa0 = var_fa1 * temp_fv0_2;
+        } else {
+            var_fv1 = 1.0f;
+            var_fa0 = 0.0f;
+        }
+    }
+
+    if (arg0->unk_08 & 0x40) {
+        var_fv1 = 0.0f;
+        var_fa0 = 1.0f;
+        temp_t1->speed = 0.0f;
+    } else if (arg3->unk_08 & 0x40) {
+        var_fv1 = 1.0f;
+        var_fa0 = 0.0f;
+        temp_t0->speed = 0.0f;
+    }
+
+    if (!(fabsf(sp40) < 0.008f)) {
+        temp_ft5 *= arg6 / sp40;
+        temp_fa1 *= arg6 / sp40;
+        temp_t0->colStatus.displacement.x += -temp_ft5 * var_fv1;
+        temp_t0->colStatus.displacement.z += -temp_fa1 * var_fv1;
+        temp_t1->colStatus.displacement.x += temp_ft5 * var_fa0;
+        temp_t1->colStatus.displacement.z += temp_fa1 * var_fa0;
+    } else if (arg6 != 0.0f) {
+        temp_t0->colStatus.displacement.x += -arg6 * var_fv1;
+        temp_t1->colStatus.displacement.x += (arg6 * var_fa0);
+    } else {
+        temp_t0->colStatus.displacement.x -= var_fv1;
+        temp_t1->colStatus.displacement.x += var_fa0;
+    }
+}
 
 void CollisionCheck_OC_JntSph_Vs_JntSph(UNUSED struct Game_Play* game_play, UNUSED Game_Play2138* arg1, ClObj* arg2, ClObj* arg3) {
     JntSph* jntSphA = (JntSph*)arg2;
