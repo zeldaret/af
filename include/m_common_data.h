@@ -10,6 +10,7 @@ struct struct_801161E8_jp;
 struct PlayState_unk_0110;
 struct CommonData_unk_1004C_unk_14_arg0;
 struct PlayState;
+struct StructureClip;
 
 typedef UNK_RET (*CommonData_unk_1004C_unk_04)(struct ActorOverlay*, const struct struct_801161E8_jp*, size_t, s32);
 typedef UNK_RET (*CommonData_unk_1004C_unk_08)(void);
@@ -44,33 +45,6 @@ typedef struct CommonData_unk_10080 {
     /* 0x04 */ CommonData_unk_10080_unk_4 unk_4;
 } CommonData_unk_10080; // size >= 0x10
 
-typedef UNK_RET (*CommonData_unk_10098_unk_4)(struct ActorOverlay*, size_t);
-typedef UNK_RET (*CommonData_unk_10098_unk_8)(void);
-
-// TODO: figure out if this is a generic memory allocation or if it is Actor specific
-typedef UNK_PTR (*CommonData_unk_10098_unk_0C)(void);
-
-typedef UNK_RET (*CommonData_unk_10098_unk_10)(struct Actor*);
-
-typedef UNK_RET (*CommonData_unk_10098_unk_A8)(UNK_TYPE, UNK_TYPE, UNK_TYPE, UNK_TYPE);
-typedef UNK_RET (*CommonData_unk_10098_unk_AC)(UNK_TYPE);
-typedef UNK_RET (*CommonData_unk_10098_unk_450)(UNK_TYPE);
-
-typedef struct CommonData_unk_10098 {
-    /* 0x00 */ UNK_TYPE1 unk_00[0x4];
-    /* 0x04 */ CommonData_unk_10098_unk_4 unk_4;
-    /* 0x08 */ CommonData_unk_10098_unk_8 unk_08;
-    /* 0x0C */ CommonData_unk_10098_unk_0C unk_0C;
-    /* 0x10 */ CommonData_unk_10098_unk_10 unk_10;
-    /* 0x14 */ s8 unk_14[0x94];
-    /* 0xA8 */ CommonData_unk_10098_unk_A8 unk_A8;
-    /* 0xAC */ CommonData_unk_10098_unk_AC unk_AC;
-    /* 0xB0 */ UNK_TYPE unk_B0;
-    /* 0x450 */ CommonData_unk_10098_unk_450 unk_450;
-    /* 0x454 */ UNK_TYPE unk_454;
-    /* 0x86C */ UNK_TYPE unk_86C;
-} CommonData_unk_10098; // size >= 0x10
-
 typedef struct CommonData10138_Sub {
     /* 0x00 */ char unk00[0x3];
     /* 0x03 */ u8 unk_03;
@@ -87,8 +61,6 @@ typedef struct CommonData10138 {
 
 typedef void (*CommonData_100E4_Func)(struct PlayState*);
 
-
-
 typedef struct CommonData {
     /* 0x00000 */ u8 unk00000[0x14];
     /* 0x00014 */ s32 unk_00014;
@@ -103,11 +75,11 @@ typedef struct CommonData {
     /* 0x10050 */ UNK_TYPE1 unk_10050[0x30];
     /* 0x10080 */ CommonData_unk_10080 *unk_10080;
     /* 0x10084 */ UNK_TYPE1 unk_10084[0x14];
-    /* 0x10098 */ CommonData_unk_10098 *unk_10098;
+    /* 0x10098 */ struct StructureClip* structureClip;
     /* 0x1009C */ UNK_TYPE1 unk_1009C[0x48];
     /* 0x100E4 */ CommonData_100E4_Func* unk_100E4;
     /* 0x100E8 */ u8 unk100E8[0x24];
-    /* 0x1010C */ u32 unk1010C;
+    /* 0x1010C */ u32 season;
     /* 0x10110 */ u8 unk10110[0x8];
     /* 0x10118 */ UNK_TYPE unk10118;
     /* 0x1011C */ u8 unk1011C[0x3];

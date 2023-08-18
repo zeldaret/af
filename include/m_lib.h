@@ -46,7 +46,7 @@ s16 search_position_angleY(Vec3f* arg0, Vec3f* arg1);
 // void ValueSet__xyz_t();
 // void ValueSet__xyz_t_x1000();
 // void ValueSet__s_xyz();
-// void add_calc();
+f32 add_calc(f32* pValue, f32 target, f32 fraction, f32 maxStep, f32 minStep);
 // void add_calc2();
 // void add_calc0();
 // void add_calc_a();

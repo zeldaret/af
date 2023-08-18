@@ -24,6 +24,7 @@
 #include "macros.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "overlays/actors/player_actor/m_player.h"
+#include "overlays/actors/ovl_Structure/ac_structure.h"
 
 void func_80056380_jp(void* arg0, void* arg1 UNUSED) {
     Actor* actor = arg0;
@@ -608,7 +609,7 @@ void actor_free_check(ActorOverlay* overlayEntry, u16 fgName) {
                 break;
 
             case FGNAME_F000_5:
-                common_data.unk_10098->unk_08();
+                common_data.structureClip->freeOverlayAreaProc();
                 break;
 
             default:
@@ -643,8 +644,8 @@ s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const 
                     break;
 
                 case FGNAME_F000_5:
-                    if (common_data.unk_10098 != NULL) {
-                        common_data.unk_10098->unk_4(overlayEntry, overlaySize);
+                    if (common_data.structureClip != NULL) {
+                        common_data.structureClip->getOverlayProc(overlayEntry, overlaySize);
                     }
                     break;
 
@@ -753,7 +754,7 @@ s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay
             break;
 
         case FGNAME_F000_5:
-            *actorP = common_data.unk_10098->unk_0C();
+            *actorP = (Actor*)common_data.structureClip->getActorAreaProc();
             break;
 
         default:
@@ -964,7 +965,7 @@ Actor* Actor_info_delete(ActorInfo* actorInfo, Actor* actor, PlayState* play) {
             break;
 
         case FGNAME_F000_5:
-            common_data.unk_10098->unk_10(actor);
+            common_data.structureClip->freeActorAreaProc((Structure*)actor);
             break;
 
         default:
