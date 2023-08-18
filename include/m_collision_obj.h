@@ -23,18 +23,16 @@ typedef struct ClObjElem {
 } ClObjElem; // size = 0x1
 
 
-typedef struct ClObj_set4_arg3 {
-    /* 0x0 */ u8 unk_0;
-    /* 0x1 */ u8 unk_1;
-    /* 0x2 */ u8 unk_2;
-} ClObj_set4_arg3; // size = 0x3
+typedef struct ClObj_Properties {
+    /* 0x0 */ u8 ocFlags1;
+    /* 0x1 */ u8 ocFlags2;
+    /* 0x2 */ u8 shape;
+} ClObj_Properties; // size = 0x3
 
 typedef struct ClObj {
-    /* 0x00 */ struct Actor* actor;
-    /* 0x00 */ struct Actor* unk_04;
-    /* 0x08 */ u8 unk_08;
-    /* 0x09 */ u8 unk_09;
-    /* 0x0A */ u8 unk_0A;
+    /* 0x0 */ struct Actor* actor;
+    /* 0x4 */ struct Actor* unk_4;
+    /* 0x8 */ ClObj_Properties prop;
 } ClObj; // size = 0xC
 
 
@@ -50,7 +48,7 @@ typedef struct ClObjJntSphElem_Init {
 } ClObjJntSphElem_Init; // size = 0xE
 
 typedef struct ClObjJntSph_Init {
-    /* 0x0 */ ClObj_set4_arg3 unk_0;
+    /* 0x0 */ ClObj_Properties unk_0;
     /* 0x4 */ s32 unk_4;
     /* 0x8 */ ClObjJntSphElem_Init* unk_8;
 } ClObjJntSph_Init; // size = 0xC
@@ -71,10 +69,11 @@ typedef struct ClObjJntSphElem {
 
 
 typedef struct ClObjJntSph {
-    /* 0x00 */ ClObj unk_00;
-    /* 0x0C */ s32 unk_0C;
-    /* 0x10 */ ClObjJntSphElem* unk_10;
-} ClObjJntSph; // size >= 0x14
+    /* 0x00 */ ClObj base;
+    /* 0x0C */ s32 count;
+    /* 0x10 */ ClObjJntSphElem* elements;
+} ClObjJntSph; // size = 0x14
+
 
 
 typedef struct ClObjPipeAttr {
@@ -82,16 +81,15 @@ typedef struct ClObjPipeAttr {
 } ClObjPipeAttr; // size = 0xC
 
 typedef struct ClObjPipe_Init {
-    /* 0x0 */ ClObj_set4_arg3 unk_0;
+    /* 0x0 */ ClObj_Properties unk_0;
     /* 0x3 */ ClObjElem unk_3;
     /* 0x4 */ ClObjPipeAttr unk_4;
 } ClObjPipe_Init; // size >= 0x10
 
-// TODO: rename
 typedef struct ClObjPipe {
-    /* 0x00 */ ClObj unk_00;
-    /* 0x0C */ ClObjElem unk_0C;
-    /* 0x0E */ ClObjPipeAttr unk_0E;
+    /* 0x00 */ ClObj base;
+    /* 0x0C */ ClObjElem element;
+    /* 0x0E */ ClObjPipeAttr attribute;
 } ClObjPipe; // size >= 0x1C
 
 
@@ -113,10 +111,10 @@ typedef struct ClObjTrisElem {
 } ClObjTrisElem; // size = 0x44
 
 typedef struct ClObjTris {
-    /* 0x00 */ ClObj unk_00;
-    /* 0x0C */ s32 unk_0C;
-    /* 0x10 */ ClObjTrisElem* unk_10;
-} ClObjTris; // size >= 0x14
+    /* 0x00 */ ClObj base;
+    /* 0x0C */ s32 count;
+    /* 0x10 */ ClObjTrisElem* elements;
+} ClObjTris; // size = 0x14
 
 
 typedef struct ClObjTris_set5_nzm_arg3_unk_8 {
@@ -125,7 +123,7 @@ typedef struct ClObjTris_set5_nzm_arg3_unk_8 {
 } ClObjTris_set5_nzm_arg3_unk_8; // size = 0x28
 
 typedef struct ClObjTris_set5_nzm_arg3 {
-    /* 0x0 */ ClObj_set4_arg3 unk_0;
+    /* 0x0 */ ClObj_Properties unk_0;
     /* 0x4 */ s32 unk_4;
     /* 0x8 */ ClObjTris_set5_nzm_arg3_unk_8* unk_8;
 } ClObjTris_set5_nzm_arg3; // size >= 0x
@@ -133,8 +131,8 @@ typedef struct ClObjTris_set5_nzm_arg3 {
 
 typedef struct CollisionCheck {
     /* 0x00 */ u16 unk_00;
-    /* 0x04 */ s32 unk_04;
-    /* 0x08 */ ClObj *unk_08[50];
+    /* 0x04 */ s32 ocColCount;
+    /* 0x08 */ ClObj *ocColliders[50];
 } CollisionCheck; // size = 0xD0
 
 
@@ -160,10 +158,30 @@ typedef struct CollisionCheck_Status {
 } CollisionCheck_Status; // size = 0x18
 
 
+#define OC1_NONE        0
+#define OC1_1           (1 << 0)
+#define OC1_2           (1 << 1)
+#define OC1_4           (1 << 2)
+#define OC1_TYPE_8      (1 << 3)
+#define OC1_TYPE_10     (1 << 4)
+#define OC1_TYPE_20     (1 << 5)
+#define OC1_40          (1 << 6)
+
+#define OC1_TYPE_ALL (OC1_TYPE_8 | OC1_TYPE_10 | OC1_TYPE_20)
+
+#define OC2_NONE        0
+#define OC2_1           (1 << 0)
+#define OC2_2           (1 << 1)
+#define OC2_4           (1 << 2)
+#define OC2_TYPE_8      OC1_TYPE_8
+#define OC2_TYPE_10     OC1_TYPE_10
+#define OC2_TYPE_20     OC1_TYPE_20
+
+
 void CollisionCheck_workTrisElemCenter(ClObjTrisElem* arg0, Vec3f* arg1);
 s32 ClObj_ct(struct Game_Play* game_play, ClObj* arg1);
 s32 ClObj_dt(struct Game_Play* game_play, ClObj* arg1);
-s32 ClObj_set4(struct Game_Play* game_play, ClObj* arg1, struct Actor* actor, ClObj_set4_arg3* arg3);
+s32 ClObj_set4(struct Game_Play* game_play, ClObj* arg1, struct Actor* actor, ClObj_Properties* arg3);
 void ClObj_OCClear(struct Game_Play* game_play, ClObj* arg1);
 s32 ClObjElem_ct(ClObjElem* arg0);
 s32 ClObjElem_set(ClObjElem* arg0, ClObjElem* arg1);
