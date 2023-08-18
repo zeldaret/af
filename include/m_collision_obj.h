@@ -10,6 +10,142 @@ struct Actor;
 struct Game_Play;
 
 
+typedef enum ColliderShape {
+    /* 0 */ COLSHAPE_JNTSPH,
+    /* 1 */ COLSHAPE_PIPE,
+    /* 2 */ COLSHAPE_TRIS,
+    /* 3 */ COLSHAPE_MAX
+} ColliderShape;
+
+
+typedef struct ClObjElem {
+    /* 0x0 */ u8 unk_0;
+} ClObjElem; // size = 0x1
+
+
+typedef struct ClObj_set4_arg3 {
+    /* 0x0 */ u8 unk_0;
+    /* 0x1 */ u8 unk_1;
+    /* 0x2 */ u8 unk_2;
+} ClObj_set4_arg3; // size = 0x3
+
+typedef struct ClObj {
+    /* 0x00 */ struct Actor* actor;
+    /* 0x00 */ struct Actor* unk_04;
+    /* 0x08 */ u8 unk_08;
+    /* 0x09 */ u8 unk_09;
+    /* 0x0A */ u8 unk_0A;
+} ClObj; // size = 0xC
+
+
+typedef struct ClObjJntSphElemAttr_Init {
+    /* 0x0 */ u8 unk_0;
+    /* 0x2 */ Sphere unk_2;
+    /* 0xC */ s16 unk_A;
+} ClObjJntSphElemAttr_Init; // size = 0xC
+
+typedef struct ClObjJntSphElem_Init {
+    /* 0x0 */ ClObjElem unk_0;
+    /* 0x2 */ ClObjJntSphElemAttr_Init unk_2;
+} ClObjJntSphElem_Init; // size = 0xE
+
+typedef struct ClObjJntSph_Init {
+    /* 0x0 */ ClObj_set4_arg3 unk_0;
+    /* 0x4 */ s32 unk_4;
+    /* 0x8 */ ClObjJntSphElem_Init* unk_8;
+} ClObjJntSph_Init; // size = 0xC
+
+
+
+typedef struct ClObjJntSphElemAttr {
+    /* 0x00 */ Sphere unk_00;
+    /* 0x08 */ Sphere unk_08;
+    /* 0x10 */ f32 unk_10;
+    /* 0x14 */ u8 unk_14;
+} ClObjJntSphElemAttr; // size = 0x18
+
+typedef struct ClObjJntSphElem {
+    /* 0x00 */ ClObjElem unk_00;
+    /* 0x04 */ ClObjJntSphElemAttr unk_04;
+} ClObjJntSphElem; // size = 0x1C
+
+
+typedef struct ClObjJntSph {
+    /* 0x00 */ ClObj unk_00;
+    /* 0x0C */ s32 unk_0C;
+    /* 0x10 */ ClObjJntSphElem* unk_10;
+} ClObjJntSph; // size >= 0x14
+
+
+typedef struct ClObjPipeAttr {
+    /* 0x0 */ Pipe unk_0;
+} ClObjPipeAttr; // size = 0xC
+
+typedef struct ClObjPipe_Init {
+    /* 0x0 */ ClObj_set4_arg3 unk_0;
+    /* 0x3 */ ClObjElem unk_3;
+    /* 0x4 */ ClObjPipeAttr unk_4;
+} ClObjPipe_Init; // size >= 0x10
+
+// TODO: rename
+typedef struct ClObjPipe {
+    /* 0x00 */ ClObj unk_00;
+    /* 0x0C */ ClObjElem unk_0C;
+    /* 0x0E */ ClObjPipeAttr unk_0E;
+} ClObjPipe; // size >= 0x1C
+
+
+
+typedef struct ClObjTrisElemAttr_Init {
+    /* 0x00 */ Triangle unk_00;
+} ClObjTrisElemAttr_Init; // size = 0x24
+
+
+typedef struct ClObjTrisElemAttr {
+    /* 0x00 */ Triangle3 unk_00;
+    /* 0x34 */ Vec3f unk_34;
+} ClObjTrisElemAttr; // size = 0x40
+
+
+typedef struct ClObjTrisElem {
+    /* 0x00 */ ClObjElem unk_00;
+    /* 0x04 */ ClObjTrisElemAttr unk_04;
+} ClObjTrisElem; // size = 0x44
+
+typedef struct ClObjTris {
+    /* 0x00 */ ClObj unk_00;
+    /* 0x0C */ s32 unk_0C;
+    /* 0x10 */ ClObjTrisElem* unk_10;
+} ClObjTris; // size >= 0x14
+
+
+typedef struct ClObjTris_set5_nzm_arg3_unk_8 {
+    /* 0x00 */ ClObjElem unk_00;
+    /* 0x04 */ ClObjTrisElemAttr_Init unk_04;
+} ClObjTris_set5_nzm_arg3_unk_8; // size = 0x28
+
+typedef struct ClObjTris_set5_nzm_arg3 {
+    /* 0x0 */ ClObj_set4_arg3 unk_0;
+    /* 0x4 */ s32 unk_4;
+    /* 0x8 */ ClObjTris_set5_nzm_arg3_unk_8* unk_8;
+} ClObjTris_set5_nzm_arg3; // size >= 0x
+
+
+typedef struct CollisionCheck {
+    /* 0x00 */ u16 unk_00;
+    /* 0x04 */ s32 unk_04;
+    /* 0x08 */ ClObj *unk_08[50];
+} CollisionCheck; // size = 0xD0
+
+
+typedef struct CollisionCheck_Status_set3_arg1 {
+    /* 0x0 */ u8 unk_0;
+    /* 0x0 */ s16 unk_2;
+    /* 0x0 */ s16 unk_4;
+    /* 0x0 */ s16 unk_6;
+    /* 0x0 */ u8 unk_8;
+} CollisionCheck_Status_set3_arg1; // size = 0xA
+
 typedef struct CollisionCheck_Status {
     /* 0x00 */ Vec3f displacement;
     /* 0x0C */ s16 unk_0C;
@@ -23,150 +159,8 @@ typedef struct CollisionCheck_Status {
     /* 0x17 */ u8 unk_17;
 } CollisionCheck_Status; // size = 0x18
 
-typedef struct ClObjElem {
-    /* 0x0 */ u8 unk_0;
-} ClObjElem; // size = 0x1
 
-
-typedef struct ClObj {
-    /* 0x00 */ struct Actor* actor;
-    /* 0x00 */ struct Actor* unk_04;
-    /* 0x08 */ u8 unk_08;
-    /* 0x09 */ u8 unk_09;
-    /* 0x0A */ u8 unk_0A;
-} ClObj; // size >= 0xB, size <= 0xC
-
-typedef struct ClObjJntSphElemAttr_set_arg2_unk_2 {
-    /* 0x0 */ Vec3s unk_0;
-    /* 0x6 */ s16 unk_6;
-} ClObjJntSphElemAttr_set_arg2_unk_2; // size = 0x8
-
-typedef struct ClObjJntSphElemAttr_set_arg2 {
-    /* 0x0 */ u8 unk_0;
-    /* 0x2 */ ClObjJntSphElemAttr_set_arg2_unk_2 unk_2;
-    /* 0xC */ s16 unk_A;
-} ClObjJntSphElemAttr_set_arg2; // size = 0xC
-
-typedef struct ClObjJntSphElem_set_arg2 {
-    /* 0x0 */ ClObjElem unk_0;
-    /* 0x1 */ UNK_TYPE1 unk_1[0x1];
-    /* 0x2 */ ClObjJntSphElemAttr_set_arg2 unk_2;
-} ClObjJntSphElem_set_arg2; // size = 0xE
-
-typedef struct ClObjJntSphElemAttr {
-    #if 0
-    Vec3s unk_00;
-    s16 unk_06;
-    Vec3s unk_08;
-    s16 unk_0E;
-    f32 unk_10;
-    u8 unk_14;
-    #endif
-    /* 0x00 */ ClObjJntSphElemAttr_set_arg2_unk_2 unk_00;
-    /* 0x08 */ Vec3s unk_08;
-    /* 0x0E */ UNK_TYPE1 unk_0E[0x2];
-    /* 0x10 */ f32 unk_10;
-    /* 0x14 */ u8 unk_14;
-} ClObjJntSphElemAttr; // size = 0x18
-
-typedef struct JntSph_unk_10 {
-    /* 0x00 */ ClObjElem unk_00;
-    /* 0x01 */ UNK_TYPE1 unk_01[0x3];
-    /* 0x04 */ ClObjJntSphElemAttr unk_04;
-} JntSph_unk_10; // size = 0x1C
-
-// TODO: rename
-typedef struct JntSph {
-    /* 0x00 */ ClObj unk_00;
-    /* 0x0C */ s32 unk_0C;
-    /* 0x10 */ JntSph_unk_10* unk_10;
-} JntSph; // size >= 0x14
-
-typedef Math3D_pipeCrossTriangle_cp_arg0 ClObjPipeAttr_set_arg2;
-
-// TODO: rename
-typedef struct Pipe {
-    /* 0x00 */ ClObj unk_00;
-    /* 0x0C */ ClObjElem unk_0C;
-    /* 0x0D */ UNK_TYPE1 unk_0D[0x1];
-    /* 0x0E */ Math3D_pipeCrossTriangle_cp_arg0 unk_0E;
-} Pipe; // size >= 0x1C
-
-
-typedef struct ClObjTris_set5_nzm_arg3_unk_8_unk_04 {
-    /* 0x00 */ Vec3f unk_00[3];
-} ClObjTris_set5_nzm_arg3_unk_8_unk_04; // size >= 0x24
-
-
-typedef struct ClObjTrisElemAttr {
-    /* 0x00 */ ClObjTris_set5_nzm_arg3_unk_8_unk_04 unk_00;
-    /* 0x24 */ f32 unk_24;
-    /* 0x28 */ f32 unk_28;
-    /* 0x2C */ f32 unk_2C;
-    /* 0x30 */ f32 unk_30;
-    /* 0x34 */ Vec3f unk_34;
-} ClObjTrisElemAttr; // size = 0x40
-
-
-typedef struct Tris_unk_10 {
-    /* 0x00 */ ClObjElem unk_00;
-    /* 0x01 */ UNK_TYPE1 unk_01[0x03];
-    /* 0x04 */ ClObjTrisElemAttr unk_04;
-} Tris_unk_10; // size = 0x44
-
-// TODO: rename
-typedef struct Tris {
-    /* 0x00 */ ClObj unk_00;
-    /* 0x0C */ UNK_TYPE unk_0C;
-    /* 0x10 */ Tris_unk_10* unk_10;
-} Tris; // size >= 0x14
-
-typedef struct CollisionCheck {
-    /* 0x00 */ u16 unk_00;
-    /* 0x02 */ UNK_TYPE1 unk_02[0x2];
-    /* 0x04 */ UNK_TYPE4 unk_04;
-    /* 0x08 */ ClObj *unk_08[50];
-} CollisionCheck; // size = 0xD0
-
-typedef struct ClObj_set4_arg3 {
-    /* 0x0 */ u8 unk_0;
-    /* 0x1 */ u8 unk_1;
-    /* 0x2 */ u8 unk_2;
-} ClObj_set4_arg3; // size >= 0x3
-
-typedef struct ClObjPipe_set5_arg3 {
-    /* 0x0 */ ClObj_set4_arg3 unk_0;
-    /* 0x3 */ ClObjElem unk_3;
-    /* 0x4 */ ClObjPipeAttr_set_arg2 unk_4;
-} ClObjPipe_set5_arg3; // size >= 0x10
-
-typedef struct ClObjTris_set5_nzm_arg3_unk_8 {
-    /* 0x00 */ ClObjElem unk_00;
-    /* 0x01 */ UNK_TYPE1 unk_01[0x3];
-    /* 0x04 */ ClObjTris_set5_nzm_arg3_unk_8_unk_04 unk_04;
-} ClObjTris_set5_nzm_arg3_unk_8; // size = 0x28
-
-typedef struct ClObjTris_set5_nzm_arg3 {
-    /* 0x0 */ ClObj_set4_arg3 unk_0;
-    /* 0x4 */ s32 unk_4;
-    /* 0x8 */ ClObjTris_set5_nzm_arg3_unk_8* unk_8;
-} ClObjTris_set5_nzm_arg3; // size >= 0x
-
-typedef struct CollisionCheck_Status_set3_arg1 {
-    /* 0x0 */ u8 unk_0;
-    /* 0x0 */ s16 unk_2;
-    /* 0x0 */ s16 unk_4;
-    /* 0x0 */ s16 unk_6;
-    /* 0x0 */ u8 unk_8;
-} CollisionCheck_Status_set3_arg1; // size = 0xA
-
-typedef struct ClObjJntSph_set5_nzm_arg3 {
-    /* 0x */ ClObj_set4_arg3 unk_0;
-    /* 0x */ s32 unk_4;
-    /* 0x */ ClObjJntSphElem_set_arg2* unk_8;
-} ClObjJntSph_set5_nzm_arg3; // size = ?
-
-void CollisionCheck_workTrisElemCenter(Tris_unk_10* arg0, Vec3f* arg1);
+void CollisionCheck_workTrisElemCenter(ClObjTrisElem* arg0, Vec3f* arg1);
 s32 ClObj_ct(struct Game_Play* game_play, ClObj* arg1);
 s32 ClObj_dt(struct Game_Play* game_play, ClObj* arg1);
 s32 ClObj_set4(struct Game_Play* game_play, ClObj* arg1, struct Actor* actor, ClObj_set4_arg3* arg3);
@@ -176,32 +170,32 @@ s32 ClObjElem_set(ClObjElem* arg0, ClObjElem* arg1);
 void ClObjElem_OCClear(struct Game_Play* game_play, ClObjElem* arg1);
 s32 ClObjJntSphElemAttr_ct(struct Game_Play* game_play, ClObjJntSphElemAttr* arg1);
 s32 ClObjJntSphElemAttr_dt(struct Game_Play* game_play, ClObjJntSphElemAttr* arg1);
-s32 ClObjJntSphElemAttr_set(struct Game_Play* game_play, ClObjJntSphElemAttr* arg1, ClObjJntSphElemAttr_set_arg2* arg2);
-s32 ClObjJntSphElem_ct(struct Game_Play* game_play, JntSph_unk_10* arg1);
-s32 ClObjJntSphElem_dt(struct Game_Play* game_play, JntSph_unk_10* arg1);
-s32 ClObjJntSphElem_set(struct Game_Play* game_play, JntSph_unk_10* arg1, ClObjJntSphElem_set_arg2* arg2);
-s32 ClObjJntSphElem_OCClear(struct Game_Play* game_play, JntSph_unk_10* arg1);
-s32 ClObjJntSph_ct(struct Game_Play* game_play, JntSph* jntSph);
-s32 ClObjJntSph_dt_nzf(struct Game_Play* game_play, JntSph* jntSph);
-s32 ClObjJntSph_set5_nzm(struct Game_Play* game_play, JntSph* jntSph, struct Actor* actor, ClObjJntSph_set5_nzm_arg3* arg3, JntSph_unk_10 arg4[]);
+s32 ClObjJntSphElemAttr_set(struct Game_Play* game_play, ClObjJntSphElemAttr* arg1, ClObjJntSphElemAttr_Init* arg2);
+s32 ClObjJntSphElem_ct(struct Game_Play* game_play, ClObjJntSphElem* arg1);
+s32 ClObjJntSphElem_dt(struct Game_Play* game_play, ClObjJntSphElem* arg1);
+s32 ClObjJntSphElem_set(struct Game_Play* game_play, ClObjJntSphElem* arg1, ClObjJntSphElem_Init* arg2);
+s32 ClObjJntSphElem_OCClear(struct Game_Play* game_play, ClObjJntSphElem* arg1);
+s32 ClObjJntSph_ct(struct Game_Play* game_play, ClObjJntSph* jntSph);
+s32 ClObjJntSph_dt_nzf(struct Game_Play* game_play, ClObjJntSph* jntSph);
+s32 ClObjJntSph_set5_nzm(struct Game_Play* game_play, ClObjJntSph* jntSph, struct Actor* actor, ClObjJntSph_Init* arg3, ClObjJntSphElem arg4[]);
 s32 ClObjJntSph_OCClear(struct Game_Play* game_play, ClObj*);
-s32 ClObjPipeAttr_ct(struct Game_Play* game_play, Math3D_pipeCrossTriangle_cp_arg0* arg1);
-s32 ClObjPipeAttr_dt(struct Game_Play* game_play, Math3D_pipeCrossTriangle_cp_arg0* arg1);
-s32 ClObjPipeAttr_set(struct Game_Play* game_play, ClObjPipeAttr_set_arg2* arg1, ClObjPipeAttr_set_arg2* arg2);
-s32 ClObjPipe_ct(struct Game_Play* game_play, Pipe* pipe);
-s32 ClObjPipe_dt(struct Game_Play* game_play, Pipe* pipe);
-s32 ClObjPipe_set5(struct Game_Play* game_play, Pipe* pipe, struct Actor* actor, ClObjPipe_set5_arg3* arg3);
+s32 ClObjPipeAttr_ct(struct Game_Play* game_play, ClObjPipeAttr* arg1);
+s32 ClObjPipeAttr_dt(struct Game_Play* game_play, ClObjPipeAttr* arg1);
+s32 ClObjPipeAttr_set(struct Game_Play* game_play, ClObjPipeAttr* arg1, ClObjPipeAttr* arg2);
+s32 ClObjPipe_ct(struct Game_Play* game_play, ClObjPipe* pipe);
+s32 ClObjPipe_dt(struct Game_Play* game_play, ClObjPipe* pipe);
+s32 ClObjPipe_set5(struct Game_Play* game_play, ClObjPipe* pipe, struct Actor* actor, ClObjPipe_Init* arg3);
 s32 ClObjPipe_OCClear(struct Game_Play* game_play, ClObj* arg1);
 s32 ClObjTrisElemAttr_ct(struct Game_Play* game_play, ClObjTrisElemAttr* arg1);
 s32 ClObjTrisElemAttr_dt(struct Game_Play* game_play, ClObjTrisElemAttr* arg1);
-s32 ClObjTrisElemAttr_set(struct Game_Play* game_play, ClObjTrisElemAttr *arg1, ClObjTris_set5_nzm_arg3_unk_8_unk_04* arg2);
-s32 ClObjTrisElem_ct(struct Game_Play* game_play, Tris_unk_10* arg1);
-s32 ClObjTrisElem_dt(struct Game_Play* game_play, Tris_unk_10* arg1);
-s32 ClObjTrisElem_set(struct Game_Play* game_play, Tris_unk_10* arg1, ClObjTris_set5_nzm_arg3_unk_8* arg2);
-s32 ClObjTrisElem_OCClear(struct Game_Play* game_play, Tris_unk_10* arg1);
-s32 ClObjTris_ct(struct Game_Play* game_play, Tris* tris);
-s32 ClObjTris_dt_nzf(struct Game_Play* game_play, Tris* tris);
-s32 ClObjTris_set5_nzm(struct Game_Play* game_play, Tris* tris, struct Actor* actor, ClObjTris_set5_nzm_arg3* arg3, Tris_unk_10* arg4);
+s32 ClObjTrisElemAttr_set(struct Game_Play* game_play, ClObjTrisElemAttr *arg1, ClObjTrisElemAttr_Init* arg2);
+s32 ClObjTrisElem_ct(struct Game_Play* game_play, ClObjTrisElem* arg1);
+s32 ClObjTrisElem_dt(struct Game_Play* game_play, ClObjTrisElem* arg1);
+s32 ClObjTrisElem_set(struct Game_Play* game_play, ClObjTrisElem* arg1, ClObjTris_set5_nzm_arg3_unk_8* arg2);
+s32 ClObjTrisElem_OCClear(struct Game_Play* game_play, ClObjTrisElem* arg1);
+s32 ClObjTris_ct(struct Game_Play* game_play, ClObjTris* tris);
+s32 ClObjTris_dt_nzf(struct Game_Play* game_play, ClObjTris* tris);
+s32 ClObjTris_set5_nzm(struct Game_Play* game_play, ClObjTris* tris, struct Actor* actor, ClObjTris_set5_nzm_arg3* arg3, ClObjTrisElem* arg4);
 s32 ClObjTris_OCClear(struct Game_Play* game_play, ClObj* arg1);
 void CollisionCheck_ct(struct Game_Play* game_play, CollisionCheck* arg1);
 void CollisionCheck_dt(struct Game_Play* game_play, CollisionCheck* arg1);
@@ -216,19 +210,19 @@ void CollisionCheck_OC_Pipe_Vs_Pipe(struct Game_Play* game_play, CollisionCheck*
 s32 CollisionCheck_Check1ClObjNoOC(ClObj* arg0);
 s32 CollisionCheck_Check2ClObjNoOC(ClObj* arg0, ClObj* arg1);
 void CollisionCheck_OC(struct Game_Play* game_play, CollisionCheck* arg1);
-void CollisionCheck_setOCC_HitInfo(struct Game_Play* game_play, ClObj* arg1, Tris_unk_10* arg2, Vec3f* arg3, ClObj* arg4, ClObjElem* arg5, Vec3f* arg6, Vec3f* arg7);
+void CollisionCheck_setOCC_HitInfo(struct Game_Play* game_play, ClObj* arg1, ClObjTrisElem* arg2, Vec3f* arg3, ClObj* arg4, ClObjElem* arg5, Vec3f* arg6, Vec3f* arg7);
 void CollisionCheck_OCC_Tris_Vs_JntSph(struct Game_Play* game_play, CollisionCheck* arg1, ClObj* arg2, ClObj* arg3);
 void CollisionCheck_OCC_Tris_Vs_Pipe(struct Game_Play* game_play, CollisionCheck* arg1, ClObj* arg2, ClObj* arg3);
 s32 CollisionCheck_Check1ClObjNoOCC(ClObj* arg0);
 void CollisionCheck_OCC(struct Game_Play* game_play, CollisionCheck* arg1);
-s32 ClObjTrisElem_OCCClear(struct Game_Play* game_play, Tris_unk_10*);
+s32 ClObjTrisElem_OCCClear(struct Game_Play* game_play, ClObjTrisElem*);
 void ClObj_OCCClear(struct Game_Play* game_play, ClObj* arg1);
 s32 ClObjTris_OCCClear(struct Game_Play* game_play, ClObj* arg1);
 s32 CollisionCheck_setOCC(struct Game_Play* game_play, CollisionCheck* arg1, ClObj* arg2);
 void CollisionCheck_Status_ct(CollisionCheck_Status* status);
 void CollisionCheck_Status_Clear(CollisionCheck_Status* status);
 void CollisionCheck_Status_set3(CollisionCheck_Status* status, CollisionCheck_Status_set3_arg1* arg1);
-void CollisionCheck_Uty_ActorWorldPosSetPipeC(struct Actor* actor, Pipe* pipe);
-s32 CollisionCheck_Uty_setTrisPos_ad(struct Game_Play* game_play, Tris* tris, s32 arg2, ClObjTris_set5_nzm_arg3_unk_8_unk_04* arg3);
+void CollisionCheck_Uty_ActorWorldPosSetPipeC(struct Actor* actor, ClObjPipe* pipe);
+s32 CollisionCheck_Uty_setTrisPos_ad(struct Game_Play* game_play, ClObjTris* tris, s32 arg2, ClObjTrisElemAttr_Init* arg3);
 
 #endif
