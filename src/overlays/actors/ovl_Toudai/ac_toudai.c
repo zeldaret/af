@@ -15,13 +15,19 @@ void aTOU_actor_dt(Actor* thisx, PlayState* play);
 void aTOU_actor_init(Actor* thisx, PlayState* play);
 void aTOU_actor_draw(Actor* thisx, PlayState* play);
 
-#if 0
+void func_80AAB488_jp(Toudai* this, s32);
+void func_80AAB81C_jp(Toudai *this, PlayState* play UNUSED);
+void func_80AAB840_jp(Toudai *this, PlayState* play UNUSED);
+void func_80AAB894_jp(Toudai *this, PlayState* play UNUSED);
+void func_80AAB8D8_jp(Toudai *this, PlayState* play UNUSED);
+void func_80AAB918_jp(Toudai *this, s32 arg1);
+
 ActorProfile Toudai_Profile = {
-    /* */ ACTOR_TOUDAI,
+    /* */ 175, //ACTOR_TOUDAI
     /* */ ACTOR_PART_0,
     /* */ 0,
     /* */ 0x5843,
-    /* */ GAMEPLAY_KEEP,
+    /* */ 3, //GAMEPLAY_KEEP
     /* */ sizeof(Toudai),
     /* */ aTOU_actor_ct,
     /* */ aTOU_actor_dt,
@@ -29,7 +35,26 @@ ActorProfile Toudai_Profile = {
     /* */ aTOU_actor_draw,
     /* */ NULL,
 };
-#endif
+
+UNK_TYPE D_80AAC084_jp[] = {0x01000100, 0x00010100, 0x01000000, 0x01010001, 0x01000100};
+UNK_TYPE D_80AAC098_jp[] = {0x00000014, D_80AAC084_jp, 0x42700000, 0x060089C8, 0x06008B08};
+//skl
+extern BaseSkeletonR* D_80AAC0AC_jp[] = {0x0607EE1C, 0x06080A24}; //cKF_bs_r_obj_s_toudai, cKF_bs_r_obj_w_toudai
+//height_table_ct
+UNK_TYPE D_80AAC0B4_jp[] = {0x64101010, 0x10100064, 0x10101010, 0x10006410, 0x10101010, 0x00641010, 0x10101000};
+//height_table
+mCoBG_OffsetTable* D_80AAC0D0_jp[] = {D_80AAC0B4_jp, D_80AAC0B4_jp};
+//addX
+f32 D_FLT_80AAC0D8_jp[] = {-40.0f, 0.0f};
+//addZ
+f32 D_FLT_80AAC0E0_jp[] = {-40.0f, 0.0f};
+//ani
+BaseAnimationR* D_80AAC0E8_jp[] = {0x0607EE6C, 0x06080A74}; //cKF_ba_r_obj_s_toudai, cKF_ba_r_obj_w_toudai
+//process
+ToudaiActionFunc D_80AAC0F0_jp[] = {func_80AAB81C_jp, func_80AAB840_jp, func_80AAB894_jp, func_80AAB8D8_jp};
+//mdl
+Gfx* D_80AAC100_jp[] = {0x0607E188, 0x0607FD90}; //obj_s_toudai_light_model, obj_w_toudai_light_model
+Color_RGBA8 D_80AAC108_jp = {0xFF, 0xFF, 0x96, 0x78};
 
 // aTOU_fgunit_on
 // aTOU_fgunit_off
@@ -39,7 +64,7 @@ ActorProfile Toudai_Profile = {
 // aTOU_set_bgOffset
 // aTOU_color_ctrl
 // aTOU_init
-// aTOU_wait
+// aTOU_waitf
 // aTOU_lighting
 // aTOU_lightout
 // aTOU_setup_action
@@ -49,12 +74,9 @@ ActorProfile Toudai_Profile = {
 // aTOU_actor_draw_after
 // aTOU_actor_draw
 
-void func_80AAB488_jp(Toudai* this, s32);
-void func_80AAB918_jp(Toudai *this, s32 arg1);
-extern BaseSkeletonR* D_80AAC0AC_jp[];
-extern BaseAnimationR* D_80AAC0E8_jp[];
-extern ToudaiActionFunc D_80AAC0F0_jp[];
-extern UNK_TYPE D_80AAC098_jp;
+// aTOU_shadow_data
+// aTOU_shadow_vtx_fix_flg_table
+// height_table
 
 typedef enum Season {
     /* 0 */ SPRING,
@@ -91,34 +113,26 @@ void aTOU_actor_dt(Actor *thisx, PlayState *play UNUSED)
     thisx->world.pos.z += 20.0f;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Toudai/ac_toudai/func_80AAB488_jp.s")
-// void mCoBG_SetPluss5PointOffset_file(Vec3f, s32, s32, s32, u8, u8, u8, ? *, s32); /* extern */
-// extern UNK_PTR D_80AAC0D0_jp[];
-// extern Vec3f D_FLT_80AAC0D8_jp;
-// extern f32 D_FLT_80AAC0E0_jp;
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Toudai/ac_toudai/func_80AAB488_jp.s")
+//aTOU_set_bgOffset
+void func_80AAB488_jp(Toudai *this, s32 arg1)
+{
+    s32 iVar2 = 0;
+    Vec3f sp50;
+    mCoBG_OffsetTable* offsetTable = D_80AAC0D0_jp[arg1];
 
-// void func_80AAB488_jp(Toudai *this, s32 arg1)
-// {
-//     Vec3f sp50;
-//     Vec3f *var_s1;
-//     void *temp_s0;
-//     UNK_PTR var_s0;
-
-//     var_s0 = D_80AAC0D0_jp[arg1];
-//     var_s1 = &D_FLT_80AAC0E0_jp;
-//     do
-//     {
-//         sp50.z = *var_s1 + this->actor.home.pos.z;
-//         sp50.x = D_FLT_80AAC0D8_jp.x + this->actor.home.pos.x;
-//         mCoBG_SetPluss5PointOffset_file(sp50, subroutine_arg3, var_s0->unk4, var_s0->unk5, var_s0->unk6, "../ac_toudai_move.c_inc", 76);
-//         temp_s0 = var_s0 + 7;
-//         sp50.x = D_FLT_80AAC0D8_jp.y + this->actor.home.pos.x;
-//         mCoBG_SetPluss5PointOffset_file(subroutine_arg0, sp50.unk4, sp50.unk8, subroutine_arg3, temp_s0->unk4, temp_s0->unk5, temp_s0->unk6, "../ac_toudai_move.c_inc", 0x50);
-//         var_s1 += 4;
-//         var_s0 = temp_s0 + 7;
-//     } while (var_s1 != &D_80AAC0E8_jp);
-// }
-
+    do
+    {
+        sp50.z = D_FLT_80AAC0E0_jp[iVar2] + this->actor.home.pos.z;
+        sp50.x = D_FLT_80AAC0D8_jp[0] + this->actor.home.pos.x;
+        mCoBG_SetPluss5PointOffset_file(sp50, *offsetTable, "../ac_toudai_move.c_inc", 76);
+        offsetTable++;
+        sp50.x = D_FLT_80AAC0D8_jp[1] + this->actor.home.pos.x;
+        mCoBG_SetPluss5PointOffset_file(sp50, *offsetTable, "../ac_toudai_move.c_inc", 80);
+        offsetTable++;
+        iVar2++;
+    } while (iVar2 < 2);
+}
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Toudai/ac_toudai/func_80AAB60C_jp.s")
 void func_80AAB60C_jp(Toudai *this)
@@ -175,13 +189,15 @@ void func_80AAB60C_jp(Toudai *this)
 }
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Toudai/ac_toudai/func_80AAB81C_jp.s")
-void func_80AAB81C_jp(Toudai *this, UNK_TYPE arg1 UNUSED)
+//aTOU_init
+void func_80AAB81C_jp(Toudai *this, PlayState* play UNUSED)
 {
     func_80AAB918_jp(this, 1);
 }
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Toudai/ac_toudai/func_80AAB840_jp.s")
-void func_80AAB840_jp(Toudai *this, UNK_TYPE arg1 UNUSED)
+//aTOU_wait
+void func_80AAB840_jp(Toudai *this, PlayState* play UNUSED)
 {
     if ((common_data.unk10118 >= 0xFD20) || (common_data.unk10118 < 0x4650))
     {
@@ -192,7 +208,8 @@ void func_80AAB840_jp(Toudai *this, UNK_TYPE arg1 UNUSED)
 }
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Toudai/ac_toudai/func_80AAB894_jp.s")
-void func_80AAB894_jp(Toudai *this, UNK_TYPE arg1 UNUSED)
+//aTOU_lighting
+void func_80AAB894_jp(Toudai *this, PlayState* play UNUSED)
 {
     if ((common_data.unk10118 < 0xFD20) && (common_data.unk10118 >= 0x4650))
     {
@@ -201,7 +218,8 @@ void func_80AAB894_jp(Toudai *this, UNK_TYPE arg1 UNUSED)
 }
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Toudai/ac_toudai/func_80AAB8D8_jp.s")
-void func_80AAB8D8_jp(Toudai *this, UNK_TYPE arg1 UNUSED)
+//aTOU_lightout
+void func_80AAB8D8_jp(Toudai *this, PlayState* play UNUSED)
 {
     if (this->unk1E8 == 0x33)
     {

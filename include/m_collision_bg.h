@@ -4,6 +4,16 @@
 #include "ultra64.h"
 #include "z64math.h"
 
+typedef struct mCoBG_OffsetTable {
+    /* 0x00 */ u8 unitAttribute;
+    /* 0x01 */ s8 crOffset;
+    /* 0x02 */ s8 luOffset;
+    /* 0x03 */ s8 ldOffset;
+    /* 0x04 */ s8 rdOffset;
+    /* 0x05 */ s8 ruOffset;
+    /* 0x06 */ s8 slateSwitch;
+} mCoBG_OffsetTable; // size = 0x7
+
 // void func_80067430_jp();
 // void func_800674B0_jp();
 // void func_800674D8_jp();
@@ -215,7 +225,7 @@ f32 mCoBG_GetBgY_OnlyCenter_FromWpos2(Vec3f arg0, f32 arg1);
 // void func_800739FC_jp();
 // void func_80073C38_jp();
 // void func_80073CC0_jp();
-void mCoBG_SetPluss5PointOffset_file();
+void mCoBG_SetPluss5PointOffset_file(Vec3f pos, mCoBG_OffsetTable offsetData, char* file, s32 line);
 // void func_80074090_jp();
 // void func_80074174_jp();
 // void func_800741DC_jp();
