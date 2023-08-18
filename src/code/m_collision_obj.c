@@ -21,11 +21,13 @@ extern CollisionCheck_Status D_80104770_jp;
 
 extern CollisionVsFunc occ_collision_function[][3];
 
-typedef s32 (*OcClearFunc)(struct Game_Play*, Game_Play2138*);
+typedef s32 (*OcClearFunc)(struct Game_Play*, Game_Play2138_unk_08*);
 
 extern OcClearFunc OCClearFunctionTable[];
 
 extern ClObjTrisElemAttr D_801046D0_jp;
+
+extern Math3D_pipeCrossTriangle_cp_arg0 D_801046C4_jp;
 
 void CollisionCheck_workTrisElemCenter(Tris_unk_10* arg0, Vec3f* arg1) {
     arg1->x = (arg0->unk_04.unk_00.unk_00[0].x + arg0->unk_04.unk_00.unk_00[1].x + arg0->unk_04.unk_00.unk_00[2].x) * (1.0f / 3.0f);
@@ -82,7 +84,11 @@ s32 ClObjElem_set(ClObjElem* arg0, ClObjElem* arg1) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/ClObjJntSph_OCClear.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/ClObjPipeAttr_ct.s")
+s32 ClObjPipeAttr_ct(UNUSED struct Game_Play* game_play, Math3D_pipeCrossTriangle_cp_arg0* arg1) {
+    *arg1 = D_801046C4_jp;
+
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80077078_jp.s")
 
@@ -109,7 +115,7 @@ s32 ClObjPipe_set5(struct Game_Play* game_play, Pipe* pipe, struct Actor* actor,
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/ClObjPipe_OCClear.s")
 
-s32 ClObjTrisElemAttr_ct(struct Game_Play* arg0, ClObjTrisElemAttr* arg1) {
+s32 ClObjTrisElemAttr_ct(UNUSED struct Game_Play* arg0, ClObjTrisElemAttr* arg1) {
     *arg1 = D_801046D0_jp;
 
     return 1;
@@ -117,7 +123,7 @@ s32 ClObjTrisElemAttr_ct(struct Game_Play* arg0, ClObjTrisElemAttr* arg1) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80077248_jp.s")
 
-s32 ClObjTrisElemAttr_set(struct Game_Play* game_play, ClObjTrisElemAttr* arg1, ClObjTris_set5_nzm_arg3_unk_8_unk_04* arg2) {
+s32 ClObjTrisElemAttr_set(UNUSED struct Game_Play* game_play, ClObjTrisElemAttr* arg1, ClObjTris_set5_nzm_arg3_unk_8_unk_04* arg2) {
     Vec3f* var_v0;
     Vec3f* var_v1;
     f32 sp44;
@@ -169,7 +175,7 @@ s32 ClObjTris_set5_nzm(struct Game_Play* game_play, Tris* tris, Actor* actor, Cl
     ClObjTris_set5_nzm_arg3_unk_8* var_s1;
     Tris_unk_10* var_s0;
 
-    ClObj_set4(game_play, &tris->unk_00, actor, arg3);
+    ClObj_set4(game_play, &tris->unk_00, actor, &arg3->unk_0);
 
     tris->unk_0C = arg3->unk_4;
     tris->unk_10 = arg4;
@@ -258,12 +264,12 @@ void CollisionCheck_OC_JntSph_Vs_JntSph(UNUSED struct Game_Play* game_play, UNUS
     }
 
     for (var_s4 = jntSphA->unk_10; var_s4 < &jntSphA->unk_10[jntSphA->unk_0C]; var_s4++) {
-        if (!(var_s4->unk_00 & 1)) {
+        if (!(var_s4->unk_00.unk_0 & 1)) {
             continue;
         }
 
         for (var_s0 = jntSphB->unk_10; var_s0 < &jntSphB->unk_10[jntSphB->unk_0C]; var_s0++) {
-            if (!(var_s0->unk_00 & 1)) {
+            if (!(var_s0->unk_00.unk_0 & 1)) {
                 continue;
             }
 
@@ -292,7 +298,7 @@ void CollisionCheck_OC_JntSph_Vs_Pipe(UNUSED struct Game_Play* game_play, UNUSED
     for (var_s0 = jntSph->unk_10; var_s0 < &jntSph->unk_10[jntSph->unk_0C]; var_s0++) {
         f32 sp78;
 
-        if (!(var_s0->unk_00 & 1)) {
+        if (!(var_s0->unk_00.unk_0 & 1)) {
             continue;
         }
 
@@ -377,7 +383,7 @@ void CollisionCheck_OC(struct Game_Play* game_play, Game_Play2138* arg1) {
     CollisionCheck_OCC(game_play, arg1);
 }
 
-void CollisionCheck_setOCC_HitInfo(UNUSED struct Game_Play* game_play, Game_Play2138_unk_08* arg1, Tris_unk_10* arg2, UNUSED Vec3f* arg3, Game_Play2138_unk_08* arg4, UNUSED u8* arg5, UNUSED Vec3f* arg6, Vec3f* arg7) {
+void CollisionCheck_setOCC_HitInfo(UNUSED struct Game_Play* game_play, Game_Play2138_unk_08* arg1, Tris_unk_10* arg2, UNUSED Vec3f* arg3, Game_Play2138_unk_08* arg4, UNUSED ClObjElem* arg5, UNUSED Vec3f* arg6, Vec3f* arg7) {
     arg1->unk_04 = arg4->actor;
     arg1->unk_09 |= 4;
     arg2->unk_04.unk_34.x =  arg7->x;
@@ -398,12 +404,12 @@ void CollisionCheck_OCC_Tris_Vs_JntSph(struct Game_Play* game_play, UNUSED Game_
         Tris_unk_10* var_s0;
         Vec3f sp74;
 
-        if (!(var_s6->unk_00 & 1)) {
+        if (!(var_s6->unk_00.unk_0 & 1)) {
             continue;
         }
 
         for (var_s0 = tris->unk_10; var_s0 < &tris->unk_10[tris->unk_0C]; var_s0++) {
-            if (func_800DE13C_jp(&var_s6->unk_0C, &var_s0->unk_04, &sp74) != 0) {
+            if (Math3D_sphereCrossTriangle3_cp(&var_s6->unk_0C, var_s0->unk_04.unk_00.unk_00, &sp74) != 0) {
                 Vec3f sp68;
                 Vec3f sp5C;
 
@@ -431,7 +437,7 @@ void CollisionCheck_OCC_Tris_Vs_Pipe(struct Game_Play* game_play, UNUSED Game_Pl
     for (var_s0 = tris->unk_10; var_s0 < &tris->unk_10[tris->unk_0C]; var_s0++) {
         Vec3f sp68;
 
-        if (Math3D_pipeCrossTriangle_cp(&pipe->unk_0E, &var_s0->unk_04, &sp68) != 0) {
+        if (Math3D_pipeCrossTriangle_cp(&pipe->unk_0E, var_s0->unk_04.unk_00.unk_00, &sp68) != 0) {
             Vec3f sp5C;
             Vec3f sp50;
 

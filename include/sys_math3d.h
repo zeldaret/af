@@ -10,7 +10,7 @@ typedef struct Math3D_pipeCrossTriangle_cp_arg0 {
     /* 0x2 */ s16 unk_2;
     /* 0x4 */ UNK_TYPE1 unk_4[0x2];
     /* 0x6 */ Vec3s unk_6;
-} Math3D_pipeCrossTriangle_cp_arg0; // size >= 0xC
+} Math3D_pipeCrossTriangle_cp_arg0; // size = 0xC
 
 extern Vec3f ZeroVec;
 
@@ -82,10 +82,10 @@ void Math3DPlane(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, f32* arg3, f32* arg4, f3
 // void func_800DDCAC_jp();
 // void func_800DDDF4_jp();
 // void func_800DDFFC_jp();
-s32 func_800DE13C_jp(Vec3s*, Vec3f*, Vec3f*);
+s32 Math3D_sphereCrossTriangle3_cp(Vec3s*, Vec3f*, Vec3f*);
 // void func_800DE55C_jp();
 // void func_800DE618_jp();
-s32 Math3D_pipeCrossTriangle_cp(Math3D_pipeCrossTriangle_cp_arg0* arg0, Vec3f* arg1, Vec3f* arg2);
+s32 Math3D_pipeCrossTriangle_cp(Math3D_pipeCrossTriangle_cp_arg0* arg0, Vec3f* arg1, Vec3f* arg2); // TODO: change arg1 to  ClObjTris_set5_nzm_arg3_unk_8_unk_04
 // void func_800DF46C_jp();
 // void func_800DF48C_jp();
 s32 Math3D_sphereCrossSphere_cl(Vec3s* arg0, Vec3s* arg1, f32* arg2);
