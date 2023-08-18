@@ -2,6 +2,7 @@
 #define SYS_MATH_3D_H
 
 #include "ultra64.h"
+#include "z64math.h"
 #include "unk.h"
 
 typedef struct Math3D_pipeCrossTriangle_cp_arg0 {
@@ -48,7 +49,7 @@ extern Vec3f ZeroVec;
 // void func_800DB4E4_jp();
 // void func_800DBF5C_jp();
 // void func_800DC0C8_jp();
-// void func_800DC154_jp();
+void Math3DPlane(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, f32* arg3, f32* arg4, f32* arg5, f32* arg6);
 // void func_800DC268_jp();
 // void func_800DC2A8_jp();
 // void func_800DC2E4_jp();
