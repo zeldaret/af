@@ -126,7 +126,7 @@ s32 ClObjPipeAttr_dt(UNUSED struct Game_Play* game_play, UNUSED ClObjPipeAttr_se
     return 1;
 }
 
-s32 ClObjPipeAttr_set(UNUSED struct Game_Play* game_play, UNUSED ClObjPipeAttr_set_arg2* arg1, UNUSED ClObjPipeAttr_set_arg2* arg2) {
+s32 ClObjPipeAttr_set(UNUSED struct Game_Play* game_play, ClObjPipeAttr_set_arg2* arg1, ClObjPipeAttr_set_arg2* arg2) {
     *arg1 = *arg2;
     return 1;
 }
@@ -168,7 +168,9 @@ s32 ClObjTrisElemAttr_ct(UNUSED struct Game_Play* arg0, ClObjTrisElemAttr* arg1)
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80077248_jp.s")
+s32 ClObjTrisElemAttr_dt(UNUSED struct Game_Play* game_play, UNUSED ClObjTrisElemAttr* arg1) {
+    return 1;
+}
 
 s32 ClObjTrisElemAttr_set(UNUSED struct Game_Play* game_play, ClObjTrisElemAttr* arg1, ClObjTris_set5_nzm_arg3_unk_8_unk_04* arg2) {
     Vec3f* var_v0;
@@ -198,7 +200,11 @@ s32 ClObjTrisElem_ct(struct Game_Play* game_play, Tris_unk_10* arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_8007734C_jp.s")
+s32 ClObjTrisElem_dt(struct Game_Play* game_play, Tris_unk_10* arg1) {
+    ClObjTrisElemAttr_dt(game_play, &arg1->unk_04);
+
+    return 1;
+}
 
 s32 ClObjTrisElem_set(struct Game_Play* game_play, Tris_unk_10* arg1, ClObjTris_set5_nzm_arg3_unk_8* arg2) {
     ClObjElem_set(&arg1->unk_00, &arg2->unk_00);
@@ -220,7 +226,19 @@ s32 ClObjTris_ct(struct Game_Play* game_play, Tris* tris) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80077410_jp.s")
+s32 ClObjTris_dt_nzf(struct Game_Play* game_play, Tris* tris) {
+    Tris_unk_10* var_s0;
+
+    ClObj_dt(game_play, &tris->unk_00);
+
+    for (var_s0 = tris->unk_10; var_s0 < &tris->unk_10[tris->unk_0C]; var_s0++) {
+        ClObjTrisElem_dt(game_play, var_s0);
+    }
+
+    tris->unk_0C = 0;
+    tris->unk_10 = NULL;
+    return 1;
+}
 
 s32 ClObjTris_set5_nzm(struct Game_Play* game_play, Tris* tris, Actor* actor, ClObjTris_set5_nzm_arg3* arg3, Tris_unk_10* arg4) {
     ClObjTris_set5_nzm_arg3_unk_8* var_s1;
