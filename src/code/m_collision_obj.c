@@ -4,7 +4,6 @@
 #include "sys_math3d.h"
 #include "libc/math.h"
 #include "attributes.h"
-// #include "overlays/gamestates/ovl_play/m_play.h"
 #include "macros.h"
 
 typedef struct struct_mco_work {
@@ -14,27 +13,30 @@ typedef struct struct_mco_work {
 
 extern struct_mco_work mco_work;
 
-typedef void (*CollisionVsFunc)(struct Game_Play*, Game_Play2138*, ClObj*, ClObj*);
 
-extern CollisionVsFunc oc_collision_function[][3];
-
-extern CollisionCheck_Status D_80104770_jp;
-
-extern CollisionVsFunc occ_collision_function[][3];
+typedef void (*CollisionVsFunc)(struct Game_Play*, CollisionCheck*, ClObj*, ClObj*);
 
 typedef s32 (*ClearFunc)(struct Game_Play*, ClObj*);
 
+
+extern ClObj clobj_default;
+
+extern ClObjJntSphElemAttr default_jntsphelem_attr;
+
+extern Math3D_pipeCrossTriangle_cp_arg0 default_pipe_attr;
+
+extern ClObjTrisElemAttr default_clobjtriselem_attr;
+
 extern ClearFunc OCClearFunctionTable[];
+
+extern CollisionVsFunc oc_collision_function[][3];
+
+extern CollisionVsFunc occ_collision_function[][3];
 
 extern ClearFunc OCCClearFunctionTable[];
 
-extern ClObjTrisElemAttr D_801046D0_jp;
+extern CollisionCheck_Status status_org;
 
-extern Math3D_pipeCrossTriangle_cp_arg0 D_801046C4_jp;
-
-extern ClObj D_801046A0_jp;
-
-extern ClObjJntSphElemAttr D_801046AC_jp;
 
 void CollisionCheck_workTrisElemCenter(Tris_unk_10* arg0, Vec3f* arg1) {
     arg1->x = (arg0->unk_04.unk_00.unk_00[0].x + arg0->unk_04.unk_00.unk_00[1].x + arg0->unk_04.unk_00.unk_00[2].x) * (1.0f / 3.0f);
@@ -43,7 +45,7 @@ void CollisionCheck_workTrisElemCenter(Tris_unk_10* arg0, Vec3f* arg1) {
 }
 
 s32 ClObj_ct(UNUSED struct Game_Play* game_play, ClObj* arg1) {
-    *arg1 = D_801046A0_jp;
+    *arg1 = clobj_default;
 
     return 1;
 }
@@ -78,12 +80,12 @@ s32 ClObjElem_set(ClObjElem* arg0, ClObjElem* arg1) {
     return 1;
 }
 
-void ClObjElem_OCClear(UNUSED struct Game_Play* arg0, ClObjElem* arg1) {
+void ClObjElem_OCClear(UNUSED struct Game_Play* game_play, ClObjElem* arg1) {
     arg1->unk_0 &= ~0x2;
 }
 
 s32 ClObjJntSphElemAttr_ct(UNUSED struct Game_Play* game_play, ClObjJntSphElemAttr* arg1) {
-    *arg1 = D_801046AC_jp;
+    *arg1 = default_jntsphelem_attr;
 
     return 1;
 }
@@ -113,9 +115,9 @@ s32 ClObjJntSphElem_dt(struct Game_Play* game_play, JntSph_unk_10* arg1) {
     return 1;
 }
 
-s32 ClObjJntSphElem_set(struct Game_Play* game_Play, JntSph_unk_10* arg1, ClObjJntSphElem_set_arg2* arg2) {
+s32 ClObjJntSphElem_set(struct Game_Play* game_play, JntSph_unk_10* arg1, ClObjJntSphElem_set_arg2* arg2) {
     ClObjElem_set(&arg1->unk_00, &arg2->unk_0);
-    ClObjJntSphElemAttr_set(game_Play, &arg1->unk_04, &arg2->unk_2);
+    ClObjJntSphElemAttr_set(game_play, &arg1->unk_04, &arg2->unk_2);
 
     return 1;
 }
@@ -149,18 +151,18 @@ s32 ClObjJntSph_dt_nzf(struct Game_Play* game_play, JntSph* jntSph) {
     return 1;
 }
 
-s32 ClObjJntSph_set5_nzm(struct Game_Play* game_Play, JntSph* jntSph, Actor* actor, ClObjJntSph_set5_nzm_arg3* arg3, JntSph_unk_10* arg4) {
+s32 ClObjJntSph_set5_nzm(struct Game_Play* game_play, JntSph* jntSph, Actor* actor, ClObjJntSph_set5_nzm_arg3* arg3, JntSph_unk_10* arg4) {
     ClObjJntSphElem_set_arg2* var_s1;
     JntSph_unk_10* var_s0;
 
-    ClObj_set4(game_Play, &jntSph->unk_00, actor, &arg3->unk_0);
+    ClObj_set4(game_play, &jntSph->unk_00, actor, &arg3->unk_0);
 
     jntSph->unk_0C = arg3->unk_4;
     jntSph->unk_10 = arg4;
 
     for (var_s0 = jntSph->unk_10, var_s1 = arg3->unk_8; var_s0 < &jntSph->unk_10[jntSph->unk_0C]; var_s0++, var_s1++) {
-        ClObjJntSphElem_ct(game_Play, var_s0);
-        ClObjJntSphElem_set(game_Play, var_s0, var_s1);
+        ClObjJntSphElem_ct(game_play, var_s0);
+        ClObjJntSphElem_set(game_play, var_s0, var_s1);
     }
 
     return 1;
@@ -180,7 +182,7 @@ s32 ClObjJntSph_OCClear(struct Game_Play* game_play, ClObj* arg1) {
 }
 
 s32 ClObjPipeAttr_ct(UNUSED struct Game_Play* game_play, Math3D_pipeCrossTriangle_cp_arg0* arg1) {
-    *arg1 = D_801046C4_jp;
+    *arg1 = default_pipe_attr;
 
     return 1;
 }
@@ -225,8 +227,8 @@ s32 ClObjPipe_OCClear(struct Game_Play* game_play, ClObj* arg1) {
     return 1;
 }
 
-s32 ClObjTrisElemAttr_ct(UNUSED struct Game_Play* arg0, ClObjTrisElemAttr* arg1) {
-    *arg1 = D_801046D0_jp;
+s32 ClObjTrisElemAttr_ct(UNUSED struct Game_Play* game_play, ClObjTrisElemAttr* arg1) {
+    *arg1 = default_clobjtriselem_attr;
 
     return 1;
 }
@@ -335,16 +337,16 @@ s32 ClObjTris_OCClear(struct Game_Play* game_play, ClObj* arg1) {
     return 1;
 }
 
-void func_80077620_jp(struct Game_Play* game_play, Game_Play2138* arg1) {
+void CollisionCheck_ct(struct Game_Play* game_play, CollisionCheck* arg1) {
     arg1->unk_00 = 0;
     CollisionCheck_clear(game_play, arg1);
 }
 
-void CollisionCheck_dt(UNUSED struct Game_Play* game_play, UNUSED Game_Play2138* arg1) {
+void CollisionCheck_dt(UNUSED struct Game_Play* game_play, UNUSED CollisionCheck* arg1) {
 
 }
 
-void CollisionCheck_clear(UNUSED struct Game_Play* game_play, Game_Play2138* arg1) {
+void CollisionCheck_clear(UNUSED struct Game_Play* game_play, CollisionCheck* arg1) {
     ClObj** var_v0;
 
     if (arg1->unk_00 & 1) {
@@ -362,7 +364,7 @@ void CollisionCheck_clear(UNUSED struct Game_Play* game_play, Game_Play2138* arg
     }
 }
 
-s32 CollisionCheck_setOC(struct Game_Play* game_play, Game_Play2138* arg1, ClObj* arg2) {
+s32 CollisionCheck_setOC(struct Game_Play* game_play, CollisionCheck* arg1, ClObj* arg2) {
     s32 temp_v1;
 
     if (_Game_play_isPause(game_play) == 1) {
@@ -511,7 +513,7 @@ void CollisionCheck_setOC_HitInfo(ClObj* arg0, ClObjElem* arg1, Vec3f* arg2, ClO
     }
 }
 
-void CollisionCheck_OC_JntSph_Vs_JntSph(UNUSED struct Game_Play* game_play, UNUSED Game_Play2138* arg1, ClObj* arg2, ClObj* arg3) {
+void CollisionCheck_OC_JntSph_Vs_JntSph(UNUSED struct Game_Play* game_play, UNUSED CollisionCheck* arg1, ClObj* arg2, ClObj* arg3) {
     JntSph* jntSphA = (JntSph*)arg2;
     JntSph* jntSphB = (JntSph*)arg3;
     JntSph_unk_10* var_s0;
@@ -543,7 +545,7 @@ void CollisionCheck_OC_JntSph_Vs_JntSph(UNUSED struct Game_Play* game_play, UNUS
     }
 }
 
-void CollisionCheck_OC_JntSph_Vs_Pipe(UNUSED struct Game_Play* game_play, UNUSED Game_Play2138* arg1, ClObj* arg2, ClObj* arg3) {
+void CollisionCheck_OC_JntSph_Vs_Pipe(UNUSED struct Game_Play* game_play, UNUSED CollisionCheck* arg1, ClObj* arg2, ClObj* arg3) {
     JntSph* jntSph = (JntSph*)arg2;
     Pipe* pipe = (Pipe*)arg3;
     JntSph_unk_10* var_s0;
@@ -574,11 +576,11 @@ void CollisionCheck_OC_JntSph_Vs_Pipe(UNUSED struct Game_Play* game_play, UNUSED
     }
 }
 
-void CollisionCheck_OC_Pipe_Vs_JntSph(struct Game_Play* game_play, Game_Play2138* arg1, ClObj* arg2, ClObj* arg3) {
+void CollisionCheck_OC_Pipe_Vs_JntSph(struct Game_Play* game_play, CollisionCheck* arg1, ClObj* arg2, ClObj* arg3) {
     CollisionCheck_OC_JntSph_Vs_Pipe(game_play, arg1, arg3, arg2);
 }
 
-void CollisionCheck_OC_Pipe_Vs_Pipe(UNUSED struct Game_Play* game_play, UNUSED Game_Play2138* arg1, ClObj* arg2, ClObj* arg3) {
+void CollisionCheck_OC_Pipe_Vs_Pipe(UNUSED struct Game_Play* game_play, UNUSED CollisionCheck* arg1, ClObj* arg2, ClObj* arg3) {
     Pipe* pipeA = (Pipe*)arg2;
     Pipe* pipeB = (Pipe*)arg3;
     f32 sp4C;
@@ -615,7 +617,7 @@ s32 CollisionCheck_Check2ClObjNoOC(ClObj* arg0, ClObj* arg1) {
     return 0;
 }
 
-void CollisionCheck_OC(struct Game_Play* game_play, Game_Play2138* arg1) {
+void CollisionCheck_OC(struct Game_Play* game_play, CollisionCheck* arg1) {
     ClObj** var_s2;
 
     for (var_s2 = arg1->unk_08; var_s2 < &arg1->unk_08[arg1->unk_04]; var_s2++) {
@@ -652,7 +654,7 @@ void CollisionCheck_setOCC_HitInfo(UNUSED struct Game_Play* game_play, ClObj* ar
     arg2->unk_04.unk_34.z =  arg7->z;
 }
 
-void CollisionCheck_OCC_Tris_Vs_JntSph(struct Game_Play* game_play, UNUSED Game_Play2138* arg1, ClObj* arg2, ClObj* arg3) {
+void CollisionCheck_OCC_Tris_Vs_JntSph(struct Game_Play* game_play, UNUSED CollisionCheck* arg1, ClObj* arg2, ClObj* arg3) {
     JntSph_unk_10* var_s6;
     Tris* tris = (Tris*)arg2;
     JntSph* jntSph = (JntSph*)arg3;
@@ -682,7 +684,7 @@ void CollisionCheck_OCC_Tris_Vs_JntSph(struct Game_Play* game_play, UNUSED Game_
     }
 }
 
-void CollisionCheck_OCC_Tris_Vs_Pipe(struct Game_Play* game_play, UNUSED Game_Play2138* arg1, ClObj* arg2, ClObj* arg3) {
+void CollisionCheck_OCC_Tris_Vs_Pipe(struct Game_Play* game_play, UNUSED CollisionCheck* arg1, ClObj* arg2, ClObj* arg3) {
     Tris* tris = (Tris*)arg2;
     Pipe* pipe = (Pipe*)arg3;
     Tris_unk_10* var_s0;
@@ -717,7 +719,7 @@ s32 CollisionCheck_Check1ClObjNoOCC(ClObj* arg0) {
     return 0;
 }
 
-void CollisionCheck_OCC(struct Game_Play* game_play, Game_Play2138* arg1) {
+void CollisionCheck_OCC(struct Game_Play* game_play, CollisionCheck* arg1) {
     ClObj** var_s2;
 
     if (mco_work.unk_00 == 0) {
@@ -777,7 +779,7 @@ s32 ClObjTris_OCCClear(struct Game_Play* game_play, ClObj* arg1) {
     return 1;
 }
 
-s32 CollisionCheck_setOCC(struct Game_Play* game_play, Game_Play2138* arg1, ClObj* arg2) {
+s32 CollisionCheck_setOCC(struct Game_Play* game_play, CollisionCheck* arg1, ClObj* arg2) {
     s32 temp_v0;
 
     if (_Game_play_isPause(game_play) == 1) {
@@ -810,7 +812,7 @@ s32 CollisionCheck_setOCC(struct Game_Play* game_play, Game_Play2138* arg1, ClOb
 }
 
 void CollisionCheck_Status_ct(CollisionCheck_Status* status) {
-    *status = D_80104770_jp;
+    *status = status_org;
 }
 
 void CollisionCheck_Status_Clear(CollisionCheck_Status* status) {

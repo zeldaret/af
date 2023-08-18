@@ -136,6 +136,8 @@
       - [0x724930, .data, code/m_actor_dlftbls]
       - [0x726260, data, code/m_actor_shadow]
       - [0x7262C0, data, code/7262C0]
+      - [0x728340, data, code/m_collision_obj]
+      - [0x728430, data, code/728430]
       - [0x72AAC0, .data, code/m_game_dlftbls]
       - [0x72ACB0, data, code/72ACB0]
       - [0x72B7A0, data, code/m_lib]
@@ -237,6 +239,7 @@
       - { start: 0x73F4D0, type: .bss, vram: 0x8011B850, name: code/m_actor }
       - { start: 0x73F4D0, type: .bss, vram: 0x8011B890, name: code/m_actor_dlftbls }
       - { start: 0x73F4D0, type: bss, vram: 0x8011B8B0, name: code/8011B8B0 }
+      - { start: 0x73F4D0, type: bss, vram: 0x80126E70, name: code/m_collision_obj }
       - { start: 0x74AB40, type: .bss, vram: 0x80126EA0, name: code/m_common_data }
       - { start: 0x75B600, type: bss, vram: 0x80137960, name: code/80137960 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80138E50, name: code/m_debug}

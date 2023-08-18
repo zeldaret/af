@@ -387,7 +387,7 @@ void play_init(Game* gameState) {
     func_8007F858_jp(&game_play->unk_1EBC);
     initView(&game_play->unk_1938, gfxCtx);
     func_80064F48_jp(game_play);
-    func_80077620_jp(game_play, &game_play->unk_2138);
+    CollisionCheck_ct(game_play, &game_play->unk_2138);
     func_8006BB64_jp();
     func_8006C8D0_jp();
     game_play->unk_1DAC = -1;
