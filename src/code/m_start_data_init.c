@@ -184,8 +184,8 @@ void mSDI_PullTreeUnderPlayerBlock(void) {
     mSDI_PullTreeUT(&items[16 + 8]);
 }
 
-s32 mSDI_StartInitNew(Game* game_, s32 player_no, s32 malloc_flag) {
-    Game_Play* game_play = (Game_Play*)game_;
+s32 mSDI_StartInitNew(Game* game2, s32 player_no, s32 malloc_flag) {
+    Game_Play* game_play = (Game_Play*)game2;
     Private_c* priv;
     Private_c* priv_p;
     Game* game = NULL;
@@ -203,7 +203,7 @@ s32 mSDI_StartInitNew(Game* game_, s32 player_no, s32 malloc_flag) {
 
     decide_fruit(&common_data.fruit);
     if (malloc_flag == 0) {
-        game = game_;
+        game = game2;
     }
 
     bzero(&common_data.deposit, sizeof(common_data.deposit));
@@ -260,10 +260,10 @@ s32 mSDI_StartInitNew(Game* game_, s32 player_no, s32 malloc_flag) {
     return TRUE;
 }
 
-s32 mSDI_StartInitFrom(Game* game_, s32 player_no, s32 malloc_flag) {
-    Game_Play* game_play = (Game_Play*)game_;
+s32 mSDI_StartInitFrom(Game* game2, s32 player_no, s32 malloc_flag) {
+    Game_Play* game_play = (Game_Play*)game2;
     Private_c* priv;
-    Game* game = game_;
+    Game* game = game2;
     s32 res = FALSE;
 
     if (malloc_flag != 0) {
@@ -347,8 +347,8 @@ s32 mSDI_StartInitNewPlayer(Game* game, s32 player_no, s32 malloc_flag) {
     return res;
 }
 
-s32 mSDI_StartInitPak(Game* game_, s32 player_no, s32 malloc_flag) {
-    Game* game = game_;
+s32 mSDI_StartInitPak(Game* game2, s32 player_no, s32 malloc_flag) {
+    Game* game = game2;
     Game_Play* game_play = (Game_Play*)game;
     UNUSED s32 pad;
     s32 res = FALSE;
