@@ -81,13 +81,19 @@ void ClObjElem_OCClear(UNUSED struct Game_Play* arg0, ClObjElem* arg1) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80076C78_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80076CC0_jp.s")
+s32 func_80076CC0_jp(UNUSED struct Game_Play* game_play, UNUSED UNK_PTR arg1) {
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80076CD4_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80076D2C_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80076D68_jp.s")
+
+s32 func_80076D68_jp(struct Game_Play* game_play, JntSph_unk_10* arg1) {
+    func_80076CC0_jp(game_play, &arg1->unk_04);
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80076D90_jp.s")
 
@@ -99,7 +105,20 @@ s32 ClObjJntSphElem_OCClear(struct Game_Play* game_play, JntSph_unk_10* arg1) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80076E00_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80076E2C_jp.s")
+s32 func_80076E2C_jp(struct Game_Play* game_play, JntSph* jntSph) {
+    JntSph_unk_10* var_s0;
+
+    ClObj_dt(game_play, &jntSph->unk_00);
+
+    for (var_s0 = jntSph->unk_10; var_s0 < &jntSph->unk_10[jntSph->unk_0C]; var_s0++) {
+        func_80076D68_jp(game_play, var_s0);
+    }
+
+    jntSph->unk_0C = 0;
+    jntSph->unk_10 = NULL;
+
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_collision_obj/func_80076ED0_jp.s")
 
