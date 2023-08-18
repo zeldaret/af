@@ -15,7 +15,7 @@
 // void func_80084CA4_jp();
 // void func_80084CD8_jp();
 // void func_80084D08_jp();
-// void func_80084DA4_jp();
+void func_80084DA4_jp(void);
 // void func_80084DE0_jp();
 // void mFAs_PrintFieldAssessment();
 

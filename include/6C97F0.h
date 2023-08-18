@@ -14,7 +14,7 @@
 // void func_800A6384_jp();
 // void func_800A63F8_jp();
 // void func_800A6450_jp();
-// void func_800A6548_jp();
+void func_800A6548_jp(void);
 void func_800A65C4_jp(void);
 
 #endif
