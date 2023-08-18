@@ -57,6 +57,7 @@ s32 ClObj_set4(UNUSED struct Game_Play* game_play, ClObj* arg1, struct Actor* ac
     arg1->unk_08 = arg3->unk_0;
     arg1->unk_09 = arg3->unk_1;
     arg1->unk_0A = arg3->unk_2;
+
     return 1;
 }
 
@@ -81,20 +82,17 @@ void ClObjElem_OCClear(UNUSED struct Game_Play* arg0, ClObjElem* arg1) {
     arg1->unk_0 &= ~0x2;
 }
 
-// ClObjJntSphElemAttr_ct?
-s32 func_80076C78_jp(UNUSED struct Game_Play* game_play, ClObjJntSphElemAttr* arg1) {
+s32 ClObjJntSphElemAttr_ct(UNUSED struct Game_Play* game_play, ClObjJntSphElemAttr* arg1) {
     *arg1 = D_801046AC_jp;
 
     return 1;
 }
 
-// ClObjJntSphElemAttr_dt?
-s32 func_80076CC0_jp(UNUSED struct Game_Play* game_play, UNUSED ClObjJntSphElemAttr* arg1) {
+s32 ClObjJntSphElemAttr_dt(UNUSED struct Game_Play* game_play, UNUSED ClObjJntSphElemAttr* arg1) {
     return 1;
 }
 
-// ClObjJntSphElemAttr_set?
-s32 func_80076CD4_jp(UNUSED struct Game_Play* game_play, ClObjJntSphElemAttr* arg1, ClObjJntSphElemAttr_set_arg2* arg2) {
+s32 ClObjJntSphElemAttr_set(UNUSED struct Game_Play* game_play, ClObjJntSphElemAttr* arg1, ClObjJntSphElemAttr_set_arg2* arg2) {
     arg1->unk_14 = arg2->unk_0;
     arg1->unk_00 = arg2->unk_2;
     arg1->unk_10 = arg2->unk_A * 0.01f;
@@ -102,23 +100,22 @@ s32 func_80076CD4_jp(UNUSED struct Game_Play* game_play, ClObjJntSphElemAttr* ar
     return 1;
 }
 
-// ClObjJntSphElem_ct?
-s32 func_80076D2C_jp(struct Game_Play* game_play, JntSph_unk_10* arg1) {
+s32 ClObjJntSphElem_ct(struct Game_Play* game_play, JntSph_unk_10* arg1) {
     ClObjElem_ct(&arg1->unk_00);
-    func_80076C78_jp(game_play, &arg1->unk_04);
+    ClObjJntSphElemAttr_ct(game_play, &arg1->unk_04);
+
     return 1;
 }
 
-// ClObjJntSphElem_dt?
-s32 func_80076D68_jp(struct Game_Play* game_play, JntSph_unk_10* arg1) {
-    func_80076CC0_jp(game_play, &arg1->unk_04);
+s32 ClObjJntSphElem_dt(struct Game_Play* game_play, JntSph_unk_10* arg1) {
+    ClObjJntSphElemAttr_dt(game_play, &arg1->unk_04);
+
     return 1;
 }
 
-// ClObjJntSphElem_set?
-s32 func_80076D90_jp(struct Game_Play* game_Play, JntSph_unk_10* arg1, ClObjJntSphElem_set_arg2* arg2) {
+s32 ClObjJntSphElem_set(struct Game_Play* game_Play, JntSph_unk_10* arg1, ClObjJntSphElem_set_arg2* arg2) {
     ClObjElem_set(&arg1->unk_00, &arg2->unk_0);
-    func_80076CD4_jp(game_Play, &arg1->unk_04, &arg2->unk_2);
+    ClObjJntSphElemAttr_set(game_Play, &arg1->unk_04, &arg2->unk_2);
 
     return 1;
 }
@@ -129,8 +126,7 @@ s32 ClObjJntSphElem_OCClear(struct Game_Play* game_play, JntSph_unk_10* arg1) {
     return 1;
 }
 
-// ClObjJntSph_ct?
-s32 func_80076E00_jp(struct Game_Play* game_play, JntSph* jntSph) {
+s32 ClObjJntSph_ct(struct Game_Play* game_play, JntSph* jntSph) {
     ClObj_ct(game_play, &jntSph->unk_00);
     jntSph->unk_0C = 0;
     jntSph->unk_10 = NULL;
@@ -138,14 +134,13 @@ s32 func_80076E00_jp(struct Game_Play* game_play, JntSph* jntSph) {
     return 1;
 }
 
-// ClObjJntSph_dt_nzf?
-s32 func_80076E2C_jp(struct Game_Play* game_play, JntSph* jntSph) {
+s32 ClObjJntSph_dt_nzf(struct Game_Play* game_play, JntSph* jntSph) {
     JntSph_unk_10* var_s0;
 
     ClObj_dt(game_play, &jntSph->unk_00);
 
     for (var_s0 = jntSph->unk_10; var_s0 < &jntSph->unk_10[jntSph->unk_0C]; var_s0++) {
-        func_80076D68_jp(game_play, var_s0);
+        ClObjJntSphElem_dt(game_play, var_s0);
     }
 
     jntSph->unk_0C = 0;
@@ -154,8 +149,7 @@ s32 func_80076E2C_jp(struct Game_Play* game_play, JntSph* jntSph) {
     return 1;
 }
 
-// ClObjJntSph_set5_nzm?
-s32 func_80076ED0_jp(struct Game_Play* game_Play, JntSph* jntSph, Actor* actor, ClObjJntSph_set5_nzm_arg3* arg3, JntSph_unk_10* arg4) {
+s32 ClObjJntSph_set5_nzm(struct Game_Play* game_Play, JntSph* jntSph, Actor* actor, ClObjJntSph_set5_nzm_arg3* arg3, JntSph_unk_10* arg4) {
     ClObjJntSphElem_set_arg2* var_s1;
     JntSph_unk_10* var_s0;
 
@@ -165,8 +159,8 @@ s32 func_80076ED0_jp(struct Game_Play* game_Play, JntSph* jntSph, Actor* actor, 
     jntSph->unk_10 = arg4;
 
     for (var_s0 = jntSph->unk_10, var_s1 = arg3->unk_8; var_s0 < &jntSph->unk_10[jntSph->unk_0C]; var_s0++, var_s1++) {
-        func_80076D2C_jp(game_Play, var_s0);
-        func_80076D90_jp(game_Play, var_s0, var_s1);
+        ClObjJntSphElem_ct(game_Play, var_s0);
+        ClObjJntSphElem_set(game_Play, var_s0, var_s1);
     }
 
     return 1;
@@ -292,6 +286,7 @@ s32 ClObjTris_ct(struct Game_Play* game_play, Tris* tris) {
     ClObj_ct(game_play, &tris->unk_00);
     tris->unk_0C = 0;
     tris->unk_10 = NULL;
+
     return 1;
 }
 
@@ -306,6 +301,7 @@ s32 ClObjTris_dt_nzf(struct Game_Play* game_play, Tris* tris) {
 
     tris->unk_0C = 0;
     tris->unk_10 = NULL;
+
     return 1;
 }
 
