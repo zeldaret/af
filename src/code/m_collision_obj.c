@@ -7,8 +7,8 @@
 #include "macros.h"
 
 typedef struct struct_mco_work {
-    /* 0x00 */ s32 unk_00;
-    /* 0x04 */ ClObj* unk_04[10];
+    /* 0x00 */ s32 count;
+    /* 0x04 */ ClObj* coliders[10];
 } struct_mco_work; // size = 0x2C
 
 extern struct_mco_work mco_work;
@@ -39,49 +39,50 @@ extern CollisionCheck_Status status_org;
 
 
 void CollisionCheck_workTrisElemCenter(ClObjTrisElem* arg0, Vec3f* arg1) {
-    arg1->x = (arg0->unk_04.unk_00.unk_00.vertices[0].x + arg0->unk_04.unk_00.unk_00.vertices[1].x + arg0->unk_04.unk_00.unk_00.vertices[2].x) * (1.0f / 3.0f);
-    arg1->y = (arg0->unk_04.unk_00.unk_00.vertices[0].y + arg0->unk_04.unk_00.unk_00.vertices[1].y + arg0->unk_04.unk_00.unk_00.vertices[2].y) * (1.0f / 3.0f);
-    arg1->z = (arg0->unk_04.unk_00.unk_00.vertices[0].z + arg0->unk_04.unk_00.unk_00.vertices[1].z + arg0->unk_04.unk_00.unk_00.vertices[2].z) * (1.0f / 3.0f);
+    arg1->x = (arg0->attr.unk_00.unk_00.vertices[0].x + arg0->attr.unk_00.unk_00.vertices[1].x + arg0->attr.unk_00.unk_00.vertices[2].x) * (1.0f / 3.0f);
+    arg1->y = (arg0->attr.unk_00.unk_00.vertices[0].y + arg0->attr.unk_00.unk_00.vertices[1].y + arg0->attr.unk_00.unk_00.vertices[2].y) * (1.0f / 3.0f);
+    arg1->z = (arg0->attr.unk_00.unk_00.vertices[0].z + arg0->attr.unk_00.unk_00.vertices[1].z + arg0->attr.unk_00.unk_00.vertices[2].z) * (1.0f / 3.0f);
 }
 
-s32 ClObj_ct(UNUSED struct Game_Play* game_play, ClObj* arg1) {
-    *arg1 = clobj_default;
+s32 ClObj_ct(UNUSED struct Game_Play* game_play, ClObj* cl) {
+    *cl = clobj_default;
 
     return 1;
 }
 
-s32 ClObj_dt(UNUSED struct Game_Play* game_play, UNUSED ClObj* arg1) {
+s32 ClObj_dt(UNUSED struct Game_Play* game_play, UNUSED ClObj* cl) {
     return 1;
 }
 
-s32 ClObj_set4(UNUSED struct Game_Play* game_play, ClObj* arg1, struct Actor* actor, ClObj_Properties* arg3) {
-    arg1->actor = actor;
-    arg1->prop.ocFlags1 = arg3->ocFlags1;
-    arg1->prop.ocFlags2 = arg3->ocFlags2;
-    arg1->prop.shape = arg3->shape;
+s32 ClObj_set4(UNUSED struct Game_Play* game_play, ClObj* cl, struct Actor* actor, ClObj_Properties* prop) {
+    cl->actor = actor;
+    cl->prop.ocFlags1 = prop->ocFlags1;
+    cl->prop.ocFlags2 = prop->ocFlags2;
+    cl->prop.shape = prop->shape;
 
     return 1;
 }
 
-void ClObj_OCClear(UNUSED struct Game_Play* game_play, ClObj* arg1) {
-    arg1->unk_4 = NULL;
-    arg1->prop.ocFlags1 &= ~OC1_2;
-    arg1->prop.ocFlags2 &= ~OC2_1;
+void ClObj_OCClear(UNUSED struct Game_Play* game_play, ClObj* cl) {
+    cl->unk_4 = NULL;
+    cl->prop.ocFlags1 &= ~OC1_2;
+    cl->prop.ocFlags2 &= ~OC2_1;
 }
 
 s32 ClObjElem_ct(ClObjElem* arg0) {
-    arg0->unk_0 = 0;
+    arg0->flags = ELEM_FLAG_NONE;
+
     return 1;
 }
 
-s32 ClObjElem_set(ClObjElem* arg0, ClObjElem* arg1) {
-    arg0->unk_0 = arg1->unk_0;
+s32 ClObjElem_set(ClObjElem* dst, ClObjElem* src) {
+    dst->flags = src->flags;
 
     return 1;
 }
 
 void ClObjElem_OCClear(UNUSED struct Game_Play* game_play, ClObjElem* arg1) {
-    arg1->unk_0 &= ~0x2;
+    arg1->flags &= ~ELEM_FLAG_2;
 }
 
 s32 ClObjJntSphElemAttr_ct(UNUSED struct Game_Play* game_play, ClObjJntSphElemAttr* arg1) {
@@ -102,28 +103,28 @@ s32 ClObjJntSphElemAttr_set(UNUSED struct Game_Play* game_play, ClObjJntSphElemA
     return 1;
 }
 
-s32 ClObjJntSphElem_ct(struct Game_Play* game_play, ClObjJntSphElem* arg1) {
-    ClObjElem_ct(&arg1->unk_00);
-    ClObjJntSphElemAttr_ct(game_play, &arg1->unk_04);
+s32 ClObjJntSphElem_ct(struct Game_Play* game_play, ClObjJntSphElem* elem) {
+    ClObjElem_ct(&elem->elem);
+    ClObjJntSphElemAttr_ct(game_play, &elem->attr);
 
     return 1;
 }
 
-s32 ClObjJntSphElem_dt(struct Game_Play* game_play, ClObjJntSphElem* arg1) {
-    ClObjJntSphElemAttr_dt(game_play, &arg1->unk_04);
+s32 ClObjJntSphElem_dt(struct Game_Play* game_play, ClObjJntSphElem* elem) {
+    ClObjJntSphElemAttr_dt(game_play, &elem->attr);
 
     return 1;
 }
 
-s32 ClObjJntSphElem_set(struct Game_Play* game_play, ClObjJntSphElem* arg1, ClObjJntSphElem_Init* arg2) {
-    ClObjElem_set(&arg1->unk_00, &arg2->unk_0);
-    ClObjJntSphElemAttr_set(game_play, &arg1->unk_04, &arg2->unk_2);
+s32 ClObjJntSphElem_set(struct Game_Play* game_play, ClObjJntSphElem* elem, ClObjJntSphElem_Init* init) {
+    ClObjElem_set(&elem->elem, &init->unk_0);
+    ClObjJntSphElemAttr_set(game_play, &elem->attr, &init->unk_2);
 
     return 1;
 }
 
-s32 ClObjJntSphElem_OCClear(struct Game_Play* game_play, ClObjJntSphElem* arg1) {
-    ClObjElem_OCClear(game_play, &arg1->unk_00);
+s32 ClObjJntSphElem_OCClear(struct Game_Play* game_play, ClObjJntSphElem* elem) {
+    ClObjElem_OCClear(game_play, &elem->elem);
 
     return 1;
 }
@@ -151,48 +152,48 @@ s32 ClObjJntSph_dt_nzf(struct Game_Play* game_play, ClObjJntSph* colJntSph) {
     return 1;
 }
 
-s32 ClObjJntSph_set5_nzm(struct Game_Play* game_play, ClObjJntSph* colJntSph, Actor* actor, ClObjJntSph_Init* arg3, ClObjJntSphElem* arg4) {
-    ClObjJntSphElem_Init* var_s1;
-    ClObjJntSphElem* var_s0;
+s32 ClObjJntSph_set5_nzm(struct Game_Play* game_play, ClObjJntSph* colJntSph, Actor* actor, ClObjJntSph_Init* init, ClObjJntSphElem elements[]) {
+    ClObjJntSphElem_Init* elemInit;
+    ClObjJntSphElem* elem;
 
-    ClObj_set4(game_play, &colJntSph->base, actor, &arg3->unk_0);
+    ClObj_set4(game_play, &colJntSph->base, actor, &init->prop);
 
-    colJntSph->count = arg3->unk_4;
-    colJntSph->elements = arg4;
+    colJntSph->count = init->count;
+    colJntSph->elements = elements;
 
-    for (var_s0 = colJntSph->elements, var_s1 = arg3->unk_8; var_s0 < &colJntSph->elements[colJntSph->count]; var_s0++, var_s1++) {
-        ClObjJntSphElem_ct(game_play, var_s0);
-        ClObjJntSphElem_set(game_play, var_s0, var_s1);
+    for (elem = colJntSph->elements, elemInit = init->elements; elem < &colJntSph->elements[colJntSph->count]; elem++, elemInit++) {
+        ClObjJntSphElem_ct(game_play, elem);
+        ClObjJntSphElem_set(game_play, elem, elemInit);
     }
 
     return 1;
 }
 
-s32 ClObjJntSph_OCClear(struct Game_Play* game_play, ClObj* arg1) {
-    ClObjJntSph* colJntSph = (ClObjJntSph*)arg1;
-    ClObjJntSphElem* var_s0;
+s32 ClObjJntSph_OCClear(struct Game_Play* game_play, ClObj* cl) {
+    ClObjJntSph* colJntSph = (ClObjJntSph*)cl;
+    ClObjJntSphElem* elem;
 
     ClObj_OCClear(game_play, &colJntSph->base);
 
-    for (var_s0 = colJntSph->elements; var_s0 < &colJntSph->elements[colJntSph->count]; var_s0++) {
-        ClObjJntSphElem_OCClear(game_play, var_s0);
+    for (elem = colJntSph->elements; elem < &colJntSph->elements[colJntSph->count]; elem++) {
+        ClObjJntSphElem_OCClear(game_play, elem);
     }
 
     return 1;
 }
 
-s32 ClObjPipeAttr_ct(UNUSED struct Game_Play* game_play, ClObjPipeAttr* arg1) {
-    *arg1 = default_pipe_attr;
+s32 ClObjPipeAttr_ct(UNUSED struct Game_Play* game_play, ClObjPipeAttr* attr) {
+    *attr = default_pipe_attr;
 
     return 1;
 }
 
-s32 ClObjPipeAttr_dt(UNUSED struct Game_Play* game_play, UNUSED ClObjPipeAttr* arg1) {
+s32 ClObjPipeAttr_dt(UNUSED struct Game_Play* game_play, UNUSED ClObjPipeAttr* attr) {
     return 1;
 }
 
-s32 ClObjPipeAttr_set(UNUSED struct Game_Play* game_play, ClObjPipeAttr* arg1, ClObjPipeAttr* arg2) {
-    *arg1 = *arg2;
+s32 ClObjPipeAttr_set(UNUSED struct Game_Play* game_play, ClObjPipeAttr* dst, ClObjPipeAttr* src) {
+    *dst = *src;
 
     return 1;
 }
@@ -212,10 +213,10 @@ s32 ClObjPipe_dt(struct Game_Play* game_play, ClObjPipe* colPipe) {
     return 1;
 }
 
-s32 ClObjPipe_set5(struct Game_Play* game_play, ClObjPipe* colPipe, struct Actor* actor, ClObjPipe_Init* arg3) {
-    ClObj_set4(game_play, &colPipe->base, actor, &arg3->unk_0);
-    ClObjElem_set(&colPipe->element, &arg3->unk_3);
-    ClObjPipeAttr_set(game_play, &colPipe->attribute, &arg3->unk_4);
+s32 ClObjPipe_set5(struct Game_Play* game_play, ClObjPipe* colPipe, struct Actor* actor, ClObjPipe_Init* init) {
+    ClObj_set4(game_play, &colPipe->base, actor, &init->prop);
+    ClObjElem_set(&colPipe->element, &init->elem);
+    ClObjPipeAttr_set(game_play, &colPipe->attribute, &init->attr);
     return 1;
 }
 
@@ -260,27 +261,27 @@ s32 ClObjTrisElemAttr_set(UNUSED struct Game_Play* game_play, ClObjTrisElemAttr*
 }
 
 s32 ClObjTrisElem_ct(struct Game_Play* game_play, ClObjTrisElem* arg1) {
-    ClObjElem_ct(&arg1->unk_00);
-    ClObjTrisElemAttr_ct(game_play, &arg1->unk_04);
+    ClObjElem_ct(&arg1->elem);
+    ClObjTrisElemAttr_ct(game_play, &arg1->attr);
 
     return 1;
 }
 
 s32 ClObjTrisElem_dt(struct Game_Play* game_play, ClObjTrisElem* arg1) {
-    ClObjTrisElemAttr_dt(game_play, &arg1->unk_04);
+    ClObjTrisElemAttr_dt(game_play, &arg1->attr);
 
     return 1;
 }
 
-s32 ClObjTrisElem_set(struct Game_Play* game_play, ClObjTrisElem* arg1, ClObjTris_set5_nzm_arg3_unk_8* arg2) {
-    ClObjElem_set(&arg1->unk_00, &arg2->unk_00);
-    ClObjTrisElemAttr_set(game_play, &arg1->unk_04, &arg2->unk_04);
+s32 ClObjTrisElem_set(struct Game_Play* game_play, ClObjTrisElem* arg1, ClObjTrisElem_Init* arg2) {
+    ClObjElem_set(&arg1->elem, &arg2->elem);
+    ClObjTrisElemAttr_set(game_play, &arg1->attr, &arg2->attr);
 
     return 1;
 }
 
 s32 ClObjTrisElem_OCClear(struct Game_Play* game_play, ClObjTrisElem* arg1) {
-    ClObjElem_OCClear(game_play, &arg1->unk_00);
+    ClObjElem_OCClear(game_play, &arg1->elem);
 
     return 1;
 }
@@ -308,16 +309,16 @@ s32 ClObjTris_dt_nzf(struct Game_Play* game_play, ClObjTris* colTris) {
     return 1;
 }
 
-s32 ClObjTris_set5_nzm(struct Game_Play* game_play, ClObjTris* colTris, Actor* actor, ClObjTris_set5_nzm_arg3* arg3, ClObjTrisElem* arg4) {
-    ClObjTris_set5_nzm_arg3_unk_8* var_s1;
+s32 ClObjTris_set5_nzm(struct Game_Play* game_play, ClObjTris* colTris, Actor* actor, ClObjTris_Init* arg3, ClObjTrisElem* elements) {
+    ClObjTrisElem_Init* var_s1;
     ClObjTrisElem* var_s0;
 
-    ClObj_set4(game_play, &colTris->base, actor, &arg3->unk_0);
+    ClObj_set4(game_play, &colTris->base, actor, &arg3->prop);
 
-    colTris->count = arg3->unk_4;
-    colTris->elements = arg4;
+    colTris->count = arg3->count;
+    colTris->elements = elements;
 
-    for (var_s0 = arg4, var_s1 = arg3->unk_8; var_s0 <  &colTris->elements[colTris->count]; var_s0++, var_s1++) {
+    for (var_s0 = elements, var_s1 = arg3->elem; var_s0 <  &colTris->elements[colTris->count]; var_s0++, var_s1++) {
         ClObjTrisElem_ct(game_play, var_s0);
         ClObjTrisElem_set(game_play, var_s0, var_s1);
     }
@@ -325,8 +326,8 @@ s32 ClObjTris_set5_nzm(struct Game_Play* game_play, ClObjTris* colTris, Actor* a
     return 1;
 }
 
-s32 ClObjTris_OCClear(struct Game_Play* game_play, ClObj* arg1) {
-    ClObjTris* colTris = (ClObjTris*)arg1;
+s32 ClObjTris_OCClear(struct Game_Play* game_play, ClObj* cl) {
+    ClObjTris* colTris = (ClObjTris*)cl;
     ClObjTrisElem* var_s0;
 
     ClObj_OCClear(game_play, &colTris->base);
@@ -338,13 +339,12 @@ s32 ClObjTris_OCClear(struct Game_Play* game_play, ClObj* arg1) {
     return 1;
 }
 
-void CollisionCheck_ct(struct Game_Play* game_play, CollisionCheck* arg1) {
-    arg1->unk_00 = 0;
-    CollisionCheck_clear(game_play, arg1);
+void CollisionCheck_ct(struct Game_Play* game_play, CollisionCheck* colCheck) {
+    colCheck->unk_00 = 0;
+    CollisionCheck_clear(game_play, colCheck);
 }
 
 void CollisionCheck_dt(UNUSED struct Game_Play* game_play, UNUSED CollisionCheck* arg1) {
-
 }
 
 void CollisionCheck_clear(UNUSED struct Game_Play* game_play, CollisionCheck* arg1) {
@@ -359,8 +359,8 @@ void CollisionCheck_clear(UNUSED struct Game_Play* game_play, CollisionCheck* ar
         *var_v0 = NULL;
     }
 
-    mco_work.unk_00 = 0;
-    for (var_v0 = mco_work.unk_04; var_v0 < &mco_work.unk_04[ARRAY_COUNT(mco_work.unk_04)]; var_v0++) {
+    mco_work.count = 0;
+    for (var_v0 = mco_work.coliders; var_v0 < &mco_work.coliders[ARRAY_COUNT(mco_work.coliders)]; var_v0++) {
         *var_v0 = NULL;
     }
 }
@@ -394,20 +394,20 @@ s32 CollisionCheck_setOC(struct Game_Play* game_play, CollisionCheck* arg1, ClOb
     return temp_v1;
 }
 
-s32 get_type(u8 arg0) {
-    if (arg0 == 0xFF) {
-        return 0;
+ColMassType get_type(u8 arg0) {
+    if (arg0 == MASS_IMMOVABLE) {
+        return MASSTYPE_IMMOVABLE;
     }
 
-    if (arg0 == 0xFE) {
-        return 1;
+    if (arg0 == MASS_HEAVY) {
+        return MASSTYPE_HEAVY;
     }
 
-    return 2;
+    return MASSTYPE_NORMAL;
 }
 
 void CollisionCheck_setOC_HitInfo(ClObj* arg0, ClObjElem* arg1, Vec3f* arg2, ClObj* arg3, ClObjElem* arg4, Vec3f* arg5, f32 arg6) {
-    f32 temp_fa1; // sp4C
+    f32 temp_fa1;
     f32 temp_fv0_2;
     f32 temp_ft5;
     f32 sp40;
@@ -417,17 +417,14 @@ void CollisionCheck_setOC_HitInfo(ClObj* arg0, ClObjElem* arg1, Vec3f* arg2, ClO
     f32 var_ft4;
     f32 var_fv1;
     s32 temp_v0;
-    Actor* temp_t0; // sp24
-    Actor* temp_t1; // sp20
-    UNUSED s32 pad[1];
+    Actor* temp_t0 = arg0->actor;
+    Actor* temp_t1 = arg3->actor;
+    UNUSED s32 pad;
     s32 sp18;
-
-    temp_t0 = arg0->actor;
-    temp_t1 = arg3->actor;
 
     arg0->unk_4 = temp_t1;
     arg0->prop.ocFlags1 |= OC1_2;
-    arg1->unk_0 |= 2;
+    arg1->flags |= ELEM_FLAG_2;
 
     if (arg3->prop.ocFlags2 & OC2_TYPE_8) {
         arg0->prop.ocFlags2 |= OC2_1;
@@ -435,7 +432,7 @@ void CollisionCheck_setOC_HitInfo(ClObj* arg0, ClObjElem* arg1, Vec3f* arg2, ClO
 
     arg3->unk_4 = temp_t0;
     arg3->prop.ocFlags1 |= OC1_2;
-    arg4->unk_0 |= 2;
+    arg4->flags |= ELEM_FLAG_2;
     if (arg0->prop.ocFlags2 & OC2_TYPE_8) {
         arg3->prop.ocFlags2 |= OC2_1;
     }
@@ -514,9 +511,9 @@ void CollisionCheck_setOC_HitInfo(ClObj* arg0, ClObjElem* arg1, Vec3f* arg2, ClO
     }
 }
 
-void CollisionCheck_OC_JntSph_Vs_JntSph(UNUSED struct Game_Play* game_play, UNUSED CollisionCheck* arg1, ClObj* arg2, ClObj* arg3) {
-    ClObjJntSph* jntSphA = (ClObjJntSph*)arg2;
-    ClObjJntSph* jntSphB = (ClObjJntSph*)arg3;
+void CollisionCheck_OC_JntSph_Vs_JntSph(UNUSED struct Game_Play* game_play, UNUSED CollisionCheck* arg1, ClObj* cl1, ClObj* cl2) {
+    ClObjJntSph* jntSphA = (ClObjJntSph*)cl1;
+    ClObjJntSph* jntSphB = (ClObjJntSph*)cl2;
     ClObjJntSphElem* var_s0;
     ClObjJntSphElem* var_s4;
     f32 sp74;
@@ -528,51 +525,51 @@ void CollisionCheck_OC_JntSph_Vs_JntSph(UNUSED struct Game_Play* game_play, UNUS
     }
 
     for (var_s4 = jntSphA->elements; var_s4 < &jntSphA->elements[jntSphA->count]; var_s4++) {
-        if (!(var_s4->unk_00.unk_0 & 1)) {
+        if (!(var_s4->elem.flags & ELEM_FLAG_1)) {
             continue;
         }
 
         for (var_s0 = jntSphB->elements; var_s0 < &jntSphB->elements[jntSphB->count]; var_s0++) {
-            if (!(var_s0->unk_00.unk_0 & 1)) {
+            if (!(var_s0->elem.flags & ELEM_FLAG_1)) {
                 continue;
             }
 
-            if (Math3D_sphereCrossSphere_cl(&var_s4->unk_04.unk_08, &var_s0->unk_04.unk_08, &sp74) == 1) {
-                xyz_t_move_s_xyz(&sp68, &var_s4->unk_04.unk_08.center);
-                xyz_t_move_s_xyz(&sp5C, &var_s0->unk_04.unk_08.center);
-                CollisionCheck_setOC_HitInfo(&jntSphA->base, &var_s4->unk_00, &sp68, &jntSphB->base, &var_s0->unk_00, &sp5C, sp74);
+            if (Math3D_sphereCrossSphere_cl(&var_s4->attr.unk_08, &var_s0->attr.unk_08, &sp74) == 1) {
+                xyz_t_move_s_xyz(&sp68, &var_s4->attr.unk_08.center);
+                xyz_t_move_s_xyz(&sp5C, &var_s0->attr.unk_08.center);
+                CollisionCheck_setOC_HitInfo(&jntSphA->base, &var_s4->elem, &sp68, &jntSphB->base, &var_s0->elem, &sp5C, sp74);
             }
         }
     }
 }
 
-void CollisionCheck_OC_JntSph_Vs_Pipe(UNUSED struct Game_Play* game_play, UNUSED CollisionCheck* arg1, ClObj* arg2, ClObj* arg3) {
-    ClObjJntSph* colJntSph = (ClObjJntSph*)arg2;
-    ClObjPipe* colPipe = (ClObjPipe*)arg3;
+void CollisionCheck_OC_JntSph_Vs_Pipe(UNUSED struct Game_Play* game_play, UNUSED CollisionCheck* arg1, ClObj* cl1, ClObj* cl2) {
+    ClObjJntSph* colJntSph = (ClObjJntSph*)cl1;
+    ClObjPipe* colPipe = (ClObjPipe*)cl2;
     ClObjJntSphElem* var_s0;
 
     if ((colJntSph->count <= 0) || (colJntSph->elements == NULL)) {
         return;
     }
 
-    if (!(colJntSph->base.prop.ocFlags1 & OC1_1) || !(colPipe->base.prop.ocFlags1 & OC1_1) || !(colPipe->element.unk_0 & 1)) {
+    if (!(colJntSph->base.prop.ocFlags1 & OC1_1) || !(colPipe->base.prop.ocFlags1 & OC1_1) || !(colPipe->element.flags & ELEM_FLAG_1)) {
         return;
     }
 
     for (var_s0 = colJntSph->elements; var_s0 < &colJntSph->elements[colJntSph->count]; var_s0++) {
         f32 sp78;
 
-        if (!(var_s0->unk_00.unk_0 & 1)) {
+        if (!(var_s0->elem.flags & ELEM_FLAG_1)) {
             continue;
         }
 
-        if (Math3D_sphereVsPipe_cl(&var_s0->unk_04.unk_08, &colPipe->attribute.unk_0, &sp78) == 1) {
+        if (Math3D_sphereVsPipe_cl(&var_s0->attr.unk_08, &colPipe->attribute.dim, &sp78) == 1) {
             Vec3f sp6C;
             Vec3f sp60;
 
-            xyz_t_move_s_xyz(&sp6C, &var_s0->unk_04.unk_08.center);
-            xyz_t_move_s_xyz(&sp60, &colPipe->attribute.unk_0.pos);
-            CollisionCheck_setOC_HitInfo(&colJntSph->base, &var_s0->unk_00, &sp6C, &colPipe->base, &colPipe->element, &sp60, sp78);
+            xyz_t_move_s_xyz(&sp6C, &var_s0->attr.unk_08.center);
+            xyz_t_move_s_xyz(&sp60, &colPipe->attribute.dim.pos);
+            CollisionCheck_setOC_HitInfo(&colJntSph->base, &var_s0->elem, &sp6C, &colPipe->base, &colPipe->element, &sp60, sp78);
         }
     }
 }
@@ -588,16 +585,16 @@ void CollisionCheck_OC_Pipe_Vs_Pipe(UNUSED struct Game_Play* game_play, UNUSED C
     Vec3f sp40;
     Vec3f sp34;
 
-    if ((!(pipeA->base.prop.ocFlags1 & OC1_1) || !(pipeB->base.prop.ocFlags1 & OC1_1) || !(pipeA->element.unk_0 & 1) || !(pipeB->element.unk_0 & 1))) {
+    if ((!(pipeA->base.prop.ocFlags1 & OC1_1) || !(pipeB->base.prop.ocFlags1 & OC1_1) || !(pipeA->element.flags & ELEM_FLAG_1) || !(pipeB->element.flags & ELEM_FLAG_1))) {
         return;
     }
 
-    if (Math3D_pipeVsPipe_cl(&pipeA->attribute.unk_0, &pipeB->attribute.unk_0, &sp4C) != 1) {
+    if (Math3D_pipeVsPipe_cl(&pipeA->attribute.dim, &pipeB->attribute.dim, &sp4C) != 1) {
         return;
     }
 
-    xyz_t_move_s_xyz(&sp40, &pipeA->attribute.unk_0.pos);
-    xyz_t_move_s_xyz(&sp34, &pipeB->attribute.unk_0.pos);
+    xyz_t_move_s_xyz(&sp40, &pipeA->attribute.dim.pos);
+    xyz_t_move_s_xyz(&sp34, &pipeB->attribute.dim.pos);
     CollisionCheck_setOC_HitInfo(&pipeA->base, &pipeA->element, &sp40, &pipeB->base, &pipeB->element, &sp34, sp4C);
 }
 
@@ -618,79 +615,79 @@ s32 CollisionCheck_Check2ClObjNoOC(ClObj* arg0, ClObj* arg1) {
     return 0;
 }
 
-void CollisionCheck_OC(struct Game_Play* game_play, CollisionCheck* arg1) {
-    ClObj** var_s2;
+void CollisionCheck_OC(struct Game_Play* game_play, CollisionCheck* colCheck) {
+    ClObj** cl1P;
 
-    for (var_s2 = arg1->ocColliders; var_s2 < &arg1->ocColliders[arg1->ocColCount]; var_s2++) {
-        ClObj** var_s0;
+    for (cl1P = colCheck->ocColliders; cl1P < &colCheck->ocColliders[colCheck->ocColCount]; cl1P++) {
+        ClObj** cl2P;
 
-        if ((*var_s2 == NULL) || (CollisionCheck_Check1ClObjNoOC(*var_s2) == 1)) {
+        if ((*cl1P == NULL) || (CollisionCheck_Check1ClObjNoOC(*cl1P) == 1)) {
             continue;
         }
 
-        for (var_s0 = var_s2 + 1; var_s0 < &arg1->ocColliders[arg1->ocColCount]; var_s0++) {
+        for (cl2P = cl1P + 1; cl2P < &colCheck->ocColliders[colCheck->ocColCount]; cl2P++) {
             CollisionVsFunc temp_v0;
 
-            if ((*var_s0 == NULL) || (CollisionCheck_Check1ClObjNoOC(*var_s0) == 1) || (CollisionCheck_Check2ClObjNoOC(*var_s2, *var_s0) == 1)) {
+            if ((*cl2P == NULL) || (CollisionCheck_Check1ClObjNoOC(*cl2P) == 1) || (CollisionCheck_Check2ClObjNoOC(*cl1P, *cl2P) == 1)) {
                 continue;
             }
 
-            temp_v0 = oc_collision_function[(*var_s2)->prop.shape][(*var_s0)->prop.shape];
+            temp_v0 = oc_collision_function[(*cl1P)->prop.shape][(*cl2P)->prop.shape];
             if (temp_v0 == NULL) {
                 continue;
             }
 
-            temp_v0(game_play, arg1, *var_s2, *var_s0);
+            temp_v0(game_play, colCheck, *cl1P, *cl2P);
         }
     }
 
-    CollisionCheck_OCC(game_play, arg1);
+    CollisionCheck_OCC(game_play, colCheck);
 }
 
 void CollisionCheck_setOCC_HitInfo(UNUSED struct Game_Play* game_play, ClObj* arg1, ClObjTrisElem* arg2, UNUSED Vec3f* arg3, ClObj* arg4, UNUSED ClObjElem* arg5, UNUSED Vec3f* arg6, Vec3f* arg7) {
     arg1->unk_4 = arg4->actor;
     arg1->prop.ocFlags2 |= OC2_4;
-    arg2->unk_04.unk_34.x =  arg7->x;
-    arg2->unk_04.unk_34.y =  arg7->y;
-    arg2->unk_04.unk_34.z =  arg7->z;
+    arg2->attr.unk_34.x =  arg7->x;
+    arg2->attr.unk_34.y =  arg7->y;
+    arg2->attr.unk_34.z =  arg7->z;
 }
 
-void CollisionCheck_OCC_Tris_Vs_JntSph(struct Game_Play* game_play, UNUSED CollisionCheck* arg1, ClObj* arg2, ClObj* arg3) {
-    ClObjJntSphElem* var_s6;
-    ClObjTris* colTris = (ClObjTris*)arg2;
-    ClObjJntSph* colJntSph = (ClObjJntSph*)arg3;
+void CollisionCheck_OCC_Tris_Vs_JntSph(struct Game_Play* game_play, UNUSED CollisionCheck* arg1, ClObj* cl1, ClObj* cl2) {
+    ClObjJntSphElem* sphElem;
+    ClObjTris* colTris = (ClObjTris*)cl1;
+    ClObjJntSph* colJntSph = (ClObjJntSph*)cl2;
 
     if ((colTris->count <= 0) || (colTris->elements == NULL) || (colJntSph->count <= 0) || (colJntSph->elements == NULL)) {
         return;
     }
 
-    for (var_s6 = colJntSph->elements; var_s6 < &colJntSph->elements[colJntSph->count]; var_s6++) {
-        ClObjTrisElem* var_s0;
+    for (sphElem = colJntSph->elements; sphElem < &colJntSph->elements[colJntSph->count]; sphElem++) {
+        ClObjTrisElem* trisElem;
         Vec3f sp74;
 
-        if (!(var_s6->unk_00.unk_0 & 1)) {
+        if (!(sphElem->elem.flags & ELEM_FLAG_1)) {
             continue;
         }
 
-        for (var_s0 = colTris->elements; var_s0 < &colTris->elements[colTris->count]; var_s0++) {
-            if (Math3D_sphereCrossTriangle3_cp(&var_s6->unk_04.unk_08, &var_s0->unk_04.unk_00, &sp74) != 0) {
+        for (trisElem = colTris->elements; trisElem < &colTris->elements[colTris->count]; trisElem++) {
+            if (Math3D_sphereCrossTriangle3_cp(&sphElem->attr.unk_08, &trisElem->attr.unk_00, &sp74) != 0) {
                 Vec3f sp68;
                 Vec3f sp5C;
 
-                xyz_t_move_s_xyz(&sp68, &var_s6->unk_04.unk_08.center);
-                CollisionCheck_workTrisElemCenter(var_s0, &sp5C);
-                CollisionCheck_setOCC_HitInfo(game_play, &colTris->base, var_s0, &sp5C, &colJntSph->base, &var_s6->unk_00, &sp68, &sp74);
+                xyz_t_move_s_xyz(&sp68, &sphElem->attr.unk_08.center);
+                CollisionCheck_workTrisElemCenter(trisElem, &sp5C);
+                CollisionCheck_setOCC_HitInfo(game_play, &colTris->base, trisElem, &sp5C, &colJntSph->base, &sphElem->elem, &sp68, &sp74);
             }
         }
     }
 }
 
-void CollisionCheck_OCC_Tris_Vs_Pipe(struct Game_Play* game_play, UNUSED CollisionCheck* arg1, ClObj* arg2, ClObj* arg3) {
-    ClObjTris* colTris = (ClObjTris*)arg2;
-    ClObjPipe* colPipe = (ClObjPipe*)arg3;
-    ClObjTrisElem* var_s0;
+void CollisionCheck_OCC_Tris_Vs_Pipe(struct Game_Play* game_play, UNUSED CollisionCheck* colCheck, ClObj* cl1, ClObj* cl2) {
+    ClObjTris* colTris = (ClObjTris*)cl1;
+    ClObjPipe* colPipe = (ClObjPipe*)cl2;
+    ClObjTrisElem* elem;
 
-    if ((colPipe->attribute.unk_0.radius <= 0) || (colPipe->attribute.unk_0.unk_2 <= 0) || !(colPipe->element.unk_0 & 1)) {
+    if ((colPipe->attribute.dim.radius <= 0) || (colPipe->attribute.dim.unk_2 <= 0) || !(colPipe->element.flags & ELEM_FLAG_1)) {
         return;
     }
 
@@ -698,16 +695,16 @@ void CollisionCheck_OCC_Tris_Vs_Pipe(struct Game_Play* game_play, UNUSED Collisi
         return;
     }
 
-    for (var_s0 = colTris->elements; var_s0 < &colTris->elements[colTris->count]; var_s0++) {
+    for (elem = colTris->elements; elem < &colTris->elements[colTris->count]; elem++) {
         Vec3f sp68;
 
-        if (Math3D_pipeCrossTriangle_cp(&colPipe->attribute.unk_0, &var_s0->unk_04.unk_00.unk_00, &sp68) != 0) {
+        if (Math3D_pipeCrossTriangle_cp(&colPipe->attribute.dim, &elem->attr.unk_00.unk_00, &sp68) != 0) {
             Vec3f sp5C;
             Vec3f sp50;
 
-            CollisionCheck_workTrisElemCenter(var_s0, &sp50);
-            xyz_t_move_s_xyz(&sp5C, &colPipe->attribute.unk_0.pos);
-            CollisionCheck_setOCC_HitInfo(game_play, &colTris->base, var_s0, &sp50, &colPipe->base, &colPipe->element, &sp5C, &sp68);
+            CollisionCheck_workTrisElemCenter(elem, &sp50);
+            xyz_t_move_s_xyz(&sp5C, &colPipe->attribute.dim.pos);
+            CollisionCheck_setOCC_HitInfo(game_play, &colTris->base, elem, &sp50, &colPipe->base, &colPipe->element, &sp5C, &sp68);
             break;
         }
     }
@@ -720,45 +717,45 @@ s32 CollisionCheck_Check1ClObjNoOCC(ClObj* arg0) {
     return 0;
 }
 
-void CollisionCheck_OCC(struct Game_Play* game_play, CollisionCheck* arg1) {
-    ClObj** var_s2;
+void CollisionCheck_OCC(struct Game_Play* game_play, CollisionCheck* colCheck) {
+    ClObj** cl1P;
 
-    if (mco_work.unk_00 == 0) {
+    if (mco_work.count == 0) {
         return;
     }
 
-    for (var_s2 = mco_work.unk_04; var_s2 < &mco_work.unk_04[mco_work.unk_00]; var_s2++) {
-        ClObj** var_s0;
+    for (cl1P = mco_work.coliders; cl1P < &mco_work.coliders[mco_work.count]; cl1P++) {
+        ClObj** cl2P;
 
-        if ((*var_s2 == NULL) || (CollisionCheck_Check1ClObjNoOCC(*var_s2) == 1)) {
+        if ((*cl1P == NULL) || (CollisionCheck_Check1ClObjNoOCC(*cl1P) == 1)) {
             continue;
         }
 
-        for (var_s0 = arg1->ocColliders; var_s0 < &arg1->ocColliders[arg1->ocColCount]; var_s0++) {
-            CollisionVsFunc temp_v0;
+        for (cl2P = colCheck->ocColliders; cl2P < &colCheck->ocColliders[colCheck->ocColCount]; cl2P++) {
+            CollisionVsFunc func;
 
-            if ((*var_s0) == NULL) {
+            if ((*cl2P) == NULL) {
                 continue;
             }
 
-            if ((*var_s2)->actor == (*var_s0)->actor) {
+            if ((*cl1P)->actor == (*cl2P)->actor) {
                 continue;
             }
 
-            temp_v0 = occ_collision_function[(*var_s2)->prop.shape][(*var_s0)->prop.shape];
-            if (temp_v0 == NULL) {
+            func = occ_collision_function[(*cl1P)->prop.shape][(*cl2P)->prop.shape];
+            if (func == NULL) {
                 continue;
             }
 
-            temp_v0(game_play, arg1, (*var_s2), (*var_s0));
+            func(game_play, colCheck, *cl1P, *cl2P);
         }
     }
 }
 
 s32 ClObjTrisElem_OCCClear(UNUSED struct Game_Play* game_play, ClObjTrisElem* arg1) {
-    arg1->unk_04.unk_34.x = 0.0f;
-    arg1->unk_04.unk_34.y = 0.0f;
-    arg1->unk_04.unk_34.z = 0.0f;
+    arg1->attr.unk_34.x = 0.0f;
+    arg1->attr.unk_34.y = 0.0f;
+    arg1->attr.unk_34.z = 0.0f;
     return 1;
 }
 
@@ -767,49 +764,49 @@ void ClObj_OCCClear(UNUSED struct Game_Play* game_play, ClObj* arg1) {
     arg1->prop.ocFlags2 &= ~OC2_4;
 }
 
-s32 ClObjTris_OCCClear(struct Game_Play* game_play, ClObj* arg1) {
-    ClObjTris* colTris = (ClObjTris*)arg1;
-    ClObjTrisElem* var_s0;
+s32 ClObjTris_OCCClear(struct Game_Play* game_play, ClObj* cl) {
+    ClObjTris* colTris = (ClObjTris*)cl;
+    ClObjTrisElem* elem;
 
     ClObj_OCCClear(game_play, &colTris->base);
 
-    for (var_s0 = colTris->elements; var_s0 < &colTris->elements[colTris->count]; var_s0++) {
-        ClObjTrisElem_OCCClear(game_play, var_s0);
+    for (elem = colTris->elements; elem < &colTris->elements[colTris->count]; elem++) {
+        ClObjTrisElem_OCCClear(game_play, elem);
     }
 
     return 1;
 }
 
-s32 CollisionCheck_setOCC(struct Game_Play* game_play, CollisionCheck* arg1, ClObj* arg2) {
-    s32 temp_v0;
+s32 CollisionCheck_setOCC(struct Game_Play* game_play, CollisionCheck* colCheck, ClObj* cl) {
+    s32 ret;
 
     if (_Game_play_isPause(game_play) == 1) {
         return -1;
     }
 
-    if ((arg2->prop.shape == COLSHAPE_JNTSPH) || (arg2->prop.shape == COLSHAPE_PIPE)) {
+    if ((cl->prop.shape == COLSHAPE_JNTSPH) || (cl->prop.shape == COLSHAPE_PIPE)) {
         return -1;
     }
 
-    OCCClearFunctionTable[arg2->prop.shape](game_play, arg2);
+    OCCClearFunctionTable[cl->prop.shape](game_play, cl);
 
-    if ((arg2->actor != NULL) && (arg2->actor->update == NULL)) {
+    if ((cl->actor != NULL) && (cl->actor->update == NULL)) {
         return -1;
     }
 
-    if (mco_work.unk_00 >= ARRAY_COUNT(mco_work.unk_04)) {
+    if (mco_work.count >= ARRAY_COUNT(mco_work.coliders)) {
         return -1;
     }
 
-    if (arg1->unk_00 & 1) {
+    if (colCheck->unk_00 & 1) {
         return -1;
     }
 
-    temp_v0 = mco_work.unk_00;
-    mco_work.unk_04[mco_work.unk_00] = arg2;
-    mco_work.unk_00 += 1;
+    ret = mco_work.count;
+    mco_work.coliders[mco_work.count] = cl;
+    mco_work.count++;
 
-    return temp_v0;
+    return ret;
 }
 
 void CollisionCheck_Status_ct(CollisionCheck_Status* status) {
@@ -826,22 +823,22 @@ void CollisionCheck_Status_Clear(CollisionCheck_Status* status) {
     status->displacement.x = 0.0f;
 }
 
-void CollisionCheck_Status_set3(CollisionCheck_Status* status, CollisionCheck_Status_set3_arg1* arg1) {
-    status->unk_13 = arg1->unk_0;
-    status->unk_0C = arg1->unk_2;
-    status->unk_0E = arg1->unk_4;
-    status->unk_10 = arg1->unk_6;
-    status->unk_12 = arg1->unk_8;
+void CollisionCheck_Status_set3(CollisionCheck_Status* status, CollisionCheck_Status_Init* init) {
+    status->unk_13 = init->unk_0;
+    status->unk_0C = init->unk_2;
+    status->unk_0E = init->unk_4;
+    status->unk_10 = init->unk_6;
+    status->unk_12 = init->unk_8;
 }
 
 void CollisionCheck_Uty_ActorWorldPosSetPipeC(Actor* actor, ClObjPipe* colPipe) {
-    colPipe->attribute.unk_0.pos.x = (s16) (s32) actor->world.pos.x;
-    colPipe->attribute.unk_0.pos.y = (s16) (s32) actor->world.pos.y;
-    colPipe->attribute.unk_0.pos.z = (s16) (s32) actor->world.pos.z;
+    colPipe->attribute.dim.pos.x = (s16) (s32) actor->world.pos.x;
+    colPipe->attribute.dim.pos.y = (s16) (s32) actor->world.pos.y;
+    colPipe->attribute.dim.pos.z = (s16) (s32) actor->world.pos.z;
 }
 
-s32 CollisionCheck_Uty_setTrisPos_ad(struct Game_Play* game_play, ClObjTris* colTris, s32 arg2, ClObjTrisElemAttr_Init* arg3) {
-    ClObjTrisElem* temp = &colTris->elements[arg2];
+s32 CollisionCheck_Uty_setTrisPos_ad(struct Game_Play* game_play, ClObjTris* colTris, s32 index, ClObjTrisElemAttr_Init* init) {
+    ClObjTrisElem* temp = &colTris->elements[index];
 
-    return ClObjTrisElemAttr_set(game_play, &temp->unk_04, arg3);
+    return ClObjTrisElemAttr_set(game_play, &temp->attr, init);
 }

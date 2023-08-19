@@ -17,9 +17,18 @@ typedef enum ColliderShape {
     /* 3 */ COLSHAPE_MAX
 } ColliderShape;
 
+#define MASS_IMMOVABLE 0xFF
+#define MASS_HEAVY 0xFE
+
+typedef enum ColMassType {
+    /* 0 */ MASSTYPE_IMMOVABLE,
+    /* 1 */ MASSTYPE_HEAVY,
+    /* 2 */ MASSTYPE_NORMAL
+} ColMassType;
+
 
 typedef struct ClObjElem {
-    /* 0x0 */ u8 unk_0;
+    /* 0x0 */ u8 flags;
 } ClObjElem; // size = 0x1
 
 
@@ -48,9 +57,9 @@ typedef struct ClObjJntSphElem_Init {
 } ClObjJntSphElem_Init; // size = 0xE
 
 typedef struct ClObjJntSph_Init {
-    /* 0x0 */ ClObj_Properties unk_0;
-    /* 0x4 */ s32 unk_4;
-    /* 0x8 */ ClObjJntSphElem_Init* unk_8;
+    /* 0x0 */ ClObj_Properties prop;
+    /* 0x4 */ s32 count;
+    /* 0x8 */ ClObjJntSphElem_Init* elements;
 } ClObjJntSph_Init; // size = 0xC
 
 
@@ -63,8 +72,8 @@ typedef struct ClObjJntSphElemAttr {
 } ClObjJntSphElemAttr; // size = 0x18
 
 typedef struct ClObjJntSphElem {
-    /* 0x00 */ ClObjElem unk_00;
-    /* 0x04 */ ClObjJntSphElemAttr unk_04;
+    /* 0x00 */ ClObjElem elem;
+    /* 0x04 */ ClObjJntSphElemAttr attr;
 } ClObjJntSphElem; // size = 0x1C
 
 
@@ -77,13 +86,13 @@ typedef struct ClObjJntSph {
 
 
 typedef struct ClObjPipeAttr {
-    /* 0x0 */ Pipe unk_0;
+    /* 0x0 */ Pipe dim;
 } ClObjPipeAttr; // size = 0xC
 
 typedef struct ClObjPipe_Init {
-    /* 0x0 */ ClObj_Properties unk_0;
-    /* 0x3 */ ClObjElem unk_3;
-    /* 0x4 */ ClObjPipeAttr unk_4;
+    /* 0x0 */ ClObj_Properties prop;
+    /* 0x3 */ ClObjElem elem;
+    /* 0x4 */ ClObjPipeAttr attr;
 } ClObjPipe_Init; // size >= 0x10
 
 typedef struct ClObjPipe {
@@ -106,8 +115,8 @@ typedef struct ClObjTrisElemAttr {
 
 
 typedef struct ClObjTrisElem {
-    /* 0x00 */ ClObjElem unk_00;
-    /* 0x04 */ ClObjTrisElemAttr unk_04;
+    /* 0x00 */ ClObjElem elem;
+    /* 0x04 */ ClObjTrisElemAttr attr;
 } ClObjTrisElem; // size = 0x44
 
 typedef struct ClObjTris {
@@ -117,16 +126,16 @@ typedef struct ClObjTris {
 } ClObjTris; // size = 0x14
 
 
-typedef struct ClObjTris_set5_nzm_arg3_unk_8 {
-    /* 0x00 */ ClObjElem unk_00;
-    /* 0x04 */ ClObjTrisElemAttr_Init unk_04;
-} ClObjTris_set5_nzm_arg3_unk_8; // size = 0x28
+typedef struct ClObjTrisElem_Init {
+    /* 0x00 */ ClObjElem elem;
+    /* 0x04 */ ClObjTrisElemAttr_Init attr;
+} ClObjTrisElem_Init; // size = 0x28
 
-typedef struct ClObjTris_set5_nzm_arg3 {
-    /* 0x0 */ ClObj_Properties unk_0;
-    /* 0x4 */ s32 unk_4;
-    /* 0x8 */ ClObjTris_set5_nzm_arg3_unk_8* unk_8;
-} ClObjTris_set5_nzm_arg3; // size >= 0x
+typedef struct ClObjTris_Init {
+    /* 0x0 */ ClObj_Properties prop;
+    /* 0x4 */ s32 count;
+    /* 0x8 */ ClObjTrisElem_Init* elem;
+} ClObjTris_Init; // size >= 0x
 
 
 typedef struct CollisionCheck {
@@ -136,13 +145,13 @@ typedef struct CollisionCheck {
 } CollisionCheck; // size = 0xD0
 
 
-typedef struct CollisionCheck_Status_set3_arg1 {
+typedef struct CollisionCheck_Status_Init {
     /* 0x0 */ u8 unk_0;
     /* 0x0 */ s16 unk_2;
     /* 0x0 */ s16 unk_4;
     /* 0x0 */ s16 unk_6;
     /* 0x0 */ u8 unk_8;
-} CollisionCheck_Status_set3_arg1; // size = 0xA
+} CollisionCheck_Status_Init; // size = 0xA
 
 typedef struct CollisionCheck_Status {
     /* 0x00 */ Vec3f displacement;
@@ -178,6 +187,11 @@ typedef struct CollisionCheck_Status {
 #define OC2_TYPE_20     OC1_TYPE_20
 
 
+#define ELEM_FLAG_NONE   0
+#define ELEM_FLAG_1      (1 << 0)
+#define ELEM_FLAG_2      (1 << 1)
+
+
 void CollisionCheck_workTrisElemCenter(ClObjTrisElem* arg0, Vec3f* arg1);
 s32 ClObj_ct(struct Game_Play* game_play, ClObj* arg1);
 s32 ClObj_dt(struct Game_Play* game_play, ClObj* arg1);
@@ -209,17 +223,17 @@ s32 ClObjTrisElemAttr_dt(struct Game_Play* game_play, ClObjTrisElemAttr* arg1);
 s32 ClObjTrisElemAttr_set(struct Game_Play* game_play, ClObjTrisElemAttr *arg1, ClObjTrisElemAttr_Init* arg2);
 s32 ClObjTrisElem_ct(struct Game_Play* game_play, ClObjTrisElem* arg1);
 s32 ClObjTrisElem_dt(struct Game_Play* game_play, ClObjTrisElem* arg1);
-s32 ClObjTrisElem_set(struct Game_Play* game_play, ClObjTrisElem* arg1, ClObjTris_set5_nzm_arg3_unk_8* arg2);
+s32 ClObjTrisElem_set(struct Game_Play* game_play, ClObjTrisElem* arg1, ClObjTrisElem_Init* arg2);
 s32 ClObjTrisElem_OCClear(struct Game_Play* game_play, ClObjTrisElem* arg1);
 s32 ClObjTris_ct(struct Game_Play* game_play, ClObjTris* tris);
 s32 ClObjTris_dt_nzf(struct Game_Play* game_play, ClObjTris* tris);
-s32 ClObjTris_set5_nzm(struct Game_Play* game_play, ClObjTris* tris, struct Actor* actor, ClObjTris_set5_nzm_arg3* arg3, ClObjTrisElem* arg4);
+s32 ClObjTris_set5_nzm(struct Game_Play* game_play, ClObjTris* tris, struct Actor* actor, ClObjTris_Init* arg3, ClObjTrisElem arg4[]);
 s32 ClObjTris_OCClear(struct Game_Play* game_play, ClObj* arg1);
 void CollisionCheck_ct(struct Game_Play* game_play, CollisionCheck* arg1);
 void CollisionCheck_dt(struct Game_Play* game_play, CollisionCheck* arg1);
 void CollisionCheck_clear(struct Game_Play* game_play, CollisionCheck* arg1);
 s32 CollisionCheck_setOC(struct Game_Play* game_play, CollisionCheck* arg1, ClObj* arg2);
-s32 get_type(u8 arg0);
+// s32 get_type(u8 arg0);
 void CollisionCheck_setOC_HitInfo(ClObj* arg0, ClObjElem* arg1, Vec3f* arg2, ClObj* arg3, ClObjElem* arg4, Vec3f* arg5, f32 arg6);
 void CollisionCheck_OC_JntSph_Vs_JntSph(struct Game_Play* game_play, CollisionCheck* arg1, ClObj* arg2, ClObj* arg3);
 void CollisionCheck_OC_JntSph_Vs_Pipe(struct Game_Play* game_play, CollisionCheck* arg1, ClObj* arg2, ClObj* arg3);
@@ -239,7 +253,7 @@ s32 ClObjTris_OCCClear(struct Game_Play* game_play, ClObj* arg1);
 s32 CollisionCheck_setOCC(struct Game_Play* game_play, CollisionCheck* arg1, ClObj* arg2);
 void CollisionCheck_Status_ct(CollisionCheck_Status* status);
 void CollisionCheck_Status_Clear(CollisionCheck_Status* status);
-void CollisionCheck_Status_set3(CollisionCheck_Status* status, CollisionCheck_Status_set3_arg1* arg1);
+void CollisionCheck_Status_set3(CollisionCheck_Status* status, CollisionCheck_Status_Init* arg1);
 void CollisionCheck_Uty_ActorWorldPosSetPipeC(struct Actor* actor, ClObjPipe* pipe);
 s32 CollisionCheck_Uty_setTrisPos_ad(struct Game_Play* game_play, ClObjTris* tris, s32 arg2, ClObjTrisElemAttr_Init* arg3);
 
