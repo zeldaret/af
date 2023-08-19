@@ -11,7 +11,7 @@ struct Game_Play;
 struct ActorEntry;
 struct ActorOverlay;
 struct struct_801161E8_jp;
-struct Lights;
+struct LightsN;
 struct GraphicsContext;
 
 typedef enum AllocType {
@@ -69,7 +69,7 @@ typedef struct PosRot {
     /* 0x0C */ Vec3s rot;
 } PosRot; // size = 0x14
 
-typedef void (*Shape_Info_unk_0C)(struct Actor*, struct Lights*, struct Game_Play*);
+typedef void (*Shape_Info_unk_0C)(struct Actor*, struct LightsN*, struct Game_Play*);
 
 typedef struct Shape_Info {
     /* 0x00 */ Vec3s rot;
@@ -243,7 +243,7 @@ s32 Actor_draw_actor_no_culling_check(Actor* actor);
 s32 Actor_draw_actor_no_culling_check2(Actor* actor, Vec3f* arg1, f32 arg2);
 void Actor_cull_check(Actor* actor);
 void Actor_delete_check(Actor* actor, struct Game_Play* game_play);
-void Actor_info_ct(struct Game_Play* play2, ActorInfo* actorInfo, struct ActorEntry* actorEntry);
+void Actor_info_ct(struct Game_Play* game_play2, ActorInfo* actorInfo, struct ActorEntry* actorEntry);
 void Actor_info_dt(ActorInfo* actorInfo, struct Game_Play* game_play);
 void Actor_info_call_actor(struct Game_Play* game_play, ActorInfo* actorInfo);
 void Actor_info_draw_actor(struct Game_Play* game_play, ActorInfo* actorInfo);
