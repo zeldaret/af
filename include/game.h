@@ -26,7 +26,7 @@ typedef enum GameStateId {
 #undef DEFINE_GAMESTATE_INTERNAL
 
 
-typedef void (*GameStateFunc)(struct Game* gameState);
+typedef void (*GameStateFunc)(struct Game* game);
 
 typedef struct {
     /* 0x00 */ void*         loadedRamAddr;
@@ -62,24 +62,24 @@ typedef struct Game {
     /* 0xA8 */ Controller controller;
 } Game; // size = 0xE0
 
-void func_800D2E00_jp(Game* gameState);
+void func_800D2E00_jp(Game* game);
 void func_800D2E58_jp(u16 button, Gfx** gfxP);
-void game_debug_draw_last(Game* gameState, struct GraphicsContext* gfxCtx);
+void game_debug_draw_last(Game* game, struct GraphicsContext* gfxCtx);
 void game_draw_first(struct GraphicsContext* gfxCtx);
 void game_draw_last(struct GraphicsContext* gfxCtx);
-void game_get_controller(Game* gameState);
+void game_get_controller(Game* game);
 void SetGameFrame(s32 divisor);
-void game_main(Game* gameState);
-void game_init_hyral(Game* gameState, size_t size);
-void game_resize_hyral(Game* gameState, size_t size);
-void game_ct(Game* gameState, GameStateFunc init, struct GraphicsContext* gfxCtx);
-void game_dt(Game* gameState);
-GameStateFunc game_get_next_game_init(Game* gameState);
-size_t game_get_next_game_class_size(Game* gameState);
-s32 game_is_doing(Game* gameState);
-s32 game_getFreeBytes(Game* gameState);
-void game_goto_next_game_play(Game* gameState);
-void game_goto_next_game_name_famicom_emu(Game* gameState);
+void game_main(Game* game);
+void game_init_hyral(Game* game, size_t size);
+void game_resize_hyral(Game* game, size_t size);
+void game_ct(Game* game, GameStateFunc init, struct GraphicsContext* gfxCtx);
+void game_dt(Game* game);
+GameStateFunc game_get_next_game_init(Game* game);
+size_t game_get_next_game_class_size(Game* game);
+s32 game_is_doing(Game* game);
+s32 game_getFreeBytes(Game* game);
+void game_goto_next_game_play(Game* game);
+void game_goto_next_game_name_famicom_emu(Game* game);
 
 
 // .data
@@ -103,10 +103,10 @@ extern GameStateOverlay game_dlftbls[GAMESTATE_ID_MAX];
 extern GameStateId game_dlftbls_num;
 
 
-#define CONTROLLER1(gameState) (&(gameState)->input[0])
-#define CONTROLLER2(gameState) (&(gameState)->input[1])
-#define CONTROLLER3(gameState) (&(gameState)->input[2])
-#define CONTROLLER4(gameState) (&(gameState)->input[3])
+#define CONTROLLER1(game) (&(game)->input[0])
+#define CONTROLLER2(game) (&(game)->input[1])
+#define CONTROLLER3(game) (&(game)->input[2])
+#define CONTROLLER4(game) (&(game)->input[3])
 
 #define STOP_GAMESTATE(curState)     \
     do {                             \

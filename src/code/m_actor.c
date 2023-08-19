@@ -11,7 +11,6 @@
 #include "m_lib.h"
 #include "m_skin_matrix.h"
 #include "m_player_lib.h"
-#include "m_npc.h"
 #include "m_scene.h"
 #include "libc/math.h"
 #include "fault.h"
@@ -24,6 +23,7 @@
 #include "macros.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "overlays/actors/player_actor/m_player.h"
+#include "overlays/actors/ovl_Npc/ac_npc.h"
 
 void func_80056380_jp(void* arg0, void* arg1 UNUSED) {
     Actor* actor = arg0;

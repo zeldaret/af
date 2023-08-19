@@ -60,7 +60,7 @@ void Global_kankyo_set(struct Game_Play* game_play, struct Kankyo* kankyo, struc
 void mEnv_WindMove(void);
 // void func_80098CCC_jp();
 // void func_80098D88_jp();
-// void func_80098DE0_jp();
+void mEnv_DecideWeather_NormalGameStart(void);
 // void mEnv_NowWeather();
 // void func_80098F68_jp();
 // void func_80098FF0_jp();

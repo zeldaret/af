@@ -97,7 +97,7 @@ typedef struct Game_Play {
     /* 0x1EB0 */ s16 *unk_1EB0;
     /* 0x1EB4 */ UNK_TYPE1 unk_1EB4[0x4];
     /* 0x1EB8 */ s32 unk_1EB8;
-    /* 0x1EBC */ Game_Play1EBC unk_1EBC;
+    /* 0x1EBC */ Event event;
     /* 0x1ECC */ UNK_TYPE1 unk_1ECC[0x14];
     /* 0x1EE0 */ u8 unk_1EE0;
     /* 0x1EE1 */ u8 unk_1EE1;
@@ -113,7 +113,7 @@ typedef struct Game_Play {
     /* 0x2214 */ UNK_TYPE1 unk_2214[0x1FC];
 } Game_Play; // size = 0x2410
 
-void play_init(Game* gameState);
-void play_cleanup(Game* gameState);
+void play_init(Game* game);
+void play_cleanup(Game* game);
 
 #endif

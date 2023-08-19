@@ -3,7 +3,11 @@
 
 #include "ultra64.h"
 
-typedef struct Game_Play1EBC {
+typedef struct mEv_event_save_c {
+    /* 0x00 */ char unk00[0x9C];
+} mEv_event_save_c; // size >= 0x9C
+
+typedef struct Event {
     /* 0x00 */ u8 unk_00;
     /* 0x01 */ u8 unk_01;
     /* 0x02 */ u8 unk_02;
@@ -12,12 +16,12 @@ typedef struct Game_Play1EBC {
     /* 0x06 */ s16 unk_06;
     /* 0x08 */ s32 unk_08;
     /* 0x0C */ s32 unk_0C;
-} Game_Play1EBC; // size = 0x10
+} Event; // size = 0x10
 
 // void func_8007D140_jp();
 // void func_8007D180_jp();
-// void func_8007D1A8_jp();
-// void mEv_ClearEventInfo();
+void mEv_ClearEventSaveInfo(mEv_event_save_c* event_save);
+void mEv_ClearEventInfo(void);
 // void func_8007D25C_jp();
 // void func_8007D2B8_jp();
 // void func_8007D318_jp();
@@ -47,9 +51,9 @@ s32 mEv_CheckFirstJob(void);
 // void func_8007D784_jp();
 // void func_8007D7BC_jp();
 // void func_8007D810_jp();
-// void func_8007D848_jp();
+void mEv_SetGateway(void);
 // void func_8007D880_jp();
-// void func_8007D8D4_jp();
+void mEv_UnSetGateway(void);
 s32 mEv_CheckTitleDemo(void);
 // void func_8007D91C_jp();
 // void func_8007D930_jp();
@@ -92,12 +96,12 @@ s32 mEv_CheckTitleDemo(void);
 // void func_8007F358_jp();
 // void func_8007F6A0_jp();
 // void func_8007F764_jp();
-void func_8007F858_jp(Game_Play1EBC* arg0);
-// void func_8007F8A4_jp();
-void mEv_2nd_init(Game_Play1EBC* arg0);
+void mEv_init(Event* event);
+void mEv_init_force(void*);
+void mEv_2nd_init(Event* event);
 // void func_8007F950_jp();
-void mEv_run(Game_Play1EBC* arg0);
-void mEv_finish(Game_Play1EBC* arg0);
+void mEv_run(Event* event);
+void mEv_finish(Event* event);
 // void func_8007FCB8_jp();
 // void func_8007FD40_jp();
 // void func_8007FDA8_jp();

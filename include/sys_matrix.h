@@ -12,7 +12,7 @@ typedef enum {
     /* 1 */ MTXMODE_APPLY // applies transformation to the current matrix
 } MatrixMode;
 
-void new_Matrix(struct Game* gameState);
+void new_Matrix(struct Game* game);
 void Matrix_push(void);
 void Matrix_pull(void);
 void Matrix_get(MtxF* dest);
