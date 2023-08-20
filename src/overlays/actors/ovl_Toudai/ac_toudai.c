@@ -10,10 +10,10 @@
 
 #define THIS ((Toudai*)thisx)
 
-void aTOU_actor_ct(Actor* thisx, PlayState* play);
-void aTOU_actor_dt(Actor* thisx, PlayState* play);
-void aTOU_actor_init(Actor* thisx, PlayState* play);
-void aTOU_actor_draw(Actor* thisx, PlayState* play);
+void aTOU_actor_ct(Actor* thisx, Game_Play* game_play);
+void aTOU_actor_dt(Actor* thisx, Game_Play* game_play);
+void aTOU_actor_init(Actor* thisx, Game_Play* game_play);
+void aTOU_actor_draw(Actor* thisx, Game_Play* game_play);
 
 ActorProfile Toudai_Profile = {
     /* */ 175, // ACTOR_TOUDAI
@@ -39,9 +39,9 @@ static BaseSkeletonR* skl[] = { (BaseSkeletonR*)0x0607EE1C, (BaseSkeletonR*)0x06
 // cKF_bs_r_obj_s_toudai
 // cKF_bs_r_obj_w_toudai
 
-void aTOU_actor_ct(Actor* thisx, PlayState* play UNUSED) {
+void aTOU_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
     Toudai* this = THIS;
-    s32 type = (common_data.season == WINTER);
+    s32 type = (common_data.time.season == WINTER);
 
     gSegments[6] = OS_K0_TO_PHYSICAL(common_data.structureClip->unk_AC(STRUCTURE_TOUDAI));
     cKF_SkeletonInfo_R_ct(&this->skeletonInfo, skl[type], NULL, this->jointTable, this->morphTable);
@@ -52,7 +52,7 @@ void aTOU_actor_ct(Actor* thisx, PlayState* play UNUSED) {
     this->actor.world.pos.z -= 20.0f;
 }
 
-void aTOU_actor_dt(Actor* thisx, PlayState* play UNUSED) {
+void aTOU_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
     Toudai* this = THIS;
 
     // TODO remove the structure cast when the structure base struct gets put in
@@ -127,25 +127,25 @@ void aTOU_color_ctrl(Toudai* this) {
     add_calc(&this->unk2D0, 255.0f, 0.1f, 100.0f, 1.0f);
 }
 
-void aTOU_init(Toudai* this, PlayState* play UNUSED) {
+void aTOU_init(Toudai* this, Game_Play* game_play UNUSED) {
     aTOU_setup_action(this, 1);
 }
 
-void aTOU_wait(Toudai* this, PlayState* play UNUSED) {
-    if ((common_data.now_sec >= 0xFD20) || (common_data.now_sec < 0x4650)) {
+void aTOU_wait(Toudai* this, Game_Play* game_play UNUSED) {
+    if ((common_data.time.now_sec >= 0xFD20) || (common_data.time.now_sec < 0x4650)) {
         this->unk2BC = 1;
         this->skeletonInfo.frameControl.speed = 1.0f;
         aTOU_setup_action(this, 2);
     }
 }
 
-void aTOU_lighting(Toudai* this, PlayState* play UNUSED) {
-    if ((common_data.now_sec < 64800) && (common_data.now_sec >= 18000)) {
+void aTOU_lighting(Toudai* this, Game_Play* game_play UNUSED) {
+    if ((common_data.time.now_sec < 64800) && (common_data.time.now_sec >= 18000)) {
         aTOU_setup_action(this, 3);
     }
 }
 
-void aTOU_lightout(Toudai* this, PlayState* play UNUSED) {
+void aTOU_lightout(Toudai* this, Game_Play* game_play UNUSED) {
     if (this->unk1E8 == 0x33) {
         this->unk2BC = 0;
         this->skeletonInfo.frameControl.speed = 0.0f;
@@ -162,7 +162,7 @@ void aTOU_setup_action(Toudai* this, s32 processIndex) {
     s32 type;
 
     if (processIndex == 0) {
-        type = (common_data.season == WINTER);
+        type = (common_data.time.season == WINTER);
         cKF_SkeletonInfo_R_init(&this->skeletonInfo, this->skeletonInfo.skeleton, ani[type], 1.0f, 100.0f, 51.0f, 0.0f,
                                 0.0f, ANIMATION_REPEAT, NULL);
     }
@@ -171,23 +171,24 @@ void aTOU_setup_action(Toudai* this, s32 processIndex) {
     this->unk2B4 = processIndex;
 }
 
-void aTOU_actor_move(Toudai* this, PlayState* play) {
+void aTOU_actor_move(Toudai* this, Game_Play* game_play) {
     gSegments[6] = OS_K0_TO_PHYSICAL(common_data.structureClip->unk_AC(STRUCTURE_TOUDAI));
     this->unk174 = cKF_SkeletonInfo_R_play(&this->skeletonInfo);
     this->unk1E8 = this->skeletonInfo.frameControl.currentFrame;
-    this->unk2A0(this, play);
+    this->unk2A0(this, game_play);
     aTOU_color_ctrl(this);
 }
 
-void aTOU_actor_init(Actor* thisx, PlayState* play) {
+void aTOU_actor_init(Actor* thisx, Game_Play* game_play) {
     Toudai* this = THIS;
 
     mFI_SetFG_common(61706, this->actor.home.pos, 0);
-    aTOU_actor_move(this, play);
+    aTOU_actor_move(this, game_play);
     this->actor.update = (ActorFunc)aTOU_actor_move;
 }
 
-s32 aTOU_actor_draw_before(PlayState* play UNUSED, SkeletonInfoR* skeletonInfo UNUSED, s32 jointIndex, Gfx** dlist) {
+s32 aTOU_actor_draw_before(Game_Play* game_play UNUSED, SkeletonInfoR* skeletonInfo UNUSED, s32 jointIndex,
+                           Gfx** dlist) {
     // LIGHTHOUSE_JOINT_LIGHT
     if (jointIndex == 4) {
         *dlist = NULL;
@@ -199,7 +200,7 @@ static Gfx* mdl[] = { (Gfx*)0x0607E188, (Gfx*)0x0607FD90 }; // obj_s_toudai_ligh
 static Color_RGBA8 prmcol = { 255, 255, 150, 120 };
 
 #ifdef NON_EQUIVALENT
-s32 aTOU_actor_draw_after(PlayState* play, SkeletonInfoR* skeletonInfo, s32 jointIndex, Gfx** dlist,
+s32 aTOU_actor_draw_after(Game_Play* game_play, SkeletonInfoR* skeletonInfo, s32 jointIndex, Gfx** dlist,
                           u8* displayBufferFlag, Toudai* arg5, Vec3s* rotation, Vec3f* translation) {
     s32 type;    // sp24
     s32 object;  // sp20
@@ -216,10 +217,10 @@ s32 aTOU_actor_draw_after(PlayState* play, SkeletonInfoR* skeletonInfo, s32 join
         OPEN_DISPS(temp_a3);
         mtx = _Matrix_to_Mtx_new(temp_a3);
         if (mtx != NULL) {
-            type = (common_data.season == 3);
+            type = (common_data.time.season == 3);
             object = common_data.structureClip->unk_AC(STRUCTURE_TOUDAI);
             palette = common_data.structureClip->getPalSegment(STRUCTURE_TOUDAI_PAL);
-            func_800BD5C0_jp(play->state.gfxCtx);
+            func_800BD5C0_jp(game_play->state.gfxCtx);
             gfx = LIGHT_DISP;
             gSPSegment(gfx++, 0x08, palette);
             gSPSegment(gfx++, 0x06, object);
@@ -245,9 +246,9 @@ s32 aTOU_actor_draw_after(PlayState* play, SkeletonInfoR* skeletonInfo, s32 join
 #endif
 
 #ifdef NON_EQUIVALENT
-void aTOU_actor_draw(Actor* thisx, PlayState* play) {
+void aTOU_actor_draw(Actor* thisx, Game_Play* game_play) {
     Toudai* this = THIS;
-    GraphicsContext* gfxCtx = play->state.gfxCtx;
+    GraphicsContext* gfxCtx = game_play->state.gfxCtx;
     UNK_PTR sp68; // object
     u16* sp64;    // palette
     GraphicsContext* temp_a2;
@@ -273,10 +274,10 @@ void aTOU_actor_draw(Actor* thisx, PlayState* play) {
         gSPSegment(gfx++, 0x08, sp64);
         gSPSegment(gfx++, 0x06, sp68);
         POLY_XLU_DISP = gfx;
-        Setpos_HiliteReflect_init(&this->actor.world.pos, play);
-        Setpos_HiliteReflect_xlu_init(&this->actor.world.pos, play);
-        cKF_Si3_draw_R_SV(play, &this->skeletonInfo, mtx, aTOU_actor_draw_before, aTOU_actor_draw_after, this);
-        common_data.unk_10080->unk_4(play, &aTOU_shadow_data, STRUCTURE_TOUDAI);
+        Setpos_HiliteReflect_init(&this->actor.world.pos, game_play);
+        Setpos_HiliteReflect_xlu_init(&this->actor.world.pos, game_play);
+        cKF_Si3_draw_R_SV(game_play, &this->skeletonInfo, mtx, aTOU_actor_draw_before, aTOU_actor_draw_after, this);
+        common_data.unk_10080->unk_4(game_play, &aTOU_shadow_data, STRUCTURE_TOUDAI);
     }
     CLOSE_DISPS(gfxCtx);
     if (gfxCtx) {}

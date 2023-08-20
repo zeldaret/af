@@ -3,13 +3,15 @@
 
 #include "ultra64.h"
 
+struct mNpc_walk_c;
+
 // void func_800AEA80_jp();
-// void func_800AEB50_jp();
+// void mNPS_set_schedule_area();
 // void func_800AEB9C_jp();
 // void func_800AEBC8_jp();
 // void func_800AEC74_jp();
 // void mNPS_schedule_manager();
-// void func_800AED68_jp();
+void mNPS_set_all_schedule_area(void);
 // void func_800AEDD0_jp();
 // void func_800AEE38_jp();
 // void func_800AEE50_jp();
@@ -27,7 +29,7 @@
 // void func_800AF84C_jp();
 // void func_800AF9C8_jp();
 // void func_800AFA1C_jp();
-// void func_800AFAF8_jp();
+void mNpcW_InitNpcWalk(struct mNpc_walk_c* npc_walk);
 // void func_800AFC1C_jp();
 // void func_800AFCAC_jp();
 // void func_800AFCD8_jp();

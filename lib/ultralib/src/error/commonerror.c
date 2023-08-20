@@ -126,7 +126,7 @@ const char* __os_error_message[] = {
     "Synthesizer: no free updates",
     "alSndPDeallocate: attempt to deallocate a sound which is playing",
     "alSndpDelete: attempt to delete player with playing sounds",
-    "alSndpPlay: attempt to play a sound which is playing",
+    "alSndpPlay: attempt to game_play a sound which is playing",
     "alSndpSetSound: sound id (%d) out of range (0 - %d)",
     "alSndpSetPriority: sound id (%d) out of range (0 - %d)",
     "alSndpSet Parameter: target (%d) out of range (0 - %d)",

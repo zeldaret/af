@@ -20,9 +20,8 @@ extern OSPiHandle* gCartHandle; // TODO: Determine where this goes
 // extern UNK_TYPE D_8003BC90_jp;
 // extern UNK_TYPE D_8003BC94_jp;
 
-// extern UNK_TYPE D_8003C560_jp;
-
 // extern UNK_TYPE __qrand_idum;
+
 
 
 // .rodata

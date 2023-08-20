@@ -3,13 +3,14 @@
 
 #include "ultra64.h"
 
-// void qrand();
-// void sqrand();
+
+u32 qrand(void);
+void sqrand(u32 seed);
 f32 fqrand(void);
-// void fqrand2();
-// void sqrand_r();
-// void qrand_r();
-// void fqrand_r();
-// void fqrand2_r();
+f32 fqrand2(void);
+void sqrand_r(u32* p, u32 val);
+u32 qrand_r(u32* p);
+f32 fqrand_r(u32* p);
+f32 fqrand2_r(u32* p);
 
 #endif

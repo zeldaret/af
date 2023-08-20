@@ -5,10 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
-struct PlayState;
+struct Game_Play;
 struct Uki;
 
-typedef void (*UkiActionFunc)(struct Uki*, struct PlayState*);
+typedef void (*UkiActionFunc)(struct Uki*, struct Game_Play*);
 
 typedef struct Uki {
     /* 0x000 */ Actor actor;

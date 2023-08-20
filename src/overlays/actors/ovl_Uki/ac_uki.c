@@ -1,10 +1,10 @@
 #include "ac_uki.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aUKI_actor_ct(Actor* thisx, PlayState* play);
-void aUKI_actor_dt(Actor* thisx, PlayState* play);
-void aUKI_actor_move(Actor* thisx, PlayState* play);
-void func_80A66978_jp(Actor* thisx, PlayState* play);
+void aUKI_actor_ct(Actor* thisx, Game_Play* game_play);
+void aUKI_actor_dt(Actor* thisx, Game_Play* game_play);
+void aUKI_actor_move(Actor* thisx, Game_Play* game_play);
+void func_80A66978_jp(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Uki_Profile = {

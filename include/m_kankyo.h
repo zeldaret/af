@@ -5,7 +5,7 @@
 #include "unk.h"
 
 struct Actor;
-struct LightContext;
+struct Global_light;
 
 typedef void (*Kankyo_unk_C0)(struct Actor*);
 
@@ -31,7 +31,7 @@ typedef struct Kankyo {
 // void func_80096F5C_jp();
 // void func_80097048_jp();
 // void mEnv_RoomTypeLightSet();
-void Global_kankyo_ct(struct PlayState* play, struct Kankyo* kankyo);
+void Global_kankyo_ct(struct Game_Play* game_play, struct Kankyo* kankyo);
 // void mEnv_MakeShadowInfo();
 // void mEnv_set_time();
 // void func_800976BC_jp();
@@ -49,7 +49,7 @@ void Global_kankyo_ct(struct PlayState* play, struct Kankyo* kankyo);
 // void func_800981B8_jp();
 // void func_8009836C_jp();
 // void func_800983F0_jp();
-void Global_kankyo_set(struct PlayState* play, struct Kankyo* kankyo, struct LightContext* arg2);
+void Global_kankyo_set(struct Game_Play* game_play, struct Kankyo* kankyo, struct Global_light* arg2);
 // void func_80098558_jp();
 // void func_8009867C_jp();
 // void func_80098794_jp();
@@ -60,7 +60,7 @@ void Global_kankyo_set(struct PlayState* play, struct Kankyo* kankyo, struct Lig
 void mEnv_WindMove(void);
 // void func_80098CCC_jp();
 // void func_80098D88_jp();
-// void func_80098DE0_jp();
+void mEnv_DecideWeather_NormalGameStart(void);
 // void mEnv_NowWeather();
 // void func_80098F68_jp();
 // void func_80098FF0_jp();

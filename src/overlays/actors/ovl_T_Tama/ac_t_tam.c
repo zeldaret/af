@@ -2,7 +2,7 @@
 #include "m_lib.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aTTM_actor_draw(Actor* thisx, PlayState* play);
+void aTTM_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile T_Tama_Profile = {

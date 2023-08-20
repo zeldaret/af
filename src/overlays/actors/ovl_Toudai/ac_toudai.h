@@ -7,10 +7,10 @@
 #include "z64math.h"
 #include "c_keyframe.h"
 
-struct PlayState;
 struct Toudai;
+struct Game_Play;
 
-typedef void (*ToudaiActionFunc)(struct Toudai*, struct PlayState*);
+typedef void (*ToudaiActionFunc)(struct Toudai*, struct Game_Play*);
 
 //TODO: replace with the ac_structure struct
 typedef struct Toudai {
@@ -33,10 +33,10 @@ typedef struct Toudai {
 } Toudai; // size = 0x2D8
 
 void aTOU_set_bgOffset(Toudai* this, s32 heightTableIndex);
-void aTOU_init(Toudai* this, struct PlayState* play);
-void aTOU_wait(Toudai* this, struct PlayState* play);
-void aTOU_lighting(Toudai* this, struct PlayState* play);
-void aTOU_lightout(Toudai* this, struct PlayState* play);
+void aTOU_init(Toudai* this, struct Game_Play* game_play);
+void aTOU_wait(Toudai* this, struct Game_Play* game_play);
+void aTOU_lighting(Toudai* this, struct Game_Play* game_play);
+void aTOU_lightout(Toudai* this, struct Game_Play* game_play);
 void aTOU_setup_action(Toudai* this, s32 processIndex);
 
 #endif
