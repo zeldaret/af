@@ -40,7 +40,7 @@ typedef struct ClObj_Properties {
 
 typedef struct ClObj {
     /* 0x0 */ struct Actor* actor;
-    /* 0x4 */ struct Actor* unk_4;
+    /* 0x4 */ struct Actor* oc;
     /* 0x8 */ ClObj_Properties prop;
 } ClObj; // size = 0xC
 
@@ -52,8 +52,8 @@ typedef struct ClObjJntSphElemAttr_Init {
 } ClObjJntSphElemAttr_Init; // size = 0xC
 
 typedef struct ClObjJntSphElem_Init {
-    /* 0x0 */ ClObjElem unk_0;
-    /* 0x2 */ ClObjJntSphElemAttr_Init unk_2;
+    /* 0x0 */ ClObjElem elem;
+    /* 0x2 */ ClObjJntSphElemAttr_Init attr;
 } ClObjJntSphElem_Init; // size = 0xE
 
 typedef struct ClObjJntSph_Init {
@@ -93,13 +93,13 @@ typedef struct ClObjPipe_Init {
     /* 0x0 */ ClObj_Properties prop;
     /* 0x3 */ ClObjElem elem;
     /* 0x4 */ ClObjPipeAttr attr;
-} ClObjPipe_Init; // size >= 0x10
+} ClObjPipe_Init; // size = 0x10
 
 typedef struct ClObjPipe {
     /* 0x00 */ ClObj base;
     /* 0x0C */ ClObjElem element;
     /* 0x0E */ ClObjPipeAttr attribute;
-} ClObjPipe; // size >= 0x1C
+} ClObjPipe; // size = 0x1C
 
 
 
@@ -135,11 +135,11 @@ typedef struct ClObjTris_Init {
     /* 0x0 */ ClObj_Properties prop;
     /* 0x4 */ s32 count;
     /* 0x8 */ ClObjTrisElem_Init* elem;
-} ClObjTris_Init; // size >= 0x
+} ClObjTris_Init; // size = 0xX
 
 
 typedef struct CollisionCheck {
-    /* 0x00 */ u16 unk_00;
+    /* 0x00 */ u16 flags;
     /* 0x04 */ s32 ocColCount;
     /* 0x08 */ ClObj *ocColliders[50];
 } CollisionCheck; // size = 0xD0
@@ -158,7 +158,7 @@ typedef struct CollisionCheck_Status {
     /* 0x0C */ s16 unk_0C;
     /* 0x0E */ s16 unk_0E;
     /* 0x10 */ s16 unk_10;
-    /* 0x12 */ u8 unk_12;
+    /* 0x12 */ u8 mass;
     /* 0x13 */ u8 unk_13;
     /* 0x14 */ u8 unk_14;
     /* 0x15 */ u8 unk_15;
@@ -167,7 +167,10 @@ typedef struct CollisionCheck_Status {
 } CollisionCheck_Status; // size = 0x18
 
 
-#define OC1_NONE        0
+#define COLCHECK_FLAG_NONE (0)
+#define COLCHECK_FLAG_1    (1 << 0)
+
+#define OC1_NONE        (0)
 #define OC1_1           (1 << 0)
 #define OC1_2           (1 << 1)
 #define OC1_4           (1 << 2)
@@ -178,7 +181,7 @@ typedef struct CollisionCheck_Status {
 
 #define OC1_TYPE_ALL (OC1_TYPE_8 | OC1_TYPE_10 | OC1_TYPE_20)
 
-#define OC2_NONE        0
+#define OC2_NONE        (0)
 #define OC2_1           (1 << 0)
 #define OC2_2           (1 << 1)
 #define OC2_4           (1 << 2)
@@ -187,7 +190,7 @@ typedef struct CollisionCheck_Status {
 #define OC2_TYPE_20     OC1_TYPE_20
 
 
-#define ELEM_FLAG_NONE   0
+#define ELEM_FLAG_NONE   (0)
 #define ELEM_FLAG_1      (1 << 0)
 #define ELEM_FLAG_2      (1 << 1)
 
