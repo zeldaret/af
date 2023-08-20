@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "m_actor.h"
+#include "m_collision_obj.h"
 #include "unk.h"
 
 struct Game_Play;
@@ -12,7 +13,8 @@ typedef void (*SnowmanActionFunc)(struct Snowman*, struct Game_Play*);
 
 typedef struct Snowman {
     /* 0x000 */ Actor actor;
-    /* 0x174 */ UNK_TYPE1 unk_174[0x88];
+    /* 0x174 */ ClObjPipe collider;
+    /* 0x190 */ UNK_TYPE1 unk_190[0x6C];
 } Snowman; // size = 0x1FC
 
 #endif

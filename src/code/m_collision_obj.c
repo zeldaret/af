@@ -882,7 +882,7 @@ void CollisionCheck_Status_set3(CollisionCheck_Status* status, CollisionCheck_St
     status->unk_0C = init->unk_2;
     status->unk_0E = init->unk_4;
     status->unk_10 = init->unk_6;
-    status->mass = init->unk_8;
+    status->mass = init->mass;
 }
 
 void CollisionCheck_Uty_ActorWorldPosSetPipeC(Actor* actor, ClObjPipe* colPipe) {

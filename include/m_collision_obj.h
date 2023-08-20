@@ -150,7 +150,7 @@ typedef struct CollisionCheck_Status_Init {
     /* 0x0 */ s16 unk_2;
     /* 0x0 */ s16 unk_4;
     /* 0x0 */ s16 unk_6;
-    /* 0x0 */ u8 unk_8;
+    /* 0x0 */ u8 mass;
 } CollisionCheck_Status_Init; // size = 0xA
 
 typedef struct CollisionCheck_Status {

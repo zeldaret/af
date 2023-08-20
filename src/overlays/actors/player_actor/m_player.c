@@ -1,5 +1,26 @@
 #include "m_player.h"
 
+extern ClObjPipe_Init Player_actor_OcInfoData_forStand;
+#if 0
+ClObjPipe_Init Player_actor_OcInfoData_forStand = { { OC1_1 | OC1_TYPE_8 | OC1_TYPE_10 | OC1_TYPE_20, OC2_TYPE_8, COLSHAPE_TRIS }, { ELEM_FLAG_1 }, { { 0x14, 0x3C, 0, { 0, 0, 0 } } } };
+#endif
+
+extern ClObjTrisElem_Init Player_actor_pclobj_tris_base_forItem[];
+extern ClObjTris_Init Player_actor_pclobj_tris_data_forItem;
+#if 0
+ClObjTrisElem_Init Player_actor_pclobj_tris_base_forItem[] = {
+    {
+        { ELEM_FLAG_NONE },
+        {
+            {
+                { { -70.0f, 176.0f, 0.0f }, { -70.0f, -4.0f, 0.0f }, { 0.0f, -4.0f, 30.0f } },
+            },
+        },
+    },
+};
+ClObjTris_Init Player_actor_pclobj_tris_data_forItem = { { OC1_TYPE_10 | OC1_TYPE_20, OC2_2, COLSHAPE_TRIS }, ARRAY_COUNT(Player_actor_pclobj_tris_base_forItem), Player_actor_pclobj_tris_base_forItem };
+#endif
+
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B2D50_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B2DE4_jp.s")
