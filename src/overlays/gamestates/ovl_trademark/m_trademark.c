@@ -21,6 +21,7 @@
 #include "6EDD10.h"
 #include "6F5550.h"
 #include "segment_symbols.h"
+#include "macros.h"
 
 #include "overlays/gamestates/ovl_play/m_play.h"
 
@@ -30,7 +31,7 @@
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80804D18_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80804D74_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/trademark_goto_demo_scene.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80804EE0_jp.s")
 
@@ -42,15 +43,70 @@
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80805360_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_808055F4_jp.s")
+void trademark_cancel(Game_Trademark* this) {
+    if ((this->unk_25A70 == 0) && (this->unk_25A6E == 4)) {
+        if (common_data.unk_10AB0 != 0) {
+            if (CHECK_FLAG_ALL(CONTROLLER1(gamePT)->press.button, START_BUTTON)) {
+                this->unk_25A70 = 1;
+            }
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80805658_jp.s")
+extern u8 D_80808520_jp[];
+extern UNK_TYPE B_80808560_jp;
+extern UNK_TYPE B_80818560_jp;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_808057D0_jp.s")
+void trademark_move(Game_Trademark* this) {
+    if (this->unk_25A6E == 0) {
+        if (DECR(this->unk_25A68) == 0) {
+            mBGMPsComp_make_ps_lost_fanfare(D_80808520_jp[mTD_get_titledemo_no()], 0x168);
+            func_800D1A9C_jp(0x105);
+            this->unk_25A60 = 0;
+            this->unk_25A6E = 1;
+        }
+    }
 
-void func_80805888_jp(Game* arg0);
+    if ((func_80804C40_jp() != 0) && ((this->unk_25A6E == 3) || (this->unk_25A70 != 0))) {
+        if (this->unk_25A60 < 0xFF) {
+            this->unk_25A60 += 8;
+        }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80805888_jp.s")
+        if (this->unk_25A71 != 1) {
+            if (func_8008F768_jp(&B_80808560_jp, &B_80818560_jp) == 1) {
+                this->unk_25A71 = 1;
+            }
+        }
+
+        if ((this->unk_25A60 >= 0xFF) && (this->unk_25A71 == 1)) {
+            this->unk_25A60 = 0xFF;
+            this->unk_25A6E = 5;
+        }
+    }
+}
+
+void trademark_draw(Game_Trademark* this);
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/trademark_draw.s")
+
+void trademark_main(Game* thisx) {
+    Game_Trademark* this = (Game_Trademark*)thisx;
+    GraphicsContext* gfxCtx;
+
+    fqrand();
+
+    trademark_cancel(this);
+    trademark_move(this);
+    trademark_draw(this);
+
+    gfxCtx = this->state.gfxCtx;
+    game_debug_draw_last(&this->state, gfxCtx);
+    game_draw_last(gfxCtx);
+
+    if (this->unk_25A6E == 5) {
+        this->unk_25A6E = 0;
+        trademark_goto_demo_scene(this);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/trademark_cleanup.s")
 
@@ -65,7 +121,7 @@ void trademark_init(Game* thisx) {
 
     common_data_reinit();
 
-    this->state.main = func_80805888_jp;
+    this->state.main = trademark_main;
     this->state.destroy = trademark_cleanup;
 
     initView(&this->view, sp2C);

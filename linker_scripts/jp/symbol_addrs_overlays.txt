@@ -240,16 +240,16 @@ cpedit_init = 0x80804B6C; // type:func
 func_80804C40_jp = 0x80804C40; // type:func
 func_80804CC0_jp = 0x80804CC0; // type:func
 func_80804D18_jp = 0x80804D18; // type:func
-func_80804D74_jp = 0x80804D74; // type:func
+trademark_goto_demo_scene = 0x80804D74; // type:func
 func_80804EE0_jp = 0x80804EE0; // type:func
 func_80804F78_jp = 0x80804F78; // type:func
 func_80805104_jp = 0x80805104; // type:func
 func_808052B8_jp = 0x808052B8; // type:func
 func_80805360_jp = 0x80805360; // type:func
-func_808055F4_jp = 0x808055F4; // type:func
-func_80805658_jp = 0x80805658; // type:func
-func_808057D0_jp = 0x808057D0; // type:func
-func_80805888_jp = 0x80805888; // type:func
+trademark_cancel = 0x808055F4; // type:func
+trademark_move = 0x80805658; // type:func
+trademark_draw = 0x808057D0; // type:func
+trademark_main = 0x80805888; // type:func
 trademark_cleanup = 0x8080590C; // type:func
 trademark_init = 0x80805968; // type:func
 
@@ -292,7 +292,6 @@ RO_FLT_8080855C_jp = 0x8080855C; // type:f32
 // .bss
 
 B_80808560_jp = 0x80808560; //
-B_80818283_jp = 0x80818283; //
 B_80818560_jp = 0x80818560; //
 B_80828560_jp = 0x80828560; //
 B_80828620_jp = 0x80828620; //
