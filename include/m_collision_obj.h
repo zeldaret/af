@@ -195,69 +195,34 @@ typedef struct CollisionCheck_Status {
 #define ELEM_FLAG_2      (1 << 1)
 
 
-void CollisionCheck_workTrisElemCenter(ClObjTrisElem* arg0, Vec3f* arg1);
-s32 ClObj_ct(struct Game_Play* game_play, ClObj* arg1);
-s32 ClObj_dt(struct Game_Play* game_play, ClObj* arg1);
-s32 ClObj_set4(struct Game_Play* game_play, ClObj* arg1, struct Actor* actor, ClObj_Properties* arg3);
-void ClObj_OCClear(struct Game_Play* game_play, ClObj* arg1);
-s32 ClObjElem_ct(ClObjElem* arg0);
-s32 ClObjElem_set(ClObjElem* arg0, ClObjElem* arg1);
-void ClObjElem_OCClear(struct Game_Play* game_play, ClObjElem* arg1);
-s32 ClObjJntSphElemAttr_ct(struct Game_Play* game_play, ClObjJntSphElemAttr* arg1);
-s32 ClObjJntSphElemAttr_dt(struct Game_Play* game_play, ClObjJntSphElemAttr* arg1);
-s32 ClObjJntSphElemAttr_set(struct Game_Play* game_play, ClObjJntSphElemAttr* arg1, ClObjJntSphElemAttr_Init* arg2);
-s32 ClObjJntSphElem_ct(struct Game_Play* game_play, ClObjJntSphElem* arg1);
-s32 ClObjJntSphElem_dt(struct Game_Play* game_play, ClObjJntSphElem* arg1);
-s32 ClObjJntSphElem_set(struct Game_Play* game_play, ClObjJntSphElem* arg1, ClObjJntSphElem_Init* arg2);
-s32 ClObjJntSphElem_OCClear(struct Game_Play* game_play, ClObjJntSphElem* arg1);
-s32 ClObjJntSph_ct(struct Game_Play* game_play, ClObjJntSph* jntSph);
-s32 ClObjJntSph_dt_nzf(struct Game_Play* game_play, ClObjJntSph* jntSph);
-s32 ClObjJntSph_set5_nzm(struct Game_Play* game_play, ClObjJntSph* jntSph, struct Actor* actor, ClObjJntSph_Init* arg3, ClObjJntSphElem arg4[]);
-s32 ClObjJntSph_OCClear(struct Game_Play* game_play, ClObj*);
-s32 ClObjPipeAttr_ct(struct Game_Play* game_play, ClObjPipeAttr* arg1);
-s32 ClObjPipeAttr_dt(struct Game_Play* game_play, ClObjPipeAttr* arg1);
-s32 ClObjPipeAttr_set(struct Game_Play* game_play, ClObjPipeAttr* arg1, ClObjPipeAttr* arg2);
-s32 ClObjPipe_ct(struct Game_Play* game_play, ClObjPipe* pipe);
-s32 ClObjPipe_dt(struct Game_Play* game_play, ClObjPipe* pipe);
-s32 ClObjPipe_set5(struct Game_Play* game_play, ClObjPipe* pipe, struct Actor* actor, ClObjPipe_Init* arg3);
-s32 ClObjPipe_OCClear(struct Game_Play* game_play, ClObj* arg1);
-s32 ClObjTrisElemAttr_ct(struct Game_Play* game_play, ClObjTrisElemAttr* arg1);
-s32 ClObjTrisElemAttr_dt(struct Game_Play* game_play, ClObjTrisElemAttr* arg1);
-s32 ClObjTrisElemAttr_set(struct Game_Play* game_play, ClObjTrisElemAttr *arg1, ClObjTrisElemAttr_Init* arg2);
-s32 ClObjTrisElem_ct(struct Game_Play* game_play, ClObjTrisElem* arg1);
-s32 ClObjTrisElem_dt(struct Game_Play* game_play, ClObjTrisElem* arg1);
-s32 ClObjTrisElem_set(struct Game_Play* game_play, ClObjTrisElem* arg1, ClObjTrisElem_Init* arg2);
-s32 ClObjTrisElem_OCClear(struct Game_Play* game_play, ClObjTrisElem* arg1);
-s32 ClObjTris_ct(struct Game_Play* game_play, ClObjTris* tris);
-s32 ClObjTris_dt_nzf(struct Game_Play* game_play, ClObjTris* tris);
-s32 ClObjTris_set5_nzm(struct Game_Play* game_play, ClObjTris* tris, struct Actor* actor, ClObjTris_Init* arg3, ClObjTrisElem arg4[]);
-s32 ClObjTris_OCClear(struct Game_Play* game_play, ClObj* arg1);
-void CollisionCheck_ct(struct Game_Play* game_play, CollisionCheck* arg1);
+s32 ClObjJntSph_ct(struct Game_Play* game_play, ClObjJntSph* colJntSph);
+s32 ClObjJntSph_dt_nzf(struct Game_Play* game_play, ClObjJntSph* colJntSph);
+s32 ClObjJntSph_set5_nzm(struct Game_Play* game_play, ClObjJntSph* colJntSph, struct Actor* actor, ClObjJntSph_Init* init, ClObjJntSphElem elements[]);
+
+s32 ClObjPipe_ct(struct Game_Play* game_play, ClObjPipe* colPipe);
+s32 ClObjPipe_dt(struct Game_Play* game_play, ClObjPipe* colPipe);
+s32 ClObjPipe_set5(struct Game_Play* game_play, ClObjPipe* colPipe, struct Actor* actor, ClObjPipe_Init* init);
+
+s32 ClObjTris_ct(struct Game_Play* game_play, ClObjTris* colTris);
+s32 ClObjTris_dt_nzf(struct Game_Play* game_play, ClObjTris* colTris);
+s32 ClObjTris_set5_nzm(struct Game_Play* game_play, ClObjTris* colTris, struct Actor* actor, ClObjTris_Init* init, ClObjTrisElem elements[]);
+
+void CollisionCheck_ct(struct Game_Play* game_play, CollisionCheck* colCheck);
 void CollisionCheck_dt(struct Game_Play* game_play, CollisionCheck* arg1);
-void CollisionCheck_clear(struct Game_Play* game_play, CollisionCheck* arg1);
-s32 CollisionCheck_setOC(struct Game_Play* game_play, CollisionCheck* arg1, ClObj* arg2);
-// s32 get_type(u8 arg0);
-void CollisionCheck_setOC_HitInfo(ClObj* arg0, ClObjElem* arg1, Vec3f* arg2, ClObj* arg3, ClObjElem* arg4, Vec3f* arg5, f32 arg6);
-void CollisionCheck_OC_JntSph_Vs_JntSph(struct Game_Play* game_play, CollisionCheck* arg1, ClObj* arg2, ClObj* arg3);
-void CollisionCheck_OC_JntSph_Vs_Pipe(struct Game_Play* game_play, CollisionCheck* arg1, ClObj* arg2, ClObj* arg3);
-void CollisionCheck_OC_Pipe_Vs_JntSph(struct Game_Play* game_play, CollisionCheck* arg1, ClObj* arg2, ClObj* arg3);
-void CollisionCheck_OC_Pipe_Vs_Pipe(struct Game_Play* game_play, CollisionCheck* arg1, ClObj* arg2, ClObj* arg3);
-s32 CollisionCheck_Check1ClObjNoOC(ClObj* arg0);
-s32 CollisionCheck_Check2ClObjNoOC(ClObj* arg0, ClObj* arg1);
-void CollisionCheck_OC(struct Game_Play* game_play, CollisionCheck* arg1);
-void CollisionCheck_setOCC_HitInfo(struct Game_Play* game_play, ClObj* arg1, ClObjTrisElem* arg2, Vec3f* arg3, ClObj* arg4, ClObjElem* arg5, Vec3f* arg6, Vec3f* arg7);
-void CollisionCheck_OCC_Tris_Vs_JntSph(struct Game_Play* game_play, CollisionCheck* arg1, ClObj* arg2, ClObj* arg3);
-void CollisionCheck_OCC_Tris_Vs_Pipe(struct Game_Play* game_play, CollisionCheck* arg1, ClObj* arg2, ClObj* arg3);
-s32 CollisionCheck_Check1ClObjNoOCC(ClObj* arg0);
-void CollisionCheck_OCC(struct Game_Play* game_play, CollisionCheck* arg1);
-s32 ClObjTrisElem_OCCClear(struct Game_Play* game_play, ClObjTrisElem*);
-void ClObj_OCCClear(struct Game_Play* game_play, ClObj* arg1);
-s32 ClObjTris_OCCClear(struct Game_Play* game_play, ClObj* arg1);
-s32 CollisionCheck_setOCC(struct Game_Play* game_play, CollisionCheck* arg1, ClObj* arg2);
+void CollisionCheck_clear(struct Game_Play* game_play, CollisionCheck* colCheck);
+
+s32 CollisionCheck_setOC(struct Game_Play* game_play, CollisionCheck* colCheck, ClObj* cl);
+
+void CollisionCheck_OC(struct Game_Play* game_play, CollisionCheck* colCheck);
+void CollisionCheck_OCC(struct Game_Play* game_play, CollisionCheck* colCheck);
+
+s32 CollisionCheck_setOCC(struct Game_Play* game_play, CollisionCheck* colCheck, ClObj* cl);
+
 void CollisionCheck_Status_ct(CollisionCheck_Status* status);
 void CollisionCheck_Status_Clear(CollisionCheck_Status* status);
-void CollisionCheck_Status_set3(CollisionCheck_Status* status, CollisionCheck_Status_Init* arg1);
-void CollisionCheck_Uty_ActorWorldPosSetPipeC(struct Actor* actor, ClObjPipe* pipe);
-s32 CollisionCheck_Uty_setTrisPos_ad(struct Game_Play* game_play, ClObjTris* tris, s32 arg2, ClObjTrisElemAttr_Init* arg3);
+void CollisionCheck_Status_set3(CollisionCheck_Status* status, CollisionCheck_Status_Init* init);
+
+void CollisionCheck_Uty_ActorWorldPosSetPipeC(struct Actor* actor, ClObjPipe* colPipe);
+s32 CollisionCheck_Uty_setTrisPos_ad(struct Game_Play* game_play, ClObjTris* colTris, s32 index, ClObjTrisElemAttr_Init* init);
 
 #endif
