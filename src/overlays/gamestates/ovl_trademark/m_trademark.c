@@ -27,11 +27,58 @@
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80804C40_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80804CC0_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/set_npc_4_title_demo.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80804D18_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/mTM_demotime_set.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/trademark_goto_demo_scene.s")
+extern demo_door_data* l_demo_door_data_table[];
+
+void trademark_goto_demo_scene(Game_Trademark* this) {
+    s32 temp_v0;
+
+    mCPk_InitPak(0);
+    common_data.now_private = common_data.private;
+
+    if (mFRm_CheckSaveData() == 0) {
+        Private_c* var_s0;
+        s32 var_s1;
+
+        // TODO: make a substruct
+        bzero(&common_data, 0x10000);
+        mFRm_ClearSaveCheckData(&common_data);
+
+        var_s0 = common_data.private;
+        for (var_s1 = 0; var_s1 < ARRAY_COUNT(common_data.private); var_s1++) {
+            mPr_ClearPrivateInfo(var_s0);
+            var_s0++;
+        }
+
+        common_data.land_info.unk_6 = 1;
+        common_data.house_owner_name = 0xFFFF;
+        common_data.last_field_id = 0xFFFF;
+    }
+
+    mEv_ClearEventInfo();
+    temp_v0 = mEv_CheckTitleDemo();
+    if (temp_v0 > 0) {
+        demo_door_data* doorData = l_demo_door_data_table[temp_v0-1];
+
+        common_data.unk_10754 = *doorData;
+        common_data.unk_10754.unk_00 = doorData->unk_00 + 1;
+
+        mTM_demotime_set(temp_v0);
+        mPr_RandomSetPlayerData_title_demo();
+        set_npc_4_title_demo(this);
+        common_data.unk_1014B = 3;
+    }
+
+    common_data.unk_00014 = 0x21;
+    mTM_set_season();
+    common_data.unk_104AD = 1;
+
+    STOP_GAMESTATE(&this->state);
+    SET_NEXT_GAMESTATE(&this->state, play_init, sizeof(Game_Play));
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80804EE0_jp.s")
 
@@ -41,8 +88,40 @@
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_808052B8_jp.s")
 
-void nintendo_logo_draw(Game_Trademark* this);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/nintendo_logo_draw.s")
+extern UNK_TYPE D_80807908_jp;
+
+// nintendo_logo_draw?
+void func_80805360_jp(Game_Trademark* this) {
+    s32 pad;
+    GraphicsContext* gfxCtx = this->state.gfxCtx;
+
+    OPEN_DISPS(gfxCtx);
+
+    func_808052B8_jp(this);
+
+    gDPPipeSync(POLY_OPA_DISP++);
+    gDPSetPrimColor(POLY_OPA_DISP++, 0, 0xFF, 255, 255, 255, this->unk_25A66);
+    gDPSetEnvColor(POLY_OPA_DISP++, 0, 0, 0, 0);
+    gDPSetRenderMode(POLY_OPA_DISP++, G_RM_XLU_SURF, G_RM_XLU_SURF2);
+    gDPSetAlphaCompare(POLY_OPA_DISP++, G_AC_THRESHOLD);
+    gDPSetTextureFilter(POLY_OPA_DISP++, G_TF_POINT);
+    gDPSetCycleType(POLY_OPA_DISP++, G_CYC_1CYCLE);
+    gSPClearGeometryMode(POLY_OPA_DISP++, G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
+    gDPSetCombineLERP(POLY_OPA_DISP++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT);
+    gDPSetTexturePersp(POLY_OPA_DISP++, G_TP_NONE);
+    gDPSetTextureLUT(POLY_OPA_DISP++, G_TT_NONE);
+    gDPSetTextureImage(POLY_OPA_DISP++, G_IM_FMT_I, G_IM_SIZ_8b, 128, &D_80807908_jp);
+    gDPSetTile(POLY_OPA_DISP++, G_IM_FMT_I, G_IM_SIZ_8b, 16, 0x0000, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);
+    gDPLoadSync(POLY_OPA_DISP++);
+    gDPLoadTile(POLY_OPA_DISP++, G_TX_LOADTILE, 0, 0, 0x01FC, 0x0060);
+    gDPPipeSync(POLY_OPA_DISP++);
+    gDPSetTile(POLY_OPA_DISP++, G_IM_FMT_I, G_IM_SIZ_8b, 16, 0x0000, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);
+    gDPSetTileSize(POLY_OPA_DISP++, G_TX_RENDERTILE, 0, 0, 0x01FC, 0x0060);
+
+    POLY_OPA_DISP = func_800BE1D4_jp(POLY_OPA_DISP, 0x19C, 0x288, 0x398, 0x2E8, 0, 0, 0, 0x400, 0x400);
+
+    CLOSE_DISPS(gfxCtx);
+}
 
 void trademark_cancel(Game_Trademark* this) {
     if ((this->unk_25A70 == 0) && (this->unk_25A6E == 4)) {
@@ -101,7 +180,7 @@ void trademark_draw(Game_Trademark* this) {
     }
 
     if (this->unk_25A6E >= 2) {
-        nintendo_logo_draw(this);
+        func_80805360_jp(this);
     }
 
     {

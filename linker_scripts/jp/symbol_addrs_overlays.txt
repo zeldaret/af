@@ -238,14 +238,14 @@ func_80804ADC_jp = 0x80804ADC; // type:func
 cpedit_cleanup = 0x80804B34; // type:func
 cpedit_init = 0x80804B6C; // type:func
 func_80804C40_jp = 0x80804C40; // type:func
-func_80804CC0_jp = 0x80804CC0; // type:func
-func_80804D18_jp = 0x80804D18; // type:func
+set_npc_4_title_demo = 0x80804CC0; // type:func
+mTM_demotime_set = 0x80804D18; // type:func
 trademark_goto_demo_scene = 0x80804D74; // type:func
 func_80804EE0_jp = 0x80804EE0; // type:func
 func_80804F78_jp = 0x80804F78; // type:func
 func_80805104_jp = 0x80805104; // type:func
 func_808052B8_jp = 0x808052B8; // type:func
-nintendo_logo_draw = 0x80805360; // type:func
+func_80805360_jp = 0x80805360; // type:func
 trademark_cancel = 0x808055F4; // type:func
 trademark_move = 0x80805658; // type:func
 trademark_draw = 0x808057D0; // type:func
@@ -255,12 +255,12 @@ trademark_init = 0x80805968; // type:func
 
 // .data
 
-D_80805B20_jp = 0x80805B20; //
-D_80805B34_jp = 0x80805B34; //
-D_80805B48_jp = 0x80805B48; //
-D_80805B5C_jp = 0x80805B5C; //
-D_80805B70_jp = 0x80805B70; //
-D_80805B80_jp = 0x80805B80; //
+D_80805B20_jp = 0x80805B20; // size:0x14
+D_80805B34_jp = 0x80805B34; // size:0x14
+D_80805B48_jp = 0x80805B48; // size:0x14
+D_80805B5C_jp = 0x80805B5C; // size:0x14
+D_80805B70_jp = 0x80805B70; // size:0x14
+l_demo_door_data_table = 0x80805B84; // size:0x14
 D_80805B98_jp = 0x80805B98; //
 D_80805CB0_jp = 0x80805CB0; //
 D_80805CB4_jp = 0x80805CB4; //
