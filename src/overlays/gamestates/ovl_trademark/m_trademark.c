@@ -135,9 +135,22 @@ void trademark_goto_demo_scene(Game_Trademark* this) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80804F78_jp.s")
 
+void func_80805104_jp(Game_Trademark* this);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80805104_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_808052B8_jp.s")
+void func_808052B8_jp(Game_Trademark* this) {
+    if (this->unk_25A6E == 2) {
+        this->unk_25A66 += 0x10;
+        if (this->unk_25A66 >= 0xFF) {
+            this->unk_25A66 = 0xFF;
+            this->unk_25A6E = 4;
+        }
+    } else if (this->unk_25A6E == 4) {
+        if (DECR(this->unk_25A64) == 0) {
+            this->unk_25A6E = 3;
+        }
+    }
+}
 
 extern UNK_TYPE D_80807908_jp;
 
