@@ -264,7 +264,15 @@ void trademark_main(Game* thisx) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/trademark_cleanup.s")
+void trademark_cleanup(Game* thisx) {
+    mHm_hs_c* var_s0 = common_data.homes;
+    s32 var_s1;
+
+    for (var_s1 = 0; var_s1 != ARRAY_COUNT(common_data.homes); var_s1++, var_s0++) {
+        var_s0->unk_024 = var_s1;
+        mMl_clear_mail_box(var_s0->unk_478, ARRAY_COUNT(var_s0->unk_478));
+    }
+}
 
 void trademark_init(Game* thisx) {
     s32 pad;
