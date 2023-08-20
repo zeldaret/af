@@ -41,7 +41,8 @@
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_808052B8_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80805360_jp.s")
+void nintendo_logo_draw(Game_Trademark* this);
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/nintendo_logo_draw.s")
 
 void trademark_cancel(Game_Trademark* this) {
     if ((this->unk_25A70 == 0) && (this->unk_25A6E == 4)) {
@@ -85,8 +86,33 @@ void trademark_move(Game_Trademark* this) {
     }
 }
 
-void trademark_draw(Game_Trademark* this);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/trademark_draw.s")
+void trademark_draw(Game_Trademark* this) {
+    GraphicsContext* gfxCtx = this->state.gfxCtx;
+    s32 pad;
+
+    OPEN_DISPS(gfxCtx);
+
+    gSPSegment(POLY_OPA_DISP++, 0x00, NULL);
+
+    DisplayList_initialize(gfxCtx, 0, 0, 0, NULL);
+
+    if (this->unk_25A6E > 0) {
+        func_80805104_jp(this);
+    }
+
+    if (this->unk_25A6E >= 2) {
+        nintendo_logo_draw(this);
+    }
+
+    {
+        void* gfx = POLY_XLU_DISP;
+
+        fade_black_draw(&gfx, this->unk_25A60);
+        POLY_XLU_DISP = gfx;
+    }
+
+    CLOSE_DISPS(this->state.gfxCtx);
+}
 
 void trademark_main(Game* thisx) {
     Game_Trademark* this = (Game_Trademark*)thisx;
