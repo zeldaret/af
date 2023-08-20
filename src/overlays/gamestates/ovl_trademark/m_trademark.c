@@ -25,7 +25,27 @@
 
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80804C40_jp.s")
+extern UNK_TYPE B_80828560_jp;
+extern OSMesgQueue B_80828620_jp[6];
+extern UNK_TYPE B_808286B0_jp;
+
+s32 func_80804C40_jp(void) {
+    OSMesgQueue* var_s1 = B_80828620_jp;
+    s32 var_s0;
+
+    if (func_80090120_jp() != 0) {
+        return 1;
+    }
+
+    for (var_s0 = 0; var_s0 < ARRAY_COUNT(B_80828620_jp); var_s0++, var_s1++) {
+        if (osRecvMesg(var_s1, NULL, OS_MESG_NOBLOCK) == 0) {
+            return 0;
+        }
+    }
+
+    func_80090130_jp(1);
+    return 1;
+}
 
 extern UNK_TYPE demo_npc_list;
 extern s32 demo_npc_num;
@@ -245,10 +265,6 @@ void trademark_main(Game* thisx) {
 }
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/trademark_cleanup.s")
-
-extern UNK_TYPE B_80828560_jp;
-extern OSMesgQueue B_80828620_jp;
-extern UNK_TYPE B_808286B0_jp;
 
 void trademark_init(Game* thisx) {
     s32 pad;
