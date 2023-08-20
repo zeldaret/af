@@ -27,9 +27,40 @@
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80804C40_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/set_npc_4_title_demo.s")
+extern UNK_TYPE demo_npc_list;
+extern s32 demo_npc_num;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/mTM_demotime_set.s")
+s32 set_npc_4_title_demo(Game_Trademark* this) {
+    mNpc_SetAnimalTitleDemo(&demo_npc_list, common_data.animals, this);
+    mNpc_SetNpcList(common_data.npclist, common_data.animals, demo_npc_num, 0);
+
+    return demo_npc_num;
+}
+
+typedef struct struct_80805CB4 {
+    /* 0x0 */ u8 unk_0;
+    /* 0x1 */ u8 unk_1;
+    /* 0x2 */ u8 unk_2;
+    /* 0x0 */ UNK_TYPE1 unk_3[0x1];
+    /* 0x4 */ s16 unk_4;
+} struct_80805CB4; // size = 0x6
+
+extern struct_80805CB4 D_80805CB4_jp[];
+
+void mTM_demotime_set(s32 arg0) {
+
+    common_data.time.rtc_enabled = 0;
+    common_data.time.rtc_time.year = 0x7D1;
+    common_data.time.rtc_time.min = 0;
+    if (arg0 != 0) {
+        struct_80805CB4* temp_v0 = &D_80805CB4_jp[arg0-1];
+
+        common_data.time.rtc_time.month = temp_v0->unk_0;
+        common_data.time.rtc_time.day = temp_v0->unk_1;
+        common_data.time.rtc_time.hour = temp_v0->unk_2;
+        common_data.unk_1056C = temp_v0->unk_4;
+    }
+}
 
 extern demo_door_data* l_demo_door_data_table[];
 
