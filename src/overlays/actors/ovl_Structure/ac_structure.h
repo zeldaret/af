@@ -11,7 +11,6 @@ struct Game;
 
 typedef void (*StructureActionFunc)(struct Structure*, struct PlayState*);
 
-//TODO: replace with structure base struct
 typedef struct Structure {
     /* 0x000 */ Actor actor;
     /* 0x174 */ UNK_TYPE1 unk_174[0x8];
@@ -27,16 +26,16 @@ typedef UNK_RET (*actorStructureClip_unkAC)(u16 structureName);
 typedef UNK_RET (*aSTR_get_pal_segment)(u16 structurePaletteName);
 
 typedef struct StructureClip {
-    /* 0x00 */ aSTR_setupActor_proc setupActorProc;
-    /* 0x04 */ aSTR_get_overlay_area_proc getOverlayProc;
-    /* 0x08 */ aSTR_free_overlay_area_proc freeOverlayAreaProc;
-    /* 0x0C */ aSTR_get_actor_area_proc getActorAreaProc;
-    /* 0x10 */ aSTR_free_actor_area_proc freeActorAreaProc;
-    /* 0x14 */ UNK_TYPE1 unk_14[0x94];
-    /* 0xA8 */ actorStructureClip_unkA8 unk_A8; //unload object
-    /* 0xAC */ actorStructureClip_unkAC unk_AC; //load object
-    /* 0xB0 */ UNK_TYPE unk_B0;
-    /* 0xB4 */ UNK_TYPE1 pad[0x450-0xb4];
+    /* 0x000 */ aSTR_setupActor_proc setupActorProc;
+    /* 0x004 */ aSTR_get_overlay_area_proc getOverlayProc;
+    /* 0x008 */ aSTR_free_overlay_area_proc freeOverlayAreaProc;
+    /* 0x00C */ aSTR_get_actor_area_proc getActorAreaProc;
+    /* 0x010 */ aSTR_free_actor_area_proc freeActorAreaProc;
+    /* 0x014 */ UNK_TYPE1 unk_14[0x94];
+    /* 0x0A8 */ actorStructureClip_unkA8 unk_A8; //unload object
+    /* 0x0AC */ actorStructureClip_unkAC unk_AC; //load object
+    /* 0x0B0 */ UNK_TYPE unk_B0;
+    /* 0x0B4 */ UNK_TYPE1 pad[0x450-0xb4];
     /* 0x450 */ aSTR_get_pal_segment getPalSegment;
     /* 0x454 */ UNK_TYPE unk_454;
     /* 0x458 */ UNK_TYPE1 pad2[0x86C-0x458];

@@ -33,4 +33,12 @@ typedef struct PlayState_unk_0110 {
     /* 0x52 */ UNK_TYPE1 unk_52[0x2];
 } PlayState_unk_0110; // size = 0x54
 
+typedef struct ShadowData {
+    /* 0x00 */ u32 numberOfVertices;
+    /* 0x04 */ u8* vertexFixFlagTable;
+    /* 0x08 */ f32 size;
+    /* 0x0C */ Vtx* vertices;
+    /* 0x10 */ Gfx* model;
+} ShadowData; // size = 0x10
+
 #endif

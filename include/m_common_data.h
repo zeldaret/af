@@ -12,6 +12,13 @@ struct CommonData_unk_1004C_unk_14_arg0;
 struct PlayState;
 struct StructureClip;
 
+typedef enum Season {
+    /* 0 */ SPRING,
+    /* 1 */ SUMMER,
+    /* 2 */ FALL,
+    /* 3 */ WINTER
+} Season;
+
 typedef UNK_RET (*CommonData_unk_1004C_unk_04)(struct ActorOverlay*, const struct struct_801161E8_jp*, size_t, s32);
 typedef UNK_RET (*CommonData_unk_1004C_unk_08)(void);
 
