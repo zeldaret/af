@@ -753,9 +753,6 @@
 // extern UNK_TYPE D_8010DC88_jp;
 // extern UNK_TYPE D_8010DC8C_jp;
 // extern UNK_TYPE D_8010DC90_jp;
-// extern UNK_TYPE D_8010DCA0_jp;
-// extern UNK_TYPE D_8010DCB0_jp;
-// extern UNK_TYPE D_8010DCC4_jp;
 // extern UNK_TYPE D_8010DCE0_jp;
 // extern UNK_TYPE D_8010DCE4_jp;
 // extern UNK_TYPE D_8010DCE8_jp;
@@ -1882,8 +1879,6 @@ extern s32 zurumode_flag;
 // extern UNK_TYPE B_FLT_80141DFC_jp;
 // extern UNK_TYPE B_80141E00_jp;
 // extern UNK_TYPE B_80141E04_jp;
-// extern UNK_TYPE B_80141E10_jp;
-// extern UNK_TYPE B_80141E18_jp;
 
 // extern UNK_TYPE B_80141FE0_jp;
 // extern UNK_TYPE B_80141FF0_jp;

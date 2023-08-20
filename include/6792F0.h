@@ -24,6 +24,6 @@
 // void func_8005615C_jp();
 // void func_80056234_jp();
 // void func_80056270_jp();
-// void func_80056310_jp();
+void mAGrw_ChangeTree2FruitTree(void);
 
 #endif

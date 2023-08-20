@@ -33,8 +33,8 @@ typedef struct Controller {
 
 struct Game;
 
-void mCon_ct(struct Game* gameState);
-void mCon_dt(struct Game* gameState);
+void mCon_ct(struct Game* game);
+void mCon_dt(struct Game* game);
 void mCon_calc(Controller* controller, f32 x, f32 y);
 void mCon_main(struct Game* game);
 s32 chkButton(u16 mask);

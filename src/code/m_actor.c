@@ -11,7 +11,6 @@
 #include "m_lib.h"
 #include "m_skin_matrix.h"
 #include "m_player_lib.h"
-#include "m_npc.h"
 #include "m_scene.h"
 #include "libc/math.h"
 #include "fault.h"
@@ -24,6 +23,7 @@
 #include "macros.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "overlays/actors/player_actor/m_player.h"
+#include "overlays/actors/ovl_Npc/ac_npc.h"
 
 void func_80056380_jp(void* arg0, void* arg1 UNUSED) {
     Actor* actor = arg0;
@@ -251,7 +251,7 @@ void Actor_dt(Actor* actor, struct Game_Play* game_play);
 
 void Actor_draw(Game_Play* game_play, Actor* actor) {
     FaultClient faultClient;
-    Lights* light;
+    LightsN* light;
 
     Fault_AddClient(&faultClient, func_80056380_jp, actor, "Actor_draw");
 
@@ -263,9 +263,8 @@ void Actor_draw(Game_Play* game_play, Actor* actor) {
 
     OPEN_DISPS(game_play->state.gfxCtx);
 
-    light = Global_light_read(&game_play->lightCtx, game_play->state.gfxCtx);
-    LightsN_list_check(light, game_play->lightCtx.listHead,
-                       (actor->flags & ACTOR_FLAG_400000) ? NULL : &actor->world.pos);
+    light = Global_light_read(&game_play->glight, game_play->state.gfxCtx);
+    LightsN_list_check(light, game_play->glight.list, (actor->flags & ACTOR_FLAG_400000) ? NULL : &actor->world.pos);
     LightsN_disp(light, game_play->state.gfxCtx);
 
     Matrix_softcv3_load(actor->world.pos.x, actor->world.pos.y + actor->shape.unk_08 * actor->scale.y,
@@ -345,8 +344,8 @@ void Actor_delete_check(Actor* actor, Game_Play* game_play) {
     Actor_delete(actor);
 }
 
-void Actor_info_ct(Game_Play* play2, ActorInfo* actorInfo, ActorEntry* actorEntry) {
-    Game_Play* game_play = play2;
+void Actor_info_ct(Game_Play* game_play2, ActorInfo* actorInfo, ActorEntry* actorEntry) {
+    Game_Play* game_play = game_play2;
     Actor* temp_v0;
     ActorOverlay* var_v0;
     ActorEntry* var_s0_2;

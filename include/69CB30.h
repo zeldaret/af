@@ -3,7 +3,7 @@
 
 #include "ultra64.h"
 
-// void func_80078E90_jp();
+s32 func_80078E90_jp(s32 arg0, s32 arg1);
 // void func_80078EB4_jp();
 // void func_80078EE0_jp();
 // void func_80078F08_jp();
@@ -37,7 +37,7 @@
 // void func_80079EDC_jp();
 // void func_80079F44_jp();
 // void func_8007A008_jp();
-// void mCPk_get_pkinfo();
+s32 mCPk_get_pkinfo(void);
 // void func_8007A080_jp();
 
 #endif

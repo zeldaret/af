@@ -31,7 +31,7 @@ struct Game_Play;
 // void func_800B74E8_jp();
 // void func_800B7560_jp();
 void mPO_business_proc(struct Game_Play* game_play);
-// void func_800B7680_jp();
+void func_800B7680_jp(struct Game_Play* game_play);
 // void func_800B7700_jp();
 
 #endif

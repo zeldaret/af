@@ -3,6 +3,8 @@
 
 #include "ultra64.h"
 
+struct lbRTC_time_c;
+
 // void func_800D4DC0_jp();
 // void func_800D4E20_jp();
 // void func_800D4E94_jp();
@@ -10,7 +12,7 @@
 // void func_800D4F6C_jp();
 // void func_800D4FB8_jp();
 // void func_800D5004_jp();
-// void func_800D5090_jp();
+void lbRTC_GetTime(struct lbRTC_time_c* time);
 // void func_800D5104_jp();
 // void func_800D5164_jp();
 // void func_800D51E0_jp();
@@ -35,7 +37,7 @@
 // void func_800D5BDC_jp();
 // void func_800D5C84_jp();
 // void func_800D5CF8_jp();
-// void func_800D5D6C_jp();
+void lbRTC_TimeCopy(struct lbRTC_time_c* dst, struct lbRTC_time_c* src);
 // void func_800D5D94_jp();
 
 #endif
