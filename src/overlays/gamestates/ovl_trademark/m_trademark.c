@@ -131,12 +131,67 @@ void trademark_goto_demo_scene(Game_Trademark* this) {
     SET_NEXT_GAMESTATE(&this->state, play_init, sizeof(Game_Play));
 }
 
+void func_80804EE0_jp(Game_Trademark* this, f32 arg1, f32 arg2, f32 arg3);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80804EE0_jp.s")
 
+void func_80804F78_jp(Game_Trademark* this);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80804F78_jp.s")
 
+extern UNK_TYPE D_80808510_jp;
+extern Lightsn D_80808508_jp;
+extern UNK_TYPE D_808075D8_jp;
+
 void func_80805104_jp(Game_Trademark* this);
+#if 1
+void func_80805104_jp(Game_Trademark* this) {
+    s32 pad[2];
+    Vec3f sp64;
+    Vec3f sp58;
+    Vec3f sp4C;
+    GraphicsContext* temp_s0;
+    f32 sp44;
+    f32 sp40;
+
+    temp_s0 = this->state.gfxCtx;
+    OPEN_DISPS(temp_s0);
+
+    func_80804F78_jp(this);
+
+    sp64.x = 69.0f;
+    sp64.y = 69.0f;
+    sp64.z = 69.0f;
+
+    sp4C.x = -4949.148f;
+    sp4C.y = 4002.5417f;
+    sp4C.z = 1119.0837f;
+
+    sp58.x = 0.0f;
+    sp58.y = 0.0f;
+    sp58.z = 0.0f;
+    HiliteReflect_init(&sp58, &sp4C, &sp64, temp_s0);
+
+    gSPSetLights1(POLY_OPA_DISP++, D_80808508_jp);
+
+    func_80804EE0_jp(this, 0.0f, 500.0f, 1000.0f);
+    _texture_z_light_fog_prim(temp_s0);
+
+    do {
+    sp40 = this->unk_00208 * 0.006f;
+    sp44 = this->unk_0020C * 0.006f;
+    Matrix_translate(0.0f, -15.0f, 0.0f, MTXMODE_NEW);
+
+    Matrix_scale(sp40, sp44, sp40, 1);
+    Matrix_RotateY(0x2000, MTXMODE_APPLY);
+    } while (0);
+
+    gSPMatrix(POLY_OPA_DISP++, _Matrix_to_Mtx_new(temp_s0), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    gSPDisplayList(POLY_OPA_DISP++, &D_808075D8_jp);
+
+    CLOSE_DISPS(temp_s0);
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80805104_jp.s")
+#endif
 
 void func_808052B8_jp(Game_Trademark* this) {
     if (this->unk_25A6E == 2) {
