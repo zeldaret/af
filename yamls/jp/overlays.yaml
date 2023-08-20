@@ -101,9 +101,9 @@
     compress: True
     bss_size: 0x20170
     subsegments:
-      - [0x744020, asm, overlays/gamestates/ovl_trademark/m_trademark]
+      - [0x744020, c, overlays/gamestates/ovl_trademark/m_trademark]
       - [0x744F00, data, overlays/gamestates/ovl_trademark/m_trademark]
-      - [0x747910, rodata, overlays/gamestates/ovl_trademark/m_trademark]
+      - [0x747910, .rodata, overlays/gamestates/ovl_trademark/m_trademark]
       - { start: 0x747940, type: bss, vram: 0x80808560, name: overlays/gamestates/ovl_trademark/m_trademark }
   - name: ovl_trademark_reloc
     type: code
