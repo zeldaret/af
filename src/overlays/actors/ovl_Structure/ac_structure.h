@@ -44,11 +44,11 @@ typedef struct StructureClip {
 } StructureClip; // size = ??
 
 typedef enum StructureName {
-    /* 0x045 */ STRUCTURE_TOUDAI = 45,
+    /* 0x045 */ STRUCTURE_TOUDAI = 45
 } StructureName; // size = 
 
 typedef enum StructurePaletteName {
-    /* 0x090 */ STRUCTURE_TOUDAI_PAL = 90,
+    /* 0x090 */ STRUCTURE_TOUDAI_PAL = 90
 } StructurePaletteName; // size = 
 
 #endif

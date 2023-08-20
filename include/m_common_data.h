@@ -81,7 +81,7 @@ typedef struct CommonData {
     /* 0x100E8 */ u8 unk100E8[0x24];
     /* 0x1010C */ u32 season;
     /* 0x10110 */ u8 unk10110[0x8];
-    /* 0x10118 */ UNK_TYPE unk10118;
+    /* 0x10118 */ s32 now_sec;
     /* 0x1011C */ u8 unk1011C[0x3];
     /* 0x1011F */ u8 unk_1011F;
     /* 0x10120 */ u8 unk10120[0x1];
