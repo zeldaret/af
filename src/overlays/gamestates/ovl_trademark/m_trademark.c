@@ -25,16 +25,18 @@
 
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-extern UNK_TYPE B_80828560_jp;
-extern OSMesgQueue B_80828620_jp[6];
-extern UNK_TYPE B_808286B0_jp;
+#if 0
+D_80805B20_jp
+D_80805B34_jp
+D_80805B48_jp
+D_80805B5C_jp
+D_80805B70_jp
+#endif
+
+extern demo_door_data* l_demo_door_data_table[];
 
 extern UNK_TYPE demo_npc_list;
 extern s32 demo_npc_num;
-
-extern u8 D_80808520_jp[];
-extern UNK_TYPE B_80808560_jp;
-extern UNK_TYPE B_80818560_jp;
 
 typedef struct struct_80805CB4 {
     /* 0x0 */ u8 unk_0;
@@ -46,13 +48,36 @@ typedef struct struct_80805CB4 {
 
 extern struct_80805CB4 D_80805CB4_jp[];
 
-extern demo_door_data* l_demo_door_data_table[];
+#if 0
+D_80805CD8_jp
+D_80805ED8_jp
+D_808060D8_jp
+D_80806158_jp
+D_80806338_jp
+D_80806458_jp
+D_808065D8_jp
+#endif
 
-extern UNK_TYPE D_80808510_jp;
-extern Lightsn D_80808508_jp;
 extern UNK_TYPE D_808075D8_jp;
 
 extern UNK_TYPE D_80807908_jp;
+
+#if 0
+D_80808000_jp
+#endif
+
+extern Lightsn D_80808508_jp;
+
+extern u8 D_80808520_jp[];
+
+
+
+extern UNK_TYPE B_80808560_jp;
+extern UNK_TYPE B_80818560_jp;
+extern UNK_TYPE B_80828560_jp;
+extern OSMesgQueue B_80828620_jp[6];
+extern UNK_TYPE B_808286B0_jp;
+
 
 s32 func_80804C40_jp(void) {
     OSMesgQueue* var_s1 = B_80828620_jp;
