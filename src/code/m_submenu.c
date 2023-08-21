@@ -1,6 +1,7 @@
 #include "m_submenu.h"
 #include "m_common_data.h"
 #include "m_lib.h"
+#include "fault.h"
 #include "ovlmgr.h"
 #include "attributes.h"
 #include "libc/stdint.h"
@@ -14,6 +15,9 @@ extern SubmenuArea SubmenuArea_dlftbl[];
 typedef void (*fnptr_8010DD24)(Game_Play1CBC*);
 
 extern fnptr_8010DD24 D_8010DD24_jp[];
+
+extern FaultClient B_80144670_jp;
+extern FaultAddrConvClient B_80144680_jp;
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/RO_STR_80117920_jp.s")
 
@@ -91,7 +95,18 @@ void* mSM_ovlptr_dllcnv(void* vram, Game_Play1CBC* arg1) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C49D4_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_submenu_ovlptr_cleanup.s")
+void mSM_submenu_ovlptr_cleanup(Game_Play1CBC* arg0) {
+    Fault_RemoveClient(&B_80144670_jp);
+    Fault_RemoveAddrConvClient(&B_80144680_jp);
+    if (SubmenuArea_visit != NULL) {
+        SubmenuArea_DoUnlink(SubmenuArea_visit, arg0);
+        SubmenuArea_visit = NULL;
+    }
+
+    // One of those two is SubmenuArea_allocp
+    D_8010DCE0_jp = 0;
+    D_8010DCE4_jp = 0;
+}
 
 void load_player(Game_Play1CBC* arg0) {
     SubmenuArea* playerActorOvl = &SubmenuArea_dlftbl[1];
