@@ -22,6 +22,13 @@ ActorProfile Npc_Profile = {
 };
 #endif
 
+extern ClObjPipe_Init aNPC_CoInfoData;
+extern CollisionCheck_Status_Init aNPC_StatusData;
+#if 0
+ClObjPipe_Init aNPC_CoInfoData = { { OC1_1 | OC1_TYPE_8 | OC1_TYPE_10 | OC1_TYPE_20, OC2_TYPE_20, COLSHAPE_PIPE }, { ELEM_FLAG_1 }, { { 0x14, 0x1E, 0, { 0, 0, 0 } } } };
+CollisionCheck_Status_Init aNPC_StatusData = { 0, 0x14, 0x1E, 0, 50 };
+#endif
+
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc/ac_npc/func_809735B0_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc/ac_npc/func_8097366C_jp.s")

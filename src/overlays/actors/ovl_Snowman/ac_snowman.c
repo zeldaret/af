@@ -22,6 +22,13 @@ ActorProfile Snowman_Profile = {
 };
 #endif
 
+extern ClObjPipe_Init aSMAN_CoInfoData;
+extern CollisionCheck_Status_Init aSMAN_StatusData;
+#if 0
+ClObjPipe_Init aSMAN_CoInfoData = { { OC1_1 | OC1_TYPE_8 | OC1_TYPE_10 | OC1_TYPE_20, OC2_TYPE_20, COLSHAPE_PIPE }, { ELEM_FLAG_1 }, { { 5, 5, 0, { 0, 0, 0 } } } };
+CollisionCheck_Status_Init aSMAN_StatusData = { 0, 5, 5, 0, 196 };
+#endif
+
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/aSMAN_actor_ct.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096DDAC_jp.s")
