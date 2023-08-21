@@ -19,7 +19,7 @@ typedef struct Player {
     /* 0x0DE4 */ UNK_TYPE unk_0DE4[2];
     /* 0x0DEC */ UNK_TYPE1 unk_0DEC[0x4CC];
     /* 0x12B8 */ UNK_TYPE unk_12B8;
-    /* 0x12BC */ UNK_TYPE1 unk_12BC[0x4];
+    /* 0x12BC */ s32 unk_12BC;
     /* 0x12C0 */ u16 unk_12C0;
     /* 0x12C2 */ UNK_TYPE1 unk_12C2[0x2];
     /* 0x12C4 */ UNK_TYPE1 unk_12C4[0x14];

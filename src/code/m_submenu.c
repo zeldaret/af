@@ -121,28 +121,35 @@ void SubmenuArea_DoUnlink(SubmenuArea* area, Game_Play1CBC* arg1) {
     SubmenuArea_visit = NULL;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C46AC_jp.s")
+s32 mSM_ovlptr_dllcnv_sub(void* vram, SubmenuArea* area, Game_Play1CBC* arg2) {
+    s32 var_a3;
+    s32 len = 2;
 
-#if 0
+    for (var_a3 = 0; var_a3 < len; var_a3++) {
+        if ((vram >= area->vramStart) && (vram <= area->vramEnd)) {
+            SubmenuArea_DoLink(area, arg2, var_a3);
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
 void* mSM_ovlptr_dllcnv(void* vram, Game_Play1CBC* arg1) {
-    SubmenuArea* var_v1;
+    SubmenuArea* var_v1 = SubmenuArea_visit;
 
-    var_v1 = SubmenuArea_visit;
-    if (var_v1 == 0) {
+    if (var_v1 == NULL) {
         var_v1 = &SubmenuArea_dlftbl;
-        if (func_800C46AC_jp(&SubmenuArea_dlftbl, arg1) == 0) {
+        if (!mSM_ovlptr_dllcnv_sub(vram, &SubmenuArea_dlftbl, arg1)) {
             return NULL;
         }
     }
 
-    if ((var_v1 == 0) || ((u32) vram < (u32) var_v1->unk_0C) || ((u32) vram >= (u32) var_v1->unk_10)) {
+    if ((var_v1 == NULL) || (vram < var_v1->vramStart) || (vram >= var_v1->vramEnd)) {
         return NULL;
     }
     return (uintptr_t)vram + var_v1->unk_14;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_ovlptr_dllcnv.s")
-#endif
 
 #if 0
 void func_800C47B4_jp(void* arg0, void* arg1) {
@@ -364,18 +371,40 @@ void mSM_submenu_ct(Game_Play1CBC* arg0) {
 }
 
 void mSM_submenu_dt(UNUSED Game_Play1CBC* arg0) {
-
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_open_submenu.s")
+void mSM_open_submenu(Game_Play1CBC* arg0, s32 arg1, s32 arg2, s32 arg3) {
+    mSM_open_submenu_new2(arg0, arg1, arg2, arg3, 0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C4DB0_jp.s")
+void mSM_open_submenu_new(Game_Play1CBC* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    mSM_open_submenu_new2(arg0, arg1, arg2, arg3, arg4, 0);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C4DD8_jp.s")
+void mSM_open_submenu_new2(Game_Play1CBC* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+    arg0->unk_04 = arg1;
+    arg0->unk_10 = arg2;
+    arg0->unk_14 = arg3;
+    arg0->unk_18 = arg4;
+    arg0->unk_1C = arg5;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_Reset_player_btn_type1.s")
+void mSM_Reset_player_btn_type1(Game_Play* game_play) {
+    Player* player = get_player_actor_withoutCheck(game_play);
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_Reset_player_btn_type2.s")
+    if (player != NULL) {
+        player->unk_12B8 = 0;
+        player->unk_12BC = 1;
+    }
+}
+
+void mSM_Reset_player_btn_type2(Game_Play* game_play) {
+    Player* player = get_player_actor_withoutCheck(game_play);
+
+    if (player != NULL) {
+        player->unk_12BC = 1;
+    }
+}
 
 void mSM_submenu_ctrl(Game_Play* game_play) {
     Game_Play1CBC* temp_v0;
@@ -386,13 +415,13 @@ void mSM_submenu_ctrl(Game_Play* game_play) {
     }
 
     if (
-        (!((chkTrigger(0x1000U) == 0) || (common_data.unk_10A68 != 0))
+        (!((chkTrigger(START_BUTTON) == 0) || (common_data.unk_10A68 != 0))
             ||
-            ((((chkTrigger(0x10U) != 0) && (common_data.unk_10140 == 1)) == 1) && (common_data.unk_10A68 == 0)))
+            ((((chkTrigger(R_TRIG) != 0) && (common_data.unk_10140 == 1)) == 1) && (common_data.unk_10A68 == 0)))
 
             && ((temp_v0->unk_E2 == 0) && (temp_v0->unk_E3 <= 0) && (mPlib_able_submenu_type1(game_play) != 0) && (mEv_CheckFirstIntro() == 0))
         ) {
-        if (chkTrigger(0x1000U) != 0) {
+        if (chkTrigger(START_BUTTON) != 0) {
             mSM_open_submenu(temp_v0, 1, 0, 0);
         } else {
             mSM_open_submenu(temp_v0, 5, 1, 0);
@@ -532,18 +561,13 @@ void mSM_submenu_move(Game_Play1CBC* arg0) {
     D_8010DD24_jp[arg0->unk_0C](arg0);
 }
 
-#if 0
-extern UNK_TYPE SubmenuArea_dlftbl;
-extern UNK_TYPE* SubmenuArea_visit;
+void mSM_submenu_draw(Game_Play1CBC* arg0, struct Game_Play* game_play) {
+    SubmenuArea* submenuOvl = &SubmenuArea_dlftbl[0];
 
-void mSM_submenu_draw(Game_Play1CBC* arg0) {
-    if ((arg0->unk_00 >= 3) && (arg0->unk_0C == 3) && (&SubmenuArea_dlftbl == SubmenuArea_visit)) {
-        arg0->unk_34();
+    if ((arg0->unk_00 >= 3) && (arg0->unk_0C == 3) && (submenuOvl == SubmenuArea_visit)) {
+        arg0->unk_34(arg0, game_play);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_submenu_draw.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C53B8_jp.s")
 
