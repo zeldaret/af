@@ -9,6 +9,7 @@
 #include "sys_math3d.h"
 #include "6BFE60.h"
 #include "attributes.h"
+#include "macros.h"
 
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "overlays/actors/player_actor/m_player.h"
@@ -366,17 +367,74 @@ void mSM_submenu_dt(UNUSED Game_Play1CBC* arg0) {
 
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C4D8C_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_open_submenu.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C4DB0_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C4DD8_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C4DFC_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_Reset_player_btn_type1.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C4E2C_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_Reset_player_btn_type2.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_submenu_ctrl.s")
+void mSM_submenu_ctrl(Game_Play* game_play) {
+    Game_Play1CBC* temp_v0;
+
+    temp_v0 = &game_play->unk_1CBC;
+    if ((game_play->unk_1CBC.unk_0C != 0) || (game_play->unk_1EE0 != 0) || (game_play->unk_1EE3 != 0)) {
+        return;
+    }
+
+    if (
+        (!((chkTrigger(0x1000U) == 0) || (common_data.unk_10A68 != 0))
+            ||
+            ((((chkTrigger(0x10U) != 0) && (common_data.unk_10140 == 1)) == 1) && (common_data.unk_10A68 == 0)))
+
+            && ((temp_v0->unk_E2 == 0) && (temp_v0->unk_E3 <= 0) && (mPlib_able_submenu_type1(game_play) != 0) && (mEv_CheckFirstIntro() == 0))
+        ) {
+        if (chkTrigger(0x1000U) != 0) {
+            mSM_open_submenu(temp_v0, 1, 0, 0);
+        } else {
+            mSM_open_submenu(temp_v0, 5, 1, 0);
+        }
+        mSM_Reset_player_btn_type2(game_play);
+    } else {
+        Player* player = get_player_actor_withoutCheck(game_play);
+        UNUSED s32 pad;
+
+        if ((player != NULL) && (player->unk_12B8 == 1) && (common_data.unk_10A68 == 0) && (temp_v0->unk_E2 == 0) && (temp_v0->unk_E3 <= 0)) {
+            if (mPlib_able_submenu_type1(game_play) != 0) {
+                if (ABS(BINANG_ROT180(player->actor.shape.rot.y)) < 0x2000) {
+                    switch (player->unk_12C0) {
+                        case 0x7:
+                        case 0xB:
+                            mSM_open_submenu(temp_v0, 6, 0, 0);
+                            mSM_Reset_player_btn_type1(game_play);
+                            break;
+
+                        case 0xC:
+                        case 0xD:
+                            mSM_open_submenu(temp_v0, 5, 0, 0);
+                            mSM_Reset_player_btn_type1(game_play);
+                            break;
+
+                        case 0xE:
+                        case 0xF:
+                            mSM_open_submenu(temp_v0, 8, 0, 0);
+                            mSM_Reset_player_btn_type1(game_play);
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    if (temp_v0->unk_04 != 0) {
+        temp_v0->unk_0C = 1;
+        temp_v0->unk_00 = 1;
+        SetGameFrame(2);
+    }
+}
 
 void mSM_move_Wait(Game_Play1CBC* arg0) {
     if (arg0->unk_20 != 0) {

@@ -113,7 +113,7 @@ struct Player* get_player_actor_withoutCheck(struct Game_Play* game_play);
 // void func_800B32FC_jp();
 // void func_800B3330_jp();
 // void func_800B33AC_jp();
-// void func_800B3408_jp();
+s32 mPlib_able_submenu_type1(struct Game_Play* game_play);
 // void func_800B34B8_jp();
 // void func_800B34F4_jp();
 // void func_800B3534_jp();
