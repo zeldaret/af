@@ -39,6 +39,6 @@ typedef struct ShadowData {
     /* 0x08 */ f32 size;
     /* 0x0C */ Vtx* vertices;
     /* 0x10 */ Gfx* model;
-} ShadowData; // size = 0x10
+} ShadowData; // size = 0x14
 
 #endif
