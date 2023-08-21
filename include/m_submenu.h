@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "z64math.h"
+#include "libc/stdint.h"
 #include "other_types.h"
 #include "unk.h"
 
@@ -44,14 +45,14 @@ typedef struct SubmenuArea {
     /* 0x18 */ UNK_TYPE unk_18;
 } SubmenuArea; // size = 0x1C
 
-// void func_800C4420_jp();
+s32 SubmenuArea_IsPlayer(void);
 // void mSM_load_player_anime();
 void SubmenuArea_DoLink(SubmenuArea* area, Game_Play1CBC* arg1, s32 arg2);
 void SubmenuArea_DoUnlink(SubmenuArea* area, Game_Play1CBC* arg1);
 // void func_800C46AC_jp();
 void* mSM_ovlptr_dllcnv(void* vram, Game_Play1CBC* arg1);
-// void func_800C47B4_jp();
-// void func_800C497C_jp();
+void func_800C47B4_jp(void*, void*);
+uintptr_t func_800C497C_jp(uintptr_t, void*);
 void func_800C49D4_jp(struct Game_Play* game_play);
 void mSM_submenu_ovlptr_cleanup(Game_Play1CBC* arg0);
 void load_player(Game_Play1CBC* arg0);

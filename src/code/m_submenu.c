@@ -1,5 +1,6 @@
 #include "m_submenu.h"
 #include "m_common_data.h"
+#include "m_debug.h"
 #include "m_lib.h"
 #include "m_player_lib.h"
 #include "fault.h"
@@ -7,7 +8,6 @@
 #include "game.h"
 #include "sys_math3d.h"
 #include "6BFE60.h"
-#include "libc/stdint.h"
 #include "attributes.h"
 
 #include "overlays/gamestates/ovl_play/m_play.h"
@@ -32,7 +32,12 @@ extern FaultAddrConvClient B_80144680_jp;
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/RO_STR_8011792C_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C4420_jp.s")
+
+s32 SubmenuArea_IsPlayer(void) {
+    SubmenuArea* playerActorOvl = &SubmenuArea_dlftbl[1];
+
+    return SubmenuArea_visit == playerActorOvl;
+}
 
 #ifdef NON_MATCHING
 // regalloc
@@ -138,11 +143,182 @@ void* mSM_ovlptr_dllcnv(void* vram, Game_Play1CBC* arg1) {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_ovlptr_dllcnv.s")
 #endif
 
+#if 0
+void func_800C47B4_jp(void* arg0, void* arg1) {
+    s32 sp34;
+    u32 sp30;
+    u32 sp2C;
+    void* sp20;
+    Player* temp_v0_3;
+    s32 temp_a3;
+    u32 var_t0;
+    u32 var_t1;
+    void* temp_a2;
+    void* temp_s0;
+    void* temp_v0;
+    void* temp_v0_2;
+
+    temp_v0 = *(&B_800418D6_jp + 2);
+    var_t0 = 0;
+    if (temp_v0 != NULL) {
+        var_t0 = temp_v0->unk_11C;
+    }
+    var_t1 = 0;
+    if (temp_v0 != NULL) {
+        var_t1 = temp_v0->unk_104;
+    }
+    sp2C = var_t0;
+    sp30 = var_t1;
+    FaultDrawer_Printf("SubmenuArea_visit\n");
+    FaultDrawer_Printf("RamStart-RamEnd  Offset\n");
+    if (SubmenuArea_visit != NULL) {
+        temp_v0_2 = SubmenuArea_visit->vramStart;
+        temp_s0 = SubmenuArea_visit->allocatedRamAddr;
+        temp_a3 = temp_v0_2 - temp_s0;
+        if (temp_s0 != NULL) {
+            temp_a2 = temp_s0 + (SubmenuArea_visit->vramEnd - temp_v0_2);
+            sp20 = temp_a2;
+            sp34 = temp_a3;
+            sp2C = var_t0;
+            sp30 = var_t1;
+            FaultDrawer_Printf("%08x-%08x %06x", temp_s0, temp_a2, temp_a3);
+            if ((var_t0 >= (u32) temp_s0) && (var_t0 < (u32) temp_a2)) {
+                FaultDrawer_Printf(" PC:%08x", var_t0 + temp_a3, temp_a2, temp_a3);
+            } else if ((var_t1 >= (u32) temp_s0) && (var_t1 < (u32) temp_a2)) {
+                FaultDrawer_Printf(" RA:%08x", var_t1 + temp_a3, temp_a2, temp_a3);
+            }
+            FaultDrawer_Printf("\n");
+            temp_v0_3 = get_player_actor_withoutCheck((Game_Play* ) gamePT);
+            if (temp_v0_3 != NULL) {
+                FaultDrawer_Printf("\n");
+                FaultDrawer_Printf("player infomation\n");
+                FaultDrawer_Printf("main_index         :%d %d\n", temp_v0_3->unk_CF0, temp_v0_3->unk_CF4);
+                FaultDrawer_Printf("request_main_index :%d %d %d\n", temp_v0_3->unk_D00, temp_v0_3->unk_D04, temp_v0_3->unk_D08);
+                FaultDrawer_Printf("pos :%d %d %d\n", (s32) temp_v0_3->actor.world.pos.x, (s32) temp_v0_3->actor.world.pos.y, (s32) temp_v0_3->actor.world.pos.z);
+                FaultDrawer_Printf("angleY :%d %d\n", temp_v0_3->actor.world.rot.y, temp_v0_3->actor.shape.rot.y);
+            }
+        }
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C47B4_jp.s")
+#endif
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C497C_jp.s")
+uintptr_t func_800C497C_jp(uintptr_t address, UNUSED void* param) {
+    uintptr_t addr = address;
 
+    if (SubmenuArea_visit != NULL) {
+        size_t ovlSize = ((uintptr_t)SubmenuArea_visit->vramEnd - (uintptr_t)SubmenuArea_visit->vramStart);
+        uintptr_t loadedRamAddr = (uintptr_t)SubmenuArea_visit->allocatedRamAddr;
+        size_t relocationDiff = (uintptr_t)SubmenuArea_visit->vramStart - loadedRamAddr;
+
+        if (loadedRamAddr != NULL) {
+            if ((addr >= loadedRamAddr) && (addr < loadedRamAddr + ovlSize)) {
+                return addr + relocationDiff;
+            }
+        }
+    }
+
+    return (uintptr_t)NULL;
+}
+
+extern UNK_TYPE1 D_8086F0E0_jp;
+extern UNK_TYPE1 D_808796B0_jp;
+extern UNK_TYPE1 D_8087CA30_jp;
+extern UNK_TYPE1 D_80881C20_jp;
+extern UNK_TYPE1 D_80888B20_jp;
+extern UNK_TYPE1 D_8088ACC0_jp;
+extern UNK_TYPE1 D_8088CA90_jp;
+extern UNK_TYPE1 D_80896A70_jp;
+extern UNK_TYPE1 D_80897870_jp;
+extern UNK_TYPE1 D_808A2E00_jp;
+extern UNK_TYPE1 D_808A45E0_jp;
+extern UNK_TYPE1 D_808B2B30_jp;
+extern UNK_TYPE1 D_808E04D0_jp;
+extern UNK_TYPE1 func_8085BAC0_jp;
+extern UNK_TYPE1 func_8086F310_jp;
+extern UNK_TYPE1 func_8087A330_jp;
+extern UNK_TYPE1 func_8087D480_jp;
+extern UNK_TYPE1 func_80885140_jp;
+extern UNK_TYPE1 func_80888E90_jp;
+extern UNK_TYPE1 func_8088ADB0_jp;
+extern UNK_TYPE1 func_80895E00_jp;
+extern UNK_TYPE1 func_80896B20_jp;
+extern UNK_TYPE1 func_8089AD40_jp;
+extern UNK_TYPE1 func_808A2EA0_jp;
+extern UNK_TYPE1 func_808A6100_jp;
+extern UNK_TYPE1 func_808B2D50_jp;
+
+// mSM_submenu_ovlptr_init
+#ifdef NON_MATCHING
+// regalloc
+void func_800C49D4_jp(Game_Play* game_play) {
+    u32 temp_a0;
+    u32 temp_a1_2;
+    u32 temp_v1;
+    u32 temp_t1;
+    u32 var_a3;
+    u32 var_s0;
+    u32 temp_a1;
+    u32 var_t0;
+    u32 temp;
+    u32 temp2;
+    u32 temp3;
+    u32 temp4;
+    u32 temp5;
+
+    u32 temp6;
+    u32 temp7;
+    u32 temp8;
+    u32 temp9;
+
+    temp6 = (((&D_8088CA90_jp - &func_8088ADB0_jp) + 0x3F) & ~0x3F);
+    temp7 = (((&D_80897870_jp - &func_80896B20_jp) + 0x3F) & ~0x3F);
+    temp8 = (((&D_808A2E00_jp - &func_8089AD40_jp) + 0x3F) & ~0x3F);
+    temp9 = (((&D_808A45E0_jp - &func_808A2EA0_jp) + 0x3F) & ~0x3F);
+
+    temp_v1 = ((&D_8086F0E0_jp - &func_8085BAC0_jp) + 0x3F) & ~0x3F;
+    temp_a0 = ((&D_808796B0_jp - &func_8086F310_jp) + 0x3F) & ~0x3F;
+
+    var_t0 = temp6 + temp7;
+    temp_a1 = temp8 + temp9;
+    var_t0 = MAX(temp_a1, var_t0);
+
+    temp_a1 = ((&D_8087CA30_jp - &func_8087A330_jp) + 0x3F) & ~0x3F;
+    temp = (((&D_80881C20_jp - &func_8087D480_jp) + 0x3F) & ~0x3F);
+    temp2 = (((&D_8088ACC0_jp - &func_80888E90_jp) + 0x3F) & ~0x3F);
+    temp3 = (((&D_80888B20_jp - &func_80885140_jp) + 0x3F) & ~0x3F);
+    temp4 = (((&D_80896A70_jp - &func_80895E00_jp) + 0x3F) & ~0x3F);
+    temp5 = (((&D_808B2B30_jp - &func_808A6100_jp) + 0x3F) & ~0x3F);
+
+    var_a3 = temp_v1 + temp + temp_a0 + temp_a1 + temp2 + temp3 + temp4 + var_t0;
+    temp_t1 = temp_v1 + temp_a0 + temp_a1 + temp5 + 0x4000;
+    var_a3 = MAX(temp_t1, var_a3);
+
+    temp_v1 = &D_808E04D0_jp - &func_808B2D50_jp;
+
+    var_s0 = MAX(var_a3, temp_v1);
+
+    debug_mode->r[0xB31] = (var_s0 >> 0x10);
+    debug_mode->r[0xB32] = var_s0;
+    debug_mode->r[0xB33] = (temp_v1 >> 0x10);
+    debug_mode->r[0xB34] = temp_v1;
+    debug_mode->r[0xB35] = (var_a3 >> 0x10);
+    debug_mode->r[0xB36] = var_a3;
+
+    //! FAKE
+    dummy_label_255895: ;
+
+    D_8010DCE0_jp = THA_alloc16(&game_play->state.heap, var_s0);
+    D_8010DCE4_jp = var_s0;
+    SubmenuArea_visit = NULL;
+
+    Fault_AddClient(&B_80144670_jp, func_800C47B4_jp, NULL, NULL);
+    Fault_AddAddrConvClient(&B_80144680_jp, func_800C497C_jp, NULL);
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C49D4_jp.s")
+#endif
 
 void mSM_submenu_ovlptr_cleanup(Game_Play1CBC* arg0) {
     Fault_RemoveClient(&B_80144670_jp);
