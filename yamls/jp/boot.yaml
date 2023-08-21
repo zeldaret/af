@@ -215,7 +215,7 @@
       - [0x016FC0, .data, boot/idle]
       - [0x016FD0, data, boot/016FD0]
       - [0x016FF0, .data, boot/fault]
-      - [0x017050, data, boot/fault_drawer]
+      - [0x017050, .data, boot/fault_drawer]
 
       - [0x017090, data, boot/libu64/stackcheck]
 
@@ -293,7 +293,7 @@
       - { start: 0x019D40, type: .bss, vram: 0x8003FF30, name: boot/viconfig }
       - { start: 0x019D40, type: bss, vram: 0x8003FF40, name: boot/8003FF40 }
       - { start: 0x019D40, type: .bss, vram: 0x80040AE0, name: boot/fault }
-      - { start: 0x019D40, type: bss, vram: 0x80041960, name: boot/fault_drawer }
+      - { start: 0x019D40, type: .bss, vram: 0x80041960, name: boot/fault_drawer }
 
 
       # libu64

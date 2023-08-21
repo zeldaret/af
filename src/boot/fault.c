@@ -698,6 +698,7 @@ void Fault_WaitForButtonCombo(void) {
                         s1 = s2;
                     }
                     break;
+
                 case 1:
                     if (pressedBtn == U_JPAD) {
                         state = 2;
@@ -705,6 +706,7 @@ void Fault_WaitForButtonCombo(void) {
                         state = 0;
                     }
                     break;
+
                 case 2:
                     if (pressedBtn == D_CBUTTONS) {
                         state = 3;
@@ -713,6 +715,7 @@ void Fault_WaitForButtonCombo(void) {
                         state = 0;
                     }
                     break;
+
                 case 3:
                     if (pressedBtn == U_CBUTTONS) {
                         state = 4;
@@ -720,6 +723,7 @@ void Fault_WaitForButtonCombo(void) {
                         state = 0;
                     }
                     break;
+
                 case 4:
                     if (pressedBtn == D_JPAD) {
                         state = 5;
@@ -728,6 +732,7 @@ void Fault_WaitForButtonCombo(void) {
                         state = 0;
                     }
                     break;
+
                 case 5:
                     if (pressedBtn == L_JPAD) {
                         state = 6;
@@ -735,6 +740,7 @@ void Fault_WaitForButtonCombo(void) {
                         state = 0;
                     }
                     break;
+
                 case 6:
                     if (pressedBtn == L_CBUTTONS) {
                         state = 7;
@@ -743,6 +749,7 @@ void Fault_WaitForButtonCombo(void) {
                         state = 0;
                     }
                     break;
+
                 case 7:
                     if (pressedBtn == R_CBUTTONS) {
                         state = 8;
@@ -750,6 +757,7 @@ void Fault_WaitForButtonCombo(void) {
                         state = 0;
                     }
                     break;
+
                 case 8:
                     if (pressedBtn == R_JPAD) {
                         state = 9;
@@ -758,6 +766,7 @@ void Fault_WaitForButtonCombo(void) {
                         state = 0;
                     }
                     break;
+
                 case 9:
                     if (pressedBtn == (A_BUTTON | B_BUTTON)) {
                         state = 10;
@@ -769,6 +778,7 @@ void Fault_WaitForButtonCombo(void) {
                         state = 0;
                     }
                     break;
+
                 case 0x5B:
                     if (pressedBtn == B_BUTTON) {
                         state = 10;
@@ -776,6 +786,7 @@ void Fault_WaitForButtonCombo(void) {
                         state = 0;
                     }
                     break;
+
                 case 0x5C:
                     if (pressedBtn == A_BUTTON) {
                         state = 10;
@@ -783,6 +794,7 @@ void Fault_WaitForButtonCombo(void) {
                         state = 0;
                     }
                     break;
+
                 case 10:
                     if (pressedBtn == START_BUTTON) {
                         state = 11;

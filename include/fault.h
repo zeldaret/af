@@ -4,6 +4,7 @@
 #include "ultra64.h"
 #include "unk.h"
 #include "attributes.h"
+#include "libc/stdarg.h"
 #include "libc/stdint.h"
 #include "libu64/pad.h"
 #include "stack.h"
@@ -81,22 +82,17 @@ NORETURN void Fault_AddHungupAndCrash(const char* file, s32 line);
 
 void FaultDrawer_SetOsSyncPrintfEnabled(u32 enabled);
 void FaultDrawer_DrawRecImpl(s32 xStart, s32 yStart, s32 xEnd, s32 yEnd, u16 color);
-// void FaultDrawer_DrawChar();
-// void FaultDrawer_ColorToPrintColor();
-// void FaultDrawer_UpdatePrintColor();
 void FaultDrawer_SetForeColor(u16 color);
 void FaultDrawer_SetBackColor(u16 color);
 void FaultDrawer_SetFontColor(u16 color);
 void FaultDrawer_SetCharPad(s8 padW, s8 padH);
-void FaultDrawer_SetCursor(s32 arg0, s32 arg1);
+void FaultDrawer_SetCursor(s32 x, s32 y);
 void FaultDrawer_FillScreen(void);
-// void FaultDrawer_PrintCallback();
-// void FaultDrawer_VPrintf();
-void FaultDrawer_Printf(const char* fmt, ...);
+s32 FaultDrawer_VPrintf(const char* fmt, va_list args);
+s32 FaultDrawer_Printf(const char* fmt, ...);
 void FaultDrawer_DrawText(s32 x, s32 y, const char* fmt, ...);
 void FaultDrawer_SetDrawerFB(void* fb, u16 w, u16 h);
 void FaultDrawer_SetInputCallback(void (*callback)(void));
-// void FaultDrawer_WritebackFBDCache();
 void FaultDrawer_Init(void);
 
 extern FaultMgr gFaultMgr;

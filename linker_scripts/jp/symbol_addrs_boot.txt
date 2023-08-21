@@ -458,7 +458,7 @@ RO_STR_8003DE00_jp = 0x8003DE00; // type:asciz
 RO_STR_8003DE04_jp = 0x8003DE04; // type:asciz
 RO_STR_8003DE0C_jp = 0x8003DE0C; // type:asciz
 jtbl_8003DE1C_jp = 0x8003DE1C; // type:jtbl
-RO_8003DE50_jp = 0x8003DE50; //
+sFaultDrawerFont = 0x8003DE50; //
 RO_STR_8003E250_jp = 0x8003E250; // type:asciz
 RO_STR_8003E254_jp = 0x8003E254; // type:asciz
 RO_STR_8003E25C_jp = 0x8003E25C; // type:asciz
@@ -551,14 +551,7 @@ sFaultStack = 0x80040AE8; //
 sFaultThreadInfo = 0x800410E8; //
 gFaultMgr = 0x80041108; // size:0x850
 
-B_80041960_jp = 0x80041960; // type:s8
-B_80041964_jp = 0x80041964; // type:u16
-B_80041970_jp = 0x80041970; // type:u16
-B_80041972_jp = 0x80041972; // type:u16
-B_80041980_jp = 0x80041980; // type:u16
-B_80041982_jp = 0x80041982; // type:u16
-B_80041995_jp = 0x80041995; // type:s8
-B_80041998_jp = 0x80041998; //
+sFaultDrawer = 0x80041960; // size:0x3C
 
 __gfxprint_default_flags = 0x800419A0; // type:u8 size:0x1
 
