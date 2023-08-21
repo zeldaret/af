@@ -143,7 +143,7 @@
       - [0x72B7A0, data, code/m_lib]
       - [0x72B7D0, .data, code/m_lights]
       - [0x72B7F0, data, code/72B7F0]
-      - [0x72F980, data, code/m_player_call]
+      - [0x72F980, .data, code/m_player_call]
       - [0x72F9B0, data, code/72F9B0]
       - [0x731940, .data, code/m_start_data_init]
       - [0x731980, data, code/731980]
@@ -253,7 +253,7 @@
       - { start: 0x73F4D0, type: .bss, vram: 0x80141E10, name: code/m_lights }
       - { start: 0x75B600, type: .bss, vram: 0x80141FA0, name: code/m_malloc }
       - { start: 0x75B600, type: bss, vram: 0x80141FE0, name: code/80141FE0 }
-      - { start: 0x73F4D0, type: bss, vram: 0x80143900, name: code/m_player_call }
+      - { start: 0x73F4D0, type: .bss, vram: 0x80143900, name: code/m_player_call }
       - { start: 0x73F4D0, type: bss, vram: 0x80143910, name: code/80143910 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80145020, name: code/game }
       - { start: 0x73F4D0, type: bss, vram: 0x80145060, name: code/80145060 }

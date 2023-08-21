@@ -3872,15 +3872,15 @@ func_808DD1F8_jp = 0x808DD1F8; // type:func
 func_808DD2D8_jp = 0x808DD2D8; // type:func
 func_808DD318_jp = 0x808DD318; // type:func
 func_808DD398_jp = 0x808DD398; // type:func
-func_808DD748_jp = 0x808DD748; // type:func
-func_808DD81C_jp = 0x808DD81C; // type:func
+Player_actor_ct = 0x808DD748; // type:func
+Player_actor_dt = 0x808DD81C; // type:func
 func_808DD874_jp = 0x808DD874; // type:func
 func_808DD8F0_jp = 0x808DD8F0; // type:func
 func_808DD9B4_jp = 0x808DD9B4; // type:func
 func_808DDA18_jp = 0x808DDA18; // type:func
 func_808DDB34_jp = 0x808DDB34; // type:func
-func_808DDB5C_jp = 0x808DDB5C; // type:func
-func_808DDBD4_jp = 0x808DDBD4; // type:func
+Player_actor_move = 0x808DDB5C; // type:func
+Player_actor_draw = 0x808DDBD4; // type:func
 
 // .data
 

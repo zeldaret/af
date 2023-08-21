@@ -17,7 +17,7 @@ typedef struct Game_Play1CBC {
 // void func_800C453C_jp();
 // void func_800C4648_jp();
 // void func_800C46AC_jp();
-// void mSM_ovlptr_dllcnv();
+void* mSM_ovlptr_dllcnv(void* vram, Game_Play1CBC* arg1);
 // void func_800C47B4_jp();
 // void func_800C497C_jp();
 void func_800C49D4_jp(struct Game_Play* game_play);
