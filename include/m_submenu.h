@@ -2,6 +2,7 @@
 #define M_SUBMENU_H
 
 #include "ultra64.h"
+#include "other_types.h"
 #include "unk.h"
 
 struct Game_Play;
@@ -12,7 +13,9 @@ typedef struct Game_Play1CBC {
     /* 0x0C */ s32 unk_0C;
     /* 0x10 */ UNK_TYPE1 unk_10[0x10];
     /* 0x20 */ UNK_TYPE unk_20;
-    /* 0x24 */ UNK_TYPE1 unk_24[0xC];
+    /* 0x24 */ void* unk_24;
+    /* 0x28 */ void* unk_28;
+    /* 0x2C */ UNK_TYPE1 unk_2C[0x4];
     /* 0x30 */ UNK_FUN_PTR unk_30;
     /* 0x34 */ UNK_FUN_PTR unk_34;
     /* 0x38 */ UNK_TYPE1 unk_38[0xA8];
@@ -22,10 +25,20 @@ typedef struct Game_Play1CBC {
     /* 0xE4 */ UNK_TYPE1 unk_E4[0xC];
 } Game_Play1CBC; // size = 0xF0
 
+typedef struct SubmenuArea {
+    /* 0x00 */ void* allocatedRamAddr;
+    /* 0x04 */ RomOffset vromStart;
+    /* 0x08 */ RomOffset vromEnd;
+    /* 0x0C */ void* vramStart;
+    /* 0x10 */ void* vramEnd;
+    /* 0x14 */ UNK_TYPE unk_14;
+    /* 0x18 */ UNK_TYPE unk_18;
+} SubmenuArea; // size = 0x1C
+
 // void func_800C4420_jp();
 // void func_800C4440_jp();
-// void func_800C453C_jp();
-// void func_800C4648_jp();
+void SubmenuArea_DoLink(SubmenuArea* area, Game_Play1CBC* arg1, s32 arg2);
+void SubmenuArea_DoUnlink(SubmenuArea* area, Game_Play1CBC* arg1);
 // void func_800C46AC_jp();
 void* mSM_ovlptr_dllcnv(void* vram, Game_Play1CBC* arg1);
 // void func_800C47B4_jp();
@@ -47,7 +60,7 @@ void mSM_submenu_ctrl(struct Game_Play* game_play);
 // void func_800C5228_jp();
 // void func_800C524C_jp();
 void mSM_submenu_move(Game_Play1CBC* arg0);
-void mSM_submenu_draw(Game_Play1CBC* arg0);
+// void mSM_submenu_draw(Game_Play1CBC* arg0);
 // void func_800C53B8_jp();
 // void func_800C543C_jp();
 // void func_800C54A8_jp();
