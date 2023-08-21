@@ -134,15 +134,56 @@ void trademark_goto_demo_scene(Game_Trademark* this) {
 void func_80804EE0_jp(Game_Trademark* this, f32 arg1, f32 arg2, f32 arg3);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80804EE0_jp.s")
 
-void func_80804F78_jp(Game_Trademark* this);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80804F78_jp.s")
+void func_80804F78_jp(Game_Trademark* this) {
+    f32 temp_fv1;
+    f32 var_fa0;
+    f32 var_fv0;
+    s16 temp_a2; // sp22
+    s16 temp_a1; // sp20
+
+    temp_a2 = this->unk_25A6A;
+    this->unk_25A6A = temp_a2 + this->unk_25A6C;
+    temp_a1 = this->unk_25A6A;
+
+    temp_fv1 = sinf_table(temp_a1 * 0.0000958738f) * this->unk_00214;
+
+    if (this->unk_25A6F == 0) {
+        var_fa0 = temp_fv1 * 3.0f;
+        var_fv0 = temp_fv1;
+    } else {
+        var_fv0 = 1.0f - temp_fv1;
+        var_fa0 = 1.0f + temp_fv1;
+    }
+
+    this->unk_00208 = var_fv0;
+    this->unk_0020C = var_fa0;
+    this->unk_00210 = var_fv0;
+
+    if ((this->unk_25A6F == 0) && (temp_a1 >= 0x4000)) {
+        this->unk_25A6F = 1;
+    }
+
+    if ((!this->unk_25A6C) && (!this->unk_25A6C)) {}
+
+    if (((temp_a2 < 0) && (temp_a1 >= 0)) || ((temp_a2 < -0x8000) && (temp_a1 >= -0x8000))) {
+        this->unk_00214 *= 0.3f;
+        this->unk_25A6C = this->unk_25A6C + 0xC00;
+    }
+
+    if (ABS(this->unk_00214) < 0.02f) {
+        if (this->unk_25A6E == 1) {
+            this->unk_25A6E = 2;
+        }
+        this->unk_00208 = 1.0f;
+        this->unk_0020C = 1.0f;
+        this->unk_00210 = 1.0f;
+    }
+}
 
 extern UNK_TYPE D_80808510_jp;
 extern Lightsn D_80808508_jp;
 extern UNK_TYPE D_808075D8_jp;
 
-void func_80805104_jp(Game_Trademark* this);
-#if 1
 void func_80805104_jp(Game_Trademark* this) {
     s32 pad[2];
     Vec3f sp64;
@@ -189,9 +230,6 @@ void func_80805104_jp(Game_Trademark* this) {
 
     CLOSE_DISPS(temp_s0);
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80805104_jp.s")
-#endif
 
 void func_808052B8_jp(Game_Trademark* this) {
     if (this->unk_25A6E == 2) {

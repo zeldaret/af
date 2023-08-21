@@ -24,7 +24,7 @@ typedef struct Game_Trademark {
     /* 0x25A6A */ UNK_TYPE2 unk_25A6A;
     /* 0x25A6C */ UNK_TYPE2 unk_25A6C;
     /* 0x25A6E */ u8 unk_25A6E;
-    /* 0x25A6F */ UNK_TYPE1 unk_25A6F;
+    /* 0x25A6F */ u8 unk_25A6F;
     /* 0x25A70 */ u8 unk_25A70;
     /* 0x25A71 */ u8 unk_25A71;
     /* 0x25A72 */ UNK_TYPE1 unk_25A72[0x2];
