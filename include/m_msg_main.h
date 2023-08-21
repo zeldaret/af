@@ -5,13 +5,13 @@
 
 struct Game_Play;
 
-// void func_8009D1F0_jp();
+// void mMsg_Get_base_window_p();
 // void func_8009D200_jp();
 // void func_8009D210_jp();
 // void func_8009D260_jp();
 // void func_8009D274_jp();
-// void func_8009D294_jp();
-// void func_8009D2E8_jp();
+// void mMsg_Check_not_series_main_wait();
+// void mMsg_Check_main_hide();
 // void func_8009D308_jp();
 // void func_8009D3B4_jp();
 // void func_8009D3E4_jp();
@@ -130,7 +130,7 @@ struct Game_Play;
 // void func_8009FC5C_jp();
 // void func_8009FCB8_jp();
 // void func_8009FCE0_jp();
-// void func_8009FD40_jp();
+// void mMsg_sound_spec_change_voice();
 // void func_8009FD80_jp();
 // void func_8009FDA0_jp();
 // void func_8009FDF8_jp();

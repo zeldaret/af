@@ -835,7 +835,7 @@ func_8085D92C_jp = 0x8085D92C; // type:func
 func_8085DA08_jp = 0x8085DA08; // type:func
 func_8085DA28_jp = 0x8085DA28; // type:func
 func_8085DA9C_jp = 0x8085DA9C; // type:func
-func_8085DAEC_jp = 0x8085DAEC; // type:func
+mSM_menu_ovl_init = 0x8085DAEC; // type:func
 
 // .data
 

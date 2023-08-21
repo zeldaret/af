@@ -1,10 +1,19 @@
 #include "m_submenu.h"
 #include "m_common_data.h"
 #include "m_lib.h"
+#include "m_player_lib.h"
 #include "fault.h"
 #include "ovlmgr.h"
-#include "attributes.h"
+#include "game.h"
+#include "sys_math3d.h"
+#include "6BFE60.h"
 #include "libc/stdint.h"
+#include "attributes.h"
+
+#include "overlays/gamestates/ovl_play/m_play.h"
+#include "overlays/actors/player_actor/m_player.h"
+
+void mSM_menu_ovl_init(UNK_PTR arg0);
 
 extern UNK_TYPE D_8010DCE0_jp;
 extern UNK_TYPE D_8010DCE4_jp;
@@ -25,7 +34,47 @@ extern FaultAddrConvClient B_80144680_jp;
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C4420_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C4440_jp.s")
+#ifdef NON_MATCHING
+// regalloc
+void mSM_load_player_anime(Game_Play* game_play) {
+    Game_Play_unk_0110* var_s4;
+    s32 var_s0;
+    s32 var_s3;
+    Player* temp_v0;
+    void* segment;
+
+    temp_v0 = get_player_actor_withoutCheck(game_play);
+    if (temp_v0 == NULL) {
+        return;
+    }
+
+    var_s4 = &game_play->unk_0110;
+    var_s4 += mSc_bank_regist_check(var_s4, 9);
+
+    for (var_s3 = 0; var_s3 < 2; var_s3++, var_s4++) {
+        segment = var_s4->segment;
+
+        if (var_s3 == 0) {
+            func_800B1D94_jp(segment, temp_v0->unk_0DAC);
+        } else {
+            func_800B1D94_jp(segment, temp_v0->unk_0DB0);
+            if (segment && segment) {}
+        }
+
+        var_s0 = temp_v0->unk_0DBC[var_s3];
+        if (temp_v0->unk_0DDC[var_s3] >= 0) {
+            func_800B167C_jp(var_s0, temp_v0->unk_0DDC[var_s3]);
+            var_s0 += func_800B131C_jp(temp_v0->unk_0DDC[var_s3]);
+        }
+
+        if (temp_v0->unk_0DE4[var_s3] >= 0) {
+            func_800B167C_jp(var_s0, temp_v0->unk_0DE4[var_s3]);
+        }
+    }
+}
+#else
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_load_player_anime.s")
+#endif
 
 void SubmenuArea_DoLink(SubmenuArea* area, Game_Play1CBC* arg1, s32 arg2) {
     size_t var_t0;
@@ -153,15 +202,97 @@ void mSM_submenu_dt(UNUSED Game_Play1CBC* arg0) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_submenu_ctrl.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C50C4_jp.s")
+void mSM_move_Wait(Game_Play1CBC* arg0) {
+    if (arg0->unk_20 != 0) {
+        arg0->unk_20--;
+    }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C50EC_jp.s")
+    if (arg0->unk_E3 > 0) {
+        arg0->unk_E3--;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C510C_jp.s")
+void mSM_move_PREWait(Game_Play1CBC* arg0) {
+    if (arg0->unk_00 > 2) {
+        arg0->unk_0C = 2;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C5228_jp.s")
+#ifdef NON_MATCHING
+void mSM_move_LINKWait(Game_Play1CBC* arg0) {
+    SubmenuArea* submenuOvl = &SubmenuArea_dlftbl[0];
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C524C_jp.s")
+    if (SubmenuArea_visit == submenuOvl) {
+        return;
+    }
+
+    if (SubmenuArea_visit != NULL) {
+        SubmenuArea_DoUnlink(SubmenuArea_visit, arg0);
+    }
+    SubmenuArea_DoLink(submenuOvl, arg0, 0);
+
+    arg0->unk_30 = mSM_ovlptr_dllcnv(&mSM_menu_ovl_init, arg0);
+    arg0->unk_34 = none_proc1;
+    arg0->unk_0C = 3;
+    arg0->unk_DC = 1;
+    arg0->unk_E0 = 0;
+    arg0->unk_DF = 0xF;
+    arg0->unk_DD = 7;
+    arg0->unk_DE = 0;
+    mMl_clear_mail(arg0->unk_38);
+    xyz_t_move(&arg0->unk_E4, &ZeroVec);
+
+    if (arg0->unk_00 != 4) {
+        if (((arg0->unk_04 == 4) && (arg0->unk_10 == 0)) || (common_data.now_private->gender == 0)) {
+            sAdo_SpecChange(5);
+        } else {
+            sAdo_SpecChange(6);
+        }
+        sAdo_SetVoiceMode(0);
+    }
+}
+#else
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_move_LINKWait.s")
+#endif
+
+void mSM_move_Play(Game_Play1CBC* arg0) {
+    arg0->unk_30(arg0);
+}
+
+#ifdef NON_MATCHING
+// likely memes
+void mSM_move_End(Game_Play1CBC* arg0) {
+    s32 pad;
+    Game_Play* sp28;
+    s32 sp24;
+    s32 sp20[1];
+
+    sp28 = gamePT;
+    arg0->unk_30(arg0);
+    arg0->unk_0C = 0;
+    arg0->unk_04 = 0;
+    arg0->unk_20 = 2;
+    arg0->unk_DC = 0;
+
+    SetGameFrame(2);
+
+    if (arg0->unk_00 != 4) {
+        sp24 = mMsg_Get_base_window_p();
+        arg0->unk_00 = 0;
+        mSc_dmacopy_all_exchange_bank(&sp28->unk_0110);
+        SubmenuArea_DoUnlink(SubmenuArea_dlftbl, arg0);
+        load_player(arg0);
+        mSM_load_player_anime(sp28);
+        arg0->unk_E3 = 1;
+        sp20[0] = 0;
+        if ((mMsg_Check_main_hide(sp24) == 0) && (mMsg_Check_not_series_main_wait(sp24) != 0)) {
+            mMsg_sound_spec_change_voice(sp24);
+        }
+    }
+}
+#else
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_move_End.s")
+#endif
 
 void mSM_submenu_move(Game_Play1CBC* arg0) {
     D_8010DD24_jp[arg0->unk_0C](arg0);

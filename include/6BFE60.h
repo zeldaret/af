@@ -7,7 +7,7 @@
 // void func_8009C284_jp();
 // void func_8009C2D8_jp();
 // void func_8009C344_jp();
-// void func_8009C384_jp();
+// void mMl_clear_mail();
 // void mMl_clear_mail_box();
 // void func_8009C414_jp();
 // void func_8009C438_jp();
