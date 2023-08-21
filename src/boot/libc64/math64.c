@@ -1,8 +1,7 @@
-#include "ultra64.h"
+#include "libc64/math64.h"
 #include "libc/stdbool.h"
 #include "libc/math.h"
 #include "libc64/fp.h"
-#include "libc64/math64.h"
 
 s32 gFatanUseContFrac;
 
