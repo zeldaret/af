@@ -18,7 +18,8 @@ void Player_actor_draw_call(Actor* thisx, Game_Play* game_play);
 ActorProfile Player_Profile = {
     /* */ ACTOR_PLAYER,
     /* */ ACTOR_PART_PLAYER,
-    /* */ ACTOR_FLAG_1 | ACTOR_FLAG_4 | ACTOR_FLAG_10 | ACTOR_FLAG_20 | ACTOR_FLAG_2000000 | ACTOR_FLAG_4000000 | ACTOR_FLAG_20000000,
+    /* */ ACTOR_FLAG_1 | ACTOR_FLAG_4 | ACTOR_FLAG_10 | ACTOR_FLAG_20 | ACTOR_FLAG_2000000 | ACTOR_FLAG_4000000 |
+        ACTOR_FLAG_20000000,
     /* */ 0,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Player),
