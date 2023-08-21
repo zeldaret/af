@@ -42,7 +42,7 @@ Yaz0_NextDMA = 0x80026F40; // type:func
 Yaz0_DecompressImpl = 0x80027060; // type:func
 Yaz0_Decompress = 0x800271E8; // type:func
 
-__osSyncVPrintf = 0x800272C0; // type:func
+osSyncPrintfUnused = 0x800272C0; // type:func
 osSyncPrintf = 0x800272DC; // type:func
 rmonPrintf = 0x800272F8; // type:func
 
