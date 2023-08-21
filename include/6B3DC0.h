@@ -2,12 +2,13 @@
 #define C_6B3DC0_H
 
 #include "ultra64.h"
+#include "unk.h"
 
 struct GraphicsContext;
 struct Game;
 
-// void func_80090120_jp();
-// void func_80090130_jp();
+s32 func_80090120_jp(void);
+void func_80090130_jp(s32 arg0);
 // void func_80090140_jp();
 // void func_80090178_jp();
 // void func_80090188_jp();
@@ -66,7 +67,7 @@ void func_80091074_jp(struct GraphicsContext* gfxCtx);
 f32 mFont_SetMarkChar(struct Game*, u8, f32, f32, s32, s32, s32, s32, s32, f32, f32, s32);
 // void func_80092440_jp();
 // void func_80092468_jp();
-void func_800924CC_jp(void*, void*, void*);
+void func_800924CC_jp(UNK_TYPE* arg0, OSMesgQueue arg1[], UNK_TYPE* arg2);
 // void func_80092538_jp();
 s32 mFont_UnintToString(char*, u32, s32, s32, s32);
 

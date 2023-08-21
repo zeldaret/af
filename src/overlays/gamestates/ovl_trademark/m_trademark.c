@@ -29,6 +29,31 @@ extern UNK_TYPE B_80828560_jp;
 extern OSMesgQueue B_80828620_jp[6];
 extern UNK_TYPE B_808286B0_jp;
 
+extern UNK_TYPE demo_npc_list;
+extern s32 demo_npc_num;
+
+extern u8 D_80808520_jp[];
+extern UNK_TYPE B_80808560_jp;
+extern UNK_TYPE B_80818560_jp;
+
+typedef struct struct_80805CB4 {
+    /* 0x0 */ u8 unk_0;
+    /* 0x1 */ u8 unk_1;
+    /* 0x2 */ u8 unk_2;
+    /* 0x0 */ UNK_TYPE1 unk_3[0x1];
+    /* 0x4 */ s16 unk_4;
+} struct_80805CB4; // size = 0x6
+
+extern struct_80805CB4 D_80805CB4_jp[];
+
+extern demo_door_data* l_demo_door_data_table[];
+
+extern UNK_TYPE D_80808510_jp;
+extern Lightsn D_80808508_jp;
+extern UNK_TYPE D_808075D8_jp;
+
+extern UNK_TYPE D_80807908_jp;
+
 s32 func_80804C40_jp(void) {
     OSMesgQueue* var_s1 = B_80828620_jp;
     s32 var_s0;
@@ -47,9 +72,6 @@ s32 func_80804C40_jp(void) {
     return 1;
 }
 
-extern UNK_TYPE demo_npc_list;
-extern s32 demo_npc_num;
-
 s32 set_npc_4_title_demo(Game_Trademark* this) {
     mNpc_SetAnimalTitleDemo(&demo_npc_list, common_data.animals, this);
     mNpc_SetNpcList(common_data.npclist, common_data.animals, demo_npc_num, 0);
@@ -57,21 +79,12 @@ s32 set_npc_4_title_demo(Game_Trademark* this) {
     return demo_npc_num;
 }
 
-typedef struct struct_80805CB4 {
-    /* 0x0 */ u8 unk_0;
-    /* 0x1 */ u8 unk_1;
-    /* 0x2 */ u8 unk_2;
-    /* 0x0 */ UNK_TYPE1 unk_3[0x1];
-    /* 0x4 */ s16 unk_4;
-} struct_80805CB4; // size = 0x6
-
-extern struct_80805CB4 D_80805CB4_jp[];
-
 void mTM_demotime_set(s32 arg0) {
 
     common_data.time.rtc_enabled = 0;
     common_data.time.rtc_time.year = 0x7D1;
     common_data.time.rtc_time.min = 0;
+
     if (arg0 != 0) {
         struct_80805CB4* temp_v0 = &D_80805CB4_jp[arg0-1];
 
@@ -81,8 +94,6 @@ void mTM_demotime_set(s32 arg0) {
         common_data.unk_1056C = temp_v0->unk_4;
     }
 }
-
-extern demo_door_data* l_demo_door_data_table[];
 
 void trademark_goto_demo_scene(Game_Trademark* this) {
     s32 temp_v0;
@@ -196,12 +207,8 @@ void func_80804F78_jp(Game_Trademark* this) {
     }
 }
 
-extern UNK_TYPE D_80808510_jp;
-extern Lightsn D_80808508_jp;
-extern UNK_TYPE D_808075D8_jp;
-
 void func_80805104_jp(Game_Trademark* this) {
-    s32 pad[2];
+    UNUSED s32 pad[2];
     Vec3f sp64;
     Vec3f sp58;
     Vec3f sp4C;
@@ -233,12 +240,12 @@ void func_80805104_jp(Game_Trademark* this) {
     _texture_z_light_fog_prim(temp_s0);
 
     do {
-    sp40 = this->unk_00208 * 0.006f;
-    sp44 = this->unk_0020C * 0.006f;
-    Matrix_translate(0.0f, -15.0f, 0.0f, MTXMODE_NEW);
+        sp40 = this->unk_00208 * 0.006f;
+        sp44 = this->unk_0020C * 0.006f;
+        Matrix_translate(0.0f, -15.0f, 0.0f, MTXMODE_NEW);
 
-    Matrix_scale(sp40, sp44, sp40, 1);
-    Matrix_RotateY(0x2000, MTXMODE_APPLY);
+        Matrix_scale(sp40, sp44, sp40, 1);
+        Matrix_RotateY(0x2000, MTXMODE_APPLY);
     } while (0);
 
     gSPMatrix(POLY_OPA_DISP++, _Matrix_to_Mtx_new(temp_s0), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
@@ -247,7 +254,7 @@ void func_80805104_jp(Game_Trademark* this) {
     CLOSE_DISPS(temp_s0);
 }
 
-void func_808052B8_jp(Game_Trademark* this) {
+void nintendo_logo_move(Game_Trademark* this) {
     if (this->unk_25A6E == 2) {
         this->unk_25A66 += 0x10;
         if (this->unk_25A66 >= 0xFF) {
@@ -261,16 +268,13 @@ void func_808052B8_jp(Game_Trademark* this) {
     }
 }
 
-extern UNK_TYPE D_80807908_jp;
-
-// nintendo_logo_draw?
-void func_80805360_jp(Game_Trademark* this) {
-    s32 pad;
+void nintendo_logo_draw(Game_Trademark* this) {
+    UNUSED s32 pad;
     GraphicsContext* gfxCtx = this->state.gfxCtx;
 
     OPEN_DISPS(gfxCtx);
 
-    func_808052B8_jp(this);
+    nintendo_logo_move(this);
 
     gDPPipeSync(POLY_OPA_DISP++);
     gDPSetPrimColor(POLY_OPA_DISP++, 0, 0xFF, 255, 255, 255, this->unk_25A66);
@@ -291,7 +295,7 @@ void func_80805360_jp(Game_Trademark* this) {
     gDPSetTile(POLY_OPA_DISP++, G_IM_FMT_I, G_IM_SIZ_8b, 16, 0x0000, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);
     gDPSetTileSize(POLY_OPA_DISP++, G_TX_RENDERTILE, 0, 0, 0x01FC, 0x0060);
 
-    POLY_OPA_DISP = func_800BE1D4_jp(POLY_OPA_DISP, 0x19C, 0x288, 0x398, 0x2E8, 0, 0, 0, 0x400, 0x400);
+    POLY_OPA_DISP = gfx_gSPTextureRectangle1(POLY_OPA_DISP, 0x19C, 0x288, 0x398, 0x2E8, 0, 0, 0, 0x400, 0x400);
 
     CLOSE_DISPS(gfxCtx);
 }
@@ -305,10 +309,6 @@ void trademark_cancel(Game_Trademark* this) {
         }
     }
 }
-
-extern u8 D_80808520_jp[];
-extern UNK_TYPE B_80808560_jp;
-extern UNK_TYPE B_80818560_jp;
 
 void trademark_move(Game_Trademark* this) {
     if (this->unk_25A6E == 0) {
@@ -340,7 +340,7 @@ void trademark_move(Game_Trademark* this) {
 
 void trademark_draw(Game_Trademark* this) {
     GraphicsContext* gfxCtx = this->state.gfxCtx;
-    s32 pad;
+    UNUSED s32 pad;
 
     OPEN_DISPS(gfxCtx);
 
@@ -353,11 +353,11 @@ void trademark_draw(Game_Trademark* this) {
     }
 
     if (this->unk_25A6E >= 2) {
-        func_80805360_jp(this);
+        nintendo_logo_draw(this);
     }
 
     {
-        void* gfx = POLY_XLU_DISP;
+        Gfx* gfx = POLY_XLU_DISP;
 
         fade_black_draw(&gfx, this->unk_25A60);
         POLY_XLU_DISP = gfx;
@@ -386,7 +386,7 @@ void trademark_main(Game* thisx) {
     }
 }
 
-void trademark_cleanup(Game* thisx) {
+void trademark_cleanup(UNUSED Game* thisx) {
     mHm_hs_c* var_s0 = common_data.homes;
     s32 var_s1;
 
@@ -397,7 +397,7 @@ void trademark_cleanup(Game* thisx) {
 }
 
 void trademark_init(Game* thisx) {
-    s32 pad;
+    UNUSED s32 pad;
     Game_Trademark* this = (Game_Trademark*)thisx;
     GraphicsContext* sp2C = this->state.gfxCtx;
 
@@ -431,14 +431,14 @@ void trademark_init(Game* thisx) {
     common_data.unk_10008 = 0;
     common_data.scene_from_title_demo = -1U;
     func_80095414_jp();
-    func_800ABAF0_jp();
-    func_800AC1C8_jp();
+    mNpc_ClearInAnimal();
+    mNpc_FirstClearGoodbyMail();
     func_800BB0E8_jp();
     func_8008FA50_jp();
     func_8008F210_jp();
 
     func_80026E10_jp(&this->unk_00260, SEGMENT_ROM_START(segment_01136000), SEGMENT_ROM_SIZE(segment_01136000), "../m_trademark.c", 1081);
-    func_800924CC_jp(&B_80828560_jp, &B_80828620_jp, &B_808286B0_jp);
+    func_800924CC_jp(&B_80828560_jp, B_80828620_jp, &B_808286B0_jp);
 
     func_8005EAA0_jp(0);
     func_8007D91C_jp(func_800C8E08_jp());

@@ -14,6 +14,8 @@
 #include "m_field_make.h"
 #include "m_npc_base.h"
 
+struct Game_Trademark;
+
 #define ANIMAL_NUM_MIN 5
 #define ANIMAL_NUM_MAX 15  /* Maximum number of villagers possible in town */
 

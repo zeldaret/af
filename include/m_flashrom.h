@@ -2,6 +2,7 @@
 #define M_FLASHROM_H
 
 #include "ultra64.h"
+#include "unk.h"
 
 struct CommonData;
 
@@ -23,19 +24,19 @@ void mFRm_ClearSaveCheckData(struct CommonData* common_data);
 // void func_8008F040_jp();
 // void func_8008F0A0_jp();
 // void func_8008F1BC_jp();
-// void func_8008F210_jp();
+void func_8008F210_jp(void);
 // void func_8008F23C_jp();
 // void func_8008F24C_jp();
 // void func_8008F530_jp();
 // void func_8008F5FC_jp();
 // void func_8008F648_jp();
-// void func_8008F768_jp();
+s32 func_8008F768_jp(UNK_TYPE* arg0, UNK_TYPE* arg1);
 s32 func_8008F7C8_jp(void);
 // void func_8008F8A0_jp();
 // void func_8008F938_jp();
 // void func_8008F968_jp();
 // void func_8008FA28_jp();
-// void func_8008FA50_jp();
+void func_8008FA50_jp(void);
 // void func_8008FA74_jp();
 // void func_8008FAB4_jp();
 // void func_8008FAE0_jp();
