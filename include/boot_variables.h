@@ -14,8 +14,8 @@
 // extern UNK_TYPE D_FLT_8003BBCC_jp;
 extern OSPiHandle* gCartHandle; // TODO: Determine where this goes
 // extern UNK_TYPE D_8003BBE0_jp;
-// extern UNK_TYPE D_8003BBF0_jp;
-// extern UNK_TYPE D_8003BC38_jp;
+// extern UNK_TYPE sExceptionNames;
+// extern UNK_TYPE sFpExceptionNames;
 // extern UNK_TYPE D_8003BC50_jp;
 // extern UNK_TYPE D_8003BC90_jp;
 // extern UNK_TYPE D_8003BC94_jp;
@@ -254,11 +254,11 @@ extern OSPiHandle* gCartHandle; // TODO: Determine where this goes
 // extern UNK_TYPE B_80040AC8_jp;
 // extern UNK_TYPE B_80040ACC_jp;
 // extern UNK_TYPE B_80040AD0_jp;
-// extern UNK_TYPE B_80040AE0_jp;
-// extern UNK_TYPE B_80040AE4_jp;
-// extern UNK_TYPE B_80040AE8_jp;
-// extern UNK_TYPE B_800410E8_jp;
-// extern UNK_TYPE B_80041108_jp;
+// extern UNK_TYPE sFaultInstance;
+// extern UNK_TYPE sFaultAwaitingInput;
+// extern UNK_TYPE sFaultStack;
+// extern UNK_TYPE sFaultThreadInfo;
+// extern UNK_TYPE gFaultMgr;
 // extern UNK_TYPE B_800418D6_jp;
 // extern UNK_TYPE B_80041960_jp;
 // extern UNK_TYPE B_80041964_jp;
