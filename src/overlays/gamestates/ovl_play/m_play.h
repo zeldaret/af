@@ -3,7 +3,7 @@
 
 #include "m_collision_obj.h"
 #include "m_event.h"
-#include "6E80C0.h"
+#include "m_submenu.h"
 #include "ultra64.h"
 #include "game.h"
 #include "gfx.h"
