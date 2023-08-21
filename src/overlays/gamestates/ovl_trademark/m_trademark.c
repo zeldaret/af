@@ -131,8 +131,24 @@ void trademark_goto_demo_scene(Game_Trademark* this) {
     SET_NEXT_GAMESTATE(&this->state, play_init, sizeof(Game_Play));
 }
 
-void func_80804EE0_jp(Game_Trademark* this, f32 arg1, f32 arg2, f32 arg3);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_trademark/m_trademark/func_80804EE0_jp.s")
+void func_80804EE0_jp(Game_Trademark* this, f32 arg1, f32 arg2, f32 arg3) {
+    Vec3f sp34;
+    Vec3f sp28;
+    Vec3f sp1C;
+
+    sp34.x = arg1;
+    sp34.y = arg2;
+    sp34.z = arg3;
+    sp1C.z = 0.0f;
+    sp1C.y = 1.0f;
+    sp1C.x = 0.0f;
+    sp28.z = 0.0f;
+    sp28.y = 0.0f;
+    sp28.x = 0.0f;
+    setPerspectiveView(&this->view, 15.0f, 10.0f, 12800.0f);
+    setLookAtView(&this->view, &sp34, &sp28, &sp1C);
+    showView(&this->view, 0xF);
+}
 
 void func_80804F78_jp(Game_Trademark* this) {
     f32 temp_fv1;
