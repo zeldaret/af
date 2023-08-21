@@ -22,7 +22,7 @@ typedef struct Game_Play1CBC {
 // void func_800C497C_jp();
 void func_800C49D4_jp(struct Game_Play* game_play);
 void mSM_submenu_ovlptr_cleanup(Game_Play1CBC* arg0);
-// void load_player();
+void load_player(Game_Play1CBC* arg0);
 void mSM_submenu_ct(Game_Play1CBC* arg0);
 void mSM_submenu_dt(Game_Play1CBC* arg0);
 // void func_800C4D8C_jp();
