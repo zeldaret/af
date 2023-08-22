@@ -19,8 +19,21 @@
 #include "overlays/actors/player_actor/m_player.h"
 #include "overlays/submenu/submenu_ovl/m_submenu_ovl.h"
 
+FaultClient B_80144670_jp;
+FaultAddrConvClient B_80144680_jp;
+
 void* D_8010DCE0_jp = NULL;
 size_t D_8010DCE4_jp = 0;
+
+typedef struct SubmenuArea {
+    /* 0x00 */ void* allocatedRamAddr;
+    /* 0x04 */ RomOffset vromStart;
+    /* 0x08 */ RomOffset vromEnd;
+    /* 0x0C */ void* vramStart;
+    /* 0x10 */ void* vramEnd;
+    /* 0x14 */ UNK_TYPE unk_14;
+    /* 0x18 */ const char* name;
+} SubmenuArea; // size = 0x1C
 
 #define SUBMENU_OVERLAY(name) { \
         NULL, SEGMENT_ROM_START(name), SEGMENT_ROM_END(name), \
@@ -32,55 +45,6 @@ SubmenuArea SubmenuArea_dlftbl[] = {
     SUBMENU_OVERLAY(submenu_ovl),
     SUBMENU_OVERLAY(player_actor),
 };
-
-typedef void (*fnptr_8010DD24)(Game_Play1CBC*);
-
-void mSM_move_Wait(Game_Play1CBC* arg0);
-void mSM_move_PREWait(Game_Play1CBC* arg0);
-void mSM_move_LINKWait(Game_Play1CBC* arg0);
-void mSM_move_Play(Game_Play1CBC* arg0);
-void mSM_move_End(Game_Play1CBC* arg0);
-
-fnptr_8010DD24 move_proc_616[] = {
-    mSM_move_Wait,
-    mSM_move_PREWait,
-    mSM_move_LINKWait,
-    mSM_move_Play,
-    mSM_move_End,
-};
-
-UNK_RET mSM_check_item_for_entrust(s32 arg0, UNK_TYPE arg1);
-UNK_RET mSM_check_item_for_sell(s32 arg0, UNK_TYPE arg1);
-UNK_RET mSM_check_item_for_give(s32 arg0, UNK_TYPE arg1);
-UNK_RET mSM_check_item_for_take(s32 arg0, UNK_TYPE arg1);
-UNK_RET mSM_check_item_for_furniture(s32 arg0, UNK_TYPE arg1);
-UNK_RET mSM_check_item_for_minidisk(s32 arg0, UNK_TYPE arg1);
-UNK_RET mSM_check_item_for_shrine(s32 arg0, UNK_TYPE arg1);
-UNK_RET mSM_check_item_for_exchange(s32 arg0, UNK_TYPE arg1);
-
-typedef UNK_RET (*fnptr_8010DD38)(s32, UNK_TYPE);
-
-fnptr_8010DD38 check_process[] = {
-    NULL,
-    NULL,
-    mSM_check_item_for_entrust,
-    NULL,
-    NULL,
-    mSM_check_item_for_sell,
-    mSM_check_item_for_give,
-    NULL,
-    mSM_check_item_for_take,
-    mSM_check_item_for_furniture,
-    mSM_check_item_for_minidisk,
-    mSM_check_item_for_shrine,
-    NULL,
-    mSM_check_item_for_exchange,
-    NULL,
-    NULL,
-};
-
-extern FaultClient B_80144670_jp;
-extern FaultAddrConvClient B_80144680_jp;
 
 s32 SubmenuArea_IsPlayer(void) {
     SubmenuArea* playerActorOvl = &SubmenuArea_dlftbl[1];
@@ -112,6 +76,7 @@ void mSM_load_player_anime(Game_Play* game_play) {
             func_800B1D94_jp(segment, temp_v0->unk_0DAC);
         } else {
             func_800B1D94_jp(segment, temp_v0->unk_0DB0);
+            //! FAKE
             if (segment && segment) {}
         }
 
@@ -127,10 +92,11 @@ void mSM_load_player_anime(Game_Play* game_play) {
     }
 }
 #else
+void mSM_load_player_anime(Game_Play* game_play);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_load_player_anime.s")
 #endif
 
-void SubmenuArea_DoLink(SubmenuArea* area, Game_Play1CBC* arg1, s32 arg2) {
+void SubmenuArea_DoLink(SubmenuArea* area, mSM* arg1, s32 arg2) {
     size_t var_t0;
     struct OverlayRelocationSection* var_t1;
     size_t temp_v0;
@@ -156,7 +122,7 @@ void SubmenuArea_DoLink(SubmenuArea* area, Game_Play1CBC* arg1, s32 arg2) {
     arg1->unk_28 = (void*) ((uintptr_t)area->allocatedRamAddr + ((((uintptr_t)area->vramEnd - (uintptr_t)area->vramStart) + 0x3F) & ~0x3F));
 }
 
-void SubmenuArea_DoUnlink(SubmenuArea* area, Game_Play1CBC* arg1) {
+void SubmenuArea_DoUnlink(SubmenuArea* area, mSM* arg1) {
     if (area->allocatedRamAddr == NULL) {
         return;
     }
@@ -169,7 +135,7 @@ void SubmenuArea_DoUnlink(SubmenuArea* area, Game_Play1CBC* arg1) {
     SubmenuArea_visit = NULL;
 }
 
-s32 mSM_ovlptr_dllcnv_sub(void* vram, SubmenuArea* area, Game_Play1CBC* arg2) {
+s32 mSM_ovlptr_dllcnv_sub(void* vram, SubmenuArea* area, mSM* arg2) {
     s32 var_a3;
     s32 len = 2;
 
@@ -183,7 +149,7 @@ s32 mSM_ovlptr_dllcnv_sub(void* vram, SubmenuArea* area, Game_Play1CBC* arg2) {
     return 0;
 }
 
-void* mSM_ovlptr_dllcnv(void* vram, Game_Play1CBC* arg1) {
+void* mSM_ovlptr_dllcnv(void* vram, mSM* arg1) {
     SubmenuArea* var_v1 = SubmenuArea_visit;
 
     if (var_v1 == NULL) {
@@ -260,6 +226,7 @@ void func_800C47B4_jp(UNUSED void* arg0, UNUSED void* arg1) {
     }
 }
 #else
+void func_800C47B4_jp(void*, void*);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C47B4_jp.s")
 #endif
 
@@ -333,7 +300,7 @@ void mSM_submenu_ovlptr_init(Game_Play* game_play) {
     Fault_AddAddrConvClient(&B_80144680_jp, func_800C497C_jp, NULL);
 }
 
-void mSM_submenu_ovlptr_cleanup(Game_Play1CBC* arg0) {
+void mSM_submenu_ovlptr_cleanup(mSM* arg0) {
     Fault_RemoveClient(&B_80144670_jp);
     Fault_RemoveAddrConvClient(&B_80144680_jp);
     if (SubmenuArea_visit != NULL) {
@@ -346,7 +313,7 @@ void mSM_submenu_ovlptr_cleanup(Game_Play1CBC* arg0) {
     D_8010DCE4_jp = 0;
 }
 
-void load_player(Game_Play1CBC* arg0) {
+void load_player(mSM* arg0) {
     SubmenuArea* playerActorOvl = &SubmenuArea_dlftbl[1];
 
     if (SubmenuArea_visit == playerActorOvl) {
@@ -360,8 +327,8 @@ void load_player(Game_Play1CBC* arg0) {
     SubmenuArea_DoLink(playerActorOvl, arg0, 1);
 }
 
-void mSM_submenu_ct(Game_Play1CBC* arg0) {
-    bzero(arg0, sizeof(Game_Play1CBC));
+void mSM_submenu_ct(mSM* arg0) {
+    bzero(arg0, sizeof(mSM));
 
     arg0->unk_0C = 0;
     arg0->unk_20 = 0;
@@ -375,18 +342,18 @@ void mSM_submenu_ct(Game_Play1CBC* arg0) {
     arg0->unk_34 = (void*)none_proc1;
 }
 
-void mSM_submenu_dt(UNUSED Game_Play1CBC* arg0) {
+void mSM_submenu_dt(UNUSED mSM* arg0) {
 }
 
-void mSM_open_submenu(Game_Play1CBC* arg0, s32 arg1, s32 arg2, s32 arg3) {
+void mSM_open_submenu(mSM* arg0, s32 arg1, s32 arg2, s32 arg3) {
     mSM_open_submenu_new2(arg0, arg1, arg2, arg3, 0, 0);
 }
 
-void mSM_open_submenu_new(Game_Play1CBC* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+void mSM_open_submenu_new(mSM* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     mSM_open_submenu_new2(arg0, arg1, arg2, arg3, arg4, 0);
 }
 
-void mSM_open_submenu_new2(Game_Play1CBC* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+void mSM_open_submenu_new2(mSM* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
     arg0->unk_04 = arg1;
     arg0->unk_10 = arg2;
     arg0->unk_14 = arg3;
@@ -412,10 +379,10 @@ void mSM_Reset_player_btn_type2(Game_Play* game_play) {
 }
 
 void mSM_submenu_ctrl(Game_Play* game_play) {
-    Game_Play1CBC* temp_v0;
+    mSM* temp_v0;
 
-    temp_v0 = &game_play->unk_1CBC;
-    if ((game_play->unk_1CBC.unk_0C != 0) || (game_play->unk_1EE0 != 0) || (game_play->unk_1EE3 != 0)) {
+    temp_v0 = &game_play->submenu;
+    if ((game_play->submenu.unk_0C != 0) || (game_play->unk_1EE0 != 0) || (game_play->unk_1EE3 != 0)) {
         return;
     }
 
@@ -470,7 +437,7 @@ void mSM_submenu_ctrl(Game_Play* game_play) {
     }
 }
 
-void mSM_move_Wait(Game_Play1CBC* arg0) {
+void mSM_move_Wait(mSM* arg0) {
     if (arg0->unk_20 != 0) {
         arg0->unk_20--;
     }
@@ -480,13 +447,13 @@ void mSM_move_Wait(Game_Play1CBC* arg0) {
     }
 }
 
-void mSM_move_PREWait(Game_Play1CBC* arg0) {
+void mSM_move_PREWait(mSM* arg0) {
     if (arg0->unk_00 > 2) {
         arg0->unk_0C = 2;
     }
 }
 
-void mSM_move_LINKWait(Game_Play1CBC* arg0) {
+void mSM_move_LINKWait(mSM* arg0) {
     SubmenuArea* submenuOvl = &SubmenuArea_dlftbl[0];
 
     if (SubmenuArea_visit == submenuOvl) {
@@ -519,13 +486,13 @@ void mSM_move_LINKWait(Game_Play1CBC* arg0) {
     }
 }
 
-void mSM_move_Play(Game_Play1CBC* arg0) {
+void mSM_move_Play(mSM* arg0) {
     arg0->unk_30(arg0);
 }
 
 #ifdef NON_MATCHING
-// likely memes
-void mSM_move_End(Game_Play1CBC* arg0) {
+// likely branch instead of normal branch
+void mSM_move_End(mSM* arg0) {
     UNUSED s32 pad;
     Game_Play* sp28;
     UNK_TYPE sp24;
@@ -540,29 +507,48 @@ void mSM_move_End(Game_Play1CBC* arg0) {
 
     SetGameFrame(2);
 
-    if (arg0->unk_00 != 4) {
-        sp24 = mMsg_Get_base_window_p();
-        arg0->unk_00 = 0;
-        mSc_dmacopy_all_exchange_bank(sp28->unk_0110);
-        SubmenuArea_DoUnlink(SubmenuArea_dlftbl, arg0);
-        load_player(arg0);
-        mSM_load_player_anime(sp28);
-        arg0->unk_E3 = 1;
-        sp20[0] = 0;
-        if ((mMsg_Check_main_hide(sp24) == 0) && (mMsg_Check_not_series_main_wait(sp24) != 0)) {
-            mMsg_sound_spec_change_voice(sp24);
-        }
+    if (arg0->unk_00 == 4) {
+        return;
     }
+
+    sp24 = mMsg_Get_base_window_p();
+    arg0->unk_00 = 0;
+    mSc_dmacopy_all_exchange_bank(sp28->unk_0110);
+    SubmenuArea_DoUnlink(SubmenuArea_dlftbl, arg0);
+    load_player(arg0);
+    mSM_load_player_anime(sp28);
+    arg0->unk_E3 = 1;
+    sp20[0] = 0;
+
+    if (mMsg_Check_main_hide(sp24) != 0) {
+        return;
+    }
+    if (mMsg_Check_not_series_main_wait(sp24) == 0) {
+        return;
+    }
+
+    mMsg_sound_spec_change_voice(sp24);
 }
 #else
+void mSM_move_End(mSM* arg0);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_move_End.s")
 #endif
 
-void mSM_submenu_move(Game_Play1CBC* arg0) {
+typedef void (*fnptr_8010DD24)(mSM*);
+
+fnptr_8010DD24 move_proc_616[] = {
+    mSM_move_Wait,
+    mSM_move_PREWait,
+    mSM_move_LINKWait,
+    mSM_move_Play,
+    mSM_move_End,
+};
+
+void mSM_submenu_move(mSM* arg0) {
     move_proc_616[arg0->unk_0C](arg0);
 }
 
-void mSM_submenu_draw(Game_Play1CBC* arg0, struct Game_Play* game_play) {
+void mSM_submenu_draw(mSM* arg0, struct Game_Play* game_play) {
     SubmenuArea* submenuOvl = &SubmenuArea_dlftbl[0];
 
     if ((arg0->unk_00 >= 3) && (arg0->unk_0C == 3) && (submenuOvl == SubmenuArea_visit)) {
@@ -577,12 +563,12 @@ s32 mSM_check_item_for_furniture(s32 arg0, UNUSED s32 arg1) {
         if ((((temp_v0 & 0xF00) >> 8) != 3) && (((temp_v0 & 0xF00) >> 8) != 0xF) && (((temp_v0 & 0xF00) >> 8) != 0xD)) {
             if (!((common_data.now_private->inventory.item_conditions >> (arg0 << 1)) & 3)) {
                 if (temp_v0 != 0) {
-                    return 1;
+                    return true;
                 }
             }
         }
     }
-    return 0;
+    return false;
 }
 
 s32 mSM_check_item_for_sell(s32 arg0, UNUSED s32 arg1) {
@@ -592,11 +578,11 @@ s32 mSM_check_item_for_sell(s32 arg0, UNUSED s32 arg1) {
     if (!((temp_v1->inventory.item_conditions >> (arg0 << 1)) & 3)) {
         if (temp_v0 != 0) {
             if ((((temp_v0 & 0xF000) >> 0xC) != 2) || (((temp_v0 & 0xF00) >> 8) != 1)) {
-                return 1;
+                return true;
             }
         }
     }
-    return 0;
+    return false;
 }
 
 s32 mSM_check_item_for_give(s32 arg0, UNUSED s32 arg1) {
@@ -604,10 +590,10 @@ s32 mSM_check_item_for_give(s32 arg0, UNUSED s32 arg1) {
 
     if (!((temp_v0->inventory.item_conditions >> (arg0 << 1)) & 3)) {
         if (temp_v0->inventory.pockets[arg0] != 0) {
-            return 1;
+            return true;
         }
     }
-    return 0;
+    return false;
 }
 
 s32 mSM_check_item_for_take(s32 arg0, s32 arg1) {
@@ -617,11 +603,11 @@ s32 mSM_check_item_for_take(s32 arg0, s32 arg1) {
     if (temp_v0 != 0) {
         if (!((temp_v1->inventory.item_conditions >> (arg0 << 1)) & 3)) {
             if ((arg1 == 0) || ((((temp_v0 & 0xF000) >> 0xC) == 2) && ((((((temp_v0 & 0xF00) >> 8) == 3)) && (arg1 == 1)) || ((((temp_v0 & 0xF00) >> 8) == 0xD) && (arg1 == 2))))) {
-                return 1;
+                return true;
             }
         }
     }
-    return 0;
+    return false;
 }
 
 s32 mSM_check_item_for_minidisk(s32 arg0, UNUSED s32 arg1) {
@@ -631,21 +617,21 @@ s32 mSM_check_item_for_minidisk(s32 arg0, UNUSED s32 arg1) {
     if (((temp_v0 & 0xF000) >> 0xC) == 2) {
         if (!((temp_v1->inventory.item_conditions >> (arg0 << 1)) & 3)) {
             if (((temp_v0 & 0xF00) >> 8) == 0xA) {
-                return 1;
+                return true;
             }
         }
     }
-    return 0;
+    return false;
 }
 
 s32 mSM_check_item_for_shrine(s32 arg0, UNUSED s32 arg1) {
     if (((common_data.now_private->inventory.item_conditions >> (arg0 * 2)) & 3) == 2) {
         if (mQst_CheckLimitbyPossessionIdx(arg0) != 0) {
-            return 1;
+            return true;
         }
     }
 
-    return 0;
+    return false;
 }
 
 s32 mSM_check_item_for_entrust(s32 arg0, UNUSED s32 arg1) {
@@ -653,10 +639,10 @@ s32 mSM_check_item_for_entrust(s32 arg0, UNUSED s32 arg1) {
     Private_c* temp_v1 = common_data.now_private;
 
     if ((temp_v0 == 0) || (!((temp_v1->inventory.item_conditions >> (arg0 << 1)) & 3) && ((((temp_v0 & 0xF000) >> 0xC) != 2) || (((temp_v0 & 0xF00) >> 8) != 1)))) {
-        return 1;
+        return true;
     }
 
-    return 0;
+    return false;
 }
 
 s32 mSM_check_item_for_exchange(s32 arg0, s32 arg1) {
@@ -670,17 +656,38 @@ s32 mSM_check_item_for_exchange(s32 arg0, s32 arg1) {
             UNK_TYPE sp2C;
 
             if (mCoBG_SearchWaterLimitDistN(&sp2C, player->actor.world.pos, player->actor.shape.rot.y, 100.0f, 0xA) == 0) {
-                return 0;
+                return false;
             }
         }
-        return 1;
+        return true;
     }
 
-    return 0;
+    return false;
 }
 
-u32 mSM_check_open_inventory_itemlist(s32 arg0, UNK_TYPE arg1) {
-    fnptr_8010DD38 temp_s3 = check_process[arg0];
+typedef s32 (*checkProcessFunc)(s32, s32);
+
+checkProcessFunc check_process[] = {
+    NULL,
+    NULL,
+    mSM_check_item_for_entrust,
+    NULL,
+    NULL,
+    mSM_check_item_for_sell,
+    mSM_check_item_for_give,
+    NULL,
+    mSM_check_item_for_take,
+    mSM_check_item_for_furniture,
+    mSM_check_item_for_minidisk,
+    mSM_check_item_for_shrine,
+    NULL,
+    mSM_check_item_for_exchange,
+    NULL,
+    NULL,
+};
+
+u32 mSM_check_open_inventory_itemlist(s32 arg0, s32 arg1) {
+    checkProcessFunc temp_s3 = check_process[arg0];
     s32 var_s0;
     u32 var_s1;
 
@@ -690,7 +697,7 @@ u32 mSM_check_open_inventory_itemlist(s32 arg0, UNK_TYPE arg1) {
 
     var_s1 = 0;
     for (var_s0 = 0; var_s0 < 0xF; var_s0++) {
-        if (temp_s3(var_s0, arg1) != 0) {
+        if (temp_s3(var_s0, arg1)) {
             var_s1 |= 1 << var_s0;
         }
     }

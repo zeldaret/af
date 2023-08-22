@@ -753,12 +753,7 @@
 // extern UNK_TYPE D_8010DC88_jp;
 // extern UNK_TYPE D_8010DC8C_jp;
 // extern UNK_TYPE D_8010DC90_jp;
-// extern UNK_TYPE D_8010DCE0_jp;
-// extern UNK_TYPE D_8010DCE4_jp;
-// extern UNK_TYPE SubmenuArea_visit;
-// extern UNK_TYPE SubmenuArea_dlftbl;
-// extern UNK_TYPE move_proc_616;
-// extern UNK_TYPE check_process;
+
 // extern UNK_TYPE D_8010DD80_jp;
 // extern UNK_TYPE D_8010DDAC_jp;
 // extern UNK_TYPE D_8010DDBC_jp;

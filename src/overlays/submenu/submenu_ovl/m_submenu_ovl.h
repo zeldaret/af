@@ -1,8 +1,8 @@
 #ifndef M_SUBMENU_OVL
 #define M_SUBMENU_OVL
 
-struct Game_Play1CBC;
+struct mSM;
 
-void mSM_menu_ovl_init(struct Game_Play1CBC* arg0);
+void mSM_menu_ovl_init(struct mSM* arg0);
 
 #endif
