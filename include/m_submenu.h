@@ -58,7 +58,7 @@ void SubmenuArea_DoUnlink(SubmenuArea* area, Game_Play1CBC* arg1);
 void* mSM_ovlptr_dllcnv(void* vram, Game_Play1CBC* arg1);
 void func_800C47B4_jp(void*, void*);
 uintptr_t func_800C497C_jp(uintptr_t, void*);
-void func_800C49D4_jp(struct Game_Play* game_play);
+void mSM_submenu_ovlptr_init(struct Game_Play* game_play);
 void mSM_submenu_ovlptr_cleanup(Game_Play1CBC* arg0);
 void load_player(Game_Play1CBC* arg0);
 void mSM_submenu_ct(Game_Play1CBC* arg0);

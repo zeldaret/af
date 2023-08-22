@@ -282,37 +282,7 @@ uintptr_t func_800C497C_jp(uintptr_t address, UNUSED void* param) {
     return (uintptr_t)NULL;
 }
 
-extern UNK_TYPE1 D_8086F0E0_jp;
-extern UNK_TYPE1 D_808796B0_jp;
-extern UNK_TYPE1 D_8087CA30_jp;
-extern UNK_TYPE1 D_80881C20_jp;
-extern UNK_TYPE1 D_80888B20_jp;
-extern UNK_TYPE1 D_8088ACC0_jp;
-extern UNK_TYPE1 D_8088CA90_jp;
-extern UNK_TYPE1 D_80896A70_jp;
-extern UNK_TYPE1 D_80897870_jp;
-extern UNK_TYPE1 D_808A2E00_jp;
-extern UNK_TYPE1 D_808A45E0_jp;
-extern UNK_TYPE1 D_808B2B30_jp;
-extern UNK_TYPE1 D_808E04D0_jp;
-extern UNK_TYPE1 func_8085BAC0_jp;
-extern UNK_TYPE1 func_8086F310_jp;
-extern UNK_TYPE1 func_8087A330_jp;
-extern UNK_TYPE1 func_8087D480_jp;
-extern UNK_TYPE1 func_80885140_jp;
-extern UNK_TYPE1 func_80888E90_jp;
-extern UNK_TYPE1 func_8088ADB0_jp;
-extern UNK_TYPE1 func_80895E00_jp;
-extern UNK_TYPE1 func_80896B20_jp;
-extern UNK_TYPE1 func_8089AD40_jp;
-extern UNK_TYPE1 func_808A2EA0_jp;
-extern UNK_TYPE1 func_808A6100_jp;
-extern UNK_TYPE1 func_808B2D50_jp;
-
-// mSM_submenu_ovlptr_init
-#ifdef NON_MATCHING
-// regalloc
-void func_800C49D4_jp(Game_Play* game_play) {
+void mSM_submenu_ovlptr_init(Game_Play* game_play) {
     u32 temp_a0;
     UNUSED u32 temp_a1_2;
     u32 temp_v1;
@@ -332,39 +302,39 @@ void func_800C49D4_jp(Game_Play* game_play) {
     u32 temp8;
     u32 temp9;
 
-    temp6 = (((&D_8088CA90_jp - &func_8088ADB0_jp) + 0x3F) & ~0x3F);
-    temp7 = (((&D_80897870_jp - &func_80896B20_jp) + 0x3F) & ~0x3F);
-    temp8 = (((&D_808A2E00_jp - &func_8089AD40_jp) + 0x3F) & ~0x3F);
-    temp9 = (((&D_808A45E0_jp - &func_808A2EA0_jp) + 0x3F) & ~0x3F);
+    temp6 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__00792700));
+    temp7 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__0079A290));
+    temp8 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__0079E430));
+    temp9 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__0079F810));
 
-    temp_v1 = ((&D_8086F0E0_jp - &func_8085BAC0_jp) + 0x3F) & ~0x3F;
-    temp_a0 = ((&D_808796B0_jp - &func_8086F310_jp) + 0x3F) & ~0x3F;
+    temp_v1 = ALIGN64(SEGMENT_VRAM_SIZE(submenu_ovl));
+    temp_a0 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__00777AE0));
 
     var_t0 = temp6 + temp7;
     temp_a1 = temp8 + temp9;
     var_t0 = MAX(temp_a1, var_t0);
 
-    temp_a1 = ((&D_8087CA30_jp - &func_8087A330_jp) + 0x3F) & ~0x3F;
-    temp = (((&D_80881C20_jp - &func_8087D480_jp) + 0x3F) & ~0x3F);
-    temp2 = (((&D_8088ACC0_jp - &func_80888E90_jp) + 0x3F) & ~0x3F);
-    temp3 = (((&D_80888B20_jp - &func_80885140_jp) + 0x3F) & ~0x3F);
-    temp4 = (((&D_80896A70_jp - &func_80895E00_jp) + 0x3F) & ~0x3F);
-    temp5 = (((&D_808B2B30_jp - &func_808A6100_jp) + 0x3F) & ~0x3F);
+    temp_a1 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__007829E0));
+    temp = ALIGN64(SEGMENT_VRAM_SIZE(ovl__00785700));
+    temp2 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__007908A0));
+    temp3 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__0078CB80));
+    temp4 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__00799580));
+    temp5 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__007A28F0));
 
     var_a3 = temp_v1 + temp + temp_a0 + temp_a1 + temp2 + temp3 + temp4 + var_t0;
     temp_t1 = temp_v1 + temp_a0 + temp_a1 + temp5 + 0x4000;
     var_a3 = MAX(temp_t1, var_a3);
 
-    temp_v1 = &D_808E04D0_jp - &func_808B2D50_jp;
+    temp_v1 = SEGMENT_VRAM_SIZE(player_actor);
 
     var_s0 = MAX(var_a3, temp_v1);
 
-    debug_mode->r[0xB31] = (var_s0 >> 0x10);
-    debug_mode->r[0xB32] = var_s0;
-    debug_mode->r[0xB33] = (temp_v1 >> 0x10);
-    debug_mode->r[0xB34] = temp_v1;
-    debug_mode->r[0xB35] = (var_a3 >> 0x10);
-    debug_mode->r[0xB36] = var_a3;
+    debug_mode->r[0xB31] = (var_s0 >> 0x10) & 0xFFFF;
+    debug_mode->r[0xB32] = var_s0 & 0xFFFF;
+    debug_mode->r[0xB33] = (temp_v1 >> 0x10) & 0xFFFF;
+    debug_mode->r[0xB34] = temp_v1 & 0xFFFF;
+    debug_mode->r[0xB35] = (var_a3 >> 0x10) & 0xFFFF;
+    debug_mode->r[0xB36] = var_a3 & 0xFFFF;
 
     //! FAKE
     dummy_label_255895: ;
@@ -376,9 +346,6 @@ void func_800C49D4_jp(Game_Play* game_play) {
     Fault_AddClient(&B_80144670_jp, func_800C47B4_jp, NULL, NULL);
     Fault_AddAddrConvClient(&B_80144680_jp, func_800C497C_jp, NULL);
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C49D4_jp.s")
-#endif
 
 void mSM_submenu_ovlptr_cleanup(Game_Play1CBC* arg0) {
     Fault_RemoveClient(&B_80144670_jp);

@@ -383,7 +383,7 @@ void play_init(Game* game) {
     func_800C9010_jp();
     mTM_set_season();
     func_800B594C_jp();
-    func_800C49D4_jp(game_play);
+    mSM_submenu_ovlptr_init(game_play);
     func_8007CFD8_jp(game_play);
     mEv_init(&game_play->event);
     initView(&game_play->unk_1938, gfxCtx);
