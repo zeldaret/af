@@ -3,8 +3,10 @@
 
 #include "ultra64.h"
 #include "m_actor.h"
+#include "m_collision_obj.h"
 #include "unk.h"
 
+struct Game_Play;
 struct Player;
 
 typedef struct Player {
@@ -17,12 +19,23 @@ typedef struct Player {
     /* 0x0DC4 */ UNK_TYPE1 unk_0DC4[0x18];
     /* 0x0DDC */ UNK_TYPE unk_0DDC[2];
     /* 0x0DE4 */ UNK_TYPE unk_0DE4[2];
-    /* 0x0DEC */ UNK_TYPE1 unk_0DEC[0x4CC];
+    /* 0x0DEC */ UNK_TYPE1 unk_0DEC[0x160];
+    /* 0x0F4C */ ClObjTris colliderTris1;
+    /* 0x0F60 */ UNK_TYPE1 unk_0F60[0x44];
+    /* 0x0FA4 */ ClObjTris colliderTris2;
+    /* 0x0FB8 */ UNK_TYPE1 unk_0FB8[0x50];
+    /* 0x1008 */ ClObjPipe colliderPipe;
+    /* 0x1024 */ UNK_TYPE1 unk_1024[0x294];
     /* 0x12B8 */ UNK_TYPE unk_12B8;
     /* 0x12BC */ s32 unk_12BC;
     /* 0x12C0 */ u16 unk_12C0;
     /* 0x12C2 */ UNK_TYPE1 unk_12C2[0x2];
     /* 0x12C4 */ UNK_TYPE1 unk_12C4[0x14];
 } Player; // size = 0x12D8
+
+void Player_actor_ct(Actor* thisx, struct Game_Play* game_play);
+void Player_actor_dt(Actor* thisx, struct Game_Play* game_play);
+void Player_actor_move(Actor* thisx, struct Game_Play* game_play);
+void Player_actor_draw(Actor* thisx, struct Game_Play* game_play);
 
 #endif

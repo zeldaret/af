@@ -22,6 +22,11 @@ ActorProfile Sample_Profile = {
 };
 #endif
 
+extern ClObjPipe_Init Ac_Sample_OcInfoData_forStand;
+#if 0
+ClObjPipe_Init Ac_Sample_OcInfoData_forStand = { { OC1_1 | OC1_TYPE_8 | OC1_TYPE_10 | OC1_TYPE_20, OC2_TYPE_20, COLSHAPE_PIPE }, { ELEM_FLAG_1 }, { { 0x1E, 0x3C, 0, { 0, 0, 0 } } } };
+#endif
+
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Sample/ac_sample/func_80933F40_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Sample/ac_sample/func_80933F8C_jp.s")

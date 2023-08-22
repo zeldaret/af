@@ -12,7 +12,7 @@
       - [0x001640, c, boot/ovlmgr]
       - [0x0017F0, asm, boot/z_std_dma]
       - [0x0022A0, asm, boot/yaz0]
-      - [0x0026C0, asm, boot/syncprintf]
+      - [0x0026C0, c, boot/syncprintf]
       - [0x002720, asm, boot/fault]
       - [0x004F70, asm, boot/fault_drawer]
 
@@ -33,7 +33,7 @@
 
 
       # libc64
-      - [0x007530, asm, boot/libc64/math64]
+      - [0x007530, c, boot/libc64/math64]
       - [0x007A40, hasm, boot/libc64/fp]
       - [0x007BA0, c, boot/libc64/malloc]
       - [0x007D70, c, boot/libc64/qrand]
@@ -268,7 +268,7 @@
       - [0x0196B0, rodata, boot/libu64/debug]
 
       # libc64
-      - [0x0196C0, rodata, boot/libc64/math64]
+      - [0x0196C0, .rodata, boot/libc64/math64]
       - [0x019710, .rodata, boot/libc64/__osMalloc]
 
       # libultra
@@ -295,7 +295,7 @@
       - { start: 0x019D40, type: bss, vram: 0x800419A0, name: boot/libu64/gfxprint }
 
       # libc64
-      - { start: 0x019D40, type: bss, vram: 0x800419B0, name: boot/libc64/math64 }
+      - { start: 0x019D40, type: .bss, vram: 0x800419B0, name: boot/libc64/math64 }
       - { start: 0x019D40, type: .bss, vram: 0x800419C0, name: boot/libc64/malloc }
       - { start: 0x019D40, type: .bss, vram: 0x800419F0, name: boot/libc64/qrand }
       - { start: 0x019D40, type: .bss, vram: 0x80041A00, name: boot/libc64/__osMalloc }

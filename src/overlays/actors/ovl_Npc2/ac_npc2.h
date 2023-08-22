@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "m_actor.h"
+#include "m_collision_obj.h"
 #include "unk.h"
 
 struct Game_Play;
