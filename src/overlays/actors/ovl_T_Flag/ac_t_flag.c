@@ -1,5 +1,7 @@
 #include "ac_t_flag.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aTFL_actor_draw(Actor* thisx, Game_Play* game_play);
