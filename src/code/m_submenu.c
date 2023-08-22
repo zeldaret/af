@@ -620,40 +620,114 @@ void mSM_submenu_draw(Game_Play1CBC* arg0, struct Game_Play* game_play) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_check_item_for_furniture.s")
+s32 mSM_check_item_for_furniture(s32 arg0, s32 arg1) {
+    u16 temp_v0 = common_data.now_private->inventory.pockets[arg0];
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_check_item_for_sell.s")
+    if (((temp_v0 & 0xF000) >> 0xC) == 2) {
+        if ((((temp_v0 & 0xF00) >> 8) != 3) && (((temp_v0 & 0xF00) >> 8) != 0xF) && (((temp_v0 & 0xF00) >> 8) != 0xD)) {
+            if (!((common_data.now_private->inventory.item_conditions >> (arg0 << 1)) & 3)) {
+                if (temp_v0 != 0) {
+                    return 1;
+                }
+            }
+        }
+    }
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_check_item_for_give.s")
+s32 mSM_check_item_for_sell(s32 arg0, s32 arg1) {
+    u16 temp_v0 = common_data.now_private->inventory.pockets[arg0];
+    Private_c* temp_v1 = common_data.now_private;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_check_item_for_take.s")
+    if (!((temp_v1->inventory.item_conditions >> (arg0 << 1)) & 3)) {
+        if (temp_v0 != 0) {
+            if ((((temp_v0 & 0xF000) >> 0xC) != 2) || (((temp_v0 & 0xF00) >> 8) != 1)) {
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_check_item_for_minidisk.s")
+s32 mSM_check_item_for_give(s32 arg0, s32 arg1) {
+    Private_c* temp_v0 = common_data.now_private;
+
+    if (!((temp_v0->inventory.item_conditions >> (arg0 << 1)) & 3)) {
+        if (temp_v0->inventory.pockets[arg0] != 0) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+s32 mSM_check_item_for_take(s32 arg0, s32 arg1) {
+    u16 temp_v0 = common_data.now_private->inventory.pockets[arg0];
+    Private_c* temp_v1 = common_data.now_private;
+
+    if (temp_v0 != 0) {
+        if (!((temp_v1->inventory.item_conditions >> (arg0 << 1)) & 3)) {
+            if ((arg1 == 0) || ((((temp_v0 & 0xF000) >> 0xC) == 2) && ((((((temp_v0 & 0xF00) >> 8) == 3)) && (arg1 == 1)) || ((((temp_v0 & 0xF00) >> 8) == 0xD) && (arg1 == 2))))) {
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+s32 mSM_check_item_for_minidisk(s32 arg0, s32 arg1) {
+    u16 temp_v0 = common_data.now_private->inventory.pockets[arg0];
+    Private_c* temp_v1 = common_data.now_private;
+
+    if (((temp_v0 & 0xF000) >> 0xC) == 2) {
+        if (!((temp_v1->inventory.item_conditions >> (arg0 << 1)) & 3)) {
+            if (((temp_v0 & 0xF00) >> 8) == 0xA) {
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
 
 s32 mSM_check_item_for_shrine(s32 arg0, s32 arg1) {
-    if ((((common_data.now_private->inventory.item_conditions >> (arg0 * 2)) & 3) == 2) && (mQst_CheckLimitbyPossessionIdx() != 0)) {
-        return 1;
+    if (((common_data.now_private->inventory.item_conditions >> (arg0 * 2)) & 3) == 2) {
+        if (mQst_CheckLimitbyPossessionIdx() != 0) {
+            return 1;
+        }
     }
+
     return 0;
 }
 
-#if 0
 s32 mSM_check_item_for_entrust(s32 arg0, s32 arg1) {
-    Private_c* temp_v1;
-    u16 temp_v0;
+    u16 temp_v0 = common_data.now_private->inventory.pockets[arg0];
+    Private_c* temp_v1 = common_data.now_private;
 
-    temp_v1 = common_data.now_private;
-    temp_v0 = temp_v1->inventory.pockets[arg0];
-    if ((temp_v0 == 0) || (!(((u32) temp_v1->inventory.item_conditions >> (arg0 * 2)) & 3) && ((((s32) (temp_v0 & 0xF000) >> 0xC) != 2) || (((s32) (temp_v0 & 0xF00) >> 8) != 1)))) {
+    if ((temp_v0 == 0) || (!((temp_v1->inventory.item_conditions >> (arg0 << 1)) & 3) && ((((temp_v0 & 0xF000) >> 0xC) != 2) || (((temp_v0 & 0xF00) >> 8) != 1)))) {
         return 1;
     }
+
     return 0;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_check_item_for_entrust.s")
-#endif
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_check_item_for_exchange.s")
+s32 mSM_check_item_for_exchange(s32 arg0, s32 arg1) {
+    Private_c* temp_v0 = common_data.now_private;
+    u16 temp_v1 = temp_v0->inventory.pockets[arg0];
+    UNUSED s32 pad;
+
+    if (!((temp_v0->inventory.item_conditions >> (arg0 << 1)) & 3) && (temp_v1 != 0)) {
+        if ((((temp_v1 & 0xF000) >> 0xC) == 2) && (((temp_v1 & 0xF00) >> 8) == 3) && ((((arg1 & 0xF000) >> 0xC) != 2) || (((arg1 & 0xF00) >> 8) != 3))) {
+            Player* player = get_player_actor_withoutCheck((Game_Play* ) gamePT);
+            UNK_TYPE sp2C;
+
+            if (mCoBG_SearchWaterLimitDistN(&sp2C, player->actor.world.pos, player->actor.shape.rot.y, 100.0f, 0xA) == 0) {
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+    return 0;
+}
 
 u32 mSM_check_open_inventory_itemlist(s32 arg0, UNK_TYPE arg1) {
     fnptr_8010DD38 temp_s3 = check_process[arg0];
