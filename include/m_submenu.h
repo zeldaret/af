@@ -11,6 +11,35 @@
 struct Game_Play;
 struct mSM;
 
+typedef enum mSMMoveProcIndex {
+    /* 0 */ MSM_MOVE_PROC_WAIT,
+    /* 1 */ MSM_MOVE_PROC_PREWAIT,
+    /* 2 */ MSM_MOVE_PROC_LINKWAIT,
+    /* 3 */ MSM_MOVE_PROC_PLAY,
+    /* 4 */ MSM_MOVE_PROC_END,
+    /* 5 */ MSM_MOVE_PROC_MAX
+} mSMMoveProcIndex;
+
+typedef enum InvetoryItemList {
+    /*  0 */ INVENTORY_ITEM_LIST_0,
+    /*  1 */ INVENTORY_ITEM_LIST_1,
+    /*  2 */ INVENTORY_ITEM_LIST_ENTRUST,
+    /*  3 */ INVENTORY_ITEM_LIST_3,
+    /*  4 */ INVENTORY_ITEM_LIST_4,
+    /*  5 */ INVENTORY_ITEM_LIST_SELL,
+    /*  6 */ INVENTORY_ITEM_LIST_GIVE,
+    /*  7 */ INVENTORY_ITEM_LIST_7,
+    /*  8 */ INVENTORY_ITEM_LIST_TAKE,
+    /*  9 */ INVENTORY_ITEM_LIST_FURNITURE,
+    /* 10 */ INVENTORY_ITEM_LIST_MINIDISK,
+    /* 11 */ INVENTORY_ITEM_LIST_SHRINE,
+    /* 12 */ INVENTORY_ITEM_LIST_C,
+    /* 13 */ INVENTORY_ITEM_LIST_ECHANGE,
+    /* 14 */ INVENTORY_ITEM_LIST_E,
+    /* 15 */ INVENTORY_ITEM_LIST_F,
+    /* 16 */ INVENTORY_ITEM_LIST_MAX
+} InvetoryItemList;
+
 typedef void (*mSM_unk_30)(struct mSM*);
 typedef void (*mSM_unk_34)(struct mSM*, struct Game_Play*);
 
@@ -18,18 +47,18 @@ typedef struct mSM {
     /* 0x00 */ s32 unk_00;
     /* 0x04 */ s32 unk_04;
     /* 0x08 */ UNK_TYPE1 unk_08[0x4];
-    /* 0x0C */ s32 unk_0C;
-    /* 0x10 */ UNK_TYPE unk_10;
-    /* 0x14 */ UNK_TYPE unk_14;
-    /* 0x18 */ UNK_TYPE unk_18;
-    /* 0x1C */ UNK_TYPE unk_1C;
-    /* 0x20 */ UNK_TYPE unk_20;
-    /* 0x24 */ void* unk_24;
-    /* 0x28 */ void* unk_28;
+    /* 0x0C */ mSMMoveProcIndex moveProcIndex;
+    /* 0x10 */ s32 unk_10;
+    /* 0x14 */ s32 unk_14;
+    /* 0x18 */ s32 unk_18;
+    /* 0x1C */ s32 unk_1C;
+    /* 0x20 */ s32 unk_20;
+    /* 0x24 */ void* linkedAllocStart;
+    /* 0x28 */ void* linkedAllocEnd;
     /* 0x2C */ UNK_TYPE1 unk_2C[0x4];
-    /* 0x30 */ mSM_unk_30 unk_30;
-    /* 0x34 */ mSM_unk_34 unk_34;
-    /* 0x38 */ mMl unk_38;
+    /* 0x30 */ mSM_unk_30 play; // name based on mSM_move_Play, consider renaming
+    /* 0x34 */ mSM_unk_34 draw;
+    /* 0x38 */ mMl mail;
     /* 0xDC */ u8 unk_DC;
     /* 0xDD */ u8 unk_DD;
     /* 0xDE */ u8 unk_DE;
@@ -59,7 +88,7 @@ void mSM_submenu_ctrl(struct Game_Play* game_play);
 void mSM_submenu_move(mSM* arg0);
 void mSM_submenu_draw(mSM* arg0, struct Game_Play* game_play);
 
-u32 mSM_check_open_inventory_itemlist(s32 arg0, s32 arg1) ;
+u32 mSM_check_open_inventory_itemlist(InvetoryItemList itemlist, s32 arg1) ;
 
 // void mSM_Object_Exchange_keep_new();
 // void mSM_Object_Exchange_keep_new_MenuTexAndPallet();

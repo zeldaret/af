@@ -446,7 +446,7 @@ void Game_play_move_fbdemo_not_move(Game_Play* game_play) {
     game_play->state.unk_9D = 0x8F;
     game_play->state.unk_9C = 1;
     mSM_submenu_ctrl(game_play);
-    if (game_play->submenu.unk_0C == 0) {
+    if (game_play->submenu.moveProcIndex == MSM_MOVE_PROC_WAIT) {
         game_play->state.unk_9C = 2;
         mDemo_Main(game_play);
         game_play->state.unk_9C = 3;
@@ -458,7 +458,7 @@ void Game_play_move_fbdemo_not_move(Game_Play* game_play) {
     mSc_dmacopy_data_bank(game_play->unk_0110);
     game_play->state.unk_9C = 6;
     mSM_submenu_move(&game_play->submenu);
-    if ((game_play->submenu.unk_0C == 0) && (REGADDR(IREG, 0x48) == 0)) {
+    if ((game_play->submenu.moveProcIndex == MSM_MOVE_PROC_WAIT) && (REGADDR(IREG, 0x48) == 0)) {
         game_play->unk_1EA0++;
         game_play->state.unk_9C = 7;
         CollisionCheck_OC(game_play, &game_play->unk_2138);
@@ -507,7 +507,7 @@ void Game_play_move(Game_Play* game_play) {
         }
     }
 
-    if (game_play->submenu.unk_0C == 0) {
+    if (game_play->submenu.moveProcIndex == MSM_MOVE_PROC_WAIT) {
         game_play->state.unk_9D = 0x92;
         game_play->state.unk_9C = 1;
         Game_play_camera_proc(game_play);

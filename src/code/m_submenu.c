@@ -11,6 +11,7 @@
 #include "6E9650.h"
 #include "6DE300.h"
 #include "6F5550.h"
+#include "libc/stddef.h"
 #include "segment_symbols.h"
 #include "attributes.h"
 #include "macros.h"
@@ -25,13 +26,19 @@ FaultAddrConvClient B_80144680_jp;
 void* D_8010DCE0_jp = NULL;
 size_t D_8010DCE4_jp = 0;
 
+typedef enum SubmenuAreaIndex {
+    /* 0 */ SUBMENU_AREA_INDEX_SUBMENU,
+    /* 1 */ SUBMENU_AREA_INDEX_PLAYER,
+    /* 2 */ SUBMENU_AREA_INDEX_MAX
+} SubmenuAreaIndex;
+
 typedef struct SubmenuArea {
     /* 0x00 */ void* allocatedRamAddr;
     /* 0x04 */ RomOffset vromStart;
     /* 0x08 */ RomOffset vromEnd;
     /* 0x0C */ void* vramStart;
     /* 0x10 */ void* vramEnd;
-    /* 0x14 */ UNK_TYPE unk_14;
+    /* 0x14 */ ptrdiff_t relocationDiff;
     /* 0x18 */ const char* name;
 } SubmenuArea; // size = 0x1C
 
@@ -41,13 +48,13 @@ typedef struct SubmenuArea {
     }
 
 SubmenuArea* SubmenuArea_visit = NULL;
-SubmenuArea SubmenuArea_dlftbl[] = {
-    SUBMENU_OVERLAY(submenu_ovl),
-    SUBMENU_OVERLAY(player_actor),
+SubmenuArea SubmenuArea_dlftbl[SUBMENU_AREA_INDEX_MAX] = {
+    SUBMENU_OVERLAY(submenu_ovl), // SUBMENU_AREA_INDEX_SUBMENU
+    SUBMENU_OVERLAY(player_actor), // SUBMENU_AREA_INDEX_PLAYER
 };
 
 s32 SubmenuArea_IsPlayer(void) {
-    SubmenuArea* playerActorOvl = &SubmenuArea_dlftbl[1];
+    SubmenuArea* playerActorOvl = &SubmenuArea_dlftbl[SUBMENU_AREA_INDEX_PLAYER];
 
     return SubmenuArea_visit == playerActorOvl;
 }
@@ -96,30 +103,30 @@ void mSM_load_player_anime(Game_Play* game_play);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_load_player_anime.s")
 #endif
 
-void SubmenuArea_DoLink(SubmenuArea* area, mSM* arg1, s32 arg2) {
-    size_t var_t0;
-    struct OverlayRelocationSection* var_t1;
-    size_t temp_v0;
-
+void SubmenuArea_DoLink(SubmenuArea* area, mSM* submenu, SubmenuAreaIndex index) {
     area->allocatedRamAddr = D_8010DCE0_jp;
-    if (arg2 == 1) {
-        temp_v0 = (((uintptr_t)area->vramEnd - (uintptr_t)area->vramStart) + 0xF) & ~0xF;
-        if ((u32) D_8010DCE4_jp >= temp_v0) {
-            var_t0 = D_8010DCE4_jp - temp_v0;
-            var_t1 = (void*)((uintptr_t)D_8010DCE0_jp + temp_v0);
+
+    if (index == SUBMENU_AREA_INDEX_PLAYER) {
+        size_t ovlSize = ALIGN16((uintptr_t)area->vramEnd - (uintptr_t)area->vramStart);
+        size_t size;
+        struct OverlayRelocationSection* ovl;
+
+        if (D_8010DCE4_jp >= ovlSize) {
+            size = D_8010DCE4_jp - ovlSize;
+            ovl = (void*)((uintptr_t)D_8010DCE0_jp + ovlSize);
         } else {
-            var_t0 = 0;
-            var_t1 = NULL;
+            size = 0;
+            ovl = NULL;
         }
-        ovlmgr_LoadImpl(area->vromStart, area->vromEnd, area->vramStart, area->vramEnd, area->allocatedRamAddr, var_t1, var_t0);
+        ovlmgr_LoadImpl(area->vromStart, area->vromEnd, area->vramStart, area->vramEnd, area->allocatedRamAddr, ovl, size);
     } else {
         ovlmgr_Load(area->vromStart, area->vromEnd, area->vramStart, area->vramEnd, area->allocatedRamAddr);
     }
 
-    area->unk_14 = (uintptr_t)area->allocatedRamAddr - (uintptr_t)area->vramStart;
+    area->relocationDiff = (uintptr_t)area->allocatedRamAddr - (uintptr_t)area->vramStart;
     SubmenuArea_visit = area;
-    arg1->unk_24 = area->allocatedRamAddr;
-    arg1->unk_28 = (void*) ((uintptr_t)area->allocatedRamAddr + ((((uintptr_t)area->vramEnd - (uintptr_t)area->vramStart) + 0x3F) & ~0x3F));
+    submenu->linkedAllocStart = area->allocatedRamAddr;
+    submenu->linkedAllocEnd = (void*) ((uintptr_t)area->allocatedRamAddr + ALIGN64((uintptr_t)area->vramEnd - (uintptr_t)area->vramStart));
 }
 
 void SubmenuArea_DoUnlink(SubmenuArea* area, mSM* arg1) {
@@ -127,21 +134,21 @@ void SubmenuArea_DoUnlink(SubmenuArea* area, mSM* arg1) {
         return;
     }
 
-    arg1->unk_24 = area->allocatedRamAddr;
-    arg1->unk_28 = area->allocatedRamAddr;
-    area->unk_14 = 0;
+    arg1->linkedAllocStart = area->allocatedRamAddr;
+    arg1->linkedAllocEnd = area->allocatedRamAddr;
+    area->relocationDiff = 0;
     bzero(area->allocatedRamAddr, (uintptr_t)area->vramEnd - (uintptr_t)area->vramStart);
     area->allocatedRamAddr = NULL;
     SubmenuArea_visit = NULL;
 }
 
-s32 mSM_ovlptr_dllcnv_sub(void* vram, SubmenuArea* area, mSM* arg2) {
-    s32 var_a3;
-    s32 len = 2;
+s32 mSM_ovlptr_dllcnv_sub(void* vram, SubmenuArea* area, mSM* submenu) {
+    SubmenuAreaIndex index;
+    s32 len = SUBMENU_AREA_INDEX_MAX;
 
-    for (var_a3 = 0; var_a3 < len; var_a3++) {
+    for (index = 0; index < len; index++) {
         if ((vram >= area->vramStart) && (vram <= area->vramEnd)) {
-            SubmenuArea_DoLink(area, arg2, var_a3);
+            SubmenuArea_DoLink(area, submenu, index);
             return 1;
         }
     }
@@ -150,20 +157,20 @@ s32 mSM_ovlptr_dllcnv_sub(void* vram, SubmenuArea* area, mSM* arg2) {
 }
 
 void* mSM_ovlptr_dllcnv(void* vram, mSM* arg1) {
-    SubmenuArea* var_v1 = SubmenuArea_visit;
+    SubmenuArea* area = SubmenuArea_visit;
 
-    if (var_v1 == NULL) {
-        var_v1 = SubmenuArea_dlftbl;
+    if (area == NULL) {
+        area = SubmenuArea_dlftbl;
         if (!mSM_ovlptr_dllcnv_sub(vram, SubmenuArea_dlftbl, arg1)) {
             return NULL;
         }
     }
 
-    if ((var_v1 == NULL) || (vram < var_v1->vramStart) || (vram >= var_v1->vramEnd)) {
+    if ((area == NULL) || (vram < area->vramStart) || (vram >= area->vramEnd)) {
         return NULL;
     }
 
-    return (void*)((uintptr_t)vram + var_v1->unk_14);
+    return (void*)((uintptr_t)vram + area->relocationDiff);
 }
 
 typedef struct struct_800418D8 {
@@ -314,7 +321,7 @@ void mSM_submenu_ovlptr_cleanup(mSM* arg0) {
 }
 
 void load_player(mSM* arg0) {
-    SubmenuArea* playerActorOvl = &SubmenuArea_dlftbl[1];
+    SubmenuArea* playerActorOvl = &SubmenuArea_dlftbl[SUBMENU_AREA_INDEX_PLAYER];
 
     if (SubmenuArea_visit == playerActorOvl) {
         return;
@@ -324,13 +331,13 @@ void load_player(mSM* arg0) {
         SubmenuArea_DoUnlink(SubmenuArea_visit, arg0);
     }
 
-    SubmenuArea_DoLink(playerActorOvl, arg0, 1);
+    SubmenuArea_DoLink(playerActorOvl, arg0, SUBMENU_AREA_INDEX_PLAYER);
 }
 
 void mSM_submenu_ct(mSM* arg0) {
     bzero(arg0, sizeof(mSM));
 
-    arg0->unk_0C = 0;
+    arg0->moveProcIndex = MSM_MOVE_PROC_WAIT;
     arg0->unk_20 = 0;
 
     if (common_data.unk_104AD == 1) {
@@ -338,8 +345,8 @@ void mSM_submenu_ct(mSM* arg0) {
         common_data.unk_104AD = 0;
     }
 
-    arg0->unk_30 = (void*)none_proc1;
-    arg0->unk_34 = (void*)none_proc1;
+    arg0->play = (void*)none_proc1;
+    arg0->draw = (void*)none_proc1;
 }
 
 void mSM_submenu_dt(UNUSED mSM* arg0) {
@@ -382,7 +389,7 @@ void mSM_submenu_ctrl(Game_Play* game_play) {
     mSM* temp_v0;
 
     temp_v0 = &game_play->submenu;
-    if ((game_play->submenu.unk_0C != 0) || (game_play->unk_1EE0 != 0) || (game_play->unk_1EE3 != 0)) {
+    if ((game_play->submenu.moveProcIndex != MSM_MOVE_PROC_WAIT) || (game_play->unk_1EE0 != 0) || (game_play->unk_1EE3 != 0)) {
         return;
     }
 
@@ -431,7 +438,7 @@ void mSM_submenu_ctrl(Game_Play* game_play) {
     }
 
     if (temp_v0->unk_04 != 0) {
-        temp_v0->unk_0C = 1;
+        temp_v0->moveProcIndex = MSM_MOVE_PROC_PREWAIT;
         temp_v0->unk_00 = 1;
         SetGameFrame(2);
     }
@@ -449,12 +456,12 @@ void mSM_move_Wait(mSM* arg0) {
 
 void mSM_move_PREWait(mSM* arg0) {
     if (arg0->unk_00 > 2) {
-        arg0->unk_0C = 2;
+        arg0->moveProcIndex = MSM_MOVE_PROC_LINKWAIT;
     }
 }
 
 void mSM_move_LINKWait(mSM* arg0) {
-    SubmenuArea* submenuOvl = &SubmenuArea_dlftbl[0];
+    SubmenuArea* submenuOvl = &SubmenuArea_dlftbl[SUBMENU_AREA_INDEX_SUBMENU];
 
     if (SubmenuArea_visit == submenuOvl) {
         return;
@@ -463,17 +470,17 @@ void mSM_move_LINKWait(mSM* arg0) {
     if (SubmenuArea_visit != NULL) {
         SubmenuArea_DoUnlink(SubmenuArea_visit, arg0);
     }
-    SubmenuArea_DoLink(submenuOvl, arg0, 0);
+    SubmenuArea_DoLink(submenuOvl, arg0, SUBMENU_AREA_INDEX_SUBMENU);
 
-    arg0->unk_30 = mSM_ovlptr_dllcnv(mSM_menu_ovl_init, arg0);
-    arg0->unk_34 = (void*)none_proc1;
-    arg0->unk_0C = 3;
+    arg0->play = mSM_ovlptr_dllcnv(mSM_menu_ovl_init, arg0);
+    arg0->draw = (void*)none_proc1;
+    arg0->moveProcIndex = MSM_MOVE_PROC_PLAY;
     arg0->unk_DC = 1;
     arg0->unk_E0 = 0;
     arg0->unk_DF = 0xF;
     arg0->unk_DD = 7;
     arg0->unk_DE = 0;
-    mMl_clear_mail(&arg0->unk_38);
+    mMl_clear_mail(&arg0->mail);
     xyz_t_move(&arg0->unk_E4, &ZeroVec);
 
     if (arg0->unk_00 != 4) {
@@ -487,7 +494,7 @@ void mSM_move_LINKWait(mSM* arg0) {
 }
 
 void mSM_move_Play(mSM* arg0) {
-    arg0->unk_30(arg0);
+    arg0->play(arg0);
 }
 
 #ifdef NON_MATCHING
@@ -499,8 +506,8 @@ void mSM_move_End(mSM* arg0) {
     UNUSED s32 sp20[1];
 
     sp28 = (Game_Play*)gamePT;
-    arg0->unk_30(arg0);
-    arg0->unk_0C = 0;
+    arg0->play(arg0);
+    arg0->moveProcIndex = MSM_MOVE_PROC_WAIT;
     arg0->unk_04 = 0;
     arg0->unk_20 = 2;
     arg0->unk_DC = 0;
@@ -534,25 +541,25 @@ void mSM_move_End(mSM* arg0);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_move_End.s")
 #endif
 
-typedef void (*fnptr_8010DD24)(mSM*);
+typedef void (*MoveProcFunc)(mSM*);
 
-fnptr_8010DD24 move_proc_616[] = {
-    mSM_move_Wait,
-    mSM_move_PREWait,
-    mSM_move_LINKWait,
-    mSM_move_Play,
-    mSM_move_End,
+MoveProcFunc move_proc_616[MSM_MOVE_PROC_MAX] = {
+    mSM_move_Wait, // MSM_MOVE_PROC_WAIT
+    mSM_move_PREWait, // MSM_MOVE_PROC_PREWAIT
+    mSM_move_LINKWait, // MSM_MOVE_PROC_LINKWAIT
+    mSM_move_Play, // MSM_MOVE_PROC_PLAY
+    mSM_move_End, // MSM_MOVE_PROC_END
 };
 
 void mSM_submenu_move(mSM* arg0) {
-    move_proc_616[arg0->unk_0C](arg0);
+    move_proc_616[arg0->moveProcIndex](arg0);
 }
 
 void mSM_submenu_draw(mSM* arg0, struct Game_Play* game_play) {
-    SubmenuArea* submenuOvl = &SubmenuArea_dlftbl[0];
+    SubmenuArea* submenuOvl = &SubmenuArea_dlftbl[SUBMENU_AREA_INDEX_SUBMENU];
 
-    if ((arg0->unk_00 >= 3) && (arg0->unk_0C == 3) && (submenuOvl == SubmenuArea_visit)) {
-        arg0->unk_34(arg0, game_play);
+    if ((arg0->unk_00 >= 3) && (arg0->moveProcIndex == 3) && (submenuOvl == SubmenuArea_visit)) {
+        arg0->draw(arg0, game_play);
     }
 }
 
@@ -667,37 +674,37 @@ s32 mSM_check_item_for_exchange(s32 arg0, s32 arg1) {
 
 typedef s32 (*checkProcessFunc)(s32, s32);
 
-checkProcessFunc check_process[] = {
-    NULL,
-    NULL,
-    mSM_check_item_for_entrust,
-    NULL,
-    NULL,
-    mSM_check_item_for_sell,
-    mSM_check_item_for_give,
-    NULL,
-    mSM_check_item_for_take,
-    mSM_check_item_for_furniture,
-    mSM_check_item_for_minidisk,
-    mSM_check_item_for_shrine,
-    NULL,
-    mSM_check_item_for_exchange,
-    NULL,
-    NULL,
+checkProcessFunc check_process[INVENTORY_ITEM_LIST_MAX] = {
+    NULL, // INVENTORY_ITEM_LIST_0
+    NULL, // INVENTORY_ITEM_LIST_1
+    mSM_check_item_for_entrust, // INVENTORY_ITEM_LIST_ENTRUST
+    NULL, // INVENTORY_ITEM_LIST_3
+    NULL, // INVENTORY_ITEM_LIST_4
+    mSM_check_item_for_sell, // INVENTORY_ITEM_LIST_SELL
+    mSM_check_item_for_give, // INVENTORY_ITEM_LIST_GIVE
+    NULL, // INVENTORY_ITEM_LIST_7
+    mSM_check_item_for_take, // INVENTORY_ITEM_LIST_TAKE
+    mSM_check_item_for_furniture, // INVENTORY_ITEM_LIST_FURNITURE
+    mSM_check_item_for_minidisk, // INVENTORY_ITEM_LIST_MINIDISK
+    mSM_check_item_for_shrine, // INVENTORY_ITEM_LIST_SHRINE
+    NULL, // INVENTORY_ITEM_LIST_C
+    mSM_check_item_for_exchange, // INVENTORY_ITEM_LIST_ECHANGE
+    NULL, // INVENTORY_ITEM_LIST_E
+    NULL, // INVENTORY_ITEM_LIST_F
 };
 
-u32 mSM_check_open_inventory_itemlist(s32 arg0, s32 arg1) {
-    checkProcessFunc temp_s3 = check_process[arg0];
+u32 mSM_check_open_inventory_itemlist(InvetoryItemList itemlist, s32 arg1) {
+    checkProcessFunc func = check_process[itemlist];
     s32 var_s0;
     u32 var_s1;
 
-    if (temp_s3 == NULL) {
+    if (func == NULL) {
         return 0xFFFF;
     }
 
     var_s1 = 0;
     for (var_s0 = 0; var_s0 < 0xF; var_s0++) {
-        if (temp_s3(var_s0, arg1)) {
+        if (func(var_s0, arg1)) {
             var_s1 |= 1 << var_s0;
         }
     }
