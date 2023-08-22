@@ -47,7 +47,7 @@ typedef struct SubmenuArea {
     /* 0x0C */ void* vramStart;
     /* 0x10 */ void* vramEnd;
     /* 0x14 */ UNK_TYPE unk_14;
-    /* 0x18 */ UNK_TYPE unk_18;
+    /* 0x18 */ const char* name;
 } SubmenuArea; // size = 0x1C
 
 s32 SubmenuArea_IsPlayer(void);
@@ -69,11 +69,7 @@ void mSM_open_submenu_new2(Game_Play1CBC* arg0, s32 arg1, s32 arg2, s32 arg3, s3
 void mSM_Reset_player_btn_type1(struct Game_Play* game_play);
 void mSM_Reset_player_btn_type2(struct Game_Play* game_play);
 void mSM_submenu_ctrl(struct Game_Play* game_play);
-void mSM_move_Wait(Game_Play1CBC* arg0);
-void mSM_move_PREWait(Game_Play1CBC* arg0);
-void mSM_move_LINKWait(Game_Play1CBC* arg0);
-void mSM_move_Play(Game_Play1CBC* arg0);
-void mSM_move_End(Game_Play1CBC* arg0);
+
 void mSM_submenu_move(Game_Play1CBC* arg0);
 void mSM_submenu_draw(Game_Play1CBC* arg0, struct Game_Play* game_play);
 // void mSM_check_item_for_furniture();

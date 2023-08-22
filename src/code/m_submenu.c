@@ -10,6 +10,7 @@
 #include "sys_math3d.h"
 #include "6E9650.h"
 #include "6F5550.h"
+#include "segment_symbols.h"
 #include "attributes.h"
 #include "macros.h"
 
@@ -18,15 +19,35 @@
 
 void mSM_menu_ovl_init(UNK_PTR arg0);
 
-extern void* D_8010DCE0_jp;
-extern size_t D_8010DCE4_jp;
+void* D_8010DCE0_jp = NULL;
+size_t D_8010DCE4_jp = 0;
 
-extern SubmenuArea* SubmenuArea_visit;
-extern SubmenuArea SubmenuArea_dlftbl[];
+#define SUBMENU_OVERLAY(name) { \
+        NULL, SEGMENT_ROM_START(name), SEGMENT_ROM_END(name), \
+        SEGMENT_VRAM_START(name), SEGMENT_VRAM_END(name), 0, #name \
+    }
+
+SubmenuArea* SubmenuArea_visit = NULL;
+SubmenuArea SubmenuArea_dlftbl[] = {
+    SUBMENU_OVERLAY(submenu_ovl),
+    SUBMENU_OVERLAY(player_actor),
+};
 
 typedef void (*fnptr_8010DD24)(Game_Play1CBC*);
 
-extern fnptr_8010DD24 move_proc_616[];
+void mSM_move_Wait(Game_Play1CBC* arg0);
+void mSM_move_PREWait(Game_Play1CBC* arg0);
+void mSM_move_LINKWait(Game_Play1CBC* arg0);
+void mSM_move_Play(Game_Play1CBC* arg0);
+void mSM_move_End(Game_Play1CBC* arg0);
+
+fnptr_8010DD24 move_proc_616[] = {
+    mSM_move_Wait,
+    mSM_move_PREWait,
+    mSM_move_LINKWait,
+    mSM_move_Play,
+    mSM_move_End,
+};
 
 UNK_RET mSM_check_item_for_entrust(s32 arg0, UNK_TYPE arg1);
 UNK_RET mSM_check_item_for_sell(s32 arg0, UNK_TYPE arg1);
@@ -38,15 +59,28 @@ UNK_RET mSM_check_item_for_shrine(s32 arg0, UNK_TYPE arg1);
 UNK_RET mSM_check_item_for_exchange(s32 arg0, UNK_TYPE arg1);
 
 typedef UNK_RET (*fnptr_8010DD38)(s32, UNK_TYPE);
-extern fnptr_8010DD38 check_process[];
+
+fnptr_8010DD38 check_process[] = {
+    NULL,
+    NULL,
+    mSM_check_item_for_entrust,
+    NULL,
+    NULL,
+    mSM_check_item_for_sell,
+    mSM_check_item_for_give,
+    NULL,
+    mSM_check_item_for_take,
+    mSM_check_item_for_furniture,
+    mSM_check_item_for_minidisk,
+    mSM_check_item_for_shrine,
+    NULL,
+    mSM_check_item_for_exchange,
+    NULL,
+    NULL,
+};
 
 extern FaultClient B_80144670_jp;
 extern FaultAddrConvClient B_80144680_jp;
-
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/RO_STR_80117920_jp.s")
-
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/RO_STR_8011792C_jp.s")
-
 
 s32 SubmenuArea_IsPlayer(void) {
     SubmenuArea* playerActorOvl = &SubmenuArea_dlftbl[1];
