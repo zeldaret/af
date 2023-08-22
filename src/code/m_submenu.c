@@ -690,7 +690,7 @@ checkProcessFunc check_process[INVENTORY_ITEM_LIST_MAX] = {
     NULL,                         // INVENTORY_ITEM_LIST_F
 };
 
-u32 mSM_check_open_inventory_itemlist(InvetoryItemList itemlist, s32 arg1) {
+u32 mSM_check_open_inventory_itemlist(InventoryItemList itemlist, s32 arg1) {
     checkProcessFunc func = check_process[itemlist];
     s32 index;
     u32 ret;

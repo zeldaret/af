@@ -20,7 +20,7 @@ typedef enum mSMMoveProcIndex {
     /* 5 */ MSM_MOVE_PROC_MAX
 } mSMMoveProcIndex;
 
-typedef enum InvetoryItemList {
+typedef enum InventoryItemList {
     /*  0 */ INVENTORY_ITEM_LIST_0,
     /*  1 */ INVENTORY_ITEM_LIST_1,
     /*  2 */ INVENTORY_ITEM_LIST_ENTRUST,
@@ -38,7 +38,7 @@ typedef enum InvetoryItemList {
     /* 14 */ INVENTORY_ITEM_LIST_E,
     /* 15 */ INVENTORY_ITEM_LIST_F,
     /* 16 */ INVENTORY_ITEM_LIST_MAX
-} InvetoryItemList;
+} InventoryItemList;
 
 typedef void (*mSM_unk_30)(struct mSM*);
 typedef void (*mSM_unk_34)(struct mSM*, struct Game_Play*);
@@ -88,7 +88,7 @@ void mSM_submenu_ctrl(struct Game_Play* game_play);
 void mSM_submenu_move(mSM* submenu);
 void mSM_submenu_draw(mSM* submenu, struct Game_Play* game_play);
 
-u32 mSM_check_open_inventory_itemlist(InvetoryItemList itemlist, s32 arg1) ;
+u32 mSM_check_open_inventory_itemlist(InventoryItemList itemlist, s32 arg1) ;
 
 // void mSM_Object_Exchange_keep_new();
 // void mSM_Object_Exchange_keep_new_MenuTexAndPallet();
