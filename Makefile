@@ -110,7 +110,7 @@ SPLAT_YAML      ?= $(TARGET).$(VERSION).yaml
 
 
 
-IINC := -Iinclude -Isrc -Ibin/$(VERSION) -I.
+IINC := -Iinclude -Isrc -Iassets/$(VERSION) -I.
 IINC += -Ilib/ultralib/include -Ilib/ultralib/include/PR -Ilib/ultralib/include/ido
 
 ifeq ($(KEEP_MDEBUG),0)
@@ -253,7 +253,7 @@ libclean:
 	$(MAKE) -C lib clean
 
 distclean: clean
-	$(RM) -r $(BUILD_DIR) asm/ bin/ .splat/
+	$(RM) -r $(BUILD_DIR) asm/ assets/ .splat/
 	$(RM) -r linker_scripts/$(VERSION)/auto $(LD_SCRIPT)
 	$(MAKE) -C tools distclean
 	$(MAKE) -C lib distclean
@@ -263,7 +263,7 @@ setup:
 	python3 tools/decompress_baserom.py
 
 extract:
-	$(RM) -r asm/$(VERSION) bin/$(VERSION)
+	$(RM) -r asm/$(VERSION) assets/$(VERSION)
 	$(CAT) yamls/$(VERSION)/header.yaml yamls/$(VERSION)/makerom.yaml yamls/$(VERSION)/boot.yaml yamls/$(VERSION)/code.yaml yamls/$(VERSION)/overlays.yaml yamls/$(VERSION)/assets.yaml > $(SPLAT_YAML)
 	$(SPLAT) $(SPLAT_FLAGS) $(SPLAT_YAML)
 
