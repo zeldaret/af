@@ -12,8 +12,9 @@
 #include "6DE300.h"
 #include "6F5550.h"
 #include "libc/stddef.h"
-#include "segment_symbols.h"
 #include "attributes.h"
+#include "boot_variables.h"
+#include "segment_symbols.h"
 #include "macros.h"
 
 #include "overlays/gamestates/ovl_play/m_play.h"
@@ -172,15 +173,6 @@ void* mSM_ovlptr_dllcnv(void* vram, mSM* submenu) {
 
     return (void*)((uintptr_t)vram + area->relocationDiff);
 }
-
-typedef struct struct_800418D8 {
-    /* 0x000 */ UNK_TYPE1 unk_000[0x104];
-    /* 0x104 */ UNK_TYPE unk_104;
-    /* 0x108 */ UNK_TYPE1 unk_108[0x14];
-    /* 0x11C */ UNK_TYPE unk_11C;
-} struct_800418D8; // size >= 0x120
-
-extern struct_800418D8* B_800418D8_jp;
 
 #ifdef NON_MATCHING
 // regalloc

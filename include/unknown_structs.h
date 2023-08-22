@@ -33,4 +33,11 @@ typedef struct Game_Play_unk_0110 {
     /* 0x52 */ UNK_TYPE1 unk_52[0x2];
 } Game_Play_unk_0110; // size = 0x54
 
+typedef struct struct_800418D8 {
+    /* 0x000 */ UNK_TYPE1 unk_000[0x104];
+    /* 0x104 */ UNK_TYPE unk_104;
+    /* 0x108 */ UNK_TYPE1 unk_108[0x14];
+    /* 0x11C */ UNK_TYPE unk_11C;
+} struct_800418D8; // size >= 0x120
+
 #endif
