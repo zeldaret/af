@@ -54,9 +54,8 @@ class N64SegCkf_bs(CommonSegCodeSubsegment):
             lines.append(options.opts.generated_c_preamble)
             lines.append("\n")
 
-        sym = self.create_symbol(
-            addr=self.vram_start, in_segment=True, type="data", define=True
-        )
+        sym = self.create_symbol(addr=self.vram_start, in_segment=True, type="data", define=True)
+        sym.given_name = self.name.split("/")[-1]
 
         if not self.data_only:
             lines.append(f"BaseSkeletonR {self.format_sym_name(sym)} = ")

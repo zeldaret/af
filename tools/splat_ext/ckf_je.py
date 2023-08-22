@@ -60,9 +60,8 @@ class N64SegCkf_je(CommonSegCodeSubsegment):
             lines.append("")
 
         jointelem_count = segment_length // 12
-        sym = self.create_symbol(
-            addr=self.vram_start, in_segment=True, type="data", define=True
-        )
+        sym = self.create_symbol(addr=self.vram_start, in_segment=True, type="data", define=True)
+        sym.given_name = self.name.split("/")[-1]
 
         if not self.data_only:
             lines.append(f"JointElemR {self.format_sym_name(sym)}[{jointelem_count}] = {{")
