@@ -283,58 +283,45 @@ uintptr_t func_800C497C_jp(uintptr_t address, UNUSED void* param) {
 }
 
 void mSM_submenu_ovlptr_init(Game_Play* game_play) {
-    u32 temp_a0;
-    UNUSED u32 temp_a1_2;
-    u32 temp_v1;
-    u32 temp_t1;
-    u32 var_a3;
-    u32 var_s0;
-    u32 temp_a1;
-    u32 var_t0;
-    u32 temp;
-    u32 temp2;
-    u32 temp3;
-    u32 temp4;
-    u32 temp5;
+    size_t temp6 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__00792700));
+    size_t temp7 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__0079A290));
+    size_t temp8 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__0079E430));
+    size_t temp9 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__0079F810));
+    size_t submenuOvlSize = ALIGN64(SEGMENT_VRAM_SIZE(submenu_ovl));
+    size_t temp_a0 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__00777AE0));
+    size_t var_t0 = temp6 + temp7;
+    size_t temp10;
+    size_t temp1;
+    size_t temp2;
+    size_t temp3;
+    size_t temp4;
+    size_t temp5;
+    size_t var_a3;
+    size_t playerOvlSize;
+    size_t var_s0;
 
-    u32 temp6;
-    u32 temp7;
-    u32 temp8;
-    u32 temp9;
+    var_t0 = MAX(temp8 + temp9, var_t0);
 
-    temp6 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__00792700));
-    temp7 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__0079A290));
-    temp8 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__0079E430));
-    temp9 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__0079F810));
-
-    temp_v1 = ALIGN64(SEGMENT_VRAM_SIZE(submenu_ovl));
-    temp_a0 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__00777AE0));
-
-    var_t0 = temp6 + temp7;
-    temp_a1 = temp8 + temp9;
-    var_t0 = MAX(temp_a1, var_t0);
-
-    temp_a1 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__007829E0));
-    temp = ALIGN64(SEGMENT_VRAM_SIZE(ovl__00785700));
+    temp10 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__007829E0));
+    temp1 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__00785700));
     temp2 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__007908A0));
     temp3 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__0078CB80));
     temp4 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__00799580));
     temp5 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__007A28F0));
 
-    var_a3 = temp_v1 + temp + temp_a0 + temp_a1 + temp2 + temp3 + temp4 + var_t0;
-    temp_t1 = temp_v1 + temp_a0 + temp_a1 + temp5 + 0x4000;
-    var_a3 = MAX(temp_t1, var_a3);
+    var_a3 = submenuOvlSize + temp1 + temp_a0 + temp10 + temp2 + temp3 + temp4 + var_t0;
+    var_a3 = MAX(submenuOvlSize + temp_a0 + temp10 + temp5 + 0x4000, var_a3);
 
-    temp_v1 = SEGMENT_VRAM_SIZE(player_actor);
+    playerOvlSize = SEGMENT_VRAM_SIZE(player_actor);
 
-    var_s0 = MAX(var_a3, temp_v1);
+    var_s0 = MAX(var_a3, playerOvlSize);
 
-    debug_mode->r[0xB31] = (var_s0 >> 0x10) & 0xFFFF;
-    debug_mode->r[0xB32] = var_s0 & 0xFFFF;
-    debug_mode->r[0xB33] = (temp_v1 >> 0x10) & 0xFFFF;
-    debug_mode->r[0xB34] = temp_v1 & 0xFFFF;
-    debug_mode->r[0xB35] = (var_a3 >> 0x10) & 0xFFFF;
-    debug_mode->r[0xB36] = var_a3 & 0xFFFF;
+    PLAYERREG(81) = (var_s0 >> 0x10) & 0xFFFF;
+    PLAYERREG(82) = var_s0 & 0xFFFF;
+    PLAYERREG(83) = (playerOvlSize >> 0x10) & 0xFFFF;
+    PLAYERREG(84) = playerOvlSize & 0xFFFF;
+    PLAYERREG(85) = (var_a3 >> 0x10) & 0xFFFF;
+    PLAYERREG(86) = var_a3 & 0xFFFF;
 
     //! FAKE
     dummy_label_255895: ;
