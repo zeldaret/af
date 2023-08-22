@@ -42,14 +42,12 @@ typedef struct SubmenuArea {
     /* 0x18 */ const char* name;
 } SubmenuArea; // size = 0x1C
 
-#define SUBMENU_OVERLAY(name) { \
-        NULL, SEGMENT_ROM_START(name), SEGMENT_ROM_END(name), \
-        SEGMENT_VRAM_START(name), SEGMENT_VRAM_END(name), 0, #name \
-    }
+#define SUBMENU_OVERLAY(name) \
+    { NULL, SEGMENT_ROM_START(name), SEGMENT_ROM_END(name), SEGMENT_VRAM_START(name), SEGMENT_VRAM_END(name), 0, #name }
 
 SubmenuArea* SubmenuArea_visit = NULL;
 SubmenuArea SubmenuArea_dlftbl[SUBMENU_AREA_INDEX_MAX] = {
-    SUBMENU_OVERLAY(submenu_ovl), // SUBMENU_AREA_INDEX_SUBMENU
+    SUBMENU_OVERLAY(submenu_ovl),  // SUBMENU_AREA_INDEX_SUBMENU
     SUBMENU_OVERLAY(player_actor), // SUBMENU_AREA_INDEX_PLAYER
 };
 
@@ -118,7 +116,8 @@ void SubmenuArea_DoLink(SubmenuArea* area, mSM* submenu, SubmenuAreaIndex index)
             size = 0;
             ovl = NULL;
         }
-        ovlmgr_LoadImpl(area->vromStart, area->vromEnd, area->vramStart, area->vramEnd, area->allocatedRamAddr, ovl, size);
+        ovlmgr_LoadImpl(area->vromStart, area->vromEnd, area->vramStart, area->vramEnd, area->allocatedRamAddr, ovl,
+                        size);
     } else {
         ovlmgr_Load(area->vromStart, area->vromEnd, area->vramStart, area->vramEnd, area->allocatedRamAddr);
     }
@@ -126,7 +125,8 @@ void SubmenuArea_DoLink(SubmenuArea* area, mSM* submenu, SubmenuAreaIndex index)
     area->relocationDiff = (uintptr_t)area->allocatedRamAddr - (uintptr_t)area->vramStart;
     SubmenuArea_visit = area;
     submenu->linkedAllocStart = area->allocatedRamAddr;
-    submenu->linkedAllocEnd = (void*) ((uintptr_t)area->allocatedRamAddr + ALIGN64((uintptr_t)area->vramEnd - (uintptr_t)area->vramStart));
+    submenu->linkedAllocEnd =
+        (void*)((uintptr_t)area->allocatedRamAddr + ALIGN64((uintptr_t)area->vramEnd - (uintptr_t)area->vramStart));
 }
 
 void SubmenuArea_DoUnlink(SubmenuArea* area, mSM* submenu) {
@@ -190,8 +190,8 @@ void func_800C47B4_jp(UNUSED void* arg0, UNUSED void* arg1) {
     UNUSED void* temp_v0_2;
     struct_800418D8* temp_v0;
     u32 temp_a3; // sp34
-    u32 var_t1; // sp30
-    u32 var_t0; // sp2C
+    u32 var_t1;  // sp30
+    u32 var_t0;  // sp2C
     size_t ovlSize;
     void* temp_a2; // sp20
 
@@ -214,20 +214,22 @@ void func_800C47B4_jp(UNUSED void* arg0, UNUSED void* arg1) {
 
     if (temp_s0 != NULL) {
         FaultDrawer_Printf("%08x-%08x %06x", temp_s0, temp_a2, temp_a3);
-        if ((var_t0 >= (u32) temp_s0) && (var_t0 < (u32) temp_a2)) {
+        if ((var_t0 >= (u32)temp_s0) && (var_t0 < (u32)temp_a2)) {
             FaultDrawer_Printf(" PC:%08x", var_t0 + temp_a3);
-        } else if ((var_t1 >= (u32) temp_s0) && (var_t1 < (u32) temp_a2)) {
+        } else if ((var_t1 >= (u32)temp_s0) && (var_t1 < (u32)temp_a2)) {
             FaultDrawer_Printf(" RA:%08x", var_t1 + temp_a3);
         }
 
         FaultDrawer_Printf("\n");
-        temp_v0_3 = get_player_actor_withoutCheck((Game_Play* ) gamePT);
+        temp_v0_3 = get_player_actor_withoutCheck((Game_Play*)gamePT);
         if (temp_v0_3 != NULL) {
             FaultDrawer_Printf("\n");
             FaultDrawer_Printf("player infomation\n");
             FaultDrawer_Printf("main_index         :%d %d\n", temp_v0_3->unk_0CF0, temp_v0_3->unk_0CF4);
-            FaultDrawer_Printf("request_main_index :%d %d %d\n", temp_v0_3->unk_0D00, temp_v0_3->unk_0D04, temp_v0_3->unk_0D08);
-            FaultDrawer_Printf("pos :%d %d %d\n", (s32) temp_v0_3->actor.world.pos.x, (s32) temp_v0_3->actor.world.pos.y, (s32) temp_v0_3->actor.world.pos.z);
+            FaultDrawer_Printf("request_main_index :%d %d %d\n", temp_v0_3->unk_0D00, temp_v0_3->unk_0D04,
+                               temp_v0_3->unk_0D08);
+            FaultDrawer_Printf("pos :%d %d %d\n", (s32)temp_v0_3->actor.world.pos.x, (s32)temp_v0_3->actor.world.pos.y,
+                               (s32)temp_v0_3->actor.world.pos.z);
             FaultDrawer_Printf("angleY :%d %d\n", temp_v0_3->actor.world.rot.y, temp_v0_3->actor.shape.rot.y);
         }
     }
@@ -296,8 +298,8 @@ void mSM_submenu_ovlptr_init(Game_Play* game_play) {
     PLAYERREG(85) = (var_a3 >> 0x10) & 0xFFFF;
     PLAYERREG(86) = var_a3 & 0xFFFF;
 
-    //! FAKE
-    dummy_label_255895: ;
+//! FAKE
+dummy_label_255895:
 
     D_8010DCE0_jp = THA_alloc16(&game_play->state.heap, var_s0);
     D_8010DCE4_jp = var_s0;
@@ -386,49 +388,47 @@ void mSM_Reset_player_btn_type2(Game_Play* game_play) {
 }
 
 void mSM_submenu_ctrl(Game_Play* game_play) {
-    mSM* temp_v0;
+    mSM* submenu = &game_play->submenu;
 
-    temp_v0 = &game_play->submenu;
-    if ((game_play->submenu.moveProcIndex != MSM_MOVE_PROC_WAIT) || (game_play->unk_1EE0 != 0) || (game_play->unk_1EE3 != 0)) {
+    if ((game_play->submenu.moveProcIndex != MSM_MOVE_PROC_WAIT) || (game_play->unk_1EE0 != 0) ||
+        (game_play->unk_1EE3 != 0)) {
         return;
     }
 
-    if (
-        (!((chkTrigger(START_BUTTON) == 0) || (common_data.unk_10A68 != 0))
-            ||
-            ((((chkTrigger(R_TRIG) != 0) && (common_data.unk_10140 == 1)) == 1) && (common_data.unk_10A68 == 0)))
-
-            && ((temp_v0->unk_E2 == 0) && (temp_v0->unk_E3 <= 0) && (mPlib_able_submenu_type1(game_play) != 0) && (mEv_CheckFirstIntro() == 0))
-        ) {
+    if ((!((chkTrigger(START_BUTTON) == 0) || (common_data.unk_10A68 != 0)) ||
+         ((((chkTrigger(R_TRIG) != 0) && (common_data.unk_10140 == 1)) == 1) && (common_data.unk_10A68 == 0))) &&
+        ((submenu->unk_E2 == 0) && (submenu->unk_E3 <= 0) && (mPlib_able_submenu_type1(game_play) != 0) &&
+         (mEv_CheckFirstIntro() == 0))) {
         if (chkTrigger(START_BUTTON) != 0) {
-            mSM_open_submenu(temp_v0, 1, 0, 0);
+            mSM_open_submenu(submenu, 1, 0, 0);
         } else {
-            mSM_open_submenu(temp_v0, 5, 1, 0);
+            mSM_open_submenu(submenu, 5, 1, 0);
         }
         mSM_Reset_player_btn_type2(game_play);
     } else {
         Player* player = get_player_actor_withoutCheck(game_play);
         UNUSED s32 pad;
 
-        if ((player != NULL) && (player->unk_12B8 == 1) && (common_data.unk_10A68 == 0) && (temp_v0->unk_E2 == 0) && (temp_v0->unk_E3 <= 0)) {
+        if ((player != NULL) && (player->unk_12B8 == 1) && (common_data.unk_10A68 == 0) && (submenu->unk_E2 == 0) &&
+            (submenu->unk_E3 <= 0)) {
             if (mPlib_able_submenu_type1(game_play) != 0) {
                 if (ABS(BINANG_ROT180(player->actor.shape.rot.y)) < 0x2000) {
                     switch (player->unk_12C0) {
                         case 0x7:
                         case 0xB:
-                            mSM_open_submenu(temp_v0, 6, 0, 0);
+                            mSM_open_submenu(submenu, 6, 0, 0);
                             mSM_Reset_player_btn_type1(game_play);
                             break;
 
                         case 0xC:
                         case 0xD:
-                            mSM_open_submenu(temp_v0, 5, 0, 0);
+                            mSM_open_submenu(submenu, 5, 0, 0);
                             mSM_Reset_player_btn_type1(game_play);
                             break;
 
                         case 0xE:
                         case 0xF:
-                            mSM_open_submenu(temp_v0, 8, 0, 0);
+                            mSM_open_submenu(submenu, 8, 0, 0);
                             mSM_Reset_player_btn_type1(game_play);
                             break;
                     }
@@ -437,9 +437,9 @@ void mSM_submenu_ctrl(Game_Play* game_play) {
         }
     }
 
-    if (temp_v0->unk_04 != 0) {
-        temp_v0->moveProcIndex = MSM_MOVE_PROC_PREWAIT;
-        temp_v0->unk_00 = 1;
+    if (submenu->unk_04 != 0) {
+        submenu->moveProcIndex = MSM_MOVE_PROC_PREWAIT;
+        submenu->unk_00 = 1;
         SetGameFrame(2);
     }
 }
@@ -544,11 +544,11 @@ void mSM_move_End(mSM* submenu);
 typedef void (*MoveProcFunc)(mSM*);
 
 MoveProcFunc move_proc_616[MSM_MOVE_PROC_MAX] = {
-    mSM_move_Wait, // MSM_MOVE_PROC_WAIT
-    mSM_move_PREWait, // MSM_MOVE_PROC_PREWAIT
+    mSM_move_Wait,     // MSM_MOVE_PROC_WAIT
+    mSM_move_PREWait,  // MSM_MOVE_PROC_PREWAIT
     mSM_move_LINKWait, // MSM_MOVE_PROC_LINKWAIT
-    mSM_move_Play, // MSM_MOVE_PROC_PLAY
-    mSM_move_End, // MSM_MOVE_PROC_END
+    mSM_move_Play,     // MSM_MOVE_PROC_PLAY
+    mSM_move_End,      // MSM_MOVE_PROC_END
 };
 
 void mSM_submenu_move(mSM* submenu) {
@@ -609,7 +609,9 @@ s32 mSM_check_item_for_take(s32 index, s32 arg1) {
 
     if (temp_v0 != 0) {
         if (!((private->inventory.item_conditions >> (index << 1)) & 3)) {
-            if ((arg1 == 0) || ((((temp_v0 & 0xF000) >> 0xC) == 2) && ((((((temp_v0 & 0xF00) >> 8) == 3)) && (arg1 == 1)) || ((((temp_v0 & 0xF00) >> 8) == 0xD) && (arg1 == 2))))) {
+            if ((arg1 == 0) ||
+                ((((temp_v0 & 0xF000) >> 0xC) == 2) && ((((((temp_v0 & 0xF00) >> 8) == 3)) && (arg1 == 1)) ||
+                                                        ((((temp_v0 & 0xF00) >> 8) == 0xD) && (arg1 == 2))))) {
                 return true;
             }
         }
@@ -645,7 +647,8 @@ s32 mSM_check_item_for_entrust(s32 index, UNUSED s32 arg1) {
     u16 temp_v0 = common_data.now_private->inventory.pockets[index];
     Private_c* temp_v1 = common_data.now_private;
 
-    if ((temp_v0 == 0) || (!((temp_v1->inventory.item_conditions >> (index << 1)) & 3) && ((((temp_v0 & 0xF000) >> 0xC) != 2) || (((temp_v0 & 0xF00) >> 8) != 1)))) {
+    if ((temp_v0 == 0) || (!((temp_v1->inventory.item_conditions >> (index << 1)) & 3) &&
+                           ((((temp_v0 & 0xF000) >> 0xC) != 2) || (((temp_v0 & 0xF00) >> 8) != 1)))) {
         return true;
     }
 
@@ -658,11 +661,13 @@ s32 mSM_check_item_for_exchange(s32 index, s32 arg1) {
     UNUSED s32 pad;
 
     if (!((temp_v0->inventory.item_conditions >> (index << 1)) & 3) && (temp_v1 != 0)) {
-        if ((((temp_v1 & 0xF000) >> 0xC) == 2) && (((temp_v1 & 0xF00) >> 8) == 3) && ((((arg1 & 0xF000) >> 0xC) != 2) || (((arg1 & 0xF00) >> 8) != 3))) {
-            Player* player = get_player_actor_withoutCheck((Game_Play* ) gamePT);
+        if ((((temp_v1 & 0xF000) >> 0xC) == 2) && (((temp_v1 & 0xF00) >> 8) == 3) &&
+            ((((arg1 & 0xF000) >> 0xC) != 2) || (((arg1 & 0xF00) >> 8) != 3))) {
+            Player* player = get_player_actor_withoutCheck((Game_Play*)gamePT);
             UNK_TYPE sp2C;
 
-            if (mCoBG_SearchWaterLimitDistN(&sp2C, player->actor.world.pos, player->actor.shape.rot.y, 100.0f, 0xA) == 0) {
+            if (mCoBG_SearchWaterLimitDistN(&sp2C, player->actor.world.pos, player->actor.shape.rot.y, 100.0f, 0xA) ==
+                0) {
                 return false;
             }
         }
@@ -675,22 +680,22 @@ s32 mSM_check_item_for_exchange(s32 index, s32 arg1) {
 typedef s32 (*checkProcessFunc)(s32, s32);
 
 checkProcessFunc check_process[INVENTORY_ITEM_LIST_MAX] = {
-    NULL, // INVENTORY_ITEM_LIST_0
-    NULL, // INVENTORY_ITEM_LIST_1
-    mSM_check_item_for_entrust, // INVENTORY_ITEM_LIST_ENTRUST
-    NULL, // INVENTORY_ITEM_LIST_3
-    NULL, // INVENTORY_ITEM_LIST_4
-    mSM_check_item_for_sell, // INVENTORY_ITEM_LIST_SELL
-    mSM_check_item_for_give, // INVENTORY_ITEM_LIST_GIVE
-    NULL, // INVENTORY_ITEM_LIST_7
-    mSM_check_item_for_take, // INVENTORY_ITEM_LIST_TAKE
+    NULL,                         // INVENTORY_ITEM_LIST_0
+    NULL,                         // INVENTORY_ITEM_LIST_1
+    mSM_check_item_for_entrust,   // INVENTORY_ITEM_LIST_ENTRUST
+    NULL,                         // INVENTORY_ITEM_LIST_3
+    NULL,                         // INVENTORY_ITEM_LIST_4
+    mSM_check_item_for_sell,      // INVENTORY_ITEM_LIST_SELL
+    mSM_check_item_for_give,      // INVENTORY_ITEM_LIST_GIVE
+    NULL,                         // INVENTORY_ITEM_LIST_7
+    mSM_check_item_for_take,      // INVENTORY_ITEM_LIST_TAKE
     mSM_check_item_for_furniture, // INVENTORY_ITEM_LIST_FURNITURE
-    mSM_check_item_for_minidisk, // INVENTORY_ITEM_LIST_MINIDISK
-    mSM_check_item_for_shrine, // INVENTORY_ITEM_LIST_SHRINE
-    NULL, // INVENTORY_ITEM_LIST_C
-    mSM_check_item_for_exchange, // INVENTORY_ITEM_LIST_ECHANGE
-    NULL, // INVENTORY_ITEM_LIST_E
-    NULL, // INVENTORY_ITEM_LIST_F
+    mSM_check_item_for_minidisk,  // INVENTORY_ITEM_LIST_MINIDISK
+    mSM_check_item_for_shrine,    // INVENTORY_ITEM_LIST_SHRINE
+    NULL,                         // INVENTORY_ITEM_LIST_C
+    mSM_check_item_for_exchange,  // INVENTORY_ITEM_LIST_ECHANGE
+    NULL,                         // INVENTORY_ITEM_LIST_E
+    NULL,                         // INVENTORY_ITEM_LIST_F
 };
 
 u32 mSM_check_open_inventory_itemlist(InvetoryItemList itemlist, s32 arg1) {

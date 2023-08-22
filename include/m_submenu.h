@@ -71,22 +71,22 @@ typedef struct mSM {
 
 s32 SubmenuArea_IsPlayer(void);
 
-void* mSM_ovlptr_dllcnv(void* vram, mSM* arg1);
+void* mSM_ovlptr_dllcnv(void* vram, mSM* submenu);
 
 void mSM_submenu_ovlptr_init(struct Game_Play* game_play);
-void mSM_submenu_ovlptr_cleanup(mSM* arg0);
+void mSM_submenu_ovlptr_cleanup(mSM* submenu);
 
-void load_player(mSM* arg0);
-void mSM_submenu_ct(mSM* arg0);
+void load_player(mSM* submenu);
+void mSM_submenu_ct(mSM* submenu);
 void mSM_submenu_dt(mSM* arg0);
 
-void mSM_open_submenu(mSM* arg0, s32 arg1, s32 arg2, s32 arg3);
-void mSM_open_submenu_new(mSM* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
-void mSM_open_submenu_new2(mSM* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
+void mSM_open_submenu(mSM* submenu, s32 arg1, s32 arg2, s32 arg3);
+void mSM_open_submenu_new(mSM* submenu, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+void mSM_open_submenu_new2(mSM* submenu, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
 
 void mSM_submenu_ctrl(struct Game_Play* game_play);
-void mSM_submenu_move(mSM* arg0);
-void mSM_submenu_draw(mSM* arg0, struct Game_Play* game_play);
+void mSM_submenu_move(mSM* submenu);
+void mSM_submenu_draw(mSM* submenu, struct Game_Play* game_play);
 
 u32 mSM_check_open_inventory_itemlist(InvetoryItemList itemlist, s32 arg1) ;
 
