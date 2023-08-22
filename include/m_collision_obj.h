@@ -8,7 +8,9 @@
 
 typedef struct CollisionCheck_Status {
     /* 0x00 */ Vec3f displacement;
-    /* 0x0C */ UNK_TYPE1 unk_0C[0xC];
+    /* 0x0C */ UNK_TYPE1 unk_0C[0x6];
+    /* 0x0C */ u8 unk_12;
+    /* 0x13 */ UNK_TYPE1 unk_13[0x5];
 } CollisionCheck_Status; // size >= 0x18
 
 
