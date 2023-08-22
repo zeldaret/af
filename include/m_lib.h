@@ -5,6 +5,8 @@
 #include "z64math.h"
 #include "unk.h"
 
+struct Game_Play;
+
 void mem_copy(u8* dst, u8* src, u32 size);
 s32 mem_clear(void* ptr, size_t size, u8 value);
 // void mem_cmp();
@@ -23,7 +25,7 @@ s32 chase_f(f32* arg0, f32 arg1, f32 arg2);
 // void get_random_timer();
 // void get_random_pattern_timer();
 void xyz_t_move(Vec3f* dst, Vec3f* src);
-// void xyz_t_move_s_xyz();
+void xyz_t_move_s_xyz(Vec3f* dst, Vec3s* src);
 // void xyz_t_add();
 // void xyz_t_sub();
 // void xyz_t_sub_ss();
@@ -58,7 +60,7 @@ UNK_RET none_proc1(void);
 // void none_proc2();
 // void Cheap_gfx_display();
 // void Cheap_gfx_display_xlu();
-// void _Game_play_isPause();
+s32 _Game_play_isPause(struct Game_Play* game_play);
 void *Lib_SegmentedToVirtual(void *ptr); //original name unknown, taken from majora's mask
 // void func_8009ADE0_jp();
 // void func_8009AE28_jp();

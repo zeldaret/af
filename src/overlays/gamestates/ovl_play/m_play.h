@@ -73,7 +73,7 @@ typedef struct Game_Play {
     /* 0x1938 */ Game_Play1938 unk_1938;
     /* 0x1A60 */ UNK_TYPE1 unk_1A60[0x138];
     /* 0x1B98 */ Kankyo kankyo;
-    /* 0x1C60 */ LightContext lightCtx;
+    /* 0x1C60 */ Global_light glight;
     /* 0x1C70 */ Pause pause;
     /* 0x1C78 */ ActorInfo actorInfo;
     /* 0x1CBC */ Game_Play1CBC unk_1CBC;
@@ -106,7 +106,7 @@ typedef struct Game_Play {
     /* 0x1EE4 */ UNK_TYPE1 unk_1EE4[0x4];
     /* 0x1EE8 */ Game_Play_Unk_1EE8 unk_1EE8;
     /* 0x2128 */ Game_Play2128 unk_2128;
-    /* 0x2138 */ Game_Play2138 unk_2138;
+    /* 0x2138 */ CollisionCheck unk_2138;
     /* 0x2208 */ Game_Play_unk_2208 unk_2208;
     /* 0x220C */ s32 unk_220C;
     /* 0x2210 */ Struct_8010EAA0* unk_2210;

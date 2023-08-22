@@ -2,8 +2,30 @@
 #define SYS_MATH_3D_H
 
 #include "ultra64.h"
+#include "z64math.h"
+#include "unk.h"
 
-extern Vec3f ZeroVec;
+typedef struct Sphere {
+    /* 0x0 */ Vec3s center;
+    /* 0x6 */ s16 radius;
+} Sphere; // size = 0x6
+
+typedef struct Triangle {
+    /* 0x00 */ Vec3f vertices[3];
+} Triangle; // size = 0x24
+
+typedef struct Triangle3 {
+    /* 0x00 */ Triangle unk_00;
+    /* 0x24 */ Vec3f unk_24;
+    /* 0x30 */ f32 unk_30;
+} Triangle3; // size = 0x34
+
+typedef struct Pipe {
+    /* 0x0 */ s16 radius;
+    /* 0x2 */ s16 unk_2;
+    /* 0x4 */ s16 yShift;
+    /* 0x6 */ Vec3s pos;
+} Pipe; // size = 0xC
 
 // void Math3d_normalizeXyz_t();
 // void func_800DA028_jp();
@@ -19,7 +41,7 @@ extern Vec3f ZeroVec;
 // void M3D_getRefVec();
 // void func_800DA9E4_jp();
 // void func_800DAA48_jp();
-// void func_800DAB88_jp();
+// void Math3DCheck3PointMinMaxAreaInside3D();
 // void func_800DADAC_jp();
 // void func_800DADC4_jp();
 // void func_800DADE8_jp();
@@ -40,10 +62,10 @@ extern Vec3f ZeroVec;
 // void func_800DB4E4_jp();
 // void func_800DBF5C_jp();
 // void func_800DC0C8_jp();
-// void func_800DC154_jp();
+void Math3DPlane(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, f32* arg3, f32* arg4, f32* arg5, f32* arg6);
 // void func_800DC268_jp();
 // void func_800DC2A8_jp();
-// void func_800DC2E4_jp();
+// void Math3DLengthPlaneAndPos();
 // void func_800DC31C_jp();
 // void func_800DC3A0_jp();
 // void func_800DC6BC_jp();
@@ -71,20 +93,20 @@ extern Vec3f ZeroVec;
 // void func_800DDBAC_jp();
 // void func_800DDC5C_jp();
 // void func_800DDCAC_jp();
-// void func_800DDDF4_jp();
-// void func_800DDFFC_jp();
-// void func_800DE13C_jp();
+// void Math3D_sphereCrossLineSegment();
+// void Math3D_sphereCrossTriangleCalc_cp();
+s32 Math3D_sphereCrossTriangle3_cp(Sphere* sphere, Triangle3* triangle3, Vec3f* arg2);
 // void func_800DE55C_jp();
 // void func_800DE618_jp();
-// void func_800DEFEC_jp();
+s32 Math3D_pipeCrossTriangle_cp(Pipe* pipe, Triangle* arg1, Vec3f* arg2);
 // void func_800DF46C_jp();
 // void func_800DF48C_jp();
-// void func_800DF4AC_jp();
+s32 Math3D_sphereCrossSphere_cl(Sphere* sphere1, Sphere* sphere2, f32* arg2);
 // void func_800DF4CC_jp();
-// void func_800DF5A4_jp();
+s32 Math3D_sphereVsPipe_cl(Sphere* sphere, Pipe* pipe, f32* arg2);
 // void func_800DF5C4_jp();
-// void func_800DF734_jp();
-// void func_800DF754_jp();
+s32 Math3D_pipeVsPipe_cl(Pipe* pipe1, Pipe* pipe2, f32* arg2);
+// void Math3D_pipeVsPipe_cl_cc();
 // void func_800DF924_jp();
 // void func_800DFCA4_jp();
 // void func_800DFD10_jp();
@@ -92,5 +114,7 @@ extern Vec3f ZeroVec;
 // void sMath_RotateY();
 // void sMath_RotateX();
 // void sMath_RotateZ();
+
+extern Vec3f ZeroVec;
 
 #endif
