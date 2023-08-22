@@ -35,7 +35,7 @@ void aNEG_actor_ct(Actor* thisx, Game_Play* game_play) {
         this->unk80C = -1;
         this->unk7FD = 0;
         this->unk8AC = -1;
-        this->actor.colStatus.unk_12 = 0xFE;
+        this->actor.colStatus.mass = 0xFE;
         this->actor.shape.rot.y = 0x4000;
         this->actor.world.rot.y = 0x4000;
         this->unk8DC = 0x4000;
