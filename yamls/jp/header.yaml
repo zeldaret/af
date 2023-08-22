@@ -25,7 +25,7 @@ options:
 
   asm_path: asm/jp
   src_path: src
-  asset_path: bin/jp
+  asset_path: assets/jp
 
   build_path: build
 

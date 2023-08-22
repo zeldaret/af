@@ -569,14 +569,43 @@
   - [0xD5D2E0]
 
   - name: object_00D5E000
-    type: bin # code
+    type: code
     start: 0xD5E000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
-    # subsegments:
-    #   - [0xD5E000, data, assets/objects/object_00D5E000/object_00D5E000]
+    subsegments:
+      - start: 0xD5E000
+        type: data
+        name: objects/object_00D5E000/object_00D5E000
+        subsegments:
+          - [0xD5E000]
+          - [0xDDBBD8, bin, objects/object_00D5E000/obj_s_toudai/obj_s_toudai_mirror_model]
+          - [0xDDBCA0, bin, objects/object_00D5E000/obj_s_toudai/obj_s_toudai_glass_model]
+          - [0xDDBD70, bin, objects/object_00D5E000/obj_s_toudai/obj_s_toudai_body_model]
+          - [0xDDC188, bin, objects/object_00D5E000/obj_s_toudai/obj_s_toudai_light_model]
+          - [0xDDC258, bin, objects/object_00D5E000/obj_s_toudai/obj_s_toudai_lenz_model]
+          - [0xDDC320, bin, objects/object_00D5E000/obj_s_toudai/obj_s_toudai_arm_model]
+          - [0xDDC3A8, i8, objects/object_00D5E000/obj_s_toudai/obj_s_toudai_light_tex_txt, 16, 16]
+          - [0xDDC4A8, bin, objects/object_00D5E000/obj_s_toudai/obj_s_toudai_arm_tex_txt]
+          - [0xDDC528, bin, objects/object_00D5E000/obj_s_toudai/obj_s_toudai_dai_tex_txt]
+          - [0xDDC728, bin, objects/object_00D5E000/obj_s_toudai/obj_s_toudai_dou_tex_txt]
+          - [0xDDCB28, bin, objects/object_00D5E000/obj_s_toudai/obj_s_toudai_plate_tex_txt]
+          - [0xDDCBA8, bin, objects/object_00D5E000/obj_s_toudai/obj_s_toudai_side_tex_txt]
+          - [0xDDCC28, bin, objects/object_00D5E000/obj_s_toudai/obj_s_toudai_tesuri_tex_txt]
+          - [0xDDCCA8, bin, objects/object_00D5E000/obj_s_toudai/obj_s_toudai_yane_tex_txt]
+          - [0xDDCD28, bin, objects/object_00D5E000/obj_s_toudai/obj_s_toudai_glass_tex_pic_ci4_pal]
+          - [0xDDCD48, bin, objects/object_00D5E000/obj_s_toudai/obj_s_toudai_glass_tex_pic_bin]
+          - [0xDDCDC8, bin, objects/object_00D5E000/obj_s_toudai/cKF_je_r_obj_s_toudai_tbl]
+          - [0xDDCE1C, bin, objects/object_00D5E000/obj_s_toudai/cKF_bs_r_obj_s_toudai]
+          - [0xDDCE24, bin, objects/object_00D5E000/obj_s_toudai/cKF_ckcb_r_obj_s_toudai_tbl]
+          - [0xDDCE2C, bin, objects/object_00D5E000/obj_s_toudai/cKF_kn_obj_s_toudai_tbl]
+          - [0xDDCE30, bin, objects/object_00D5E000/obj_s_toudai/cKF_c_obj_s_toudai_tbl]
+          - [0xDDCE60, bin, objects/object_00D5E000/obj_s_toudai/cKF_ds_obj_s_toudai_tbl]
+          - [0xDDCE6C, bin, objects/object_00D5E000/obj_s_toudai/cKF_ba_r_obj_s_toudai]
+          - [0xDDCE90, vtx, objects/object_00D5E000/obj_s_toudai/obj_s_toudai_v]
+          - [0xDDD7E0]
   - [0xDF3480]
 
   - name: object_00DF4000
