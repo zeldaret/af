@@ -2,6 +2,7 @@
 #define M_SUBMENU_H
 
 #include "ultra64.h"
+#include "6BFE60.h"
 #include "z64math.h"
 #include "libc/stdint.h"
 #include "other_types.h"
@@ -28,7 +29,7 @@ typedef struct Game_Play1CBC {
     /* 0x2C */ UNK_TYPE1 unk_2C[0x4];
     /* 0x30 */ Game_Play1CBC_unk_30 unk_30;
     /* 0x34 */ Game_Play1CBC_unk_34 unk_34;
-    /* 0x38 */ UNK_TYPE1 unk_38[0xA4];
+    /* 0x38 */ mMl unk_38;
     /* 0xDC */ u8 unk_DC;
     /* 0xDD */ u8 unk_DD;
     /* 0xDE */ u8 unk_DE;

@@ -2,16 +2,17 @@
 #define M_MSG_MAIN_H
 
 #include "ultra64.h"
+#include "unk.h"
 
 struct Game_Play;
 
-// void mMsg_Get_base_window_p();
+UNK_TYPE mMsg_Get_base_window_p(void);
 // void func_8009D200_jp();
 // void func_8009D210_jp();
 // void func_8009D260_jp();
 // void func_8009D274_jp();
-// void mMsg_Check_not_series_main_wait();
-// void mMsg_Check_main_hide();
+UNK_RET mMsg_Check_not_series_main_wait(UNK_TYPE arg0);
+UNK_RET mMsg_Check_main_hide(UNK_TYPE arg0);
 // void func_8009D308_jp();
 // void func_8009D3B4_jp();
 // void func_8009D3E4_jp();
@@ -130,7 +131,7 @@ struct Game_Play;
 // void func_8009FC5C_jp();
 // void func_8009FCB8_jp();
 // void func_8009FCE0_jp();
-// void mMsg_sound_spec_change_voice();
+void mMsg_sound_spec_change_voice(UNK_TYPE arg0);
 // void func_8009FD80_jp();
 // void func_8009FDA0_jp();
 // void func_8009FDF8_jp();

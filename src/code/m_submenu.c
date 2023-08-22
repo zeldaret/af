@@ -2,12 +2,14 @@
 #include "m_common_data.h"
 #include "m_debug.h"
 #include "m_lib.h"
+#include "m_msg_main.h"
 #include "m_player_lib.h"
 #include "fault.h"
 #include "ovlmgr.h"
 #include "game.h"
 #include "sys_math3d.h"
-#include "6BFE60.h"
+#include "6E9650.h"
+#include "6F5550.h"
 #include "attributes.h"
 #include "macros.h"
 
@@ -16,8 +18,8 @@
 
 void mSM_menu_ovl_init(UNK_PTR arg0);
 
-extern UNK_TYPE D_8010DCE0_jp;
-extern UNK_TYPE D_8010DCE4_jp;
+extern void* D_8010DCE0_jp;
+extern size_t D_8010DCE4_jp;
 
 extern SubmenuArea* SubmenuArea_visit;
 extern SubmenuArea SubmenuArea_dlftbl[];
@@ -54,7 +56,7 @@ void mSM_load_player_anime(Game_Play* game_play) {
         return;
     }
 
-    var_s4 = &game_play->unk_0110;
+    var_s4 = game_play->unk_0110;
     var_s4 += mSc_bank_regist_check(var_s4, 9);
 
     for (var_s3 = 0; var_s3 < 2; var_s3++, var_s4++) {
@@ -84,7 +86,7 @@ void mSM_load_player_anime(Game_Play* game_play) {
 
 void SubmenuArea_DoLink(SubmenuArea* area, Game_Play1CBC* arg1, s32 arg2) {
     size_t var_t0;
-    s32 var_t1;
+    struct OverlayRelocationSection* var_t1;
     size_t temp_v0;
 
     area->allocatedRamAddr = D_8010DCE0_jp;
@@ -92,10 +94,10 @@ void SubmenuArea_DoLink(SubmenuArea* area, Game_Play1CBC* arg1, s32 arg2) {
         temp_v0 = (((uintptr_t)area->vramEnd - (uintptr_t)area->vramStart) + 0xF) & ~0xF;
         if ((u32) D_8010DCE4_jp >= temp_v0) {
             var_t0 = D_8010DCE4_jp - temp_v0;
-            var_t1 = D_8010DCE0_jp + temp_v0;
+            var_t1 = (void*)((uintptr_t)D_8010DCE0_jp + temp_v0);
         } else {
             var_t0 = 0;
-            var_t1 = 0;
+            var_t1 = NULL;
         }
         ovlmgr_LoadImpl(area->vromStart, area->vromEnd, area->vramStart, area->vramEnd, area->allocatedRamAddr, var_t1, var_t0);
     } else {
@@ -105,7 +107,7 @@ void SubmenuArea_DoLink(SubmenuArea* area, Game_Play1CBC* arg1, s32 arg2) {
     area->unk_14 = (uintptr_t)area->allocatedRamAddr - (uintptr_t)area->vramStart;
     SubmenuArea_visit = area;
     arg1->unk_24 = area->allocatedRamAddr;
-    arg1->unk_28 = (s32) ((uintptr_t)area->allocatedRamAddr + ((((uintptr_t)area->vramEnd - (uintptr_t)area->vramStart) + 0x3F) & ~0x3F));
+    arg1->unk_28 = (void*) ((uintptr_t)area->allocatedRamAddr + ((((uintptr_t)area->vramEnd - (uintptr_t)area->vramStart) + 0x3F) & ~0x3F));
 }
 
 void SubmenuArea_DoUnlink(SubmenuArea* area, Game_Play1CBC* arg1) {
@@ -139,8 +141,8 @@ void* mSM_ovlptr_dllcnv(void* vram, Game_Play1CBC* arg1) {
     SubmenuArea* var_v1 = SubmenuArea_visit;
 
     if (var_v1 == NULL) {
-        var_v1 = &SubmenuArea_dlftbl;
-        if (!mSM_ovlptr_dllcnv_sub(vram, &SubmenuArea_dlftbl, arg1)) {
+        var_v1 = SubmenuArea_dlftbl;
+        if (!mSM_ovlptr_dllcnv_sub(vram, SubmenuArea_dlftbl, arg1)) {
             return NULL;
         }
     }
@@ -148,7 +150,8 @@ void* mSM_ovlptr_dllcnv(void* vram, Game_Play1CBC* arg1) {
     if ((var_v1 == NULL) || (vram < var_v1->vramStart) || (vram >= var_v1->vramEnd)) {
         return NULL;
     }
-    return (uintptr_t)vram + var_v1->unk_14;
+
+    return (void*)((uintptr_t)vram + var_v1->unk_14);
 }
 
 #if 0
@@ -262,7 +265,7 @@ extern UNK_TYPE1 func_808B2D50_jp;
 // regalloc
 void func_800C49D4_jp(Game_Play* game_play) {
     u32 temp_a0;
-    u32 temp_a1_2;
+    UNUSED u32 temp_a1_2;
     u32 temp_v1;
     u32 temp_t1;
     u32 var_a3;
@@ -366,8 +369,8 @@ void mSM_submenu_ct(Game_Play1CBC* arg0) {
         common_data.unk_104AD = 0;
     }
 
-    arg0->unk_30 = none_proc1;
-    arg0->unk_34 = none_proc1;
+    arg0->unk_30 = (void*)none_proc1;
+    arg0->unk_34 = (void*)none_proc1;
 }
 
 void mSM_submenu_dt(UNUSED Game_Play1CBC* arg0) {
@@ -495,14 +498,14 @@ void mSM_move_LINKWait(Game_Play1CBC* arg0) {
     SubmenuArea_DoLink(submenuOvl, arg0, 0);
 
     arg0->unk_30 = mSM_ovlptr_dllcnv(&mSM_menu_ovl_init, arg0);
-    arg0->unk_34 = none_proc1;
+    arg0->unk_34 = (void*)none_proc1;
     arg0->unk_0C = 3;
     arg0->unk_DC = 1;
     arg0->unk_E0 = 0;
     arg0->unk_DF = 0xF;
     arg0->unk_DD = 7;
     arg0->unk_DE = 0;
-    mMl_clear_mail(arg0->unk_38);
+    mMl_clear_mail(&arg0->unk_38);
     xyz_t_move(&arg0->unk_E4, &ZeroVec);
 
     if (arg0->unk_00 != 4) {
@@ -525,12 +528,12 @@ void mSM_move_Play(Game_Play1CBC* arg0) {
 #ifdef NON_MATCHING
 // likely memes
 void mSM_move_End(Game_Play1CBC* arg0) {
-    s32 pad;
+    UNUSED s32 pad;
     Game_Play* sp28;
-    s32 sp24;
-    s32 sp20[1];
+    UNK_TYPE sp24;
+    UNUSED s32 sp20[1];
 
-    sp28 = gamePT;
+    sp28 = (Game_Play*)gamePT;
     arg0->unk_30(arg0);
     arg0->unk_0C = 0;
     arg0->unk_04 = 0;
@@ -542,7 +545,7 @@ void mSM_move_End(Game_Play1CBC* arg0) {
     if (arg0->unk_00 != 4) {
         sp24 = mMsg_Get_base_window_p();
         arg0->unk_00 = 0;
-        mSc_dmacopy_all_exchange_bank(&sp28->unk_0110);
+        mSc_dmacopy_all_exchange_bank(sp28->unk_0110);
         SubmenuArea_DoUnlink(SubmenuArea_dlftbl, arg0);
         load_player(arg0);
         mSM_load_player_anime(sp28);

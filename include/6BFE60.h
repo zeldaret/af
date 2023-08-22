@@ -2,12 +2,17 @@
 #define C_6BFE60_H
 
 #include "ultra64.h"
+#include "unk.h"
+
+typedef struct mMl {
+    /* 0x00 */ UNK_TYPE1 unk_00[0xA4];
+} mMl; // size = 0xA4
 
 // void func_8009C1C0_jp();
 // void func_8009C284_jp();
 // void func_8009C2D8_jp();
 // void func_8009C344_jp();
-// void mMl_clear_mail();
+void mMl_clear_mail(mMl* arg0);
 // void mMl_clear_mail_box();
 // void func_8009C414_jp();
 // void func_8009C438_jp();
