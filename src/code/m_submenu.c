@@ -9,6 +9,7 @@
 #include "game.h"
 #include "sys_math3d.h"
 #include "6E9650.h"
+#include "6DE300.h"
 #include "6F5550.h"
 #include "segment_symbols.h"
 #include "attributes.h"
@@ -200,21 +201,21 @@ void* mSM_ovlptr_dllcnv(void* vram, Game_Play1CBC* arg1) {
     return (void*)((uintptr_t)vram + var_v1->unk_14);
 }
 
-extern UNK_TYPE B_800418D8_jp;
-
-typedef struct struct_800418D4 {
+typedef struct struct_800418D8 {
     /* 0x000 */ UNK_TYPE1 unk_000[0x104];
     /* 0x104 */ UNK_TYPE unk_104;
     /* 0x108 */ UNK_TYPE1 unk_108[0x14];
     /* 0x11C */ UNK_TYPE unk_11C;
 } struct_800418D8; // size >= 0x120
 
+extern struct_800418D8* B_800418D8_jp;
+
 #ifdef NON_MATCHING
 // regalloc
-void func_800C47B4_jp(void* arg0, void* arg1) {
+void func_800C47B4_jp(UNUSED void* arg0, UNUSED void* arg1) {
     void* temp_s0;
     Player* temp_v0_3;
-    void* temp_v0_2;
+    UNUSED void* temp_v0_2;
     struct_800418D8* temp_v0;
     u32 temp_a3; // sp34
     u32 var_t1; // sp30
@@ -237,7 +238,7 @@ void func_800C47B4_jp(void* arg0, void* arg1) {
     temp_s0 = SubmenuArea_visit->allocatedRamAddr;
 
     temp_a3 = (uintptr_t)SubmenuArea_visit->vramStart - (uintptr_t)temp_s0;
-    temp_a2 = (uintptr_t)temp_s0 + ovlSize;
+    temp_a2 = (void*)((uintptr_t)temp_s0 + ovlSize);
 
     if (temp_s0 != NULL) {
         FaultDrawer_Printf("%08x-%08x %06x", temp_s0, temp_a2, temp_a3);
@@ -620,7 +621,7 @@ void mSM_submenu_draw(Game_Play1CBC* arg0, struct Game_Play* game_play) {
     }
 }
 
-s32 mSM_check_item_for_furniture(s32 arg0, s32 arg1) {
+s32 mSM_check_item_for_furniture(s32 arg0, UNUSED s32 arg1) {
     u16 temp_v0 = common_data.now_private->inventory.pockets[arg0];
 
     if (((temp_v0 & 0xF000) >> 0xC) == 2) {
@@ -635,7 +636,7 @@ s32 mSM_check_item_for_furniture(s32 arg0, s32 arg1) {
     return 0;
 }
 
-s32 mSM_check_item_for_sell(s32 arg0, s32 arg1) {
+s32 mSM_check_item_for_sell(s32 arg0, UNUSED s32 arg1) {
     u16 temp_v0 = common_data.now_private->inventory.pockets[arg0];
     Private_c* temp_v1 = common_data.now_private;
 
@@ -649,7 +650,7 @@ s32 mSM_check_item_for_sell(s32 arg0, s32 arg1) {
     return 0;
 }
 
-s32 mSM_check_item_for_give(s32 arg0, s32 arg1) {
+s32 mSM_check_item_for_give(s32 arg0, UNUSED s32 arg1) {
     Private_c* temp_v0 = common_data.now_private;
 
     if (!((temp_v0->inventory.item_conditions >> (arg0 << 1)) & 3)) {
@@ -674,7 +675,7 @@ s32 mSM_check_item_for_take(s32 arg0, s32 arg1) {
     return 0;
 }
 
-s32 mSM_check_item_for_minidisk(s32 arg0, s32 arg1) {
+s32 mSM_check_item_for_minidisk(s32 arg0, UNUSED s32 arg1) {
     u16 temp_v0 = common_data.now_private->inventory.pockets[arg0];
     Private_c* temp_v1 = common_data.now_private;
 
@@ -688,9 +689,9 @@ s32 mSM_check_item_for_minidisk(s32 arg0, s32 arg1) {
     return 0;
 }
 
-s32 mSM_check_item_for_shrine(s32 arg0, s32 arg1) {
+s32 mSM_check_item_for_shrine(s32 arg0, UNUSED s32 arg1) {
     if (((common_data.now_private->inventory.item_conditions >> (arg0 * 2)) & 3) == 2) {
-        if (mQst_CheckLimitbyPossessionIdx() != 0) {
+        if (mQst_CheckLimitbyPossessionIdx(arg0) != 0) {
             return 1;
         }
     }
@@ -698,7 +699,7 @@ s32 mSM_check_item_for_shrine(s32 arg0, s32 arg1) {
     return 0;
 }
 
-s32 mSM_check_item_for_entrust(s32 arg0, s32 arg1) {
+s32 mSM_check_item_for_entrust(s32 arg0, UNUSED s32 arg1) {
     u16 temp_v0 = common_data.now_private->inventory.pockets[arg0];
     Private_c* temp_v1 = common_data.now_private;
 
@@ -748,12 +749,12 @@ u32 mSM_check_open_inventory_itemlist(s32 arg0, UNK_TYPE arg1) {
     return var_s1;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C582C_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_Object_Exchange_keep_new.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C58B4_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_Object_Exchange_keep_new_MenuTexAndPallet.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C592C_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_Object_Exchange_keep_new_Menu.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C5960_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_Get_ground_tex_p.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C5984_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_Get_ground_pallet_p.s")

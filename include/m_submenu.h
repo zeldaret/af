@@ -81,10 +81,10 @@ void mSM_submenu_draw(Game_Play1CBC* arg0, struct Game_Play* game_play);
 // void mSM_check_item_for_entrust();
 // void mSM_check_item_for_exchange();
 // void mSM_check_open_inventory_itemlist();
-// void func_800C582C_jp();
-// void func_800C58B4_jp();
-// void func_800C592C_jp();
-// void func_800C5960_jp();
-// void func_800C5984_jp();
+// void mSM_Object_Exchange_keep_new();
+// void mSM_Object_Exchange_keep_new_MenuTexAndPallet();
+// void mSM_Object_Exchange_keep_new_Menu();
+// void mSM_Get_ground_tex_p();
+// void mSM_Get_ground_pallet_p();
 
 #endif
