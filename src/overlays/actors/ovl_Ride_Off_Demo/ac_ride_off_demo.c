@@ -1,5 +1,7 @@
 #include "ac_ride_off_demo.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aROD_actor_ct(Actor* thisx, Game_Play* game_play);
