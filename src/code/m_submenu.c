@@ -17,8 +17,7 @@
 
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "overlays/actors/player_actor/m_player.h"
-
-void mSM_menu_ovl_init(UNK_PTR arg0);
+#include "overlays/submenu/submenu_ovl/m_submenu_ovl.h"
 
 void* D_8010DCE0_jp = NULL;
 size_t D_8010DCE4_jp = 0;
@@ -487,7 +486,6 @@ void mSM_move_PREWait(Game_Play1CBC* arg0) {
     }
 }
 
-#ifdef NON_MATCHING
 void mSM_move_LINKWait(Game_Play1CBC* arg0) {
     SubmenuArea* submenuOvl = &SubmenuArea_dlftbl[0];
 
@@ -500,7 +498,7 @@ void mSM_move_LINKWait(Game_Play1CBC* arg0) {
     }
     SubmenuArea_DoLink(submenuOvl, arg0, 0);
 
-    arg0->unk_30 = mSM_ovlptr_dllcnv(&mSM_menu_ovl_init, arg0);
+    arg0->unk_30 = mSM_ovlptr_dllcnv(mSM_menu_ovl_init, arg0);
     arg0->unk_34 = (void*)none_proc1;
     arg0->unk_0C = 3;
     arg0->unk_DC = 1;
@@ -520,9 +518,6 @@ void mSM_move_LINKWait(Game_Play1CBC* arg0) {
         sAdo_SetVoiceMode(0);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_move_LINKWait.s")
-#endif
 
 void mSM_move_Play(Game_Play1CBC* arg0) {
     arg0->unk_30(arg0);

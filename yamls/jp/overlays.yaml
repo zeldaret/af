@@ -201,10 +201,10 @@
     compress: True
     bss_size: 0x10730
     subsegments:
-      - [0x7749C0, asm, overlays/other_ovl/submenu_ovl/m_submenu_ovl]
-      - [0x776BD0, data, overlays/other_ovl/submenu_ovl/m_submenu_ovl]
-      - [0x777870, rodata, overlays/other_ovl/submenu_ovl/m_submenu_ovl]
-      - { start: 0x7778B0, type: bss, vram: 0x8085E9B0, name: overlays/other_ovl/submenu_ovl/m_submenu_ovl }
+      - [0x7749C0, asm, overlays/submenu/submenu_ovl/m_submenu_ovl]
+      - [0x776BD0, data, overlays/submenu/submenu_ovl/m_submenu_ovl]
+      - [0x777870, rodata, overlays/submenu/submenu_ovl/m_submenu_ovl]
+      - { start: 0x7778B0, type: bss, vram: 0x8085E9B0, name: overlays/submenu/submenu_ovl/m_submenu_ovl }
   - name: ovl_submenu_reloc
     type: code
     start: 0x7778B0
@@ -212,7 +212,7 @@
     follows_vram: submenu_ovl
     compress: True
     subsegments:
-      - [0x7778B0, data, overlays/other_ovl/submenu_ovl/m_submenu_ovlreloc]
+      - [0x7778B0, data, overlays/submenu/submenu_ovl/m_submenu_ovlreloc]
 
   - name: ovl__00777AE0
     type: code
