@@ -129,13 +129,13 @@ void SubmenuArea_DoLink(SubmenuArea* area, mSM* submenu, SubmenuAreaIndex index)
     submenu->linkedAllocEnd = (void*) ((uintptr_t)area->allocatedRamAddr + ALIGN64((uintptr_t)area->vramEnd - (uintptr_t)area->vramStart));
 }
 
-void SubmenuArea_DoUnlink(SubmenuArea* area, mSM* arg1) {
+void SubmenuArea_DoUnlink(SubmenuArea* area, mSM* submenu) {
     if (area->allocatedRamAddr == NULL) {
         return;
     }
 
-    arg1->linkedAllocStart = area->allocatedRamAddr;
-    arg1->linkedAllocEnd = area->allocatedRamAddr;
+    submenu->linkedAllocStart = area->allocatedRamAddr;
+    submenu->linkedAllocEnd = area->allocatedRamAddr;
     area->relocationDiff = 0;
     bzero(area->allocatedRamAddr, (uintptr_t)area->vramEnd - (uintptr_t)area->vramStart);
     area->allocatedRamAddr = NULL;
@@ -156,12 +156,12 @@ s32 mSM_ovlptr_dllcnv_sub(void* vram, SubmenuArea* area, mSM* submenu) {
     return 0;
 }
 
-void* mSM_ovlptr_dllcnv(void* vram, mSM* arg1) {
+void* mSM_ovlptr_dllcnv(void* vram, mSM* submenu) {
     SubmenuArea* area = SubmenuArea_visit;
 
     if (area == NULL) {
         area = SubmenuArea_dlftbl;
-        if (!mSM_ovlptr_dllcnv_sub(vram, SubmenuArea_dlftbl, arg1)) {
+        if (!mSM_ovlptr_dllcnv_sub(vram, SubmenuArea_dlftbl, submenu)) {
             return NULL;
         }
     }
@@ -307,11 +307,11 @@ void mSM_submenu_ovlptr_init(Game_Play* game_play) {
     Fault_AddAddrConvClient(&B_80144680_jp, func_800C497C_jp, NULL);
 }
 
-void mSM_submenu_ovlptr_cleanup(mSM* arg0) {
+void mSM_submenu_ovlptr_cleanup(mSM* submenu) {
     Fault_RemoveClient(&B_80144670_jp);
     Fault_RemoveAddrConvClient(&B_80144680_jp);
     if (SubmenuArea_visit != NULL) {
-        SubmenuArea_DoUnlink(SubmenuArea_visit, arg0);
+        SubmenuArea_DoUnlink(SubmenuArea_visit, submenu);
         SubmenuArea_visit = NULL;
     }
 
@@ -320,7 +320,7 @@ void mSM_submenu_ovlptr_cleanup(mSM* arg0) {
     D_8010DCE4_jp = 0;
 }
 
-void load_player(mSM* arg0) {
+void load_player(mSM* submenu) {
     SubmenuArea* playerActorOvl = &SubmenuArea_dlftbl[SUBMENU_AREA_INDEX_PLAYER];
 
     if (SubmenuArea_visit == playerActorOvl) {
@@ -328,44 +328,44 @@ void load_player(mSM* arg0) {
     }
 
     if (SubmenuArea_visit != NULL) {
-        SubmenuArea_DoUnlink(SubmenuArea_visit, arg0);
+        SubmenuArea_DoUnlink(SubmenuArea_visit, submenu);
     }
 
-    SubmenuArea_DoLink(playerActorOvl, arg0, SUBMENU_AREA_INDEX_PLAYER);
+    SubmenuArea_DoLink(playerActorOvl, submenu, SUBMENU_AREA_INDEX_PLAYER);
 }
 
-void mSM_submenu_ct(mSM* arg0) {
-    bzero(arg0, sizeof(mSM));
+void mSM_submenu_ct(mSM* submenu) {
+    bzero(submenu, sizeof(mSM));
 
-    arg0->moveProcIndex = MSM_MOVE_PROC_WAIT;
-    arg0->unk_20 = 0;
+    submenu->moveProcIndex = MSM_MOVE_PROC_WAIT;
+    submenu->unk_20 = 0;
 
     if (common_data.unk_104AD == 1) {
-        arg0->unk_E2 = 1;
+        submenu->unk_E2 = 1;
         common_data.unk_104AD = 0;
     }
 
-    arg0->play = (void*)none_proc1;
-    arg0->draw = (void*)none_proc1;
+    submenu->play = (void*)none_proc1;
+    submenu->draw = (void*)none_proc1;
 }
 
-void mSM_submenu_dt(UNUSED mSM* arg0) {
+void mSM_submenu_dt(UNUSED mSM* submenu) {
 }
 
-void mSM_open_submenu(mSM* arg0, s32 arg1, s32 arg2, s32 arg3) {
-    mSM_open_submenu_new2(arg0, arg1, arg2, arg3, 0, 0);
+void mSM_open_submenu(mSM* submenu, s32 arg1, s32 arg2, s32 arg3) {
+    mSM_open_submenu_new2(submenu, arg1, arg2, arg3, 0, 0);
 }
 
-void mSM_open_submenu_new(mSM* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    mSM_open_submenu_new2(arg0, arg1, arg2, arg3, arg4, 0);
+void mSM_open_submenu_new(mSM* submenu, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    mSM_open_submenu_new2(submenu, arg1, arg2, arg3, arg4, 0);
 }
 
-void mSM_open_submenu_new2(mSM* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
-    arg0->unk_04 = arg1;
-    arg0->unk_10 = arg2;
-    arg0->unk_14 = arg3;
-    arg0->unk_18 = arg4;
-    arg0->unk_1C = arg5;
+void mSM_open_submenu_new2(mSM* submenu, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+    submenu->unk_04 = arg1;
+    submenu->unk_10 = arg2;
+    submenu->unk_14 = arg3;
+    submenu->unk_18 = arg4;
+    submenu->unk_1C = arg5;
 }
 
 void mSM_Reset_player_btn_type1(Game_Play* game_play) {
@@ -444,23 +444,23 @@ void mSM_submenu_ctrl(Game_Play* game_play) {
     }
 }
 
-void mSM_move_Wait(mSM* arg0) {
-    if (arg0->unk_20 != 0) {
-        arg0->unk_20--;
+void mSM_move_Wait(mSM* submenu) {
+    if (submenu->unk_20 != 0) {
+        submenu->unk_20--;
     }
 
-    if (arg0->unk_E3 > 0) {
-        arg0->unk_E3--;
-    }
-}
-
-void mSM_move_PREWait(mSM* arg0) {
-    if (arg0->unk_00 > 2) {
-        arg0->moveProcIndex = MSM_MOVE_PROC_LINKWAIT;
+    if (submenu->unk_E3 > 0) {
+        submenu->unk_E3--;
     }
 }
 
-void mSM_move_LINKWait(mSM* arg0) {
+void mSM_move_PREWait(mSM* submenu) {
+    if (submenu->unk_00 > 2) {
+        submenu->moveProcIndex = MSM_MOVE_PROC_LINKWAIT;
+    }
+}
+
+void mSM_move_LINKWait(mSM* submenu) {
     SubmenuArea* submenuOvl = &SubmenuArea_dlftbl[SUBMENU_AREA_INDEX_SUBMENU];
 
     if (SubmenuArea_visit == submenuOvl) {
@@ -468,23 +468,23 @@ void mSM_move_LINKWait(mSM* arg0) {
     }
 
     if (SubmenuArea_visit != NULL) {
-        SubmenuArea_DoUnlink(SubmenuArea_visit, arg0);
+        SubmenuArea_DoUnlink(SubmenuArea_visit, submenu);
     }
-    SubmenuArea_DoLink(submenuOvl, arg0, SUBMENU_AREA_INDEX_SUBMENU);
+    SubmenuArea_DoLink(submenuOvl, submenu, SUBMENU_AREA_INDEX_SUBMENU);
 
-    arg0->play = mSM_ovlptr_dllcnv(mSM_menu_ovl_init, arg0);
-    arg0->draw = (void*)none_proc1;
-    arg0->moveProcIndex = MSM_MOVE_PROC_PLAY;
-    arg0->unk_DC = 1;
-    arg0->unk_E0 = 0;
-    arg0->unk_DF = 0xF;
-    arg0->unk_DD = 7;
-    arg0->unk_DE = 0;
-    mMl_clear_mail(&arg0->mail);
-    xyz_t_move(&arg0->unk_E4, &ZeroVec);
+    submenu->play = mSM_ovlptr_dllcnv(mSM_menu_ovl_init, submenu);
+    submenu->draw = (void*)none_proc1;
+    submenu->moveProcIndex = MSM_MOVE_PROC_PLAY;
+    submenu->unk_DC = 1;
+    submenu->unk_E0 = 0;
+    submenu->unk_DF = 0xF;
+    submenu->unk_DD = 7;
+    submenu->unk_DE = 0;
+    mMl_clear_mail(&submenu->mail);
+    xyz_t_move(&submenu->unk_E4, &ZeroVec);
 
-    if (arg0->unk_00 != 4) {
-        if (((arg0->unk_04 == 4) && (arg0->unk_10 == 0)) || (common_data.now_private->gender == 0)) {
+    if (submenu->unk_00 != 4) {
+        if (((submenu->unk_04 == 4) && (submenu->unk_10 == 0)) || (common_data.now_private->gender == 0)) {
             sAdo_SpecChange(5);
         } else {
             sAdo_SpecChange(6);
@@ -493,38 +493,38 @@ void mSM_move_LINKWait(mSM* arg0) {
     }
 }
 
-void mSM_move_Play(mSM* arg0) {
-    arg0->play(arg0);
+void mSM_move_Play(mSM* submenu) {
+    submenu->play(submenu);
 }
 
 #ifdef NON_MATCHING
 // likely branch instead of normal branch
-void mSM_move_End(mSM* arg0) {
+void mSM_move_End(mSM* submenu) {
     UNUSED s32 pad;
     Game_Play* sp28;
     UNK_TYPE sp24;
     UNUSED s32 sp20[1];
 
     sp28 = (Game_Play*)gamePT;
-    arg0->play(arg0);
-    arg0->moveProcIndex = MSM_MOVE_PROC_WAIT;
-    arg0->unk_04 = 0;
-    arg0->unk_20 = 2;
-    arg0->unk_DC = 0;
+    submenu->play(submenu);
+    submenu->moveProcIndex = MSM_MOVE_PROC_WAIT;
+    submenu->unk_04 = 0;
+    submenu->unk_20 = 2;
+    submenu->unk_DC = 0;
 
     SetGameFrame(2);
 
-    if (arg0->unk_00 == 4) {
+    if (submenu->unk_00 == 4) {
         return;
     }
 
     sp24 = mMsg_Get_base_window_p();
-    arg0->unk_00 = 0;
+    submenu->unk_00 = 0;
     mSc_dmacopy_all_exchange_bank(sp28->unk_0110);
-    SubmenuArea_DoUnlink(SubmenuArea_dlftbl, arg0);
-    load_player(arg0);
+    SubmenuArea_DoUnlink(SubmenuArea_dlftbl, submenu);
+    load_player(submenu);
     mSM_load_player_anime(sp28);
-    arg0->unk_E3 = 1;
+    submenu->unk_E3 = 1;
     sp20[0] = 0;
 
     if (mMsg_Check_main_hide(sp24) != 0) {
@@ -537,7 +537,7 @@ void mSM_move_End(mSM* arg0) {
     mMsg_sound_spec_change_voice(sp24);
 }
 #else
-void mSM_move_End(mSM* arg0);
+void mSM_move_End(mSM* submenu);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_move_End.s")
 #endif
 
@@ -551,24 +551,24 @@ MoveProcFunc move_proc_616[MSM_MOVE_PROC_MAX] = {
     mSM_move_End, // MSM_MOVE_PROC_END
 };
 
-void mSM_submenu_move(mSM* arg0) {
-    move_proc_616[arg0->moveProcIndex](arg0);
+void mSM_submenu_move(mSM* submenu) {
+    move_proc_616[submenu->moveProcIndex](submenu);
 }
 
-void mSM_submenu_draw(mSM* arg0, struct Game_Play* game_play) {
+void mSM_submenu_draw(mSM* submenu, struct Game_Play* game_play) {
     SubmenuArea* submenuOvl = &SubmenuArea_dlftbl[SUBMENU_AREA_INDEX_SUBMENU];
 
-    if ((arg0->unk_00 >= 3) && (arg0->moveProcIndex == 3) && (submenuOvl == SubmenuArea_visit)) {
-        arg0->draw(arg0, game_play);
+    if ((submenu->unk_00 >= 3) && (submenu->moveProcIndex == 3) && (submenuOvl == SubmenuArea_visit)) {
+        submenu->draw(submenu, game_play);
     }
 }
 
-s32 mSM_check_item_for_furniture(s32 arg0, UNUSED s32 arg1) {
-    u16 temp_v0 = common_data.now_private->inventory.pockets[arg0];
+s32 mSM_check_item_for_furniture(s32 index, UNUSED s32 arg1) {
+    u16 temp_v0 = common_data.now_private->inventory.pockets[index];
 
     if (((temp_v0 & 0xF000) >> 0xC) == 2) {
         if ((((temp_v0 & 0xF00) >> 8) != 3) && (((temp_v0 & 0xF00) >> 8) != 0xF) && (((temp_v0 & 0xF00) >> 8) != 0xD)) {
-            if (!((common_data.now_private->inventory.item_conditions >> (arg0 << 1)) & 3)) {
+            if (!((common_data.now_private->inventory.item_conditions >> (index << 1)) & 3)) {
                 if (temp_v0 != 0) {
                     return true;
                 }
@@ -578,11 +578,11 @@ s32 mSM_check_item_for_furniture(s32 arg0, UNUSED s32 arg1) {
     return false;
 }
 
-s32 mSM_check_item_for_sell(s32 arg0, UNUSED s32 arg1) {
-    u16 temp_v0 = common_data.now_private->inventory.pockets[arg0];
-    Private_c* temp_v1 = common_data.now_private;
+s32 mSM_check_item_for_sell(s32 index, UNUSED s32 arg1) {
+    u16 temp_v0 = common_data.now_private->inventory.pockets[index];
+    Private_c* private = common_data.now_private;
 
-    if (!((temp_v1->inventory.item_conditions >> (arg0 << 1)) & 3)) {
+    if (!((private->inventory.item_conditions >> (index << 1)) & 3)) {
         if (temp_v0 != 0) {
             if ((((temp_v0 & 0xF000) >> 0xC) != 2) || (((temp_v0 & 0xF00) >> 8) != 1)) {
                 return true;
@@ -592,23 +592,23 @@ s32 mSM_check_item_for_sell(s32 arg0, UNUSED s32 arg1) {
     return false;
 }
 
-s32 mSM_check_item_for_give(s32 arg0, UNUSED s32 arg1) {
-    Private_c* temp_v0 = common_data.now_private;
+s32 mSM_check_item_for_give(s32 index, UNUSED s32 arg1) {
+    Private_c* private = common_data.now_private;
 
-    if (!((temp_v0->inventory.item_conditions >> (arg0 << 1)) & 3)) {
-        if (temp_v0->inventory.pockets[arg0] != 0) {
+    if (!((private->inventory.item_conditions >> (index << 1)) & 3)) {
+        if (private->inventory.pockets[index] != 0) {
             return true;
         }
     }
     return false;
 }
 
-s32 mSM_check_item_for_take(s32 arg0, s32 arg1) {
-    u16 temp_v0 = common_data.now_private->inventory.pockets[arg0];
-    Private_c* temp_v1 = common_data.now_private;
+s32 mSM_check_item_for_take(s32 index, s32 arg1) {
+    u16 temp_v0 = common_data.now_private->inventory.pockets[index];
+    Private_c* private = common_data.now_private;
 
     if (temp_v0 != 0) {
-        if (!((temp_v1->inventory.item_conditions >> (arg0 << 1)) & 3)) {
+        if (!((private->inventory.item_conditions >> (index << 1)) & 3)) {
             if ((arg1 == 0) || ((((temp_v0 & 0xF000) >> 0xC) == 2) && ((((((temp_v0 & 0xF00) >> 8) == 3)) && (arg1 == 1)) || ((((temp_v0 & 0xF00) >> 8) == 0xD) && (arg1 == 2))))) {
                 return true;
             }
@@ -617,12 +617,12 @@ s32 mSM_check_item_for_take(s32 arg0, s32 arg1) {
     return false;
 }
 
-s32 mSM_check_item_for_minidisk(s32 arg0, UNUSED s32 arg1) {
-    u16 temp_v0 = common_data.now_private->inventory.pockets[arg0];
-    Private_c* temp_v1 = common_data.now_private;
+s32 mSM_check_item_for_minidisk(s32 index, UNUSED s32 arg1) {
+    u16 temp_v0 = common_data.now_private->inventory.pockets[index];
+    Private_c* private = common_data.now_private;
 
     if (((temp_v0 & 0xF000) >> 0xC) == 2) {
-        if (!((temp_v1->inventory.item_conditions >> (arg0 << 1)) & 3)) {
+        if (!((private->inventory.item_conditions >> (index << 1)) & 3)) {
             if (((temp_v0 & 0xF00) >> 8) == 0xA) {
                 return true;
             }
@@ -631,9 +631,9 @@ s32 mSM_check_item_for_minidisk(s32 arg0, UNUSED s32 arg1) {
     return false;
 }
 
-s32 mSM_check_item_for_shrine(s32 arg0, UNUSED s32 arg1) {
-    if (((common_data.now_private->inventory.item_conditions >> (arg0 * 2)) & 3) == 2) {
-        if (mQst_CheckLimitbyPossessionIdx(arg0) != 0) {
+s32 mSM_check_item_for_shrine(s32 index, UNUSED s32 arg1) {
+    if (((common_data.now_private->inventory.item_conditions >> (index * 2)) & 3) == 2) {
+        if (mQst_CheckLimitbyPossessionIdx(index) != 0) {
             return true;
         }
     }
@@ -641,23 +641,23 @@ s32 mSM_check_item_for_shrine(s32 arg0, UNUSED s32 arg1) {
     return false;
 }
 
-s32 mSM_check_item_for_entrust(s32 arg0, UNUSED s32 arg1) {
-    u16 temp_v0 = common_data.now_private->inventory.pockets[arg0];
+s32 mSM_check_item_for_entrust(s32 index, UNUSED s32 arg1) {
+    u16 temp_v0 = common_data.now_private->inventory.pockets[index];
     Private_c* temp_v1 = common_data.now_private;
 
-    if ((temp_v0 == 0) || (!((temp_v1->inventory.item_conditions >> (arg0 << 1)) & 3) && ((((temp_v0 & 0xF000) >> 0xC) != 2) || (((temp_v0 & 0xF00) >> 8) != 1)))) {
+    if ((temp_v0 == 0) || (!((temp_v1->inventory.item_conditions >> (index << 1)) & 3) && ((((temp_v0 & 0xF000) >> 0xC) != 2) || (((temp_v0 & 0xF00) >> 8) != 1)))) {
         return true;
     }
 
     return false;
 }
 
-s32 mSM_check_item_for_exchange(s32 arg0, s32 arg1) {
+s32 mSM_check_item_for_exchange(s32 index, s32 arg1) {
     Private_c* temp_v0 = common_data.now_private;
-    u16 temp_v1 = temp_v0->inventory.pockets[arg0];
+    u16 temp_v1 = temp_v0->inventory.pockets[index];
     UNUSED s32 pad;
 
-    if (!((temp_v0->inventory.item_conditions >> (arg0 << 1)) & 3) && (temp_v1 != 0)) {
+    if (!((temp_v0->inventory.item_conditions >> (index << 1)) & 3) && (temp_v1 != 0)) {
         if ((((temp_v1 & 0xF000) >> 0xC) == 2) && (((temp_v1 & 0xF00) >> 8) == 3) && ((((arg1 & 0xF000) >> 0xC) != 2) || (((arg1 & 0xF00) >> 8) != 3))) {
             Player* player = get_player_actor_withoutCheck((Game_Play* ) gamePT);
             UNK_TYPE sp2C;
@@ -695,21 +695,21 @@ checkProcessFunc check_process[INVENTORY_ITEM_LIST_MAX] = {
 
 u32 mSM_check_open_inventory_itemlist(InvetoryItemList itemlist, s32 arg1) {
     checkProcessFunc func = check_process[itemlist];
-    s32 var_s0;
-    u32 var_s1;
+    s32 index;
+    u32 ret;
 
     if (func == NULL) {
         return 0xFFFF;
     }
 
-    var_s1 = 0;
-    for (var_s0 = 0; var_s0 < 0xF; var_s0++) {
-        if (func(var_s0, arg1)) {
-            var_s1 |= 1 << var_s0;
+    ret = 0;
+    for (index = 0; index < mPr_POCKETS_SLOT_COUNT; index++) {
+        if (func(index, arg1)) {
+            ret |= 1 << index;
         }
     }
 
-    return var_s1;
+    return ret;
 }
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_Object_Exchange_keep_new.s")
