@@ -11,7 +11,14 @@ struct Player;
 
 typedef struct Player {
     /* 0x0000 */ Actor actor;
-    /* 0x0174 */ UNK_TYPE1 unk_0174[0xC38];
+    /* 0x0174 */ UNK_TYPE1 unk_0174[0xB7C];
+    /* 0x0CF0*/ s32 unk_0CF0;
+    /* 0x0CF4*/ s32 unk_0CF4;
+    /* 0x0CF8 */ UNK_TYPE1 unk_0CF8[0x8];
+    /* 0x0D00 */ s32 unk_0D00;
+    /* 0x0D04 */ s32 unk_0D04;
+    /* 0x0D08 */ s32 unk_0D08;
+    /* 0x0D0C */ UNK_TYPE1 unk_0D0C[0xA0];
     /* 0x0DAC */ UNK_TYPE unk_0DAC;
     /* 0x0DB0 */ UNK_TYPE unk_0DB0;
     /* 0x0DB4 */ UNK_TYPE1 unk_0DB4[0x8];

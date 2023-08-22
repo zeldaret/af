@@ -200,60 +200,62 @@ void* mSM_ovlptr_dllcnv(void* vram, Game_Play1CBC* arg1) {
     return (void*)((uintptr_t)vram + var_v1->unk_14);
 }
 
-#if 0
-void func_800C47B4_jp(void* arg0, void* arg1) {
-    s32 sp34;
-    u32 sp30;
-    u32 sp2C;
-    void* sp20;
-    Player* temp_v0_3;
-    s32 temp_a3;
-    u32 var_t0;
-    u32 var_t1;
-    void* temp_a2;
-    void* temp_s0;
-    void* temp_v0;
-    void* temp_v0_2;
+extern UNK_TYPE B_800418D8_jp;
 
-    temp_v0 = *(&B_800418D6_jp + 2);
-    var_t0 = 0;
-    if (temp_v0 != NULL) {
-        var_t0 = temp_v0->unk_11C;
-    }
-    var_t1 = 0;
-    if (temp_v0 != NULL) {
-        var_t1 = temp_v0->unk_104;
-    }
-    sp2C = var_t0;
-    sp30 = var_t1;
+typedef struct struct_800418D4 {
+    /* 0x000 */ UNK_TYPE1 unk_000[0x104];
+    /* 0x104 */ UNK_TYPE unk_104;
+    /* 0x108 */ UNK_TYPE1 unk_108[0x14];
+    /* 0x11C */ UNK_TYPE unk_11C;
+} struct_800418D8; // size >= 0x120
+
+#ifdef NON_MATCHING
+// regalloc
+void func_800C47B4_jp(void* arg0, void* arg1) {
+    void* temp_s0;
+    Player* temp_v0_3;
+    void* temp_v0_2;
+    struct_800418D8* temp_v0;
+    u32 temp_a3; // sp34
+    u32 var_t1; // sp30
+    u32 var_t0; // sp2C
+    size_t ovlSize;
+    void* temp_a2; // sp20
+
+    temp_v0 = B_800418D8_jp;
+    var_t0 = (temp_v0 != NULL) ? temp_v0->unk_11C : 0;
+    var_t1 = (temp_v0 != NULL) ? temp_v0->unk_104 : 0;
+
     FaultDrawer_Printf("SubmenuArea_visit\n");
     FaultDrawer_Printf("RamStart-RamEnd  Offset\n");
-    if (SubmenuArea_visit != NULL) {
-        temp_v0_2 = SubmenuArea_visit->vramStart;
-        temp_s0 = SubmenuArea_visit->allocatedRamAddr;
-        temp_a3 = temp_v0_2 - temp_s0;
-        if (temp_s0 != NULL) {
-            temp_a2 = temp_s0 + (SubmenuArea_visit->vramEnd - temp_v0_2);
-            sp20 = temp_a2;
-            sp34 = temp_a3;
-            sp2C = var_t0;
-            sp30 = var_t1;
-            FaultDrawer_Printf("%08x-%08x %06x", temp_s0, temp_a2, temp_a3);
-            if ((var_t0 >= (u32) temp_s0) && (var_t0 < (u32) temp_a2)) {
-                FaultDrawer_Printf(" PC:%08x", var_t0 + temp_a3, temp_a2, temp_a3);
-            } else if ((var_t1 >= (u32) temp_s0) && (var_t1 < (u32) temp_a2)) {
-                FaultDrawer_Printf(" RA:%08x", var_t1 + temp_a3, temp_a2, temp_a3);
-            }
+
+    if (SubmenuArea_visit == NULL) {
+        return;
+    }
+
+    ovlSize = (uintptr_t)SubmenuArea_visit->vramEnd - (uintptr_t)SubmenuArea_visit->vramStart;
+    temp_s0 = SubmenuArea_visit->allocatedRamAddr;
+
+    temp_a3 = (uintptr_t)SubmenuArea_visit->vramStart - (uintptr_t)temp_s0;
+    temp_a2 = (uintptr_t)temp_s0 + ovlSize;
+
+    if (temp_s0 != NULL) {
+        FaultDrawer_Printf("%08x-%08x %06x", temp_s0, temp_a2, temp_a3);
+        if ((var_t0 >= (u32) temp_s0) && (var_t0 < (u32) temp_a2)) {
+            FaultDrawer_Printf(" PC:%08x", var_t0 + temp_a3);
+        } else if ((var_t1 >= (u32) temp_s0) && (var_t1 < (u32) temp_a2)) {
+            FaultDrawer_Printf(" RA:%08x", var_t1 + temp_a3);
+        }
+
+        FaultDrawer_Printf("\n");
+        temp_v0_3 = get_player_actor_withoutCheck((Game_Play* ) gamePT);
+        if (temp_v0_3 != NULL) {
             FaultDrawer_Printf("\n");
-            temp_v0_3 = get_player_actor_withoutCheck((Game_Play* ) gamePT);
-            if (temp_v0_3 != NULL) {
-                FaultDrawer_Printf("\n");
-                FaultDrawer_Printf("player infomation\n");
-                FaultDrawer_Printf("main_index         :%d %d\n", temp_v0_3->unk_CF0, temp_v0_3->unk_CF4);
-                FaultDrawer_Printf("request_main_index :%d %d %d\n", temp_v0_3->unk_D00, temp_v0_3->unk_D04, temp_v0_3->unk_D08);
-                FaultDrawer_Printf("pos :%d %d %d\n", (s32) temp_v0_3->actor.world.pos.x, (s32) temp_v0_3->actor.world.pos.y, (s32) temp_v0_3->actor.world.pos.z);
-                FaultDrawer_Printf("angleY :%d %d\n", temp_v0_3->actor.world.rot.y, temp_v0_3->actor.shape.rot.y);
-            }
+            FaultDrawer_Printf("player infomation\n");
+            FaultDrawer_Printf("main_index         :%d %d\n", temp_v0_3->unk_0CF0, temp_v0_3->unk_0CF4);
+            FaultDrawer_Printf("request_main_index :%d %d %d\n", temp_v0_3->unk_0D00, temp_v0_3->unk_0D04, temp_v0_3->unk_0D08);
+            FaultDrawer_Printf("pos :%d %d %d\n", (s32) temp_v0_3->actor.world.pos.x, (s32) temp_v0_3->actor.world.pos.y, (s32) temp_v0_3->actor.world.pos.z);
+            FaultDrawer_Printf("angleY :%d %d\n", temp_v0_3->actor.world.rot.y, temp_v0_3->actor.shape.rot.y);
         }
     }
 }
