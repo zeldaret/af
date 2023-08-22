@@ -23,7 +23,7 @@ void mQst_ClearNotSaveQuest(struct mQst_not_saved_c* quest);
 // void func_800BACEC_jp();
 // void func_800BADBC_jp();
 // void func_800BAE78_jp();
-// void func_800BAF90_jp();
+// void mQst_CheckLimitbyPossessionIdx();
 // void func_800BB0A8_jp();
 // void func_800BB0E8_jp();
 // void func_800BB10C_jp();

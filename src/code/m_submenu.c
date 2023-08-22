@@ -26,7 +26,19 @@ extern SubmenuArea SubmenuArea_dlftbl[];
 
 typedef void (*fnptr_8010DD24)(Game_Play1CBC*);
 
-extern fnptr_8010DD24 D_8010DD24_jp[];
+extern fnptr_8010DD24 move_proc_616[];
+
+UNK_RET mSM_check_item_for_entrust(s32 arg0, UNK_TYPE arg1);
+UNK_RET mSM_check_item_for_sell(s32 arg0, UNK_TYPE arg1);
+UNK_RET mSM_check_item_for_give(s32 arg0, UNK_TYPE arg1);
+UNK_RET mSM_check_item_for_take(s32 arg0, UNK_TYPE arg1);
+UNK_RET mSM_check_item_for_furniture(s32 arg0, UNK_TYPE arg1);
+UNK_RET mSM_check_item_for_minidisk(s32 arg0, UNK_TYPE arg1);
+UNK_RET mSM_check_item_for_shrine(s32 arg0, UNK_TYPE arg1);
+UNK_RET mSM_check_item_for_exchange(s32 arg0, UNK_TYPE arg1);
+
+typedef UNK_RET (*fnptr_8010DD38)(s32, UNK_TYPE);
+extern fnptr_8010DD38 check_process[];
 
 extern FaultClient B_80144670_jp;
 extern FaultAddrConvClient B_80144680_jp;
@@ -561,7 +573,7 @@ void mSM_move_End(Game_Play1CBC* arg0) {
 #endif
 
 void mSM_submenu_move(Game_Play1CBC* arg0) {
-    D_8010DD24_jp[arg0->unk_0C](arg0);
+    move_proc_616[arg0->unk_0C](arg0);
 }
 
 void mSM_submenu_draw(Game_Play1CBC* arg0, struct Game_Play* game_play) {
@@ -572,23 +584,59 @@ void mSM_submenu_draw(Game_Play1CBC* arg0, struct Game_Play* game_play) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C53B8_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_check_item_for_furniture.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C543C_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_check_item_for_sell.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C54A8_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_check_item_for_give.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C54F4_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_check_item_for_take.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C557C_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_check_item_for_minidisk.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C55E4_jp.s")
+s32 mSM_check_item_for_shrine(s32 arg0, s32 arg1) {
+    if ((((common_data.now_private->inventory.item_conditions >> (arg0 * 2)) & 3) == 2) && (mQst_CheckLimitbyPossessionIdx() != 0)) {
+        return 1;
+    }
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C5640_jp.s")
+#if 0
+s32 mSM_check_item_for_entrust(s32 arg0, s32 arg1) {
+    Private_c* temp_v1;
+    u16 temp_v0;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C56AC_jp.s")
+    temp_v1 = common_data.now_private;
+    temp_v0 = temp_v1->inventory.pockets[arg0];
+    if ((temp_v0 == 0) || (!(((u32) temp_v1->inventory.item_conditions >> (arg0 * 2)) & 3) && ((((s32) (temp_v0 & 0xF000) >> 0xC) != 2) || (((s32) (temp_v0 & 0xF00) >> 8) != 1)))) {
+        return 1;
+    }
+    return 0;
+}
+#else
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_check_item_for_entrust.s")
+#endif
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C5798_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_check_item_for_exchange.s")
+
+u32 mSM_check_open_inventory_itemlist(s32 arg0, UNK_TYPE arg1) {
+    fnptr_8010DD38 temp_s3 = check_process[arg0];
+    s32 var_s0;
+    u32 var_s1;
+
+    if (temp_s3 == NULL) {
+        return 0xFFFF;
+    }
+
+    var_s1 = 0;
+    for (var_s0 = 0; var_s0 < 0xF; var_s0++) {
+        if (temp_s3(var_s0, arg1) != 0) {
+            var_s1 |= 1 << var_s0;
+        }
+    }
+
+    return var_s1;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C582C_jp.s")
 
