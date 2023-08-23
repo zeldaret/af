@@ -19,6 +19,7 @@ struct struct_801161E8_jp;
 struct Game_Play_unk_0110;
 struct CommonData_unk_1004C_unk_14_arg0;
 struct Game_Play;
+struct struct_809AEFA4;
 
 typedef UNK_RET (*CommonData_unk_1004C_unk_04)(struct ActorOverlay*, const struct struct_801161E8_jp*, size_t, s32);
 typedef UNK_RET (*CommonData_unk_1004C_unk_08)(void);
@@ -28,6 +29,15 @@ typedef UNK_PTR (*CommonData_unk_1004C_unk_0C)(size_t, const struct struct_80116
 
 typedef UNK_RET (*CommonData_unk_1004C_unk_10)(struct Actor*);
 typedef UNK_RET (*CommonData_unk_1004C_unk_14)(struct CommonData_unk_1004C_unk_14_arg0*, u16);
+
+typedef UNK_RET (*CommonData_unk_1004C_unk_BC)(struct Actor*, struct Game_Play*);
+typedef void (*CommonData_unk_1004C_unk_C0)(struct Actor*, struct Game_Play*, struct struct_809AEFA4*);
+typedef UNK_RET (*CommonData_unk_1004C_unk_C4)(struct Actor*, struct Game_Play*);
+typedef UNK_RET (*CommonData_unk_1004C_unk_C8)(struct Actor*, struct Game_Play*);
+typedef UNK_RET (*CommonData_unk_1004C_unk_CC)(struct Actor*, struct Game_Play*);
+typedef UNK_RET (*CommonData_unk_1004C_unk_D0)(void);
+
+typedef UNK_RET (*CommonData_unk_1004C_unk_E4)(void);
 
 typedef UNK_RET (*CommonData_unk_1004C_unk_EC)(struct Game_Play_unk_0110*, s16, s16);
 typedef UNK_RET (*CommonData_unk_1004C_unk_F0)(struct Game_Play_unk_0110*, struct Actor*);
@@ -40,7 +50,16 @@ typedef struct CommonData_unk_1004C {
     /* 0x0C */ CommonData_unk_1004C_unk_0C unk_0C;
     /* 0x10 */ CommonData_unk_1004C_unk_10 unk_10;
     /* 0x14 */ CommonData_unk_1004C_unk_14 unk_14;
-    /* 0x18 */ UNK_TYPE1 unk_18[0xD4];
+    /* 0x18 */ UNK_TYPE1 unk_18[0xA4];
+    /* 0xBC */ CommonData_unk_1004C_unk_BC unk_BC;
+    /* 0xC0 */ CommonData_unk_1004C_unk_C0 unk_C0;
+    /* 0xC4 */ CommonData_unk_1004C_unk_C4 unk_C4;
+    /* 0xC8 */ CommonData_unk_1004C_unk_C8 unk_C8;
+    /* 0xCC */ CommonData_unk_1004C_unk_CC unk_CC;
+    /* 0xD0 */ CommonData_unk_1004C_unk_D0 unk_D0;
+    /* 0xD4 */ UNK_TYPE1 unk_D4[0x10];
+    /* 0xE4 */ CommonData_unk_1004C_unk_E4 unk_E4;
+    /* 0xE8 */ UNK_TYPE1 unk_E8[0x4];
     /* 0xEC */ CommonData_unk_1004C_unk_EC unk_EC;
     /* 0xF0 */ CommonData_unk_1004C_unk_F0 unk_F0;
     /* 0xF4 */ CommonData_unk_1004C_unk_F4 unk_F4;
