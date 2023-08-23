@@ -13,7 +13,7 @@
 // extern UNK_TYPE D_FLT_8003BBC8_jp;
 // extern UNK_TYPE D_FLT_8003BBCC_jp;
 extern OSPiHandle* carthandle; // TODO: Determine where this goes
-// extern UNK_TYPE gDmaMgrDmaBuffSize;
+
 // extern UNK_TYPE D_8003BBF0_jp;
 // extern UNK_TYPE D_8003BC38_jp;
 // extern UNK_TYPE D_8003BC50_jp;
@@ -238,17 +238,6 @@ extern OSPiHandle* carthandle; // TODO: Determine where this goes
 // extern UNK_TYPE B_8003FEE0_jp;
 // extern UNK_TYPE gViConfigBlackNext;
 // extern UNK_TYPE gViConfigBlack;
-
-// extern UNK_TYPE sDmaMgrStackInfo;
-// extern UNK_TYPE sNumDmaEntries;
-// extern UNK_TYPE sDmaMgrMsgQueue;
-// extern UNK_TYPE dmaEntryMsgBufs;
-// extern UNK_TYPE sDmaMgrThread;
-// extern UNK_TYPE sDmaMgrStack;
-// extern UNK_TYPE sDmaMgrCurFileName;
-// extern UNK_TYPE sDmaMgrCurFileLine;
-// extern UNK_TYPE B_800406B0_jp;
-// extern UNK_TYPE B_800406B4_jp;
 
 // extern UNK_TYPE B_800406C0_jp;
 // extern UNK_TYPE B_80040AC0_jp;
