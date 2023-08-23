@@ -25,10 +25,6 @@ extern u32 D_8003BBE0_jp;
 
 extern s32 B_800406B4_jp;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/RO_STR_8003D1D0_jp.s")
-
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/RO_STR_8003D1D4_jp.s")
-
 void func_800263F0_jp(DmaRequest* req, const char* arg1, const char* arg2, const char* arg3) {
     RomOffset vrom = req->vrom;
     void* vram = req->vram;
@@ -37,7 +33,10 @@ void func_800263F0_jp(DmaRequest* req, const char* arg1, const char* arg2, const
     char sp2C[80];
 
     //! FAKE
-    if (arg3) {}
+    if (arg3) {
+        (void)"???";
+        (void)"???";
+    }
     if (1) { }
     if (1) { }
 
