@@ -292,30 +292,25 @@ s32 func_80026C4C_jp(RomOffset vromStart, RomOffset* vromEnd, RomOffset* ovlStar
     return -1;
 }
 
-#if 0
 void func_80026CAC_jp(void) {
-    DmaEntry* var_v0;
-    s32 var_v1;
-
     DmaMgr_DmaRomToRam(SEGMENT_ROM_START(dmadata), SEGMENT_VRAM_START(dmadata), SEGMENT_ROM_SIZE(dmadata));
 
-    var_v0 = gDmaDataTable;
-    var_v1 = 0;
+    do {
+        DmaEntry* var_v0 = gDmaDataTable;
+        s32 var_v1 = 0;
 
-    while (var_v0->vromEnd != 0) {
-        var_v0 += 1;
-        var_v1 += 1;
-    }
+        for (; var_v0->vromEnd != 0; var_v0++) {
+            var_v1++;
+        }
 
-    B_8003FF5C_jp = var_v1;
+        B_8003FF5C_jp = var_v1;
+    } while (0);
+
     osCreateMesgQueue(&B_8003FF60_jp, &B_8003FF78_jp, 0x20);
-    StackCheck_Init(&B_8003FF40_jp, &B_800401A8_jp, &B_800406A8_jp, 0, 0x100, "dmamgr");
+    StackCheck_Init(&B_8003FF40_jp, &B_800401A8_jp, &B_800406A8_jp, 0U, 0x100, "dmamgr");
     osCreateThread(&B_8003FFF8_jp, 8, func_800269E4_jp, NULL, &B_800406A8_jp, 0x11);
     osStartThread(&B_8003FFF8_jp);
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_80026CAC_jp.s")
-#endif
 
 void func_80026DA0_jp(void) {
     osSendMesg(&B_8003FF60_jp, NULL, 1);
