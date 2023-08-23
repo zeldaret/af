@@ -35,6 +35,7 @@ struct_809AEFA4 D_809AEFA4_jp = {
 
 void aNEG_actor_ct(Actor* thisx, Game_Play* game_play) {
     Npc_Engineer* this = (Npc_Engineer*)thisx;
+
     if (common_data.unk_1004C->unk_BC(thisx, game_play) == 1) {
         this->unk7C0 = none_proc1;
         common_data.unk_1004C->unk_C0(thisx, game_play, &D_809AEFA4_jp);
