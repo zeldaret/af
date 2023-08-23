@@ -25,47 +25,35 @@ extern u32 D_8003BBE0_jp;
 
 extern s32 B_800406B4_jp;
 
-#if 0
-void func_800263F0_jp(DmaRequest* req, const char* arg1, const char* arg2, const char* arg3) {
-    s32 spD4;
-    s32 spD0;
-    s32 spCC;
-    char sp7C[0xCC-0x7C];
-    char sp2C[0x7C-0x2C];
-
-    spD4 = req->unk_00;
-    spD0 = req->unk_04;
-    spCC = req->unk_08;
-    if (req->unk_0C != 0) {
-        sprintf(&sp7C, "DMA ERROR: %.50s %d", req->unk_0C, req->unk_10);
-    } else if (B_800406A8_jp != 0) {
-        sprintf(&sp7C, "DMA ERROR: %.50s %d", B_800406A8_jp, B_800406AC_jp);
-    } else {
-        sprintf(&sp7C, "DMA ERROR: %.50s", (arg2 != NULL) ? arg2 : "???");
-    }
-
-    sprintf(&sp2C, "%07X %08X %X %.50s", spD4, spD0, spCC, (arg1 != NULL) ? arg1 : "???");
-    Fault_AddHungupAndCrashImpl(&sp7C, &sp2C);
-}
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_800263F0_jp.s")
-#endif
-
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/RO_STR_8003D1D0_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/RO_STR_8003D1D4_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/RO_STR_8003D1D8_jp.s")
+void func_800263F0_jp(DmaRequest* req, const char* arg1, const char* arg2, const char* arg3) {
+    RomOffset vrom = req->vrom;
+    void* vram = req->vram;
+    size_t size = req->size;
+    char sp7C[80];
+    char sp2C[80];
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/RO_STR_8003D1EC_jp.s")
+    //! FAKE
+    if (arg3) {}
+    if (1) { }
+    if (1) { }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/RO_STR_8003D200_jp.s")
+    if (req->unk_0C != 0) {
+        //! FAKE
+        if (1) {}
+        sprintf(sp7C, "DMA ERROR: %.50s %d", req->unk_0C, req->unk_10);
+    } else if (B_800406A8_jp != NULL) {
+        sprintf(sp7C, "DMA ERROR: %.50s %d", B_800406A8_jp, B_800406AC_jp);
+    } else {
+        sprintf(sp7C, "DMA ERROR: %.50s", (arg2 != NULL) ? arg2 : "???");
+    }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/RO_STR_8003D214_jp.s")
-
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/RO_STR_8003D218_jp.s")
-
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/RO_STR_8003D22C_jp.s")
+    sprintf(sp2C, "%07X %08X %X %.50s", vrom, vram, size, (arg1 != NULL) ? arg1 : "???");
+    Fault_AddHungupAndCrashImpl(sp7C, sp2C);
+}
 
 s32 DmaMgr_DmaRomToRam(RomOffset vrom, void* vram, size_t size) {
     OSIoMesg sp80;
