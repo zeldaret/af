@@ -12,7 +12,6 @@ void aNEG_actor_save(Actor* thisx, Game_Play* game_play);
 void func_809AEF28_jp(void);
 void func_809AEF54_jp(void);
 
-
 ActorProfile Npc_Engineer_Profile = {
     /* */ ACTOR_NPC_ENGINEER,
     /* */ ACTOR_PART_NPC,
@@ -33,7 +32,6 @@ struct_809AEFA4 D_809AEFA4_jp = {
     4,
     0,
 };
-
 
 void aNEG_actor_ct(Actor* thisx, Game_Play* game_play) {
     Npc_Engineer* this = (Npc_Engineer*)thisx;
