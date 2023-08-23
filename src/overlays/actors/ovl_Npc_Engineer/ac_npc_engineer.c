@@ -9,8 +9,10 @@ void aNEG_actor_ct(Actor* thisx, Game_Play* game_play);
 void aNEG_actor_dt(Actor* thisx, Game_Play* game_play);
 void aNEG_actor_init(Actor* thisx, Game_Play* game_play);
 void aNEG_actor_save(Actor* thisx, Game_Play* game_play);
+void func_809AEF28_jp(void);
+void func_809AEF54_jp(void);
 
-#if 0
+
 ActorProfile Npc_Engineer_Profile = {
     /* */ ACTOR_NPC_ENGINEER,
     /* */ ACTOR_PART_NPC,
@@ -21,13 +23,17 @@ ActorProfile Npc_Engineer_Profile = {
     /* */ aNEG_actor_ct,
     /* */ aNEG_actor_dt,
     /* */ aNEG_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aNEG_actor_save,
 };
-#endif
 
-//#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Engineer/ac_npc_engineer/aNEG_actor_ct.s")
-extern struct_809AEFA4 D_809AEFA4_jp;
+struct_809AEFA4 D_809AEFA4_jp = {
+    func_809AEF28_jp,
+    func_809AEF54_jp,
+    4,
+    0,
+};
+
 
 void aNEG_actor_ct(Actor* thisx, Game_Play* game_play) {
     Npc_Engineer* this = (Npc_Engineer*)thisx;
@@ -46,23 +52,23 @@ void aNEG_actor_ct(Actor* thisx, Game_Play* game_play) {
         this->unk7D6 = 0;
     }
 }
-//#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Engineer/ac_npc_engineer/aNEG_actor_save.s")
+
 void aNEG_actor_save(Actor* thisx, Game_Play* game_play) {
     common_data.unk_1004C->unk_C8(thisx, game_play);
 }
-//#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Engineer/ac_npc_engineer/aNEG_actor_dt.s")
+
 void aNEG_actor_dt(Actor* thisx, Game_Play* game_play) {
     common_data.unk_1004C->unk_C4(thisx, game_play);
 }
-//#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Engineer/ac_npc_engineer/aNEG_actor_init.s")
+
 void aNEG_actor_init(Actor* thisx, Game_Play* game_play) {
     common_data.unk_1004C->unk_CC(thisx, game_play);
 }
-//#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Engineer/ac_npc_engineer/func_809AEF28_jp.s")
+
 void func_809AEF28_jp(void) {
     common_data.unk_1004C->unk_D0();
 }
-//#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Engineer/ac_npc_engineer/func_809AEF54_jp.s")
+
 void func_809AEF54_jp(void) {
     common_data.unk_1004C->unk_E4();
 }
