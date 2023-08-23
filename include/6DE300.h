@@ -2,6 +2,7 @@
 #define C_6DE300_H
 
 #include "ultra64.h"
+#include "unk.h"
 
 struct mQst_delivery_c;
 struct mQst_errand_c;
@@ -23,7 +24,7 @@ void mQst_ClearNotSaveQuest(struct mQst_not_saved_c* quest);
 // void func_800BACEC_jp();
 // void func_800BADBC_jp();
 // void func_800BAE78_jp();
-// void func_800BAF90_jp();
+UNK_RET mQst_CheckLimitbyPossessionIdx(s32 arg0);
 // void func_800BB0A8_jp();
 // void func_800BB0E8_jp();
 // void func_800BB10C_jp();

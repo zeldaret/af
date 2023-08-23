@@ -753,13 +753,7 @@
 // extern UNK_TYPE D_8010DC88_jp;
 // extern UNK_TYPE D_8010DC8C_jp;
 // extern UNK_TYPE D_8010DC90_jp;
-// extern UNK_TYPE D_8010DCE0_jp;
-// extern UNK_TYPE D_8010DCE4_jp;
-// extern UNK_TYPE D_8010DCE8_jp;
-// extern UNK_TYPE D_8010DCEC_jp;
-// extern UNK_TYPE D_8010DD08_jp;
-// extern UNK_TYPE D_8010DD24_jp;
-// extern UNK_TYPE D_8010DD38_jp;
+
 // extern UNK_TYPE D_8010DD80_jp;
 // extern UNK_TYPE D_8010DDAC_jp;
 // extern UNK_TYPE D_8010DDBC_jp;
@@ -1922,10 +1916,7 @@ extern s32 zurumode_flag;
 // extern UNK_TYPE B_801438B8_jp;
 // extern UNK_TYPE B_801438BC_jp;
 // extern UNK_TYPE B_801438C0_jp;
-// extern UNK_TYPE Player_actor_ct_func;
-// extern UNK_TYPE Player_actor_dt_func;
-// extern UNK_TYPE Player_actor_move_func;
-// extern UNK_TYPE Player_actor_draw_func;
+
 // extern UNK_TYPE B_80143910_jp;
 // extern UNK_TYPE B_80143960_jp;
 // extern UNK_TYPE B_8014399C_jp;
@@ -1937,8 +1928,7 @@ extern s32 zurumode_flag;
 // extern UNK_TYPE B_8014462C_jp;
 // extern UNK_TYPE B_80144650_jp;
 // extern UNK_TYPE B_80144660_jp;
-// extern UNK_TYPE B_80144670_jp;
-// extern UNK_TYPE B_80144680_jp;
+
 // extern UNK_TYPE B_80144690_jp;
 // extern UNK_TYPE B_801446A0_jp;
 // extern UNK_TYPE B_FLT_801446A8_jp;

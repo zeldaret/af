@@ -24,7 +24,7 @@ s32 mSc_bank_regist_check(struct Game_Play_unk_0110* arg0, s16 arg1);
 void func_800C6144_jp(struct Game_Play_unk_0110* arg0, s16 arg1);
 void mSc_regist_initial_exchange_bank(struct Game_Play* game_play);
 // void func_800C62C4_jp();
-// void func_800C639C_jp();
+void mSc_dmacopy_all_exchange_bank(struct Game_Play_unk_0110* arg0);
 void mSc_data_bank_ct(struct Game_Play* game_play, struct Game_Play_unk_0110* arg1);
 void mSc_decide_exchange_bank(struct Game_Play_unk_0110* arg0);
 // void func_800C6690_jp();

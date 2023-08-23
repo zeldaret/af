@@ -114,4 +114,3 @@ extern Debug_mode* debug_mode;
 extern void new_Debug_mode(void);
 
 #endif
-
