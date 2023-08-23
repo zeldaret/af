@@ -6,7 +6,7 @@
 #include "m_npc_personal_id.h"
 #include "macros.h"
 #include "m_field_info.h"
-#include "sys_math.h"
+#include "libc64/qrand.h"
 #include "m_random_field.h"
 #include "6DE300.h"
 
@@ -17,43 +17,41 @@
 s32 l_goal_block[mNpcW_GOAL_BLOCK_NUM][2];
 s32 l_arrive_stay_count[ANIMAL_NUM_MAX];
 
-static u8 l_girl_time_12[] = { mNpcW_GOAL_SHRINE, mNpcW_GOAL_HOME, mNpcW_GOAL_ALONE };
-static u8 l_girl_time_18_30[] = { mNpcW_GOAL_SHRINE, mNpcW_GOAL_HOME };
+u8 l_girl_time_12[] = { mNpcW_GOAL_SHRINE, mNpcW_GOAL_HOME, mNpcW_GOAL_ALONE };
+u8 l_girl_time_18_30[] = { mNpcW_GOAL_SHRINE, mNpcW_GOAL_HOME };
 
-static mNpcW_GoalData_c l_girl_goal_data[] = {
-    { NULL, 0, mNpcW_TIME_2_SEC(6, 0, 0) },
-    { l_girl_time_12, ARRAY_COUNT(l_girl_time_12), mNpcW_TIME_2_SEC(12, 0, 0) },
-    { NULL, 0, mNpcW_TIME_2_SEC(13, 0, 0) },
-    { l_girl_time_18_30, ARRAY_COUNT(l_girl_time_18_30), mNpcW_TIME_2_SEC(18, 30, 0) },
-    { NULL, 0, mNpcW_TIME_2_SEC(24, 0, 0) }
-};
+mNpcW_GoalData_c l_girl_goal_data[] = { { NULL, 0, mNpcW_TIME_2_SEC(6, 0, 0) },
+                                        { l_girl_time_12, ARRAY_COUNT(l_girl_time_12), mNpcW_TIME_2_SEC(12, 0, 0) },
+                                        { NULL, 0, mNpcW_TIME_2_SEC(13, 0, 0) },
+                                        { l_girl_time_18_30, ARRAY_COUNT(l_girl_time_18_30),
+                                          mNpcW_TIME_2_SEC(18, 30, 0) },
+                                        { NULL, 0, mNpcW_TIME_2_SEC(24, 0, 0) } };
 
-static mNpcW_GoalDataTable_c l_girl_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_girl_goal_data);
+mNpcW_GoalDataTable_c l_girl_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_girl_goal_data);
 
-static u8 l_kogirl_time_ed[] = { mNpcW_GOAL_SHRINE, mNpcW_GOAL_HOME };
+u8 l_kogirl_time_ed[] = { mNpcW_GOAL_SHRINE, mNpcW_GOAL_HOME };
 
-static mNpcW_GoalData_c l_kogirl_goal_data[] = { { l_kogirl_time_ed, ARRAY_COUNT(l_kogirl_time_ed),
-                                                   mNpcW_TIME_2_SEC(24, 0, 0) } };
+mNpcW_GoalData_c l_kogirl_goal_data[] = { { l_kogirl_time_ed, ARRAY_COUNT(l_kogirl_time_ed),
+                                            mNpcW_TIME_2_SEC(24, 0, 0) } };
 
-static mNpcW_GoalDataTable_c l_kogirl_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_kogirl_goal_data);
+mNpcW_GoalDataTable_c l_kogirl_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_kogirl_goal_data);
 
-static u8 l_boy_time_12[] = { mNpcW_GOAL_ALONE };
-static u8 l_boy_time_19_30[] = { mNpcW_GOAL_SHRINE, mNpcW_GOAL_HOME };
+u8 l_boy_time_12[] = { mNpcW_GOAL_ALONE };
+u8 l_boy_time_19_30[] = { mNpcW_GOAL_SHRINE, mNpcW_GOAL_HOME };
 
-static mNpcW_GoalData_c l_boy_goal_data[] = { { NULL, 0, mNpcW_TIME_2_SEC(9, 0, 0) },
-                                              { l_boy_time_12, ARRAY_COUNT(l_boy_time_12), mNpcW_TIME_2_SEC(12, 0, 0) },
-                                              { NULL, 0, mNpcW_TIME_2_SEC(14, 0, 0) },
-                                              { l_boy_time_19_30, ARRAY_COUNT(l_boy_time_19_30),
-                                                mNpcW_TIME_2_SEC(19, 30, 0) },
-                                              { NULL, 0, mNpcW_TIME_2_SEC(24, 0, 0) } };
+mNpcW_GoalData_c l_boy_goal_data[] = { { NULL, 0, mNpcW_TIME_2_SEC(9, 0, 0) },
+                                       { l_boy_time_12, ARRAY_COUNT(l_boy_time_12), mNpcW_TIME_2_SEC(12, 0, 0) },
+                                       { NULL, 0, mNpcW_TIME_2_SEC(14, 0, 0) },
+                                       { l_boy_time_19_30, ARRAY_COUNT(l_boy_time_19_30), mNpcW_TIME_2_SEC(19, 30, 0) },
+                                       { NULL, 0, mNpcW_TIME_2_SEC(24, 0, 0) } };
 
-static mNpcW_GoalDataTable_c l_boy_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_boy_goal_data);
+mNpcW_GoalDataTable_c l_boy_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_boy_goal_data);
 
-static u8 l_sports_man_time_12[] = { mNpcW_GOAL_SHRINE, mNpcW_GOAL_HOME, mNpcW_GOAL_ALONE, mNpcW_GOAL_ALONE };
-static u8 l_sports_man_time_23[] = { mNpcW_GOAL_SHRINE, mNpcW_GOAL_SHRINE, mNpcW_GOAL_HOME, mNpcW_GOAL_HOME,
-                                     mNpcW_GOAL_ALONE };
+u8 l_sports_man_time_12[] = { mNpcW_GOAL_SHRINE, mNpcW_GOAL_HOME, mNpcW_GOAL_ALONE, mNpcW_GOAL_ALONE };
+u8 l_sports_man_time_23[] = { mNpcW_GOAL_SHRINE, mNpcW_GOAL_SHRINE, mNpcW_GOAL_HOME, mNpcW_GOAL_HOME,
+                              mNpcW_GOAL_ALONE };
 
-static mNpcW_GoalData_c l_sports_man_goal_data[] = {
+mNpcW_GoalData_c l_sports_man_goal_data[] = {
     { NULL, 0, mNpcW_TIME_2_SEC(6, 30, 0) },
     { l_sports_man_time_12, ARRAY_COUNT(l_sports_man_time_12), mNpcW_TIME_2_SEC(12, 0, 0) },
     { NULL, 0, mNpcW_TIME_2_SEC(12, 30, 0) },
@@ -61,25 +59,26 @@ static mNpcW_GoalData_c l_sports_man_goal_data[] = {
     { NULL, 0, mNpcW_TIME_2_SEC(24, 0, 0) }
 };
 
-static mNpcW_GoalDataTable_c l_sports_man_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_sports_man_goal_data);
+mNpcW_GoalDataTable_c l_sports_man_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_sports_man_goal_data);
 
-static u8 l_grim_man_time_ed[] = { mNpcW_GOAL_SHRINE, mNpcW_GOAL_SHRINE, mNpcW_GOAL_SHRINE, mNpcW_GOAL_ALONE,
-                                   mNpcW_GOAL_ALONE,  mNpcW_GOAL_ALONE,  mNpcW_GOAL_ALONE,  mNpcW_GOAL_ALONE,
-                                   mNpcW_GOAL_ALONE,  mNpcW_GOAL_ALONE };
+u8 l_grim_man_time_ed[] = {
+    mNpcW_GOAL_SHRINE, mNpcW_GOAL_SHRINE, mNpcW_GOAL_SHRINE, mNpcW_GOAL_ALONE, mNpcW_GOAL_ALONE,
+    mNpcW_GOAL_ALONE,  mNpcW_GOAL_ALONE,  mNpcW_GOAL_ALONE,  mNpcW_GOAL_ALONE, mNpcW_GOAL_ALONE
+};
 
-static mNpcW_GoalData_c l_grim_man_goal_data[] = { { l_grim_man_time_ed, ARRAY_COUNT(l_grim_man_time_ed),
-                                                     mNpcW_TIME_2_SEC(24, 0, 0) } };
+mNpcW_GoalData_c l_grim_man_goal_data[] = { { l_grim_man_time_ed, ARRAY_COUNT(l_grim_man_time_ed),
+                                              mNpcW_TIME_2_SEC(24, 0, 0) } };
 
-static mNpcW_GoalDataTable_c l_grim_man_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_grim_man_goal_data);
+mNpcW_GoalDataTable_c l_grim_man_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_grim_man_goal_data);
 
-static u8 l_naniwa_lady_time_1_30[] = { mNpcW_GOAL_SHRINE, mNpcW_GOAL_SHRINE, mNpcW_GOAL_SHRINE, mNpcW_GOAL_SHRINE,
-                                        mNpcW_GOAL_SHRINE, mNpcW_GOAL_SHRINE, mNpcW_GOAL_SHRINE, mNpcW_GOAL_ALONE,
-                                        mNpcW_GOAL_ALONE,  mNpcW_GOAL_ALONE };
-static u8 l_naniwa_lady_time_13[] = { mNpcW_GOAL_HOME };
-static u8 l_naniwa_lady_time_21[] = { mNpcW_GOAL_SHRINE, mNpcW_GOAL_SHRINE, mNpcW_GOAL_HOME, mNpcW_GOAL_HOME,
-                                      mNpcW_GOAL_ALONE };
+u8 l_naniwa_lady_time_1_30[] = { mNpcW_GOAL_SHRINE, mNpcW_GOAL_SHRINE, mNpcW_GOAL_SHRINE, mNpcW_GOAL_SHRINE,
+                                 mNpcW_GOAL_SHRINE, mNpcW_GOAL_SHRINE, mNpcW_GOAL_SHRINE, mNpcW_GOAL_ALONE,
+                                 mNpcW_GOAL_ALONE,  mNpcW_GOAL_ALONE };
+u8 l_naniwa_lady_time_13[] = { mNpcW_GOAL_HOME };
+u8 l_naniwa_lady_time_21[] = { mNpcW_GOAL_SHRINE, mNpcW_GOAL_SHRINE, mNpcW_GOAL_HOME, mNpcW_GOAL_HOME,
+                               mNpcW_GOAL_ALONE };
 
-static mNpcW_GoalData_c l_naniwa_lady_goal_data[] = {
+mNpcW_GoalData_c l_naniwa_lady_goal_data[] = {
     { l_naniwa_lady_time_1_30, ARRAY_COUNT(l_naniwa_lady_time_1_30), mNpcW_TIME_2_SEC(1, 30, 0) },
     { NULL, 0, mNpcW_TIME_2_SEC(10, 0, 0) },
     { l_naniwa_lady_time_13, ARRAY_COUNT(l_naniwa_lady_time_13), mNpcW_TIME_2_SEC(13, 0, 0) },
@@ -89,12 +88,11 @@ static mNpcW_GoalData_c l_naniwa_lady_goal_data[] = {
     { l_naniwa_lady_time_1_30, ARRAY_COUNT(l_naniwa_lady_time_1_30), mNpcW_TIME_2_SEC(24, 0, 0) }
 };
 
-static mNpcW_GoalDataTable_c l_naniwa_lady_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_naniwa_lady_goal_data);
+mNpcW_GoalDataTable_c l_naniwa_lady_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_naniwa_lady_goal_data);
 
-static mNpcW_GoalDataTable_c* l_looks_goal_table[mNpc_LOOKS_NUM] = {
-    &l_girl_goal_table,       &l_kogirl_goal_table,   &l_boy_goal_table,
-    &l_sports_man_goal_table, &l_grim_man_goal_table, &l_naniwa_lady_goal_table
-};
+mNpcW_GoalDataTable_c* l_looks_goal_table[mNpc_LOOKS_NUM] = { &l_girl_goal_table,     &l_kogirl_goal_table,
+                                                              &l_boy_goal_table,      &l_sports_man_goal_table,
+                                                              &l_grim_man_goal_table, &l_naniwa_lady_goal_table };
 
 mNpcW_GoalData_c* mNpcW_GetGoalDataInfo(s32 looks, s32 now_sec) {
     mNpcW_GoalDataTable_c* table = l_looks_goal_table[looks];
@@ -662,12 +660,7 @@ s32 mNpcW_GetNearGate(s32* target_ut_x, s32* target_ut_z, s32 block_x, s32 block
                 x = gate->ut1 & 0xF;
                 z = gate->ut1 >> 4;
 
-/* BUG: this is likely meant to be 'if (direction == mRF_DIRECT_WEST || direction == mRF_DIRECT_EAST)' */
-#ifndef BUGFIXES
                 if (direction == mRF_DIRECT_WEST || direction == mRF_DIRECT_WEST) {
-#else
-                if (direction == mRF_DIRECT_WEST || direction == mRF_DIRECT_EAST) {
-#endif
                     difference = ut_z - z;
                     difference = ABS(difference);
                 } else {

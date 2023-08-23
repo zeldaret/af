@@ -174,7 +174,7 @@ typedef struct Save {
     /* 0x0F89C */ lbRTC_time_c unk_0F89C;
     /* 0x0F8A4 */ lbRTC_time_c unk_0F8A4;
     /* 0x0F8AC */ u8 unk0F8AC[0x754];
-} Save;
+} Save; // size = 0x10000
 
 typedef struct CommonData {
     /* 0x00000 */ Save save;
@@ -182,7 +182,7 @@ typedef struct CommonData {
     /* 0x10001 */ u8 unk_10001;
     /* 0x10002 */ u8 unk10002[0x1];
     /* 0x10003 */ u8 player_no;
-    /* 0x10004 */ s32 last_scene_no;
+    /* 0x10004 */ s32 unk_10004; // named "last_scene_no" in AC GCN decomp
     /* 0x10008 */ UNK_TYPE1 unk_10008[0x44];
     /* 0x1004C */ CommonData_unk_1004C *unk_1004C;
     /* 0x10050 */ UNK_TYPE1 unk_10050[0x48];

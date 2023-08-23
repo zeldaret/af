@@ -208,7 +208,7 @@ void Game_play_fbdemo_fade_out_game_end_move_end(Game_Play* game_play) {
 
 void Game_play_change_scene_move_end(Game_Play* game_play) {
     game_goto_next_game_play(&game_play->state);
-    common_data.last_scene_no = common_data.save.unk_00014;
+    common_data.unk_10004 = common_data.save.unk_00014;
     common_data.save.unk_00014 = game_play->unk_1E18;
 }
 

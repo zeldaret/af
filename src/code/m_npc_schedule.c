@@ -9,43 +9,43 @@
 #define mNPS_MAKE_SCHEDULE_TABLE(sched_data) \
     { ARRAY_COUNT(sched_data), sched_data }
 
-static mNPS_schedule_data_c girl_schedule_dt[] = {
+mNPS_schedule_data_c girl_schedule_dt[] = {
     { mNPS_SCHED_SLEEP, mNPS_TIME_2_SEC(5, 0, 0) },   { mNPS_SCHED_IN_HOUSE, mNPS_TIME_2_SEC(6, 0, 0) },
     { mNPS_SCHED_FIELD, mNPS_TIME_2_SEC(12, 0, 0) },  { mNPS_SCHED_IN_HOUSE, mNPS_TIME_2_SEC(13, 0, 0) },
     { mNPS_SCHED_FIELD, mNPS_TIME_2_SEC(18, 30, 0) }, { mNPS_SCHED_IN_HOUSE, mNPS_TIME_2_SEC(21, 0, 0) },
     { mNPS_SCHED_SLEEP, mNPS_TIME_2_SEC(24, 0, 0) }
 };
 
-static mNPS_schedule_data_table_c girl_schedule = mNPS_MAKE_SCHEDULE_TABLE(girl_schedule_dt);
+mNPS_schedule_data_table_c girl_schedule = mNPS_MAKE_SCHEDULE_TABLE(girl_schedule_dt);
 
-static mNPS_schedule_data_c ko_girl_schedule_dt[] = {
+mNPS_schedule_data_c ko_girl_schedule_dt[] = {
     { mNPS_SCHED_SLEEP, mNPS_TIME_2_SEC(7, 0, 0) },  { mNPS_SCHED_IN_HOUSE, mNPS_TIME_2_SEC(8, 0, 0) },
     { mNPS_SCHED_FIELD, mNPS_TIME_2_SEC(13, 0, 0) }, { mNPS_SCHED_IN_HOUSE, mNPS_TIME_2_SEC(14, 0, 0) },
     { mNPS_SCHED_FIELD, mNPS_TIME_2_SEC(22, 0, 0) }, { mNPS_SCHED_IN_HOUSE, mNPS_TIME_2_SEC(23, 30, 0) },
     { mNPS_SCHED_SLEEP, mNPS_TIME_2_SEC(24, 0, 0) }
 };
 
-static mNPS_schedule_data_table_c ko_girl_schedule = mNPS_MAKE_SCHEDULE_TABLE(ko_girl_schedule_dt);
+mNPS_schedule_data_table_c ko_girl_schedule = mNPS_MAKE_SCHEDULE_TABLE(ko_girl_schedule_dt);
 
-static mNPS_schedule_data_c boy_schedule_dt[] = {
+mNPS_schedule_data_c boy_schedule_dt[] = {
     { mNPS_SCHED_SLEEP, mNPS_TIME_2_SEC(8, 0, 0) },   { mNPS_SCHED_IN_HOUSE, mNPS_TIME_2_SEC(9, 0, 0) },
     { mNPS_SCHED_FIELD, mNPS_TIME_2_SEC(12, 0, 0) },  { mNPS_SCHED_IN_HOUSE, mNPS_TIME_2_SEC(14, 0, 0) },
     { mNPS_SCHED_FIELD, mNPS_TIME_2_SEC(19, 30, 0) }, { mNPS_SCHED_IN_HOUSE, mNPS_TIME_2_SEC(22, 0, 0) },
     { mNPS_SCHED_SLEEP, mNPS_TIME_2_SEC(24, 0, 0) }
 };
 
-static mNPS_schedule_data_table_c boy_schedule = mNPS_MAKE_SCHEDULE_TABLE(boy_schedule_dt);
+mNPS_schedule_data_table_c boy_schedule = mNPS_MAKE_SCHEDULE_TABLE(boy_schedule_dt);
 
-static mNPS_schedule_data_c sport_man_schedule_dt[] = {
+mNPS_schedule_data_c sport_man_schedule_dt[] = {
     { mNPS_SCHED_IN_HOUSE, mNPS_TIME_2_SEC(1, 0, 0) },   { mNPS_SCHED_SLEEP, mNPS_TIME_2_SEC(5, 30, 0) },
     { mNPS_SCHED_IN_HOUSE, mNPS_TIME_2_SEC(6, 30, 0) },  { mNPS_SCHED_FIELD, mNPS_TIME_2_SEC(12, 0, 0) },
     { mNPS_SCHED_IN_HOUSE, mNPS_TIME_2_SEC(12, 30, 0) }, { mNPS_SCHED_FIELD, mNPS_TIME_2_SEC(23, 0, 0) },
     { mNPS_SCHED_IN_HOUSE, mNPS_TIME_2_SEC(24, 0, 0) }
 };
 
-static mNPS_schedule_data_table_c sport_man_schedule = mNPS_MAKE_SCHEDULE_TABLE(sport_man_schedule_dt);
+mNPS_schedule_data_table_c sport_man_schedule = mNPS_MAKE_SCHEDULE_TABLE(sport_man_schedule_dt);
 
-static mNPS_schedule_data_c grim_man_schedule_dt[] = {
+mNPS_schedule_data_c grim_man_schedule_dt[] = {
     { mNPS_SCHED_FIELD, mNPS_TIME_2_SEC(4, 0, 0) },  { mNPS_SCHED_IN_HOUSE, mNPS_TIME_2_SEC(5, 0, 0) },
     { mNPS_SCHED_SLEEP, mNPS_TIME_2_SEC(10, 0, 0) }, { mNPS_SCHED_IN_HOUSE, mNPS_TIME_2_SEC(11, 0, 0) },
     { mNPS_SCHED_FIELD, mNPS_TIME_2_SEC(15, 0, 0) }, { mNPS_SCHED_IN_HOUSE, mNPS_TIME_2_SEC(16, 0, 0) },
@@ -53,9 +53,9 @@ static mNPS_schedule_data_c grim_man_schedule_dt[] = {
     { mNPS_SCHED_FIELD, mNPS_TIME_2_SEC(24, 0, 0) }
 };
 
-static mNPS_schedule_data_table_c grim_man_schedule = mNPS_MAKE_SCHEDULE_TABLE(grim_man_schedule_dt);
+mNPS_schedule_data_table_c grim_man_schedule = mNPS_MAKE_SCHEDULE_TABLE(grim_man_schedule_dt);
 
-static mNPS_schedule_data_c naniwa_lady_schedule_dt[] = {
+mNPS_schedule_data_c naniwa_lady_schedule_dt[] = {
     { mNPS_SCHED_FIELD, mNPS_TIME_2_SEC(1, 30, 0) }, { mNPS_SCHED_IN_HOUSE, mNPS_TIME_2_SEC(2, 30, 0) },
     { mNPS_SCHED_SLEEP, mNPS_TIME_2_SEC(9, 0, 0) },  { mNPS_SCHED_IN_HOUSE, mNPS_TIME_2_SEC(10, 0, 0) },
     { mNPS_SCHED_FIELD, mNPS_TIME_2_SEC(13, 0, 0) }, { mNPS_SCHED_IN_HOUSE, mNPS_TIME_2_SEC(14, 0, 0) },
@@ -63,11 +63,11 @@ static mNPS_schedule_data_c naniwa_lady_schedule_dt[] = {
     { mNPS_SCHED_FIELD, mNPS_TIME_2_SEC(24, 0, 0) }
 };
 
-static mNPS_schedule_data_table_c naniwa_lady_schedule = mNPS_MAKE_SCHEDULE_TABLE(naniwa_lady_schedule_dt);
+mNPS_schedule_data_table_c naniwa_lady_schedule = mNPS_MAKE_SCHEDULE_TABLE(naniwa_lady_schedule_dt);
 
-static mNPS_schedule_data_table_c* mNPS_schedule[mNpc_LOOKS_NUM] = { &girl_schedule,     &ko_girl_schedule,
-                                                                     &boy_schedule,      &sport_man_schedule,
-                                                                     &grim_man_schedule, &naniwa_lady_schedule };
+mNPS_schedule_data_table_c* mNPS_schedule[mNpc_LOOKS_NUM] = { &girl_schedule,     &ko_girl_schedule,
+                                                              &boy_schedule,      &sport_man_schedule,
+                                                              &grim_man_schedule, &naniwa_lady_schedule };
 
 mNPS_schedule_c* mNPS_get_schedule_area(AnmPersonalID_c* anm_id) {
     mNPS_schedule_c* schedule = common_data.npc_schedules;
@@ -164,7 +164,7 @@ void mNPS_set_all_schedule_area(void) {
     s32 i;
 
     for (i = 0; i < ANIMAL_NUM_MAX; i++) {
-        if (mNpc_CheckFreeAnimalInfo(animal) == 0) {
+        if (mNpc_CheckFreeAnimalInfo(animal) == FALSE) {
             mNPS_set_schedule_area(&animal->id);
         }
         animal++;

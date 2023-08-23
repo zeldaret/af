@@ -16,7 +16,6 @@
 #include "m_malloc.h"
 #include "z_std_dma.h"
 #include "macros.h"
-#include "sys_math.h"
 #include "6E7AD0.h"
 #include "libu64/gfxprint.h"
 #include "6D9D80.h"
@@ -34,25 +33,23 @@
 #include "6A5B00.h"
 #include "6A83A0.h"
 #include "prevent_bss_ordering.h"
+#include "segment_symbols.h"
+#include "libc64/qrand.h"
 
 typedef struct Struct_D_E03000 {
     /* 0x00 */ u16 unk_00;
     /* 0x02 */ u16 unk_02;
     /* 0x04 */ u16 unk_04;
 } Struct_D_E03000; // size = 0x6
-extern Struct_D_E03000 D_E03000[];
+// extern Struct_D_E03000 segment_00E03000[];
 
 typedef struct Struct_D_E04000 {
     /* 0x00 */ char unk00[0x8];
     /* 0x08 */ u8 unk_08[100][PLAYER_NAME_LEN];
 } Struct_D_E04000;
-extern Struct_D_E04000 D_E04000;
+// extern Struct_D_E04000 segment_00E04000;
 
-extern u8 D_E02000[];
-extern u8 D_E026D0[];
-extern u8 D_E03520[];
-extern u8 D_E0D000[];
-extern u8 D_E0D0E0[];
+// extern u8 segment_00E0D000[];
 
 u16 D_8010AF00_jp[] = {
     0x0005, 0x0009, 0x000B, 0x000C, 0x000E, 0x0010, 0x0011, 0x0012, 0x0021, 0x0025, 0x0032, 0x0033,
@@ -64,7 +61,7 @@ u16 D_8010AF30_jp[] = {
     0x0058, 0x0058, 0x0058, 0x0058, 0x0058, 0x0058, 0x0058, 0x0013, 0x00A5, 0x0000,
 };
 
-static u8 D_8010AF58_jp[] = {
+u8 D_8010AF58_jp[] = {
     0x02, 0x05, 0x00, 0x00, 0x01, 0x04, 0x01, 0x05, 0x03, 0x05, 0x05, 0x04, 0x01, 0x00, 0x00, 0x01, 0x04, 0x05, 0x03,
     0x04, 0x02, 0x02, 0x04, 0x01, 0x05, 0x04, 0x01, 0x03, 0x01, 0x02, 0x01, 0x04, 0x02, 0x05, 0x00, 0x03, 0x04, 0x04,
     0x02, 0x03, 0x00, 0x03, 0x02, 0x00, 0x03, 0x01, 0x05, 0x04, 0x04, 0x05, 0x03, 0x00, 0x02, 0x00, 0x03, 0x01, 0x01,
@@ -79,24 +76,24 @@ static u8 D_8010AF58_jp[] = {
     0x04, 0x00, 0x01, 0x00, 0x05, 0x03, 0x01, 0x01, 0x01, 0x00, 0x00,
 };
 
-static u32 D_8010B034_jp[] = {
+u32 D_8010B034_jp[] = {
     0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111,
     0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111,
 };
 
-static u32 D_8010B074_jp[] = {
+u32 D_8010B074_jp[] = {
     0x09090909,
 };
 
-static u32 D_8010B078_jp[] = {
+u32 D_8010B078_jp[] = {
     0x13131313, 0x13131313, 0x13131313, 0x13131313, 0x13131313, 0x13131313, 0x13131313, 0x13131313, 0x13131313,
 };
 
-static u32 D_8010B09C_jp[] = {
+u32 D_8010B09C_jp[] = {
     0x08080808, 0x08080808, 0x08080808, 0x08080808, 0x08080808, 0x08080808, 0x08080808, 0x08080808,
 };
 
-static u32 D_8010B0BC_jp[] = {
+u32 D_8010B0BC_jp[] = {
     0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C,
     0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C,
     0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C,
@@ -107,55 +104,55 @@ static u32 D_8010B0BC_jp[] = {
     0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C00,
 };
 
-static u32 D_8010B1BC_jp[] = {
+u32 D_8010B1BC_jp[] = {
     0x160D0D0D, 0x0D0D0D0D, 0x0D0D0D0D, 0x0D091515, 0x15141716, 0x19181818, 0x1919181A, 0x0E0B0000,
 };
 
-static u32 D_8010B1DC_jp[] = {
+u32 D_8010B1DC_jp[] = {
     0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C,
     0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C,
 };
 
-static u32 D_8010B21C_jp[] = {
+u32 D_8010B21C_jp[] = {
     0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C,
     0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C,
 };
 
-static u32 D_8010B25C_jp[] = {
+u32 D_8010B25C_jp[] = {
     0x01050403,
     0x02061100,
 };
 
-static u32 D_8010B264_jp[] = {
+u32 D_8010B264_jp[] = {
     0x11111111,
     0x11111111,
     0x11110000,
 };
 
-static u32 D_8010B270_jp[] = {
+u32 D_8010B270_jp[] = {
     0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C,
     0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C00,
 };
 
-static u32 D_8010B2A8_jp[] = {
+u32 D_8010B2A8_jp[] = {
     0x15000000,
 };
 
-static u32 D_8010B2AC_jp[] = {
+u32 D_8010B2AC_jp[] = {
     0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111,
     0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111,
     0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111,
 };
 
-static u32 D_8010B30C_jp[] = {
+u32 D_8010B30C_jp[] = {
     0x12121212, 0x12121212, 0x12121212, 0x12121212, 0x12121212, 0x12121212, 0x12121212, 0x12121212,
 };
 
-static u32 D_8010B32C_jp[] = {
+u32 D_8010B32C_jp[] = {
     0x11110000,
 };
 
-static u32 D_8010B330_jp[] = {
+u32 D_8010B330_jp[] = {
     0x07070707,
 };
 
@@ -231,7 +228,7 @@ typedef struct Struct_D_8010B510_jp {
     /* 0x08 */ s32 unk_08;
 } Struct_D_8010B510_jp; // size = 0xC
 
-static Struct_D_8010B510_jp D_8010B510_jp[] = {
+Struct_D_8010B510_jp D_8010B510_jp[] = {
     { 0xD008, 0x0000, 0x00000205, 0x00000002 }, { 0xD01E, 0x0000, 0x00000205, 0x00000002 },
     { 0xD03A, 0x0000, 0x00000205, 0x00000002 }, { 0xD03B, 0x0000, 0x00000205, 0x00000002 },
     { 0xD03C, 0x0000, 0x00000205, 0x00000002 }, { 0xD009, 0x0000, 0x00000205, 0x00000002 },
@@ -266,37 +263,37 @@ static Struct_D_8010B510_jp D_8010B510_jp[] = {
     { 0xA00F, 0x0000, 0x000004E2, 0x00000002 }, { 0xA010, 0x0000, 0x000004E2, 0x00000002 },
 };
 
-static u8 D_8010B810_jp[PLAYER_NAME_LEN] = { 0xD4, 0x8E, 0xA6, 0x90, 0x85, 0x42 };
+u8 D_8010B810_jp[PLAYER_NAME_LEN] = { 0xD4, 0x8E, 0xA6, 0x90, 0x85, 0x42 };
 
-static u8 D_8010B818_jp[] = { 0xD3, 0xAF, 0x9D, 0x20 };
+u8 D_8010B818_jp[] = { 0xD3, 0xAF, 0x9D, 0x20 };
 
-static s32 D_8010B81C_jp[] = { 0, 2 };
+s32 D_8010B81C_jp[] = { 0, 2 };
 
-static s32 D_8010B824_jp[] = { 0x314, 0x334, 0x2F4, 0x219, 0x1E5, 0x354, 0x374, 0x394, 0x3D4, 0x3F4, 0x3B4 };
+s32 D_8010B824_jp[] = { 0x314, 0x334, 0x2F4, 0x219, 0x1E5, 0x354, 0x374, 0x394, 0x3D4, 0x3F4, 0x3B4 };
 
-static s32 D_8010B850_jp[] = {
+s32 D_8010B850_jp[] = {
     0x00000020, 0x00000040, 0x00000000, 0x00000060, 0x00000080, 0x000000A0,
 };
-static s32 D_8010B868_jp[] = {
+s32 D_8010B868_jp[] = {
     0x000000E0, 0x00000100, 0x000000C0, 0x00000120, 0x00000140, 0x00000160,
 };
 
-static s32* D_8010B880_jp[] = { D_8010B850_jp, D_8010B868_jp };
+s32* D_8010B880_jp[] = { D_8010B850_jp, D_8010B868_jp };
 
-static s32 D_8010B888_jp[] = { 0xC5, 0xD8 };
+s32 D_8010B888_jp[] = { 0xC5, 0xD8 };
 
 typedef void (*Funcs_D_8010B890_jp)(Mail_c*, Private_c*, AnmPersonalID_c*, Anmremail_c*, u8);
-static Funcs_D_8010B890_jp D_8010B890_jp[] = {
+Funcs_D_8010B890_jp D_8010B890_jp[] = {
     func_800A8F30_jp,
     func_800A8DB4_jp,
 };
 
-static s32 D_8010B898_jp[] = { 5, 2, 0 };
-static s32 D_8010B8A4_jp[] = { 0, 0, 2 };
+s32 D_8010B898_jp[] = { 5, 2, 0 };
+s32 D_8010B8A4_jp[] = { 0, 0, 2 };
 
-static s32 D_8010B8B0_jp[] = { 1, 0 };
+s32 D_8010B8B0_jp[] = { 1, 0 };
 
-static u8 D_8010B8B8_jp[] = {
+u8 D_8010B8B8_jp[] = {
     0x00, 0x00, 0x02, 0x02, 0xFF,
 };
 
@@ -305,17 +302,17 @@ typedef struct Struct_D_8010B8C0_jp {
     /* 0x00 */ s32 unk_04;
 } Struct_D_8010B8C0_jp; // size = 0x8
 
-static Struct_D_8010B8C0_jp D_8010B8C0_jp[] = {
+Struct_D_8010B8C0_jp D_8010B8C0_jp[] = {
     { 0x00000000, 0x00000000 }, { 0xFFFFFFFF, 0x00000001 }, { 0x00000000, 0x00000001 },
     { 0x00000001, 0x00000001 }, { 0xFFFFFFFF, 0x00000000 }, { 0x00000001, 0x00000000 },
     { 0xFFFFFFFF, 0xFFFFFFFF }, { 0x00000000, 0xFFFFFFFF }, { 0x00000001, 0xFFFFFFFF },
 };
 
-static u16 D_8010B908_jp[] = { 0, 0xA012, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF };
+u16 D_8010B908_jp[] = { 0, 0xA012, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF };
 
-static s32 D_8010B91C_jp[] = { 4, 4, 2, 2, 3, 4 };
+s32 D_8010B91C_jp[] = { 4, 4, 2, 2, 3, 4 };
 
-static s32 D_8010B934_jp[] = { 0x28, 0x32, 0x3C, 0x46, 0x50, 0x5A, 0x64 };
+s32 D_8010B934_jp[] = { 0x28, 0x32, 0x3C, 0x46, 0x50, 0x5A, 0x64 };
 
 typedef struct Struct_D_8010B950_jp {
     /* 0x00 */ u16 unk_00;
@@ -323,12 +320,12 @@ typedef struct Struct_D_8010B950_jp {
     /* 0x03 */ u8 unk_03;
 } Struct_D_8010B950_jp; // size = 0x4
 
-static Struct_D_8010B950_jp D_8010B950_jp[] = {
+Struct_D_8010B950_jp D_8010B950_jp[] = {
     { 0x0FA0, 0x0C, 0x0F }, { 0x0BB8, 0x0A, 0x0D }, { 0x0FA0, 0x0C, 0x0F },
     { 0x0FA0, 0x0A, 0x0D }, { 0x1388, 0x09, 0x0C }, { 0x1388, 0x09, 0x0C },
 };
 
-static s32 D_8010B968_jp = -1;
+s32 D_8010B968_jp = -1;
 
 s32 B_80142C00_jp[60];
 u8 B_80142CF0_jp[HANDBILL_HEADER_LEN];
@@ -422,7 +419,8 @@ void mNpc_ClearAnimalPersonalID(AnmPersonalID_c* anm_id) {
 s32 mNpc_CheckFreeAnimalPersonalID(AnmPersonalID_c* anm_id) {
     s32 res = FALSE;
 
-    if (((anm_id->npc_id == 0) && (anm_id->name_id == 0xFF)) || ((mNpc_GET_TYPE(anm_id->npc_id) >> 0xC) != 0xE)) {
+    if (((anm_id->npc_id == 0) && (anm_id->name_id == 0xFF)) ||
+        (ACTOR_FGNAME_GET_F000(anm_id->npc_id) != FGNAME_F000_E)) {
         res = TRUE;
     }
     return res;
@@ -430,7 +428,7 @@ s32 mNpc_CheckFreeAnimalPersonalID(AnmPersonalID_c* anm_id) {
 
 void mNpc_CopyAnimalPersonalID(AnmPersonalID_c* dst, AnmPersonalID_c* src) {
     if (src != NULL) {
-        if ((mNpc_GET_TYPE(src->npc_id) >> 0xC) == 0xE) {
+        if (ACTOR_FGNAME_GET_F000(src->npc_id) == FGNAME_F000_E) {
             dst->npc_id = src->npc_id;
             dst->name_id = src->name_id;
             dst->land_id = src->land_id;
@@ -877,7 +875,7 @@ s32 func_800A78DC_jp(Anmmem_c* memory, s32 count) {
                 memory2 = memory + 1;
                 for (j = i + 1; j < count; j++) {
                     if ((((var_s4 >> j) & 1) == 1) &&
-                        (func_80094E90_jp(&memory->memuni, memory->memuni.land.id, &memory2->memuni,
+                        (func_80094E90_jp(memory->memuni.land.name, memory->memuni.land.id, memory2->memuni.land.name,
                                           memory2->memuni.land.id) == TRUE)) {
                         var_s4 &= ~(1 << j);
                     }
@@ -930,7 +928,7 @@ s32 mNpc_CheckFreeAnimalInfo(Animal_c* animal) {
     s32 res = FALSE;
 
     if ((animal->home_info.block_x == 0xFF) && (animal->home_info.block_z == 0xFF) &&
-        ((mNpc_GET_TYPE(animal->id.npc_id) >> 0xC) != 0xE)) {
+        (ACTOR_FGNAME_GET_F000(animal->id.npc_id) != FGNAME_F000_E)) {
         res = TRUE;
     }
     return res;
@@ -1838,13 +1836,13 @@ void func_800A9EC8_jp(Actor* actor) {
         u16 idx;
 
         if (animal != NULL) {
-            sp30 = zelda_malloc((u32)D_E03520 - (u32)D_E03000);
+            sp30 = zelda_malloc(SEGMENT_ROM_SIZE(segment_00E03000));
 
             if (0) {}
 
             if (sp30 != NULL) {
-                func_80026E10_jp(sp30, (RomOffset)D_E03000, ALIGN16((u32)D_E03520 - (u32)D_E03000), "../m_npc.c",
-                                 0xE25);
+                func_80026E10_jp(sp30, SEGMENT_ROM_START(segment_00E03000), ALIGN16(SEGMENT_ROM_SIZE(segment_00E03000)),
+                                 "../m_npc.c", 0xE25);
                 idx = animal->id.npc_id & 0xFFF;
                 func_800C3F70_jp(animal->catchphrase, ANIMAL_CATCHPHRASE_LEN, sp30[idx].unk_02);
                 zelda_free(sp30);
@@ -1916,14 +1914,14 @@ CommonData_unk_10170* func_800AA14C_jp(u16 fg_name) {
 s32 mNpc_GetLooks(u16 npc_name) {
     u8 res = 0;
 
-    if ((mNpc_GET_TYPE(npc_name) >> 0xC) == 0xE) {
+    if (ACTOR_FGNAME_GET_F000(npc_name) == FGNAME_F000_E) {
         res = D_8010AF58_jp[mNpc_GET_IDX(npc_name)];
     }
     return res;
 }
 
 void func_800AA218_jp(Animal_c* animal, u16 arg1, u8 arg2, Struct_D_E03000* arg3) {
-    if ((mNpc_GET_TYPE(arg1) >> 0xC) == 0xE) {
+    if (ACTOR_FGNAME_GET_F000(arg1) == FGNAME_F000_E) {
         animal->id.npc_id = arg1;
         animal->id.looks = arg2;
         animal->unk_520 = arg3->unk_00;
@@ -1935,16 +1933,15 @@ void func_800AA218_jp(Animal_c* animal, u16 arg1, u8 arg2, Struct_D_E03000* arg3
 
 void func_800AA29C_jp(Animal_c* animal, u16 arg1, Struct_D_E03000 arg2[]) {
     s32 idx = mNpc_GET_IDX(arg1);
-    if ((mNpc_GET_TYPE(arg1) >> 0xC) == 0xE) {
+    if (ACTOR_FGNAME_GET_F000(arg1) == FGNAME_F000_E) {
         func_800AA218_jp(animal, arg1, D_8010AF58_jp[idx], &arg2[idx]);
     }
 }
 
 void func_800AA2F8_jp(u16 arg0) {
     u8* ptr = common_data.save.unk_0F86C;
-    s32 type = mNpc_GET_TYPE(arg0);
 
-    if ((type >> 0xC) == 0xE) {
+    if (ACTOR_FGNAME_GET_F000(arg0) == FGNAME_F000_E) {
         s32 idx = mNpc_GET_IDX(arg0);
         s32 temp_a2 = idx / 8;
 
@@ -2030,15 +2027,16 @@ void func_800AA51C_jp(Animal_c* animal, u8 arg1, s32 count) {
     func_800A6810_jp(B_80143028_jp, ARRAY_COUNT(B_80143028_jp), ARRAY_COUNT(B_80143028_jp));
 
     if (count == 0) {
-        sp50 = malloc((u32)D_E03520 - (u32)D_E03000);
-        sp4C = malloc((((u32)D_E0D0E0 - (u32)D_E0D000) + 1) & ~1);
+        sp50 = malloc(SEGMENT_ROM_SIZE(segment_00E03000));
+        sp4C = malloc(ALIGN2(SEGMENT_ROM_SIZE(segment_00E0D000)));
     } else {
-        sp50 = zelda_malloc((u32)D_E03520 - (u32)D_E03000);
-        sp4C = zelda_malloc((((u32)D_E0D0E0 - (u32)D_E0D000) + 1) & ~1);
+        sp50 = zelda_malloc(SEGMENT_ROM_SIZE(segment_00E03000));
+        sp4C = zelda_malloc(ALIGN2(SEGMENT_ROM_SIZE(segment_00E0D000)));
     }
 
-    func_80026E10_jp(sp50, (RomOffset)D_E03000, (u32)D_E03520 - (u32)D_E03000, "../m_npc.c", 4083);
-    func_80026E10_jp(sp4C, (RomOffset)D_E0D000, (((u32)D_E0D0E0 - (u32)D_E0D000) + 1) & ~1, "../m_npc.c", 4085);
+    func_80026E10_jp(sp50, SEGMENT_ROM_START(segment_00E03000), SEGMENT_ROM_SIZE(segment_00E03000), "../m_npc.c", 4083);
+    func_80026E10_jp(sp4C, SEGMENT_ROM_START(segment_00E0D000), ALIGN2(SEGMENT_ROM_SIZE(segment_00E0D000)),
+                     "../m_npc.c", 4085);
 
     while (arg1) {
         if (animal == NULL) {
@@ -2047,7 +2045,7 @@ void func_800AA51C_jp(Animal_c* animal, u8 arg1, s32 count) {
 
         if (animal->id.npc_id == 0) {
             s32 temp_s0 = B_80143028_jp[i];
-            s32 temp_v0 = func_800AA4FC_jp(temp_s0, sp4C, (((u32)D_E0D0E0 - (u32)D_E0D000) + 1) & ~1);
+            s32 temp_v0 = func_800AA4FC_jp(temp_s0, sp4C, ALIGN2(SEGMENT_ROM_SIZE(segment_00E0D000)));
 
             if (temp_v0 == 0) {
                 temp_s2 = D_8010AF58_jp[temp_s0];
@@ -2084,11 +2082,12 @@ void mNpc_SetAnimalTitleDemo(mNpc_demo_npc_c* demo_npc, Animal_c* animal, Game* 
 
     if (game != NULL) {
         alloc = &game->alloc;
-        var_v0 = gamealloc_malloc(alloc, (u32)D_E03520 - (u32)D_E03000);
+        var_v0 = gamealloc_malloc(alloc, SEGMENT_ROM_SIZE(segment_00E03000));
     } else {
-        var_v0 = zelda_malloc((u32)D_E03520 - (u32)D_E03000);
+        var_v0 = zelda_malloc(SEGMENT_ROM_SIZE(segment_00E03000));
     }
-    func_80026E10_jp(var_v0, (RomOffset)D_E03000, (u32)D_E03520 - (u32)D_E03000, "../m_npc.c", 0x1055);
+    func_80026E10_jp(var_v0, SEGMENT_ROM_START(segment_00E03000), SEGMENT_ROM_SIZE(segment_00E03000), "../m_npc.c",
+                     0x1055);
 
     for (i = 0; i < ANIMAL_NUM_MAX; i++) {
         func_800AA29C_jp(animal, demo_npc->npc_name, var_v0);
@@ -2318,7 +2317,7 @@ void func_800AAEFC_jp(Animal_c* animal, Struct_B_80142D08_jp* arg1, u8 arg2) {
         }
 
         home_info = &animal->home_info;
-        if ((((animal->id.npc_id & 0xF000) >> 0xC) == 0xE) && (home_info->block_x == 0xFF) &&
+        if ((ACTOR_FGNAME_GET_F000(animal->id.npc_id) == FGNAME_F000_E) && (home_info->block_x == 0xFF) &&
             (home_info->block_z == 0xFF)) {
             idx = B_80142C00_jp[i];
             home_info->block_x = arg1[idx].unk_01;
@@ -2371,17 +2370,17 @@ void mNpc_SetNpcList(mNpc_NpcList_c* npclist, Animal_c* animal, s32 count, s32 m
     s32 i;
     s32 npc_id;
 
-    house_data_size = (u32)D_E026D0 - (u32)D_E02000;
+    house_data_size = SEGMENT_ROM_SIZE(segment_00E02000);
     if (malloc_flag == 0) {
         house_data = malloc(house_data_size);
     } else {
         house_data = zelda_malloc(house_data_size);
     }
-    func_80026E10_jp(house_data, (u32)D_E02000, house_data_size, "../m_npc.c", 0x1328);
+    func_80026E10_jp(house_data, SEGMENT_ROM_START(segment_00E02000), house_data_size, "../m_npc.c", 0x1328);
 
     for (i = 0; i < count; i++) {
         home_info = &animal->home_info;
-        if (((mNpc_GET_TYPE(animal->id.npc_id) >> 0xC) == 0xE) && (home_info->block_x != 0xFF)) {
+        if ((ACTOR_FGNAME_GET_F000(animal->id.npc_id) == FGNAME_F000_E) && (home_info->block_x != 0xFF)) {
             npc_id = animal->id.npc_id;
             id = animal->id.npc_id & 0xFFF;
             new_house = &npclist->house_data;
@@ -2427,7 +2426,7 @@ void mNpc_SetNpcinfo(Actor* actor, s8 npc_info_idx) {
     if (actor->part == ACTOR_PART_NPC) {
         Npc* npc = (Npc*)actor;
 
-        if ((mNpc_GET_TYPE(npc->actor.fgName) >> 0xC) == 0xD) {
+        if (ACTOR_FGNAME_GET_F000(npc->actor.fgName) == FGNAME_F000_D) {
             CommonData_unk_10170* temp_v0 = func_800AA14C_jp(npc->actor.fgName);
 
             if (temp_v0 != NULL) {
@@ -2583,7 +2582,7 @@ u16 func_800AB8A0_jp(FieldMake_Unk_Struct* arg0, mNpc_NpcList_c* npclist, s32 co
 
     for (i = 0; i < 10; i++) {
         for (j = 0; j < 10; j++) {
-            if (((mNpc_GET_TYPE(*var_s1) >> 0xC) == 1) && (func_800AB80C_jp(*var_s1) == TRUE)) {
+            if ((ACTOR_FGNAME_GET_F000(*var_s1) == FGNAME_F000_1) && (func_800AB80C_jp(*var_s1) == TRUE)) {
                 var_s2++;
             }
             var_s1++;
@@ -2597,7 +2596,7 @@ u16 func_800AB8A0_jp(FieldMake_Unk_Struct* arg0, mNpc_NpcList_c* npclist, s32 co
 
         for (i = 0; i < 10; i++) {
             for (j = 0; j < 10; j++) {
-                if (((mNpc_GET_TYPE(*var_s1) >> 0xC) == 1) && (func_800AB80C_jp(*var_s1) == TRUE)) {
+                if ((ACTOR_FGNAME_GET_F000(*var_s1) == FGNAME_F000_1) && (func_800AB80C_jp(*var_s1) == TRUE)) {
                     if (var_s2 <= 0) {
                         return *var_s1;
                     }
@@ -3105,7 +3104,7 @@ void func_800ACB54_jp(Animal_c* animal, s32 count) {
 
     for (i = 0; i < count; i++) {
         if (animal != NULL) {
-            if ((mNpc_GET_TYPE(animal->id.npc_id) >> 0xC) == 0xE) {
+            if (ACTOR_FGNAME_GET_F000(animal->id.npc_id) == FGNAME_F000_E) {
                 animal->id.name_id = animal->id.npc_id & 0xFF;
             }
         }
@@ -3118,7 +3117,8 @@ void func_800ACC38_jp(u8* name, u8 npc_id) {
     s32 id = npc_id;
 
     if (id < 0xFF) {
-        func_80026E10_jp(sp28, (u32)D_E04000.unk_08[id], 8, "../m_npc.c", 0x1916);
+        func_80026E10_jp(sp28, (RomOffset)((Struct_D_E04000*)SEGMENT_ROM_START(segment_00E04000))->unk_08[id], 8,
+                         "../m_npc.c", 0x1916);
         mem_copy(name, sp28, PLAYER_NAME_LEN);
     }
 }
@@ -3130,7 +3130,7 @@ void func_800ACCAC_jp(u8* name, u16 npc_id) {
     if (name != NULL) {
         u8 id = npc_id & 0xFF;
 
-        if (((mNpc_GET_TYPE(npc_id) >> 0xC) == 0xE) && (id < 0xFF)) {
+        if ((ACTOR_FGNAME_GET_F000(npc_id) == FGNAME_F000_E) && (id < 0xFF)) {
             func_800ACC38_jp(sp24, id);
             var_a2 = sp24;
         }
@@ -3143,7 +3143,7 @@ void mNpc_GetNpcWorldNameAnm(u8* name, AnmPersonalID_c* anm_id) {
     u8 sp1C[PLAYER_NAME_LEN];
 
     if (anm_id != NULL) {
-        if ((mNpc_GET_TYPE(anm_id->npc_id) >> 0xC) == 0xE) {
+        if (ACTOR_FGNAME_GET_F000(anm_id->npc_id) == FGNAME_F000_E) {
             func_800ACCAC_jp(sp1C, anm_id->npc_id);
             var_a2 = sp1C;
         }
@@ -3541,7 +3541,9 @@ s32 func_800AD6D4_jp(u8 arg0) {
 
 void func_800AD8C4_jp(Animal_c* animal, s32 arg1) {
     if ((arg1 >= 0) && (arg1 < 0xD8)) {
-        func_80026E10_jp(&B_80142E78_jp, (RomOffset)&D_E03000[arg1], 8, "../m_npc.c", 0x1CB3);
+        Struct_D_E03000* ptr = (Struct_D_E03000*)SEGMENT_ROM_START(segment_00E03000);
+
+        func_80026E10_jp(&B_80142E78_jp, (RomOffset)&ptr[arg1], 8, "../m_npc.c", 0x1CB3);
         func_800AA218_jp(animal, arg1 | 0xE000, D_8010AF58_jp[arg1], &B_80142E78_jp);
     }
 }

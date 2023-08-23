@@ -3,6 +3,7 @@
 
 #include "attributes.h"
 
+#define ALIGN2(val) (((val) + 1) & ~1)
 #define ALIGN4(val) (((val) + 3) & ~3)
 #define ALIGN8(val) (((val) + 7) & ~7)
 #define ALIGN16(val) (((val) + 0xF) & ~0xF)
