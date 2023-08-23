@@ -49,6 +49,8 @@ class N64SegCkf_kn(CommonSegCodeSubsegment):
 
         extracted_data = rom_bytes[self.rom_start : self.rom_end]
         segment_length = len(extracted_data)
+        if (segment_length) % 2 != 0:
+            log.error(f"Error: ckf_kn segment {self.name} length ({segment_length}) is not a multiple of 2!")
 
         lines = []
         if not self.data_only:
