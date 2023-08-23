@@ -1,5 +1,7 @@
 #include "ac_npc_engineer.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "include/unknown_structs.h"
 
