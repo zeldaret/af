@@ -31,8 +31,8 @@ void ovlmgr_Free(void* ptr) {
 void ovlmgr_LoadImpl(RomOffset vromStart, UNUSED RomOffset vromEndUnused, void* vramStart, void* vramEnd,
                      void* allocatedRamAddr, struct OverlayRelocationSection* ovl, size_t size) {
     RomOffset vromEnd;
-    void* ovlStart;
-    void* ovlEnd;
+    RomOffset ovlStart;
+    RomOffset ovlEnd;
     size_t ovlSize;
     OverlayRelocationSection* ovlRelocs;
     char ovlSizeStr[80];

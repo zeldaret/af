@@ -11,7 +11,7 @@ typedef struct DmaRequest {
     /* 0x00 */ RomOffset vrom;
     /* 0x04 */ void* vram;
     /* 0x08 */ size_t size;
-    /* 0x0C */ UNK_TYPE unk_0C;
+    /* 0x0C */ const char* unk_0C;
     /* 0x10 */ UNK_TYPE unk_10;
     /* 0x14 */ UNK_TYPE unk_14;
     /* 0x18 */ OSMesgQueue* mq;

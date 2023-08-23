@@ -58,11 +58,10 @@ s32 DmaMgr_DmaRomToRam(RomOffset vrom, void* vram, size_t size) {
     OSIoMesg sp80;
     OSMesgQueue sp68;
     OSMesg sp64[1];
-    s32 ret; // sp60
-    u32 temp_s0;
+    s32 ret;
+    u32 temp_s0 = D_8003BBE0_jp;
     DmaRequest sp3C;
 
-    temp_s0 = D_8003BBE0_jp;
     if (((vrom << 31) != 0) || (((u32)vram << 29) != 0) || ((size << 31) != 0)) {
         sp3C.vrom = vrom;
         sp3C.vram = vram;
@@ -96,7 +95,7 @@ s32 DmaMgr_DmaRomToRam(RomOffset vrom, void* vram, size_t size) {
             osRecvMesg(&sp68, NULL, OS_MESG_BLOCK);
             size -= temp_s0;
             vrom += temp_s0;
-            vram = (uintptr_t)vram + temp_s0;
+            vram = (void*)((uintptr_t)vram + temp_s0);
         }
     }
 
@@ -163,7 +162,7 @@ s32 func_800267DC_jp(RomOffset vrom) {
     return -1;
 }
 
-const char* func_80026814_jp(s32 arg0) {
+const char* func_80026814_jp(UNUSED s32 arg0) {
     return "??";
 }
 
@@ -205,7 +204,7 @@ void func_80026828_jp(DmaRequest* req) {
     }
 }
 
-void func_800269E4_jp(void* arg0) {
+void func_800269E4_jp(UNUSED void* arg) {
     OSMesg msg;
     DmaRequest* sp34;
 
@@ -224,7 +223,7 @@ void func_800269E4_jp(void* arg0) {
     }
 }
 
-s32 func_80026A64_jp(DmaRequest* req, void* vram, RomOffset vrom, size_t size, s32 arg4, OSMesgQueue* mq, s32 arg6) {
+s32 func_80026A64_jp(DmaRequest* req, void* vram, RomOffset vrom, size_t size, UNUSED s32 arg4, OSMesgQueue* mq, s32 arg6) {
     if ((vs32)ResetStatus >= 2) {
         return -2;
     }
@@ -315,10 +314,10 @@ void func_80026DA0_jp(void) {
     osSendMesg(&B_8003FF60_jp, NULL, 1);
 }
 
-void func_80026DCC_jp(DmaRequest* arg0, void* arg1, u32 arg2, u32 arg3, s32 arg4, OSMesgQueue* arg5, s32 arg6, s32 arg7, s32 arg8) {
-    arg0->unk_0C = arg7;
-    arg0->unk_10 = arg8;
-    func_80026A64_jp(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+void func_80026DCC_jp(DmaRequest* req, void* arg1, u32 arg2, u32 arg3, s32 arg4, OSMesgQueue* arg5, s32 arg6, const char* arg7, s32 arg8) {
+    req->unk_0C = arg7;
+    req->unk_10 = arg8;
+    func_80026A64_jp(req, arg1, arg2, arg3, arg4, arg5, arg6);
 }
 
 s32 func_80026E10_jp(void* arg0, RomOffset arg1, size_t arg2, const char* arg3, s32 arg4) {
@@ -326,7 +325,7 @@ s32 func_80026E10_jp(void* arg0, RomOffset arg1, size_t arg2, const char* arg3, 
     s32 temp;
     OSMesgQueue sp34;
     OSMesg sp30[1];
-    s32 pad;
+    UNUSED s32 pad;
 
     sp50.unk_0C = arg3;
     sp50.unk_10 = arg4;

@@ -13,15 +13,15 @@
 void DoRelocation(void* allocatedRamAddr, OverlayRelocationSection* ovlRelocs, void* vramStart);
 
 // original name unknown
-s32 Overlay_Load(RomOffset vromStart, RomOffset vromEnd, void* ovlStart, void* ovlEnd, void* vramStart, void* vramEnd,
+s32 Overlay_Load(RomOffset vromStart, RomOffset vromEnd, RomOffset ovlStart, RomOffset ovlEnd, void* vramStart, void* vramEnd,
                  void* allocatedRamAddr, OverlayRelocationSection* ovlRelocs) {
     OverlayRelocationSection* ovl = ovlRelocs;
     s32 vromSize = vromEnd - vromStart;
-    s32 ovlSize = (uintptr_t)ovlEnd - (uintptr_t)ovlStart;
+    s32 ovlSize = ovlEnd - ovlStart;
     s32 vramSize = (uintptr_t)vramEnd - (uintptr_t)vramStart;
     void* end = (void*)((uintptr_t)allocatedRamAddr + vromSize);
 
-    DmaMgr_RequestSync(allocatedRamAddr, (void*)vromStart, vromSize);
+    DmaMgr_RequestSync(allocatedRamAddr, vromStart, vromSize);
     DmaMgr_RequestSync(ovl, ovlStart, ovlSize);
     DoRelocation(allocatedRamAddr, ovl, vramStart);
 
