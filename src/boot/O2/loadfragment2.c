@@ -13,8 +13,8 @@
 void DoRelocation(void* allocatedRamAddr, OverlayRelocationSection* ovlRelocs, void* vramStart);
 
 // original name unknown
-s32 Overlay_Load(RomOffset vromStart, RomOffset vromEnd, RomOffset ovlStart, RomOffset ovlEnd, void* vramStart, void* vramEnd,
-                 void* allocatedRamAddr, OverlayRelocationSection* ovlRelocs) {
+s32 Overlay_Load(RomOffset vromStart, RomOffset vromEnd, RomOffset ovlStart, RomOffset ovlEnd, void* vramStart,
+                 void* vramEnd, void* allocatedRamAddr, OverlayRelocationSection* ovlRelocs) {
     OverlayRelocationSection* ovl = ovlRelocs;
     s32 vromSize = vromEnd - vromStart;
     s32 ovlSize = ovlEnd - ovlStart;

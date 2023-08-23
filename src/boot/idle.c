@@ -23,7 +23,8 @@ f32 gViConfigYScale = 1.0f;
 
 void Main_ThreadEntry(void* arg) {
     DmaMgr_Init();
-    DmaMgr_RequestSyncDebug(SEGMENT_VRAM_START(code), SEGMENT_ROM_START(code), SEGMENT_ROM_SIZE_ALT(code), "../idle.c", 53);
+    DmaMgr_RequestSyncDebug(SEGMENT_VRAM_START(code), SEGMENT_ROM_START(code), SEGMENT_ROM_SIZE_ALT(code), "../idle.c",
+                            53);
     bzero(SEGMENT_BSS_START(code), SEGMENT_BSS_SIZE(code));
     func_800D66D0_jp(arg);
     DmaMgr_Stop();

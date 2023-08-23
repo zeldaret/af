@@ -28,8 +28,8 @@ typedef struct DmaEntry {
 extern DmaEntry dma_rom_ad[];
 
 s32 DmaMgr_DmaRomToRam(RomOffset vrom, void* vram, size_t size);
-s32 DmaMgr_AudioDmaHandler(OSPiHandle* arg0, OSIoMesg* arg1, s32 arg2);
-s32 DmaMgr_RequestSync(void* ram, RomOffset vrom, size_t size);
+s32 DmaMgr_AudioDmaHandler(OSPiHandle* pihandle, OSIoMesg* mb, s32 direction);
+s32 DmaMgr_RequestSync(void* vram, RomOffset vrom, size_t size);
 s32 DmaMgr_RequestSyncNoSize(void* vram, RomOffset vrom);
 size_t DmaMgr_GetSegmentSize(RomOffset vrom);
 RomOffset DmaMgr_GetOvlStart(RomOffset vrom);
@@ -37,7 +37,7 @@ s32 DmaMgr_GetOvlOffsets(RomOffset vromStart, RomOffset* vromEnd, RomOffset* ovl
 void DmaMgr_Init(void);
 void DmaMgr_Stop(void);
 void DmaMgr_RequestAsync(DmaRequest* req, void* vram, RomOffset vrom, size_t size, s32 arg4, OSMesgQueue* mq, OSMesg msg, const char* filename, s32 line);
-s32 DmaMgr_RequestSyncDebug(void* arg0, RomOffset arg1, size_t arg2, const char* arg3, s32 arg4);
+s32 DmaMgr_RequestSyncDebug(void* vram, RomOffset vrom, size_t size, const char* filename, s32 line);
 
 
 #define DMAMGR_DEFAULT_BUFSIZE ALIGN16(0x2000)

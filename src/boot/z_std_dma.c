@@ -72,7 +72,8 @@ NORETURN void DmaMgr_Error(DmaRequest* req, const char* file, const char* errorN
  * so that higher priority transfers can still be carried out in a timely manner. The transfers are sent in a queue to
  * the OS PI Manager which performs the transfer.
  *
- * The `vrom` address and the `size` are expected to be at least 0x2 aligned, while the destination `vram` should be 0x8 aligned, otherwise a fatal error will be triggered.
+ * The `vrom` address and the `size` are expected to be at least 0x2 aligned, while the destination `vram` should be 0x8
+ * aligned, otherwise a fatal error will be triggered.
  *
  * @return 0 if successful, -1 if the DMA could not be queued with the PI Manager.
  */
@@ -100,7 +101,8 @@ s32 DmaMgr_DmaRomToRam(RomOffset vrom, void* vram, size_t size) {
     if (buffSize > 0) {
         while (size > buffSize) {
             // The system avoids large DMAs as these would stall the PI for too long, potentially causing issues with
-            // audio. To allow audio to continue to DMA whenever it needs to, other DMAs are split into manageable chunks.
+            // audio. To allow audio to continue to DMA whenever it needs to, other DMAs are split into manageable
+            // chunks.
 
             ioMsg.hdr.pri = 0;
             ioMsg.hdr.retQueue = &queue;
@@ -216,13 +218,15 @@ void DmaMgr_ProcessRequest(DmaRequest* req) {
         entry = &dma_rom_ad[index];
 
         if (entry->romEnd == 0) {
-            // romEnd of 0 indicates that the file is uncompressed. Files that are stored uncompressed can have only part of their content loaded into RAM, so DMA only the requested region.
+            // romEnd of 0 indicates that the file is uncompressed. Files that are stored uncompressed can have only
+            // part of their content loaded into RAM, so DMA only the requested region.
 
             if (entry->vromEnd < (vrom + size)) {
                 // Error, vrom + size ends up in a different file than it started in
 
                 // "DMA transfers cannot cross segment boundaries"
-                DmaMgr_Error(req, "", "Segment Alignment Error", "セグメント境界をまたがってＤＭＡ転送することはできません");
+                DmaMgr_Error(req, "", "Segment Alignment Error",
+                             "セグメント境界をまたがってＤＭＡ転送することはできません");
             }
             DmaMgr_DmaRomToRam((entry->romStart + vrom) - entry->vromStart, vram, size);
         } else {
@@ -232,17 +236,20 @@ void DmaMgr_ProcessRequest(DmaRequest* req) {
             romStart = entry->romStart;
             if (vrom != entry->vromStart) {
                 // "DMA transfer cannot be performed from the middle of a compressed segment"
-                DmaMgr_Error(req, "", "Can't Transfer Segment", "圧縮されたセグメントの途中からはＤＭＡ転送することはできません");
+                DmaMgr_Error(req, "", "Can't Transfer Segment",
+                             "圧縮されたセグメントの途中からはＤＭＡ転送することはできません");
             }
 
             if (size != (entry->vromEnd - entry->vromStart)) {
                 // Error, only part of the file was requested
 
                 // "It is not possible to DMA only part of a compressed segment"
-                DmaMgr_Error(req, "", "Can't Transfer Segment", "圧縮されたセグメントの一部だけをＤＭＡ転送することはできません");
+                DmaMgr_Error(req, "", "Can't Transfer Segment",
+                             "圧縮されたセグメントの一部だけをＤＭＡ転送することはできません");
             }
 
-            // Reduce the thread priority and decompress the file, the decompression routine handles the DMA in chunks. Restores the thread priority when done.
+            // Reduce the thread priority and decompress the file, the decompression routine handles the DMA in chunks.
+            // Restores the thread priority when done.
             osSetThreadPri(NULL, THREAD_PRI_DMAMGR_LOW);
             Yaz0_Decompress(romStart, vram, romSize);
             osSetThreadPri(NULL, M_PRIORITY_DMAMGR);
@@ -286,7 +293,8 @@ void DmaMgr_ThreadEntry(UNUSED void* arg) {
  * @param mq Message queue to notify with `msg` once the transfer is complete.
  * @param msg Message to send to `mq` once the transfer is complete.
  */
-s32 DmaMgr_SendRequest(DmaRequest* req, void* vram, RomOffset vrom, size_t size, UNUSED s32 arg4, OSMesgQueue* mq, OSMesg arg6) {
+s32 DmaMgr_SendRequest(DmaRequest* req, void* vram, RomOffset vrom, size_t size, UNUSED s32 arg4, OSMesgQueue* mq,
+                       OSMesg arg6) {
     if (ResetStatus >= 2) {
         return -2;
     }
@@ -298,7 +306,8 @@ s32 DmaMgr_SendRequest(DmaRequest* req, void* vram, RomOffset vrom, size_t size,
     req->mq = mq;
     req->unk_1C = arg6;
 
-    if ((vram == NULL) || (osMemSize < ((uintptr_t)vram + size + 0x80000000)) || (vrom % 2 != 0) || (vrom > 0x04000000) || (size == 0) || (size % 2 != 0)) {
+    if ((vram == NULL) || (osMemSize < ((uintptr_t)vram + size + 0x80000000)) || (vrom % 2 != 0) ||
+        (vrom > 0x04000000) || (size == 0) || (size % 2 != 0)) {
         DmaMgr_Error(req, NULL, "ILLIGAL DMA-FUNCTION CALL", "パラメータ異常です");
     }
 
@@ -363,7 +372,8 @@ RomOffset DmaMgr_GetOvlStart(RomOffset vrom) {
 /**
  * Searches for the rom offsets of the ovl reloc segment for a given segment.
  *
- * The values will be stored in the pointers passed as parameters. If no segment matches the given vrom then the parameters will be left untouched.
+ * The values will be stored in the pointers passed as parameters. If no segment matches the given vrom then the
+ * parameters will be left untouched.
  *
  * @param vromStart The vrom start of the segment.
  * @param[out] vromEnd The vrom end for the given segment.
@@ -400,7 +410,8 @@ void DmaMgr_Init(void) {
 
     osCreateMesgQueue(&sDmaMgrMsgQueue, dmaEntryMsgBufs, ARRAY_COUNT(dmaEntryMsgBufs));
     StackCheck_Init(&sDmaMgrStackInfo, sDmaMgrStack, STACK_TOP(sDmaMgrStack), 0, 0x100, "dmamgr");
-    osCreateThread(&sDmaMgrThread, M_THREAD_ID_DMAMGR, DmaMgr_ThreadEntry, NULL, STACK_TOP(sDmaMgrStack), M_PRIORITY_DMAMGR);
+    osCreateThread(&sDmaMgrThread, M_THREAD_ID_DMAMGR, DmaMgr_ThreadEntry, NULL, STACK_TOP(sDmaMgrStack),
+                   M_PRIORITY_DMAMGR);
     osStartThread(&sDmaMgrThread);
 }
 
@@ -409,7 +420,9 @@ void DmaMgr_Stop(void) {
 }
 
 /**
- * Submit an asynchronous DMA request. Unlike other DMA requests, this will not block the current thread. Data arrival is not immediate however, ensure that the request has completed by awaiting a message sent to `mq` when the DMA operation has completed.
+ * Submit an asynchronous DMA request. Unlike other DMA requests, this will not block the current thread. Data arrival
+ * is not immediate however, ensure that the request has completed by awaiting a message sent to `mq` when the DMA
+ * operation has completed.
  *
  * @param req DMA request structure, filled out internally.
  * @param vram Location in DRAM for data to be written.
@@ -421,7 +434,8 @@ void DmaMgr_Stop(void) {
  * @param line Debug line number of caller.
  * @return 0
  */
-void DmaMgr_RequestAsync(DmaRequest* req, void* vram, RomOffset vrom, size_t size, s32 arg4, OSMesgQueue* mq, OSMesg msg, const char* filename, s32 line) {
+void DmaMgr_RequestAsync(DmaRequest* req, void* vram, RomOffset vrom, size_t size, s32 arg4, OSMesgQueue* mq,
+                         OSMesg msg, const char* filename, s32 line) {
     req->filename = filename;
     req->line = line;
     DmaMgr_SendRequest(req, vram, vrom, size, arg4, mq, msg);
