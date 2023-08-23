@@ -1,5 +1,7 @@
 #include "ac_npc_majin3.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aMJN3_actor_ct(Actor* thisx, Game_Play* game_play);

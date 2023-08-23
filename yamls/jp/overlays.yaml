@@ -2057,7 +2057,7 @@
     bss_size: 0x0
     subsegments:
       - [0x892600, c, overlays/actors/ovl_Npc_Engineer/ac_npc_engineer]
-      - [0x892790, data, overlays/actors/ovl_Npc_Engineer/ac_npc_engineer]
+      - [0x892790, .data, overlays/actors/ovl_Npc_Engineer/ac_npc_engineer]
   - name: ovl_Npc_Engineer_reloc
     type: code
     start: 0x8927D0

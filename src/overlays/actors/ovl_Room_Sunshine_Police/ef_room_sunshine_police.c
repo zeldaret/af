@@ -1,5 +1,7 @@
 #include "ef_room_sunshine_police.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void Ef_Room_Sunshine_Police_actor_ct(Actor* thisx, Game_Play* game_play);
