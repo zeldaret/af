@@ -336,25 +336,42 @@ s32 DmaMgr_RequestSync(void* vram, RomOffset vrom, size_t size) {
  *
  * @see DmaMgr_RequestSync
  */
-s32 func_80026BC0_jp(void* vram, RomOffset vrom) {
+s32 DmaMgr_RequestSyncNoSize(void* vram, RomOffset vrom) {
     DmaEntry* entry = DmaMgr_FindDmaEntry(vrom);
 
     return DmaMgr_RequestSync(vram, vrom, entry->vromEnd - entry->vromStart);
 }
 
-size_t func_80026C00_jp(RomOffset vrom) {
+/**
+ * Returns the uncompressed size for a given segment.
+ */
+size_t DmaMgr_GetSegmentSize(RomOffset vrom) {
     DmaEntry* entry = DmaMgr_FindDmaEntry(vrom);
 
     return entry->vromEnd - entry->vromStart;
 }
 
-RomOffset func_80026C28_jp(RomOffset vrom) {
+/**
+ * Returns the ovl reloc vrom start for a given segment.
+ */
+RomOffset DmaMgr_GetOvlStart(RomOffset vrom) {
     DmaEntry* entry = DmaMgr_FindDmaEntry(vrom);
 
     return entry[1].vromStart;
 }
 
-s32 func_80026C4C_jp(RomOffset vromStart, RomOffset* vromEnd, RomOffset* ovlStart, RomOffset* ovlEnd) {
+/**
+ * Searches for the rom offsets of the ovl reloc segment for a given segment.
+ *
+ * The values will be stored in the pointers passed as parameters. If no segment matches the given vrom then the parameters will be left untouched.
+ *
+ * @param vromStart The vrom start of the segment.
+ * @param[out] vromEnd The vrom end for the given segment.
+ * @param[out] ovlStart The vrom start for the ovl reloc segment.
+ * @param[out] ovlEnd The vrom end for the ovl reloc segment.
+ * @return s32 0 if the given segment is found, -1 otherwise.
+ */
+s32 DmaMgr_GetOvlOffsets(RomOffset vromStart, RomOffset* vromEnd, RomOffset* ovlStart, RomOffset* ovlEnd) {
     DmaEntry* entry = DmaMgr_FindDmaEntry(vromStart);
 
     if (entry != NULL) {

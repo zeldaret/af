@@ -37,7 +37,7 @@ void ovlmgr_LoadImpl(RomOffset vromStart, UNUSED RomOffset vromEndUnused, void* 
     OverlayRelocationSection* ovlRelocs;
     char ovlSizeStr[80];
 
-    func_80026C4C_jp(vromStart, &vromEnd, &ovlStart, &ovlEnd);
+    DmaMgr_GetOvlOffsets(vromStart, &vromEnd, &ovlStart, &ovlEnd);
 
     ovlSize = (uintptr_t)ovlEnd - (uintptr_t)ovlStart;
 
