@@ -48,13 +48,14 @@ class N64SegCkf_c(CommonSegCodeSubsegment):
         assert isinstance(self.vram_start, int)
 
         extracted_data = rom_bytes[self.rom_start : self.rom_end]
+        segment_length = len(extracted_data)
 
         lines = []
         if not self.data_only:
             lines.append(options.opts.generated_c_preamble)
             lines.append("")
 
-        count = len(extracted_data)
+        count = segment_length // 2
         sym = self.create_symbol(addr=self.vram_start, in_segment=True, type="data", define=True)
 
         if not self.data_only:
@@ -80,8 +81,8 @@ class N64SegCkf_c(CommonSegCodeSubsegment):
                 f.write(self.file_text)
 
     def should_scan(self) -> bool:
-        return options.opts.is_mode_active("vtx")
+        return options.opts.is_mode_active("ckf_c")
 
     def should_split(self) -> bool:
-        return self.extract and options.opts.is_mode_active("vtx")
+        return self.extract and options.opts.is_mode_active("ckf_c")
     

@@ -80,8 +80,8 @@ class N64SegCkf_ckcb(CommonSegCodeSubsegment):
                 f.write(self.file_text)
 
     def should_scan(self) -> bool:
-        return options.opts.is_mode_active("vtx")
+        return options.opts.is_mode_active("ckf_ckcb")
 
     def should_split(self) -> bool:
-        return self.extract and options.opts.is_mode_active("vtx")
+        return self.extract and options.opts.is_mode_active("ckf_ckcb")
     

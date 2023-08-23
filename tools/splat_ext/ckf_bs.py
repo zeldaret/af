@@ -63,7 +63,7 @@ class N64SegCkf_bs(CommonSegCodeSubsegment):
             lines.append(f"BaseSkeletonR {self.format_sym_name(sym)} = ")
 
         numberOfJoints, numberOfDisplayLists, jointElemTable = struct.unpack(">BBxxI", extracted_data)
-        jointelemtable_symbol = self.get_symbol(addr=jointElemTable).given_name
+        jointelemtable_symbol = self.format_sym_name(self.get_symbol(addr=jointElemTable))
         output = f"{{ {numberOfJoints}, {numberOfDisplayLists}, {jointelemtable_symbol} }}"
         lines.append(output)
 
@@ -82,8 +82,8 @@ class N64SegCkf_bs(CommonSegCodeSubsegment):
                 f.write(self.file_text)
 
     def should_scan(self) -> bool:
-        return options.opts.is_mode_active("vtx")
+        return options.opts.is_mode_active("ckf_bs")
 
     def should_split(self) -> bool:
-        return self.extract and options.opts.is_mode_active("vtx")
+        return self.extract and options.opts.is_mode_active("ckf_bs")
     
