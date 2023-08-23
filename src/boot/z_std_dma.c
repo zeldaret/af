@@ -5,6 +5,7 @@
 #include "libc/stdbool.h"
 #include "macros.h"
 #include "segment_symbols.h"
+#include "boot_variables.h"
 
 extern u16 B_8003FF5C_jp;
 extern void* B_8003FF78_jp;
@@ -17,6 +18,9 @@ extern OSMesgQueue B_8003FF60_jp;
 
 extern const char* B_800406A8_jp;
 extern UNK_TYPE B_800406AC_jp;
+
+extern s32 B_800406B0_jp;
+extern u32 D_8003BBE0_jp;
 
 #if 0
 void func_800263F0_jp(DmaRequest* req, const char* arg1, const char* arg2, const char* arg3) {
@@ -60,7 +64,67 @@ void func_800263F0_jp(DmaRequest* req, const char* arg1, const char* arg2, const
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/RO_STR_8003D22C_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/DmaMgr_DmaRomToRam.s")
+s32 DmaMgr_DmaRomToRam(RomOffset vrom, void* vram, size_t size) {
+    OSIoMesg sp80;
+    OSMesgQueue sp68;
+    OSMesg sp64[1];
+    s32 ret; // sp60
+    u32 temp_s0;
+    DmaRequest sp3C;
+
+    temp_s0 = D_8003BBE0_jp;
+    if (((vrom << 31) != 0) || (((u32)vram << 29) != 0) || ((size << 31) != 0)) {
+        sp3C.vrom = vrom;
+        sp3C.vram = vram;
+        sp3C.size = size;
+        sp3C.unk_0C = "percial_DMA";
+        sp3C.unk_10 = 0;
+        func_800263F0_jp(&sp3C, NULL, "ILLIGAL ALIGNMENT", "アライメント異常");
+    }
+
+    osInvalDCache(vram, size);
+    osCreateMesgQueue(&sp68, sp64, ARRAY_COUNT(sp64));
+
+    if (temp_s0 != 0) {
+        while (temp_s0 < size) {
+            sp80.hdr.pri = 0;
+            sp80.hdr.retQueue = &sp68;
+            sp80.devAddr = vrom;
+            sp80.dramAddr = vram;
+            sp80.size = temp_s0;
+            B_800406B0_jp += temp_s0;
+
+            //! FAKE
+            if (1) {}
+            if (1) {}
+
+            ret = osEPiStartDma(gCartHandle, &sp80, 0);
+            if (ret != 0) {
+                goto end;
+            }
+
+            osRecvMesg(&sp68, NULL, OS_MESG_BLOCK);
+            size -= temp_s0;
+            vrom += temp_s0;
+            vram = (uintptr_t)vram + temp_s0;
+        }
+    }
+
+    sp80.hdr.pri = 0;
+    sp80.hdr.retQueue = &sp68;
+    sp80.devAddr = vrom;
+    sp80.dramAddr = vram;
+    sp80.size = size;
+    B_800406B0_jp += size;
+    ret = osEPiStartDma(gCartHandle, &sp80, 0);
+    if (ret == 0) {
+        osRecvMesg(&sp68, NULL, OS_MESG_BLOCK);
+        osInvalDCache(vram, size);
+    }
+
+end:
+    return ret;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_800266C4_jp.s")
 

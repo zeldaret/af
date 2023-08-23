@@ -28,7 +28,7 @@ typedef struct DmaEntry {
 extern DmaEntry gDmaDataTable[];
 
 NORETURN void func_800263F0_jp(DmaRequest* req, const char* arg1, const char* arg2, const char* arg3);
-void DmaMgr_DmaRomToRam(RomOffset rom, void* vram, size_t size);
+s32 DmaMgr_DmaRomToRam(RomOffset vrom, void* vram, size_t size);
 // void func_800266C4_jp();
 DmaEntry* func_80026714_jp(RomOffset vrom);
 // void func_80026770_jp();
