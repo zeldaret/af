@@ -3,13 +3,13 @@
 #include "unk.h"
 
 StackEntry sDmaMgrStackInfo;
-u16 B_8003FF5C_jp;
+u16 sNumDmaEntries;
 OSMesgQueue sDmaMgrMsgQueue;
 OSMesg sDmaMgrMsgs[0x20];
 OSThread sDmaMgrThread;
 STACK(sDmaMgrStack, 0x500);
-const char* B_800406A8_jp;
-UNK_TYPE B_800406AC_jp;
+const char* sDmaMgrCurFileName;
+UNK_TYPE sDmaMgrCurFileLine;
 size_t B_800406B0_jp;
 size_t B_800406B4_jp;
 
@@ -24,9 +24,19 @@ size_t B_800406B4_jp;
 #include "segment_symbols.h"
 #include "boot_variables.h"
 
-u32 D_8003BBE0_jp = DMAMGR_DEFAULT_BUFSIZE;
+size_t gDmaMgrDmaBuffSize = DMAMGR_DEFAULT_BUFSIZE;
 
-NORETURN void func_800263F0_jp(DmaRequest* req, const char* file, const char* errorName, const char* errorDesc) {
+/**
+ * DMA error encountered, print error messages and bring up the crash screen.
+ *
+ * @param req DMA Request causing the error.
+ * @param file DMA data filename associated with the operation that errored.
+ * @param errorName Error name string.
+ * @param errorDesc Error description string.
+ *
+ * This function does not return.
+ */
+NORETURN void DmaMgr_Error(DmaRequest* req, const char* file, const char* errorName, const char* errorDesc) {
     RomOffset vrom = req->vrom;
     void* vram = req->vram;
     size_t size = req->size;
@@ -37,13 +47,13 @@ NORETURN void func_800263F0_jp(DmaRequest* req, const char* file, const char* er
     (void)(file != NULL ? file : "???");
 
     if (req->filename != NULL) {
-    } else if (B_800406A8_jp != NULL) {
+    } else if (sDmaMgrCurFileName != NULL) {
     }
 
     if (req->filename != NULL) {
         sprintf(buff1, "DMA ERROR: %.50s %d", req->filename, req->line);
-    } else if (B_800406A8_jp != NULL) {
-        sprintf(buff1, "DMA ERROR: %.50s %d", B_800406A8_jp, B_800406AC_jp);
+    } else if (sDmaMgrCurFileName != NULL) {
+        sprintf(buff1, "DMA ERROR: %.50s %d", sDmaMgrCurFileName, sDmaMgrCurFileLine);
     } else {
         sprintf(buff1, "DMA ERROR: %.50s", (errorName != NULL) ? errorName : "???");
     }
@@ -52,12 +62,26 @@ NORETURN void func_800263F0_jp(DmaRequest* req, const char* file, const char* er
     Fault_AddHungupAndCrashImpl(buff1, buff2);
 }
 
+/**
+ * Transfer `size` bytes from physical ROM address `vrom` to `vram`.
+ *
+ * This function is intended for internal use only, however it is possible to use this function externally in which
+ * case it behaves as a synchronous transfer, data is available as soon as this function returns.
+ *
+ * Transfers are divided into chunks based on the current value of `gDmaMgrDmaBuffSize` to avoid congestion of the PI
+ * so that higher priority transfers can still be carried out in a timely manner. The transfers are sent in a queue to
+ * the OS PI Manager which performs the transfer.
+ *
+ * The `vrom` address and the `size` are expected to be at least 0x2 aligned, while the destination `vram` should be 0x8 aligned, otherwise a fatal error will be triggered.
+ *
+ * @return 0 if successful, -1 if the DMA could not be queued with the PI Manager.
+ */
 s32 DmaMgr_DmaRomToRam(RomOffset vrom, void* vram, size_t size) {
-    OSIoMesg sp80;
-    OSMesgQueue sp68;
-    OSMesg sp64[1];
+    OSIoMesg ioMsg;
+    OSMesgQueue queue;
+    OSMesg msg[1];
     s32 ret;
-    u32 temp_s0 = D_8003BBE0_jp;
+    size_t buffSize = gDmaMgrDmaBuffSize;
     DmaRequest sp3C;
 
     if (((vrom << 31) != 0) || (((u32)vram << 29) != 0) || ((size << 31) != 0)) {
@@ -66,46 +90,51 @@ s32 DmaMgr_DmaRomToRam(RomOffset vrom, void* vram, size_t size) {
         sp3C.size = size;
         sp3C.filename = "percial_DMA";
         sp3C.line = 0;
-        func_800263F0_jp(&sp3C, NULL, "ILLIGAL ALIGNMENT", "アライメント異常");
+        // "alignment error"
+        DmaMgr_Error(&sp3C, NULL, "ILLIGAL ALIGNMENT", "アライメント異常");
     }
 
     osInvalDCache(vram, size);
-    osCreateMesgQueue(&sp68, sp64, ARRAY_COUNT(sp64));
+    osCreateMesgQueue(&queue, msg, ARRAY_COUNT(msg));
 
-    if (temp_s0 != 0) {
-        while (temp_s0 < size) {
-            sp80.hdr.pri = 0;
-            sp80.hdr.retQueue = &sp68;
-            sp80.devAddr = vrom;
-            sp80.dramAddr = vram;
-            sp80.size = temp_s0;
-            B_800406B0_jp += temp_s0;
+    if (buffSize > 0) {
+        while (size > buffSize) {
+            // The system avoids large DMAs as these would stall the PI for too long, potentially causing issues with
+            // audio. To allow audio to continue to DMA whenever it needs to, other DMAs are split into manageable chunks.
+
+            ioMsg.hdr.pri = 0;
+            ioMsg.hdr.retQueue = &queue;
+            ioMsg.devAddr = vrom;
+            ioMsg.dramAddr = vram;
+            ioMsg.size = buffSize;
+            B_800406B0_jp += buffSize;
 
             //! FAKE
             if (1) {}
             if (1) {}
 
-            ret = osEPiStartDma(gCartHandle, &sp80, 0);
+            ret = osEPiStartDma(carthandle, &ioMsg, 0);
             if (ret != 0) {
                 goto end;
             }
 
-            osRecvMesg(&sp68, NULL, OS_MESG_BLOCK);
-            size -= temp_s0;
-            vrom += temp_s0;
-            vram = (void*)((uintptr_t)vram + temp_s0);
+            osRecvMesg(&queue, NULL, OS_MESG_BLOCK);
+            size -= buffSize;
+            vrom += buffSize;
+            vram = (void*)((uintptr_t)vram + buffSize);
         }
     }
 
-    sp80.hdr.pri = 0;
-    sp80.hdr.retQueue = &sp68;
-    sp80.devAddr = vrom;
-    sp80.dramAddr = vram;
-    sp80.size = size;
+    ioMsg.hdr.pri = 0;
+    ioMsg.hdr.retQueue = &queue;
+    ioMsg.devAddr = vrom;
+    ioMsg.dramAddr = vram;
+    ioMsg.size = size;
     B_800406B0_jp += size;
-    ret = osEPiStartDma(gCartHandle, &sp80, 0);
+
+    ret = osEPiStartDma(carthandle, &ioMsg, 0);
     if (ret == 0) {
-        osRecvMesg(&sp68, NULL, OS_MESG_BLOCK);
+        osRecvMesg(&queue, NULL, OS_MESG_BLOCK);
         osInvalDCache(vram, size);
     }
 
@@ -113,19 +142,29 @@ end:
     return ret;
 }
 
-s32 func_800266C4_jp(OSPiHandle* arg0, OSIoMesg* arg1, s32 arg2) {
-    s32 ret = osEPiStartDma(arg0, arg1, arg2);
+/**
+ * Callback function to facilitate audio DMA. Audio DMA does not use the request queue as audio data is often needed
+ * very soon after the request is sent, requiring a higher priority method for enqueueing a DMA on the OS PI command
+ * queue.
+ *
+ * @param pihandle Cartridge ROM PI Handle.
+ * @param mb IO Message describing the transfer.
+ * @param direction Read or write. (Only read is allowed)
+ * @return 0 if the IO Message was successfully put on the OS PI command queue, < 0 otherwise
+ */
+s32 DmaMgr_AudioDmaHandler(OSPiHandle* pihandle, OSIoMesg* mb, s32 direction) {
+    s32 ret = osEPiStartDma(pihandle, mb, direction);
 
-    B_800406B0_jp += arg1->size;
-    B_800406B4_jp += arg1->size;
+    B_800406B0_jp += mb->size;
+    B_800406B4_jp += mb->size;
 
     return ret;
 }
 
-DmaEntry* func_80026714_jp(RomOffset vrom) {
+DmaEntry* DmaMgr_FindDmaEntry(RomOffset vrom) {
     DmaEntry* entry;
 
-    for (entry = gDmaDataTable; entry->vromEnd != 0; entry++) {
+    for (entry = dma_rom_ad; entry->vromEnd != 0; entry++) {
         if ((vrom >= entry->vromStart) && (vrom < entry->vromEnd)) {
             return entry;
         }
@@ -133,8 +172,8 @@ DmaEntry* func_80026714_jp(RomOffset vrom) {
     return NULL;
 }
 
-RomOffset func_80026770_jp(RomOffset vrom) {
-    DmaEntry* entry = func_80026714_jp(vrom);
+RomOffset DmaMgr_TranslateVromToRom(RomOffset vrom) {
+    DmaEntry* entry = DmaMgr_FindDmaEntry(vrom);
 
     if (entry != NULL) {
         if (entry->romEnd == 0) {
@@ -151,11 +190,11 @@ RomOffset func_80026770_jp(RomOffset vrom) {
     return -1;
 }
 
-s32 func_800267DC_jp(RomOffset vrom) {
-    DmaEntry* entry = func_80026714_jp(vrom);
+s32 DmaMgr_FindDmaIndex(RomOffset vrom) {
+    DmaEntry* entry = DmaMgr_FindDmaEntry(vrom);
 
     if (entry != NULL) {
-        return entry - gDmaDataTable;
+        return entry - dma_rom_ad;
     }
     return -1;
 }
@@ -164,49 +203,62 @@ const char* func_80026814_jp(UNUSED s32 arg0) {
     return "??";
 }
 
-void func_80026828_jp(DmaRequest* req) {
+void DmaMgr_ProcessRequest(DmaRequest* req) {
     RomOffset vrom = req->vrom;
     void* vram = req->vram;
     size_t size = req->size;
     RomOffset romStart;
     size_t romSize;
     DmaEntry* entry;
-    s32 index = func_800267DC_jp(vrom);
+    s32 index = DmaMgr_FindDmaIndex(vrom);
 
-    if ((index >= 0) && (index < B_8003FF5C_jp)) {
-        entry = &gDmaDataTable[index];
+    if ((index >= 0) && (index < sNumDmaEntries)) {
+        entry = &dma_rom_ad[index];
 
         if (entry->romEnd == 0) {
+            // romEnd of 0 indicates that the file is uncompressed. Files that are stored uncompressed can have only part of their content loaded into RAM, so DMA only the requested region.
+
             if (entry->vromEnd < (vrom + size)) {
-                func_800263F0_jp(req, "", "Segment Alignment Error", "セグメント境界をまたがってＤＭＡ転送することはできません");
+                // Error, vrom + size ends up in a different file than it started in
+
+                // "DMA transfers cannot cross segment boundaries"
+                DmaMgr_Error(req, "", "Segment Alignment Error", "セグメント境界をまたがってＤＭＡ転送することはできません");
             }
             DmaMgr_DmaRomToRam((entry->romStart + vrom) - entry->vromStart, vram, size);
-            return;
         } else {
+            // File is compressed. Files that are stored compressed must be loaded into RAM all at once.
+
             romSize = entry->romEnd - entry->romStart;
             romStart = entry->romStart;
             if (vrom != entry->vromStart) {
-                func_800263F0_jp(req, "", "Can't Transfer Segment", "圧縮されたセグメントの途中からはＤＭＡ転送することはできません");
+                // "DMA transfer cannot be performed from the middle of a compressed segment"
+                DmaMgr_Error(req, "", "Can't Transfer Segment", "圧縮されたセグメントの途中からはＤＭＡ転送することはできません");
             }
 
             if (size != (entry->vromEnd - entry->vromStart)) {
-                func_800263F0_jp(req, "", "Can't Transfer Segment", "圧縮されたセグメントの一部だけをＤＭＡ転送することはできません");
+                // Error, only part of the file was requested
+
+                // "It is not possible to DMA only part of a compressed segment"
+                DmaMgr_Error(req, "", "Can't Transfer Segment", "圧縮されたセグメントの一部だけをＤＭＡ転送することはできません");
             }
 
-            osSetThreadPri(NULL, 0xA);
+            // Reduce the thread priority and decompress the file, the decompression routine handles the DMA in chunks. Restores the thread priority when done.
+            osSetThreadPri(NULL, THREAD_PRI_DMAMGR_LOW);
             Yaz0_Decompress(romStart, vram, romSize);
-            osSetThreadPri(NULL, 0x11);
+            osSetThreadPri(NULL, M_PRIORITY_DMAMGR);
         }
     } else {
-        func_800263F0_jp(req, NULL, "DATA DON'T EXIST", "該当するデータが存在しません");
+        // "Corresponding data does not exist"
+        DmaMgr_Error(req, NULL, "DATA DON'T EXIST", "該当するデータが存在しません");
     }
 }
 
-void func_800269E4_jp(UNUSED void* arg) {
+void DmaMgr_ThreadEntry(UNUSED void* arg) {
     OSMesg msg;
     DmaRequest* sp34;
 
     while (true) {
+        // Wait for DMA Requests to arrive from other threads
         osRecvMesg(&sDmaMgrMsgQueue, &msg, OS_MESG_BLOCK);
 
         if (msg == NULL) {
@@ -214,15 +266,27 @@ void func_800269E4_jp(UNUSED void* arg) {
         }
         sp34 = msg;
 
-        func_80026828_jp(sp34);
+        // Process the DMA request
+        DmaMgr_ProcessRequest(sp34);
 
+        // Notify the sender that the request has been processed
         if (sp34->mq != NULL) {
             osSendMesg(sp34->mq, sp34->unk_1C, OS_MESG_NOBLOCK);
         }
     }
 }
 
-s32 func_80026A64_jp(DmaRequest* req, void* vram, RomOffset vrom, size_t size, UNUSED s32 arg4, OSMesgQueue* mq, OSMesg arg6) {
+/**
+ * Submits a DMA request to the DMA manager. For internal use only.
+ *
+ * @param req DMA request, filled out internally.
+ * @param vram Location in DRAM for data to be written.
+ * @param vrom Virtual ROM location for data to be read.
+ * @param size Transfer size.
+ * @param mq Message queue to notify with `msg` once the transfer is complete.
+ * @param msg Message to send to `mq` once the transfer is complete.
+ */
+s32 DmaMgr_SendRequest(DmaRequest* req, void* vram, RomOffset vrom, size_t size, UNUSED s32 arg4, OSMesgQueue* mq, OSMesg arg6) {
     if (ResetStatus >= 2) {
         return -2;
     }
@@ -234,51 +298,64 @@ s32 func_80026A64_jp(DmaRequest* req, void* vram, RomOffset vrom, size_t size, U
     req->mq = mq;
     req->unk_1C = arg6;
 
-    if ((vram == NULL) || ((u32) osMemSize < (u32) ((uintptr_t)vram + size + 0x80000000)) || (vrom & 1) || (vrom > 0x04000000) || (size == 0) || (size & 1)) {
-        func_800263F0_jp(req, NULL, "ILLIGAL DMA-FUNCTION CALL", "パラメータ異常です");
+    if ((vram == NULL) || (osMemSize < ((uintptr_t)vram + size + 0x80000000)) || (vrom % 2 != 0) || (vrom > 0x04000000) || (size == 0) || (size % 2 != 0)) {
+        DmaMgr_Error(req, NULL, "ILLIGAL DMA-FUNCTION CALL", "パラメータ異常です");
     }
 
     osSendMesg(&sDmaMgrMsgQueue, req, OS_MESG_BLOCK);
     return 0;
 }
 
-s32 DmaMgr_RequestSync(void* ram, RomOffset vrom, size_t size) {
-    DmaRequest sp48;
-    OSMesgQueue sp30;
-    OSMesg sp2C[1];
-    s32 temp_v0;
+/**
+ * Submit a synchronous DMA request. This will block the current thread until the requested transfer is complete. Data
+ * is immediately available as soon as this function returns.
+ *
+ * @param vram Location in RAM for data to be written.
+ * @param vrom Virtual ROM location for data to be read.
+ * @param size Transfer size.
+ */
+s32 DmaMgr_RequestSync(void* vram, RomOffset vrom, size_t size) {
+    DmaRequest req;
+    OSMesgQueue mq;
+    OSMesg msg[1];
+    s32 ret;
 
-    osCreateMesgQueue(&sp30, sp2C, ARRAY_COUNT(sp2C));
-    temp_v0 = func_80026A64_jp(&sp48, ram, vrom, size, 0, &sp30, NULL);
-    if (temp_v0 == -1) {
-        return temp_v0;
+    osCreateMesgQueue(&mq, msg, ARRAY_COUNT(msg));
+    ret = DmaMgr_SendRequest(&req, vram, vrom, size, 0, &mq, NULL);
+    if (ret == -1) {
+        return ret;
     }
 
-    osRecvMesg(&sp30, NULL, OS_MESG_BLOCK);
+    osRecvMesg(&mq, NULL, OS_MESG_BLOCK);
 
     return 0;
 }
 
-void func_80026BC0_jp(void* vram, RomOffset vrom) {
-    DmaEntry* entry = func_80026714_jp(vrom);
+/**
+ * Synchronous DMA Request that calculates the size of the segment automatically.
+ *
+ * @see DmaMgr_RequestSync
+ */
+s32 func_80026BC0_jp(void* vram, RomOffset vrom) {
+    DmaEntry* entry = DmaMgr_FindDmaEntry(vrom);
 
-    DmaMgr_RequestSync(vram, vrom, entry->vromEnd - entry->vromStart);
+    return DmaMgr_RequestSync(vram, vrom, entry->vromEnd - entry->vromStart);
 }
 
 size_t func_80026C00_jp(RomOffset vrom) {
-    DmaEntry* entry = func_80026714_jp(vrom);
+    DmaEntry* entry = DmaMgr_FindDmaEntry(vrom);
 
     return entry->vromEnd - entry->vromStart;
 }
 
-s32 func_80026C28_jp(RomOffset vrom) {
-    DmaEntry* entry = func_80026714_jp(vrom);
+RomOffset func_80026C28_jp(RomOffset vrom) {
+    DmaEntry* entry = DmaMgr_FindDmaEntry(vrom);
 
     return entry[1].vromStart;
 }
 
 s32 func_80026C4C_jp(RomOffset vromStart, RomOffset* vromEnd, RomOffset* ovlStart, RomOffset* ovlEnd) {
-    DmaEntry* entry = func_80026714_jp(vromStart);
+    DmaEntry* entry = DmaMgr_FindDmaEntry(vromStart);
 
     if (entry != NULL) {
         *vromEnd = entry[0].vromEnd;
@@ -289,53 +366,72 @@ s32 func_80026C4C_jp(RomOffset vromStart, RomOffset* vromEnd, RomOffset* ovlStar
     return -1;
 }
 
-void func_80026CAC_jp(void) {
+void DmaMgr_Init(void) {
+    // DMA the dma data table to RAM
     DmaMgr_DmaRomToRam(SEGMENT_ROM_START(dmadata), SEGMENT_VRAM_START(dmadata), SEGMENT_ROM_SIZE(dmadata));
 
     do {
-        DmaEntry* entry = gDmaDataTable;
+        DmaEntry* entry = dma_rom_ad;
         s32 count = 0;
 
         for (; entry->vromEnd != 0; entry++) {
             count++;
         }
 
-        B_8003FF5C_jp = count;
+        sNumDmaEntries = count;
     } while (0);
 
     osCreateMesgQueue(&sDmaMgrMsgQueue, sDmaMgrMsgs, ARRAY_COUNT(sDmaMgrMsgs));
     StackCheck_Init(&sDmaMgrStackInfo, sDmaMgrStack, STACK_TOP(sDmaMgrStack), 0, 0x100, "dmamgr");
-    osCreateThread(&sDmaMgrThread, M_THREAD_ID_DMAMGR, func_800269E4_jp, NULL, STACK_TOP(sDmaMgrStack), M_PRIORITY_DMAMGR);
+    osCreateThread(&sDmaMgrThread, M_THREAD_ID_DMAMGR, DmaMgr_ThreadEntry, NULL, STACK_TOP(sDmaMgrStack), M_PRIORITY_DMAMGR);
     osStartThread(&sDmaMgrThread);
 }
 
-void func_80026DA0_jp(void) {
+void DmaMgr_Stop(void) {
     osSendMesg(&sDmaMgrMsgQueue, NULL, OS_MESG_BLOCK);
 }
 
-void func_80026DCC_jp(DmaRequest* req, void* arg1, u32 arg2, u32 arg3, s32 arg4, OSMesgQueue* arg5, OSMesg arg6, const char* arg7, s32 arg8) {
-    req->filename = arg7;
-    req->line = arg8;
-    func_80026A64_jp(req, arg1, arg2, arg3, arg4, arg5, arg6);
+/**
+ * Submit an asynchronous DMA request. Unlike other DMA requests, this will not block the current thread. Data arrival is not immediate however, ensure that the request has completed by awaiting a message sent to `mq` when the DMA operation has completed.
+ *
+ * @param req DMA request structure, filled out internally.
+ * @param vram Location in DRAM for data to be written.
+ * @param vrom Virtual ROM location for data to be read.
+ * @param size Transfer size.
+ * @param mq Message queue to notify with `msg` once the transfer is complete.
+ * @param msg Message to send to `queue` once the transfer is complete.
+ * @param file Debug filename of caller.
+ * @param line Debug line number of caller.
+ * @return 0
+ */
+void DmaMgr_RequestAsync(DmaRequest* req, void* vram, RomOffset vrom, size_t size, s32 arg4, OSMesgQueue* mq, OSMesg msg, const char* filename, s32 line) {
+    req->filename = filename;
+    req->line = line;
+    DmaMgr_SendRequest(req, vram, vrom, size, arg4, mq, msg);
 }
 
-s32 func_80026E10_jp(void* arg0, RomOffset arg1, size_t arg2, const char* arg3, s32 arg4) {
-    DmaRequest sp50;
-    s32 temp;
-    OSMesgQueue sp34;
+/**
+ * Synchronous DMA Request with source file and line info for debugging.
+ *
+ * @see DmaMgr_RequestSync
+ */
+s32 DmaMgr_RequestSyncDebug(void* vram, RomOffset vrom, size_t size, const char* filename, s32 line) {
+    DmaRequest req;
+    s32 ret;
+    OSMesgQueue mq;
     OSMesg sp30[1];
     UNUSED s32 pad;
 
-    sp50.filename = arg3;
-    sp50.line = arg4;
+    req.filename = filename;
+    req.line = line;
 
-    osCreateMesgQueue(&sp34, sp30, ARRAY_COUNT(sp30));
+    osCreateMesgQueue(&mq, sp30, ARRAY_COUNT(sp30));
 
-    temp = func_80026A64_jp(&sp50, arg0, arg1, arg2, 0, &sp34, 0);
-    if (temp == -1) {
-        return temp;
+    ret = DmaMgr_SendRequest(&req, vram, vrom, size, 0, &mq, NULL);
+    if (ret == -1) {
+        return ret;
     }
 
-    osRecvMesg(&sp34, NULL, OS_MESG_BLOCK);
+    osRecvMesg(&mq, NULL, OS_MESG_BLOCK);
     return 0;
 }

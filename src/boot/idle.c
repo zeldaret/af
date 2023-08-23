@@ -22,11 +22,11 @@ f32 gViConfigXScale = 1.0f;
 f32 gViConfigYScale = 1.0f;
 
 void Main_ThreadEntry(void* arg) {
-    func_80026CAC_jp();
-    func_80026E10_jp(SEGMENT_VRAM_START(code), SEGMENT_ROM_START(code), SEGMENT_ROM_SIZE_ALT(code), "../idle.c", 53);
+    DmaMgr_Init();
+    DmaMgr_RequestSyncDebug(SEGMENT_VRAM_START(code), SEGMENT_ROM_START(code), SEGMENT_ROM_SIZE_ALT(code), "../idle.c", 53);
     bzero(SEGMENT_BSS_START(code), SEGMENT_BSS_SIZE(code));
     func_800D66D0_jp(arg);
-    func_80026DA0_jp();
+    DmaMgr_Stop();
 }
 
 void Idle_InitVideo(void) {
