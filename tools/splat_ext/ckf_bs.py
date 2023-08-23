@@ -47,7 +47,10 @@ class N64SegCkf_bs(CommonSegCodeSubsegment):
         assert isinstance(self.rom_end, int)
         assert isinstance(self.vram_start, int)
 
-        baseskeleton_data = rom_bytes[self.rom_start : self.rom_end]
+        extracted_data = rom_bytes[self.rom_start : self.rom_end]
+        segment_length = len(extracted_data)
+        if (segment_length) != 8:
+            log.error(f"Error: ckf_bs segment {self.name} length ({segment_length}) is not 8 bytes!")
 
         lines = []
         if not self.data_only:
@@ -55,14 +58,14 @@ class N64SegCkf_bs(CommonSegCodeSubsegment):
             lines.append("\n")
 
         sym = self.create_symbol(addr=self.vram_start, in_segment=True, type="data", define=True)
-        sym.given_name = self.name.split("/")[-1]
 
         if not self.data_only:
             lines.append(f"BaseSkeletonR {self.format_sym_name(sym)} = ")
 
-        numberOfJoints, numberOfDisplayLists, jointElemTable = struct.unpack(">BBxxI", baseskeleton_data)
-        baseskeleton_string = f"{{ {numberOfJoints}, {numberOfDisplayLists}, {jointElemTable:08X} }}"
-        lines.append(baseskeleton_string)
+        numberOfJoints, numberOfDisplayLists, jointElemTable = struct.unpack(">BBxxI", extracted_data)
+        jointelemtable_symbol = self.get_symbol(addr=jointElemTable).given_name
+        output = f"{{ {numberOfJoints}, {numberOfDisplayLists}, {jointelemtable_symbol} }}"
+        lines.append(output)
 
         if not self.data_only:
             lines.append(";")

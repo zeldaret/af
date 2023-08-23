@@ -7,7 +7,7 @@ from util import options, log
 from segtypes.common.codesubsegment import CommonSegCodeSubsegment
 
 
-class N64SegCkf_je(CommonSegCodeSubsegment):
+class N64SegCkf_ckcb(CommonSegCodeSubsegment):
     def __init__(
         self,
         rom_start: Optional[int],
@@ -48,29 +48,21 @@ class N64SegCkf_je(CommonSegCodeSubsegment):
         assert isinstance(self.vram_start, int)
 
         extracted_data = rom_bytes[self.rom_start : self.rom_end]
-        segment_length = len(extracted_data)
-        if (segment_length) % 12 != 0:
-            log.error(f"Error: ckf_je segment {self.name} length ({segment_length}) is not a multiple of 12!")
 
         lines = []
         if not self.data_only:
             lines.append(options.opts.generated_c_preamble)
             lines.append("")
 
-        count = segment_length // 12
+        count = len(extracted_data)
         sym = self.create_symbol(addr=self.vram_start, in_segment=True, type="data", define=True)
 
         if not self.data_only:
-            lines.append(f"JointElemR {self.format_sym_name(sym)}[{count}] = {{")
+            lines.append(f"u8 {self.format_sym_name(sym)}[{count}] = {{")
 
-        for jointelem in struct.iter_unpack(">IBBhhh", extracted_data):
-            shape, numberOfChildren, displayBufferFlag, x, y, z = jointelem
-            if shape == 0:
-                shape_symbol = "NULL"
-            else:
-                shape_symbol = self.format_sym_name(self.get_symbol(addr=shape))
 
-            output = f"    {{ {shape_symbol}, {numberOfChildren}, {displayBufferFlag}, {{{x}, {y}, {z}}} }},"
+        for byte in struct.iter_unpack(">B", extracted_data):
+            output = f"    0x{byte[0]:02X},"
             lines.append(output)
 
         if not self.data_only:

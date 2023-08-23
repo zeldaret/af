@@ -7,7 +7,7 @@ from util import options, log
 from segtypes.common.codesubsegment import CommonSegCodeSubsegment
 
 
-class N64SegCkf_je(CommonSegCodeSubsegment):
+class N64SegCkf_ba(CommonSegCodeSubsegment):
     def __init__(
         self,
         rom_start: Optional[int],
@@ -49,36 +49,33 @@ class N64SegCkf_je(CommonSegCodeSubsegment):
 
         extracted_data = rom_bytes[self.rom_start : self.rom_end]
         segment_length = len(extracted_data)
-        if (segment_length) % 12 != 0:
-            log.error(f"Error: ckf_je segment {self.name} length ({segment_length}) is not a multiple of 12!")
+        if (segment_length) != 20:
+            log.error(f"Error: ckf_ba segment {self.name} length ({segment_length}) is not 20 bytes!")
 
         lines = []
         if not self.data_only:
             lines.append(options.opts.generated_c_preamble)
-            lines.append("")
+            lines.append("\n")
 
-        count = segment_length // 12
         sym = self.create_symbol(addr=self.vram_start, in_segment=True, type="data", define=True)
 
         if not self.data_only:
-            lines.append(f"JointElemR {self.format_sym_name(sym)}[{count}] = {{")
+            lines.append(f"BaseAnimationR {self.format_sym_name(sym)} = ")
 
-        for jointelem in struct.iter_unpack(">IBBhhh", extracted_data):
-            shape, numberOfChildren, displayBufferFlag, x, y, z = jointelem
-            if shape == 0:
-                shape_symbol = "NULL"
-            else:
-                shape_symbol = self.format_sym_name(self.get_symbol(addr=shape))
-
-            output = f"    {{ {shape_symbol}, {numberOfChildren}, {displayBufferFlag}, {{{x}, {y}, {z}}} }},"
-            lines.append(output)
+        ckcb, ds, kn, constval, unk10, duration = struct.unpack(">IIIIhh", extracted_data)
+        ckcb_symbol = self.get_symbol(addr=ckcb).given_name
+        ds_symbol = self.get_symbol(addr=ds).given_name
+        kn_symbol = self.get_symbol(addr=kn).given_name
+        constval_symbol = self.get_symbol(addr=constval).given_name
+        output = f"{{ {ckcb_symbol}, {ds_symbol}, {kn_symbol}, {constval_symbol}, {unk10}, {duration} }}"
+        lines.append(output)
 
         if not self.data_only:
-            lines.append("};")
+            lines.append(";")
 
         # enforce newline at end of file
-        lines.append("")
-        return "\n".join(lines)
+        lines.append("\n")
+        return "".join(lines)
 
     def split(self, rom_bytes: bytes):
         if self.file_text and self.out_path():
