@@ -242,7 +242,7 @@ extern OSPiHandle* carthandle; // TODO: Determine where this goes
 // extern UNK_TYPE sDmaMgrStackInfo;
 // extern UNK_TYPE sNumDmaEntries;
 // extern UNK_TYPE sDmaMgrMsgQueue;
-// extern UNK_TYPE sDmaMgrMsgs;
+// extern UNK_TYPE dmaEntryMsgBufs;
 // extern UNK_TYPE sDmaMgrThread;
 // extern UNK_TYPE sDmaMgrStack;
 // extern UNK_TYPE sDmaMgrCurFileName;

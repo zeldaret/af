@@ -5,7 +5,7 @@
 StackEntry sDmaMgrStackInfo;
 u16 sNumDmaEntries;
 OSMesgQueue sDmaMgrMsgQueue;
-OSMesg sDmaMgrMsgs[0x20];
+OSMesg dmaEntryMsgBufs[0x20];
 OSThread sDmaMgrThread;
 STACK(sDmaMgrStack, 0x500);
 const char* sDmaMgrCurFileName;
@@ -381,7 +381,7 @@ void DmaMgr_Init(void) {
         sNumDmaEntries = count;
     } while (0);
 
-    osCreateMesgQueue(&sDmaMgrMsgQueue, sDmaMgrMsgs, ARRAY_COUNT(sDmaMgrMsgs));
+    osCreateMesgQueue(&sDmaMgrMsgQueue, dmaEntryMsgBufs, ARRAY_COUNT(dmaEntryMsgBufs));
     StackCheck_Init(&sDmaMgrStackInfo, sDmaMgrStack, STACK_TOP(sDmaMgrStack), 0, 0x100, "dmamgr");
     osCreateThread(&sDmaMgrThread, M_THREAD_ID_DMAMGR, DmaMgr_ThreadEntry, NULL, STACK_TOP(sDmaMgrStack), M_PRIORITY_DMAMGR);
     osStartThread(&sDmaMgrThread);
