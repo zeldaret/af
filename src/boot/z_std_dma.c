@@ -1,6 +1,7 @@
 #include "z_std_dma.h"
 #include "fault.h"
 #include "irqmgr.h"
+#include "yaz0.h"
 #include "libu64/stackcheck.h"
 #include "libc/stdbool.h"
 #include "macros.h"
@@ -21,6 +22,8 @@ extern UNK_TYPE B_800406AC_jp;
 
 extern s32 B_800406B0_jp;
 extern u32 D_8003BBE0_jp;
+
+extern s32 B_800406B4_jp;
 
 #if 0
 void func_800263F0_jp(DmaRequest* req, const char* arg1, const char* arg2, const char* arg3) {
@@ -126,7 +129,14 @@ end:
     return ret;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_800266C4_jp.s")
+s32 func_800266C4_jp(OSPiHandle* arg0, OSIoMesg* arg1, s32 arg2) {
+    s32 ret = osEPiStartDma(arg0, arg1, arg2);
+
+    B_800406B0_jp += arg1->size;
+    B_800406B4_jp += arg1->size;
+
+    return ret;
+}
 
 DmaEntry* func_80026714_jp(RomOffset vrom) {
     DmaEntry* entry;
@@ -170,9 +180,43 @@ const char* func_80026814_jp(s32 arg0) {
     return "??";
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/RO_8003D268_jp.s")
+void func_80026828_jp(DmaRequest* req) {
+    RomOffset vrom = req->vrom;
+    void* vram = req->vram;
+    size_t size = req->size;
+    RomOffset romStart;
+    size_t romSize;
+    DmaEntry* entry;
+    s32 index = func_800267DC_jp(vrom);
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_80026828_jp.s")
+    if ((index >= 0) && (index < B_8003FF5C_jp)) {
+        entry = &gDmaDataTable[index];
+
+        if (entry->romEnd == 0) {
+            if (entry->vromEnd < (vrom + size)) {
+                func_800263F0_jp(req, "", "Segment Alignment Error", "セグメント境界をまたがってＤＭＡ転送することはできません");
+            }
+            DmaMgr_DmaRomToRam((entry->romStart + vrom) - entry->vromStart, vram, size);
+            return;
+        } else {
+            romSize = entry->romEnd - entry->romStart;
+            romStart = entry->romStart;
+            if (vrom != entry->vromStart) {
+                func_800263F0_jp(req, "", "Can't Transfer Segment", "圧縮されたセグメントの途中からはＤＭＡ転送することはできません");
+            }
+
+            if (size != (entry->vromEnd - entry->vromStart)) {
+                func_800263F0_jp(req, "", "Can't Transfer Segment", "圧縮されたセグメントの一部だけをＤＭＡ転送することはできません");
+            }
+
+            osSetThreadPri(NULL, 0xA);
+            Yaz0_Decompress(romStart, vram, romSize);
+            osSetThreadPri(NULL, 0x11);
+        }
+    } else {
+        func_800263F0_jp(req, NULL, "DATA DON'T EXIST", "該当するデータが存在しません");
+    }
+}
 
 void func_800269E4_jp(void* arg0) {
     OSMesg msg;
