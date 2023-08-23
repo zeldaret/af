@@ -31,12 +31,12 @@ typedef UNK_RET (*CommonData_unk_1004C_unk_14)(struct CommonData_unk_1004C_unk_1
 
 typedef UNK_RET (*CommonData_unk_1004C_unk_BC)(struct Actor*, struct Game_Play*);
 typedef void (*CommonData_unk_1004C_unk_C0)(struct Actor*, struct Game_Play*, void*);
-typedef UNK_RET (*CommonData_unk_1004C_unk_C4)();
-typedef UNK_RET (*CommonData_unk_1004C_unk_C8)();
-typedef UNK_RET (*CommonData_unk_1004C_unk_CC)();
-typedef UNK_RET (*CommonData_unk_1004C_unk_D0)();
+typedef UNK_RET (*CommonData_unk_1004C_unk_C4)(struct Actor*, struct Game_Play*);
+typedef UNK_RET (*CommonData_unk_1004C_unk_C8)(struct Actor*, struct Game_Play*);
+typedef UNK_RET (*CommonData_unk_1004C_unk_CC)(struct Actor*, struct Game_Play*);
+typedef UNK_RET (*CommonData_unk_1004C_unk_D0)(void);
 
-typedef UNK_RET (*CommonData_unk_1004C_unk_E4)();
+typedef UNK_RET (*CommonData_unk_1004C_unk_E4)(void);
 
 typedef UNK_RET (*CommonData_unk_1004C_unk_EC)(struct Game_Play_unk_0110*, s16, s16);
 typedef UNK_RET (*CommonData_unk_1004C_unk_F0)(struct Game_Play_unk_0110*, struct Actor*);
