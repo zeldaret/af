@@ -1,11 +1,23 @@
 #include "z_std_dma.h"
+#include "fault.h"
 #include "irqmgr.h"
+#include "libu64/stackcheck.h"
+#include "libc/stdbool.h"
 #include "macros.h"
+#include "segment_symbols.h"
+
+extern u16 B_8003FF5C_jp;
+extern void* B_8003FF78_jp;
+extern StackEntry B_8003FF40_jp;
+extern u64 B_800401A8_jp;
+extern OSThread B_8003FFF8_jp;
+void func_800269E4_jp(void* arg0);
 
 extern OSMesgQueue B_8003FF60_jp;
 
 extern const char* B_800406A8_jp;
 extern UNK_TYPE B_800406AC_jp;
+
 #if 0
 void func_800263F0_jp(DmaRequest* req, const char* arg1, const char* arg2, const char* arg3) {
     s32 spD4;
@@ -52,32 +64,61 @@ void func_800263F0_jp(DmaRequest* req, const char* arg1, const char* arg2, const
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_800266C4_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_80026714_jp.s")
+DmaEntry* func_80026714_jp(RomOffset vrom) {
+    DmaEntry* entry;
+
+    for (entry = gDmaDataTable; entry->vromEnd != 0; entry++) {
+        if ((vrom >= entry->vromStart) && (vrom < entry->vromEnd)) {
+            return entry;
+        }
+    }
+    return NULL;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_80026770_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_800267DC_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_80026814_jp.s")
+const char* func_80026814_jp(s32 arg0) {
+    return "??";
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/RO_8003D268_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_80026828_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_800269E4_jp.s")
+void func_800269E4_jp(void* arg0) {
+    OSMesg msg;
+    DmaRequest* sp34;
 
+    while (true) {
+        osRecvMesg(&B_8003FF60_jp, &msg, 1);
+        if (msg == NULL) {
+            break;
+        }
+        sp34 = msg;
 
-s32 func_80026A64_jp(DmaRequest* req, void* ram, RomOffset vrom, size_t size, s32 arg4, OSMesgQueue* mq, s32 arg6) {
+        func_80026828_jp(sp34);
+
+        if (sp34->mq != NULL) {
+            osSendMesg(sp34->mq, sp34->unk_1C, 0);
+        }
+    }
+}
+
+s32 func_80026A64_jp(DmaRequest* req, void* vram, RomOffset vrom, size_t size, s32 arg4, OSMesgQueue* mq, s32 arg6) {
     if ((vs32)ResetStatus >= 2) {
         return -2;
     }
-    req->unk_00 = (s32) vrom;
-    req->unk_04 = (s32) ram;
-    req->unk_08 = (s32) size;
+
+    req->vrom = vrom;
+    req->vram = vram;
+    req->size = size;
     req->unk_14 = 0;
-    req->unk_18 = (s32) mq;
+    req->mq = mq;
     req->unk_1C = arg6;
-    if ((ram == NULL) || ((u32) osMemSize < (u32) ((uintptr_t)ram + size + 0x80000000)) || (vrom & 1) || (vrom >= 0x04000001U) || (size == 0) || (size & 1)) {
+
+    if ((vram == NULL) || ((u32) osMemSize < (u32) ((uintptr_t)vram + size + 0x80000000)) || (vrom & 1) || (vrom >= 0x04000001U) || (size == 0) || (size & 1)) {
         func_800263F0_jp(req, NULL, "ILLIGAL DMA-FUNCTION CALL", "パラメータ異常です");
     }
 
@@ -108,12 +149,70 @@ s32 DmaMgr_RequestSync(void* ram, void* vrom, size_t size) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_80026C28_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_80026C4C_jp.s")
+s32 func_80026C4C_jp(RomOffset vromStart, RomOffset* vromEnd, RomOffset* ovlStart, RomOffset* ovlEnd) {
+    DmaEntry* entry = func_80026714_jp(vromStart);
 
+    if (entry != NULL) {
+        *vromEnd = entry[0].vromEnd;
+        *ovlStart = entry[1].vromStart;
+        *ovlEnd = entry[1].vromEnd;
+        return 0;
+    }
+    return -1;
+}
+
+#if 0
+void func_80026CAC_jp(void) {
+    DmaEntry* var_v0;
+    s32 var_v1;
+
+    DmaMgr_DmaRomToRam(SEGMENT_ROM_START(dmadata), SEGMENT_VRAM_START(dmadata), SEGMENT_ROM_SIZE(dmadata));
+
+    var_v0 = gDmaDataTable;
+    var_v1 = 0;
+
+    while (var_v0->vromEnd != 0) {
+        var_v0 += 1;
+        var_v1 += 1;
+    }
+
+    B_8003FF5C_jp = var_v1;
+    osCreateMesgQueue(&B_8003FF60_jp, &B_8003FF78_jp, 0x20);
+    StackCheck_Init(&B_8003FF40_jp, &B_800401A8_jp, &B_800406A8_jp, 0, 0x100, "dmamgr");
+    osCreateThread(&B_8003FFF8_jp, 8, func_800269E4_jp, NULL, &B_800406A8_jp, 0x11);
+    osStartThread(&B_8003FFF8_jp);
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_80026CAC_jp.s")
+#endif
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_80026DA0_jp.s")
+void func_80026DA0_jp(void) {
+    osSendMesg(&B_8003FF60_jp, NULL, 1);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_80026DCC_jp.s")
+void func_80026DCC_jp(DmaRequest* arg0, void* arg1, u32 arg2, u32 arg3, s32 arg4, OSMesgQueue* arg5, s32 arg6, s32 arg7, s32 arg8) {
+    arg0->unk_0C = arg7;
+    arg0->unk_10 = arg8;
+    func_80026A64_jp(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_80026E10_jp.s")
+s32 func_80026E10_jp(void* arg0, RomOffset arg1, size_t arg2, const char* arg3, s32 arg4) {
+    DmaRequest sp50;
+    s32 temp;
+    OSMesgQueue sp34;
+    OSMesg sp30[1];
+    s32 pad;
+
+    sp50.unk_0C = arg3;
+    sp50.unk_10 = arg4;
+
+    osCreateMesgQueue(&sp34, sp30, ARRAY_COUNT(sp30));
+
+    temp = func_80026A64_jp(&sp50, arg0, arg1, arg2, 0, &sp34, 0);
+    if (temp == -1) {
+        return temp;
+    }
+
+    osRecvMesg(&sp34, NULL, OS_MESG_BLOCK);
+    return 0;
+}
