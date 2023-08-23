@@ -37,7 +37,7 @@ DmaEntry* func_80026714_jp(RomOffset vrom);
 void func_80026828_jp(DmaRequest* req);
 // void func_800269E4_jp();
 s32 func_80026A64_jp(DmaRequest* req, void* ram, RomOffset vrom, size_t size, UNK_TYPE arg4, OSMesgQueue* mq, UNK_TYPE arg6);
-s32 DmaMgr_RequestSync(void* ram, void* vrom, size_t size);
+s32 DmaMgr_RequestSync(void* ram, RomOffset vrom, size_t size);
 // void func_80026BC0_jp();
 // void func_80026C00_jp();
 // void func_80026C28_jp();

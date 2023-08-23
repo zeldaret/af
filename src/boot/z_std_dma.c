@@ -75,9 +75,32 @@ DmaEntry* func_80026714_jp(RomOffset vrom) {
     return NULL;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_80026770_jp.s")
+RomOffset func_80026770_jp(RomOffset vrom) {
+    DmaEntry* entry = func_80026714_jp(vrom);
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_800267DC_jp.s")
+    if (entry != NULL) {
+        if (entry->romEnd == 0) {
+            return (entry->romStart + vrom) - entry->vromStart;
+        }
+
+        if (vrom == entry->vromStart) {
+            return entry->romStart;
+        }
+
+        return -1;
+    }
+
+    return -1;
+}
+
+s32 func_800267DC_jp(RomOffset vrom) {
+    DmaEntry* entry = func_80026714_jp(vrom);
+
+    if (entry != NULL) {
+        return entry - gDmaDataTable;
+    }
+    return -1;
+}
 
 const char* func_80026814_jp(s32 arg0) {
     return "??";
@@ -126,7 +149,7 @@ s32 func_80026A64_jp(DmaRequest* req, void* vram, RomOffset vrom, size_t size, s
     return 0;
 }
 
-s32 DmaMgr_RequestSync(void* ram, void* vrom, size_t size) {
+s32 DmaMgr_RequestSync(void* ram, RomOffset vrom, size_t size) {
     DmaRequest sp48;
     OSMesgQueue sp30;
     OSMesg sp2C[1];
@@ -143,11 +166,23 @@ s32 DmaMgr_RequestSync(void* ram, void* vrom, size_t size) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_80026BC0_jp.s")
+void func_80026BC0_jp(void* vram, RomOffset vrom) {
+    DmaEntry* entry = func_80026714_jp(vrom);
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_80026C00_jp.s")
+    DmaMgr_RequestSync(vram, vrom, entry->vromEnd - entry->vromStart);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/boot/z_std_dma/func_80026C28_jp.s")
+size_t func_80026C00_jp(RomOffset vrom) {
+    DmaEntry* entry = func_80026714_jp(vrom);
+
+    return entry->vromEnd - entry->vromStart;
+}
+
+s32 func_80026C28_jp(RomOffset vrom) {
+    DmaEntry* entry = func_80026714_jp(vrom);
+
+    return entry[1].vromStart;
+}
 
 s32 func_80026C4C_jp(RomOffset vromStart, RomOffset* vromEnd, RomOffset* ovlStart, RomOffset* ovlEnd) {
     DmaEntry* entry = func_80026714_jp(vromStart);
