@@ -1,16 +1,6 @@
-#include "z_std_dma.h"
-#include "fault.h"
-#include "irqmgr.h"
-#include "yaz0.h"
-#include "libu64/stackcheck.h"
-#include "libc/stdbool.h"
 #include "stack.h"
-#include "m_thread.h"
-#include "macros.h"
-#include "segment_symbols.h"
-#include "boot_variables.h"
-
-u32 D_8003BBE0_jp = 0x2000;
+#include "libu64/stackcheck.h"
+#include "unk.h"
 
 StackEntry sDmaMgrStackInfo;
 u16 B_8003FF5C_jp;
@@ -23,32 +13,42 @@ UNK_TYPE B_800406AC_jp;
 size_t B_800406B0_jp;
 size_t B_800406B4_jp;
 
-void func_800263F0_jp(DmaRequest* req, const char* arg1, const char* arg2, const char* arg3) {
+#include "z_std_dma.h"
+#include "fault.h"
+#include "irqmgr.h"
+#include "yaz0.h"
+#include "libc/stdbool.h"
+#include "m_thread.h"
+#include "macros.h"
+#include "attributes.h"
+#include "segment_symbols.h"
+#include "boot_variables.h"
+
+u32 D_8003BBE0_jp = DMAMGR_DEFAULT_BUFSIZE;
+
+NORETURN void func_800263F0_jp(DmaRequest* req, const char* file, const char* errorName, const char* errorDesc) {
     RomOffset vrom = req->vrom;
     void* vram = req->vram;
     size_t size = req->size;
     char buff1[80];
     char buff2[80];
 
-    //! FAKE?
-    if (arg3 != NULL) {
-        (void)"???";
-        (void)"???";
-    }
-    if (1) { }
-    if (1) { }
+    (void)(errorDesc != NULL ? errorDesc : (errorName != NULL ? errorName : "???"));
+    (void)(file != NULL ? file : "???");
 
     if (req->filename != NULL) {
-        //! FAKE
-        if (1) {}
+    } else if (B_800406A8_jp != NULL) {
+    }
+
+    if (req->filename != NULL) {
         sprintf(buff1, "DMA ERROR: %.50s %d", req->filename, req->line);
     } else if (B_800406A8_jp != NULL) {
         sprintf(buff1, "DMA ERROR: %.50s %d", B_800406A8_jp, B_800406AC_jp);
     } else {
-        sprintf(buff1, "DMA ERROR: %.50s", (arg2 != NULL) ? arg2 : "???");
+        sprintf(buff1, "DMA ERROR: %.50s", (errorName != NULL) ? errorName : "???");
     }
 
-    sprintf(buff2, "%07X %08X %X %.50s", vrom, vram, size, (arg1 != NULL) ? arg1 : "???");
+    sprintf(buff2, "%07X %08X %X %.50s", vrom, vram, size, (file != NULL) ? file : "???");
     Fault_AddHungupAndCrashImpl(buff1, buff2);
 }
 
@@ -234,7 +234,7 @@ s32 func_80026A64_jp(DmaRequest* req, void* vram, RomOffset vrom, size_t size, U
     req->mq = mq;
     req->unk_1C = arg6;
 
-    if ((vram == NULL) || ((u32) osMemSize < (u32) ((uintptr_t)vram + size + 0x80000000)) || (vrom & 1) || (vrom >= 0x04000001U) || (size == 0) || (size & 1)) {
+    if ((vram == NULL) || ((u32) osMemSize < (u32) ((uintptr_t)vram + size + 0x80000000)) || (vrom & 1) || (vrom > 0x04000000) || (size == 0) || (size & 1)) {
         func_800263F0_jp(req, NULL, "ILLIGAL DMA-FUNCTION CALL", "パラメータ異常です");
     }
 
