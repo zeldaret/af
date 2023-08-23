@@ -4,54 +4,52 @@
 #include "yaz0.h"
 #include "libu64/stackcheck.h"
 #include "libc/stdbool.h"
+#include "stack.h"
+#include "m_thread.h"
 #include "macros.h"
 #include "segment_symbols.h"
 #include "boot_variables.h"
 
-extern u16 B_8003FF5C_jp;
-extern void* B_8003FF78_jp;
-extern StackEntry B_8003FF40_jp;
-extern u64 B_800401A8_jp;
-extern OSThread B_8003FFF8_jp;
-void func_800269E4_jp(void* arg0);
+u32 D_8003BBE0_jp = 0x2000;
 
-extern OSMesgQueue B_8003FF60_jp;
-
-extern const char* B_800406A8_jp;
-extern UNK_TYPE B_800406AC_jp;
-
-extern s32 B_800406B0_jp;
-extern u32 D_8003BBE0_jp;
-
-extern s32 B_800406B4_jp;
+StackEntry sDmaMgrStackInfo;
+u16 B_8003FF5C_jp;
+OSMesgQueue sDmaMgrMsgQueue;
+OSMesg sDmaMgrMsgs[0x20];
+OSThread sDmaMgrThread;
+STACK(sDmaMgrStack, 0x500);
+const char* B_800406A8_jp;
+UNK_TYPE B_800406AC_jp;
+size_t B_800406B0_jp;
+size_t B_800406B4_jp;
 
 void func_800263F0_jp(DmaRequest* req, const char* arg1, const char* arg2, const char* arg3) {
     RomOffset vrom = req->vrom;
     void* vram = req->vram;
     size_t size = req->size;
-    char sp7C[80];
-    char sp2C[80];
+    char buff1[80];
+    char buff2[80];
 
-    //! FAKE
-    if (arg3) {
+    //! FAKE?
+    if (arg3 != NULL) {
         (void)"???";
         (void)"???";
     }
     if (1) { }
     if (1) { }
 
-    if (req->unk_0C != 0) {
+    if (req->filename != NULL) {
         //! FAKE
         if (1) {}
-        sprintf(sp7C, "DMA ERROR: %.50s %d", req->unk_0C, req->unk_10);
+        sprintf(buff1, "DMA ERROR: %.50s %d", req->filename, req->line);
     } else if (B_800406A8_jp != NULL) {
-        sprintf(sp7C, "DMA ERROR: %.50s %d", B_800406A8_jp, B_800406AC_jp);
+        sprintf(buff1, "DMA ERROR: %.50s %d", B_800406A8_jp, B_800406AC_jp);
     } else {
-        sprintf(sp7C, "DMA ERROR: %.50s", (arg2 != NULL) ? arg2 : "???");
+        sprintf(buff1, "DMA ERROR: %.50s", (arg2 != NULL) ? arg2 : "???");
     }
 
-    sprintf(sp2C, "%07X %08X %X %.50s", vrom, vram, size, (arg1 != NULL) ? arg1 : "???");
-    Fault_AddHungupAndCrashImpl(sp7C, sp2C);
+    sprintf(buff2, "%07X %08X %X %.50s", vrom, vram, size, (arg1 != NULL) ? arg1 : "???");
+    Fault_AddHungupAndCrashImpl(buff1, buff2);
 }
 
 s32 DmaMgr_DmaRomToRam(RomOffset vrom, void* vram, size_t size) {
@@ -66,8 +64,8 @@ s32 DmaMgr_DmaRomToRam(RomOffset vrom, void* vram, size_t size) {
         sp3C.vrom = vrom;
         sp3C.vram = vram;
         sp3C.size = size;
-        sp3C.unk_0C = "percial_DMA";
-        sp3C.unk_10 = 0;
+        sp3C.filename = "percial_DMA";
+        sp3C.line = 0;
         func_800263F0_jp(&sp3C, NULL, "ILLIGAL ALIGNMENT", "アライメント異常");
     }
 
@@ -209,7 +207,8 @@ void func_800269E4_jp(UNUSED void* arg) {
     DmaRequest* sp34;
 
     while (true) {
-        osRecvMesg(&B_8003FF60_jp, &msg, 1);
+        osRecvMesg(&sDmaMgrMsgQueue, &msg, OS_MESG_BLOCK);
+
         if (msg == NULL) {
             break;
         }
@@ -218,13 +217,13 @@ void func_800269E4_jp(UNUSED void* arg) {
         func_80026828_jp(sp34);
 
         if (sp34->mq != NULL) {
-            osSendMesg(sp34->mq, sp34->unk_1C, 0);
+            osSendMesg(sp34->mq, sp34->unk_1C, OS_MESG_NOBLOCK);
         }
     }
 }
 
-s32 func_80026A64_jp(DmaRequest* req, void* vram, RomOffset vrom, size_t size, UNUSED s32 arg4, OSMesgQueue* mq, s32 arg6) {
-    if ((vs32)ResetStatus >= 2) {
+s32 func_80026A64_jp(DmaRequest* req, void* vram, RomOffset vrom, size_t size, UNUSED s32 arg4, OSMesgQueue* mq, OSMesg arg6) {
+    if (ResetStatus >= 2) {
         return -2;
     }
 
@@ -239,7 +238,7 @@ s32 func_80026A64_jp(DmaRequest* req, void* vram, RomOffset vrom, size_t size, U
         func_800263F0_jp(req, NULL, "ILLIGAL DMA-FUNCTION CALL", "パラメータ異常です");
     }
 
-    osSendMesg(&B_8003FF60_jp, req, 1);
+    osSendMesg(&sDmaMgrMsgQueue, req, OS_MESG_BLOCK);
     return 0;
 }
 
@@ -250,7 +249,7 @@ s32 DmaMgr_RequestSync(void* ram, RomOffset vrom, size_t size) {
     s32 temp_v0;
 
     osCreateMesgQueue(&sp30, sp2C, ARRAY_COUNT(sp2C));
-    temp_v0 = func_80026A64_jp(&sp48, ram, vrom, size, 0, &sp30, 0);
+    temp_v0 = func_80026A64_jp(&sp48, ram, vrom, size, 0, &sp30, NULL);
     if (temp_v0 == -1) {
         return temp_v0;
     }
@@ -294,29 +293,29 @@ void func_80026CAC_jp(void) {
     DmaMgr_DmaRomToRam(SEGMENT_ROM_START(dmadata), SEGMENT_VRAM_START(dmadata), SEGMENT_ROM_SIZE(dmadata));
 
     do {
-        DmaEntry* var_v0 = gDmaDataTable;
-        s32 var_v1 = 0;
+        DmaEntry* entry = gDmaDataTable;
+        s32 count = 0;
 
-        for (; var_v0->vromEnd != 0; var_v0++) {
-            var_v1++;
+        for (; entry->vromEnd != 0; entry++) {
+            count++;
         }
 
-        B_8003FF5C_jp = var_v1;
+        B_8003FF5C_jp = count;
     } while (0);
 
-    osCreateMesgQueue(&B_8003FF60_jp, &B_8003FF78_jp, 0x20);
-    StackCheck_Init(&B_8003FF40_jp, &B_800401A8_jp, &B_800406A8_jp, 0U, 0x100, "dmamgr");
-    osCreateThread(&B_8003FFF8_jp, 8, func_800269E4_jp, NULL, &B_800406A8_jp, 0x11);
-    osStartThread(&B_8003FFF8_jp);
+    osCreateMesgQueue(&sDmaMgrMsgQueue, sDmaMgrMsgs, ARRAY_COUNT(sDmaMgrMsgs));
+    StackCheck_Init(&sDmaMgrStackInfo, sDmaMgrStack, STACK_TOP(sDmaMgrStack), 0, 0x100, "dmamgr");
+    osCreateThread(&sDmaMgrThread, M_THREAD_ID_DMAMGR, func_800269E4_jp, NULL, STACK_TOP(sDmaMgrStack), M_PRIORITY_DMAMGR);
+    osStartThread(&sDmaMgrThread);
 }
 
 void func_80026DA0_jp(void) {
-    osSendMesg(&B_8003FF60_jp, NULL, 1);
+    osSendMesg(&sDmaMgrMsgQueue, NULL, OS_MESG_BLOCK);
 }
 
-void func_80026DCC_jp(DmaRequest* req, void* arg1, u32 arg2, u32 arg3, s32 arg4, OSMesgQueue* arg5, s32 arg6, const char* arg7, s32 arg8) {
-    req->unk_0C = arg7;
-    req->unk_10 = arg8;
+void func_80026DCC_jp(DmaRequest* req, void* arg1, u32 arg2, u32 arg3, s32 arg4, OSMesgQueue* arg5, OSMesg arg6, const char* arg7, s32 arg8) {
+    req->filename = arg7;
+    req->line = arg8;
     func_80026A64_jp(req, arg1, arg2, arg3, arg4, arg5, arg6);
 }
 
@@ -327,8 +326,8 @@ s32 func_80026E10_jp(void* arg0, RomOffset arg1, size_t arg2, const char* arg3, 
     OSMesg sp30[1];
     UNUSED s32 pad;
 
-    sp50.unk_0C = arg3;
-    sp50.unk_10 = arg4;
+    sp50.filename = arg3;
+    sp50.line = arg4;
 
     osCreateMesgQueue(&sp34, sp30, ARRAY_COUNT(sp30));
 

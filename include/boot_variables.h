@@ -238,16 +238,18 @@ extern OSPiHandle* gCartHandle; // TODO: Determine where this goes
 // extern UNK_TYPE B_8003FEE0_jp;
 // extern UNK_TYPE gViConfigBlackNext;
 // extern UNK_TYPE gViConfigBlack;
-// extern UNK_TYPE B_8003FF40_jp;
+
+// extern UNK_TYPE sDmaMgrStackInfo;
 // extern UNK_TYPE B_8003FF5C_jp;
-// extern UNK_TYPE B_8003FF60_jp;
-// extern UNK_TYPE B_8003FF78_jp;
-// extern UNK_TYPE B_8003FFF8_jp;
-// extern UNK_TYPE B_800401A8_jp;
+// extern UNK_TYPE sDmaMgrMsgQueue;
+// extern UNK_TYPE sDmaMgrMsgs;
+// extern UNK_TYPE sDmaMgrThread;
+// extern UNK_TYPE sDmaMgrStack;
 // extern UNK_TYPE B_800406A8_jp;
 // extern UNK_TYPE B_800406AC_jp;
 // extern UNK_TYPE B_800406B0_jp;
 // extern UNK_TYPE B_800406B4_jp;
+
 // extern UNK_TYPE B_800406C0_jp;
 // extern UNK_TYPE B_80040AC0_jp;
 // extern UNK_TYPE B_80040AC4_jp;

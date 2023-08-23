@@ -8,7 +8,7 @@
 Irqmgr irqmgr_class;
 Irqmgr* this;
 
-vu32 ResetStatus = 0;
+vs32 ResetStatus = 0;
 volatile OSTime ResetTime = 0;
 volatile OSTime RetraceTime = 0;
 u32 RetraceCount = 0;
