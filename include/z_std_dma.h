@@ -42,10 +42,8 @@ s32 DmaMgr_RequestSyncDebug(void* vram, RomOffset vrom, size_t size, const char*
 
 #define DMAMGR_DEFAULT_BUFSIZE ALIGN16(0x2000)
 
-// .data
 extern size_t gDmaMgrDmaBuffSize;
 
-// .bss
 extern size_t B_800406B0_jp;
 extern size_t B_800406B4_jp;
 

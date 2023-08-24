@@ -83,16 +83,16 @@ s32 DmaMgr_DmaRomToRam(RomOffset vrom, void* vram, size_t size) {
     OSMesg msg[1];
     s32 ret;
     size_t buffSize = gDmaMgrDmaBuffSize;
-    DmaRequest sp3C;
+    DmaRequest req;
 
     if (((vrom << 31) != 0) || (((u32)vram << 29) != 0) || ((size << 31) != 0)) {
-        sp3C.vrom = vrom;
-        sp3C.vram = vram;
-        sp3C.size = size;
-        sp3C.filename = "percial_DMA";
-        sp3C.line = 0;
+        req.vrom = vrom;
+        req.vram = vram;
+        req.size = size;
+        req.filename = "percial_DMA";
+        req.line = 0;
         // "alignment error"
-        DmaMgr_Error(&sp3C, NULL, "ILLIGAL ALIGNMENT", "アライメント異常");
+        DmaMgr_Error(&req, NULL, "ILLIGAL ALIGNMENT", "アライメント異常");
     }
 
     osInvalDCache(vram, size);
@@ -399,7 +399,7 @@ void DmaMgr_Init(void) {
     // DMA the dma data table to RAM
     DmaMgr_DmaRomToRam(SEGMENT_ROM_START(dmadata), SEGMENT_VRAM_START(dmadata), SEGMENT_ROM_SIZE(dmadata));
 
-    do {
+    {
         DmaEntry* entry = dma_rom_ad;
         s32 count = 0;
 
@@ -408,7 +408,7 @@ void DmaMgr_Init(void) {
         }
 
         sNumDmaEntries = count;
-    } while (0);
+    }
 
     osCreateMesgQueue(&sDmaMgrMsgQueue, dmaEntryMsgBufs, ARRAY_COUNT(dmaEntryMsgBufs));
     StackCheck_Init(&sDmaMgrStackInfo, sDmaMgrStack, STACK_TOP(sDmaMgrStack), 0, 0x100, "dmamgr");
