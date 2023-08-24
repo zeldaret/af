@@ -811,7 +811,7 @@ void* func_80804138_jp(Game_Play* game_play, Struct_8010EAA0* arg1) {
     u32 sp24 = arg1->unk_04 - arg1->unk_00;
     void* sp20 = THA_alloc16(&game_play->state.heap, sp24);
 
-    func_80026E10_jp(sp20, arg1->unk_00, sp24, "../m_play.c", 2302);
+    DmaMgr_RequestSyncDebug(sp20, arg1->unk_00, sp24, "../m_play.c", 2302);
     return sp20;
 }
 

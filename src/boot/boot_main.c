@@ -43,7 +43,7 @@ void bootproc(void) {
     osUnmapTLBAll();
     bootclear();
 
-    gCartHandle = osCartRomInit();
+    carthandle = osCartRomInit();
 
     StackCheck_Init(&sIdleStackInfo, sIdleStack, STACK_TOP(sIdleStack), 0, 0x100, "idle");
     osCreateThread(&sIdleThread, M_THREAD_ID_IDLE, Idle_ThreadEntry, NULL, STACK_TOP(sIdleStack), M_PRIORITY_IDLE);
