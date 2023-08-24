@@ -3,11 +3,16 @@
 
 #include "ultra64.h"
 #include "m_actor.h"
+#include "unk.h"
 
 struct Private_c;
 struct mPr_map_info_c;
 struct mLd_land_info_c;
 struct mPr_mother_mail_info_c;
+
+typedef struct mPr {
+    /* 0x0 */ UNK_TYPE1 unk_0[0x10];
+} mPr; // size = 0x10
 
 // void func_800B7780_jp();
 // void mPr_CopyPlayerName();
@@ -15,9 +20,9 @@ struct mPr_mother_mail_info_c;
 // void func_800B7804_jp();
 // void func_800B785C_jp();
 // void func_800B7914_jp();
-// void func_800B795C_jp();
+void mPr_ClearPersonalID(mPr* arg0);
 // void func_800B7998_jp();
-// void func_800B79E0_jp();
+void mPr_CopyPersonalID(mPr* arg0, mPr* arg1);
 // void mPr_CheckCmpPersonalID();
 // void func_800B7A94_jp();
 // void func_800B7AB0_jp();

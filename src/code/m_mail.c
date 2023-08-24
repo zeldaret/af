@@ -1,5 +1,6 @@
 #include "m_mail.h"
 #include "m_lib.h"
+#include "m_common_data.h"
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C1C0_jp.s")
 
@@ -7,51 +8,105 @@
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C2D8_jp.s")
 
-//? func_800B795C_jp(mMl*);                           /* extern */
-
-#if 0
-void func_8009C344_jp(mMl* arg0) {
-    func_800B795C_jp(arg0);
-    arg0->unk_00[0x10] = -1;
-    func_800B795C_jp((mMl* ) &arg0->unk_00[0x12]);
-    arg0->unk_00[0x22] = -1;
+void mMl_clear_mail_header(mMl* arg0) {
+    mPr_ClearPersonalID(&arg0->unk_00.unk_00);
+    arg0->unk_00.unk_10 = 0xFF;
+    mPr_ClearPersonalID(&arg0->unk_12.unk_00);
+    arg0->unk_12.unk_10 = 0xFF;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C344_jp.s")
-#endif
-
-//void func_8009C344_jp(mMl*);
 
 void mMl_clear_mail(mMl* arg0) {
     bzero(arg0, sizeof(mMl));
-    func_8009C344_jp(arg0);
+    mMl_clear_mail_header(arg0);
     mem_clear(&arg0->unk_2A, sizeof(mMl_unk_2A), 0x20);
     arg0->unk_26 = 0xFF;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/mMl_clear_mail_box.s")
+void mMl_clear_mail_box(mMl* arg0, s32 arg1) {
+    while (arg1 != 0) {
+        arg1--;
+        mMl_clear_mail(arg0);
+        arg0++;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C414_jp.s")
+s32 mMl_check_not_used_mail(mMl* arg0) {
+    s32 ret = 0;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C438_jp.s")
+    if (arg0->unk_26 == 0xFF) {
+        ret = 1;
+    }
+    return ret;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C45C_jp.s")
+void mMl_copy_header_name(mMl_unk_00* arg0, mMl_unk_00* arg1) {
+    arg0->unk_10 = arg1->unk_10;
+    mPr_CopyPersonalID(&arg0->unk_00, &arg1->unk_00);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C480_jp.s")
+void mMl_set_from_name(mMl* arg0, mMl* arg1) {
+    mMl_copy_header_name(&arg0->unk_12, &arg1->unk_00);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C4A0_jp.s")
+void mMl_set_to_name(mMl* arg0, mMl* arg1) {
+    mMl_copy_header_name(&arg0->unk_00, &arg1->unk_00);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C4C8_jp.s")
+void mMl_set_to_plname(mMl* arg0, mMl* arg1) {
+    mPr_CopyPersonalID(&arg0->unk_00.unk_00, &arg1->unk_00.unk_00);
+    arg0->unk_00.unk_10 = 0;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C4F4_jp.s")
+void mMl_set_playername(mMl* arg0, mPr* arg1) {
+    mPr_CopyPersonalID(&arg0->unk_12.unk_00, arg1);
+    arg0->unk_12.unk_10 = 0;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C534_jp.s")
+void mMl_init_mail(mMl* arg0, mPr* arg1) {
+    mMl_clear_mail(arg0);
+    mMl_set_playername(arg0, arg1);
+    arg0->unk_26 = 1;
+    arg0->unk_28 = 0;
+    arg0->unk_29 = 0;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C5A4_jp.s")
+s32 mMl_chk_mail_free_space(mMl* arg0, s32 arg1) {
+    s32 i;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C608_jp.s")
+    for (i = 0; i < arg1; i++) {
+        if (mMl_check_not_used_mail(arg0) == 1) {
+            return i;
+        }
+        arg0++;
+    }
+    return -1;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C67C_jp.s")
+s32 mMl_use_mail_space(mMl arg0[], s32 arg1, mPr* arg2) {
+    s32 index = mMl_chk_mail_free_space(arg0, arg1);
+
+    if (index != -1) {
+        mMl_init_mail(&arg0[index], arg2);
+    }
+    return index;
+}
+
+s32 mMl_count_use_mail_space(mMl* arg0, s32 arg1) {
+    s32 i;
+    s32 ret = 0;
+
+    for (i = 0; i < arg1; i++) {
+        if (mMl_check_not_used_mail(arg0) != 1) {
+            ret++;
+        }
+        arg0++;
+    }
+    return ret;
+}
+
+void mMl_copy_mail(mMl* arg0, mMl* arg1) {
+    mem_copy(arg0, arg1, sizeof(mMl));
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C69C_jp.s")
 
