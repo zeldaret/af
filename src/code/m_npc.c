@@ -32,7 +32,7 @@
 #include "overlays/actors/ovl_Npc/ac_npc.h"
 #include "6A5B00.h"
 #include "6A83A0.h"
-#include "prevent_bss_ordering.h"
+#include "prevent_bss_reordering.h"
 #include "segment_symbols.h"
 #include "libc64/qrand.h"
 
@@ -1187,8 +1187,8 @@ void func_800A8344_jp(Mail_c* mail, Anmplmail_c* letter, PersonalID_c* pid, AnmP
 
 s32 func_800A83F0_jp(u8 c) {
     if ((c == CHAR_EXCLAMATION) || (c == CHAR_QUOTATION) || (c == CHAR_UNDERSCORE) || (c == CHAR_HYPHEN) ||
-        (c == CHAR_SYMBOL_ANNOYED) || ((c >= CHAR_PERCENT) && (c <= CHAR_AT_SIGN)) ||
-        ((c >= CHAR_CONTROL_CODE) && (c <= CHAR_INTERPUNCT))) {
+        (c == CHAR_PLUS) || ((c >= CHAR_PERCENT) && (c <= CHAR_AT_SIGN)) ||
+        ((c >= CHAR_7E) && (c <= CHAR_MIDDLE_DOT))) {
         return TRUE;
     }
     return FALSE;

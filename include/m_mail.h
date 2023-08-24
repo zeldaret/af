@@ -8,13 +8,6 @@
 #define MAIL_FOOTER_LEN 16
 #define MAIL_BODY_LEN 96
 
-#define MAIL_FOOTER2_LEN 48
-#define MAIL_HEADER2_LEN (MAIL_FOOTER2_LEN - PLAYER_NAME_LEN)
-
-#define mMl_POSTOFFICE_GIFT_NUM 4
-
-#define mMl_MUSEUM_INFO_MAIL_NO 189 // TODO: enum?
-
 typedef struct Mail_nm_c {
   /* 0x00 */ PersonalID_c personal_ID;
   /* 0x10 */ u8 type;

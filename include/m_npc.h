@@ -22,8 +22,6 @@ struct Struct_B_80142F70_jp;
 struct Npc;
 struct FieldMake_Unk_Struct;
 
-#define NPC_NUM 218
-
 #define mNpc_GET_IDX(npc_id) ((npc_id) & 0x0FFF)
 #define mNpc_GET_TYPE(npc_id) ((npc_id) & 0xF000)
 #define mNpc_IS_SPECIAL(npc_id) (mNpc_GET_TYPE(npc_id) == 0xD000)
