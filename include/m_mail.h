@@ -4,8 +4,17 @@
 #include "ultra64.h"
 #include "unk.h"
 
+typedef struct mMl_unk_2A {
+    /* 0x00 */ UNK_TYPE1 unk_00[0x7A];
+} mMl_unk_2A; // size = 0x7A
+
 typedef struct mMl {
-    /* 0x00 */ UNK_TYPE1 unk_00[0xA4];
+    /* 0x00 */ UNK_TYPE1 unk_00[0x24];
+    /* 0x24 */ UNK_TYPE1 unk_24[0x2];
+    /* 0x26 */ u8 unk_26;
+    /* 0x27 */ UNK_TYPE1 unk_27[0x1];
+    /* 0x28 */ UNK_TYPE1 unk_28[0x2];
+    /* 0x2A */ mMl_unk_2A unk_2A;
 } mMl; // size = 0xA4
 
 // void func_8009C1C0_jp();
