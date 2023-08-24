@@ -30,16 +30,18 @@
       - [0x6A5B00, asm, code/6A5B00]
       - [0x6A6C40, asm, code/6A6C40]
       - [0x6A6E80, asm, code/m_fbdemo]
+      - [0x6A78A0, asm, code/m_fbdemo_triforce]
       - [0x6A7D20, asm, code/m_fbdemo_wipe1]
       - [0x6A8180, asm, code/m_fbdemo_fade]
-      - [0x6A83A0, asm, code/m_field_assesment]
+      - [0x6A83A0, asm, code/m_field_assessment]
       - [0x6A8B70, asm, code/m_field_make]
       - [0x6AB8D0, asm, code/m_field_info]
       - [0x6B3DC0, asm, code/6B3DC0]
       - [0x6B6560, asm, code/m_handbill]
       - [0x6B81C0, asm, code/m_home]
-      - [0x6B8A70, asm, code/m_house]
-      - [0x6B8F20, asm, code/m_land]
+      - [0x6B8880, asm, code/m_house]
+      - [0x6B8A70, asm, code/m_land]
+      - [0x6B8F20, asm, code/6B8F20]
       - [0x6BA3B0, asm, code/m_item_name]
       - [0x6BA500, asm, code/6BA500]
       - [0x6BA930, asm, code/m_kankyo]
@@ -130,7 +132,6 @@
       - [0x722AB0, asm, code/722AB0]
 
       - [0x723010, data, code/rsp/723010]
-
 
       - [0x7248D0, data, code/7248D0]
       - [0x724910, .data, code/m_actor]
@@ -269,4 +270,3 @@
       - { start: 0x73F4D0, type: bss, vram: 0x801462C0, name: code/801462C0 }
       - { start: 0x73F4D0, type: .bss, vram: 0x801492C0, name: code/zurumode }
       - { start: 0x73F4D0, type: bss, vram: 0x801492D0, name: code/801492D0 }
-
