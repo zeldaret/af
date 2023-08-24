@@ -2,7 +2,7 @@
 #define M_SUBMENU_H
 
 #include "ultra64.h"
-#include "6BFE60.h"
+#include "m_mail.h"
 #include "z64math.h"
 #include "libc/stdint.h"
 #include "other_types.h"
