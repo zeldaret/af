@@ -135,10 +135,12 @@ s32 DmaMgr_DmaRomToRam(RomOffset vrom, void* vram, size_t size) {
     B_800406B0_jp += size;
 
     ret = osEPiStartDma(carthandle, &ioMsg, 0);
-    if (ret == 0) {
-        osRecvMesg(&queue, NULL, OS_MESG_BLOCK);
-        osInvalDCache(vram, size);
+    if (ret != 0) {
+        goto end;
     }
+
+    osRecvMesg(&queue, NULL, OS_MESG_BLOCK);
+    osInvalDCache(vram, size);
 
 end:
     return ret;
@@ -262,7 +264,7 @@ void DmaMgr_ProcessRequest(DmaRequest* req) {
 
 void DmaMgr_ThreadEntry(UNUSED void* arg) {
     OSMesg msg;
-    DmaRequest* sp34;
+    DmaRequest* req;
 
     while (true) {
         // Wait for DMA Requests to arrive from other threads
@@ -271,14 +273,14 @@ void DmaMgr_ThreadEntry(UNUSED void* arg) {
         if (msg == NULL) {
             break;
         }
-        sp34 = msg;
+        req = msg;
 
         // Process the DMA request
-        DmaMgr_ProcessRequest(sp34);
+        DmaMgr_ProcessRequest(req);
 
         // Notify the sender that the request has been processed
-        if (sp34->mq != NULL) {
-            osSendMesg(sp34->mq, sp34->unk_1C, OS_MESG_NOBLOCK);
+        if (req->mq != NULL) {
+            osSendMesg(req->mq, req->msg, OS_MESG_NOBLOCK);
         }
     }
 }
@@ -304,9 +306,9 @@ s32 DmaMgr_SendRequest(DmaRequest* req, void* vram, RomOffset vrom, size_t size,
     req->size = size;
     req->unk_14 = 0;
     req->mq = mq;
-    req->unk_1C = arg6;
+    req->msg = arg6;
 
-    if ((vram == NULL) || (osMemSize < ((uintptr_t)vram + size + 0x80000000)) || (vrom % 2 != 0) ||
+    if ((vram == NULL) || (osMemSize < (OS_K0_TO_PHYSICAL(vram) + size)) || (vrom % 2 != 0) ||
         (vrom > 0x04000000) || (size == 0) || (size % 2 != 0)) {
         DmaMgr_Error(req, NULL, "ILLIGAL DMA-FUNCTION CALL", "パラメータ異常です");
     }
@@ -450,13 +452,13 @@ s32 DmaMgr_RequestSyncDebug(void* vram, RomOffset vrom, size_t size, const char*
     DmaRequest req;
     s32 ret;
     OSMesgQueue mq;
-    OSMesg sp30[1];
+    OSMesg msg[1];
     UNUSED s32 pad;
 
     req.filename = filename;
     req.line = line;
 
-    osCreateMesgQueue(&mq, sp30, ARRAY_COUNT(sp30));
+    osCreateMesgQueue(&mq, msg, ARRAY_COUNT(msg));
 
     ret = DmaMgr_SendRequest(&req, vram, vrom, size, 0, &mq, NULL);
     if (ret == -1) {

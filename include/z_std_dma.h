@@ -15,7 +15,7 @@ typedef struct DmaRequest {
     /* 0x10 */ s32 line;
     /* 0x14 */ UNK_TYPE unk_14;
     /* 0x18 */ OSMesgQueue* mq;
-    /* 0x1C */ OSMesg unk_1C;
+    /* 0x1C */ OSMesg msg;
 } DmaRequest; // size = 0x20
 
 typedef struct DmaEntry {
