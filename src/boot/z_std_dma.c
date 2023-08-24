@@ -308,8 +308,8 @@ s32 DmaMgr_SendRequest(DmaRequest* req, void* vram, RomOffset vrom, size_t size,
     req->mq = mq;
     req->msg = arg6;
 
-    if ((vram == NULL) || (osMemSize < (OS_K0_TO_PHYSICAL(vram) + size)) || (vrom % 2 != 0) ||
-        (vrom > 0x04000000) || (size == 0) || (size % 2 != 0)) {
+    if ((vram == NULL) || (osMemSize < (OS_K0_TO_PHYSICAL(vram) + size)) || (vrom % 2 != 0) || (vrom > 0x04000000) ||
+        (size == 0) || (size % 2 != 0)) {
         DmaMgr_Error(req, NULL, "ILLIGAL DMA-FUNCTION CALL", "パラメータ異常です");
     }
 
