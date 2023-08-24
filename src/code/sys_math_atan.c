@@ -1,5 +1,7 @@
 #include "sys_math_atan.h"
 #include "z64math.h"
+#include "macros.h"
+
 u16 atntable[] = {
     0x0000, 0x000A, 0x0014, 0x001F, 0x0029, 0x0033, 0x003D, 0x0047, 0x0051, 0x005C, 0x0066, 0x0070, 0x007A, 0x0084,
     0x008F, 0x0099, 0x00A3, 0x00AD, 0x00B7, 0x00C2, 0x00CC, 0x00D6, 0x00E0, 0x00EA, 0x00F4, 0x00FF, 0x0109, 0x0113,
@@ -79,16 +81,16 @@ u16 atntable[] = {
 
 u16 U_GetAtanTable(f32 y, f32 x) {
     s32 idx;
-    u16 ret = atntable[0x400];
+    u16 ret = atntable[ARRAY_COUNT(atntable) - 1];
 
     if (x == 0.0f) {
-        ret = atntable[0x400];
+        ret = atntable[ARRAY_COUNT(atntable) - 1];
     } else {
 
         idx = ((y / x) * 1024.0f) + 0.5f;
 
         if (idx > 0x400) {
-            ret = atntable[0x400];
+            ret = atntable[ARRAY_COUNT(atntable) - 1];
         } else {
             ret = atntable[idx];
         }
