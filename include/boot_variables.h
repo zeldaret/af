@@ -260,6 +260,7 @@ extern OSPiHandle* gCartHandle; // TODO: Determine where this goes
 // extern UNK_TYPE B_800410E8_jp;
 // extern UNK_TYPE B_80041108_jp;
 // extern UNK_TYPE B_800418D6_jp;
+extern struct_800418D8* B_800418D8_jp;
 // extern UNK_TYPE B_80041960_jp;
 // extern UNK_TYPE B_80041964_jp;
 // extern UNK_TYPE B_80041970_jp;
