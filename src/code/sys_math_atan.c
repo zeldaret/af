@@ -89,7 +89,7 @@ u16 U_GetAtanTable(f32 y, f32 x) {
 
         idx = ((y / x) * 1024.0f) + 0.5f;
 
-        if (idx > 0x400) {
+        if (idx >= ARRAY_COUNT(atntable)) {
             ret = atntable[ARRAY_COUNT(atntable) - 1];
         } else {
             ret = atntable[idx];
@@ -121,7 +121,7 @@ s16 atans_table(f32 x, f32 y) {
         }
     } else if (x < 0.0f) {
         if (-y <= -x) {
-            tbl = (U_GetAtanTable(-y, -x) + 0x8000);
+            tbl = U_GetAtanTable(-y, -x) + 0x8000;
         } else {
             tbl = 0xC000 - U_GetAtanTable(-x, -y);
         }
