@@ -70,7 +70,7 @@ void mMl_init_mail(mMl* arg0, mPr* arg1) {
     arg0->unk_29 = 0;
 }
 
-s32 mMl_chk_mail_free_space(mMl* arg0, s32 arg1) {
+s32 mMl_chk_mail_free_space(mMl arg0[], s32 arg1) {
     s32 i;
 
     for (i = 0; i < arg1; i++) {
@@ -91,7 +91,7 @@ s32 mMl_use_mail_space(mMl arg0[], s32 arg1, mPr* arg2) {
     return index;
 }
 
-s32 mMl_count_use_mail_space(mMl* arg0, s32 arg1) {
+s32 mMl_count_use_mail_space(mMl arg0[], s32 arg1) {
     s32 i;
     s32 ret = 0;
 
@@ -108,9 +108,16 @@ void mMl_copy_mail(mMl* arg0, mMl* arg1) {
     mem_copy(arg0, arg1, sizeof(mMl));
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C69C_jp.s")
+void mMl_clear_mail_header_common(MailHeaderCommon* arg0) {
+    arg0->unk_00 = -1;
+    arg0->unk_01 = 0;
+    mem_clear(arg0->unk_02, 0xA, 0x20);
+    mem_clear(arg0->unk_0C, 0x10, 0x20);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C6EC_jp.s")
+void mMl_copy_mail_header_common(MailHeaderCommon* arg0, MailHeaderCommon* arg1) {
+    mem_copy(arg0, arg1, sizeof(MailHeaderCommon));
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/mMl_set_mail_name_npcinfo.s")
 
@@ -118,6 +125,6 @@ void mMl_copy_mail(mMl* arg0, mMl* arg1) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/mMl_hunt_for_send_address.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C89C_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/mMl_check_send_mail.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C8C0_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/mMl_check_set_present_myself.s")

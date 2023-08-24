@@ -2,7 +2,9 @@
 #define M_PRIVATE_H
 
 #include "ultra64.h"
+#include "m_mail.h"
 #include "m_quest.h"
+#include "unk.h"
 
 #define mPr_FOREIGN_MAP_COUNT 8
 #define PLAYER_NUM 4
@@ -49,19 +51,22 @@ typedef struct PrivateInventory {
 } PrivateInventory; // size = 0x2C
 
 typedef struct Private_c {
-    /* 0x000 */ char unk000[0x10];
+    /* 0x000 */ UNK_TYPE1 unk000[0x10];
     /* 0x010 */ s8 gender;
-    /* 0x011 */ char unk011[0x3];
+    /* 0x011 */ UNK_TYPE1 unk011[0x3];
     /* 0x014 */ PrivateInventory inventory;
     /* 0x040 */ mQst_delivery_c deliveries[mPr_DELIVERY_QUEST_NUM]; /* delivery quests */
     /* 0x25C */ mQst_errand_c errands[mPr_ERRAND_QUEST_NUM]; /* errand quests */
-    /* 0x3EC */ char unk3EC[0x688];
+    /* 0x3EC */ UNK_TYPE1 unk_3EC[0x2];
+    /* 0x3EE */ MailHeaderCommon unk_3EE;
+    /* 0x40A */ mMl unk_40A[10];
+    /* 0xA72 */ UNK_TYPE1 unk_A72[0x2];
     /* 0xA74 */ u8 exists;
-    /* 0xA75 */ char unkA75[0x11];
+    /* 0xA75 */ UNK_TYPE1 unkA75[0x11];
     /* 0xA86 */ Private_Sub_A86 unk_A86;
-    /* 0xA90 */ char unkA8F[0xF8];
+    /* 0xA90 */ UNK_TYPE1 unkA8F[0xF8];
     /* 0xB88 */ mPr_map_info_c maps[mPr_FOREIGN_MAP_COUNT]; /* maps 'collected' for foreign towns */
-    /* 0xBC8 */ char unkBC8[0x8];
+    /* 0xBC8 */ UNK_TYPE1 unkBC8[0x8];
 } Private_c; // size = 0xBD0
 
 #endif
