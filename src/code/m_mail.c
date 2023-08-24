@@ -1,6 +1,7 @@
 #include "m_mail.h"
 #include "m_lib.h"
 #include "m_common_data.h"
+#include "macros.h"
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C1C0_jp.s")
 
@@ -57,12 +58,12 @@ void mMl_set_to_plname(mMl* arg0, mMl* arg1) {
     arg0->unk_00.unk_10 = 0;
 }
 
-void mMl_set_playername(mMl* arg0, mPr* arg1) {
+void mMl_set_playername(mMl* arg0, PersonalID* arg1) {
     mPr_CopyPersonalID(&arg0->unk_12.unk_00, arg1);
     arg0->unk_12.unk_10 = 0;
 }
 
-void mMl_init_mail(mMl* arg0, mPr* arg1) {
+void mMl_init_mail(mMl* arg0, PersonalID* arg1) {
     mMl_clear_mail(arg0);
     mMl_set_playername(arg0, arg1);
     arg0->unk_26 = 1;
@@ -82,7 +83,7 @@ s32 mMl_chk_mail_free_space(mMl arg0[], s32 arg1) {
     return -1;
 }
 
-s32 mMl_use_mail_space(mMl arg0[], s32 arg1, mPr* arg2) {
+s32 mMl_use_mail_space(mMl arg0[], s32 arg1, PersonalID* arg2) {
     s32 index = mMl_chk_mail_free_space(arg0, arg1);
 
     if (index != -1) {
@@ -123,7 +124,21 @@ void mMl_copy_mail_header_common(MailHeaderCommon* arg0, MailHeaderCommon* arg1)
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/mMl_get_npcinfo_from_mail_name.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/mMl_hunt_for_send_address.s")
+s32 mMl_hunt_for_send_address(mMl* arg0) {
+    s32 var_s0;
+
+    if (arg0->unk_00.unk_10 != 0) {
+        return -1;
+    }
+
+    for (var_s0 = 0; var_s0 < ARRAY_COUNT(common_data.homes); var_s0++) {
+        if (mPr_CheckCmpPersonalID(&common_data.homes[var_s0].unk_000, &arg0->unk_00.unk_00) == 1) {
+            return var_s0;
+        }
+    }
+
+    return -1;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/mMl_check_send_mail.s")
 

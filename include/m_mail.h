@@ -6,7 +6,7 @@
 #include "unk.h"
 
 typedef struct mMl_unk_00 {
-    /* 0x00 */ mPr unk_00;
+    /* 0x00 */ PersonalID unk_00;
     /* 0x10 */ u8 unk_10;
 } mMl_unk_00; // size = 0x11
 
@@ -46,17 +46,17 @@ void mMl_copy_header_name(mMl_unk_00* arg0, mMl_unk_00* arg1);
 void mMl_set_from_name(mMl* arg0, mMl* arg1);
 void mMl_set_to_name(mMl* arg0, mMl* arg1);
 void mMl_set_to_plname(mMl* arg0, mMl* arg1);
-void mMl_set_playername(mMl* arg0, mPr* arg1);
-void mMl_init_mail(mMl* arg0, mPr* arg1);
+void mMl_set_playername(mMl* arg0, PersonalID* arg1);
+void mMl_init_mail(mMl* arg0, PersonalID* arg1);
 s32 mMl_chk_mail_free_space(mMl arg0[], s32 arg1);
-s32 mMl_use_mail_space(mMl arg0[], s32 arg1, mPr* arg2);
+s32 mMl_use_mail_space(mMl arg0[], s32 arg1, PersonalID* arg2);
 s32 mMl_count_use_mail_space(mMl arg0[], s32 arg1);
 void mMl_copy_mail(mMl* arg0, mMl* arg1);
 void mMl_clear_mail_header_common(MailHeaderCommon* arg0);
 void mMl_copy_mail_header_common(MailHeaderCommon* arg0, MailHeaderCommon* arg1);
 // void mMl_set_mail_name_npcinfo();
 // void mMl_get_npcinfo_from_mail_name();
-// void mMl_hunt_for_send_address();
+s32 mMl_hunt_for_send_address(mMl* arg0);
 // void mMl_check_send_mail();
 // void mMl_check_set_present_myself();
 

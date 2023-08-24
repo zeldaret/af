@@ -10,9 +10,9 @@ struct mPr_map_info_c;
 struct mLd_land_info_c;
 struct mPr_mother_mail_info_c;
 
-typedef struct mPr {
+typedef struct PersonalID {
     /* 0x0 */ UNK_TYPE1 unk_0[0x10];
-} mPr; // size = 0x10
+} PersonalID; // size = 0x10
 
 // void func_800B7780_jp();
 // void mPr_CopyPlayerName();
@@ -20,10 +20,10 @@ typedef struct mPr {
 // void func_800B7804_jp();
 // void func_800B785C_jp();
 // void func_800B7914_jp();
-void mPr_ClearPersonalID(mPr* arg0);
+void mPr_ClearPersonalID(PersonalID* arg0);
 // void func_800B7998_jp();
-void mPr_CopyPersonalID(mPr* arg0, mPr* arg1);
-// void mPr_CheckCmpPersonalID();
+void mPr_CopyPersonalID(PersonalID* arg0, PersonalID* arg1);
+s32 mPr_CheckCmpPersonalID(PersonalID* arg0, PersonalID* arg1);
 // void func_800B7A94_jp();
 // void func_800B7AB0_jp();
 void mPr_ClearPrivateInfo(struct Private_c* private);

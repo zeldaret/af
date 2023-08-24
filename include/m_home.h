@@ -2,6 +2,8 @@
 #define M_HOME_H_H
 
 #include "ultra64.h"
+#include "6DB420.h"
+#include "unk.h"
 
 #define HOME_MAILBOX_SIZE 10
 #define HANIWA_ITEM_HOLD_NUM 4
@@ -47,13 +49,14 @@ typedef struct Haniwa_c {
 } Haniwa_c; // size = 0x5C
 
 typedef struct mHm_hs_c {
-    /* 0x000 */ char unk000[0x22];
+    /* 0x000 */ PersonalID unk_000;
+    /* 0x010 */ UNK_TYPE1 unk_010[0x12];
     /* 0x022 */ u8 unk_022;
-    /* 0x023 */ char unk023[0x1];
+    /* 0x023 */ UNK_TYPE1 unk023[0x1];
     /* 0x024 */ u8 unk_024;
-    /* 0x025 */ char unk025[0xABB];
+    /* 0x025 */ UNK_TYPE1 unk025[0xABB];
     /* 0xAE0 */ Haniwa_c haniwa;
-    /* 0xB3C */ char unkB3C[0xC];
+    /* 0xB3C */ UNK_TYPE1 unkB3C[0xC];
 } mHm_hs_c; // size = 0xB48
 
 
