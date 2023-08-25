@@ -40,13 +40,45 @@ typedef enum InventoryItemList {
     /* 16 */ INVENTORY_ITEM_LIST_MAX
 } InventoryItemList;
 
-typedef void (*mSM_unk_30)(struct mSM*);
-typedef void (*mSM_unk_34)(struct mSM*, struct Game_Play*);
+typedef void (*struct_8085E9B0_unk_10670)(struct mSM*);
+typedef void (*struct_8085E9B0_unk_10674)(struct mSM*, struct Game_Play*);
+
+
+typedef struct struct_8085E9B0 {
+    /* 0x00000 */ UNK_TYPE1 unk_00000[0x10000];
+    /* 0x10000 */ UNK_TYPE4 unk_10000;
+    /* 0x10004 */ UNK_TYPE1 unk_10004[0x66C];
+    /* 0x10670 */ struct_8085E9B0_unk_10670 unk_10670;
+    /* 0x10674 */ struct_8085E9B0_unk_10674 unk_10674;
+    /* 0x10678 */ UNK_FUN_PTR unk_10678;
+    /* 0x1067C */ UNK_FUN_PTR unk_1067C;
+    /* 0x10680 */ UNK_FUN_PTR unk_10680;
+    /* 0x10684 */ UNK_FUN_PTR unk_10684;
+    /* 0x10688 */ UNK_TYPE1 unk_10688[0xC];
+    /* 0x10694 */ UNK_TYPE1 unk_10694[0x2];
+    /* 0x10696 */ u16 unk_10696;
+    /* 0x10698 */ UNK_TYPE1 unk_10698[0xC];
+    /* 0x106A4 */ UNK_FUN_PTR unk_106A4;
+    /* 0x106A8 */ UNK_FUN_PTR unk_106A8;
+    /* 0x106AC */ UNK_FUN_PTR unk_106AC;
+    /* 0x106B0 */ UNK_FUN_PTR unk_106B0;
+    /* 0x106B4 */ UNK_FUN_PTR unk_106B4;
+    /* 0x106B8 */ UNK_FUN_PTR unk_106B8;
+    /* 0x106BC */ UNK_FUN_PTR unk_106BC;
+    /* 0x106C0 */ UNK_FUN_PTR unk_106C0;
+    /* 0x106C4 */ UNK_FUN_PTR unk_106C4;
+    /* 0x106C8 */ UNK_FUN_PTR unk_106C8;
+    /* 0x106CC */ UNK_FUN_PTR unk_106CC;
+    /* 0x106D0 */ UNK_TYPE1 unk_106D0[0x60];
+} struct_8085E9B0; // size = 0x10730
+
+typedef void (*mSM_play)(struct mSM*);
+typedef void (*mSM_draw)(struct mSM*, struct Game_Play*);
 
 typedef struct mSM {
     /* 0x00 */ s32 unk_00;
     /* 0x04 */ s32 unk_04;
-    /* 0x08 */ UNK_TYPE1 unk_08[0x4];
+    /* 0x08 */ s32 unk_08;
     /* 0x0C */ mSMMoveProcIndex moveProcIndex;
     /* 0x10 */ s32 unk_10;
     /* 0x14 */ s32 unk_14;
@@ -55,9 +87,9 @@ typedef struct mSM {
     /* 0x20 */ s32 unk_20;
     /* 0x24 */ void* linkedAllocStart;
     /* 0x28 */ void* linkedAllocEnd;
-    /* 0x2C */ UNK_TYPE1 unk_2C[0x4];
-    /* 0x30 */ mSM_unk_30 play; // name based on mSM_move_Play, consider renaming
-    /* 0x34 */ mSM_unk_34 draw;
+    /* 0x2C */ struct_8085E9B0* unk_2C;
+    /* 0x30 */ mSM_play play; // name based on mSM_move_Play, consider renaming
+    /* 0x34 */ mSM_draw draw;
     /* 0x38 */ mMl mail;
     /* 0xDC */ u8 unk_DC;
     /* 0xDD */ u8 unk_DD;
