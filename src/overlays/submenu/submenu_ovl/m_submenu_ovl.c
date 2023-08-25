@@ -26,12 +26,15 @@ void func_8085BAC0_jp(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1);
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D128_jp.s")
 
+void func_8085D244_jp(mSM* arg0);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D244_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D2EC_jp.s")
 
+void func_8085D358_jp(mSM* arg0);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D358_jp.s")
 
+void func_8085D398_jp(mSM* arg0);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D398_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D43C_jp.s")
@@ -41,13 +44,38 @@ void func_8085BAC0_jp(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1);
 void func_8085D500_jp(mSM* arg0);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D500_jp.s")
 
+void func_8085D5D4_jp(mSM* arg0);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D5D4_jp.s")
 
-void func_8085D638_jp(mSM* arg0);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D638_jp.s")
+void func_8085D638_jp(mSM* arg0) {
+    func_8085D5D4_jp(arg0);
+    func_8085D398_jp(arg0);
+    func_8085D358_jp(arg0);
+    func_8085D244_jp(arg0);
+}
 
+#if 0
+void func_8085D674_jp(mSM* arg0) {
+    void (**temp_v0)(mSM*);
+
+    temp_v0 = &arg0->unk_2C->unk_10670;
+    temp_v0->unk_28 = (f32) (temp_v0->unk_28 + 0.707f);
+    temp_v0->unk_2C = (f32) (temp_v0->unk_2C + 0.707f);
+    if (temp_v0->unk_28 >= 1024.0f) {
+        do {
+            temp_v0->unk_28 = (f32) (temp_v0->unk_28 - 1024.0f);
+        } while (temp_v0->unk_28 >= 1024.0f);
+    }
+    if (temp_v0->unk_2C >= 1024.0f) {
+        do {
+            temp_v0->unk_2C = (f32) (temp_v0->unk_2C - 1024.0f);
+        } while (temp_v0->unk_2C >= 1024.0f);
+    }
+}
+#else
 void func_8085D674_jp(mSM* arg0);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D674_jp.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D718_jp.s")
 
