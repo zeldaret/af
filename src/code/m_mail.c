@@ -1,6 +1,8 @@
 #include "m_mail.h"
-#include "m_lib.h"
 #include "m_common_data.h"
+#include "m_lib.h"
+#include "m_npc.h"
+#include "6B8A70.h"
 #include "macros.h"
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C1C0_jp.s")
@@ -120,9 +122,30 @@ void mMl_copy_mail_header_common(MailHeaderCommon* arg0, MailHeaderCommon* arg1)
     mem_copy(arg0, arg1, sizeof(MailHeaderCommon));
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/mMl_set_mail_name_npcinfo.s")
+void mMl_set_mail_name_npcinfo(mMl_unk_00* arg0, mMl_get_npcinfo_from_mail_name_arg0* arg1) {
+    PlayerName sp20;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/mMl_get_npcinfo_from_mail_name.s")
+    arg0->unk_10 = 1;
+    mNpc_GetNpcWorldNameAnm(&sp20, arg1);
+    mPr_CopyPlayerName(&arg0->unk_00.unk_0, &sp20);
+    arg0->unk_00.unk_E = arg1->unk_2;
+    mLd_CopyLandName(&arg0->unk_00.unk_6, &arg1->unk_4);
+    arg0->unk_00.unk_C = ((arg1->unk_0 & 0xFF) << 8) | (arg1->unk_A & 0xFF);
+}
+
+s32 mMl_get_npcinfo_from_mail_name(mMl_get_npcinfo_from_mail_name_arg0* arg0, mMl_unk_00* arg1) {
+    s32 var_v1 = 0;
+
+    if (arg1->unk_10 == 1) {
+        arg0->unk_0 = (((arg1->unk_00.unk_C & 0xFF00) >> 8) | 0xE000);
+        arg0->unk_2 = arg1->unk_00.unk_E;
+        mLd_CopyLandName(&arg0->unk_4, &arg1->unk_00.unk_6);
+        arg0->unk_A = arg1->unk_00.unk_C & 0xFFFF;
+        arg0->unk_B = mNpc_GetLooks(arg0->unk_0);
+        var_v1 = 1;
+    }
+    return var_v1;
+}
 
 s32 mMl_hunt_for_send_address(mMl* arg0) {
     s32 var_s0;

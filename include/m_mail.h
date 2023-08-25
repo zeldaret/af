@@ -1,14 +1,26 @@
-#ifndef C_6BFE60_H
-#define C_6BFE60_H
+#ifndef M_MAIL_H
+#define M_MAIL_H
 
 #include "ultra64.h"
+#include "6B8A70.h"
 #include "6DB420.h"
 #include "unk.h"
 
+// TODO: move to a better header
+typedef struct mMl_get_npcinfo_from_mail_name_arg0 {
+    /* 0x0 */ u16 unk_0;
+    /* 0x2 */ u16 unk_2;
+    /* 0x4 */ LandName unk_4;
+    /* 0xA */ u8 unk_A;
+    /* 0xB */ u8 unk_B;
+    /* 0xB */ u8 unk_C;
+} mMl_get_npcinfo_from_mail_name_arg0; // size >= 0xC
+
+// MailName?
 typedef struct mMl_unk_00 {
     /* 0x00 */ PersonalID unk_00;
     /* 0x10 */ u8 unk_10;
-} mMl_unk_00; // size = 0x11
+} mMl_unk_00; // size = 0x12
 
 typedef struct mMl_unk_2A {
     /* 0x00 */ UNK_TYPE1 unk_00[0x7A];
@@ -24,9 +36,7 @@ typedef struct MailHeaderCommon {
 // MailBox?
 typedef struct mMl {
     /* 0x00 */ mMl_unk_00 unk_00;
-    /* 0x11 */ UNK_TYPE1 unk_11[0x1];
     /* 0x12 */ mMl_unk_00 unk_12;
-    /* 0x23 */ UNK_TYPE1 unk_23[0x1];
     /* 0x24 */ UNK_TYPE1 unk_24[0x2];
     /* 0x26 */ u8 unk_26;
     /* 0x27 */ UNK_TYPE1 unk_27[0x1];
@@ -54,8 +64,8 @@ s32 mMl_count_use_mail_space(mMl arg0[], s32 arg1);
 void mMl_copy_mail(mMl* arg0, mMl* arg1);
 void mMl_clear_mail_header_common(MailHeaderCommon* arg0);
 void mMl_copy_mail_header_common(MailHeaderCommon* arg0, MailHeaderCommon* arg1);
-// void mMl_set_mail_name_npcinfo();
-// void mMl_get_npcinfo_from_mail_name();
+void mMl_set_mail_name_npcinfo(mMl_unk_00* arg0, mMl_get_npcinfo_from_mail_name_arg0* arg1);
+s32 mMl_get_npcinfo_from_mail_name(mMl_get_npcinfo_from_mail_name_arg0* arg0, mMl_unk_00* arg1);
 s32 mMl_hunt_for_send_address(mMl* arg0);
 // void mMl_check_send_mail();
 // void mMl_check_set_present_myself();
