@@ -9,6 +9,7 @@
 #include "6BFE60.h"
 #include "6E0F50.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
+#include "overlays/gamestates/ovl__00743CD0/_00743CD0.h"
 
 extern struct_8085E9B0 ovl_base;
 
@@ -28,61 +29,45 @@ extern s32 D_8085E938_jp[];
 extern f32 D_FLT_8085E7E8_jp[][4];
 extern u8 D_8085E7D0_jp[];
 
-#if 0
 void func_8085BAC0_jp(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1) {
-    Mtx* sp5C;
-    Mtx* sp2C;
-    Game* var_a0;
-    Gfx* temp_v1;
-    Gfx* temp_v1_2;
-    Gfx* temp_v1_3;
-    Gfx* temp_v1_4;
-    Gfx* var_v1;
-    Mtx* temp_a0;
     Mtx* var_t0;
+    UNUSED s32 pad;
+    Gfx* gfx;
 
     if (arg1 != 0) {
-        temp_a0 = gfxCtx->polyOpa.d - 0x40;
-        gfxCtx->polyOpa.d = temp_a0;
-        sp5C = temp_a0;
-        sp2C = temp_a0;
-        guOrtho(temp_a0, -2560.0f, 2560.0f, -1920.0f, 1920.0f, 1.0f, 2000.0f, 1.0f);
-        var_t0 = sp5C;
-        arg0->unk_2C->unk_1072C = temp_a0;
+        var_t0 = GRAPH_ALLOC(gfxCtx, sizeof(Mtx));
+        guOrtho(var_t0, -2560.0f, 2560.0f, -1920.0f, 1920.0f, 1.0f, 2000.0f, 1.0f);
+        arg0->unk_2C->unk_1072C = var_t0;
     } else {
         var_t0 = arg0->unk_2C->unk_1072C;
     }
-    var_v1 = gfxCtx->polyOpa.p;
+
+    OPEN_DISPS(gfxCtx);
+
+    gfx = POLY_OPA_DISP;
     if (arg1 == 0) {
-        temp_v1 = var_v1 + 8;
+        Game_Play1938* var_a0;
+
         if (arg0->unk_00 != 4) {
-            var_a0 = gamePT + 0x1938;
+            var_a0 = &((Game_Play*)gamePT)->unk_1938;
         } else {
-            var_a0 = gamePT + 0xE0;
+            var_a0 = &((Game__00743CD0*)gamePT)->unk_00E0;
         }
-        var_v1->words.w0 = 0xE7000000;
-        var_v1->words.w1 = 0;
-        temp_v1_2 = temp_v1 + 8;
-        temp_v1->words.w0 = (((s32) ((f32) var_a0->unk_10 * 4.0f) & 0xFFF) << 0xC) | 0xED000000U | ((s32) ((f32) var_a0->destroy * 4.0f) & 0xFFF);
-        temp_v1->words.w1 = (((s32) ((f32) var_a0->unk_14 * 4.0f) & 0xFFF) << 0xC) | ((s32) ((f32) var_a0->init * 4.0f) & 0xFFF);
-        temp_v1_2->words.w1 = (u32) &var_a0->unk_50;
-        temp_v1_2->words.w0 = 0xDC080008;
-        temp_v1_3 = temp_v1_2 + 8;
-        temp_v1_3->words.w0 = 0xFF10013F;
-        temp_v1_4 = temp_v1_3 + 8;
-        temp_v1_3->words.w1 = (u32) gfxCtx->unk_2E4;
-        temp_v1_4->words.w0 = 0xED000000;
-        temp_v1_4->words.w1 = 0x5003C0;
-        var_v1 = temp_v1_4 + 8;
+
+        gDPPipeSync(gfx++);
+        gDPSetScissor(gfx++, G_SC_NON_INTERLACE, var_a0->unk_010, var_a0->unk_008, var_a0->unk_014, var_a0->unk_00C);
+        gSPViewport(gfx++, &var_a0->vp);
+        gDPSetColorImage(gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 320, gfxCtx->unk_2E4);
+        gDPSetScissor(gfx++, G_SC_NON_INTERLACE, 0, 0, 320, 240);
     }
-    var_v1->words.w0 = 0xDA380007;
-    var_v1->words.w1 = (u32) var_t0;
-    gfxCtx->polyOpa.p = var_v1 + 8;
+
+    if (1) { } if (1) { } if (1) { }
+
+    gSPMatrix(gfx++, var_t0, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
+    POLY_OPA_DISP = gfx;
+
+    CLOSE_DISPS(gfxCtx);
 }
-#else
-void func_8085BAC0_jp(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085BAC0_jp.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085BCD8_jp.s")
 

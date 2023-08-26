@@ -100,7 +100,7 @@ typedef struct struct_8085E9B0 {
     /* 0x106C8 */ UNK_FUN_PTR unk_106C8;
     /* 0x106CC */ UNK_FUN_PTR unk_106CC;
     /* 0x106D0 */ UNK_TYPE1 unk_106D0[0x5C];
-    /* 0x1072C */ UNK_TYPE4 unk_1072C;
+    /* 0x1072C */ Mtx* unk_1072C;
 } struct_8085E9B0; // size = 0x10730
 
 typedef void (*mSM_play)(struct mSM*);

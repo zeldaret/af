@@ -3,11 +3,13 @@
 
 #include "ultra64.h"
 #include "game.h"
+#include "m_view.h"
 #include "unk.h"
 
 typedef struct Game__00743CD0 {
-    /* 0x00 */ Game state;
-    /* 0xE0 */ UNK_TYPE1 unk_00[0x1B20-0xE0];
+    /* 0x0000 */ Game state;
+    /* 0x00E0 */ Game_Play1938 unk_00E0;
+    /* 0x0208 */ UNK_TYPE1 unk_0208[0x1B20-0x208];
 } Game__00743CD0; // size = 0x1B20
 
 void _00743CD0_init(Game *thisx);
