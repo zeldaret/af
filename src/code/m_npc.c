@@ -524,8 +524,8 @@ void func_800A6D04_jp(Anmmem_c* memory, s32 count) {
         if (memory != NULL) {
             func_800B795C_jp(&memory->memory_player_id);
             lbRTC_TimeCopy(&memory->last_speak_time, &mTM_rtcTime_clear_code);
-            func_80094EE0_jp(memory->memuni.land.name);
-            memory->memuni.land.id = 0;
+            func_80094EE0_jp(memory->unk_18.land.name);
+            memory->unk_18.land.id = 0;
             memory->saved_town_tune = 0;
             memory->info.friendship = 0;
             memory->info.exists = FALSE;
@@ -718,8 +718,8 @@ void func_800A72C0_jp(Animal_c* animal) {
 
         if (memory != NULL) {
             lbRTC_TimeCopy(&memory->last_speak_time, &common_data.time.rtc_time);
-            mLd_CopyLandName(memory->memuni.land.name, common_data.save.land_info.name);
-            memory->memuni.land.id = common_data.save.land_info.land_id;
+            mLd_CopyLandName(memory->unk_18.land.name, common_data.save.land_info.name);
+            memory->unk_18.land.id = common_data.save.land_info.land_id;
             memory->saved_town_tune = common_data.save.unk_0F428;
         }
     }
@@ -875,8 +875,8 @@ s32 func_800A78DC_jp(Anmmem_c* memory, s32 count) {
                 memory2 = memory + 1;
                 for (j = i + 1; j < count; j++) {
                     if ((((var_s4 >> j) & 1) == 1) &&
-                        (func_80094E90_jp(memory->memuni.land.name, memory->memuni.land.id, memory2->memuni.land.name,
-                                          memory2->memuni.land.id) == TRUE)) {
+                        (func_80094E90_jp(memory->unk_18.land.name, memory->unk_18.land.id, memory2->unk_18.land.name,
+                                          memory2->unk_18.land.id) == TRUE)) {
                         var_s4 &= ~(1 << j);
                     }
                     memory2++;

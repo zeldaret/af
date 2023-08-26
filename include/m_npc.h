@@ -77,15 +77,15 @@ typedef struct Anmlnd_c {
     /* 0x06 */ u16 id;
 } Anmlnd_c; // size = 0x8
 
-typedef union memuni_u {
+typedef union Memory_18 {
     Anmlnd_c land;
     u32 check;
-} memuni_u; // size = 0x8
+} Memory_18; // size = 0x8
 
 typedef struct Anmmem_c {
     /* 0x00 */ PersonalID_c memory_player_id; /* personal id of the player memory belongs to */
     /* 0x10 */ lbRTC_time_c last_speak_time; /* time the player last spoke to this villager */
-    /* 0x18 */ memuni_u memuni; /* union between town NPC land memory & islander player action memory */
+    /* 0x18 */ Memory_18 unk_18; /* union between town NPC land memory & islander player action memory */
     /* 0x20 */ u64 saved_town_tune; /* memory origin town tune */
     /* 0x28 */ Anmlet_c info; /* saved letter flags */
     /* 0x2A */ Anmplmail_c letter; /* saved letter */

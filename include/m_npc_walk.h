@@ -19,7 +19,7 @@ typedef struct mNpcW_GoalDataTable_c {
 } mNpcW_GoalDataTable_c;// size = 0x8
 
 typedef enum mNpcW_GOAL{
-  /* 0 */ mNpcW_GOAL_SHRINE,    /* Shrine/Wishing Well acre */
+  /* 0 */ mNpcW_GOAL_SHRINE,    /* Shrine acre */
   /* 1 */ mNpcW_GOAL_HOME,      /* Randomly selected acre with a villager house */
   /* 2 */ mNpcW_GOAL_ALONE,     /* Randomly selected acre with no other animals in it */
   /* 3 */ mNpcW_GOAL_MY_HOME,   /* Acre containing the villager's house */
