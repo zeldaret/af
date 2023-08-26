@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 
+struct GraphicsContext;
 struct Game_Play;
 
 // void func_800BD2B0_jp();
@@ -34,7 +35,7 @@ Gfx* func_800BD7C0_jp(Gfx* gfx);
 // void func_800BD9FC_jp();
 // void func_800BDA20_jp();
 // void two_tex_scroll();
-void DisplayList_initialize(GraphicsContext* gfxCtx, u8 arg1, u8 arg2, u8 arg3, struct Game_Play* game_play);
+void DisplayList_initialize(struct GraphicsContext* gfxCtx, u8 arg1, u8 arg2, u8 arg3, struct Game_Play* game_play);
 void fade_rgba8888_draw(Gfx** gfx, s32 arg1);
 // void func_800BE030_jp();
 // void fade_black_draw();

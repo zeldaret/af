@@ -2,22 +2,87 @@
 #include "m_submenu.h"
 #include "m_lib.h"
 #include "game.h"
+#include "ovlmgr.h"
+#include "PreRender.h"
 #include "sys_matrix.h"
+#include "z_std_dma.h"
+#include "6BFE60.h"
+#include "6E0F50.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 extern struct_8085E9B0 ovl_base;
 
 typedef struct struct_8085E4D0 {
-    /* 0x00 */ UNK_TYPE1 unk_00[0x20];
+    /* 0x00 */ RomOffset unk_00;
+    /* 0x00 */ RomOffset unk_04;
+    /* 0x08 */ UNK_TYPE4 unk_08;
+    /* 0x08 */ UNK_TYPE4 unk_0C;
+    /* 0x08 */ UNK_FUN_PTR unk_10;
+    /* 0x08 */ UNK_TYPE4 unk_14;
+    /* 0x08 */ UNK_TYPE4 unk_18;
+    /* 0x08 */ UNK_TYPE4 unk_1C;
 } struct_8085E4D0; // size = 0x20
 extern struct_8085E4D0 D_8085E4D0_jp[];
 
 extern s32 D_8085E938_jp[];
 extern f32 D_FLT_8085E7E8_jp[][4];
+extern u8 D_8085E7D0_jp[];
 
+#if 0
+void func_8085BAC0_jp(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1) {
+    Mtx* sp5C;
+    Mtx* sp2C;
+    Game* var_a0;
+    Gfx* temp_v1;
+    Gfx* temp_v1_2;
+    Gfx* temp_v1_3;
+    Gfx* temp_v1_4;
+    Gfx* var_v1;
+    Mtx* temp_a0;
+    Mtx* var_t0;
+
+    if (arg1 != 0) {
+        temp_a0 = gfxCtx->polyOpa.d - 0x40;
+        gfxCtx->polyOpa.d = temp_a0;
+        sp5C = temp_a0;
+        sp2C = temp_a0;
+        guOrtho(temp_a0, -2560.0f, 2560.0f, -1920.0f, 1920.0f, 1.0f, 2000.0f, 1.0f);
+        var_t0 = sp5C;
+        arg0->unk_2C->unk_1072C = temp_a0;
+    } else {
+        var_t0 = arg0->unk_2C->unk_1072C;
+    }
+    var_v1 = gfxCtx->polyOpa.p;
+    if (arg1 == 0) {
+        temp_v1 = var_v1 + 8;
+        if (arg0->unk_00 != 4) {
+            var_a0 = gamePT + 0x1938;
+        } else {
+            var_a0 = gamePT + 0xE0;
+        }
+        var_v1->words.w0 = 0xE7000000;
+        var_v1->words.w1 = 0;
+        temp_v1_2 = temp_v1 + 8;
+        temp_v1->words.w0 = (((s32) ((f32) var_a0->unk_10 * 4.0f) & 0xFFF) << 0xC) | 0xED000000U | ((s32) ((f32) var_a0->destroy * 4.0f) & 0xFFF);
+        temp_v1->words.w1 = (((s32) ((f32) var_a0->unk_14 * 4.0f) & 0xFFF) << 0xC) | ((s32) ((f32) var_a0->init * 4.0f) & 0xFFF);
+        temp_v1_2->words.w1 = (u32) &var_a0->unk_50;
+        temp_v1_2->words.w0 = 0xDC080008;
+        temp_v1_3 = temp_v1_2 + 8;
+        temp_v1_3->words.w0 = 0xFF10013F;
+        temp_v1_4 = temp_v1_3 + 8;
+        temp_v1_3->words.w1 = (u32) gfxCtx->unk_2E4;
+        temp_v1_4->words.w0 = 0xED000000;
+        temp_v1_4->words.w1 = 0x5003C0;
+        var_v1 = temp_v1_4 + 8;
+    }
+    var_v1->words.w0 = 0xDA380007;
+    var_v1->words.w1 = (u32) var_t0;
+    gfxCtx->polyOpa.p = var_v1 + 8;
+}
+#else
 void func_8085BAC0_jp(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1);
-
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085BAC0_jp.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085BCD8_jp.s")
 
@@ -33,11 +98,58 @@ void func_8085BAC0_jp(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1);
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D094_jp.s")
 
+#if 0
+void func_8085D128_jp(mSM* arg0, struct_8085E4D0* arg1) {
+    void* temp_t0_2; // sp34
+    struct_8085E9B0* temp_t0;
+    void* temp_v0; // sp2C
+    void (*temp_a1)(mSM*); // sp28
+
+    temp_t0 = arg0->unk_2C;
+    if (arg1->unk_1C == 1) {
+        arg1->unk_10(arg0);
+        return;
+    }
+
+    temp_v0 = arg0->linkedAllocEnd;
+    ovlmgr_Load(arg1->unk_00, arg1->unk_04, arg1->unk_08, arg1->unk_0C, temp_v0);
+    arg0->linkedAllocEnd = (uintptr_t)temp_v0 + (((arg1->unk_0C - arg1->unk_08) + 0x3F) & ~0x3F);
+    temp_a1 = ((uintptr_t)temp_v0 + (uintptr_t)arg1->unk_10) - arg1->unk_08;
+    temp_a1(arg0);
+    arg1->unk_10 = temp_a1;
+    arg1->unk_14 = (s32) (((uintptr_t)temp_v0 + arg1->unk_14) - arg1->unk_08);
+    arg1->unk_18 = (s32) (((uintptr_t)temp_v0 + arg1->unk_18) - arg1->unk_08);
+    arg1->unk_1C = 1;
+    temp_t0->unk_10068[temp_t0->unk_10064] = arg1;
+    temp_t0->unk_10064++;
+}
+#else
 void func_8085D128_jp(mSM* arg0, struct_8085E4D0* arg1);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D128_jp.s")
+#endif
 
+#if 0
+void func_8085D244_jp(mSM* arg0) {
+    u8 var_v1;
+
+    var_v1 = D_8085E7D0_jp[arg0->unk_08];
+    if (var_v1 & 2) {
+        func_8085D094_jp(arg0);
+    }
+    if (var_v1 & 4) {
+        func_8085D128_jp(arg0, &D_8085E4D0_jp[0x15]);
+    }
+    if (var_v1 & 8) {
+        func_8085D128_jp(arg0, &D_8085E4D0_jp[0x16]);
+    }
+    if (var_v1 & 0x10) {
+        func_8085D128_jp(arg0, &D_8085E4D0_jp[0x17]);
+    }
+}
+#else
 void func_8085D244_jp(mSM* arg0);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D244_jp.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D2EC_jp.s")
 
