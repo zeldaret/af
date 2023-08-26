@@ -1841,8 +1841,8 @@ void func_800A9EC8_jp(Actor* actor) {
             if (0) {}
 
             if (sp30 != NULL) {
-                func_80026E10_jp(sp30, SEGMENT_ROM_START(segment_00E03000), ALIGN16(SEGMENT_ROM_SIZE(segment_00E03000)),
-                                 "../m_npc.c", 0xE25);
+                DmaMgr_RequestSyncDebug(sp30, SEGMENT_ROM_START(segment_00E03000),
+                                        ALIGN16(SEGMENT_ROM_SIZE(segment_00E03000)), "../m_npc.c", 0xE25);
                 idx = animal->id.npc_id & 0xFFF;
                 func_800C3F70_jp(animal->catchphrase, ANIMAL_CATCHPHRASE_LEN, sp30[idx].unk_02);
                 zelda_free(sp30);
@@ -2034,9 +2034,10 @@ void func_800AA51C_jp(Animal_c* animal, u8 arg1, s32 count) {
         sp4C = zelda_malloc(ALIGN2(SEGMENT_ROM_SIZE(segment_00E0D000)));
     }
 
-    func_80026E10_jp(sp50, SEGMENT_ROM_START(segment_00E03000), SEGMENT_ROM_SIZE(segment_00E03000), "../m_npc.c", 4083);
-    func_80026E10_jp(sp4C, SEGMENT_ROM_START(segment_00E0D000), ALIGN2(SEGMENT_ROM_SIZE(segment_00E0D000)),
-                     "../m_npc.c", 4085);
+    DmaMgr_RequestSyncDebug(sp50, SEGMENT_ROM_START(segment_00E03000), SEGMENT_ROM_SIZE(segment_00E03000), "../m_npc.c",
+                            4083);
+    DmaMgr_RequestSyncDebug(sp4C, SEGMENT_ROM_START(segment_00E0D000), ALIGN2(SEGMENT_ROM_SIZE(segment_00E0D000)),
+                            "../m_npc.c", 4085);
 
     while (arg1) {
         if (animal == NULL) {
@@ -2086,8 +2087,8 @@ void mNpc_SetAnimalTitleDemo(mNpc_demo_npc_c* demo_npc, Animal_c* animal, Game* 
     } else {
         var_v0 = zelda_malloc(SEGMENT_ROM_SIZE(segment_00E03000));
     }
-    func_80026E10_jp(var_v0, SEGMENT_ROM_START(segment_00E03000), SEGMENT_ROM_SIZE(segment_00E03000), "../m_npc.c",
-                     0x1055);
+    DmaMgr_RequestSyncDebug(var_v0, SEGMENT_ROM_START(segment_00E03000), SEGMENT_ROM_SIZE(segment_00E03000),
+                            "../m_npc.c", 0x1055);
 
     for (i = 0; i < ANIMAL_NUM_MAX; i++) {
         func_800AA29C_jp(animal, demo_npc->npc_name, var_v0);
@@ -2376,7 +2377,7 @@ void mNpc_SetNpcList(mNpc_NpcList_c* npclist, Animal_c* animal, s32 count, s32 m
     } else {
         house_data = zelda_malloc(house_data_size);
     }
-    func_80026E10_jp(house_data, SEGMENT_ROM_START(segment_00E02000), house_data_size, "../m_npc.c", 0x1328);
+    DmaMgr_RequestSyncDebug(house_data, SEGMENT_ROM_START(segment_00E02000), house_data_size, "../m_npc.c", 0x1328);
 
     for (i = 0; i < count; i++) {
         home_info = &animal->home_info;
@@ -3117,8 +3118,8 @@ void func_800ACC38_jp(u8* name, u8 npc_id) {
     s32 id = npc_id;
 
     if (id < 0xFF) {
-        func_80026E10_jp(sp28, (RomOffset)((Struct_D_E04000*)SEGMENT_ROM_START(segment_00E04000))->unk_08[id], 8,
-                         "../m_npc.c", 0x1916);
+        DmaMgr_RequestSyncDebug(sp28, (RomOffset)((Struct_D_E04000*)SEGMENT_ROM_START(segment_00E04000))->unk_08[id], 8,
+                                "../m_npc.c", 0x1916);
         mem_copy(name, sp28, PLAYER_NAME_LEN);
     }
 }
@@ -3543,7 +3544,7 @@ void func_800AD8C4_jp(Animal_c* animal, s32 arg1) {
     if ((arg1 >= 0) && (arg1 < 0xD8)) {
         Struct_D_E03000* ptr = (Struct_D_E03000*)SEGMENT_ROM_START(segment_00E03000);
 
-        func_80026E10_jp(&B_80142E78_jp, (RomOffset)&ptr[arg1], 8, "../m_npc.c", 0x1CB3);
+        DmaMgr_RequestSyncDebug(&B_80142E78_jp, (RomOffset)&ptr[arg1], 8, "../m_npc.c", 0x1CB3);
         func_800AA218_jp(animal, arg1 | 0xE000, D_8010AF58_jp[arg1], &B_80142E78_jp);
     }
 }

@@ -392,7 +392,7 @@ void play_init(Game* game) {
     func_8006BB64_jp();
     func_8006C8D0_jp();
     game_play->unk_1DAC = -1;
-    Gameplay_Scene_Read(game_play, common_data.unk_00014);
+    Gameplay_Scene_Read(game_play, common_data.save.unk_00014);
     mSM_submenu_ct(&game_play->submenu);
     game_play->submenu.unk_00 = 0;
     PreRender_init(&game_play->unk_1DC0);

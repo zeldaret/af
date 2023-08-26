@@ -11,6 +11,7 @@
 
 struct Game_Play;
 struct Mail_c;
+struct mSM;
 
 typedef enum mSMMoveProcIndex {
     /* 0 */ MSM_MOVE_PROC_WAIT,
