@@ -43,6 +43,13 @@ typedef enum InventoryItemList {
 typedef void (*struct_8085E9B0_unk_10670_unk_00)(struct mSM*);
 typedef void (*struct_8085E9B0_unk_10670_unk_04)(struct mSM*, struct Game_Play*);
 
+typedef struct struct_8085E9B0_unk_10000 {
+    /* 0x10000 */ UNK_TYPE4 unk_00;
+    /* 0x10004 */ UNK_TYPE1 unk_04[0x60];
+    /* 0x10064 */ UNK_TYPE4 unk_64;
+    /* 0x10068 */ UNK_TYPE4 unk_68[UNK_SIZE];
+} struct_8085E9B0_unk_10000; // size >= 0x6C
+
 typedef struct struct_8085E9B0_unk_10088 {
     /* 0x00 */ s32 unk_00;
     /* 0x04 */ UNK_TYPE1 unk_04[0x4];
@@ -79,10 +86,7 @@ typedef struct struct_8085E9B0_unk_10670 {
 
 typedef struct struct_8085E9B0 {
     /* 0x00000 */ UNK_TYPE1 unk_00000[0x10000];
-    /* 0x10000 */ UNK_TYPE4 unk_10000;
-    /* 0x10004 */ UNK_TYPE1 unk_10004[0x60];
-    /* 0x10064 */ UNK_TYPE4 unk_10064;
-    /* 0x10068 */ UNK_TYPE4 unk_10068[UNK_SIZE];
+    /* 0x10000 */ struct_8085E9B0_unk_10000 unk_10000;
     /* 0x1006C */ UNK_TYPE1 unk_1006C[0x1C];
     /* 0x10088 */ struct_8085E9B0_unk_10088 unk_10088[UNK_SIZE];
     /* 0x100D0 */ UNK_TYPE1 unk_100D0[0x5A0];

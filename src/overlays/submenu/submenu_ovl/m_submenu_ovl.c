@@ -83,16 +83,17 @@ void func_8085BAC0_jp(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D094_jp.s")
 
-#if 0
 void func_8085D128_jp(mSM* arg0, struct_8085E4D0* arg1) {
+    struct_8085E9B0_unk_10000* temp;
     void* temp_t0_2; // sp34
-    struct_8085E9B0* temp_t0;
     void* temp_v0; // sp2C
-    void (*temp_a1)(mSM*); // sp28
+    void (*temp_a1)(); // sp28
+    UNK_FUN_PTR new_var;
 
-    temp_t0 = arg0->unk_2C;
+    temp = &arg0->unk_2C->unk_10000;
     if (arg1->unk_1C == 1) {
-        arg1->unk_10(arg0);
+        new_var = arg1->unk_10;
+        new_var(arg0);
         return;
     }
 
@@ -100,18 +101,17 @@ void func_8085D128_jp(mSM* arg0, struct_8085E4D0* arg1) {
     ovlmgr_Load(arg1->unk_00, arg1->unk_04, arg1->unk_08, arg1->unk_0C, temp_v0);
     arg0->linkedAllocEnd = (uintptr_t)temp_v0 + (((arg1->unk_0C - arg1->unk_08) + 0x3F) & ~0x3F);
     temp_a1 = ((uintptr_t)temp_v0 + (uintptr_t)arg1->unk_10) - arg1->unk_08;
-    temp_a1(arg0);
+    temp_a1(arg0, temp_a1);
     arg1->unk_10 = temp_a1;
+
+    dummy_label_595693:
     arg1->unk_14 = (s32) (((uintptr_t)temp_v0 + arg1->unk_14) - arg1->unk_08);
     arg1->unk_18 = (s32) (((uintptr_t)temp_v0 + arg1->unk_18) - arg1->unk_08);
+
     arg1->unk_1C = 1;
-    temp_t0->unk_10068[temp_t0->unk_10064] = arg1;
-    temp_t0->unk_10064++;
+    temp->unk_68[temp->unk_64] = arg1;
+    temp->unk_64++;
 }
-#else
-void func_8085D128_jp(mSM* arg0, struct_8085E4D0* arg1);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D128_jp.s")
-#endif
 
 #if 0
 void func_8085D244_jp(mSM* arg0) {
