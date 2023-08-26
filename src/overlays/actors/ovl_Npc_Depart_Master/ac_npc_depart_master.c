@@ -4,10 +4,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aNDM_actor_ct(Actor* thisx, Game_Play* game_play);
-void aNDM_actor_dt(Actor* thisx, Game_Play* game_play);
-void aNDM_actor_init(Actor* thisx, Game_Play* game_play);
-void aNDM_actor_save(Actor* thisx, Game_Play* game_play);
+void aNDM_actor_ct(Actor* thisx, Game_Play* gamePlay);
+void aNDM_actor_dt(Actor* thisx, Game_Play* gamePlay);
+void aNDM_actor_init(Actor* thisx, Game_Play* gamePlay);
+void aNDM_actor_save(Actor* thisx, Game_Play* gamePlay);
 
 #if 0
 ActorProfile Npc_Depart_Master_Profile = {

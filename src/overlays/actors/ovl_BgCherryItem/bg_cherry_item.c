@@ -3,10 +3,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void bCI_actor_ct(Actor* thisx, Game_Play* game_play);
-void bCI_actor_dt(Actor* thisx, Game_Play* game_play);
-void bCI_actor_move(Actor* thisx, Game_Play* game_play);
-void bCI_actor_draw(Actor* thisx, Game_Play* game_play);
+void bCI_actor_ct(Actor* thisx, Game_Play* gamePlay);
+void bCI_actor_dt(Actor* thisx, Game_Play* gamePlay);
+void bCI_actor_move(Actor* thisx, Game_Play* gamePlay);
+void bCI_actor_draw(Actor* thisx, Game_Play* gamePlay);
 
 #if 0
 ActorProfile BgCherryItem_Profile = {

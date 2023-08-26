@@ -3,10 +3,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aKAG_actor_ct(Actor* thisx, Game_Play* game_play);
-void func_80A8F340_jp(Actor* thisx, Game_Play* game_play);
-void aKAG_actor_init(Actor* thisx, Game_Play* game_play);
-void aKAG_actor_draw(Actor* thisx, Game_Play* game_play);
+void aKAG_actor_ct(Actor* thisx, Game_Play* gamePlay);
+void func_80A8F340_jp(Actor* thisx, Game_Play* gamePlay);
+void aKAG_actor_init(Actor* thisx, Game_Play* gamePlay);
+void aKAG_actor_draw(Actor* thisx, Game_Play* gamePlay);
 
 #if 0
 ActorProfile Kago_Profile = {

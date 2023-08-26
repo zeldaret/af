@@ -3,10 +3,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void func_805ab8b8(Actor* thisx, Game_Play* game_play);
-void func_805ab988(Actor* thisx, Game_Play* game_play);
-void func_805abdac(Actor* thisx, Game_Play* game_play);
-void func_805abe88(Actor* thisx, Game_Play* game_play);
+void func_805ab8b8(Actor* thisx, Game_Play* gamePlay);
+void func_805ab988(Actor* thisx, Game_Play* gamePlay);
+void func_805abdac(Actor* thisx, Game_Play* gamePlay);
+void func_805abe88(Actor* thisx, Game_Play* gamePlay);
 
 #if 0
 ActorProfile Count02_Profile = {

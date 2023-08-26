@@ -3,10 +3,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void Fieldm_Actor_ct(Actor* thisx, Game_Play* game_play);
-void Fieldm_Actor_dt(Actor* thisx, Game_Play* game_play);
-void Fieldm_Actor_move(Actor* thisx, Game_Play* game_play);
-void Fieldm_Actor_draw(Actor* thisx, Game_Play* game_play);
+void Fieldm_Actor_ct(Actor* thisx, Game_Play* gamePlay);
+void Fieldm_Actor_dt(Actor* thisx, Game_Play* gamePlay);
+void Fieldm_Actor_move(Actor* thisx, Game_Play* gamePlay);
+void Fieldm_Actor_draw(Actor* thisx, Game_Play* gamePlay);
 
 #if 0
 ActorProfile Fieldm_Draw_Profile = {

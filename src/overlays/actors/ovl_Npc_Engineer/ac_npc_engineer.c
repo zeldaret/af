@@ -5,10 +5,10 @@
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "include/unknown_structs.h"
 
-void aNEG_actor_ct(Actor* thisx, Game_Play* game_play);
-void aNEG_actor_dt(Actor* thisx, Game_Play* game_play);
-void aNEG_actor_init(Actor* thisx, Game_Play* game_play);
-void aNEG_actor_save(Actor* thisx, Game_Play* game_play);
+void aNEG_actor_ct(Actor* thisx, Game_Play* gamePlay);
+void aNEG_actor_dt(Actor* thisx, Game_Play* gamePlay);
+void aNEG_actor_init(Actor* thisx, Game_Play* gamePlay);
+void aNEG_actor_save(Actor* thisx, Game_Play* gamePlay);
 void func_809AEF28_jp(void);
 void func_809AEF54_jp(void);
 
@@ -33,12 +33,12 @@ struct_809AEFA4 D_809AEFA4_jp = {
     0,
 };
 
-void aNEG_actor_ct(Actor* thisx, Game_Play* game_play) {
+void aNEG_actor_ct(Actor* thisx, Game_Play* gamePlay) {
     Npc_Engineer* this = (Npc_Engineer*)thisx;
 
-    if (common_data.unk_1004C->unk_BC(thisx, game_play) == 1) {
+    if (gCommonData.unk_1004C->unk_BC(thisx, gamePlay) == 1) {
         this->unk7C0 = none_proc1;
-        common_data.unk_1004C->unk_C0(thisx, game_play, &D_809AEFA4_jp);
+        gCommonData.unk_1004C->unk_C0(thisx, gamePlay, &D_809AEFA4_jp);
         this->unk80C = -1;
         this->unk7FD = 0;
         this->unk8AC = -1;
@@ -52,22 +52,22 @@ void aNEG_actor_ct(Actor* thisx, Game_Play* game_play) {
     }
 }
 
-void aNEG_actor_save(Actor* thisx, Game_Play* game_play) {
-    common_data.unk_1004C->unk_C8(thisx, game_play);
+void aNEG_actor_save(Actor* thisx, Game_Play* gamePlay) {
+    gCommonData.unk_1004C->unk_C8(thisx, gamePlay);
 }
 
-void aNEG_actor_dt(Actor* thisx, Game_Play* game_play) {
-    common_data.unk_1004C->unk_C4(thisx, game_play);
+void aNEG_actor_dt(Actor* thisx, Game_Play* gamePlay) {
+    gCommonData.unk_1004C->unk_C4(thisx, gamePlay);
 }
 
-void aNEG_actor_init(Actor* thisx, Game_Play* game_play) {
-    common_data.unk_1004C->unk_CC(thisx, game_play);
+void aNEG_actor_init(Actor* thisx, Game_Play* gamePlay) {
+    gCommonData.unk_1004C->unk_CC(thisx, gamePlay);
 }
 
 void func_809AEF28_jp(void) {
-    common_data.unk_1004C->unk_D0();
+    gCommonData.unk_1004C->unk_D0();
 }
 
 void func_809AEF54_jp(void) {
-    common_data.unk_1004C->unk_E4();
+    gCommonData.unk_1004C->unk_E4();
 }

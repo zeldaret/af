@@ -11,7 +11,6 @@
 #include "6F8A60.h"
 #include "6DE300.h"
 #include "m_time.h"
-#include "m_font.h"
 #include "libc64/malloc.h"
 #include "m_malloc.h"
 #include "z_std_dma.h"
@@ -41,185 +40,11 @@ typedef struct Struct_D_E03000 {
     /* 0x02 */ u16 unk_02;
     /* 0x04 */ u16 unk_04;
 } Struct_D_E03000; // size = 0x6
-// extern Struct_D_E03000 segment_00E03000[];
 
 typedef struct Struct_D_E04000 {
     /* 0x00 */ char unk00[0x8];
     /* 0x08 */ u8 unk_08[100][PLAYER_NAME_LEN];
 } Struct_D_E04000;
-// extern Struct_D_E04000 segment_00E04000;
-
-// extern u8 segment_00E0D000[];
-
-u16 D_8010AF00_jp[] = {
-    0x0005, 0x0009, 0x000B, 0x000C, 0x000E, 0x0010, 0x0011, 0x0012, 0x0021, 0x0025, 0x0032, 0x0033,
-    0x0035, 0x001B, 0x001B, 0x0056, 0x0059, 0x0068, 0x006F, 0x0080, 0x0083, 0x009F, 0x0002, 0x0000,
-};
-
-u16 D_8010AF30_jp[] = {
-    0x0027, 0x0027, 0x0027, 0x0027, 0x000A, 0x000A, 0x000A, 0x000A, 0x0058, 0x0058,
-    0x0058, 0x0058, 0x0058, 0x0058, 0x0058, 0x0058, 0x0058, 0x0013, 0x00A5, 0x0000,
-};
-
-u8 D_8010AF58_jp[] = {
-    0x02, 0x05, 0x00, 0x00, 0x01, 0x04, 0x01, 0x05, 0x03, 0x05, 0x05, 0x04, 0x01, 0x00, 0x00, 0x01, 0x04, 0x05, 0x03,
-    0x04, 0x02, 0x02, 0x04, 0x01, 0x05, 0x04, 0x01, 0x03, 0x01, 0x02, 0x01, 0x04, 0x02, 0x05, 0x00, 0x03, 0x04, 0x04,
-    0x02, 0x03, 0x00, 0x03, 0x02, 0x00, 0x03, 0x01, 0x05, 0x04, 0x04, 0x05, 0x03, 0x00, 0x02, 0x00, 0x03, 0x01, 0x01,
-    0x05, 0x00, 0x01, 0x02, 0x03, 0x00, 0x02, 0x00, 0x00, 0x02, 0x05, 0x01, 0x04, 0x03, 0x01, 0x02, 0x03, 0x02, 0x01,
-    0x02, 0x02, 0x03, 0x00, 0x03, 0x04, 0x03, 0x01, 0x00, 0x02, 0x02, 0x04, 0x03, 0x02, 0x00, 0x03, 0x00, 0x03, 0x04,
-    0x02, 0x05, 0x05, 0x04, 0x03, 0x04, 0x02, 0x01, 0x00, 0x02, 0x01, 0x00, 0x03, 0x05, 0x00, 0x03, 0x00, 0x05, 0x01,
-    0x00, 0x05, 0x05, 0x00, 0x04, 0x02, 0x05, 0x01, 0x02, 0x03, 0x03, 0x03, 0x01, 0x00, 0x02, 0x01, 0x04, 0x01, 0x04,
-    0x05, 0x04, 0x00, 0x03, 0x01, 0x05, 0x04, 0x04, 0x03, 0x05, 0x03, 0x03, 0x00, 0x04, 0x02, 0x02, 0x05, 0x05, 0x03,
-    0x01, 0x02, 0x02, 0x04, 0x05, 0x03, 0x00, 0x03, 0x04, 0x01, 0x02, 0x04, 0x00, 0x01, 0x01, 0x03, 0x03, 0x02, 0x03,
-    0x04, 0x05, 0x00, 0x02, 0x00, 0x01, 0x05, 0x04, 0x04, 0x05, 0x01, 0x03, 0x04, 0x01, 0x04, 0x05, 0x04, 0x02, 0x05,
-    0x04, 0x02, 0x04, 0x02, 0x03, 0x05, 0x02, 0x00, 0x05, 0x04, 0x01, 0x05, 0x00, 0x00, 0x05, 0x05, 0x01, 0x00, 0x05,
-    0x04, 0x00, 0x01, 0x00, 0x05, 0x03, 0x01, 0x01, 0x01, 0x00, 0x00,
-};
-
-u32 D_8010B034_jp[] = {
-    0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111,
-    0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111,
-};
-
-u32 D_8010B074_jp[] = {
-    0x09090909,
-};
-
-u32 D_8010B078_jp[] = {
-    0x13131313, 0x13131313, 0x13131313, 0x13131313, 0x13131313, 0x13131313, 0x13131313, 0x13131313, 0x13131313,
-};
-
-u32 D_8010B09C_jp[] = {
-    0x08080808, 0x08080808, 0x08080808, 0x08080808, 0x08080808, 0x08080808, 0x08080808, 0x08080808,
-};
-
-u32 D_8010B0BC_jp[] = {
-    0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C,
-    0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C,
-    0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C,
-    0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C,
-    0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C,
-    0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C,
-    0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C,
-    0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C00,
-};
-
-u32 D_8010B1BC_jp[] = {
-    0x160D0D0D, 0x0D0D0D0D, 0x0D0D0D0D, 0x0D091515, 0x15141716, 0x19181818, 0x1919181A, 0x0E0B0000,
-};
-
-u32 D_8010B1DC_jp[] = {
-    0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C,
-    0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C,
-};
-
-u32 D_8010B21C_jp[] = {
-    0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C,
-    0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C,
-};
-
-u32 D_8010B25C_jp[] = {
-    0x01050403,
-    0x02061100,
-};
-
-u32 D_8010B264_jp[] = {
-    0x11111111,
-    0x11111111,
-    0x11110000,
-};
-
-u32 D_8010B270_jp[] = {
-    0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C,
-    0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C0C, 0x0C0C0C00,
-};
-
-u32 D_8010B2A8_jp[] = {
-    0x15000000,
-};
-
-u32 D_8010B2AC_jp[] = {
-    0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111,
-    0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111,
-    0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111, 0x11111111,
-};
-
-u32 D_8010B30C_jp[] = {
-    0x12121212, 0x12121212, 0x12121212, 0x12121212, 0x12121212, 0x12121212, 0x12121212, 0x12121212,
-};
-
-u32 D_8010B32C_jp[] = {
-    0x11110000,
-};
-
-u32 D_8010B330_jp[] = {
-    0x07070707,
-};
-
-u32* D_8010B334_jp[] = {
-    D_8010B034_jp, D_8010B074_jp, D_8010B078_jp, D_8010B09C_jp, D_8010B0BC_jp, D_8010B1BC_jp,
-    D_8010B1DC_jp, D_8010B21C_jp, D_8010B25C_jp, D_8010B264_jp, D_8010B270_jp, D_8010B2A8_jp,
-    D_8010B2AC_jp, D_8010B30C_jp, D_8010B32C_jp, D_8010B330_jp,
-};
-
-s16 D_8010B374_jp[] = {
-    0xFFFF, 0x0000, 0xFFFF, 0x0001, 0xFFFF, 0x0002, 0xFFFF, 0x0003, 0x0000, 0x0004, 0xFFFF, 0x0000, 0xFFFF,
-    0x0001, 0xFFFF, 0x0002, 0xFFFC, 0x0003, 0xFFFF, 0x0004, 0xFFFF, 0x0004, 0xFFFF, 0x0004, 0x0000, 0x0004,
-    0xFFFF, 0x0000, 0xFFFF, 0x0001, 0xFFFF, 0x0002, 0xFFFC, 0x0003, 0xFFFF, 0x0004, 0xFFFF, 0x0004, 0xFFFF,
-    0x0004, 0x0000, 0x0004, 0xFFFF, 0x0000, 0xFFFF, 0x0001, 0xFFFF, 0x0002, 0xFFFC, 0x0003, 0xFFFF, 0x0004,
-    0xFFFF, 0x0004, 0xFFFF, 0x0004, 0x0000, 0x0004, 0xFFFF, 0x0000, 0xFFFF, 0x0001, 0xFFFF, 0x0002, 0xFFFC,
-    0x0003, 0xFFFF, 0x0004, 0xFFFF, 0x0004, 0xFFFF, 0x0004, 0x0000, 0x0004, 0xFFFF, 0x0000, 0xFFFF, 0x0001,
-    0xFFFF, 0x0002, 0xFFFC, 0x0003, 0xFFFF, 0x0004, 0xFFFF, 0x0004, 0xFFFF, 0x0004, 0x0000, 0x0004, 0xFFFF,
-    0x0000, 0xFFFF, 0x0001, 0xFFFF, 0x0002, 0xFFFF, 0x0003, 0x0000, 0x0004, 0xFFFF, 0x0000, 0xFFFF, 0x0001,
-    0xFFFF, 0x0002, 0xFFFF, 0x0003, 0x0000, 0x0004, 0xFFFF, 0x0000, 0xFFFF, 0x0001, 0xFFFF, 0x0002, 0xFFFF,
-    0x0003, 0x0000, 0x0004, 0xFFFF, 0x0000, 0xFFFF, 0x0001, 0xFFFF, 0x0002, 0xFFFF, 0x0003, 0x0000, 0x0004,
-};
-
-u32 D_8010B478_jp[] = {
-    0x00000000,
-    0x64000000,
-    0x00000000,
-};
-
-u32 D_8010B484_jp[] = {
-    0x00000000,
-    0x17040404,
-    0x04040000,
-};
-
-u32 D_8010B490_jp[] = {
-    0x00000000,
-    0x17070707,
-    0x07070000,
-    0x00000000,
-};
-
-u32 D_8010B4A0_jp[] = {
-    0x0000001E,
-    0x0000001F,
-    0x00000020,
-    0x00000021,
-};
-
-u16 D_8010B4B0_jp[] = {
-    0x0101, 0x010F, 0x0201, 0x020F, 0x0214, 0x0301, 0x030F, 0x0403, 0x0408, 0x040D, 0x0413, 0x0415, 0x0506,
-    0x0514, 0x0608, 0x0617, 0x0701, 0x070F, 0x0719, 0x071F, 0x0809, 0x081E, 0x0901, 0x090F, 0x0A01, 0x0A03,
-    0x0A05, 0x0A07, 0x0A0A, 0x0A10, 0x0A14, 0x0A19, 0x0B08, 0x0B0C, 0x0B17, 0x0C09, 0x0C14, 0x0C19,
-};
-
-u16 D_8010B4FC_jp[] = {
-    0x0C1C,
-    0x0000,
-};
-
-u8 D_8010B500_jp[] = {
-    0x23,
-    0x7B,
-};
-
-u16 D_8010B504_jp[] = {
-    0x076D, 0x080F, 0x076D, 0x090D, 0x0000, 0x0000,
-};
 
 typedef struct Struct_D_8010B510_jp {
     /* 0x00 */ u16 unk_00;
@@ -227,6 +52,8 @@ typedef struct Struct_D_8010B510_jp {
     /* 0x04 */ s32 unk_04;
     /* 0x08 */ s32 unk_08;
 } Struct_D_8010B510_jp; // size = 0xC
+
+extern u8 D_8010AF58_jp[];
 
 Struct_D_8010B510_jp D_8010B510_jp[] = {
     { 0xD008, 0x0000, 0x00000205, 0x00000002 }, { 0xD01E, 0x0000, 0x00000205, 0x00000002 },
@@ -263,33 +90,33 @@ Struct_D_8010B510_jp D_8010B510_jp[] = {
     { 0xA00F, 0x0000, 0x000004E2, 0x00000002 }, { 0xA010, 0x0000, 0x000004E2, 0x00000002 },
 };
 
-u8 D_8010B810_jp[PLAYER_NAME_LEN] = { 0xD4, 0x8E, 0xA6, 0x90, 0x85, 0x42 };
+u8 l_no_name_npc_name[PLAYER_NAME_LEN] = { 0xD4, 0x8E, 0xA6, 0x90, 0x85, 0x42 };
 
-u8 D_8010B818_jp[] = { 0xD3, 0xAF, 0x9D, 0x20 };
+u8 l_no_ending_npc_ending[] = { 0xD3, 0xAF, 0x9D, 0x20 };
 
-s32 D_8010B81C_jp[] = { 0, 2 };
+s32 category_table1[] = { 0, 2 };
 
-s32 D_8010B824_jp[] = { 0x314, 0x334, 0x2F4, 0x219, 0x1E5, 0x354, 0x374, 0x394, 0x3D4, 0x3F4, 0x3B4 };
+s32 base_str_no[] = { 0x314, 0x334, 0x2F4, 0x219, 0x1E5, 0x354, 0x374, 0x394, 0x3D4, 0x3F4, 0x3B4 };
 
-s32 D_8010B850_jp[] = {
+s32 this_start_no[] = {
     0x00000020, 0x00000040, 0x00000000, 0x00000060, 0x00000080, 0x000000A0,
 };
-s32 D_8010B868_jp[] = {
+s32 other_start_no[] = {
     0x000000E0, 0x00000100, 0x000000C0, 0x00000120, 0x00000140, 0x00000160,
 };
 
-s32* D_8010B880_jp[] = { D_8010B850_jp, D_8010B868_jp };
+s32* start_no_table[] = { this_start_no, other_start_no };
 
-s32 D_8010B888_jp[] = { 0xC5, 0xD8 };
+s32 mail_no[] = { 0xC5, 0xD8 };
 
-typedef void (*Funcs_D_8010B890_jp)(Mail_c*, Private_c*, AnmPersonalID_c*, Anmremail_c*, u8);
-Funcs_D_8010B890_jp D_8010B890_jp[] = {
+typedef void (*Funcs_D_8010B890_jp)(Mail*, Private*, AnmPersonalId*, AnmRemail*, u8);
+Funcs_D_8010B890_jp get_remail[] = {
     func_800A8F30_jp,
     func_800A8DB4_jp,
 };
 
 s32 D_8010B898_jp[] = { 5, 2, 0 };
-s32 D_8010B8A4_jp[] = { 0, 0, 2 };
+s32 category_table2[] = { 0, 0, 2 };
 
 s32 D_8010B8B0_jp[] = { 1, 0 };
 
@@ -302,17 +129,17 @@ typedef struct Struct_D_8010B8C0_jp {
     /* 0x00 */ s32 unk_04;
 } Struct_D_8010B8C0_jp; // size = 0x8
 
-Struct_D_8010B8C0_jp D_8010B8C0_jp[] = {
+Struct_D_8010B8C0_jp ut_d[] = {
     { 0x00000000, 0x00000000 }, { 0xFFFFFFFF, 0x00000001 }, { 0x00000000, 0x00000001 },
     { 0x00000001, 0x00000001 }, { 0xFFFFFFFF, 0x00000000 }, { 0x00000001, 0x00000000 },
     { 0xFFFFFFFF, 0xFFFFFFFF }, { 0x00000000, 0xFFFFFFFF }, { 0x00000001, 0xFFFFFFFF },
 };
 
-u16 D_8010B908_jp[] = { 0, 0xA012, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF };
+u16 set_fg[] = { 0, 0xA012, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF };
 
-s32 D_8010B91C_jp[] = { 4, 4, 2, 2, 3, 4 };
+s32 spec_table[] = { 4, 4, 2, 2, 3, 4 };
 
-s32 D_8010B934_jp[] = { 0x28, 0x32, 0x3C, 0x46, 0x50, 0x5A, 0x64 };
+s32 npc_grow_table[] = { 0x28, 0x32, 0x3C, 0x46, 0x50, 0x5A, 0x64 };
 
 typedef struct Struct_D_8010B950_jp {
     /* 0x00 */ u16 unk_00;
@@ -320,7 +147,7 @@ typedef struct Struct_D_8010B950_jp {
     /* 0x03 */ u8 unk_03;
 } Struct_D_8010B950_jp; // size = 0x4
 
-Struct_D_8010B950_jp D_8010B950_jp[] = {
+Struct_D_8010B950_jp l_npc_temper[] = {
     { 0x0FA0, 0x0C, 0x0F }, { 0x0BB8, 0x0A, 0x0D }, { 0x0FA0, 0x0C, 0x0F },
     { 0x0FA0, 0x0A, 0x0D }, { 0x1388, 0x09, 0x0C }, { 0x1388, 0x09, 0x0C },
 };
@@ -363,14 +190,14 @@ u8 B_80142F60_jp[PLAYER_NAME_LEN];
 u8 B_80142F68_jp[PLAYER_NAME_LEN];
 
 typedef struct Struct_B_80142F70_jp {
-    /* 0x00 */ AnmPersonalID_c id;
+    /* 0x00 */ AnmPersonalId id;
     /* 0x0C */ u8 unk_0C;
 } Struct_B_80142F70_jp; // size = 0x10
 
 Struct_B_80142F70_jp B_80142F70_jp;
-Mail_c B_80142F80_jp;
+Mail B_80142F80_jp;
 s32 B_80143028_jp[216];
-Animal_c B_80143388_jp;
+Animal B_80143388_jp;
 
 void func_800A6810_jp(s32* arg0, s32 arg1, s32 arg2) {
     s32 i;
@@ -392,12 +219,12 @@ void func_800A6810_jp(s32* arg0, s32 arg1, s32 arg2) {
 }
 
 void func_800A6920_jp(u8* catchphrase, s32 len) {
-    mem_clear(catchphrase, len, CHAR_SPACE);
+    mem_clear(catchphrase, len, 0x20);
 }
 
-void func_800A6940_jp(u8* npc_max) {
-    if (*npc_max < ANIMAL_NUM_MAX) {
-        (*npc_max)++;
+void func_800A6940_jp(u8* npcMax) {
+    if (*npcMax < ANIMAL_NUM_MAX) {
+        (*npcMax)++;
     }
 }
 
@@ -407,43 +234,42 @@ void func_800A695C_jp(u8* arg0) {
     }
 }
 
-void mNpc_ClearAnimalPersonalID(AnmPersonalID_c* anm_id) {
-    anm_id->npc_id = 0;
-    anm_id->name_id = 0xFF;
-    anm_id->land_id = 0xFFFF;
-    anm_id->looks = 6;
-    mNPS_reset_schedule_area(anm_id);
-    func_80094EE0_jp(anm_id->land_name);
+void mNpc_ClearAnimalPersonalID(AnmPersonalId* anmId) {
+    anmId->npcId = 0;
+    anmId->nameId = 0xFF;
+    anmId->landId = 0xFFFF;
+    anmId->looks = 6;
+    mNPS_reset_schedule_area(anmId);
+    func_80094EE0_jp(anmId->landName);
 }
 
-s32 mNpc_CheckFreeAnimalPersonalID(AnmPersonalID_c* anm_id) {
+s32 mNpc_CheckFreeAnimalPersonalID(AnmPersonalId* anmId) {
     s32 res = FALSE;
 
-    if (((anm_id->npc_id == 0) && (anm_id->name_id == 0xFF)) ||
-        (ACTOR_FGNAME_GET_F000(anm_id->npc_id) != FGNAME_F000_E)) {
+    if (((anmId->npcId == 0) && (anmId->nameId == 0xFF)) || (ACTOR_FGNAME_GET_F000(anmId->npcId) != FGNAME_F000_E)) {
         res = TRUE;
     }
     return res;
 }
 
-void mNpc_CopyAnimalPersonalID(AnmPersonalID_c* dst, AnmPersonalID_c* src) {
+void mNpc_CopyAnimalPersonalID(AnmPersonalId* dst, AnmPersonalId* src) {
     if (src != NULL) {
-        if (ACTOR_FGNAME_GET_F000(src->npc_id) == FGNAME_F000_E) {
-            dst->npc_id = src->npc_id;
-            dst->name_id = src->name_id;
-            dst->land_id = src->land_id;
+        if (ACTOR_FGNAME_GET_F000(src->npcId) == FGNAME_F000_E) {
+            dst->npcId = src->npcId;
+            dst->nameId = src->nameId;
+            dst->landId = src->landId;
             dst->looks = src->looks;
-            mLd_CopyLandName(dst->land_name, src->land_name);
+            mLd_CopyLandName(dst->landName, src->landName);
         }
     }
 }
 
-s32 mNpc_CheckCmpAnimalPersonalID(AnmPersonalID_c* id0, AnmPersonalID_c* id1) {
+s32 mNpc_CheckCmpAnimalPersonalID(AnmPersonalId* id0, AnmPersonalId* id1) {
     s32 res = FALSE;
 
-    if ((id0 != NULL) && (id1 != NULL) && (id0->npc_id == id1->npc_id) && (id0->name_id == id1->name_id) &&
-        (id0->land_id == id1->land_id)) {
-        if (func_80094E38_jp(id0->land_name, id1->land_name) == TRUE) {
+    if ((id0 != NULL) && (id1 != NULL) && (id0->npcId == id1->npcId) && (id0->nameId == id1->nameId) &&
+        (id0->landId == id1->landId)) {
+        if (func_80094E38_jp(id0->landName, id1->landName) == TRUE) {
             res = TRUE;
         }
     }
@@ -451,7 +277,7 @@ s32 mNpc_CheckCmpAnimalPersonalID(AnmPersonalID_c* id0, AnmPersonalID_c* id1) {
 }
 
 s32 func_800A6AF0_jp(void) {
-    Animal_c* animal = common_data.save.animals;
+    Animal* animal = gCommonData.save.animals;
     s32 res = 0;
     s32 i;
 
@@ -464,73 +290,73 @@ s32 func_800A6AF0_jp(void) {
     return res;
 }
 
-s32 func_800A6B58_jp(Animal_c* animal) {
+s32 func_800A6B58_jp(Animal* animal) {
     s32 res = (animal->unk_522 >> 0xD) & 7;
     return res;
 }
 
-s32 func_800A6B6C_jp(Animal_c* animal) {
+s32 func_800A6B6C_jp(Animal* animal) {
     s32 res = animal->unk_522 & 0x1FFF;
     return res;
 }
 
-void func_800A6B7C_jp(Animal_c* animal) {
+void func_800A6B7C_jp(Animal* animal) {
     if ((animal->unk_522 & 0x1FFF) < 0x1FFF) {
         animal->unk_522++;
     }
 }
 
-void func_800A6B9C_jp(Animal_c* animal, u16 arg1) {
+void func_800A6B9C_jp(Animal* animal, u16 arg1) {
     animal->unk_522 = ((((animal->unk_522 >> 0xD) & 7) >> 0xD) | arg1) << 0xD;
 }
 
-void func_800A6BC8_jp(Animal_c* animal, PersonalID_c* pid) {
+void func_800A6BC8_jp(Animal* animal, PersonalId* pid) {
     if ((pid != NULL) && (func_800B7914_jp(pid) == 0)) {
-        if (func_800B77C4_jp(animal->parent_name) == 1) {
-            mPr_CopyPlayerName(animal->parent_name, pid->player_name);
+        if (func_800B77C4_jp(animal->parentName) == 1) {
+            mPr_CopyPlayerName(animal->parentName, pid->playerName);
         }
     }
 }
 
 void func_800A6C1C_jp(void) {
-    Animal_c* animal = common_data.save.animals;
-    Private_c* priv = common_data.now_private;
+    Animal* animal = gCommonData.save.animals;
+    Private* priv = gCommonData.nowPrivate;
     s32 i;
 
     if (priv != NULL) {
         for (i = 0; i < ANIMAL_NUM_MAX; i++) {
-            func_800A6BC8_jp(animal, &priv->player_ID);
+            func_800A6BC8_jp(animal, &priv->playerId);
             animal++;
         }
     }
 }
 
-void func_800A6C84_jp(Anmplmail_c* letter) {
+void func_800A6C84_jp(AnmPLMail* letter) {
     letter->font = 0xFF;
-    letter->paper_type = 0;
+    letter->paperType = 0;
     letter->present = 0;
-    mem_clear(letter->body, MAIL_BODY_LEN, CHAR_SPACE);
+    mem_clear(letter->body, MAIL_BODY_LEN, 0x20);
     letter->date.year = mTM_rtcTime_ymd_clear_code.year;
     letter->date.month = mTM_rtcTime_ymd_clear_code.month;
     letter->date.day = mTM_rtcTime_ymd_clear_code.day;
 }
 
-void func_800A6CE4_jp(Anmplmail_c* dst, Anmplmail_c* src) {
-    mem_copy((void*)dst, (void*)src, sizeof(Anmplmail_c));
+void func_800A6CE4_jp(AnmPLMail* dst, AnmPLMail* src) {
+    mem_copy((void*)dst, (void*)src, sizeof(AnmPLMail));
 }
 
-void func_800A6D04_jp(Anmmem_c* memory, s32 count) {
+void func_800A6D04_jp(AnmMemory* memory, s32 count) {
     while (count) {
         if (memory != NULL) {
-            func_800B795C_jp(&memory->memory_player_id);
-            lbRTC_TimeCopy(&memory->last_speak_time, &mTM_rtcTime_clear_code);
+            func_800B795C_jp(&memory->memoryPlayerId);
+            lbRTC_TimeCopy(&memory->lastSpeakTime, &mTM_rtcTime_clear_code);
             func_80094EE0_jp(memory->unk_18.land.name);
             memory->unk_18.land.id = 0;
-            memory->saved_town_tune = 0;
+            memory->savedTownTune = 0;
             memory->info.friendship = 0;
             memory->info.exists = FALSE;
-            memory->info.password_letter = FALSE;
-            memory->info.send_reply = FALSE;
+            memory->info.passwordLetter = FALSE;
+            memory->info.sendReply = FALSE;
             func_800A6C84_jp(&memory->letter);
         }
         memory++;
@@ -538,28 +364,27 @@ void func_800A6D04_jp(Anmmem_c* memory, s32 count) {
     }
 }
 
-void func_800A6DB0_jp(Anmmem_c* dst, Anmmem_c* src) {
-    mem_copy((void*)dst, (void*)src, sizeof(Anmmem_c));
+void func_800A6DB0_jp(AnmMemory* dst, AnmMemory* src) {
+    mem_copy((void*)dst, (void*)src, sizeof(AnmMemory));
 }
 
-void func_800A6DD0_jp(Anmmem_c* memory, s32 arg1) {
+void func_800A6DD0_jp(AnmMemory* memory, s32 arg1) {
     s32 temp_v0 = memory->info.friendship + arg1;
 
     if (memory != NULL) {
         if (temp_v0 >= 0x80) {
             memory->info.friendship = 0x7F;
-            return;
         } else if (temp_v0 < 0) {
             memory->info.friendship = 0;
-            return;
         } else {
             memory->info.friendship = temp_v0;
         }
     }
 }
 
-s32 func_800A6E0C_jp(PersonalID_c* pid) {
+s32 func_800A6E0C_jp(PersonalId* pid) {
     s32 res = FALSE;
+
     if (func_800B7914_jp(pid) == TRUE) {
         res = TRUE;
     }
@@ -567,9 +392,9 @@ s32 func_800A6E0C_jp(PersonalID_c* pid) {
 }
 
 void mNpc_RenewalAnimalMemory(void) {
-    Animal_c* animal = common_data.save.animals;
-    Private_c* priv;
-    Anmmem_c* memory;
+    Animal* animal = gCommonData.save.animals;
+    Private* priv;
+    AnmMemory* memory;
     s32 i;
     s32 j;
     s32 k;
@@ -577,12 +402,12 @@ void mNpc_RenewalAnimalMemory(void) {
     for (i = 0; i < ANIMAL_NUM_MAX; i++) {
         memory = animal->memories;
         for (j = 0; j < ANIMAL_MEMORY_NUM; j++) {
-            if (func_800A6E0C_jp(&memory->memory_player_id) == FALSE) {
-                if (func_800951E4_jp(memory->memory_player_id.land_name, memory->memory_player_id.land_id) == TRUE) {
-                    priv = common_data.save.private;
+            if (func_800A6E0C_jp(&memory->memoryPlayerId) == FALSE) {
+                if (func_800951E4_jp(memory->memoryPlayerId.landName, memory->memoryPlayerId.landId) == TRUE) {
+                    priv = gCommonData.save.private;
                     for (k = 0; k < PLAYER_NUM; k++) {
-                        if ((func_800B7914_jp(&priv->player_ID) == FALSE) &&
-                            (mPr_CheckCmpPersonalID(&priv->player_ID, &memory->memory_player_id) == TRUE)) {
+                        if ((func_800B7914_jp(&priv->playerId) == FALSE) &&
+                            (mPr_CheckCmpPersonalID(&priv->playerId, &memory->memoryPlayerId) == TRUE)) {
                             break;
                         }
                         priv++;
@@ -598,8 +423,8 @@ void mNpc_RenewalAnimalMemory(void) {
     }
 }
 
-s32 func_800A6F48_jp(Anmmem_c* memory, s32 count) {
-    lbRTC_time_c sp48;
+s32 func_800A6F48_jp(AnmMemory* memory, s32 count) {
+    LBRTCTime sp48;
     s32 res;
     s32 i;
 
@@ -607,9 +432,9 @@ s32 func_800A6F48_jp(Anmmem_c* memory, s32 count) {
     res = 0;
 
     for (i = 0; i < count; i++) {
-        if (func_800D52C0_jp(&sp48, &memory->last_speak_time) == -1) {
+        if (func_800D52C0_jp(&sp48, &memory->lastSpeakTime) == -1) {
             res = i;
-            lbRTC_TimeCopy(&sp48, &memory->last_speak_time);
+            lbRTC_TimeCopy(&sp48, &memory->lastSpeakTime);
         }
         memory++;
     }
@@ -617,12 +442,12 @@ s32 func_800A6F48_jp(Anmmem_c* memory, s32 count) {
     return res;
 }
 
-s32 func_800A6FF4_jp(Anmmem_c* memory, s32 count) {
+s32 func_800A6FF4_jp(AnmMemory* memory, s32 count) {
     s32 res = -1;
     s32 i;
 
     for (i = 0; i < count; i++) {
-        if (func_800A6E0C_jp(&memory->memory_player_id) == TRUE) {
+        if (func_800A6E0C_jp(&memory->memoryPlayerId) == TRUE) {
             res = i;
             break;
         }
@@ -632,80 +457,80 @@ s32 func_800A6FF4_jp(Anmmem_c* memory, s32 count) {
     return res;
 }
 
-s32 func_800A706C_jp(Anmmem_c* memory, s32 count) {
-    Anmmem_c* found_memory = NULL;
-    s32 found_idx = func_800A6FF4_jp(memory, count);
+s32 func_800A706C_jp(AnmMemory* memory, s32 count) {
+    AnmMemory* foundMemory = NULL;
+    s32 foundIdx = func_800A6FF4_jp(memory, count);
     s32 i;
 
-    if (found_idx == -1) {
+    if (foundIdx == -1) {
         for (i = 0; i < count; i++) {
-            if (func_800951E4_jp(memory->memory_player_id.land_name, memory->memory_player_id.land_id) == 0) {
-                if (found_memory != NULL) {
-                    if (found_memory->info.exists == memory->info.exists) {
-                        if (memory->info.friendship < found_memory->info.friendship) {
-                            found_memory = memory;
-                            found_idx = i;
-                        } else if ((found_memory->info.friendship == memory->info.friendship) &&
-                                   (func_800D52C0_jp(&found_memory->last_speak_time, &memory->last_speak_time) == -1)) {
-                            found_memory = memory;
-                            found_idx = i;
+            if (func_800951E4_jp(memory->memoryPlayerId.landName, memory->memoryPlayerId.landId) == 0) {
+                if (foundMemory != NULL) {
+                    if (foundMemory->info.exists == memory->info.exists) {
+                        if (memory->info.friendship < foundMemory->info.friendship) {
+                            foundMemory = memory;
+                            foundIdx = i;
+                        } else if ((foundMemory->info.friendship == memory->info.friendship) &&
+                                   (func_800D52C0_jp(&foundMemory->lastSpeakTime, &memory->lastSpeakTime) == -1)) {
+                            foundMemory = memory;
+                            foundIdx = i;
                         }
                     } else if (memory->info.exists == FALSE) {
-                        found_memory = memory;
-                        found_idx = i;
+                        foundMemory = memory;
+                        foundIdx = i;
                     }
                 } else {
-                    found_memory = memory;
-                    found_idx = i;
+                    foundMemory = memory;
+                    foundIdx = i;
                 }
             }
             memory++;
         }
     } else {
-        found_memory = &memory[found_idx];
+        foundMemory = &memory[foundIdx];
     }
-    func_800A6D04_jp(found_memory, 1);
-    return found_idx;
+    func_800A6D04_jp(foundMemory, 1);
+    return foundIdx;
 }
 
-void func_800A71AC_jp(Private_c* private, Anmmem_c* memory) {
+void func_800A71AC_jp(Private* private, AnmMemory* memory) {
     if (memory != NULL) {
         func_800A6D04_jp(memory, 1);
-        func_800B79E0_jp(&memory->memory_player_id, &private->player_ID);
+        func_800B79E0_jp(&memory->memoryPlayerId, &private->playerId);
         memory->info.friendship = 1;
     }
 }
 
-void func_800A71F8_jp(Private_c* private, Anmmem_c* memory) {
+void func_800A71F8_jp(Private* private, AnmMemory* memory) {
     if (memory != NULL) {
         func_800A71AC_jp(private, memory);
-        lbRTC_TimeCopy(&memory->last_speak_time, &common_data.time.rtc_time);
+        lbRTC_TimeCopy(&memory->lastSpeakTime, &gCommonData.time.rtcTime);
     }
 }
 
-s32 func_800A7238_jp(PersonalID_c* pid, Anmmem_c* memory, s32 count) {
-    s32 found_idx = -1;
+s32 func_800A7238_jp(PersonalId* pid, AnmMemory* memory, s32 count) {
+    s32 foundIdx = -1;
     s32 i;
 
     for (i = 0; i < count; i++) {
-        if (mPr_CheckCmpPersonalID(&memory->memory_player_id, pid) == TRUE) {
-            found_idx = i;
+        if (mPr_CheckCmpPersonalID(&memory->memoryPlayerId, pid) == TRUE) {
+            foundIdx = i;
             break;
         }
         memory++;
     }
 
-    return found_idx;
+    return foundIdx;
 }
 
-void func_800A72C0_jp(Animal_c* animal) {
-    Private_c* priv;
-    Anmmem_c* memory = NULL;
+void func_800A72C0_jp(Animal* animal) {
+    Private* priv;
+    AnmMemory* memory = NULL;
     s32 idx;
 
-    if ((common_data.now_private != NULL) && (animal != NULL)) {
-        priv = common_data.now_private;
-        idx = func_800A7238_jp(&priv->player_ID, animal->memories, ANIMAL_MEMORY_NUM);
+    if ((gCommonData.nowPrivate != NULL) && (animal != NULL)) {
+        priv = gCommonData.nowPrivate;
+        idx = func_800A7238_jp(&priv->playerId, animal->memories, ANIMAL_MEMORY_NUM);
         if (idx != -1) {
             memory = &animal->memories[idx];
         } else {
@@ -717,24 +542,24 @@ void func_800A72C0_jp(Animal_c* animal) {
         }
 
         if (memory != NULL) {
-            lbRTC_TimeCopy(&memory->last_speak_time, &common_data.time.rtc_time);
-            mLd_CopyLandName(memory->unk_18.land.name, common_data.save.land_info.name);
-            memory->unk_18.land.id = common_data.save.land_info.land_id;
-            memory->saved_town_tune = common_data.save.unk_0F428;
+            lbRTC_TimeCopy(&memory->lastSpeakTime, &gCommonData.time.rtcTime);
+            mLd_CopyLandName(memory->unk_18.land.name, gCommonData.save.landInfo.name);
+            memory->unk_18.land.id = gCommonData.save.landInfo.landId;
+            memory->savedTownTune = gCommonData.save.unk_0F428;
         }
     }
 }
 
-void func_800A73D8_jp(AnmPersonalID_c* anm_id) {
-    Private_c* priv = common_data.now_private;
-    Animal_c* animal;
+void func_800A73D8_jp(AnmPersonalId* anmId) {
+    Private* priv = gCommonData.nowPrivate;
+    Animal* animal;
     s32 idx;
 
     if (priv != NULL) {
-        idx = func_800A7D08_jp(anm_id);
+        idx = func_800A7D08_jp(anmId);
         if (idx != -1) {
-            animal = &common_data.save.animals[idx];
-            idx = func_800A7238_jp(&priv->player_ID, animal->memories, ANIMAL_MEMORY_NUM);
+            animal = &gCommonData.save.animals[idx];
+            idx = func_800A7238_jp(&priv->playerId, animal->memories, ANIMAL_MEMORY_NUM);
             if (idx == -1) {
                 idx = func_800A706C_jp(animal->memories, ANIMAL_MEMORY_NUM);
                 if (idx != -1) {
@@ -745,15 +570,15 @@ void func_800A73D8_jp(AnmPersonalID_c* anm_id) {
     }
 }
 
-s32 func_800A74A0_jp(Anmmem_c* memory, s32 count) {
+s32 func_800A74A0_jp(AnmMemory* memory, s32 count) {
     s32 i;
-    s8 max_friendship = 0;
+    s8 maxFriendship = 0;
     s32 idx = -1;
 
     for (i = 0; i < count; i++) {
-        if (func_800A6E0C_jp(&memory->memory_player_id) == 0) {
-            if (memory->info.friendship >= max_friendship) {
-                max_friendship = memory->info.friendship;
+        if (func_800A6E0C_jp(&memory->memoryPlayerId) == 0) {
+            if (memory->info.friendship >= maxFriendship) {
+                maxFriendship = memory->info.friendship;
                 idx = i;
             }
         }
@@ -763,82 +588,81 @@ s32 func_800A74A0_jp(Anmmem_c* memory, s32 count) {
     return idx;
 }
 
-s32 func_800A7530_jp(Anmmem_c** out_memory, Anmmem_c* memory, s8* arg2) {
+s32 func_800A7530_jp(AnmMemory** outMemory, AnmMemory* memory, s8* arg2) {
     s32 res = FALSE;
-    Anmmem_c* out_mem;
+    AnmMemory* outMem;
 
     if (*arg2 < memory->info.friendship) {
         *arg2 = memory->info.friendship;
-        *out_memory = memory;
+        *outMemory = memory;
         res = TRUE;
     } else if (memory->info.friendship == *arg2) {
-        out_mem = *out_memory;
-        if (out_mem != NULL) {
-            if (out_mem->info.exists == memory->info.exists) {
-                if (func_800D52C0_jp(&out_mem->last_speak_time, &memory->last_speak_time) == -1) {
-                    *out_memory = memory;
+        outMem = *outMemory;
+        if (outMem != NULL) {
+            if (outMem->info.exists == memory->info.exists) {
+                if (func_800D52C0_jp(&outMem->lastSpeakTime, &memory->lastSpeakTime) == -1) {
+                    *outMemory = memory;
                     res = TRUE;
                 }
             } else if (memory->info.exists == TRUE) {
-                *out_memory = memory;
+                *outMemory = memory;
                 res = TRUE;
             }
         } else {
-            *out_memory = memory;
+            *outMemory = memory;
             res = TRUE;
         }
     }
     return res;
 }
 
-s32 func_800A75FC_jp(Anmmem_c* memory, s32 count) {
-    Anmmem_c* sp4C = memory;
-    Anmmem_c* sp48 = 0;
+s32 func_800A75FC_jp(AnmMemory* memory, s32 count) {
+    AnmMemory* sp4C = memory;
+    AnmMemory* sp48 = 0;
     s8 sp47 = 0;
-    s32 found_idx = -1;
+    s32 foundIdx = -1;
     s32 i;
 
     for (i = 0; i < count; i++) {
-        if ((func_800A6E0C_jp(&memory->memory_player_id) == FALSE) &&
-            (func_800A7530_jp(&sp48, memory, &sp47) == TRUE)) {
-            found_idx = i;
+        if ((func_800A6E0C_jp(&memory->memoryPlayerId) == FALSE) && (func_800A7530_jp(&sp48, memory, &sp47) == TRUE)) {
+            foundIdx = i;
         }
         memory++;
     }
 
-    if ((found_idx != -1) && (sp4C[found_idx].info.friendship < 0x50)) {
-        found_idx = -1;
+    if ((foundIdx != -1) && (sp4C[foundIdx].info.friendship < 0x50)) {
+        foundIdx = -1;
     }
-    return found_idx;
+    return foundIdx;
 }
 
-s32 func_800A76E4_jp(Anmmem_c* memory, s32 count, s32 arg2) {
-    Anmmem_c* sp54 = NULL;
+s32 func_800A76E4_jp(AnmMemory* memory, s32 count, s32 arg2) {
+    AnmMemory* sp54 = NULL;
     s8 sp53 = 0;
-    s32 priv_idx;
-    s32 found_idx = -1;
+    s32 privIdx;
+    s32 foundIdx = -1;
     s32 i;
 
     for (i = 0; i < count; i++) {
-        if (func_800A6E0C_jp(&memory->memory_player_id) == FALSE) {
-            priv_idx = func_800B7FD4_jp(memory);
-            if ((priv_idx != -1) && (arg2 == common_data.save.private[priv_idx].gender) &&
+        if (func_800A6E0C_jp(&memory->memoryPlayerId) == FALSE) {
+            privIdx = func_800B7FD4_jp(memory);
+            if ((privIdx != -1) && (arg2 == gCommonData.save.private[privIdx].gender) &&
                 (func_800A7530_jp(&sp54, memory, &sp53) == TRUE)) {
-                found_idx = i;
+                foundIdx = i;
             }
         }
         memory++;
     }
 
-    return found_idx;
+    return foundIdx;
 }
 
-s32 func_800A77F0_jp(Anmmem_c* memory, s32 count) {
+s32 func_800A77F0_jp(AnmMemory* memory, s32 count) {
     s32 num = 0;
     s32 i;
 
     for (i = 0; i < count; i++) {
-        if (func_800A6E0C_jp(&memory->memory_player_id) == FALSE) {
+        if (func_800A6E0C_jp(&memory->memoryPlayerId) == FALSE) {
             num++;
         }
         memory++;
@@ -847,12 +671,12 @@ s32 func_800A77F0_jp(Anmmem_c* memory, s32 count) {
     return num;
 }
 
-s32 func_800A7858_jp(Anmmem_c* memory, s32 count) {
+s32 func_800A7858_jp(AnmMemory* memory, s32 count) {
     s32 num = 0;
     s32 i;
 
     for (i = 0; i < count; i++) {
-        if ((func_800A6E0C_jp(&memory->memory_player_id) == FALSE) && (memory->info.exists == TRUE)) {
+        if ((func_800A6E0C_jp(&memory->memoryPlayerId) == FALSE) && (memory->info.exists == TRUE)) {
             num++;
         }
         memory++;
@@ -861,15 +685,15 @@ s32 func_800A7858_jp(Anmmem_c* memory, s32 count) {
     return num;
 }
 
-s32 func_800A78DC_jp(Anmmem_c* memory, s32 count) {
-    Anmmem_c* memory2;
+s32 func_800A78DC_jp(AnmMemory* memory, s32 count) {
+    AnmMemory* memory2;
     u8 var_s4 = 0xFF;
     s32 res = 0;
     s32 i;
     s32 j;
 
     for (i = 0; i < count; i++) {
-        if (func_800A6E0C_jp(&memory->memory_player_id) == FALSE) {
+        if (func_800A6E0C_jp(&memory->memoryPlayerId) == FALSE) {
             if (((var_s4 >> i) & 1) == 1) {
                 j = i + 1;
                 memory2 = memory + 1;
@@ -892,30 +716,30 @@ s32 func_800A78DC_jp(Anmmem_c* memory, s32 count) {
     return res;
 }
 
-void mNpc_ClearAnimalInfo(Animal_c* animal) {
-    Anmhome_c* home_info = &animal->home_info;
+void mNpc_ClearAnimalInfo(Animal* animal) {
+    AnmHome* homeInfo = &animal->homeInfo;
 
-    bzero(animal, sizeof(Animal_c));
+    bzero(animal, sizeof(Animal));
     mNpc_ClearAnimalPersonalID(&animal->id);
     func_800A6D04_jp(animal->memories, ANIMAL_MEMORY_NUM);
     animal->unk_520 = 0;
 
-    home_info->type_unused = 0;
-    home_info->block_x = 0xFF;
-    home_info->block_z = 0xFF;
-    home_info->ut_x = 0xFF;
-    home_info->ut_z = 0xFF;
+    homeInfo->typeUnused = 0;
+    homeInfo->blockX = 0xFF;
+    homeInfo->blockZ = 0xFF;
+    homeInfo->utX = 0xFF;
+    homeInfo->utZ = 0xFF;
 
     func_800A6920_jp(animal->catchphrase, ANIMAL_CATCHPHRASE_LEN);
-    func_800BA778_jp(&animal->contest_quest);
-    func_80094EE0_jp(animal->previous_land_name);
+    func_800BA778_jp(&animal->contestQuest);
+    func_80094EE0_jp(animal->previousLandName);
     animal->unk_51C = 0;
     animal->unk_522 = 0;
     animal->unk_524 = 1;
-    func_800B7780_jp(animal->parent_name);
+    func_800B7780_jp(animal->parentName);
 }
 
-void mNpc_ClearAnyAnimalInfo(Animal_c* animals, s32 count) {
+void mNpc_ClearAnyAnimalInfo(Animal* animals, s32 count) {
     s32 i;
 
     for (i = 0; i < count; i++) {
@@ -924,17 +748,17 @@ void mNpc_ClearAnyAnimalInfo(Animal_c* animals, s32 count) {
     }
 }
 
-s32 mNpc_CheckFreeAnimalInfo(Animal_c* animal) {
+s32 mNpc_CheckFreeAnimalInfo(Animal* animal) {
     s32 res = FALSE;
 
-    if ((animal->home_info.block_x == 0xFF) && (animal->home_info.block_z == 0xFF) &&
-        (ACTOR_FGNAME_GET_F000(animal->id.npc_id) != FGNAME_F000_E)) {
+    if ((animal->homeInfo.blockX == 0xFF) && (animal->homeInfo.blockZ == 0xFF) &&
+        (ACTOR_FGNAME_GET_F000(animal->id.npcId) != FGNAME_F000_E)) {
         res = TRUE;
     }
     return res;
 }
 
-s32 mNpc_GetFreeAnimalInfo(Animal_c* animal, s32 count) {
+s32 mNpc_GetFreeAnimalInfo(Animal* animal, s32 count) {
     s32 res = -1;
     s32 i;
 
@@ -949,7 +773,7 @@ s32 mNpc_GetFreeAnimalInfo(Animal_c* animal, s32 count) {
     return res;
 }
 
-s32 mNpc_UseFreeAnimalInfo(Animal_c* animal, s32 count) {
+s32 mNpc_UseFreeAnimalInfo(Animal* animal, s32 count) {
     s32 idx = mNpc_GetFreeAnimalInfo(animal, count);
 
     if (idx != -1) {
@@ -958,18 +782,18 @@ s32 mNpc_UseFreeAnimalInfo(Animal_c* animal, s32 count) {
     return idx;
 }
 
-void mNpc_CopyAnimalInfo(Animal_c* dst, Animal_c* src) {
-    mem_copy((void*)dst, (void*)src, sizeof(Animal_c));
+void mNpc_CopyAnimalInfo(Animal* dst, Animal* src) {
+    mem_copy((void*)dst, (void*)src, sizeof(Animal));
 }
 
-s32 mNpc_SearchAnimalinfo(Animal_c* animal, u16 npc_name, s32 count) {
+s32 mNpc_SearchAnimalinfo(Animal* animal, u16 npcName, s32 count) {
     s32 idx;
 
     animal = &animal[count - 1];
     idx = count - 1;
 
     while (idx >= 0) {
-        if (animal->id.npc_id == npc_name) {
+        if (animal->id.npcId == npcName) {
             return idx;
         }
         idx--;
@@ -979,26 +803,26 @@ s32 mNpc_SearchAnimalinfo(Animal_c* animal, u16 npc_name, s32 count) {
     return -1;
 }
 
-Animal_c* func_800A7C94_jp(u16 npc_name) {
+Animal* func_800A7C94_jp(u16 npcName) {
     UNUSED s32 pad;
-    Animal_c* sp18 = NULL;
-    s32 temp_v0 = mNpc_SearchAnimalinfo(common_data.save.animals, npc_name, ANIMAL_NUM_MAX);
+    Animal* sp18 = NULL;
+    s32 temp_v0 = mNpc_SearchAnimalinfo(gCommonData.save.animals, npcName, ANIMAL_NUM_MAX);
 
     if (temp_v0 != -1) {
-        sp18 = &common_data.save.animals[temp_v0];
+        sp18 = &gCommonData.save.animals[temp_v0];
     }
     return sp18;
 }
 
-s32 func_800A7D08_jp(AnmPersonalID_c* anm_id) {
-    Animal_c* animal = common_data.save.animals;
+s32 func_800A7D08_jp(AnmPersonalId* anmId) {
+    Animal* animal = gCommonData.save.animals;
     s32 res = -1;
     s32 i;
 
-    if (anm_id != NULL) {
-        if (mNpc_CheckFreeAnimalPersonalID(anm_id) == FALSE) {
+    if (anmId != NULL) {
+        if (mNpc_CheckFreeAnimalPersonalID(anmId) == FALSE) {
             for (i = 0; i < ANIMAL_NUM_MAX; i++) {
-                if (mNpc_CheckCmpAnimalPersonalID(anm_id, &animal->id) == TRUE) {
+                if (mNpc_CheckCmpAnimalPersonalID(anmId, &animal->id) == TRUE) {
                     res = i;
                     break;
                 }
@@ -1009,9 +833,9 @@ s32 func_800A7D08_jp(AnmPersonalID_c* anm_id) {
     return res;
 }
 
-AnmPersonalID_c* func_800A7DA0_jp(AnmPersonalID_c* ids, s32 num_ids, s32 arg0, s32 arg1, s32 arg2) {
+AnmPersonalId* func_800A7DA0_jp(AnmPersonalId* ids, s32 numIds, s32 arg0, s32 arg1, s32 arg2) {
     UNUSED s32 pad;
-    AnmPersonalID_c* sp68;
+    AnmPersonalId* sp68;
     u8 sp67;
     UNUSED s32 pad1;
     s32 sp5C;
@@ -1020,26 +844,25 @@ AnmPersonalID_c* func_800A7DA0_jp(AnmPersonalID_c* ids, s32 num_ids, s32 arg0, s
     s32 i;
     UNUSED s32 pad2[2];
     s32 sp44;
-    Animal_c* var_s4;
+    Animal* var_s4 = gCommonData.save.animals;
     s32 var_fp;
     s32 var_s2;
 
-    var_s4 = common_data.save.animals;
     sp68 = NULL;
     var_s2 = 0;
-    sp5C = num_ids;
-    sp67 = common_data.save.now_npc_max;
+    sp5C = numIds;
+    sp67 = gCommonData.save.nowNpcMax;
     sp5A = 0xFFFF;
 
     if ((arg0 == 0xFF) || (arg1 == 0xFF)) {
         arg2 = 0;
     }
 
-    if ((ids == NULL) && (num_ids != 0)) {
-        num_ids = 0;
+    if ((ids == NULL) && (numIds != 0)) {
+        numIds = 0;
     }
 
-    for (i = 0; i < num_ids; i++) {
+    for (i = 0; i < numIds; i++) {
         if (mNpc_CheckFreeAnimalPersonalID(&ids[i]) == TRUE) {
             sp5C--;
             sp5A &= ~(1 << i);
@@ -1048,11 +871,11 @@ AnmPersonalID_c* func_800A7DA0_jp(AnmPersonalID_c* ids, s32 num_ids, s32 arg0, s
 
     if (arg2 == 1) {
         for (j = 0; j < ANIMAL_NUM_MAX; j++) {
-            if (arg0 == var_s4->home_info.block_x) {
-                if (arg1 == var_s4->home_info.block_z) {
+            if (arg0 == var_s4->homeInfo.blockX) {
+                if (arg1 == var_s4->homeInfo.blockZ) {
                     var_s2++;
 
-                    for (i = 0; i < num_ids; i++) {
+                    for (i = 0; i < numIds; i++) {
                         if ((((sp5A >> i) & 1) == TRUE) &&
                             (mNpc_CheckCmpAnimalPersonalID(&var_s4->id, &ids[i]) == TRUE)) {
                             sp5C--;
@@ -1066,8 +889,8 @@ AnmPersonalID_c* func_800A7DA0_jp(AnmPersonalID_c* ids, s32 num_ids, s32 arg0, s
         }
     }
 
-    if (((sp5C + var_s2) < sp67) && (num_ids < ANIMAL_NUM_MAX)) {
-        var_s4 = common_data.save.animals;
+    if (((sp5C + var_s2) < sp67) && (numIds < ANIMAL_NUM_MAX)) {
+        var_s4 = gCommonData.save.animals;
         var_fp = fqrand() * ((sp67 - sp5C) - var_s2);
 
         for (j = 0; j < ANIMAL_NUM_MAX; j++) {
@@ -1075,7 +898,7 @@ AnmPersonalID_c* func_800A7DA0_jp(AnmPersonalID_c* ids, s32 num_ids, s32 arg0, s
             sp44 = 1;
 
             if (mNpc_CheckFreeAnimalPersonalID(&var_s4->id) == 0) {
-                for (i = 0; i < num_ids; i++) {
+                for (i = 0; i < numIds; i++) {
                     if ((((sp5A >> i) & 1) == 1) && (mNpc_CheckCmpAnimalPersonalID(&var_s4->id, &ids[i]) == FALSE)) {
                         var_s2++;
                     }
@@ -1084,7 +907,7 @@ AnmPersonalID_c* func_800A7DA0_jp(AnmPersonalID_c* ids, s32 num_ids, s32 arg0, s
 
                 if (var_s2 != sp5C) {
                     sp44 = 0;
-                } else if ((arg2 == 1) && (arg0 == var_s4->home_info.block_x) && (arg1 == var_s4->home_info.block_z)) {
+                } else if ((arg2 == 1) && (arg0 == var_s4->homeInfo.blockX) && (arg1 == var_s4->homeInfo.blockZ)) {
                     if (var_fp > 0) {
                         var_fp--;
                     }
@@ -1107,17 +930,17 @@ AnmPersonalID_c* func_800A7DA0_jp(AnmPersonalID_c* ids, s32 num_ids, s32 arg0, s
     return sp68;
 }
 
-AnmPersonalID_c* mNpc_GetOtherAnimalPersonalID(AnmPersonalID_c* ids, s32 num_ids) {
-    return func_800A7DA0_jp(ids, num_ids, 0, 0, 0);
+AnmPersonalId* mNpc_GetOtherAnimalPersonalID(AnmPersonalId* ids, s32 numIds) {
+    return func_800A7DA0_jp(ids, numIds, 0, 0, 0);
 }
 
-void func_800A80D8_jp(Animal_c* animal, s32 count) {
-    mLd_land_info_c* land_info = &common_data.save.land_info;
+void func_800A80D8_jp(Animal* animal, s32 count) {
+    LandInfo* landInfo = &gCommonData.save.landInfo;
 
     while (count) {
         if (mNpc_CheckFreeAnimalPersonalID(&animal->id) == FALSE) {
-            animal->id.land_id = land_info->land_id;
-            mLd_CopyLandName(animal->id.land_name, land_info->name);
+            animal->id.landId = landInfo->landId;
+            mLd_CopyLandName(animal->id.landName, landInfo->name);
         }
         count--;
         animal++;
@@ -1125,7 +948,7 @@ void func_800A80D8_jp(Animal_c* animal, s32 count) {
 }
 
 s32 func_800A8148_jp(u8 looks) {
-    Animal_c* animal = common_data.save.animals;
+    Animal* animal = gCommonData.save.animals;
     s32 i;
     s32 res = 0;
 
@@ -1147,7 +970,7 @@ s32 func_800A820C_jp(s32 arg0, s32 arg1, s32 arg2) {
     s32 sp20 = FALSE;
 
     if ((arg0 >= 0) && (arg0 < ANIMAL_NUM_MAX)) {
-        if ((mFI_Wpos2BlockNum(&sp28, &sp24, common_data.npclist[arg0].position) == TRUE) && (sp28 == arg1) &&
+        if ((mFI_Wpos2BlockNum(&sp28, &sp24, gCommonData.npcList[arg0].position) == TRUE) && (sp28 == arg1) &&
             (sp24 == arg2)) {
             sp20 = TRUE;
         }
@@ -1155,40 +978,39 @@ s32 func_800A820C_jp(s32 arg0, s32 arg1, s32 arg2) {
     return sp20;
 }
 
-void func_800A82C8_jp(Anmplmail_c* letter, Mail_c* mail) {
+void func_800A82C8_jp(AnmPLMail* letter, Mail* mail) {
     mem_copy(letter->body, mail->content.body, MAIL_BODY_LEN);
     mem_copy(letter->header, mail->content.header, MAIL_HEADER_LEN);
     mem_copy(letter->footer, mail->content.footer, MAIL_FOOTER_LEN);
-    letter->header_back_start = mail->content.header_back_start;
+    letter->headerBackStart = mail->content.headerBackStart;
     letter->font = mail->content.font;
     letter->present = mail->present;
-    letter->paper_type = mail->content.paper_type;
+    letter->paperType = mail->content.paperType;
 }
 
-void func_800A8344_jp(Mail_c* mail, Anmplmail_c* letter, PersonalID_c* pid, AnmPersonalID_c* anm_id) {
+void func_800A8344_jp(Mail* mail, AnmPLMail* letter, PersonalId* pid, AnmPersonalId* anmId) {
     mem_copy(mail->content.body, letter->body, MAIL_BODY_LEN);
     mem_copy(mail->content.header, letter->header, MAIL_HEADER_LEN);
     mem_copy(mail->content.footer, letter->footer, MAIL_FOOTER_LEN);
 
-    mail->content.header_back_start = letter->header_back_start;
+    mail->content.headerBackStart = letter->headerBackStart;
     mail->content.font = letter->font;
     mail->present = letter->present;
-    mail->content.paper_type = letter->paper_type;
+    mail->content.paperType = letter->paperType;
 
     if (pid != NULL) {
-        func_800B79E0_jp(&mail->header.sender.personal_ID, pid);
+        func_800B79E0_jp(&mail->header.sender.personalId, pid);
         mail->header.sender.type = 0;
     }
 
-    if (anm_id != NULL) {
-        mMl_set_mail_name_npcinfo(&mail->header.recipient, anm_id);
+    if (anmId != NULL) {
+        mMl_set_mail_name_npcinfo(&mail->header.recipient, anmId);
     }
 }
 
 s32 func_800A83F0_jp(u8 c) {
-    if ((c == CHAR_EXCLAMATION) || (c == CHAR_QUOTATION) || (c == CHAR_UNDERSCORE) || (c == CHAR_HYPHEN) ||
-        (c == CHAR_PLUS) || ((c >= CHAR_PERCENT) && (c <= CHAR_AT_SIGN)) ||
-        ((c >= CHAR_7E) && (c <= CHAR_MIDDLE_DOT))) {
+    if ((c == 0x21) || (c == 0x22) || (c == 0x5F) || (c == 0x90) || (c == 0x5C) || ((c >= 0x25) && (c <= 0x40)) ||
+        ((c >= 0x7F) && (c <= 0x85))) {
         return TRUE;
     }
     return FALSE;
@@ -1205,7 +1027,7 @@ s32 func_800A845C_jp(s32* arg0, u8* body) {
     *arg0 = 0;
 
     for (i = 0; i < MAIL_BODY_LEN; i++) {
-        if (*body != CHAR_SPACE) {
+        if (*body != 0x20) {
             var_s2++;
             if (var_s5 == *body) {
                 if (var_s2 >= 3) {
@@ -1230,7 +1052,7 @@ s32 func_800A845C_jp(s32* arg0, u8* body) {
     }
 
     for (i = var_s6; i < MAIL_BODY_LEN; i++) {
-        if (*body != CHAR_SPACE) {
+        if (*body != 0x20) {
             (*arg0)++;
         }
         body++;
@@ -1268,42 +1090,42 @@ u8 func_800A86C4_jp(u8* body) {
     return func_800A8614_jp(&sp1C, body);
 }
 
-u8 func_800A86E8_jp(Anmmem_c* memory, u8* body) {
+u8 func_800A86E8_jp(AnmMemory* memory, u8* body) {
     u8 temp_v0;
 
-    memory->letter.date.year = common_data.time.rtc_time.year;
-    memory->letter.date.month = common_data.time.rtc_time.month;
-    memory->letter.date.day = common_data.time.rtc_time.day;
+    memory->letter.date.year = gCommonData.time.rtcTime.year;
+    memory->letter.date.month = gCommonData.time.rtcTime.month;
+    memory->letter.date.day = gCommonData.time.rtcTime.day;
 
     temp_v0 = func_800A86C4_jp(body);
     if (temp_v0 < 2) {
-        memory->info.password_letter = temp_v0;
-        memory->info.send_reply = 1;
+        memory->info.passwordLetter = temp_v0;
+        memory->info.sendReply = 1;
     }
     return temp_v0;
 }
 
-s32 func_800A8764_jp(Animal_c* animal, u8* body) {
-    Anmremail_c* remail;
+s32 func_800A8764_jp(Animal* animal, u8* body) {
+    AnmRemail* remail;
     u8 sp1B = func_800A86C4_jp(body);
 
     if (sp1B < 2) {
-        remail = &common_data.now_private->remail;
+        remail = &gCommonData.nowPrivate->remail;
 
-        remail->date.year = common_data.time.rtc_time.year;
-        remail->date.month = common_data.time.rtc_time.month;
-        remail->date.day = common_data.time.rtc_time.day;
+        remail->date.year = gCommonData.time.rtcTime.year;
+        remail->date.month = gCommonData.time.rtcTime.month;
+        remail->date.day = gCommonData.time.rtcTime.day;
 
-        remail->flags.password_letter = sp1B;
+        remail->flags.passwordLetter = sp1B;
         remail->flags.looks = animal->id.looks;
 
         mNpc_GetNpcWorldNameAnm(remail->name, &animal->id);
-        mLd_CopyLandName(remail->land_name, func_800950D8_jp()->name);
+        mLd_CopyLandName(remail->landName, func_800950D8_jp()->name);
     }
     return sp1B;
 }
 
-s32 func_800A8814_jp(Animal_c* animal, Anmmem_c* memory, u8* body) {
+s32 func_800A8814_jp(Animal* animal, AnmMemory* memory, u8* body) {
     s32 res;
 
     if (mLd_PlayerManKindCheck() == FALSE) {
@@ -1315,8 +1137,8 @@ s32 func_800A8814_jp(Animal_c* animal, Anmmem_c* memory, u8* body) {
 }
 
 #ifdef NON_MATCHING
-s32 func_800A8868_jp(Mail_c* mail) {
-    AnmPersonalID_c sp5C;
+s32 func_800A8868_jp(Mail* mail) {
+    AnmPersonalId sp5C;
     s32 sp58 = 0;
     UNUSED s32 pad;
     UNUSED s32 pad1;
@@ -1326,18 +1148,18 @@ s32 func_800A8868_jp(Mail_c* mail) {
     s32 sp40;
     UNUSED s32 pad3;
     UNUSED s32 pad4;
-    Animal_c* sp24 = common_data.save.animals;
-    Anmmem_c* sp20;
+    Animal* sp24 = gCommonData.save.animals;
+    AnmMemory* sp20;
 
     if (mMl_get_npcinfo_from_mail_name(&sp5C, &mail->header.recipient) == TRUE) {
         sp4C = func_800A7D08_jp(&sp5C);
         if (sp4C != -1) {
             sp24 += sp4C;
-            sp40 = func_800A7238_jp(&mail->header.sender.personal_ID, sp24->memories, ANIMAL_MEMORY_NUM);
+            sp40 = func_800A7238_jp(&mail->header.sender.personalId, sp24->memories, ANIMAL_MEMORY_NUM);
             if (sp40 == -1) {
                 sp40 = func_800A706C_jp(sp24->memories, ANIMAL_MEMORY_NUM);
                 if (sp40 >= 0) {
-                    func_800B79E0_jp(&sp24->memories[sp40].memory_player_id, &mail->header.sender.personal_ID);
+                    func_800B79E0_jp(&sp24->memories[sp40].memoryPlayerId, &mail->header.sender.personalId);
                 }
             }
             sp20 = &sp24->memories[sp40];
@@ -1346,16 +1168,17 @@ s32 func_800A8868_jp(Mail_c* mail) {
             func_800A82C8_jp(&sp24->memories[sp40].letter, mail);
             sp44 = func_800A8814_jp(sp24, &sp24->memories[sp40], mail->content.body);
             if (mEv_CheckFirstJob() == 1) {
-                mQst_errand_c* temp_v0_5 = func_800BBBEC_jp();
-                if (((temp_v0_5->base.quest_kind == 6) || (temp_v0_5->base.quest_kind == 0xA)) &&
+                QuestErrand* temp_v0_5 = func_800BBBEC_jp();
+
+                if (((temp_v0_5->base.questKind == 6) || (temp_v0_5->base.questKind == 0xA)) &&
                     ((temp_v0_5->base.progress != 0))) {
                     temp_v0_5->base.progress = 3;
-                    sp20->info.send_reply = 0;
+                    sp20->info.sendReply = 0;
                 }
             } else {
                 if ((mLd_PlayerManKindCheck() == FALSE) && (func_800BB5DC_jp(6) == sp4C)) {
-                    func_800BBB30_jp(&sp24->contest_quest, &mail->header.sender, mail->content.body, mail->present);
-                    sp20->info.send_reply = 0;
+                    func_800BBB30_jp(&sp24->contestQuest, &mail->header.sender, mail->content.body, mail->present);
+                    sp20->info.sendReply = 0;
                 }
 
                 sp4C = 3;
@@ -1377,68 +1200,68 @@ s32 func_800A8868_jp(Mail_c* mail) {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_npc/func_800A8868_jp.s")
 #endif
 
-void func_800A8AB4_jp(Anmremail_c* remail) {
+void func_800A8AB4_jp(AnmRemail* remail) {
     remail->date = mTM_rtcTime_ymd_clear_code;
     func_800B7780_jp(remail->name);
-    func_80094EE0_jp(remail->land_name);
-    remail->flags.password_letter = 0;
+    func_80094EE0_jp(remail->landName);
+    remail->flags.passwordLetter = 0;
     remail->flags.looks = 0x7F;
 }
 
 void func_800A8B10_jp(u16* present) {
-    func_800BFCF0_jp(0, present, 1, 0, 0, D_8010B81C_jp[RANDOM(4.0f) & 1], 8);
+    func_800BFCF0_jp(0, present, 1, 0, 0, category_table1[RANDOM(4.0f) & 1], 8);
 }
 
-s32 func_800A8B84_jp(Mail_c* mail, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
-    mHandbillz_Info_c handbill_info;
+s32 func_800A8B84_jp(Mail* mail, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+    Handbill_Unk_Struct handbillInfo;
     s32 res;
 
-    handbill_info.super_buf_p = B_80142CF0_jp;
-    handbill_info.super_buf_size = HANDBILL_HEADER_LEN;
-    handbill_info.mail_buf_p = mail->content.body;
-    handbill_info.mail_buf_size = HANDBILL_BODY_LEN;
-    handbill_info.ps_buf_p = B_80142E38_jp;
-    handbill_info.ps_buf_size = HANDBILL_FOOTER_LEN;
-    handbill_info.super_no = arg1;
-    handbill_info.maila_no = arg2;
-    handbill_info.mailb_no = arg3;
-    handbill_info.mailc_no = arg4;
-    handbill_info.ps_no = arg5;
+    handbillInfo.unk_00 = B_80142CF0_jp;
+    handbillInfo.unk_04 = HANDBILL_HEADER_LEN;
+    handbillInfo.unk_08 = mail->content.body;
+    handbillInfo.unk_0C = HANDBILL_BODY_LEN;
+    handbillInfo.unk_10 = B_80142E38_jp;
+    handbillInfo.unk_14 = HANDBILL_FOOTER_LEN;
+    handbillInfo.unk_18 = arg1;
+    handbillInfo.unk_1C = arg2;
+    handbillInfo.unk_20 = arg3;
+    handbillInfo.unk_24 = arg4;
+    handbillInfo.unk_28 = arg5;
 
-    res = func_800944B8_jp(&handbill_info);
+    res = func_800944B8_jp(&handbillInfo);
     if (res == TRUE) {
-        mail->content.header_back_start = handbill_info.header_back_start;
+        mail->content.headerBackStart = handbillInfo.unk_2C;
         mem_copy(mail->content.header, B_80142CF0_jp, MAIL_HEADER_LEN);
         mem_copy(mail->content.footer, B_80142E38_jp, MAIL_FOOTER_LEN);
     }
     return res;
 }
 
-void func_800A8C48_jp(Private_c* private, AnmPersonalID_c* anm_id, Anmremail_c* remail) {
+void func_800A8C48_jp(Private* private, AnmPersonalId* anmId, AnmRemail* remail) {
     s32 i;
     u8 sp40[MAIL_HEADER_LEN];
 
-    func_80092D10_jp(0, private->player_ID.player_name, PLAYER_NAME_LEN);
+    func_80092D10_jp(0, private->playerId.playerName, PLAYER_NAME_LEN);
     if (remail == NULL) {
-        mNpc_GetNpcWorldNameAnm(sp40, anm_id);
+        mNpc_GetNpcWorldNameAnm(sp40, anmId);
         func_80092D10_jp(1, sp40, PLAYER_NAME_LEN);
-        mNpc_GetNpcWorldNameAnm(sp40, mNpc_GetOtherAnimalPersonalID(anm_id, 1));
+        mNpc_GetNpcWorldNameAnm(sp40, mNpc_GetOtherAnimalPersonalID(anmId, 1));
         func_80092D10_jp(2, sp40, PLAYER_NAME_LEN);
     } else {
         func_80092D10_jp(1, remail->name, PLAYER_NAME_LEN);
         mNpc_GetNpcWorldNameAnm(sp40, mNpc_GetOtherAnimalPersonalID(NULL, 0));
         func_80092D10_jp(2, sp40, PLAYER_NAME_LEN);
-        func_80092D10_jp(14, remail->land_name, PLAYER_NAME_LEN);
+        func_80092D10_jp(14, remail->landName, PLAYER_NAME_LEN);
         func_80092D10_jp(15, func_800950D8_jp()->name, PLAYER_NAME_LEN);
     }
 
-    for (i = 0; i < ARRAY_COUNT(D_8010B824_jp); i++) {
-        func_800C3F70_jp(sp40, MAIL_HEADER_LEN, D_8010B824_jp[i] + RANDOM(32));
+    for (i = 0; i < ARRAY_COUNT(base_str_no); i++) {
+        func_800C3F70_jp(sp40, MAIL_HEADER_LEN, base_str_no[i] + RANDOM(32));
         func_80092D10_jp(i + 3, sp40, MAIL_HEADER_LEN);
     }
 }
 
-void func_800A8DB4_jp(Mail_c* mail, Private_c* private, AnmPersonalID_c* anm_id, Anmremail_c* remail, u8 arg4) {
+void func_800A8DB4_jp(Mail* mail, Private* private, AnmPersonalId* anmId, AnmRemail* remail, u8 arg4) {
     s32* sp54;
     s32 sp50;
     u16 sp4E = 0;
@@ -1446,74 +1269,73 @@ void func_800A8DB4_jp(Mail_c* mail, Private_c* private, AnmPersonalID_c* anm_id,
     s32 temp;
 
     if (remail == NULL) {
-        sp48 = anm_id->looks;
+        sp48 = anmId->looks;
     } else {
         sp48 = remail->flags.looks;
     }
-    sp54 = D_8010B880_jp[arg4];
+    sp54 = start_no_table[arg4];
     sp50 = RANDOM(4.0f) & 1;
     if (sp50 == 0) {
         func_800A8B10_jp(&sp4E);
     }
-    func_800A8C48_jp(private, anm_id, remail);
+    func_800A8C48_jp(private, anmId, remail);
     temp = sp54[sp48];
     func_800A8B84_jp(mail, RANDOM(32.0f) + temp, RANDOM(32.0f) + temp, RANDOM(16.0f) + temp + (sp50 * 0x10),
                      RANDOM(32.0f) + temp, RANDOM(32.0f) + temp);
     mail->present = sp4E;
 }
 
-void func_800A8F30_jp(Mail_c* mail, Private_c* private, AnmPersonalID_c* anm_id, Anmremail_c* remail, u8 arg4) {
+void func_800A8F30_jp(Mail* mail, Private* private, AnmPersonalId* anmId, AnmRemail* remail, u8 arg4) {
     s32 sp34;
     s32 sp30;
     s32 sp2C;
 
     if (remail == NULL) {
-        sp30 = anm_id->looks;
+        sp30 = anmId->looks;
     } else {
         sp30 = remail->flags.looks;
     }
-    func_800A8C48_jp(private, anm_id, remail);
-    sp34 = D_8010B888_jp[arg4] + (sp30 * 3);
+    func_800A8C48_jp(private, anmId, remail);
+    sp34 = mail_no[arg4] + (sp30 * 3);
     sp34 += RANDOM2(3.0f);
     func_80093F04_jp(B_80142E80_jp, &sp2C, B_80142E98_jp, mail->content.body, sp34);
-    mail->content.header_back_start = sp2C;
+    mail->content.headerBackStart = sp2C;
     mem_copy(mail->content.header, B_80142E80_jp, MAIL_HEADER_LEN);
     mem_copy(mail->content.footer, B_80142E98_jp, MAIL_FOOTER_LEN);
     mail->present = 0;
 }
 
-void func_800A9028_jp(Mail_c* mail, Private_c* private, AnmPersonalID_c* anm_id, Anmremail_c* remail, u32 arg4,
-                      u8 arg5) {
+void func_800A9028_jp(Mail* mail, Private* private, AnmPersonalId* anmId, AnmRemail* remail, u32 arg4, u8 arg5) {
     u16 sp36;
 
-    D_8010B890_jp[arg4](mail, private, anm_id, remail, arg5);
+    get_remail[arg4](mail, private, anmId, remail, arg5);
     mail->content.font = 0;
-    mail->content.mail_type = 0;
-    func_800B79E0_jp(&mail->header.recipient.personal_ID, &private->player_ID);
+    mail->content.mailType = 0;
+    func_800B79E0_jp(&mail->header.recipient.personalId, &private->playerId);
     mail->header.recipient.type = 0;
     if (remail == NULL) {
-        mMl_set_mail_name_npcinfo(&mail->header.sender, anm_id);
+        mMl_set_mail_name_npcinfo(&mail->header.sender, anmId);
     } else {
-        mPr_CopyPlayerName(mail->header.sender.personal_ID.player_name, remail->name);
-        mLd_CopyLandName(mail->header.sender.personal_ID.land_name, remail->land_name);
+        mPr_CopyPlayerName(mail->header.sender.personalId.playerName, remail->name);
+        mLd_CopyLandName(mail->header.sender.personalId.landName, remail->landName);
         mail->header.sender.type = 1;
     }
     func_800BFCF0_jp(0, &sp36, 1, 0, 0, 1, 8);
-    mail->content.paper_type = (sp36 - 0x2000) & 0xFFFF;
+    mail->content.paperType = (sp36 - 0x2000) & 0xFFFF;
 }
 
-s32 func_800A9110_jp(Private_c* private, AnmPersonalID_c* anm_id, Anmremail_c* remail, u32 arg3, u8 arg4) {
+s32 func_800A9110_jp(Private* private, AnmPersonalId* anmId, AnmRemail* remail, u32 arg3, u8 arg4) {
     UNUSED s32 pad;
     s32 res = FALSE;
 
     if (func_800B68E8_jp() < 5) {
-        func_800A9028_jp(&B_80142F80_jp, private, anm_id, remail, arg3, arg4);
+        func_800A9028_jp(&B_80142F80_jp, private, anmId, remail, arg3, arg4);
         res = func_800B6A3C_jp(&B_80142F80_jp, 0);
     }
     return res;
 }
 
-s32 func_800A918C_jp(lbRTC_ymd_t* ymd, lbRTC_time_c* time) {
+s32 func_800A918C_jp(LBRTC_Ymd* ymd, LBRTCTime* time) {
     s32 res = FALSE;
 
     if ((ymd->day != 0xFF) && ((ymd->year != time->year) || (ymd->month != time->month) || (ymd->day != time->day))) {
@@ -1523,25 +1345,24 @@ s32 func_800A918C_jp(lbRTC_ymd_t* ymd, lbRTC_time_c* time) {
 }
 
 void func_800A91DC_jp(void) {
-    Animal_c* animal = common_data.save.animals;
-    Anmmem_c* memory;
-    Private_c* priv = common_data.now_private;
-    Anmremail_c* remail = &priv->remail;
-    s32 memory_idx;
+    Animal* animal = gCommonData.save.animals;
+    AnmMemory* memory;
+    Private* priv = gCommonData.nowPrivate;
+    AnmRemail* remail = &priv->remail;
+    s32 memoryIdx;
     s32 i;
 
-    if (func_800B7914_jp(&priv->player_ID) == FALSE) {
+    if (func_800B7914_jp(&priv->playerId) == FALSE) {
         if (mLd_PlayerManKindCheck() == 0) {
             for (i = 0; i < ANIMAL_NUM_MAX; i++) {
                 if (mNpc_CheckFreeAnimalPersonalID(&animal->id) == FALSE) {
-                    memory_idx = func_800A7238_jp(&priv->player_ID, animal->memories, ANIMAL_MEMORY_NUM);
-                    if (memory_idx != -1) {
-                        memory = &animal->memories[memory_idx];
-                        //! FAKE, these should be bitfield accesses and 32-bits, but friendship is just an s8.
-                        if (memory->info.send_reply &&
-                            (func_800A918C_jp(&memory->letter.date, &common_data.time.rtc_time) == TRUE)) {
-                            if (func_800A9110_jp(priv, &animal->id, NULL, memory->info.password_letter, 0) == TRUE) {
-                                memory->info.send_reply = 0;
+                    memoryIdx = func_800A7238_jp(&priv->playerId, animal->memories, ANIMAL_MEMORY_NUM);
+                    if (memoryIdx != -1) {
+                        memory = &animal->memories[memoryIdx];
+                        if (memory->info.sendReply &&
+                            (func_800A918C_jp(&memory->letter.date, &gCommonData.time.rtcTime) == TRUE)) {
+                            if (func_800A9110_jp(priv, &animal->id, NULL, memory->info.passwordLetter, 0) == TRUE) {
+                                memory->info.sendReply = 0;
                             } else {
                                 break;
                             }
@@ -1552,7 +1373,7 @@ void func_800A91DC_jp(void) {
             }
 
             if (priv->remail.flags.looks != 0x7F) {
-                if (func_800A9110_jp(priv, &animal->id, remail, remail->flags.password_letter, 1) == TRUE) {
+                if (func_800A9110_jp(priv, &animal->id, remail, remail->flags.passwordLetter, 1) == TRUE) {
                     func_800A8AB4_jp(remail);
                 }
             }
@@ -1567,53 +1388,53 @@ u8 func_800A9364_jp(void) {
     return (sp2E - 0x2000) & 0xFF;
 }
 
-void func_800A93AC_jp(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* anm_id, u16 arg3, u8 arg4, s32 arg5) {
+void func_800A93AC_jp(Mail* mail, PersonalId* pid, AnmPersonalId* anmId, u16 arg3, u8 arg4, s32 arg5) {
     UNUSED s32 pad[2];
     u8 sp54[MAIL_HEADER_LEN];
     UNUSED s32 pad2[3];
     u8 sp38[MAIL_FOOTER_LEN];
-    s32 header_back_start;
+    s32 headerBackStart;
 
     mMl_clear_mail(mail);
-    func_80093F54_jp(sp54, 0x14, &header_back_start, sp38, 0x14, mail->content.body, arg5);
+    func_80093F54_jp(sp54, 0x14, &headerBackStart, sp38, 0x14, mail->content.body, arg5);
     mem_copy(mail->content.header, sp54, MAIL_HEADER_LEN);
     mem_copy(mail->content.footer, sp38, MAIL_FOOTER_LEN);
-    mail->content.header_back_start = header_back_start;
+    mail->content.headerBackStart = headerBackStart;
     mail->content.font = 0;
-    mail->content.mail_type = 0;
-    func_800B79E0_jp(&mail->header.recipient.personal_ID, pid);
+    mail->content.mailType = 0;
+    func_800B79E0_jp(&mail->header.recipient.personalId, pid);
     mail->header.recipient.type = 0;
-    mMl_set_mail_name_npcinfo(&mail->header.sender, anm_id);
+    mMl_set_mail_name_npcinfo(&mail->header.sender, anmId);
     mail->present = arg3;
-    mail->content.paper_type = arg4;
+    mail->content.paperType = arg4;
 }
 
 void func_800A9468_jp(u16* arg0, s32 arg1) {
-    func_800BFCF0_jp(0, arg0, 1, 0, 0, D_8010B8A4_jp[arg1], D_8010B898_jp[arg1]);
+    func_800BFCF0_jp(0, arg0, 1, 0, 0, category_table2[arg1], D_8010B898_jp[arg1]);
 }
 
-void func_800A94C8_jp(Mail_c* mail, Anmmem_c* memory, Animal_c* animal, s32 arg3, s32 arg4) {
+void func_800A94C8_jp(Mail* mail, AnmMemory* memory, Animal* animal, s32 arg3, s32 arg4) {
     u16 sp2E;
     UNUSED s32 pad[2];
 
-    func_80092D10_jp(0, memory->memory_player_id.player_name, PLAYER_NAME_LEN);
+    func_80092D10_jp(0, memory->memoryPlayerId.playerName, PLAYER_NAME_LEN);
     mNpc_GetNpcWorldNameAnm(B_80142F50_jp, &animal->id);
     func_80092D10_jp(6, B_80142F50_jp, PLAYER_NAME_LEN);
     func_800A9468_jp(&sp2E, arg3);
-    func_800A93AC_jp(mail, &memory->memory_player_id, &animal->id, sp2E, func_800A9364_jp(),
+    func_800A93AC_jp(mail, &memory->memoryPlayerId, &animal->id, sp2E, func_800A9364_jp(),
                      MAIL_BODY_LEN + (arg4 * 3) + arg3);
 }
 
-s32 func_800A956C_jp(Anmmem_c* memory, s32 arg1, Animal_c* animal, s32 arg2) {
+s32 func_800A956C_jp(AnmMemory* memory, s32 arg1, Animal* animal, s32 arg2) {
     UNUSED s32 pad;
-    mHm_hs_c* home;
+    Home* home;
     UNUSED s32 pad2;
     s32 sp28;
     s32 sp24 = animal->id.looks;
     s32 res = FALSE;
 
-    home = &common_data.save.homes[func_80094BF4_jp(arg1)];
-    if (mPr_CheckCmpPersonalID(&memory->memory_player_id, &home->ownerID) == TRUE) {
+    home = &gCommonData.save.homes[func_80094BF4_jp(arg1)];
+    if (mPr_CheckCmpPersonalID(&memory->memoryPlayerId, &home->ownerID) == TRUE) {
         sp28 = func_8009C534_jp(home->mailbox, MAIL_HEADER_LEN);
         if (sp28 != -1) {
             func_800A94C8_jp(&B_80142F80_jp, memory, animal, arg2, sp24);
@@ -1627,18 +1448,16 @@ s32 func_800A956C_jp(Anmmem_c* memory, s32 arg1, Animal_c* animal, s32 arg2) {
     return res;
 }
 
-void func_800A96B0_jp(s32* out_idx, u8* arg1, Animal_c* animal, s32 arg3) {
-    s32 sp24;
-    s32 memory_idx;
+void func_800A96B0_jp(s32* outIdx, u8* arg1, Animal* animal, s32 arg3) {
+    s32 sp24 = func_800A75FC_jp(animal->memories, ANIMAL_MEMORY_NUM);
+    s32 memoryIdx = func_800A76E4_jp(animal->memories, ANIMAL_MEMORY_NUM, ~arg3 & 1);
 
-    sp24 = func_800A75FC_jp(animal->memories, ANIMAL_MEMORY_NUM);
-    memory_idx = func_800A76E4_jp(animal->memories, ANIMAL_MEMORY_NUM, ~arg3 & 1);
-    if ((sp24 != -1) && (memory_idx == sp24)) {
-        *out_idx = memory_idx;
+    if ((sp24 != -1) && (memoryIdx == sp24)) {
+        *outIdx = memoryIdx;
         *arg1 = 0;
-    } else if (memory_idx != -1) {
-        *out_idx = memory_idx;
-        if (animal->memories[memory_idx].info.friendship >= 0x50) {
+    } else if (memoryIdx != -1) {
+        *outIdx = memoryIdx;
+        if (animal->memories[memoryIdx].info.friendship >= 0x50) {
             *arg1 = 1;
         } else {
             *arg1 = 2;
@@ -1647,8 +1466,8 @@ void func_800A96B0_jp(s32* out_idx, u8* arg1, Animal_c* animal, s32 arg3) {
 }
 
 s32 func_800A9780_jp(s32 arg0) {
-    Animal_c* animal = common_data.save.animals;
-    Anmmem_c* memory;
+    Animal* animal = gCommonData.save.animals;
+    AnmMemory* memory;
     s32 sp74[ANIMAL_NUM_MAX];
     u8 sp64[ANIMAL_NUM_MAX];
     s32 temp_v0_2;
@@ -1668,7 +1487,7 @@ s32 func_800A9780_jp(s32 arg0) {
     }
 
     for (i = 0; i < 3; i++) {
-        animal = common_data.save.animals;
+        animal = gCommonData.save.animals;
 
         for (j = 0; j < ANIMAL_NUM_MAX; j++) {
             if ((sp74[j] >= 0) && (i == sp64[j])) {
@@ -1705,38 +1524,38 @@ void func_800A992C_jp(u16* arg0) {
     }
 }
 
-void func_800A99B8_jp(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* anm_id) {
+void func_800A99B8_jp(Mail* mail, PersonalId* pid, AnmPersonalId* anmId) {
     u8 sp2C[MAIL_HEADER_LEN];
-    s32 sp28 = (RANDOM(3.0f) + (anm_id->looks * 3)) + 0xEA;
+    s32 sp28 = (RANDOM(3.0f) + (anmId->looks * 3)) + 0xEA;
     u16 sp26;
 
-    func_80092D10_jp(0, pid->player_name, PLAYER_NAME_LEN);
-    mNpc_GetNpcWorldNameAnm(B_80142F58_jp, anm_id);
+    func_80092D10_jp(0, pid->playerName, PLAYER_NAME_LEN);
+    mNpc_GetNpcWorldNameAnm(B_80142F58_jp, anmId);
     func_80092D10_jp(1, B_80142F58_jp, PLAYER_NAME_LEN);
     func_800A992C_jp(&sp26);
     func_80096740_jp(sp2C, sp26);
     func_80092D10_jp(2, sp2C, MAIL_HEADER_LEN);
-    func_800A93AC_jp(mail, pid, anm_id, sp26, func_800A9364_jp(), sp28);
+    func_800A93AC_jp(mail, pid, anmId, sp26, func_800A9364_jp(), sp28);
 }
 
-s32 func_800A9A98_jp(PersonalID_c* pid, s32 player_no, AnmPersonalID_c* anm_id) {
+s32 func_800A9A98_jp(PersonalId* pid, s32 playerNo, AnmPersonalId* anmId) {
     UNUSED s32 pad;
-    mHm_hs_c* sp28;
-    s32 home_idx;
+    Home* sp28;
+    s32 homeIdx;
     s32 sp20;
     s32 res = FALSE;
 
-    home_idx = func_80094BF4_jp(player_no);
-    sp28 = &common_data.save.homes[home_idx];
+    homeIdx = func_80094BF4_jp(playerNo);
+    sp28 = &gCommonData.save.homes[homeIdx];
 
     if ((func_800B7914_jp(pid) == FALSE) && (mPr_CheckCmpPersonalID(pid, &sp28->ownerID) == TRUE)) {
         sp20 = func_8009C534_jp(sp28->mailbox, MAIL_HEADER_LEN);
         if (sp20 != -1) {
-            func_800A99B8_jp(&B_80142F80_jp, pid, anm_id);
+            func_800A99B8_jp(&B_80142F80_jp, pid, anmId);
             func_8009C67C_jp(&sp28->mailbox[sp20], &B_80142F80_jp);
             res = TRUE;
         } else if (func_800B68E8_jp() < 5) {
-            func_800A99B8_jp(&B_80142F80_jp, pid, anm_id);
+            func_800A99B8_jp(&B_80142F80_jp, pid, anmId);
             res = func_800B6A3C_jp(&B_80142F80_jp, 0);
         }
     }
@@ -1747,19 +1566,19 @@ s32 func_800A9BC4_jp(UNUSED s32 arg0) {
     return FALSE;
 }
 
-s32 func_800A9BD4_jp(PersonalID_c* pid, s32 player_no) {
-    Animal_c* animal = common_data.save.animals;
+s32 func_800A9BD4_jp(PersonalId* pid, s32 playerNo) {
+    Animal* animal = gCommonData.save.animals;
     s32 idx;
     s32 res = FALSE;
     s32 i;
 
     if (pid != NULL) {
-        if (func_800951E4_jp(pid->land_name, pid->land_id) == TRUE) {
+        if (func_800951E4_jp(pid->landName, pid->landId) == TRUE) {
             for (i = 0; i < ANIMAL_NUM_MAX; i++) {
                 if (mNpc_CheckFreeAnimalPersonalID(&animal->id) == FALSE) {
                     idx = func_800A74A0_jp(animal->memories, ANIMAL_MEMORY_NUM);
-                    if ((idx != -1) && (mPr_CheckCmpPersonalID(pid, &animal->memories[idx].memory_player_id) != 0) &&
-                        (func_800A9A98_jp(pid, player_no, &animal->id) == 1)) {
+                    if ((idx != -1) && (mPr_CheckCmpPersonalID(pid, &animal->memories[idx].memoryPlayerId) != 0) &&
+                        (func_800A9A98_jp(pid, playerNo, &animal->id) == 1)) {
                         res = TRUE;
                     }
                 }
@@ -1770,29 +1589,29 @@ s32 func_800A9BD4_jp(PersonalID_c* pid, s32 player_no) {
     return res;
 }
 
-void func_800A9CD4_jp(Mail_c* mail, PersonalID_c* pid) {
+void func_800A9CD4_jp(Mail* mail, PersonalId* pid) {
     UNUSED s32 pad;
     s32 sp30;
 
     func_80093F04_jp(mail->content.header, &sp30, mail->content.footer, mail->content.body, 0xD7);
-    mail->content.header_back_start = sp30;
+    mail->content.headerBackStart = sp30;
     mail->content.font = 0;
-    mail->content.mail_type = 1;
-    func_800B79E0_jp(&mail->header.recipient.personal_ID, pid);
+    mail->content.mailType = 1;
+    func_800B79E0_jp(&mail->header.recipient.personalId, pid);
     mail->header.recipient.type = 0;
     func_800BFCF0_jp(0, &mail->present, 1, 0, 0, 0, 3);
-    mail->content.paper_type = 0x16;
+    mail->content.paperType = 0x16;
 }
 
-s32 func_800A9D68_jp(PersonalID_c* pid, s32 arg1) {
+s32 func_800A9D68_jp(PersonalId* pid, s32 arg1) {
     UNUSED s32 pad;
-    mHm_hs_c* home;
+    Home* home;
     UNUSED s32 pad2;
     s32 sp20;
     s32 res = FALSE;
 
     if (func_800B7914_jp(pid) == 0) {
-        home = &common_data.save.homes[func_80094BF4_jp(arg1)];
+        home = &gCommonData.save.homes[func_80094BF4_jp(arg1)];
         if (mPr_CheckCmpPersonalID(pid, &home->ownerID) == TRUE) {
             sp20 = func_8009C534_jp(home->mailbox, MAIL_HEADER_LEN);
             if (sp20 != -1) {
@@ -1805,13 +1624,13 @@ s32 func_800A9D68_jp(PersonalID_c* pid, s32 arg1) {
     return res;
 }
 
-void func_800A9E54_jp(Animal_c* animal, u8* arg1) {
+void func_800A9E54_jp(Animal* animal, u8* arg1) {
     mem_copy(animal->catchphrase, arg1, ANIMAL_CATCHPHRASE_LEN);
 }
 
 u8* func_800A9E7C_jp(Actor* actor) {
-    Animal_c* var_a1;
-    Animal_c* tmp;
+    Animal* var_a1;
+    Animal* tmp;
     u8* var_v1;
 
     if ((actor != NULL) & (actor->part == ACTOR_PART_NPC)) {
@@ -1823,7 +1642,7 @@ u8* func_800A9E7C_jp(Actor* actor) {
     if ((actor != NULL) && (var_a1 != NULL)) {
         var_v1 = var_a1->catchphrase;
     } else {
-        var_v1 = D_8010B818_jp;
+        var_v1 = l_no_ending_npc_ending;
     }
 
     return var_v1;
@@ -1831,7 +1650,7 @@ u8* func_800A9E7C_jp(Actor* actor) {
 
 void func_800A9EC8_jp(Actor* actor) {
     if ((actor != NULL) && (actor->part == ACTOR_PART_NPC)) {
-        Animal_c* animal = ((Npc*)actor)->animal;
+        Animal* animal = ((Npc*)actor)->animal;
         Struct_D_E03000* sp30;
         u16 idx;
 
@@ -1843,7 +1662,7 @@ void func_800A9EC8_jp(Actor* actor) {
             if (sp30 != NULL) {
                 DmaMgr_RequestSyncDebug(sp30, SEGMENT_ROM_START(segment_00E03000),
                                         ALIGN16(SEGMENT_ROM_SIZE(segment_00E03000)), "../m_npc.c", 0xE25);
-                idx = animal->id.npc_id & 0xFFF;
+                idx = animal->id.npcId & 0xFFF;
                 func_800C3F70_jp(animal->catchphrase, ANIMAL_CATCHPHRASE_LEN, sp30[idx].unk_02);
                 zelda_free(sp30);
             }
@@ -1852,10 +1671,10 @@ void func_800A9EC8_jp(Actor* actor) {
 }
 
 s32 func_800A9F9C_jp(void) {
-    CommonData_unk_10170* var_a2 = common_data.unk_10710;
+    CommonData_unk_10170* var_a2 = gCommonData.unk_10710;
     s32 i;
 
-    for (i = 0; i < ARRAY_COUNT(common_data.unk_10710); i++) {
+    for (i = 0; i < ARRAY_COUNT(gCommonData.unk_10710); i++) {
         if (var_a2->unk_09 == 0) {
             return i;
         }
@@ -1869,23 +1688,23 @@ s32 func_800AA028_jp(u16 arg0, u16 arg1, u16 arg2, u16 arg3) {
     s32 res = FALSE;
 
     if (idx != -1) {
-        common_data.unk_10710[idx].fg_name = arg0;
-        common_data.unk_10710[idx].unk_02 = arg1;
-        common_data.unk_10710[idx].npc_id = arg2;
-        common_data.unk_10710[idx].unk_06 = arg3;
-        common_data.unk_10710[idx].unk_08 = 0;
-        common_data.unk_10710[idx].unk_09 = 1;
+        gCommonData.unk_10710[idx].fgName = arg0;
+        gCommonData.unk_10710[idx].unk_02 = arg1;
+        gCommonData.unk_10710[idx].npcId = arg2;
+        gCommonData.unk_10710[idx].unk_06 = arg3;
+        gCommonData.unk_10710[idx].unk_08 = 0;
+        gCommonData.unk_10710[idx].unk_09 = 1;
         res = TRUE;
     }
     return res;
 }
 
 void func_800AA0B8_jp(u16 fgname) {
-    CommonData_unk_10170* var_a2 = common_data.unk_10710;
+    CommonData_unk_10170* var_a2 = gCommonData.unk_10710;
     s32 i;
 
-    for (i = 0; i < ARRAY_COUNT(common_data.unk_10710); i++) {
-        if ((var_a2->unk_09 == 1) && (var_a2->fg_name == fgname)) {
+    for (i = 0; i < ARRAY_COUNT(gCommonData.unk_10710); i++) {
+        if ((var_a2->unk_09 == 1) && (var_a2->fgName == fgname)) {
             bzero(var_a2, sizeof(CommonData_unk_10170));
             break;
         }
@@ -1894,15 +1713,15 @@ void func_800AA0B8_jp(u16 fgname) {
 }
 
 void func_800AA124_jp(void) {
-    bzero(common_data.unk_10710, sizeof(common_data.unk_10710));
+    bzero(gCommonData.unk_10710, sizeof(gCommonData.unk_10710));
 }
 
-CommonData_unk_10170* func_800AA14C_jp(u16 fg_name) {
-    CommonData_unk_10170* ptr = common_data.unk_10710;
+CommonData_unk_10170* func_800AA14C_jp(u16 fgName) {
+    CommonData_unk_10170* ptr = gCommonData.unk_10710;
     s32 i;
 
-    for (i = 0; i < ARRAY_COUNT(common_data.unk_10710); i++) {
-        if (ptr->fg_name == fg_name) {
+    for (i = 0; i < ARRAY_COUNT(gCommonData.unk_10710); i++) {
+        if (ptr->fgName == fgName) {
             return ptr;
         }
         ptr++;
@@ -1911,27 +1730,27 @@ CommonData_unk_10170* func_800AA14C_jp(u16 fg_name) {
     return NULL;
 }
 
-s32 mNpc_GetLooks(u16 npc_name) {
+s32 mNpc_GetLooks(u16 npcName) {
     u8 res = 0;
 
-    if (ACTOR_FGNAME_GET_F000(npc_name) == FGNAME_F000_E) {
-        res = D_8010AF58_jp[mNpc_GET_IDX(npc_name)];
+    if (ACTOR_FGNAME_GET_F000(npcName) == FGNAME_F000_E) {
+        res = D_8010AF58_jp[mNpc_GET_IDX(npcName)];
     }
     return res;
 }
 
-void func_800AA218_jp(Animal_c* animal, u16 arg1, u8 arg2, Struct_D_E03000* arg3) {
+void func_800AA218_jp(Animal* animal, u16 arg1, u8 arg2, Struct_D_E03000* arg3) {
     if (ACTOR_FGNAME_GET_F000(arg1) == FGNAME_F000_E) {
-        animal->id.npc_id = arg1;
+        animal->id.npcId = arg1;
         animal->id.looks = arg2;
         animal->unk_520 = arg3->unk_00;
         func_800C3F70_jp(animal->catchphrase, ANIMAL_CATCHPHRASE_LEN, arg3->unk_02);
-        animal->id.land_id = common_data.save.land_info.land_id;
-        mLd_CopyLandName(animal->id.land_name, common_data.save.land_info.name);
+        animal->id.landId = gCommonData.save.landInfo.landId;
+        mLd_CopyLandName(animal->id.landName, gCommonData.save.landInfo.name);
     }
 }
 
-void func_800AA29C_jp(Animal_c* animal, u16 arg1, Struct_D_E03000 arg2[]) {
+void func_800AA29C_jp(Animal* animal, u16 arg1, Struct_D_E03000 arg2[]) {
     s32 idx = mNpc_GET_IDX(arg1);
     if (ACTOR_FGNAME_GET_F000(arg1) == FGNAME_F000_E) {
         func_800AA218_jp(animal, arg1, D_8010AF58_jp[idx], &arg2[idx]);
@@ -1939,13 +1758,13 @@ void func_800AA29C_jp(Animal_c* animal, u16 arg1, Struct_D_E03000 arg2[]) {
 }
 
 void func_800AA2F8_jp(u16 arg0) {
-    u8* ptr = common_data.save.unk_0F86C;
+    u8* ptr = gCommonData.save.unk_0F86C;
 
     if (ACTOR_FGNAME_GET_F000(arg0) == FGNAME_F000_E) {
         s32 idx = mNpc_GET_IDX(arg0);
         s32 temp_a2 = idx / 8;
 
-        if (temp_a2 < ARRAY_COUNT(common_data.save.unk_0F86C)) {
+        if (temp_a2 < ARRAY_COUNT(gCommonData.save.unk_0F86C)) {
             ptr += temp_a2;
             idx &= 7;
             *ptr |= 1 << idx;
@@ -1955,10 +1774,10 @@ void func_800AA2F8_jp(u16 arg0) {
 
 s32 func_800AA35C_jp(s32 arg0) {
     s32 res = TRUE;
-    u8* ptr = common_data.save.unk_0F86C;
+    u8* ptr = gCommonData.save.unk_0F86C;
     s32 temp_a1 = arg0 / 8;
 
-    if (temp_a1 < ARRAY_COUNT(common_data.save.unk_0F86C)) {
+    if (temp_a1 < ARRAY_COUNT(gCommonData.save.unk_0F86C)) {
         ptr += temp_a1;
         res = (*ptr >> (arg0 & 7)) & 1;
     }
@@ -1979,14 +1798,14 @@ s32 func_800AA3A4_jp(u8 arg0) {
     return count;
 }
 
-void func_800AA438_jp(u8* arg0, Animal_c* animal) {
+void func_800AA438_jp(u8* arg0, Animal* animal) {
     s32 i;
 
-    bzero(arg0, sizeof(common_data.save.unk_0F86C));
+    bzero(arg0, sizeof(gCommonData.save.unk_0F86C));
 
     for (i = 0; i < ANIMAL_NUM_MAX; i++) {
         if (mNpc_CheckFreeAnimalInfo(animal) == FALSE) {
-            func_800AA2F8_jp(animal->id.npc_id);
+            func_800AA2F8_jp(animal->id.npcId);
         }
         animal++;
     }
@@ -2002,7 +1821,7 @@ void func_800AA49C_jp(void) {
     }
 
     if (i == ARRAY_COUNT(B_80143028_jp)) {
-        func_800AA438_jp(common_data.save.unk_0F86C, common_data.save.animals);
+        func_800AA438_jp(gCommonData.save.unk_0F86C, gCommonData.save.animals);
     }
 }
 
@@ -2015,7 +1834,7 @@ s32 func_800AA4FC_jp(s32 arg0, u8* arg1, s32 arg2) {
     return res;
 }
 
-void func_800AA51C_jp(Animal_c* animal, u8 arg1, s32 count) {
+void func_800AA51C_jp(Animal* animal, u8 arg1, s32 count) {
     UNUSED s32 pad;
     void* sp50;
     void* sp4C;
@@ -2044,7 +1863,7 @@ void func_800AA51C_jp(Animal_c* animal, u8 arg1, s32 count) {
             break;
         }
 
-        if (animal->id.npc_id == 0) {
+        if (animal->id.npcId == 0) {
             s32 temp_s0 = B_80143028_jp[i];
             s32 temp_v0 = func_800AA4FC_jp(temp_s0, sp4C, ALIGN2(SEGMENT_ROM_SIZE(segment_00E0D000)));
 
@@ -2076,7 +1895,7 @@ void func_800AA51C_jp(Animal_c* animal, u8 arg1, s32 count) {
     }
 }
 
-void mNpc_SetAnimalTitleDemo(mNpc_demo_npc_c* demo_npc, Animal_c* animal, Game* game) {
+void mNpc_SetAnimalTitleDemo(NpcDemoNpc* demoNpc, Animal* animal, Game* game) {
     GameAlloc* alloc = NULL;
     Struct_D_E03000* var_v0;
     s32 i;
@@ -2091,15 +1910,15 @@ void mNpc_SetAnimalTitleDemo(mNpc_demo_npc_c* demo_npc, Animal_c* animal, Game* 
                             "../m_npc.c", 0x1055);
 
     for (i = 0; i < ANIMAL_NUM_MAX; i++) {
-        func_800AA29C_jp(animal, demo_npc->npc_name, var_v0);
-        animal->home_info.type_unused = 0;
-        animal->home_info.block_x = demo_npc->block_x;
-        animal->home_info.block_z = demo_npc->block_z;
-        animal->home_info.ut_x = demo_npc->ut_x;
-        animal->home_info.ut_z = demo_npc->ut_z;
+        func_800AA29C_jp(animal, demoNpc->npcName, var_v0);
+        animal->homeInfo.typeUnused = 0;
+        animal->homeInfo.blockX = demoNpc->blockX;
+        animal->homeInfo.blockZ = demoNpc->blockZ;
+        animal->homeInfo.utX = demoNpc->utX;
+        animal->homeInfo.utZ = demoNpc->utZ;
 
         animal++;
-        demo_npc++;
+        demoNpc++;
     }
 
     if (var_v0 != NULL) {
@@ -2156,7 +1975,7 @@ s32 func_800AA9F4_jp(s32* arg0, s32* arg1, UNK_TYPE arg2, UNK_TYPE arg3) {
 }
 
 void func_800AAA40_jp(Struct_B_80142D08_jp* arg0, s32 count, u8* arg2) {
-    mFM_fg_c* fg = &common_data.save.fg[0][0];
+    Fg* fg = &gCommonData.save.fg[0][0];
     Struct_B_80142D08_jp* arg0_backup = arg0;
     u16* item;
     u8 num = 0;
@@ -2247,62 +2066,62 @@ void func_800AAB48_jp(Struct_B_80142D08_jp* arg0, s32 arg1, u8* arg2, u8 arg3, u
     *arg2 = count;
 }
 
-void func_800AAC88_jp(u16 npc_id, s32 block_x, s32 block_z, s32 ut_x, s32 ut_z) {
+void func_800AAC88_jp(u16 npcId, s32 blockX, s32 blockZ, s32 utX, s32 utZ) {
     u16* deposit;
     s32 x;
     s32 z;
     s32 i;
 
-    if ((block_x >= 0) && (block_x < 5) && (block_z >= 0) && (block_z < 6) && (ut_x > 0) && (ut_x < 0xF) &&
-        (ut_z > 0) && (ut_z < 0xF)) {
-        mFM_fg_c* fg = &common_data.save.fg[block_z][block_x];
+    if ((blockX >= 0) && (blockX < 5) && (blockZ >= 0) && (blockZ < 6) && (utX > 0) && (utX < 0xF) && (utZ > 0) &&
+        (utZ < 0xF)) {
+        Fg* fg = &gCommonData.save.fg[blockZ][blockX];
 
-        D_8010B908_jp[0] = npc_id + 0xFFFF7000;
-        deposit = func_8008C1E0_jp(block_x + 1, block_z + 1);
+        set_fg[0] = npcId + 0xFFFF7000;
+        deposit = func_8008C1E0_jp(blockX + 1, blockZ + 1);
 
-        for (i = 0; i < ARRAY_COUNT(D_8010B908_jp); i++) {
-            x = D_8010B8C0_jp[i].unk_00 + ut_x;
-            z = D_8010B8C0_jp[i].unk_04 + ut_z;
+        for (i = 0; i < ARRAY_COUNT(set_fg); i++) {
+            x = ut_d[i].unk_00 + utX;
+            z = ut_d[i].unk_04 + utZ;
 
             mPB_keep_item(fg->items[z][x]);
             if (deposit != NULL) {
                 func_8008C478_jp(deposit, x, z);
             }
-            fg->items[z][x] = D_8010B908_jp[i];
+            fg->items[z][x] = set_fg[i];
         }
     }
 }
 
 #ifdef NON_MATCHING
-void func_800AADE8_jp(Anmhome_c* home_info) {
-    u8 block_x = home_info->block_x - 1;
-    u8 block_z = home_info->block_z - 1;
-    u8 ut_x = home_info->ut_x;
-    u8 ut_z = home_info->ut_z - 1;
+void func_800AADE8_jp(AnmHome* homeInfo) {
+    u8 blockX = homeInfo->blockX - 1;
+    u8 blockZ = homeInfo->blockZ - 1;
+    u8 utX = homeInfo->utX;
+    u8 utZ = homeInfo->utZ - 1;
 
-    if ((block_x < 5) && (block_z < 6) && (ut_x > 0) && (ut_x < 0xF) && (ut_z > 0) && (ut_z < 0xF)) {
-        s32 val = func_800879B0_jp(home_info->block_x, home_info->block_z);
+    if ((blockX < 5) && (blockZ < 6) && (utX > 0) && (utX < 0xF) && (utZ > 0) && (utZ < 0xF)) {
+        s32 val = func_800879B0_jp(homeInfo->blockX, homeInfo->blockZ);
 
-        common_data.save.fg[block_z][block_x].items[ut_z][ut_x] = val;    // a8
-        common_data.save.fg[block_z][block_x].items[ut_z][ut_x + 15] = 0; // c6
-        common_data.save.fg[block_z][block_x].items[ut_z + 1][0] = 0;     // c8
-        common_data.save.fg[block_z][block_x].items[ut_z + 1][1] = 0;     // ca
+        gCommonData.save.fg[blockZ][blockX].items[utZ][utX] = val;    // a8
+        gCommonData.save.fg[blockZ][blockX].items[utZ][utX + 15] = 0; // c6
+        gCommonData.save.fg[blockZ][blockX].items[utZ + 1][0] = 0;    // c8
+        gCommonData.save.fg[blockZ][blockX].items[utZ + 1][1] = 0;    // ca
 
-        common_data.save.fg[block_z][block_x].items[ut_z][ut_x - 1] = 0; // a6
-        common_data.save.fg[block_z][block_x].items[ut_z][ut_x + 1] = 0; // aa
+        gCommonData.save.fg[blockZ][blockX].items[utZ][utX - 1] = 0; // a6
+        gCommonData.save.fg[blockZ][blockX].items[utZ][utX + 1] = 0; // aa
 
-        common_data.save.fg[block_z][block_x].items[ut_z - 2][15] = 0; // 86
-        common_data.save.fg[block_z][block_x].items[ut_z - 1][0] = 0;  // 88
-        common_data.save.fg[block_z][block_x].items[ut_z - 1][1] = 0;  // 8a
+        gCommonData.save.fg[blockZ][blockX].items[utZ - 2][15] = 0; // 86
+        gCommonData.save.fg[blockZ][blockX].items[utZ - 1][0] = 0;  // 88
+        gCommonData.save.fg[blockZ][blockX].items[utZ - 1][1] = 0;  // 8a
     }
 }
 #else
-void func_800AADE8_jp(Anmhome_c* home_info);
+void func_800AADE8_jp(AnmHome* homeInfo);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_npc/func_800AADE8_jp.s")
 #endif
 
-void func_800AAEFC_jp(Animal_c* animal, Struct_B_80142D08_jp* arg1, u8 arg2) {
-    Anmhome_c* home_info;
+void func_800AAEFC_jp(Animal* animal, Struct_B_80142D08_jp* arg1, u8 arg2) {
+    AnmHome* homeInfo;
     s32 i;
     s32 idx;
 
@@ -2317,15 +2136,15 @@ void func_800AAEFC_jp(Animal_c* animal, Struct_B_80142D08_jp* arg1, u8 arg2) {
             break;
         }
 
-        home_info = &animal->home_info;
-        if ((ACTOR_FGNAME_GET_F000(animal->id.npc_id) == FGNAME_F000_E) && (home_info->block_x == 0xFF) &&
-            (home_info->block_z == 0xFF)) {
+        homeInfo = &animal->homeInfo;
+        if ((ACTOR_FGNAME_GET_F000(animal->id.npcId) == FGNAME_F000_E) && (homeInfo->blockX == 0xFF) &&
+            (homeInfo->blockZ == 0xFF)) {
             idx = B_80142C00_jp[i];
-            home_info->block_x = arg1[idx].unk_01;
-            home_info->block_z = arg1[idx].unk_02;
-            home_info->ut_x = arg1[idx].unk_03;
-            home_info->ut_z = arg1[idx].unk_04 + 1;
-            func_800AAC88_jp(animal->id.npc_id, home_info->block_x - 1, home_info->block_z - 1, home_info->ut_x,
+            homeInfo->blockX = arg1[idx].unk_01;
+            homeInfo->blockZ = arg1[idx].unk_02;
+            homeInfo->utX = arg1[idx].unk_03;
+            homeInfo->utZ = arg1[idx].unk_04 + 1;
+            func_800AAC88_jp(animal->id.npcId, homeInfo->blockX - 1, homeInfo->blockZ - 1, homeInfo->utX,
                              arg1[idx].unk_04);
         }
         animal++;
@@ -2337,93 +2156,93 @@ void func_800AB054_jp(void) {
     u8 sp1B = 0;
 
     func_800AAA40_jp(B_80142D08_jp, ARRAY_COUNT(B_80142D08_jp), &sp1B);
-    func_800AAEFC_jp(common_data.save.animals, B_80142D08_jp, sp1B);
+    func_800AAEFC_jp(gCommonData.save.animals, B_80142D08_jp, sp1B);
 }
 
 void func_800AB09C_jp(void) {
-    mNpc_NpcList_c* npclist = common_data.npclist;
+    NpcList* npcList = gCommonData.npcList;
     s32 i;
 
-    bzero(npclist, sizeof(mNpc_NpcList_c) * ANIMAL_NUM_MAX);
+    bzero(npcList, sizeof(NpcList) * ANIMAL_NUM_MAX);
 
     for (i = 0; i < ANIMAL_NUM_MAX; i++) {
-        npclist->field_name = 0xFFFF;
-        func_800BA660_jp(&npclist->quest_info);
-        npclist->house_data.type = 0xFF;
-        npclist->house_data.palette = 0xFF;
-        npclist->house_data.wall_id = 0xFF;
-        npclist->house_data.floor_id = 0xFF;
-        npclist->house_data.main_layer_id = 0xCB;
-        npclist++;
+        npcList->fieldName = 0xFFFF;
+        func_800BA660_jp(&npcList->questInfo);
+        npcList->houseData.type = 0xFF;
+        npcList->houseData.palette = 0xFF;
+        npcList->houseData.wallId = 0xFF;
+        npcList->houseData.floorId = 0xFF;
+        npcList->houseData.mainLayerId = 0xCB;
+        npcList++;
     }
 }
 
-void mNpc_SetNpcList(mNpc_NpcList_c* npclist, Animal_c* animal, s32 count, s32 malloc_flag) {
-    mNpc_NpcHouseData_c* house_data;
-    mNpc_NpcHouseData_c* new_house;
-    Vec3f* home_pos;
+void mNpc_SetNpcList(NpcList* npcList, Animal* animal, s32 count, s32 mallocFlag) {
+    NpcHouseData* houseData;
+    NpcHouseData* newHouse;
+    Vec3f* homePos;
     Vec3f* pos;
     s32 id;
     f32 z;
-    Anmhome_c* home_info;
+    AnmHome* homeInfo;
     f32 x;
-    u32 house_data_size;
+    u32 houseDataSize;
     s32 i;
-    s32 npc_id;
+    s32 npcId;
 
-    house_data_size = SEGMENT_ROM_SIZE(segment_00E02000);
-    if (malloc_flag == 0) {
-        house_data = malloc(house_data_size);
+    houseDataSize = SEGMENT_ROM_SIZE(segment_00E02000);
+    if (mallocFlag == 0) {
+        houseData = malloc(houseDataSize);
     } else {
-        house_data = zelda_malloc(house_data_size);
+        houseData = zelda_malloc(houseDataSize);
     }
-    DmaMgr_RequestSyncDebug(house_data, SEGMENT_ROM_START(segment_00E02000), house_data_size, "../m_npc.c", 0x1328);
+    DmaMgr_RequestSyncDebug(houseData, SEGMENT_ROM_START(segment_00E02000), houseDataSize, "../m_npc.c", 0x1328);
 
     for (i = 0; i < count; i++) {
-        home_info = &animal->home_info;
-        if ((ACTOR_FGNAME_GET_F000(animal->id.npc_id) == FGNAME_F000_E) && (home_info->block_x != 0xFF)) {
-            npc_id = animal->id.npc_id;
-            id = animal->id.npc_id & 0xFFF;
-            new_house = &npclist->house_data;
-            home_pos = &npclist->home_position;
-            pos = &npclist->position;
+        homeInfo = &animal->homeInfo;
+        if ((ACTOR_FGNAME_GET_F000(animal->id.npcId) == FGNAME_F000_E) && (homeInfo->blockX != 0xFF)) {
+            npcId = animal->id.npcId;
+            id = animal->id.npcId & 0xFFF;
+            newHouse = &npcList->houseData;
+            homePos = &npcList->homePosition;
+            pos = &npcList->position;
             if (0) {}
-            npclist->name = npc_id;
+            npcList->name = npcId;
 
-            home_pos->x = home_info->block_x * 640.0f;
-            home_pos->z = home_info->block_z * 640.0f;
-            func_80088BC0_jp(&x, &z, home_info->ut_x, home_info->ut_z);
+            homePos->x = homeInfo->blockX * 640.0f;
+            homePos->z = homeInfo->blockZ * 640.0f;
+            func_80088BC0_jp(&x, &z, homeInfo->utX, homeInfo->utZ);
 
-            home_pos->x += x;
-            home_pos->z += z;
-            home_pos->y = 0.0f;
+            homePos->x += x;
+            homePos->z += z;
+            homePos->y = 0.0f;
 
-            pos->x = home_pos->x;
-            pos->y = home_pos->y;
-            pos->z = home_pos->z;
+            pos->x = homePos->x;
+            pos->y = homePos->y;
+            pos->z = homePos->z;
 
-            npclist->flags.unk_31 = 1;
-            npclist->reward_furniture = 0;
+            npcList->flags.unk_31 = 1;
+            npcList->rewardFurniture = 0;
 
-            new_house->type = house_data[id].type;
-            new_house->palette = house_data[id].palette;
-            new_house->wall_id = house_data[id].wall_id;
-            new_house->floor_id = house_data[id].floor_id;
-            new_house->main_layer_id = house_data[id].main_layer_id;
-            new_house->secondary_layer_id = house_data[id].secondary_layer_id;
+            newHouse->type = houseData[id].type;
+            newHouse->palette = houseData[id].palette;
+            newHouse->wallId = houseData[id].wallId;
+            newHouse->floorId = houseData[id].floorId;
+            newHouse->mainLayerId = houseData[id].mainLayerId;
+            newHouse->secondaryLayerId = houseData[id].secondaryLayerId;
         }
-        npclist++;
+        npcList++;
         animal++;
     }
 
-    if (malloc_flag == 0) {
-        free(house_data);
+    if (mallocFlag == 0) {
+        free(houseData);
     } else {
-        zelda_free(house_data);
+        zelda_free(houseData);
     }
 }
 
-void mNpc_SetNpcinfo(Actor* actor, s8 npc_info_idx) {
+void mNpc_SetNpcinfo(Actor* actor, s8 npcInfoIdx) {
     if (actor->part == ACTOR_PART_NPC) {
         Npc* npc = (Npc*)actor;
 
@@ -2431,16 +2250,16 @@ void mNpc_SetNpcinfo(Actor* actor, s8 npc_info_idx) {
             CommonData_unk_10170* temp_v0 = func_800AA14C_jp(npc->actor.fgName);
 
             if (temp_v0 != NULL) {
-                npc_info_idx = mNpc_SearchAnimalinfo(common_data.save.animals, temp_v0->npc_id, ANIMAL_NUM_MAX);
+                npcInfoIdx = mNpc_SearchAnimalinfo(gCommonData.save.animals, temp_v0->npcId, ANIMAL_NUM_MAX);
             }
         }
 
-        if ((npc_info_idx >= 0) && (npc_info_idx < ANIMAL_NUM_MAX)) {
-            npc->animal = &common_data.save.animals[npc_info_idx];
-            npc->npclist = &common_data.npclist[npc_info_idx];
+        if ((npcInfoIdx >= 0) && (npcInfoIdx < ANIMAL_NUM_MAX)) {
+            npc->animal = &gCommonData.save.animals[npcInfoIdx];
+            npc->npcList = &gCommonData.npcList[npcInfoIdx];
         } else {
             npc->animal = NULL;
-            npc->npclist = NULL;
+            npc->npcList = NULL;
         }
     }
 }
@@ -2448,7 +2267,7 @@ void mNpc_SetNpcinfo(Actor* actor, s8 npc_info_idx) {
 void func_800AB498_jp(FieldInfo_Unk_Struct* arg0, u8 arg1, u8 arg2) {
     s32 temp_v0;
     s32 sp38;
-    u16 field_id;
+    u16 fieldId;
     u16 sp34;
     u8* temp_v0_3;
     UNUSED s32 pad;
@@ -2456,35 +2275,35 @@ void func_800AB498_jp(FieldInfo_Unk_Struct* arg0, u8 arg1, u8 arg2) {
     s32 sp24;
 
     if (arg0 != NULL) {
-        field_id = mFI_GetFieldId();
+        fieldId = mFI_GetFieldId();
         sp38 = func_8008BE00_jp(arg0, 16);
         if (sp38 != -1) {
             arg0 = &arg0[sp38];
-            if (mNpc_GET_TYPE(field_id) == 0x4000) {
-                sp34 = common_data.house_owner_name;
+            if (mNpc_GET_TYPE(fieldId) == 0x4000) {
+                sp34 = gCommonData.houseOwnerName;
                 if ((sp38 < ANIMAL_NUM_MAX) && (sp34 != 0xFFFF) && (sp34 != 0)) {
                     if (func_80082CC8_jp(sp34) != 1) {
-                        temp_v0 = mNpc_SearchAnimalinfo(common_data.save.animals, sp34, ANIMAL_NUM_MAX);
+                        temp_v0 = mNpc_SearchAnimalinfo(gCommonData.save.animals, sp34, ANIMAL_NUM_MAX);
                         if (temp_v0 != -1) {
-                            arg0->house_owner_name = sp34;
+                            arg0->houseOwnerName = sp34;
                             arg0->unk_02 = 4;
                             arg0->unk_03 = 7;
-                            arg0->npc_id = temp_v0;
+                            arg0->npcId = temp_v0;
                             arg0->unk_06 = -1;
                             func_8008BC64_jp(sp38, arg1, arg2);
                         }
                     }
                 }
-            } else if (field_id == 0x300A) {
+            } else if (fieldId == 0x300A) {
                 temp_v0_3 = func_8008033C_jp(0xE, 0xF);
                 if (temp_v0_3 != NULL) {
                     sp24 = *temp_v0_3;
-                    sp2A = common_data.save.animals[sp24].id.npc_id;
+                    sp2A = gCommonData.save.animals[sp24].id.npcId;
                     func_80082BD8_jp(&sp2A, 0xE, sp24, 0);
-                    arg0->house_owner_name = sp2A;
+                    arg0->houseOwnerName = sp2A;
                     arg0->unk_02 = 4;
                     arg0->unk_03 = 7;
-                    arg0->npc_id = sp24;
+                    arg0->npcId = sp24;
                     arg0->unk_06 = -1;
                     func_8008BC64_jp(sp38, arg1, arg2);
                 }
@@ -2494,18 +2313,18 @@ void func_800AB498_jp(FieldInfo_Unk_Struct* arg0, u8 arg1, u8 arg2) {
 }
 
 void func_800AB62C_jp(s16* arg0) {
-    s32 field_id = mFI_GetFieldId();
-    u16 owner_name = common_data.house_owner_name;
-    s32 wall_id;
-    s32 floor_id;
+    s32 fieldId = mFI_GetFieldId();
+    u16 ownerName = gCommonData.houseOwnerName;
+    s32 wallId;
+    s32 floorId;
     s32 npc_idx;
 
-    if (mNpc_GET_TYPE(field_id) == 0x4000) {
-        if ((owner_name != 0) && (owner_name != 0xFFFF)) {
-            npc_idx = mNpc_SearchAnimalinfo(common_data.save.animals, owner_name, ANIMAL_NUM_MAX);
-            wall_id = common_data.npclist[npc_idx].house_data.wall_id;
-            floor_id = common_data.npclist[npc_idx].house_data.floor_id;
-            *arg0 = floor_id | (wall_id << 8);
+    if (mNpc_GET_TYPE(fieldId) == 0x4000) {
+        if ((ownerName != 0) && (ownerName != 0xFFFF)) {
+            npc_idx = mNpc_SearchAnimalinfo(gCommonData.save.animals, ownerName, ANIMAL_NUM_MAX);
+            wallId = gCommonData.npcList[npc_idx].houseData.wallId;
+            floorId = gCommonData.npcList[npc_idx].houseData.floorId;
+            *arg0 = floorId | (wallId << 8);
         label:;
             return;
         }
@@ -2516,21 +2335,21 @@ void func_800AB62C_jp(s16* arg0) {
 void func_800AB6C8_jp(Actor* actor) {
     Npc* npc = (Npc*)actor;
 
-    if (npc->npclist != NULL) {
-        s32 field_id = mFI_GetFieldId();
-        mNpc_NpcList_c* npclist = npc->npclist;
+    if (npc->npcList != NULL) {
+        s32 fieldId = mFI_GetFieldId();
+        NpcList* npcList = npc->npcList;
 
-        if ((mNpc_GET_TYPE(field_id)) == 0) {
-            xyz_t_move(&npclist->position, &npc->actor.world.pos);
-            npclist->flags.unk_31 = 1;
+        if ((mNpc_GET_TYPE(fieldId)) == 0) {
+            xyz_t_move(&npcList->position, &npc->actor.world.pos);
+            npcList->flags.unk_31 = 1;
         }
     } else {
         func_8008BD98_jp(actor);
     }
 }
 
-s32 func_800AB734_jp(Private_c* private) {
-    Animal_c* animal = common_data.save.animals;
+s32 func_800AB734_jp(Private* private) {
+    Animal* animal = gCommonData.save.animals;
     s32 count = 0;
     s32 i;
 
@@ -2538,7 +2357,7 @@ s32 func_800AB734_jp(Private_c* private) {
 
         for (i = 0; i < ANIMAL_NUM_MAX; i++) {
             if ((mNpc_CheckFreeAnimalPersonalID(&animal->id) == FALSE) &&
-                (func_800A7238_jp(&private->player_ID, animal->memories, ANIMAL_MEMORY_NUM) != -1)) {
+                (func_800A7238_jp(&private->playerId, animal->memories, ANIMAL_MEMORY_NUM) != -1)) {
                 count++;
             }
             animal++;
@@ -2547,10 +2366,10 @@ s32 func_800AB734_jp(Private_c* private) {
     return count;
 }
 
-s32 func_800AB7D0_jp(Private_c* private) {
-    s32 npc_max = common_data.save.now_npc_max;
+s32 func_800AB7D0_jp(Private* private) {
+    s32 npcMax = gCommonData.save.nowNpcMax;
 
-    if (func_800AB734_jp(private) >= npc_max) {
+    if (func_800AB734_jp(private) >= npcMax) {
         return TRUE;
     }
     return FALSE;
@@ -2568,9 +2387,9 @@ s32 func_800AB80C_jp(u16 arg0) {
     return res;
 }
 
-u16 func_800AB8A0_jp(FieldMake_Unk_Struct* arg0, mNpc_NpcList_c* npclist, s32 count) {
-    u16 layer_id = npclist->house_data.main_layer_id;
-    s32 idx = layer_id - count;
+u16 func_800AB8A0_jp(FieldMake_Unk_Struct* arg0, NpcList* npcList, s32 count) {
+    u16 layerId = npcList->houseData.mainLayerId;
+    s32 idx = layerId - count;
     u16* var_s1;
     s32 i;
     s32 j;
@@ -2613,25 +2432,25 @@ u16 func_800AB8A0_jp(FieldMake_Unk_Struct* arg0, mNpc_NpcList_c* npclist, s32 co
 }
 
 void func_800ABA14_jp(FieldMake_Unk_Struct* arg0, s32 count) {
-    mNpc_NpcList_c* npclist = common_data.npclist;
-    Animal_c* animal = common_data.save.animals;
+    NpcList* npcList = gCommonData.npcList;
+    Animal* animal = gCommonData.save.animals;
     s32 i;
 
     for (i = 0; i < ANIMAL_NUM_MAX; i++) {
         if (mNpc_CheckFreeAnimalPersonalID(&animal->id) == FALSE) {
-            npclist->reward_furniture = func_800AB8A0_jp(arg0, npclist, count);
+            npcList->rewardFurniture = func_800AB8A0_jp(arg0, npcList, count);
         }
-        npclist++;
+        npcList++;
         animal++;
     }
 }
 
-u16 func_800ABAA8_jp(AnmPersonalID_c* anm_id) {
+u16 func_800ABAA8_jp(AnmPersonalId* anmId) {
     u16 res = 0;
-    s32 idx = func_800A7D08_jp(anm_id);
+    s32 idx = func_800A7D08_jp(anmId);
 
     if (idx != -1) {
-        res = common_data.npclist[idx].reward_furniture;
+        res = gCommonData.npcList[idx].rewardFurniture;
     }
     return res;
 }
@@ -2640,12 +2459,12 @@ void func_800ABAF0_jp(void) {
     mNpc_ClearAnimalInfo(&B_80143388_jp);
 }
 
-Animal_c* mNpc_GetInAnimalP(void) {
+Animal* mNpc_GetInAnimalP(void) {
     return &B_80143388_jp;
 }
 
-s32 func_800ABB24_jp(Animal_c* animal, s32 arg1) {
-    Private_c* priv = common_data.save.private;
+s32 func_800ABB24_jp(Animal* animal, s32 arg1) {
+    Private* priv = gCommonData.save.private;
     s32 res = -1;
     s32 sp44 = 0;
     s32 var_s7 = 0;
@@ -2655,7 +2474,7 @@ s32 func_800ABB24_jp(Animal_c* animal, s32 arg1) {
     u16 var_fp = 0;
 
     for (i = 0; i < PLAYER_NUM; i++) {
-        if (func_800B7914_jp(&priv->player_ID) == 0) {
+        if (func_800B7914_jp(&priv->playerId) == 0) {
             sp44++;
         }
         priv++;
@@ -2664,12 +2483,12 @@ s32 func_800ABB24_jp(Animal_c* animal, s32 arg1) {
     if (sp44 > 0) {
         for (i = 0; i < ANIMAL_NUM_MAX; i++) {
             if (mNpc_CheckFreeAnimalInfo(animal) == FALSE) {
-                priv = common_data.save.private;
+                priv = gCommonData.save.private;
                 var_s2 = 0;
 
                 for (j = 0; j != PLAYER_NUM; j++) {
-                    if (func_800B7914_jp(&priv->player_ID) == FALSE) {
-                        if (func_800A7238_jp(&priv->player_ID, animal->memories, ANIMAL_MEMORY_NUM) == -1) {
+                    if (func_800B7914_jp(&priv->playerId) == FALSE) {
+                        if (func_800A7238_jp(&priv->playerId, animal->memories, ANIMAL_MEMORY_NUM) == -1) {
                             break;
                         }
                         var_s2++;
@@ -2707,7 +2526,7 @@ s32 func_800ABB24_jp(Animal_c* animal, s32 arg1) {
     return res;
 }
 
-u8 func_800ABCF8_jp(Animal_c* animal, s32 arg1) {
+u8 func_800ABCF8_jp(Animal* animal, s32 arg1) {
     u8 count = 0;
     s32 rand = RANDOM(arg1);
     s32 i;
@@ -2726,29 +2545,29 @@ u8 func_800ABCF8_jp(Animal_c* animal, s32 arg1) {
     return count;
 }
 
-void mNpc_SetRemoveAnimalNo(Animal_c* animal) {
-    u8* removal_idx = &common_data.save.remove_animal_idx;
-    u8 now_max = common_data.save.now_npc_max;
+void mNpc_SetRemoveAnimalNo(Animal* animal) {
+    u8* removalIdx = &gCommonData.save.removeAnimalIdx;
+    u8 nowMax = gCommonData.save.nowNpcMax;
 
-    if ((now_max >= 6) && (*removal_idx == 0xFF)) {
+    if ((nowMax >= 6) && (*removalIdx == 0xFF)) {
         s32 var_v1 = func_800ABB24_jp(animal, 1);
 
         if (var_v1 == -1) {
             var_v1 = func_800ABB24_jp(animal, 0);
             if (var_v1 == -1) {
-                var_v1 = func_800ABCF8_jp(animal, now_max);
+                var_v1 = func_800ABCF8_jp(animal, nowMax);
             }
         }
 
         if (var_v1 != -1) {
-            *removal_idx = var_v1;
+            *removalIdx = var_v1;
         }
     }
 }
 
-s32 func_800ABE30_jp(Animal_c* animal1, Animal_c* animal2) {
-    Anmmem_c* sp28 = animal1->memories;
-    Anmmem_c* sp24 = animal2->memories;
+s32 func_800ABE30_jp(Animal* animal1, Animal* animal2) {
+    AnmMemory* sp28 = animal1->memories;
+    AnmMemory* sp24 = animal2->memories;
     s32 res = 0;
     s32 temp_s0 = func_800A77F0_jp(sp28, ANIMAL_MEMORY_NUM);
     s32 temp_v0 = func_800A77F0_jp(sp24, ANIMAL_MEMORY_NUM);
@@ -2781,26 +2600,27 @@ s32 func_800ABE30_jp(Animal_c* animal1, Animal_c* animal2) {
 
 s32 func_800ABF40_jp(void) {
     UNUSED s32 pad;
-    Animal_c* animal = common_data.save.animals;
-    Animal_c* found_animal = NULL;
+    Animal* animal = gCommonData.save.animals;
+    Animal* foundAnimal = NULL;
     s32 temp_s1;
     s32 temp_v0;
     u16 var_s4 = 0;
     s32 var_s5 = 0;
-    s32 found_idx = -1;
+    s32 foundIdx = -1;
     s32 i;
 
     for (i = 0; i < ANIMAL_NUM_MAX; i++, animal++) {
-        if ((i != (u32)&common_data.save.remove_animal_idx) && (mNpc_CheckFreeAnimalInfo(animal) == FALSE)) {
-            if (found_animal != NULL) {
+        // Bug
+        if ((i != (u32)&gCommonData.save.removeAnimalIdx) && (mNpc_CheckFreeAnimalInfo(animal) == FALSE)) {
+            if (foundAnimal != NULL) {
                 if (func_800A6B58_jp(animal) == 0) {
-                    if (func_800A6B58_jp(found_animal) != 0) {
+                    if (func_800A6B58_jp(foundAnimal) != 0) {
                         var_s5 = 1;
                         var_s4 = (1 << i);
-                        found_animal = animal;
-                        found_idx = i;
+                        foundAnimal = animal;
+                        foundIdx = i;
                     } else {
-                        temp_v0 = func_800ABE30_jp(animal, found_animal);
+                        temp_v0 = func_800ABE30_jp(animal, foundAnimal);
                         switch (temp_v0) {
                             case -1:
                                 var_s5++;
@@ -2809,21 +2629,21 @@ s32 func_800ABF40_jp(void) {
                             case 1:
                                 var_s5 = 1;
                                 var_s4 = (1 << i);
-                                found_animal = animal;
-                                found_idx = i;
+                                foundAnimal = animal;
+                                foundIdx = i;
                                 break;
                         }
                     }
-                } else if (func_800A6B58_jp(found_animal) != 0) {
+                } else if (func_800A6B58_jp(foundAnimal) != 0) {
                     temp_s1 = func_800A6B6C_jp(animal);
-                    temp_v0 = func_800A6B6C_jp(found_animal);
+                    temp_v0 = func_800A6B6C_jp(foundAnimal);
                     if (temp_s1 < temp_v0) {
                         var_s5 = 1;
                         var_s4 = (1 << i);
-                        found_animal = animal;
-                        found_idx = i;
+                        foundAnimal = animal;
+                        foundIdx = i;
                     } else if (temp_v0 == temp_s1) {
-                        temp_v0 = func_800ABE30_jp(animal, found_animal);
+                        temp_v0 = func_800ABE30_jp(animal, foundAnimal);
                         switch (temp_v0) {
                             case -1:
                                 var_s5++;
@@ -2832,8 +2652,8 @@ s32 func_800ABF40_jp(void) {
                             case 1:
                                 var_s5 = 1;
                                 var_s4 = (1 << i);
-                                found_animal = animal;
-                                found_idx = i;
+                                foundAnimal = animal;
+                                foundIdx = i;
                                 break;
                         }
                     }
@@ -2841,8 +2661,8 @@ s32 func_800ABF40_jp(void) {
             } else {
                 var_s5 = 1;
                 var_s4 = (1 << i);
-                found_animal = animal;
-                found_idx = i;
+                foundAnimal = animal;
+                foundIdx = i;
             }
         }
     }
@@ -2853,7 +2673,7 @@ s32 func_800ABF40_jp(void) {
         for (i = 0; i < ANIMAL_NUM_MAX; i++) {
             if (((var_s5 >> i) & 1) == 1) {
                 if (rand == 0) {
-                    found_idx = i;
+                    foundIdx = i;
                     break;
                 } else {
                     rand--;
@@ -2861,7 +2681,7 @@ s32 func_800ABF40_jp(void) {
             }
         }
     }
-    return found_idx;
+    return foundIdx;
 }
 
 void func_800AC1A0_jp(Struct_B_80142F70_jp* arg0) {
@@ -2873,15 +2693,15 @@ void func_800AC1C8_jp(void) {
     func_800AC1A0_jp(&B_80142F70_jp);
 }
 
-void func_800AC1EC_jp(Struct_B_80142F70_jp* arg0, Animal_c* animal) {
-    Private_c* priv = common_data.save.private;
+void func_800AC1EC_jp(Struct_B_80142F70_jp* arg0, Animal* animal) {
+    Private* priv = gCommonData.save.private;
     s32 i;
 
     if ((animal != NULL) && (mNpc_CheckFreeAnimalPersonalID(&animal->id) == FALSE)) {
         mNpc_CopyAnimalPersonalID(&arg0->id, &animal->id);
 
         for (i = 0; i < PLAYER_NUM; i++) {
-            if (func_800B7914_jp(&priv->player_ID) == FALSE) {
+            if (func_800B7914_jp(&priv->playerId) == FALSE) {
                 arg0->unk_0C |= 1 << i;
             }
             priv++;
@@ -2889,39 +2709,39 @@ void func_800AC1EC_jp(Struct_B_80142F70_jp* arg0, Animal_c* animal) {
     }
 }
 
-s32 func_800AC284_jp(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* anm_id) {
+s32 func_800AC284_jp(Mail* mail, PersonalId* pid, AnmPersonalId* anmId) {
     s32 sp24;
     s32 res = FALSE;
 
-    if (anm_id->looks < 6) {
-        sp24 = (anm_id->looks * 3) + 0x20E;
+    if (anmId->looks < 6) {
+        sp24 = (anmId->looks * 3) + 0x20E;
         sp24 += func_800BC414_jp(3);
-        mNpc_GetNpcWorldNameAnm(B_80142F60_jp, anm_id);
-        func_80092D10_jp(0, pid->player_name, PLAYER_NAME_LEN);
+        mNpc_GetNpcWorldNameAnm(B_80142F60_jp, anmId);
+        func_80092D10_jp(0, pid->playerName, PLAYER_NAME_LEN);
         func_80092D10_jp(1, B_80142F60_jp, PLAYER_NAME_LEN);
-        func_80092D10_jp(3, common_data.save.land_info.name, LAND_NAME_SIZE);
-        func_800A93AC_jp(mail, pid, anm_id, 0, func_800A9364_jp(), sp24);
+        func_80092D10_jp(3, gCommonData.save.landInfo.name, LAND_NAME_SIZE);
+        func_800A93AC_jp(mail, pid, anmId, 0, func_800A9364_jp(), sp24);
         res = TRUE;
     }
     return res;
 }
 
-s32 func_800AC358_jp(Mail_c* mail, Private_c* priv, s32 player_no, AnmPersonalID_c* anm_id) {
-    mHm_hs_c* home;
+s32 func_800AC358_jp(Mail* mail, Private* priv, s32 playerNo, AnmPersonalId* anmId) {
+    Home* home;
     UNUSED s32 pad;
     s32 res = FALSE;
 
-    home = &common_data.save.homes[func_80094BF4_jp(player_no)];
+    home = &gCommonData.save.homes[func_80094BF4_jp(playerNo)];
 
-    if ((func_800B7914_jp(&priv->player_ID) == FALSE) &&
-        (mPr_CheckCmpPersonalID(&priv->player_ID, &home->ownerID) == TRUE)) {
+    if ((func_800B7914_jp(&priv->playerId) == FALSE) &&
+        (mPr_CheckCmpPersonalID(&priv->playerId, &home->ownerID) == TRUE)) {
         s32 sp18 = func_8009C534_jp(home->mailbox, HOME_MAILBOX_SIZE);
         if (sp18 != -1) {
-            if (func_800AC284_jp(mail, &priv->player_ID, anm_id) == TRUE) {
+            if (func_800AC284_jp(mail, &priv->playerId, anmId) == TRUE) {
                 func_8009C67C_jp(&home->mailbox[sp18], mail);
                 res = TRUE;
             }
-        } else if ((func_800B68E8_jp() < 5) && (func_800AC284_jp(mail, &priv->player_ID, anm_id) == TRUE)) {
+        } else if ((func_800B68E8_jp() < 5) && (func_800AC284_jp(mail, &priv->playerId, anmId) == TRUE)) {
             res = func_800B6A3C_jp(mail, 0);
         }
     }
@@ -2929,7 +2749,7 @@ s32 func_800AC358_jp(Mail_c* mail, Private_c* priv, s32 player_no, AnmPersonalID
 }
 
 void func_800AC488_jp(Struct_B_80142F70_jp* arg0) {
-    Private_c* priv = common_data.save.private;
+    Private* priv = gCommonData.save.private;
     s32 i;
 
     if (mNpc_CheckFreeAnimalPersonalID(&arg0->id) == FALSE) {
@@ -2950,42 +2770,42 @@ void mNpc_SendRegisteredGoodbyMail(void) {
     func_800AC488_jp(&B_80142F70_jp);
 }
 
-void func_800AC57C_jp(Animal_c* in_animal, s32 arg1) {
-    Private_c* priv;
+void func_800AC57C_jp(Animal* inAnimal, s32 arg1) {
+    Private* priv;
     UNUSED s32 pad[4];
     s32 sp20;
-    Animal_c* animal;
-    s32 free_animal_idx;
-    u8* remove_animal_idx = &common_data.save.remove_animal_idx;
-    u8* now_max = &common_data.save.now_npc_max;
+    Animal* animal;
+    s32 freeAnimalIdx;
+    u8* removeAnimalIdx = &gCommonData.save.removeAnimalIdx;
+    u8* nowMax = &gCommonData.save.nowNpcMax;
     s32 i;
 
-    animal = common_data.save.animals;
+    animal = gCommonData.save.animals;
     sp20 = 1;
-    priv = common_data.now_private;
+    priv = gCommonData.nowPrivate;
     if (mLd_PlayerManKindCheck() == 0) {
         if (arg1 == 1) {
-            if (*remove_animal_idx != 0xFF) {
-                animal = &common_data.save.animals[*remove_animal_idx];
+            if (*removeAnimalIdx != 0xFF) {
+                animal = &gCommonData.save.animals[*removeAnimalIdx];
                 animal->unk_526 = 0;
-                mNpc_CopyAnimalInfo(in_animal, animal);
-                func_800AADE8_jp(&animal->home_info);
+                mNpc_CopyAnimalInfo(inAnimal, animal);
+                func_800AADE8_jp(&animal->homeInfo);
                 mNpc_ClearAnimalInfo(animal);
-                *remove_animal_idx = 0xFF;
-                (*now_max)--;
+                *removeAnimalIdx = 0xFF;
+                (*nowMax)--;
             }
         }
     } else {
-        if ((mNpc_CheckFreeAnimalInfo(in_animal) == FALSE) && (in_animal->unk_526 == 0)) {
+        if ((mNpc_CheckFreeAnimalInfo(inAnimal) == FALSE) && (inAnimal->unk_526 == 0)) {
             for (i = 0; i < ANIMAL_NUM_MAX; i++) {
-                if (in_animal->id.npc_id == animal->id.npc_id) {
+                if (inAnimal->id.npcId == animal->id.npcId) {
                     sp20 = 0;
                     break;
                 }
                 animal++;
             }
 
-            if (in_animal->id.npc_id == common_data.save.last_removed_animal_id.npc_id) {
+            if (inAnimal->id.npcId == gCommonData.save.lastRemovedAnimalId.npcId) {
                 sp20 = 0;
             }
         } else {
@@ -2993,39 +2813,39 @@ void func_800AC57C_jp(Animal_c* in_animal, s32 arg1) {
         }
 
         if (sp20 == 1) {
-            animal = common_data.save.animals;
-            free_animal_idx = mNpc_GetFreeAnimalInfo(common_data.save.animals, ANIMAL_NUM_MAX);
-            if (free_animal_idx == -1) {
+            animal = gCommonData.save.animals;
+            freeAnimalIdx = mNpc_GetFreeAnimalInfo(gCommonData.save.animals, ANIMAL_NUM_MAX);
+            if (freeAnimalIdx == -1) {
                 animal += func_800ABF40_jp();
-                func_800AADE8_jp(&animal->home_info);
+                func_800AADE8_jp(&animal->homeInfo);
                 func_800AC1EC_jp(&B_80142F70_jp, animal);
                 mNpc_SendRegisteredGoodbyMail();
             } else {
-                animal += free_animal_idx;
-                func_800A6940_jp(&common_data.save.now_npc_max);
+                animal += freeAnimalIdx;
+                func_800A6940_jp(&gCommonData.save.nowNpcMax);
             }
             mNpc_ClearAnimalInfo(animal);
-            mNpc_CopyAnimalInfo(animal, in_animal);
-            animal->home_info.block_x = 0xFF;
-            animal->home_info.block_z = 0xFF;
-            animal->home_info.ut_x = 0xFF;
-            animal->home_info.ut_z = 0xFF;
-            mLd_CopyLandName(animal->previous_land_name, common_data.now_private->player_ID.land_name);
-            animal->unk_51C = common_data.now_private->player_ID.land_id;
-            func_800BA778_jp(&animal->contest_quest);
-            in_animal->unk_526 = 1;
-            priv->animal_memory.npc_id = animal->id.npc_id;
-            mLd_CopyLandName(priv->animal_memory.land_name, func_800950D8_jp()->name);
-            func_800AA2F8_jp(animal->id.npc_id);
+            mNpc_CopyAnimalInfo(animal, inAnimal);
+            animal->homeInfo.blockX = 0xFF;
+            animal->homeInfo.blockZ = 0xFF;
+            animal->homeInfo.utX = 0xFF;
+            animal->homeInfo.utZ = 0xFF;
+            mLd_CopyLandName(animal->previousLandName, gCommonData.nowPrivate->playerId.landName);
+            animal->unk_51C = gCommonData.nowPrivate->playerId.landId;
+            func_800BA778_jp(&animal->contestQuest);
+            inAnimal->unk_526 = 1;
+            priv->animalMemory.npcId = animal->id.npcId;
+            mLd_CopyLandName(priv->animalMemory.landName, func_800950D8_jp()->name);
+            func_800AA2F8_jp(animal->id.npcId);
         }
     }
 }
 
-s32 func_800AC804_jp(s32 block_x, s32 block_z, u8 ut_x, u8 ut_z) {
+s32 func_800AC804_jp(s32 blockX, s32 blockZ, u8 utX, u8 utZ) {
     s32 res = FALSE;
 
-    if ((block_x >= 0) && (block_x < 5) && (block_z >= 0) && (block_z < 6) && (ut_x < 0x10) && (ut_z < 0x10)) {
-        u16 item = common_data.save.fg[block_z][block_x].items[ut_z][ut_x];
+    if ((blockX >= 0) && (blockX < 5) && (blockZ >= 0) && (blockZ < 6) && (utX < 0x10) && (utZ < 0x10)) {
+        u16 item = gCommonData.save.fg[blockZ][blockX].items[utZ][utX];
 
         if ((item >= 0x5810) && (item < 0x5825)) {
             res = TRUE;
@@ -3034,64 +2854,64 @@ s32 func_800AC804_jp(s32 block_x, s32 block_z, u8 ut_x, u8 ut_z) {
     return res;
 }
 
-void mNpc_SetReturnAnimal(Animal_c* animal) {
-    Anmhome_c* home_info;
-    Animal_c* found_animal = NULL;
-    u8* now_max = &common_data.save.now_npc_max;
-    Animal_c* common_animal;
-    s32 found_animal_idx;
+void mNpc_SetReturnAnimal(Animal* animal) {
+    AnmHome* homeInfo;
+    Animal* foundAnimal = NULL;
+    u8* nowMax = &gCommonData.save.nowNpcMax;
+    Animal* commonAnimal;
+    s32 foundAnimalIdx;
 
     if (mLd_PlayerManKindCheck() || mNpc_CheckFreeAnimalInfo(animal)) {
         return;
     }
 
     if (animal->unk_526 == 0) {
-        common_animal = common_data.save.animals;
-        found_animal_idx = mNpc_SearchAnimalinfo(common_animal, animal->id.npc_id, ANIMAL_NUM_MAX);
-        if (found_animal_idx != -1) {
-            found_animal = &common_animal[found_animal_idx];
-            func_800AADE8_jp(&found_animal->home_info);
-            (*now_max)--;
-            if (found_animal_idx == common_data.save.remove_animal_idx) {
-                common_data.save.remove_animal_idx = 0xFF;
+        commonAnimal = gCommonData.save.animals;
+        foundAnimalIdx = mNpc_SearchAnimalinfo(commonAnimal, animal->id.npcId, ANIMAL_NUM_MAX);
+        if (foundAnimalIdx != -1) {
+            foundAnimal = &commonAnimal[foundAnimalIdx];
+            func_800AADE8_jp(&foundAnimal->homeInfo);
+            (*nowMax)--;
+            if (foundAnimalIdx == gCommonData.save.removeAnimalIdx) {
+                gCommonData.save.removeAnimalIdx = 0xFF;
             }
-        } else if ((*now_max) >= ANIMAL_NUM_MAX) {
-            found_animal_idx = func_800ABF40_jp();
-            found_animal = &common_animal[found_animal_idx];
-            func_800AC1EC_jp(&B_80142F70_jp, found_animal);
-            func_800AADE8_jp(&found_animal->home_info);
-            (*now_max)--;
-            if (found_animal_idx == common_data.save.remove_animal_idx) {
-                common_data.save.remove_animal_idx = 0xFF;
+        } else if ((*nowMax) >= ANIMAL_NUM_MAX) {
+            foundAnimalIdx = func_800ABF40_jp();
+            foundAnimal = &commonAnimal[foundAnimalIdx];
+            func_800AC1EC_jp(&B_80142F70_jp, foundAnimal);
+            func_800AADE8_jp(&foundAnimal->homeInfo);
+            (*nowMax)--;
+            if (foundAnimalIdx == gCommonData.save.removeAnimalIdx) {
+                gCommonData.save.removeAnimalIdx = 0xFF;
             }
         } else {
-            found_animal_idx = mNpc_GetFreeAnimalInfo(common_animal, ANIMAL_NUM_MAX);
-            if (found_animal_idx != -1) {
-                found_animal = &common_animal[found_animal_idx];
+            foundAnimalIdx = mNpc_GetFreeAnimalInfo(commonAnimal, ANIMAL_NUM_MAX);
+            if (foundAnimalIdx != -1) {
+                foundAnimal = &commonAnimal[foundAnimalIdx];
             }
         }
 
-        if (found_animal != NULL) {
-            home_info = &found_animal->home_info;
-            mNpc_ClearAnimalInfo(found_animal);
-            mNpc_CopyAnimalInfo(found_animal, animal);
-            if (func_800AC804_jp(found_animal->home_info.block_x - 1, found_animal->home_info.block_z - 1,
-                                 found_animal->home_info.ut_x, found_animal->home_info.ut_z - 1) == TRUE) {
-                func_800AAC88_jp(found_animal->id.npc_id, home_info->block_x - 1, home_info->block_z - 1,
-                                 home_info->ut_x, home_info->ut_z - 1);
+        if (foundAnimal != NULL) {
+            homeInfo = &foundAnimal->homeInfo;
+            mNpc_ClearAnimalInfo(foundAnimal);
+            mNpc_CopyAnimalInfo(foundAnimal, animal);
+            if (func_800AC804_jp(foundAnimal->homeInfo.blockX - 1, foundAnimal->homeInfo.blockZ - 1,
+                                 foundAnimal->homeInfo.utX, foundAnimal->homeInfo.utZ - 1) == TRUE) {
+                func_800AAC88_jp(foundAnimal->id.npcId, homeInfo->blockX - 1, homeInfo->blockZ - 1, homeInfo->utX,
+                                 homeInfo->utZ - 1);
             } else {
-                home_info->block_x = 0xFF;
-                home_info->block_z = 0xFF;
-                home_info->ut_x = 0xFF;
-                home_info->ut_z = 0xFF;
+                homeInfo->blockX = 0xFF;
+                homeInfo->blockZ = 0xFF;
+                homeInfo->utX = 0xFF;
+                homeInfo->utZ = 0xFF;
             }
-            (*now_max)++;
-            if ((*now_max) > ANIMAL_NUM_MAX) {
-                (*now_max) = ANIMAL_NUM_MAX;
+            (*nowMax)++;
+            if ((*nowMax) > ANIMAL_NUM_MAX) {
+                (*nowMax) = ANIMAL_NUM_MAX;
             }
         }
     } else {
-        mNpc_CopyAnimalPersonalID(&common_data.save.last_removed_animal_id, &animal->id);
+        mNpc_CopyAnimalPersonalID(&gCommonData.save.lastRemovedAnimalId, &animal->id);
     }
     mNpc_ClearAnimalInfo(animal);
 }
@@ -3100,22 +2920,22 @@ void func_800ACB24_jp(FieldInfo_Unk_Struct* arg0, u8 arg1, u8 arg2) {
     func_800AB498_jp(arg0, arg1, arg2);
 }
 
-void func_800ACB54_jp(Animal_c* animal, s32 count) {
+void func_800ACB54_jp(Animal* animal, s32 count) {
     s32 i;
 
     for (i = 0; i < count; i++) {
         if (animal != NULL) {
-            if (ACTOR_FGNAME_GET_F000(animal->id.npc_id) == FGNAME_F000_E) {
-                animal->id.name_id = animal->id.npc_id & 0xFF;
+            if (ACTOR_FGNAME_GET_F000(animal->id.npcId) == FGNAME_F000_E) {
+                animal->id.nameId = animal->id.npcId & 0xFF;
             }
         }
         animal++;
     }
 }
 
-void func_800ACC38_jp(u8* name, u8 npc_id) {
+void func_800ACC38_jp(u8* name, u8 npcId) {
     u8 sp28[PLAYER_NAME_LEN];
-    s32 id = npc_id;
+    s32 id = npcId;
 
     if (id < 0xFF) {
         DmaMgr_RequestSyncDebug(sp28, (RomOffset)((Struct_D_E04000*)SEGMENT_ROM_START(segment_00E04000))->unk_08[id], 8,
@@ -3124,14 +2944,14 @@ void func_800ACC38_jp(u8* name, u8 npc_id) {
     }
 }
 
-void func_800ACCAC_jp(u8* name, u16 npc_id) {
-    u8* var_a2 = D_8010B810_jp;
+void func_800ACCAC_jp(u8* name, u16 npcId) {
+    u8* var_a2 = l_no_name_npc_name;
     u8 sp24[PLAYER_NAME_LEN];
 
     if (name != NULL) {
-        u8 id = npc_id & 0xFF;
+        u8 id = npcId & 0xFF;
 
-        if ((ACTOR_FGNAME_GET_F000(npc_id) == FGNAME_F000_E) && (id < 0xFF)) {
+        if ((ACTOR_FGNAME_GET_F000(npcId) == FGNAME_F000_E) && (id < 0xFF)) {
             func_800ACC38_jp(sp24, id);
             var_a2 = sp24;
         }
@@ -3139,13 +2959,13 @@ void func_800ACCAC_jp(u8* name, u16 npc_id) {
     mPr_CopyPlayerName(name, var_a2);
 }
 
-void mNpc_GetNpcWorldNameAnm(u8* name, AnmPersonalID_c* anm_id) {
-    u8* var_a2 = D_8010B810_jp;
+void mNpc_GetNpcWorldNameAnm(u8* name, AnmPersonalId* anmId) {
+    u8* var_a2 = l_no_name_npc_name;
     u8 sp1C[PLAYER_NAME_LEN];
 
-    if (anm_id != NULL) {
-        if (ACTOR_FGNAME_GET_F000(anm_id->npc_id) == FGNAME_F000_E) {
-            func_800ACCAC_jp(sp1C, anm_id->npc_id);
+    if (anmId != NULL) {
+        if (ACTOR_FGNAME_GET_F000(anmId->npcId) == FGNAME_F000_E) {
+            func_800ACCAC_jp(sp1C, anmId->npcId);
             var_a2 = sp1C;
         }
     }
@@ -3155,7 +2975,7 @@ void mNpc_GetNpcWorldNameAnm(u8* name, AnmPersonalID_c* anm_id) {
 void func_800ACD74_jp(u8* arg0, u16 name) {
     s32 i;
     Struct_D_8010B510_jp* var_v0 = D_8010B510_jp;
-    u8* var_a3 = D_8010B810_jp;
+    u8* var_a3 = l_no_name_npc_name;
 
     for (i = 0; i < ARRAY_COUNT(D_8010B510_jp); i++) {
         if (name == var_v0->unk_00) {
@@ -3170,7 +2990,7 @@ void func_800ACD74_jp(u8* arg0, u16 name) {
 }
 
 void func_800ACDF8_jp(u8* arg0, Npc* npc) {
-    u8* var_a3 = D_8010B810_jp;
+    u8* var_a3 = l_no_name_npc_name;
     u8 sp1C[PLAYER_NAME_LEN];
 
     if ((arg0 != NULL) && (npc != NULL)) {
@@ -3189,7 +3009,7 @@ void func_800ACDF8_jp(u8* arg0, Npc* npc) {
 }
 
 void func_800ACE90_jp(u8* arg0) {
-    Animal_c* animal = common_data.save.animals;
+    Animal* animal = gCommonData.save.animals;
     u16 var_s3 = 0;
     s32 var_s2 = 0;
     s32 rand;
@@ -3206,7 +3026,7 @@ void func_800ACE90_jp(u8* arg0) {
         }
 
         if (var_s2 > 0) {
-            animal = common_data.save.animals;
+            animal = gCommonData.save.animals;
             rand = RANDOM(var_s2);
 
             for (i = 0; i < ANIMAL_NUM_MAX; i++) {
@@ -3226,22 +3046,22 @@ void func_800ACE90_jp(u8* arg0) {
 
 void func_800ACF84_jp(u8* arg0, Vec3f arg1) {
     UNUSED s32 pad;
-    Animal_c* animal = common_data.save.animals;
-    s32 block_x;
-    s32 block_z;
-    s32 ut_x;
-    s32 ut_z;
-    Anmhome_c* home_info;
+    Animal* animal = gCommonData.save.animals;
+    s32 blockX;
+    s32 blockZ;
+    s32 utX;
+    s32 utZ;
+    AnmHome* homeInfo;
     s32 i;
 
-    if (func_80088780_jp(&block_x, &block_z, &ut_x, &ut_z, arg1) == 1) {
-        ut_x++;
+    if (func_80088780_jp(&blockX, &blockZ, &utX, &utZ, arg1) == 1) {
+        utX++;
 
         for (i = 0; i < ANIMAL_NUM_MAX; i++) {
             if (mNpc_CheckFreeAnimalInfo(animal) == FALSE) {
-                home_info = &animal->home_info;
-                if ((block_x == home_info->block_x) && (block_z == home_info->block_z) && (ut_x == home_info->ut_x) &&
-                    (ut_z == home_info->ut_z)) {
+                homeInfo = &animal->homeInfo;
+                if ((blockX == homeInfo->blockX) && (blockZ == homeInfo->blockZ) && (utX == homeInfo->utX) &&
+                    (utZ == homeInfo->utZ)) {
                     mNpc_GetNpcWorldNameAnm(arg0, &animal->id);
                     break;
                 }
@@ -3291,11 +3111,11 @@ s32 func_800AD104_jp(s32 arg0) {
     return var_v1;
 }
 
-s32 func_800AD154_jp(AnmPersonalID_c* anm_id) {
+s32 func_800AD154_jp(AnmPersonalId* anmId) {
     s32 var_v1 = 2;
 
-    if (anm_id != NULL) {
-        var_v1 = func_800AD104_jp(anm_id->looks);
+    if (anmId != NULL) {
+        var_v1 = func_800AD104_jp(anmId->looks);
     }
     return var_v1;
 }
@@ -3342,7 +3162,7 @@ s32 func_800AD22C_jp(Actor* actor) {
                 if (var_v0 >= 6) {
                     var_v0 = 2;
                 }
-                var_v1 = D_8010B91C_jp[var_v0];
+                var_v1 = spec_table[var_v0];
             } else {
                 var_v1 = func_800AD1E0_jp(npc->actor.fgName);
             }
@@ -3356,13 +3176,13 @@ s32 func_800AD22C_jp(Actor* actor) {
 void func_800AD2B8_jp(UNUSED UNK_TYPE arg0) {
 }
 
-void mNpc_InitNpcAllInfo(s32 malloc_flag) {
-    common_data.save.now_npc_max = 6;
-    common_data.save.remove_animal_idx = 0xFF;
-    mNpc_ClearAnimalPersonalID(&common_data.save.last_removed_animal_id);
-    mNpc_ClearAnyAnimalInfo(common_data.save.animals, ANIMAL_NUM_MAX);
-    func_800AA51C_jp(common_data.save.animals, 6, malloc_flag);
-    func_800ACB54_jp(common_data.save.animals, ANIMAL_NUM_MAX);
+void mNpc_InitNpcAllInfo(s32 mallocFlag) {
+    gCommonData.save.nowNpcMax = 6;
+    gCommonData.save.removeAnimalIdx = 0xFF;
+    mNpc_ClearAnimalPersonalID(&gCommonData.save.lastRemovedAnimalId);
+    mNpc_ClearAnyAnimalInfo(gCommonData.save.animals, ANIMAL_NUM_MAX);
+    func_800AA51C_jp(gCommonData.save.animals, 6, mallocFlag);
+    func_800ACB54_jp(gCommonData.save.animals, ANIMAL_NUM_MAX);
 }
 
 s32 func_800AD338_jp(void) {
@@ -3371,7 +3191,7 @@ s32 func_800AD338_jp(void) {
     s32 res = FALSE;
 
     if ((sp24 >= 0) && (sp24 < 7)) {
-        if (RANDOM(100) < D_8010B934_jp[sp24]) {
+        if (RANDOM(100) < npc_grow_table[sp24]) {
             res = TRUE;
         }
     }
@@ -3383,18 +3203,18 @@ s32 func_800AD3BC_jp(void) {
     s32 res = FALSE;
     u32 var_v0;
 
-    if (common_data.save.now_npc_max < ANIMAL_NUM_MAX) {
-        if (func_800D51E0_jp(&mTM_rtcTime_clear_code, &common_data.save.unk_0F7FC, 0x7F) == TRUE) {
-            lbRTC_TimeCopy(&common_data.save.unk_0F7FC, &common_data.time.rtc_time);
+    if (gCommonData.save.nowNpcMax < ANIMAL_NUM_MAX) {
+        if (func_800D51E0_jp(&mTM_rtcTime_clear_code, &gCommonData.save.unk_0F7FC, 0x7F) == TRUE) {
+            lbRTC_TimeCopy(&gCommonData.save.unk_0F7FC, &gCommonData.time.rtcTime);
         } else if (func_800AD338_jp() == TRUE) {
-            if (func_800D52C0_jp(&common_data.save.unk_0F7FC, &common_data.time.rtc_time) == TRUE) {
-                var_v0 = func_800D5480_jp(&common_data.time.rtc_time, &common_data.save.unk_0F7FC);
+            if (func_800D52C0_jp(&gCommonData.save.unk_0F7FC, &gCommonData.time.rtcTime) == TRUE) {
+                var_v0 = func_800D5480_jp(&gCommonData.time.rtcTime, &gCommonData.save.unk_0F7FC);
             } else {
-                var_v0 = func_800D5480_jp(&common_data.save.unk_0F7FC, &common_data.time.rtc_time);
+                var_v0 = func_800D5480_jp(&gCommonData.save.unk_0F7FC, &gCommonData.time.rtcTime);
             }
 
             if ((var_v0 >= 0x5A0) && (mLd_PlayerManKindCheck() == FALSE) &&
-                (func_800AB7D0_jp(common_data.now_private) == TRUE)) {
+                (func_800AB7D0_jp(gCommonData.nowPrivate) == TRUE)) {
                 res = TRUE;
             }
         }
@@ -3428,7 +3248,7 @@ u8 func_800AD4B8_jp(u8* arg0, s32* arg1) {
     }
 
     if ((*arg0 == 0) && (*arg1 == 0)) {
-        func_800AA438_jp(common_data.save.unk_0F86C, common_data.save.animals);
+        func_800AA438_jp(gCommonData.save.unk_0F86C, gCommonData.save.animals);
 
         for (i = 0; i < 6; i++) {
             *arg0 |= 1 << i;
@@ -3443,7 +3263,7 @@ u8 func_800AD4B8_jp(u8* arg0, s32* arg1) {
 }
 
 s32 func_800AD614_jp(void) {
-    Animal_c* animal = common_data.save.animals;
+    Animal* animal = gCommonData.save.animals;
     s32 i;
     s32 var_s2 = 0;
     s32 var_s3 = 0;
@@ -3490,7 +3310,7 @@ s32 func_800AD6D4_jp(u8 arg0) {
         for (i = 0; i < ARRAY_COUNT(B_80142E58_jp); i++) {
             for (j = 0; j < 8; j++) {
                 if ((arg0 == *var_s2) &&
-                    (mNpc_SearchAnimalinfo(common_data.save.animals, ((i * 8) + j) | 0xE000, 0xF) == -1) &&
+                    (mNpc_SearchAnimalinfo(gCommonData.save.animals, ((i * 8) + j) | 0xE000, 0xF) == -1) &&
                     (func_800AA35C_jp(var_s1) == FALSE)) {
                     var_s4++;
                     B_80142E58_jp[i] |= 1 << j;
@@ -3540,7 +3360,7 @@ s32 func_800AD6D4_jp(u8 arg0) {
     return sp40;
 }
 
-void func_800AD8C4_jp(Animal_c* animal, s32 arg1) {
+void func_800AD8C4_jp(Animal* animal, s32 arg1) {
     if ((arg1 >= 0) && (arg1 < 0xD8)) {
         Struct_D_E03000* ptr = (Struct_D_E03000*)SEGMENT_ROM_START(segment_00E03000);
 
@@ -3550,23 +3370,23 @@ void func_800AD8C4_jp(Animal_c* animal, s32 arg1) {
 }
 
 s32 func_800AD954_jp(u8 arg0) {
-    Animal_c* animal = common_data.save.animals;
+    Animal* animal = gCommonData.save.animals;
     UNUSED s32 pad;
-    s32 free_animal_idx;
+    s32 freeAnimalIdx;
     s32 temp_v0_2;
 
-    free_animal_idx = mNpc_UseFreeAnimalInfo(animal, ANIMAL_NUM_MAX);
-    if (free_animal_idx != -1) {
-        animal += free_animal_idx;
+    freeAnimalIdx = mNpc_UseFreeAnimalInfo(animal, ANIMAL_NUM_MAX);
+    if (freeAnimalIdx != -1) {
+        animal += freeAnimalIdx;
         temp_v0_2 = func_800AD6D4_jp(arg0);
         if (temp_v0_2 != -1) {
             func_800AD8C4_jp(animal, temp_v0_2);
             animal->unk_525 = 1;
         } else {
-            free_animal_idx = -1;
+            freeAnimalIdx = -1;
         }
     }
-    return free_animal_idx;
+    return freeAnimalIdx;
 }
 
 void func_800AD9FC_jp(void) {
@@ -3581,7 +3401,7 @@ void func_800AD9FC_jp(void) {
 
     if (func_800AD3BC_jp() == TRUE) {
         func_800AA49C_jp();
-        lbRTC_TimeCopy(&common_data.save.unk_0F7FC, &common_data.time.rtc_time);
+        lbRTC_TimeCopy(&gCommonData.save.unk_0F7FC, &gCommonData.time.rtcTime);
         sp4F = func_800AD4B8_jp(&sp4E, &sp48);
         if (sp4F == 6) {
             temp_v0_2 = func_800AD614_jp();
@@ -3617,8 +3437,8 @@ void func_800AD9FC_jp(void) {
 
         temp_v0_2 = func_800AD954_jp(sp4F);
         if ((temp_v0_2 >= 0) && (temp_v0_2 < ANIMAL_NUM_MAX)) {
-            func_800ACB54_jp(&common_data.save.animals[temp_v0_2], 1);
-            func_800A6940_jp(&common_data.save.now_npc_max);
+            func_800ACB54_jp(&gCommonData.save.animals[temp_v0_2], 1);
+            func_800A6940_jp(&gCommonData.save.nowNpcMax);
         }
     }
 }
@@ -3801,8 +3621,8 @@ void func_800AE1A0_jp(Struct_B_80142ED8_jp* arg0) {
 
 #ifdef NON_MATCHING
 void func_800AE1B8_jp(u16* arg0, u16* arg1, s32 arg2) {
-    *arg0 = D_8010B950_jp[arg2].unk_00;
-    *arg1 = D_8010B950_jp[arg2].unk_00;
+    *arg0 = l_npc_temper[arg2].unk_00;
+    *arg1 = l_npc_temper[arg2].unk_00;
 }
 #else
 void func_800AE1B8_jp(u16* arg0, u16* arg1, s32 arg2);
@@ -3813,7 +3633,7 @@ s32 func_800AE1D8_jp(s32 arg0, s32 arg1) {
     s32 res = FALSE;
 
     if (arg0 != -1) {
-        if ((B_80142ED8_jp[arg0].unk_02 < D_8010B950_jp[arg1].unk_03) && (B_80142ED8_jp[arg0].unk_00 > 0)) {
+        if ((B_80142ED8_jp[arg0].unk_02 < l_npc_temper[arg1].unk_03) && (B_80142ED8_jp[arg0].unk_00 > 0)) {
             B_80142ED8_jp[arg0].unk_02++;
             res = TRUE;
         }
@@ -3824,7 +3644,7 @@ s32 func_800AE1D8_jp(s32 arg0, s32 arg1) {
 s32 func_800AE23C_jp(s32 arg0, s32 arg1) {
     s32 res = FALSE;
 
-    if (arg0 != -1 && B_80142ED8_jp[arg0].unk_02 >= D_8010B950_jp[arg1].unk_02) {
+    if (arg0 != -1 && B_80142ED8_jp[arg0].unk_02 >= l_npc_temper[arg1].unk_02) {
         res = TRUE;
     }
     return res;
@@ -3834,8 +3654,8 @@ s32 func_800AE284_jp(s32 arg0, s32 arg1) {
     s32 var_v1 = 2;
 
     if (arg0 != -1) {
-        if (B_80142ED8_jp[arg0].unk_02 >= D_8010B950_jp[arg1].unk_02) {
-            if (B_80142ED8_jp[arg0].unk_02 >= D_8010B950_jp[arg1].unk_03) {
+        if (B_80142ED8_jp[arg0].unk_02 >= l_npc_temper[arg1].unk_02) {
+            if (B_80142ED8_jp[arg0].unk_02 >= l_npc_temper[arg1].unk_03) {
                 var_v1 = 1;
             } else {
                 var_v1 = 0;
@@ -3914,127 +3734,127 @@ void func_800AE4B4_jp(s32 arg0, s32 arg1) {
 }
 
 s32 func_800AE558_jp(void) {
-    u16 field_id = mFI_GetFieldId();
-    u16 house_owner_name = common_data.house_owner_name;
-    s32 floor_id = -1;
+    u16 fieldId = mFI_GetFieldId();
+    u16 houseOwnerName = gCommonData.houseOwnerName;
+    s32 floorId = -1;
 
-    if ((mNpc_GET_TYPE(field_id) == 0x4000) && (house_owner_name != 0) && (house_owner_name != 0xFFFF)) {
-        s32 idx = mNpc_SearchAnimalinfo(common_data.save.animals, house_owner_name, ANIMAL_NUM_MAX);
+    if ((mNpc_GET_TYPE(fieldId) == 0x4000) && (houseOwnerName != 0) && (houseOwnerName != 0xFFFF)) {
+        s32 idx = mNpc_SearchAnimalinfo(gCommonData.save.animals, houseOwnerName, ANIMAL_NUM_MAX);
 
-        floor_id = common_data.npclist[idx].house_data.floor_id;
+        floorId = gCommonData.npcList[idx].houseData.floorId;
     }
-    return floor_id;
+    return floorId;
 }
 
 void func_800AE5C8_jp(void) {
-    if (common_data.unk_10A38 != 1) {
-        Animal_c* animal = common_data.save.animals;
-        mNpc_NpcList_c* npclist = common_data.npclist;
+    if (gCommonData.unk_10A38 != 1) {
+        Animal* animal = gCommonData.save.animals;
+        NpcList* npcList = gCommonData.npcList;
         s32 i;
 
         for (i = 0; i < ANIMAL_NUM_MAX; i++) {
             if (mNpc_CheckFreeAnimalInfo(animal) == FALSE) {
-                npclist->flags.unk_23 = TRUE;
+                npcList->flags.unk_23 = TRUE;
             }
             animal++;
-            npclist++;
+            npcList++;
         }
     }
 }
 
-u8 func_800AE64C_jp(mNpc_NpcList_c* npclist) {
+u8 func_800AE64C_jp(NpcList* npcList) {
     u8 res = TRUE;
 
-    if (npclist != NULL) {
-        res = npclist->flags.unk_22;
+    if (npcList != NULL) {
+        res = npcList->flags.unk_22;
     }
     return res;
 }
 
-u8 func_800AE670_jp(mNpc_NpcList_c* npclist) {
+u8 func_800AE670_jp(NpcList* npcList) {
     u8 res = TRUE;
 
-    if (npclist != NULL) {
-        res = npclist->flags.unk_21;
+    if (npcList != NULL) {
+        res = npcList->flags.unk_21;
     }
     return res;
 }
 
-void func_800AE694_jp(mNpc_NpcList_c* npclist) {
-    if (npclist != NULL) {
-        npclist->flags.unk_22 = TRUE;
+void func_800AE694_jp(NpcList* npcList) {
+    if (npcList != NULL) {
+        npcList->flags.unk_22 = TRUE;
     }
 }
 
-void func_800AE6B0_jp(mNpc_NpcList_c* npclist) {
-    if (npclist != NULL) {
-        npclist->flags.unk_21 = TRUE;
+void func_800AE6B0_jp(NpcList* npcList) {
+    if (npcList != NULL) {
+        npcList->flags.unk_21 = TRUE;
     }
 }
 
 void func_800AE6CC_jp(void) {
-    Animal_c* animal = common_data.save.animals;
-    mNpc_NpcList_c* npclist = common_data.npclist;
+    Animal* animal = gCommonData.save.animals;
+    NpcList* npcList = gCommonData.npcList;
     s32 i;
 
     for (i = 0; i < ANIMAL_NUM_MAX; i++) {
         if (mNpc_CheckFreeAnimalInfo(animal) == FALSE) {
-            npclist->home_position.y = mCoBG_GetBgY_OnlyCenter_FromWpos2(npclist->home_position, 0.0f);
+            npcList->homePosition.y = mCoBG_GetBgY_OnlyCenter_FromWpos2(npcList->homePosition, 0.0f);
         }
         animal++;
-        npclist++;
+        npcList++;
     }
 }
 
 void func_800AE76C_jp(gfxprint* print) {
-    Animal_c* sp34 = NULL;
-    Animal_c* sp30 = mNpc_GetInAnimalP();
-    u8 sp2F = common_data.save.remove_animal_idx;
+    Animal* sp34 = NULL;
+    Animal* sp30 = mNpc_GetInAnimalP();
+    u8 sp2F = gCommonData.save.removeAnimalIdx;
 
-    gfxprint_color(print, 0xC8, 0x96, 0x32, 0xFF);
+    gfxprint_color(print, 200, 150, 50, 255);
     gfxprint_locate8x8(print, 3, 0xA);
     if (sp2F < ANIMAL_NUM_MAX) {
-        sp34 = &common_data.save.animals[sp2F];
+        sp34 = &gCommonData.save.animals[sp2F];
     }
 
     if (sp34 != NULL) {
         if (sp30 != NULL) {
-            gfxprint_printf(print, "%4x %3d %3d", sp2F, sp34->id.name_id, sp30->id.name_id);
+            gfxprint_printf(print, "%4x %3d %3d", sp2F, sp34->id.nameId, sp30->id.nameId);
         } else {
-            gfxprint_printf(print, "%4x %3d ---", sp2F, sp34->id.name_id);
+            gfxprint_printf(print, "%4x %3d ---", sp2F, sp34->id.nameId);
         }
     } else if (sp30 != NULL) {
-        gfxprint_printf(print, "%4x --- %3d", sp2F, sp30->id.name_id);
+        gfxprint_printf(print, "%4x --- %3d", sp2F, sp30->id.nameId);
     } else {
         gfxprint_printf(print, "%4x --- ---", sp2F);
     }
 }
 
-void func_800AE898_jp(AnmPersonalID_c* anm_id) {
-    if (anm_id != NULL) {
-        D_8010B968_jp = func_800A7D08_jp(anm_id);
+void func_800AE898_jp(AnmPersonalId* anmId) {
+    if (anmId != NULL) {
+        D_8010B968_jp = func_800A7D08_jp(anmId);
     }
 }
 
 void mNpc_PrintFriendship_fdebug(gfxprint* gfxprint) {
-    Anmmem_c* memory;
-    Private_c* priv;
+    AnmMemory* memory;
+    Private* priv;
     s32 i;
     s32 var_s2 = 3;
     s32 var_s4 = 19;
 
     if ((D_8010B968_jp >= 0) && (D_8010B968_jp < ANIMAL_NUM_MAX)) {
-        memory = common_data.save.animals[D_8010B968_jp].memories;
+        memory = gCommonData.save.animals[D_8010B968_jp].memories;
         if (memory != NULL) {
-            gfxprint_color(gfxprint, 0xFA, 0x64, 0xAA, 0xFF);
+            gfxprint_color(gfxprint, 250, 100, 170, 255);
             gfxprint_locate8x8(gfxprint, 3, 0x12);
-            priv = common_data.now_private;
+            priv = gCommonData.nowPrivate;
             if (priv != NULL) {
-                gfxprint_printf(gfxprint, "%4x ", priv->player_ID.player_id);
+                gfxprint_printf(gfxprint, "%4x ", priv->playerId.playerId);
             } else {
                 gfxprint_printf(gfxprint, "**** ");
             }
-            gfxprint_color(gfxprint, 0x32, 0x96, 0x32, 0xFF);
+            gfxprint_color(gfxprint, 50, 150, 50, 255);
 
             for (i = 0; i < ANIMAL_MEMORY_NUM; i++) {
                 if (i == 4) {
@@ -4042,8 +3862,8 @@ void mNpc_PrintFriendship_fdebug(gfxprint* gfxprint) {
                     var_s2 = 3;
                 }
                 gfxprint_locate8x8(gfxprint, var_s2, var_s4);
-                if (func_800A6E0C_jp(&memory->memory_player_id) == FALSE) {
-                    gfxprint_printf(gfxprint, "%4x %3d ", memory->memory_player_id.player_id, memory->info.friendship);
+                if (func_800A6E0C_jp(&memory->memoryPlayerId) == FALSE) {
+                    gfxprint_printf(gfxprint, "%4x %3d ", memory->memoryPlayerId.playerId, memory->info.friendship);
                 } else {
                     gfxprint_printf(gfxprint, "**** *** ");
                 }

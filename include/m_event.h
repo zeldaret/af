@@ -3,21 +3,15 @@
 
 #include "ultra64.h"
 
-#define mEv_STATUS_ACTIVE     (1 << 0) /* event is active */
-#define mEv_STATUS_STOP       (1 << 1) /* event is stopped */
-#define mEv_STATUS_SHOW       (1 << 2) /* event is shown */
-#define mEv_STATUS_PLAYSOUND  (1 << 3) /* event should play sound */
-#define mEv_STATUS_RUN        (1 << 4) /* event should run */
-#define mEv_STATUS_ERROR      (1 << 5) /* event is in error state */
-#define mEv_STATUS_TALK       (1 << 6) /* event requires talking to player */
+#define EVENT_STATUS_ACTIVE     (1 << 0) /* event is active */
 
-typedef enum mEv_EVENT {
-    mEv_EVENT_UNK_D = 13,
-} mEv_EVENT;
+typedef enum EVENT {
+    EVENT_UNK_D = 13,
+} EVENT;
 
-typedef struct mEv_event_save_c {
+typedef struct EventSave {
     /* 0x00 */ char unk00[0x9C];
-} mEv_event_save_c; // size >= 0x9C
+} EventSave; // size >= 0x9C
 
 typedef struct Event {
     /* 0x00 */ u8 unk_00;
@@ -32,7 +26,7 @@ typedef struct Event {
 
 // void func_8007D140_jp();
 // void func_8007D180_jp();
-void mEv_ClearEventSaveInfo(mEv_event_save_c* event_save);
+void mEv_ClearEventSaveInfo(EventSave* event_save);
 void mEv_ClearEventInfo(void);
 // void func_8007D25C_jp();
 // void func_8007D2B8_jp();

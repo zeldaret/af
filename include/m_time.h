@@ -61,16 +61,16 @@ typedef enum mTM_RENEW_TIME{
 #define mTM_MINUTES_IN_HOUR 60
 
 typedef struct mTM_calendar_term_t {
-    /* 0x00 */ lbRTC_month_t month;
-    /* 0x01 */ lbRTC_day_t day;
+    /* 0x00 */ LBRTC_Month month;
+    /* 0x01 */ LBRTC_Day day;
     /* 0x02 */ u16 season;
-    /* 0x04 */ s16 bgitem_profile;
-    /* 0x06 */ s16 bgitem_bank;
+    /* 0x04 */ s16 bgItemProfile;
+    /* 0x06 */ s16 bgItemBank;
 } mTM_calendar_term_t; // size = 0x8
 
-extern lbRTC_time_c mTM_rtcTime_clear_code;
-extern lbRTC_ymd_t mTM_rtcTime_ymd_clear_code;
-extern lbRTC_time_c mTM_rtcTime_default_code;
+extern LBRTCTime mTM_rtcTime_clear_code;
+extern LBRTC_Ymd mTM_rtcTime_ymd_clear_code;
+extern LBRTCTime mTM_rtcTime_default_code;
 
 #define mTM_IsTimeCleared(time) (lbRTC_IsEqualTime((time), &mTM_rtcTime_clear_code, lbRTC_CHECK_ALL) == TRUE)
 #define mTM_AreTimesEqual(t0, t1) (lbRTC_IsEqualTime(t0, t1, lbRTC_CHECK_ALL))

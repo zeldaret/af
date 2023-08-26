@@ -84,27 +84,27 @@ typedef struct CommonData_unk_10098 {
     /* 0x10 */ CommonData_unk_10098_unk_10 unk_10;
 } CommonData_unk_10098; // size >= 0x10
 
-typedef struct mPr_mother_mail_info_c {
+typedef struct MotherMailInfo {
     /* 0x00 */ UNK_TYPE1 unk_00[0xE];
-} mPr_mother_mail_info_c; // size = 0xE
+} MotherMailInfo; // size = 0xE
 
-typedef struct Time_c {
+typedef struct Time {
     /* 0x00 */ u32 season;
-    /* 0x04 */ u32 term_idx;
-    /* 0x08 */ s16 bgitem_profile;
-    /* 0x0A */ s16 bgitem_bank;
-    /* 0x0C */ s32 now_sec;
-    /* 0x10 */ lbRTC_time_c rtc_time;
-    /* 0x18 */ s16 rad_min; /* clock hand radial position for mins */
-    /* 0x1A */ s16 rad_hour; /* clock hand radial position for hours */
-    /* 0x1C */ u8 time_signal;
-    /* 0x1D */ u8 under_sec;
+    /* 0x04 */ u32 termIdx;
+    /* 0x08 */ s16 bgItemProfile;
+    /* 0x0A */ s16 bgItemBank;
+    /* 0x0C */ s32 nowSec;
+    /* 0x10 */ LBRTCTime rtcTime;
+    /* 0x18 */ s16 radMin; /* clock hand radial position for mins */
+    /* 0x1A */ s16 radHour; /* clock hand radial position for hours */
+    /* 0x1C */ u8 timeSignal;
+    /* 0x1D */ u8 underSec;
     /* 0x1E */ u8 disp;
-    /* 0x1F */ u8 rtc_crashed;
-    /* 0x20 */ s32 rtc_enabled;
-    /* 0x24 */ s32 add_sec;
-    /* 0x28 */ s32 add_idx;
-} Time_c; // size = 0x2C
+    /* 0x1F */ u8 rtcCrashed;
+    /* 0x20 */ s32 rtcEnabled;
+    /* 0x24 */ s32 addSec;
+    /* 0x28 */ s32 addIdx;
+} Time; // size = 0x2C
 
 typedef struct FamicomEmuCommonData {
     /* 0x00 */ s16 unk_00;
@@ -129,9 +129,9 @@ typedef struct FamicomEmuCommonData {
 }FamicomEmuCommonData; // size >= 0x26
 
 typedef struct CommonData_unk_10170 {
-    /* 0x00 */ u16 fg_name;
+    /* 0x00 */ u16 fgName;
     /* 0x02 */ u16 unk_02;
-    /* 0x04 */ u16 npc_id;
+    /* 0x04 */ u16 npcId;
     /* 0x06 */ u16 unk_06;
     /* 0x08 */ u8 unk_08;
     /* 0x09 */ u8 unk_09;
@@ -143,87 +143,87 @@ typedef void (*CommonData_100E4_Func)(struct Game_Play*);
 typedef struct Save {
     /* 0x00000 */ u8 unk00000[0x14];
     /* 0x00014 */ s32 unk_00014;
-    /* 0x00018 */ u8 now_npc_max;
-    /* 0x00019 */ u8 remove_animal_idx;
+    /* 0x00018 */ u8 nowNpcMax;
+    /* 0x00019 */ u8 removeAnimalIdx;
     /* 0x0001A */ u8 unk0001A[0x6];
-    /* 0x00020 */ Private_c private[PLAYER_NUM]; /* player data */
-    /* 0x02F60 */ mLd_land_info_c land_info; /* town name & id */
+    /* 0x00020 */ Private private[PLAYER_NUM]; /* player data */
+    /* 0x02F60 */ LandInfo landInfo; /* town name & id */
     /* 0x02F6A */ u8 unk02F6A[0x61E];
-    /* 0x03588 */ mHm_hs_c homes[PLAYER_NUM];
-    /* 0x062A8 */ mFM_fg_c fg[FG_BLOCK_Z_NUM][FG_BLOCK_X_NUM]; /* fg items (fg = foreground?) */
+    /* 0x03588 */ Home homes[PLAYER_NUM];
+    /* 0x062A8 */ Fg fg[FG_BLOCK_Z_NUM][FG_BLOCK_X_NUM]; /* fg items (fg = foreground?) */
     /* 0x09EA8 */ u8 unk09EA8[0x70];
-    /* 0x09F18 */ Animal_c animals[ANIMAL_NUM_MAX]; /* villagers in town */
-    /* 0x0EC70 */ AnmPersonalID_c last_removed_animal_id;
+    /* 0x09F18 */ Animal animals[ANIMAL_NUM_MAX]; /* villagers in town */
+    /* 0x0EC70 */ AnmPersonalId lastRemovedAnimalId;
     /* 0x0EC7C */ u8 unk0EC7C[0x128];
-    /* 0x0EDA4 */ mEv_event_save_c event_save_data;
+    /* 0x0EDA4 */ EventSave eventSaveData;
     /* 0x0EE40 */ u8 unk0EE40[0x118];
     /* 0x0EF58 */ u16 fruit;
     /* 0x0EF5A */ u8 unk0EF5A[0x4CE];
     /* 0x0F428 */ u64 unk_0F428;
     /* 0x0F430 */ u8 unk0F430[0x8];
-    /* 0x0F438 */ u8 station_type; /* train station type */
+    /* 0x0F438 */ u8 stationType; /* train station type */
     /* 0x0F439 */ u8 unk0F439[0x3];
     /* 0x0F43C */ u16 deposit[FG_BLOCK_X_NUM * FG_BLOCK_Z_NUM][UT_Z_NUM]; /* flags for which items are buried around town */
-    /* 0x0F7FC */ lbRTC_time_c unk_0F7FC;
-    /* 0x0F804 */ mPr_mother_mail_info_c mother_mail[PLAYER_NUM];
+    /* 0x0F7FC */ LBRTCTime unk_0F7FC;
+    /* 0x0F804 */ MotherMailInfo motherMail[PLAYER_NUM];
     /* 0x0F83C */ u8 unk0F83C[0x8];
-    /* 0x0F844 */ FamicomEmuCommonData famicom_emu_common_data;
+    /* 0x0F844 */ FamicomEmuCommonData famicomEmuCommonData;
     /* 0x0F86A */ u8 unk0F86A[0x2];
     /* 0x0F86C */ u8 unk_0F86C[32];
     /* 0x0F88C */ u8 unk0F88C[0x10];
-    /* 0x0F89C */ lbRTC_time_c unk_0F89C;
-    /* 0x0F8A4 */ lbRTC_time_c unk_0F8A4;
+    /* 0x0F89C */ LBRTCTime unk_0F89C;
+    /* 0x0F8A4 */ LBRTCTime unk_0F8A4;
     /* 0x0F8AC */ u8 unk0F8AC[0x754];
 } Save; // size = 0x10000
 
 typedef struct CommonData {
     /* 0x00000 */ Save save;
-    /* 0x10000 */ u8 game_started;
+    /* 0x10000 */ u8 unk_10000;
     /* 0x10001 */ u8 unk_10001;
     /* 0x10002 */ u8 unk10002[0x1];
-    /* 0x10003 */ u8 player_no;
+    /* 0x10003 */ u8 playerNo;
     /* 0x10004 */ s32 unk_10004; // named "last_scene_no" in AC GCN decomp
     /* 0x10008 */ UNK_TYPE1 unk_10008[0x44];
-    /* 0x1004C */ CommonData_unk_1004C *unk_1004C;
+    /* 0x1004C */ CommonData_unk_1004C* unk_1004C;
     /* 0x10050 */ UNK_TYPE1 unk_10050[0x48];
-    /* 0x10098 */ CommonData_unk_10098 *unk_10098;
+    /* 0x10098 */ CommonData_unk_10098* unk_10098;
     /* 0x1009C */ UNK_TYPE1 unk_1009C[0x48];
     /* 0x100E4 */ CommonData_100E4_Func* unk_100E4;
     /* 0x100E8 */ u8 unk100E8[0x24];
-    /* 0x1010C */ Time_c time;
-    /* 0x10138 */ Private_c* now_private;
+    /* 0x1010C */ Time time;
+    /* 0x10138 */ Private* nowPrivate;
     /* 0x1013C */ u8 unk1013C[0x4];
     /* 0x10140 */ u8 unk_10140;
-    /* 0x10141 */ u8 fish_location;
+    /* 0x10141 */ u8 fishLocation;
     /* 0x10142 */ u8 unk10142[0x7];
     /* 0x10149 */ u8 unk_10149;
     /* 0x1014A */ u8 unk_1014A;
-    /* 0x1014B */ u8 wipeType;
+    /* 0x1014B */ u8 unk_1014B;
     /* 0x1014C */ UNK_TYPE1 unk_1014C[0x2];
     /* 0x1014E */ s16 unk_1014E;
     /* 0x10150 */ UNK_TYPE1 unk_10150[0x10];
-    /* 0x10160 */ mNpc_NpcList_c npclist[ANIMAL_NUM_MAX];
-    /* 0x104A8 */ u16 house_owner_name;
-    /* 0x104AA */ u16 last_field_id;
+    /* 0x10160 */ NpcList npcList[ANIMAL_NUM_MAX];
+    /* 0x104A8 */ u16 houseOwnerName;
+    /* 0x104AA */ u16 lastFieldId;
     /* 0x104AC */ UNK_TYPE1 unk_104AC[0x1];
     /* 0x104AD */ u8 unk_104AD;
     /* 0x104AE */ UNK_TYPE1 unk_104AE[0x2];
     /* 0x104B0 */ UNK_TYPE1 unk_104B0[0xE8];
-    /* 0x10598 */ mQst_not_saved_c quest;
-    /* 0x105A0 */ u32 scene_from_title_demo;
-    /* 0x105A4 */ mNPS_schedule_c npc_schedules[SCHEDULE_NUM];
-    /* 0x10694 */ mNpc_walk_c npc_walk;
+    /* 0x10598 */ QuestNotSaved quest;
+    /* 0x105A0 */ u32 sceneFromTitleDemo;
+    /* 0x105A4 */ NpcSchedule npcSchedules[SCHEDULE_NUM];
+    /* 0x10694 */ NpcWalk npcWalk;
     /* 0x10710 */ CommonData_unk_10170 unk_10710[5];
     /* 0x1074C */ UNK_TYPE1 unk1074C[0x6A];
-    /* 0x107B6 */ s16 demo_profile;
+    /* 0x107B6 */ s16 unk_107B6;
     /* 0x107B8 */ u8 unk107B8[0x28];
-    /* 0x107E0 */ s8 player_decoy_flag;
+    /* 0x107E0 */ s8 playerDecoyFlag;
     /* 0x107E1 */ u8 unk107E1[0x3];
     /* 0x107E4 */ s16 unk_107E4;
     /* 0x107E6 */ u8 unk107E6[0x252];
     /* 0x10A38 */ s8 unk_10A38;
     /* 0x10A39 */ u8 unk10A39[0x1];
-    /* 0x10A3A */ u8 goki_shocked_flag;
+    /* 0x10A3A */ u8 gokiShockedFlag;
     /* 0x10A3B */ UNK_TYPE1 unk_10A3B[0x1];
     /* 0x10A3C */ UNK_TYPE1 unk_10A3C[0x2C];
     /* 0x10A68 */ u8 unk_10A68;
@@ -232,7 +232,7 @@ typedef struct CommonData {
     /* 0x10A80 */ UNK_TYPE1 unk_10A80[0x2];
     /* 0x10A82 */ s16 unk_10A82;
     /* 0x10A84 */ u8 unk10A84[0x2C];
-    /* 0x10AB0 */ u8 pad_connected;
+    /* 0x10AB0 */ u8 unk_10AB0;
     /* 0x10AB1 */ UNK_TYPE1 unk_10AB1[0x7];
 } CommonData; // size = 0x10AB8
 
@@ -240,6 +240,6 @@ void common_data_reinit(void);
 void common_data_init(void);
 void common_data_clear(void);
 
-extern CommonData common_data;
+extern CommonData gCommonData;
 
 #endif

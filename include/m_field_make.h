@@ -18,9 +18,9 @@ struct Game;
 #define UT_Z_NUM UT_BASE_NUM /* Spaces per block (acre) in z direction */
 #define UT_TOTAL_NUM (UT_X_NUM * UT_Z_NUM)
 
-typedef struct mFM_fg_c {
+typedef struct Fg {
   /* 0x000 */ u16 items[UT_Z_NUM][UT_X_NUM];
-} mFM_fg_c; // size = 0x200
+} Fg; // size = 0x200
 
 typedef struct FieldMake_Unk_Struct{
     /* 0x000 */ u16* unk_000[398];
@@ -67,6 +67,6 @@ void mFM_InitFgCombiSaveData(struct Game* game);
 // void func_80087788_jp();
 // void func_800877CC_jp();
 void mFM_RenewalReserve(void);
-s16 func_800879B0_jp(s32 block_x, s32 block_z);
+s16 func_800879B0_jp(s32 blockX, s32 blockZ);
 
 #endif

@@ -4,9 +4,9 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aROD_actor_ct(Actor* thisx, Game_Play* game_play);
-void aROD_actor_dt(Actor* thisx, Game_Play* game_play);
-void aROD_actor_move(Actor* thisx, Game_Play* game_play);
+void aROD_actor_ct(Actor* thisx, Game_Play* gamePlay);
+void aROD_actor_dt(Actor* thisx, Game_Play* gamePlay);
+void aROD_actor_move(Actor* thisx, Game_Play* gamePlay);
 
 #if 0
 ActorProfile Ride_Off_Demo_Profile = {

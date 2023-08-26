@@ -43,7 +43,7 @@ struct Game_Play;
 // void func_80060970_jp();
 // void func_80060A6C_jp();
 // void func_80060B18_jp();
-void Camera2_ClearActorTalking_Cull(struct Game_Play* game_play);
+void Camera2_ClearActorTalking_Cull(struct Game_Play* gamePlay);
 // void func_80060D1C_jp();
 // void func_80060D58_jp();
 // void func_80060D6C_jp();
@@ -156,9 +156,9 @@ void Camera2_ClearActorTalking_Cull(struct Game_Play* game_play);
 // void func_80064EF0_jp();
 // void func_80064F08_jp();
 // void func_80064F28_jp();
-void func_80064F48_jp(struct Game_Play* game_play);
+void func_80064F48_jp(struct Game_Play* gamePlay);
 // void func_80064F84_jp();
-void Camera2_process(struct Game_Play* game_play);
-void Camera2_draw(struct Game_Play* game_play);
+void Camera2_process(struct Game_Play* gamePlay);
+void Camera2_draw(struct Game_Play* gamePlay);
 
 #endif

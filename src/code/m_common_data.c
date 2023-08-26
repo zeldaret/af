@@ -3,18 +3,18 @@
 #include "m_field_info.h"
 #include "68AAF0.h"
 
-CommonData common_data;
+CommonData gCommonData;
 
 void common_data_reinit(void) {
-    u8 sp1F = common_data.pad_connected;
+    u8 sp1F = gCommonData.unk_10AB0;
 
-    bzero(&common_data, sizeof(CommonData));
-    common_data.wipeType = -1;
-    common_data.game_started = 1;
-    common_data.unk_10004 = -1;
-    common_data.demo_profile = 0xC9;
-    common_data.pad_connected = sp1F;
-    mFRm_ClearSaveCheckData(&common_data);
+    bzero(&gCommonData, sizeof(CommonData));
+    gCommonData.unk_1014B = -1;
+    gCommonData.unk_10000 = 1;
+    gCommonData.unk_10004 = -1;
+    gCommonData.unk_107B6 = 0xC9;
+    gCommonData.unk_10AB0 = sp1F;
+    mFRm_ClearSaveCheckData(&gCommonData);
 }
 
 void common_data_init(void) {

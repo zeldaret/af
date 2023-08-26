@@ -4,8 +4,8 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void bPTI_actor_ct(Actor* thisx, Game_Play* game_play);
-void bPTI_actor_draw(Actor* thisx, Game_Play* game_play);
+void bPTI_actor_ct(Actor* thisx, Game_Play* gamePlay);
+void bPTI_actor_draw(Actor* thisx, Game_Play* gamePlay);
 
 #if 0
 ActorProfile BgPostItem_Profile = {

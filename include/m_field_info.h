@@ -18,10 +18,10 @@ typedef struct Struct_g_fdinfo_148 {
 } Struct_g_fdinfo_148; // size = 0x614
 
 typedef struct FieldInfo_Unk_Struct {
-    /* 0x00 */ u16 house_owner_name;
+    /* 0x00 */ u16 houseOwnerName;
     /* 0x02 */ u8 unk_02;
     /* 0x03 */ u8 unk_03;
-    /* 0x04 */ u8 npc_id;
+    /* 0x04 */ u8 npcId;
     /* 0x06 */ s16 unk_06;
 } FieldInfo_Unk_Struct; // size = 0x8
 
@@ -48,15 +48,15 @@ u16 mFI_GetFieldId(void);
 // void func_80088458_jp();
 // void func_800884E0_jp();
 // void func_800885A8_jp();
-s32 mFI_Wpos2BlockNum(s32* block_x, s32* block_z, Vec3f world_pos);
-s32 func_80088780_jp(s32* block_x, s32* block_z, s32* ut_x, s32* ut_z, Vec3f arg4);
+s32 mFI_Wpos2BlockNum(s32* blockX, s32* blockZ, Vec3f worldPos);
+s32 func_80088780_jp(s32* blockX, s32* blockZ, s32* utX, s32* utZ, Vec3f arg4);
 // void func_8008883C_jp();
 // void func_800888AC_jp();
 // void func_80088938_jp();
 // void func_800889D8_jp();
 // void func_80088A58_jp();
 // void func_80088B3C_jp();
-void func_80088BC0_jp(f32* x, f32* z, u8 ut_x, u8 ut_z);
+void func_80088BC0_jp(f32* x, f32* z, u8 utX, u8 utZ);
 // void func_80088BFC_jp();
 // void func_80088C74_jp();
 // void func_80088CBC_jp();
@@ -75,13 +75,13 @@ void func_80088BC0_jp(f32* x, f32* z, u8 ut_x, u8 ut_z);
 // void func_8008907C_jp();
 // void func_80089114_jp();
 // void func_800891AC_jp();
-u8 mFI_BkNum2BlockType(s32 block_x, s32 block_z);
+u8 mFI_BkNum2BlockType(s32 blockX, s32 blockZ);
 // void func_800892CC_jp();
 // void func_8008930C_jp();
 // void func_80089348_jp();
 // void func_800893C8_jp();
 // void func_80089404_jp();
-s32 mFI_BlockKind2BkNum(s32* block_x, s32* block_z, u32 block_kind);
+s32 mFI_BlockKind2BkNum(s32* blockX, s32* blockZ, u32 blockKind);
 // void func_800894D0_jp();
 u32* func_80089538_jp(s32 arg0, s32 arg1);
 // void func_800895B8_jp();
@@ -129,7 +129,7 @@ UNK_TYPE mFI_SetFG_common(u16 fgName, Vec3f arg1, s32 arg2);
 // void func_8008B2D0_jp();
 // void func_8008B300_jp();
 // void func_8008B318_jp();
-void mFI_SetBearActor(struct Game_Play* game_play, Vec3f arg1, s32 arg2);
+void mFI_SetBearActor(struct Game_Play* gamePlay, Vec3f arg1, s32 arg2);
 s32 func_8008B3E8_jp(Vec3f* arg0, UNK_TYPE arg1);
 // void func_8008B4C0_jp();
 // void func_8008B598_jp();
@@ -161,7 +161,7 @@ u16* func_8008C1E0_jp(s32 x, s32 z);
 // void func_8008C3D4_jp();
 // void func_8008C3E8_jp();
 // void func_8008C458_jp();
-void func_8008C478_jp(u16* deposit, int ut_x, int ut_z);
+void func_8008C478_jp(u16* deposit, int utX, int utZ);
 // void func_8008C498_jp();
 // void func_8008C4B8_jp();
 // void func_8008C504_jp();

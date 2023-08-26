@@ -3,10 +3,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void eEC_actor_ct(Actor* thisx, Game_Play* game_play);
-void eEC_actor_dt(Actor* thisx, Game_Play* game_play);
-void eEC_actor_move(Actor* thisx, Game_Play* game_play);
-void eEC_actor_draw(Actor* thisx, Game_Play* game_play);
+void eEC_actor_ct(Actor* thisx, Game_Play* gamePlay);
+void eEC_actor_dt(Actor* thisx, Game_Play* gamePlay);
+void eEC_actor_move(Actor* thisx, Game_Play* gamePlay);
+void eEC_actor_draw(Actor* thisx, Game_Play* gamePlay);
 
 #if 0
 ActorProfile Effect_Control_Profile = {

@@ -4,13 +4,13 @@
 #include "ultra64.h"
 
 struct Game_Play;
-struct Mail_c;
+struct Mail;
 
 // void func_800B67C0_jp();
 // void func_800B6838_jp();
 s32 func_800B68E8_jp(void);
 // void func_800B690C_jp();
-s32 func_800B6A3C_jp(struct Mail_c* mail, s32 arg1);
+s32 func_800B6A3C_jp(struct Mail* mail, s32 arg1);
 // void func_800B6AC8_jp();
 // void func_800B6B94_jp();
 // void func_800B6C14_jp();
@@ -31,8 +31,8 @@ s32 func_800B6A3C_jp(struct Mail_c* mail, s32 arg1);
 // void func_800B7468_jp();
 // void func_800B74E8_jp();
 // void func_800B7560_jp();
-void mPO_business_proc(struct Game_Play* game_play);
-void func_800B7680_jp(struct Game_Play* game_play);
+void mPO_business_proc(struct Game_Play* gamePlay);
+void func_800B7680_jp(struct Game_Play* gamePlay);
 // void func_800B7700_jp();
 
 #endif

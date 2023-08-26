@@ -53,7 +53,7 @@ typedef struct {
     ALSound     *sound;         /* sound referenced here */
     s16         priority;
     f32         pitch;          /* current playback pitch                    */
-    s32         state;          /* game_play state for this sound                 */
+    s32         state;          /* gamePlay state for this sound                 */
     s16         vol;            /* volume - combined with volume from bank   */
     ALPan       pan;            /* pan - 0 = left, 127 = right               */
     u8          fxMix;          /* wet/dry mix - 0 = dry, 127 = wet          */

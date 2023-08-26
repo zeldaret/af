@@ -3,11 +3,11 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void func_805b3010(Actor* thisx, Game_Play* game_play);
-void aMIK_actor_dt(Actor* thisx, Game_Play* game_play);
-void func_805b3e58(Actor* thisx, Game_Play* game_play);
-void func_805b4054(Actor* thisx, Game_Play* game_play);
-void aMIK_actor_save(Actor* thisx, Game_Play* game_play);
+void func_805b3010(Actor* thisx, Game_Play* gamePlay);
+void aMIK_actor_dt(Actor* thisx, Game_Play* gamePlay);
+void func_805b3e58(Actor* thisx, Game_Play* gamePlay);
+void func_805b4054(Actor* thisx, Game_Play* gamePlay);
+void aMIK_actor_save(Actor* thisx, Game_Play* gamePlay);
 
 #if 0
 ActorProfile Mikanbox_Profile = {

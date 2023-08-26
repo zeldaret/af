@@ -60,19 +60,19 @@ s32 SubmenuArea_IsPlayer(void) {
 
 #ifdef NON_MATCHING
 // regalloc
-void mSM_load_player_anime(Game_Play* game_play) {
+void mSM_load_player_anime(Game_Play* gamePlay) {
     Game_Play_unk_0110* var_s4;
     s32 var_s0;
     s32 var_s3;
     Player* temp_v0;
     void* segment;
 
-    temp_v0 = get_player_actor_withoutCheck(game_play);
+    temp_v0 = get_player_actor_withoutCheck(gamePlay);
     if (temp_v0 == NULL) {
         return;
     }
 
-    var_s4 = game_play->unk_0110;
+    var_s4 = gamePlay->unk_0110;
     var_s4 += mSc_bank_regist_check(var_s4, 9);
 
     for (var_s3 = 0; var_s3 < 2; var_s3++, var_s4++) {
@@ -98,7 +98,7 @@ void mSM_load_player_anime(Game_Play* game_play) {
     }
 }
 #else
-void mSM_load_player_anime(Game_Play* game_play);
+void mSM_load_player_anime(Game_Play* gamePlay);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_load_player_anime.s")
 #endif
 
@@ -249,7 +249,7 @@ uintptr_t func_800C497C_jp(uintptr_t address, UNUSED void* param) {
     return (uintptr_t)NULL;
 }
 
-void mSM_submenu_ovlptr_init(Game_Play* game_play) {
+void mSM_submenu_ovlptr_init(Game_Play* gamePlay) {
     size_t temp6 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__00792700));
     size_t temp7 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__0079A290));
     size_t temp8 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__0079E430));
@@ -293,7 +293,7 @@ void mSM_submenu_ovlptr_init(Game_Play* game_play) {
 //! FAKE
 dummy_label_255895:
 
-    D_8010DCE0_jp = THA_alloc16(&game_play->state.heap, var_s0);
+    D_8010DCE0_jp = THA_alloc16(&gamePlay->state.heap, var_s0);
     D_8010DCE4_jp = var_s0;
     SubmenuArea_visit = NULL;
 
@@ -334,9 +334,9 @@ void mSM_submenu_ct(mSM* submenu) {
     submenu->moveProcIndex = MSM_MOVE_PROC_WAIT;
     submenu->unk_20 = 0;
 
-    if (common_data.unk_104AD == 1) {
+    if (gCommonData.unk_104AD == 1) {
         submenu->unk_E2 = 1;
-        common_data.unk_104AD = 0;
+        gCommonData.unk_104AD = 0;
     }
 
     submenu->play = (void*)none_proc1;
@@ -362,8 +362,8 @@ void mSM_open_submenu_new2(mSM* submenu, s32 arg1, s32 arg2, s32 arg3, s32 arg4,
     submenu->unk_1C = arg5;
 }
 
-void mSM_Reset_player_btn_type1(Game_Play* game_play) {
-    Player* player = get_player_actor_withoutCheck(game_play);
+void mSM_Reset_player_btn_type1(Game_Play* gamePlay) {
+    Player* player = get_player_actor_withoutCheck(gamePlay);
 
     if (player != NULL) {
         player->unk_12B8 = 0;
@@ -371,57 +371,57 @@ void mSM_Reset_player_btn_type1(Game_Play* game_play) {
     }
 }
 
-void mSM_Reset_player_btn_type2(Game_Play* game_play) {
-    Player* player = get_player_actor_withoutCheck(game_play);
+void mSM_Reset_player_btn_type2(Game_Play* gamePlay) {
+    Player* player = get_player_actor_withoutCheck(gamePlay);
 
     if (player != NULL) {
         player->unk_12BC = 1;
     }
 }
 
-void mSM_submenu_ctrl(Game_Play* game_play) {
-    mSM* submenu = &game_play->submenu;
+void mSM_submenu_ctrl(Game_Play* gamePlay) {
+    mSM* submenu = &gamePlay->submenu;
 
-    if ((game_play->submenu.moveProcIndex != MSM_MOVE_PROC_WAIT) || (game_play->unk_1EE0 != 0) ||
-        (game_play->unk_1EE3 != 0)) {
+    if ((gamePlay->submenu.moveProcIndex != MSM_MOVE_PROC_WAIT) || (gamePlay->unk_1EE0 != 0) ||
+        (gamePlay->unk_1EE3 != 0)) {
         return;
     }
 
-    if ((!((chkTrigger(START_BUTTON) == 0) || (common_data.unk_10A68 != 0)) ||
-         ((((chkTrigger(R_TRIG) != 0) && (common_data.unk_10140 == 1)) == 1) && (common_data.unk_10A68 == 0))) &&
-        ((submenu->unk_E2 == 0) && (submenu->unk_E3 <= 0) && (mPlib_able_submenu_type1(game_play) != 0) &&
+    if ((!((chkTrigger(START_BUTTON) == 0) || (gCommonData.unk_10A68 != 0)) ||
+         ((((chkTrigger(R_TRIG) != 0) && (gCommonData.unk_10140 == 1)) == 1) && (gCommonData.unk_10A68 == 0))) &&
+        ((submenu->unk_E2 == 0) && (submenu->unk_E3 <= 0) && (mPlib_able_submenu_type1(gamePlay) != 0) &&
          (mEv_CheckFirstIntro() == 0))) {
         if (chkTrigger(START_BUTTON) != 0) {
             mSM_open_submenu(submenu, 1, 0, 0);
         } else {
             mSM_open_submenu(submenu, 5, 1, 0);
         }
-        mSM_Reset_player_btn_type2(game_play);
+        mSM_Reset_player_btn_type2(gamePlay);
     } else {
-        Player* player = get_player_actor_withoutCheck(game_play);
+        Player* player = get_player_actor_withoutCheck(gamePlay);
         UNUSED s32 pad;
 
-        if ((player != NULL) && (player->unk_12B8 == 1) && (common_data.unk_10A68 == 0) && (submenu->unk_E2 == 0) &&
+        if ((player != NULL) && (player->unk_12B8 == 1) && (gCommonData.unk_10A68 == 0) && (submenu->unk_E2 == 0) &&
             (submenu->unk_E3 <= 0)) {
-            if (mPlib_able_submenu_type1(game_play) != 0) {
+            if (mPlib_able_submenu_type1(gamePlay) != 0) {
                 if (ABS(BINANG_ROT180(player->actor.shape.rot.y)) < 0x2000) {
                     switch (player->unk_12C0) {
                         case 0x7:
                         case 0xB:
                             mSM_open_submenu(submenu, 6, 0, 0);
-                            mSM_Reset_player_btn_type1(game_play);
+                            mSM_Reset_player_btn_type1(gamePlay);
                             break;
 
                         case 0xC:
                         case 0xD:
                             mSM_open_submenu(submenu, 5, 0, 0);
-                            mSM_Reset_player_btn_type1(game_play);
+                            mSM_Reset_player_btn_type1(gamePlay);
                             break;
 
                         case 0xE:
                         case 0xF:
                             mSM_open_submenu(submenu, 8, 0, 0);
-                            mSM_Reset_player_btn_type1(game_play);
+                            mSM_Reset_player_btn_type1(gamePlay);
                             break;
                     }
                 }
@@ -476,7 +476,7 @@ void mSM_move_LINKWait(mSM* submenu) {
     xyz_t_move(&submenu->unk_E4, &ZeroVec);
 
     if (submenu->unk_00 != 4) {
-        if (((submenu->unk_04 == 4) && (submenu->unk_10 == 0)) || (common_data.now_private->gender == 0)) {
+        if (((submenu->unk_04 == 4) && (submenu->unk_10 == 0)) || (gCommonData.nowPrivate->gender == 0)) {
             sAdo_SpecChange(5);
         } else {
             sAdo_SpecChange(6);
@@ -547,20 +547,20 @@ void mSM_submenu_move(mSM* submenu) {
     move_proc_616[submenu->moveProcIndex](submenu);
 }
 
-void mSM_submenu_draw(mSM* submenu, struct Game_Play* game_play) {
+void mSM_submenu_draw(mSM* submenu, struct Game_Play* gamePlay) {
     SubmenuArea* submenuOvl = &SubmenuArea_dlftbl[SUBMENU_AREA_INDEX_SUBMENU];
 
     if ((submenu->unk_00 >= 3) && (submenu->moveProcIndex == 3) && (submenuOvl == SubmenuArea_visit)) {
-        submenu->draw(submenu, game_play);
+        submenu->draw(submenu, gamePlay);
     }
 }
 
 s32 mSM_check_item_for_furniture(s32 index, UNUSED s32 arg1) {
-    u16 temp_v0 = common_data.now_private->inventory.pockets[index];
+    u16 temp_v0 = gCommonData.nowPrivate->inventory.pockets[index];
 
     if (((temp_v0 & 0xF000) >> 0xC) == 2) {
         if ((((temp_v0 & 0xF00) >> 8) != 3) && (((temp_v0 & 0xF00) >> 8) != 0xF) && (((temp_v0 & 0xF00) >> 8) != 0xD)) {
-            if (!((common_data.now_private->inventory.item_conditions >> (index << 1)) & 3)) {
+            if (!((gCommonData.nowPrivate->inventory.itemConditions >> (index << 1)) & 3)) {
                 if (temp_v0 != 0) {
                     return true;
                 }
@@ -571,10 +571,10 @@ s32 mSM_check_item_for_furniture(s32 index, UNUSED s32 arg1) {
 }
 
 s32 mSM_check_item_for_sell(s32 index, UNUSED s32 arg1) {
-    u16 temp_v0 = common_data.now_private->inventory.pockets[index];
-    Private_c* private = common_data.now_private;
+    u16 temp_v0 = gCommonData.nowPrivate->inventory.pockets[index];
+    Private* private = gCommonData.nowPrivate;
 
-    if (!((private->inventory.item_conditions >> (index << 1)) & 3)) {
+    if (!((private->inventory.itemConditions >> (index << 1)) & 3)) {
         if (temp_v0 != 0) {
             if ((((temp_v0 & 0xF000) >> 0xC) != 2) || (((temp_v0 & 0xF00) >> 8) != 1)) {
                 return true;
@@ -585,9 +585,9 @@ s32 mSM_check_item_for_sell(s32 index, UNUSED s32 arg1) {
 }
 
 s32 mSM_check_item_for_give(s32 index, UNUSED s32 arg1) {
-    Private_c* private = common_data.now_private;
+    Private* private = gCommonData.nowPrivate;
 
-    if (!((private->inventory.item_conditions >> (index << 1)) & 3)) {
+    if (!((private->inventory.itemConditions >> (index << 1)) & 3)) {
         if (private->inventory.pockets[index] != 0) {
             return true;
         }
@@ -596,11 +596,11 @@ s32 mSM_check_item_for_give(s32 index, UNUSED s32 arg1) {
 }
 
 s32 mSM_check_item_for_take(s32 index, s32 arg1) {
-    u16 temp_v0 = common_data.now_private->inventory.pockets[index];
-    Private_c* private = common_data.now_private;
+    u16 temp_v0 = gCommonData.nowPrivate->inventory.pockets[index];
+    Private* private = gCommonData.nowPrivate;
 
     if (temp_v0 != 0) {
-        if (!((private->inventory.item_conditions >> (index << 1)) & 3)) {
+        if (!((private->inventory.itemConditions >> (index << 1)) & 3)) {
             if ((arg1 == 0) ||
                 ((((temp_v0 & 0xF000) >> 0xC) == 2) && ((((((temp_v0 & 0xF00) >> 8) == 3)) && (arg1 == 1)) ||
                                                         ((((temp_v0 & 0xF00) >> 8) == 0xD) && (arg1 == 2))))) {
@@ -612,11 +612,11 @@ s32 mSM_check_item_for_take(s32 index, s32 arg1) {
 }
 
 s32 mSM_check_item_for_minidisk(s32 index, UNUSED s32 arg1) {
-    u16 temp_v0 = common_data.now_private->inventory.pockets[index];
-    Private_c* private = common_data.now_private;
+    u16 temp_v0 = gCommonData.nowPrivate->inventory.pockets[index];
+    Private* private = gCommonData.nowPrivate;
 
     if (((temp_v0 & 0xF000) >> 0xC) == 2) {
-        if (!((private->inventory.item_conditions >> (index << 1)) & 3)) {
+        if (!((private->inventory.itemConditions >> (index << 1)) & 3)) {
             if (((temp_v0 & 0xF00) >> 8) == 0xA) {
                 return true;
             }
@@ -626,7 +626,7 @@ s32 mSM_check_item_for_minidisk(s32 index, UNUSED s32 arg1) {
 }
 
 s32 mSM_check_item_for_shrine(s32 index, UNUSED s32 arg1) {
-    if (((common_data.now_private->inventory.item_conditions >> (index * 2)) & 3) == 2) {
+    if (((gCommonData.nowPrivate->inventory.itemConditions >> (index * 2)) & 3) == 2) {
         if (mQst_CheckLimitbyPossessionIdx(index) != 0) {
             return true;
         }
@@ -636,10 +636,10 @@ s32 mSM_check_item_for_shrine(s32 index, UNUSED s32 arg1) {
 }
 
 s32 mSM_check_item_for_entrust(s32 index, UNUSED s32 arg1) {
-    u16 temp_v0 = common_data.now_private->inventory.pockets[index];
-    Private_c* temp_v1 = common_data.now_private;
+    u16 temp_v0 = gCommonData.nowPrivate->inventory.pockets[index];
+    Private* temp_v1 = gCommonData.nowPrivate;
 
-    if ((temp_v0 == 0) || (!((temp_v1->inventory.item_conditions >> (index << 1)) & 3) &&
+    if ((temp_v0 == 0) || (!((temp_v1->inventory.itemConditions >> (index << 1)) & 3) &&
                            ((((temp_v0 & 0xF000) >> 0xC) != 2) || (((temp_v0 & 0xF00) >> 8) != 1)))) {
         return true;
     }
@@ -648,11 +648,11 @@ s32 mSM_check_item_for_entrust(s32 index, UNUSED s32 arg1) {
 }
 
 s32 mSM_check_item_for_exchange(s32 index, s32 arg1) {
-    Private_c* temp_v0 = common_data.now_private;
+    Private* temp_v0 = gCommonData.nowPrivate;
     u16 temp_v1 = temp_v0->inventory.pockets[index];
     UNUSED s32 pad;
 
-    if (!((temp_v0->inventory.item_conditions >> (index << 1)) & 3) && (temp_v1 != 0)) {
+    if (!((temp_v0->inventory.itemConditions >> (index << 1)) & 3) && (temp_v1 != 0)) {
         if ((((temp_v1 & 0xF000) >> 0xC) == 2) && (((temp_v1 & 0xF00) >> 8) == 3) &&
             ((((arg1 & 0xF000) >> 0xC) != 2) || (((arg1 & 0xF00) >> 8) != 3))) {
             Player* player = get_player_actor_withoutCheck((Game_Play*)gamePT);
@@ -700,7 +700,7 @@ u32 mSM_check_open_inventory_itemlist(InventoryItemList itemlist, s32 arg1) {
     }
 
     ret = 0;
-    for (index = 0; index < mPr_POCKETS_SLOT_COUNT; index++) {
+    for (index = 0; index < POCKETS_SLOT_COUNT; index++) {
         if (func(index, arg1)) {
             ret |= 1 << index;
         }

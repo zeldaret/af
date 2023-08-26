@@ -59,7 +59,7 @@ ALMicroTime alEvtqNextEvent(ALEventQueue *evtq, ALEvent *evt)
     {
         /* sct 11/28/95 - If we get here, most like we overflowed the event queue */
 	/* with non-self-perpetuating events.  Eg. if we filled the evtq with volume */
-	/* events, then when the seqp is told to game_play it will handle all the events */
+	/* events, then when the seqp is told to gamePlay it will handle all the events */
 	/* at once completely emptying out the queue.  At this point this problem */
 	/* must be treated as an out of resource error and the evtq should be increased. */
 	evt->type = -1;

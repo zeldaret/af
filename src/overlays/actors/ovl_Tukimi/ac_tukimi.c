@@ -3,10 +3,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aTUK_actor_ct(Actor* thisx, Game_Play* game_play);
-void aTUK_actor_dt(Actor* thisx, Game_Play* game_play);
-void aTUK_actor_init(Actor* thisx, Game_Play* game_play);
-void aTUK_actor_draw(Actor* thisx, Game_Play* game_play);
+void aTUK_actor_ct(Actor* thisx, Game_Play* gamePlay);
+void aTUK_actor_dt(Actor* thisx, Game_Play* gamePlay);
+void aTUK_actor_init(Actor* thisx, Game_Play* gamePlay);
+void aTUK_actor_draw(Actor* thisx, Game_Play* gamePlay);
 
 #if 0
 ActorProfile Tukimi_Profile = {

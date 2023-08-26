@@ -3,10 +3,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aHG_actor_ct(Actor* thisx, Game_Play* game_play);
-void func_80A83770_jp(Actor* thisx, Game_Play* game_play);
-void aHG_actor_move(Actor* thisx, Game_Play* game_play);
-void aHG_actor_draw(Actor* thisx, Game_Play* game_play);
+void aHG_actor_ct(Actor* thisx, Game_Play* gamePlay);
+void func_80A83770_jp(Actor* thisx, Game_Play* gamePlay);
+void aHG_actor_move(Actor* thisx, Game_Play* gamePlay);
+void aHG_actor_draw(Actor* thisx, Game_Play* gamePlay);
 
 #if 0
 ActorProfile House_Goki_Profile = {

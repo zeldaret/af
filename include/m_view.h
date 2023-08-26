@@ -39,7 +39,7 @@ void setScissorView(Game_Play1938* arg0, ScissorViewArg1* arg1);
 // void setScissor();
 // void stretchViewInit();
 // void do_stretch_view();
-void showView(Game_Play1938* arg0, s32 arg1, struct Game_Play* game_play);
+void showView(Game_Play1938* arg0, s32 arg1, struct Game_Play* gamePlay);
 // void showPerspectiveView();
 // void showOrthoView();
 // void showOverLayView();

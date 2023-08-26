@@ -10,31 +10,31 @@
 #define lbRTC_YEAR_MIN 1901
 #define lbRTC_YEAR_MAX 2099
 
-typedef u8 lbRTC_sec_t;
-typedef u8 lbRTC_min_t;
-typedef u8 lbRTC_hour_t;
-typedef u8 lbRTC_day_t;
-typedef u8 lbRTC_weekday_t;
-typedef u8 lbRTC_month_t;
-typedef u16 lbRTC_year_t;
+typedef u8 LBRTC_Sec;
+typedef u8 LBRTC_Min;
+typedef u8 LBRTC_Hour;
+typedef u8 LBRTC_Day;
+typedef u8 LBRTC_Weekday;
+typedef u8 LBRTC_Month;
+typedef u16 LBRTC_Year;
 
 /* Name leaked in lbRTC_time_c_save_data_check */
-typedef struct lbRTC_time_c {
-  /* 0x00 */ lbRTC_sec_t sec;
-  /* 0x01 */ lbRTC_min_t min;
-  /* 0x02 */ lbRTC_hour_t hour;
-  /* 0x03 */ lbRTC_day_t day;
-  /* 0x04 */ lbRTC_weekday_t weekday;
-  /* 0x05 */ lbRTC_month_t month;
-  /* 0x06 */ lbRTC_year_t year;
-} lbRTC_time_c; // size = 0x8
+typedef struct LBRTCTime {
+  /* 0x00 */ LBRTC_Sec sec;
+  /* 0x01 */ LBRTC_Min min;
+  /* 0x02 */ LBRTC_Hour hour;
+  /* 0x03 */ LBRTC_Day day;
+  /* 0x04 */ LBRTC_Weekday weekday;
+  /* 0x05 */ LBRTC_Month month;
+  /* 0x06 */ LBRTC_Year year;
+} LBRTCTime; // size = 0x8
 
 /* Name leaked in mTM_ymd_2_time */
-typedef struct lbRTC_ymd_t {
-    /* 0x00 */ lbRTC_year_t year;
-    /* 0x02 */ lbRTC_month_t month;
-    /* 0x03 */ lbRTC_day_t day;
-} lbRTC_ymd_t; // size = 0x4
+typedef struct LBRTC_Ymd {
+    /* 0x00 */ LBRTC_Year year;
+    /* 0x02 */ LBRTC_Month month;
+    /* 0x03 */ LBRTC_Day day;
+} LBRTC_Ymd; // size = 0x4
 
 typedef enum WEEKDAYS {
     /* 0 */ lbRTC_WEEKDAYS_BEGIN = 0,
@@ -93,11 +93,11 @@ typedef enum RTC_EQUALITY_FLAGS {
                       lbRTC_CHECK_YEARS
 } RTC_EQUALITY_FLAGS;
 
-#define lbRTC_HOURS_PER_DAY 24
-#define lbRTC_MINUTES_PER_HOUR 60
-#define lbRTC_SECONDS_PER_MINUTE 60
+#define LBRTC_HOURS_PER_DAY 24
+#define LBRTC_MINUTES_PER_HOUR 60
+#define LBRTC_SECONDS_PER_MINUTE 60
 
-#define lbRTC_IS_LEAPYEAR(year) \
+#define LBRTC_IS_LEAPYEAR(year) \
   (((year % 4) == 0 && ((year % 100) != 0)) || ((year % 400) == 0))
 
 #endif

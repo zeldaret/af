@@ -10,7 +10,7 @@
 #include "m_mail.h"
 
 struct Game_Play;
-struct Mail_c;
+struct Mail;
 struct mSM;
 
 typedef enum mSMMoveProcIndex {
@@ -60,7 +60,7 @@ typedef struct mSM {
     /* 0x2C */ UNK_TYPE1 unk_2C[0x4];
     /* 0x30 */ mSM_unk_30 play; // name based on mSM_move_Play, consider renaming
     /* 0x34 */ mSM_unk_34 draw;
-    /* 0x38 */ Mail_c mail;
+    /* 0x38 */ Mail mail;
     /* 0xDC */ u8 unk_DC;
     /* 0xDD */ u8 unk_DD;
     /* 0xDE */ u8 unk_DE;
@@ -75,7 +75,7 @@ s32 SubmenuArea_IsPlayer(void);
 
 void* mSM_ovlptr_dllcnv(void* vram, mSM* submenu);
 
-void mSM_submenu_ovlptr_init(struct Game_Play* game_play);
+void mSM_submenu_ovlptr_init(struct Game_Play* gamePlay);
 void mSM_submenu_ovlptr_cleanup(mSM* submenu);
 
 void load_player(mSM* submenu);
@@ -86,9 +86,9 @@ void mSM_open_submenu(mSM* submenu, s32 arg1, s32 arg2, s32 arg3);
 void mSM_open_submenu_new(mSM* submenu, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 void mSM_open_submenu_new2(mSM* submenu, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
 
-void mSM_submenu_ctrl(struct Game_Play* game_play);
+void mSM_submenu_ctrl(struct Game_Play* gamePlay);
 void mSM_submenu_move(mSM* submenu);
-void mSM_submenu_draw(mSM* submenu, struct Game_Play* game_play);
+void mSM_submenu_draw(mSM* submenu, struct Game_Play* gamePlay);
 
 u32 mSM_check_open_inventory_itemlist(InventoryItemList itemlist, s32 arg1) ;
 

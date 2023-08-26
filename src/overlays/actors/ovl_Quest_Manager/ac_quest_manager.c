@@ -4,10 +4,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aQMgr_actor_ct(Actor* thisx, Game_Play* game_play);
-void aQMgr_actor_dt(Actor* thisx, Game_Play* game_play);
-void aQMgr_actor_move_main(Actor* thisx, Game_Play* game_play);
-void aQMgr_actor_save(Actor* thisx, Game_Play* game_play);
+void aQMgr_actor_ct(Actor* thisx, Game_Play* gamePlay);
+void aQMgr_actor_dt(Actor* thisx, Game_Play* gamePlay);
+void aQMgr_actor_move_main(Actor* thisx, Game_Play* gamePlay);
+void aQMgr_actor_save(Actor* thisx, Game_Play* gamePlay);
 
 #if 0
 ActorProfile Quest_Manager_Profile = {

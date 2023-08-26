@@ -4,41 +4,41 @@
 #include "ultra64.h"
 #include "m_npc_personal_id.h"
 
-struct AnmPersonalID_c;
+struct AnmPersonalId;
 
-typedef enum mNPS_SCHED{
-    /* 0 */ mNPS_SCHED_FIELD, /* in same acre as their home */
-    /* 1 */ mNPS_SCHED_IN_HOUSE, /* inside their house */
-    /* 2 */ mNPS_SCHED_SLEEP, /* asleep in their house */
-    /* 3 */ mNPS_SCHED_STAND, /* standing around town?? */
-    /* 4 */ mNPS_SCHED_WANDER, /* wander around town */
-    /* 5 */ mNPS_SCHED_SPECIAL, /* unique schedule method for each NPC actor type */
+typedef enum NPC_SCHEDULE {
+    /* 0 */ NPC_SCHEDULE_FIELD, /* in same acre as their home */
+    /* 1 */ NPC_SCHEDULE_IN_HOUSE, /* inside their house */
+    /* 2 */ NPC_SCHEDULE_SLEEP, /* asleep in their house */
+    /* 3 */ NPC_SCHEDULE_STAND, /* standing around town?? */
+    /* 4 */ NPC_SCHEDULE_WANDER, /* wander around town */
+    /* 5 */ NPC_SCHEDULE_SPECIAL, /* unique schedule method for each NPC actor type */
 
-    /* 6 */ mNPS_SCHED_TYPE_NUM
-} mNPS_SCHED;
+    /* 6 */ NPC_SCHEDULE_NUM
+} NPC_SCHEDULE;
 
-typedef struct mNPS_schedule_data_c {
-    /* 0x00 */   u32 type;
-    /* 0x04 */   s32 end_time;
-} mNPS_schedule_data_c; // size = 0x8
+typedef struct NpcScheduleData {
+    /* 0x00 */ u32 type;
+    /* 0x04 */ s32 endTime;
+} NpcScheduleData; // size = 0x8
 
-typedef struct mNPS_schedule_data_table_c {
+typedef struct NpcScheduleDataTable {
     /* 0x00 */ s32 count;
-    /* 0x04 */ mNPS_schedule_data_c* sched_data;
-} mNPS_schedule_data_table_c; // size = 0x8
+    /* 0x04 */ NpcScheduleData* schedData;
+} NpcScheduleDataTable; // size = 0x8
 
-typedef struct mNPS_schedule_c {
-    /* 0x00 */ AnmPersonalID_c* id;
-    /* 0x04 */ mNPS_schedule_data_table_c* data_table;
-    /* 0x08 */ u8 current_type;
-    /* 0x09 */ u8 forced_type;
-    /* 0x0A */ u8 saved_type;
-    /* 0x0C */ s32 forced_timer;
-} mNPS_schedule_c; // size = 0x10
+typedef struct NpcSchedule {
+    /* 0x00 */ AnmPersonalId* id;
+    /* 0x04 */ NpcScheduleDataTable* dataTable;
+    /* 0x08 */ u8 currentType;
+    /* 0x09 */ u8 forcedType;
+    /* 0x0A */ u8 savedType;
+    /* 0x0C */ s32 forcedTimer;
+} NpcSchedule; // size = 0x10
 
-mNPS_schedule_c* mNPS_get_schedule_area(AnmPersonalID_c* anm_id);
-void mNPS_set_schedule_area(AnmPersonalID_c* anm_id);
-void mNPS_reset_schedule_area(AnmPersonalID_c* anm_id);
+NpcSchedule* mNPS_get_schedule_area(AnmPersonalId* anmId);
+void mNPS_set_schedule_area(AnmPersonalId* anmId);
+void mNPS_reset_schedule_area(AnmPersonalId* anmId);
 void mNPS_schedule_manager_sub0(void);
 void mNPS_schedule_manager_sub(void);
 void mNPS_schedule_manager(void);

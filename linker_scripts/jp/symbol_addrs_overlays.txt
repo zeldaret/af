@@ -235,8 +235,8 @@ jtbl_80804410_jp = 0x80804410; // type:jtbl
 
 fbdemo = 0x80804480; //
 B_8080455C_jp = 0x8080455C; //
-S_back_title_timer = 0x80804560; // type:s16
-S_se_endcheck_timeout = 0x80804562; // type:s16
+sBackTitleTimer = 0x80804560; // type:s16
+sSeEndcheckTimeout = 0x80804562; // type:s16
 
 // .text
 

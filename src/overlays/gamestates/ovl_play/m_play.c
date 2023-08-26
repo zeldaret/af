@@ -40,10 +40,10 @@
 #include "m_scene_table.h"
 
 void play_main(Game* game);
-void Gameplay_Scene_Read(Game_Play* game_play, s16 arg1);
-void Game_play_fbdemo_wipe_create(Game_Play* game_play);
-void Game_play_fbdemo_wipe_init(Game_Play* game_play);
-void Game_play_fbdemo_wipe_move(Game_Play* game_play);
+void Gameplay_Scene_Read(Game_Play* gamePlay, s16 arg1);
+void Game_play_fbdemo_wipe_create(Game_Play* gamePlay);
+void Game_play_fbdemo_wipe_init(Game_Play* gamePlay);
+void Game_play_fbdemo_wipe_move(Game_Play* gamePlay);
 
 Game_PlayUnkFuncsStruct D_80804320_jp = {
     fbdemo_wipe1_init,
@@ -85,7 +85,7 @@ Game_PlayUnkFuncsStruct* D_8080438C_jp[] = {
     &D_80804320_jp, &D_80804344_jp, &D_80804368_jp, &D_80804368_jp, &D_80804344_jp, &D_80804344_jp, &D_80804368_jp,
 };
 
-typedef void (*Game_PlayUnkFunc)(Game_Play* game_play);
+typedef void (*Game_PlayUnkFunc)(Game_Play* gamePlay);
 Game_PlayUnkFunc D_808043A8_jp[] = {
     (void*)none_proc1,
     Game_play_fbdemo_wipe_create,
@@ -95,84 +95,84 @@ Game_PlayUnkFunc D_808043A8_jp[] = {
 
 static Play80804480 fbdemo;
 static void* B_8080455C_jp;
-static u16 S_back_title_timer;
-static u16 S_se_endcheck_timeout;
+static u16 sBackTitleTimer;
+static u16 sSeEndcheckTimeout;
 
 void Game_play_Reset_destiny(void) {
-    mPr_destiny_c* destiny = &common_data.now_private->destiny;
-    u8* day = &common_data.time.rtc_time.day;
-    u8* month = &common_data.time.rtc_time.month;
+    Destiny* destiny = &gCommonData.nowPrivate->destiny;
+    u8* day = &gCommonData.time.rtcTime.day;
+    u8* month = &gCommonData.time.rtcTime.month;
 
-    if ((destiny->type != 0) && ((common_data.time.rtc_time.year != destiny->received_time.year) ||
-                                 (*month != destiny->received_time.month) || (*day != destiny->received_time.day))) {
+    if ((destiny->type != 0) && ((gCommonData.time.rtcTime.year != destiny->receivedTime.year) ||
+                                 (*month != destiny->receivedTime.month) || (*day != destiny->receivedTime.day))) {
         destiny->type = 0;
     }
 }
 
 void event_title_flag_on(void) {
-    if (common_data.unk_107E4 != 0) {
-        common_data.unk_10A82 = 1;
+    if (gCommonData.unk_107E4 != 0) {
+        gCommonData.unk_10A82 = 1;
     }
 }
 
 void event_title_flag_off(void) {
-    if (common_data.unk_107E4 == 2) {
-        common_data.unk_107E4 = 0;
-        common_data.unk_10A82 = 0;
+    if (gCommonData.unk_107E4 == 2) {
+        gCommonData.unk_107E4 = 0;
+        gCommonData.unk_10A82 = 0;
     }
 }
 
-void Game_play_camera_proc(Game_Play* game_play) {
-    Camera2_ClearActorTalking_Cull(game_play);
-    Camera2_process(game_play);
+void Game_play_camera_proc(Game_Play* gamePlay) {
+    Camera2_ClearActorTalking_Cull(gamePlay);
+    Camera2_process(gamePlay);
 }
 
-void Game_play_fbdemo_wipe_destroy(Game_Play* game_play) {
-    game_play->unk_1EE8.unk_21C.unk_04(&game_play->unk_1EE8, game_play);
-    game_play->unk_1EE3 = 0;
-    game_play->unk_1EE8.unk_218 = -1;
+void Game_play_fbdemo_wipe_destroy(Game_Play* gamePlay) {
+    gamePlay->unk_1EE8.unk_21C.unk_04(&gamePlay->unk_1EE8, gamePlay);
+    gamePlay->unk_1EE3 = 0;
+    gamePlay->unk_1EE8.unk_218 = -1;
 }
 
-void Game_play_fbdemo_wipe_create_sub(Game_Play* game_play) {
-    s32 sp1C = game_play->unk_1EE1;
+void Game_play_fbdemo_wipe_create_sub(Game_Play* gamePlay) {
+    s32 sp1C = gamePlay->unk_1EE1;
 
-    bzero(&game_play->unk_1EE8, sizeof(Game_Play_Unk_1EE8));
+    bzero(&gamePlay->unk_1EE8, sizeof(Game_Play_Unk_1EE8));
     if (sp1C >= 7) {
         sp1C = 1;
     }
-    game_play->unk_1EE8.unk_218 = sp1C;
+    gamePlay->unk_1EE8.unk_218 = sp1C;
 
     {
         Game_PlayUnkFuncsStruct* temp_v0 = D_8080438C_jp[sp1C];
 
-        game_play->unk_1EE8.unk_21C.unk_00 = temp_v0->unk_00;
-        game_play->unk_1EE8.unk_21C.unk_04 = temp_v0->unk_04;
-        game_play->unk_1EE8.unk_21C.unk_08 = temp_v0->unk_08;
-        game_play->unk_1EE8.unk_21C.unk_0C = temp_v0->unk_0C;
-        game_play->unk_1EE8.unk_21C.unk_10 = temp_v0->unk_10;
-        game_play->unk_1EE8.unk_21C.unk_14 = temp_v0->unk_14;
-        game_play->unk_1EE8.unk_21C.unk_18 = temp_v0->unk_18;
-        game_play->unk_1EE8.unk_21C.unk_20 = temp_v0->unk_20;
+        gamePlay->unk_1EE8.unk_21C.unk_00 = temp_v0->unk_00;
+        gamePlay->unk_1EE8.unk_21C.unk_04 = temp_v0->unk_04;
+        gamePlay->unk_1EE8.unk_21C.unk_08 = temp_v0->unk_08;
+        gamePlay->unk_1EE8.unk_21C.unk_0C = temp_v0->unk_0C;
+        gamePlay->unk_1EE8.unk_21C.unk_10 = temp_v0->unk_10;
+        gamePlay->unk_1EE8.unk_21C.unk_14 = temp_v0->unk_14;
+        gamePlay->unk_1EE8.unk_21C.unk_18 = temp_v0->unk_18;
+        gamePlay->unk_1EE8.unk_21C.unk_20 = temp_v0->unk_20;
     }
 }
 
-void Game_play_fbdemo_wipe_create(Game_Play* game_play) {
-    Game_play_fbdemo_wipe_create_sub(game_play);
-    Game_play_fbdemo_wipe_init(game_play);
+void Game_play_fbdemo_wipe_create(Game_Play* gamePlay) {
+    Game_play_fbdemo_wipe_create_sub(gamePlay);
+    Game_play_fbdemo_wipe_init(gamePlay);
 }
 
-void Game_play_fbdemo_wipe_init(Game_Play* game_play) {
-    Game_Play_Unk_1EE8* temp_s0 = &game_play->unk_1EE8;
+void Game_play_fbdemo_wipe_init(Game_Play* gamePlay) {
+    Game_Play_Unk_1EE8* temp_s0 = &gamePlay->unk_1EE8;
     u8 var_v0;
 
-    game_play->unk_1EE8.unk_21C.unk_00(temp_s0);
+    gamePlay->unk_1EE8.unk_21C.unk_00(temp_s0);
 
-    common_data.unk_1014A = 14;
-    common_data.unk_10149 = 30;
+    gCommonData.unk_1014A = 14;
+    gCommonData.unk_10149 = 30;
 
     temp_s0->unk_21C.unk_18(temp_s0, 0);
 
-    var_v0 = game_play->unk_1EE0;
+    var_v0 = gamePlay->unk_1EE0;
     if (temp_s0->unk_218 == 4) {
         var_v0 |= 0x80;
     } else if (temp_s0->unk_218 == 5) {
@@ -182,119 +182,119 @@ void Game_play_fbdemo_wipe_init(Game_Play* game_play) {
     temp_s0->unk_21C.unk_14(temp_s0, var_v0);
     temp_s0->unk_21C.unk_10(temp_s0);
 
-    game_play->unk_1EE3 = 3;
-    S_back_title_timer = 300;
-    S_se_endcheck_timeout = 300;
+    gamePlay->unk_1EE3 = 3;
+    sBackTitleTimer = 300;
+    sSeEndcheckTimeout = 300;
 }
 
-void Game_play_fbdemo_fade_in_move_end(Game_Play* game_play) {
-    Game_play_fbdemo_wipe_destroy(game_play);
-    if (game_play->unk_1EE2 == 3) {
+void Game_play_fbdemo_fade_in_move_end(Game_Play* gamePlay) {
+    Game_play_fbdemo_wipe_destroy(gamePlay);
+    if (gamePlay->unk_1EE2 == 3) {
         fbdemo_cleanup(&fbdemo);
-        game_play->unk_1EE2 = 0;
+        gamePlay->unk_1EE2 = 0;
         SetGameFrame(3);
     }
 }
 
-void Game_play_fbdemo_fade_out_start_emu_move_end(Game_Play* game_play) {
-    STOP_GAMESTATE(&game_play->state);
-    SET_NEXT_GAMESTATE(&game_play->state, famicom_emu_init, sizeof(Game_FamicomEmu));
+void Game_play_fbdemo_fade_out_start_emu_move_end(Game_Play* gamePlay) {
+    STOP_GAMESTATE(&gamePlay->state);
+    SET_NEXT_GAMESTATE(&gamePlay->state, famicom_emu_init, sizeof(Game_FamicomEmu));
 }
 
-void Game_play_fbdemo_fade_out_game_end_move_end(Game_Play* game_play) {
-    STOP_GAMESTATE(&game_play->state);
-    SET_NEXT_GAMESTATE(&game_play->state, trademark_init, sizeof(Game_Trademark));
+void Game_play_fbdemo_fade_out_game_end_move_end(Game_Play* gamePlay) {
+    STOP_GAMESTATE(&gamePlay->state);
+    SET_NEXT_GAMESTATE(&gamePlay->state, trademark_init, sizeof(Game_Trademark));
 }
 
-void Game_play_change_scene_move_end(Game_Play* game_play) {
-    game_goto_next_game_play(&game_play->state);
-    common_data.unk_10004 = common_data.save.unk_00014;
-    common_data.save.unk_00014 = game_play->unk_1E18;
+void Game_play_change_scene_move_end(Game_Play* gamePlay) {
+    game_goto_next_game_play(&gamePlay->state);
+    gCommonData.unk_10004 = gCommonData.save.unk_00014;
+    gCommonData.save.unk_00014 = gamePlay->unk_1E18;
 }
 
-void Game_play_fbdemo_wipe_move(Game_Play* game_play) {
+void Game_play_fbdemo_wipe_move(Game_Play* gamePlay) {
     UNUSED s32 pad[2];
     s16 sp26 = 0;
     s32 sp20 = 1;
-    Game_Play_Unk_1EE8* sp18 = &game_play->unk_1EE8;
+    Game_Play_Unk_1EE8* sp18 = &gamePlay->unk_1EE8;
 
-    if (game_play->unk_1EE8.unk_21C.unk_20(sp18, game_play) != 0) {
-        if ((game_play->unk_1EE0 != 1) && (game_play->unk_1EE0 != 11)) {
-            if (S_se_endcheck_timeout != 0) {
-                S_se_endcheck_timeout--;
+    if (gamePlay->unk_1EE8.unk_21C.unk_20(sp18, gamePlay) != 0) {
+        if ((gamePlay->unk_1EE0 != 1) && (gamePlay->unk_1EE0 != 11)) {
+            if (sSeEndcheckTimeout != 0) {
+                sSeEndcheckTimeout--;
             }
 
-            if ((func_800D2334_jp(sp18, game_play) == 0) && (S_se_endcheck_timeout != 0)) {
+            if ((func_800D2334_jp(sp18, gamePlay) == 0) && (sSeEndcheckTimeout != 0)) {
                 sp20 = 0;
             } else {
                 func_800D2568_jp(1);
             }
         }
 
-        if (game_play->unk_1EE0 == 11) {
+        if (gamePlay->unk_1EE0 == 11) {
             func_800D2568_jp(2);
         }
 
         if (sp20 == 1) {
-            switch (game_play->unk_1EE0) {
+            switch (gamePlay->unk_1EE0) {
                 case 1:
-                    Game_play_fbdemo_fade_in_move_end(game_play);
+                    Game_play_fbdemo_fade_in_move_end(gamePlay);
                     break;
 
                 case 3:
                     //! FAKE
                     if (1) {}
                     if (1) {}
-                    Game_play_fbdemo_fade_out_start_emu_move_end(game_play);
+                    Game_play_fbdemo_fade_out_start_emu_move_end(gamePlay);
                     break;
 
                 case 4:
                 case 6:
-                    if (S_back_title_timer == 300) {
-                        mBGMPsComp_make_ps_wipe(0x168, game_play);
+                    if (sBackTitleTimer == 300) {
+                        mBGMPsComp_make_ps_wipe(0x168, gamePlay);
                     }
 
                 case 5:
                 case 10:
-                    if (S_back_title_timer != 0) {
-                        S_back_title_timer--;
+                    if (sBackTitleTimer != 0) {
+                        sBackTitleTimer--;
                     }
 
-                    if ((sAdo_BgmFadeoutCheck() == 1) || (S_back_title_timer == 0)) {
-                        Game_play_fbdemo_fade_out_game_end_move_end(game_play);
+                    if ((sAdo_BgmFadeoutCheck() == 1) || (sBackTitleTimer == 0)) {
+                        Game_play_fbdemo_fade_out_game_end_move_end(gamePlay);
                     } else {
                         sp26 = 1;
                     }
                     break;
 
                 case 8:
-                    if (common_data.unk_100E4 != NULL) {
-                        if (*common_data.unk_100E4 != NULL) {
-                            (*common_data.unk_100E4)(game_play);
-                            Game_play_change_scene_move_end(game_play);
+                    if (gCommonData.unk_100E4 != NULL) {
+                        if (*gCommonData.unk_100E4 != NULL) {
+                            (*gCommonData.unk_100E4)(gamePlay);
+                            Game_play_change_scene_move_end(gamePlay);
                         }
                     }
                     break;
 
                 case 9:
-                    if (S_back_title_timer != 0) {
-                        S_back_title_timer--;
+                    if (sBackTitleTimer != 0) {
+                        sBackTitleTimer--;
                     }
 
-                    if ((sAdo_BgmFadeoutCheck() == 1) || (S_back_title_timer == 0)) {
-                        Game_play_change_scene_move_end(game_play);
+                    if ((sAdo_BgmFadeoutCheck() == 1) || (sBackTitleTimer == 0)) {
+                        Game_play_change_scene_move_end(gamePlay);
                     } else {
                         sp26 = 1;
                     }
                     break;
 
                 default:
-                    Game_play_change_scene_move_end(game_play);
+                    Game_play_change_scene_move_end(gamePlay);
                     break;
             }
 
             if (sp26 == 0) {
-                game_play->unk_1EE0 = 0;
+                gamePlay->unk_1EE0 = 0;
             }
         }
     } else {
@@ -302,29 +302,29 @@ void Game_play_fbdemo_wipe_move(Game_Play* game_play) {
     }
 }
 
-void Game_play_fbdemo_wipe_proc(Game_Play* game_play) {
-    if ((game_play->unk_1EE3 == 0) && (game_play->unk_1EE0 != 0)) {
-        game_play->unk_1EE3 = 1;
+void Game_play_fbdemo_wipe_proc(Game_Play* gamePlay) {
+    if ((gamePlay->unk_1EE3 == 0) && (gamePlay->unk_1EE0 != 0)) {
+        gamePlay->unk_1EE3 = 1;
     }
-    D_808043A8_jp[game_play->unk_1EE3](game_play);
+    D_808043A8_jp[gamePlay->unk_1EE3](gamePlay);
 }
 
-Gfx* game_play_set_fog(Game_Play* game_play, Gfx* gfx) {
-    return gfx_set_fog_nosync(gfx, game_play->glight.fogColor[0], game_play->glight.fogColor[1],
-                              game_play->glight.fogColor[2], 0, game_play->glight.fogNear, game_play->glight.fogFar);
+Gfx* game_play_set_fog(Game_Play* gamePlay, Gfx* gfx) {
+    return gfx_set_fog_nosync(gfx, gamePlay->glight.fogColor[0], gamePlay->glight.fogColor[1],
+                              gamePlay->glight.fogColor[2], 0, gamePlay->glight.fogNear, gamePlay->glight.fogFar);
 }
 
-void Game_play_fbdemo_proc(Game_Play* game_play) {
+void Game_play_fbdemo_proc(Game_Play* gamePlay) {
     UNUSED s32 pad;
-    GraphicsContext* gfxCtx = game_play->state.gfxCtx;
+    GraphicsContext* gfxCtx = gamePlay->state.gfxCtx;
 
-    switch (game_play->unk_1EE2) {
+    switch (gamePlay->unk_1EE2) {
         case 2:
-            if (fbdemo_init(&fbdemo, 10, 7, game_play) == 0) {
-                game_play->unk_1EE2 = 0;
+            if (fbdemo_init(&fbdemo, 10, 7, gamePlay) == 0) {
+                gamePlay->unk_1EE2 = 0;
             } else {
                 B_8080455C_jp = gfxCtx->unk_008;
-                game_play->unk_1EE2 = 3;
+                gamePlay->unk_1EE2 = 3;
                 SetGameFrame(1);
             }
             break;
@@ -335,39 +335,39 @@ void Game_play_fbdemo_proc(Game_Play* game_play) {
 }
 
 void play_cleanup(Game* game) {
-    Game_Play* game_play = (Game_Play*)game;
+    Game_Play* gamePlay = (Game_Play*)game;
 
-    func_800A3304_jp(game_play);
-    game_play->state.gfxCtx->unk_2F4 = 0;
-    game_play->state.gfxCtx->unk_2F8 = 0;
-    game_play->submenu.unk_00 = 0;
-    PreRender_cleanup(&game_play->unk_1DC0);
-    CollisionCheck_dt(game_play, &game_play->unk_2138);
+    func_800A3304_jp(gamePlay);
+    gamePlay->state.gfxCtx->unk_2F4 = 0;
+    gamePlay->state.gfxCtx->unk_2F8 = 0;
+    gamePlay->submenu.unk_00 = 0;
+    PreRender_cleanup(&gamePlay->unk_1DC0);
+    CollisionCheck_dt(gamePlay, &gamePlay->unk_2138);
 
-    if (game_play->unk_1EE2 == 3) {
+    if (gamePlay->unk_1EE2 == 3) {
         fbdemo_cleanup(&fbdemo);
-        game_play->unk_1EE2 = 0;
+        gamePlay->unk_1EE2 = 0;
     }
 
-    if (game_play->unk_1EE3 == 3) {
-        Game_play_fbdemo_wipe_destroy(game_play);
+    if (gamePlay->unk_1EE3 == 3) {
+        Game_play_fbdemo_wipe_destroy(gamePlay);
     }
 
-    Actor_info_dt(&game_play->actorInfo, game_play);
-    mEv_finish(&game_play->event);
+    Actor_info_dt(&gamePlay->actorInfo, gamePlay);
+    mEv_finish(&gamePlay->event);
     func_800AA124_jp();
-    mSM_submenu_dt(&game_play->submenu);
-    game_play->unk_1DAC = -1;
-    mSM_submenu_ovlptr_cleanup(&game_play->submenu);
-    mPlib_Object_Exchange_keep_Player_dt(game_play);
-    mHsRm_GetHuusuiRoom(0, common_data.player_no);
+    mSM_submenu_dt(&gamePlay->submenu);
+    gamePlay->unk_1DAC = -1;
+    mSM_submenu_ovlptr_cleanup(&gamePlay->submenu);
+    mPlib_Object_Exchange_keep_Player_dt(gamePlay);
+    mHsRm_GetHuusuiRoom(0, gCommonData.playerNo);
     func_80087280_jp();
     zelda_CleanupArena();
 }
 
 void play_init(Game* game) {
-    Game_Play* game_play = (Game_Play*)game;
-    GraphicsContext* gfxCtx = game_play->state.gfxCtx;
+    Game_Play* gamePlay = (Game_Play*)game;
+    GraphicsContext* gfxCtx = gamePlay->state.gfxCtx;
     u32 temp_v1;
     u32 temp_v0_2;
     UNUSED s32 pad[2];
@@ -375,170 +375,170 @@ void play_init(Game* game) {
     s32 sp30;
 
     //! FAKE
-    if (game_play && game_play && game_play) {}
+    if (gamePlay && gamePlay && gamePlay) {}
 
-    game_resize_hyral(&game_play->state, 0x7D0000);
+    game_resize_hyral(&gamePlay->state, 0x7D0000);
     func_800D2568_jp(0);
     event_title_flag_on();
     func_800C9010_jp();
     mTM_set_season();
     func_800B594C_jp();
-    mSM_submenu_ovlptr_init(game_play);
-    func_8007CFD8_jp(game_play);
-    mEv_init(&game_play->event);
-    initView(&game_play->unk_1938, gfxCtx);
-    func_80064F48_jp(game_play);
-    CollisionCheck_ct(game_play, &game_play->unk_2138);
+    mSM_submenu_ovlptr_init(gamePlay);
+    func_8007CFD8_jp(gamePlay);
+    mEv_init(&gamePlay->event);
+    initView(&gamePlay->unk_1938, gfxCtx);
+    func_80064F48_jp(gamePlay);
+    CollisionCheck_ct(gamePlay, &gamePlay->unk_2138);
     func_8006BB64_jp();
     func_8006C8D0_jp();
-    game_play->unk_1DAC = -1;
-    Gameplay_Scene_Read(game_play, common_data.save.unk_00014);
-    mSM_submenu_ct(&game_play->submenu);
-    game_play->submenu.unk_00 = 0;
-    PreRender_init(&game_play->unk_1DC0);
-    PreRender_setup_savebuf(&game_play->unk_1DC0, 0x140, 0xF0, 0, 0, 0);
-    PreRender_setup_renderbuf(&game_play->unk_1DC0, 0x140, 0xF0, NULL, NULL);
+    gamePlay->unk_1DAC = -1;
+    Gameplay_Scene_Read(gamePlay, gCommonData.save.unk_00014);
+    mSM_submenu_ct(&gamePlay->submenu);
+    gamePlay->submenu.unk_00 = 0;
+    PreRender_init(&gamePlay->unk_1DC0);
+    PreRender_setup_savebuf(&gamePlay->unk_1DC0, 0x140, 0xF0, 0, 0, 0);
+    PreRender_setup_renderbuf(&gamePlay->unk_1DC0, 0x140, 0xF0, NULL, NULL);
 
     //! FAKE
     if (1) {}
-    game_play->unk_1EE2 = 0;
-    game_play->unk_1EE3 = 0;
-    game_play->unk_1EE0 = 1;
+    gamePlay->unk_1EE2 = 0;
+    gamePlay->unk_1EE3 = 0;
+    gamePlay->unk_1EE0 = 1;
 
     temp = 1;
-    if (common_data.wipeType != 0xFF) {
-        temp = common_data.wipeType;
-        common_data.wipeType = 0xFF;
+    if (gCommonData.unk_1014B != 0xFF) {
+        temp = gCommonData.unk_1014B;
+        gCommonData.unk_1014B = 0xFF;
     }
-    game_play->unk_1EE1 = temp;
+    gamePlay->unk_1EE1 = temp;
 
-    Pause_ct(&game_play->pause);
-    new_Matrix(&game_play->state);
-    game_play->state.main = play_main;
-    game_play->state.destroy = play_cleanup;
-    fbdemo_fade_init(&game_play->unk_2128);
-    fbdemo_fade_settype(&game_play->unk_2128, 7);
-    fbdemo_fade_setcolor_rgba8888(&game_play->unk_2128, 0xA0A0A0FF);
-    fbdemo_fade_startup(&game_play->unk_2128);
-    game_play->unk_220C = 0;
-    sp30 = THA_getFreeBytes(&game_play->state.heap);
-    temp_v0_2 = (u32)THA_alloc16(&game_play->state.heap, sp30);
+    Pause_ct(&gamePlay->pause);
+    new_Matrix(&gamePlay->state);
+    gamePlay->state.main = play_main;
+    gamePlay->state.destroy = play_cleanup;
+    fbdemo_fade_init(&gamePlay->unk_2128);
+    fbdemo_fade_settype(&gamePlay->unk_2128, 7);
+    fbdemo_fade_setcolor_rgba8888(&gamePlay->unk_2128, 0xA0A0A0FF);
+    fbdemo_fade_startup(&gamePlay->unk_2128);
+    gamePlay->unk_220C = 0;
+    sp30 = THA_getFreeBytes(&gamePlay->state.heap);
+    temp_v0_2 = (u32)THA_alloc16(&gamePlay->state.heap, sp30);
     temp_v1 = ALIGN16(temp_v0_2);
     //! FAKE
     zelda_InitArena((void*)(temp_v1 & 0xFFFFFFFF), (sp30 - temp_v1) + temp_v0_2);
     func_800C2EE0_jp();
     func_80087004_jp();
-    Actor_info_ct(game_play, &game_play->actorInfo, game_play->unk_1EA8);
-    game_play->unk_2208 = (void*)none_proc1;
-    mMsg_ct(game_play);
-    mEv_2nd_init(&game_play->event);
-    mTD_player_keydata_init(game_play);
-    Balloon_init(game_play);
+    Actor_info_ct(gamePlay, &gamePlay->actorInfo, gamePlay->unk_1EA8);
+    gamePlay->unk_2208 = (void*)none_proc1;
+    mMsg_ct(gamePlay);
+    mEv_2nd_init(&gamePlay->event);
+    mTD_player_keydata_init(gamePlay);
+    Balloon_init(gamePlay);
     func_800A65C4_jp();
     func_80059BF0_jp();
     func_800CBF80_jp();
     event_title_flag_off();
 }
 
-void Game_play_move_fbdemo_not_move(Game_Play* game_play) {
+void Game_play_move_fbdemo_not_move(Game_Play* gamePlay) {
     UNUSED s32 pad[2];
 
-    game_play->state.unk_9D = 0x8F;
-    game_play->state.unk_9C = 1;
-    mSM_submenu_ctrl(game_play);
-    if (game_play->submenu.moveProcIndex == MSM_MOVE_PROC_WAIT) {
-        game_play->state.unk_9C = 2;
-        mDemo_Main(game_play);
-        game_play->state.unk_9C = 3;
-        mEv_run(&game_play->event);
+    gamePlay->state.unk_9D = 0x8F;
+    gamePlay->state.unk_9C = 1;
+    mSM_submenu_ctrl(gamePlay);
+    if (gamePlay->submenu.moveProcIndex == MSM_MOVE_PROC_WAIT) {
+        gamePlay->state.unk_9C = 2;
+        mDemo_Main(gamePlay);
+        gamePlay->state.unk_9C = 3;
+        mEv_run(&gamePlay->event);
     }
-    game_play->state.unk_9C = 4;
+    gamePlay->state.unk_9C = 4;
     mDemo_stock_clear();
-    game_play->state.unk_9C = 5;
-    mSc_dmacopy_data_bank(game_play->unk_0110);
-    game_play->state.unk_9C = 6;
-    mSM_submenu_move(&game_play->submenu);
-    if ((game_play->submenu.moveProcIndex == MSM_MOVE_PROC_WAIT) && (REGADDR(IREG, 0x48) == 0)) {
-        game_play->unk_1EA0++;
-        game_play->state.unk_9C = 7;
-        CollisionCheck_OC(game_play, &game_play->unk_2138);
-        game_play->state.unk_9C = 8;
-        CollisionCheck_clear(game_play, &game_play->unk_2138);
-        game_play->state.unk_9D = 0x90;
-        game_play->state.unk_9C = 0;
-        Actor_info_call_actor(game_play, &game_play->actorInfo);
-        game_play->state.unk_9D = 0x91;
-        game_play->state.unk_9C = 1;
+    gamePlay->state.unk_9C = 5;
+    mSc_dmacopy_data_bank(gamePlay->unk_0110);
+    gamePlay->state.unk_9C = 6;
+    mSM_submenu_move(&gamePlay->submenu);
+    if ((gamePlay->submenu.moveProcIndex == MSM_MOVE_PROC_WAIT) && (REGADDR(IREG, 0x48) == 0)) {
+        gamePlay->unk_1EA0++;
+        gamePlay->state.unk_9C = 7;
+        CollisionCheck_OC(gamePlay, &gamePlay->unk_2138);
+        gamePlay->state.unk_9C = 8;
+        CollisionCheck_clear(gamePlay, &gamePlay->unk_2138);
+        gamePlay->state.unk_9D = 0x90;
+        gamePlay->state.unk_9C = 0;
+        Actor_info_call_actor(gamePlay, &gamePlay->actorInfo);
+        gamePlay->state.unk_9D = 0x91;
+        gamePlay->state.unk_9C = 1;
         mCoBG_CalcTimerDecalCircle();
-        game_play->state.unk_9C = 2;
-        mMsg_Main(game_play);
+        gamePlay->state.unk_9C = 2;
+        mMsg_Main(gamePlay);
     }
-    fbdemo_fade_move(&game_play->unk_2128, game_GameFrame);
+    fbdemo_fade_move(&gamePlay->unk_2128, game_GameFrame);
 }
 
-void Game_play_move(Game_Play* game_play) {
-    Game_Play_unk_0110* p = game_play->unk_0110;
+void Game_play_move(Game_Play* gamePlay) {
+    Game_Play_unk_0110* p = gamePlay->unk_0110;
     s32 var_v1;
 
-    game_play->state.unk_9D = 0x8D;
-    game_play->state.unk_9C = 1;
+    gamePlay->state.unk_9D = 0x8D;
+    gamePlay->state.unk_9C = 1;
     Game_play_Reset_destiny();
     gSegments[4] = (uintptr_t)OS_K0_TO_PHYSICAL(p->segment);
-    gSegments[2] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_010C);
-    game_play->state.unk_9C = 2;
+    gSegments[2] = (uintptr_t)OS_K0_TO_PHYSICAL(gamePlay->unk_010C);
+    gamePlay->state.unk_9C = 2;
 
     if (zurumode_flag >= 2) {
-        var_v1 = Pause_proc(&game_play->pause, CONTROLLER2(&game_play->state)) == 0;
+        var_v1 = Pause_proc(&gamePlay->pause, CONTROLLER2(&gamePlay->state)) == 0;
     } else {
         var_v1 = 0;
     }
 
-    game_play->state.unk_9D = 0x8E;
-    game_play->state.unk_9C = 0;
+    gamePlay->state.unk_9D = 0x8E;
+    gamePlay->state.unk_9C = 0;
 
     if (var_v1 == 0) {
-        game_play->state.unk_9C = 1;
-        Game_play_fbdemo_wipe_proc(game_play);
-        game_play->state.unk_9C = 2;
-        Game_play_fbdemo_proc(game_play);
-        game_play->state.unk_9C = 3;
-        if (game_play->unk_1EE2 != 3) {
-            Game_play_move_fbdemo_not_move(game_play);
+        gamePlay->state.unk_9C = 1;
+        Game_play_fbdemo_wipe_proc(gamePlay);
+        gamePlay->state.unk_9C = 2;
+        Game_play_fbdemo_proc(gamePlay);
+        gamePlay->state.unk_9C = 3;
+        if (gamePlay->unk_1EE2 != 3) {
+            Game_play_move_fbdemo_not_move(gamePlay);
         }
     }
 
-    if (game_play->submenu.moveProcIndex == MSM_MOVE_PROC_WAIT) {
-        game_play->state.unk_9D = 0x92;
-        game_play->state.unk_9C = 1;
-        Game_play_camera_proc(game_play);
-        game_play->state.unk_9C = 2;
-        mPO_business_proc(game_play);
-        game_play->state.unk_9C = 3;
-        mTRC_move(game_play);
-        game_play->state.unk_9C = 4;
-        Balloon_move(game_play);
+    if (gamePlay->submenu.moveProcIndex == MSM_MOVE_PROC_WAIT) {
+        gamePlay->state.unk_9D = 0x92;
+        gamePlay->state.unk_9C = 1;
+        Game_play_camera_proc(gamePlay);
+        gamePlay->state.unk_9C = 2;
+        mPO_business_proc(gamePlay);
+        gamePlay->state.unk_9C = 3;
+        mTRC_move(gamePlay);
+        gamePlay->state.unk_9C = 4;
+        Balloon_move(gamePlay);
     }
 
-    game_play->state.unk_9D = 0x93;
-    game_play->state.unk_9C = 1;
-    Global_kankyo_set(game_play, &game_play->kankyo, &game_play->glight);
-    game_play->state.unk_9C = 2;
+    gamePlay->state.unk_9D = 0x93;
+    gamePlay->state.unk_9C = 1;
+    Global_kankyo_set(gamePlay, &gamePlay->kankyo, &gamePlay->glight);
+    gamePlay->state.unk_9C = 2;
     mEnv_WindMove();
-    game_play->state.unk_9C = 3;
-    watch_my_step_move(game_play);
-    game_play->state.unk_9C = 4;
-    banti_move(game_play);
-    game_play->state.unk_9C = 5;
-    title_demo_move(game_play);
-    game_play->state.unk_9D = 0x95;
-    game_play->state.unk_9C = 0;
+    gamePlay->state.unk_9C = 3;
+    watch_my_step_move(gamePlay);
+    gamePlay->state.unk_9C = 4;
+    banti_move(gamePlay);
+    gamePlay->state.unk_9C = 5;
+    title_demo_move(gamePlay);
+    gamePlay->state.unk_9D = 0x95;
+    gamePlay->state.unk_9C = 0;
 }
 
-void func_80803810_jp(Game_Play* game_play, GraphicsContext* gfxCtx) {
-    void* temp_v0 = game_play->unk_0110[0].segment;
+void func_80803810_jp(Game_Play* gamePlay, GraphicsContext* gfxCtx) {
+    void* temp_v0 = gamePlay->unk_0110[0].segment;
 
     gSegments[4] = (uintptr_t)OS_K0_TO_PHYSICAL(temp_v0);
-    gSegments[2] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_010C);
+    gSegments[2] = (uintptr_t)OS_K0_TO_PHYSICAL(gamePlay->unk_010C);
 
     OPEN_DISPS(gfxCtx);
 
@@ -556,50 +556,50 @@ void func_80803810_jp(Game_Play* game_play, GraphicsContext* gfxCtx) {
     gSPSegment(UNK_2C0_DISP++, 0x04, temp_v0);
     gSPSegment(LIGHT_DISP++, 0x04, temp_v0);
 
-    gSPSegment(POLY_OPA_DISP++, 0x02, game_play->unk_010C);
-    gSPSegment(POLY_XLU_DISP++, 0x02, game_play->unk_010C);
-    gSPSegment(OVERLAY_DISP++, 0x02, game_play->unk_010C);
-    gSPSegment(UNK_2B0_DISP++, 0x02, game_play->unk_010C);
-    gSPSegment(UNK_2C0_DISP++, 0x02, game_play->unk_010C);
-    gSPSegment(LIGHT_DISP++, 0x02, game_play->unk_010C);
+    gSPSegment(POLY_OPA_DISP++, 0x02, gamePlay->unk_010C);
+    gSPSegment(POLY_XLU_DISP++, 0x02, gamePlay->unk_010C);
+    gSPSegment(OVERLAY_DISP++, 0x02, gamePlay->unk_010C);
+    gSPSegment(UNK_2B0_DISP++, 0x02, gamePlay->unk_010C);
+    gSPSegment(UNK_2C0_DISP++, 0x02, gamePlay->unk_010C);
+    gSPSegment(LIGHT_DISP++, 0x02, gamePlay->unk_010C);
 
     CLOSE_DISPS(gfxCtx);
 }
 
-void setupFog(Game_Play* game_play, GraphicsContext* gfxCtx) {
+void setupFog(Game_Play* gamePlay, GraphicsContext* gfxCtx) {
     OPEN_DISPS(gfxCtx);
 
-    POLY_OPA_DISP = game_play_set_fog(game_play, POLY_OPA_DISP);
-    POLY_XLU_DISP = game_play_set_fog(game_play, POLY_XLU_DISP);
+    POLY_OPA_DISP = game_play_set_fog(gamePlay, POLY_OPA_DISP);
+    POLY_XLU_DISP = game_play_set_fog(gamePlay, POLY_XLU_DISP);
 
     CLOSE_DISPS(gfxCtx);
 }
 
-void setupViewer(Game_Play* game_play) {
-    showView(&game_play->unk_1938, 0xF, game_play);
+void setupViewer(Game_Play* gamePlay) {
+    showView(&gamePlay->unk_1938, 0xF, gamePlay);
 }
 
-void setupViewMatrix(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsContext* gfxCtx2) {
+void setupViewMatrix(Game_Play* gamePlay, GraphicsContext* __gfxCtx, GraphicsContext* gfxCtx2) {
     // TODO: A way to fit OPEN_DISPS/CLOSE_DISPS on the stack
-    Matrix_MtxtoMtxF(&game_play->unk_1938.unk_0A0, &game_play->billboardMtxF);
-    Matrix_MtxtoMtxF(&game_play->unk_1938.unk_060, &game_play->viewProjectionMtxF);
-    Skin_Matrix_MulMatrix(&game_play->viewProjectionMtxF, &game_play->billboardMtxF, &game_play->viewProjectionMtxF);
+    Matrix_MtxtoMtxF(&gamePlay->unk_1938.unk_0A0, &gamePlay->billboardMtxF);
+    Matrix_MtxtoMtxF(&gamePlay->unk_1938.unk_060, &gamePlay->viewProjectionMtxF);
+    Skin_Matrix_MulMatrix(&gamePlay->viewProjectionMtxF, &gamePlay->billboardMtxF, &gamePlay->viewProjectionMtxF);
 
-    game_play->billboardMtxF.mf[0][3] = 0.0f;
-    game_play->billboardMtxF.mf[1][3] = 0.0f;
-    game_play->billboardMtxF.mf[2][3] = 0.0f;
-    game_play->billboardMtxF.mf[3][0] = 0.0f;
-    game_play->billboardMtxF.mf[3][1] = 0.0f;
-    game_play->billboardMtxF.mf[3][2] = 0.0f;
+    gamePlay->billboardMtxF.mf[0][3] = 0.0f;
+    gamePlay->billboardMtxF.mf[1][3] = 0.0f;
+    gamePlay->billboardMtxF.mf[2][3] = 0.0f;
+    gamePlay->billboardMtxF.mf[3][0] = 0.0f;
+    gamePlay->billboardMtxF.mf[3][1] = 0.0f;
+    gamePlay->billboardMtxF.mf[3][2] = 0.0f;
 
-    Matrix_reverse(&game_play->billboardMtxF);
+    Matrix_reverse(&gamePlay->billboardMtxF);
 
-    game_play->unk_1E9C = _MtxF_to_Mtx(&game_play->billboardMtxF, GRAPH_ALLOC(gfxCtx2, sizeof(MtxF) * 1));
+    gamePlay->unk_1E9C = _MtxF_to_Mtx(&gamePlay->billboardMtxF, GRAPH_ALLOC(gfxCtx2, sizeof(MtxF) * 1));
 
-    gSPSegment(POLY_OPA_DISP++, 0x01, game_play->unk_1E9C);
+    gSPSegment(POLY_OPA_DISP++, 0x01, gamePlay->unk_1E9C);
 }
 
-s32 makeBumpTexture(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsContext* gfxCtx2) {
+s32 makeBumpTexture(Game_Play* gamePlay, GraphicsContext* __gfxCtx, GraphicsContext* gfxCtx2) {
     // TODO: A way to fit OPEN_DISPS/CLOSE_DISPS on the stack
     {
         Gfx* sp194;
@@ -609,7 +609,7 @@ s32 makeBumpTexture(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsCon
 
         gSPDisplayList(OVERLAY_DISP++, sp194);
 
-        if (game_play->unk_1EE3 == 3) {
+        if (gamePlay->unk_1EE3 == 3) {
             Game_Play1938 sp60;
             ScissorViewArg1 sp50;
 
@@ -624,11 +624,11 @@ s32 makeBumpTexture(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsCon
             sp50.unk_08 = 0;
             setScissorView(&sp60, &sp50);
             showView1(&sp60, 0xF, &sp194);
-            game_play->unk_1EE8.unk_21C.unk_0C(&game_play->unk_1EE8, &sp194);
+            gamePlay->unk_1EE8.unk_21C.unk_0C(&gamePlay->unk_1EE8, &sp194);
         }
 
-        fbdemo_fade_draw(&game_play->unk_2128, &sp194);
-        fade_rgba8888_draw(&sp194, game_play->unk_220C);
+        fbdemo_fade_draw(&gamePlay->unk_2128, &sp194);
+        fade_rgba8888_draw(&sp194, gamePlay->unk_220C);
 
         gSPEndDisplayList(sp194++);
 
@@ -636,7 +636,7 @@ s32 makeBumpTexture(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsCon
         POLY_OPA_DISP = sp194;
     }
 
-    if (game_play->unk_1EE2 == 3) {
+    if (gamePlay->unk_1EE2 == 3) {
         Gfx* sp48 = POLY_OPA_DISP;
 
         fbdemo_draw(&fbdemo, &sp48);
@@ -644,36 +644,36 @@ s32 makeBumpTexture(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsCon
         return 1;
     }
 
-    PreRender_setup_renderbuf(&game_play->unk_1DC0, 0x140, 0xF0, gfxCtx2->unk_2E4, gfxCtx2->unk_008);
-    if (game_play->submenu.unk_00 == 2) {
+    PreRender_setup_renderbuf(&gamePlay->unk_1DC0, 0x140, 0xF0, gfxCtx2->unk_2E4, gfxCtx2->unk_008);
+    if (gamePlay->submenu.unk_00 == 2) {
         func_800B0010_jp();
-        PreRender_ConvertFrameBuffer_fg(&game_play->unk_1DC0);
-        game_play->submenu.unk_00 = 3;
-    } else if (game_play->submenu.unk_00 >= 5) {
-        game_play->submenu.unk_00 = 0;
+        PreRender_ConvertFrameBuffer_fg(&gamePlay->unk_1DC0);
+        gamePlay->submenu.unk_00 = 3;
+    } else if (gamePlay->submenu.unk_00 >= 5) {
+        gamePlay->submenu.unk_00 = 0;
     }
 
-    if (game_play->submenu.unk_00 == 3) {
+    if (gamePlay->submenu.unk_00 == 3) {
         Gfx* sp44 = POLY_OPA_DISP;
 
-        PreRender_loadFrameBufferCopy(&game_play->unk_1DC0, &sp44);
+        PreRender_loadFrameBufferCopy(&gamePlay->unk_1DC0, &sp44);
         POLY_OPA_DISP = sp44;
         return 1;
     }
 
     {
-        LightsN* sp40 = Global_light_read(&game_play->glight, gfxCtx2);
+        LightsN* sp40 = Global_light_read(&gamePlay->glight, gfxCtx2);
 
-        LightsN_list_check(sp40, game_play->glight.list, NULL);
+        LightsN_list_check(sp40, gamePlay->glight.list, NULL);
         LightsN_disp(sp40, gfxCtx2);
     }
 
-    Actor_info_draw_actor(game_play, &game_play->actorInfo);
-    Camera2_draw(game_play);
-    mMsg_Draw(game_play);
-    Debug_Display_output(game_play);
+    Actor_info_draw_actor(gamePlay, &gamePlay->actorInfo);
+    Camera2_draw(gamePlay);
+    mMsg_Draw(gamePlay);
+    Debug_Display_output(gamePlay);
 
-    if ((game_play->submenu.unk_00 == 1) || (game_play->unk_1EE2 == 1)) {
+    if ((gamePlay->submenu.unk_00 == 1) || (gamePlay->unk_1EE2 == 1)) {
         Gfx* sp3C;
         Gfx* sp38;
 
@@ -682,16 +682,16 @@ s32 makeBumpTexture(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsCon
 
         gSPDisplayList(OVERLAY_DISP++, sp3C);
 
-        game_play->unk_1DC0.unk_10 = gfxCtx2->unk_2E4;
-        game_play->unk_1DC0.unk_14 = gfxCtx2->unk_008;
-        PreRender_saveFrameBuffer(&game_play->unk_1DC0, &sp3C);
+        gamePlay->unk_1DC0.unk_10 = gfxCtx2->unk_2E4;
+        gamePlay->unk_1DC0.unk_14 = gfxCtx2->unk_008;
+        PreRender_saveFrameBuffer(&gamePlay->unk_1DC0, &sp3C);
 
-        if (game_play->submenu.unk_00 == 1) {
-            game_play->unk_1DC0.unk_18 = gfxCtx2->unk_2E4;
-            PreRender_saveCVG(&game_play->unk_1DC0, &sp3C);
-            game_play->submenu.unk_00 = 2;
+        if (gamePlay->submenu.unk_00 == 1) {
+            gamePlay->unk_1DC0.unk_18 = gfxCtx2->unk_2E4;
+            PreRender_saveCVG(&gamePlay->unk_1DC0, &sp3C);
+            gamePlay->submenu.unk_00 = 2;
         } else {
-            game_play->unk_1EE2 = 2;
+            gamePlay->unk_1EE2 = 2;
         }
 
         gSPEndDisplayList(sp3C++);
@@ -730,37 +730,37 @@ void draw_version(GraphicsContext* gfxCtx) {
     CLOSE_DISPS(gfxCtx);
 }
 
-void Game_play_draw(Game_Play* game_play) {
-    GraphicsContext* gfxCtx = game_play->state.gfxCtx;
+void Game_play_draw(Game_Play* gamePlay) {
+    GraphicsContext* gfxCtx = gamePlay->state.gfxCtx;
     u8 sp2B = 0;
     u8 sp2A = 0;
     u8 sp29 = 0;
 
     //! FAKE
 label:;
-    func_80803810_jp(game_play, gfxCtx);
-    if (common_data.unk_10001 == 0) {
+    func_80803810_jp(gamePlay, gfxCtx);
+    if (gCommonData.unk_10001 == 0) {
         if (mEv_CheckTitleDemo() != -9) {
-            sp2B = game_play->kankyo.unk_AE;
-            sp2A = game_play->kankyo.unk_AF;
-            sp29 = game_play->kankyo.unk_B0;
+            sp2B = gamePlay->kankyo.unk_AE;
+            sp2A = gamePlay->kankyo.unk_AF;
+            sp29 = gamePlay->kankyo.unk_B0;
         }
     }
 
-    DisplayList_initialize(gfxCtx, sp2B, sp2A, sp29, game_play);
-    setupFog(game_play, gfxCtx);
-    setupViewer(game_play);
-    setupViewMatrix(game_play, gfxCtx, gfxCtx);
+    DisplayList_initialize(gfxCtx, sp2B, sp2A, sp29, gamePlay);
+    setupFog(gamePlay, gfxCtx);
+    setupViewer(gamePlay);
+    setupViewMatrix(gamePlay, gfxCtx, gfxCtx);
 
     //! FAKE
     if (1) {}
     if (1) {}
     if (1) {}
 
-    if (makeBumpTexture(game_play, gfxCtx, gfxCtx) == 1) {
-        watch_my_step_draw(game_play);
-        banti_draw(game_play);
-        mSM_submenu_draw(&game_play->submenu, game_play);
+    if (makeBumpTexture(gamePlay, gfxCtx, gfxCtx) == 1) {
+        watch_my_step_draw(gamePlay);
+        banti_draw(gamePlay);
+        mSM_submenu_draw(&gamePlay->submenu, gamePlay);
     }
 
     if (zurumode_flag != 0) {
@@ -778,60 +778,60 @@ label:;
 }
 
 void play_main(Game* game) {
-    Game_Play* game_play = (Game_Play*)game;
+    Game_Play* gamePlay = (Game_Play*)game;
 
-    game_play->state.unk_9D = 0x6E;
-    game_play->state.unk_9C = 0;
+    gamePlay->state.unk_9D = 0x6E;
+    gamePlay->state.unk_9C = 0;
     fqrand();
-    game_play->state.unk_9D = 0x78;
-    game_play->state.unk_9C = 0;
-    mCon_main(&game_play->state);
-    game_play->state.unk_9D = 0x82;
-    game_play->state.unk_9C = 0;
+    gamePlay->state.unk_9D = 0x78;
+    gamePlay->state.unk_9C = 0;
+    mCon_main(&gamePlay->state);
+    gamePlay->state.unk_9D = 0x82;
+    gamePlay->state.unk_9C = 0;
     Debug_Display_init();
-    game_play->state.unk_9D = 0x8C;
-    game_play->state.unk_9C = 0;
-    Game_play_move(game_play);
-    game_play->state.unk_9D = 0xAA;
-    game_play->state.unk_9C = 0;
-    Game_play_draw(game_play);
-    game_play->state.unk_9D = 0xB4;
-    game_play->state.unk_9C = 0;
-    if (game_play->submenu.unk_00 != 2) {
-        GraphicsContext* gfxCtx = game_play->state.gfxCtx;
+    gamePlay->state.unk_9D = 0x8C;
+    gamePlay->state.unk_9C = 0;
+    Game_play_move(gamePlay);
+    gamePlay->state.unk_9D = 0xAA;
+    gamePlay->state.unk_9C = 0;
+    Game_play_draw(gamePlay);
+    gamePlay->state.unk_9D = 0xB4;
+    gamePlay->state.unk_9C = 0;
+    if (gamePlay->submenu.unk_00 != 2) {
+        GraphicsContext* gfxCtx = gamePlay->state.gfxCtx;
 
-        game_debug_draw_last(&game_play->state, gfxCtx);
+        game_debug_draw_last(&gamePlay->state, gfxCtx);
         game_draw_last(gfxCtx);
-        game_play->state.unk_9C = 0;
+        gamePlay->state.unk_9C = 0;
     }
-    game_play->state.unk_9D = 0xBE;
+    gamePlay->state.unk_9D = 0xBE;
 }
 
-void* func_80804138_jp(Game_Play* game_play, Struct_8010EAA0* arg1) {
+void* func_80804138_jp(Game_Play* gamePlay, Struct_8010EAA0* arg1) {
     u32 sp24 = arg1->unk_04 - arg1->unk_00;
-    void* sp20 = THA_alloc16(&game_play->state.heap, sp24);
+    void* sp20 = THA_alloc16(&gamePlay->state.heap, sp24);
 
     DmaMgr_RequestSyncDebug(sp20, arg1->unk_00, sp24, "../m_play.c", 2302);
     return sp20;
 }
 
-void func_808041A4_jp(Game_Play* game_play) {
-    Global_kankyo_ct(game_play, &game_play->kankyo);
+void func_808041A4_jp(Game_Play* gamePlay) {
+    Global_kankyo_ct(gamePlay, &gamePlay->kankyo);
 }
 
-void Gameplay_Scene_Init(Game_Play* game_play) {
-    game_play->unk_1EA8 = NULL;
-    game_play->unk_1EA5 = 0;
-    game_play->unk_1EA6 = 0;
-    game_play->unk_1EA7 = 0;
-    game_play->unk_1EB8 = 0;
-    mSc_data_bank_ct(game_play, game_play->unk_0110);
-    Global_light_ct(&game_play->glight);
-    Door_info_ct(&game_play->unk_1E10);
+void Gameplay_Scene_Init(Game_Play* gamePlay) {
+    gamePlay->unk_1EA8 = NULL;
+    gamePlay->unk_1EA5 = 0;
+    gamePlay->unk_1EA6 = 0;
+    gamePlay->unk_1EA7 = 0;
+    gamePlay->unk_1EB8 = 0;
+    mSc_data_bank_ct(gamePlay, gamePlay->unk_0110);
+    Global_light_ct(&gamePlay->glight);
+    Door_info_ct(&gamePlay->unk_1E10);
     common_data_clear();
-    Scene_ct(game_play, game_play->unk_010C);
-    mSc_decide_exchange_bank(game_play->unk_0110);
-    func_808041A4_jp(game_play);
+    Scene_ct(gamePlay, gamePlay->unk_010C);
+    mSc_decide_exchange_bank(gamePlay->unk_0110);
+    func_808041A4_jp(gamePlay);
 }
 
 s32 mPl_SceneNo2SoundRoomType(s32 arg0) {
@@ -858,15 +858,15 @@ s32 mPl_SceneNo2SoundRoomType(s32 arg0) {
     }
 }
 
-void Gameplay_Scene_Read(Game_Play* game_play, s16 arg1) {
+void Gameplay_Scene_Read(Game_Play* gamePlay, s16 arg1) {
     Struct_8010EAA0* sp1C = &scene_data_status[arg1];
 
     sp1C->unk_13 = 0;
-    game_play->unk_2210 = sp1C;
-    game_play->unk_00E0 = arg1;
-    game_play->unk_010C = func_80804138_jp(game_play, sp1C);
+    gamePlay->unk_2210 = sp1C;
+    gamePlay->unk_00E0 = arg1;
+    gamePlay->unk_010C = func_80804138_jp(gamePlay, sp1C);
     sp1C->unk_13 = 0;
-    gSegments[2] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_010C);
-    Gameplay_Scene_Init(game_play);
-    sAdo_RoomType(mPl_SceneNo2SoundRoomType(common_data.save.unk_00014));
+    gSegments[2] = (uintptr_t)OS_K0_TO_PHYSICAL(gamePlay->unk_010C);
+    Gameplay_Scene_Init(gamePlay);
+    sAdo_RoomType(mPl_SceneNo2SoundRoomType(gCommonData.save.unk_00014));
 }
