@@ -188,7 +188,7 @@ Only put prototypes that are necessary. They should be placed in the main C file
 
 - If in doubt, leave all the data at the top of the file. Reviewers will decide for you.
 - Data must go in the same order as in the assembly files, but is only constrained by other data, not functions or rodata.
-- Do not use `static` on data outside functions, since `static` data is left out of the mapfile and this makes debugging harder. Only do it if it's necessary to match.
+- Do not use `static` on data outside functions, since `static` data is left out of the mapfile and this makes debugging harder. Only use static when necessary to match.
 - *This is even more true of bss, where we have trouble with IDO unpredictably reordering it in certain files.*
 - For small arrays or simple data that is used in only one function, we usually inline it, if it fits in the ordering.
 - Generally data that is only used by the draw functions is put down near them: this is one of the few consistencies in ordering of actors' functions.
