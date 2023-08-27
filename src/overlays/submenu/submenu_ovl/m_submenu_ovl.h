@@ -70,6 +70,7 @@ typedef struct struct_8085E9B0_unk_10670 {
     /* 0x2C */ f32 unk_2C;
 } struct_8085E9B0_unk_10670; // size >= 0x30
 
+typedef void (*struct_8085E9B0_unk_106B4)(struct GraphicsContext*);
 typedef void (*struct_8085E9B0_unk_106CC)(struct mSM*, void**, func_8085D43C_jp_arg2*);
 
 typedef struct struct_8085E9B0 {

@@ -59,7 +59,17 @@ void mSM_setup_view(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1) {
     CLOSE_DISPS(gfxCtx);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_set_char_matrix.s")
+void mSM_set_char_matrix(GraphicsContext* gfxCtx) {
+    Gfx* gfx;
+
+    OPEN_DISPS(gfxCtx);
+
+    gfx = POLY_OPA_DISP;
+    gSPMatrix(gfx++, &Mtx_clear, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    POLY_OPA_DISP = gfx;
+
+    CLOSE_DISPS(gfxCtx);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_cbuf_copy.s")
 
