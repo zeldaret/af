@@ -14,22 +14,23 @@
 extern struct_8085E9B0 ovl_base;
 
 typedef struct struct_8085E4D0 {
-    /* 0x00 */ RomOffset unk_00;
-    /* 0x00 */ RomOffset unk_04;
-    /* 0x08 */ UNK_TYPE4 unk_08;
-    /* 0x08 */ UNK_TYPE4 unk_0C;
+    /* 0x00 */ RomOffset vromStart;
+    /* 0x00 */ RomOffset vromEnd;
+    /* 0x08 */ void* vramStart;
+    /* 0x08 */ void* vramEnd;
     /* 0x08 */ UNK_FUN_PTR unk_10;
     /* 0x08 */ UNK_TYPE4 unk_14;
-    /* 0x08 */ UNK_TYPE4 unk_18;
+    /* 0x08 */ UNK_FUN_PTR unk_18;
     /* 0x08 */ UNK_TYPE4 unk_1C;
 } struct_8085E4D0; // size = 0x20
-extern struct_8085E4D0 D_8085E4D0_jp[];
+
+extern struct_8085E4D0 mSM_program_dlftbl[];
 
 extern s32 D_8085E938_jp[];
 extern f32 D_FLT_8085E7E8_jp[][4];
 extern u8 D_8085E7D0_jp[];
 
-void func_8085BAC0_jp(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1) {
+void mSM_setup_view(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1) {
     Mtx* var_t0;
     UNUSED s32 pad;
     Gfx* gfx;
@@ -69,9 +70,9 @@ void func_8085BAC0_jp(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1) {
     CLOSE_DISPS(gfxCtx);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085BCD8_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_set_char_matrix.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085BD08_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_cbuf_copy.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085C20C_jp.s")
 
@@ -83,10 +84,10 @@ void func_8085BAC0_jp(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D094_jp.s")
 
-void func_8085D128_jp(mSM* arg0, struct_8085E4D0* arg1) {
+void mSM_ovl_prog_seg(mSM* arg0, struct_8085E4D0* arg1) {
     struct_8085E9B0_unk_10000* temp;
     void* temp_t0_2; // sp34
-    void* temp_v0; // sp2C
+    void* allocatedVram; // sp2C
     void (*temp_a1)(); // sp28
     UNK_FUN_PTR new_var;
 
@@ -97,16 +98,17 @@ void func_8085D128_jp(mSM* arg0, struct_8085E4D0* arg1) {
         return;
     }
 
-    temp_v0 = arg0->linkedAllocEnd;
-    ovlmgr_Load(arg1->unk_00, arg1->unk_04, arg1->unk_08, arg1->unk_0C, temp_v0);
-    arg0->linkedAllocEnd = (uintptr_t)temp_v0 + (((arg1->unk_0C - arg1->unk_08) + 0x3F) & ~0x3F);
-    temp_a1 = ((uintptr_t)temp_v0 + (uintptr_t)arg1->unk_10) - arg1->unk_08;
+    allocatedVram = arg0->linkedAllocEnd;
+    ovlmgr_Load(arg1->vromStart, arg1->vromEnd, arg1->vramStart, arg1->vramEnd, allocatedVram);
+    arg0->linkedAllocEnd = (uintptr_t)allocatedVram + ((((uintptr_t)arg1->vramEnd - (uintptr_t)arg1->vramStart) + 0x3F) & ~0x3F);
+
+    temp_a1 = ((uintptr_t)allocatedVram + (uintptr_t)arg1->unk_10) - (uintptr_t)arg1->vramStart;
     temp_a1(arg0, temp_a1);
     arg1->unk_10 = temp_a1;
 
     dummy_label_595693:
-    arg1->unk_14 = (s32) (((uintptr_t)temp_v0 + arg1->unk_14) - arg1->unk_08);
-    arg1->unk_18 = (s32) (((uintptr_t)temp_v0 + arg1->unk_18) - arg1->unk_08);
+    arg1->unk_14 = ((uintptr_t)allocatedVram + (uintptr_t)arg1->unk_14) - (uintptr_t)arg1->vramStart;
+    arg1->unk_18 = ((uintptr_t)allocatedVram + (uintptr_t)arg1->unk_18) - (uintptr_t)arg1->vramStart;
 
     arg1->unk_1C = 1;
     temp->unk_68[temp->unk_64] = arg1;
@@ -114,7 +116,7 @@ void func_8085D128_jp(mSM* arg0, struct_8085E4D0* arg1) {
 }
 
 #if 0
-void func_8085D244_jp(mSM* arg0) {
+void mSM_set_other_seg(mSM* arg0) {
     u8 var_v1;
 
     var_v1 = D_8085E7D0_jp[arg0->unk_08];
@@ -122,31 +124,45 @@ void func_8085D244_jp(mSM* arg0) {
         func_8085D094_jp(arg0);
     }
     if (var_v1 & 4) {
-        func_8085D128_jp(arg0, &D_8085E4D0_jp[0x15]);
+        mSM_ovl_prog_seg(arg0, &mSM_program_dlftbl[0x15]);
     }
     if (var_v1 & 8) {
-        func_8085D128_jp(arg0, &D_8085E4D0_jp[0x16]);
+        mSM_ovl_prog_seg(arg0, &mSM_program_dlftbl[0x16]);
     }
     if (var_v1 & 0x10) {
-        func_8085D128_jp(arg0, &D_8085E4D0_jp[0x17]);
+        mSM_ovl_prog_seg(arg0, &mSM_program_dlftbl[0x17]);
     }
 }
 #else
-void func_8085D244_jp(mSM* arg0);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D244_jp.s")
+void mSM_set_other_seg(mSM* arg0);
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_set_other_seg.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D2EC_jp.s")
+#if 0
+void mSM_set_before_menu_proc(mSM* arg0) {
+    s32 temp_v0;
 
-void func_8085D358_jp(mSM* arg0) {
+
+    temp_v0 = arg0->unk_04;
+    mSM_program_dlftbl[temp_v0].unk_18(arg0);
+    arg0->unk_08 = temp_v0;
+
+    arg0->unk_2C->unk_10088[temp_v0].unk_14 = 0;
+}
+#else
+void mSM_set_before_menu_proc(mSM* arg0);
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_set_before_menu_proc.s")
+#endif
+
+void mSM_set_new_seg(mSM* arg0) {
     s32 temp_v0;
 
     temp_v0 = arg0->unk_04;
-    func_8085D128_jp(arg0, &D_8085E4D0_jp[temp_v0]);
+    mSM_ovl_prog_seg(arg0, &mSM_program_dlftbl[temp_v0]);
     arg0->unk_08 = temp_v0;
 }
 
-void func_8085D398_jp(mSM* arg0) {
+void mSM_set_new_start_data(mSM* arg0) {
     s32 temp_v0 = arg0->unk_04;
     struct_8085E9B0_unk_10088* temp_v1 = &arg0->unk_2C->unk_10088[temp_v0];
     f32* temp_a1 = D_FLT_8085E7E8_jp[temp_v0];
@@ -168,9 +184,9 @@ void func_8085D398_jp(mSM* arg0) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D43C_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D4D4_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_move_chg_base.s")
 
-void func_8085D500_jp(mSM* arg0) {
+void mSM_make_trigger_data(mSM* arg0) {
     s32 var_a0 = (getButton() & 0xF) | getTrigger();
     struct_8085E9B0_unk_10670* temp_v1 = &arg0->unk_2C->unk_10670;
 
@@ -196,7 +212,7 @@ void func_8085D500_jp(mSM* arg0) {
 }
 
 #if 0
-void func_8085D5D4_jp(mSM* arg0) {
+void mSM_save_before_func(mSM* arg0) {
     s32 temp_a2;
     struct_8085E9B0* temp_v0;
     struct_8085E9B0_unk_10088* temp_v1;
@@ -210,18 +226,18 @@ void func_8085D5D4_jp(mSM* arg0) {
     temp_v0->unk_10088[temp_a2].unk_14 = arg0->unk_04;
 }
 #else
-void func_8085D5D4_jp(mSM* arg0);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D5D4_jp.s")
+void mSM_save_before_func(mSM* arg0);
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_save_before_func.s")
 #endif
 
-void func_8085D638_jp(mSM* arg0) {
-    func_8085D5D4_jp(arg0);
-    func_8085D398_jp(arg0);
-    func_8085D358_jp(arg0);
-    func_8085D244_jp(arg0);
+void mSM_set_proc(mSM* arg0) {
+    mSM_save_before_func(arg0);
+    mSM_set_new_start_data(arg0);
+    mSM_set_new_seg(arg0);
+    mSM_set_other_seg(arg0);
 }
 
-void func_8085D674_jp(mSM* arg0) {
+void mSM_tex_move(mSM* arg0) {
     struct_8085E9B0_unk_10670* temp_v0;
 
     temp_v0 = &arg0->unk_2C->unk_10670;
@@ -237,27 +253,27 @@ void func_8085D674_jp(mSM* arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D718_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_return_func.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D860_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_move_menu.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D92C_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_move_Move.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085DA08_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_move_End_.s")
 
-void func_8085DA28_jp(mSM* arg0) {
+void mSM_menu_ovl_move(mSM* arg0) {
     struct_8085E9B0_unk_10670* sp24 = &arg0->unk_2C->unk_10670;
 
-    func_8085D500_jp(arg0);
+    mSM_make_trigger_data(arg0);
     if (arg0->unk_04 != arg0->unk_08) {
-        func_8085D638_jp(arg0);
+        mSM_set_proc(arg0);
     }
-    func_8085D674_jp(arg0);
+    mSM_tex_move(arg0);
     sp24->unk_00(arg0);
 }
 
-void func_8085DA9C_jp(mSM* arg0, Game_Play* game_play) {
-    func_8085BAC0_jp(arg0, game_play->state.gfxCtx, 1);
+void mSM_menu_ovl_draw(mSM* arg0, Game_Play* game_play) {
+    mSM_setup_view(arg0, game_play->state.gfxCtx, 1);
     arg0->unk_2C->unk_10670.unk_04(arg0, game_play);
 }
 
@@ -281,21 +297,21 @@ void mSM_menu_ovl_init(mSM* arg0) {
     ovl_base.unk_00000[0x10680] = none_proc1;
     ovl_base.unk_00000[0x10680] = none_proc1;
     ovl_base.unk_00000[0x10696] = 0x2000;
-    arg0->unk_2C->unk_106A4 = func_8085D718_jp;
-    arg0->unk_2C->unk_106A8 = func_8085D92C_jp;
-    arg0->unk_2C->unk_106AC = func_8085DA08_jp;
-    arg0->unk_2C->unk_106B0 = func_8085D4D4_jp;
-    arg0->unk_2C->unk_106B4 = func_8085BCD8_jp;
-    arg0->unk_2C->unk_106B8 = func_8085BD08_jp;
+    arg0->unk_2C->unk_106A4 = mSM_return_func;
+    arg0->unk_2C->unk_106A8 = mSM_move_Move;
+    arg0->unk_2C->unk_106AC = mSM_move_End_;
+    arg0->unk_2C->unk_106B0 = mSM_move_chg_base;
+    arg0->unk_2C->unk_106B4 = mSM_set_char_matrix;
+    arg0->unk_2C->unk_106B8 = mSM_cbuf_copy;
     arg0->unk_2C->unk_106BC = func_8085C20C_jp;
     arg0->unk_2C->unk_106C0 = func_8085C7B8_jp;
     arg0->unk_2C->unk_106C4 = func_8085CE18_jp;
-    arg0->unk_2C->unk_106C8 = func_8085BAC0_jp;
+    arg0->unk_2C->unk_106C8 = mSM_setup_view;
     arg0->unk_2C->unk_106CC = func_8085D43C_jp;
-    func_8085D638_jp(arg0);
-    arg0->play = func_8085DA28_jp;
-    arg0->draw = (void (*)(mSM*, struct Game_Play*)) func_8085DA9C_jp;
-    func_8085DA28_jp(arg0);
+    mSM_set_proc(arg0);
+    arg0->play = mSM_menu_ovl_move;
+    arg0->draw = (void (*)(mSM*, struct Game_Play*)) mSM_menu_ovl_draw;
+    mSM_menu_ovl_move(arg0);
 }
 #else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_menu_ovl_init.s")
