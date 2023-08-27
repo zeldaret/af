@@ -2,18 +2,38 @@
 #define M_SUBMENU_OVL
 
 #include "ultra64.h"
+#include "other_types.h"
 #include "unk.h"
 
 struct mSM;
+struct Game_Play;
+
+typedef void (*struct_8085E4D0_unk_10)(struct mSM*);
+
+typedef struct struct_8085E4D0 {
+    /* 0x00 */ RomOffset vromStart;
+    /* 0x00 */ RomOffset vromEnd;
+    /* 0x08 */ void* vramStart;
+    /* 0x08 */ void* vramEnd;
+    /* 0x08 */ struct_8085E4D0_unk_10 unk_10;
+    /* 0x08 */ UNK_PTR unk_14;
+    /* 0x08 */ UNK_FUN_PTR unk_18;
+    /* 0x08 */ UNK_TYPE4 unk_1C;
+} struct_8085E4D0; // size = 0x20
 
 typedef void (*struct_8085E9B0_unk_10670_unk_00)(struct mSM*);
 typedef void (*struct_8085E9B0_unk_10670_unk_04)(struct mSM*, struct Game_Play*);
 
+typedef struct func_8085D43C_jp_arg2 {
+    /* 0x0 */ RomOffset vromStart;
+    /* 0x4 */ RomOffset vromEnd;
+} func_8085D43C_jp_arg2; // size = 0x8
+
 typedef struct struct_8085E9B0_unk_10000 {
-    /* 0x10000 */ UNK_TYPE4 unk_00;
+    /* 0x10000 */ void* unk_00;
     /* 0x10004 */ UNK_TYPE1 unk_04[0x60];
     /* 0x10064 */ UNK_TYPE4 unk_64;
-    /* 0x10068 */ UNK_TYPE4 unk_68[UNK_SIZE];
+    /* 0x10068 */ struct_8085E4D0* unk_68[UNK_SIZE];
 } struct_8085E9B0_unk_10000; // size >= 0x6C
 
 typedef struct struct_8085E9B0_unk_10088 {
@@ -50,6 +70,8 @@ typedef struct struct_8085E9B0_unk_10670 {
     /* 0x2C */ f32 unk_2C;
 } struct_8085E9B0_unk_10670; // size >= 0x30
 
+typedef void (*struct_8085E9B0_unk_106CC)(struct mSM*, void**, func_8085D43C_jp_arg2*);
+
 typedef struct struct_8085E9B0 {
     /* 0x00000 */ UNK_TYPE1 unk_00000[0x10000];
     /* 0x10000 */ struct_8085E9B0_unk_10000 unk_10000;
@@ -68,7 +90,7 @@ typedef struct struct_8085E9B0 {
     /* 0x106C0 */ UNK_FUN_PTR unk_106C0;
     /* 0x106C4 */ UNK_FUN_PTR unk_106C4;
     /* 0x106C8 */ UNK_FUN_PTR unk_106C8;
-    /* 0x106CC */ UNK_FUN_PTR unk_106CC;
+    /* 0x106CC */ struct_8085E9B0_unk_106CC unk_106CC;
     /* 0x106D0 */ UNK_TYPE1 unk_106D0[0x5C];
     /* 0x1072C */ Mtx* unk_1072C;
 } struct_8085E9B0; // size = 0x10730

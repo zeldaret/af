@@ -13,17 +13,6 @@
 
 extern struct_8085E9B0 ovl_base;
 
-typedef struct struct_8085E4D0 {
-    /* 0x00 */ RomOffset vromStart;
-    /* 0x00 */ RomOffset vromEnd;
-    /* 0x08 */ void* vramStart;
-    /* 0x08 */ void* vramEnd;
-    /* 0x08 */ UNK_FUN_PTR unk_10;
-    /* 0x08 */ UNK_TYPE4 unk_14;
-    /* 0x08 */ UNK_FUN_PTR unk_18;
-    /* 0x08 */ UNK_TYPE4 unk_1C;
-} struct_8085E4D0; // size = 0x20
-
 extern struct_8085E4D0 mSM_program_dlftbl[];
 
 extern s32 D_8085E938_jp[];
@@ -86,10 +75,10 @@ void mSM_setup_view(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1) {
 
 void mSM_ovl_prog_seg(mSM* arg0, struct_8085E4D0* arg1) {
     struct_8085E9B0_unk_10000* temp;
-    void* temp_t0_2; // sp34
-    void* allocatedVram; // sp2C
-    void (*temp_a1)(); // sp28
-    UNK_FUN_PTR new_var;
+    UNUSED s32 pad;
+    void* allocatedVram;
+    struct_8085E4D0_unk_10 temp_a1;
+    struct_8085E4D0_unk_10 new_var;
 
     temp = &arg0->unk_2C->unk_10000;
     if (arg1->unk_1C == 1) {
@@ -100,19 +89,22 @@ void mSM_ovl_prog_seg(mSM* arg0, struct_8085E4D0* arg1) {
 
     allocatedVram = arg0->linkedAllocEnd;
     ovlmgr_Load(arg1->vromStart, arg1->vromEnd, arg1->vramStart, arg1->vramEnd, allocatedVram);
-    arg0->linkedAllocEnd = (uintptr_t)allocatedVram + ((((uintptr_t)arg1->vramEnd - (uintptr_t)arg1->vramStart) + 0x3F) & ~0x3F);
+    arg0->linkedAllocEnd = (void*)((uintptr_t)allocatedVram + ALIGN64((uintptr_t)arg1->vramEnd - (uintptr_t)arg1->vramStart));
 
-    temp_a1 = ((uintptr_t)allocatedVram + (uintptr_t)arg1->unk_10) - (uintptr_t)arg1->vramStart;
-    temp_a1(arg0, temp_a1);
+    temp_a1 = (void*)((uintptr_t)allocatedVram + (uintptr_t)arg1->unk_10 - (uintptr_t)arg1->vramStart);
+    temp_a1(arg0);
     arg1->unk_10 = temp_a1;
 
     dummy_label_595693:
-    arg1->unk_14 = ((uintptr_t)allocatedVram + (uintptr_t)arg1->unk_14) - (uintptr_t)arg1->vramStart;
-    arg1->unk_18 = ((uintptr_t)allocatedVram + (uintptr_t)arg1->unk_18) - (uintptr_t)arg1->vramStart;
+    arg1->unk_14 = (void*)((uintptr_t)allocatedVram + (uintptr_t)arg1->unk_14 - (uintptr_t)arg1->vramStart);
+    arg1->unk_18 = (void*)((uintptr_t)allocatedVram + (uintptr_t)arg1->unk_18 - (uintptr_t)arg1->vramStart);
 
     arg1->unk_1C = 1;
     temp->unk_68[temp->unk_64] = arg1;
     temp->unk_64++;
+
+    //! FAKE
+    if (temp_a1) {}
 }
 
 #if 0
@@ -182,7 +174,15 @@ void mSM_set_new_start_data(mSM* arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D43C_jp.s")
+void func_8085D43C_jp(mSM* arg0, void** arg1, func_8085D43C_jp_arg2* arg2) {
+    void* temp_a0 = arg0->unk_2C->unk_10000.unk_00;
+    size_t size;
+
+    *arg1 = temp_a0;
+    size = arg2->vromEnd - arg2->vromStart;
+    DmaMgr_RequestSyncDebug(temp_a0, arg2->vromStart, size, "../m_submenu_ovl.c", 2307);
+    arg0->unk_2C->unk_10000.unk_00 = ALIGN16((uintptr_t)size + (uintptr_t)temp_a0);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_move_chg_base.s")
 
