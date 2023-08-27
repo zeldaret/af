@@ -51,7 +51,7 @@ typedef struct FaultAddrConvClient {
 
 typedef struct FaultMgr {
     /* 0x000 */ OSThread thread;
-    /* 0x1B0 */ STACK(stack, 0x600); // probably an unused internal thread stack for `Fault_ClientRunTask`/`clientThreadSp`
+    /* 0x1B0 */ STACK(stack, 0x600); // probably an unused internal thread stack for `fault_ClientRunTask`/`clientThreadSp`
     /* 0x7B0 */ OSMesgQueue queue;
     /* 0x7C8 */ OSMesg msg;
     /* 0x7CC */ u8 exit;
@@ -69,16 +69,16 @@ typedef struct FaultMgr {
 } FaultMgr; // size = 0x850
 
 
-void Fault_AddClient(FaultClient* client, FaultClientCallback callback, void* arg0, void* arg1);
-void Fault_RemoveClient(FaultClient* client);
-void Fault_AddAddrConvClient(FaultAddrConvClient* client, FaultAddrConvClientCallback callback, void* arg);
-void Fault_RemoveAddrConvClient(FaultAddrConvClient* client);
-void Fault_WaitForInput(void);
-void Fault_FillScreenBlack(void);
-void Fault_SetFrameBuffer(void* fb, u16 w, u16 h);
-void Fault_Init(void);
-NORETURN void Fault_AddHungupAndCrashImpl(const char* exp1, const char* exp2);
-NORETURN void Fault_AddHungupAndCrash(const char* file, s32 line);
+void fault_AddClient(FaultClient* client, FaultClientCallback callback, void* arg0, void* arg1);
+void fault_RemoveClient(FaultClient* client);
+void fault_AddressConverterAddClient(FaultAddrConvClient* client, FaultAddrConvClientCallback callback, void* arg);
+void fault_AddressConverterRemoveClient(FaultAddrConvClient* client);
+void fault_WaitForInput(void);
+void fault_FillScreenBlack(void);
+void fault_SetFrameBuffer(void* fb, u16 w, u16 h);
+void fault_Init(void);
+NORETURN void fault_AddHungupAndCrashImpl(const char* exp1, const char* exp2);
+NORETURN void fault_AddHungupAndCrash(const char* file, s32 line);
 
 void FaultDrawer_SetOsSyncPrintfEnabled(u32 enabled);
 void FaultDrawer_DrawRecImpl(s32 xStart, s32 yStart, s32 xEnd, s32 yEnd, u16 color);
