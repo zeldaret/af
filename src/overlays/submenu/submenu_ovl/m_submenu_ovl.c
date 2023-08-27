@@ -71,7 +71,224 @@ void mSM_set_char_matrix(GraphicsContext* gfxCtx) {
     CLOSE_DISPS(gfxCtx);
 }
 
+#if 0
+void mSM_cbuf_copy(GraphicsContext* gfxCtx, PreRender* render, s32 arg2, s32 arg3, s32 arg4) {
+    s32 spCC;
+    void* sp9C;
+    void* sp98;
+    Gfx* sp8C;
+    u32 sp48;
+    s32 sp40;
+    s32 sp3C;
+    s32 sp38;
+    s32 sp34;
+    s32 sp30;
+    s32 sp20;
+    Gfx* temp_v0_10;
+    Gfx* temp_v0_11;
+    Gfx* temp_v0_12;
+    Gfx* temp_v0_13;
+    Gfx* temp_v0_14;
+    Gfx* temp_v0_15;
+    Gfx* temp_v0_16;
+    Gfx* temp_v0_17;
+    Gfx* temp_v0_2;
+    Gfx* temp_v0_3;
+    Gfx* temp_v0_4;
+    Gfx* temp_v0_5;
+    Gfx* temp_v0_6;
+    Gfx* temp_v0_8;
+    Gfx* temp_v0_9;
+    s32 temp_a0_2;
+    s32 temp_a0_3;
+    s32 temp_a1;
+    s32 temp_a2;
+    s32 temp_t4;
+    s32 temp_t6;
+    s32 temp_v0_7;
+    s32 temp_v1;
+    s32 var_a1;
+    s32 var_a2;
+    s32 var_a3;
+    s32 var_t1;
+    s32 var_t2;
+    s32 var_t3;
+    s32 var_v1;
+    u16 temp_a0;
+    u16 temp_v0;
+    u16 var_ra;
+    u16 var_t0;
+    u16 var_t4;
+    u16 var_t5;
+    u32 temp_t3;
+
+    if (arg2 >= 0x13F) {
+        return;
+    }
+
+    temp_v0 = render->unk_04;
+    if ((-(s32) temp_v0 < arg2) == 0) {
+        return;
+    }
+
+    temp_a0 = render->unk_06;
+    if (((-(s32) temp_a0 < arg3) == 0)) {
+        return;
+    }
+
+    if ((arg3 >= 0xEF)) {
+        return;
+    }
+
+    if (arg2 < 0) {
+        var_t5 = temp_v0 + arg2;
+        var_t3 = -arg2;
+        arg2 = 0;
+    } else {
+        var_t3 = 0;
+        if ((temp_v0 + arg2) >= 0x140) {
+            var_t5 = 0x140 - arg2;
+        } else {
+            var_t5 = temp_v0;
+        }
+    }
+
+    var_t4 = 0x140;
+    if (arg3 < 0) {
+        var_t0 = temp_a0 + arg3;
+        var_v1 = -arg3;
+        arg3 = 0;
+    } else {
+        var_v1 = 0;
+        if ((temp_a0 + arg3) >= 0xF0) {
+            var_t0 = 0xEF - arg3;
+        } else {
+            var_t0 = temp_a0;
+        }
+    }
+
+    var_ra = temp_a0;
+    if (arg4 == 0) {
+        spCC = 0x140;
+        var_t4 = temp_v0;
+        sp9C = gfxCtx->unk_2E4;
+        var_a1 = arg2;
+        var_t1 = arg3;
+        var_t2 = var_v1;
+        var_a2 = var_t3;
+        sp98 = render->unk_14;
+    } else {
+        spCC = (s32) temp_v0;
+        var_ra = 0xF0;
+        var_a1 = var_t3;
+        var_t1 = var_v1;
+        sp9C = render->unk_14;
+        var_t2 = arg3;
+        var_a2 = arg2;
+        sp98 = gfxCtx->unk_2E4;
+    }
+    var_a3 = 0x1000 / (s32) (((var_t5 + 3) & ~3) * 2);
+    if (arg4 != 0) {
+        sp8C = gfxCtx->polyOpa.p;
+        render->unk_00 = 0x140;
+        render->unk_02 = 0xF0;
+        render->unk_10 = gfxCtx->unk_2E4;
+        PreRender_CopyRGBC(render, &sp8C, arg2 - var_t3, arg3 - var_v1);
+        gfxCtx->polyOpa.p = sp8C;
+        return;
+    }
+
+    temp_v0_2 = gfxCtx->polyOpa.p;
+    gfxCtx->polyOpa.p = temp_v0_2 + 8;
+    temp_v0_2->words.w1 = 0;
+    temp_v0_2->words.w0 = 0xE7000000;
+    temp_v0_3 = gfxCtx->polyOpa.p;
+    gfxCtx->polyOpa.p = temp_v0_3 + 8;
+    temp_v0_3->words.w1 = 0;
+    temp_v0_3->words.w0 = 0xD9000000;
+    temp_v0_4 = gfxCtx->polyOpa.p;
+    gfxCtx->polyOpa.p = temp_v0_4 + 8;
+    temp_v0_4->words.w1 = 4;
+    temp_v0_4->words.w0 = 0xEF202CF0;
+    temp_v0_5 = gfxCtx->polyOpa.p;
+    gfxCtx->polyOpa.p = temp_v0_5 + 8;
+    temp_v0_5->words.w0 = ((var_t4 - 1) & 0xFFF) | 0xFF100000;
+    temp_v0_5->words.w1 = (u32) sp98;
+    temp_v0_6 = gfxCtx->polyOpa.p;
+    gfxCtx->polyOpa.p = temp_v0_6 + 8;
+    temp_v0_6->words.w0 = 0xED000000;
+    temp_v1 = ((var_a1 * 4) & 0xFFF) << 0xC;
+    temp_v0_6->words.w1 = (((s32) ((f32) var_t4 * 4.0f) & 0xFFF) << 0xC) | ((s32) ((f32) var_ra * 4.0f) & 0xFFF);
+    if ((s32) var_t0 > 0) {
+        temp_v0_7 = (var_t5 + var_a1) - 1;
+        sp48 = ((spCC - 1) & 0xFFF) | 0xFD100000;
+        sp3C = temp_v1 | 0xF2000000;
+        sp40 = temp_v1 | 0xF4000000;
+        temp_t3 = ((((s32) (((temp_v0_7 - var_a1) * 2) + 9) >> 3) & 0x1FF) << 9) | 0xF5100000;
+        temp_t4 = ((temp_v0_7 * 4) & 0xFFF) << 0xC;
+        sp34 = ((var_a2 * 4) & 0xFFF) << 0xC;
+        sp30 = var_a1 << 0x15;
+        sp20 = temp_t4 | 0x07000000;
+        sp38 = (((((var_a2 + var_t5) - 1) * 4) & 0xFFF) << 0xC) | 0xE4000000;
+        do {
+            if ((s32) var_t0 < var_a3) {
+                var_a3 = (s32) var_t0;
+            }
+            temp_v0_8 = gfxCtx->polyOpa.p;
+            var_t0 -= var_a3;
+            gfxCtx->polyOpa.p = temp_v0_8 + 8;
+            temp_v0_8->words.w0 = sp48;
+            temp_v0_8->words.w1 = (u32) sp9C;
+            temp_v0_9 = gfxCtx->polyOpa.p;
+            gfxCtx->polyOpa.p = temp_v0_9 + 8;
+            temp_v0_9->words.w1 = 0x07000000;
+            temp_v0_9->words.w0 = temp_t3;
+            temp_v0_10 = gfxCtx->polyOpa.p;
+            gfxCtx->polyOpa.p = temp_v0_10 + 8;
+            temp_v0_10->words.w1 = 0;
+            temp_v0_10->words.w0 = 0xE6000000;
+            temp_v0_11 = gfxCtx->polyOpa.p;
+            temp_a0_2 = (var_t1 * 4) & 0xFFF;
+            gfxCtx->polyOpa.p = temp_v0_11 + 8;
+            temp_a2 = var_t1 + var_a3;
+            temp_v0_11->words.w0 = sp40 | temp_a0_2;
+            temp_a1 = ((temp_a2 - 1) * 4) & 0xFFF;
+            temp_v0_11->words.w1 = sp20 | temp_a1;
+            temp_v0_12 = gfxCtx->polyOpa.p;
+            gfxCtx->polyOpa.p = temp_v0_12 + 8;
+            temp_v0_12->words.w1 = 0;
+            temp_v0_12->words.w0 = 0xE7000000;
+            temp_v0_13 = gfxCtx->polyOpa.p;
+            gfxCtx->polyOpa.p = temp_v0_13 + 8;
+            temp_v0_13->words.w1 = 0;
+            temp_v0_13->words.w0 = temp_t3;
+            temp_v0_14 = gfxCtx->polyOpa.p;
+            gfxCtx->polyOpa.p = temp_v0_14 + 8;
+            temp_v0_14->words.w1 = temp_t4 | temp_a1;
+            temp_v0_14->words.w0 = sp3C | temp_a0_2;
+            temp_v0_15 = gfxCtx->polyOpa.p;
+            temp_a0_3 = var_t2 + var_a3;
+            gfxCtx->polyOpa.p = temp_v0_15 + 8;
+            temp_v0_15->words.w0 = sp38 | (((temp_a0_3 - 1) * 4) & 0xFFF);
+            temp_v0_15->words.w1 = sp34 | ((var_t2 * 4) & 0xFFF);
+            temp_v0_16 = gfxCtx->polyOpa.p;
+            gfxCtx->polyOpa.p = temp_v0_16 + 8;
+            temp_v0_16->words.w0 = 0xE1000000;
+            temp_t6 = (var_t1 << 5) & 0xFFFF;
+            var_t1 = temp_a2;
+            temp_v0_16->words.w1 = sp30 | temp_t6;
+            temp_v0_17 = gfxCtx->polyOpa.p;
+            gfxCtx->polyOpa.p = temp_v0_17 + 8;
+            temp_v0_17->words.w0 = 0xF1000000;
+            temp_v0_17->words.w1 = 0x10000400;
+            var_t2 = temp_a0_3;
+        } while ((s32) var_t0 > 0);
+    }
+}
+#else
+void mSM_cbuf_copy(GraphicsContext* gfxCtx, PreRender* render, s32 arg2, s32 arg3, s32 arg4);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_cbuf_copy.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085C20C_jp.s")
 

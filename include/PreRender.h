@@ -2,6 +2,7 @@
 #define PRE_RENDER_H
 
 #include "ultra64.h"
+#include "unk.h"
 
 typedef struct ListAlloc {
     /* 0x0 */ struct ListAlloc* prev;
@@ -9,11 +10,15 @@ typedef struct ListAlloc {
 } ListAlloc; // size = 0x8
 
 typedef struct {
-    /* 0x00 */ char unk00[0x10];
+    /* 0x00 */ u16 unk_00;
+    /* 0x02 */ u16 unk_02;
+    /* 0x04 */ u16 unk_04;
+    /* 0x04 */ u16 unk_06;
+    /* 0x08 */ UNK_TYPE1 unk_08[0x8];
     /* 0x10 */ UNK_PTR unk_10;
     /* 0x14 */ UNK_PTR unk_14;
     /* 0x18 */ UNK_PTR unk_18;
-    /* 0x1C */ char unk1C[0x34];
+    /* 0x1C */ UNK_TYPE1 unk_1C[0x34];
 } PreRender; // size = 0x50
 
 // void wallpaper_draw1();
@@ -29,7 +34,7 @@ void PreRender_cleanup(PreRender* render);
 // void PreRender_TransBuffer1();
 // void PreRender_TransBuffer2();
 // void PreRender_ShowCoveredge();
-// void PreRender_CopyRGBC();
+void PreRender_CopyRGBC(PreRender* render, Gfx** gfxP, s32 arg2, s32 arg3);
 // void PreRender_saveZBuffer();
 void PreRender_saveFrameBuffer(PreRender* render, Gfx** gfx);
 void PreRender_saveCVG(PreRender* render, Gfx** gfx);
