@@ -1,4 +1,6 @@
 #include "ac_snowman.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aSMAN_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -20,6 +22,13 @@ ActorProfile Snowman_Profile = {
     /* */ aSMAN_actor_draw,
     /* */ NULL,
 };
+#endif
+
+extern ClObjPipe_Init aSMAN_CoInfoData;
+extern CollisionCheck_Status_Init aSMAN_StatusData;
+#if 0
+ClObjPipe_Init aSMAN_CoInfoData = { { OC1_1 | OC1_TYPE_8 | OC1_TYPE_10 | OC1_TYPE_20, OC2_TYPE_20, COLSHAPE_PIPE }, { ELEM_FLAG_1 }, { { 5, 5, 0, { 0, 0, 0 } } } };
+CollisionCheck_Status_Init aSMAN_StatusData = { 0, 5, 5, 0, 196 };
 #endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/aSMAN_actor_ct.s")

@@ -3,8 +3,8 @@
 
 #include "ultra64.h"
 
-// void U_GetAtanTable();
+u16 U_GetAtanTable(f32 y, f32 x);
 s16 atans_table(f32 x, f32 y);
-// void atanf_table();
+f32 atanf_table(f32 x, f32 y);
 
 #endif

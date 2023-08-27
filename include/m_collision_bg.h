@@ -197,7 +197,7 @@ f32 mCoBG_GetBgY_OnlyCenter_FromWpos2(Vec3f arg0, f32 arg1);
 // void func_80072B24_jp();
 // void func_80072BE8_jp();
 // void func_80072C60_jp();
-// void func_80072CC4_jp();
+s32 mCoBG_SearchWaterLimitDistN(UNK_TYPE* arg0, Vec3f arg1, s16 arg4, f32 arg5, s32 arg6);
 // void func_80072E70_jp();
 // void func_80072F9C_jp();
 // void func_800730C8_jp();

@@ -18,4 +18,8 @@
 
 #define ABS(x) (((x) >= 0) ? (x): -(x))
 
+#define CLAMP(x, min, max) ((x) < (min) ? (min) : (x) > (max) ? (max) : (x))
+
+#define DECR(x) ((x) == 0 ? 0 : --(x))
+
 #endif

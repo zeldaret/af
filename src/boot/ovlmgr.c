@@ -31,13 +31,13 @@ void ovlmgr_Free(void* ptr) {
 void ovlmgr_LoadImpl(RomOffset vromStart, UNUSED RomOffset vromEndUnused, void* vramStart, void* vramEnd,
                      void* allocatedRamAddr, struct OverlayRelocationSection* ovl, size_t size) {
     RomOffset vromEnd;
-    void* ovlStart;
-    void* ovlEnd;
+    RomOffset ovlStart;
+    RomOffset ovlEnd;
     size_t ovlSize;
     OverlayRelocationSection* ovlRelocs;
     char ovlSizeStr[80];
 
-    func_80026C4C_jp(vromStart, &vromEnd, &ovlStart, &ovlEnd);
+    DmaMgr_GetOvlOffsets(vromStart, &vromEnd, &ovlStart, &ovlEnd);
 
     ovlSize = (uintptr_t)ovlEnd - (uintptr_t)ovlStart;
 

@@ -27,7 +27,7 @@ Gfx* func_800BD720_jp(Gfx* gfx);
 // void func_800BD748_jp();
 // void func_800BD770_jp();
 // void func_800BD798_jp();
-// void func_800BD7C0_jp();
+Gfx* func_800BD7C0_jp(Gfx* gfx);
 // void func_800BD804_jp();
 // void func_800BD8A8_jp();
 // void func_800BD9D8_jp();

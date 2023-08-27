@@ -49,7 +49,7 @@ void mEv_ClearEventInfo(void);
 s32 mEv_CheckFirstJob(void);
 // void func_8007D734_jp();
 // void func_8007D784_jp();
-// void func_8007D7BC_jp();
+UNK_RET mEv_CheckFirstIntro(void);
 // void func_8007D810_jp();
 void mEv_SetGateway(void);
 // void func_8007D880_jp();

@@ -193,7 +193,7 @@
     subsegments:
       - [0x774980, data, overlays/gamestates/ovl_prenmi/ovl_prenmi_reloc]
 
-  - name: ovl_submenu
+  - name: submenu_ovl
     type: code
     start: 0x7749C0
     vram: 0x8085BAC0
@@ -201,18 +201,18 @@
     compress: True
     bss_size: 0x10730
     subsegments:
-      - [0x7749C0, asm, overlays/other_ovl/ovl_submenu/ovl_submenu]
-      - [0x776BD0, data, overlays/other_ovl/ovl_submenu/ovl_submenu]
-      - [0x777870, rodata, overlays/other_ovl/ovl_submenu/ovl_submenu]
-      - { start: 0x7778B0, type: bss, vram: 0x8085E9B0, name: overlays/other_ovl/ovl_submenu/ovl_submenu }
+      - [0x7749C0, asm, overlays/submenu/submenu_ovl/m_submenu_ovl]
+      - [0x776BD0, data, overlays/submenu/submenu_ovl/m_submenu_ovl]
+      - [0x777870, rodata, overlays/submenu/submenu_ovl/m_submenu_ovl]
+      - { start: 0x7778B0, type: bss, vram: 0x8085E9B0, name: overlays/submenu/submenu_ovl/m_submenu_ovl }
   - name: ovl_submenu_reloc
     type: code
     start: 0x7778B0
     vram: 0x8086F0E0
-    follows_vram: ovl_submenu
+    follows_vram: submenu_ovl
     compress: True
     subsegments:
-      - [0x7778B0, data, overlays/other_ovl/ovl_submenu/ovl_submenu_reloc]
+      - [0x7778B0, data, overlays/submenu/submenu_ovl/m_submenu_ovlreloc]
 
   - name: ovl__00777AE0
     type: code
@@ -2057,7 +2057,7 @@
     bss_size: 0x0
     subsegments:
       - [0x892600, c, overlays/actors/ovl_Npc_Engineer/ac_npc_engineer]
-      - [0x892790, data, overlays/actors/ovl_Npc_Engineer/ac_npc_engineer]
+      - [0x892790, .data, overlays/actors/ovl_Npc_Engineer/ac_npc_engineer]
   - name: ovl_Npc_Engineer_reloc
     type: code
     start: 0x8927D0

@@ -1353,11 +1353,11 @@ typedef struct {
 
 typedef struct {
     unsigned char col[3];
-    unsigned char unk3;
+    unsigned char kc;
     unsigned char colc[3];
-    unsigned char unk7;
+    unsigned char kl;
     short pos[3];
-    unsigned char unkE;
+    unsigned char kq;
 } PointLight_t;
 
 typedef struct {

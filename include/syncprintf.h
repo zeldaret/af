@@ -3,8 +3,8 @@
 
 #include "ultra64.h"
 
-// void __osSyncVPrintf();
-// void osSyncPrintf();
-// void rmonPrintf();
+void osSyncPrintfUnused(const char* fmt, ...);
+void osSyncPrintf(const char* fmt, ...);
+void rmonPrintf(const char* fmt, ...);
 
 #endif

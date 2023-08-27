@@ -1,5 +1,7 @@
 #include "ac_haniwa.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aHNW_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -20,6 +22,14 @@ ActorProfile Haniwa_Profile = {
     /* */ (ActorFunc)none_proc1,
     /* */ NULL,
 };
+#endif
+
+extern ClObjPipe_Init AcHaniwaCoInfoData;
+extern CollisionCheck_Status_Init AcHaniwaStatusData;
+
+#if 0
+ClObjPipe_Init AcHaniwaCoInfoData = { { OC1_1 | OC1_TYPE_8 | OC1_TYPE_10 | OC1_TYPE_20, OC2_TYPE_20, COLSHAPE_PIPE }, { ELEM_FLAG_1 }, { { 0x14, 0x1E, 0, { 0, 0, 0 } } }, };
+CollisionCheck_Status_Init AcHaniwaStatusData = { 0, 0x14, 0x1E, 0, MASS_HEAVY, };
 #endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Haniwa/ac_haniwa/aHNW_actor_ct.s")
