@@ -11,14 +11,14 @@ Most discussions happen in the `#af-decomp` channel on our [Discord Server](http
 
 ## Tips for Successful Pull Requests
 
-- Don't bundle together multiple files worth of decompiled code into a single pr. Large prs require a lot of effort to review, and make things difficult for everyone.
-- You don't necessarily have to decompile a whole file, you can just decompile a couple of functions in a single pr if that suits your workflow better.
-- Always merge main instead of rebasing. Rebasing changes how commits are shown in pull requests, making changes difficult to follow.
+- Don't bundle together multiple files worth of decompiled code into a single PR. Large PRs require a lot of effort to review, and make things difficult for everyone.
+- You don't necessarily have to decompile a whole file, you can just decompile a couple of functions in a single PR if that suits your workflow better.
 - Review the [Style Guide](docs/STYLE.md) and see if there's anything you can preemptively fix before code reviews.
+- After a PR is opened always merge main instead of rebasing. Rebasing changes how commits are shown in PRs, making changes difficult to follow.
 
 ## Making a Pull Request
 
-You should work on a branch on your fork separate from your copy of main. You can create branches from `upstream/main` so you don't have to sync your main branch every time.
+You should work on a branch on your fork separate from your copy of `main`. You can create branches from `upstream/main` so you don't have to sync your `main` branch every time.
 
 If you haven't done so already, add the main repo as `upstream`
 

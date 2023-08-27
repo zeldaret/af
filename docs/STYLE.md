@@ -174,15 +174,17 @@ We use comments for:
 
 ## What goes where
 
-This section mostly applies to actors.
-
 ### Functions
 
 All functions should go in the main C file in the same order as the assembly (the latter is required to match anyway). (We may make exceptions for particularly large files with a particular organizational structure, but we ask that you check on Discord first before doing this)
 
 ### Prototypes
 
-Only put prototypes that are necessary. They should be placed in the main C file, unless they are used by something outside of the file, where they should be placed in the header.
+Actors:
+- Only make prototypes that are necessary. Because actors are usually self contained, prototypes should be placed in the main C file, unless they are used by something outside of the file, where they should be placed in the header.
+
+Other files (boot, code, etc):
+- Prototypes should be placed in the header. You can omit functions that shouldn't be used outside the file.
 
 ### Data
 
