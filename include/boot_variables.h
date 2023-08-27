@@ -243,11 +243,6 @@ extern OSPiHandle* carthandle; // TODO: Determine where this goes
 // extern UNK_TYPE B_80040AC8_jp;
 // extern UNK_TYPE B_80040ACC_jp;
 // extern UNK_TYPE B_80040AD0_jp;
-// extern UNK_TYPE sFaultInstance;
-// extern UNK_TYPE sFaultAwaitingInput;
-// extern UNK_TYPE sFaultStack;
-// extern UNK_TYPE sFaultThreadInfo;
-// extern UNK_TYPE gFaultMgr;
 // extern UNK_TYPE B_800418D6_jp;
 extern struct_800418D8* B_800418D8_jp;
 // extern UNK_TYPE B_80041960_jp;

@@ -623,7 +623,7 @@ void fault_LogThreadContext(OSThread* thread) {
 OSThread* FindFaultedThread(void) {
     OSThread* thread = __osGetActiveQueue();
 
-    // OS_PRIORITY_THREADTAIL indicates the end of the thread queue
+    // -1 indicates the end of the thread queue
     while (thread->priority != -1) {
         if (thread->priority > OS_PRIORITY_IDLE && thread->priority < OS_PRIORITY_APPMAX &&
             (thread->flags & (OS_FLAG_CPU_BREAK | OS_FLAG_FAULT))) {
@@ -658,6 +658,7 @@ void fault_WaitForButtonCombo(void) {
     u32 pressedBtn;
     u32 curBtn;
 
+    //! FAKE:
     if (1) {}
     if (1) {}
 

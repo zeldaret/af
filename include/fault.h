@@ -53,7 +53,7 @@ typedef struct FaultMgr {
     /* 0x000 */ OSThread thread;
     /* 0x1B0 */ STACK(stack, 0x600); // probably an unused internal thread stack for `fault_ClientRunTask`/`clientThreadSp`
     /* 0x7B0 */ OSMesgQueue queue;
-    /* 0x7C8 */ OSMesg msg;
+    /* 0x7C8 */ OSMesg msg[1];
     /* 0x7CC */ u8 exit;
     /* 0x7CD */ u8 msgId;
     /* 0x7CE */ u8 faultHandlerEnabled;
