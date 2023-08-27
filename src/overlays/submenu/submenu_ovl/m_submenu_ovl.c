@@ -255,7 +255,24 @@ void mSM_tex_move(mSM* arg0) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_return_func.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_move_menu.s")
+s32 mSM_move_menu(f32* arg0, f32* arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
+    if (((*arg0 - arg3) * arg5) >= 0.0f) {
+        *arg1 *= arg2;
+        if (*arg1 < 1.0f) {
+            *arg1 = 1.0f;
+        } else if (*arg1 > 75.0f) {
+            *arg1 = 75.0f;
+        }
+    }
+
+    *arg0 += *arg1 * arg5;
+    if (((*arg0 - arg4) * arg5) > 0.0f) {
+        *arg0 = arg4;
+        return 1;
+    }
+
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_move_Move.s")
 
