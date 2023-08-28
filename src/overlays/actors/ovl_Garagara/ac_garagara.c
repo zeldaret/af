@@ -3,10 +3,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void Garagara_Actor_ct(Actor* thisx, Game_Play* gamePlay);
-void Garagara_Actor_dt(Actor* thisx, Game_Play* gamePlay);
-void Garagara_Actor_move_dummy(Actor* thisx, Game_Play* gamePlay);
-void Garagara_Actor_draw_dummy(Actor* thisx, Game_Play* gamePlay);
+void Garagara_Actor_ct(Actor* thisx, Game_Play* game_play);
+void Garagara_Actor_dt(Actor* thisx, Game_Play* game_play);
+void Garagara_Actor_move_dummy(Actor* thisx, Game_Play* game_play);
+void Garagara_Actor_draw_dummy(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Garagara_Profile = {

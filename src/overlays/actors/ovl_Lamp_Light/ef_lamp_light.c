@@ -4,9 +4,9 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void Ef_Lamp_Light_actor_ct(Actor* thisx, Game_Play* gamePlay);
-void Ef_Lamp_Light_actor_dt(Actor* thisx, Game_Play* gamePlay);
-void Ef_Lamp_Light_actor_move(Actor* thisx, Game_Play* gamePlay);
+void Ef_Lamp_Light_actor_ct(Actor* thisx, Game_Play* game_play);
+void Ef_Lamp_Light_actor_dt(Actor* thisx, Game_Play* game_play);
+void Ef_Lamp_Light_actor_move(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Lamp_Light_Profile = {

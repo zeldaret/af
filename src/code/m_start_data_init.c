@@ -184,7 +184,7 @@ void mSDI_PullTreeUnderPlayerBlock(void) {
 }
 
 s32 mSDI_StartInitNew(Game* game2, s32 playerNo, s32 mallocFlag) {
-    Game_Play* gamePlay = (Game_Play*)game2;
+    Game_Play* game_play = (Game_Play*)game2;
     Private* priv;
     Private* priv_p;
     Game* game = NULL;
@@ -218,7 +218,7 @@ s32 mSDI_StartInitNew(Game* game2, s32 playerNo, s32 mallocFlag) {
     mMld_SetDefaultMelody();
     mLd_LandDataInit();
     mEv_ClearEventSaveInfo(&gCommonData.save.eventSaveData);
-    mEv_init(&gamePlay->event);
+    mEv_init(&game_play->event);
     mNpc_InitNpcAllInfo(mallocFlag);
 
     for (i = 0; i < PLAYER_NUM; i++) {
@@ -254,13 +254,13 @@ s32 mSDI_StartInitNew(Game* game2, s32 playerNo, s32 mallocFlag) {
 
     mPr_SetPossessionItem(gCommonData.nowPrivate, 0, ITM_MONEY_1000, ITEM_COND_QUEST);
     mNW_InitMyOriginal();
-    mEv_2nd_init(&gamePlay->event);
+    mEv_2nd_init(&game_play->event);
     famicom_emu_initial_common_data();
     return TRUE;
 }
 
 s32 mSDI_StartInitFrom(Game* game2, s32 playerNo, s32 mallocFlag) {
-    Game_Play* gamePlay = (Game_Play*)game2;
+    Game_Play* game_play = (Game_Play*)game2;
     Private* priv;
     Game* game = game2;
     s32 res = FALSE;
@@ -279,7 +279,7 @@ s32 mSDI_StartInitFrom(Game* game2, s32 playerNo, s32 mallocFlag) {
                 gCommonData.nowPrivate = priv;
                 gCommonData.playerNo = playerNo;
                 mFM_SetBlockKindLoadCombi(game);
-                mEv_init_force(&gamePlay->event);
+                mEv_init_force(&game_play->event);
                 mHsRm_GetHuusuiRoom(game, playerNo);
                 mSP_ExchangeLineUp_InGame(game);
                 mNpc_SetRemoveAnimalNo(gCommonData.save.animals);
@@ -313,7 +313,7 @@ s32 mSDI_StartInitFrom(Game* game2, s32 playerNo, s32 mallocFlag) {
 }
 
 s32 mSDI_StartInitNewPlayer(Game* game, s32 playerNo, s32 mallocFlag) {
-    Game_Play* gamePlay = (Game_Play*)game;
+    Game_Play* game_play = (Game_Play*)game;
     Private* priv;
     s32 res = FALSE;
     UNUSED s32 pad;
@@ -331,11 +331,11 @@ s32 mSDI_StartInitNewPlayer(Game* game, s32 playerNo, s32 mallocFlag) {
             gCommonData.nowPrivate->gender = SEX_MALE;
             if (mallocFlag == 0) {
                 mFM_SetBlockKindLoadCombi(game);
-                mEv_init_force(&gamePlay->event);
+                mEv_init_force(&game_play->event);
                 mSP_ExchangeLineUp_InGame(game);
             } else {
                 mFM_SetBlockKindLoadCombi(NULL);
-                mEv_init_force(&gamePlay->event);
+                mEv_init_force(&game_play->event);
                 mSP_ExchangeLineUp_InGame(NULL);
             }
             mNpc_SetRemoveAnimalNo(gCommonData.save.animals);
@@ -348,7 +348,7 @@ s32 mSDI_StartInitNewPlayer(Game* game, s32 playerNo, s32 mallocFlag) {
 
 s32 mSDI_StartInitPak(Game* game2, s32 playerNo, s32 mallocFlag) {
     Game* game = game2;
-    Game_Play* gamePlay = (Game_Play*)game;
+    Game_Play* game_play = (Game_Play*)game;
     UNUSED s32 pad;
     s32 res = FALSE;
     s32 sp1C;
@@ -365,7 +365,7 @@ s32 mSDI_StartInitPak(Game* game2, s32 playerNo, s32 mallocFlag) {
         sp1C = mCPk_get_pkinfo();
         if ((func_80078E90_jp(sp1C, 0) == TRUE) && (func_800B8D64_jp(playerNo, sp1C) == TRUE)) {
             mFM_SetBlockKindLoadCombi(game);
-            mEv_init_force(&gamePlay->event);
+            mEv_init_force(&game_play->event);
             mHsRm_GetHuusuiRoom(game, playerNo);
             mSP_ExchangeLineUp_InGame(game);
             mNpc_SetRemoveAnimalNo(gCommonData.save.animals);
@@ -385,7 +385,7 @@ s32 mSDI_StartInitErr(UNUSED Game* game, UNUSED s32 playerNo, UNUSED s32 mallocF
 }
 
 void mSDI_StartInitAfter(Game* game, s32 renewal_reserve_flag, s32 mallocFlag) {
-    Game_Play* gamePlay = (Game_Play*)game;
+    Game_Play* game_play = (Game_Play*)game;
 
     gCommonData.houseOwnerName = -1;
     gCommonData.lastFieldId = -1;
@@ -395,10 +395,10 @@ void mSDI_StartInitAfter(Game* game, s32 renewal_reserve_flag, s32 mallocFlag) {
     mTM_renewal_renew_time();
     mEv_ClearEventInfo();
     mEnv_DecideWeather_NormalGameStart();
-    func_800B7680_jp(gamePlay);
+    func_800B7680_jp(game_play);
     mTM_set_season();
     func_80084DA4_jp();
-    mEv_2nd_init(&gamePlay->event);
+    mEv_2nd_init(&game_play->event);
     func_800AD9FC_jp();
     func_80096B64_jp();
     func_800AB054_jp();
@@ -413,7 +413,7 @@ void mSDI_StartInitAfter(Game* game, s32 renewal_reserve_flag, s32 mallocFlag) {
     mNpcW_InitNpcWalk(&gCommonData.npcWalk);
     mHm_CheckRehouseOrder();
     decide_fish_location(&gCommonData.fishLocation);
-    mTRC_init(gamePlay);
+    mTRC_init(game_play);
     gCommonData.gokiShockedFlag = FALSE;
     func_800A6548_jp();
     func_800B9B2C_jp();

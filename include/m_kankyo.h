@@ -31,7 +31,7 @@ typedef struct Kankyo {
 // void func_80096F5C_jp();
 // void func_80097048_jp();
 // void mEnv_RoomTypeLightSet();
-void Global_kankyo_ct(struct Game_Play* gamePlay, struct Kankyo* kankyo);
+void Global_kankyo_ct(struct Game_Play* game_play, struct Kankyo* kankyo);
 // void mEnv_MakeShadowInfo();
 // void mEnv_set_time();
 // void func_800976BC_jp();
@@ -49,7 +49,7 @@ void Global_kankyo_ct(struct Game_Play* gamePlay, struct Kankyo* kankyo);
 // void func_800981B8_jp();
 // void func_8009836C_jp();
 // void func_800983F0_jp();
-void Global_kankyo_set(struct Game_Play* gamePlay, struct Kankyo* kankyo, struct Global_light* arg2);
+void Global_kankyo_set(struct Game_Play* game_play, struct Kankyo* kankyo, struct Global_light* arg2);
 // void func_80098558_jp();
 // void func_8009867C_jp();
 // void func_80098794_jp();

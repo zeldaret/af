@@ -4,10 +4,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void func_8052ab54(Actor* thisx, Game_Play* gamePlay);
-void func_8052ac90(Actor* thisx, Game_Play* gamePlay);
-void func_8052ad14(Actor* thisx, Game_Play* gamePlay);
-void func_8052ac70(Actor* thisx, Game_Play* gamePlay);
+void func_8052ab54(Actor* thisx, Game_Play* game_play);
+void func_8052ac90(Actor* thisx, Game_Play* game_play);
+void func_8052ad14(Actor* thisx, Game_Play* game_play);
+void func_8052ac70(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Hatumode_Npc0_Profile = {

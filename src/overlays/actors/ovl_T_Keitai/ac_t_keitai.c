@@ -4,9 +4,9 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aTKT_actor_ct(Actor* thisx, Game_Play* gamePlay);
-void aTKT_actor_move(Actor* thisx, Game_Play* gamePlay);
-void aTKT_actor_draw(Actor* thisx, Game_Play* gamePlay);
+void aTKT_actor_ct(Actor* thisx, Game_Play* game_play);
+void aTKT_actor_move(Actor* thisx, Game_Play* game_play);
+void aTKT_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile T_Keitai_Profile = {

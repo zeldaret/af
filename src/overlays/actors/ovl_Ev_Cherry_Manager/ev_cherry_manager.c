@@ -3,10 +3,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void eChryMgr_ct(Actor* thisx, Game_Play* gamePlay);
-void eChryMgr_dt(Actor* thisx, Game_Play* gamePlay);
-void eChryMgr_move(Actor* thisx, Game_Play* gamePlay);
-void eChryMgr_draw(Actor* thisx, Game_Play* gamePlay);
+void eChryMgr_ct(Actor* thisx, Game_Play* game_play);
+void eChryMgr_dt(Actor* thisx, Game_Play* game_play);
+void eChryMgr_move(Actor* thisx, Game_Play* game_play);
+void eChryMgr_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Ev_Cherry_Manager_Profile = {

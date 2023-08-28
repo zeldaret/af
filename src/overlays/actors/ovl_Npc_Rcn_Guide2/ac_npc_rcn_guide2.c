@@ -4,10 +4,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aNRG2_actor_ct(Actor* thisx, Game_Play* gamePlay);
-void aNRG2_actor_dt(Actor* thisx, Game_Play* gamePlay);
-void aNRG2_actor_init(Actor* thisx, Game_Play* gamePlay);
-void aNRG2_actor_save(Actor* thisx, Game_Play* gamePlay);
+void aNRG2_actor_ct(Actor* thisx, Game_Play* game_play);
+void aNRG2_actor_dt(Actor* thisx, Game_Play* game_play);
+void aNRG2_actor_init(Actor* thisx, Game_Play* game_play);
+void aNRG2_actor_save(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Npc_Rcn_Guide2_Profile = {

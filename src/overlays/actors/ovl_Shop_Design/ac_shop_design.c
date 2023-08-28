@@ -3,10 +3,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void Shop_Design_Actor_ct(Actor* thisx, Game_Play* gamePlay);
-void Shop_Design_Actor_dt(Actor* thisx, Game_Play* gamePlay);
-void Shop_Design_Actor_move(Actor* thisx, Game_Play* gamePlay);
-void Shop_Design_Actor_draw(Actor* thisx, Game_Play* gamePlay);
+void Shop_Design_Actor_ct(Actor* thisx, Game_Play* game_play);
+void Shop_Design_Actor_dt(Actor* thisx, Game_Play* game_play);
+void Shop_Design_Actor_move(Actor* thisx, Game_Play* game_play);
+void Shop_Design_Actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Shop_Design_Profile = {

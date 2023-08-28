@@ -3,10 +3,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void My_Indoor_Actor_ct(Actor* thisx, Game_Play* gamePlay);
-void My_Indoor_Actor_dt(Actor* thisx, Game_Play* gamePlay);
-void My_Indoor_Actor_move(Actor* thisx, Game_Play* gamePlay);
-void My_Indoor_Actor_draw(Actor* thisx, Game_Play* gamePlay);
+void My_Indoor_Actor_ct(Actor* thisx, Game_Play* game_play);
+void My_Indoor_Actor_dt(Actor* thisx, Game_Play* game_play);
+void My_Indoor_Actor_move(Actor* thisx, Game_Play* game_play);
+void My_Indoor_Actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile My_Indoor_Profile = {

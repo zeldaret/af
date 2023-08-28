@@ -3,10 +3,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aYAT_actor_ct(Actor* thisx, Game_Play* gamePlay);
-void func_80A76EC4_jp(Actor* thisx, Game_Play* gamePlay);
-void aYAT_actor_init(Actor* thisx, Game_Play* gamePlay);
-void aYAT_actor_draw(Actor* thisx, Game_Play* gamePlay);
+void aYAT_actor_ct(Actor* thisx, Game_Play* game_play);
+void func_80A76EC4_jp(Actor* thisx, Game_Play* game_play);
+void aYAT_actor_init(Actor* thisx, Game_Play* game_play);
+void aYAT_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Yatai_Profile = {

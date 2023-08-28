@@ -3,10 +3,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void func_80A05D50_jp(Actor* thisx, Game_Play* gamePlay);
-void func_80A05F88_jp(Actor* thisx, Game_Play* gamePlay);
-void func_80A06DF0_jp(Actor* thisx, Game_Play* gamePlay);
-void func_80A071A0_jp(Actor* thisx, Game_Play* gamePlay);
+void func_80A05D50_jp(Actor* thisx, Game_Play* game_play);
+void func_80A05F88_jp(Actor* thisx, Game_Play* game_play);
+void func_80A06DF0_jp(Actor* thisx, Game_Play* game_play);
+void func_80A071A0_jp(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile MyHouse_Profile = {

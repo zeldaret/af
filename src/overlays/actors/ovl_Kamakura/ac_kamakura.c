@@ -3,10 +3,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aKKR_actor_ct(Actor* thisx, Game_Play* gamePlay);
-void aKKR_actor_dt(Actor* thisx, Game_Play* gamePlay);
-void aKKR_actor_init(Actor* thisx, Game_Play* gamePlay);
-void aKKR_actor_draw(Actor* thisx, Game_Play* gamePlay);
+void aKKR_actor_ct(Actor* thisx, Game_Play* game_play);
+void aKKR_actor_dt(Actor* thisx, Game_Play* game_play);
+void aKKR_actor_init(Actor* thisx, Game_Play* game_play);
+void aKKR_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Kamakura_Profile = {

@@ -3,10 +3,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aPBOX_actor_ct(Actor* thisx, Game_Play* gamePlay);
-void func_80A078A4_jp(Actor* thisx, Game_Play* gamePlay);
-void aPBOX_actor_init(Actor* thisx, Game_Play* gamePlay);
-void aPBOX_actor_draw(Actor* thisx, Game_Play* gamePlay);
+void aPBOX_actor_ct(Actor* thisx, Game_Play* game_play);
+void func_80A078A4_jp(Actor* thisx, Game_Play* game_play);
+void aPBOX_actor_init(Actor* thisx, Game_Play* game_play);
+void aPBOX_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Police_Box_Profile = {

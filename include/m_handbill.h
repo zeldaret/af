@@ -25,13 +25,13 @@ typedef struct Handbill_Unk_Struct {
     /* 0x2C */ s32 unk_2C;
 } Handbill_Unk_Struct; // size = 0x30
 
-void Balloon_init(struct Game_Play* gamePlay);
-void Balloon_move(struct Game_Play* gamePlay);
+void Balloon_init(struct Game_Play* game_play);
+void Balloon_move(struct Game_Play* game_play);
 // void func_80092B7C_jp();
 // void func_80092B8C_jp();
 // void func_80092BA0_jp();
 // void func_80092BE8_jp();
-void mHsRm_GetHuusuiRoom(struct Game* gamePlay, s32 playerNo);
+void mHsRm_GetHuusuiRoom(struct Game* game_play, s32 playerNo);
 void func_80092D10_jp(s32 arg0, u8* name, s32 arg2);
 // void func_80092E14_jp();
 // void func_80092E80_jp();

@@ -334,11 +334,11 @@ LightsN* new_LightsN(GraphicsContext* gfxCtx, u8 r, u8 g, u8 b) {
     return lights;
 }
 
-void Light_list_point_draw(Game_Play* gamePlay) {
-    LightNode* lightNode = gamePlay->glight.list;
+void Light_list_point_draw(Game_Play* game_play) {
+    LightNode* lightNode = game_play->glight.list;
     Gfx* gfx;
 
-    OPEN_DISPS(gamePlay->state.gfxCtx);
+    OPEN_DISPS(game_play->state.gfxCtx);
     gfx = func_800BD7C0_jp(POLY_XLU_DISP);
 
     gDPSetAlphaDither(gfx++, G_AD_NOISE);
@@ -357,7 +357,7 @@ void Light_list_point_draw(Game_Play* gamePlay) {
             Matrix_translate(lightParams->point.x, lightParams->point.y, lightParams->point.z, 0);
             Matrix_scale(rad, rad, rad, 1);
 
-            gSPMatrix(gfx++, _Matrix_to_Mtx_new(gamePlay->state.gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+            gSPMatrix(gfx++, _Matrix_to_Mtx_new(game_play->state.gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             gSPDisplayList(gfx++, D_400AA40);
         }
         lightNode = lightNode->next;
@@ -365,5 +365,5 @@ void Light_list_point_draw(Game_Play* gamePlay) {
 
     POLY_XLU_DISP = gfx;
 
-    CLOSE_DISPS(gamePlay->state.gfxCtx);
+    CLOSE_DISPS(game_play->state.gfxCtx);
 }

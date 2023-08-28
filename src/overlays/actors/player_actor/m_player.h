@@ -40,9 +40,9 @@ typedef struct Player {
     /* 0x12C4 */ UNK_TYPE1 unk_12C4[0x14];
 } Player; // size = 0x12D8
 
-void Player_actor_ct(Actor* thisx, struct Game_Play* gamePlay);
-void Player_actor_dt(Actor* thisx, struct Game_Play* gamePlay);
-void Player_actor_move(Actor* thisx, struct Game_Play* gamePlay);
-void Player_actor_draw(Actor* thisx, struct Game_Play* gamePlay);
+void Player_actor_ct(Actor* thisx, struct Game_Play* game_play);
+void Player_actor_dt(Actor* thisx, struct Game_Play* game_play);
+void Player_actor_move(Actor* thisx, struct Game_Play* game_play);
+void Player_actor_draw(Actor* thisx, struct Game_Play* game_play);
 
 #endif

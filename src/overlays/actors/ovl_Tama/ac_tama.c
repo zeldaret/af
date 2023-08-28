@@ -3,10 +3,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aTAM_actor_ct(Actor* thisx, Game_Play* gamePlay);
-void func_80A8EF30_jp(Actor* thisx, Game_Play* gamePlay);
-void aTAM_actor_init(Actor* thisx, Game_Play* gamePlay);
-void aTAM_actor_draw(Actor* thisx, Game_Play* gamePlay);
+void aTAM_actor_ct(Actor* thisx, Game_Play* game_play);
+void func_80A8EF30_jp(Actor* thisx, Game_Play* game_play);
+void aTAM_actor_init(Actor* thisx, Game_Play* game_play);
+void aTAM_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Tama_Profile = {

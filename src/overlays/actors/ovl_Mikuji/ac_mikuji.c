@@ -3,10 +3,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void func_805b414c(Actor* thisx, Game_Play* gamePlay);
-void func_80A82638_jp(Actor* thisx, Game_Play* gamePlay);
-void func_805b437c(Actor* thisx, Game_Play* gamePlay);
-void func_805b43f4(Actor* thisx, Game_Play* gamePlay);
+void func_805b414c(Actor* thisx, Game_Play* game_play);
+void func_80A82638_jp(Actor* thisx, Game_Play* game_play);
+void func_805b437c(Actor* thisx, Game_Play* game_play);
+void func_805b43f4(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Mikuji_Profile = {

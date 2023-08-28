@@ -40,8 +40,8 @@ void func_80056380_jp(void* arg0, void* arg1 UNUSED) {
     FaultDrawer_Printf("ACTOR NAME %08x:%s", actor, name);
 }
 
-void projection_pos_set(Game_Play* gamePlay, Vec3f* worldPos, Vec3f* projectedPos, f32* invW) {
-    Skin_Matrix_PrjMulVector(&gamePlay->viewProjectionMtxF, worldPos, projectedPos, invW);
+void projection_pos_set(Game_Play* game_play, Vec3f* worldPos, Vec3f* projectedPos, f32* invW) {
+    Skin_Matrix_PrjMulVector(&game_play->viewProjectionMtxF, worldPos, projectedPos, invW);
 
     *invW = (*invW < 1.0f) ? 1.0f : (1.0f / *invW);
 }
@@ -80,34 +80,34 @@ void Actor_position_moveF(Actor* actor) {
     Actor_position_move(actor);
 }
 
-s32 Actor_player_look_direction_check(Actor* actor, s16 maxAngleDiff, Game_Play* gamePlay) {
-    s16 yawDiff = BINANG_ROT180(actor->yawTowardsPlayer) - get_player_actor_withoutCheck(gamePlay)->actor.shape.rot.y;
+s32 Actor_player_look_direction_check(Actor* actor, s16 maxAngleDiff, Game_Play* game_play) {
+    s16 yawDiff = BINANG_ROT180(actor->yawTowardsPlayer) - get_player_actor_withoutCheck(game_play)->actor.shape.rot.y;
 
     return ABS(yawDiff) < maxAngleDiff;
 }
 
-void Actor_display_position_set(Game_Play* gamePlay, Actor* actor, s16* x, s16* y) {
+void Actor_display_position_set(Game_Play* game_play, Actor* actor, s16* x, s16* y) {
     Vec3f projectedPos;
     f32 invW;
 
-    projection_pos_set(gamePlay, &actor->world.pos, &projectedPos, &invW);
+    projection_pos_set(game_play, &actor->world.pos, &projectedPos, &invW);
 
     // Explicit cast to avoid implicit cast from f32 to s16
     *x = (s32)PROJECTED_TO_SCREEN_X(projectedPos, invW);
     *y = (s32)PROJECTED_TO_SCREEN_Y(projectedPos, invW);
 }
 
-s32 Actor_data_bank_dma_end_check(Actor* actor, Game_Play* gamePlay) {
+s32 Actor_data_bank_dma_end_check(Actor* actor, Game_Play* game_play) {
     s32 var_v1;
 
     switch (ACTOR_FGNAME_GET_F000(actor->fgName)) {
         case FGNAME_F000_D:
         case FGNAME_F000_E:
-            var_v1 = gCommonData.unk_1004C->unk_F4(gamePlay->unk_0110, actor);
+            var_v1 = gCommonData.unk_1004C->unk_F4(game_play->unk_0110, actor);
             break;
 
         default:
-            var_v1 = gamePlay->unk_0110[actor->unk_026].unk_00 > 0;
+            var_v1 = game_play->unk_0110[actor->unk_026].unk_00 > 0;
             break;
     }
 
@@ -145,14 +145,14 @@ void Actor_delete(Actor* actor) {
     }
 }
 
-void Actor_ct(Actor* actor, Game_Play* gamePlay) {
+void Actor_ct(Actor* actor, Game_Play* game_play) {
     s32 pad[2] UNUSED;
     Game_Play_unk_0110* temp;
     Npc* npc;
     CommonData_unk_1004C_unk_14_arg0 sp34;
     Game_Play_unk_0110* temp_a0;
 
-    temp_a0 = gamePlay->unk_0110;
+    temp_a0 = game_play->unk_0110;
 
     temp = temp_a0;
     temp += actor->unk_026;
@@ -192,25 +192,25 @@ void Actor_ct(Actor* actor, Game_Play* gamePlay) {
     CollisionCheck_Status_ct(&actor->colStatus);
     Shape_Info_init(actor, 0.0f, NULL, 0.0f, 0.0f);
 
-    if (Actor_data_bank_dma_end_check(actor, gamePlay) == 1) {
+    if (Actor_data_bank_dma_end_check(actor, game_play) == 1) {
         gSegments[6] = (uintptr_t)OS_K0_TO_PHYSICAL(temp_a0[actor->unk_026].segment);
-        actor->ct(actor, gamePlay);
+        actor->ct(actor, game_play);
         actor->ct = NULL;
     }
 }
 
 #ifdef NON_MATCHING
-void Actor_dt(Actor* actor, Game_Play* gamePlay) {
+void Actor_dt(Actor* actor, Game_Play* game_play) {
     Game_Play_unk_0110* temp_v0_6;
     s32 new_var;
 
     if (actor->save != NULL) {
-        actor->save(actor, gamePlay);
+        actor->save(actor, game_play);
         actor->save = NULL;
     }
 
     if (actor->dt != NULL) {
-        actor->dt(actor, gamePlay);
+        actor->dt(actor, game_play);
         actor->dt = NULL;
     }
 
@@ -222,7 +222,7 @@ void Actor_dt(Actor* actor, Game_Play* gamePlay) {
         actor->parent->child = NULL;
     }
 
-    temp_v0_6 = gamePlay->unk_0110;
+    temp_v0_6 = game_play->unk_0110;
     if (0) {}
 
     switch ((actor->fgName & 0xF000) >> 0xC) {
@@ -232,7 +232,7 @@ void Actor_dt(Actor* actor, Game_Play* gamePlay) {
             break;
 
         default:
-            new_var = gamePlay->unk_190C;
+            new_var = game_play->unk_190C;
 
             if (actor->unk_026 >= new_var) {
                 temp_v0_6 = &temp_v0_6[(void)0, actor->unk_026];
@@ -245,11 +245,11 @@ void Actor_dt(Actor* actor, Game_Play* gamePlay) {
     }
 }
 #else
-void Actor_dt(Actor* actor, struct Game_Play* gamePlay);
+void Actor_dt(Actor* actor, struct Game_Play* game_play);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_dt.s")
 #endif
 
-void Actor_draw(Game_Play* gamePlay, Actor* actor) {
+void Actor_draw(Game_Play* game_play, Actor* actor) {
     FaultClient faultClient;
     LightsN* light;
 
@@ -261,18 +261,18 @@ void Actor_draw(Game_Play* gamePlay, Actor* actor) {
     if (1) {}
     if (1) {}
 
-    OPEN_DISPS(gamePlay->state.gfxCtx);
+    OPEN_DISPS(game_play->state.gfxCtx);
 
-    light = Global_light_read(&gamePlay->glight, gamePlay->state.gfxCtx);
-    LightsN_list_check(light, gamePlay->glight.list, (actor->flags & ACTOR_FLAG_400000) ? NULL : &actor->world.pos);
-    LightsN_disp(light, gamePlay->state.gfxCtx);
+    light = Global_light_read(&game_play->glight, game_play->state.gfxCtx);
+    LightsN_list_check(light, game_play->glight.list, (actor->flags & ACTOR_FLAG_400000) ? NULL : &actor->world.pos);
+    LightsN_disp(light, game_play->state.gfxCtx);
 
     Matrix_softcv3_load(actor->world.pos.x, actor->world.pos.y + actor->shape.unk_08 * actor->scale.y,
                         actor->world.pos.z, &actor->shape.rot);
     Matrix_scale(actor->scale.x, actor->scale.y, actor->scale.z, MTXMODE_APPLY);
 
     {
-        void* segment = gamePlay->unk_0110[(void)0, actor->unk_026].segment;
+        void* segment = game_play->unk_0110[(void)0, actor->unk_026].segment;
 
         gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(segment);
 
@@ -281,13 +281,13 @@ void Actor_draw(Game_Play* gamePlay, Actor* actor) {
         gSPSegment(UNK_2C0_DISP++, 0x06, segment);
     }
 
-    actor->draw(actor, gamePlay);
+    actor->draw(actor, game_play);
 
     if (actor->shape.unk_0C != NULL) {
-        actor->shape.unk_0C(actor, light, gamePlay);
+        actor->shape.unk_0C(actor, light, game_play);
     }
 
-    CLOSE_DISPS(gamePlay->state.gfxCtx);
+    CLOSE_DISPS(game_play->state.gfxCtx);
 
     Fault_RemoveClient(&faultClient);
 }
@@ -328,7 +328,7 @@ void Actor_cull_check(Actor* actor) {
     }
 }
 
-void Actor_delete_check(Actor* actor, Game_Play* gamePlay) {
+void Actor_delete_check(Actor* actor, Game_Play* game_play) {
     if ((actor->flags & (ACTOR_FLAG_40 | ACTOR_FLAG_20 | ACTOR_FLAG_10)) || (actor->fgName == 0)) {
         return;
     }
@@ -337,7 +337,7 @@ void Actor_delete_check(Actor* actor, Game_Play* gamePlay) {
         return;
     }
 
-    if ((actor->unk_008 == gamePlay->unk_00E4) && (actor->unk_009 == gamePlay->unk_00E5)) {
+    if ((actor->unk_008 == game_play->unk_00E4) && (actor->unk_009 == game_play->unk_00E5)) {
         return;
     }
 
@@ -345,7 +345,7 @@ void Actor_delete_check(Actor* actor, Game_Play* gamePlay) {
 }
 
 void Actor_info_ct(Game_Play* game_play2, ActorInfo* actorInfo, ActorEntry* actorEntry) {
-    Game_Play* gamePlay = game_play2;
+    Game_Play* game_play = game_play2;
     Actor* temp_v0;
     ActorOverlay* var_v0;
     ActorEntry* var_s0_2;
@@ -355,8 +355,8 @@ void Actor_info_ct(Game_Play* game_play2, ActorInfo* actorInfo, ActorEntry* acto
     bzero(actorInfo, sizeof(ActorInfo));
 
     actor_dlftbls_init();
-    Matrix_copy_MtxF(&gamePlay->billboardMtxF, &MtxF_clear);
-    Matrix_copy_MtxF(&gamePlay->viewProjectionMtxF, &MtxF_clear);
+    Matrix_copy_MtxF(&game_play->billboardMtxF, &MtxF_clear);
+    Matrix_copy_MtxF(&game_play->viewProjectionMtxF, &MtxF_clear);
 
     var_v0 = actor_dlftbls;
     for (var_s1 = 0; var_s1 < 0xC9; var_s1++) {
@@ -370,59 +370,59 @@ void Actor_info_ct(Game_Play* game_play2, ActorInfo* actorInfo, ActorEntry* acto
     }
 
     if (gCommonData.unk_107B6 != 0xC9) {
-        Actor_info_make_actor(actorInfo, gamePlay, gCommonData.unk_107B6, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1,
+        Actor_info_make_actor(actorInfo, game_play, gCommonData.unk_107B6, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1,
                               -1, -1);
     }
     gCommonData.unk_107B6 = 0xC9;
 
 label:
 
-    temp_v0 = Actor_info_make_actor(actorInfo, gamePlay, actorEntry->id, actorEntry->pos.x, actorEntry->pos.y,
+    temp_v0 = Actor_info_make_actor(actorInfo, game_play, actorEntry->id, actorEntry->pos.x, actorEntry->pos.y,
                                     actorEntry->pos.z, actorEntry->rot.x, actorEntry->rot.y, actorEntry->rot.z, -1, -1,
                                     -1, 0, actorEntry->params, -1, -1);
     if (temp_v0 != NULL) {
         temp_v0->world.pos.y = mCoBG_GetBgY_OnlyCenter_FromWpos2(temp_v0->world.pos, 0.0f);
-        mFI_SetBearActor(gamePlay, temp_v0->world.pos, 0);
+        mFI_SetBearActor(game_play, temp_v0->world.pos, 0);
     }
 
     if (gCommonData.unk_1014E != 0) {
-        Actor_info_make_actor(actorInfo, gamePlay, gCommonData.unk_1014E, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1,
+        Actor_info_make_actor(actorInfo, game_play, gCommonData.unk_1014E, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1,
                               -1, -1);
     }
 
-    if (gamePlay->unk_1EA6 != 0) {
-        var_s0 = gamePlay->unk_1EB0;
+    if (game_play->unk_1EA6 != 0) {
+        var_s0 = game_play->unk_1EB0;
 
-        for (var_s1 = 0; var_s1 < gamePlay->unk_1EA6; var_s1++) {
-            Actor_info_make_actor(&gamePlay->actorInfo, gamePlay, *var_s0, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0, -1,
-                                  -1, -1);
+        for (var_s1 = 0; var_s1 < game_play->unk_1EA6; var_s1++) {
+            Actor_info_make_actor(&game_play->actorInfo, game_play, *var_s0, 0.0f, 0.0f, 0.0f, 0, 0, 0, -1, -1, -1, 0,
+                                  -1, -1, -1);
             var_s0 += 1;
         }
-        gamePlay->unk_1EA6 = 0;
+        game_play->unk_1EA6 = 0;
     }
 
-    mSc_regist_initial_exchange_bank(gamePlay);
+    mSc_regist_initial_exchange_bank(game_play);
 
-    if (gamePlay->unk_1EA5 != 0) {
-        var_s0_2 = gamePlay->unk_1EAC;
-        for (var_s1 = 0; var_s1 < gamePlay->unk_1EA5; var_s1++) {
-            Actor_info_make_actor(&gamePlay->actorInfo, gamePlay, var_s0_2->id, var_s0_2->pos.x, var_s0_2->pos.y,
+    if (game_play->unk_1EA5 != 0) {
+        var_s0_2 = game_play->unk_1EAC;
+        for (var_s1 = 0; var_s1 < game_play->unk_1EA5; var_s1++) {
+            Actor_info_make_actor(&game_play->actorInfo, game_play, var_s0_2->id, var_s0_2->pos.x, var_s0_2->pos.y,
                                   var_s0_2->pos.z, var_s0_2->rot.x, var_s0_2->rot.y, var_s0_2->rot.z, -1, -1, -1, 0,
                                   var_s0_2->params, -1, -1);
             var_s0_2 += 1;
         }
-        gamePlay->unk_1EA5 = 0;
+        game_play->unk_1EA5 = 0;
     }
 }
 
-void Actor_info_dt(ActorInfo* actorInfo, Game_Play* gamePlay) {
+void Actor_info_dt(ActorInfo* actorInfo, Game_Play* game_play) {
     s32 i;
 
     for (i = 0; i < ARRAY_COUNT(actorInfo->actorLists); i++) {
         Actor* actor = actorInfo->actorLists[i].head;
 
         while (actor != NULL) {
-            Actor_info_delete(actorInfo, actor, gamePlay);
+            Actor_info_delete(actorInfo, actor, game_play);
             actor = actorInfo->actorLists[i].head;
         }
     }
@@ -430,12 +430,12 @@ void Actor_info_dt(ActorInfo* actorInfo, Game_Play* gamePlay) {
     actor_dlftbls_cleanup();
 }
 
-void Actor_info_call_actor(Game_Play* gamePlay, ActorInfo* actorInfo) {
+void Actor_info_call_actor(Game_Play* game_play, ActorInfo* actorInfo) {
     s32 pad[1] UNUSED;
     ActorPart part;
     Player* player;
 
-    player = get_player_actor_withoutCheck(gamePlay);
+    player = get_player_actor_withoutCheck(game_play);
     func_8008E5F4_jp(player->actor.world.pos);
 
     for (part = 0; part < ACTOR_PART_MAX; part++) {
@@ -443,41 +443,41 @@ void Actor_info_call_actor(Game_Play* gamePlay, ActorInfo* actorInfo) {
         Actor* next;
 
         for (actor = actorInfo->actorLists[part].head; actor != NULL; actor = next) {
-            gamePlay->state.unk_9C = actor->name;
-            gamePlay->state.unk_9D = 0x97;
+            game_play->state.unk_9C = actor->name;
+            game_play->state.unk_9D = 0x97;
 
             if (actor->world.pos.y < -25000.0f) {
                 actor->world.pos.y = -25000.0f;
             }
 
             if (actor->ct != NULL) {
-                if (Actor_data_bank_dma_end_check(actor, gamePlay) == 1) {
-                    gSegments[6] = (uintptr_t)OS_K0_TO_PHYSICAL(gamePlay->unk_0110[actor->unk_026].segment);
+                if (Actor_data_bank_dma_end_check(actor, game_play) == 1) {
+                    gSegments[6] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_0110[actor->unk_026].segment);
 
-                    gamePlay->state.unk_9D = 0x98;
-                    actor->ct(actor, gamePlay);
-                    gamePlay->state.unk_9D = 0x99;
+                    game_play->state.unk_9D = 0x98;
+                    actor->ct(actor, game_play);
+                    game_play->state.unk_9D = 0x99;
                     actor->ct = NULL;
                 }
                 next = actor->next;
-            } else if (Actor_data_bank_dma_end_check(actor, gamePlay) == 0) {
-                gamePlay->state.unk_9D = 0x9A;
+            } else if (Actor_data_bank_dma_end_check(actor, game_play) == 0) {
+                game_play->state.unk_9D = 0x9A;
                 Actor_delete(actor);
-                gamePlay->state.unk_9D = 0x9B;
+                game_play->state.unk_9D = 0x9B;
                 next = actor->next;
             } else if (actor->update == NULL) {
                 if (!actor->isDrawn) {
-                    gamePlay->state.unk_9D = 0x9C;
-                    next = Actor_info_delete(&gamePlay->actorInfo, actor, gamePlay);
-                    gamePlay->state.unk_9D = 0x9D;
+                    game_play->state.unk_9D = 0x9C;
+                    next = Actor_info_delete(&game_play->actorInfo, actor, game_play);
+                    game_play->state.unk_9D = 0x9D;
                 } else {
-                    gamePlay->state.unk_9D = 0x9E;
-                    Actor_dt(actor, gamePlay);
-                    gamePlay->state.unk_9D = 0x9F;
+                    game_play->state.unk_9D = 0x9E;
+                    Actor_dt(actor, game_play);
+                    game_play->state.unk_9D = 0x9F;
                     next = actor->next;
                 }
             } else {
-                gamePlay->state.unk_9D = 0xA0;
+                game_play->state.unk_9D = 0xA0;
                 xyz_t_move(&actor->prevPos, &actor->world.pos);
 
                 actor->xzDistToPlayer = search_position_distanceXZ(&actor->world.pos, &player->actor.world.pos);
@@ -488,10 +488,10 @@ void Actor_info_call_actor(Game_Play* gamePlay, ActorInfo* actorInfo) {
 
                 actor->flags &= ~ACTOR_FLAG_1000000;
                 if ((actor->flags & (ACTOR_FLAG_40 | ACTOR_FLAG_10)) || (actor->part == ACTOR_PART_NPC)) {
-                    gSegments[6] = (uintptr_t)OS_K0_TO_PHYSICAL(gamePlay->unk_0110[actor->unk_026].segment);
-                    gamePlay->state.unk_9D = 0xA1;
-                    actor->update(actor, gamePlay);
-                    gamePlay->state.unk_9D = 0xA2;
+                    gSegments[6] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_0110[actor->unk_026].segment);
+                    game_play->state.unk_9D = 0xA1;
+                    actor->update(actor, game_play);
+                    game_play->state.unk_9D = 0xA2;
                 }
 
                 CollisionCheck_Status_Clear(&actor->colStatus);
@@ -500,11 +500,11 @@ void Actor_info_call_actor(Game_Play* gamePlay, ActorInfo* actorInfo) {
         }
     }
 
-    gamePlay->state.unk_9D = 0xA3;
+    game_play->state.unk_9D = 0xA3;
 }
 
-void Actor_info_draw_actor(Game_Play* gamePlay, ActorInfo* actorInfo) {
-    Game_Play_unk_2208 temp_s4 = gamePlay->unk_2208;
+void Actor_info_draw_actor(Game_Play* game_play, ActorInfo* actorInfo) {
+    Game_Play_unk_2208 temp_s4 = game_play->unk_2208;
     ActorListEntry* actorEntry = actorInfo->actorLists;
     ActorPart part = 0;
 
@@ -516,11 +516,11 @@ void Actor_info_draw_actor(Game_Play* gamePlay, ActorInfo* actorInfo) {
         for (actor = actorEntry->head; actor != NULL; actor = actor->next) {
             s32 temp;
 
-            Skin_Matrix_PrjMulVector(&gamePlay->viewProjectionMtxF, &actor->world.pos, &actor->projectedPos,
+            Skin_Matrix_PrjMulVector(&game_play->viewProjectionMtxF, &actor->world.pos, &actor->projectedPos,
                                      &actor->projectedW);
             Actor_cull_check(actor);
 
-            temp = temp_s4(actor, gamePlay);
+            temp = temp_s4(actor, game_play);
             actor->isDrawn = false;
 
             if (temp != 0) {
@@ -533,17 +533,17 @@ void Actor_info_draw_actor(Game_Play* gamePlay, ActorInfo* actorInfo) {
 
             if (actor->flags & (ACTOR_FLAG_40 | ACTOR_FLAG_20)) {
                 if (!(actor->flags & ACTOR_FLAG_80) && (actor->unk_148 == 0) && (actor->unk_149 == 0)) {
-                    Actor_draw(gamePlay, actor);
+                    Actor_draw(game_play, actor);
                     actor->isDrawn = true;
                 }
             } else {
-                Actor_delete_check(actor, gamePlay);
+                Actor_delete_check(actor, game_play);
             }
         }
     }
 
     if (debug_mode->r[0x380] == 0) {
-        Light_list_point_draw(gamePlay);
+        Light_list_point_draw(game_play);
     }
 }
 
@@ -673,7 +673,7 @@ s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const 
 }
 
 // this function may be Actor_data_bank_regist_check_npc
-s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile UNUSED, ActorOverlay* overlayEntry, Game_Play* gamePlay,
+s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile UNUSED, ActorOverlay* overlayEntry, Game_Play* game_play,
                      u16 fgName) {
     s32 pad UNUSED;
     s16 sp92;
@@ -692,8 +692,8 @@ s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile UNUSED, ActorOverlay* over
         sp90 = sp24.unk_02;
     }
 
-    *arg0 = mSc_bank_regist_check(gamePlay->unk_0110, sp92);
-    temp_v0 = mSc_bank_regist_check(gamePlay->unk_0110, sp90);
+    *arg0 = mSc_bank_regist_check(game_play->unk_0110, sp92);
+    temp_v0 = mSc_bank_regist_check(game_play->unk_0110, sp90);
 
     if ((*arg0 < 0) || (temp_v0 < 0)) {
         if (*arg0 >= 0) {
@@ -702,21 +702,21 @@ s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile UNUSED, ActorOverlay* over
         if (temp_v0 >= 0) {
             sp90 = 0;
         }
-        gCommonData.unk_1004C->unk_EC(gamePlay->unk_0110, sp92, sp90);
+        gCommonData.unk_1004C->unk_EC(game_play->unk_0110, sp92, sp90);
         actor_free_check(overlayEntry, fgName);
         ret = 0;
     }
     return ret;
 }
 
-s32 func_80057B70_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, Game_Play* gamePlay, u16 fgName) {
+s32 func_80057B70_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, Game_Play* game_play, u16 fgName) {
     s32 pad UNUSED;
     s32 ret = 1;
 
-    *arg0 = mSc_bank_regist_check(gamePlay->unk_0110, profile->objectId);
+    *arg0 = mSc_bank_regist_check(game_play->unk_0110, profile->objectId);
 
     if (*arg0 == -1) {
-        func_800C6144_jp(gamePlay->unk_0110, profile->objectId);
+        func_800C6144_jp(game_play->unk_0110, profile->objectId);
         actor_free_check(overlayEntry, fgName);
         ret = 0;
     }
@@ -724,15 +724,15 @@ s32 func_80057B70_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntr
     return ret;
 }
 
-s32 Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, Game_Play* gamePlay,
+s32 Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntry, Game_Play* game_play,
                                  u16 fgName) {
     s32 var_v1 = 1;
 
     if (*arg0 == -1) {
         if (profile->part == ACTOR_PART_NPC) {
-            var_v1 = func_80057A8C_jp(arg0, profile, overlayEntry, gamePlay, fgName);
+            var_v1 = func_80057A8C_jp(arg0, profile, overlayEntry, game_play, fgName);
         } else {
-            var_v1 = func_80057B70_jp(arg0, profile, overlayEntry, gamePlay, fgName);
+            var_v1 = func_80057B70_jp(arg0, profile, overlayEntry, game_play, fgName);
         }
     }
     return var_v1;
@@ -769,7 +769,7 @@ s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay
     return 1;
 }
 
-void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* overlayEntry, Game_Play* gamePlay,
+void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* overlayEntry, Game_Play* game_play,
                             s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 argB, s8 argC, s16 argD,
                             u16 fgName, s16 params) {
     mem_clear(actor, profile->instanceSize, 0);
@@ -789,7 +789,7 @@ void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* o
 
     actor->params = params;
 
-    actor->unk_004 = gamePlay->unk_00E0;
+    actor->unk_004 = game_play->unk_00E0;
 
     actor->home.pos.x = x;
     actor->home.pos.y = y;
@@ -807,7 +807,7 @@ void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* o
 extern const struct_801161E8_jp RO_801161E8_jp;
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/RO_801161E8_jp.s")
 
-Actor* Actor_info_make_actor(ActorInfo* actorInfo, Game_Play* gamePlay, s16 actorId, f32 x, f32 y, f32 z, s16 rotX,
+Actor* Actor_info_make_actor(ActorInfo* actorInfo, Game_Play* game_play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX,
                              s16 rotY, s16 rotZ, s8 arg9, s8 argA, s16 argB, u16 fgName, s16 params, s8 argE,
                              s32 argF) {
     u16* new_var = &fgName;
@@ -823,7 +823,7 @@ Actor* Actor_info_make_actor(ActorInfo* actorInfo, Game_Play* gamePlay, s16 acto
     if (func_80057940_jp(&profile, temp_s0, &RO_801161E8_jp, size, *new_var) == 0) {
         return NULL;
     }
-    if (Actor_data_bank_regist_check(&argF, profile, temp_s0, gamePlay, fgName) == 0) {
+    if (Actor_data_bank_regist_check(&argF, profile, temp_s0, game_play, fgName) == 0) {
         return NULL;
     }
     if (Actor_malloc_actor_class(&sp68, profile, temp_s0, &RO_801161E8_jp, fgName) == 0) {
@@ -831,7 +831,7 @@ Actor* Actor_info_make_actor(ActorInfo* actorInfo, Game_Play* gamePlay, s16 acto
     }
 
     temp_s0->numLoaded++;
-    Actor_init_actor_class(sp68, profile, temp_s0, gamePlay, argF, x, y, z, rotX, rotY, rotZ, arg9, argA, argB, fgName,
+    Actor_init_actor_class(sp68, profile, temp_s0, game_play, argF, x, y, z, rotX, rotY, rotZ, arg9, argA, argB, fgName,
                            params);
 
     Actor_info_part_new(actorInfo, sp68, profile->part);
@@ -842,16 +842,16 @@ Actor* Actor_info_make_actor(ActorInfo* actorInfo, Game_Play* gamePlay, s16 acto
         uintptr_t segmentTemp;
 
         segmentTemp = gSegments[6];
-        Actor_ct(sp68, gamePlay);
+        Actor_ct(sp68, game_play);
         gSegments[6] = segmentTemp;
     }
 
     return sp68;
 }
 
-Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, Game_Play* gamePlay, s16 actorId, f32 x, f32 y,
+Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, Game_Play* game_play, s16 actorId, f32 x, f32 y,
                                    f32 z, s16 rotX, s16 rotY, s16 rotZ, s16 argA, u16 fgName, s16 params, s32 argD) {
-    Actor* temp_v0 = Actor_info_make_actor(actorInfo, gamePlay, actorId, x, y, z, rotX, rotY, rotZ, -1, -1, argA,
+    Actor* temp_v0 = Actor_info_make_actor(actorInfo, game_play, actorId, x, y, z, rotX, rotY, rotZ, -1, -1, argA,
                                            fgName, params, -1, argD);
 
     if (temp_v0 != NULL) {
@@ -862,7 +862,7 @@ Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, Game_Play*
     return temp_v0;
 }
 
-void restore_fgdata(Actor* actor, Game_Play* gamePlay UNUSED) {
+void restore_fgdata(Actor* actor, Game_Play* game_play UNUSED) {
     Vec3f sp34;
 
     if ((actor->fgName == 0) || (actor->unk_00A != -1)) {
@@ -898,16 +898,16 @@ s32 restore_flag[ACTOR_PART_MAX] = {
     0, // ACTOR_PART_7
 };
 
-void restore_fgdata_one(Actor* actor, Game_Play* gamePlay) {
+void restore_fgdata_one(Actor* actor, Game_Play* game_play) {
     if (restore_flag[actor->part] == 1) {
-        restore_fgdata(actor, gamePlay);
+        restore_fgdata(actor, game_play);
     } else if (actor->unk_003 == 1) {
-        restore_fgdata(actor, gamePlay);
+        restore_fgdata(actor, game_play);
     }
 }
 
-void restore_fgdata_all(Game_Play* gamePlay) {
-    ActorInfo* actorInfo = &gamePlay->actorInfo;
+void restore_fgdata_all(Game_Play* game_play) {
+    ActorInfo* actorInfo = &game_play->actorInfo;
     ActorPart part;
 
     for (part = 0; part < ACTOR_PART_MAX; part++) {
@@ -915,20 +915,20 @@ void restore_fgdata_all(Game_Play* gamePlay) {
 
         if (restore_flag[part] == 1) {
             for (actor = actorInfo->actorLists[part].head; actor != NULL; actor = actor->next) {
-                restore_fgdata(actor, gamePlay);
+                restore_fgdata(actor, game_play);
             }
         } else {
             for (actor = actorInfo->actorLists[part].head; actor != NULL; actor = actor->next) {
                 if (actor->unk_003 == 1) {
-                    restore_fgdata(actor, gamePlay);
+                    restore_fgdata(actor, game_play);
                 }
             }
         }
     }
 }
 
-void Actor_info_save_actor(Game_Play* gamePlay) {
-    ActorInfo* actorInfo = &gamePlay->actorInfo;
+void Actor_info_save_actor(Game_Play* game_play) {
+    ActorInfo* actorInfo = &game_play->actorInfo;
     ActorPart part;
 
     for (part = 0; part < ACTOR_PART_MAX; part++) {
@@ -936,16 +936,16 @@ void Actor_info_save_actor(Game_Play* gamePlay) {
 
         for (actor = actorInfo->actorLists[part].head; actor != NULL; actor = actor->next) {
             if (actor->save != NULL) {
-                actor->save(actor, gamePlay);
+                actor->save(actor, game_play);
                 actor->save = NULL;
             }
         }
     }
 
-    restore_fgdata_all(gamePlay);
+    restore_fgdata_all(game_play);
 }
 
-Actor* Actor_info_delete(ActorInfo* actorInfo, Actor* actor, Game_Play* gamePlay) {
+Actor* Actor_info_delete(ActorInfo* actorInfo, Actor* actor, Game_Play* game_play) {
     Actor* newHead;
     s32 pad UNUSED;
     ActorOverlay* overlayEntry;
@@ -953,8 +953,8 @@ Actor* Actor_info_delete(ActorInfo* actorInfo, Actor* actor, Game_Play* gamePlay
 
     overlayEntry = actor->overlayEntry;
 
-    restore_fgdata_one(actor, gamePlay);
-    Actor_dt(actor, gamePlay);
+    restore_fgdata_one(actor, game_play);
+    Actor_dt(actor, game_play);
 
     newHead = Actor_info_part_delete(actorInfo, actor);
 
@@ -1116,29 +1116,29 @@ Hilite* HiliteReflect_light_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, Gra
     return hilite;
 }
 
-Hilite* Setpos_HiliteReflect_init(Vec3f* object, Game_Play* gamePlay) {
+Hilite* Setpos_HiliteReflect_init(Vec3f* object, Game_Play* game_play) {
     Vec3f sp24;
 
-    sp24.x = gamePlay->kankyo.unk_02;
-    sp24.y = gamePlay->kankyo.unk_03;
-    sp24.z = gamePlay->kankyo.unk_04;
-    return HiliteReflect_init(object, &gamePlay->unk_1938.unk_028, &sp24, gamePlay->state.gfxCtx);
+    sp24.x = game_play->kankyo.unk_02;
+    sp24.y = game_play->kankyo.unk_03;
+    sp24.z = game_play->kankyo.unk_04;
+    return HiliteReflect_init(object, &game_play->unk_1938.unk_028, &sp24, game_play->state.gfxCtx);
 }
 
-Hilite* Setpos_HiliteReflect_xlu_init(Vec3f* object, Game_Play* gamePlay) {
+Hilite* Setpos_HiliteReflect_xlu_init(Vec3f* object, Game_Play* game_play) {
     Vec3f sp24;
 
-    sp24.x = gamePlay->kankyo.unk_02;
-    sp24.y = gamePlay->kankyo.unk_03;
-    sp24.z = gamePlay->kankyo.unk_04;
-    return HiliteReflect_xlu_init(object, &gamePlay->unk_1938.unk_028, &sp24, gamePlay->state.gfxCtx);
+    sp24.x = game_play->kankyo.unk_02;
+    sp24.y = game_play->kankyo.unk_03;
+    sp24.z = game_play->kankyo.unk_04;
+    return HiliteReflect_xlu_init(object, &game_play->unk_1938.unk_028, &sp24, game_play->state.gfxCtx);
 }
 
-Hilite* Setpos_HiliteReflect_light_init(Vec3f* object, Game_Play* gamePlay) {
+Hilite* Setpos_HiliteReflect_light_init(Vec3f* object, Game_Play* game_play) {
     Vec3f sp24;
 
-    sp24.x = gamePlay->kankyo.unk_02;
-    sp24.y = gamePlay->kankyo.unk_03;
-    sp24.z = gamePlay->kankyo.unk_04;
-    return HiliteReflect_xlu_init(object, &gamePlay->unk_1938.unk_028, &sp24, gamePlay->state.gfxCtx);
+    sp24.x = game_play->kankyo.unk_02;
+    sp24.y = game_play->kankyo.unk_03;
+    sp24.z = game_play->kankyo.unk_04;
+    return HiliteReflect_xlu_init(object, &game_play->unk_1938.unk_028, &sp24, game_play->state.gfxCtx);
 }

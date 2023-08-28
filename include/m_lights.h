@@ -89,6 +89,6 @@ void Global_light_list_delete(Global_light* glight, LightNode* lightNode);
 LightsN* new_Lights(struct GraphicsContext* gfxCtx, u8 ambient_r, u8 ambient_g, u8 ambient_b, u8 count, u8 light_r,
                           u8 light_g, u8 light_b, s8 dir_x, s8 dir_y, s8 dir_z);
 LightsN* new_LightsN(struct GraphicsContext* gfxCtx, u8 r, u8 g, u8 b);
-void Light_list_point_draw(struct Game_Play* gamePlay);
+void Light_list_point_draw(struct Game_Play* game_play);
 
 #endif

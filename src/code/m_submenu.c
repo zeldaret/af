@@ -60,19 +60,19 @@ s32 SubmenuArea_IsPlayer(void) {
 
 #ifdef NON_MATCHING
 // regalloc
-void mSM_load_player_anime(Game_Play* gamePlay) {
+void mSM_load_player_anime(Game_Play* game_play) {
     Game_Play_unk_0110* var_s4;
     s32 var_s0;
     s32 var_s3;
     Player* temp_v0;
     void* segment;
 
-    temp_v0 = get_player_actor_withoutCheck(gamePlay);
+    temp_v0 = get_player_actor_withoutCheck(game_play);
     if (temp_v0 == NULL) {
         return;
     }
 
-    var_s4 = gamePlay->unk_0110;
+    var_s4 = game_play->unk_0110;
     var_s4 += mSc_bank_regist_check(var_s4, 9);
 
     for (var_s3 = 0; var_s3 < 2; var_s3++, var_s4++) {
@@ -98,7 +98,7 @@ void mSM_load_player_anime(Game_Play* gamePlay) {
     }
 }
 #else
-void mSM_load_player_anime(Game_Play* gamePlay);
+void mSM_load_player_anime(Game_Play* game_play);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_load_player_anime.s")
 #endif
 
@@ -249,7 +249,7 @@ uintptr_t func_800C497C_jp(uintptr_t address, UNUSED void* param) {
     return (uintptr_t)NULL;
 }
 
-void mSM_submenu_ovlptr_init(Game_Play* gamePlay) {
+void mSM_submenu_ovlptr_init(Game_Play* game_play) {
     size_t temp6 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__00792700));
     size_t temp7 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__0079A290));
     size_t temp8 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__0079E430));
@@ -293,7 +293,7 @@ void mSM_submenu_ovlptr_init(Game_Play* gamePlay) {
 //! FAKE
 dummy_label_255895:
 
-    D_8010DCE0_jp = THA_alloc16(&gamePlay->state.heap, var_s0);
+    D_8010DCE0_jp = THA_alloc16(&game_play->state.heap, var_s0);
     D_8010DCE4_jp = var_s0;
     SubmenuArea_visit = NULL;
 
@@ -362,8 +362,8 @@ void mSM_open_submenu_new2(mSM* submenu, s32 arg1, s32 arg2, s32 arg3, s32 arg4,
     submenu->unk_1C = arg5;
 }
 
-void mSM_Reset_player_btn_type1(Game_Play* gamePlay) {
-    Player* player = get_player_actor_withoutCheck(gamePlay);
+void mSM_Reset_player_btn_type1(Game_Play* game_play) {
+    Player* player = get_player_actor_withoutCheck(game_play);
 
     if (player != NULL) {
         player->unk_12B8 = 0;
@@ -371,57 +371,57 @@ void mSM_Reset_player_btn_type1(Game_Play* gamePlay) {
     }
 }
 
-void mSM_Reset_player_btn_type2(Game_Play* gamePlay) {
-    Player* player = get_player_actor_withoutCheck(gamePlay);
+void mSM_Reset_player_btn_type2(Game_Play* game_play) {
+    Player* player = get_player_actor_withoutCheck(game_play);
 
     if (player != NULL) {
         player->unk_12BC = 1;
     }
 }
 
-void mSM_submenu_ctrl(Game_Play* gamePlay) {
-    mSM* submenu = &gamePlay->submenu;
+void mSM_submenu_ctrl(Game_Play* game_play) {
+    mSM* submenu = &game_play->submenu;
 
-    if ((gamePlay->submenu.moveProcIndex != MSM_MOVE_PROC_WAIT) || (gamePlay->unk_1EE0 != 0) ||
-        (gamePlay->unk_1EE3 != 0)) {
+    if ((game_play->submenu.moveProcIndex != MSM_MOVE_PROC_WAIT) || (game_play->unk_1EE0 != 0) ||
+        (game_play->unk_1EE3 != 0)) {
         return;
     }
 
     if ((!((chkTrigger(START_BUTTON) == 0) || (gCommonData.unk_10A68 != 0)) ||
          ((((chkTrigger(R_TRIG) != 0) && (gCommonData.unk_10140 == 1)) == 1) && (gCommonData.unk_10A68 == 0))) &&
-        ((submenu->unk_E2 == 0) && (submenu->unk_E3 <= 0) && (mPlib_able_submenu_type1(gamePlay) != 0) &&
+        ((submenu->unk_E2 == 0) && (submenu->unk_E3 <= 0) && (mPlib_able_submenu_type1(game_play) != 0) &&
          (mEv_CheckFirstIntro() == 0))) {
         if (chkTrigger(START_BUTTON) != 0) {
             mSM_open_submenu(submenu, 1, 0, 0);
         } else {
             mSM_open_submenu(submenu, 5, 1, 0);
         }
-        mSM_Reset_player_btn_type2(gamePlay);
+        mSM_Reset_player_btn_type2(game_play);
     } else {
-        Player* player = get_player_actor_withoutCheck(gamePlay);
+        Player* player = get_player_actor_withoutCheck(game_play);
         UNUSED s32 pad;
 
         if ((player != NULL) && (player->unk_12B8 == 1) && (gCommonData.unk_10A68 == 0) && (submenu->unk_E2 == 0) &&
             (submenu->unk_E3 <= 0)) {
-            if (mPlib_able_submenu_type1(gamePlay) != 0) {
+            if (mPlib_able_submenu_type1(game_play) != 0) {
                 if (ABS(BINANG_ROT180(player->actor.shape.rot.y)) < 0x2000) {
                     switch (player->unk_12C0) {
                         case 0x7:
                         case 0xB:
                             mSM_open_submenu(submenu, 6, 0, 0);
-                            mSM_Reset_player_btn_type1(gamePlay);
+                            mSM_Reset_player_btn_type1(game_play);
                             break;
 
                         case 0xC:
                         case 0xD:
                             mSM_open_submenu(submenu, 5, 0, 0);
-                            mSM_Reset_player_btn_type1(gamePlay);
+                            mSM_Reset_player_btn_type1(game_play);
                             break;
 
                         case 0xE:
                         case 0xF:
                             mSM_open_submenu(submenu, 8, 0, 0);
-                            mSM_Reset_player_btn_type1(gamePlay);
+                            mSM_Reset_player_btn_type1(game_play);
                             break;
                     }
                 }
@@ -547,11 +547,11 @@ void mSM_submenu_move(mSM* submenu) {
     move_proc_616[submenu->moveProcIndex](submenu);
 }
 
-void mSM_submenu_draw(mSM* submenu, struct Game_Play* gamePlay) {
+void mSM_submenu_draw(mSM* submenu, struct Game_Play* game_play) {
     SubmenuArea* submenuOvl = &SubmenuArea_dlftbl[SUBMENU_AREA_INDEX_SUBMENU];
 
     if ((submenu->unk_00 >= 3) && (submenu->moveProcIndex == 3) && (submenuOvl == SubmenuArea_visit)) {
-        submenu->draw(submenu, gamePlay);
+        submenu->draw(submenu, game_play);
     }
 }
 

@@ -4,10 +4,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aNSO_actor_ct(Actor* thisx, Game_Play* gamePlay);
-void aNSO_actor_dt(Actor* thisx, Game_Play* gamePlay);
-void aNSO_actor_init(Actor* thisx, Game_Play* gamePlay);
-void aNSO_actor_save(Actor* thisx, Game_Play* gamePlay);
+void aNSO_actor_ct(Actor* thisx, Game_Play* game_play);
+void aNSO_actor_dt(Actor* thisx, Game_Play* game_play);
+void aNSO_actor_init(Actor* thisx, Game_Play* game_play);
+void aNSO_actor_save(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Npc_Sleep_Obaba_Profile = {

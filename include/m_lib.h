@@ -60,7 +60,7 @@ UNK_RET none_proc1(void);
 // void none_proc2();
 // void Cheap_gfx_display();
 // void Cheap_gfx_display_xlu();
-s32 _Game_play_isPause(struct Game_Play* gamePlay);
+s32 _Game_play_isPause(struct Game_Play* game_play);
 void *Lib_SegmentedToVirtual(void *ptr); //original name unknown, taken from majora's mask
 // void func_8009ADE0_jp();
 // void func_8009AE28_jp();

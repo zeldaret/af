@@ -4,10 +4,10 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aEYMS_actor_ct(Actor* thisx, Game_Play* gamePlay);
-void aEYMS_actor_dt(Actor* thisx, Game_Play* gamePlay);
-void aEYMS_actor_init(Actor* thisx, Game_Play* gamePlay);
-void aEYMS_actor_save(Actor* thisx, Game_Play* gamePlay);
+void aEYMS_actor_ct(Actor* thisx, Game_Play* game_play);
+void aEYMS_actor_dt(Actor* thisx, Game_Play* game_play);
+void aEYMS_actor_init(Actor* thisx, Game_Play* game_play);
+void aEYMS_actor_save(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Ev_Yomise_Profile = {

@@ -4,9 +4,9 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void aHNW_actor_ct(Actor* thisx, Game_Play* gamePlay);
-void aHNW_actor_dt(Actor* thisx, Game_Play* gamePlay);
-void aHNW_actor_init(Actor* thisx, Game_Play* gamePlay);
+void aHNW_actor_ct(Actor* thisx, Game_Play* game_play);
+void aHNW_actor_dt(Actor* thisx, Game_Play* game_play);
+void aHNW_actor_init(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Haniwa_Profile = {

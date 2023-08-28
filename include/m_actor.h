@@ -48,7 +48,7 @@ typedef enum FgNameF000 {
     /* 0xE */ FGNAME_F000_E
 } FgNameF000;
 
-typedef void (*ActorFunc)(struct Actor* this, struct Game_Play* gamePlay);
+typedef void (*ActorFunc)(struct Actor* this, struct Game_Play* game_play);
 
 // a.k.a. ActorInit
 typedef struct ActorProfile {
@@ -230,34 +230,34 @@ typedef struct ActorInfo {
 
 #define ACTOR_FGNAME_GET_F000(fgName) (((fgName) & 0xF000) >> 12)
 
-void projection_pos_set(struct Game_Play* gamePlay, Vec3f* worldPos, Vec3f* projectedPos, f32* invW);
+void projection_pos_set(struct Game_Play* game_play, Vec3f* worldPos, Vec3f* projectedPos, f32* invW);
 void Actor_world_to_eye(Actor* actor, f32 arg1);
 void Actor_position_move(Actor* actor);
 void Actor_position_speed_set(Actor* actor);
 void Actor_position_moveF(Actor* actor);
-s32 Actor_player_look_direction_check(Actor* actor, s16 maxAngleDiff, struct Game_Play* gamePlay);
-void Actor_display_position_set(struct Game_Play* gamePlay, Actor* actor, s16* x, s16* y);
+s32 Actor_player_look_direction_check(Actor* actor, s16 maxAngleDiff, struct Game_Play* game_play);
+void Actor_display_position_set(struct Game_Play* game_play, Actor* actor, s16* x, s16* y);
 void Shape_Info_init(Actor* actor, f32 arg1, Shape_Info_unk_0C arg2, f32 arg3, f32 arg4);
 void Actor_foot_shadow_pos_set(Actor* actor, s32 limbIndex, s32 leftFootIndex, Vec3f* leftFootPos, s32 rightFootIndex, Vec3f* rightFootPos);
 void Actor_delete(Actor* actor);
 s32 Actor_draw_actor_no_culling_check(Actor* actor);
 s32 Actor_draw_actor_no_culling_check2(Actor* actor, Vec3f* arg1, f32 arg2);
 void Actor_cull_check(Actor* actor);
-void Actor_delete_check(Actor* actor, struct Game_Play* gamePlay);
+void Actor_delete_check(Actor* actor, struct Game_Play* game_play);
 void Actor_info_ct(struct Game_Play* game_play2, ActorInfo* actorInfo, struct ActorEntry* actorEntry);
-void Actor_info_dt(ActorInfo* actorInfo, struct Game_Play* gamePlay);
-void Actor_info_call_actor(struct Game_Play* gamePlay, ActorInfo* actorInfo);
-void Actor_info_draw_actor(struct Game_Play* gamePlay, ActorInfo* actorInfo);
+void Actor_info_dt(ActorInfo* actorInfo, struct Game_Play* game_play);
+void Actor_info_call_actor(struct Game_Play* game_play, ActorInfo* actorInfo);
+void Actor_info_draw_actor(struct Game_Play* game_play, ActorInfo* actorInfo);
 void Actor_free_overlay_area(struct ActorOverlay* overlayEntry);
 void Actor_get_overlay_area(struct ActorOverlay* overlayEntry, const struct struct_801161E8_jp* arg1, size_t overlaySize);
-void Actor_init_actor_class(Actor* actor, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct Game_Play* gamePlay, s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 argB, s8 argC, s16 argD, u16 fgName, s16 params);
-Actor* Actor_info_make_actor(ActorInfo* actorInfo, struct Game_Play* gamePlay, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 arg9, s8 argA, s16 argB, u16 fgName, s16 params, s8 argE, s32 argF);
-Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, struct Game_Play* gamePlay, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s16 argA, u16 fgName, s16 params, s32 argD);
-void restore_fgdata(Actor* actor, struct Game_Play* gamePlay);
-void restore_fgdata_one(Actor* actor, struct Game_Play* gamePlay);
-void restore_fgdata_all(struct Game_Play* gamePlay);
-void Actor_info_save_actor(struct Game_Play* gamePlay);
-Actor* Actor_info_delete(ActorInfo* actorInfo, Actor* actor, struct Game_Play* gamePlay);
+void Actor_init_actor_class(Actor* actor, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct Game_Play* game_play, s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 argB, s8 argC, s16 argD, u16 fgName, s16 params);
+Actor* Actor_info_make_actor(ActorInfo* actorInfo, struct Game_Play* game_play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 arg9, s8 argA, s16 argB, u16 fgName, s16 params, s8 argE, s32 argF);
+Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, struct Game_Play* game_play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s16 argA, u16 fgName, s16 params, s32 argD);
+void restore_fgdata(Actor* actor, struct Game_Play* game_play);
+void restore_fgdata_one(Actor* actor, struct Game_Play* game_play);
+void restore_fgdata_all(struct Game_Play* game_play);
+void Actor_info_save_actor(struct Game_Play* game_play);
+Actor* Actor_info_delete(ActorInfo* actorInfo, Actor* actor, struct Game_Play* game_play);
 Actor* Actor_info_name_search(ActorInfo* actorInfo, s16 name, ActorPart part);
 Actor* Actor_info_fgName_search(ActorInfo* actorInfo, u16 fgName, ActorPart part);
 void Part_Break_init(Part_Break* partBreak, s32 count, UNK_TYPE arg2);
@@ -265,8 +265,8 @@ Gfx* HiliteReflect_new(Vec3f* object, Vec3f* eye, Vec3f* lightDir, struct Graphi
 Hilite* HiliteReflect_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, struct GraphicsContext* gfxCtx);
 Hilite* HiliteReflect_xlu_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, struct GraphicsContext* gfxCtx);
 Hilite* HiliteReflect_light_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, struct GraphicsContext* gfxCtx);
-Hilite* Setpos_HiliteReflect_init(Vec3f* object, struct Game_Play* gamePlay);
-Hilite* Setpos_HiliteReflect_xlu_init(Vec3f* object, struct Game_Play* gamePlay);
-Hilite* Setpos_HiliteReflect_light_init(Vec3f* object, struct Game_Play* gamePlay);
+Hilite* Setpos_HiliteReflect_init(Vec3f* object, struct Game_Play* game_play);
+Hilite* Setpos_HiliteReflect_xlu_init(Vec3f* object, struct Game_Play* game_play);
+Hilite* Setpos_HiliteReflect_light_init(Vec3f* object, struct Game_Play* game_play);
 
 #endif
