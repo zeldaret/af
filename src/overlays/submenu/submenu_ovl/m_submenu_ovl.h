@@ -5,8 +5,9 @@
 #include "other_types.h"
 #include "unk.h"
 
-struct mSM;
+struct GraphicsContext;
 struct Game_Play;
+struct mSM;
 
 typedef void (*struct_8085E4D0_unk_10)(struct mSM*);
 
