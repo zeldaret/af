@@ -59,7 +59,7 @@ NORETURN void DmaMgr_Error(DmaRequest* req, const char* file, const char* errorN
     }
 
     sprintf(buff2, "%07X %08X %X %.50s", vrom, vram, size, (file != NULL) ? file : "???");
-    Fault_AddHungupAndCrashImpl(buff1, buff2);
+    fault_AddHungupAndCrashImpl(buff1, buff2);
 }
 
 /**

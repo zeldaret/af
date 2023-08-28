@@ -49,7 +49,7 @@ void ovlmgr_LoadImpl(RomOffset vromStart, UNUSED RomOffset vromEndUnused, void* 
 
     if (ovlRelocs == NULL) {
         sprintf(ovlSizeStr, "%ld", ovlSize);
-        Fault_AddHungupAndCrashImpl("ovlmgr: Out of Memory", ovlSizeStr);
+        fault_AddHungupAndCrashImpl("ovlmgr: Out of Memory", ovlSizeStr);
     }
 
     Overlay_Load(vromStart, vromEnd, ovlStart, ovlEnd, vramStart, vramEnd, allocatedRamAddr, ovlRelocs);

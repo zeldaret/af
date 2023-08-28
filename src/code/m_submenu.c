@@ -297,13 +297,13 @@ dummy_label_255895:
     D_8010DCE4_jp = var_s0;
     SubmenuArea_visit = NULL;
 
-    Fault_AddClient(&B_80144670_jp, func_800C47B4_jp, NULL, NULL);
-    Fault_AddAddrConvClient(&B_80144680_jp, func_800C497C_jp, NULL);
+    fault_AddClient(&B_80144670_jp, func_800C47B4_jp, NULL, NULL);
+    fault_AddressConverterAddClient(&B_80144680_jp, func_800C497C_jp, NULL);
 }
 
 void mSM_submenu_ovlptr_cleanup(mSM* submenu) {
-    Fault_RemoveClient(&B_80144670_jp);
-    Fault_RemoveAddrConvClient(&B_80144680_jp);
+    fault_RemoveClient(&B_80144670_jp);
+    fault_AddressConverterRemoveClient(&B_80144680_jp);
     if (SubmenuArea_visit != NULL) {
         SubmenuArea_DoUnlink(SubmenuArea_visit, submenu);
         SubmenuArea_visit = NULL;

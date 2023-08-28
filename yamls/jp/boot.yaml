@@ -13,8 +13,8 @@
       - [0x0017F0, c, boot/z_std_dma]
       - [0x0022A0, asm, boot/yaz0]
       - [0x0026C0, c, boot/syncprintf]
-      - [0x002720, asm, boot/fault]
-      - [0x004F70, asm, boot/fault_drawer]
+      - [0x002720, c, boot/fault]
+      - [0x004F70, c, boot/fault_drawer]
 
       - [0x0059F0, c, boot/libu64/pad]
       - [0x005BE0, asm, boot/libu64/stackcheck]
@@ -216,7 +216,8 @@
 
       - [0x016FD0, data, boot/016FD0]
       - [0x016FE0, .data, boot/z_std_dma]
-      - [0x016FF0, data, boot/016FF0]
+      - [0x016FF0, .data, boot/fault]
+      - [0x017050, .data, boot/fault_drawer]
 
       - [0x017090, data, boot/libu64/stackcheck]
 
@@ -263,8 +264,8 @@
       - [0x0185B0, .rodata, boot/ovlmgr]
       - [0x0185D0, .rodata, boot/z_std_dma]
       - [0x0187F0, rodata, boot/0187F0]
-      - [0x018840, rodata, boot/018840]
-      - [0x019250, rodata, boot/019250]
+      - [0x018840, .rodata, boot/fault]
+      - [0x019250, .rodata, boot/fault_drawer]
 
       # libu64
       - [0x019690, rodata, boot/libu64/gfxprint]
@@ -294,6 +295,8 @@
       - { start: 0x019D40, type: .bss, vram: 0x8003FF30, name: boot/viconfig }
       - { start: 0x019D40, type: .bss, vram: 0x8003FF40, name: boot/z_std_dma }
       - { start: 0x019D40, type: bss, vram: 0x800406C0, name: boot/800406C0 }
+      - { start: 0x019D40, type: .bss, vram: 0x80040AE0, name: boot/fault }
+      - { start: 0x019D40, type: .bss, vram: 0x80041960, name: boot/fault_drawer }
 
       # libu64
       - { start: 0x019D40, type: bss, vram: 0x800419A0, name: boot/libu64/gfxprint }
