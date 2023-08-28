@@ -20,7 +20,7 @@
       - [0x005BE0, asm, boot/libu64/stackcheck]
       - [0x005E30, asm, boot/libu64/gfxprint]
 
-      - [0x006BA0, asm, boot/libu64/mtxuty-cvt]
+      - [0x006BA0, c, boot/libu64/mtxuty-cvt]
 
       # TODO: figure out if this file belong to libu64
       - [0x006D10, c, boot/O2/loadfragment2]
