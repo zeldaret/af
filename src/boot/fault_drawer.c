@@ -90,7 +90,7 @@ void FaultDrawer_DrawRecImpl(s32 xStart, s32 yStart, s32 xEnd, s32 yEnd, u16 col
     s32 xSize = xEnd - xStart + 1;
     s32 ySize = yEnd - yStart + 1;
 
-    if (xDiff > 0 && yDiff > 0) {
+    if ((xDiff > 0) && (yDiff > 0)) {
         if (xDiff < xSize) {
             xSize = xDiff;
         }
@@ -112,14 +112,14 @@ void FaultDrawer_DrawRecImpl(s32 xStart, s32 yStart, s32 xEnd, s32 yEnd, u16 col
 }
 
 void FaultDrawer_DrawChar(char c) {
+    FaultDrawer* faultDrawer = &sFaultDrawer;
     s32 x;
     s32 y;
-    const u32** fontData = &sFaultDrawer.fontData;
     u32 data;
     s32 cursorX = sFaultDrawer.cursorX;
     s32 cursorY = sFaultDrawer.cursorY;
     s32 shift = c % 4;
-    const u32* dataPtr = &fontData[0][(((c / 8) * 16) + ((c & 4) >> 2))];
+    const u32* dataPtr = &faultDrawer->fontData[((c / 8) * 16) + ((c & 4) >> 2)];
     u16* fb = sFaultDrawer.fb + (sFaultDrawer.w * cursorY) + cursorX;
 
     if ((sFaultDrawer.xStart <= cursorX) && ((sFaultDrawer.charW + cursorX - 1) <= sFaultDrawer.xEnd) &&

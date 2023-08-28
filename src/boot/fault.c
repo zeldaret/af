@@ -214,6 +214,7 @@ void fault_AddClient(FaultClient* client, FaultClientCallback callback, void* ar
 end:
     osSetIntMask(mask);
     if (alreadyExists) {
+        // "fault_AddClient: %08x is already in the list"
         osSyncPrintf(VT_COL(RED, WHITE) "fault_AddClient: %08x は既にリスト中にある\n" VT_RST, client);
     }
 }
@@ -250,6 +251,7 @@ void fault_RemoveClient(FaultClient* client) {
     osSetIntMask(mask);
 
     if (listIsEmpty) {
+        // "fault_RemoveClient: %08x list inconsistent"
         osSyncPrintf(VT_COL(RED, WHITE) "fault_RemoveClient: %08x リスト不整合です\n" VT_RST, client);
     }
 }
@@ -292,6 +294,7 @@ void fault_AddressConverterAddClient(FaultAddrConvClient* client, FaultAddrConvC
 end:
     osSetIntMask(mask);
     if (alreadyExists) {
+        // "fault_AddressConverterAddClient: %08x is already in the list"
         osSyncPrintf(VT_COL(RED, WHITE) "fault_AddressConverterAddClient: %08x は既にリスト中にある\n" VT_RST, client);
     }
 }
@@ -326,6 +329,7 @@ void fault_AddressConverterRemoveClient(FaultAddrConvClient* client) {
     osSetIntMask(mask);
 
     if (listIsEmpty) {
+        // "fault_AddressConverterRemoveClient: %08x is already in the list"
         osSyncPrintf(VT_COL(RED, WHITE) "fault_AddressConverterRemoveClient: %08x は既にリスト中にある\n" VT_RST,
                      client);
     }
@@ -501,10 +505,10 @@ void fault_PrintThreadContext(OSThread* thread) {
     __OSThreadContext* ctx;
     s16 causeStrIdx = _SHIFTR((u32)thread->context.cause, 2, 5);
 
-    if (causeStrIdx == 23) { // Watchpoint
+    if (causeStrIdx == (EXC_WATCH >> CAUSE_EXCSHIFT)) {
         causeStrIdx = 16;
     }
-    if (causeStrIdx == 31) { // Virtual coherency on data
+    if (causeStrIdx == (EXC_VCED >> CAUSE_EXCSHIFT)) {
         causeStrIdx = 17;
     }
 
@@ -563,10 +567,10 @@ void fault_LogThreadContext(OSThread* thread) {
     __OSThreadContext* ctx;
     s16 causeStrIdx = _SHIFTR((u32)thread->context.cause, 2, 5);
 
-    if (causeStrIdx == 23) { // Watchpoint
+    if (causeStrIdx == (EXC_WATCH >> CAUSE_EXCSHIFT)) {
         causeStrIdx = 16;
     }
-    if (causeStrIdx == 31) { // Virtual coherency on data
+    if (causeStrIdx == (EXC_VCED >> CAUSE_EXCSHIFT)) {
         causeStrIdx = 17;
     }
 
@@ -1185,9 +1189,11 @@ void fault_ThreadEntry(UNUSED void* arg) {
 
             if (msg == FAULT_MSG_CPU_BREAK) {
                 sFaultInstance->msgId = (u32)FAULT_MSG_CPU_BREAK;
+                // "Fault manager: OS_EVENT_CPU_BREAK received"
                 osSyncPrintf("フォルトマネージャ:OS_EVENT_CPU_BREAKを受信しました\n");
             } else if (msg == FAULT_MSG_FAULT) {
                 sFaultInstance->msgId = (u32)FAULT_MSG_FAULT;
+                // "Fault manager: OS_EVENT_FAULT received"
                 osSyncPrintf("フォルトマネージャ:OS_EVENT_FAULTを受信しました\n");
             } else if (msg == FAULT_MSG_UNK) {
                 fault_UpdatePad();
@@ -1195,6 +1201,7 @@ void fault_ThreadEntry(UNUSED void* arg) {
                 continue;
             } else {
                 sFaultInstance->msgId = (u32)FAULT_MSG_UNK;
+                // "Fault manager: received an unknown message"
                 osSyncPrintf("フォルトマネージャ:不明なメッセージを受信しました\n");
             }
 
