@@ -1,3 +1,4 @@
+#include "prevent_bss_reordering.h"
 #include "ultra64.h"
 #include "m_actor.h"
 #include "m_actor_dlftbls.h"

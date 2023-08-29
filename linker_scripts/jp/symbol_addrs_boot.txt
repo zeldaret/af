@@ -274,7 +274,6 @@ carthandle = 0x8003BBD0; //
 gDmaMgrDmaBuffSize = 0x8003BBE0; //
 sExceptionNames = 0x8003BBF0; //
 sFpExceptionNames = 0x8003BC38; //
-D_8003BC50_jp = 0x8003BC50; //
 
 D_8003BC90_jp = 0x8003BC90; // size:0x4
 D_8003BC94_jp = 0x8003BC94; // size:0x4
@@ -563,7 +562,5 @@ malloc_arena = 0x800419C0; //
 __qrand_itemp = 0x800419F0; // size:0x4
 
 sArenaLockMsg = 0x80041A00; // size:0x4
-
-B_80044684_jp = 0x80044684; //
 
 dma_rom_ad = 0x80044690; //
