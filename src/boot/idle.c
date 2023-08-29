@@ -16,7 +16,7 @@ OSMesg sPiMgrCmdBuff[50];
 OSMesgQueue sPiMgrCmdQueue;
 OSViMode gViConfigMode;
 
-s8 D_8003BBC0_jp = 1;
+s8 rspbootTextEnd = 1;
 u32 gViConfigFeatures = OS_VI_DITHER_FILTER_ON | OS_VI_GAMMA_OFF;
 f32 gViConfigXScale = 1.0f;
 f32 gViConfigYScale = 1.0f;
@@ -52,7 +52,7 @@ void Idle_InitVideo(void) {
             break;
     }
 
-    D_8003BBC0_jp = 1;
+    rspbootTextEnd = 1;
 }
 
 void Idle_ThreadEntry(void* arg) {

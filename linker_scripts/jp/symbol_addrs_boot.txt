@@ -266,8 +266,8 @@ func_8003BA60_jp = 0x8003BA60; // type:func
 
 // .data
 
-gspRspBoot_fifoTextStart = 0x8003BAF0; // 
-D_8003BBC0_jp = 0x8003BBC0; //
+rspbootTextStart = 0x8003BAF0; // 
+rspbootTextEnd = 0x8003BBC0; //
 gViConfigFeatures = 0x8003BBC4; //
 gViConfigXScale = 0x8003BBC8; // type:f32
 gViConfigYScale = 0x8003BBCC; // type:f32
