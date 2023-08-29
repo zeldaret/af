@@ -237,12 +237,12 @@ extern OSPiHandle* carthandle; // TODO: Determine where this goes
 // extern UNK_TYPE gViConfigBlackNext;
 // extern UNK_TYPE gViConfigBlack;
 
-// extern UNK_TYPE B_800406C0_jp;
-// extern UNK_TYPE B_80040AC0_jp;
-// extern UNK_TYPE B_80040AC4_jp;
-// extern UNK_TYPE B_80040AC8_jp;
-// extern UNK_TYPE B_80040ACC_jp;
-// extern UNK_TYPE B_80040AD0_jp;
+// extern UNK_TYPE sYaz0DataBuffer;
+// extern UNK_TYPE sYaz0CurDataEnd;
+// extern UNK_TYPE sYaz0CurRomStart;
+// extern UNK_TYPE sYaz0CurSize;
+// extern UNK_TYPE sYaz0MaxPtr;
+// extern UNK_TYPE gYaz0DecompressDstEnd;
 // extern UNK_TYPE B_800418D6_jp;
 extern struct_800418D8* B_800418D8_jp;
 // extern UNK_TYPE B_80041960_jp;
