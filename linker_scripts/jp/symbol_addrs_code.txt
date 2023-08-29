@@ -5004,10 +5004,8 @@ D_8010F4AC_jp = 0x8010F4AC; //
 atntable = 0x8010F4C0; // type:u16
 Mtx_clear = 0x8010FCD0; //
 MtxF_clear = 0x8010FD10; //
-D_8010FD50_jp = 0x8010FD50; //
-D_8010FD54_jp = 0x8010FD54; //
-D_8010FD58_jp = 0x8010FD58; //
-D_8010FD5C_jp = 0x8010FD5C; //
+poly_tbl = 0x8010FD50; //
+sprite_tbl = 0x8010FD58; //
 zurumode_flag = 0x8010FD60; //
 D_8010FD70_jp = 0x8010FD70; //
 D_80110000_jp = 0x80110000; // type:s16
@@ -5900,9 +5898,9 @@ D_80119A42_jp = 0x80119A42; // type:s16
 RO_80119A44_jp = 0x80119A44; //
 RO_80119A48_jp = 0x80119A48; //
 RO_80119A4C_jp = 0x80119A4C; //
-RO_80119A50_jp = 0x80119A50; //
-RO_8011B080_jp = 0x8011B080; //
-RO_8011B4A0_jp = 0x8011B4A0; //
+gspF3DZEX2_NoN_PosLight_fifoTextStart = 0x80119A50; //
+gspF3DZEX2_NoN_PosLight_fifoDataStart = 0x8011B080; //
+gspS2DEX2_fifoDataStart = 0x8011B4A0; //
 
 // .bss
 

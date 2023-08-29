@@ -8,7 +8,7 @@
 
 // .data
 
-// extern UNK_TYPE D_8003BBC0_jp;
+extern UNK_TYPE1 D_8003BBC0_jp;
 // extern UNK_TYPE D_8003BBC4_jp;
 // extern UNK_TYPE D_FLT_8003BBC8_jp;
 // extern UNK_TYPE D_FLT_8003BBCC_jp;

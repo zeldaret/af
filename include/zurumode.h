@@ -32,6 +32,8 @@ enum zurumode_stage {
     /* 11 */ ZURUMODE_STAGE_FINAL = ZURUMODE_STAGE_11
 };
 
+extern s32 zurumode_flag;
+
 s32 zurumode_update(void);
 s32 zerucheck_init(zuruKeycheck* keycheck);
 s32 zerucheck_key_check(zuruKeycheck* keycheck, u16 controller);
