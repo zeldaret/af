@@ -15,7 +15,7 @@ void* Yaz0_FirstDMA(void) {
     size_t dmaSize;
     size_t curSize;
 
-    sYaz0MaxPtr = sYaz0CurDataEnd - 0x19;
+    sYaz0MaxPtr = sYaz0CurDataEnd - 25;
     curSize = sYaz0CurDataEnd - sYaz0DataBuffer;
     dmaSize = (sYaz0CurSize < curSize) ? sYaz0CurSize : curSize;
     DmaMgr_DmaRomToRam(sYaz0CurRomStart, sYaz0DataBuffer, dmaSize);
@@ -36,7 +36,7 @@ void* Yaz0_NextDMA(void* curSrcPos) {
     dst = (restSize & 7) ? (sYaz0DataBuffer - (restSize & 7)) + 8 : sYaz0DataBuffer;
 
     bcopy(curSrcPos, dst, restSize);
-    dmaSize = ((uintptr_t)sYaz0CurDataEnd - (uintptr_t)dst) - restSize;
+    dmaSize = (sYaz0CurDataEnd - dst) - restSize;
     if (sYaz0CurSize < dmaSize) {
         dmaSize = sYaz0CurSize;
     }
@@ -45,12 +45,12 @@ void* Yaz0_NextDMA(void* curSrcPos) {
         DmaMgr_DmaRomToRam(sYaz0CurRomStart, dst + restSize, dmaSize);
         sYaz0CurRomStart += dmaSize;
         sYaz0CurSize -= dmaSize;
-        if (!sYaz0CurSize) {
+        if (sYaz0CurSize == 0) {
             sYaz0MaxPtr = dst + restSize + dmaSize;
         }
     } else {
         oldPri = osGetThreadPri(NULL);
-        osSetThreadPri(NULL, 0x7F);
+        osSetThreadPri(NULL, OS_PRIORITY_APPMAX);
         osSyncPrintf("圧縮展開異常\n");
         osSetThreadPri(NULL, oldPri);
     }
