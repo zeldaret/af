@@ -25,7 +25,7 @@
       # TODO: figure out if this file belong to libu64
       - [0x006D10, c, boot/O2/loadfragment2]
 
-      - [0x007000, asm, boot/libu64/debug]
+      - [0x007000, c, boot/libu64/debug]
 
       - [0x007060, c, boot/O2/system_heap]
       - [0x0073A0, c, boot/O2/getcurrentms]
@@ -269,7 +269,7 @@
 
       # libu64
       - [0x019690, rodata, boot/libu64/gfxprint]
-      - [0x0196B0, rodata, boot/libu64/debug]
+      - [0x0196B0, .rodata, boot/libu64/debug]
 
       # libc64
       - [0x0196C0, .rodata, boot/libc64/math64]
