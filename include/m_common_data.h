@@ -69,9 +69,9 @@ typedef struct CommonData_unk_1004C {
     /* 0x118 */ CommonData_unk_1004C_unk_118 unk_118;
 } CommonData_unk_1004C; // size >= 0x11C
 
-typedef UNK_RET (*CommonData_unk_10078_unk_00)(struct UNK_TYPE*);
-typedef UNK_RET (*CommonData_unk_10078_unk_04)(struct UNK_TYPE*);
-typedef UNK_RET (*CommonData_unk_10078_unk_08)(struct UNK_TYPE*);
+typedef UNK_RET (*CommonData_unk_10078_unk_00)(UNK_TYPE);
+typedef UNK_RET (*CommonData_unk_10078_unk_04)(UNK_TYPE);
+typedef UNK_RET (*CommonData_unk_10078_unk_08)(UNK_TYPE);
 
 
 typedef struct CommonData_unk_10078 {

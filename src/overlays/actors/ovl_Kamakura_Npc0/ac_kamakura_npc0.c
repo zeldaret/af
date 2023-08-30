@@ -24,7 +24,7 @@ ActorProfile Kamakura_Npc0_Profile = {
     /* */ aKM0_actor_ct,
     /* */ aKM0_actor_dt,
     /* */ aKM0_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aKM0_actor_save,
 };
 
@@ -51,15 +51,15 @@ void aKM0_actor_init(Actor* thisx, Game_Play* game_play) {
     common_data.unk_1004C->unk_CC(thisx, game_play);
 }
 
-void func_809DF884_jp(UNK_TYPE arg1, UNK_TYPE arg2) {
+void func_809DF884_jp(UNK_TYPE arg1, UNK_TYPE arg2 UNUSED) {
     common_data.unk_10078->unk_00(arg1);
 }
 
-void func_809DF8B4_jp(UNK_TYPE arg1, UNK_TYPE arg2) {
+void func_809DF8B4_jp(UNK_TYPE arg1, UNK_TYPE arg2 UNUSED) {
     common_data.unk_10078->unk_04(arg1);
 }
 
-s32 func_809DF8E4_jp(UNK_TYPE arg1, UNK_TYPE arg2) {
+s32 func_809DF8E4_jp(UNK_TYPE arg1, UNK_TYPE arg2 UNUSED) {
     s32 var_v1;
     s32 sp1C;
 
