@@ -699,11 +699,10 @@ dummy_label_595693:
     if (temp_a1) {}
 }
 
-#if 0
 void mSM_set_other_seg(mSM* arg0) {
-    u8 var_v1;
+    s32 temp = arg0->unk_08;
+    u32 var_v1 = D_8085E7D0_jp[temp];
 
-    var_v1 = D_8085E7D0_jp[arg0->unk_08];
     if (var_v1 & 2) {
         func_8085D094_jp(arg0);
     }
@@ -717,26 +716,21 @@ void mSM_set_other_seg(mSM* arg0) {
         mSM_ovl_prog_seg(arg0, &mSM_program_dlftbl[0x17]);
     }
 }
-#else
-void mSM_set_other_seg(mSM* arg0);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_set_other_seg.s")
-#endif
 
-#if 0
 void mSM_set_before_menu_proc(mSM* arg0) {
-    s32 temp_v0;
+    s32 temp_v0 = arg0->unk_04;
+    struct_8085E9B0_unk_10088* temp;
 
-
-    temp_v0 = arg0->unk_04;
     mSM_program_dlftbl[temp_v0].unk_18(arg0);
     arg0->unk_08 = temp_v0;
 
-    arg0->unk_2C->unk_10088[temp_v0].unk_14 = 0;
+    //! FAKE
+    if (((!temp_v0) && (!temp_v0)) && (!temp_v0)) {}
+
+    temp = &arg0->unk_2C->unk_10088[temp_v0];
+
+    temp->unk_14 = 0;
 }
-#else
-void mSM_set_before_menu_proc(mSM* arg0);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_set_before_menu_proc.s")
-#endif
 
 void mSM_set_new_seg(mSM* arg0) {
     s32 temp_v0;
