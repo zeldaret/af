@@ -5898,9 +5898,9 @@ D_80119A42_jp = 0x80119A42; // type:s16
 RO_80119A44_jp = 0x80119A44; //
 RO_80119A48_jp = 0x80119A48; //
 RO_80119A4C_jp = 0x80119A4C; //
-gspF3DZEX2_NoN_PosLight_fifoTextStart = 0x80119A50; //
-gspF3DZEX2_NoN_PosLight_fifoDataStart = 0x8011B080; //
-gspS2DEX2_fifoDataStart = 0x8011B4A0; //
+gspF3DZEX2_NoN_PosLight_fifoTextStart = 0x80119A50; // name_end:gspF3DZEX2_NoN_PosLight_fifoTextEnd
+gspF3DZEX2_NoN_PosLight_fifoDataStart = 0x8011B080; // name_end:gspF3DZEX2_NoN_PosLight_fifoDataEnd
+gspS2DEX2_fifoDataStart = 0x8011B4A0; // name_end:gspS2DEX2_fifoDataEnd
 
 // .bss
 
