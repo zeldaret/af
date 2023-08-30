@@ -4,7 +4,7 @@
 #include "ultra64.h"
 #include "attributes.h"
 
-void _dbg_hungup(const char *filename, int line) NORETURN;
-// void Reset();
+void _dbg_hungup(const char* name, int line) NORETURN;
+void Reset(void);
 
 #endif
