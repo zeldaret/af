@@ -51,6 +51,7 @@ void* Yaz0_NextDMA(void* curSrcPos) {
     } else {
         oldPri = osGetThreadPri(NULL);
         osSetThreadPri(NULL, OS_PRIORITY_APPMAX);
+        // "decompression abnormality"
         osSyncPrintf("圧縮展開異常\n");
         osSetThreadPri(NULL, oldPri);
     }
