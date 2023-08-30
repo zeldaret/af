@@ -47,4 +47,10 @@ typedef struct struct_809AEFA4 {
     /* 0x0 */ UNK_TYPE unk_C;
 } struct_809AEFA4; // size >= 0x10
 
+typedef struct struct_func_8085CE18_jp_arg4 {
+    /* 0x00 */ UNK_TYPE1 unk_00[0x24];
+    /* 0x24 */ u16 unk_24;
+    /* 0x26 */ u8 unk_26;
+} struct_func_8085CE18_jp_arg4; // size >= 0x28
+
 #endif

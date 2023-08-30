@@ -429,7 +429,7 @@ u8 func_8085C7A4_jp(u16 arg0) {
 #ifdef NON_EQUIVALENT
 // float messed up
 // maybe equivalent, but hard to tell
-void func_8085C7B8_jp(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8) {
+void mSM_draw_item(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8) {
     struct_8085DCF8* var_a1; // spAC
     s32 pad;
     s32 var_a2;
@@ -564,11 +564,82 @@ void func_8085C7B8_jp(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16
     CLOSE_DISPS(gfxCtx);
 }
 #else
-void func_8085C7B8_jp(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085C7B8_jp.s")
+void mSM_draw_item(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8);
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_draw_item.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085CE18_jp.s")
+// maybe same struct as struct_8085DCF8?
+typedef struct struct_8085E4A0 {
+    /* 0x0 */ UNK_PTR unk_0;
+    /* 0x4 */ UNK_PTR unk_4;
+} struct_8085E4A0; // size = 0x8
+
+extern struct_8085E4A0 D_8085E4A0_jp[];
+
+extern Gfx D_C012370[]; // inv_item_model
+
+#ifdef NON_MATCHING
+// stack issues
+void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_func_8085CE18_jp_arg4* arg4, s32 arg5, s32 arg6) {
+    struct_8085E4A0* temp_a1;
+    s32 var_t0;
+    UNUSED s32 pad;
+    Gfx* gfx;
+
+    if (mMl_check_send_mail(arg4) != 0) {
+        var_t0 = 2;
+    } else if ((arg4->unk_26 == 4) || (arg4->unk_26 == 2)) {
+        var_t0 = 4;
+    } else {
+        var_t0 = 0;
+    }
+
+    if (arg4->unk_24 != 0) {
+        var_t0 += 1;
+    }
+
+    Matrix_scale(16.0f, 16.0f, 1.0f, MTXMODE_NEW);
+    Matrix_translate(arg1, arg2, 140.0f, MTXMODE_APPLY);
+    Matrix_scale(arg3, arg3, 1.0f, MTXMODE_APPLY);
+
+    if (1) {}
+
+    OPEN_DISPS(arg0);
+
+    gfx = POLY_OPA_DISP;
+
+    gDPPipeSync(gfx++);
+    gSPMatrix(gfx++, _Matrix_to_Mtx_new(arg0), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+
+    temp_a1 = &D_8085E4A0_jp[var_t0];
+
+    gSPSegment(gfx++, 0x09, Lib_SegmentedToVirtual(temp_a1->unk_0));
+    gSPSegment(gfx++, 0x0A, Lib_SegmentedToVirtual(temp_a1->unk_4));
+    gDPSetAlphaCompare(gfx++, G_AC_THRESHOLD);
+    gDPSetBlendColor(gfx++, 255, 255, 255, 40);
+
+    if (arg5 != 0) {
+        gDPSetPrimColor(gfx++, 0, 0xFF, 255, 255, 255, 255);
+    } else {
+        gDPSetPrimColor(gfx++, 0, 0x82, 255, 110, 105, 255);
+    }
+
+    if (arg6 == 0) {
+        gDPSetCombineLERP(gfx++, TEXEL0, PRIMITIVE, PRIM_LOD_FRAC, PRIMITIVE, 0, 0, 0, TEXEL0, TEXEL0, PRIMITIVE, PRIM_LOD_FRAC, PRIMITIVE, 0, 0, 0, TEXEL0);
+    }
+
+    gSPDisplayList(gfx++, D_C012370);
+    gDPPipeSync(gfx++);
+    gDPSetAlphaCompare(gfx++, G_AC_NONE);
+    gDPSetBlendColor(gfx++, 255, 255, 255, 8);
+
+    POLY_OPA_DISP = gfx;
+
+    CLOSE_DISPS(arg0);
+}
+#else
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_draw_mail.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D094_jp.s")
 
@@ -595,6 +666,7 @@ void mSM_ovl_prog_seg(mSM* arg0, struct_8085E4D0* arg1) {
     temp_a1(arg0);
     arg1->unk_10 = temp_a1;
 
+    //! FAKE
 dummy_label_595693:
     arg1->unk_14 = (void*)((uintptr_t)allocatedVram + (uintptr_t)arg1->unk_14 - (uintptr_t)arg1->vramStart);
     arg1->unk_18 = (void*)((uintptr_t)allocatedVram + (uintptr_t)arg1->unk_18 - (uintptr_t)arg1->vramStart);
@@ -821,8 +893,8 @@ void mSM_menu_ovl_init(mSM* arg0) {
     arg0->unk_2C->unk_106B4 = mSM_set_char_matrix;
     arg0->unk_2C->unk_106B8 = mSM_cbuf_copy;
     arg0->unk_2C->unk_106BC = func_8085C20C_jp;
-    arg0->unk_2C->unk_106C0 = func_8085C7B8_jp;
-    arg0->unk_2C->unk_106C4 = func_8085CE18_jp;
+    arg0->unk_2C->unk_106C0 = mSM_draw_item;
+    arg0->unk_2C->unk_106C4 = mSM_draw_mail;
     arg0->unk_2C->unk_106C8 = mSM_setup_view;
     arg0->unk_2C->unk_106CC = func_8085D43C_jp;
     mSM_set_proc(arg0);
