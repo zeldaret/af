@@ -32,7 +32,9 @@ typedef struct func_8085D43C_jp_arg2 {
 
 typedef struct struct_8085E9B0_unk_10000 {
     /* 0x10000 */ void* unk_00;
-    /* 0x10004 */ UNK_TYPE1 unk_04[0x60];
+    /* 0x10004 */ s32 unk_04;
+    /* 0x10008 */ void* unk_08;
+    /* 0x1000C */ UNK_TYPE1 unk_0C[0x58];
     /* 0x10064 */ UNK_TYPE4 unk_64;
     /* 0x10068 */ struct_8085E4D0* unk_68[UNK_SIZE];
 } struct_8085E9B0_unk_10000; // size >= 0x6C

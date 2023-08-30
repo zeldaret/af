@@ -8,6 +8,7 @@
 #include "z_std_dma.h"
 #include "6BFE60.h"
 #include "6E0F50.h"
+#include "segment_symbols.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "overlays/gamestates/ovl__00743CD0/_00743CD0.h"
 
@@ -641,7 +642,26 @@ void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_f
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_draw_mail.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085D094_jp.s")
+void func_8085D094_jp(mSM* arg0) {
+    struct_8085E9B0_unk_10000* sp2C = &arg0->unk_2C->unk_10000;
+    void* vram;
+    s32 romStart;
+
+    if (sp2C->unk_04) {
+        return;
+    }
+
+    //! FAKE: needs s32 instead of unsigned type
+    romStart = SEGMENT_ROM_START(segment_00A58000);
+
+    vram = sp2C->unk_00;
+    sp2C->unk_08 = vram;
+
+    DmaMgr_RequestSyncDebug(vram, romStart, SEGMENT_ROM_SIZE(segment_00A58000), "../m_submenu_ovl.c", 0x7C0);
+    sp2C->unk_00 = (void* ) ALIGN16(SEGMENT_ROM_SIZE(segment_00A58000) + (uintptr_t)vram);
+
+    sp2C->unk_04 = 1;
+}
 
 void mSM_ovl_prog_seg(mSM* arg0, struct_8085E4D0* arg1) {
     struct_8085E9B0_unk_10000* temp;
