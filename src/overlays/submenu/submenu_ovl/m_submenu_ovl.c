@@ -34,6 +34,23 @@ extern Vp D_8085DCD0_jp;
 // TODO: fix symbol size
 extern Lightsn D_8085DCE0_jp;
 
+Gfx* func_800BE320_jp(Gfx*, s32, s32, s32, s32, s32, s32, s32, s32, s32); /* extern */
+
+typedef struct struct_8085DCF8 {
+    /* 0x0 */ UNK_TYPE4 unk_0;
+    /* 0x4 */ UNK_TYPE4 unk_4;
+} struct_8085DCF8; // size = 0x8
+
+extern struct_8085DCF8 D_8085DCF8_jp;
+extern struct_8085DCF8 D_8085DD00_jp;
+extern struct_8085DCF8 D_8085DD08_jp;
+extern struct_8085DCF8 D_8085DD10_jp[];
+extern struct_8085DCF8 D_8085DD38_jp;
+extern struct_8085DCF8 D_8085DD68_jp[];
+extern struct_8085DCF8 D_8085DD88_jp;
+
+extern struct_8085DCF8* D_8085E460_jp[];
+
 void mSM_setup_view(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1) {
     Mtx* var_t0;
     UNUSED s32 pad;
@@ -405,9 +422,151 @@ void func_8085C20C_jp(GraphicsContext* gfxCtx, struct_func_8085C20C_jp_arg1* arg
     CLOSE_DISPS(gfxCtx);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085C7A4_jp.s")
+u8 func_8085C7A4_jp(u16 arg0) {
+    return arg0;
+}
 
+#ifdef NON_EQUIVALENT
+// float messed up
+// maybe equivalent, but hard to tell
+void func_8085C7B8_jp(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8) {
+    struct_8085DCF8* var_a1; // spAC
+    s32 pad;
+    s32 var_a2;
+    s32 var_a3;
+    s32 var_v1;
+    s32 temp_v0;
+    void* var_a2_2;
+    s32 temp;
+
+    Gfx* gfx;
+
+    var_a2 = -1;
+    var_a3 = 0;
+    if (arg3 < 0.05f) {
+        return;
+    }
+
+    if (arg5 != 0) {
+        if (arg7 >= 6) {
+            var_a1 = &D_8085DD38_jp;
+            if (arg7 >= 0xC) {
+                var_a3 = 1;
+            }
+        } else {
+            var_a1 = &D_8085DD10_jp[arg7];
+        }
+    } else if (((s32) arg4 >= 0x15B0) && ((s32) arg4 < 0x17AC)) {
+        var_a1 = &D_8085DD00_jp;
+    } else if (((s32) arg4 >= 0x1E3C) && ((s32) arg4 < 0x1EA0)) {
+        var_a1 = &D_8085DD08_jp;
+    } else if (((s32) (arg4 & 0xF000) >> 0xC) == 1) {
+        var_a1 = &D_8085DCF8_jp;
+    } else {
+        temp_v0 = func_8085C7A4_jp(arg4);
+
+        var_a2 = (s32) (arg4 & 0xF00) >> 8;
+        if (var_a2 == 0xE) {
+            // var_a1 = *(D_8085E460_jp + (var_a2 * 4)) + (arg7 * 8);
+            var_a1 = &D_8085E460_jp[var_a2][arg7];
+        } else if ((var_a2 == 0) || (var_a2 == 4) || (var_a2 == 6) || (var_a2 == 7) || (var_a2 == 0xA) || (var_a2 == 0xB)) {
+            // var_a1 = *(D_8085E460_jp + (var_a2 * 4));
+            var_a1 = &D_8085E460_jp[var_a2][0];
+        } else if (var_a2 == 2) {
+            if (((s32) arg4 >= 0x2204) && ((s32) arg4 < 0x2224)) {
+                var_a1 = &D_8085DD88_jp;
+            } else {
+                var_a1 = &D_8085DD68_jp[temp_v0];
+            }
+        } else {
+            //var_a1 = *(D_8085E460_jp + (var_a2 * 4)) + (temp_v0 * 8);
+            var_a1 = &D_8085E460_jp[var_a2][temp_v0];
+        }
+    }
+
+    if (((var_a2 == 3) || (var_a2 == 0xD)) && (arg7 != 0)) {
+        var_a2_2 = var_a1->unk_0 + 0x20;
+    } else {
+        var_a2_2 = var_a1->unk_0;
+    }
+
+    OPEN_DISPS(gfxCtx);
+
+    gfx = POLY_OPA_DISP;
+
+    gDPPipeSync(gfx++);
+    gDPSetAlphaCompare(gfx++, G_AC_THRESHOLD);
+
+
+    if (arg6 != 0) {
+        if (var_a3 != 0) {
+            var_v1 = (s32) ((arg7 * -0xFF) + 0x17E8) / 13;
+        } else {
+            var_v1 = 0xFF;
+        }
+
+        gDPSetPrimColor(gfx++, 0, 0xFF, 255, 255, 255, var_v1);
+    } else {
+        var_v1 = 0xFF;
+
+        gDPSetPrimColor(gfx++, 0, 0x64, 115, 160, 255, var_v1);
+    }
+
+    if (arg8 != 0) {
+        gDPSetBlendColor(gfx++, 255, 255, 255, 40);
+    } else if (var_v1 == 0xFF) {
+        gDPSetBlendColor(gfx++, 255, 255, 255, 254);
+        gDPSetCombineLERP(gfx++, TEXEL0, PRIMITIVE, PRIM_LOD_FRAC, PRIMITIVE, 0, 0, 0, TEXEL0, TEXEL0, PRIMITIVE, PRIM_LOD_FRAC, PRIMITIVE, 0, 0, 0, TEXEL0);
+    } else {
+        gDPSetBlendColor(gfx++, 255, 255, 255, 40);
+        gDPSetCombineLERP(gfx++, TEXEL0, PRIMITIVE, PRIM_LOD_FRAC, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0, TEXEL0, PRIMITIVE, PRIM_LOD_FRAC, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0);
+    }
+
+    gDPPipeSync(gfx++);
+    gDPSetTexturePersp(gfx++, G_TP_NONE);
+    gDPLoadTLUT_pal16(gfx++, 15, Lib_SegmentedToVirtual(var_a2_2));
+    if (arg3) {}
+    gDPLoadTextureBlock_4b(gfx++, Lib_SegmentedToVirtual(var_a1->unk_4), G_IM_FMT_CI, 32, 32, 15, G_TX_MIRROR | G_TX_WRAP, G_TX_MIRROR | G_TX_WRAP, 5, 5, G_TX_NOLOD, G_TX_NOLOD);
+
+    {
+        s32 ar1;
+        s32 ar2;
+        s32 ar3;
+        s32 ar4;
+        s32 ar5;
+        s32 ar6;
+        s32 ar7;
+        s32 ar8;
+        s32 ar9;
+
+        temp = (arg1 * 0.975f);
+
+        ar1 = (s32) (((temp + 160.0f) - 12.0f * arg3) * 4.0f);
+        ar2 = (s32) (((120.0f - arg2) - 12.0f * arg3) * 4.0f);
+        ar3 = (s32) ((24.0f * arg3 + ((temp + 160.0f) - 12.0f * arg3)) * 4.0f);
+        ar4 = (s32) ((24.0f * arg3 + ((120.0f - arg2) - 12.0f * arg3)) * 4.0f);
+        ar5 = 0;
+        ar6 = 0;
+        ar7 = 0;
+        ar8 = (s32) ((1.0f / arg3) * 1365.3334f);
+        ar9 = (s32) ((1.0f / arg3) * 1365.3334f);
+
+        gfx = func_800BE320_jp(gfx, ar1, ar2, ar3, ar4, ar5, ar6, ar7, ar8, ar9);
+    }
+
+    gDPPipeSync(gfx++);
+    gDPSetAlphaCompare(gfx++, G_AC_NONE);
+    gDPSetBlendColor(gfx++, 255, 255, 255, 8);
+    gDPSetTexturePersp(gfx++, G_TP_PERSP);
+
+    POLY_OPA_DISP = gfx;
+
+    CLOSE_DISPS(gfxCtx);
+}
+#else
+void func_8085C7B8_jp(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085C7B8_jp.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/func_8085CE18_jp.s")
 

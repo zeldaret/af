@@ -4147,7 +4147,7 @@ _DW({									\
 		G_TX_LOADTILE, 0 , 0, 0, 0, 0, 0, 0);			\
 	gDPLoadSync(pkt);						\
 	gDPLoadTLUTCmd(pkt, G_TX_LOADTILE, 15);				\
-	gDPPipeSync(pkt)						\
+	gDPPipeSync(pkt);						\
 })
 
 #else /* **** WORKAROUND hardware 1 load_tlut bug ****** */
