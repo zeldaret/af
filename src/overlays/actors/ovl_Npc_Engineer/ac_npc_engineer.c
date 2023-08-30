@@ -27,10 +27,7 @@ ActorProfile Npc_Engineer_Profile = {
 };
 
 struct_809AEFA4 D_809AEFA4_jp = {
-    func_809AEF28_jp,
-    func_809AEF54_jp,
-    4,
-    0,
+    func_809AEF28_jp, func_809AEF54_jp, 4, 0, 0, 0,
 };
 
 void aNEG_actor_ct(Actor* thisx, Game_Play* game_play) {

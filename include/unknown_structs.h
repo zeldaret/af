@@ -42,9 +42,11 @@ typedef struct struct_800418D8 {
 
 typedef struct struct_809AEFA4 {
     /* 0x0 */ UNK_PTR unk_0;
-    /* 0x0 */ UNK_PTR unk_4;
-    /* 0x0 */ UNK_TYPE unk_8;
-    /* 0x0 */ UNK_TYPE unk_C;
-} struct_809AEFA4; // size >= 0x10
+    /* 0x4 */ UNK_PTR unk_4;
+    /* 0x8 */ UNK_TYPE unk_8;
+    /* 0xC */ UNK_PTR unk_C;
+    /* 0x10 */ UNK_PTR unk_10;
+    /* 0x14 */ UNK_PTR unk_14;
+} struct_809AEFA4; // size >= 0x18
 
 #endif
