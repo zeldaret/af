@@ -52,6 +52,15 @@ extern struct_8085DCF8 D_8085DD88_jp;
 
 extern struct_8085DCF8* D_8085E460_jp[];
 
+typedef struct struct_8085E948 {
+    /* 0x0 */ UNK_TYPE unk_0;
+    /* 0x4 */ UNK_TYPE unk_4;
+    /* 0x8 */ UNK_TYPE unk_8;
+    /* 0xC */ UNK_TYPE unk_C;
+} struct_8085E948; // size = 0x10
+
+extern struct_8085E948 D_8085E948_jp[];
+
 void mSM_setup_view(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1) {
     Mtx* var_t0;
     UNUSED s32 pad;
@@ -325,6 +334,7 @@ void mSM_cbuf_copy(GraphicsContext* gfxCtx, PreRender* render, s32 arg2, s32 arg
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_cbuf_copy.s")
 #endif
 
+// mSM_set_drawMode?
 void func_8085C20C_jp(GraphicsContext* gfxCtx, struct_func_8085C20C_jp_arg1* arg1, f32 arg2, f32 xAt, s16 angle) {
     s32 temp_a3 = arg1->unk_04;
     s32 temp_t1 = arg1->unk_06;
@@ -639,6 +649,7 @@ void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_f
     CLOSE_DISPS(arg0);
 }
 #else
+void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_func_8085CE18_jp_arg4* arg4, s32 arg5, s32 arg6);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_draw_mail.s")
 #endif
 
@@ -839,7 +850,60 @@ void mSM_tex_move(mSM* arg0) {
     }
 }
 
+typedef struct struct_mSM_return_func_arg1 {
+    /* 0x00 */ UNK_TYPE1 unk_00[0x4];
+    /* 0x04 */ UNK_TYPE unk_04;
+    /* 0x08 */ UNK_TYPE unk_08;
+    /* 0x0C */ UNK_TYPE unk_0C;
+    /* 0x10 */ UNK_TYPE unk_10;
+    /* 0x14 */ UNK_TYPE unk_14;
+    /* 0x18 */ UNK_TYPE1 unk_18[0x14];
+    /* 0x2C */ UNK_TYPE unk_2C;
+    /* 0x30 */ UNK_TYPE unk_30;
+} struct_mSM_return_func_arg1; // size >= 0x34
+
+#if 0
+void mSM_return_func(mSM* arg0, struct_mSM_return_func_arg1* arg1) {
+    s32 temp_t6;
+    struct_8085E9B0* temp_v1;
+    struct_8085E9B0_unk_10088* temp_v0;
+
+    if (arg1->unk_14 != 0) {
+        temp_v1 = arg0->unk_2C;
+        temp_v0 = &temp_v1->unk_10088[arg1->unk_14];
+        temp_v0->unk_08 = arg1->unk_08;
+        temp_v0->unk_0C = arg1->unk_0C;
+        temp_v0->unk_10 = arg1->unk_10;
+        temp_v1->unk_10088[arg1->unk_14].unk_14 = arg1->unk_14;
+    } else {
+        temp_v1 = arg0->unk_2C;
+        arg0->unk_04 = arg1->unk_08;
+        if (arg0->unk_04 == 0) {
+            while (temp_v1->unk_10000.unk_64 != 0) {
+                temp_t6 = temp_v1->unk_10000.unk_64 - 1;
+                temp_v1->unk_10000.unk_64 = temp_t6;
+                temp_v1->unk_10000.unk_68[temp_t6]->unk_14(arg0);
+            }
+            arg0->moveProcIndex = MSM_MOVE_PROC_END;
+            arg0->play = none_proc1;
+            arg0->unk_08 = arg1->unk_08;
+            arg0->unk_2C->unk_10670.unk_00 = none_proc1;
+            arg0->unk_2C->unk_10670.unk_04 = none_proc1;
+        } else {
+            mSM_set_before_menu_proc(arg0);
+        }
+    }
+
+    arg1->unk_2C = 0;
+    arg1->unk_08 = 0;
+    arg1->unk_14 = 0;
+    arg1->unk_04 = 0;
+    arg1->unk_30 = 0;
+}
+#else
+void mSM_return_func(mSM* arg0, struct_mSM_return_func_arg1* arg1);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_return_func.s")
+#endif
 
 s32 mSM_move_menu(f32* arg0, f32* arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
     if (((*arg0 - arg3) * arg5) >= 0.0f) {
@@ -860,9 +924,38 @@ s32 mSM_move_menu(f32* arg0, f32* arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) 
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_move_Move.s")
+#if 0
+#define bitwise
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_move_End_.s")
+void mSM_move_Move(s32 arg0, void* arg1) {
+    void* sp20;
+    f32 var_fv0;
+    s32 temp_t0;
+    struct_8085E948* temp_v0;
+    void* temp_v1;
+
+    temp_t0 = arg1->unk_34;
+    if (temp_t0 & 2) {
+        var_fv0 = -1.0f;
+    } else {
+        var_fv0 = 1.0f;
+    }
+    temp_v0 = &D_8085E948_jp[temp_t0 & 1];
+    temp_v1 = arg1 + ((temp_t0 >> 2) * 4);
+    sp20 = temp_v1;
+    if (mSM_move_menu(temp_v1 + 0x18, temp_v1 + 0x20, (bitwise f32) temp_v0->unk_0, (bitwise f32) temp_v0->unk_4 * var_fv0, (bitwise f32) temp_v0->unk_8 * var_fv0, (bitwise f32) temp_v0->unk_C * var_fv0) == 1) {
+        arg1->unk_4 = (s32) arg1->unk_30;
+    }
+    temp_v1->unk_18 = (f32) (s32) temp_v1->unk_18;
+}
+#else
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_move_Move.s")
+#endif
+
+
+void mSM_move_End_(mSM* arg0, struct_mSM_return_func_arg1* arg1) {
+    mSM_return_func(arg0, arg1);
+}
 
 void mSM_menu_ovl_move(mSM* arg0) {
     struct_8085E9B0_unk_10670* sp24 = &arg0->unk_2C->unk_10670;

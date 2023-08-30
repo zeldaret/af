@@ -11,14 +11,16 @@ struct mSM;
 
 typedef void (*struct_8085E4D0_unk_10)(struct mSM*);
 
+typedef void (*struct_8085E4D0_unk_18)(struct mSM*);
+
 typedef struct struct_8085E4D0 {
     /* 0x00 */ RomOffset vromStart;
     /* 0x00 */ RomOffset vromEnd;
     /* 0x08 */ void* vramStart;
     /* 0x08 */ void* vramEnd;
     /* 0x08 */ struct_8085E4D0_unk_10 unk_10;
-    /* 0x08 */ UNK_PTR unk_14;
-    /* 0x08 */ UNK_FUN_PTR unk_18;
+    /* 0x08 */ UNK_FUN_PTR unk_14;
+    /* 0x08 */ struct_8085E4D0_unk_18 unk_18;
     /* 0x08 */ UNK_TYPE4 unk_1C;
 } struct_8085E4D0; // size = 0x20
 
