@@ -226,6 +226,9 @@ build/src/boot/libc64/%.o: OPTFLAGS := -O2
 
 # per-file flags
 
+build/src/boot/fault.o: CFLAGS += -trapuv
+build/src/boot/fault_drawer.o: CFLAGS += -trapuv
+
 # cc & asm-processor
 build/src/%.o: CC := $(ASM_PROC) $(ASM_PROC_FLAGS) $(CC) -- $(AS) $(ASFLAGS) --
 
