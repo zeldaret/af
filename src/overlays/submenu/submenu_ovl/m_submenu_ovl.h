@@ -21,7 +21,7 @@ typedef struct struct_8085E4D0 {
     /* 0x08 */ struct_8085E4D0_unk_10 unk_10;
     /* 0x08 */ UNK_FUN_PTR unk_14;
     /* 0x08 */ struct_8085E4D0_unk_18 unk_18;
-    /* 0x08 */ UNK_TYPE4 unk_1C;
+    /* 0x08 */ s32 unk_1C;
 } struct_8085E4D0; // size = 0x20
 
 typedef struct struct_mSM_move_Move_arg1 {

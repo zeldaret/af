@@ -12,13 +12,9 @@
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "overlays/gamestates/ovl__00743CD0/_00743CD0.h"
 
+extern Gfx D_C012370[]; // inv_item_model
+
 extern struct_8085E9B0 ovl_base;
-
-extern struct_8085E4D0 mSM_program_dlftbl[];
-
-extern s32 D_8085E938_jp[];
-extern f32 D_FLT_8085E7E8_jp[][4];
-extern u8 D_8085E7D0_jp[];
 
 typedef struct struct_func_8085C20C_jp_arg1 {
     /* 0x00 */ UNK_TYPE1 unk_00[0x4];
@@ -30,36 +26,450 @@ typedef struct struct_func_8085C20C_jp_arg1 {
     /* 0x20 */ UNK_TYPE unk_20;
 } struct_func_8085C20C_jp_arg1; // size > 0x24
 
-extern Vp D_8085DCD0_jp;
-
-// TODO: fix symbol size
-extern Lightsn D_8085DCE0_jp;
-
-Gfx* func_800BE320_jp(Gfx*, s32, s32, s32, s32, s32, s32, s32, s32, s32); /* extern */
-
 typedef struct struct_8085DCF8 {
     /* 0x0 */ UNK_TYPE4 unk_0;
     /* 0x4 */ UNK_TYPE4 unk_4;
 } struct_8085DCF8; // size = 0x8
 
-extern struct_8085DCF8 D_8085DCF8_jp;
-extern struct_8085DCF8 D_8085DD00_jp;
-extern struct_8085DCF8 D_8085DD08_jp;
-extern struct_8085DCF8 D_8085DD10_jp[];
-extern struct_8085DCF8 D_8085DD38_jp;
-extern struct_8085DCF8 D_8085DD68_jp[];
-extern struct_8085DCF8 D_8085DD88_jp;
+// maybe same struct as struct_8085DCF8?
+typedef struct struct_8085E4A0 {
+    /* 0x0 */ UNK_PTR unk_0;
+    /* 0x4 */ UNK_PTR unk_4;
+} struct_8085E4A0; // size = 0x8
 
-extern struct_8085DCF8* D_8085E460_jp[];
+extern Vp D_8085DCD0_jp;
 
-typedef struct struct_8085E948 {
-    /* 0x0 */ f32 unk_0;
-    /* 0x4 */ f32 unk_4;
-    /* 0x8 */ f32 unk_8;
-    /* 0xC */ f32 unk_C;
-} struct_8085E948; // size = 0x10
+// gdSPDefLights1
+extern Lights1 D_8085DCE0_jp;
 
-extern struct_8085E948 D_8085E948_jp[];
+
+Vp D_8085DCD0_jp = { { { 0, 0, 0x1FF, 0 }, { 0, 0, 0x1FF, 0 } } };
+
+Lights1 D_8085DCE0_jp = gdSPDefLights1(0x69, 0x5A, 0x5A, 0xFF, 0xFF, 0xF5, 0, 0x3C, 0x3C);
+
+struct_8085DCF8 D_8085DCF8_jp = { 0x0C00A620, 0x0C00A6E0 };
+struct_8085DCF8 D_8085DD00_jp = { 0x0C00B720, 0x0C00B740 };
+struct_8085DCF8 D_8085DD08_jp = { 0x0C00DD40, 0x0C00DD80 };
+struct_8085DCF8 D_8085DD10_jp[5] = {
+    { 0x0C010FA0, 0x0C010FC0 },
+    { 0x0C012400, 0x0C012420 },
+    { 0x0C012620, 0x0C0126A0 },
+    { 0x0C012640, 0x0C0128A0 },
+    { 0x0C012660, 0x0C012AA0 },
+};
+struct_8085DCF8 D_8085DD38_jp = { 0x0C012680, 0x0C012CA0 };
+static struct_8085DCF8 D_8085DD40_jp = { 0x0C00B2E0, 0x0C00B300 };
+static struct_8085DCF8 D_8085DD48_jp[4] = {
+    { 0x0C010780, 0x0C0109A0 },
+    { 0x0C010780, 0x0C010BA0 },
+    { 0x0C010780, 0x0C010DA0 },
+    { 0x0C010780, 0x0C0107A0 },
+};
+struct_8085DCF8 D_8085DD68_jp[4] = {
+    { 0x0C00F940, 0x0C00FF60 },
+    { 0x0C00F8E0, 0x0C00F960 },
+    { 0x0C00F900, 0x0C00FB60 },
+    { 0x0C00F920, 0x0C00FD60 },
+};
+struct_8085DCF8 D_8085DD88_jp = { 0x0C00A680, 0x0C00ACE0 };
+static struct_8085DCF8 D_8085DD90_jp[0x20] = {
+    { 0x0C004EA0, 0x0C005860 },
+    { 0x0C004EE0, 0x0C005A60 },
+    { 0x0C004F20, 0x0C005C60 },
+    { 0x0C004F60, 0x0C005E60 },
+    { 0x0C005020, 0x0C006460 },
+    { 0x0C005160, 0x0C006E60 },
+    { 0x0C0051A0, 0x0C007060 },
+    { 0x0C0051E0, 0x0C007260 },
+    { 0x0C005120, 0x0C006C60 },
+    { 0x0C004E60, 0x0C005660 },
+    { 0x0C005220, 0x0C007460 },
+    { 0x0C004FA0, 0x0C006060 },
+    { 0x0C004FE0, 0x0C006260 },
+    { 0x0C005060, 0x0C006660 },
+    { 0x0C0050A0, 0x0C006860 },
+    { 0x0C0050E0, 0x0C006A60 },
+    { 0x0C0052E0, 0x0C007A60 },
+    { 0x0C005320, 0x0C007C60 },
+    { 0x0C005360, 0x0C007E60 },
+    { 0x0C0053E0, 0x0C008260 },
+    { 0x0C0053A0, 0x0C008060 },
+    { 0x0C005420, 0x0C008460 },
+    { 0x0C005460, 0x0C008660 },
+    { 0x0C0054A0, 0x0C008860 },
+    { 0x0C0055A0, 0x0C009060 },
+    { 0x0C0055E0, 0x0C009260 },
+    { 0x0C005260, 0x0C007660 },
+    { 0x0C0052A0, 0x0C007860 },
+    { 0x0C005560, 0x0C008E60 },
+    { 0x0C005520, 0x0C008C60 },
+    { 0x0C0054E0, 0x0C008A60 },
+    { 0x0C005620, 0x0C009460 },
+};
+static struct_8085DCF8 D_8085DE90_jp = { 0x0C009720, 0x0C009740 };
+static struct_8085DCF8 D_8085DE98_jp[0x1E] = {
+    { 0x0C00EC60, 0x0C00F0E0 },
+    { 0x0C009720, 0x0C009740 },
+    { 0x0C010780, 0x0C0109A0 },
+    { 0x0C00C800, 0x0C00C940 },
+    { 0x0C00C900, 0x0C00D940 },
+    { 0x0C00C8E0, 0x0C00D740 },
+    { 0x0C00C8A0, 0x0C00D340 },
+    { 0x0C00C880, 0x0C00D140 },
+    { 0x0C00C840, 0x0C00CD40 },
+    { 0x0C00C820, 0x0C00CB40 },
+    { 0x0C00C920, 0x0C00DB40 },
+    { 0x0C00C860, 0x0C00CF40 },
+    { 0x0C00C8C0, 0x0C00D540 },
+    { 0x0C010780, 0x0C0109A0 },
+    { 0x0C00B940, 0x0C00B9C0 },
+    { 0x0C00B9A0, 0x0C00C1C0 },
+    { 0x0C00B9A0, 0x0C00BFC0 },
+    { 0x0C00DD60, 0x0C00DF80 },
+    { 0x0C00C3C0, 0x0C00C400 },
+    { 0x0C00C3C0, 0x0C00C400 },
+    { 0x0C0111C0, 0x0C0112C0 },
+    { 0x0C0111E0, 0x0C0114C0 },
+    { 0x0C011200, 0x0C0116C0 },
+    { 0x0C011240, 0x0C011AC0 },
+    { 0x0C011260, 0x0C011CC0 },
+    { 0x0C0112A0, 0x0C0120C0 },
+    { 0x0C011220, 0x0C0118C0 },
+    { 0x0C011280, 0x0C011EC0 },
+    { 0x0C010FA0, 0x0C010FC0 },
+    { 0x0C010FA0, 0x0C010FC0 },
+};
+static struct_8085DCF8 D_8085DF88_jp = { 0x0C00A6A0, 0x0C00AEE0 };
+static struct_8085DCF8 D_8085DF90_jp = { 0x0C00A6C0, 0x0C00B0E0 };
+static struct_8085DCF8 D_8085DF98_jp[7] = {
+    { 0x0C00E180, 0x0C00E220 },
+    { 0x0C00E200, 0x0C00EA20 },
+    { 0x0C00E1E0, 0x0C00E820 },
+    { 0x0C00E1C0, 0x0C00E620 },
+    { 0x0C00E1A0, 0x0C00E420 },
+    { 0x0C00B500, 0x0C00B520 },
+    { 0x0C009940, 0x0C009960 },
+};
+static struct_8085DCF8 D_8085DFD0_jp[0xA] = {
+    { 0x0C00A640, 0x0C00A8E0 },
+    { 0x0C00A660, 0x0C00AAE0 },
+    { 0x0C00A660, 0x0C00AAE0 },
+    { 0x0C00A660, 0x0C00AAE0 },
+    { 0x0C00A660, 0x0C00AAE0 },
+    { 0x0C00A660, 0x0C00AAE0 },
+    { 0x0C00A660, 0x0C00AAE0 },
+    { 0x0C00A660, 0x0C00AAE0 },
+    { 0x0C00A660, 0x0C00AAE0 },
+    { 0x0C00A660, 0x0C00AAE0 },
+};
+static struct_8085DCF8 D_8085E020_jp = { 0x0C00C3E0, 0x0C00C600 };
+static struct_8085DCF8 D_8085E028_jp[0x60] = {
+    { 0x0C009C00, 0x0C00A420 },
+    { 0x0C009C00, 0x0C00A220 },
+    { 0x0C009C00, 0x0C009C20 },
+    { 0x0C009C00, 0x0C00A020 },
+    { 0x0C009C00, 0x0C009E20 },
+    { 0x0C009C00, 0x0C00A420 },
+    { 0x0C009C00, 0x0C00A420 },
+    { 0x0C009C00, 0x0C00A420 },
+    { 0x0C009B60, 0x0C00A420 },
+    { 0x0C009B60, 0x0C00A220 },
+    { 0x0C009B60, 0x0C009C20 },
+    { 0x0C009B60, 0x0C00A020 },
+    { 0x0C009B60, 0x0C009E20 },
+    { 0x0C009B60, 0x0C00A420 },
+    { 0x0C009B60, 0x0C00A420 },
+    { 0x0C009B60, 0x0C00A420 },
+    { 0x0C009B80, 0x0C00A420 },
+    { 0x0C009B80, 0x0C00A220 },
+    { 0x0C009B80, 0x0C009C20 },
+    { 0x0C009B80, 0x0C00A020 },
+    { 0x0C009B80, 0x0C009E20 },
+    { 0x0C009B80, 0x0C00A420 },
+    { 0x0C009B80, 0x0C00A420 },
+    { 0x0C009B80, 0x0C00A420 },
+    { 0x0C009BA0, 0x0C00A420 },
+    { 0x0C009BA0, 0x0C00A220 },
+    { 0x0C009BA0, 0x0C009C20 },
+    { 0x0C009BA0, 0x0C00A020 },
+    { 0x0C009BA0, 0x0C009E20 },
+    { 0x0C009BA0, 0x0C00A420 },
+    { 0x0C009BA0, 0x0C00A420 },
+    { 0x0C009BA0, 0x0C00A420 },
+    { 0x0C009BC0, 0x0C00A420 },
+    { 0x0C009BC0, 0x0C00A220 },
+    { 0x0C009BC0, 0x0C009C20 },
+    { 0x0C009BC0, 0x0C00A020 },
+    { 0x0C009BC0, 0x0C009E20 },
+    { 0x0C009BC0, 0x0C00A420 },
+    { 0x0C009BC0, 0x0C00A420 },
+    { 0x0C009BC0, 0x0C00A420 },
+    { 0x0C009BE0, 0x0C00A420 },
+    { 0x0C009BE0, 0x0C00A220 },
+    { 0x0C009BE0, 0x0C009C20 },
+    { 0x0C009BE0, 0x0C00A020 },
+    { 0x0C009BE0, 0x0C009E20 },
+    { 0x0C009BE0, 0x0C00A420 },
+    { 0x0C009BE0, 0x0C00A420 },
+    { 0x0C009BE0, 0x0C00A420 },
+    { 0x0C009660, 0x0C00A420 },
+    { 0x0C009660, 0x0C00A220 },
+    { 0x0C009660, 0x0C009C20 },
+    { 0x0C009660, 0x0C00A020 },
+    { 0x0C009660, 0x0C009E20 },
+    { 0x0C009660, 0x0C00A420 },
+    { 0x0C009660, 0x0C00A420 },
+    { 0x0C009660, 0x0C00A420 },
+    { 0x0C009680, 0x0C00A420 },
+    { 0x0C009680, 0x0C00A220 },
+    { 0x0C009680, 0x0C009C20 },
+    { 0x0C009680, 0x0C00A020 },
+    { 0x0C009680, 0x0C009E20 },
+    { 0x0C009680, 0x0C00A420 },
+    { 0x0C009680, 0x0C00A420 },
+    { 0x0C009680, 0x0C00A420 },
+    { 0x0C0096A0, 0x0C00A420 },
+    { 0x0C0096A0, 0x0C00A220 },
+    { 0x0C0096A0, 0x0C009C20 },
+    { 0x0C0096A0, 0x0C00A020 },
+    { 0x0C0096A0, 0x0C009E20 },
+    { 0x0C0096A0, 0x0C00A420 },
+    { 0x0C0096A0, 0x0C00A420 },
+    { 0x0C0096A0, 0x0C00A420 },
+    { 0x0C0096C0, 0x0C00A420 },
+    { 0x0C0096C0, 0x0C00A220 },
+    { 0x0C0096C0, 0x0C009C20 },
+    { 0x0C0096C0, 0x0C00A020 },
+    { 0x0C0096C0, 0x0C009E20 },
+    { 0x0C0096C0, 0x0C00A420 },
+    { 0x0C0096C0, 0x0C00A420 },
+    { 0x0C0096C0, 0x0C00A420 },
+    { 0x0C0096E0, 0x0C00A420 },
+    { 0x0C0096E0, 0x0C00A220 },
+    { 0x0C0096E0, 0x0C009C20 },
+    { 0x0C0096E0, 0x0C00A020 },
+    { 0x0C0096E0, 0x0C009E20 },
+    { 0x0C0096E0, 0x0C00A420 },
+    { 0x0C0096E0, 0x0C00A420 },
+    { 0x0C0096E0, 0x0C00A420 },
+    { 0x0C009700, 0x0C00A420 },
+    { 0x0C009700, 0x0C00A220 },
+    { 0x0C009700, 0x0C009C20 },
+    { 0x0C009700, 0x0C00A020 },
+    { 0x0C009700, 0x0C009E20 },
+    { 0x0C009700, 0x0C00A420 },
+    { 0x0C009700, 0x0C00A420 },
+    { 0x0C009700, 0x0C00A420 },
+};
+static struct_8085DCF8 D_8085E328_jp[0x20] = {
+    { 0x0C000660, 0x0C000E60 },
+    { 0x0C0006A0, 0x0C001060 },
+    { 0x0C0006E0, 0x0C001260 },
+    { 0x0C000720, 0x0C001460 },
+    { 0x0C0007A0, 0x0C001860 },
+    { 0x0C0007E0, 0x0C001A60 },
+    { 0x0C000820, 0x0C001C60 },
+    { 0x0C000760, 0x0C001660 },
+    { 0x0C000BE0, 0x0C003A60 },
+    { 0x0C0008A0, 0x0C002060 },
+    { 0x0C000860, 0x0C001E60 },
+    { 0x0C0008E0, 0x0C002260 },
+    { 0x0C000920, 0x0C002460 },
+    { 0x0C000B20, 0x0C003460 },
+    { 0x0C000B60, 0x0C003660 },
+    { 0x0C000960, 0x0C002660 },
+    { 0x0C0009A0, 0x0C002860 },
+    { 0x0C000A20, 0x0C002C60 },
+    { 0x0C0009E0, 0x0C002A60 },
+    { 0x0C000C60, 0x0C003E60 },
+    { 0x0C000D20, 0x0C004460 },
+    { 0x0C000D60, 0x0C004660 },
+    { 0x0C000CE0, 0x0C004260 },
+    { 0x0C000CA0, 0x0C004060 },
+    { 0x0C000A60, 0x0C002E60 },
+    { 0x0C000AA0, 0x0C003060 },
+    { 0x0C000AE0, 0x0C003260 },
+    { 0x0C000C20, 0x0C003C60 },
+    { 0x0C000BA0, 0x0C003860 },
+    { 0x0C000DA0, 0x0C004860 },
+    { 0x0C000DE0, 0x0C004A60 },
+    { 0x0C000E20, 0x0C004C60 },
+};
+static struct_8085DCF8 D_8085E428_jp[4] = {
+    { 0x0C010160, 0x0C010180 },
+    { 0x0C010160, 0x0C010380 },
+    { 0x0C010160, 0x0C010580 },
+    { 0x0C000000, 0x0C000020 },
+};
+static struct_8085DCF8 D_8085E448_jp[3] = {
+    { 0x0C00B960, 0x0C00BBC0 },
+    { 0x0C000220, 0x0C000240 },
+    { 0x0C000440, 0x0C000460 },
+};
+struct_8085DCF8* D_8085E460_jp[0x10] = {
+    &D_8085DD40_jp,
+    D_8085DD48_jp,
+    D_8085DD68_jp,
+    D_8085DD90_jp,
+    &D_8085DE90_jp,
+    D_8085DE98_jp,
+    &D_8085DF88_jp,
+    &D_8085DF90_jp,
+    D_8085DF98_jp,
+    D_8085DFD0_jp,
+    &D_8085E020_jp,
+    D_8085E448_jp,
+    D_8085E028_jp,
+    D_8085E328_jp,
+    D_8085E448_jp,
+    D_8085E428_jp,
+};
+struct_8085E4A0 D_8085E4A0_jp[6] = {
+    { (void* )0x0C00EC60, (void* )0x0C00F0E0 },
+    { (void* )0x0C00EC60, (void* )0x0C00F2E0 },
+    { (void* )0x0C00ECA0, (void* )0x0C00F4E0 },
+    { (void* )0x0C00ECA0, (void* )0x0C00F6E0 },
+    { (void* )0x0C00EC20, (void* )0x0C00ECE0 },
+    { (void* )0x0C00EC20, (void* )0x0C00EEE0 },
+};
+
+#define SUBMENU_PROGRAM(name, func1, func2, func3) \
+    { SEGMENT_ROM_START(name), SEGMENT_ROM_END(name), SEGMENT_VRAM_START(name), SEGMENT_VRAM_END(name), (void*)&func1, (void*)&func2, (void*)&func3, false }
+
+// TODO: make specialized headers for those and fix types
+extern UNK_TYPE func_80881030_jp; extern UNK_TYPE func_80881144_jp; extern UNK_TYPE func_80880C04_jp;
+
+extern UNK_TYPE func_8088306C_jp; extern UNK_TYPE func_808830E8_jp; extern UNK_TYPE func_80882FAC_jp;
+
+extern UNK_TYPE func_80884120_jp; extern UNK_TYPE func_808841A8_jp; extern UNK_TYPE func_80883F5C_jp;
+
+extern UNK_TYPE func_80884C84_jp; extern UNK_TYPE func_80884D00_jp; extern UNK_TYPE func_80884B00_jp;
+
+extern UNK_TYPE func_8088FBF0_jp; extern UNK_TYPE func_8088FCBC_jp; extern UNK_TYPE func_8088FB40_jp;
+
+extern UNK_TYPE func_80895B04_jp; extern UNK_TYPE func_80895B9C_jp; extern UNK_TYPE func_80895A30_jp;
+
+extern UNK_TYPE func_80898688_jp; extern UNK_TYPE func_80898710_jp; extern UNK_TYPE func_80898520_jp;
+
+extern UNK_TYPE func_80899E34_jp; extern UNK_TYPE func_80899F00_jp; extern UNK_TYPE func_80899D84_jp;
+
+extern UNK_TYPE func_8089AB8C_jp; extern UNK_TYPE func_8089AC14_jp; extern UNK_TYPE func_8089AAE4_jp;
+
+extern UNK_TYPE func_808883F8_jp; extern UNK_TYPE func_808884E4_jp; extern UNK_TYPE func_80888354_jp;
+
+extern UNK_TYPE func_80882778_jp; extern UNK_TYPE func_80882818_jp; extern UNK_TYPE func_808826B8_jp;
+
+extern UNK_TYPE func_8088A6E8_jp; extern UNK_TYPE func_8088A77C_jp; extern UNK_TYPE func_8088A2A0_jp;
+
+extern UNK_TYPE func_8088C4A0_jp; extern UNK_TYPE func_8088C548_jp; extern UNK_TYPE func_8088C344_jp;
+
+extern UNK_TYPE func_8088D924_jp; extern UNK_TYPE func_8088D9D4_jp; extern UNK_TYPE func_8088D81C_jp;
+
+extern UNK_TYPE func_80896898_jp; extern UNK_TYPE func_80896938_jp; extern UNK_TYPE func_80896830_jp;
+
+extern UNK_TYPE func_8089730C_jp; extern UNK_TYPE func_80897394_jp; extern UNK_TYPE func_8089728C_jp;
+
+extern UNK_TYPE func_8089BE68_jp; extern UNK_TYPE func_8089BF10_jp; extern UNK_TYPE func_8089BCE0_jp;
+
+extern UNK_TYPE func_808A40F0_jp; extern UNK_TYPE func_808A4188_jp; extern UNK_TYPE func_808A4058_jp;
+
+extern UNK_TYPE func_808A5D7C_jp; extern UNK_TYPE func_808A5E14_jp; extern UNK_TYPE func_808A5C28_jp;
+
+extern UNK_TYPE func_808A96AC_jp; extern UNK_TYPE func_808A97C0_jp; extern UNK_TYPE func_808A92EC_jp;
+
+extern UNK_TYPE func_808787A0_jp; extern UNK_TYPE func_80878904_jp; extern UNK_TYPE func_80878904_jp;
+
+extern UNK_TYPE func_8087C360_jp; extern UNK_TYPE func_8087C574_jp; extern UNK_TYPE func_8087C574_jp;
+
+extern UNK_TYPE func_8087D180_jp; extern UNK_TYPE func_8087D274_jp; extern UNK_TYPE func_8087D274_jp;
+
+
+struct_8085E4D0 mSM_program_dlftbl[] = {
+    SUBMENU_PROGRAM(ovl__00785700, func_80881030_jp, func_80881144_jp, func_80880C04_jp),
+    SUBMENU_PROGRAM(ovl__00785700, func_80881030_jp, func_80881144_jp, func_80880C04_jp),
+    SUBMENU_PROGRAM(ovl__0078A560, func_8088306C_jp, func_808830E8_jp, func_80882FAC_jp),
+    SUBMENU_PROGRAM(ovl__0078AE30, func_80884120_jp, func_808841A8_jp, func_80883F5C_jp),
+    SUBMENU_PROGRAM(ovl__0078BFB0, func_80884C84_jp, func_80884D00_jp, func_80884B00_jp),
+    SUBMENU_PROGRAM(ovl__00795350, func_8088FBF0_jp, func_8088FCBC_jp, func_8088FB40_jp),
+    SUBMENU_PROGRAM(ovl__00797A50, func_80895B04_jp, func_80895B9C_jp, func_80895A30_jp),
+    SUBMENU_PROGRAM(ovl__0079B120, func_80898688_jp, func_80898710_jp, func_80898520_jp),
+    SUBMENU_PROGRAM(ovl__0079C020, func_80899E34_jp, func_80899F00_jp, func_80899D84_jp),
+    SUBMENU_PROGRAM(ovl__0079DA50, func_8089AB8C_jp, func_8089AC14_jp, func_8089AAE4_jp),
+    SUBMENU_PROGRAM(ovl__0078CB80, func_808883F8_jp, func_808884E4_jp, func_80888354_jp),
+    SUBMENU_PROGRAM(ovl__00789B60, func_80882778_jp, func_80882818_jp, func_808826B8_jp),
+    SUBMENU_PROGRAM(ovl__007908A0, func_8088A6E8_jp, func_8088A77C_jp, func_8088A2A0_jp),
+    SUBMENU_PROGRAM(ovl__00792700, func_8088C4A0_jp, func_8088C548_jp, func_8088C344_jp),
+    SUBMENU_PROGRAM(ovl__00794380, func_8088D924_jp, func_8088D9D4_jp, func_8088D81C_jp),
+    SUBMENU_PROGRAM(ovl__00799580, func_80896898_jp, func_80896938_jp, func_80896830_jp),
+    SUBMENU_PROGRAM(ovl__0079A290, func_8089730C_jp, func_80897394_jp, func_8089728C_jp),
+    SUBMENU_PROGRAM(ovl__0079E430, func_8089BE68_jp, func_8089BF10_jp, func_8089BCE0_jp),
+    SUBMENU_PROGRAM(ovl__0079F810, func_808A40F0_jp, func_808A4188_jp, func_808A4058_jp),
+    SUBMENU_PROGRAM(ovl__007A10E0, func_808A5D7C_jp, func_808A5E14_jp, func_808A5C28_jp),
+    SUBMENU_PROGRAM(ovl__007A28F0, func_808A96AC_jp, func_808A97C0_jp, func_808A92EC_jp),
+    SUBMENU_PROGRAM(ovl__00777AE0, func_808787A0_jp, func_80878904_jp, func_80878904_jp),
+    SUBMENU_PROGRAM(ovl__007829E0, func_8087C360_jp, func_8087C574_jp, func_8087C574_jp),
+    SUBMENU_PROGRAM(ovl__00784FC0, func_8087D180_jp, func_8087D274_jp, func_8087D274_jp),
+};
+
+u8 D_8085E7D0_jp[0x18] = {
+    0,
+    0xE,
+    0x10,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0xE,
+    0,
+    0,
+    0x1E,
+    0,
+    0,
+    0xE,
+    0,
+    0xC,
+    0xC,
+    0,
+    0,
+    0,
+};
+
+f32 D_FLT_8085E7E8_jp[0x15][4] = {
+    { 0.0f, 0.0f, 0.0f, 0.0f },
+    { 300.0f, 0.0f, 75.0f, 0.0f },
+    { 0.0f, 300.0f, 0.0f, 75.0f },
+    { 0.0f, 300.0f, 0.0f, 75.0f },
+    { 0.0f, 300.0f, 0.0f, 75.0f },
+    { 0.0f, 300.0f, 0.0f, 75.0f },
+    { 0.0f, 300.0f, 0.0f, 75.0f },
+    { 0.0f, 300.0f, 0.0f, 75.0f },
+    { 0.0f, 300.0f, 0.0f, 75.0f },
+    { 0.0f, 300.0f, 0.0f, 75.0f },
+    { 0.0f, -300.0f, 0.0f, 75.0f },
+    { -300.0f, 0.0f, 75.0f, 0.0f },
+    { 0.0f, 300.0f, 0.0f, 75.0f },
+    { 0.0f, 0.0f, 0.0f, 0.0f },
+    { -300.0f, 0.0f, 75.0f, 0.0f },
+    { 0.0f, -300.0f, 0.0f, 75.0f },
+    { 0.0f, 0.0f, 0.0f, 0.0f },
+    { 300.0f, 0.0f, 75.0f, 0.0f },
+    { 0.0f, 0.0f, 0.0f, 0.0f },
+    { 0.0f, 300.0f, 0.0f, 75.0f },
+    { 300.0f, 0.0f, 75.0f, 0.0f },
+};
+
+s32 D_8085E938_jp[] = { 1, 8, 2, 4 };
+
+f32 D_8085E948_jp[][4] = { { 2.0f, 0.0f, 300.0f, 1.0f }, { 0.5f, 120.0f, 0.0f, -1.0f } };
+
+
+
+
+Gfx* func_800BE320_jp(Gfx*, s32, s32, s32, s32, s32, s32, s32, s32, s32); /* extern */
 
 void mSM_setup_view(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1) {
     Mtx* var_t0;
@@ -579,16 +989,6 @@ void mSM_draw_item(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 ar
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_draw_item.s")
 #endif
 
-// maybe same struct as struct_8085DCF8?
-typedef struct struct_8085E4A0 {
-    /* 0x0 */ UNK_PTR unk_0;
-    /* 0x4 */ UNK_PTR unk_4;
-} struct_8085E4A0; // size = 0x8
-
-extern struct_8085E4A0 D_8085E4A0_jp[];
-
-extern Gfx D_C012370[]; // inv_item_model
-
 #ifdef NON_MATCHING
 // stack issues
 void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_func_8085CE18_jp_arg4* arg4, s32 arg5, s32 arg6) {
@@ -740,13 +1140,12 @@ void mSM_set_before_menu_proc(mSM* arg0) {
 
     temp = &arg0->unk_2C->unk_10088[temp_v0];
 
-    temp->unk_14 = 0;
+    temp->unk_14 = NULL;
 }
 
 void mSM_set_new_seg(mSM* arg0) {
-    s32 temp_v0;
+    s32 temp_v0 = arg0->unk_04;
 
-    temp_v0 = arg0->unk_04;
     mSM_ovl_prog_seg(arg0, &mSM_program_dlftbl[temp_v0]);
     arg0->unk_08 = temp_v0;
 }
@@ -924,10 +1323,10 @@ s32 mSM_move_menu(f32* arg0, f32* arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) 
     return 0;
 }
 
-void mSM_move_Move(mSM* arg0, struct_mSM_move_Move_arg1* arg1) {
+void mSM_move_Move(UNUSED mSM* arg0, struct_mSM_move_Move_arg1* arg1) {
     f32 var_fv0;
     s32 temp_t0 = arg1->unk_34;
-    struct_8085E948* temp_v0 = &D_8085E948_jp[temp_t0 & 1];
+    f32* temp_v0 = D_8085E948_jp[temp_t0 & 1];
     s32 index;
     s32 new_var;
 
@@ -937,9 +1336,9 @@ void mSM_move_Move(mSM* arg0, struct_mSM_move_Move_arg1* arg1) {
         var_fv0 = 1.0f;
     }
 
-    index = (temp_t0 >> 2);
+    index = temp_t0 >> 2;
 
-    if (mSM_move_menu(&arg1->unk_18[index], &arg1->unk_20[index], temp_v0->unk_0, temp_v0->unk_4 * var_fv0, temp_v0->unk_8 * var_fv0, temp_v0->unk_C * var_fv0) == 1) {
+    if (mSM_move_menu(&arg1->unk_18[index], &arg1->unk_20[index], temp_v0[0], temp_v0[1] * var_fv0, temp_v0[2] * var_fv0, temp_v0[3] * var_fv0) == 1) {
         arg1->unk_04 = arg1->unk_30;
     }
 
