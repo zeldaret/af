@@ -27,7 +27,7 @@ ActorProfile Npc_Engineer_Profile = {
 };
 
 struct_809AEFA4 aNEG_ct_data = {
-    aNEG_actor_move, aNEG_actor_draw, 4, 0, 0, 0,
+    aNEG_actor_move, aNEG_actor_draw, 4, NULL, NULL, NULL,
 };
 
 void aNEG_actor_ct(Actor* thisx, Game_Play* game_play) {
