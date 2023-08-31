@@ -1998,7 +1998,7 @@
     bss_size: 0x0
     subsegments:
       - [0x889270, c, overlays/actors/ovl_Normal_Npc/ac_normal_npc]
-      - [0x8893C0, data, overlays/actors/ovl_Normal_Npc/ac_normal_npc]
+      - [0x8893C0, .data, overlays/actors/ovl_Normal_Npc/ac_normal_npc]
   - name: ovl_Normal_Npc_reloc
     type: code
     start: 0x889400

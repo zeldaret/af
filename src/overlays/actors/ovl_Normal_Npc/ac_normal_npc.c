@@ -8,8 +8,10 @@ void aNOR_actor_ct(Actor* thisx, Game_Play* game_play);
 void aNOR_actor_dt(Actor* thisx, Game_Play* game_play);
 void aNOR_actor_init(Actor* thisx, Game_Play* game_play);
 void aNOR_actor_save(Actor* thisx, Game_Play* game_play);
+void aNOR_actor_move(void);
+void aNOR_actor_draw(void);
 
-#if 0
+
 ActorProfile Normal_Npc_Profile = {
     /* */ ACTOR_NORMAL_NPC,
     /* */ ACTOR_PART_NPC,
@@ -20,19 +22,42 @@ ActorProfile Normal_Npc_Profile = {
     /* */ aNOR_actor_ct,
     /* */ aNOR_actor_dt,
     /* */ aNOR_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aNOR_actor_save,
 };
-#endif
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Normal_Npc/ac_normal_npc/aNOR_actor_ct.s")
+struct_809AEFA4 aNOR_ct_data = { 
+    aNOR_actor_move, 
+    aNOR_actor_draw, 
+    1, 
+    NULL,
+    NULL,
+    NULL,
+};
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Normal_Npc/ac_normal_npc/aNOR_actor_dt.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Normal_Npc/ac_normal_npc/aNOR_actor_save.s")
+void aNOR_actor_ct(Actor *thisx, Game_Play *game_play) {
+    if (common_data.unk_1004C->unk_BC(thisx, game_play) == 1) {
+        common_data.unk_1004C->unk_C0(thisx, game_play, &aNOR_ct_data);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Normal_Npc/ac_normal_npc/aNOR_actor_init.s")
+void aNOR_actor_dt(Actor *thisx, Game_Play *game_play) {
+    common_data.unk_1004C->unk_C4(thisx, game_play);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Normal_Npc/ac_normal_npc/func_809A5B4C_jp.s")
+void aNOR_actor_save(Actor *thisx, Game_Play *game_play) {
+    common_data.unk_1004C->unk_C8(thisx, game_play);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Normal_Npc/ac_normal_npc/func_809A5B78_jp.s")
+void aNOR_actor_init(Actor *thisx, Game_Play *game_play) {
+    common_data.unk_1004C->unk_CC(thisx, game_play);
+}
+
+void aNOR_actor_move(void) {
+    common_data.unk_1004C->unk_D0();
+}
+
+void aNOR_actor_draw(void) {
+    common_data.unk_1004C->unk_E4();
+}
