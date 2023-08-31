@@ -24,6 +24,17 @@ typedef struct struct_8085E4D0 {
     /* 0x08 */ UNK_TYPE4 unk_1C;
 } struct_8085E4D0; // size = 0x20
 
+typedef struct struct_mSM_move_Move_arg1 {
+    /* 0x00 */ UNK_TYPE1 unk_00[0x4];
+    /* 0x04 */ s32 unk_04;
+    /* 0x08 */ UNK_TYPE1 unk_08[0x10];
+    /* 0x18 */ f32 unk_18[2];
+    /* 0x20 */ f32 unk_20[2];
+    /* 0x28 */ UNK_TYPE1 unk_28[0x8];
+    /* 0x30 */ UNK_TYPE4 unk_30;
+    /* 0x34 */ UNK_TYPE4 unk_34;
+} struct_mSM_move_Move_arg1; // size >= 0x38
+
 typedef void (*struct_8085E9B0_unk_10670_unk_00)(struct mSM*);
 typedef void (*struct_8085E9B0_unk_10670_unk_04)(struct mSM*, struct Game_Play*);
 

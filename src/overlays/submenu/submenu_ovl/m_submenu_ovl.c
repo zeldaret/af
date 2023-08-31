@@ -53,10 +53,10 @@ extern struct_8085DCF8 D_8085DD88_jp;
 extern struct_8085DCF8* D_8085E460_jp[];
 
 typedef struct struct_8085E948 {
-    /* 0x0 */ UNK_TYPE unk_0;
-    /* 0x4 */ UNK_TYPE unk_4;
-    /* 0x8 */ UNK_TYPE unk_8;
-    /* 0xC */ UNK_TYPE unk_C;
+    /* 0x0 */ f32 unk_0;
+    /* 0x4 */ f32 unk_4;
+    /* 0x8 */ f32 unk_8;
+    /* 0xC */ f32 unk_C;
 } struct_8085E948; // size = 0x10
 
 extern struct_8085E948 D_8085E948_jp[];
@@ -924,34 +924,29 @@ s32 mSM_move_menu(f32* arg0, f32* arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) 
     return 0;
 }
 
-#if 0
-#define bitwise
-
-void mSM_move_Move(s32 arg0, void* arg1) {
-    void* sp20;
+void mSM_move_Move(mSM* arg0, struct_mSM_move_Move_arg1* arg1) {
     f32 var_fv0;
-    s32 temp_t0;
-    struct_8085E948* temp_v0;
-    void* temp_v1;
+    s32 temp_t0 = arg1->unk_34;
+    struct_8085E948* temp_v0 = &D_8085E948_jp[temp_t0 & 1];
+    s32 index;
+    s32 new_var;
 
-    temp_t0 = arg1->unk_34;
     if (temp_t0 & 2) {
         var_fv0 = -1.0f;
     } else {
         var_fv0 = 1.0f;
     }
-    temp_v0 = &D_8085E948_jp[temp_t0 & 1];
-    temp_v1 = arg1 + ((temp_t0 >> 2) * 4);
-    sp20 = temp_v1;
-    if (mSM_move_menu(temp_v1 + 0x18, temp_v1 + 0x20, (bitwise f32) temp_v0->unk_0, (bitwise f32) temp_v0->unk_4 * var_fv0, (bitwise f32) temp_v0->unk_8 * var_fv0, (bitwise f32) temp_v0->unk_C * var_fv0) == 1) {
-        arg1->unk_4 = (s32) arg1->unk_30;
-    }
-    temp_v1->unk_18 = (f32) (s32) temp_v1->unk_18;
-}
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_move_Move.s")
-#endif
 
+    index = (temp_t0 >> 2);
+
+    if (mSM_move_menu(&arg1->unk_18[index], &arg1->unk_20[index], temp_v0->unk_0, temp_v0->unk_4 * var_fv0, temp_v0->unk_8 * var_fv0, temp_v0->unk_C * var_fv0) == 1) {
+        arg1->unk_04 = arg1->unk_30;
+    }
+
+    // truncate
+    new_var = arg1->unk_18[index];
+    arg1->unk_18[index] = new_var;
+}
 
 void mSM_move_End_(mSM* arg0, struct_mSM_return_func_arg1* arg1) {
     mSM_return_func(arg0, arg1);
