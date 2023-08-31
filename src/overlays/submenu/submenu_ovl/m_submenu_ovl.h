@@ -9,8 +9,8 @@ struct GraphicsContext;
 struct Game_Play;
 struct mSM;
 
+// TODO: Consider merging this two typedefs into one
 typedef void (*struct_8085E4D0_unk_10)(struct mSM*);
-
 typedef void (*struct_8085E4D0_unk_18)(struct mSM*);
 
 typedef struct struct_8085E4D0 {
@@ -18,9 +18,9 @@ typedef struct struct_8085E4D0 {
     /* 0x00 */ RomOffset vromEnd;
     /* 0x08 */ void* vramStart;
     /* 0x08 */ void* vramEnd;
-    /* 0x08 */ struct_8085E4D0_unk_10 unk_10;
-    /* 0x08 */ UNK_FUN_PTR unk_14;
-    /* 0x08 */ struct_8085E4D0_unk_18 unk_18;
+    /* 0x08 */ struct_8085E4D0_unk_10 construct; // name based on original function names
+    /* 0x08 */ struct_8085E4D0_unk_18 destruct; // name based on original function names
+    /* 0x08 */ struct_8085E4D0_unk_18 set_proc; // name based on original function names
     /* 0x08 */ s32 unk_1C;
 } struct_8085E4D0; // size = 0x20
 

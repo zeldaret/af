@@ -9,8 +9,35 @@
 #include "6BFE60.h"
 #include "6E0F50.h"
 #include "segment_symbols.h"
+
+// gamestates
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "overlays/gamestates/ovl__00743CD0/_00743CD0.h"
+
+// submenus
+#include "overlays/submenu/ovl__00785700/ovl__00785700.h"
+#include "overlays/submenu/ovl__0078A560/ovl__0078A560.h"
+#include "overlays/submenu/ovl__0078AE30/ovl__0078AE30.h"
+#include "overlays/submenu/ovl__0078BFB0/ovl__0078BFB0.h"
+#include "overlays/submenu/ovl__00795350/ovl__00795350.h"
+#include "overlays/submenu/ovl__00797A50/ovl__00797A50.h"
+#include "overlays/submenu/ovl__0079B120/ovl__0079B120.h"
+#include "overlays/submenu/ovl__0079C020/ovl__0079C020.h"
+#include "overlays/submenu/ovl__0079DA50/ovl__0079DA50.h"
+#include "overlays/submenu/ovl__0078CB80/ovl__0078CB80.h"
+#include "overlays/submenu/ovl__00789B60/ovl__00789B60.h"
+#include "overlays/submenu/ovl__007908A0/ovl__007908A0.h"
+#include "overlays/submenu/ovl__00792700/ovl__00792700.h"
+#include "overlays/submenu/ovl__00794380/ovl__00794380.h"
+#include "overlays/submenu/ovl__00799580/ovl__00799580.h"
+#include "overlays/submenu/ovl__0079A290/ovl__0079A290.h"
+#include "overlays/submenu/ovl__0079E430/ovl__0079E430.h"
+#include "overlays/submenu/ovl__0079F810/ovl__0079F810.h"
+#include "overlays/submenu/ovl__007A10E0/ovl__007A10E0.h"
+#include "overlays/submenu/ovl__007A28F0/ovl__007A28F0.h"
+#include "overlays/submenu/ovl__00777AE0/ovl__00777AE0.h"
+#include "overlays/submenu/ovl__007829E0/ovl__007829E0.h"
+#include "overlays/submenu/ovl__00784FC0/ovl__00784FC0.h"
 
 extern Gfx D_C012370[]; // inv_item_model
 
@@ -37,42 +64,37 @@ typedef struct struct_8085E4A0 {
     /* 0x4 */ UNK_PTR unk_4;
 } struct_8085E4A0; // size = 0x8
 
-extern Vp D_8085DCD0_jp;
-
-// gdSPDefLights1
-extern Lights1 D_8085DCE0_jp;
-
 
 Vp D_8085DCD0_jp = { { { 0, 0, 0x1FF, 0 }, { 0, 0, 0x1FF, 0 } } };
 
 Lights1 D_8085DCE0_jp = gdSPDefLights1(0x69, 0x5A, 0x5A, 0xFF, 0xFF, 0xF5, 0, 0x3C, 0x3C);
 
-struct_8085DCF8 D_8085DCF8_jp = { 0x0C00A620, 0x0C00A6E0 };
-struct_8085DCF8 D_8085DD00_jp = { 0x0C00B720, 0x0C00B740 };
-struct_8085DCF8 D_8085DD08_jp = { 0x0C00DD40, 0x0C00DD80 };
-struct_8085DCF8 D_8085DD10_jp[5] = {
+struct_8085DCF8 D_8085DCF8_jp[] = {{ 0x0C00A620, 0x0C00A6E0 },};
+struct_8085DCF8 D_8085DD00_jp[] = {{ 0x0C00B720, 0x0C00B740 },};
+struct_8085DCF8 D_8085DD08_jp[] = {{ 0x0C00DD40, 0x0C00DD80 },};
+struct_8085DCF8 D_8085DD10_jp[] = {
     { 0x0C010FA0, 0x0C010FC0 },
     { 0x0C012400, 0x0C012420 },
     { 0x0C012620, 0x0C0126A0 },
     { 0x0C012640, 0x0C0128A0 },
     { 0x0C012660, 0x0C012AA0 },
 };
-struct_8085DCF8 D_8085DD38_jp = { 0x0C012680, 0x0C012CA0 };
-static struct_8085DCF8 D_8085DD40_jp = { 0x0C00B2E0, 0x0C00B300 };
-static struct_8085DCF8 D_8085DD48_jp[4] = {
+struct_8085DCF8 D_8085DD38_jp[] = {{ 0x0C012680, 0x0C012CA0 },};
+struct_8085DCF8 D_8085DD40_jp[] = {{ 0x0C00B2E0, 0x0C00B300 },};
+struct_8085DCF8 D_8085DD48_jp[] = {
     { 0x0C010780, 0x0C0109A0 },
     { 0x0C010780, 0x0C010BA0 },
     { 0x0C010780, 0x0C010DA0 },
     { 0x0C010780, 0x0C0107A0 },
 };
-struct_8085DCF8 D_8085DD68_jp[4] = {
+struct_8085DCF8 D_8085DD68_jp[] = {
     { 0x0C00F940, 0x0C00FF60 },
     { 0x0C00F8E0, 0x0C00F960 },
     { 0x0C00F900, 0x0C00FB60 },
     { 0x0C00F920, 0x0C00FD60 },
 };
-struct_8085DCF8 D_8085DD88_jp = { 0x0C00A680, 0x0C00ACE0 };
-static struct_8085DCF8 D_8085DD90_jp[0x20] = {
+struct_8085DCF8 D_8085DD88_jp[] = {{ 0x0C00A680, 0x0C00ACE0 },};
+struct_8085DCF8 D_8085DD90_jp[] = {
     { 0x0C004EA0, 0x0C005860 },
     { 0x0C004EE0, 0x0C005A60 },
     { 0x0C004F20, 0x0C005C60 },
@@ -106,8 +128,8 @@ static struct_8085DCF8 D_8085DD90_jp[0x20] = {
     { 0x0C0054E0, 0x0C008A60 },
     { 0x0C005620, 0x0C009460 },
 };
-static struct_8085DCF8 D_8085DE90_jp = { 0x0C009720, 0x0C009740 };
-static struct_8085DCF8 D_8085DE98_jp[0x1E] = {
+struct_8085DCF8 D_8085DE90_jp[] = {{ 0x0C009720, 0x0C009740 },};
+struct_8085DCF8 D_8085DE98_jp[] = {
     { 0x0C00EC60, 0x0C00F0E0 },
     { 0x0C009720, 0x0C009740 },
     { 0x0C010780, 0x0C0109A0 },
@@ -139,9 +161,9 @@ static struct_8085DCF8 D_8085DE98_jp[0x1E] = {
     { 0x0C010FA0, 0x0C010FC0 },
     { 0x0C010FA0, 0x0C010FC0 },
 };
-static struct_8085DCF8 D_8085DF88_jp = { 0x0C00A6A0, 0x0C00AEE0 };
-static struct_8085DCF8 D_8085DF90_jp = { 0x0C00A6C0, 0x0C00B0E0 };
-static struct_8085DCF8 D_8085DF98_jp[7] = {
+struct_8085DCF8 D_8085DF88_jp[] = {{ 0x0C00A6A0, 0x0C00AEE0 },};
+struct_8085DCF8 D_8085DF90_jp[] = {{ 0x0C00A6C0, 0x0C00B0E0 },};
+struct_8085DCF8 D_8085DF98_jp[] = {
     { 0x0C00E180, 0x0C00E220 },
     { 0x0C00E200, 0x0C00EA20 },
     { 0x0C00E1E0, 0x0C00E820 },
@@ -150,7 +172,7 @@ static struct_8085DCF8 D_8085DF98_jp[7] = {
     { 0x0C00B500, 0x0C00B520 },
     { 0x0C009940, 0x0C009960 },
 };
-static struct_8085DCF8 D_8085DFD0_jp[0xA] = {
+struct_8085DCF8 D_8085DFD0_jp[] = {
     { 0x0C00A640, 0x0C00A8E0 },
     { 0x0C00A660, 0x0C00AAE0 },
     { 0x0C00A660, 0x0C00AAE0 },
@@ -162,8 +184,8 @@ static struct_8085DCF8 D_8085DFD0_jp[0xA] = {
     { 0x0C00A660, 0x0C00AAE0 },
     { 0x0C00A660, 0x0C00AAE0 },
 };
-static struct_8085DCF8 D_8085E020_jp = { 0x0C00C3E0, 0x0C00C600 };
-static struct_8085DCF8 D_8085E028_jp[0x60] = {
+struct_8085DCF8 D_8085E020_jp[] = {{ 0x0C00C3E0, 0x0C00C600 },};
+struct_8085DCF8 D_8085E028_jp[] = {
     { 0x0C009C00, 0x0C00A420 },
     { 0x0C009C00, 0x0C00A220 },
     { 0x0C009C00, 0x0C009C20 },
@@ -261,7 +283,7 @@ static struct_8085DCF8 D_8085E028_jp[0x60] = {
     { 0x0C009700, 0x0C00A420 },
     { 0x0C009700, 0x0C00A420 },
 };
-static struct_8085DCF8 D_8085E328_jp[0x20] = {
+struct_8085DCF8 D_8085E328_jp[] = {
     { 0x0C000660, 0x0C000E60 },
     { 0x0C0006A0, 0x0C001060 },
     { 0x0C0006E0, 0x0C001260 },
@@ -295,36 +317,37 @@ static struct_8085DCF8 D_8085E328_jp[0x20] = {
     { 0x0C000DE0, 0x0C004A60 },
     { 0x0C000E20, 0x0C004C60 },
 };
-static struct_8085DCF8 D_8085E428_jp[4] = {
+struct_8085DCF8 D_8085E428_jp[] = {
     { 0x0C010160, 0x0C010180 },
     { 0x0C010160, 0x0C010380 },
     { 0x0C010160, 0x0C010580 },
     { 0x0C000000, 0x0C000020 },
 };
-static struct_8085DCF8 D_8085E448_jp[3] = {
+struct_8085DCF8 D_8085E448_jp[] = {
     { 0x0C00B960, 0x0C00BBC0 },
     { 0x0C000220, 0x0C000240 },
     { 0x0C000440, 0x0C000460 },
 };
-struct_8085DCF8* D_8085E460_jp[0x10] = {
-    &D_8085DD40_jp,
+struct_8085DCF8* D_8085E460_jp[] = {
+    D_8085DD40_jp,
     D_8085DD48_jp,
     D_8085DD68_jp,
     D_8085DD90_jp,
-    &D_8085DE90_jp,
+    D_8085DE90_jp,
     D_8085DE98_jp,
-    &D_8085DF88_jp,
-    &D_8085DF90_jp,
+    D_8085DF88_jp,
+    D_8085DF90_jp,
     D_8085DF98_jp,
     D_8085DFD0_jp,
-    &D_8085E020_jp,
+    D_8085E020_jp,
     D_8085E448_jp,
     D_8085E028_jp,
     D_8085E328_jp,
     D_8085E448_jp,
     D_8085E428_jp,
 };
-struct_8085E4A0 D_8085E4A0_jp[6] = {
+
+struct_8085E4A0 D_8085E4A0_jp[] = {
     { (void* )0x0C00EC60, (void* )0x0C00F0E0 },
     { (void* )0x0C00EC60, (void* )0x0C00F2E0 },
     { (void* )0x0C00ECA0, (void* )0x0C00F4E0 },
@@ -333,56 +356,8 @@ struct_8085E4A0 D_8085E4A0_jp[6] = {
     { (void* )0x0C00EC20, (void* )0x0C00EEE0 },
 };
 
-#define SUBMENU_PROGRAM(name, func1, func2, func3) \
-    { SEGMENT_ROM_START(name), SEGMENT_ROM_END(name), SEGMENT_VRAM_START(name), SEGMENT_VRAM_END(name), (void*)&func1, (void*)&func2, (void*)&func3, false }
-
-// TODO: make specialized headers for those and fix types
-extern UNK_TYPE func_80881030_jp; extern UNK_TYPE func_80881144_jp; extern UNK_TYPE func_80880C04_jp;
-
-extern UNK_TYPE func_8088306C_jp; extern UNK_TYPE func_808830E8_jp; extern UNK_TYPE func_80882FAC_jp;
-
-extern UNK_TYPE func_80884120_jp; extern UNK_TYPE func_808841A8_jp; extern UNK_TYPE func_80883F5C_jp;
-
-extern UNK_TYPE func_80884C84_jp; extern UNK_TYPE func_80884D00_jp; extern UNK_TYPE func_80884B00_jp;
-
-extern UNK_TYPE func_8088FBF0_jp; extern UNK_TYPE func_8088FCBC_jp; extern UNK_TYPE func_8088FB40_jp;
-
-extern UNK_TYPE func_80895B04_jp; extern UNK_TYPE func_80895B9C_jp; extern UNK_TYPE func_80895A30_jp;
-
-extern UNK_TYPE func_80898688_jp; extern UNK_TYPE func_80898710_jp; extern UNK_TYPE func_80898520_jp;
-
-extern UNK_TYPE func_80899E34_jp; extern UNK_TYPE func_80899F00_jp; extern UNK_TYPE func_80899D84_jp;
-
-extern UNK_TYPE func_8089AB8C_jp; extern UNK_TYPE func_8089AC14_jp; extern UNK_TYPE func_8089AAE4_jp;
-
-extern UNK_TYPE func_808883F8_jp; extern UNK_TYPE func_808884E4_jp; extern UNK_TYPE func_80888354_jp;
-
-extern UNK_TYPE func_80882778_jp; extern UNK_TYPE func_80882818_jp; extern UNK_TYPE func_808826B8_jp;
-
-extern UNK_TYPE func_8088A6E8_jp; extern UNK_TYPE func_8088A77C_jp; extern UNK_TYPE func_8088A2A0_jp;
-
-extern UNK_TYPE func_8088C4A0_jp; extern UNK_TYPE func_8088C548_jp; extern UNK_TYPE func_8088C344_jp;
-
-extern UNK_TYPE func_8088D924_jp; extern UNK_TYPE func_8088D9D4_jp; extern UNK_TYPE func_8088D81C_jp;
-
-extern UNK_TYPE func_80896898_jp; extern UNK_TYPE func_80896938_jp; extern UNK_TYPE func_80896830_jp;
-
-extern UNK_TYPE func_8089730C_jp; extern UNK_TYPE func_80897394_jp; extern UNK_TYPE func_8089728C_jp;
-
-extern UNK_TYPE func_8089BE68_jp; extern UNK_TYPE func_8089BF10_jp; extern UNK_TYPE func_8089BCE0_jp;
-
-extern UNK_TYPE func_808A40F0_jp; extern UNK_TYPE func_808A4188_jp; extern UNK_TYPE func_808A4058_jp;
-
-extern UNK_TYPE func_808A5D7C_jp; extern UNK_TYPE func_808A5E14_jp; extern UNK_TYPE func_808A5C28_jp;
-
-extern UNK_TYPE func_808A96AC_jp; extern UNK_TYPE func_808A97C0_jp; extern UNK_TYPE func_808A92EC_jp;
-
-extern UNK_TYPE func_808787A0_jp; extern UNK_TYPE func_80878904_jp; extern UNK_TYPE func_80878904_jp;
-
-extern UNK_TYPE func_8087C360_jp; extern UNK_TYPE func_8087C574_jp; extern UNK_TYPE func_8087C574_jp;
-
-extern UNK_TYPE func_8087D180_jp; extern UNK_TYPE func_8087D274_jp; extern UNK_TYPE func_8087D274_jp;
-
+#define SUBMENU_PROGRAM(name, construct, destruct, set_proc) \
+    { SEGMENT_ROM_START(name), SEGMENT_ROM_END(name), SEGMENT_VRAM_START(name), SEGMENT_VRAM_END(name), construct, destruct, set_proc, false }
 
 struct_8085E4D0 mSM_program_dlftbl[] = {
     SUBMENU_PROGRAM(ovl__00785700, func_80881030_jp, func_80881144_jp, func_80880C04_jp),
@@ -411,7 +386,7 @@ struct_8085E4D0 mSM_program_dlftbl[] = {
     SUBMENU_PROGRAM(ovl__00784FC0, func_8087D180_jp, func_8087D274_jp, func_8087D274_jp),
 };
 
-u8 D_8085E7D0_jp[0x18] = {
+u8 D_8085E7D0_jp[] = {
     0,
     0xE,
     0x10,
@@ -438,7 +413,7 @@ u8 D_8085E7D0_jp[0x18] = {
     0,
 };
 
-f32 D_FLT_8085E7E8_jp[0x15][4] = {
+f32 D_FLT_8085E7E8_jp[][4] = {
     { 0.0f, 0.0f, 0.0f, 0.0f },
     { 300.0f, 0.0f, 75.0f, 0.0f },
     { 0.0f, 300.0f, 0.0f, 75.0f },
@@ -466,10 +441,6 @@ s32 D_8085E938_jp[] = { 1, 8, 2, 4 };
 
 f32 D_8085E948_jp[][4] = { { 2.0f, 0.0f, 300.0f, 1.0f }, { 0.5f, 120.0f, 0.0f, -1.0f } };
 
-
-
-
-Gfx* func_800BE320_jp(Gfx*, s32, s32, s32, s32, s32, s32, s32, s32, s32); /* extern */
 
 void mSM_setup_view(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1) {
     Mtx* var_t0;
@@ -1083,7 +1054,7 @@ void mSM_ovl_prog_seg(mSM* arg0, struct_8085E4D0* arg1) {
 
     temp = &arg0->unk_2C->unk_10000;
     if (arg1->unk_1C == 1) {
-        new_var = arg1->unk_10;
+        new_var = arg1->construct;
         new_var(arg0);
         return;
     }
@@ -1093,14 +1064,14 @@ void mSM_ovl_prog_seg(mSM* arg0, struct_8085E4D0* arg1) {
     arg0->linkedAllocEnd =
         (void*)((uintptr_t)allocatedVram + ALIGN64((uintptr_t)arg1->vramEnd - (uintptr_t)arg1->vramStart));
 
-    temp_a1 = (void*)((uintptr_t)allocatedVram + (uintptr_t)arg1->unk_10 - (uintptr_t)arg1->vramStart);
+    temp_a1 = (void*)((uintptr_t)allocatedVram + (uintptr_t)arg1->construct - (uintptr_t)arg1->vramStart);
     temp_a1(arg0);
-    arg1->unk_10 = temp_a1;
+    arg1->construct = temp_a1;
 
     //! FAKE
 dummy_label_595693:
-    arg1->unk_14 = (void*)((uintptr_t)allocatedVram + (uintptr_t)arg1->unk_14 - (uintptr_t)arg1->vramStart);
-    arg1->unk_18 = (void*)((uintptr_t)allocatedVram + (uintptr_t)arg1->unk_18 - (uintptr_t)arg1->vramStart);
+    arg1->destruct = (void*)((uintptr_t)allocatedVram + (uintptr_t)arg1->destruct - (uintptr_t)arg1->vramStart);
+    arg1->set_proc = (void*)((uintptr_t)allocatedVram + (uintptr_t)arg1->set_proc - (uintptr_t)arg1->vramStart);
 
     arg1->unk_1C = 1;
     temp->unk_68[temp->unk_64] = arg1;
@@ -1132,7 +1103,7 @@ void mSM_set_before_menu_proc(mSM* arg0) {
     s32 temp_v0 = arg0->unk_04;
     struct_8085E9B0_unk_10088* temp;
 
-    mSM_program_dlftbl[temp_v0].unk_18(arg0);
+    mSM_program_dlftbl[temp_v0].set_proc(arg0);
     arg0->unk_08 = temp_v0;
 
     //! FAKE

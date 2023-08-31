@@ -45,7 +45,7 @@ Gfx *func_800BE12C_jp(Gfx *gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 // void func_800BE184_jp();
 // void func_800BE1D4_jp();
 // void func_800BE27C_jp();
-// void func_800BE320_jp();
+Gfx* func_800BE320_jp(Gfx*, s32, s32, s32, s32, s32, s32, s32, s32, s32);
 // void func_800BE4F8_jp();
 
 #endif
