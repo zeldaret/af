@@ -157,7 +157,7 @@ void mNPS_schedule_manager(void) {
     s32 force_outside = mEv_CheckFirstJob() == TRUE;
 
     if (force_outside == FALSE) {
-        force_outside = mEv_check_status(EVENT_UNK_D, EVENT_STATUS_ACTIVE) != FALSE;
+        force_outside = mEv_check_status(EventStatus_13, EVENT_STATUS_ACTIVE) != FALSE;
     }
 
     if (force_outside == TRUE) {

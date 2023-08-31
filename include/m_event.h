@@ -5,9 +5,9 @@
 
 #define EVENT_STATUS_ACTIVE     (1 << 0) /* event is active */
 
-typedef enum EVENT {
-    EVENT_UNK_D = 13,
-} EVENT;
+typedef enum EventStatus {
+    /* 13 */ EventStatus_13 = 13,
+} EventStatus;
 
 typedef struct EventSave {
     /* 0x00 */ char unk00[0x9C];

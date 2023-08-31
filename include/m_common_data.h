@@ -178,7 +178,7 @@ typedef struct Save {
 
 typedef struct CommonData {
     /* 0x00000 */ Save save;
-    /* 0x10000 */ u8 unk_10000;
+    /* 0x10000 */ u8 unk_10000; // named "game_started" in AC GCN decomp
     /* 0x10001 */ u8 unk_10001;
     /* 0x10002 */ u8 unk10002[0x1];
     /* 0x10003 */ u8 playerNo;
@@ -198,7 +198,7 @@ typedef struct CommonData {
     /* 0x10142 */ u8 unk10142[0x7];
     /* 0x10149 */ u8 unk_10149;
     /* 0x1014A */ u8 unk_1014A;
-    /* 0x1014B */ u8 unk_1014B;
+    /* 0x1014B */ u8 unk_1014B; // named "wipeType" in AC GCN decomp
     /* 0x1014C */ UNK_TYPE1 unk_1014C[0x2];
     /* 0x1014E */ s16 unk_1014E;
     /* 0x10150 */ UNK_TYPE1 unk_10150[0x10];
@@ -215,7 +215,7 @@ typedef struct CommonData {
     /* 0x10694 */ NpcWalk npcWalk;
     /* 0x10710 */ CommonData_unk_10170 unk_10710[5];
     /* 0x1074C */ UNK_TYPE1 unk1074C[0x6A];
-    /* 0x107B6 */ s16 unk_107B6;
+    /* 0x107B6 */ s16 unk_107B6; // named "demo_profile" in AC GCN decomp (though it's an array of two s16s in that game)
     /* 0x107B8 */ u8 unk107B8[0x28];
     /* 0x107E0 */ s8 playerDecoyFlag;
     /* 0x107E1 */ u8 unk107E1[0x3];
@@ -232,7 +232,7 @@ typedef struct CommonData {
     /* 0x10A80 */ UNK_TYPE1 unk_10A80[0x2];
     /* 0x10A82 */ s16 unk_10A82;
     /* 0x10A84 */ u8 unk10A84[0x2C];
-    /* 0x10AB0 */ u8 unk_10AB0;
+    /* 0x10AB0 */ u8 unk_10AB0; // named "pad_connected" in AC GCN decomp
     /* 0x10AB1 */ UNK_TYPE1 unk_10AB1[0x7];
 } CommonData; // size = 0x10AB8
 
