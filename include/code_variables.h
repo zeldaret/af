@@ -811,11 +811,6 @@ extern vs32 D_8010EFB0_jp; // TODO: Determine where this goes
 // extern UNK_TYPE D_8010FCC0_jp;
 // extern UNK_TYPE D_8010FCD0_jp;
 extern MtxF MtxF_clear;
-// extern UNK_TYPE D_8010FD50_jp;
-// extern UNK_TYPE D_8010FD54_jp;
-// extern UNK_TYPE D_8010FD58_jp;
-// extern UNK_TYPE D_8010FD5C_jp;
-extern s32 zurumode_flag;
 // extern UNK_TYPE D_8010FD70_jp;
 // extern UNK_TYPE D_80110000_jp;
 // extern UNK_TYPE D_80110D70_jp;

@@ -105,7 +105,7 @@
       - [0x6FDC40, asm, code/sys_math3d]
       - [0x703C30, c, code/sys_math_atan]
       - [0x703E70, c, code/sys_matrix]
-      - [0x706580, asm, code/sys_ucode]
+      - [0x706580, c, code/sys_ucode]
       - [0x7065F0, c, code/zurumode]
       - [0x7069C0, asm, code/audio_synthesis]
       - [0x70A1A0, asm, code/audio_heap]
@@ -160,7 +160,7 @@
       - [0x732C70, data, code/732C70]
       - [0x733160, .data, code/sys_math_atan]
       - [0x733970, .data, code/sys_matrix]
-      - [0x7339F0, data, code/sys_ucode]
+      - [0x7339F0, .data, code/sys_ucode]
       - [0x733A00, .data, code/zurumode]
       - [0x733A10, data, code/733A10]
 
