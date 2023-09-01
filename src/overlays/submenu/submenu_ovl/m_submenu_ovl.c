@@ -1346,26 +1346,33 @@ void mSM_menu_ovl_draw(mSM* arg0, Game_Play* game_play) {
     arg0->unk_2C->unk_10670.unk_04(arg0, game_play);
 }
 
-#if 0
+#ifdef NON_MATCHING
+// requires in-file bss
 void mSM_menu_ovl_init(mSM* arg0) {
-    void* var_v1;
+    Game_Play_unk_0110* var_v1;
+    void* func = none_proc1;
+    u16 temp = 0x2000;
 
     arg0->unk_2C = &ovl_base;
-    bzero(&ovl_base, 0x10730);
+    bzero(&ovl_base, sizeof(struct_8085E9B0));
+
+dummy_label_55178: ;
     if (arg0->unk_00 != 4) {
-        var_v1 = gamePT + 0x110;
+        var_v1 = ((Game_Play*)gamePT)->unk_0110;
     } else {
-        var_v1 = gamePT + 0x2FC;
+        var_v1 = ((Game__00743CD0*)gamePT)->unk_02FC;
     }
-    ovl_base.unk_10000 = (s32) var_v1->unk_1818;
-    arg0->unk_8 = 0;
-    ovl_base.unk_00000[0x10670] = none_proc1;
-    ovl_base.unk_00000[0x10670] = none_proc1;
-    ovl_base.unk_00000[0x10678] = none_proc1;
-    ovl_base.unk_00000[0x10678] = none_proc1;
-    ovl_base.unk_00000[0x10680] = none_proc1;
-    ovl_base.unk_00000[0x10680] = none_proc1;
-    ovl_base.unk_00000[0x10696] = 0x2000;
+
+    ovl_base.unk_10000.unk_00 = var_v1[0x49].unk_24;
+    arg0->unk_08 = 0;
+    ovl_base.unk_10670.unk_00 = func;
+    ovl_base.unk_10670.unk_04 = func;
+    ovl_base.unk_10670.unk_08 = func;
+    ovl_base.unk_10670.unk_0C = func;
+    ovl_base.unk_10670.unk_10 = func;
+    ovl_base.unk_10670.unk_14 = func;
+    ovl_base.unk_10670.unk_26 = temp;
+
     arg0->unk_2C->unk_106A4 = mSM_return_func;
     arg0->unk_2C->unk_106A8 = mSM_move_Move;
     arg0->unk_2C->unk_106AC = mSM_move_End_;
@@ -1377,9 +1384,10 @@ void mSM_menu_ovl_init(mSM* arg0) {
     arg0->unk_2C->unk_106C4 = mSM_draw_mail;
     arg0->unk_2C->unk_106C8 = mSM_setup_view;
     arg0->unk_2C->unk_106CC = func_8085D43C_jp;
+
     mSM_set_proc(arg0);
     arg0->play = mSM_menu_ovl_move;
-    arg0->draw = (void (*)(mSM*, struct Game_Play*)) mSM_menu_ovl_draw;
+    arg0->draw = mSM_menu_ovl_draw;
     mSM_menu_ovl_move(arg0);
 }
 #else
