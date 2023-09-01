@@ -9,7 +9,7 @@ typedef struct ListAlloc {
     /* 0x4 */ struct ListAlloc* next;
 } ListAlloc; // size = 0x8
 
-typedef struct {
+typedef struct PreRender {
     /* 0x00 */ u16 unk_00;
     /* 0x02 */ u16 unk_02;
     /* 0x04 */ u16 unk_04;

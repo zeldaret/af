@@ -43,16 +43,6 @@ extern Gfx D_C012370[]; // inv_item_model
 
 struct_8085E9B0 ovl_base;
 
-typedef struct struct_func_8085C20C_jp_arg1 {
-    /* 0x00 */ UNK_TYPE1 unk_00[0x4];
-    /* 0x04 */ u16 unk_04;
-    /* 0x06 */ u16 unk_06;
-    /* 0x08 */ UNK_TYPE1 unk_08[0xC];
-    /* 0x14 */ UNK_TYPE unk_14;
-    /* 0x18 */ UNK_TYPE1 unk_18[0x8];
-    /* 0x20 */ UNK_TYPE unk_20;
-} struct_func_8085C20C_jp_arg1; // size > 0x24
-
 typedef struct struct_8085DCF8 {
     /* 0x0 */ UNK_TYPE4 unk_0;
     /* 0x4 */ UNK_TYPE4 unk_4;
@@ -1228,18 +1218,6 @@ void mSM_tex_move(mSM* arg0) {
     }
 }
 
-typedef struct struct_mSM_return_func_arg1 {
-    /* 0x00 */ UNK_TYPE1 unk_00[0x4];
-    /* 0x04 */ UNK_TYPE unk_04;
-    /* 0x08 */ UNK_TYPE unk_08;
-    /* 0x0C */ UNK_TYPE unk_0C;
-    /* 0x10 */ UNK_TYPE unk_10;
-    /* 0x14 */ UNK_TYPE unk_14;
-    /* 0x18 */ UNK_TYPE1 unk_18[0x14];
-    /* 0x2C */ UNK_TYPE unk_2C;
-    /* 0x30 */ UNK_TYPE unk_30;
-} struct_mSM_return_func_arg1; // size >= 0x34
-
 #if 0
 void mSM_return_func(mSM* arg0, struct_mSM_return_func_arg1* arg1) {
     s32 temp_t6;
@@ -1346,8 +1324,6 @@ void mSM_menu_ovl_draw(mSM* arg0, Game_Play* game_play) {
     arg0->unk_2C->unk_10670.unk_04(arg0, game_play);
 }
 
-#ifdef NON_MATCHING
-// requires in-file bss
 void mSM_menu_ovl_init(mSM* arg0) {
     Game_Play_unk_0110* var_v1;
     void* func = none_proc1;
@@ -1390,6 +1366,3 @@ dummy_label_55178: ;
     arg0->draw = mSM_menu_ovl_draw;
     mSM_menu_ovl_move(arg0);
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_menu_ovl_init.s")
-#endif

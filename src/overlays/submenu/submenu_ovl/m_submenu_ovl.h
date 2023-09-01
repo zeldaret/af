@@ -8,6 +8,7 @@
 struct GraphicsContext;
 struct Game_Play;
 struct mSM;
+struct PreRender;
 
 // TODO: Consider merging this two typedefs into one
 typedef void (*struct_8085E4D0_unk_10)(struct mSM*);
@@ -23,6 +24,34 @@ typedef struct struct_8085E4D0 {
     /* 0x08 */ struct_8085E4D0_unk_18 set_proc; // name based on original function names
     /* 0x08 */ s32 unk_1C;
 } struct_8085E4D0; // size = 0x20
+
+typedef struct struct_mSM_return_func_arg1 {
+    /* 0x00 */ UNK_TYPE1 unk_00[0x4];
+    /* 0x04 */ UNK_TYPE unk_04;
+    /* 0x08 */ UNK_TYPE unk_08;
+    /* 0x0C */ UNK_TYPE unk_0C;
+    /* 0x10 */ UNK_TYPE unk_10;
+    /* 0x14 */ UNK_TYPE unk_14;
+    /* 0x18 */ UNK_TYPE1 unk_18[0x14];
+    /* 0x2C */ UNK_TYPE unk_2C;
+    /* 0x30 */ UNK_TYPE unk_30;
+} struct_mSM_return_func_arg1; // size >= 0x34
+
+typedef struct struct_func_8085C20C_jp_arg1 {
+    /* 0x00 */ UNK_TYPE1 unk_00[0x4];
+    /* 0x04 */ u16 unk_04;
+    /* 0x06 */ u16 unk_06;
+    /* 0x08 */ UNK_TYPE1 unk_08[0xC];
+    /* 0x14 */ UNK_TYPE unk_14;
+    /* 0x18 */ UNK_TYPE1 unk_18[0x8];
+    /* 0x20 */ UNK_TYPE unk_20;
+} struct_func_8085C20C_jp_arg1; // size >= 0x24
+
+typedef struct struct_func_8085CE18_jp_arg4 {
+    /* 0x00 */ UNK_TYPE1 unk_00[0x24];
+    /* 0x24 */ u16 unk_24;
+    /* 0x26 */ u8 unk_26;
+} struct_func_8085CE18_jp_arg4; // size >= 0x28
 
 typedef struct struct_mSM_move_Move_arg1 {
     /* 0x00 */ UNK_TYPE1 unk_00[0x4];
@@ -94,7 +123,16 @@ typedef struct struct_8085E9B0_unk_10670 {
     /* 0x2C */ f32 unk_2C;
 } struct_8085E9B0_unk_10670; // size >= 0x30
 
+typedef void (*struct_8085E9B0_unk_106A4)(struct mSM *, struct_mSM_return_func_arg1 *);
+typedef void (*struct_8085E9B0_unk_106A8)(struct mSM *, struct_mSM_move_Move_arg1 *);
+typedef void (*struct_8085E9B0_unk_106AC)(struct mSM *, struct_mSM_return_func_arg1 *);
+typedef void (*struct_8085E9B0_unk_106B0)(struct_mSM_move_chg_base_arg0 *, u32);
 typedef void (*struct_8085E9B0_unk_106B4)(struct GraphicsContext*);
+typedef void (*struct_8085E9B0_unk_106B8)(struct GraphicsContext*, struct PreRender*, s32, s32, s32);
+typedef void (*struct_8085E9B0_unk_106BC)(struct GraphicsContext*, struct struct_func_8085C20C_jp_arg1*, f32, f32, s16);
+typedef void (*struct_8085E9B0_unk_106C0)(struct GraphicsContext*, f32, f32, f32, u16, s32, s32, s32, s32);
+typedef void (*struct_8085E9B0_unk_106C4)(struct GraphicsContext*, f32, f32, f32, struct_func_8085CE18_jp_arg4*, s32, s32);
+typedef void (*struct_8085E9B0_unk_106C8)(struct mSM*, struct GraphicsContext*, s32);
 typedef void (*struct_8085E9B0_unk_106CC)(struct mSM*, void**, func_8085D43C_jp_arg2*);
 
 typedef struct struct_8085E9B0 {
@@ -105,16 +143,16 @@ typedef struct struct_8085E9B0 {
     /* 0x100D0 */ UNK_TYPE1 unk_100D0[0x5A0];
     /* 0x10670 */ struct_8085E9B0_unk_10670 unk_10670;
     /* 0x106A0 */ UNK_TYPE1 unk_106A0[0x4];
-    /* 0x106A4 */ UNK_FUN_PTR unk_106A4;
-    /* 0x106A8 */ UNK_FUN_PTR unk_106A8;
-    /* 0x106AC */ UNK_FUN_PTR unk_106AC;
-    /* 0x106B0 */ UNK_FUN_PTR unk_106B0;
-    /* 0x106B4 */ UNK_FUN_PTR unk_106B4;
-    /* 0x106B8 */ UNK_FUN_PTR unk_106B8;
-    /* 0x106BC */ UNK_FUN_PTR unk_106BC;
-    /* 0x106C0 */ UNK_FUN_PTR unk_106C0;
-    /* 0x106C4 */ UNK_FUN_PTR unk_106C4;
-    /* 0x106C8 */ UNK_FUN_PTR unk_106C8;
+    /* 0x106A4 */ struct_8085E9B0_unk_106A4 unk_106A4;
+    /* 0x106A8 */ struct_8085E9B0_unk_106A8 unk_106A8;
+    /* 0x106AC */ struct_8085E9B0_unk_106AC unk_106AC;
+    /* 0x106B0 */ struct_8085E9B0_unk_106B0 unk_106B0;
+    /* 0x106B4 */ struct_8085E9B0_unk_106B4 unk_106B4;
+    /* 0x106B8 */ struct_8085E9B0_unk_106B8 unk_106B8;
+    /* 0x106BC */ struct_8085E9B0_unk_106BC unk_106BC;
+    /* 0x106C0 */ struct_8085E9B0_unk_106C0 unk_106C0;
+    /* 0x106C4 */ struct_8085E9B0_unk_106C4 unk_106C4;
+    /* 0x106C8 */ struct_8085E9B0_unk_106C8 unk_106C8;
     /* 0x106CC */ struct_8085E9B0_unk_106CC unk_106CC;
     /* 0x106D0 */ UNK_TYPE1 unk_106D0[0x5C];
     /* 0x1072C */ Mtx* unk_1072C;
