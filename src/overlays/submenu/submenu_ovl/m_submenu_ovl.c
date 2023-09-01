@@ -349,7 +349,7 @@ struct_8085E4A0 D_8085E4A0_jp[] = {
 #define SUBMENU_PROGRAM(name, construct, destruct, set_proc) \
     { SEGMENT_ROM_START(name), SEGMENT_ROM_END(name), SEGMENT_VRAM_START(name), SEGMENT_VRAM_END(name), construct, destruct, set_proc, false }
 
-struct_8085E4D0 mSM_program_dlftbl[] = {
+struct_8085E4D0 mSM_program_dlftbl[SUBMENU_PROGRAM_MAX] = {
     SUBMENU_PROGRAM(ovl__00785700, mIV_inventory_ovl_construct, mIV_inventory_ovl_destruct, mIV_inventory_ovl_set_proc),
     SUBMENU_PROGRAM(ovl__00785700, mIV_inventory_ovl_construct, mIV_inventory_ovl_destruct, mIV_inventory_ovl_set_proc),
     SUBMENU_PROGRAM(ovl__0078A560, func_8088306C_jp, func_808830E8_jp, func_80882FAC_jp),
@@ -376,7 +376,7 @@ struct_8085E4D0 mSM_program_dlftbl[] = {
     SUBMENU_PROGRAM(ovl__00784FC0, func_8087D180_jp, func_8087D274_jp, func_8087D274_jp),
 };
 
-u8 D_8085E7D0_jp[] = {
+u8 D_8085E7D0_jp[SUBMENU_PROGRAM_MAX] = {
     0,
     0xE,
     0x10,
@@ -403,6 +403,7 @@ u8 D_8085E7D0_jp[] = {
     0,
 };
 
+// Indexed by SubmenuProgramId
 f32 D_FLT_8085E7E8_jp[][4] = {
     { 0.0f, 0.0f, 0.0f, 0.0f },
     { 300.0f, 0.0f, 75.0f, 0.0f },
@@ -1090,33 +1091,33 @@ void mSM_set_other_seg(mSM* arg0) {
 }
 
 void mSM_set_before_menu_proc(mSM* arg0) {
-    s32 temp_v0 = arg0->unk_04;
+    SubmenuProgramId programId = arg0->programId;
     struct_8085E9B0_unk_10088* temp;
 
-    mSM_program_dlftbl[temp_v0].set_proc(arg0);
-    arg0->unk_08 = temp_v0;
+    mSM_program_dlftbl[programId].set_proc(arg0);
+    arg0->unk_08 = programId;
 
     //! FAKE
-    if (((!temp_v0) && (!temp_v0)) && (!temp_v0)) {}
+    if (((!programId) && (!programId)) && (!programId)) {}
 
-    temp = &arg0->unk_2C->unk_10088[temp_v0];
+    temp = &arg0->unk_2C->unk_10088[programId];
 
     temp->unk_14 = NULL;
 }
 
 void mSM_set_new_seg(mSM* arg0) {
-    s32 temp_v0 = arg0->unk_04;
+    SubmenuProgramId programId = arg0->programId;
 
-    mSM_ovl_prog_seg(arg0, &mSM_program_dlftbl[temp_v0]);
-    arg0->unk_08 = temp_v0;
+    mSM_ovl_prog_seg(arg0, &mSM_program_dlftbl[programId]);
+    arg0->unk_08 = programId;
 }
 
 void mSM_set_new_start_data(mSM* arg0) {
-    s32 temp_v0 = arg0->unk_04;
-    struct_8085E9B0_unk_10088* temp_v1 = &arg0->unk_2C->unk_10088[temp_v0];
-    f32* temp_a1 = D_FLT_8085E7E8_jp[temp_v0];
+    SubmenuProgramId programId = arg0->programId;
+    struct_8085E9B0_unk_10088* temp_v1 = &arg0->unk_2C->unk_10088[programId];
+    f32* temp_a1 = D_FLT_8085E7E8_jp[programId];
 
-    temp_v1->unk_00 = temp_v0;
+    temp_v1->unk_00 = programId;
     temp_v1->unk_18 = temp_a1[0];
     temp_v1->unk_1C = temp_a1[1];
     temp_v1->unk_20 = temp_a1[2];
@@ -1126,7 +1127,7 @@ void mSM_set_new_start_data(mSM* arg0) {
     temp_v1->unk_40 = arg0->unk_18;
     temp_v1->unk_44 = arg0->unk_1C;
 
-    if ((temp_v0 == 1) && (arg0->unk_10 == 0xE)) {
+    if ((programId == SUBMENU_PROGRAM_1) && (arg0->unk_10 == 0xE)) {
         temp_v1->unk_18 = -300.0f;
     }
 }
@@ -1312,7 +1313,7 @@ void mSM_menu_ovl_move(mSM* arg0) {
     struct_8085E9B0_unk_10670* sp24 = &arg0->unk_2C->unk_10670;
 
     mSM_make_trigger_data(arg0);
-    if (arg0->unk_04 != arg0->unk_08) {
+    if (arg0->programId != arg0->unk_08) {
         mSM_set_proc(arg0);
     }
     mSM_tex_move(arg0);
@@ -1340,7 +1341,7 @@ dummy_label_55178: ;
     }
 
     ovl_base.unk_10000.unk_00 = var_v1[0x49].unk_24;
-    arg0->unk_08 = 0;
+    arg0->unk_08 = SUBMENU_PROGRAM_0;
     ovl_base.unk_10670.unk_00 = func;
     ovl_base.unk_10670.unk_04 = func;
     ovl_base.unk_10670.unk_08 = func;

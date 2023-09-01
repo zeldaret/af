@@ -340,16 +340,16 @@ void mSM_submenu_ct(mSM* submenu) {
 void mSM_submenu_dt(UNUSED mSM* submenu) {
 }
 
-void mSM_open_submenu(mSM* submenu, s32 arg1, s32 arg2, s32 arg3) {
-    mSM_open_submenu_new2(submenu, arg1, arg2, arg3, 0, 0);
+void mSM_open_submenu(mSM* submenu, SubmenuProgramId programId, s32 arg2, s32 arg3) {
+    mSM_open_submenu_new2(submenu, programId, arg2, arg3, 0, 0);
 }
 
-void mSM_open_submenu_new(mSM* submenu, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    mSM_open_submenu_new2(submenu, arg1, arg2, arg3, arg4, 0);
+void mSM_open_submenu_new(mSM* submenu, SubmenuProgramId programId, s32 arg2, s32 arg3, s32 arg4) {
+    mSM_open_submenu_new2(submenu, programId, arg2, arg3, arg4, 0);
 }
 
-void mSM_open_submenu_new2(mSM* submenu, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
-    submenu->unk_04 = arg1;
+void mSM_open_submenu_new2(mSM* submenu, SubmenuProgramId programId, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+    submenu->programId = programId;
     submenu->unk_10 = arg2;
     submenu->unk_14 = arg3;
     submenu->unk_18 = arg4;
@@ -423,7 +423,7 @@ void mSM_submenu_ctrl(Game_Play* game_play) {
         }
     }
 
-    if (submenu->unk_04 != 0) {
+    if (submenu->programId != SUBMENU_PROGRAM_0) {
         submenu->moveProcIndex = MSM_MOVE_PROC_PREWAIT;
         submenu->unk_00 = 1;
         SetGameFrame(2);
@@ -470,7 +470,7 @@ void mSM_move_LINKWait(mSM* submenu) {
     xyz_t_move(&submenu->unk_E4, &ZeroVec);
 
     if (submenu->unk_00 != 4) {
-        if (((submenu->unk_04 == 4) && (submenu->unk_10 == 0)) || (common_data.now_private->gender == 0)) {
+        if (((submenu->programId == SUBMENU_PROGRAM_LEDIT) && (submenu->unk_10 == 0)) || (common_data.now_private->gender == 0)) {
             sAdo_SpecChange(5);
         } else {
             sAdo_SpecChange(6);
@@ -494,7 +494,7 @@ void mSM_move_End(mSM* submenu) {
     sp28 = (Game_Play*)gamePT;
     submenu->play(submenu);
     submenu->moveProcIndex = MSM_MOVE_PROC_WAIT;
-    submenu->unk_04 = 0;
+    submenu->programId = SUBMENU_PROGRAM_0;
     submenu->unk_20 = 2;
     submenu->unk_DC = 0;
 

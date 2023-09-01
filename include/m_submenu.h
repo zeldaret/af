@@ -41,13 +41,41 @@ typedef enum InventoryItemList {
     /* 16 */ INVENTORY_ITEM_LIST_MAX
 } InventoryItemList;
 
+typedef enum SubmenuProgramId {
+    /*  0 */ SUBMENU_PROGRAM_0, // inventory, NONE? DEFAULT?
+    /*  1 */ SUBMENU_PROGRAM_1, // inventory
+    /*  2 */ SUBMENU_PROGRAM_2,
+    /*  3 */ SUBMENU_PROGRAM_3,
+    /*  4 */ SUBMENU_PROGRAM_LEDIT,
+    /*  5 */ SUBMENU_PROGRAM_MAP,
+    /*  6 */ SUBMENU_PROGRAM_6,
+    /*  7 */ SUBMENU_PROGRAM_7,
+    /*  8 */ SUBMENU_PROGRAM_8,
+    /*  9 */ SUBMENU_PROGRAM_9,
+    /* 10 */ SUBMENU_PROGRAM_10,
+    /* 11 */ SUBMENU_PROGRAM_11,
+    /* 12 */ SUBMENU_PROGRAM_BOARD,
+    /* 13 */ SUBMENU_PROGRAM_13,
+    /* 14 */ SUBMENU_PROGRAM_14,
+    /* 15 */ SUBMENU_PROGRAM_15,
+    /* 16 */ SUBMENU_PROGRAM_16,
+    /* 17 */ SUBMENU_PROGRAM_17,
+    /* 18 */ SUBMENU_PROGRAM_18,
+    /* 19 */ SUBMENU_PROGRAM_19,
+    /* 20 */ SUBMENU_PROGRAM_CATALOG,
+    /* 21 */ SUBMENU_PROGRAM_21,
+    /* 22 */ SUBMENU_PROGRAM_HAND,
+    /* 23 */ SUBMENU_PROGRAM_23,
+    /* 24 */ SUBMENU_PROGRAM_MAX,
+} SubmenuProgramId;
+
 typedef void (*mSM_play)(struct mSM*);
 typedef void (*mSM_draw)(struct mSM*, struct Game_Play*);
 
 typedef struct mSM {
     /* 0x00 */ s32 unk_00;
-    /* 0x04 */ s32 unk_04;
-    /* 0x08 */ s32 unk_08;
+    /* 0x04 */ SubmenuProgramId programId;
+    /* 0x08 */ SubmenuProgramId unk_08;
     /* 0x0C */ mSMMoveProcIndex moveProcIndex;
     /* 0x10 */ s32 unk_10;
     /* 0x14 */ s32 unk_14;
@@ -81,9 +109,9 @@ void load_player(mSM* submenu);
 void mSM_submenu_ct(mSM* submenu);
 void mSM_submenu_dt(mSM* arg0);
 
-void mSM_open_submenu(mSM* submenu, s32 arg1, s32 arg2, s32 arg3);
-void mSM_open_submenu_new(mSM* submenu, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
-void mSM_open_submenu_new2(mSM* submenu, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
+void mSM_open_submenu(mSM* submenu, SubmenuProgramId programId, s32 arg2, s32 arg3);
+void mSM_open_submenu_new(mSM* submenu, SubmenuProgramId programId, s32 arg2, s32 arg3, s32 arg4);
+void mSM_open_submenu_new2(mSM* submenu, SubmenuProgramId programId, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
 
 void mSM_submenu_ctrl(struct Game_Play* game_play);
 void mSM_submenu_move(mSM* submenu);
