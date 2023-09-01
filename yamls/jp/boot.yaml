@@ -203,11 +203,11 @@
       - [0x016D50, .hasm, ../../lib/ultralib/src/os/setwatchlo]
 
       # libido?
-      - [0x016D60, asm, boot/016D60]
-      - [0x016DB0, asm, boot/016DB0]
-      - [0x016DE0, asm, boot/016DE0]
-      - [0x016E20, asm, boot/016E20]
-      - [0x016E60, asm, boot/016E60]
+      - [0x016D60, c, boot/libido/fmodf]
+      - [0x016DB0, c, boot/libido/memset]
+      - [0x016DE0, c, boot/libido/strcmp]
+      - [0x016E20, c, boot/libido/strcpy]
+      - [0x016E60, c, boot/libido/memmove]
 
 
       - [0x016EF0, data, boot/rsp/rspboot]
