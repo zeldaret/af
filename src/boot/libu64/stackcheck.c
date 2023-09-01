@@ -41,7 +41,7 @@ void StackCheck_Init(StackEntry* entry, void* stackBottom, void* stackTop, u32 i
 
         if (entry->minSpace != -1) {
             addr = entry->head;
-            while (addr < entry->tail) {
+            while (addr < (u32*)entry->tail) {
                 *addr++ = entry->initValue;
             }
         }
@@ -79,7 +79,7 @@ s32 StackCheck_GetState(StackEntry* entry) {
     u32* iter;
     s32 ret;
 
-    for (iter = entry->head; iter < entry->tail; iter++) {
+    for (iter = entry->head; iter < (u32*)entry->tail; iter++) {
         if (*iter != entry->initValue) {
             break;
         }

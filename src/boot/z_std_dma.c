@@ -1,3 +1,4 @@
+#include "prevent_bss_reordering.h"
 #include "stack.h"
 #include "libu64/stackcheck.h"
 #include "unk.h"
