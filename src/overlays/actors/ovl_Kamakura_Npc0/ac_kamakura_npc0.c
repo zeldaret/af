@@ -59,9 +59,15 @@ void aKM0_talk_init(UNK_TYPE arg0, UNK_TYPE arg1 UNUSED) {
     common_data.unk_10078->unk_04(arg0);
 }
 
+<<<<<<< Updated upstream
 bool aKM0_talk_end_chk(UNK_TYPE arg0, UNK_TYPE arg1 UNUSED) {
     bool var_v1;
     
+=======
+s32 aKM0_talk_end_chk(UNK_TYPE arg0, UNK_TYPE arg1 UNUSED) {
+    s32 var_v1;
+
+>>>>>>> Stashed changes
     var_v1 = false;
     if (common_data.unk_10078->unk_08(arg0) == 1) {
         var_v1 = true;
