@@ -35,6 +35,14 @@ typedef struct struct_mSM_move_Move_arg1 {
     /* 0x34 */ UNK_TYPE4 unk_34;
 } struct_mSM_move_Move_arg1; // size >= 0x38
 
+typedef struct struct_mSM_move_chg_base_arg0 {
+    /* 0x00 */ UNK_TYPE1 unk_00[0x4];
+    /* 0x04 */ UNK_TYPE4 unk_04;
+    /* 0x08 */ UNK_TYPE1 unk_08[0x28];
+    /* 0x04 */ UNK_TYPE4 unk_30;
+    /* 0x04 */ u32 unk_34;
+} struct_mSM_move_chg_base_arg0;
+
 typedef void (*struct_8085E9B0_unk_10670_unk_00)(struct mSM*);
 typedef void (*struct_8085E9B0_unk_10670_unk_04)(struct mSM*, struct Game_Play*);
 

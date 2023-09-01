@@ -1151,7 +1151,15 @@ void func_8085D43C_jp(mSM* arg0, void** arg1, func_8085D43C_jp_arg2* arg2) {
     arg0->unk_2C->unk_10000.unk_00 = (void*)ALIGN16((uintptr_t)size + (uintptr_t)temp_a0);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_move_chg_base.s")
+void mSM_move_chg_base(struct_mSM_move_chg_base_arg0* arg0, u32 arg1) {
+    arg0->unk_04 = 0;
+    arg0->unk_34 = arg1;
+    if (arg1 & 1) {
+        arg0->unk_30 = 1;
+    } else {
+        arg0->unk_30 = 4;
+    }
+}
 
 void mSM_make_trigger_data(mSM* arg0) {
     s32 var_a0 = (getButton() & 0xF) | getTrigger();
