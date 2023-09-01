@@ -202,7 +202,7 @@
       - [0x016D20, c, ../lib/ultralib/src/flash/flashgetaddr]
       - [0x016D50, .hasm, ../../lib/ultralib/src/os/setwatchlo]
 
-      # libido?
+      # libido
       - [0x016D60, c, boot/libido/fmodf]
       - [0x016DB0, c, boot/libido/memset]
       - [0x016DE0, c, boot/libido/strcmp]
@@ -214,7 +214,7 @@
 
       - [0x016FC0, .data, boot/idle]
 
-      - [0x016FD0, data, boot/016FD0]
+      - [0x016FD0, .data, boot/carthandle]
       - [0x016FE0, .data, boot/z_std_dma]
       - [0x016FF0, .data, boot/fault]
       - [0x017050, .data, boot/fault_drawer]
@@ -222,7 +222,7 @@
       - [0x017090, data, boot/libu64/stackcheck]
 
       # TODO: figure out if this file belong to libu64
-      - [0x0170A0, .data, boot/logseverity]
+      - [0x0170A0, .data, boot/O2/logseverity]
 
       - [0x0170B0, data, boot/libu64/gfxprint_data]
 
