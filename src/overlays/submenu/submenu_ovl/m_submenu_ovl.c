@@ -41,7 +41,7 @@
 
 extern Gfx D_C012370[]; // inv_item_model
 
-extern struct_8085E9B0 ovl_base;
+struct_8085E9B0 ovl_base;
 
 typedef struct struct_func_8085C20C_jp_arg1 {
     /* 0x00 */ UNK_TYPE1 unk_00[0x4];
