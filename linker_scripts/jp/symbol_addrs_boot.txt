@@ -276,8 +276,8 @@ gDmaMgrDmaBuffSize = 0x8003BBE0; //
 sExceptionNames = 0x8003BBF0; //
 sFpExceptionNames = 0x8003BC38; //
 
-D_8003BC90_jp = 0x8003BC90; // size:0x4
-D_8003BC94_jp = 0x8003BC94; // size:0x4
+sStackInfoListStart = 0x8003BC90; // size:0x4
+sStackInfoListEnd = 0x8003BC94; // size:0x4
 
 gOverlayLogSeverity = 0x8003BCA0 // type:s32 size:0x4
 

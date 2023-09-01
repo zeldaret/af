@@ -9,10 +9,6 @@
 
 extern OSPiHandle* carthandle; // TODO: Determine where this goes
 
-// extern UNK_TYPE D_8003BC90_jp;
-// extern UNK_TYPE D_8003BC94_jp;
-
-
 // .rodata
 
 
