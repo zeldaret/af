@@ -6,8 +6,8 @@
 
 struct mSM;
 
-void func_80881030_jp(struct mSM* arg0);
-void func_80881144_jp(struct mSM* arg0);
-void func_80880C04_jp(struct mSM* arg0);
+void mIV_inventory_ovl_construct(struct mSM* arg0);
+void mIV_inventory_ovl_destruct(struct mSM* arg0);
+void mIV_inventory_ovl_set_proc(struct mSM* arg0);
 
 #endif

@@ -6,8 +6,8 @@
 
 struct mSM;
 
-void func_80884C84_jp(struct mSM* arg0);
-void func_80884D00_jp(struct mSM* arg0);
-void func_80884B00_jp(struct mSM* arg0);
+void mLE_ledit_ovl_construct(struct mSM* arg0);
+void mLE_ledit_ovl_destruct(struct mSM* arg0);
+void mLE_ledit_ovl_set_proc(struct mSM* arg0);
 
 #endif

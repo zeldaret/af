@@ -360,19 +360,19 @@ struct_8085E4A0 D_8085E4A0_jp[] = {
     { SEGMENT_ROM_START(name), SEGMENT_ROM_END(name), SEGMENT_VRAM_START(name), SEGMENT_VRAM_END(name), construct, destruct, set_proc, false }
 
 struct_8085E4D0 mSM_program_dlftbl[] = {
-    SUBMENU_PROGRAM(ovl__00785700, func_80881030_jp, func_80881144_jp, func_80880C04_jp),
-    SUBMENU_PROGRAM(ovl__00785700, func_80881030_jp, func_80881144_jp, func_80880C04_jp),
+    SUBMENU_PROGRAM(ovl__00785700, mIV_inventory_ovl_construct, mIV_inventory_ovl_destruct, mIV_inventory_ovl_set_proc),
+    SUBMENU_PROGRAM(ovl__00785700, mIV_inventory_ovl_construct, mIV_inventory_ovl_destruct, mIV_inventory_ovl_set_proc),
     SUBMENU_PROGRAM(ovl__0078A560, func_8088306C_jp, func_808830E8_jp, func_80882FAC_jp),
     SUBMENU_PROGRAM(ovl__0078AE30, func_80884120_jp, func_808841A8_jp, func_80883F5C_jp),
-    SUBMENU_PROGRAM(ovl__0078BFB0, func_80884C84_jp, func_80884D00_jp, func_80884B00_jp),
-    SUBMENU_PROGRAM(ovl__00795350, func_8088FBF0_jp, func_8088FCBC_jp, func_8088FB40_jp),
+    SUBMENU_PROGRAM(ovl__0078BFB0, mLE_ledit_ovl_construct, mLE_ledit_ovl_destruct, mLE_ledit_ovl_set_proc),
+    SUBMENU_PROGRAM(ovl__00795350, mMP_map_ovl_construct, mMP_map_ovl_destruct, mMP_map_ovl_set_proc),
     SUBMENU_PROGRAM(ovl__00797A50, func_80895B04_jp, func_80895B9C_jp, func_80895A30_jp),
     SUBMENU_PROGRAM(ovl__0079B120, func_80898688_jp, func_80898710_jp, func_80898520_jp),
     SUBMENU_PROGRAM(ovl__0079C020, func_80899E34_jp, func_80899F00_jp, func_80899D84_jp),
     SUBMENU_PROGRAM(ovl__0079DA50, func_8089AB8C_jp, func_8089AC14_jp, func_8089AAE4_jp),
     SUBMENU_PROGRAM(ovl__0078CB80, func_808883F8_jp, func_808884E4_jp, func_80888354_jp),
     SUBMENU_PROGRAM(ovl__00789B60, func_80882778_jp, func_80882818_jp, func_808826B8_jp),
-    SUBMENU_PROGRAM(ovl__007908A0, func_8088A6E8_jp, func_8088A77C_jp, func_8088A2A0_jp),
+    SUBMENU_PROGRAM(ovl__007908A0, mBD_board_ovl_construct, mBD_board_ovl_destruct, mBD_board_ovl_set_proc),
     SUBMENU_PROGRAM(ovl__00792700, func_8088C4A0_jp, func_8088C548_jp, func_8088C344_jp),
     SUBMENU_PROGRAM(ovl__00794380, func_8088D924_jp, func_8088D9D4_jp, func_8088D81C_jp),
     SUBMENU_PROGRAM(ovl__00799580, func_80896898_jp, func_80896938_jp, func_80896830_jp),
@@ -380,9 +380,9 @@ struct_8085E4D0 mSM_program_dlftbl[] = {
     SUBMENU_PROGRAM(ovl__0079E430, func_8089BE68_jp, func_8089BF10_jp, func_8089BCE0_jp),
     SUBMENU_PROGRAM(ovl__0079F810, func_808A40F0_jp, func_808A4188_jp, func_808A4058_jp),
     SUBMENU_PROGRAM(ovl__007A10E0, func_808A5D7C_jp, func_808A5E14_jp, func_808A5C28_jp),
-    SUBMENU_PROGRAM(ovl__007A28F0, func_808A96AC_jp, func_808A97C0_jp, func_808A92EC_jp),
+    SUBMENU_PROGRAM(ovl__007A28F0, mCL_catalog_ovl_construct, mCL_catalog_ovl_destruct, mCL_catalog_ovl_set_proc),
     SUBMENU_PROGRAM(ovl__00777AE0, func_808787A0_jp, func_80878904_jp, func_80878904_jp),
-    SUBMENU_PROGRAM(ovl__007829E0, func_8087C360_jp, func_8087C574_jp, func_8087C574_jp),
+    SUBMENU_PROGRAM(ovl__007829E0, mHD_hand_ovl_construct, mHD_hand_ovl_destruct, mHD_hand_ovl_destruct),
     SUBMENU_PROGRAM(ovl__00784FC0, func_8087D180_jp, func_8087D274_jp, func_8087D274_jp),
 };
 

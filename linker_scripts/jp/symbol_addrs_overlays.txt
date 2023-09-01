@@ -1245,8 +1245,8 @@ func_8087BD3C_jp = 0x8087BD3C; // type:func
 func_8087BEFC_jp = 0x8087BEFC; // type:func
 func_8087C2F8_jp = 0x8087C2F8; // type:func
 func_8087C328_jp = 0x8087C328; // type:func
-func_8087C360_jp = 0x8087C360; // type:func
-func_8087C574_jp = 0x8087C574; // type:func
+mHD_hand_ovl_construct = 0x8087C360; // type:func
+mHD_hand_ovl_destruct = 0x8087C574; // type:func
 
 // .data
 
@@ -1345,10 +1345,10 @@ func_8088068C_jp = 0x8088068C; // type:func
 func_808808A0_jp = 0x808808A0; // type:func
 func_80880AE4_jp = 0x80880AE4; // type:func
 func_80880BB0_jp = 0x80880BB0; // type:func
-func_80880C04_jp = 0x80880C04; // type:func
+mIV_inventory_ovl_set_proc = 0x80880C04; // type:func
 func_80880C84_jp = 0x80880C84; // type:func
-func_80881030_jp = 0x80881030; // type:func
-func_80881144_jp = 0x80881144; // type:func
+mIV_inventory_ovl_construct = 0x80881030; // type:func
+mIV_inventory_ovl_destruct = 0x80881144; // type:func
 
 // .data
 
@@ -1500,10 +1500,10 @@ func_80884484_jp = 0x80884484; // type:func
 func_808844B4_jp = 0x808844B4; // type:func
 func_80884514_jp = 0x80884514; // type:func
 func_80884AAC_jp = 0x80884AAC; // type:func
-func_80884B00_jp = 0x80884B00; // type:func
+mLE_ledit_ovl_set_proc = 0x80884B00; // type:func
 func_80884B30_jp = 0x80884B30; // type:func
-func_80884C84_jp = 0x80884C84; // type:func
-func_80884D00_jp = 0x80884D00; // type:func
+mLE_ledit_ovl_construct = 0x80884C84; // type:func
+mLE_ledit_ovl_destruct = 0x80884D00; // type:func
 
 // .data
 
@@ -1658,11 +1658,11 @@ func_80889CD8_jp = 0x80889CD8; // type:func
 func_80889FB0_jp = 0x80889FB0; // type:func
 func_8088A15C_jp = 0x8088A15C; // type:func
 func_8088A230_jp = 0x8088A230; // type:func
-func_8088A2A0_jp = 0x8088A2A0; // type:func
+mBD_board_ovl_set_proc = 0x8088A2A0; // type:func
 func_8088A2D0_jp = 0x8088A2D0; // type:func
 func_8088A604_jp = 0x8088A604; // type:func
-func_8088A6E8_jp = 0x8088A6E8; // type:func
-func_8088A77C_jp = 0x8088A77C; // type:func
+mBD_board_ovl_construct = 0x8088A6E8; // type:func
+mBD_board_ovl_destruct = 0x8088A77C; // type:func
 
 // .data
 
@@ -1816,10 +1816,10 @@ func_8088F49C_jp = 0x8088F49C; // type:func
 func_8088F73C_jp = 0x8088F73C; // type:func
 func_8088F8BC_jp = 0x8088F8BC; // type:func
 func_8088FAEC_jp = 0x8088FAEC; // type:func
-func_8088FB40_jp = 0x8088FB40; // type:func
+mMP_map_ovl_set_proc = 0x8088FB40; // type:func
 func_8088FB70_jp = 0x8088FB70; // type:func
-func_8088FBF0_jp = 0x8088FBF0; // type:func
-func_8088FCBC_jp = 0x8088FCBC; // type:func
+mMP_map_ovl_construct = 0x8088FBF0; // type:func
+mMP_map_ovl_destruct = 0x8088FCBC; // type:func
 
 // .data
 
@@ -2349,11 +2349,11 @@ func_808A835C_jp = 0x808A835C; // type:func
 func_808A8DFC_jp = 0x808A8DFC; // type:func
 func_808A917C_jp = 0x808A917C; // type:func
 func_808A9298_jp = 0x808A9298; // type:func
-func_808A92EC_jp = 0x808A92EC; // type:func
+mCL_catalog_ovl_set_proc = 0x808A92EC; // type:func
 func_808A931C_jp = 0x808A931C; // type:func
 func_808A93A8_jp = 0x808A93A8; // type:func
-func_808A96AC_jp = 0x808A96AC; // type:func
-func_808A97C0_jp = 0x808A97C0; // type:func
+mCL_catalog_ovl_construct = 0x808A96AC; // type:func
+mCL_catalog_ovl_destruct = 0x808A97C0; // type:func
 
 // .data
 

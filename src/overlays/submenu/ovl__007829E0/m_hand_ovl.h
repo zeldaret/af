@@ -6,7 +6,7 @@
 
 struct mSM;
 
-void func_8087C360_jp(struct mSM* arg0);
-void func_8087C574_jp(struct mSM* arg0);
+void mHD_hand_ovl_construct(struct mSM* arg0);
+void mHD_hand_ovl_destruct(struct mSM* arg0);
 
 #endif

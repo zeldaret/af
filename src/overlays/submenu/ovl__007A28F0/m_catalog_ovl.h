@@ -6,8 +6,8 @@
 
 struct mSM;
 
-void func_808A96AC_jp(struct mSM* arg0);
-void func_808A97C0_jp(struct mSM* arg0);
-void func_808A92EC_jp(struct mSM* arg0);
+void mCL_catalog_ovl_construct(struct mSM* arg0);
+void mCL_catalog_ovl_destruct(struct mSM* arg0);
+void mCL_catalog_ovl_set_proc(struct mSM* arg0);
 
 #endif

@@ -6,8 +6,8 @@
 
 struct mSM;
 
-void func_8088A6E8_jp(struct mSM* arg0);
-void func_8088A77C_jp(struct mSM* arg0);
-void func_8088A2A0_jp(struct mSM* arg0);
+void mBD_board_ovl_construct(struct mSM* arg0);
+void mBD_board_ovl_destruct(struct mSM* arg0);
+void mBD_board_ovl_set_proc(struct mSM* arg0);
 
 #endif
