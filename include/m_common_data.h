@@ -43,27 +43,42 @@ typedef UNK_RET (*CommonData_unk_1004C_unk_EC)(struct Game_Play_unk_0110*, s16, 
 typedef UNK_RET (*CommonData_unk_1004C_unk_F0)(struct Game_Play_unk_0110*, struct Actor*);
 typedef s32 (*CommonData_unk_1004C_unk_F4)(struct Game_Play_unk_0110*, struct Actor*);
 
+typedef UNK_RET (*CommonData_unk_1004C_unk_118)(struct Actor*);
+
 typedef struct CommonData_unk_1004C {
-    /* 0x00 */ UNK_TYPE1 unk_00[0x4];
-    /* 0x04 */ CommonData_unk_1004C_unk_04 unk_04;
-    /* 0x08 */ CommonData_unk_1004C_unk_08 unk_08;
-    /* 0x0C */ CommonData_unk_1004C_unk_0C unk_0C;
-    /* 0x10 */ CommonData_unk_1004C_unk_10 unk_10;
-    /* 0x14 */ CommonData_unk_1004C_unk_14 unk_14;
-    /* 0x18 */ UNK_TYPE1 unk_18[0xA4];
-    /* 0xBC */ CommonData_unk_1004C_unk_BC unk_BC;
-    /* 0xC0 */ CommonData_unk_1004C_unk_C0 unk_C0;
-    /* 0xC4 */ CommonData_unk_1004C_unk_C4 unk_C4;
-    /* 0xC8 */ CommonData_unk_1004C_unk_C8 unk_C8;
-    /* 0xCC */ CommonData_unk_1004C_unk_CC unk_CC;
-    /* 0xD0 */ CommonData_unk_1004C_unk_D0 unk_D0;
-    /* 0xD4 */ UNK_TYPE1 unk_D4[0x10];
-    /* 0xE4 */ CommonData_unk_1004C_unk_E4 unk_E4;
-    /* 0xE8 */ UNK_TYPE1 unk_E8[0x4];
-    /* 0xEC */ CommonData_unk_1004C_unk_EC unk_EC;
-    /* 0xF0 */ CommonData_unk_1004C_unk_F0 unk_F0;
-    /* 0xF4 */ CommonData_unk_1004C_unk_F4 unk_F4;
-} CommonData_unk_1004C; // size >= 0xF8
+    /* 0x000 */ UNK_TYPE1 unk_00[0x4];
+    /* 0x004 */ CommonData_unk_1004C_unk_04 unk_04;
+    /* 0x008 */ CommonData_unk_1004C_unk_08 unk_08;
+    /* 0x00C */ CommonData_unk_1004C_unk_0C unk_0C;
+    /* 0x010 */ CommonData_unk_1004C_unk_10 unk_10;
+    /* 0x014 */ CommonData_unk_1004C_unk_14 unk_14;
+    /* 0x018 */ UNK_TYPE1 unk_18[0xA4];
+    /* 0x0BC */ CommonData_unk_1004C_unk_BC unk_BC;
+    /* 0x0C0 */ CommonData_unk_1004C_unk_C0 unk_C0;
+    /* 0x0C4 */ CommonData_unk_1004C_unk_C4 unk_C4;
+    /* 0x0C8 */ CommonData_unk_1004C_unk_C8 unk_C8;
+    /* 0x0CC */ CommonData_unk_1004C_unk_CC unk_CC;
+    /* 0x0D0 */ CommonData_unk_1004C_unk_D0 unk_D0;
+    /* 0x0D4 */ UNK_TYPE1 unk_D4[0x10];
+    /* 0x0E4 */ CommonData_unk_1004C_unk_E4 unk_E4;
+    /* 0x0E8 */ UNK_TYPE1 unk_E8[0x4];
+    /* 0x0EC */ CommonData_unk_1004C_unk_EC unk_EC;
+    /* 0x0F0 */ CommonData_unk_1004C_unk_F0 unk_F0;
+    /* 0x0F4 */ CommonData_unk_1004C_unk_F4 unk_F4;
+    /* 0x0F8 */ UNK_TYPE1 unk_F8[0x20];
+    /* 0x118 */ CommonData_unk_1004C_unk_118 unk_118;
+} CommonData_unk_1004C; // size >= 0x11C
+
+typedef UNK_RET (*CommonData_unk_10078_unk_00)(UNK_TYPE);
+typedef UNK_RET (*CommonData_unk_10078_unk_04)(UNK_TYPE);
+typedef UNK_RET (*CommonData_unk_10078_unk_08)(UNK_TYPE);
+
+
+typedef struct CommonData_unk_10078 {
+    /* 0x00 */ CommonData_unk_10078_unk_00 unk_00;
+    /* 0x04 */ CommonData_unk_10078_unk_04 unk_04;
+    /* 0x08 */ CommonData_unk_10078_unk_08 unk_08;
+} CommonData_unk_10078; // size >= 0xC
 
 typedef UNK_RET (*CommonData_unk_10098_unk_4)(struct ActorOverlay*, size_t);
 typedef UNK_RET (*CommonData_unk_10098_unk_8)(void);
@@ -161,7 +176,9 @@ typedef struct CommonData {
     /* 0x10004 */ s32 unk_10004; // named "last_scene_no" in AC GCN decomp
     /* 0x10008 */ UNK_TYPE1 unk_10008[0x44];
     /* 0x1004C */ CommonData_unk_1004C *unk_1004C;
-    /* 0x10050 */ UNK_TYPE1 unk_10050[0x48];
+    /* 0x10050 */ UNK_TYPE1 unk_10050[0x28];
+    /* 0x10078 */ CommonData_unk_10078 *unk_10078;
+    /* 0x1007C */ UNK_TYPE1 unk_1007C[0x1C];
     /* 0x10098 */ CommonData_unk_10098 *unk_10098;
     /* 0x1009C */ UNK_TYPE1 unk_1009C[0x48];
     /* 0x100E4 */ CommonData_100E4_Func* unk_100E4;

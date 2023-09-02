@@ -9,8 +9,8 @@ void aNEG_actor_ct(Actor* thisx, Game_Play* game_play);
 void aNEG_actor_dt(Actor* thisx, Game_Play* game_play);
 void aNEG_actor_init(Actor* thisx, Game_Play* game_play);
 void aNEG_actor_save(Actor* thisx, Game_Play* game_play);
-void func_809AEF28_jp(void);
-void func_809AEF54_jp(void);
+void aNEG_actor_move(void);
+void aNEG_actor_draw(void);
 
 ActorProfile Npc_Engineer_Profile = {
     /* */ ACTOR_NPC_ENGINEER,
@@ -26,11 +26,8 @@ ActorProfile Npc_Engineer_Profile = {
     /* */ aNEG_actor_save,
 };
 
-struct_809AEFA4 D_809AEFA4_jp = {
-    func_809AEF28_jp,
-    func_809AEF54_jp,
-    4,
-    0,
+struct_809AEFA4 aNEG_ct_data = {
+    aNEG_actor_move, aNEG_actor_draw, 4, NULL, NULL, NULL,
 };
 
 void aNEG_actor_ct(Actor* thisx, Game_Play* game_play) {
@@ -38,7 +35,7 @@ void aNEG_actor_ct(Actor* thisx, Game_Play* game_play) {
 
     if (common_data.unk_1004C->unk_BC(thisx, game_play) == 1) {
         this->unk7C0 = none_proc1;
-        common_data.unk_1004C->unk_C0(thisx, game_play, &D_809AEFA4_jp);
+        common_data.unk_1004C->unk_C0(thisx, game_play, &aNEG_ct_data);
         this->unk80C = -1;
         this->unk7FD = 0;
         this->unk8AC = -1;
@@ -64,10 +61,10 @@ void aNEG_actor_init(Actor* thisx, Game_Play* game_play) {
     common_data.unk_1004C->unk_CC(thisx, game_play);
 }
 
-void func_809AEF28_jp(void) {
+void aNEG_actor_move(void) {
     common_data.unk_1004C->unk_D0();
 }
 
-void func_809AEF54_jp(void) {
+void aNEG_actor_draw(void) {
     common_data.unk_1004C->unk_E4();
 }
