@@ -1080,13 +1080,13 @@ void mSM_set_other_seg(mSM* arg0) {
         func_8085D094_jp(arg0);
     }
     if (var_v1 & 4) {
-        mSM_ovl_prog_seg(arg0, &mSM_program_dlftbl[0x15]);
+        mSM_ovl_prog_seg(arg0, &mSM_program_dlftbl[SUBMENU_PROGRAM_21]);
     }
     if (var_v1 & 8) {
-        mSM_ovl_prog_seg(arg0, &mSM_program_dlftbl[0x16]);
+        mSM_ovl_prog_seg(arg0, &mSM_program_dlftbl[SUBMENU_PROGRAM_HAND]);
     }
     if (var_v1 & 0x10) {
-        mSM_ovl_prog_seg(arg0, &mSM_program_dlftbl[0x17]);
+        mSM_ovl_prog_seg(arg0, &mSM_program_dlftbl[SUBMENU_PROGRAM_23]);
     }
 }
 
@@ -1177,19 +1177,26 @@ void mSM_make_trigger_data(mSM* arg0) {
     temp_v1->unk_1C = var_a0;
 }
 
-#if 0
+#ifdef NON_MATCHING
+// regalloc
 void mSM_save_before_func(mSM* arg0) {
-    s32 temp_a2;
+    struct_8085E9B0_unk_10088 *new_var2;
+    SubmenuProgramId temp_a2;
     struct_8085E9B0* temp_v0;
     struct_8085E9B0_unk_10088* temp_v1;
 
-    temp_v1 = &arg0->unk_2C->unk_10088[arg0->unk_04];
     temp_v0 = arg0->unk_2C;
+    temp_v1 = &temp_v0->unk_10088[arg0->programId];
+
     temp_a2 = arg0->unk_08;
     temp_v1->unk_08 = temp_a2;
     temp_v1->unk_0C = temp_v0->unk_10670.unk_00;
     temp_v1->unk_10 = temp_v0->unk_10670.unk_04;
-    temp_v0->unk_10088[temp_a2].unk_14 = arg0->unk_04;
+
+    if (arg0->programId) { }
+    new_var2 = &temp_v0->unk_10088[temp_v1->unk_08];
+
+    new_var2->unk_14 = arg0->programId;
 }
 #else
 void mSM_save_before_func(mSM* arg0);
