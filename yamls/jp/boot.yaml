@@ -17,7 +17,7 @@
       - [0x004F70, c, boot/fault_drawer]
 
       - [0x0059F0, c, boot/libu64/pad]
-      - [0x005BE0, asm, boot/libu64/stackcheck]
+      - [0x005BE0, c, boot/libu64/stackcheck]
       - [0x005E30, asm, boot/libu64/gfxprint]
 
       - [0x006BA0, c, boot/libu64/mtxuty-cvt]
@@ -219,7 +219,7 @@
       - [0x016FF0, .data, boot/fault]
       - [0x017050, .data, boot/fault_drawer]
 
-      - [0x017090, data, boot/libu64/stackcheck]
+      - [0x017090, .data, boot/libu64/stackcheck]
 
       # TODO: figure out if this file belong to libu64
       - [0x0170A0, .data, boot/O2/logseverity]
