@@ -30,7 +30,7 @@ By default functions will be named function_XXXXXXXX_jp, data will be named D_XX
 
 ## Starting work on a file (boot or code)
 
-Make sure you have the appropriate baserom.z64 setup. see the [README.md](../README.md) for more details.
+Make sure you have the appropriate baserom.z64 setup. see the [readme](../README.md) for more details.
 
 The first step is to have splat extract everything. This is done with `make extract -j`. Because all the file splits haven't been determined yet, it's possible the file you want to work on is not split correctly.
 
