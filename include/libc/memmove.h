@@ -1,5 +1,5 @@
-#ifndef LIBIDO_MEMMOVE_H
-#define LIBIDO_MEMMOVE_H
+#ifndef LIBC_MEMMOVE_H
+#define LIBC_MEMMOVE_H
 
 #include "ultra64.h"
 

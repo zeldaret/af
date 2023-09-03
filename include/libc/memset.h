@@ -1,5 +1,5 @@
-#ifndef LIBIDO_MEMSET_H
-#define LIBIDO_MEMSET_H
+#ifndef LIBC_MEMSET_H
+#define LIBC_MEMSET_H
 
 #include "ultra64.h"
 

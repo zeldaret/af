@@ -4,7 +4,7 @@
 #include "libc/stdbool.h"
 #include "libc/stddef.h"
 #include "libc/stdint.h"
-#include "libido/memmove.h"
+#include "libc/memmove.h"
 #include "macros.h"
 
 #define NODE_MAGIC (0x7373)

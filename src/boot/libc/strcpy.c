@@ -1,4 +1,4 @@
-#include "libido/strcpy.h"
+#include "libc/strcpy.h"
 
 char* strcpy(char* dst, const char* src) {
     char* d = dst;

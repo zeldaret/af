@@ -1,5 +1,5 @@
-#ifndef LIBIDO_STRCPY_H
-#define LIBIDO_STRCPY_H
+#ifndef LIBC_STRCPY_H
+#define LIBC_STRCPY_H
 
 #include "ultra64.h"
 

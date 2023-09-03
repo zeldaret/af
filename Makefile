@@ -219,8 +219,9 @@ $(shell mkdir -p $(BUILD_DIR)/linker_scripts/$(VERSION) $(BUILD_DIR)/linker_scri
 
 # directory flags
 build/src/boot/O2/%.o: OPTFLAGS := -O2
+build/src/boot/libc/%.o: OPTFLAGS := -O2
 build/src/boot/libc64/%.o: OPTFLAGS := -O2
-build/src/boot/libido/%.o: OPTFLAGS := -O2
+build/src/boot/libm/%.o: OPTFLAGS := -O2
 build/src/boot/libu64/%.o: OPTFLAGS := -O2
 
 # per-file flags

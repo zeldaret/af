@@ -1,4 +1,4 @@
-#include "libido/strcmp.h"
+#include "libc/strcmp.h"
 
 s32 strcmp(const char* str1, const char* str2) {
     char c1;

@@ -1,5 +1,5 @@
-#ifndef LIBIDO_FMODF_H
-#define LIBIDO_FMODF_H
+#ifndef LIBM_FMODF_H
+#define LIBM_FMODF_H
 
 #include "ultra64.h"
 
