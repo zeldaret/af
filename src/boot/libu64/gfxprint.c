@@ -70,7 +70,7 @@ void gfxprint_setoffset(gfxprint* this, s32 x, s32 y) {
     this->offsetY = y * 4;
 }
 
-void gfxprint_putc1(gfxprint* this, u8 c) {
+void gfxprint_putc1(gfxprint* this, char c) {
     u32 tile = (c & 0xFF) * 2;
     u16 x0 = (c & 4);
     u16 x1 = (c >> 3);
@@ -118,8 +118,8 @@ void gfxprint_putc1(gfxprint* this, u8 c) {
     this->positionX += 32;
 }
 
-void gfxprint_putc(gfxprint* this, u8 c) {
-    u8 param = c;
+void gfxprint_putc(gfxprint* this, char c) {
+    char param = c;
 
     if (c == ' ') {
         this->positionX += 32;
@@ -137,66 +137,56 @@ void gfxprint_putc(gfxprint* this, u8 c) {
     } else {
         switch (param) {
             case '\0':
-
                 break;
 
             case '\n':
-
                 this->positionY += 32;
 
             case '\r':
-
                 this->positionX = this->offsetX;
 
                 break;
 
             case '\t':
-
                 do {
                     gfxprint_putc1(this, ' ');
                 } while ((this->positionX - this->offsetX) % 256);
 
                 break;
 
-            case '\x8D':
-
+            case GFXPRINT_HIRAGANA_MODE_CHAR:
                 gfxprint_setHiragana(this);
 
                 break;
 
-            case '\x8C':
-
+            case GFXPRINT_KATAKANA_MODE_CHAR:
                 gfxprint_setKatakana(this);
 
                 break;
 
-            case '\x8B':
-
+            case GFXPRINT_ENABLE_GRADIENT_CHAR:
                 gfxprint_setGradient(this);
                 gfxprint_setChanged(this);
 
                 break;
 
-            case '\x8A':
-
+            case GFXPRINT_CLEAR_GRADIENT_CHAR:
                 gfxprint_clrGradient(this);
                 gfxprint_setChanged(this);
 
                 break;
 
-            case '\x8E':
-
+            case GFXPRINT_UNUSED_CHAR:
                 break;
 
             default:
-
                 break;
         }
     }
 }
 
 void gfxprint_write(gfxprint* this, const void* buffer, s32 size, s32 n) {
-    u8* buf = (u8*)buffer;
+    const char* buf = (const char*)buffer;
     s32 i;
 
     for (i = size * n; i != 0; i--) {
@@ -204,14 +194,14 @@ void gfxprint_write(gfxprint* this, const void* buffer, s32 size, s32 n) {
     }
 }
 
-void gfxprint_puts(gfxprint* this, const u8* buffer) {
+void gfxprint_puts(gfxprint* this, const char* buffer) {
     while (*buffer != '\0') {
         gfxprint_putc(this, *buffer++);
     }
 }
 
-void* gfxprint_prout(void* this, const u8* buffer, s32 n) {
-    gfxprint_write(this, buffer, sizeof(u8), n);
+void* gfxprint_prout(void* this, const char* buffer, s32 n) {
+    gfxprint_write(this, buffer, sizeof(char), n);
     return this;
 }
 

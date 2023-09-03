@@ -5,9 +5,9 @@
 #include "color.h"
 #include "libc64/aprintf.h"
 
-typedef struct gfxprint_obj  {
+typedef struct gfxprint  {
     /* 0x00 */ PrintCallback proutFunc; /* Current print out func */
-    /* 0x04 */     Gfx* gListp; /* Current display list to write text to */
+    /* 0x04 */ Gfx* gListp; /* Current display list to write text to */
     /* 0x08 */ u16 positionX; /* Display coords (sub-pixel units) */
     /* 0x0A */ u16 positionY; /* Display coords (sub-pixel units) */
     /* 0x0C */ u16 offsetX; /* Display offset */
@@ -36,13 +36,13 @@ typedef struct gfxprint_obj  {
 #define GFXPRINT_KANA_MODE_KATAKANA 0
 #define GFXPRINT_KANA_MODE_HIRAGANA 1
 
-#define GFXPRINT_CLEAR_GRADIENT_CHAR "\x8A"
-#define GFXPRINT_ENABLE_GRADIENT_CHAR "\x8B"
+#define GFXPRINT_CLEAR_GRADIENT_CHAR '\x8A'
+#define GFXPRINT_ENABLE_GRADIENT_CHAR '\x8B'
 
-#define GFXPRINT_KATAKANA_MODE_CHAR "\x8C"
-#define GFXPRINT_HIRAGANA_MODE_CHAR "\x8D"
+#define GFXPRINT_KATAKANA_MODE_CHAR '\x8C'
+#define GFXPRINT_HIRAGANA_MODE_CHAR '\x8D'
 
-#define GFXPRINT_UNUSED_CHAR "\x8E"
+#define GFXPRINT_UNUSED_CHAR '\x8E'
 
 /* Macros for quickly checking state of gfxprint struct */
 #define gfxprint_isFlagOn(this, flag) ((this->flags & flag) != 0)
@@ -91,11 +91,11 @@ void gfxprint_color(gfxprint* this, u32 r, u32 g, u32 b, u32 a);
 void gfxprint_locate(gfxprint* this, s32 x, s32 y);
 void gfxprint_locate8x8(gfxprint* this, s32 x, s32 y);
 void gfxprint_setoffset(gfxprint* this, s32 x, s32 y);
-void gfxprint_putc1(gfxprint* this, u8 c);
-void gfxprint_putc(gfxprint* this, u8 c);
+void gfxprint_putc1(gfxprint* this, char c);
+void gfxprint_putc(gfxprint* this, char c);
 void gfxprint_write(gfxprint* this, const void* buffer, s32 size, s32 n);
-void gfxprint_puts(gfxprint* this, const u8* buffer);
-void* gfxprint_prout(void* this, const u8* buffer, s32 n);
+void gfxprint_puts(gfxprint* this, const char* buffer);
+void* gfxprint_prout(void* this, const char* buffer, s32 n);
 void gfxprint_init(gfxprint* this);
 void gfxprint_cleanup(gfxprint* this);
 void gfxprint_open(gfxprint* this, Gfx* gListp);
