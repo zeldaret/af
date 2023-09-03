@@ -6,8 +6,9 @@
  * @note:
  *     These are for specific fragment overlays with the .ovl file extension
  */
-#include "global.h"
 #include "loadfragment.h"
+#include "attributes.h"
+#include "libc/stddef.h"
 #include "z_std_dma.h"
 
 void DoRelocation(void* allocatedRamAddr, OverlayRelocationSection* ovlRelocs, void* vramStart);

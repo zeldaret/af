@@ -1,5 +1,5 @@
-#include "global.h"
-
+#include "ultra64.h"
+#include "carthandle.h"
 #include "idle.h"
 #include "m_thread.h"
 #include "segment_symbols.h"
