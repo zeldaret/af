@@ -99,20 +99,20 @@ void gfxprint_putc1(gfxprint* this, char c) {
         if (gfxprint_isHighres(this)) {
             gSPTextureRectangle(this->gListp++, (this->positionX + 4) << 1, (this->positionY + 4) << 1,
                                 (this->positionX + 4 + 32) << 1, (this->positionY + 4 + 32) << 1, tile, x0 << 6,
-                                x1 << 8, 512, 512);
+                                x1 << 8, 1 << 9, 1 << 9);
         } else {
             gSPTextureRectangle(this->gListp++, this->positionX + 4, this->positionY + 4, this->positionX + 4 + 32,
-                                this->positionY + 4 + 32, tile, x0 << 6, x1 << 8, 1024, 1024);
+                                this->positionY + 4 + 32, tile, x0 << 6, x1 << 8, 1 << 10, 1 << 10);
         }
         gDPSetColor(this->gListp++, G_SETPRIMCOLOR, this->color.rgba);
     }
 
     if (gfxprint_isHighres(this)) {
         gSPTextureRectangle(this->gListp++, this->positionX << 1, this->positionY << 1, (this->positionX + 32) << 1,
-                            (this->positionY + 32) << 1, tile, x0 << 6, x1 << 8, 512, 512);
+                            (this->positionY + 32) << 1, tile, x0 << 6, x1 << 8, 1 << 9, 1 << 9);
     } else {
         gSPTextureRectangle(this->gListp++, this->positionX, this->positionY, this->positionX + 32,
-                            this->positionY + 32, tile, x0 << 6, x1 << 8, 1024, 1024);
+                            this->positionY + 32, tile, x0 << 6, x1 << 8, 1 << 10, 1 << 10);
     }
 
     this->positionX += 32;

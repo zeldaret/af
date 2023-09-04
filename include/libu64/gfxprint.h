@@ -12,12 +12,7 @@ typedef struct gfxprint  {
     /* 0x0A */ u16 positionY; /* Display coords (sub-pixel units) */
     /* 0x0C */ u16 offsetX; /* Display offset */
     /* 0x0E */ u8 offsetY; /* Display offset */
-    /* 0x0F */ u8 flags; /* 1: Kana mode -> 0: Katakana/1: Hiragana
-                 2: Gradient displayed
-                 4: Shadow displayed
-                 8: Attribute changed
-                 64: Low-res -> high-res conversion
-                 128: Opened state */
+    /* 0x0F */ u8 flags;
     /* 0x10 */ Color_RGBA8_u32 color; /* Current font color */
     /* 0x14 */ u8 dummy[0x16];
 } gfxprint;
