@@ -3,7 +3,7 @@
 
 #include "ultra64.h"
 
-void ViConfig_UpdateVi(u32 arg0);
+void ViConfig_UpdateVi(u32 black);
 void ViConfig_UpdateBlack(void);
 
 u8 gViConfigBlackNext;

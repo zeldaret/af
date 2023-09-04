@@ -2669,7 +2669,7 @@
     bss_size: 0x0
     subsegments:
       - [0x8C2F70, c, overlays/actors/ovl_Kamakura_Npc0/ac_kamakura_npc0]
-      - [0x8C3180, data, overlays/actors/ovl_Kamakura_Npc0/ac_kamakura_npc0]
+      - [0x8C3180, .data, overlays/actors/ovl_Kamakura_Npc0/ac_kamakura_npc0]
   - name: ovl_Kamakura_Npc0_reloc
     type: code
     start: 0x8C31C0
