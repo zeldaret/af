@@ -32,12 +32,14 @@ By default functions will be named function_XXXXXXXX_jp, data will be named D_XX
 
 Make sure you have the appropriate baserom.z64 setup. see the [readme](../README.md) for more details.
 
-The first step is to have splat extract everything. This is done with `make extract -j`. Because all the file splits haven't been determined yet, it's possible the file you want to work on is not split correctly.
+The first step is to have splat extract everything. This is done with `make extract`. Because all the file splits haven't been determined yet, it's possible the file you want to work on is not split correctly.
+
+Note: When using make, it's recommended to use the argument `-jN`, where N is an integer that doesn't exceed the number of processors your cpu has. You can find how many processors you have with the `nproc` command. This command runs make with multiple jobs in order to extract or compile faster. 
 
 When splat is extracting it will mention possible file splits in the console output. One easy way to check is writing the output to a text file that you can ctrl-f through.
 
 ```bash
-make extract -j > output.txt
+make extract > output.txt
 ```
 
 Open the appropriate yaml for the file you want to start working on, either `yamls/jp/boot.yaml` or `yamls/jp/code.yaml`.
@@ -76,9 +78,9 @@ This period tells splat that it should not extract that data, only add it to the
 
 Note: This is true of the data section and bss section as well, but those can be more troublesome to properly transfer to your c file, so it's easier to transfer at the end when all the functions are matching.
 
-Save the yaml file. Every time you make a change to a yaml file, you need to use `make extract -j` to extract everything again.
+Save the yaml file. Every time you make a change to a yaml file, you need to use `make extract` to extract everything again.
 
-When extracting, splat checks if the c file already exists. in our case it doesn't, so splat will generate a new one with each function's assembly included by a #pragma statement. Run `make diff-init -j` to build the rom, and generate the `expected/build` folder. Everything is now set up to start decompiling functions. 
+When extracting, splat checks if the c file already exists. in our case it doesn't, so splat will generate a new one with each function's assembly included by a #pragma statement. Run `make diff-init` to build the rom, and generate the `expected/build` folder. Everything is now set up to start decompiling functions. 
 
 ## Importing data and bss
 
@@ -92,7 +94,7 @@ s32 D_80AAC084_jp[] = {0x01000100, 0x00010100, 0x01000000, 0x01010001, 0x0100010
 
 If you know the proper type for this data, you can define it as that and split the hexadecimal numbers accordingly.
 
-Once you have copied over all the data, edit `boot.yaml` or `code.yaml` depending on your file. you want to change your file's `data` definition to `.data` so splat will no longer extract it. Save the file, and run `make extract -j` and `make -j`. We're checking to see if the rom matches after building. If it doesn't, it's likely that something about the data you imported is incorrect. `python3 tools/first_diff.py` and `vbindiff` can be helpful for diagnosing problems.
+Once you have copied over all the data, edit `boot.yaml` or `code.yaml` depending on your file. you want to change your file's `data` definition to `.data` so splat will no longer extract it. Save the file, and run `make extract` and `make`. We're checking to see if the rom matches after building. If it doesn't, it's likely that something about the data you imported is incorrect. `python3 tools/first_diff.py` and `vbindiff` can be helpful for diagnosing problems.
 
 Importing bss is similar. Declare the bss variable in your C file, in the yaml change `bss` to `.bss`, and extract and build again to make sure the rom matches. With bss you have to make sure it gets ordered correctly, and unfortunately some files can be uncooperative. Sometimes hacks are required, like using `prevent_bss_reordering.h`.
 
@@ -102,21 +104,21 @@ Open `linkerscripts/jp/symbol_addrs_boot.txt` or `linkerscripts/jp/symbol_addrs_
 
 For data, sometimes it will get extracted incorrectly, splitting up data or adding padding at the end. You should manually remove unnecessary definitions. 
 
-Save the file. Like the yaml files, after editing these you need to run `make extract -j` again. Because your C file already exists, splat will not generate a new one. You will need to manually rename everything in your C and header file.
+Save the file. Like the yaml files, after editing these you need to run `make extract` again. Because your C file already exists, splat will not generate a new one. You will need to manually rename everything in your C and header file.
 
 ## Actors and Overlays
 
-Because the n64 has a very small amount of ram, the game's code isn't entirely loaded into memory at once. Instead, certain files get loaded when they're needed, and unloaded when they aren't. These files are called overlays. Every actor is an overlay, but not every overlays is an actor.
+Because the n64 has a very small amount of ram, the game's code isn't entirely loaded into memory at once. Instead, certain files get loaded when they're needed, and unloaded when they aren't. These files are called overlays. Every actor is an overlay, but not every overlay is an actor.
 
 Because an overlay doesn't know what arbitrary spot in ram it will be loaded into, there's a system that remaps the virtual ram addresses to physical ram addresses. This is handled by the .reloc section of the file.
 
 Because of virtual ram, `yamls/jp/overlays.yaml` is set up a little bit different from the others. Each file has it's own definition, and the text, data, rodata, and bss are defined as subsegments. This allows for manually specifying the virtual ram address of each file with the `vram` argument.
 
-For the purpose of decompiling overlays, editing the subsegment definitions is the same as code and boot files. You should not have to change the reloc file definitions.
+For the purpose of decompiling overlays, editing the subsegment definitions is the same as code and boot files. Currently the repo doesn't generate the reloc section yet, so you can ignore it. 
 
 ## Extracting Assembly for Matched Functions.
 Let's say you want to revisit a function that was already matched. Splat only extracts the asm of functions defined by the #pragma statement in c files, so it won't automatically extract it. However you can pass an argument to splat to tell it to extract every function's asm. This can be done using a makefile variable when you extract.
 
 ```bash
-make extract -j --FULL_DISASM=1
+make extract FULL_DISASM=1
 ```
