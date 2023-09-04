@@ -18,7 +18,7 @@
 
       - [0x0059F0, c, boot/libu64/pad]
       - [0x005BE0, c, boot/libu64/stackcheck]
-      - [0x005E30, asm, boot/libu64/gfxprint]
+      - [0x005E30, c, boot/libu64/gfxprint]
 
       - [0x006BA0, c, boot/libu64/mtxuty-cvt]
 
@@ -270,7 +270,7 @@
       - [0x019250, .rodata, boot/fault_drawer]
 
       # libu64
-      - [0x019690, rodata, boot/libu64/gfxprint]
+      - [0x019690, .rodata, boot/libu64/gfxprint]
       - [0x0196B0, .rodata, boot/libu64/debug]
 
       # libc64
@@ -301,7 +301,7 @@
       - { start: 0x019D40, type: .bss, vram: 0x80041960, name: boot/fault_drawer }
 
       # libu64
-      - { start: 0x019D40, type: bss, vram: 0x800419A0, name: boot/libu64/gfxprint }
+      - { start: 0x019D40, type: .bss, vram: 0x800419A0, name: boot/libu64/gfxprint }
 
       # libc64
       - { start: 0x019D40, type: .bss, vram: 0x800419B0, name: boot/libc64/math64 }
