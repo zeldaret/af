@@ -11,7 +11,6 @@ void aNOR_actor_save(Actor* thisx, Game_Play* game_play);
 void aNOR_actor_move(void);
 void aNOR_actor_draw(void);
 
-
 ActorProfile Normal_Npc_Profile = {
     /* */ ACTOR_NORMAL_NPC,
     /* */ ACTOR_PART_NPC,
@@ -26,31 +25,25 @@ ActorProfile Normal_Npc_Profile = {
     /* */ aNOR_actor_save,
 };
 
-struct_809AEFA4 aNOR_ct_data = { 
-    aNOR_actor_move, 
-    aNOR_actor_draw, 
-    1, 
-    NULL,
-    NULL,
-    NULL,
+struct_809AEFA4 aNOR_ct_data = {
+    aNOR_actor_move, aNOR_actor_draw, 1, NULL, NULL, NULL,
 };
 
-
-void aNOR_actor_ct(Actor *thisx, Game_Play *game_play) {
+void aNOR_actor_ct(Actor* thisx, Game_Play* game_play) {
     if (common_data.unk_1004C->unk_BC(thisx, game_play) == 1) {
         common_data.unk_1004C->unk_C0(thisx, game_play, &aNOR_ct_data);
     }
 }
 
-void aNOR_actor_dt(Actor *thisx, Game_Play *game_play) {
+void aNOR_actor_dt(Actor* thisx, Game_Play* game_play) {
     common_data.unk_1004C->unk_C4(thisx, game_play);
 }
 
-void aNOR_actor_save(Actor *thisx, Game_Play *game_play) {
+void aNOR_actor_save(Actor* thisx, Game_Play* game_play) {
     common_data.unk_1004C->unk_C8(thisx, game_play);
 }
 
-void aNOR_actor_init(Actor *thisx, Game_Play *game_play) {
+void aNOR_actor_init(Actor* thisx, Game_Play* game_play) {
     common_data.unk_1004C->unk_CC(thisx, game_play);
 }
 
