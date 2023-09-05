@@ -14,23 +14,26 @@ struct PreRender;
 typedef void (*struct_8085E4D0_unk_10)(struct mSM*);
 typedef void (*struct_8085E4D0_unk_18)(struct mSM*);
 
+typedef void (*struct_8085E9B0_unk_10670_unk_00)(struct mSM*);
+typedef void (*struct_8085E9B0_unk_10670_unk_04)(struct mSM*, struct Game_Play*);
+
 typedef struct struct_8085E4D0 {
     /* 0x00 */ RomOffset vromStart;
     /* 0x00 */ RomOffset vromEnd;
     /* 0x08 */ void* vramStart;
-    /* 0x08 */ void* vramEnd;
-    /* 0x08 */ struct_8085E4D0_unk_10 construct; // name based on original function names
-    /* 0x08 */ struct_8085E4D0_unk_18 destruct; // name based on original function names
-    /* 0x08 */ struct_8085E4D0_unk_18 set_proc; // name based on original function names
-    /* 0x08 */ s32 unk_1C;
+    /* 0x0C */ void* vramEnd;
+    /* 0x10 */ struct_8085E4D0_unk_10 construct; // name based on original function names
+    /* 0x14 */ struct_8085E4D0_unk_18 destruct; // name based on original function names
+    /* 0x18 */ struct_8085E4D0_unk_18 set_proc; // name based on original function names
+    /* 0x1C */ s32 unk_1C;
 } struct_8085E4D0; // size = 0x20
 
 typedef struct struct_mSM_return_func_arg1 {
     /* 0x00 */ UNK_TYPE1 unk_00[0x4];
     /* 0x04 */ UNK_TYPE unk_04;
     /* 0x08 */ UNK_TYPE unk_08;
-    /* 0x0C */ UNK_TYPE unk_0C;
-    /* 0x10 */ UNK_TYPE unk_10;
+    /* 0x0C */ struct_8085E9B0_unk_10670_unk_00 unk_0C;
+    /* 0x10 */ struct_8085E9B0_unk_10670_unk_04 unk_10;
     /* 0x14 */ UNK_TYPE unk_14;
     /* 0x18 */ UNK_TYPE1 unk_18[0x14];
     /* 0x2C */ UNK_TYPE unk_2C;
@@ -71,9 +74,6 @@ typedef struct struct_mSM_move_chg_base_arg0 {
     /* 0x04 */ UNK_TYPE4 unk_30;
     /* 0x04 */ u32 unk_34;
 } struct_mSM_move_chg_base_arg0;
-
-typedef void (*struct_8085E9B0_unk_10670_unk_00)(struct mSM*);
-typedef void (*struct_8085E9B0_unk_10670_unk_04)(struct mSM*, struct Game_Play*);
 
 typedef struct func_8085D43C_jp_arg2 {
     /* 0x0 */ RomOffset vromStart;

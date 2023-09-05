@@ -1226,40 +1226,57 @@ void mSM_tex_move(mSM* arg0) {
     }
 }
 
-#if 0
+#ifdef NON_EQUIVALENT
 void mSM_return_func(mSM* arg0, struct_mSM_return_func_arg1* arg1) {
-    s32 temp_t6;
-    struct_8085E9B0* temp_v1;
     struct_8085E9B0_unk_10088* temp_v0;
+    struct_8085E9B0* temp_v1;
+    struct_8085E9B0_unk_10088* othertemp;
+    s32 temp_a2;
 
-    if (arg1->unk_14 != 0) {
-        temp_v1 = arg0->unk_2C;
-        temp_v0 = &temp_v1->unk_10088[arg1->unk_14];
+    temp_a2 = arg1->unk_14;
+    temp_v1 = arg0->unk_2C;
+    temp_v0 = temp_v1->unk_10088;
+
+    if (temp_a2 != 0) {
+        if (((!temp_a2) && (!temp_a2)) && (!temp_a2)) {}
+
+        othertemp = temp_v0;
+
+        temp_v0 += temp_a2;
+
         temp_v0->unk_08 = arg1->unk_08;
         temp_v0->unk_0C = arg1->unk_0C;
         temp_v0->unk_10 = arg1->unk_10;
-        temp_v1->unk_10088[arg1->unk_14].unk_14 = arg1->unk_14;
+        if (!arg1->unk_14) {}
+
+        othertemp[temp_v0->unk_08].unk_14 = arg1->unk_14;
+
+        arg1->unk_2C = 0;
     } else {
-        temp_v1 = arg0->unk_2C;
-        arg0->unk_04 = arg1->unk_08;
-        if (arg0->unk_04 == 0) {
-            while (temp_v1->unk_10000.unk_64 != 0) {
-                temp_t6 = temp_v1->unk_10000.unk_64 - 1;
-                temp_v1->unk_10000.unk_64 = temp_t6;
-                temp_v1->unk_10000.unk_68[temp_t6]->unk_14(arg0);
+        struct_8085E9B0* temp_v1_2;
+        struct_8085E9B0_unk_10000* temp;
+
+        temp_v1_2 = arg0->unk_2C;
+        temp = &temp_v1_2->unk_10000;
+        arg0->programId = arg1->unk_08;
+        if (arg0->programId == SUBMENU_PROGRAM_0) {
+            while (temp_v1_2->unk_10000.unk_64 != 0) {
+                temp->unk_64--;
+                temp->unk_68[temp->unk_64]->destruct(arg0);
             }
+
             arg0->moveProcIndex = MSM_MOVE_PROC_END;
-            arg0->play = none_proc1;
+            arg0->play = (void*) none_proc1;
             arg0->unk_08 = arg1->unk_08;
-            arg0->unk_2C->unk_10670.unk_00 = none_proc1;
-            arg0->unk_2C->unk_10670.unk_04 = none_proc1;
+            arg0->unk_2C->unk_10670.unk_00 = (void*)none_proc1;
+            arg0->unk_2C->unk_10670.unk_04 = (void*) none_proc1;
         } else {
             mSM_set_before_menu_proc(arg0);
         }
+        arg1->unk_2C = 0;
     }
 
-    arg1->unk_2C = 0;
-    arg1->unk_08 = 0;
+    arg1->unk_08 = SUBMENU_PROGRAM_0;
     arg1->unk_14 = 0;
     arg1->unk_04 = 0;
     arg1->unk_30 = 0;
