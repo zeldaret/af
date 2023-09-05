@@ -45,20 +45,20 @@ extern Gfx D_C012370[]; // inv_item_model
 struct_8085E9B0 ovl_base;
 
 typedef struct struct_8085DCF8 {
-    /* 0x0 */ UNK_TYPE4 unk_0;
-    /* 0x4 */ UNK_TYPE4 unk_4;
+    /* 0x0 */ TexturePtr pal;
+    /* 0x4 */ TexturePtr tex;
 } struct_8085DCF8; // size = 0x8
 
 // maybe same struct as struct_8085DCF8?
 typedef struct struct_8085E4A0 {
-    /* 0x0 */ UNK_PTR unk_0;
-    /* 0x4 */ UNK_PTR unk_4;
+    /* 0x0 */ TexturePtr pal;
+    /* 0x4 */ TexturePtr tex;
 } struct_8085E4A0; // size = 0x8
 
 
-Vp D_8085DCD0_jp = { { { 0, 0, 0x1FF, 0 }, { 0, 0, 0x1FF, 0 } } };
+Vp viewport_data_621 = { { { 0, 0, 0x1FF, 0 }, { 0, 0, 0x1FF, 0 } } };
 
-Lights1 D_8085DCE0_jp = gdSPDefLights1(0x69, 0x5A, 0x5A, 0xFF, 0xFF, 0xF5, 0, 0x3C, 0x3C);
+Lights1 light_data_622 = gdSPDefLights1(0x69, 0x5A, 0x5A, 0xFF, 0xFF, 0xF5, 0, 0x3C, 0x3C);
 
 struct_8085DCF8 D_8085DCF8_jp[] = {{ 0x0C00A620, 0x0C00A6E0 },};
 struct_8085DCF8 D_8085DD00_jp[] = {{ 0x0C00B720, 0x0C00B740 },};
@@ -319,7 +319,8 @@ struct_8085DCF8 D_8085E448_jp[] = {
     { 0x0C000220, 0x0C000240 },
     { 0x0C000440, 0x0C000460 },
 };
-struct_8085DCF8* D_8085E460_jp[] = {
+
+struct_8085DCF8* item_tex_data_table_779[] = {
     D_8085DD40_jp,
     D_8085DD48_jp,
     D_8085DD68_jp,
@@ -338,13 +339,26 @@ struct_8085DCF8* D_8085E460_jp[] = {
     D_8085E428_jp,
 };
 
-struct_8085E4A0 D_8085E4A0_jp[] = {
-    { (void* )0x0C00EC60, (void* )0x0C00F0E0 },
-    { (void* )0x0C00EC60, (void* )0x0C00F2E0 },
-    { (void* )0x0C00ECA0, (void* )0x0C00F4E0 },
-    { (void* )0x0C00ECA0, (void* )0x0C00F6E0 },
-    { (void* )0x0C00EC20, (void* )0x0C00ECE0 },
-    { (void* )0x0C00EC20, (void* )0x0C00EEE0 },
+extern u8 D_0C00EC60[]; // inv_mwin_mtegami_pal
+extern u8 D_0C00F0E0[]; // inv_mwin_mtegami_tex
+extern u8 D_0C00EC60[]; // inv_mwin_mtegami_pal
+extern u8 D_0C00F2E0[]; // inv_mwin_pmtegami_tex
+extern u8 D_0C00ECA0[]; // inv_mwin_otegami_pal
+extern u8 D_0C00F4E0[]; // inv_mwin_otegami_tex
+extern u8 D_0C00ECA0[]; // inv_mwin_otegami_pal
+extern u8 D_0C00F6E0[]; // inv_mwin_potegami_tex
+extern u8 D_0C00EC20[]; // inv_mwin_mtegami2_pal
+extern u8 D_0C00ECE0[]; // inv_mwin_mtegami2_tex
+extern u8 D_0C00EC20[]; // inv_mwin_mtegami2_pal
+extern u8 D_0C00EEE0[]; // inv_mwin_pmtegami2_tex
+
+struct_8085E4A0 letter_tex_data_table_837[] = {
+    { D_0C00EC60, D_0C00F0E0 },
+    { D_0C00EC60, D_0C00F2E0 },
+    { D_0C00ECA0, D_0C00F4E0 },
+    { D_0C00ECA0, D_0C00F6E0 },
+    { D_0C00EC20, D_0C00ECE0 },
+    { D_0C00EC20, D_0C00EEE0 },
 };
 
 #define SUBMENU_PROGRAM(name, construct, destruct, set_proc) \
@@ -377,9 +391,9 @@ struct_8085E4D0 mSM_program_dlftbl[SUBMENU_PROGRAM_MAX] = {
     SUBMENU_PROGRAM(ovl__00784FC0, func_8087D180_jp, func_8087D274_jp, func_8087D274_jp),
 };
 
-u8 D_8085E7D0_jp[SUBMENU_PROGRAM_MAX] = {
+u8 flg_table_916[SUBMENU_PROGRAM_MAX] = {
     0,
-    0xE,
+    0x8 | 0x4 | 0x2,
     0x10,
     0,
     0,
@@ -389,23 +403,23 @@ u8 D_8085E7D0_jp[SUBMENU_PROGRAM_MAX] = {
     0,
     0,
     0,
-    0xE,
+    0x8 | 0x4 | 0x2,
     0,
     0,
-    0x1E,
+    0x10 | 0x8 | 0x4 | 0x2,
     0,
     0,
-    0xE,
+    0x8 | 0x4 | 0x2,
     0,
-    0xC,
-    0xC,
+    0x8 | 0x4,
+    0x8 | 0x4,
     0,
     0,
     0,
 };
 
 // Indexed by SubmenuProgramId
-f32 D_FLT_8085E7E8_jp[][4] = {
+f32 data_table_935[][4] = {
     { 0.0f, 0.0f, 0.0f, 0.0f },
     { 300.0f, 0.0f, 75.0f, 0.0f },
     { 0.0f, 300.0f, 0.0f, 75.0f },
@@ -429,9 +443,9 @@ f32 D_FLT_8085E7E8_jp[][4] = {
     { 300.0f, 0.0f, 75.0f, 0.0f },
 };
 
-s32 D_8085E938_jp[] = { 1, 8, 2, 4 };
+s32 add_trigger_954[] = { R_CBUTTONS, U_CBUTTONS, L_CBUTTONS, D_CBUTTONS };
 
-f32 D_8085E948_jp[][4] = { { 2.0f, 0.0f, 300.0f, 1.0f }, { 0.5f, 120.0f, 0.0f, -1.0f } };
+f32 move_data_1027[2][4] = { { 2.0f, 0.0f, 300.0f, 1.0f }, { 0.5f, 120.0f, 0.0f, -1.0f } };
 
 
 void mSM_setup_view(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1) {
@@ -708,8 +722,7 @@ void mSM_cbuf_copy(GraphicsContext* gfxCtx, PreRender* render, s32 arg2, s32 arg
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_cbuf_copy.s")
 #endif
 
-// mSM_set_drawMode?
-void func_8085C20C_jp(GraphicsContext* gfxCtx, struct_func_8085C20C_jp_arg1* arg1, f32 arg2, f32 xAt, s16 angle) {
+void mSM_set_drawMode(GraphicsContext* gfxCtx, struct_func_8085C20C_jp_arg1* arg1, f32 arg2, f32 xAt, s16 angle) {
     s32 temp_a3 = arg1->unk_04;
     s32 temp_t1 = arg1->unk_06;
     f32 temp_fv1;
@@ -758,7 +771,7 @@ void func_8085C20C_jp(GraphicsContext* gfxCtx, struct_func_8085C20C_jp_arg1* arg
         u16 sp7E;
 
         if (vp == NULL) {
-            vp = &D_8085DCD0_jp;
+            vp = &viewport_data_621;
         } else {
             vp->vp.vtrans[2] = 0x1FF;
             vp->vp.vtrans[3] = 0;
@@ -799,7 +812,7 @@ void func_8085C20C_jp(GraphicsContext* gfxCtx, struct_func_8085C20C_jp_arg1* arg
         }
 
         gSPMatrix(POLY_OPA_DISP++, sp54, G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-        gSPSetLights1(POLY_OPA_DISP++, D_8085DCE0_jp);
+        gSPSetLights1(POLY_OPA_DISP++, light_data_622);
     }
 
     POLY_OPA_DISP = gfx_set_fog_nosync(POLY_OPA_DISP++, 0xFF, 0xFF, 0xFF, 0xFF, 0x3D0, 0x500);
@@ -807,7 +820,7 @@ void func_8085C20C_jp(GraphicsContext* gfxCtx, struct_func_8085C20C_jp_arg1* arg
     CLOSE_DISPS(gfxCtx);
 }
 
-u8 func_8085C7A4_jp(u16 arg0) {
+u8 mSM_get_groupNo(u16 arg0) {
     return arg0;
 }
 
@@ -848,15 +861,15 @@ void mSM_draw_item(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 ar
     } else if (((s32) (arg4 & 0xF000) >> 0xC) == 1) {
         var_a1 = &D_8085DCF8_jp;
     } else {
-        temp_v0 = func_8085C7A4_jp(arg4);
+        temp_v0 = mSM_get_groupNo(arg4);
 
         var_a2 = (s32) (arg4 & 0xF00) >> 8;
         if (var_a2 == 0xE) {
-            // var_a1 = *(D_8085E460_jp + (var_a2 * 4)) + (arg7 * 8);
-            var_a1 = &D_8085E460_jp[var_a2][arg7];
+            // var_a1 = *(item_tex_data_table_779 + (var_a2 * 4)) + (arg7 * 8);
+            var_a1 = &item_tex_data_table_779[var_a2][arg7];
         } else if ((var_a2 == 0) || (var_a2 == 4) || (var_a2 == 6) || (var_a2 == 7) || (var_a2 == 0xA) || (var_a2 == 0xB)) {
-            // var_a1 = *(D_8085E460_jp + (var_a2 * 4));
-            var_a1 = &D_8085E460_jp[var_a2][0];
+            // var_a1 = *(item_tex_data_table_779 + (var_a2 * 4));
+            var_a1 = &item_tex_data_table_779[var_a2][0];
         } else if (var_a2 == 2) {
             if (((s32) arg4 >= 0x2204) && ((s32) arg4 < 0x2224)) {
                 var_a1 = &D_8085DD88_jp;
@@ -864,15 +877,15 @@ void mSM_draw_item(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 ar
                 var_a1 = &D_8085DD68_jp[temp_v0];
             }
         } else {
-            //var_a1 = *(D_8085E460_jp + (var_a2 * 4)) + (temp_v0 * 8);
-            var_a1 = &D_8085E460_jp[var_a2][temp_v0];
+            //var_a1 = *(item_tex_data_table_779 + (var_a2 * 4)) + (temp_v0 * 8);
+            var_a1 = &item_tex_data_table_779[var_a2][temp_v0];
         }
     }
 
     if (((var_a2 == 3) || (var_a2 == 0xD)) && (arg7 != 0)) {
-        var_a2_2 = var_a1->unk_0 + 0x20;
+        var_a2_2 = (uintptr_t)var_a1->pal + 0x20;
     } else {
-        var_a2_2 = var_a1->unk_0;
+        var_a2_2 = var_a1->pal;
     }
 
     OPEN_DISPS(gfxCtx);
@@ -911,7 +924,7 @@ void mSM_draw_item(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 ar
     gDPSetTexturePersp(gfx++, G_TP_NONE);
     gDPLoadTLUT_pal16(gfx++, 15, Lib_SegmentedToVirtual(var_a2_2));
     if (arg3) {}
-    gDPLoadTextureBlock_4b(gfx++, Lib_SegmentedToVirtual(var_a1->unk_4), G_IM_FMT_CI, 32, 32, 15, G_TX_MIRROR | G_TX_WRAP, G_TX_MIRROR | G_TX_WRAP, 5, 5, G_TX_NOLOD, G_TX_NOLOD);
+    gDPLoadTextureBlock_4b(gfx++, Lib_SegmentedToVirtual(var_a1->tex), G_IM_FMT_CI, 32, 32, 15, G_TX_MIRROR | G_TX_WRAP, G_TX_MIRROR | G_TX_WRAP, 5, 5, G_TX_NOLOD, G_TX_NOLOD);
 
     {
         s32 ar1;
@@ -984,10 +997,10 @@ void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_f
     gDPPipeSync(gfx++);
     gSPMatrix(gfx++, _Matrix_to_Mtx_new(arg0), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 
-    temp_a1 = &D_8085E4A0_jp[var_t0];
+    temp_a1 = &letter_tex_data_table_837[var_t0];
 
-    gSPSegment(gfx++, 0x09, Lib_SegmentedToVirtual(temp_a1->unk_0));
-    gSPSegment(gfx++, 0x0A, Lib_SegmentedToVirtual(temp_a1->unk_4));
+    gSPSegment(gfx++, 0x09, Lib_SegmentedToVirtual(temp_a1->pal));
+    gSPSegment(gfx++, 0x0A, Lib_SegmentedToVirtual(temp_a1->tex));
     gDPSetAlphaCompare(gfx++, G_AC_THRESHOLD);
     gDPSetBlendColor(gfx++, 255, 255, 255, 40);
 
@@ -1072,8 +1085,8 @@ dummy_label_595693:
 }
 
 void mSM_set_other_seg(mSM* arg0) {
-    s32 temp = arg0->unk_08;
-    u32 var_v1 = D_8085E7D0_jp[temp];
+    SubmenuProgramId temp = arg0->unk_08;
+    u32 var_v1 = flg_table_916[temp];
 
     if (var_v1 & 2) {
         func_8085D094_jp(arg0);
@@ -1114,7 +1127,7 @@ void mSM_set_new_seg(mSM* arg0) {
 void mSM_set_new_start_data(mSM* arg0) {
     SubmenuProgramId programId = arg0->programId;
     struct_8085E9B0_unk_10088* temp_v1 = &arg0->unk_2C->unk_10088[programId];
-    f32* temp_a1 = D_FLT_8085E7E8_jp[programId];
+    f32* temp_a1 = data_table_935[programId];
 
     temp_v1->unk_00 = programId;
     temp_v1->unk_18 = temp_a1[0];
@@ -1158,7 +1171,7 @@ void mSM_make_trigger_data(mSM* arg0) {
     if (gamePT->controller.moveR > 0.5f) {
         u16 temp = gamePT->controller.moveAngle + 0x2000;
 
-        var_a0 |= D_8085E938_jp[temp >> 0xE];
+        var_a0 |= add_trigger_954[temp >> 0xE];
     }
 
     if (var_a0 == temp_v1->unk_20) {
@@ -1306,7 +1319,7 @@ s32 mSM_move_menu(f32* arg0, f32* arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) 
 void mSM_move_Move(UNUSED mSM* arg0, struct_mSM_move_Move_arg1* arg1) {
     f32 var_fv0;
     s32 temp_t0 = arg1->unk_34;
-    f32* temp_v0 = D_8085E948_jp[temp_t0 & 1];
+    f32* temp_v0 = move_data_1027[temp_t0 & 1];
     s32 index;
     s32 new_var;
 
@@ -1378,7 +1391,7 @@ dummy_label_55178: ;
     arg0->unk_2C->unk_106B0 = mSM_move_chg_base;
     arg0->unk_2C->unk_106B4 = mSM_set_char_matrix;
     arg0->unk_2C->unk_106B8 = mSM_cbuf_copy;
-    arg0->unk_2C->unk_106BC = func_8085C20C_jp;
+    arg0->unk_2C->unk_106BC = mSM_set_drawMode;
     arg0->unk_2C->unk_106C0 = mSM_draw_item;
     arg0->unk_2C->unk_106C4 = mSM_draw_mail;
     arg0->unk_2C->unk_106C8 = mSM_setup_view;
