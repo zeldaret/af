@@ -470,7 +470,8 @@ void mSM_move_LINKWait(mSM* submenu) {
     xyz_t_move(&submenu->unk_E4, &ZeroVec);
 
     if (submenu->unk_00 != 4) {
-        if (((submenu->programId == SUBMENU_PROGRAM_LEDIT) && (submenu->unk_10 == 0)) || (common_data.now_private->gender == 0)) {
+        if (((submenu->programId == SUBMENU_PROGRAM_LEDIT) && (submenu->unk_10 == 0)) ||
+            (common_data.now_private->gender == 0)) {
             sAdo_SpecChange(5);
         } else {
             sAdo_SpecChange(6);

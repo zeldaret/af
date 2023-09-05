@@ -55,14 +55,19 @@ typedef struct struct_8085E4A0 {
     /* 0x4 */ TexturePtr tex;
 } struct_8085E4A0; // size = 0x8
 
-
 Vp viewport_data_621 = { { { 0, 0, 0x1FF, 0 }, { 0, 0, 0x1FF, 0 } } };
 
 Lights1 light_data_622 = gdSPDefLights1(0x69, 0x5A, 0x5A, 0xFF, 0xFF, 0xF5, 0, 0x3C, 0x3C);
 
-struct_8085DCF8 D_8085DCF8_jp[] = {{ 0x0C00A620, 0x0C00A6E0 },};
-struct_8085DCF8 D_8085DD00_jp[] = {{ 0x0C00B720, 0x0C00B740 },};
-struct_8085DCF8 D_8085DD08_jp[] = {{ 0x0C00DD40, 0x0C00DD80 },};
+struct_8085DCF8 D_8085DCF8_jp[] = {
+    { 0x0C00A620, 0x0C00A6E0 },
+};
+struct_8085DCF8 D_8085DD00_jp[] = {
+    { 0x0C00B720, 0x0C00B740 },
+};
+struct_8085DCF8 D_8085DD08_jp[] = {
+    { 0x0C00DD40, 0x0C00DD80 },
+};
 struct_8085DCF8 D_8085DD10_jp[] = {
     { 0x0C010FA0, 0x0C010FC0 },
     { 0x0C012400, 0x0C012420 },
@@ -70,8 +75,12 @@ struct_8085DCF8 D_8085DD10_jp[] = {
     { 0x0C012640, 0x0C0128A0 },
     { 0x0C012660, 0x0C012AA0 },
 };
-struct_8085DCF8 D_8085DD38_jp[] = {{ 0x0C012680, 0x0C012CA0 },};
-struct_8085DCF8 D_8085DD40_jp[] = {{ 0x0C00B2E0, 0x0C00B300 },};
+struct_8085DCF8 D_8085DD38_jp[] = {
+    { 0x0C012680, 0x0C012CA0 },
+};
+struct_8085DCF8 D_8085DD40_jp[] = {
+    { 0x0C00B2E0, 0x0C00B300 },
+};
 struct_8085DCF8 D_8085DD48_jp[] = {
     { 0x0C010780, 0x0C0109A0 },
     { 0x0C010780, 0x0C010BA0 },
@@ -84,7 +93,9 @@ struct_8085DCF8 D_8085DD68_jp[] = {
     { 0x0C00F900, 0x0C00FB60 },
     { 0x0C00F920, 0x0C00FD60 },
 };
-struct_8085DCF8 D_8085DD88_jp[] = {{ 0x0C00A680, 0x0C00ACE0 },};
+struct_8085DCF8 D_8085DD88_jp[] = {
+    { 0x0C00A680, 0x0C00ACE0 },
+};
 struct_8085DCF8 D_8085DD90_jp[] = {
     { 0x0C004EA0, 0x0C005860 },
     { 0x0C004EE0, 0x0C005A60 },
@@ -119,7 +130,9 @@ struct_8085DCF8 D_8085DD90_jp[] = {
     { 0x0C0054E0, 0x0C008A60 },
     { 0x0C005620, 0x0C009460 },
 };
-struct_8085DCF8 D_8085DE90_jp[] = {{ 0x0C009720, 0x0C009740 },};
+struct_8085DCF8 D_8085DE90_jp[] = {
+    { 0x0C009720, 0x0C009740 },
+};
 struct_8085DCF8 D_8085DE98_jp[] = {
     { 0x0C00EC60, 0x0C00F0E0 },
     { 0x0C009720, 0x0C009740 },
@@ -152,8 +165,12 @@ struct_8085DCF8 D_8085DE98_jp[] = {
     { 0x0C010FA0, 0x0C010FC0 },
     { 0x0C010FA0, 0x0C010FC0 },
 };
-struct_8085DCF8 D_8085DF88_jp[] = {{ 0x0C00A6A0, 0x0C00AEE0 },};
-struct_8085DCF8 D_8085DF90_jp[] = {{ 0x0C00A6C0, 0x0C00B0E0 },};
+struct_8085DCF8 D_8085DF88_jp[] = {
+    { 0x0C00A6A0, 0x0C00AEE0 },
+};
+struct_8085DCF8 D_8085DF90_jp[] = {
+    { 0x0C00A6C0, 0x0C00B0E0 },
+};
 struct_8085DCF8 D_8085DF98_jp[] = {
     { 0x0C00E180, 0x0C00E220 },
     { 0x0C00E200, 0x0C00EA20 },
@@ -175,7 +192,9 @@ struct_8085DCF8 D_8085DFD0_jp[] = {
     { 0x0C00A660, 0x0C00AAE0 },
     { 0x0C00A660, 0x0C00AAE0 },
 };
-struct_8085DCF8 D_8085E020_jp[] = {{ 0x0C00C3E0, 0x0C00C600 },};
+struct_8085DCF8 D_8085E020_jp[] = {
+    { 0x0C00C3E0, 0x0C00C600 },
+};
 struct_8085DCF8 D_8085E028_jp[] = {
     { 0x0C009C00, 0x0C00A420 },
     { 0x0C009C00, 0x0C00A220 },
@@ -321,22 +340,9 @@ struct_8085DCF8 D_8085E448_jp[] = {
 };
 
 struct_8085DCF8* item_tex_data_table_779[] = {
-    D_8085DD40_jp,
-    D_8085DD48_jp,
-    D_8085DD68_jp,
-    D_8085DD90_jp,
-    D_8085DE90_jp,
-    D_8085DE98_jp,
-    D_8085DF88_jp,
-    D_8085DF90_jp,
-    D_8085DF98_jp,
-    D_8085DFD0_jp,
-    D_8085E020_jp,
-    D_8085E448_jp,
-    D_8085E028_jp,
-    D_8085E328_jp,
-    D_8085E448_jp,
-    D_8085E428_jp,
+    D_8085DD40_jp, D_8085DD48_jp, D_8085DD68_jp, D_8085DD90_jp, D_8085DE90_jp, D_8085DE98_jp,
+    D_8085DF88_jp, D_8085DF90_jp, D_8085DF98_jp, D_8085DFD0_jp, D_8085E020_jp, D_8085E448_jp,
+    D_8085E028_jp, D_8085E328_jp, D_8085E448_jp, D_8085E428_jp,
 };
 
 extern u8 D_0C00EC60[]; // inv_mwin_mtegami_pal
@@ -361,8 +367,11 @@ struct_8085E4A0 letter_tex_data_table_837[] = {
     { D_0C00EC20, D_0C00EEE0 },
 };
 
-#define SUBMENU_PROGRAM(name, construct, destruct, set_proc) \
-    { SEGMENT_ROM_START(name), SEGMENT_ROM_END(name), SEGMENT_VRAM_START(name), SEGMENT_VRAM_END(name), construct, destruct, set_proc, false }
+#define SUBMENU_PROGRAM(name, construct, destruct, set_proc)                                                         \
+    {                                                                                                                \
+        SEGMENT_ROM_START(name), SEGMENT_ROM_END(name), SEGMENT_VRAM_START(name), SEGMENT_VRAM_END(name), construct, \
+            destruct, set_proc, false                                                                                \
+    }
 
 struct_8085E4D0 mSM_program_dlftbl[SUBMENU_PROGRAM_MAX] = {
     SUBMENU_PROGRAM(ovl__00785700, mIV_inventory_ovl_construct, mIV_inventory_ovl_destruct, mIV_inventory_ovl_set_proc),
@@ -446,7 +455,6 @@ f32 data_table_935[][4] = {
 s32 add_trigger_954[] = { R_CBUTTONS, U_CBUTTONS, L_CBUTTONS, D_CBUTTONS };
 
 f32 move_data_1027[2][4] = { { 2.0f, 0.0f, 300.0f, 1.0f }, { 0.5f, 120.0f, 0.0f, -1.0f } };
-
 
 void mSM_setup_view(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1) {
     Mtx* mtx;
@@ -827,7 +835,8 @@ u8 mSM_get_groupNo(u16 arg0) {
 #ifdef NON_EQUIVALENT
 // float messed up
 // maybe equivalent, but hard to tell
-void mSM_draw_item(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8) {
+void mSM_draw_item(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 arg4, s32 arg5, s32 arg6, s32 arg7,
+                   s32 arg8) {
     struct_8085DCF8* var_a1; // spAC
     s32 pad;
     s32 var_a2;
@@ -854,30 +863,31 @@ void mSM_draw_item(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 ar
         } else {
             var_a1 = &D_8085DD10_jp[arg7];
         }
-    } else if (((s32) arg4 >= 0x15B0) && ((s32) arg4 < 0x17AC)) {
+    } else if (((s32)arg4 >= 0x15B0) && ((s32)arg4 < 0x17AC)) {
         var_a1 = &D_8085DD00_jp;
-    } else if (((s32) arg4 >= 0x1E3C) && ((s32) arg4 < 0x1EA0)) {
+    } else if (((s32)arg4 >= 0x1E3C) && ((s32)arg4 < 0x1EA0)) {
         var_a1 = &D_8085DD08_jp;
-    } else if (((s32) (arg4 & 0xF000) >> 0xC) == 1) {
+    } else if (((s32)(arg4 & 0xF000) >> 0xC) == 1) {
         var_a1 = &D_8085DCF8_jp;
     } else {
         temp_v0 = mSM_get_groupNo(arg4);
 
-        var_a2 = (s32) (arg4 & 0xF00) >> 8;
+        var_a2 = (s32)(arg4 & 0xF00) >> 8;
         if (var_a2 == 0xE) {
             // var_a1 = *(item_tex_data_table_779 + (var_a2 * 4)) + (arg7 * 8);
             var_a1 = &item_tex_data_table_779[var_a2][arg7];
-        } else if ((var_a2 == 0) || (var_a2 == 4) || (var_a2 == 6) || (var_a2 == 7) || (var_a2 == 0xA) || (var_a2 == 0xB)) {
+        } else if ((var_a2 == 0) || (var_a2 == 4) || (var_a2 == 6) || (var_a2 == 7) || (var_a2 == 0xA) ||
+                   (var_a2 == 0xB)) {
             // var_a1 = *(item_tex_data_table_779 + (var_a2 * 4));
             var_a1 = &item_tex_data_table_779[var_a2][0];
         } else if (var_a2 == 2) {
-            if (((s32) arg4 >= 0x2204) && ((s32) arg4 < 0x2224)) {
+            if (((s32)arg4 >= 0x2204) && ((s32)arg4 < 0x2224)) {
                 var_a1 = &D_8085DD88_jp;
             } else {
                 var_a1 = &D_8085DD68_jp[temp_v0];
             }
         } else {
-            //var_a1 = *(item_tex_data_table_779 + (var_a2 * 4)) + (temp_v0 * 8);
+            // var_a1 = *(item_tex_data_table_779 + (var_a2 * 4)) + (temp_v0 * 8);
             var_a1 = &item_tex_data_table_779[var_a2][temp_v0];
         }
     }
@@ -895,10 +905,9 @@ void mSM_draw_item(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 ar
     gDPPipeSync(gfx++);
     gDPSetAlphaCompare(gfx++, G_AC_THRESHOLD);
 
-
     if (arg6 != 0) {
         if (var_a3 != 0) {
-            var_v1 = (s32) ((arg7 * -0xFF) + 0x17E8) / 13;
+            var_v1 = (s32)((arg7 * -0xFF) + 0x17E8) / 13;
         } else {
             var_v1 = 0xFF;
         }
@@ -914,17 +923,20 @@ void mSM_draw_item(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 ar
         gDPSetBlendColor(gfx++, 255, 255, 255, 40);
     } else if (var_v1 == 0xFF) {
         gDPSetBlendColor(gfx++, 255, 255, 255, 254);
-        gDPSetCombineLERP(gfx++, TEXEL0, PRIMITIVE, PRIM_LOD_FRAC, PRIMITIVE, 0, 0, 0, TEXEL0, TEXEL0, PRIMITIVE, PRIM_LOD_FRAC, PRIMITIVE, 0, 0, 0, TEXEL0);
+        gDPSetCombineLERP(gfx++, TEXEL0, PRIMITIVE, PRIM_LOD_FRAC, PRIMITIVE, 0, 0, 0, TEXEL0, TEXEL0, PRIMITIVE,
+                          PRIM_LOD_FRAC, PRIMITIVE, 0, 0, 0, TEXEL0);
     } else {
         gDPSetBlendColor(gfx++, 255, 255, 255, 40);
-        gDPSetCombineLERP(gfx++, TEXEL0, PRIMITIVE, PRIM_LOD_FRAC, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0, TEXEL0, PRIMITIVE, PRIM_LOD_FRAC, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0);
+        gDPSetCombineLERP(gfx++, TEXEL0, PRIMITIVE, PRIM_LOD_FRAC, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0, TEXEL0,
+                          PRIMITIVE, PRIM_LOD_FRAC, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0);
     }
 
     gDPPipeSync(gfx++);
     gDPSetTexturePersp(gfx++, G_TP_NONE);
     gDPLoadTLUT_pal16(gfx++, 15, Lib_SegmentedToVirtual(var_a2_2));
     if (arg3) {}
-    gDPLoadTextureBlock_4b(gfx++, Lib_SegmentedToVirtual(var_a1->tex), G_IM_FMT_CI, 32, 32, 15, G_TX_MIRROR | G_TX_WRAP, G_TX_MIRROR | G_TX_WRAP, 5, 5, G_TX_NOLOD, G_TX_NOLOD);
+    gDPLoadTextureBlock_4b(gfx++, Lib_SegmentedToVirtual(var_a1->tex), G_IM_FMT_CI, 32, 32, 15, G_TX_MIRROR | G_TX_WRAP,
+                           G_TX_MIRROR | G_TX_WRAP, 5, 5, G_TX_NOLOD, G_TX_NOLOD);
 
     {
         s32 ar1;
@@ -939,15 +951,15 @@ void mSM_draw_item(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 ar
 
         temp = (arg1 * 0.975f);
 
-        ar1 = (s32) (((temp + 160.0f) - 12.0f * arg3) * 4.0f);
-        ar2 = (s32) (((120.0f - arg2) - 12.0f * arg3) * 4.0f);
-        ar3 = (s32) ((24.0f * arg3 + ((temp + 160.0f) - 12.0f * arg3)) * 4.0f);
-        ar4 = (s32) ((24.0f * arg3 + ((120.0f - arg2) - 12.0f * arg3)) * 4.0f);
+        ar1 = (s32)(((temp + 160.0f) - 12.0f * arg3) * 4.0f);
+        ar2 = (s32)(((120.0f - arg2) - 12.0f * arg3) * 4.0f);
+        ar3 = (s32)((24.0f * arg3 + ((temp + 160.0f) - 12.0f * arg3)) * 4.0f);
+        ar4 = (s32)((24.0f * arg3 + ((120.0f - arg2) - 12.0f * arg3)) * 4.0f);
         ar5 = 0;
         ar6 = 0;
         ar7 = 0;
-        ar8 = (s32) ((1.0f / arg3) * 1365.3334f);
-        ar9 = (s32) ((1.0f / arg3) * 1365.3334f);
+        ar8 = (s32)((1.0f / arg3) * 1365.3334f);
+        ar9 = (s32)((1.0f / arg3) * 1365.3334f);
 
         gfx = func_800BE320_jp(gfx, ar1, ar2, ar3, ar4, ar5, ar6, ar7, ar8, ar9);
     }
@@ -962,13 +974,15 @@ void mSM_draw_item(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 ar
     CLOSE_DISPS(gfxCtx);
 }
 #else
-void mSM_draw_item(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8);
+void mSM_draw_item(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 arg4, s32 arg5, s32 arg6, s32 arg7,
+                   s32 arg8);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_draw_item.s")
 #endif
 
 #ifdef NON_MATCHING
 // stack issues
-void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_func_8085CE18_jp_arg4* arg4, s32 arg5, s32 arg6) {
+void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_func_8085CE18_jp_arg4* arg4, s32 arg5,
+                   s32 arg6) {
     struct_8085E4A0* temp_a1;
     s32 var_t0;
     UNUSED s32 pad;
@@ -1011,7 +1025,8 @@ void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_f
     }
 
     if (arg6 == 0) {
-        gDPSetCombineLERP(gfx++, TEXEL0, PRIMITIVE, PRIM_LOD_FRAC, PRIMITIVE, 0, 0, 0, TEXEL0, TEXEL0, PRIMITIVE, PRIM_LOD_FRAC, PRIMITIVE, 0, 0, 0, TEXEL0);
+        gDPSetCombineLERP(gfx++, TEXEL0, PRIMITIVE, PRIM_LOD_FRAC, PRIMITIVE, 0, 0, 0, TEXEL0, TEXEL0, PRIMITIVE,
+                          PRIM_LOD_FRAC, PRIMITIVE, 0, 0, 0, TEXEL0);
     }
 
     gSPDisplayList(gfx++, D_C012370);
@@ -1024,7 +1039,8 @@ void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_f
     CLOSE_DISPS(arg0);
 }
 #else
-void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_func_8085CE18_jp_arg4* arg4, s32 arg5, s32 arg6);
+void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_func_8085CE18_jp_arg4* arg4, s32 arg5,
+                   s32 arg6);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_draw_mail.s")
 #endif
 
@@ -1044,7 +1060,7 @@ void func_8085D094_jp(mSM* arg0) {
     sp2C->unk_08 = vram;
 
     DmaMgr_RequestSyncDebug(vram, romStart, SEGMENT_ROM_SIZE(segment_00A58000), "../m_submenu_ovl.c", 0x7C0);
-    sp2C->unk_00 = (void* ) ALIGN16(SEGMENT_ROM_SIZE(segment_00A58000) + (uintptr_t)vram);
+    sp2C->unk_00 = (void*)ALIGN16(SEGMENT_ROM_SIZE(segment_00A58000) + (uintptr_t)vram);
 
     sp2C->unk_04 = 1;
 }
@@ -1192,7 +1208,7 @@ void mSM_make_trigger_data(mSM* arg0) {
 #ifdef NON_MATCHING
 // regalloc
 void mSM_save_before_func(mSM* arg0) {
-    struct_8085E9B0_unk_10088 *new_var2;
+    struct_8085E9B0_unk_10088* new_var2;
     SubmenuProgramId temp_a2;
     struct_8085E9B0* temp_v0;
     struct_8085E9B0_unk_10088* temp_v1;
@@ -1205,7 +1221,7 @@ void mSM_save_before_func(mSM* arg0) {
     temp_v1->unk_0C = temp_v0->unk_10670.unk_00;
     temp_v1->unk_10 = temp_v0->unk_10670.unk_04;
 
-    if (arg0->programId) { }
+    if (arg0->programId) {}
     new_var2 = &temp_v0->unk_10088[temp_v1->unk_08];
 
     new_var2->unk_14 = arg0->programId;
@@ -1277,10 +1293,10 @@ void mSM_return_func(mSM* arg0, struct_mSM_return_func_arg1* arg1) {
             }
 
             arg0->moveProcIndex = MSM_MOVE_PROC_END;
-            arg0->play = (void*) none_proc1;
+            arg0->play = (void*)none_proc1;
             arg0->unk_08 = arg1->unk_08;
             arg0->unk_2C->unk_10670.unk_00 = (void*)none_proc1;
-            arg0->unk_2C->unk_10670.unk_04 = (void*) none_proc1;
+            arg0->unk_2C->unk_10670.unk_04 = (void*)none_proc1;
         } else {
             mSM_set_before_menu_proc(arg0);
         }
@@ -1331,7 +1347,8 @@ void mSM_move_Move(UNUSED mSM* arg0, struct_mSM_move_Move_arg1* arg1) {
 
     index = temp_t0 >> 2;
 
-    if (mSM_move_menu(&arg1->unk_18[index], &arg1->unk_20[index], temp_v0[0], temp_v0[1] * var_fv0, temp_v0[2] * var_fv0, temp_v0[3] * var_fv0) == 1) {
+    if (mSM_move_menu(&arg1->unk_18[index], &arg1->unk_20[index], temp_v0[0], temp_v0[1] * var_fv0,
+                      temp_v0[2] * var_fv0, temp_v0[3] * var_fv0) == 1) {
         arg1->unk_04 = arg1->unk_30;
     }
 
@@ -1368,7 +1385,8 @@ void mSM_menu_ovl_init(mSM* arg0) {
     arg0->unk_2C = &ovl_base;
     bzero(&ovl_base, sizeof(struct_8085E9B0));
 
-dummy_label_55178: ;
+//! FAKE
+label:
     if (arg0->unk_00 != 4) {
         var_v1 = ((Game_Play*)gamePT)->unk_0110;
     } else {
