@@ -8,6 +8,7 @@
 #include "z_std_dma.h"
 #include "6BFE60.h"
 #include "6E0F50.h"
+#include "macros.h"
 #include "segment_symbols.h"
 
 // gamestates
@@ -434,16 +435,16 @@ f32 D_8085E948_jp[][4] = { { 2.0f, 0.0f, 300.0f, 1.0f }, { 0.5f, 120.0f, 0.0f, -
 
 
 void mSM_setup_view(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1) {
-    Mtx* var_t0;
+    Mtx* mtx;
     UNUSED s32 pad;
     Gfx* gfx;
 
     if (arg1 != 0) {
-        var_t0 = GRAPH_ALLOC(gfxCtx, sizeof(Mtx));
-        guOrtho(var_t0, -2560.0f, 2560.0f, -1920.0f, 1920.0f, 1.0f, 2000.0f, 1.0f);
-        arg0->unk_2C->unk_1072C = var_t0;
+        mtx = GRAPH_ALLOC(gfxCtx, sizeof(Mtx));
+        guOrtho(mtx, SCREEN_WIDTH * -8, SCREEN_WIDTH * 8, SCREEN_HEIGHT * -8, SCREEN_HEIGHT * 8, 1.0f, 2000.0f, 1.0f);
+        arg0->unk_2C->unk_1072C = mtx;
     } else {
-        var_t0 = arg0->unk_2C->unk_1072C;
+        mtx = arg0->unk_2C->unk_1072C;
     }
 
     OPEN_DISPS(gfxCtx);
@@ -461,15 +462,16 @@ void mSM_setup_view(mSM* arg0, GraphicsContext* gfxCtx, s32 arg1) {
         gDPPipeSync(gfx++);
         gDPSetScissor(gfx++, G_SC_NON_INTERLACE, var_a0->unk_010, var_a0->unk_008, var_a0->unk_014, var_a0->unk_00C);
         gSPViewport(gfx++, &var_a0->vp);
-        gDPSetColorImage(gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 320, gfxCtx->unk_2E4);
-        gDPSetScissor(gfx++, G_SC_NON_INTERLACE, 0, 0, 320, 240);
+        gDPSetColorImage(gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_2E4);
+        gDPSetScissor(gfx++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     }
 
+    //! FAKE
     if (1) {}
     if (1) {}
     if (1) {}
 
-    gSPMatrix(gfx++, var_t0, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
+    gSPMatrix(gfx++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
     POLY_OPA_DISP = gfx;
 
     CLOSE_DISPS(gfxCtx);
@@ -738,7 +740,7 @@ void func_8085C20C_jp(GraphicsContext* gfxCtx, struct_func_8085C20C_jp_arg1* arg
 
     gDPSetColorImage(POLY_OPA_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, temp_a3, arg1->unk_20);
 
-    gDPSetFillColor(POLY_OPA_DISP++, 0xFFFCFFFC);
+    gDPSetFillColor(POLY_OPA_DISP++, (GPACK_RGBA5551(255, 255, 240, 0) << 16) | GPACK_RGBA5551(255, 255, 240, 0));
 
     gDPFillRectangle(POLY_OPA_DISP++, 0, 0, temp_a3 - 1, temp_t1 - 1);
 
@@ -782,9 +784,9 @@ void func_8085C20C_jp(GraphicsContext* gfxCtx, struct_func_8085C20C_jp_arg1* arg
             f32 zEye;
 
             if (angle == 0x4000) {
-                angle = 0x4100;
+                angle = 0x4000 + 0x100;
             } else if (angle == -0x4000) {
-                angle = -0x3F00;
+                angle = -0x4000 + 0x100;
             }
 
             yEye = sin_s(angle) * arg2 + xAt;
@@ -800,7 +802,7 @@ void func_8085C20C_jp(GraphicsContext* gfxCtx, struct_func_8085C20C_jp_arg1* arg
         gSPSetLights1(POLY_OPA_DISP++, D_8085DCE0_jp);
     }
 
-    POLY_OPA_DISP = gfx_set_fog_nosync(POLY_OPA_DISP++, 0xFFU, 0xFFU, 0xFFU, 0xFF, 0x3D0, 0x500);
+    POLY_OPA_DISP = gfx_set_fog_nosync(POLY_OPA_DISP++, 0xFF, 0xFF, 0xFF, 0xFF, 0x3D0, 0x500);
 
     CLOSE_DISPS(gfxCtx);
 }
@@ -975,8 +977,6 @@ void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_f
     Matrix_translate(arg1, arg2, 140.0f, MTXMODE_APPLY);
     Matrix_scale(arg3, arg3, 1.0f, MTXMODE_APPLY);
 
-    if (1) {}
-
     OPEN_DISPS(arg0);
 
     gfx = POLY_OPA_DISP;
@@ -1037,15 +1037,14 @@ void func_8085D094_jp(mSM* arg0) {
 }
 
 void mSM_ovl_prog_seg(mSM* arg0, struct_8085E4D0* arg1) {
-    struct_8085E9B0_unk_10000* temp;
+    struct_8085E9B0_unk_10000* temp = &arg0->unk_2C->unk_10000;
     UNUSED s32 pad;
     void* allocatedVram;
-    struct_8085E4D0_unk_10 temp_a1;
-    struct_8085E4D0_unk_10 new_var;
+    struct_8085E4D0_unk_10 construct;
 
-    temp = &arg0->unk_2C->unk_10000;
     if (arg1->unk_1C == 1) {
-        new_var = arg1->construct;
+        struct_8085E4D0_unk_10 new_var = arg1->construct;
+
         new_var(arg0);
         return;
     }
@@ -1055,9 +1054,9 @@ void mSM_ovl_prog_seg(mSM* arg0, struct_8085E4D0* arg1) {
     arg0->linkedAllocEnd =
         (void*)((uintptr_t)allocatedVram + ALIGN64((uintptr_t)arg1->vramEnd - (uintptr_t)arg1->vramStart));
 
-    temp_a1 = (void*)((uintptr_t)allocatedVram + (uintptr_t)arg1->construct - (uintptr_t)arg1->vramStart);
-    temp_a1(arg0);
-    arg1->construct = temp_a1;
+    construct = (void*)((uintptr_t)allocatedVram + (uintptr_t)arg1->construct - (uintptr_t)arg1->vramStart);
+    construct(arg0);
+    arg1->construct = construct;
 
     //! FAKE
 dummy_label_595693:
@@ -1069,7 +1068,7 @@ dummy_label_595693:
     temp->unk_64++;
 
     //! FAKE
-    if (temp_a1) {}
+    if (construct) {}
 }
 
 void mSM_set_other_seg(mSM* arg0) {
@@ -1132,7 +1131,7 @@ void mSM_set_new_start_data(mSM* arg0) {
     }
 }
 
-void func_8085D43C_jp(mSM* arg0, void** arg1, func_8085D43C_jp_arg2* arg2) {
+void func_8085D43C_jp(mSM* arg0, void** arg1, struct_func_8085D43C_jp_arg2* arg2) {
     void* temp_a0 = arg0->unk_2C->unk_10000.unk_00;
     size_t size;
 
@@ -1211,9 +1210,8 @@ void mSM_set_proc(mSM* arg0) {
 }
 
 void mSM_tex_move(mSM* arg0) {
-    struct_8085E9B0_unk_10670* temp_v0;
+    struct_8085E9B0_unk_10670* temp_v0 = &arg0->unk_2C->unk_10670;
 
-    temp_v0 = &arg0->unk_2C->unk_10670;
     temp_v0->unk_28 += 0.707f;
     temp_v0->unk_2C += 0.707f;
 

@@ -45,9 +45,9 @@ typedef struct struct_func_8085C20C_jp_arg1 {
     /* 0x04 */ u16 unk_04;
     /* 0x06 */ u16 unk_06;
     /* 0x08 */ UNK_TYPE1 unk_08[0xC];
-    /* 0x14 */ UNK_TYPE unk_14;
+    /* 0x14 */ TexturePtr unk_14;
     /* 0x18 */ UNK_TYPE1 unk_18[0x8];
-    /* 0x20 */ UNK_TYPE unk_20;
+    /* 0x20 */ TexturePtr unk_20;
 } struct_func_8085C20C_jp_arg1; // size >= 0x24
 
 typedef struct struct_func_8085CE18_jp_arg4 {
@@ -75,10 +75,10 @@ typedef struct struct_mSM_move_chg_base_arg0 {
     /* 0x04 */ u32 unk_34;
 } struct_mSM_move_chg_base_arg0;
 
-typedef struct func_8085D43C_jp_arg2 {
+typedef struct struct_func_8085D43C_jp_arg2 {
     /* 0x0 */ RomOffset vromStart;
     /* 0x4 */ RomOffset vromEnd;
-} func_8085D43C_jp_arg2; // size = 0x8
+} struct_func_8085D43C_jp_arg2; // size = 0x8
 
 typedef struct struct_8085E9B0_unk_10000 {
     /* 0x10000 */ void* unk_00;
@@ -133,7 +133,7 @@ typedef void (*struct_8085E9B0_unk_106BC)(struct GraphicsContext*, struct struct
 typedef void (*struct_8085E9B0_unk_106C0)(struct GraphicsContext*, f32, f32, f32, u16, s32, s32, s32, s32);
 typedef void (*struct_8085E9B0_unk_106C4)(struct GraphicsContext*, f32, f32, f32, struct_func_8085CE18_jp_arg4*, s32, s32);
 typedef void (*struct_8085E9B0_unk_106C8)(struct mSM*, struct GraphicsContext*, s32);
-typedef void (*struct_8085E9B0_unk_106CC)(struct mSM*, void**, func_8085D43C_jp_arg2*);
+typedef void (*struct_8085E9B0_unk_106CC)(struct mSM*, void**, struct_func_8085D43C_jp_arg2*);
 
 typedef struct struct_8085E9B0 {
     /* 0x00000 */ UNK_TYPE1 unk_00000[0x10000];
