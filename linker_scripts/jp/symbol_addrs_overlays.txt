@@ -835,7 +835,7 @@ func_8085D92C_jp = 0x8085D92C; // type:func
 func_8085DA08_jp = 0x8085DA08; // type:func
 func_8085DA28_jp = 0x8085DA28; // type:func
 func_8085DA9C_jp = 0x8085DA9C; // type:func
-func_8085DAEC_jp = 0x8085DAEC; // type:func
+mSM_menu_ovl_init = 0x8085DAEC; // type:func
 
 // .data
 
@@ -3872,15 +3872,15 @@ func_808DD1F8_jp = 0x808DD1F8; // type:func
 func_808DD2D8_jp = 0x808DD2D8; // type:func
 func_808DD318_jp = 0x808DD318; // type:func
 func_808DD398_jp = 0x808DD398; // type:func
-func_808DD748_jp = 0x808DD748; // type:func
-func_808DD81C_jp = 0x808DD81C; // type:func
+Player_actor_ct = 0x808DD748; // type:func
+Player_actor_dt = 0x808DD81C; // type:func
 func_808DD874_jp = 0x808DD874; // type:func
 func_808DD8F0_jp = 0x808DD8F0; // type:func
 func_808DD9B4_jp = 0x808DD9B4; // type:func
 func_808DDA18_jp = 0x808DDA18; // type:func
 func_808DDB34_jp = 0x808DDB34; // type:func
-func_808DDB5C_jp = 0x808DDB5C; // type:func
-func_808DDBD4_jp = 0x808DDBD4; // type:func
+Player_actor_move = 0x808DDB5C; // type:func
+Player_actor_draw = 0x808DDBD4; // type:func
 
 // .data
 
@@ -3900,9 +3900,9 @@ D_808DE184_jp = 0x808DE184; // type:u8
 D_808DE1F0_jp = 0x808DE1F0; // type:s8
 D_808DE25C_jp = 0x808DE25C; //
 D_808DE268_jp = 0x808DE268; //
-D_808DE470_jp = 0x808DE470; //
-D_808DE480_jp = 0x808DE480; //
-D_808DE4A8_jp = 0x808DE4A8; //
+Player_actor_OcInfoData_forStand = 0x808DE470; //
+Player_actor_pclobj_tris_base_forItem = 0x808DE480; //
+Player_actor_pclobj_tris_data_forItem = 0x808DE4A8; //
 D_808DE4B4_jp = 0x808DE4B4; // type:s16
 D_808DE4B6_jp = 0x808DE4B6; // type:s16
 D_808DE4B8_jp = 0x808DE4B8; // type:s16
@@ -7190,7 +7190,7 @@ Ac_Sample_Actor_draw = 0x80934598; // type:func
 
 // .data
 
-D_80934600_jp = 0x80934600; //
+Ac_Sample_OcInfoData_forStand = 0x80934600; //
 D_80934610_jp = 0x80934610; //
 D_8093461C_jp = 0x8093461C; //
 D_80934624_jp = 0x80934624; //
@@ -8731,8 +8731,8 @@ func_8096A86C_jp = 0x8096A86C; // type:func
 
 D_8096A8B0_jp = 0x8096A8B0; //
 Ball_Profile = 0x8096A8BC; //
-D_8096A8E0_jp = 0x8096A8E0; //
-D_8096A8F0_jp = 0x8096A8F0; //
+aBALL_CoInfoData = 0x8096A8E0; //
+aBALL_StatusData = 0x8096A8F0; //
 D_8096A8FC_jp = 0x8096A8FC; // type:s16
 
 // .rodata
@@ -8810,8 +8810,8 @@ func_8096C29C_jp = 0x8096C29C; // type:func
 // .data
 
 Haniwa_Profile = 0x8096C410; //
-D_8096C434_jp = 0x8096C434; //
-D_8096C444_jp = 0x8096C444; //
+AcHaniwaCoInfoData = 0x8096C434; //
+AcHaniwaStatusData = 0x8096C444; //
 D_8096C450_jp = 0x8096C450; //
 D_8096C458_jp = 0x8096C458; //
 D_8096C46C_jp = 0x8096C46C; //
@@ -8945,8 +8945,8 @@ aSMAN_actor_draw = 0x80971B38; // type:func
 // .data
 
 Snowman_Profile = 0x80971C40; //
-D_80971C64_jp = 0x80971C64; //
-D_80971C74_jp = 0x80971C74; //
+aSMAN_CoInfoData = 0x80971C64; //
+aSMAN_StatusData = 0x80971C74; //
 D_80971C80_jp = 0x80971C80; //
 D_80971C88_jp = 0x80971C88; // type:u16
 D_FLT_80971CA0_jp = 0x80971CA0; // type:f32
@@ -9506,8 +9506,8 @@ D_80981974_jp = 0x80981974; //
 D_809820C4_jp = 0x809820C4; //
 D_809820CC_jp = 0x809820CC; //
 D_809821A4_jp = 0x809821A4; //
-D_809821B0_jp = 0x809821B0; //
-D_809821C0_jp = 0x809821C0; //
+aNPC_CoInfoData = 0x809821B0; //
+aNPC_StatusData = 0x809821C0; //
 D_809821CC_jp = 0x809821CC; //
 D_80982578_jp = 0x80982578; //
 D_80982924_jp = 0x80982924; //
@@ -10002,8 +10002,8 @@ D_809A1354_jp = 0x809A1354; //
 D_809A1AA4_jp = 0x809A1AA4; //
 D_809A1AAC_jp = 0x809A1AAC; //
 D_809A1B58_jp = 0x809A1B58; //
-D_809A1B64_jp = 0x809A1B64; //
-D_809A1B74_jp = 0x809A1B74; //
+aNPC2_CoInfoData = 0x809A1B64; //
+aNPC2_StatusData = 0x809A1B74; //
 D_809A1B80_jp = 0x809A1B80; //
 D_809A1F2C_jp = 0x809A1F2C; //
 D_809A22D8_jp = 0x809A22D8; //
@@ -18016,8 +18016,8 @@ func_80A66978_jp = 0x80A66978; // type:func
 // .data
 
 Uki_Profile = 0x80A66CA0; //
-D_80A66CC4_jp = 0x80A66CC4; //
-D_80A66CD4_jp = 0x80A66CD4; //
+aUKI_CoInfoData = 0x80A66CC4; //
+aUKI_StatusData = 0x80A66CD4; //
 D_80A66CE0_jp = 0x80A66CE0; // type:s16
 D_80A66E00_jp = 0x80A66E00; // type:u16
 D_80A66E48_jp = 0x80A66E48; // type:s16
@@ -20914,8 +20914,8 @@ aLOT_actor_draw = 0x80A9F188; // type:func
 // .data
 
 Lotus_Profile = 0x80A9F2C0; //
-D_80A9F2E4_jp = 0x80A9F2E4; //
-D_80A9F2F0_jp = 0x80A9F2F0; //
+lotus_StatusData = 0x80A9F2E4; //
+lotus_CoInfoData = 0x80A9F2F0; //
 D_80A9F300_jp = 0x80A9F300; //
 D_80A9F348_jp = 0x80A9F348; //
 D_80A9F354_jp = 0x80A9F354; //
@@ -20936,7 +20936,7 @@ RO_STR_80A9F4D0_jp = 0x80A9F4D0; // type:asciz
 
 // .bss
 
-B_80A9F4E0_jp = 0x80A9F4E0; //
+pipeinfo = 0x80A9F4E0; //
 
 // .text
 

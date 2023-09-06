@@ -1,4 +1,6 @@
 #include "ac_uki.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aUKI_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -20,6 +22,13 @@ ActorProfile Uki_Profile = {
     /* */ func_80A66978_jp,
     /* */ NULL,
 };
+#endif
+
+extern ClObjPipe_Init aUKI_CoInfoData;
+extern CollisionCheck_Status_Init aUKI_StatusData;
+#if 0
+ClObjPipe_Init aUKI_CoInfoData = { { OC1_1 | OC1_4 | OC1_TYPE_8 | OC1_TYPE_10 | OC1_TYPE_20, OC2_TYPE_20, COLSHAPE_JNTSPH }, { ELEM_FLAG_1 }, { { 8, 8, 0, { 0, 0, 0 } } }, };
+CollisionCheck_Status_Init aUKI_StatusData = { 0, 8, 8, 0, 50, };
 #endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Uki/ac_uki/aUKI_actor_ct.s")

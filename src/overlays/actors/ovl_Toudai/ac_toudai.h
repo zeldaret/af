@@ -12,7 +12,6 @@ struct Game_Play;
 
 typedef void (*ToudaiActionFunc)(struct Toudai*, struct Game_Play*);
 
-//TODO: replace with the ac_structure struct
 typedef struct Toudai {
     /* 0x000 */ Actor actor;
     /* 0x174 */ s32 unk174;
@@ -31,12 +30,5 @@ typedef struct Toudai {
     /* 0x2D0 */ f32 unk2D0;
     /* 0x2D4 */ UNK_TYPE1 unk2D4[0x4];
 } Toudai; // size = 0x2D8
-
-void aTOU_set_bgOffset(Toudai* this, s32 heightTableIndex);
-void aTOU_init(Toudai* this, struct Game_Play* game_play);
-void aTOU_wait(Toudai* this, struct Game_Play* game_play);
-void aTOU_lighting(Toudai* this, struct Game_Play* game_play);
-void aTOU_lightout(Toudai* this, struct Game_Play* game_play);
-void aTOU_setup_action(Toudai* this, s32 processIndex);
 
 #endif

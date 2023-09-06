@@ -15,6 +15,7 @@
 #include "code_variables.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "overlays/gamestates/ovl_famicom_emu/famicom_emu.h"
+#include "zurumode.h"
 #include "macros.h"
 
 Game* gamePT = NULL;

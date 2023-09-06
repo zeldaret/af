@@ -23,7 +23,6 @@
 #include "macros.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "overlays/actors/player_actor/m_player.h"
-#include "overlays/actors/ovl_Structure/ac_structure.h"
 #include "overlays/actors/ovl_Npc/ac_npc.h"
 
 void func_80056380_jp(void* arg0, void* arg1 UNUSED) {
@@ -254,7 +253,7 @@ void Actor_draw(Game_Play* game_play, Actor* actor) {
     FaultClient faultClient;
     LightsN* light;
 
-    Fault_AddClient(&faultClient, func_80056380_jp, actor, "Actor_draw");
+    fault_AddClient(&faultClient, func_80056380_jp, actor, "Actor_draw");
 
     //! FAKE
     if (1) {}
@@ -290,7 +289,7 @@ void Actor_draw(Game_Play* game_play, Actor* actor) {
 
     CLOSE_DISPS(game_play->state.gfxCtx);
 
-    Fault_RemoveClient(&faultClient);
+    fault_RemoveClient(&faultClient);
 }
 
 s32 Actor_draw_actor_no_culling_check(Actor* actor) {
@@ -609,7 +608,7 @@ void actor_free_check(ActorOverlay* overlayEntry, u16 fgName) {
                 break;
 
             case FGNAME_F000_5:
-                common_data.structureClip->freeOverlayAreaProc();
+                common_data.unk_10098->unk_08();
                 break;
 
             default:
@@ -644,8 +643,8 @@ s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const 
                     break;
 
                 case FGNAME_F000_5:
-                    if (common_data.structureClip != NULL) {
-                        common_data.structureClip->getOverlayProc(overlayEntry, overlaySize);
+                    if (common_data.unk_10098 != NULL) {
+                        common_data.unk_10098->unk_4(overlayEntry, overlaySize);
                     }
                     break;
 
@@ -755,7 +754,7 @@ s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay
             break;
 
         case FGNAME_F000_5:
-            *actorP = (Actor*)common_data.structureClip->getActorAreaProc();
+            *actorP = common_data.unk_10098->unk_0C();
             break;
 
         default:
@@ -966,7 +965,7 @@ Actor* Actor_info_delete(ActorInfo* actorInfo, Actor* actor, Game_Play* game_pla
             break;
 
         case FGNAME_F000_5:
-            common_data.structureClip->freeActorAreaProc((Structure*)actor);
+            common_data.unk_10098->unk_10(actor);
             break;
 
         default:

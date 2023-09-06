@@ -39,6 +39,15 @@ typedef struct ShadowData {
     /* 0x08 */ f32 size;
     /* 0x0C */ Vtx* vertices;
     /* 0x10 */ Gfx* model;
-} ShadowData; // size = 0x10
+} ShadowData; // size = 0x14
+
+typedef struct struct_809AEFA4 {
+    /* 0x00 */ UNK_PTR unk_0;
+    /* 0x04 */ UNK_PTR unk_4;
+    /* 0x08 */ UNK_TYPE unk_8;
+    /* 0x0C */ UNK_PTR unk_C;
+    /* 0x10 */ UNK_PTR unk_10;
+    /* 0x14 */ UNK_PTR unk_14;
+} struct_809AEFA4; // size >= 0x18
 
 #endif

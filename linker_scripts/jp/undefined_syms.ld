@@ -5207,7 +5207,7 @@ D_60008C8 = 0x060008C8;
 D_6000EC8 = 0x06000EC8;
 D_60055D0 = 0x060055D0;
 
-// ovl_submenu
+// submenu_ovl
 
 D_C000000 = 0x0C000000;
 D_C000240 = 0x0C000240;
@@ -5217,6 +5217,17 @@ D_C001260 = 0x0C001260;
 D_C001660 = 0x0C001660;
 D_C004660 = 0x0C004660;
 D_C012370 = 0x0C012370;
+
+// ac_toudai
+
+obj_s_toudai_shadow_v = 0x060089C8;
+obj_s_toudai_shadow_1_model = 0x06008B08;
+cKF_bs_r_obj_s_toudai = 0x0607EE1C;
+cKF_bs_r_obj_w_toudai = 0x06080A24;
+cKF_ba_r_obj_s_toudai = 0x0607EE6C;
+cKF_ba_r_obj_w_toudai = 0x06080A74;
+obj_s_toudai_light_model = 0x0607E188;
+obj_w_toudai_light_model = 0x0607FD90;
 
 
 // Buffers

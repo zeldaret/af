@@ -1,4 +1,6 @@
 #include "ac_sample.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void Ac_Sample_Actor_ct(Actor* thisx, Game_Play* game_play);
@@ -20,6 +22,11 @@ ActorProfile Sample_Profile = {
     /* */ Ac_Sample_Actor_draw,
     /* */ NULL,
 };
+#endif
+
+extern ClObjPipe_Init Ac_Sample_OcInfoData_forStand;
+#if 0
+ClObjPipe_Init Ac_Sample_OcInfoData_forStand = { { OC1_1 | OC1_TYPE_8 | OC1_TYPE_10 | OC1_TYPE_20, OC2_TYPE_20, COLSHAPE_PIPE }, { ELEM_FLAG_1 }, { { 0x1E, 0x3C, 0, { 0, 0, 0 } } } };
 #endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Sample/ac_sample/func_80933F40_jp.s")

@@ -1,4 +1,6 @@
 #include "ac_ball.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aBALL_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -20,6 +22,14 @@ ActorProfile Ball_Profile = {
     /* */ aBALL_actor_draw,
     /* */ NULL,
 };
+#endif
+
+extern ClObjPipe_Init aBALL_CoInfoData;
+extern CollisionCheck_Status_Init aBALL_StatusData;
+
+#if 0
+ClObjPipe_Init aBALL_CoInfoData = { { OC1_1 | OC1_TYPE_8 | OC1_TYPE_10 | OC1_TYPE_20, OC2_TYPE_20, COLSHAPE_PIPE }, { ELEM_FLAG_1 }, { { 0xD, 0x1E, -0xA, { 0, 0, 0 } } }, };
+CollisionCheck_Status_Init aBALL_StatusData = { 0, 0xD, 0x1E, -0xA, 100, };
 #endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Ball/ac_ball/func_80968A10_jp.s")

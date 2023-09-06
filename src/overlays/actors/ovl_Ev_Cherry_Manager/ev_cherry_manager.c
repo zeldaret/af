@@ -1,4 +1,6 @@
 #include "ev_cherry_manager.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void eChryMgr_ct(Actor* thisx, Game_Play* game_play);

@@ -3,7 +3,7 @@
 
 #include "m_collision_obj.h"
 #include "m_event.h"
-#include "6E80C0.h"
+#include "m_submenu.h"
 #include "ultra64.h"
 #include "game.h"
 #include "gfx.h"
@@ -76,7 +76,7 @@ typedef struct Game_Play {
     /* 0x1C60 */ Global_light glight;
     /* 0x1C70 */ Pause pause;
     /* 0x1C78 */ ActorInfo actorInfo;
-    /* 0x1CBC */ Game_Play1CBC unk_1CBC;
+    /* 0x1CBC */ mSM submenu;
     /* 0x1DAC */ s8 unk_1DAC;
     /* 0x1DAD */ UNK_TYPE1 unk_1DAD[0x3];
     /* 0x1DB0 */ UNK_TYPE1 unk_1DB0[0x10];
@@ -106,7 +106,7 @@ typedef struct Game_Play {
     /* 0x1EE4 */ UNK_TYPE1 unk_1EE4[0x4];
     /* 0x1EE8 */ Game_Play_Unk_1EE8 unk_1EE8;
     /* 0x2128 */ Game_Play2128 unk_2128;
-    /* 0x2138 */ Game_Play2138 unk_2138;
+    /* 0x2138 */ CollisionCheck unk_2138;
     /* 0x2208 */ Game_Play_unk_2208 unk_2208;
     /* 0x220C */ s32 unk_220C;
     /* 0x2210 */ Struct_8010EAA0* unk_2210;
