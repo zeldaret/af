@@ -13,7 +13,6 @@
 #include "6F5550.h"
 #include "libc/stddef.h"
 #include "attributes.h"
-#include "boot_variables.h"
 #include "segment_symbols.h"
 #include "macros.h"
 

@@ -1,3 +1,4 @@
+#include "prevent_bss_reordering.h"
 #include "stack.h"
 #include "libu64/stackcheck.h"
 #include "unk.h"
@@ -14,6 +15,7 @@ size_t B_800406B0_jp;
 size_t B_800406B4_jp;
 
 #include "z_std_dma.h"
+#include "carthandle.h"
 #include "fault.h"
 #include "irqmgr.h"
 #include "yaz0.h"
@@ -22,7 +24,6 @@ size_t B_800406B4_jp;
 #include "macros.h"
 #include "attributes.h"
 #include "segment_symbols.h"
-#include "boot_variables.h"
 
 size_t gDmaMgrDmaBuffSize = DMAMGR_DEFAULT_BUFSIZE;
 

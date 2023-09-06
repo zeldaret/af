@@ -38,6 +38,7 @@
 #include "overlays/gamestates/ovl_trademark/m_trademark.h"
 #include "6A7D20.h"
 #include "m_scene_table.h"
+#include "zurumode.h"
 
 void play_main(Game* game);
 void Gameplay_Scene_Read(Game_Play* game_play, s16 arg1);

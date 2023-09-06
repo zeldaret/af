@@ -258,15 +258,16 @@ usleep = 0x8002DA3C; // type:func
 msleep = 0x8002DA8C; // type:func
 sleep = 0x8002DAE0; // type:func
 
-func_8003B960_jp = 0x8003B960; // type:func
-func_8003B9B0_jp = 0x8003B9B0; // type:func
-func_8003B9E0_jp = 0x8003B9E0; // type:func
-func_8003BA20_jp = 0x8003BA20; // type:func
-func_8003BA60_jp = 0x8003BA60; // type:func
+fmodf = 0x8003B960; // type:func
+memset = 0x8003B9B0; // type:func
+strcmp = 0x8003B9E0; // type:func
+strcpy = 0x8003BA20; // type:func
+memmove = 0x8003BA60; // type:func
 
 // .data
 
-D_8003BBC0_jp = 0x8003BBC0; // type:s8
+rspbootTextStart = 0x8003BAF0; // name_end:rspbootTextEnd
+D_8003BBC0_jp = 0x8003BBC0; //
 gViConfigFeatures = 0x8003BBC4; //
 gViConfigXScale = 0x8003BBC8; // type:f32
 gViConfigYScale = 0x8003BBCC; // type:f32
@@ -275,8 +276,8 @@ gDmaMgrDmaBuffSize = 0x8003BBE0; //
 sExceptionNames = 0x8003BBF0; //
 sFpExceptionNames = 0x8003BC38; //
 
-D_8003BC90_jp = 0x8003BC90; // size:0x4
-D_8003BC94_jp = 0x8003BC94; // size:0x4
+sStackInfoListStart = 0x8003BC90; // size:0x4
+sStackInfoListEnd = 0x8003BC94; // size:0x4
 
 gOverlayLogSeverity = 0x8003BCA0 // type:s32 size:0x4
 
