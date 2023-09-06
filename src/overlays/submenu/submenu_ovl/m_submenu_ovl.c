@@ -541,7 +541,8 @@ SubmenuProgramOverlay hand_program_dlftbl[] = {
 };
 
 SubmenuProgramOverlay haniwa_program_dlftbl[] = {
-    SUBMENU_PROGRAM(haniwaPortrait_ovl, mHP_haniwaPortrait_ovl_construct, mHP_haniwaPortrait_ovl_destruct, mHP_haniwaPortrait_ovl_destruct),
+    SUBMENU_PROGRAM(haniwaPortrait_ovl, mHP_haniwaPortrait_ovl_construct, mHP_haniwaPortrait_ovl_destruct,
+                    mHP_haniwaPortrait_ovl_destruct),
 };
 
 u8 flg_table_916[SUBMENU_PROGRAM_MAX] = {
@@ -1229,8 +1230,10 @@ void mSM_ovl_prog_seg(Submenu* submenu, SubmenuProgramOverlay* programOvl) {
 
     //! FAKE
 dummy_label_595693:
-    programOvl->destruct = (void*)((uintptr_t)allocatedVram + (uintptr_t)programOvl->destruct - (uintptr_t)programOvl->vramStart);
-    programOvl->set_proc = (void*)((uintptr_t)allocatedVram + (uintptr_t)programOvl->set_proc - (uintptr_t)programOvl->vramStart);
+    programOvl->destruct =
+        (void*)((uintptr_t)allocatedVram + (uintptr_t)programOvl->destruct - (uintptr_t)programOvl->vramStart);
+    programOvl->set_proc =
+        (void*)((uintptr_t)allocatedVram + (uintptr_t)programOvl->set_proc - (uintptr_t)programOvl->vramStart);
 
     programOvl->unk_1C = true;
     temp->unk_68[temp->unk_64] = programOvl;
