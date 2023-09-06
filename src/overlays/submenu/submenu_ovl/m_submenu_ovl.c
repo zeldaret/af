@@ -545,28 +545,33 @@ SubmenuProgramOverlay haniwa_program_dlftbl[] = {
                     mHP_haniwaPortrait_ovl_destruct),
 };
 
+#define PROGRAM_FLAG_2 (1 << 1)
+#define PROGRAM_FLAG_TAG (1 << 2)
+#define PROGRAM_FLAG_HAND (1 << 3)
+#define PROGRAM_FLAG_HANIWA (1 << 4)
+
 u8 flg_table_916[SUBMENU_PROGRAM_MAX] = {
-    0,                      // SUBMENU_PROGRAM_0
-    0x8 | 0x4 | 0x2,        // SUBMENU_PROGRAM_1
-    0x10,                   // SUBMENU_PROGRAM_2
-    0,                      // SUBMENU_PROGRAM_3
-    0,                      // SUBMENU_PROGRAM_LEDIT
-    0,                      // SUBMENU_PROGRAM_MAP
-    0,                      // SUBMENU_PROGRAM_6
-    0,                      // SUBMENU_PROGRAM_7
-    0,                      // SUBMENU_PROGRAM_8
-    0,                      // SUBMENU_PROGRAM_9
-    0,                      // SUBMENU_PROGRAM_10
-    0x8 | 0x4 | 0x2,        // SUBMENU_PROGRAM_11
-    0,                      // SUBMENU_PROGRAM_BOARD
-    0,                      // SUBMENU_PROGRAM_13
-    0x10 | 0x8 | 0x4 | 0x2, // SUBMENU_PROGRAM_14
-    0,                      // SUBMENU_PROGRAM_15
-    0,                      // SUBMENU_PROGRAM_16
-    0x8 | 0x4 | 0x2,        // SUBMENU_PROGRAM_17
-    0,                      // SUBMENU_PROGRAM_18
-    0x8 | 0x4,              // SUBMENU_PROGRAM_19
-    0x8 | 0x4,              // SUBMENU_PROGRAM_CATALOG
+    0,                                                                           // SUBMENU_PROGRAM_0
+    PROGRAM_FLAG_2 | PROGRAM_FLAG_TAG | PROGRAM_FLAG_HAND,                       // SUBMENU_PROGRAM_1
+    PROGRAM_FLAG_HANIWA,                                                         // SUBMENU_PROGRAM_2
+    0,                                                                           // SUBMENU_PROGRAM_3
+    0,                                                                           // SUBMENU_PROGRAM_LEDIT
+    0,                                                                           // SUBMENU_PROGRAM_MAP
+    0,                                                                           // SUBMENU_PROGRAM_6
+    0,                                                                           // SUBMENU_PROGRAM_7
+    0,                                                                           // SUBMENU_PROGRAM_8
+    0,                                                                           // SUBMENU_PROGRAM_9
+    0,                                                                           // SUBMENU_PROGRAM_10
+    PROGRAM_FLAG_2 | PROGRAM_FLAG_TAG | PROGRAM_FLAG_HAND,                       // SUBMENU_PROGRAM_11
+    0,                                                                           // SUBMENU_PROGRAM_BOARD
+    0,                                                                           // SUBMENU_PROGRAM_13
+    PROGRAM_FLAG_2 | PROGRAM_FLAG_TAG | PROGRAM_FLAG_HAND | PROGRAM_FLAG_HANIWA, // SUBMENU_PROGRAM_14
+    0,                                                                           // SUBMENU_PROGRAM_15
+    0,                                                                           // SUBMENU_PROGRAM_16
+    PROGRAM_FLAG_2 | PROGRAM_FLAG_TAG | PROGRAM_FLAG_HAND,                       // SUBMENU_PROGRAM_17
+    0,                                                                           // SUBMENU_PROGRAM_18
+    PROGRAM_FLAG_TAG | PROGRAM_FLAG_HAND,                                        // SUBMENU_PROGRAM_19
+    PROGRAM_FLAG_TAG | PROGRAM_FLAG_HAND,                                        // SUBMENU_PROGRAM_CATALOG
 };
 
 f32 data_table_935[SUBMENU_PROGRAM_MAX][4] = {
@@ -1245,18 +1250,18 @@ dummy_label_595693:
 
 void mSM_set_other_seg(Submenu* submenu) {
     SubmenuProgramId temp = submenu->unk_08;
-    u32 var_v1 = flg_table_916[temp];
+    u32 flag = flg_table_916[temp];
 
-    if (var_v1 & 2) {
+    if (flag & PROGRAM_FLAG_2) {
         func_8085D094_jp(submenu);
     }
-    if (var_v1 & 4) {
+    if (flag & PROGRAM_FLAG_TAG) {
         mSM_ovl_prog_seg(submenu, tag_program_dlftbl);
     }
-    if (var_v1 & 8) {
+    if (flag & PROGRAM_FLAG_HAND) {
         mSM_ovl_prog_seg(submenu, hand_program_dlftbl);
     }
-    if (var_v1 & 0x10) {
+    if (flag & PROGRAM_FLAG_HANIWA) {
         mSM_ovl_prog_seg(submenu, haniwa_program_dlftbl);
     }
 }
