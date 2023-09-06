@@ -28,9 +28,7 @@ typedef struct Game_Play_unk_0110_unk_0000 {
     /* 0x00 */ s16 unk_00;
     /* 0x02 */ UNK_TYPE1 unk_02[0x2];
     /* 0x04 */ void* segment;
-    /* 0x08 */ UNK_TYPE1 unk_08[0x20];
-    ///* 0x24 */ void* unk_24;
-    /* 0x28 */ UNK_TYPE1 unk_28[0x28];
+    /* 0x08 */ UNK_TYPE1 unk_08[0x48];
     /* 0x50 */ s16 unk_50;
     /* 0x52 */ UNK_TYPE1 unk_52[0x2];
 } Game_Play_unk_0110_unk_0000; // size = 0x54

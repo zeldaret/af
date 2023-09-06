@@ -6,8 +6,8 @@
 
 struct Submenu;
 
-void func_8088C4A0_jp(struct Submenu* arg0);
-void func_8088C548_jp(struct Submenu* arg0);
-void func_8088C344_jp(struct Submenu* arg0);
+void func_8088C4A0_jp(struct Submenu* submenu);
+void func_8088C548_jp(struct Submenu* submenu);
+void func_8088C344_jp(struct Submenu* submenu);
 
 #endif

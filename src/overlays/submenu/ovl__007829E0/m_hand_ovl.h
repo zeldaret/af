@@ -6,7 +6,7 @@
 
 struct Submenu;
 
-void mHD_hand_ovl_construct(struct Submenu* arg0);
-void mHD_hand_ovl_destruct(struct Submenu* arg0);
+void mHD_hand_ovl_construct(struct Submenu* submenu);
+void mHD_hand_ovl_destruct(struct Submenu* submenu);
 
 #endif

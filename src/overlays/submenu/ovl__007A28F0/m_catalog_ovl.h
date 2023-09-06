@@ -6,8 +6,8 @@
 
 struct Submenu;
 
-void mCL_catalog_ovl_construct(struct Submenu* arg0);
-void mCL_catalog_ovl_destruct(struct Submenu* arg0);
-void mCL_catalog_ovl_set_proc(struct Submenu* arg0);
+void mCL_catalog_ovl_construct(struct Submenu* submenu);
+void mCL_catalog_ovl_destruct(struct Submenu* submenu);
+void mCL_catalog_ovl_set_proc(struct Submenu* submenu);
 
 #endif

@@ -107,7 +107,7 @@ void mSM_submenu_ovlptr_cleanup(Submenu* submenu);
 
 void load_player(Submenu* submenu);
 void mSM_submenu_ct(Submenu* submenu);
-void mSM_submenu_dt(Submenu* arg0);
+void mSM_submenu_dt(Submenu* submenu);
 
 void mSM_open_submenu(Submenu* submenu, SubmenuProgramId programId, s32 arg2, s32 arg3);
 void mSM_open_submenu_new(Submenu* submenu, SubmenuProgramId programId, s32 arg2, s32 arg3, s32 arg4);

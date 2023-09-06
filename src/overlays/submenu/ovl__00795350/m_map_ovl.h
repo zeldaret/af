@@ -6,8 +6,8 @@
 
 struct Submenu;
 
-void mMP_map_ovl_construct(struct Submenu* arg0);
-void mMP_map_ovl_destruct(struct Submenu* arg0);
-void mMP_map_ovl_set_proc(struct Submenu* arg0);
+void mMP_map_ovl_construct(struct Submenu* submenu);
+void mMP_map_ovl_destruct(struct Submenu* submenu);
+void mMP_map_ovl_set_proc(struct Submenu* submenu);
 
 #endif

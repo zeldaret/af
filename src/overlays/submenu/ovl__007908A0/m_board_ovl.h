@@ -6,8 +6,8 @@
 
 struct Submenu;
 
-void mBD_board_ovl_construct(struct Submenu* arg0);
-void mBD_board_ovl_destruct(struct Submenu* arg0);
-void mBD_board_ovl_set_proc(struct Submenu* arg0);
+void mBD_board_ovl_construct(struct Submenu* submenu);
+void mBD_board_ovl_destruct(struct Submenu* submenu);
+void mBD_board_ovl_set_proc(struct Submenu* submenu);
 
 #endif

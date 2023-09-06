@@ -23,8 +23,8 @@ typedef struct struct_8085E4D0 {
     /* 0x08 */ void* vramStart;
     /* 0x0C */ void* vramEnd;
     /* 0x10 */ struct_8085E4D0_unk_10 construct; // name based on original function names
-    /* 0x14 */ struct_8085E4D0_unk_18 destruct; // name based on original function names
-    /* 0x18 */ struct_8085E4D0_unk_18 set_proc; // name based on original function names
+    /* 0x14 */ struct_8085E4D0_unk_18 destruct;  // name based on original function names
+    /* 0x18 */ struct_8085E4D0_unk_18 set_proc;  // name based on original function names
     /* 0x1C */ s32 unk_1C;
 } struct_8085E4D0; // size = 0x20
 
@@ -123,10 +123,10 @@ typedef struct struct_8085E9B0_unk_10670 {
     /* 0x2C */ f32 unk_2C;
 } struct_8085E9B0_unk_10670; // size >= 0x30
 
-typedef void (*struct_8085E9B0_unk_106A4)(struct Submenu *, struct_mSM_return_func_arg1 *);
-typedef void (*struct_8085E9B0_unk_106A8)(struct Submenu *, struct_mSM_move_Move_arg1 *);
-typedef void (*struct_8085E9B0_unk_106AC)(struct Submenu *, struct_mSM_return_func_arg1 *);
-typedef void (*struct_8085E9B0_unk_106B0)(struct_mSM_move_chg_base_arg0 *, u32);
+typedef void (*struct_8085E9B0_unk_106A4)(struct Submenu*, struct_mSM_return_func_arg1*);
+typedef void (*struct_8085E9B0_unk_106A8)(struct Submenu*, struct_mSM_move_Move_arg1*);
+typedef void (*struct_8085E9B0_unk_106AC)(struct Submenu*, struct_mSM_return_func_arg1*);
+typedef void (*struct_8085E9B0_unk_106B0)(struct_mSM_move_chg_base_arg0*, u32);
 typedef void (*struct_8085E9B0_unk_106B4)(struct GraphicsContext*);
 typedef void (*struct_8085E9B0_unk_106B8)(struct GraphicsContext*, struct PreRender*, s32, s32, s32);
 typedef void (*struct_8085E9B0_unk_106BC)(struct GraphicsContext*, struct struct_func_8085C20C_jp_arg1*, f32, f32, s16);
@@ -143,21 +143,21 @@ typedef struct struct_8085E9B0 {
     /* 0x100D0 */ UNK_TYPE1 unk_100D0[0x5A0];
     /* 0x10670 */ struct_8085E9B0_unk_10670 unk_10670;
     /* 0x106A0 */ UNK_TYPE1 unk_106A0[0x4];
-    /* 0x106A4 */ struct_8085E9B0_unk_106A4 unk_106A4;
-    /* 0x106A8 */ struct_8085E9B0_unk_106A8 unk_106A8;
-    /* 0x106AC */ struct_8085E9B0_unk_106AC unk_106AC;
-    /* 0x106B0 */ struct_8085E9B0_unk_106B0 unk_106B0;
-    /* 0x106B4 */ struct_8085E9B0_unk_106B4 unk_106B4;
-    /* 0x106B8 */ struct_8085E9B0_unk_106B8 unk_106B8;
-    /* 0x106BC */ struct_8085E9B0_unk_106BC unk_106BC;
-    /* 0x106C0 */ struct_8085E9B0_unk_106C0 unk_106C0;
-    /* 0x106C4 */ struct_8085E9B0_unk_106C4 unk_106C4;
-    /* 0x106C8 */ struct_8085E9B0_unk_106C8 unk_106C8;
+    /* 0x106A4 */ struct_8085E9B0_unk_106A4 returnFunc;
+    /* 0x106A8 */ struct_8085E9B0_unk_106A8 moveMove;
+    /* 0x106AC */ struct_8085E9B0_unk_106AC moveEnd;
+    /* 0x106B0 */ struct_8085E9B0_unk_106B0 moveChgBase;
+    /* 0x106B4 */ struct_8085E9B0_unk_106B4 setCharMatrix;
+    /* 0x106B8 */ struct_8085E9B0_unk_106B8 cbufCopy;
+    /* 0x106BC */ struct_8085E9B0_unk_106BC setDrawMode;
+    /* 0x106C0 */ struct_8085E9B0_unk_106C0 drawItem;
+    /* 0x106C4 */ struct_8085E9B0_unk_106C4 drawMail;
+    /* 0x106C8 */ struct_8085E9B0_unk_106C8 setupView;
     /* 0x106CC */ struct_8085E9B0_unk_106CC unk_106CC;
     /* 0x106D0 */ UNK_TYPE1 unk_106D0[0x5C];
     /* 0x1072C */ Mtx* unk_1072C;
 } struct_8085E9B0; // size = 0x10730
 
-void mSM_menu_ovl_init(struct Submenu* arg0);
+void mSM_menu_ovl_init(struct Submenu* submenu);
 
 #endif

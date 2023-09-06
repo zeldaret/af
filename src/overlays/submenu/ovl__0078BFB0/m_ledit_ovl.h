@@ -6,8 +6,8 @@
 
 struct Submenu;
 
-void mLE_ledit_ovl_construct(struct Submenu* arg0);
-void mLE_ledit_ovl_destruct(struct Submenu* arg0);
-void mLE_ledit_ovl_set_proc(struct Submenu* arg0);
+void mLE_ledit_ovl_construct(struct Submenu* submenu);
+void mLE_ledit_ovl_destruct(struct Submenu* submenu);
+void mLE_ledit_ovl_set_proc(struct Submenu* submenu);
 
 #endif

@@ -6,7 +6,7 @@
 
 struct Submenu;
 
-void func_8087D180_jp(struct Submenu* arg0);
-void func_8087D274_jp(struct Submenu* arg0);
+void func_8087D180_jp(struct Submenu* submenu);
+void func_8087D274_jp(struct Submenu* submenu);
 
 #endif

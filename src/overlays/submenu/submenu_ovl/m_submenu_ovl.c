@@ -595,7 +595,7 @@ s32 add_trigger_954[] = { R_CBUTTONS, U_CBUTTONS, L_CBUTTONS, D_CBUTTONS };
 
 f32 move_data_1027[2][4] = { { 2.0f, 0.0f, 300.0f, 1.0f }, { 0.5f, 120.0f, 0.0f, -1.0f } };
 
-void mSM_setup_view(Submenu* arg0, GraphicsContext* gfxCtx, s32 arg1) {
+void mSM_setup_view(Submenu* submenu, GraphicsContext* gfxCtx, s32 arg1) {
     Mtx* mtx;
     UNUSED s32 pad;
     Gfx* gfx;
@@ -603,9 +603,9 @@ void mSM_setup_view(Submenu* arg0, GraphicsContext* gfxCtx, s32 arg1) {
     if (arg1 != 0) {
         mtx = GRAPH_ALLOC(gfxCtx, sizeof(Mtx));
         guOrtho(mtx, SCREEN_WIDTH * -8, SCREEN_WIDTH * 8, SCREEN_HEIGHT * -8, SCREEN_HEIGHT * 8, 1.0f, 2000.0f, 1.0f);
-        arg0->unk_2C->unk_1072C = mtx;
+        submenu->unk_2C->unk_1072C = mtx;
     } else {
-        mtx = arg0->unk_2C->unk_1072C;
+        mtx = submenu->unk_2C->unk_1072C;
     }
 
     OPEN_DISPS(gfxCtx);
@@ -614,7 +614,7 @@ void mSM_setup_view(Submenu* arg0, GraphicsContext* gfxCtx, s32 arg1) {
     if (arg1 == 0) {
         Game_Play1938* var_a0;
 
-        if (arg0->unk_00 != 4) {
+        if (submenu->unk_00 != 4) {
             var_a0 = &((Game_Play*)gamePT)->unk_1938;
         } else {
             var_a0 = &((Game__00743CD0*)gamePT)->unk_00E0;
@@ -1183,8 +1183,8 @@ void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_f
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_draw_mail.s")
 #endif
 
-void func_8085D094_jp(Submenu* arg0) {
-    struct_8085E9B0_unk_10000* sp2C = &arg0->unk_2C->unk_10000;
+void func_8085D094_jp(Submenu* submenu) {
+    struct_8085E9B0_unk_10000* sp2C = &submenu->unk_2C->unk_10000;
     void* vram;
     s32 romStart;
 
@@ -1204,8 +1204,8 @@ void func_8085D094_jp(Submenu* arg0) {
     sp2C->unk_04 = 1;
 }
 
-void mSM_ovl_prog_seg(Submenu* arg0, struct_8085E4D0* arg1) {
-    struct_8085E9B0_unk_10000* temp = &arg0->unk_2C->unk_10000;
+void mSM_ovl_prog_seg(Submenu* submenu, struct_8085E4D0* arg1) {
+    struct_8085E9B0_unk_10000* temp = &submenu->unk_2C->unk_10000;
     UNUSED s32 pad;
     void* allocatedVram;
     struct_8085E4D0_unk_10 construct;
@@ -1213,17 +1213,17 @@ void mSM_ovl_prog_seg(Submenu* arg0, struct_8085E4D0* arg1) {
     if (arg1->unk_1C == 1) {
         struct_8085E4D0_unk_10 new_var = arg1->construct;
 
-        new_var(arg0);
+        new_var(submenu);
         return;
     }
 
-    allocatedVram = arg0->linkedAllocEnd;
+    allocatedVram = submenu->linkedAllocEnd;
     ovlmgr_Load(arg1->vromStart, arg1->vromEnd, arg1->vramStart, arg1->vramEnd, allocatedVram);
-    arg0->linkedAllocEnd =
+    submenu->linkedAllocEnd =
         (void*)((uintptr_t)allocatedVram + ALIGN64((uintptr_t)arg1->vramEnd - (uintptr_t)arg1->vramStart));
 
     construct = (void*)((uintptr_t)allocatedVram + (uintptr_t)arg1->construct - (uintptr_t)arg1->vramStart);
-    construct(arg0);
+    construct(submenu);
     arg1->construct = construct;
 
     //! FAKE
@@ -1239,49 +1239,49 @@ dummy_label_595693:
     if (construct) {}
 }
 
-void mSM_set_other_seg(Submenu* arg0) {
-    SubmenuProgramId temp = arg0->unk_08;
+void mSM_set_other_seg(Submenu* submenu) {
+    SubmenuProgramId temp = submenu->unk_08;
     u32 var_v1 = flg_table_916[temp];
 
     if (var_v1 & 2) {
-        func_8085D094_jp(arg0);
+        func_8085D094_jp(submenu);
     }
     if (var_v1 & 4) {
-        mSM_ovl_prog_seg(arg0, &mSM_program_dlftbl[SUBMENU_PROGRAM_21]);
+        mSM_ovl_prog_seg(submenu, &mSM_program_dlftbl[SUBMENU_PROGRAM_21]);
     }
     if (var_v1 & 8) {
-        mSM_ovl_prog_seg(arg0, &mSM_program_dlftbl[SUBMENU_PROGRAM_HAND]);
+        mSM_ovl_prog_seg(submenu, &mSM_program_dlftbl[SUBMENU_PROGRAM_HAND]);
     }
     if (var_v1 & 0x10) {
-        mSM_ovl_prog_seg(arg0, &mSM_program_dlftbl[SUBMENU_PROGRAM_23]);
+        mSM_ovl_prog_seg(submenu, &mSM_program_dlftbl[SUBMENU_PROGRAM_23]);
     }
 }
 
-void mSM_set_before_menu_proc(Submenu* arg0) {
-    SubmenuProgramId programId = arg0->programId;
+void mSM_set_before_menu_proc(Submenu* submenu) {
+    SubmenuProgramId programId = submenu->programId;
     struct_8085E9B0_unk_10088* temp;
 
-    mSM_program_dlftbl[programId].set_proc(arg0);
-    arg0->unk_08 = programId;
+    mSM_program_dlftbl[programId].set_proc(submenu);
+    submenu->unk_08 = programId;
 
     //! FAKE
     if (((!programId) && (!programId)) && (!programId)) {}
 
-    temp = &arg0->unk_2C->unk_10088[programId];
+    temp = &submenu->unk_2C->unk_10088[programId];
 
     temp->unk_14 = NULL;
 }
 
-void mSM_set_new_seg(Submenu* arg0) {
-    SubmenuProgramId programId = arg0->programId;
+void mSM_set_new_seg(Submenu* submenu) {
+    SubmenuProgramId programId = submenu->programId;
 
-    mSM_ovl_prog_seg(arg0, &mSM_program_dlftbl[programId]);
-    arg0->unk_08 = programId;
+    mSM_ovl_prog_seg(submenu, &mSM_program_dlftbl[programId]);
+    submenu->unk_08 = programId;
 }
 
-void mSM_set_new_start_data(Submenu* arg0) {
-    SubmenuProgramId programId = arg0->programId;
-    struct_8085E9B0_unk_10088* temp_v1 = &arg0->unk_2C->unk_10088[programId];
+void mSM_set_new_start_data(Submenu* submenu) {
+    SubmenuProgramId programId = submenu->programId;
+    struct_8085E9B0_unk_10088* temp_v1 = &submenu->unk_2C->unk_10088[programId];
     f32* temp_a1 = data_table_935[programId];
 
     temp_v1->unk_00 = programId;
@@ -1289,24 +1289,24 @@ void mSM_set_new_start_data(Submenu* arg0) {
     temp_v1->unk_1C = temp_a1[1];
     temp_v1->unk_20 = temp_a1[2];
     temp_v1->unk_24 = temp_a1[3];
-    temp_v1->unk_38 = arg0->unk_10;
-    temp_v1->unk_3C = arg0->unk_14;
-    temp_v1->unk_40 = arg0->unk_18;
-    temp_v1->unk_44 = arg0->unk_1C;
+    temp_v1->unk_38 = submenu->unk_10;
+    temp_v1->unk_3C = submenu->unk_14;
+    temp_v1->unk_40 = submenu->unk_18;
+    temp_v1->unk_44 = submenu->unk_1C;
 
-    if ((programId == SUBMENU_PROGRAM_1) && (arg0->unk_10 == 0xE)) {
+    if ((programId == SUBMENU_PROGRAM_1) && (submenu->unk_10 == 0xE)) {
         temp_v1->unk_18 = -300.0f;
     }
 }
 
-void func_8085D43C_jp(Submenu* arg0, void** arg1, struct_func_8085D43C_jp_arg2* arg2) {
-    void* temp_a0 = arg0->unk_2C->unk_10000.unk_00;
+void func_8085D43C_jp(Submenu* submenu, void** arg1, struct_func_8085D43C_jp_arg2* arg2) {
+    void* temp_a0 = submenu->unk_2C->unk_10000.unk_00;
     size_t size;
 
     *arg1 = temp_a0;
     size = arg2->vromEnd - arg2->vromStart;
     DmaMgr_RequestSyncDebug(temp_a0, arg2->vromStart, size, "../m_submenu_ovl.c", 2307);
-    arg0->unk_2C->unk_10000.unk_00 = (void*)ALIGN16((uintptr_t)size + (uintptr_t)temp_a0);
+    submenu->unk_2C->unk_10000.unk_00 = (void*)ALIGN16((uintptr_t)size + (uintptr_t)temp_a0);
 }
 
 void mSM_move_chg_base(struct_mSM_move_chg_base_arg0* arg0, u32 arg1) {
@@ -1319,9 +1319,9 @@ void mSM_move_chg_base(struct_mSM_move_chg_base_arg0* arg0, u32 arg1) {
     }
 }
 
-void mSM_make_trigger_data(Submenu* arg0) {
+void mSM_make_trigger_data(Submenu* submenu) {
     s32 var_a0 = (getButton() & 0xF) | getTrigger();
-    struct_8085E9B0_unk_10670* temp_v1 = &arg0->unk_2C->unk_10670;
+    struct_8085E9B0_unk_10670* temp_v1 = &submenu->unk_2C->unk_10670;
 
     if (gamePT->controller.moveR > 0.5f) {
         u16 temp = gamePT->controller.moveAngle + 0x2000;
@@ -1346,39 +1346,39 @@ void mSM_make_trigger_data(Submenu* arg0) {
 
 #ifdef NON_MATCHING
 // regalloc
-void mSM_save_before_func(Submenu* arg0) {
+void mSM_save_before_func(Submenu* submenu) {
     struct_8085E9B0_unk_10088* new_var2;
     SubmenuProgramId temp_a2;
     struct_8085E9B0* temp_v0;
     struct_8085E9B0_unk_10088* temp_v1;
 
-    temp_v0 = arg0->unk_2C;
-    temp_v1 = &temp_v0->unk_10088[arg0->programId];
+    temp_v0 = submenu->unk_2C;
+    temp_v1 = &temp_v0->unk_10088[submenu->programId];
 
-    temp_a2 = arg0->unk_08;
+    temp_a2 = submenu->unk_08;
     temp_v1->unk_08 = temp_a2;
     temp_v1->unk_0C = temp_v0->unk_10670.unk_00;
     temp_v1->unk_10 = temp_v0->unk_10670.unk_04;
 
-    if (arg0->programId) {}
+    if (submenu->programId) {}
     new_var2 = &temp_v0->unk_10088[temp_v1->unk_08];
 
-    new_var2->unk_14 = arg0->programId;
+    new_var2->unk_14 = submenu->programId;
 }
 #else
-void mSM_save_before_func(Submenu* arg0);
+void mSM_save_before_func(Submenu* submenu);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_save_before_func.s")
 #endif
 
-void mSM_set_proc(Submenu* arg0) {
-    mSM_save_before_func(arg0);
-    mSM_set_new_start_data(arg0);
-    mSM_set_new_seg(arg0);
-    mSM_set_other_seg(arg0);
+void mSM_set_proc(Submenu* submenu) {
+    mSM_save_before_func(submenu);
+    mSM_set_new_start_data(submenu);
+    mSM_set_new_seg(submenu);
+    mSM_set_other_seg(submenu);
 }
 
-void mSM_tex_move(Submenu* arg0) {
-    struct_8085E9B0_unk_10670* temp_v0 = &arg0->unk_2C->unk_10670;
+void mSM_tex_move(Submenu* submenu) {
+    struct_8085E9B0_unk_10670* temp_v0 = &submenu->unk_2C->unk_10670;
 
     temp_v0->unk_28 += 0.707f;
     temp_v0->unk_2C += 0.707f;
@@ -1393,14 +1393,14 @@ void mSM_tex_move(Submenu* arg0) {
 }
 
 #ifdef NON_EQUIVALENT
-void mSM_return_func(Submenu* arg0, struct_mSM_return_func_arg1* arg1) {
+void mSM_return_func(Submenu* submenu, struct_mSM_return_func_arg1* arg1) {
     struct_8085E9B0_unk_10088* temp_v0;
     struct_8085E9B0* temp_v1;
     struct_8085E9B0_unk_10088* othertemp;
     s32 temp_a2;
 
     temp_a2 = arg1->unk_14;
-    temp_v1 = arg0->unk_2C;
+    temp_v1 = submenu->unk_2C;
     temp_v0 = temp_v1->unk_10088;
 
     if (temp_a2 != 0) {
@@ -1422,22 +1422,22 @@ void mSM_return_func(Submenu* arg0, struct_mSM_return_func_arg1* arg1) {
         struct_8085E9B0* temp_v1_2;
         struct_8085E9B0_unk_10000* temp;
 
-        temp_v1_2 = arg0->unk_2C;
+        temp_v1_2 = submenu->unk_2C;
         temp = &temp_v1_2->unk_10000;
-        arg0->programId = arg1->unk_08;
-        if (arg0->programId == SUBMENU_PROGRAM_0) {
+        submenu->programId = arg1->unk_08;
+        if (submenu->programId == SUBMENU_PROGRAM_0) {
             while (temp_v1_2->unk_10000.unk_64 != 0) {
                 temp->unk_64--;
-                temp->unk_68[temp->unk_64]->destruct(arg0);
+                temp->unk_68[temp->unk_64]->destruct(submenu);
             }
 
-            arg0->moveProcIndex = MSM_MOVE_PROC_END;
-            arg0->move = (void*)none_proc1;
-            arg0->unk_08 = arg1->unk_08;
-            arg0->unk_2C->unk_10670.unk_00 = (void*)none_proc1;
-            arg0->unk_2C->unk_10670.unk_04 = (void*)none_proc1;
+            submenu->moveProcIndex = MSM_MOVE_PROC_END;
+            submenu->move = (void*)none_proc1;
+            submenu->unk_08 = arg1->unk_08;
+            submenu->unk_2C->unk_10670.unk_00 = (void*)none_proc1;
+            submenu->unk_2C->unk_10670.unk_04 = (void*)none_proc1;
         } else {
-            mSM_set_before_menu_proc(arg0);
+            mSM_set_before_menu_proc(submenu);
         }
         arg1->unk_2C = 0;
     }
@@ -1448,7 +1448,7 @@ void mSM_return_func(Submenu* arg0, struct_mSM_return_func_arg1* arg1) {
     arg1->unk_30 = 0;
 }
 #else
-void mSM_return_func(Submenu* arg0, struct_mSM_return_func_arg1* arg1);
+void mSM_return_func(Submenu* submenu, struct_mSM_return_func_arg1* arg1);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_return_func.s")
 #endif
 
@@ -1471,7 +1471,7 @@ s32 mSM_move_menu(f32* arg0, f32* arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) 
     return 0;
 }
 
-void mSM_move_Move(UNUSED Submenu* arg0, struct_mSM_move_Move_arg1* arg1) {
+void mSM_move_Move(UNUSED Submenu* submenu, struct_mSM_move_Move_arg1* arg1) {
     f32 var_fv0;
     s32 temp_t0 = arg1->unk_34;
     f32* temp_v0 = move_data_1027[temp_t0 & 1];
@@ -1499,44 +1499,44 @@ void mSM_move_Move(UNUSED Submenu* arg0, struct_mSM_move_Move_arg1* arg1) {
 /**
  * Original name: mSM_move_End
  */
-void mSM_ovl_move_End(Submenu* arg0, struct_mSM_return_func_arg1* arg1) {
-    mSM_return_func(arg0, arg1);
+void mSM_ovl_move_End(Submenu* submenu, struct_mSM_return_func_arg1* arg1) {
+    mSM_return_func(submenu, arg1);
 }
 
-void mSM_menu_ovl_move(Submenu* arg0) {
-    struct_8085E9B0_unk_10670* sp24 = &arg0->unk_2C->unk_10670;
+void mSM_menu_ovl_move(Submenu* submenu) {
+    struct_8085E9B0_unk_10670* sp24 = &submenu->unk_2C->unk_10670;
 
-    mSM_make_trigger_data(arg0);
-    if (arg0->programId != arg0->unk_08) {
-        mSM_set_proc(arg0);
+    mSM_make_trigger_data(submenu);
+    if (submenu->programId != submenu->unk_08) {
+        mSM_set_proc(submenu);
     }
-    mSM_tex_move(arg0);
-    sp24->unk_00(arg0);
+    mSM_tex_move(submenu);
+    sp24->unk_00(submenu);
 }
 
-void mSM_menu_ovl_draw(Submenu* arg0, Game_Play* game_play) {
-    mSM_setup_view(arg0, game_play->state.gfxCtx, 1);
-    arg0->unk_2C->unk_10670.unk_04(arg0, game_play);
+void mSM_menu_ovl_draw(Submenu* submenu, Game_Play* game_play) {
+    mSM_setup_view(submenu, game_play->state.gfxCtx, 1);
+    submenu->unk_2C->unk_10670.unk_04(submenu, game_play);
 }
 
-void mSM_menu_ovl_init(Submenu* arg0) {
+void mSM_menu_ovl_init(Submenu* submenu) {
     Game_Play_unk_0110* var_v1;
     void* func = none_proc1;
     u16 temp = 0x2000;
 
-    arg0->unk_2C = &ovl_base;
+    submenu->unk_2C = &ovl_base;
     bzero(&ovl_base, sizeof(struct_8085E9B0));
 
 //! FAKE
 label:
-    if (arg0->unk_00 != 4) {
+    if (submenu->unk_00 != 4) {
         var_v1 = &((Game_Play*)gamePT)->unk_0110;
     } else {
         var_v1 = &((Game__00743CD0*)gamePT)->unk_02FC;
     }
 
     ovl_base.unk_10000.unk_00 = var_v1->unk_1818;
-    arg0->unk_08 = SUBMENU_PROGRAM_0;
+    submenu->unk_08 = SUBMENU_PROGRAM_0;
     ovl_base.unk_10670.unk_00 = func;
     ovl_base.unk_10670.unk_04 = func;
     ovl_base.unk_10670.unk_08 = func;
@@ -1545,20 +1545,20 @@ label:
     ovl_base.unk_10670.unk_14 = func;
     ovl_base.unk_10670.unk_26 = temp;
 
-    arg0->unk_2C->unk_106A4 = mSM_return_func;
-    arg0->unk_2C->unk_106A8 = mSM_move_Move;
-    arg0->unk_2C->unk_106AC = mSM_ovl_move_End;
-    arg0->unk_2C->unk_106B0 = mSM_move_chg_base;
-    arg0->unk_2C->unk_106B4 = mSM_set_char_matrix;
-    arg0->unk_2C->unk_106B8 = mSM_cbuf_copy;
-    arg0->unk_2C->unk_106BC = mSM_set_drawMode;
-    arg0->unk_2C->unk_106C0 = mSM_draw_item;
-    arg0->unk_2C->unk_106C4 = mSM_draw_mail;
-    arg0->unk_2C->unk_106C8 = mSM_setup_view;
-    arg0->unk_2C->unk_106CC = func_8085D43C_jp;
+    submenu->unk_2C->returnFunc = mSM_return_func;
+    submenu->unk_2C->moveMove = mSM_move_Move;
+    submenu->unk_2C->moveEnd = mSM_ovl_move_End;
+    submenu->unk_2C->moveChgBase = mSM_move_chg_base;
+    submenu->unk_2C->setCharMatrix = mSM_set_char_matrix;
+    submenu->unk_2C->cbufCopy = mSM_cbuf_copy;
+    submenu->unk_2C->setDrawMode = mSM_set_drawMode;
+    submenu->unk_2C->drawItem = mSM_draw_item;
+    submenu->unk_2C->drawMail = mSM_draw_mail;
+    submenu->unk_2C->setupView = mSM_setup_view;
+    submenu->unk_2C->unk_106CC = func_8085D43C_jp;
 
-    mSM_set_proc(arg0);
-    arg0->move = mSM_menu_ovl_move;
-    arg0->draw = mSM_menu_ovl_draw;
-    mSM_menu_ovl_move(arg0);
+    mSM_set_proc(submenu);
+    submenu->move = mSM_menu_ovl_move;
+    submenu->draw = mSM_menu_ovl_draw;
+    mSM_menu_ovl_move(submenu);
 }
