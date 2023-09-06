@@ -61,7 +61,7 @@ s32 SubmenuArea_IsPlayer(void) {
 #ifdef NON_MATCHING
 // regalloc
 void mSM_load_player_anime(Game_Play* game_play) {
-    Game_Play_unk_0110* var_s4;
+    Game_Play_unk_0110_unk_0000* var_s4;
     s32 var_s0;
     s32 var_s3;
     Player* temp_v0;
@@ -72,7 +72,7 @@ void mSM_load_player_anime(Game_Play* game_play) {
         return;
     }
 
-    var_s4 = game_play->unk_0110;
+    var_s4 = game_play->unk_0110.unk_0000;
     var_s4 += mSc_bank_regist_check(var_s4, 9);
 
     for (var_s3 = 0; var_s3 < 2; var_s3++, var_s4++) {
@@ -102,7 +102,7 @@ void mSM_load_player_anime(Game_Play* game_play);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_load_player_anime.s")
 #endif
 
-void SubmenuArea_DoLink(SubmenuArea* area, mSM* submenu, SubmenuAreaIndex index) {
+void SubmenuArea_DoLink(SubmenuArea* area, Submenu* submenu, SubmenuAreaIndex index) {
     area->allocatedRamAddr = D_8010DCE0_jp;
 
     if (index == SUBMENU_AREA_INDEX_PLAYER) {
@@ -130,7 +130,7 @@ void SubmenuArea_DoLink(SubmenuArea* area, mSM* submenu, SubmenuAreaIndex index)
         (void*)((uintptr_t)area->allocatedRamAddr + ALIGN64((uintptr_t)area->vramEnd - (uintptr_t)area->vramStart));
 }
 
-void SubmenuArea_DoUnlink(SubmenuArea* area, mSM* submenu) {
+void SubmenuArea_DoUnlink(SubmenuArea* area, Submenu* submenu) {
     if (area->allocatedRamAddr == NULL) {
         return;
     }
@@ -143,7 +143,7 @@ void SubmenuArea_DoUnlink(SubmenuArea* area, mSM* submenu) {
     SubmenuArea_visit = NULL;
 }
 
-s32 mSM_ovlptr_dllcnv_sub(void* vram, SubmenuArea* area, mSM* submenu) {
+s32 mSM_ovlptr_dllcnv_sub(void* vram, SubmenuArea* area, Submenu* submenu) {
     SubmenuAreaIndex index;
     s32 len = SUBMENU_AREA_INDEX_MAX;
 
@@ -157,7 +157,7 @@ s32 mSM_ovlptr_dllcnv_sub(void* vram, SubmenuArea* area, mSM* submenu) {
     return 0;
 }
 
-void* mSM_ovlptr_dllcnv(void* vram, mSM* submenu) {
+void* mSM_ovlptr_dllcnv(void* vram, Submenu* submenu) {
     SubmenuArea* area = SubmenuArea_visit;
 
     if (area == NULL) {
@@ -295,7 +295,7 @@ dummy_label_255895:
     fault_AddressConverterAddClient(&B_80144680_jp, func_800C497C_jp, NULL);
 }
 
-void mSM_submenu_ovlptr_cleanup(mSM* submenu) {
+void mSM_submenu_ovlptr_cleanup(Submenu* submenu) {
     fault_RemoveClient(&B_80144670_jp);
     fault_AddressConverterRemoveClient(&B_80144680_jp);
     if (SubmenuArea_visit != NULL) {
@@ -308,7 +308,7 @@ void mSM_submenu_ovlptr_cleanup(mSM* submenu) {
     D_8010DCE4_jp = 0;
 }
 
-void load_player(mSM* submenu) {
+void load_player(Submenu* submenu) {
     SubmenuArea* playerActorOvl = &SubmenuArea_dlftbl[SUBMENU_AREA_INDEX_PLAYER];
 
     if (SubmenuArea_visit == playerActorOvl) {
@@ -322,8 +322,8 @@ void load_player(mSM* submenu) {
     SubmenuArea_DoLink(playerActorOvl, submenu, SUBMENU_AREA_INDEX_PLAYER);
 }
 
-void mSM_submenu_ct(mSM* submenu) {
-    bzero(submenu, sizeof(mSM));
+void mSM_submenu_ct(Submenu* submenu) {
+    bzero(submenu, sizeof(Submenu));
 
     submenu->moveProcIndex = MSM_MOVE_PROC_WAIT;
     submenu->unk_20 = 0;
@@ -333,22 +333,22 @@ void mSM_submenu_ct(mSM* submenu) {
         common_data.unk_104AD = 0;
     }
 
-    submenu->play = (void*)none_proc1;
+    submenu->move = (void*)none_proc1;
     submenu->draw = (void*)none_proc1;
 }
 
-void mSM_submenu_dt(UNUSED mSM* submenu) {
+void mSM_submenu_dt(UNUSED Submenu* submenu) {
 }
 
-void mSM_open_submenu(mSM* submenu, SubmenuProgramId programId, s32 arg2, s32 arg3) {
+void mSM_open_submenu(Submenu* submenu, SubmenuProgramId programId, s32 arg2, s32 arg3) {
     mSM_open_submenu_new2(submenu, programId, arg2, arg3, 0, 0);
 }
 
-void mSM_open_submenu_new(mSM* submenu, SubmenuProgramId programId, s32 arg2, s32 arg3, s32 arg4) {
+void mSM_open_submenu_new(Submenu* submenu, SubmenuProgramId programId, s32 arg2, s32 arg3, s32 arg4) {
     mSM_open_submenu_new2(submenu, programId, arg2, arg3, arg4, 0);
 }
 
-void mSM_open_submenu_new2(mSM* submenu, SubmenuProgramId programId, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+void mSM_open_submenu_new2(Submenu* submenu, SubmenuProgramId programId, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
     submenu->programId = programId;
     submenu->unk_10 = arg2;
     submenu->unk_14 = arg3;
@@ -374,7 +374,7 @@ void mSM_Reset_player_btn_type2(Game_Play* game_play) {
 }
 
 void mSM_submenu_ctrl(Game_Play* game_play) {
-    mSM* submenu = &game_play->submenu;
+    Submenu* submenu = &game_play->submenu;
 
     if ((game_play->submenu.moveProcIndex != MSM_MOVE_PROC_WAIT) || (game_play->unk_1EE0 != 0) ||
         (game_play->unk_1EE3 != 0)) {
@@ -430,7 +430,7 @@ void mSM_submenu_ctrl(Game_Play* game_play) {
     }
 }
 
-void mSM_move_Wait(mSM* submenu) {
+void mSM_move_Wait(Submenu* submenu) {
     if (submenu->unk_20 != 0) {
         submenu->unk_20--;
     }
@@ -440,13 +440,13 @@ void mSM_move_Wait(mSM* submenu) {
     }
 }
 
-void mSM_move_PREWait(mSM* submenu) {
+void mSM_move_PREWait(Submenu* submenu) {
     if (submenu->unk_00 > 2) {
         submenu->moveProcIndex = MSM_MOVE_PROC_LINKWAIT;
     }
 }
 
-void mSM_move_LINKWait(mSM* submenu) {
+void mSM_move_LINKWait(Submenu* submenu) {
     SubmenuArea* submenuOvl = &SubmenuArea_dlftbl[SUBMENU_AREA_INDEX_SUBMENU];
 
     if (SubmenuArea_visit == submenuOvl) {
@@ -458,7 +458,7 @@ void mSM_move_LINKWait(mSM* submenu) {
     }
     SubmenuArea_DoLink(submenuOvl, submenu, SUBMENU_AREA_INDEX_SUBMENU);
 
-    submenu->play = mSM_ovlptr_dllcnv(mSM_menu_ovl_init, submenu);
+    submenu->move = mSM_ovlptr_dllcnv(mSM_menu_ovl_init, submenu);
     submenu->draw = (void*)none_proc1;
     submenu->moveProcIndex = MSM_MOVE_PROC_PLAY;
     submenu->unk_DC = 1;
@@ -480,20 +480,20 @@ void mSM_move_LINKWait(mSM* submenu) {
     }
 }
 
-void mSM_move_Play(mSM* submenu) {
-    submenu->play(submenu);
+void mSM_move_Play(Submenu* submenu) {
+    submenu->move(submenu);
 }
 
 #ifdef NON_MATCHING
 // likely branch instead of normal branch
-void mSM_move_End(mSM* submenu) {
+void mSM_move_End(Submenu* submenu) {
     UNUSED s32 pad;
     Game_Play* sp28;
     UNK_TYPE sp24;
     UNUSED s32 sp20[1];
 
     sp28 = (Game_Play*)gamePT;
-    submenu->play(submenu);
+    submenu->move(submenu);
     submenu->moveProcIndex = MSM_MOVE_PROC_WAIT;
     submenu->programId = SUBMENU_PROGRAM_0;
     submenu->unk_20 = 2;
@@ -507,7 +507,7 @@ void mSM_move_End(mSM* submenu) {
 
     sp24 = mMsg_Get_base_window_p();
     submenu->unk_00 = 0;
-    mSc_dmacopy_all_exchange_bank(sp28->unk_0110);
+    mSc_dmacopy_all_exchange_bank(sp28->unk_0110.unk_0000);
     SubmenuArea_DoUnlink(SubmenuArea_dlftbl, submenu);
     load_player(submenu);
     mSM_load_player_anime(sp28);
@@ -524,11 +524,11 @@ void mSM_move_End(mSM* submenu) {
     mMsg_sound_spec_change_voice(sp24);
 }
 #else
-void mSM_move_End(mSM* submenu);
+void mSM_move_End(Submenu* submenu);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_move_End.s")
 #endif
 
-typedef void (*MoveProcFunc)(mSM*);
+typedef void (*MoveProcFunc)(Submenu*);
 
 MoveProcFunc move_proc_616[MSM_MOVE_PROC_MAX] = {
     mSM_move_Wait,     // MSM_MOVE_PROC_WAIT
@@ -538,11 +538,11 @@ MoveProcFunc move_proc_616[MSM_MOVE_PROC_MAX] = {
     mSM_move_End,      // MSM_MOVE_PROC_END
 };
 
-void mSM_submenu_move(mSM* submenu) {
+void mSM_submenu_move(Submenu* submenu) {
     move_proc_616[submenu->moveProcIndex](submenu);
 }
 
-void mSM_submenu_draw(mSM* submenu, struct Game_Play* game_play) {
+void mSM_submenu_draw(Submenu* submenu, struct Game_Play* game_play) {
     SubmenuArea* submenuOvl = &SubmenuArea_dlftbl[SUBMENU_AREA_INDEX_SUBMENU];
 
     if ((submenu->unk_00 >= 3) && (submenu->moveProcIndex == 3) && (submenuOvl == SubmenuArea_visit)) {

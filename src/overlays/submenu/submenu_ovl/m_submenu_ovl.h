@@ -7,15 +7,15 @@
 
 struct GraphicsContext;
 struct Game_Play;
-struct mSM;
+struct Submenu;
 struct PreRender;
 
 // TODO: Consider merging this two typedefs into one
-typedef void (*struct_8085E4D0_unk_10)(struct mSM*);
-typedef void (*struct_8085E4D0_unk_18)(struct mSM*);
+typedef void (*struct_8085E4D0_unk_10)(struct Submenu*);
+typedef void (*struct_8085E4D0_unk_18)(struct Submenu*);
 
-typedef void (*struct_8085E9B0_unk_10670_unk_00)(struct mSM*);
-typedef void (*struct_8085E9B0_unk_10670_unk_04)(struct mSM*, struct Game_Play*);
+typedef void (*struct_8085E9B0_unk_10670_unk_00)(struct Submenu*);
+typedef void (*struct_8085E9B0_unk_10670_unk_04)(struct Submenu*, struct Game_Play*);
 
 typedef struct struct_8085E4D0 {
     /* 0x00 */ RomOffset vromStart;
@@ -123,17 +123,17 @@ typedef struct struct_8085E9B0_unk_10670 {
     /* 0x2C */ f32 unk_2C;
 } struct_8085E9B0_unk_10670; // size >= 0x30
 
-typedef void (*struct_8085E9B0_unk_106A4)(struct mSM *, struct_mSM_return_func_arg1 *);
-typedef void (*struct_8085E9B0_unk_106A8)(struct mSM *, struct_mSM_move_Move_arg1 *);
-typedef void (*struct_8085E9B0_unk_106AC)(struct mSM *, struct_mSM_return_func_arg1 *);
+typedef void (*struct_8085E9B0_unk_106A4)(struct Submenu *, struct_mSM_return_func_arg1 *);
+typedef void (*struct_8085E9B0_unk_106A8)(struct Submenu *, struct_mSM_move_Move_arg1 *);
+typedef void (*struct_8085E9B0_unk_106AC)(struct Submenu *, struct_mSM_return_func_arg1 *);
 typedef void (*struct_8085E9B0_unk_106B0)(struct_mSM_move_chg_base_arg0 *, u32);
 typedef void (*struct_8085E9B0_unk_106B4)(struct GraphicsContext*);
 typedef void (*struct_8085E9B0_unk_106B8)(struct GraphicsContext*, struct PreRender*, s32, s32, s32);
 typedef void (*struct_8085E9B0_unk_106BC)(struct GraphicsContext*, struct struct_func_8085C20C_jp_arg1*, f32, f32, s16);
 typedef void (*struct_8085E9B0_unk_106C0)(struct GraphicsContext*, f32, f32, f32, u16, s32, s32, s32, s32);
 typedef void (*struct_8085E9B0_unk_106C4)(struct GraphicsContext*, f32, f32, f32, struct_func_8085CE18_jp_arg4*, s32, s32);
-typedef void (*struct_8085E9B0_unk_106C8)(struct mSM*, struct GraphicsContext*, s32);
-typedef void (*struct_8085E9B0_unk_106CC)(struct mSM*, void**, struct_func_8085D43C_jp_arg2*);
+typedef void (*struct_8085E9B0_unk_106C8)(struct Submenu*, struct GraphicsContext*, s32);
+typedef void (*struct_8085E9B0_unk_106CC)(struct Submenu*, void**, struct_func_8085D43C_jp_arg2*);
 
 typedef struct struct_8085E9B0 {
     /* 0x00000 */ UNK_TYPE1 unk_00000[0x10000];
@@ -158,6 +158,6 @@ typedef struct struct_8085E9B0 {
     /* 0x1072C */ Mtx* unk_1072C;
 } struct_8085E9B0; // size = 0x10730
 
-void mSM_menu_ovl_init(struct mSM* arg0);
+void mSM_menu_ovl_init(struct Submenu* arg0);
 
 #endif

@@ -4,9 +4,9 @@
 #include "ultra64.h"
 #include "unk.h"
 
-struct mSM;
+struct Submenu;
 
-void mHD_hand_ovl_construct(struct mSM* arg0);
-void mHD_hand_ovl_destruct(struct mSM* arg0);
+void mHD_hand_ovl_construct(struct Submenu* arg0);
+void mHD_hand_ovl_destruct(struct Submenu* arg0);
 
 #endif

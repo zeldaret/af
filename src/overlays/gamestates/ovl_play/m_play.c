@@ -455,7 +455,7 @@ void Game_play_move_fbdemo_not_move(Game_Play* game_play) {
     game_play->state.unk_9C = 4;
     mDemo_stock_clear();
     game_play->state.unk_9C = 5;
-    mSc_dmacopy_data_bank(game_play->unk_0110);
+    mSc_dmacopy_data_bank(game_play->unk_0110.unk_0000);
     game_play->state.unk_9C = 6;
     mSM_submenu_move(&game_play->submenu);
     if ((game_play->submenu.moveProcIndex == MSM_MOVE_PROC_WAIT) && (REGADDR(IREG, 0x48) == 0)) {
@@ -477,13 +477,13 @@ void Game_play_move_fbdemo_not_move(Game_Play* game_play) {
 }
 
 void Game_play_move(Game_Play* game_play) {
-    Game_Play_unk_0110* p = game_play->unk_0110;
+    Game_Play_unk_0110* p = &game_play->unk_0110;
     s32 var_v1;
 
     game_play->state.unk_9D = 0x8D;
     game_play->state.unk_9C = 1;
     Game_play_Reset_destiny();
-    gSegments[4] = (uintptr_t)OS_K0_TO_PHYSICAL(p->segment);
+    gSegments[4] = (uintptr_t)OS_K0_TO_PHYSICAL(p->unk_0000[0].segment);
     gSegments[2] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_010C);
     game_play->state.unk_9C = 2;
 
@@ -535,7 +535,7 @@ void Game_play_move(Game_Play* game_play) {
 }
 
 void func_80803810_jp(Game_Play* game_play, GraphicsContext* gfxCtx) {
-    void* temp_v0 = game_play->unk_0110[0].segment;
+    void* temp_v0 = game_play->unk_0110.unk_0000[0].segment;
 
     gSegments[4] = (uintptr_t)OS_K0_TO_PHYSICAL(temp_v0);
     gSegments[2] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_010C);
@@ -825,12 +825,12 @@ void Gameplay_Scene_Init(Game_Play* game_play) {
     game_play->unk_1EA6 = 0;
     game_play->unk_1EA7 = 0;
     game_play->unk_1EB8 = 0;
-    mSc_data_bank_ct(game_play, game_play->unk_0110);
+    mSc_data_bank_ct(game_play, game_play->unk_0110.unk_0000);
     Global_light_ct(&game_play->glight);
     Door_info_ct(&game_play->unk_1E10);
     common_data_clear();
     Scene_ct(game_play, game_play->unk_010C);
-    mSc_decide_exchange_bank(game_play->unk_0110);
+    mSc_decide_exchange_bank(game_play->unk_0110.unk_0000);
     func_808041A4_jp(game_play);
 }
 

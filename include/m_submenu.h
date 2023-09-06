@@ -9,7 +9,7 @@
 #include "unk.h"
 
 struct Game_Play;
-struct mSM;
+struct Submenu;
 struct struct_8085E9B0;
 
 typedef enum mSMMoveProcIndex {
@@ -69,10 +69,10 @@ typedef enum SubmenuProgramId {
     /* 24 */ SUBMENU_PROGRAM_MAX,
 } SubmenuProgramId;
 
-typedef void (*mSM_play)(struct mSM*);
-typedef void (*mSM_draw)(struct mSM*, struct Game_Play*);
+typedef void (*SubmenuMoveFunc)(struct Submenu*);
+typedef void (*SubmenuDrawFunc)(struct Submenu*, struct Game_Play*);
 
-typedef struct mSM {
+typedef struct Submenu {
     /* 0x00 */ s32 unk_00;
     /* 0x04 */ SubmenuProgramId programId;
     /* 0x08 */ SubmenuProgramId unk_08;
@@ -85,8 +85,8 @@ typedef struct mSM {
     /* 0x24 */ void* linkedAllocStart;
     /* 0x28 */ void* linkedAllocEnd;
     /* 0x2C */ struct struct_8085E9B0* unk_2C;
-    /* 0x30 */ mSM_play play; // name based on mSM_move_Play, consider renaming
-    /* 0x34 */ mSM_draw draw;
+    /* 0x30 */ SubmenuMoveFunc move;
+    /* 0x34 */ SubmenuDrawFunc draw;
     /* 0x38 */ mMl mail;
     /* 0xDC */ u8 unk_DC;
     /* 0xDD */ u8 unk_DD;
@@ -96,26 +96,26 @@ typedef struct mSM {
     /* 0xE2 */ u8 unk_E2;
     /* 0xE3 */ u8 unk_E3;
     /* 0xE4 */ Vec3f unk_E4;
-} mSM; // size = 0xF0
+} Submenu; // size = 0xF0
 
 s32 SubmenuArea_IsPlayer(void);
 
-void* mSM_ovlptr_dllcnv(void* vram, mSM* submenu);
+void* mSM_ovlptr_dllcnv(void* vram, Submenu* submenu);
 
 void mSM_submenu_ovlptr_init(struct Game_Play* game_play);
-void mSM_submenu_ovlptr_cleanup(mSM* submenu);
+void mSM_submenu_ovlptr_cleanup(Submenu* submenu);
 
-void load_player(mSM* submenu);
-void mSM_submenu_ct(mSM* submenu);
-void mSM_submenu_dt(mSM* arg0);
+void load_player(Submenu* submenu);
+void mSM_submenu_ct(Submenu* submenu);
+void mSM_submenu_dt(Submenu* arg0);
 
-void mSM_open_submenu(mSM* submenu, SubmenuProgramId programId, s32 arg2, s32 arg3);
-void mSM_open_submenu_new(mSM* submenu, SubmenuProgramId programId, s32 arg2, s32 arg3, s32 arg4);
-void mSM_open_submenu_new2(mSM* submenu, SubmenuProgramId programId, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
+void mSM_open_submenu(Submenu* submenu, SubmenuProgramId programId, s32 arg2, s32 arg3);
+void mSM_open_submenu_new(Submenu* submenu, SubmenuProgramId programId, s32 arg2, s32 arg3, s32 arg4);
+void mSM_open_submenu_new2(Submenu* submenu, SubmenuProgramId programId, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
 
 void mSM_submenu_ctrl(struct Game_Play* game_play);
-void mSM_submenu_move(mSM* submenu);
-void mSM_submenu_draw(mSM* submenu, struct Game_Play* game_play);
+void mSM_submenu_move(Submenu* submenu);
+void mSM_submenu_draw(Submenu* submenu, struct Game_Play* game_play);
 
 u32 mSM_check_open_inventory_itemlist(InventoryItemList itemlist, s32 arg1) ;
 

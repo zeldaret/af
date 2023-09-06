@@ -4,10 +4,10 @@
 #include "ultra64.h"
 #include "unk.h"
 
-struct mSM;
+struct Submenu;
 
-void func_80882778_jp(struct mSM* arg0);
-void func_80882818_jp(struct mSM* arg0);
-void func_808826B8_jp(struct mSM* arg0);
+void func_80882778_jp(struct Submenu* arg0);
+void func_80882818_jp(struct Submenu* arg0);
+void func_808826B8_jp(struct Submenu* arg0);
 
 #endif
