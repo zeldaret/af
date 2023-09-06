@@ -11,22 +11,21 @@ struct Submenu;
 struct PreRender;
 
 // TODO: Consider merging this two typedefs into one
-typedef void (*struct_8085E4D0_unk_10)(struct Submenu*);
-typedef void (*struct_8085E4D0_unk_18)(struct Submenu*);
+typedef void (*SubmenuProgramOverlayFunc)(struct Submenu*);
 
 typedef void (*struct_8085E9B0_unk_10670_unk_00)(struct Submenu*);
 typedef void (*struct_8085E9B0_unk_10670_unk_04)(struct Submenu*, struct Game_Play*);
 
-typedef struct struct_8085E4D0 {
+typedef struct SubmenuProgramOverlay {
     /* 0x00 */ RomOffset vromStart;
     /* 0x00 */ RomOffset vromEnd;
     /* 0x08 */ void* vramStart;
     /* 0x0C */ void* vramEnd;
-    /* 0x10 */ struct_8085E4D0_unk_10 construct; // name based on original function names
-    /* 0x14 */ struct_8085E4D0_unk_18 destruct;  // name based on original function names
-    /* 0x18 */ struct_8085E4D0_unk_18 set_proc;  // name based on original function names
+    /* 0x10 */ SubmenuProgramOverlayFunc construct; // name based on original function names
+    /* 0x14 */ SubmenuProgramOverlayFunc destruct;  // name based on original function names
+    /* 0x18 */ SubmenuProgramOverlayFunc set_proc;  // name based on original function names
     /* 0x1C */ s32 unk_1C;
-} struct_8085E4D0; // size = 0x20
+} SubmenuProgramOverlay; // size = 0x20
 
 typedef struct struct_mSM_return_func_arg1 {
     /* 0x00 */ UNK_TYPE1 unk_00[0x4];
@@ -86,7 +85,7 @@ typedef struct struct_8085E9B0_unk_10000 {
     /* 0x10008 */ void* unk_08;
     /* 0x1000C */ UNK_TYPE1 unk_0C[0x58];
     /* 0x10064 */ UNK_TYPE4 unk_64;
-    /* 0x10068 */ struct_8085E4D0* unk_68[UNK_SIZE];
+    /* 0x10068 */ SubmenuProgramOverlay* unk_68[UNK_SIZE];
 } struct_8085E9B0_unk_10000; // size >= 0x6C
 
 typedef struct struct_8085E9B0_unk_10088 {

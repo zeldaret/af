@@ -263,12 +263,12 @@ void mSM_submenu_ovlptr_init(Game_Play* game_play) {
 
     var_t0 = MAX(temp8 + temp9, var_t0);
 
-    temp10 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__007829E0));
-    temp1 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__00785700));
-    temp2 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__007908A0));
+    temp10 = ALIGN64(SEGMENT_VRAM_SIZE(hand_ovl));
+    temp1 = ALIGN64(SEGMENT_VRAM_SIZE(inventory_ovl));
+    temp2 = ALIGN64(SEGMENT_VRAM_SIZE(board_ovl));
     temp3 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__0078CB80));
     temp4 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__00799580));
-    temp5 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__007A28F0));
+    temp5 = ALIGN64(SEGMENT_VRAM_SIZE(catalog_ovl));
 
     var_a3 = submenuOvlSize + temp1 + temp_a0 + temp10 + temp2 + temp3 + temp4 + var_t0;
     var_a3 = MAX(submenuOvlSize + temp_a0 + temp10 + temp5 + 0x4000, var_a3);

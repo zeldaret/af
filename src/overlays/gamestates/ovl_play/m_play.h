@@ -51,7 +51,6 @@ typedef struct Game_PlayUnkFuncsStruct {
     /* 0x20 */ Game_PlayUnkFunc_20 unk_20;
 } Game_PlayUnkFuncsStruct; // size = 0x24
 
-
 typedef struct Game_Play_Unk_1EE8 {
     /* 0x000 */ char unk000[0x218];
     /* 0x218 */ s32 unk_218;
@@ -68,9 +67,6 @@ typedef struct Game_Play {
     /* 0x00E8 */ UNK_TYPE1 unk_00E8[0x24];
     /* 0x010C */ void* unk_010C;
     /* 0x0110 */ Game_Play_unk_0110 unk_0110;
-    ///* 0x0164 */ UNK_TYPE1 unk_0164[0x17A8];
-    ///* 0x190C */ s32 unk_190C;
-    ///* 0x1910 */ UNK_TYPE1 unk_1910[0x28];
     /* 0x192C */ UNK_TYPE1 unk_192C[0xC];
     /* 0x1938 */ Game_Play1938 unk_1938;
     /* 0x1A60 */ UNK_TYPE1 unk_1A60[0x138];

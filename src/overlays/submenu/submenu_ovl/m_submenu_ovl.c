@@ -16,18 +16,18 @@
 #include "overlays/gamestates/ovl__00743CD0/_00743CD0.h"
 
 // submenus
-#include "overlays/submenu/ovl__00785700/m_inventory_ovl.h"
+#include "overlays/submenu/inventory_ovl/m_inventory_ovl.h"
 #include "overlays/submenu/ovl__0078A560/ovl__0078A560.h"
 #include "overlays/submenu/ovl__0078AE30/ovl__0078AE30.h"
-#include "overlays/submenu/ovl__0078BFB0/m_ledit_ovl.h"
-#include "overlays/submenu/ovl__00795350/m_map_ovl.h"
+#include "overlays/submenu/ledit_ovl/m_ledit_ovl.h"
+#include "overlays/submenu/map_ovl/m_map_ovl.h"
 #include "overlays/submenu/ovl__00797A50/ovl__00797A50.h"
 #include "overlays/submenu/ovl__0079B120/ovl__0079B120.h"
 #include "overlays/submenu/ovl__0079C020/ovl__0079C020.h"
 #include "overlays/submenu/ovl__0079DA50/ovl__0079DA50.h"
 #include "overlays/submenu/ovl__0078CB80/ovl__0078CB80.h"
 #include "overlays/submenu/ovl__00789B60/ovl__00789B60.h"
-#include "overlays/submenu/ovl__007908A0/m_board_ovl.h"
+#include "overlays/submenu/board_ovl/m_board_ovl.h"
 #include "overlays/submenu/ovl__00792700/ovl__00792700.h"
 #include "overlays/submenu/ovl__00794380/ovl__00794380.h"
 #include "overlays/submenu/ovl__00799580/ovl__00799580.h"
@@ -35,9 +35,9 @@
 #include "overlays/submenu/ovl__0079E430/ovl__0079E430.h"
 #include "overlays/submenu/ovl__0079F810/ovl__0079F810.h"
 #include "overlays/submenu/ovl__007A10E0/ovl__007A10E0.h"
-#include "overlays/submenu/ovl__007A28F0/m_catalog_ovl.h"
+#include "overlays/submenu/catalog_ovl/m_catalog_ovl.h"
 #include "overlays/submenu/ovl__00777AE0/ovl__00777AE0.h"
-#include "overlays/submenu/ovl__007829E0/m_hand_ovl.h"
+#include "overlays/submenu/hand_ovl/m_hand_ovl.h"
 #include "overlays/submenu/ovl__00784FC0/ovl__00784FC0.h"
 
 extern Gfx D_C012370[]; // inv_item_model
@@ -488,19 +488,19 @@ struct_8085DCF8 letter_tex_data_table_837[] = {
             destruct, set_proc, false                                                                                \
     }
 
-struct_8085E4D0 mSM_program_dlftbl[SUBMENU_PROGRAM_MAX] = {
+SubmenuProgramOverlay mSM_program_dlftbl[SUBMENU_PROGRAM_MAX] = {
     // SUBMENU_PROGRAM_0
-    SUBMENU_PROGRAM(ovl__00785700, mIV_inventory_ovl_construct, mIV_inventory_ovl_destruct, mIV_inventory_ovl_set_proc),
+    SUBMENU_PROGRAM(inventory_ovl, mIV_inventory_ovl_construct, mIV_inventory_ovl_destruct, mIV_inventory_ovl_set_proc),
     // SUBMENU_PROGRAM_1
-    SUBMENU_PROGRAM(ovl__00785700, mIV_inventory_ovl_construct, mIV_inventory_ovl_destruct, mIV_inventory_ovl_set_proc),
+    SUBMENU_PROGRAM(inventory_ovl, mIV_inventory_ovl_construct, mIV_inventory_ovl_destruct, mIV_inventory_ovl_set_proc),
     // SUBMENU_PROGRAM_2
     SUBMENU_PROGRAM(ovl__0078A560, func_8088306C_jp, func_808830E8_jp, func_80882FAC_jp),
     // SUBMENU_PROGRAM_3
     SUBMENU_PROGRAM(ovl__0078AE30, func_80884120_jp, func_808841A8_jp, func_80883F5C_jp),
     // SUBMENU_PROGRAM_LEDIT
-    SUBMENU_PROGRAM(ovl__0078BFB0, mLE_ledit_ovl_construct, mLE_ledit_ovl_destruct, mLE_ledit_ovl_set_proc),
+    SUBMENU_PROGRAM(ledit_ovl, mLE_ledit_ovl_construct, mLE_ledit_ovl_destruct, mLE_ledit_ovl_set_proc),
     // SUBMENU_PROGRAM_MAP
-    SUBMENU_PROGRAM(ovl__00795350, mMP_map_ovl_construct, mMP_map_ovl_destruct, mMP_map_ovl_set_proc),
+    SUBMENU_PROGRAM(map_ovl, mMP_map_ovl_construct, mMP_map_ovl_destruct, mMP_map_ovl_set_proc),
     // SUBMENU_PROGRAM_6
     SUBMENU_PROGRAM(ovl__00797A50, func_80895B04_jp, func_80895B9C_jp, func_80895A30_jp),
     // SUBMENU_PROGRAM_7
@@ -514,7 +514,7 @@ struct_8085E4D0 mSM_program_dlftbl[SUBMENU_PROGRAM_MAX] = {
     // SUBMENU_PROGRAM_11
     SUBMENU_PROGRAM(ovl__00789B60, func_80882778_jp, func_80882818_jp, func_808826B8_jp),
     // SUBMENU_PROGRAM_BOARD
-    SUBMENU_PROGRAM(ovl__007908A0, mBD_board_ovl_construct, mBD_board_ovl_destruct, mBD_board_ovl_set_proc),
+    SUBMENU_PROGRAM(board_ovl, mBD_board_ovl_construct, mBD_board_ovl_destruct, mBD_board_ovl_set_proc),
     // SUBMENU_PROGRAM_13
     SUBMENU_PROGRAM(ovl__00792700, func_8088C4A0_jp, func_8088C548_jp, func_8088C344_jp),
     // SUBMENU_PROGRAM_14
@@ -530,11 +530,11 @@ struct_8085E4D0 mSM_program_dlftbl[SUBMENU_PROGRAM_MAX] = {
     // SUBMENU_PROGRAM_19
     SUBMENU_PROGRAM(ovl__007A10E0, func_808A5D7C_jp, func_808A5E14_jp, func_808A5C28_jp),
     // SUBMENU_PROGRAM_CATALOG
-    SUBMENU_PROGRAM(ovl__007A28F0, mCL_catalog_ovl_construct, mCL_catalog_ovl_destruct, mCL_catalog_ovl_set_proc),
+    SUBMENU_PROGRAM(catalog_ovl, mCL_catalog_ovl_construct, mCL_catalog_ovl_destruct, mCL_catalog_ovl_set_proc),
     // SUBMENU_PROGRAM_21
     SUBMENU_PROGRAM(ovl__00777AE0, func_808787A0_jp, func_80878904_jp, func_80878904_jp),
     // SUBMENU_PROGRAM_HAND
-    SUBMENU_PROGRAM(ovl__007829E0, mHD_hand_ovl_construct, mHD_hand_ovl_destruct, mHD_hand_ovl_destruct),
+    SUBMENU_PROGRAM(hand_ovl, mHD_hand_ovl_construct, mHD_hand_ovl_destruct, mHD_hand_ovl_destruct),
     // SUBMENU_PROGRAM_23
     SUBMENU_PROGRAM(ovl__00784FC0, func_8087D180_jp, func_8087D274_jp, func_8087D274_jp),
 };
@@ -1204,35 +1204,35 @@ void func_8085D094_jp(Submenu* submenu) {
     sp2C->unk_04 = 1;
 }
 
-void mSM_ovl_prog_seg(Submenu* submenu, struct_8085E4D0* arg1) {
+void mSM_ovl_prog_seg(Submenu* submenu, SubmenuProgramOverlay* programOvl) {
     struct_8085E9B0_unk_10000* temp = &submenu->unk_2C->unk_10000;
     UNUSED s32 pad;
     void* allocatedVram;
-    struct_8085E4D0_unk_10 construct;
+    SubmenuProgramOverlayFunc construct;
 
-    if (arg1->unk_1C == 1) {
-        struct_8085E4D0_unk_10 new_var = arg1->construct;
+    if (programOvl->unk_1C == true) {
+        SubmenuProgramOverlayFunc new_var = programOvl->construct;
 
         new_var(submenu);
         return;
     }
 
     allocatedVram = submenu->linkedAllocEnd;
-    ovlmgr_Load(arg1->vromStart, arg1->vromEnd, arg1->vramStart, arg1->vramEnd, allocatedVram);
+    ovlmgr_Load(programOvl->vromStart, programOvl->vromEnd, programOvl->vramStart, programOvl->vramEnd, allocatedVram);
     submenu->linkedAllocEnd =
-        (void*)((uintptr_t)allocatedVram + ALIGN64((uintptr_t)arg1->vramEnd - (uintptr_t)arg1->vramStart));
+        (void*)((uintptr_t)allocatedVram + ALIGN64((uintptr_t)programOvl->vramEnd - (uintptr_t)programOvl->vramStart));
 
-    construct = (void*)((uintptr_t)allocatedVram + (uintptr_t)arg1->construct - (uintptr_t)arg1->vramStart);
+    construct = (void*)((uintptr_t)allocatedVram + (uintptr_t)programOvl->construct - (uintptr_t)programOvl->vramStart);
     construct(submenu);
-    arg1->construct = construct;
+    programOvl->construct = construct;
 
     //! FAKE
 dummy_label_595693:
-    arg1->destruct = (void*)((uintptr_t)allocatedVram + (uintptr_t)arg1->destruct - (uintptr_t)arg1->vramStart);
-    arg1->set_proc = (void*)((uintptr_t)allocatedVram + (uintptr_t)arg1->set_proc - (uintptr_t)arg1->vramStart);
+    programOvl->destruct = (void*)((uintptr_t)allocatedVram + (uintptr_t)programOvl->destruct - (uintptr_t)programOvl->vramStart);
+    programOvl->set_proc = (void*)((uintptr_t)allocatedVram + (uintptr_t)programOvl->set_proc - (uintptr_t)programOvl->vramStart);
 
-    arg1->unk_1C = 1;
-    temp->unk_68[temp->unk_64] = arg1;
+    programOvl->unk_1C = true;
+    temp->unk_68[temp->unk_64] = programOvl;
     temp->unk_64++;
 
     //! FAKE

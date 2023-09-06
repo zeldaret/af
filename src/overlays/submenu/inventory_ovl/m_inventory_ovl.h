@@ -1,5 +1,5 @@
-#ifndef OVL__00785700_H
-#define OVL__00785700_H
+#ifndef M_INVENTORY_OVL_H
+#define M_INVENTORY_OVL_H
 
 #include "ultra64.h"
 #include "unk.h"

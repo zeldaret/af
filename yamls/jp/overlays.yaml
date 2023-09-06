@@ -235,7 +235,7 @@
     subsegments:
       - [0x781D60, data, overlays/submenu/ovl__00777AE0/ovl__00777AE0_reloc]
 
-  - name: ovl__007829E0
+  - name: hand_ovl
     type: code
     start: 0x7829E0
     vram: 0x8087A330
@@ -243,24 +243,24 @@
     compress: True
     bss_size: 0x300
     subsegments:
-      - [0x7829E0, asm, overlays/submenu/ovl__007829E0/m_hand_ovl]
-      - [0x784C80, data, overlays/submenu/ovl__007829E0/m_hand_ovl]
-      - [0x784D90, rodata, overlays/submenu/ovl__007829E0/m_hand_ovl]
-      - { start: 0x784DE0, type: bss, vram: 0x8087C730, name: overlays/submenu/ovl__007829E0/m_hand_ovl }
-  - name: ovl__007829E0_reloc
+      - [0x7829E0, asm, overlays/submenu/hand_ovl/m_hand_ovl]
+      - [0x784C80, data, overlays/submenu/hand_ovl/m_hand_ovl]
+      - [0x784D90, rodata, overlays/submenu/hand_ovl/m_hand_ovl]
+      - { start: 0x784DE0, type: bss, vram: 0x8087C730, name: overlays/submenu/hand_ovl/m_hand_ovl }
+  - name: hand_ovl_reloc
     type: code
     start: 0x784DE0
     vram: 0x8087CA30
-    follows_vram: ovl__007829E0
+    follows_vram: hand_ovl
     compress: True
     subsegments:
-      - [0x784DE0, data, overlays/submenu/ovl__007829E0/m_hand_ovl_reloc]
+      - [0x784DE0, data, overlays/submenu/hand_ovl/m_hand_ovl_reloc]
 
   - name: ovl__00784FC0
     type: code
     start: 0x784FC0
     vram: 0x8087CC10
-    follows_vram: ovl__007829E0_reloc
+    follows_vram: hand_ovl_reloc
     compress: True
     bss_size: 0x130
     subsegments:
@@ -277,7 +277,7 @@
     subsegments:
       - [0x785690, data, overlays/submenu/ovl__00784FC0/ovl__00784FC0_reloc]
 
-  - name: ovl__00785700
+  - name: inventory_ovl
     type: code
     start: 0x785700
     vram: 0x8087D480
@@ -285,24 +285,24 @@
     compress: True
     bss_size: 0x5E0
     subsegments:
-      - [0x785700, asm, overlays/submenu/ovl__00785700/m_inventory_ovl]
-      - [0x789430, data, overlays/submenu/ovl__00785700/m_inventory_ovl]
-      - [0x789820, rodata, overlays/submenu/ovl__00785700/m_inventory_ovl]
-      - { start: 0x7898C0, type: bss, vram: 0x80881640, name: overlays/other_ovl/ovl__00785700/m_inventory_ovl }
-  - name: ovl__00785700_reloc
+      - [0x785700, asm, overlays/submenu/inventory_ovl/m_inventory_ovl]
+      - [0x789430, data, overlays/submenu/inventory_ovl/m_inventory_ovl]
+      - [0x789820, rodata, overlays/submenu/inventory_ovl/m_inventory_ovl]
+      - { start: 0x7898C0, type: bss, vram: 0x80881640, name: overlays/other_ovl/inventory_ovl/m_inventory_ovl }
+  - name: inventory_ovl_reloc
     type: code
     start: 0x7898C0
     vram: 0x80881C20
-    follows_vram: ovl__00785700
+    follows_vram: inventory_ovl
     compress: True
     subsegments:
-      - [0x7898C0, data, overlays/submenu/ovl__00785700/m_inventory_ovl_reloc]
+      - [0x7898C0, data, overlays/submenu/inventory_ovl/m_inventory_ovl_reloc]
 
   - name: ovl__00789B60
     type: code
     start: 0x789B60
     vram: 0x80881EC0
-    follows_vram: ovl__00785700_reloc
+    follows_vram: inventory_ovl_reloc
     compress: True
     bss_size: 0x10
     subsegments:
@@ -358,7 +358,7 @@
     subsegments:
       - [0x78BEE0, data, overlays/submenu/ovl__0078AE30/ovl__0078AE30_reloc]
 
-  - name: ovl__0078BFB0
+  - name: ledit_ovl
     type: code
     start: 0x78BFB0
     vram: 0x80884340
@@ -366,24 +366,24 @@
     compress: True
     bss_size: 0x230
     subsegments:
-      - [0x78BFB0, asm, overlays/submenu/ovl__0078BFB0/m_ledit_ovl]
-      - [0x78C990, data, overlays/submenu/ovl__0078BFB0/m_ledit_ovl]
-      - [0x78CAB0, rodata, overlays/submenu/ovl__0078BFB0/m_ledit_ovl]
-      - { start: 0x78CAD0, type: bss, vram: 0x80884E60, name: overlays/submenu/ovl__0078BFB0/m_ledit_ovl }
-  - name: ovl__0078BFB0_reloc
+      - [0x78BFB0, asm, overlays/submenu/ledit_ovl/m_ledit_ovl]
+      - [0x78C990, data, overlays/submenu/ledit_ovl/m_ledit_ovl]
+      - [0x78CAB0, rodata, overlays/submenu/ledit_ovl/m_ledit_ovl]
+      - { start: 0x78CAD0, type: bss, vram: 0x80884E60, name: overlays/submenu/ledit_ovl/m_ledit_ovl }
+  - name: ledit_ovl_reloc
     type: code
     start: 0x78CAD0
     vram: 0x80885090
-    follows_vram: ovl__0078BFB0
+    follows_vram: ledit_ovl
     compress: True
     subsegments:
-      - [0x78CAD0, data, overlays/submenu/ovl__0078BFB0/m_ledit_ovl_reloc]
+      - [0x78CAD0, data, overlays/submenu/ledit_ovl/m_ledit_ovl_reloc]
 
   - name: ovl__0078CB80
     type: code
     start: 0x78CB80
     vram: 0x80885140
-    follows_vram: ovl__0078BFB0_reloc
+    follows_vram: ledit_ovl_reloc
     compress: True
     bss_size: 0x30
     subsegments:
@@ -400,7 +400,7 @@
     subsegments:
       - [0x790530, data, overlays/submenu/ovl__0078CB80/ovl__0078CB80_reloc]
 
-  - name: ovl__007908A0
+  - name: board_ovl
     type: code
     start: 0x7908A0
     vram: 0x80888E90
@@ -408,24 +408,24 @@
     compress: True
     bss_size: 0xC0
     subsegments:
-      - [0x7908A0, asm, overlays/submenu/ovl__007908A0/m_board_ovl]
-      - [0x7921B0, data, overlays/submenu/ovl__007908A0/m_board_ovl]
-      - [0x7925E0, rodata, overlays/submenu/ovl__007908A0/m_board_ovl]
-      - { start: 0x792610, type: bss, vram: 0x8088AC00, name: overlays/submenu/ovl__007908A0/m_board_ovl }
-  - name: ovl__007908A0_reloc
+      - [0x7908A0, asm, overlays/submenu/board_ovl/m_board_ovl]
+      - [0x7921B0, data, overlays/submenu/board_ovl/m_board_ovl]
+      - [0x7925E0, rodata, overlays/submenu/board_ovl/m_board_ovl]
+      - { start: 0x792610, type: bss, vram: 0x8088AC00, name: overlays/submenu/board_ovl/m_board_ovl }
+  - name: board_ovl_reloc
     type: code
     start: 0x792610
     vram: 0x8088ACC0
-    follows_vram: ovl__007908A0
+    follows_vram: board_ovl
     compress: True
     subsegments:
-      - [0x792610, data, overlays/submenu/ovl__007908A0/m_board_ovl_reloc]
+      - [0x792610, data, overlays/submenu/board_ovl/m_board_ovl_reloc]
 
   - name: ovl__00792700
     type: code
     start: 0x792700
     vram: 0x8088ADB0
-    follows_vram: ovl__007908A0_reloc
+    follows_vram: board_ovl_reloc
     compress: True
     bss_size: 0x1A0
     subsegments:
@@ -462,7 +462,7 @@
     subsegments:
       - [0x795290, data, overlays/submenu/ovl__00794380/ovl__00794380_reloc]
 
-  - name: ovl__00795350
+  - name: map_ovl
     type: code
     start: 0x795350
     vram: 0x8088DBD0
@@ -470,24 +470,24 @@
     compress: True
     bss_size: 0x3F80
     subsegments:
-      - [0x795350, asm, overlays/submenu/ovl__00795350/m_map_ovl]
-      - [0x797460, data, overlays/submenu/ovl__00795350/m_map_ovl]
-      - [0x797840, rodata, overlays/submenu/ovl__00795350/m_map_ovl]
-      - { start: 0x797870, type: bss, vram: 0x808900F0, name: overlays/submenu/ovl__00795350/m_map_ovl }
-  - name: ovl__00795350_reloc
+      - [0x795350, asm, overlays/submenu/map_ovl/m_map_ovl]
+      - [0x797460, data, overlays/submenu/map_ovl/m_map_ovl]
+      - [0x797840, rodata, overlays/submenu/map_ovl/m_map_ovl]
+      - { start: 0x797870, type: bss, vram: 0x808900F0, name: overlays/submenu/map_ovl/m_map_ovl }
+  - name: map_ovl_reloc
     type: code
     start: 0x797870
     vram: 0x80894070
-    follows_vram: ovl__00795350
+    follows_vram: map_ovl
     compress: True
     subsegments:
-      - [0x797870, data, overlays/submenu/ovl__00795350/m_map_ovl_reloc]
+      - [0x797870, data, overlays/submenu/map_ovl/m_map_ovl_reloc]
 
   - name: ovl__00797A50
     type: code
     start: 0x797A50
     vram: 0x80894250
-    follows_vram: ovl__00795350_reloc
+    follows_vram: map_ovl_reloc
     compress: True
     bss_size: 0x80
     subsegments:
@@ -669,7 +669,7 @@
     subsegments:
       - [0x7A2820, data, overlays/submenu/ovl__007A10E0/ovl__007A10E0_reloc]
 
-  - name: ovl__007A28F0
+  - name: catalog_ovl
     type: code
     start: 0x7A28F0
     vram: 0x808A6100
@@ -677,24 +677,24 @@
     compress: True
     bss_size: 0x3120
     subsegments:
-      - [0x7A28F0, asm, overlays/submenu/ovl__007A28F0/m_catalog_ovl]
-      - [0x7A5FD0, data, overlays/submenu/ovl__007A28F0/m_catalog_ovl]
-      - [0x7AC190, rodata, overlays/submenu/ovl__007A28F0/m_catalog_ovl]
-      - { start: 0x7AC200, type: bss, vram: 0x808AFA10, name: overlays/submenu/ovl__007A28F0/m_catalog_ovl }
-  - name: ovl__007A28F0_reloc
+      - [0x7A28F0, asm, overlays/submenu/catalog_ovl/m_catalog_ovl]
+      - [0x7A5FD0, data, overlays/submenu/catalog_ovl/m_catalog_ovl]
+      - [0x7AC190, rodata, overlays/submenu/catalog_ovl/m_catalog_ovl]
+      - { start: 0x7AC200, type: bss, vram: 0x808AFA10, name: overlays/submenu/catalog_ovl/m_catalog_ovl }
+  - name: catalog_ovl_reloc
     type: code
     start: 0x7AC200
     vram: 0x808B2B30
-    follows_vram: ovl__007A28F0
+    follows_vram: catalog_ovl
     compress: True
     subsegments:
-      - [0x7AC200, data, overlays/submenu/ovl__007A28F0/m_catalog_ovl_reloc]
+      - [0x7AC200, data, overlays/submenu/catalog_ovl/m_catalog_ovl_reloc]
 
   - name: player_actor
     type: code
     start: 0x7AC420
     vram: 0x808B2D50
-    follows_vram: ovl__007A28F0_reloc
+    follows_vram: catalog_ovl_reloc
     compress: True
     bss_size: 0x0
     subsegments:

@@ -1,5 +1,5 @@
-#ifndef OVL__0078BFB0_H
-#define OVL__0078BFB0_H
+#ifndef M_LEDIT_OVL_H
+#define M_LEDIT_OVL_H
 
 #include "ultra64.h"
 #include "unk.h"

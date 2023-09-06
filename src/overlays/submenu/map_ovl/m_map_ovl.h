@@ -1,5 +1,5 @@
-#ifndef OVL__00795350_H
-#define OVL__00795350_H
+#ifndef M_MAP_OVL_H
+#define M_MAP_OVL_H
 
 #include "ultra64.h"
 #include "unk.h"

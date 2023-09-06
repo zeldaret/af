@@ -1,5 +1,5 @@
-#ifndef OVL__007829E0_H
-#define OVL__007829E0_H
+#ifndef M_HAND_OVL_H
+#define M_HAND_OVL_H
 
 #include "ultra64.h"
 #include "unk.h"

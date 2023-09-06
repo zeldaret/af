@@ -1,5 +1,5 @@
-#ifndef OVL__007A28F0_H
-#define OVL__007A28F0_H
+#ifndef M_CATALOG_OVL_H
+#define M_CATALOG_OVL_H
 
 #include "ultra64.h"
 #include "unk.h"
