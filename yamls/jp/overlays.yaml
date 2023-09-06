@@ -212,9 +212,9 @@
     follows_vram: submenu_ovl
     compress: True
     subsegments:
-      - [0x7778B0, data, overlays/submenu/submenu_ovl/m_submenu_ovlreloc]
+      - [0x7778B0, data, overlays/submenu/submenu_ovl/m_submenu_ovl_reloc]
 
-  - name: ovl__00777AE0
+  - name: tag_ovl
     type: code
     start: 0x777AE0
     vram: 0x8086F310
@@ -222,24 +222,24 @@
     compress: True
     bss_size: 0x120
     subsegments:
-      - [0x777AE0, asm, overlays/submenu/ovl__00777AE0/ovl__00777AE0]
-      - [0x7810F0, data, overlays/submenu/ovl__00777AE0/ovl__00777AE0]
-      - [0x781CC0, rodata, overlays/submenu/ovl__00777AE0/ovl__00777AE0]
-      - { start: 0x781D60, type: bss, vram: 0x80879590, name: overlays/submenu/ovl__00777AE0/ovl__00777AE0 }
-  - name: ovl__00777AE0_reloc
+      - [0x777AE0, asm, overlays/submenu/tag_ovl/m_tag_ovl]
+      - [0x7810F0, data, overlays/submenu/tag_ovl/m_tag_ovl]
+      - [0x781CC0, rodata, overlays/submenu/tag_ovl/m_tag_ovl]
+      - { start: 0x781D60, type: bss, vram: 0x80879590, name: overlays/submenu/tag_ovl/m_tag_ovl }
+  - name: tag_ovl_reloc
     type: code
     start: 0x781D60
     vram: 0x808796B0
-    follows_vram: ovl__00777AE0
+    follows_vram: tag_ovl
     compress: True
     subsegments:
-      - [0x781D60, data, overlays/submenu/ovl__00777AE0/ovl__00777AE0_reloc]
+      - [0x781D60, data, overlays/submenu/tag_ovl/m_tag_ovl_reloc]
 
   - name: hand_ovl
     type: code
     start: 0x7829E0
     vram: 0x8087A330
-    follows_vram: ovl__00777AE0_reloc
+    follows_vram: tag_ovl_reloc
     compress: True
     bss_size: 0x300
     subsegments:
@@ -256,7 +256,7 @@
     subsegments:
       - [0x784DE0, data, overlays/submenu/hand_ovl/m_hand_ovl_reloc]
 
-  - name: ovl__00784FC0
+  - name: haniwaPortrait_ovl
     type: code
     start: 0x784FC0
     vram: 0x8087CC10
@@ -264,24 +264,24 @@
     compress: True
     bss_size: 0x130
     subsegments:
-      - [0x784FC0, asm, overlays/submenu/ovl__00784FC0/ovl__00784FC0]
-      - [0x785670, data, overlays/submenu/ovl__00784FC0/ovl__00784FC0]
-      - [0x785680, rodata, overlays/submenu/ovl__00784FC0/ovl__00784FC0]
-      - { start: 0x785690, type: bss, vram: 0x8087D2E0, name: overlays/submenu/ovl__00784FC0/ovl__00784FC0 }
-  - name: ovl__00784FC0_reloc
+      - [0x784FC0, asm, overlays/submenu/haniwaPortrait_ovl/m_haniwaPortrait_ovl]
+      - [0x785670, data, overlays/submenu/haniwaPortrait_ovl/m_haniwaPortrait_ovl]
+      - [0x785680, rodata, overlays/submenu/haniwaPortrait_ovl/m_haniwaPortrait_ovl]
+      - { start: 0x785690, type: bss, vram: 0x8087D2E0, name: overlays/submenu/haniwaPortrait_ovl/m_haniwaPortrait_ovl }
+  - name: haniwaPortrait_ovl_reloc
     type: code
     start: 0x785690
     vram: 0x8087D410
-    follows_vram: ovl__00784FC0
+    follows_vram: haniwaPortrait_ovl
     compress: True
     subsegments:
-      - [0x785690, data, overlays/submenu/ovl__00784FC0/ovl__00784FC0_reloc]
+      - [0x785690, data, overlays/submenu/haniwaPortrait_ovl/m_haniwaPortrait_ovl_reloc]
 
   - name: inventory_ovl
     type: code
     start: 0x785700
     vram: 0x8087D480
-    follows_vram: ovl__00784FC0_reloc
+    follows_vram: haniwaPortrait_ovl_reloc
     compress: True
     bss_size: 0x5E0
     subsegments:

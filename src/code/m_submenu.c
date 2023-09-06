@@ -249,7 +249,7 @@ void mSM_submenu_ovlptr_init(Game_Play* game_play) {
     size_t temp8 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__0079E430));
     size_t temp9 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__0079F810));
     size_t submenuOvlSize = ALIGN64(SEGMENT_VRAM_SIZE(submenu_ovl));
-    size_t temp_a0 = ALIGN64(SEGMENT_VRAM_SIZE(ovl__00777AE0));
+    size_t temp_a0 = ALIGN64(SEGMENT_VRAM_SIZE(tag_ovl));
     size_t var_t0 = temp6 + temp7;
     size_t temp10;
     size_t temp1;

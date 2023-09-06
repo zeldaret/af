@@ -63,10 +63,7 @@ typedef enum SubmenuProgramId {
     /* 18 */ SUBMENU_PROGRAM_18,
     /* 19 */ SUBMENU_PROGRAM_19,
     /* 20 */ SUBMENU_PROGRAM_CATALOG,
-    /* 21 */ SUBMENU_PROGRAM_21,
-    /* 22 */ SUBMENU_PROGRAM_HAND,
-    /* 23 */ SUBMENU_PROGRAM_23,
-    /* 24 */ SUBMENU_PROGRAM_MAX,
+    /* 21 */ SUBMENU_PROGRAM_MAX,
 } SubmenuProgramId;
 
 typedef void (*SubmenuMoveFunc)(struct Submenu*);

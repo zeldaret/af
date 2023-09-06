@@ -36,9 +36,9 @@
 #include "overlays/submenu/ovl__0079F810/ovl__0079F810.h"
 #include "overlays/submenu/ovl__007A10E0/ovl__007A10E0.h"
 #include "overlays/submenu/catalog_ovl/m_catalog_ovl.h"
-#include "overlays/submenu/ovl__00777AE0/ovl__00777AE0.h"
+#include "overlays/submenu/tag_ovl/m_tag_ovl.h"
 #include "overlays/submenu/hand_ovl/m_hand_ovl.h"
-#include "overlays/submenu/ovl__00784FC0/ovl__00784FC0.h"
+#include "overlays/submenu/haniwaPortrait_ovl/m_haniwaPortrait_ovl.h"
 
 extern Gfx D_C012370[]; // inv_item_model
 
@@ -152,7 +152,6 @@ extern u8 D_0C005620[];
 extern u8 D_0C009460[];
 extern u8 D_0C009720[];
 extern u8 D_0C009740[];
-
 extern u8 D_0C00C800[];
 extern u8 D_0C00C940[];
 extern u8 D_0C00C900[];
@@ -531,12 +530,18 @@ SubmenuProgramOverlay mSM_program_dlftbl[SUBMENU_PROGRAM_MAX] = {
     SUBMENU_PROGRAM(ovl__007A10E0, func_808A5D7C_jp, func_808A5E14_jp, func_808A5C28_jp),
     // SUBMENU_PROGRAM_CATALOG
     SUBMENU_PROGRAM(catalog_ovl, mCL_catalog_ovl_construct, mCL_catalog_ovl_destruct, mCL_catalog_ovl_set_proc),
-    // SUBMENU_PROGRAM_21
-    SUBMENU_PROGRAM(ovl__00777AE0, func_808787A0_jp, func_80878904_jp, func_80878904_jp),
-    // SUBMENU_PROGRAM_HAND
+};
+
+SubmenuProgramOverlay tag_program_dlftbl[] = {
+    SUBMENU_PROGRAM(tag_ovl, mTG_tag_ovl_construct, mTG_tag_ovl_destruct, mTG_tag_ovl_destruct),
+};
+
+SubmenuProgramOverlay hand_program_dlftbl[] = {
     SUBMENU_PROGRAM(hand_ovl, mHD_hand_ovl_construct, mHD_hand_ovl_destruct, mHD_hand_ovl_destruct),
-    // SUBMENU_PROGRAM_23
-    SUBMENU_PROGRAM(ovl__00784FC0, func_8087D180_jp, func_8087D274_jp, func_8087D274_jp),
+};
+
+SubmenuProgramOverlay haniwa_program_dlftbl[] = {
+    SUBMENU_PROGRAM(haniwaPortrait_ovl, mHP_haniwaPortrait_ovl_construct, mHP_haniwaPortrait_ovl_destruct, mHP_haniwaPortrait_ovl_destruct),
 };
 
 u8 flg_table_916[SUBMENU_PROGRAM_MAX] = {
@@ -561,13 +566,9 @@ u8 flg_table_916[SUBMENU_PROGRAM_MAX] = {
     0,                      // SUBMENU_PROGRAM_18
     0x8 | 0x4,              // SUBMENU_PROGRAM_19
     0x8 | 0x4,              // SUBMENU_PROGRAM_CATALOG
-    0,                      // SUBMENU_PROGRAM_21
-    0,                      // SUBMENU_PROGRAM_HAND
-    0,                      // SUBMENU_PROGRAM_23
 };
 
-// Indexed by SubmenuProgramId
-f32 data_table_935[][4] = {
+f32 data_table_935[SUBMENU_PROGRAM_MAX][4] = {
     { 0.0f, 0.0f, 0.0f, 0.0f },     // SUBMENU_PROGRAM_0
     { 300.0f, 0.0f, 75.0f, 0.0f },  // SUBMENU_PROGRAM_1
     { 0.0f, 300.0f, 0.0f, 75.0f },  // SUBMENU_PROGRAM_2
@@ -1247,13 +1248,13 @@ void mSM_set_other_seg(Submenu* submenu) {
         func_8085D094_jp(submenu);
     }
     if (var_v1 & 4) {
-        mSM_ovl_prog_seg(submenu, &mSM_program_dlftbl[SUBMENU_PROGRAM_21]);
+        mSM_ovl_prog_seg(submenu, tag_program_dlftbl);
     }
     if (var_v1 & 8) {
-        mSM_ovl_prog_seg(submenu, &mSM_program_dlftbl[SUBMENU_PROGRAM_HAND]);
+        mSM_ovl_prog_seg(submenu, hand_program_dlftbl);
     }
     if (var_v1 & 0x10) {
-        mSM_ovl_prog_seg(submenu, &mSM_program_dlftbl[SUBMENU_PROGRAM_23]);
+        mSM_ovl_prog_seg(submenu, haniwa_program_dlftbl);
     }
 }
 
