@@ -841,10 +841,10 @@ mSM_menu_ovl_init = 0x8085DAEC; // type:func
 
 viewport_data_621 = 0x8085DCD0; //
 light_data_622 = 0x8085DCE0; // size:0x18 type:Lights1
-D_8085DCF8_jp = 0x8085DCF8; //
-D_8085DD00_jp = 0x8085DD00; //
-D_8085DD08_jp = 0x8085DD08; //
-D_8085DD10_jp = 0x8085DD10; //
+unknown_tex_data_761 = 0x8085DCF8; //
+haniwa_tex_data_759 = 0x8085DD00; //
+fossil_tex_data_760 = 0x8085DD08; //
+present_tex_data_762 = 0x8085DD10; //
 D_8085DD38_jp = 0x8085DD38; //
 D_8085DD40_jp = 0x8085DD40; //
 D_8085DD48_jp = 0x8085DD48; //

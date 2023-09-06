@@ -49,53 +49,80 @@ typedef struct struct_8085DCF8 {
     /* 0x4 */ TexturePtr tex;
 } struct_8085DCF8; // size = 0x8
 
-// maybe same struct as struct_8085DCF8?
-typedef struct struct_8085E4A0 {
-    /* 0x0 */ TexturePtr pal;
-    /* 0x4 */ TexturePtr tex;
-} struct_8085E4A0; // size = 0x8
-
 Vp viewport_data_621 = { { { 0, 0, 0x1FF, 0 }, { 0, 0, 0x1FF, 0 } } };
 
 Lights1 light_data_622 = gdSPDefLights1(0x69, 0x5A, 0x5A, 0xFF, 0xFF, 0xF5, 0, 0x3C, 0x3C);
 
-struct_8085DCF8 D_8085DCF8_jp[] = {
-    { 0x0C00A620, 0x0C00A6E0 },
+extern u8 D_0C00A620[]; // inv_mwin_unknown_pal
+extern u8 D_0C00A6E0[]; // inv_mwin_unknown_tex
+
+extern u8 D_0C00B720[]; // inv_mwin_haniwa_pal
+extern u8 D_0C00B740[]; // inv_mwin_haniwa_tex
+
+extern u8 D_0C00DD40[]; // inv_mwin_kaseki2_pal
+extern u8 D_0C00DD80[]; // inv_mwin_kaseki2_tex
+
+struct_8085DCF8 unknown_tex_data_761[] = {
+    { D_0C00A620, D_0C00A6E0 },
 };
-struct_8085DCF8 D_8085DD00_jp[] = {
-    { 0x0C00B720, 0x0C00B740 },
+
+struct_8085DCF8 haniwa_tex_data_759[] = {
+    { D_0C00B720, D_0C00B740 },
 };
-struct_8085DCF8 D_8085DD08_jp[] = {
-    { 0x0C00DD40, 0x0C00DD80 },
+
+struct_8085DCF8 fossil_tex_data_760[] = {
+    { D_0C00DD40, D_0C00DD80 },
 };
-struct_8085DCF8 D_8085DD10_jp[] = {
-    { 0x0C010FA0, 0x0C010FC0 },
-    { 0x0C012400, 0x0C012420 },
-    { 0x0C012620, 0x0C0126A0 },
-    { 0x0C012640, 0x0C0128A0 },
-    { 0x0C012660, 0x0C012AA0 },
+
+extern u8 D_0C010FA0[]; // inv_mwin_pbox2_pal
+extern u8 D_0C010FC0[]; // inv_mwin_pbox_tex
+extern u8 D_0C012400[]; // inv_mwin_pbox2_pal
+extern u8 D_0C012420[]; // inv_mwin_pbox_tex
+extern u8 D_0C012620[]; // inv_mwin_pbox1_tex_rgb_ci4_pal
+extern u8 D_0C0126A0[]; // inv_mwin_pbox1_tex_rgb_ci4
+extern u8 D_0C012640[]; // inv_mwin_pbox1_tex_rgb_ci4_pal
+extern u8 D_0C0128A0[]; // inv_mwin_pbox1_tex_rgb_ci4
+extern u8 D_0C012660[]; // inv_mwin_pbox2_tex_rgb_ci4_pal
+extern u8 D_0C012AA0[]; // inv_mwin_pbox2_tex_rgb_ci4
+
+struct_8085DCF8 present_tex_data_762[] = {
+    { D_0C010FA0, D_0C010FC0 },
+    { D_0C012400, D_0C012420 },
+    { D_0C012620, D_0C0126A0 },
+    { D_0C012640, D_0C0128A0 },
+    { D_0C012660, D_0C012AA0 },
 };
+
+extern u8 D_0C012680[]; // inv_mwin_pbox5_tex_rgb_ci4_pal
+extern u8 D_0C012CA0[]; // inv_mwin_pbox5_tex_rgb_ci4
+
+// part of present_tex_data_762?
 struct_8085DCF8 D_8085DD38_jp[] = {
-    { 0x0C012680, 0x0C012CA0 },
+    { D_0C012680, D_0C012CA0 },
 };
+
 struct_8085DCF8 D_8085DD40_jp[] = {
     { 0x0C00B2E0, 0x0C00B300 },
 };
+
 struct_8085DCF8 D_8085DD48_jp[] = {
     { 0x0C010780, 0x0C0109A0 },
     { 0x0C010780, 0x0C010BA0 },
     { 0x0C010780, 0x0C010DA0 },
     { 0x0C010780, 0x0C0107A0 },
 };
+
 struct_8085DCF8 D_8085DD68_jp[] = {
     { 0x0C00F940, 0x0C00FF60 },
     { 0x0C00F8E0, 0x0C00F960 },
     { 0x0C00F900, 0x0C00FB60 },
     { 0x0C00F920, 0x0C00FD60 },
 };
+
 struct_8085DCF8 D_8085DD88_jp[] = {
     { 0x0C00A680, 0x0C00ACE0 },
 };
+
 struct_8085DCF8 D_8085DD90_jp[] = {
     { 0x0C004EA0, 0x0C005860 },
     { 0x0C004EE0, 0x0C005A60 },
@@ -130,9 +157,11 @@ struct_8085DCF8 D_8085DD90_jp[] = {
     { 0x0C0054E0, 0x0C008A60 },
     { 0x0C005620, 0x0C009460 },
 };
+
 struct_8085DCF8 D_8085DE90_jp[] = {
     { 0x0C009720, 0x0C009740 },
 };
+
 struct_8085DCF8 D_8085DE98_jp[] = {
     { 0x0C00EC60, 0x0C00F0E0 },
     { 0x0C009720, 0x0C009740 },
@@ -165,12 +194,15 @@ struct_8085DCF8 D_8085DE98_jp[] = {
     { 0x0C010FA0, 0x0C010FC0 },
     { 0x0C010FA0, 0x0C010FC0 },
 };
+
 struct_8085DCF8 D_8085DF88_jp[] = {
     { 0x0C00A6A0, 0x0C00AEE0 },
 };
+
 struct_8085DCF8 D_8085DF90_jp[] = {
     { 0x0C00A6C0, 0x0C00B0E0 },
 };
+
 struct_8085DCF8 D_8085DF98_jp[] = {
     { 0x0C00E180, 0x0C00E220 },
     { 0x0C00E200, 0x0C00EA20 },
@@ -180,6 +212,7 @@ struct_8085DCF8 D_8085DF98_jp[] = {
     { 0x0C00B500, 0x0C00B520 },
     { 0x0C009940, 0x0C009960 },
 };
+
 struct_8085DCF8 D_8085DFD0_jp[] = {
     { 0x0C00A640, 0x0C00A8E0 },
     { 0x0C00A660, 0x0C00AAE0 },
@@ -192,9 +225,11 @@ struct_8085DCF8 D_8085DFD0_jp[] = {
     { 0x0C00A660, 0x0C00AAE0 },
     { 0x0C00A660, 0x0C00AAE0 },
 };
+
 struct_8085DCF8 D_8085E020_jp[] = {
     { 0x0C00C3E0, 0x0C00C600 },
 };
+
 struct_8085DCF8 D_8085E028_jp[] = {
     { 0x0C009C00, 0x0C00A420 },
     { 0x0C009C00, 0x0C00A220 },
@@ -293,6 +328,7 @@ struct_8085DCF8 D_8085E028_jp[] = {
     { 0x0C009700, 0x0C00A420 },
     { 0x0C009700, 0x0C00A420 },
 };
+
 struct_8085DCF8 D_8085E328_jp[] = {
     { 0x0C000660, 0x0C000E60 },
     { 0x0C0006A0, 0x0C001060 },
@@ -327,12 +363,14 @@ struct_8085DCF8 D_8085E328_jp[] = {
     { 0x0C000DE0, 0x0C004A60 },
     { 0x0C000E20, 0x0C004C60 },
 };
+
 struct_8085DCF8 D_8085E428_jp[] = {
     { 0x0C010160, 0x0C010180 },
     { 0x0C010160, 0x0C010380 },
     { 0x0C010160, 0x0C010580 },
     { 0x0C000000, 0x0C000020 },
 };
+
 struct_8085DCF8 D_8085E448_jp[] = {
     { 0x0C00B960, 0x0C00BBC0 },
     { 0x0C000220, 0x0C000240 },
@@ -358,7 +396,7 @@ extern u8 D_0C00ECE0[]; // inv_mwin_mtegami2_tex
 extern u8 D_0C00EC20[]; // inv_mwin_mtegami2_pal
 extern u8 D_0C00EEE0[]; // inv_mwin_pmtegami2_tex
 
-struct_8085E4A0 letter_tex_data_table_837[] = {
+struct_8085DCF8 letter_tex_data_table_837[] = {
     { D_0C00EC60, D_0C00F0E0 },
     { D_0C00EC60, D_0C00F2E0 },
     { D_0C00ECA0, D_0C00F4E0 },
@@ -861,14 +899,14 @@ void mSM_draw_item(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 ar
                 var_a3 = 1;
             }
         } else {
-            var_a1 = &D_8085DD10_jp[arg7];
+            var_a1 = &present_tex_data_762[arg7];
         }
     } else if (((s32)arg4 >= 0x15B0) && ((s32)arg4 < 0x17AC)) {
-        var_a1 = &D_8085DD00_jp;
+        var_a1 = haniwa_tex_data_759;
     } else if (((s32)arg4 >= 0x1E3C) && ((s32)arg4 < 0x1EA0)) {
-        var_a1 = &D_8085DD08_jp;
+        var_a1 = fossil_tex_data_760;
     } else if (((s32)(arg4 & 0xF000) >> 0xC) == 1) {
-        var_a1 = &D_8085DCF8_jp;
+        var_a1 = unknown_tex_data_761;
     } else {
         temp_v0 = mSM_get_groupNo(arg4);
 
@@ -983,7 +1021,7 @@ void mSM_draw_item(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 ar
 // stack issues
 void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_func_8085CE18_jp_arg4* arg4, s32 arg5,
                    s32 arg6) {
-    struct_8085E4A0* temp_a1;
+    struct_8085DCF8* temp_a1;
     s32 var_t0;
     UNUSED s32 pad;
     Gfx* gfx;
