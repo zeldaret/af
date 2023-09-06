@@ -42,38 +42,21 @@
 
 extern Gfx D_C012370[]; // inv_item_model
 
-struct_8085E9B0 ovl_base;
-
-typedef struct struct_8085DCF8 {
-    /* 0x0 */ TexturePtr pal;
-    /* 0x4 */ TexturePtr tex;
-} struct_8085DCF8; // size = 0x8
-
-Vp viewport_data_621 = { { { 0, 0, 0x1FF, 0 }, { 0, 0, 0x1FF, 0 } } };
-
-Lights1 light_data_622 = gdSPDefLights1(0x69, 0x5A, 0x5A, 0xFF, 0xFF, 0xF5, 0, 0x3C, 0x3C);
-
 extern u8 D_0C00A620[]; // inv_mwin_unknown_pal
 extern u8 D_0C00A6E0[]; // inv_mwin_unknown_tex
-
 extern u8 D_0C00B720[]; // inv_mwin_haniwa_pal
 extern u8 D_0C00B740[]; // inv_mwin_haniwa_tex
-
 extern u8 D_0C00DD40[]; // inv_mwin_kaseki2_pal
 extern u8 D_0C00DD80[]; // inv_mwin_kaseki2_tex
-
-struct_8085DCF8 unknown_tex_data_761[] = {
-    { D_0C00A620, D_0C00A6E0 },
-};
-
-struct_8085DCF8 haniwa_tex_data_759[] = {
-    { D_0C00B720, D_0C00B740 },
-};
-
-struct_8085DCF8 fossil_tex_data_760[] = {
-    { D_0C00DD40, D_0C00DD80 },
-};
-
+extern u8 D_0C00EC60[]; // inv_mwin_mtegami_pal
+extern u8 D_0C00F0E0[]; // inv_mwin_mtegami_tex
+extern u8 D_0C00F2E0[]; // inv_mwin_pmtegami_tex
+extern u8 D_0C00ECA0[]; // inv_mwin_otegami_pal
+extern u8 D_0C00F4E0[]; // inv_mwin_otegami_tex
+extern u8 D_0C00F6E0[]; // inv_mwin_potegami_tex
+extern u8 D_0C00EC20[]; // inv_mwin_mtegami2_pal
+extern u8 D_0C00ECE0[]; // inv_mwin_mtegami2_tex
+extern u8 D_0C00EEE0[]; // inv_mwin_pmtegami2_tex
 extern u8 D_0C010FA0[]; // inv_mwin_pbox2_pal
 extern u8 D_0C010FC0[]; // inv_mwin_pbox_tex
 extern u8 D_0C012400[]; // inv_mwin_pbox2_pal
@@ -84,32 +67,14 @@ extern u8 D_0C012640[]; // inv_mwin_pbox1_tex_rgb_ci4_pal
 extern u8 D_0C0128A0[]; // inv_mwin_pbox1_tex_rgb_ci4
 extern u8 D_0C012660[]; // inv_mwin_pbox2_tex_rgb_ci4_pal
 extern u8 D_0C012AA0[]; // inv_mwin_pbox2_tex_rgb_ci4
-
-struct_8085DCF8 present_tex_data_762[] = {
-    { D_0C010FA0, D_0C010FC0 },
-    { D_0C012400, D_0C012420 },
-    { D_0C012620, D_0C0126A0 },
-    { D_0C012640, D_0C0128A0 },
-    { D_0C012660, D_0C012AA0 },
-};
-
 extern u8 D_0C012680[]; // inv_mwin_pbox5_tex_rgb_ci4_pal
 extern u8 D_0C012CA0[]; // inv_mwin_pbox5_tex_rgb_ci4
-
-// part of present_tex_data_762?
-struct_8085DCF8 D_8085DD38_jp[] = {
-    { D_0C012680, D_0C012CA0 },
-};
-
 extern u8 D_0C00B2E0[];
 extern u8 D_0C00B300[];
 extern u8 D_0C010780[];
 extern u8 D_0C0109A0[];
-extern u8 D_0C010780[];
 extern u8 D_0C010BA0[];
-extern u8 D_0C010780[];
 extern u8 D_0C010DA0[];
-extern u8 D_0C010780[];
 extern u8 D_0C0107A0[];
 extern u8 D_0C00F940[];
 extern u8 D_0C00FF60[];
@@ -187,12 +152,7 @@ extern u8 D_0C005620[];
 extern u8 D_0C009460[];
 extern u8 D_0C009720[];
 extern u8 D_0C009740[];
-extern u8 D_0C00EC60[];
-extern u8 D_0C00F0E0[];
-extern u8 D_0C009720[];
-extern u8 D_0C009740[];
-extern u8 D_0C010780[];
-extern u8 D_0C0109A0[];
+
 extern u8 D_0C00C800[];
 extern u8 D_0C00C940[];
 extern u8 D_0C00C900[];
@@ -213,18 +173,13 @@ extern u8 D_0C00C860[];
 extern u8 D_0C00CF40[];
 extern u8 D_0C00C8C0[];
 extern u8 D_0C00D540[];
-extern u8 D_0C010780[];
-extern u8 D_0C0109A0[];
 extern u8 D_0C00B940[];
 extern u8 D_0C00B9C0[];
 extern u8 D_0C00B9A0[];
 extern u8 D_0C00C1C0[];
-extern u8 D_0C00B9A0[];
 extern u8 D_0C00BFC0[];
 extern u8 D_0C00DD60[];
 extern u8 D_0C00DF80[];
-extern u8 D_0C00C3C0[];
-extern u8 D_0C00C400[];
 extern u8 D_0C00C3C0[];
 extern u8 D_0C00C400[];
 extern u8 D_0C0111C0[];
@@ -243,10 +198,6 @@ extern u8 D_0C011220[];
 extern u8 D_0C0118C0[];
 extern u8 D_0C011280[];
 extern u8 D_0C011EC0[];
-extern u8 D_0C010FA0[];
-extern u8 D_0C010FC0[];
-extern u8 D_0C010FA0[];
-extern u8 D_0C010FC0[];
 extern u8 D_0C00A6A0[];
 extern u8 D_0C00AEE0[];
 extern u8 D_0C00A6C0[];
@@ -269,216 +220,25 @@ extern u8 D_0C00A640[];
 extern u8 D_0C00A8E0[];
 extern u8 D_0C00A660[];
 extern u8 D_0C00AAE0[];
-extern u8 D_0C00A660[];
-extern u8 D_0C00AAE0[];
-extern u8 D_0C00A660[];
-extern u8 D_0C00AAE0[];
-extern u8 D_0C00A660[];
-extern u8 D_0C00AAE0[];
-extern u8 D_0C00A660[];
-extern u8 D_0C00AAE0[];
-extern u8 D_0C00A660[];
-extern u8 D_0C00AAE0[];
-extern u8 D_0C00A660[];
-extern u8 D_0C00AAE0[];
-extern u8 D_0C00A660[];
-extern u8 D_0C00AAE0[];
-extern u8 D_0C00A660[];
-extern u8 D_0C00AAE0[];
 extern u8 D_0C00C3E0[];
 extern u8 D_0C00C600[];
 extern u8 D_0C009C00[];
 extern u8 D_0C00A420[];
-extern u8 D_0C009C00[];
 extern u8 D_0C00A220[];
-extern u8 D_0C009C00[];
 extern u8 D_0C009C20[];
-extern u8 D_0C009C00[];
 extern u8 D_0C00A020[];
-extern u8 D_0C009C00[];
-extern u8 D_0C009E20[];
-extern u8 D_0C009C00[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009C00[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009C00[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009B60[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009B60[];
-extern u8 D_0C00A220[];
-extern u8 D_0C009B60[];
-extern u8 D_0C009C20[];
-extern u8 D_0C009B60[];
-extern u8 D_0C00A020[];
-extern u8 D_0C009B60[];
 extern u8 D_0C009E20[];
 extern u8 D_0C009B60[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009B60[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009B60[];
-extern u8 D_0C00A420[];
 extern u8 D_0C009B80[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009B80[];
-extern u8 D_0C00A220[];
-extern u8 D_0C009B80[];
-extern u8 D_0C009C20[];
-extern u8 D_0C009B80[];
-extern u8 D_0C00A020[];
-extern u8 D_0C009B80[];
-extern u8 D_0C009E20[];
-extern u8 D_0C009B80[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009B80[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009B80[];
-extern u8 D_0C00A420[];
 extern u8 D_0C009BA0[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009BA0[];
-extern u8 D_0C00A220[];
-extern u8 D_0C009BA0[];
-extern u8 D_0C009C20[];
-extern u8 D_0C009BA0[];
-extern u8 D_0C00A020[];
-extern u8 D_0C009BA0[];
-extern u8 D_0C009E20[];
-extern u8 D_0C009BA0[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009BA0[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009BA0[];
-extern u8 D_0C00A420[];
 extern u8 D_0C009BC0[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009BC0[];
-extern u8 D_0C00A220[];
-extern u8 D_0C009BC0[];
-extern u8 D_0C009C20[];
-extern u8 D_0C009BC0[];
-extern u8 D_0C00A020[];
-extern u8 D_0C009BC0[];
-extern u8 D_0C009E20[];
-extern u8 D_0C009BC0[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009BC0[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009BC0[];
-extern u8 D_0C00A420[];
 extern u8 D_0C009BE0[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009BE0[];
-extern u8 D_0C00A220[];
-extern u8 D_0C009BE0[];
-extern u8 D_0C009C20[];
-extern u8 D_0C009BE0[];
-extern u8 D_0C00A020[];
-extern u8 D_0C009BE0[];
-extern u8 D_0C009E20[];
-extern u8 D_0C009BE0[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009BE0[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009BE0[];
-extern u8 D_0C00A420[];
 extern u8 D_0C009660[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009660[];
-extern u8 D_0C00A220[];
-extern u8 D_0C009660[];
-extern u8 D_0C009C20[];
-extern u8 D_0C009660[];
-extern u8 D_0C00A020[];
-extern u8 D_0C009660[];
-extern u8 D_0C009E20[];
-extern u8 D_0C009660[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009660[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009660[];
-extern u8 D_0C00A420[];
 extern u8 D_0C009680[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009680[];
-extern u8 D_0C00A220[];
-extern u8 D_0C009680[];
-extern u8 D_0C009C20[];
-extern u8 D_0C009680[];
-extern u8 D_0C00A020[];
-extern u8 D_0C009680[];
-extern u8 D_0C009E20[];
-extern u8 D_0C009680[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009680[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009680[];
-extern u8 D_0C00A420[];
 extern u8 D_0C0096A0[];
-extern u8 D_0C00A420[];
-extern u8 D_0C0096A0[];
-extern u8 D_0C00A220[];
-extern u8 D_0C0096A0[];
-extern u8 D_0C009C20[];
-extern u8 D_0C0096A0[];
-extern u8 D_0C00A020[];
-extern u8 D_0C0096A0[];
-extern u8 D_0C009E20[];
-extern u8 D_0C0096A0[];
-extern u8 D_0C00A420[];
-extern u8 D_0C0096A0[];
-extern u8 D_0C00A420[];
-extern u8 D_0C0096A0[];
-extern u8 D_0C00A420[];
 extern u8 D_0C0096C0[];
-extern u8 D_0C00A420[];
-extern u8 D_0C0096C0[];
-extern u8 D_0C00A220[];
-extern u8 D_0C0096C0[];
-extern u8 D_0C009C20[];
-extern u8 D_0C0096C0[];
-extern u8 D_0C00A020[];
-extern u8 D_0C0096C0[];
-extern u8 D_0C009E20[];
-extern u8 D_0C0096C0[];
-extern u8 D_0C00A420[];
-extern u8 D_0C0096C0[];
-extern u8 D_0C00A420[];
-extern u8 D_0C0096C0[];
-extern u8 D_0C00A420[];
 extern u8 D_0C0096E0[];
-extern u8 D_0C00A420[];
-extern u8 D_0C0096E0[];
-extern u8 D_0C00A220[];
-extern u8 D_0C0096E0[];
-extern u8 D_0C009C20[];
-extern u8 D_0C0096E0[];
-extern u8 D_0C00A020[];
-extern u8 D_0C0096E0[];
-extern u8 D_0C009E20[];
-extern u8 D_0C0096E0[];
-extern u8 D_0C00A420[];
-extern u8 D_0C0096E0[];
-extern u8 D_0C00A420[];
-extern u8 D_0C0096E0[];
-extern u8 D_0C00A420[];
 extern u8 D_0C009700[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009700[];
-extern u8 D_0C00A220[];
-extern u8 D_0C009700[];
-extern u8 D_0C009C20[];
-extern u8 D_0C009700[];
-extern u8 D_0C00A020[];
-extern u8 D_0C009700[];
-extern u8 D_0C009E20[];
-extern u8 D_0C009700[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009700[];
-extern u8 D_0C00A420[];
-extern u8 D_0C009700[];
-extern u8 D_0C00A420[];
 extern u8 D_0C000660[];
 extern u8 D_0C000E60[];
 extern u8 D_0C0006A0[];
@@ -545,9 +305,7 @@ extern u8 D_0C000E20[];
 extern u8 D_0C004C60[];
 extern u8 D_0C010160[];
 extern u8 D_0C010180[];
-extern u8 D_0C010160[];
 extern u8 D_0C010380[];
-extern u8 D_0C010160[];
 extern u8 D_0C010580[];
 extern u8 D_0C000000[];
 extern u8 D_0C000020[];
@@ -557,6 +315,39 @@ extern u8 D_0C000220[];
 extern u8 D_0C000240[];
 extern u8 D_0C000440[];
 extern u8 D_0C000460[];
+
+struct_8085E9B0 ovl_base;
+
+typedef struct struct_8085DCF8 {
+    /* 0x0 */ TexturePtr pal;
+    /* 0x4 */ TexturePtr tex;
+} struct_8085DCF8; // size = 0x8
+
+Vp viewport_data_621 = { { { 0, 0, 0x1FF, 0 }, { 0, 0, 0x1FF, 0 } } };
+
+Lights1 light_data_622 = gdSPDefLights1(0x69, 0x5A, 0x5A, 0xFF, 0xFF, 0xF5, 0, 0x3C, 0x3C);
+
+struct_8085DCF8 unknown_tex_data_761[] = {
+    { D_0C00A620, D_0C00A6E0 },
+};
+
+struct_8085DCF8 haniwa_tex_data_759[] = {
+    { D_0C00B720, D_0C00B740 },
+};
+
+struct_8085DCF8 fossil_tex_data_760[] = {
+    { D_0C00DD40, D_0C00DD80 },
+};
+
+struct_8085DCF8 present_tex_data_762[] = {
+    { D_0C010FA0, D_0C010FC0 }, { D_0C012400, D_0C012420 }, { D_0C012620, D_0C0126A0 },
+    { D_0C012640, D_0C0128A0 }, { D_0C012660, D_0C012AA0 },
+};
+
+// part of present_tex_data_762?
+struct_8085DCF8 D_8085DD38_jp[] = {
+    { D_0C012680, D_0C012CA0 },
+};
 
 struct_8085DCF8 D_8085DD40_jp[] = {
     { D_0C00B2E0, D_0C00B300 },
@@ -581,38 +372,14 @@ struct_8085DCF8 D_8085DD88_jp[] = {
 };
 
 struct_8085DCF8 D_8085DD90_jp[] = {
-    { D_0C004EA0, D_0C005860 },
-    { D_0C004EE0, D_0C005A60 },
-    { D_0C004F20, D_0C005C60 },
-    { D_0C004F60, D_0C005E60 },
-    { D_0C005020, D_0C006460 },
-    { D_0C005160, D_0C006E60 },
-    { D_0C0051A0, D_0C007060 },
-    { D_0C0051E0, D_0C007260 },
-    { D_0C005120, D_0C006C60 },
-    { D_0C004E60, D_0C005660 },
-    { D_0C005220, D_0C007460 },
-    { D_0C004FA0, D_0C006060 },
-    { D_0C004FE0, D_0C006260 },
-    { D_0C005060, D_0C006660 },
-    { D_0C0050A0, D_0C006860 },
-    { D_0C0050E0, D_0C006A60 },
-    { D_0C0052E0, D_0C007A60 },
-    { D_0C005320, D_0C007C60 },
-    { D_0C005360, D_0C007E60 },
-    { D_0C0053E0, D_0C008260 },
-    { D_0C0053A0, D_0C008060 },
-    { D_0C005420, D_0C008460 },
-    { D_0C005460, D_0C008660 },
-    { D_0C0054A0, D_0C008860 },
-    { D_0C0055A0, D_0C009060 },
-    { D_0C0055E0, D_0C009260 },
-    { D_0C005260, D_0C007660 },
-    { D_0C0052A0, D_0C007860 },
-    { D_0C005560, D_0C008E60 },
-    { D_0C005520, D_0C008C60 },
-    { D_0C0054E0, D_0C008A60 },
-    { D_0C005620, D_0C009460 },
+    { D_0C004EA0, D_0C005860 }, { D_0C004EE0, D_0C005A60 }, { D_0C004F20, D_0C005C60 }, { D_0C004F60, D_0C005E60 },
+    { D_0C005020, D_0C006460 }, { D_0C005160, D_0C006E60 }, { D_0C0051A0, D_0C007060 }, { D_0C0051E0, D_0C007260 },
+    { D_0C005120, D_0C006C60 }, { D_0C004E60, D_0C005660 }, { D_0C005220, D_0C007460 }, { D_0C004FA0, D_0C006060 },
+    { D_0C004FE0, D_0C006260 }, { D_0C005060, D_0C006660 }, { D_0C0050A0, D_0C006860 }, { D_0C0050E0, D_0C006A60 },
+    { D_0C0052E0, D_0C007A60 }, { D_0C005320, D_0C007C60 }, { D_0C005360, D_0C007E60 }, { D_0C0053E0, D_0C008260 },
+    { D_0C0053A0, D_0C008060 }, { D_0C005420, D_0C008460 }, { D_0C005460, D_0C008660 }, { D_0C0054A0, D_0C008860 },
+    { D_0C0055A0, D_0C009060 }, { D_0C0055E0, D_0C009260 }, { D_0C005260, D_0C007660 }, { D_0C0052A0, D_0C007860 },
+    { D_0C005560, D_0C008E60 }, { D_0C005520, D_0C008C60 }, { D_0C0054E0, D_0C008A60 }, { D_0C005620, D_0C009460 },
 };
 
 struct_8085DCF8 D_8085DE90_jp[] = {
@@ -620,36 +387,14 @@ struct_8085DCF8 D_8085DE90_jp[] = {
 };
 
 struct_8085DCF8 D_8085DE98_jp[] = {
-    { D_0C00EC60, D_0C00F0E0 },
-    { D_0C009720, D_0C009740 },
-    { D_0C010780, D_0C0109A0 },
-    { D_0C00C800, D_0C00C940 },
-    { D_0C00C900, D_0C00D940 },
-    { D_0C00C8E0, D_0C00D740 },
-    { D_0C00C8A0, D_0C00D340 },
-    { D_0C00C880, D_0C00D140 },
-    { D_0C00C840, D_0C00CD40 },
-    { D_0C00C820, D_0C00CB40 },
-    { D_0C00C920, D_0C00DB40 },
-    { D_0C00C860, D_0C00CF40 },
-    { D_0C00C8C0, D_0C00D540 },
-    { D_0C010780, D_0C0109A0 },
-    { D_0C00B940, D_0C00B9C0 },
-    { D_0C00B9A0, D_0C00C1C0 },
-    { D_0C00B9A0, D_0C00BFC0 },
-    { D_0C00DD60, D_0C00DF80 },
-    { D_0C00C3C0, D_0C00C400 },
-    { D_0C00C3C0, D_0C00C400 },
-    { D_0C0111C0, D_0C0112C0 },
-    { D_0C0111E0, D_0C0114C0 },
-    { D_0C011200, D_0C0116C0 },
-    { D_0C011240, D_0C011AC0 },
-    { D_0C011260, D_0C011CC0 },
-    { D_0C0112A0, D_0C0120C0 },
-    { D_0C011220, D_0C0118C0 },
-    { D_0C011280, D_0C011EC0 },
-    { D_0C010FA0, D_0C010FC0 },
-    { D_0C010FA0, D_0C010FC0 },
+    { D_0C00EC60, D_0C00F0E0 }, { D_0C009720, D_0C009740 }, { D_0C010780, D_0C0109A0 }, { D_0C00C800, D_0C00C940 },
+    { D_0C00C900, D_0C00D940 }, { D_0C00C8E0, D_0C00D740 }, { D_0C00C8A0, D_0C00D340 }, { D_0C00C880, D_0C00D140 },
+    { D_0C00C840, D_0C00CD40 }, { D_0C00C820, D_0C00CB40 }, { D_0C00C920, D_0C00DB40 }, { D_0C00C860, D_0C00CF40 },
+    { D_0C00C8C0, D_0C00D540 }, { D_0C010780, D_0C0109A0 }, { D_0C00B940, D_0C00B9C0 }, { D_0C00B9A0, D_0C00C1C0 },
+    { D_0C00B9A0, D_0C00BFC0 }, { D_0C00DD60, D_0C00DF80 }, { D_0C00C3C0, D_0C00C400 }, { D_0C00C3C0, D_0C00C400 },
+    { D_0C0111C0, D_0C0112C0 }, { D_0C0111E0, D_0C0114C0 }, { D_0C011200, D_0C0116C0 }, { D_0C011240, D_0C011AC0 },
+    { D_0C011260, D_0C011CC0 }, { D_0C0112A0, D_0C0120C0 }, { D_0C011220, D_0C0118C0 }, { D_0C011280, D_0C011EC0 },
+    { D_0C010FA0, D_0C010FC0 }, { D_0C010FA0, D_0C010FC0 },
 };
 
 struct_8085DCF8 D_8085DF88_jp[] = {
@@ -661,26 +406,14 @@ struct_8085DCF8 D_8085DF90_jp[] = {
 };
 
 struct_8085DCF8 D_8085DF98_jp[] = {
-    { D_0C00E180, D_0C00E220 },
-    { D_0C00E200, D_0C00EA20 },
-    { D_0C00E1E0, D_0C00E820 },
-    { D_0C00E1C0, D_0C00E620 },
-    { D_0C00E1A0, D_0C00E420 },
-    { D_0C00B500, D_0C00B520 },
-    { D_0C009940, D_0C009960 },
+    { D_0C00E180, D_0C00E220 }, { D_0C00E200, D_0C00EA20 }, { D_0C00E1E0, D_0C00E820 }, { D_0C00E1C0, D_0C00E620 },
+    { D_0C00E1A0, D_0C00E420 }, { D_0C00B500, D_0C00B520 }, { D_0C009940, D_0C009960 },
 };
 
 struct_8085DCF8 D_8085DFD0_jp[] = {
-    { D_0C00A640, D_0C00A8E0 },
-    { D_0C00A660, D_0C00AAE0 },
-    { D_0C00A660, D_0C00AAE0 },
-    { D_0C00A660, D_0C00AAE0 },
-    { D_0C00A660, D_0C00AAE0 },
-    { D_0C00A660, D_0C00AAE0 },
-    { D_0C00A660, D_0C00AAE0 },
-    { D_0C00A660, D_0C00AAE0 },
-    { D_0C00A660, D_0C00AAE0 },
-    { D_0C00A660, D_0C00AAE0 },
+    { D_0C00A640, D_0C00A8E0 }, { D_0C00A660, D_0C00AAE0 }, { D_0C00A660, D_0C00AAE0 }, { D_0C00A660, D_0C00AAE0 },
+    { D_0C00A660, D_0C00AAE0 }, { D_0C00A660, D_0C00AAE0 }, { D_0C00A660, D_0C00AAE0 }, { D_0C00A660, D_0C00AAE0 },
+    { D_0C00A660, D_0C00AAE0 }, { D_0C00A660, D_0C00AAE0 },
 };
 
 struct_8085DCF8 D_8085E020_jp[] = {
@@ -688,137 +421,41 @@ struct_8085DCF8 D_8085E020_jp[] = {
 };
 
 struct_8085DCF8 D_8085E028_jp[] = {
-    { D_0C009C00, D_0C00A420 },
-    { D_0C009C00, D_0C00A220 },
-    { D_0C009C00, D_0C009C20 },
-    { D_0C009C00, D_0C00A020 },
-    { D_0C009C00, D_0C009E20 },
-    { D_0C009C00, D_0C00A420 },
-    { D_0C009C00, D_0C00A420 },
-    { D_0C009C00, D_0C00A420 },
-    { D_0C009B60, D_0C00A420 },
-    { D_0C009B60, D_0C00A220 },
-    { D_0C009B60, D_0C009C20 },
-    { D_0C009B60, D_0C00A020 },
-    { D_0C009B60, D_0C009E20 },
-    { D_0C009B60, D_0C00A420 },
-    { D_0C009B60, D_0C00A420 },
-    { D_0C009B60, D_0C00A420 },
-    { D_0C009B80, D_0C00A420 },
-    { D_0C009B80, D_0C00A220 },
-    { D_0C009B80, D_0C009C20 },
-    { D_0C009B80, D_0C00A020 },
-    { D_0C009B80, D_0C009E20 },
-    { D_0C009B80, D_0C00A420 },
-    { D_0C009B80, D_0C00A420 },
-    { D_0C009B80, D_0C00A420 },
-    { D_0C009BA0, D_0C00A420 },
-    { D_0C009BA0, D_0C00A220 },
-    { D_0C009BA0, D_0C009C20 },
-    { D_0C009BA0, D_0C00A020 },
-    { D_0C009BA0, D_0C009E20 },
-    { D_0C009BA0, D_0C00A420 },
-    { D_0C009BA0, D_0C00A420 },
-    { D_0C009BA0, D_0C00A420 },
-    { D_0C009BC0, D_0C00A420 },
-    { D_0C009BC0, D_0C00A220 },
-    { D_0C009BC0, D_0C009C20 },
-    { D_0C009BC0, D_0C00A020 },
-    { D_0C009BC0, D_0C009E20 },
-    { D_0C009BC0, D_0C00A420 },
-    { D_0C009BC0, D_0C00A420 },
-    { D_0C009BC0, D_0C00A420 },
-    { D_0C009BE0, D_0C00A420 },
-    { D_0C009BE0, D_0C00A220 },
-    { D_0C009BE0, D_0C009C20 },
-    { D_0C009BE0, D_0C00A020 },
-    { D_0C009BE0, D_0C009E20 },
-    { D_0C009BE0, D_0C00A420 },
-    { D_0C009BE0, D_0C00A420 },
-    { D_0C009BE0, D_0C00A420 },
-    { D_0C009660, D_0C00A420 },
-    { D_0C009660, D_0C00A220 },
-    { D_0C009660, D_0C009C20 },
-    { D_0C009660, D_0C00A020 },
-    { D_0C009660, D_0C009E20 },
-    { D_0C009660, D_0C00A420 },
-    { D_0C009660, D_0C00A420 },
-    { D_0C009660, D_0C00A420 },
-    { D_0C009680, D_0C00A420 },
-    { D_0C009680, D_0C00A220 },
-    { D_0C009680, D_0C009C20 },
-    { D_0C009680, D_0C00A020 },
-    { D_0C009680, D_0C009E20 },
-    { D_0C009680, D_0C00A420 },
-    { D_0C009680, D_0C00A420 },
-    { D_0C009680, D_0C00A420 },
-    { D_0C0096A0, D_0C00A420 },
-    { D_0C0096A0, D_0C00A220 },
-    { D_0C0096A0, D_0C009C20 },
-    { D_0C0096A0, D_0C00A020 },
-    { D_0C0096A0, D_0C009E20 },
-    { D_0C0096A0, D_0C00A420 },
-    { D_0C0096A0, D_0C00A420 },
-    { D_0C0096A0, D_0C00A420 },
-    { D_0C0096C0, D_0C00A420 },
-    { D_0C0096C0, D_0C00A220 },
-    { D_0C0096C0, D_0C009C20 },
-    { D_0C0096C0, D_0C00A020 },
-    { D_0C0096C0, D_0C009E20 },
-    { D_0C0096C0, D_0C00A420 },
-    { D_0C0096C0, D_0C00A420 },
-    { D_0C0096C0, D_0C00A420 },
-    { D_0C0096E0, D_0C00A420 },
-    { D_0C0096E0, D_0C00A220 },
-    { D_0C0096E0, D_0C009C20 },
-    { D_0C0096E0, D_0C00A020 },
-    { D_0C0096E0, D_0C009E20 },
-    { D_0C0096E0, D_0C00A420 },
-    { D_0C0096E0, D_0C00A420 },
-    { D_0C0096E0, D_0C00A420 },
-    { D_0C009700, D_0C00A420 },
-    { D_0C009700, D_0C00A220 },
-    { D_0C009700, D_0C009C20 },
-    { D_0C009700, D_0C00A020 },
-    { D_0C009700, D_0C009E20 },
-    { D_0C009700, D_0C00A420 },
-    { D_0C009700, D_0C00A420 },
-    { D_0C009700, D_0C00A420 },
+    { D_0C009C00, D_0C00A420 }, { D_0C009C00, D_0C00A220 }, { D_0C009C00, D_0C009C20 }, { D_0C009C00, D_0C00A020 },
+    { D_0C009C00, D_0C009E20 }, { D_0C009C00, D_0C00A420 }, { D_0C009C00, D_0C00A420 }, { D_0C009C00, D_0C00A420 },
+    { D_0C009B60, D_0C00A420 }, { D_0C009B60, D_0C00A220 }, { D_0C009B60, D_0C009C20 }, { D_0C009B60, D_0C00A020 },
+    { D_0C009B60, D_0C009E20 }, { D_0C009B60, D_0C00A420 }, { D_0C009B60, D_0C00A420 }, { D_0C009B60, D_0C00A420 },
+    { D_0C009B80, D_0C00A420 }, { D_0C009B80, D_0C00A220 }, { D_0C009B80, D_0C009C20 }, { D_0C009B80, D_0C00A020 },
+    { D_0C009B80, D_0C009E20 }, { D_0C009B80, D_0C00A420 }, { D_0C009B80, D_0C00A420 }, { D_0C009B80, D_0C00A420 },
+    { D_0C009BA0, D_0C00A420 }, { D_0C009BA0, D_0C00A220 }, { D_0C009BA0, D_0C009C20 }, { D_0C009BA0, D_0C00A020 },
+    { D_0C009BA0, D_0C009E20 }, { D_0C009BA0, D_0C00A420 }, { D_0C009BA0, D_0C00A420 }, { D_0C009BA0, D_0C00A420 },
+    { D_0C009BC0, D_0C00A420 }, { D_0C009BC0, D_0C00A220 }, { D_0C009BC0, D_0C009C20 }, { D_0C009BC0, D_0C00A020 },
+    { D_0C009BC0, D_0C009E20 }, { D_0C009BC0, D_0C00A420 }, { D_0C009BC0, D_0C00A420 }, { D_0C009BC0, D_0C00A420 },
+    { D_0C009BE0, D_0C00A420 }, { D_0C009BE0, D_0C00A220 }, { D_0C009BE0, D_0C009C20 }, { D_0C009BE0, D_0C00A020 },
+    { D_0C009BE0, D_0C009E20 }, { D_0C009BE0, D_0C00A420 }, { D_0C009BE0, D_0C00A420 }, { D_0C009BE0, D_0C00A420 },
+    { D_0C009660, D_0C00A420 }, { D_0C009660, D_0C00A220 }, { D_0C009660, D_0C009C20 }, { D_0C009660, D_0C00A020 },
+    { D_0C009660, D_0C009E20 }, { D_0C009660, D_0C00A420 }, { D_0C009660, D_0C00A420 }, { D_0C009660, D_0C00A420 },
+    { D_0C009680, D_0C00A420 }, { D_0C009680, D_0C00A220 }, { D_0C009680, D_0C009C20 }, { D_0C009680, D_0C00A020 },
+    { D_0C009680, D_0C009E20 }, { D_0C009680, D_0C00A420 }, { D_0C009680, D_0C00A420 }, { D_0C009680, D_0C00A420 },
+    { D_0C0096A0, D_0C00A420 }, { D_0C0096A0, D_0C00A220 }, { D_0C0096A0, D_0C009C20 }, { D_0C0096A0, D_0C00A020 },
+    { D_0C0096A0, D_0C009E20 }, { D_0C0096A0, D_0C00A420 }, { D_0C0096A0, D_0C00A420 }, { D_0C0096A0, D_0C00A420 },
+    { D_0C0096C0, D_0C00A420 }, { D_0C0096C0, D_0C00A220 }, { D_0C0096C0, D_0C009C20 }, { D_0C0096C0, D_0C00A020 },
+    { D_0C0096C0, D_0C009E20 }, { D_0C0096C0, D_0C00A420 }, { D_0C0096C0, D_0C00A420 }, { D_0C0096C0, D_0C00A420 },
+    { D_0C0096E0, D_0C00A420 }, { D_0C0096E0, D_0C00A220 }, { D_0C0096E0, D_0C009C20 }, { D_0C0096E0, D_0C00A020 },
+    { D_0C0096E0, D_0C009E20 }, { D_0C0096E0, D_0C00A420 }, { D_0C0096E0, D_0C00A420 }, { D_0C0096E0, D_0C00A420 },
+    { D_0C009700, D_0C00A420 }, { D_0C009700, D_0C00A220 }, { D_0C009700, D_0C009C20 }, { D_0C009700, D_0C00A020 },
+    { D_0C009700, D_0C009E20 }, { D_0C009700, D_0C00A420 }, { D_0C009700, D_0C00A420 }, { D_0C009700, D_0C00A420 },
 };
 
 struct_8085DCF8 D_8085E328_jp[] = {
-    { D_0C000660, D_0C000E60 },
-    { D_0C0006A0, D_0C001060 },
-    { D_0C0006E0, D_0C001260 },
-    { D_0C000720, D_0C001460 },
-    { D_0C0007A0, D_0C001860 },
-    { D_0C0007E0, D_0C001A60 },
-    { D_0C000820, D_0C001C60 },
-    { D_0C000760, D_0C001660 },
-    { D_0C000BE0, D_0C003A60 },
-    { D_0C0008A0, D_0C002060 },
-    { D_0C000860, D_0C001E60 },
-    { D_0C0008E0, D_0C002260 },
-    { D_0C000920, D_0C002460 },
-    { D_0C000B20, D_0C003460 },
-    { D_0C000B60, D_0C003660 },
-    { D_0C000960, D_0C002660 },
-    { D_0C0009A0, D_0C002860 },
-    { D_0C000A20, D_0C002C60 },
-    { D_0C0009E0, D_0C002A60 },
-    { D_0C000C60, D_0C003E60 },
-    { D_0C000D20, D_0C004460 },
-    { D_0C000D60, D_0C004660 },
-    { D_0C000CE0, D_0C004260 },
-    { D_0C000CA0, D_0C004060 },
-    { D_0C000A60, D_0C002E60 },
-    { D_0C000AA0, D_0C003060 },
-    { D_0C000AE0, D_0C003260 },
-    { D_0C000C20, D_0C003C60 },
-    { D_0C000BA0, D_0C003860 },
-    { D_0C000DA0, D_0C004860 },
-    { D_0C000DE0, D_0C004A60 },
-    { D_0C000E20, D_0C004C60 },
+    { D_0C000660, D_0C000E60 }, { D_0C0006A0, D_0C001060 }, { D_0C0006E0, D_0C001260 }, { D_0C000720, D_0C001460 },
+    { D_0C0007A0, D_0C001860 }, { D_0C0007E0, D_0C001A60 }, { D_0C000820, D_0C001C60 }, { D_0C000760, D_0C001660 },
+    { D_0C000BE0, D_0C003A60 }, { D_0C0008A0, D_0C002060 }, { D_0C000860, D_0C001E60 }, { D_0C0008E0, D_0C002260 },
+    { D_0C000920, D_0C002460 }, { D_0C000B20, D_0C003460 }, { D_0C000B60, D_0C003660 }, { D_0C000960, D_0C002660 },
+    { D_0C0009A0, D_0C002860 }, { D_0C000A20, D_0C002C60 }, { D_0C0009E0, D_0C002A60 }, { D_0C000C60, D_0C003E60 },
+    { D_0C000D20, D_0C004460 }, { D_0C000D60, D_0C004660 }, { D_0C000CE0, D_0C004260 }, { D_0C000CA0, D_0C004060 },
+    { D_0C000A60, D_0C002E60 }, { D_0C000AA0, D_0C003060 }, { D_0C000AE0, D_0C003260 }, { D_0C000C20, D_0C003C60 },
+    { D_0C000BA0, D_0C003860 }, { D_0C000DA0, D_0C004860 }, { D_0C000DE0, D_0C004A60 }, { D_0C000E20, D_0C004C60 },
 };
 
 struct_8085DCF8 D_8085E428_jp[] = {
@@ -840,26 +477,9 @@ struct_8085DCF8* item_tex_data_table_779[] = {
     D_8085E028_jp, D_8085E328_jp, D_8085E448_jp, D_8085E428_jp,
 };
 
-extern u8 D_0C00EC60[]; // inv_mwin_mtegami_pal
-extern u8 D_0C00F0E0[]; // inv_mwin_mtegami_tex
-extern u8 D_0C00EC60[]; // inv_mwin_mtegami_pal
-extern u8 D_0C00F2E0[]; // inv_mwin_pmtegami_tex
-extern u8 D_0C00ECA0[]; // inv_mwin_otegami_pal
-extern u8 D_0C00F4E0[]; // inv_mwin_otegami_tex
-extern u8 D_0C00ECA0[]; // inv_mwin_otegami_pal
-extern u8 D_0C00F6E0[]; // inv_mwin_potegami_tex
-extern u8 D_0C00EC20[]; // inv_mwin_mtegami2_pal
-extern u8 D_0C00ECE0[]; // inv_mwin_mtegami2_tex
-extern u8 D_0C00EC20[]; // inv_mwin_mtegami2_pal
-extern u8 D_0C00EEE0[]; // inv_mwin_pmtegami2_tex
-
 struct_8085DCF8 letter_tex_data_table_837[] = {
-    { D_0C00EC60, D_0C00F0E0 },
-    { D_0C00EC60, D_0C00F2E0 },
-    { D_0C00ECA0, D_0C00F4E0 },
-    { D_0C00ECA0, D_0C00F6E0 },
-    { D_0C00EC20, D_0C00ECE0 },
-    { D_0C00EC20, D_0C00EEE0 },
+    { D_0C00EC60, D_0C00F0E0 }, { D_0C00EC60, D_0C00F2E0 }, { D_0C00ECA0, D_0C00F4E0 },
+    { D_0C00ECA0, D_0C00F6E0 }, { D_0C00EC20, D_0C00ECE0 }, { D_0C00EC20, D_0C00EEE0 },
 };
 
 #define SUBMENU_PROGRAM(name, construct, destruct, set_proc)                                                         \
@@ -920,55 +540,55 @@ struct_8085E4D0 mSM_program_dlftbl[SUBMENU_PROGRAM_MAX] = {
 };
 
 u8 flg_table_916[SUBMENU_PROGRAM_MAX] = {
-    0, // SUBMENU_PROGRAM_0
-    0x8 | 0x4 | 0x2, // SUBMENU_PROGRAM_1
-    0x10, // SUBMENU_PROGRAM_2
-    0, // SUBMENU_PROGRAM_3
-    0, // SUBMENU_PROGRAM_LEDIT
-    0, // SUBMENU_PROGRAM_MAP
-    0, // SUBMENU_PROGRAM_6
-    0, // SUBMENU_PROGRAM_7
-    0, // SUBMENU_PROGRAM_8
-    0, // SUBMENU_PROGRAM_9
-    0, // SUBMENU_PROGRAM_10
-    0x8 | 0x4 | 0x2, // SUBMENU_PROGRAM_11
-    0, // SUBMENU_PROGRAM_BOARD
-    0, // SUBMENU_PROGRAM_13
+    0,                      // SUBMENU_PROGRAM_0
+    0x8 | 0x4 | 0x2,        // SUBMENU_PROGRAM_1
+    0x10,                   // SUBMENU_PROGRAM_2
+    0,                      // SUBMENU_PROGRAM_3
+    0,                      // SUBMENU_PROGRAM_LEDIT
+    0,                      // SUBMENU_PROGRAM_MAP
+    0,                      // SUBMENU_PROGRAM_6
+    0,                      // SUBMENU_PROGRAM_7
+    0,                      // SUBMENU_PROGRAM_8
+    0,                      // SUBMENU_PROGRAM_9
+    0,                      // SUBMENU_PROGRAM_10
+    0x8 | 0x4 | 0x2,        // SUBMENU_PROGRAM_11
+    0,                      // SUBMENU_PROGRAM_BOARD
+    0,                      // SUBMENU_PROGRAM_13
     0x10 | 0x8 | 0x4 | 0x2, // SUBMENU_PROGRAM_14
-    0, // SUBMENU_PROGRAM_15
-    0, // SUBMENU_PROGRAM_16
-    0x8 | 0x4 | 0x2, // SUBMENU_PROGRAM_17
-    0, // SUBMENU_PROGRAM_18
-    0x8 | 0x4, // SUBMENU_PROGRAM_19
-    0x8 | 0x4, // SUBMENU_PROGRAM_CATALOG
-    0, // SUBMENU_PROGRAM_21
-    0, // SUBMENU_PROGRAM_HAND
-    0, // SUBMENU_PROGRAM_23
+    0,                      // SUBMENU_PROGRAM_15
+    0,                      // SUBMENU_PROGRAM_16
+    0x8 | 0x4 | 0x2,        // SUBMENU_PROGRAM_17
+    0,                      // SUBMENU_PROGRAM_18
+    0x8 | 0x4,              // SUBMENU_PROGRAM_19
+    0x8 | 0x4,              // SUBMENU_PROGRAM_CATALOG
+    0,                      // SUBMENU_PROGRAM_21
+    0,                      // SUBMENU_PROGRAM_HAND
+    0,                      // SUBMENU_PROGRAM_23
 };
 
 // Indexed by SubmenuProgramId
 f32 data_table_935[][4] = {
-    { 0.0f, 0.0f, 0.0f, 0.0f }, // SUBMENU_PROGRAM_0
-    { 300.0f, 0.0f, 75.0f, 0.0f }, // SUBMENU_PROGRAM_1
-    { 0.0f, 300.0f, 0.0f, 75.0f }, // SUBMENU_PROGRAM_2
-    { 0.0f, 300.0f, 0.0f, 75.0f }, // SUBMENU_PROGRAM_3
-    { 0.0f, 300.0f, 0.0f, 75.0f }, // SUBMENU_PROGRAM_LEDIT
-    { 0.0f, 300.0f, 0.0f, 75.0f }, // SUBMENU_PROGRAM_MAP
-    { 0.0f, 300.0f, 0.0f, 75.0f }, // SUBMENU_PROGRAM_6
-    { 0.0f, 300.0f, 0.0f, 75.0f }, // SUBMENU_PROGRAM_7
-    { 0.0f, 300.0f, 0.0f, 75.0f }, // SUBMENU_PROGRAM_8
-    { 0.0f, 300.0f, 0.0f, 75.0f }, // SUBMENU_PROGRAM_9
+    { 0.0f, 0.0f, 0.0f, 0.0f },     // SUBMENU_PROGRAM_0
+    { 300.0f, 0.0f, 75.0f, 0.0f },  // SUBMENU_PROGRAM_1
+    { 0.0f, 300.0f, 0.0f, 75.0f },  // SUBMENU_PROGRAM_2
+    { 0.0f, 300.0f, 0.0f, 75.0f },  // SUBMENU_PROGRAM_3
+    { 0.0f, 300.0f, 0.0f, 75.0f },  // SUBMENU_PROGRAM_LEDIT
+    { 0.0f, 300.0f, 0.0f, 75.0f },  // SUBMENU_PROGRAM_MAP
+    { 0.0f, 300.0f, 0.0f, 75.0f },  // SUBMENU_PROGRAM_6
+    { 0.0f, 300.0f, 0.0f, 75.0f },  // SUBMENU_PROGRAM_7
+    { 0.0f, 300.0f, 0.0f, 75.0f },  // SUBMENU_PROGRAM_8
+    { 0.0f, 300.0f, 0.0f, 75.0f },  // SUBMENU_PROGRAM_9
     { 0.0f, -300.0f, 0.0f, 75.0f }, // SUBMENU_PROGRAM_10
     { -300.0f, 0.0f, 75.0f, 0.0f }, // SUBMENU_PROGRAM_11
-    { 0.0f, 300.0f, 0.0f, 75.0f }, // SUBMENU_PROGRAM_BOARD
-    { 0.0f, 0.0f, 0.0f, 0.0f }, // SUBMENU_PROGRAM_13
+    { 0.0f, 300.0f, 0.0f, 75.0f },  // SUBMENU_PROGRAM_BOARD
+    { 0.0f, 0.0f, 0.0f, 0.0f },     // SUBMENU_PROGRAM_13
     { -300.0f, 0.0f, 75.0f, 0.0f }, // SUBMENU_PROGRAM_14
     { 0.0f, -300.0f, 0.0f, 75.0f }, // SUBMENU_PROGRAM_15
-    { 0.0f, 0.0f, 0.0f, 0.0f }, // SUBMENU_PROGRAM_16
-    { 300.0f, 0.0f, 75.0f, 0.0f }, // SUBMENU_PROGRAM_17
-    { 0.0f, 0.0f, 0.0f, 0.0f }, // SUBMENU_PROGRAM_18
-    { 0.0f, 300.0f, 0.0f, 75.0f }, // SUBMENU_PROGRAM_19
-    { 300.0f, 0.0f, 75.0f, 0.0f }, // SUBMENU_PROGRAM_CATALOG
+    { 0.0f, 0.0f, 0.0f, 0.0f },     // SUBMENU_PROGRAM_16
+    { 300.0f, 0.0f, 75.0f, 0.0f },  // SUBMENU_PROGRAM_17
+    { 0.0f, 0.0f, 0.0f, 0.0f },     // SUBMENU_PROGRAM_18
+    { 0.0f, 300.0f, 0.0f, 75.0f },  // SUBMENU_PROGRAM_19
+    { 300.0f, 0.0f, 75.0f, 0.0f },  // SUBMENU_PROGRAM_CATALOG
 };
 
 s32 add_trigger_954[] = { R_CBUTTONS, U_CBUTTONS, L_CBUTTONS, D_CBUTTONS };
