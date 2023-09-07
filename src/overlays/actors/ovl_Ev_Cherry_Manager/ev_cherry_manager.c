@@ -2,13 +2,13 @@
 #include "m_actor_dlftbls.h"
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
+#include "m_event.h"
 
 void eChryMgr_ct(Actor* thisx, Game_Play* game_play);
 void eChryMgr_dt(Actor* thisx, Game_Play* game_play);
 void eChryMgr_move(Actor* thisx, Game_Play* game_play);
 void eChryMgr_draw(Actor* thisx, Game_Play* game_play);
 
-#if 0
 ActorProfile Ev_Cherry_Manager_Profile = {
     /* */ ACTOR_EV_CHERRY_MANAGER,
     /* */ ACTOR_PART_7,
@@ -22,12 +22,16 @@ ActorProfile Ev_Cherry_Manager_Profile = {
     /* */ eChryMgr_draw,
     /* */ NULL,
 };
-#endif
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Ev_Cherry_Manager/ev_cherry_manager/eChryMgr_move.s")
+void eChryMgr_move(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Ev_Cherry_Manager/ev_cherry_manager/eChryMgr_draw.s")
+void eChryMgr_draw(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Ev_Cherry_Manager/ev_cherry_manager/eChryMgr_ct.s")
+void eChryMgr_ct(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Ev_Cherry_Manager/ev_cherry_manager/eChryMgr_dt.s")
+void eChryMgr_dt(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+    mEv_clear_status(0xC, 1);
+}
