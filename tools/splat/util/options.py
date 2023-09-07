@@ -104,6 +104,10 @@ class SplatOpts:
     ld_use_follows: bool
     # If enabled, the end symbol for each segment will be placed before the alignment directive for the segment
     segment_end_before_align: bool
+    # Controls the style of the auto-generated segment symbols in the linker script. Possible values: splat, makerom
+    segment_symbols_style: str
+    # Specifies the starting offset for rom address symbols in the linker script.
+    ld_rom_start: int
 
     ################################################################################
     # C file options
@@ -281,6 +285,7 @@ def _parse_yaml(
     config_paths: List[str],
     modes: List[str],
     verbose: bool = False,
+    disasm_all: bool = False,
 ) -> SplatOpts:
     p = OptParser(yaml)
 
@@ -374,6 +379,10 @@ def _parse_yaml(
         ld_wildcard_sections=p.parse_opt("ld_wildcard_sections", bool, False),
         ld_use_follows=p.parse_opt("ld_use_follows", bool, True),
         segment_end_before_align=p.parse_opt("segment_end_before_align", bool, False),
+        segment_symbols_style=p.parse_opt_within(
+            "segment_symbols_style", str, ["splat", "makerom"], "splat"
+        ),
+        ld_rom_start=p.parse_opt("ld_rom_start", int, 0),
         create_c_files=p.parse_opt("create_c_files", bool, True),
         auto_decompile_empty_functions=p.parse_opt(
             "auto_decompile_empty_functions", bool, True
@@ -443,7 +452,10 @@ def _parse_yaml(
         detect_redundant_function_end=p.parse_opt(
             "detect_redundant_function_end", bool, True
         ),
-        disassemble_all=p.parse_opt("disassemble_all", bool, False),
+        # Command line argument takes precedence over yaml option
+        disassemble_all=disasm_all
+        if disasm_all
+        else p.parse_opt("disassemble_all", bool, False),
     )
     p.check_no_unread_opts()
     return ret
@@ -454,10 +466,11 @@ def initialize(
     config_paths: List[str],
     modes: Optional[List[str]] = None,
     verbose=False,
+    disasm_all=False,
 ):
     global opts
 
     if not modes:
         modes = ["all"]
 
-    opts = _parse_yaml(config["options"], config_paths, modes, verbose)
+    opts = _parse_yaml(config["options"], config_paths, modes, verbose, disasm_all)

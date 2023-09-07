@@ -1,5 +1,47 @@
 # splat Release Notes
 
+### 0.16.9
+
+* Add command line argument `--disassemble-all`, which has the same effect as the `disassemble_all` yaml option so will disamble already matched functions as well as migrated data.
+  * Note: the command line argument takes precedence over the yaml, so will take effect even if the yaml option is set to false.
+
+### 0.16.8
+
+* Avoid ignoring the `align` defined in a segment for `code` segments
+
+### 0.16.7
+
+* Use `pylibyaml` to speed-up yaml parsing
+
+### 0.16.6
+
+* Add option `ld_rom_start`.
+  * Allows offsetting rom address linker symbols by some arbitrary value.
+    * Useful for SN64 games which often have rom addresses offset by 0xB0000000.
+  * Defaults to 0.
+
+### 0.16.5
+
+* Add option `segment_symbols_style`.
+  * Allows changing the style of the generated segment symbols in the linker script.
+  * Possible values:
+    * `splat`: The current style for segment symbols.
+    * `makerom`: Style that aims to be compatible with makerom generated symbols.
+  * Defaults to `splat`.
+
+### 0.16.4
+
+* Add `get_section_flags` method to the `Segment` class.
+  * Useful for providing linker section flags when creating a custom section when making splat extensions.
+  * This may be necessary for some custom section types, because sections unrecognized by the linker will not link its data properly.
+  * More info about section flags: <https://sourceware.org/binutils/docs/as/Section.html#ELF-Version>
+
+### 0.16.3
+
+* Add `--stdout-only` flag. Redirects the progress bar output to `stdout` instead of `stderr`.
+* Add a check to prevent relocs with duplicated rom addresses.
+* Check empty functions only have 2 instructions before autodecompiling them.
+
 ### 0.16.2
 
 * Add option `disassemble_all`. If enabled then already matched functions and migrated data will be disassembled to files anyways.

@@ -6,18 +6,19 @@
  * @note:
  *     These are for specific fragment overlays with the .ovl file extension
  */
-#include "global.h"
 #include "loadfragment.h"
+#include "attributes.h"
+#include "libc/stddef.h"
 #include "z_std_dma.h"
 
 void DoRelocation(void* allocatedRamAddr, OverlayRelocationSection* ovlRelocs, void* vramStart);
 
-// Unknown original name
-s32 Overlay_Load(void* vromStart, void* vromEnd, void* ovlStart, void* ovlEnd, void* vramStart, void* vramEnd,
-                 void* allocatedRamAddr, OverlayRelocationSection* ovlRelocs) {
+// original name unknown
+s32 Overlay_Load(RomOffset vromStart, RomOffset vromEnd, RomOffset ovlStart, RomOffset ovlEnd, void* vramStart,
+                 void* vramEnd, void* allocatedRamAddr, OverlayRelocationSection* ovlRelocs) {
     OverlayRelocationSection* ovl = ovlRelocs;
-    s32 vromSize = (uintptr_t)vromEnd - (uintptr_t)vromStart;
-    s32 ovlSize = (uintptr_t)ovlEnd - (uintptr_t)ovlStart;
+    s32 vromSize = vromEnd - vromStart;
+    s32 ovlSize = ovlEnd - ovlStart;
     s32 vramSize = (uintptr_t)vramEnd - (uintptr_t)vramStart;
     void* end = (void*)((uintptr_t)allocatedRamAddr + vromSize);
 

@@ -3,6 +3,9 @@
 
 #include "ultra64.h"
 
+struct Game_Play;
+struct Game_Play_Unk_1EE8;
+
 // void func_800D18B0_jp();
 // void func_800D195C_jp();
 // void func_800D197C_jp();
@@ -29,7 +32,7 @@
 // void func_800D1D08_jp();
 // void func_800D1D58_jp();
 // void func_800D1D94_jp();
-// void func_800D1DBC_jp();
+void sAdo_SetVoiceMode(s32 arg0);
 // void func_800D1DE4_jp();
 // void func_800D1E20_jp();
 // void func_800D1E58_jp();
@@ -42,7 +45,7 @@
 // void func_800D1F70_jp();
 // void func_800D1F90_jp();
 // void func_800D1FB0_jp();
-// void func_800D1FF0_jp();
+void sAdo_SpecChange(s32 arg0);
 // void func_800D2010_jp();
 // void func_800D2064_jp();
 // void func_800D208C_jp();
@@ -61,18 +64,18 @@
 // void func_800D22A4_jp();
 // void func_800D22CC_jp();
 // void func_800D22F4_jp();
-// void func_800D2314_jp();
-// void func_800D2334_jp();
+s32 sAdo_BgmFadeoutCheck(void);
+s32 func_800D2334_jp(struct Game_Play_Unk_1EE8* arg0, struct Game_Play* game_play);
 // void func_800D2354_jp();
 // void func_800D2360_jp();
-// void func_800D236C_jp();
+void sAdo_RoomType(u8 arg0);
 // void func_800D2394_jp();
 // void func_800D23B4_jp();
 // void func_800D2438_jp();
 // void func_800D24C4_jp();
 // void func_800D24EC_jp();
 // void func_800D252C_jp();
-// void func_800D2568_jp();
+void func_800D2568_jp(s32 arg0);
 // void func_800D2578_jp();
 
 #endif

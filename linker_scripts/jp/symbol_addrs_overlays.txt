@@ -181,39 +181,39 @@ func_808029D0_jp = 0x808029D0; // type:func
 first_game_cleanup = 0x80802A20; // type:func
 first_game_init = 0x80802A2C; // type:func
 func_80802A60_jp = 0x80802A60; // type:func
-func_80802AE0_jp = 0x80802AE0; // type:func
-func_80802B40_jp = 0x80802B40; // type:func
-func_80802B64_jp = 0x80802B64; // type:func
-func_80802B8C_jp = 0x80802B8C; // type:func
-func_80802BB8_jp = 0x80802BB8; // type:func
-func_80802BF4_jp = 0x80802BF4; // type:func
-func_80802C90_jp = 0x80802C90; // type:func
-func_80802CBC_jp = 0x80802CBC; // type:func
-func_80802D9C_jp = 0x80802D9C; // type:func
-func_80802DF0_jp = 0x80802DF0; // type:func
-func_80802E10_jp = 0x80802E10; // type:func
-func_80802E34_jp = 0x80802E34; // type:func
-func_80802E74_jp = 0x80802E74; // type:func
-func_808030D0_jp = 0x808030D0; // type:func
-func_80803124_jp = 0x80803124; // type:func
-func_80803174_jp = 0x80803174; // type:func
+Game_play_Reset_destiny = 0x80802AE0; // type:func
+event_title_flag_on = 0x80802B40; // type:func
+event_title_flag_off = 0x80802B64; // type:func
+Game_play_camera_proc = 0x80802B8C; // type:func
+Game_play_fbdemo_wipe_destroy = 0x80802BB8; // type:func
+Game_play_fbdemo_wipe_create_sub = 0x80802BF4; // type:func
+Game_play_fbdemo_wipe_create = 0x80802C90; // type:func
+Game_play_fbdemo_wipe_init = 0x80802CBC; // type:func
+Game_play_fbdemo_fade_in_move_end = 0x80802D9C; // type:func
+Game_play_fbdemo_fade_out_start_emu_move_end = 0x80802DF0; // type:func
+Game_play_fbdemo_fade_out_game_end_move_end = 0x80802E10; // type:func
+Game_play_change_scene_move_end = 0x80802E34; // type:func
+Game_play_fbdemo_wipe_move = 0x80802E74; // type:func
+Game_play_fbdemo_wipe_proc = 0x808030D0; // type:func
+game_play_set_fog = 0x80803124; // type:func
+Game_play_fbdemo_proc = 0x80803174; // type:func
 play_cleanup = 0x80803210; // type:func
 play_init = 0x808032F8; // type:func
-func_80803544_jp = 0x80803544; // type:func
-func_8080367C_jp = 0x8080367C; // type:func
+Game_play_move_fbdemo_not_move = 0x80803544; // type:func
+Game_play_move = 0x8080367C; // type:func
 func_80803810_jp = 0x80803810; // type:func
-func_808039D0_jp = 0x808039D0; // type:func
-func_80803A18_jp = 0x80803A18; // type:func
-func_80803A40_jp = 0x80803A40; // type:func
-func_80803B08_jp = 0x80803B08; // type:func
-func_80803E40_jp = 0x80803E40; // type:func
-func_80803F48_jp = 0x80803F48; // type:func
-func_8080407C_jp = 0x8080407C; // type:func
+setupFog = 0x808039D0; // type:func
+setupViewer = 0x80803A18; // type:func
+setupViewMatrix = 0x80803A40; // type:func
+makeBumpTexture = 0x80803B08; // type:func
+draw_version = 0x80803E40; // type:func
+Game_play_draw = 0x80803F48; // type:func
+play_main = 0x8080407C; // type:func
 func_80804138_jp = 0x80804138; // type:func
 func_808041A4_jp = 0x808041A4; // type:func
-func_808041C4_jp = 0x808041C4; // type:func
-func_80804240_jp = 0x80804240; // type:func
-func_80804288_jp = 0x80804288; // type:func
+Gameplay_Scene_Init = 0x808041C4; // type:func
+mPl_SceneNo2SoundRoomType = 0x80804240; // type:func
+Gameplay_Scene_Read = 0x80804288; // type:func
 
 // .data
 
@@ -233,10 +233,10 @@ jtbl_80804410_jp = 0x80804410; // type:jtbl
 
 // .bss
 
-B_80804480_jp = 0x80804480; //
+fbdemo = 0x80804480; //
 B_8080455C_jp = 0x8080455C; //
-B_80804560_jp = 0x80804560; // type:s16
-B_80804562_jp = 0x80804562; // type:s16
+S_back_title_timer = 0x80804560; // type:s16
+S_se_endcheck_timeout = 0x80804562; // type:s16
 
 // .text
 
@@ -835,7 +835,7 @@ func_8085D92C_jp = 0x8085D92C; // type:func
 func_8085DA08_jp = 0x8085DA08; // type:func
 func_8085DA28_jp = 0x8085DA28; // type:func
 func_8085DA9C_jp = 0x8085DA9C; // type:func
-func_8085DAEC_jp = 0x8085DAEC; // type:func
+mSM_menu_ovl_init = 0x8085DAEC; // type:func
 
 // .data
 
@@ -3872,15 +3872,15 @@ func_808DD1F8_jp = 0x808DD1F8; // type:func
 func_808DD2D8_jp = 0x808DD2D8; // type:func
 func_808DD318_jp = 0x808DD318; // type:func
 func_808DD398_jp = 0x808DD398; // type:func
-func_808DD748_jp = 0x808DD748; // type:func
-func_808DD81C_jp = 0x808DD81C; // type:func
+Player_actor_ct = 0x808DD748; // type:func
+Player_actor_dt = 0x808DD81C; // type:func
 func_808DD874_jp = 0x808DD874; // type:func
 func_808DD8F0_jp = 0x808DD8F0; // type:func
 func_808DD9B4_jp = 0x808DD9B4; // type:func
 func_808DDA18_jp = 0x808DDA18; // type:func
 func_808DDB34_jp = 0x808DDB34; // type:func
-func_808DDB5C_jp = 0x808DDB5C; // type:func
-func_808DDBD4_jp = 0x808DDBD4; // type:func
+Player_actor_move = 0x808DDB5C; // type:func
+Player_actor_draw = 0x808DDBD4; // type:func
 
 // .data
 
@@ -3900,9 +3900,9 @@ D_808DE184_jp = 0x808DE184; // type:u8
 D_808DE1F0_jp = 0x808DE1F0; // type:s8
 D_808DE25C_jp = 0x808DE25C; //
 D_808DE268_jp = 0x808DE268; //
-D_808DE470_jp = 0x808DE470; //
-D_808DE480_jp = 0x808DE480; //
-D_808DE4A8_jp = 0x808DE4A8; //
+Player_actor_OcInfoData_forStand = 0x808DE470; //
+Player_actor_pclobj_tris_base_forItem = 0x808DE480; //
+Player_actor_pclobj_tris_data_forItem = 0x808DE4A8; //
 D_808DE4B4_jp = 0x808DE4B4; // type:s16
 D_808DE4B6_jp = 0x808DE4B6; // type:s16
 D_808DE4B8_jp = 0x808DE4B8; // type:s16
@@ -4612,14 +4612,14 @@ func_808EB854_jp = 0x808EB854; // type:func
 func_808EB954_jp = 0x808EB954; // type:func
 func_808EBA24_jp = 0x808EBA24; // type:func
 func_808EBA8C_jp = 0x808EBA8C; // type:func
-func_808EBAF8_jp = 0x808EBAF8; // type:func
+bPI_actor_move = 0x808EBAF8; // type:func
 func_808EBB4C_jp = 0x808EBB4C; // type:func
 func_808EBC7C_jp = 0x808EBC7C; // type:func
-func_808EBD28_jp = 0x808EBD28; // type:func
+bPI_actor_draw = 0x808EBD28; // type:func
 
 // .data
 
-_007E4DF0_Profile = 0x808EBD70; //
+BgPoliceItem_Profile = 0x808EBD70; //
 D_808EBD94_jp = 0x808EBD94; //
 D_808EBE00_jp = 0x808EBE00; //
 D_FLT_808EBE6C_jp = 0x808EBE6C; // type:f32
@@ -4636,12 +4636,12 @@ B_808EBEE8_jp = 0x808EBEE8; //
 
 // .text
 
-func_808EBF90_jp = 0x808EBF90; // type:func
-func_808EBFD8_jp = 0x808EBFD8; // type:func
+bPTI_actor_ct = 0x808EBF90; // type:func
+bPTI_actor_draw = 0x808EBFD8; // type:func
 
 // .data
 
-_007E5640_Profile = 0x808EC150; //
+BgPostItem_Profile = 0x808EC150; //
 D_FLT_808EC174_jp = 0x808EC174; // type:f32
 
 // .rodata
@@ -4750,15 +4750,15 @@ func_808F346C_jp = 0x808F346C; // type:func
 func_808F360C_jp = 0x808F360C; // type:func
 func_808F3698_jp = 0x808F3698; // type:func
 func_808F3724_jp = 0x808F3724; // type:func
-func_808F3900_jp = 0x808F3900; // type:func
-func_808F3B78_jp = 0x808F3B78; // type:func
+bCI_actor_ct = 0x808F3900; // type:func
+bCI_actor_dt = 0x808F3B78; // type:func
 func_808F3BB0_jp = 0x808F3BB0; // type:func
-func_808F3BE8_jp = 0x808F3BE8; // type:func
-func_808F3C84_jp = 0x808F3C84; // type:func
+bCI_actor_move = 0x808F3BE8; // type:func
+bCI_actor_draw = 0x808F3C84; // type:func
 
 // .data
 
-_007E5880_Profile = 0x808F3CC0; //
+BgCherryItem_Profile = 0x808F3CC0; //
 D_808F3CE4_jp = 0x808F3CE4; //
 D_808F3D24_jp = 0x808F3D24; //
 D_808F3D64_jp = 0x808F3D64; //
@@ -5168,15 +5168,15 @@ func_808FE3EC_jp = 0x808FE3EC; // type:func
 func_808FE58C_jp = 0x808FE58C; // type:func
 func_808FE618_jp = 0x808FE618; // type:func
 func_808FE6A4_jp = 0x808FE6A4; // type:func
-func_808FE880_jp = 0x808FE880; // type:func
-func_808FEB94_jp = 0x808FEB94; // type:func
+bWI_actor_ct = 0x808FE880; // type:func
+bWI_actor_dt = 0x808FEB94; // type:func
 func_808FEBCC_jp = 0x808FEBCC; // type:func
-func_808FEC04_jp = 0x808FEC04; // type:func
-func_808FECA0_jp = 0x808FECA0; // type:func
+bWI_actor_move = 0x808FEC04; // type:func
+bWI_actor_draw = 0x808FECA0; // type:func
 
 // .data
 
-_007F0350_Profile = 0x808FECE0; //
+BgWinterItem_Profile = 0x808FECE0; //
 D_808FED04_jp = 0x808FED04; //
 D_808FED44_jp = 0x808FED44; //
 D_808FED84_jp = 0x808FED84; //
@@ -5584,16 +5584,16 @@ func_809093BC_jp = 0x809093BC; // type:func
 func_8090955C_jp = 0x8090955C; // type:func
 func_809095E8_jp = 0x809095E8; // type:func
 func_80909674_jp = 0x80909674; // type:func
-func_80909850_jp = 0x80909850; // type:func
-func_80909C10_jp = 0x80909C10; // type:func
+bXI_actor_ct = 0x80909850; // type:func
+bXI_actor_dt = 0x80909C10; // type:func
 func_80909C48_jp = 0x80909C48; // type:func
-func_80909C80_jp = 0x80909C80; // type:func
-func_80909E44_jp = 0x80909E44; // type:func
+bXI_actor_move = 0x80909C80; // type:func
+bXI_actor_draw = 0x80909E44; // type:func
 func_80909E78_jp = 0x80909E78; // type:func
 
 // .data
 
-_007FAEB0_Profile = 0x8090A0B0; //
+BgXmasItem_Profile = 0x8090A0B0; //
 D_8090A0D4_jp = 0x8090A0D4; //
 D_8090A114_jp = 0x8090A114; //
 D_8090A154_jp = 0x8090A154; //
@@ -6003,15 +6003,15 @@ func_809147CC_jp = 0x809147CC; // type:func
 func_8091496C_jp = 0x8091496C; // type:func
 func_809149F8_jp = 0x809149F8; // type:func
 func_80914A84_jp = 0x80914A84; // type:func
-func_80914C60_jp = 0x80914C60; // type:func
-func_80914EB4_jp = 0x80914EB4; // type:func
+bIT_actor_ct = 0x80914C60; // type:func
+bIT_actor_dt = 0x80914EB4; // type:func
 func_80914EEC_jp = 0x80914EEC; // type:func
-func_80914F24_jp = 0x80914F24; // type:func
-func_80914FC0_jp = 0x80914FC0; // type:func
+bIT_actor_move = 0x80914F24; // type:func
+bIT_actor_draw = 0x80914FC0; // type:func
 
 // .data
 
-_00805E30_Profile = 0x80915000; //
+BgItem_Profile = 0x80915000; //
 D_80915024_jp = 0x80915024; //
 D_80915064_jp = 0x80915064; //
 D_809150A4_jp = 0x809150A4; //
@@ -7177,25 +7177,25 @@ RO_FLT_80933C3C_jp = 0x80933C3C; // type:f32
 
 func_80933F40_jp = 0x80933F40; // type:func
 func_80933F8C_jp = 0x80933F8C; // type:func
-func_80933FC8_jp = 0x80933FC8; // type:func
+Ac_Sample_Actor_dt = 0x80933FC8; // type:func
 func_8093401C_jp = 0x8093401C; // type:func
 func_80934040_jp = 0x80934040; // type:func
 func_80934104_jp = 0x80934104; // type:func
 func_80934190_jp = 0x80934190; // type:func
 func_8093420C_jp = 0x8093420C; // type:func
-func_809342BC_jp = 0x809342BC; // type:func
-func_80934320_jp = 0x80934320; // type:func
+Ac_Sample_Actor_main = 0x809342BC; // type:func
+Ac_Sample_Actor_ct = 0x80934320; // type:func
 func_809343BC_jp = 0x809343BC; // type:func
-func_80934598_jp = 0x80934598; // type:func
+Ac_Sample_Actor_draw = 0x80934598; // type:func
 
 // .data
 
-D_80934600_jp = 0x80934600; //
+Ac_Sample_OcInfoData_forStand = 0x80934600; //
 D_80934610_jp = 0x80934610; //
 D_8093461C_jp = 0x8093461C; //
 D_80934624_jp = 0x80934624; //
 D_8093462C_jp = 0x8093462C; //
-_0082B3C0_Profile = 0x80934634; //
+Sample_Profile = 0x80934634; //
 
 // .bss
 
@@ -7203,21 +7203,21 @@ B_80934660_jp = 0x80934660; //
 
 // .text
 
-func_80934740_jp = 0x80934740; // type:func
-func_80934750_jp = 0x80934750; // type:func
-func_80934760_jp = 0x80934760; // type:func
-func_80934770_jp = 0x80934770; // type:func
+Fieldm_Actor_ct = 0x80934740; // type:func
+Fieldm_Actor_dt = 0x80934750; // type:func
+Fieldm_Actor_move = 0x80934760; // type:func
+Fieldm_Actor_draw = 0x80934770; // type:func
 
 // .data
 
-_0082BB80_Profile = 0x80934780; //
+Fieldm_Draw_Profile = 0x80934780; //
 
 // .text
 
 func_809347E0_jp = 0x809347E0; // type:func
-func_8093482C_jp = 0x8093482C; // type:func
-func_809348E0_jp = 0x809348E0; // type:func
-func_809348F0_jp = 0x809348F0; // type:func
+Bg_Draw_Actor_ct = 0x8093482C; // type:func
+Bg_Draw_Actor_dt = 0x809348E0; // type:func
+Bg_Draw_Actor_move = 0x809348F0; // type:func
 func_80934B44_jp = 0x80934B44; // type:func
 func_80934B68_jp = 0x80934B68; // type:func
 func_80934BB0_jp = 0x80934BB0; // type:func
@@ -7228,11 +7228,11 @@ func_80934E5C_jp = 0x80934E5C; // type:func
 func_80934EDC_jp = 0x80934EDC; // type:func
 func_809350C0_jp = 0x809350C0; // type:func
 func_809356A8_jp = 0x809356A8; // type:func
-func_80935874_jp = 0x80935874; // type:func
+Bg_Draw_Actor_draw = 0x80935874; // type:func
 
 // .data
 
-_0082BC20_Profile = 0x809358E0; //
+Field_Draw_Profile = 0x809358E0; //
 D_80935904_jp = 0x80935904; //
 D_8093590C_jp = 0x8093590C; //
 D_80935914_jp = 0x80935914; //
@@ -7262,11 +7262,11 @@ func_80935E98_jp = 0x80935E98; // type:func
 func_80935FA8_jp = 0x80935FA8; // type:func
 func_809361BC_jp = 0x809361BC; // type:func
 func_8093629C_jp = 0x8093629C; // type:func
-func_809364C8_jp = 0x809364C8; // type:func
+aBC_actor_move = 0x809364C8; // type:func
 
 // .data
 
-_0082CED0_Profile = 0x80936650; //
+Birth_Control_Profile = 0x80936650; //
 D_FLT_80936674_jp = 0x80936674; // type:f32
 
 // .text
@@ -7410,7 +7410,7 @@ func_8093B3F4_jp = 0x8093B3F4; // type:func
 func_8093B418_jp = 0x8093B418; // type:func
 func_8093B43C_jp = 0x8093B43C; // type:func
 func_8093B498_jp = 0x8093B498; // type:func
-func_8093B52C_jp = 0x8093B52C; // type:func
+My_Room_Actor_ct = 0x8093B52C; // type:func
 func_8093B6F4_jp = 0x8093B6F4; // type:func
 func_8093B778_jp = 0x8093B778; // type:func
 func_8093B7EC_jp = 0x8093B7EC; // type:func
@@ -7420,7 +7420,7 @@ func_8093B9DC_jp = 0x8093B9DC; // type:func
 func_8093BA0C_jp = 0x8093BA0C; // type:func
 func_8093BA68_jp = 0x8093BA68; // type:func
 func_8093BA98_jp = 0x8093BA98; // type:func
-func_8093BB04_jp = 0x8093BB04; // type:func
+My_Room_Actor_dt = 0x8093BB04; // type:func
 func_8093BB5C_jp = 0x8093BB5C; // type:func
 func_8093BC30_jp = 0x8093BC30; // type:func
 func_8093BC94_jp = 0x8093BC94; // type:func
@@ -7541,7 +7541,7 @@ func_80945330_jp = 0x80945330; // type:func
 func_809454F0_jp = 0x809454F0; // type:func
 func_80945534_jp = 0x80945534; // type:func
 func_80945578_jp = 0x80945578; // type:func
-func_809455DC_jp = 0x809455DC; // type:func
+My_Room_Actor_move = 0x809455DC; // type:func
 func_809457DC_jp = 0x809457DC; // type:func
 func_80945810_jp = 0x80945810; // type:func
 func_80945DD8_jp = 0x80945DD8; // type:func
@@ -7561,14 +7561,14 @@ func_80946F40_jp = 0x80946F40; // type:func
 func_80947024_jp = 0x80947024; // type:func
 func_809472D0_jp = 0x809472D0; // type:func
 func_809473D4_jp = 0x809473D4; // type:func
-func_809474CC_jp = 0x809474CC; // type:func
+My_Room_Actor_draw = 0x809474CC; // type:func
 
 // .data
 
 D_80947560_jp = 0x80947560; //
 D_80947564_jp = 0x80947564; //
 D_80947568_jp = 0x80947568; //
-_0082D7F0_Profile = 0x8094756C; //
+My_Room_Profile = 0x8094756C; //
 D_80947590_jp = 0x80947590; //
 D_809475A8_jp = 0x809475A8; //
 D_809475C0_jp = 0x809475C0; //
@@ -7768,17 +7768,17 @@ func_80950E50_jp = 0x80950E50; // type:func
 func_80950EC8_jp = 0x80950EC8; // type:func
 func_80950F1C_jp = 0x80950F1C; // type:func
 func_80950F70_jp = 0x80950F70; // type:func
-func_80950FA4_jp = 0x80950FA4; // type:func
-func_80951100_jp = 0x80951100; // type:func
+Arrange_Room_Actor_ct = 0x80950FA4; // type:func
+Arrange_Room_Actor_dt = 0x80951100; // type:func
 func_80951124_jp = 0x80951124; // type:func
 func_809512C4_jp = 0x809512C4; // type:func
-func_80951430_jp = 0x80951430; // type:func
-func_80951470_jp = 0x80951470; // type:func
+Arrange_Room_Actor_draw = 0x80951430; // type:func
+Arrange_Room_Actor_move = 0x80951470; // type:func
 func_80951480_jp = 0x80951480; // type:func
 
 // .data
 
-_00845C40_Profile = 0x80951510; //
+Arrange_Room_Profile = 0x80951510; //
 
 // .rodata
 
@@ -7791,28 +7791,28 @@ RO_FLT_809515A4_jp = 0x809515A4; // type:f32
 
 // .text
 
-func_80951640_jp = 0x80951640; // type:func
-func_80951650_jp = 0x80951650; // type:func
-func_80951660_jp = 0x80951660; // type:func
-func_80951670_jp = 0x80951670; // type:func
+Arrange_Furniture_Actor_ct = 0x80951640; // type:func
+Arrange_Furniture_Actor_dt = 0x80951650; // type:func
+Arrange_Furniture_Actor_draw = 0x80951660; // type:func
+Arrange_Furniture_Actor_move = 0x80951670; // type:func
 
 // .data
 
-_00846430_Profile = 0x80951680; //
+Arrange_Furniture_Profile = 0x80951680; //
 
 // .text
 
 func_809516E0_jp = 0x809516E0; // type:func
-func_80951794_jp = 0x80951794; // type:func
-func_809517F4_jp = 0x809517F4; // type:func
-func_8095180C_jp = 0x8095180C; // type:func
-func_8095181C_jp = 0x8095181C; // type:func
+Broker_Design_Actor_ct = 0x80951794; // type:func
+Broker_Design_Actor_dt = 0x809517F4; // type:func
+Broker_Design_Actor_draw = 0x8095180C; // type:func
+Broker_Design_Actor_move = 0x8095181C; // type:func
 func_8095182C_jp = 0x8095182C; // type:func
 func_809518D0_jp = 0x809518D0; // type:func
 
 // .data
 
-_008464D0_Profile = 0x809519E0; //
+Broker_Design_Profile = 0x809519E0; //
 D_80951A04_jp = 0x80951A04; //
 
 // .text
@@ -7825,14 +7825,14 @@ func_80951DF4_jp = 0x80951DF4; // type:func
 func_80951E64_jp = 0x80951E64; // type:func
 func_80951EBC_jp = 0x80951EBC; // type:func
 func_80951F14_jp = 0x80951F14; // type:func
-func_80951FE8_jp = 0x80951FE8; // type:func
-func_80952038_jp = 0x80952038; // type:func
+My_Indoor_Actor_ct = 0x80951FE8; // type:func
+My_Indoor_Actor_dt = 0x80952038; // type:func
 func_8095205C_jp = 0x8095205C; // type:func
 func_80952254_jp = 0x80952254; // type:func
-func_80952404_jp = 0x80952404; // type:func
+My_Indoor_Actor_draw = 0x80952404; // type:func
 func_80952444_jp = 0x80952444; // type:func
 func_8095253C_jp = 0x8095253C; // type:func
-func_80952644_jp = 0x80952644; // type:func
+My_Indoor_Actor_move = 0x80952644; // type:func
 func_8095267C_jp = 0x8095267C; // type:func
 func_809526D4_jp = 0x809526D4; // type:func
 func_8095272C_jp = 0x8095272C; // type:func
@@ -7844,7 +7844,7 @@ D_809527B0_jp = 0x809527B0; //
 D_809527CC_jp = 0x809527CC; //
 D_809527E8_jp = 0x809527E8; //
 D_80952804_jp = 0x80952804; //
-_00846860_Profile = 0x80952810; //
+My_Indoor_Profile = 0x80952810; //
 
 // .rodata
 
@@ -7858,8 +7858,8 @@ RO_FLT_809528A8_jp = 0x809528A8; // type:f32
 
 // .text
 
-func_809529B0_jp = 0x809529B0; // type:func
-func_80952A7C_jp = 0x80952A7C; // type:func
+aID_actor_ct = 0x809529B0; // type:func
+aID_actor_dt = 0x80952A7C; // type:func
 func_80952ACC_jp = 0x80952ACC; // type:func
 func_80952B0C_jp = 0x80952B0C; // type:func
 func_80952B48_jp = 0x80952B48; // type:func
@@ -7886,11 +7886,11 @@ func_80953474_jp = 0x80953474; // type:func
 func_809534C4_jp = 0x809534C4; // type:func
 func_80953550_jp = 0x80953550; // type:func
 func_80953580_jp = 0x80953580; // type:func
-func_809535B4_jp = 0x809535B4; // type:func
+aID_actor_move = 0x809535B4; // type:func
 
 // .data
 
-_008477A0_Profile = 0x809535E0; //
+Intro_Demo_Profile = 0x809535E0; //
 D_80953604_jp = 0x80953604; // type:u16
 D_8095360C_jp = 0x8095360C; //
 D_8095361C_jp = 0x8095361C; //
@@ -7913,8 +7913,8 @@ B_809536D0_jp = 0x809536D0; //
 
 // .text
 
-func_80953820_jp = 0x80953820; // type:func
-func_80953864_jp = 0x80953864; // type:func
+aROD_actor_ct = 0x80953820; // type:func
+aROD_actor_dt = 0x80953864; // type:func
 func_8095388C_jp = 0x8095388C; // type:func
 func_809538CC_jp = 0x809538CC; // type:func
 func_80953910_jp = 0x80953910; // type:func
@@ -7927,11 +7927,11 @@ func_80953B98_jp = 0x80953B98; // type:func
 func_80953C24_jp = 0x80953C24; // type:func
 func_80953C60_jp = 0x80953C60; // type:func
 func_80953C90_jp = 0x80953C90; // type:func
-func_80953CC4_jp = 0x80953CC4; // type:func
+aROD_actor_move = 0x80953CC4; // type:func
 
 // .data
 
-_00848600_Profile = 0x80953CF0; //
+Ride_Off_Demo_Profile = 0x80953CF0; //
 D_80953D14_jp = 0x80953D14; //
 D_80953D20_jp = 0x80953D20; //
 D_80953D34_jp = 0x80953D34; //
@@ -7959,16 +7959,16 @@ func_809543B4_jp = 0x809543B4; // type:func
 func_80954400_jp = 0x80954400; // type:func
 func_80954440_jp = 0x80954440; // type:func
 func_80954514_jp = 0x80954514; // type:func
-func_809545C4_jp = 0x809545C4; // type:func
-func_809547A0_jp = 0x809547A0; // type:func
-func_809547C4_jp = 0x809547C4; // type:func
-func_809547D4_jp = 0x809547D4; // type:func
+Shop_Design_Actor_ct = 0x809545C4; // type:func
+Shop_Design_Actor_dt = 0x809547A0; // type:func
+Shop_Design_Actor_draw = 0x809547C4; // type:func
+Shop_Design_Actor_move = 0x809547D4; // type:func
 func_809547E4_jp = 0x809547E4; // type:func
 func_80954970_jp = 0x80954970; // type:func
 
 // .data
 
-_00848BF0_Profile = 0x80954C80; //
+Shop_Design_Profile = 0x80954C80; //
 D_80954CA4_jp = 0x80954CA4; // type:u16
 D_80954CAC_jp = 0x80954CAC; //
 
@@ -8049,10 +8049,10 @@ func_80956C98_jp = 0x80956C98; // type:func
 func_80956E4C_jp = 0x80956E4C; // type:func
 func_80956EA8_jp = 0x80956EA8; // type:func
 func_80956EC8_jp = 0x80956EC8; // type:func
-func_80956EE8_jp = 0x80956EE8; // type:func
-func_80956F40_jp = 0x80956F40; // type:func
-func_809570A8_jp = 0x809570A8; // type:func
-func_80957100_jp = 0x80957100; // type:func
+aQMgr_actor_move_main = 0x80956EE8; // type:func
+aQMgr_actor_ct = 0x80956F40; // type:func
+aQMgr_actor_dt = 0x809570A8; // type:func
+aQMgr_actor_save = 0x80957100; // type:func
 
 // .data
 
@@ -8078,7 +8078,7 @@ D_80957A80_jp = 0x80957A80; //
 D_80957A84_jp = 0x80957A84; //
 D_80957A88_jp = 0x80957A88; //
 D_80957AA0_jp = 0x80957AA0; //
-_00849B50_Profile = 0x80957AAC; //
+Quest_Manager_Profile = 0x80957AAC; //
 
 // .text
 
@@ -8093,16 +8093,16 @@ func_8095804C_jp = 0x8095804C; // type:func
 func_8095806C_jp = 0x8095806C; // type:func
 func_809580D4_jp = 0x809580D4; // type:func
 func_80958130_jp = 0x80958130; // type:func
-func_809581F0_jp = 0x809581F0; // type:func
-func_8095824C_jp = 0x8095824C; // type:func
-func_809582B4_jp = 0x809582B4; // type:func
+aSetMgr_move = 0x809581F0; // type:func
+aSetMgr_ct = 0x8095824C; // type:func
+aSetMgr_dt = 0x809582B4; // type:func
 
 // .data
 
 D_809582D0_jp = 0x809582D0; //
 D_809582F8_jp = 0x809582F8; //
 D_80958304_jp = 0x80958304; //
-_0084CBC0_Profile = 0x80958310; //
+Set_Manager_Profile = 0x80958310; //
 
 // .text
 
@@ -8111,17 +8111,17 @@ func_809585F4_jp = 0x809585F4; // type:func
 func_809586FC_jp = 0x809586FC; // type:func
 func_80958824_jp = 0x80958824; // type:func
 func_809588D4_jp = 0x809588D4; // type:func
-func_80958A28_jp = 0x80958A28; // type:func
-func_80958B18_jp = 0x80958B18; // type:func
-func_80958B28_jp = 0x80958B28; // type:func
+Shop_Level_Actor_ct = 0x80958A28; // type:func
+Shop_Level_Actor_dt = 0x80958B18; // type:func
+Shop_Level_Actor_draw = 0x80958B28; // type:func
 func_80958B38_jp = 0x80958B38; // type:func
 func_80958EA4_jp = 0x80958EA4; // type:func
 func_80958F70_jp = 0x80958F70; // type:func
-func_80958FB8_jp = 0x80958FB8; // type:func
+Shop_Level_Actor_move = 0x80958FB8; // type:func
 
 // .data
 
-_0084D180_Profile = 0x80959040; //
+Shop_Level_Profile = 0x80959040; //
 D_80959064_jp = 0x80959064; //
 D_80959074_jp = 0x80959074; //
 D_809590CC_jp = 0x809590CC; //
@@ -8140,17 +8140,17 @@ func_809599B0_jp = 0x809599B0; // type:func
 func_80959A04_jp = 0x80959A04; // type:func
 func_80959A80_jp = 0x80959A80; // type:func
 func_80959B64_jp = 0x80959B64; // type:func
-func_80959BB0_jp = 0x80959BB0; // type:func
-func_80959C34_jp = 0x80959C34; // type:func
-func_80959CD8_jp = 0x80959CD8; // type:func
-func_80959F24_jp = 0x80959F24; // type:func
+Shop_Manekin_Actor_ct = 0x80959BB0; // type:func
+Shop_Manekin_Actor_dt = 0x80959C34; // type:func
+Shop_Manekin_Actor_draw = 0x80959CD8; // type:func
+Shop_Manekin_Actor_move = 0x80959F24; // type:func
 func_80959F34_jp = 0x80959F34; // type:func
 func_8095A024_jp = 0x8095A024; // type:func
 func_8095A158_jp = 0x8095A158; // type:func
 
 // .data
 
-_0084E080_Profile = 0x8095A290; //
+Shop_Manekin_Profile = 0x8095A290; //
 D_8095A2B4_jp = 0x8095A2B4; //
 D_8095A2C4_jp = 0x8095A2C4; //
 
@@ -8169,14 +8169,14 @@ func_8095A62C_jp = 0x8095A62C; // type:func
 func_8095A744_jp = 0x8095A744; // type:func
 func_8095A808_jp = 0x8095A808; // type:func
 func_8095A86C_jp = 0x8095A86C; // type:func
-func_8095A8C8_jp = 0x8095A8C8; // type:func
-func_8095A9AC_jp = 0x8095A9AC; // type:func
+Shop_Indoor_Actor_ct = 0x8095A8C8; // type:func
+Shop_Indoor_Actor_dt = 0x8095A9AC; // type:func
 func_8095A9D0_jp = 0x8095A9D0; // type:func
 func_8095AD48_jp = 0x8095AD48; // type:func
 func_8095AF7C_jp = 0x8095AF7C; // type:func
 func_8095B2B0_jp = 0x8095B2B0; // type:func
-func_8095B30C_jp = 0x8095B30C; // type:func
-func_8095B32C_jp = 0x8095B32C; // type:func
+Shop_Indoor_Actor_draw = 0x8095B30C; // type:func
+Shop_Indoor_Actor_move = 0x8095B32C; // type:func
 func_8095B33C_jp = 0x8095B33C; // type:func
 func_8095B3C0_jp = 0x8095B3C0; // type:func
 func_8095B444_jp = 0x8095B444; // type:func
@@ -8189,7 +8189,7 @@ D_8095B5B0_jp = 0x8095B5B0; //
 D_8095B5C8_jp = 0x8095B5C8; //
 D_8095B628_jp = 0x8095B628; // type:s16
 D_8095B634_jp = 0x8095B634; // type:s16
-_0084F180_Profile = 0x8095B640; //
+Shop_Indoor_Profile = 0x8095B640; //
 D_8095B664_jp = 0x8095B664; //
 D_8095B678_jp = 0x8095B678; //
 D_8095B684_jp = 0x8095B684; //
@@ -8218,12 +8218,12 @@ func_8095BA60_jp = 0x8095BA60; // type:func
 func_8095BB80_jp = 0x8095BB80; // type:func
 func_8095BBFC_jp = 0x8095BBFC; // type:func
 func_8095BC60_jp = 0x8095BC60; // type:func
-func_8095BCDC_jp = 0x8095BCDC; // type:func
-func_8095BD18_jp = 0x8095BD18; // type:func
+aEvMgr_move = 0x8095BCDC; // type:func
+aEvMgr_draw = 0x8095BD18; // type:func
 func_8095BD28_jp = 0x8095BD28; // type:func
-func_8095BD40_jp = 0x8095BD40; // type:func
-func_8095BD7C_jp = 0x8095BD7C; // type:func
-func_8095BD8C_jp = 0x8095BD8C; // type:func
+aEvMgr_ct = 0x8095BD40; // type:func
+aEvMgr_dt = 0x8095BD7C; // type:func
+aEvMgr_save = 0x8095BD8C; // type:func
 func_8095BDE8_jp = 0x8095BDE8; // type:func
 func_8095C09C_jp = 0x8095C09C; // type:func
 func_8095C264_jp = 0x8095C264; // type:func
@@ -8363,7 +8363,7 @@ D_80961F40_jp = 0x80961F40; //
 D_80961F48_jp = 0x80961F48; //
 D_809622C8_jp = 0x809622C8; //
 D_809622CC_jp = 0x809622CC; //
-_00850680_Profile = 0x809622EC; //
+Event_Manager_Profile = 0x809622EC; //
 
 // .rodata
 
@@ -8393,18 +8393,18 @@ func_809630C8_jp = 0x809630C8; // type:func
 func_80963320_jp = 0x80963320; // type:func
 func_80963358_jp = 0x80963358; // type:func
 func_809633E4_jp = 0x809633E4; // type:func
-func_80963438_jp = 0x80963438; // type:func
-func_80963548_jp = 0x80963548; // type:func
-func_80963584_jp = 0x80963584; // type:func
+Shop_Goods_Actor_ct = 0x80963438; // type:func
+Shop_Goods_Actor_dt = 0x80963548; // type:func
+Shop_Goods_Actor_move = 0x80963584; // type:func
 func_809635A8_jp = 0x809635A8; // type:func
 func_80963760_jp = 0x80963760; // type:func
-func_80963988_jp = 0x80963988; // type:func
+Shop_Goods_Actor_draw = 0x80963988; // type:func
 
 // .data
 
 D_809639D0_jp = 0x809639D0; // type:u16
 D_809639D2_jp = 0x809639D2; // type:u16
-_008576C0_Profile = 0x80963C8C; //
+Shop_Goods_Profile = 0x80963C8C; //
 
 // .rodata
 
@@ -8421,8 +8421,8 @@ B_80963CC8_jp = 0x80963CC8; //
 
 // .text
 
-func_80963DC0_jp = 0x80963DC0; // type:func
-func_80963DE0_jp = 0x80963DE0; // type:func
+aHOI_actor_ct = 0x80963DC0; // type:func
+aHOI_actor_dt = 0x80963DE0; // type:func
 func_80963E08_jp = 0x80963E08; // type:func
 func_80963E50_jp = 0x80963E50; // type:func
 func_80963F00_jp = 0x80963F00; // type:func
@@ -8435,13 +8435,13 @@ func_809641DC_jp = 0x809641DC; // type:func
 func_80964308_jp = 0x80964308; // type:func
 func_809643B8_jp = 0x809643B8; // type:func
 func_809644A4_jp = 0x809644A4; // type:func
-func_80964500_jp = 0x80964500; // type:func
+aHOI_actor_move = 0x80964500; // type:func
 func_8096462C_jp = 0x8096462C; // type:func
-func_809647C4_jp = 0x809647C4; // type:func
+aHOI_actor_draw = 0x809647C4; // type:func
 
 // .data
 
-_00858A50_Profile = 0x80964AB0; //
+HandOverItem_Profile = 0x80964AB0; //
 D_80964AD4_jp = 0x80964AD4; //
 D_80964B64_jp = 0x80964B64; //
 D_80964BF4_jp = 0x80964BF4; //
@@ -8530,8 +8530,8 @@ B_809654F0_jp = 0x809654F0; //
 
 // .text
 
-func_809657A0_jp = 0x809657A0; // type:func
-func_809657C4_jp = 0x809657C4; // type:func
+aTOL_actor_ct = 0x809657A0; // type:func
+aTOL_actor_dt = 0x809657C4; // type:func
 func_809657EC_jp = 0x809657EC; // type:func
 func_8096595C_jp = 0x8096595C; // type:func
 func_80965A4C_jp = 0x80965A4C; // type:func
@@ -8541,7 +8541,7 @@ func_80965B20_jp = 0x80965B20; // type:func
 
 // .data
 
-_0085A400_Profile = 0x80965B40; //
+Tools_Profile = 0x80965B40; //
 D_80965B64_jp = 0x80965B64; // type:s16
 D_80965BBC_jp = 0x80965BBC; // type:s16
 
@@ -8551,18 +8551,18 @@ B_80965C20_jp = 0x80965C20; //
 
 // .text
 
-func_80965C90_jp = 0x80965C90; // type:func
+Ef_Room_Sunshine_actor_ct = 0x80965C90; // type:func
 func_80965E38_jp = 0x80965E38; // type:func
 func_80965EE0_jp = 0x80965EE0; // type:func
 func_80965FF0_jp = 0x80965FF0; // type:func
-func_80966088_jp = 0x80966088; // type:func
+Ef_Room_SunshineR_actor_move = 0x80966088; // type:func
 func_80966120_jp = 0x80966120; // type:func
 func_8096628C_jp = 0x8096628C; // type:func
-func_80966370_jp = 0x80966370; // type:func
+Ef_Room_SunshineR_actor_draw = 0x80966370; // type:func
 
 // .data
 
-_0085A8E0_Profile = 0x80966460; //
+Room_Sunshine_Profile = 0x80966460; //
 
 // .rodata
 
@@ -8572,18 +8572,18 @@ RO_FLT_80966498_jp = 0x80966498; // type:f32
 
 // .text
 
-func_80966520_jp = 0x80966520; // type:func
+Ef_Room_Sunshine_Posthouse_actor_ct = 0x80966520; // type:func
 func_809666C8_jp = 0x809666C8; // type:func
 func_80966788_jp = 0x80966788; // type:func
 func_80966898_jp = 0x80966898; // type:func
-func_80966930_jp = 0x80966930; // type:func
+Ef_Room_Sunshine_PosthouseR_actor_move = 0x80966930; // type:func
 func_809669D0_jp = 0x809669D0; // type:func
 func_80966B40_jp = 0x80966B40; // type:func
-func_80966BB8_jp = 0x80966BB8; // type:func
+Ef_Room_Sunshine_PosthouseR_actor_draw = 0x80966BB8; // type:func
 
 // .data
 
-_0085B170_Profile = 0x80966C30; //
+Room_Sunshine_Posthouse_Profile = 0x80966C30; //
 
 // .rodata
 
@@ -8596,19 +8596,19 @@ RO_FLT_80966C74_jp = 0x80966C74; // type:f32
 
 // .text
 
-func_80966D10_jp = 0x80966D10; // type:func
+Ef_Room_Sunshine_Police_actor_ct = 0x80966D10; // type:func
 func_80966ED0_jp = 0x80966ED0; // type:func
 func_80966F90_jp = 0x80966F90; // type:func
 func_809670A0_jp = 0x809670A0; // type:func
-func_80967138_jp = 0x80967138; // type:func
+Ef_Room_Sunshine_PoliceR_actor_move = 0x80967138; // type:func
 func_809671D8_jp = 0x809671D8; // type:func
 func_8096722C_jp = 0x8096722C; // type:func
 func_8096739C_jp = 0x8096739C; // type:func
-func_80967428_jp = 0x80967428; // type:func
+Ef_Room_Sunshine_PoliceR_actor_draw = 0x80967428; // type:func
 
 // .data
 
-_0085B960_Profile = 0x809674C0; //
+Room_Sunshine_Police_Profile = 0x809674C0; //
 
 // .rodata
 
@@ -8621,17 +8621,17 @@ RO_FLT_80967504_jp = 0x80967504; // type:f32
 
 // .text
 
-func_809675B0_jp = 0x809675B0; // type:func
-func_80967614_jp = 0x80967614; // type:func
+Ef_Lamp_Light_actor_ct = 0x809675B0; // type:func
+Ef_Lamp_Light_actor_dt = 0x80967614; // type:func
 func_80967644_jp = 0x80967644; // type:func
 func_80967678_jp = 0x80967678; // type:func
 func_809676BC_jp = 0x809676BC; // type:func
 func_809676E4_jp = 0x809676E4; // type:func
-func_809677A4_jp = 0x809677A4; // type:func
+Ef_Lamp_Light_actor_move = 0x809677A4; // type:func
 
 // .data
 
-_0085C200_Profile = 0x80967860; //
+Lamp_Light_Profile = 0x80967860; //
 D_80967884_jp = 0x80967884; //
 D_8096788C_jp = 0x8096788C; //
 D_80967894_jp = 0x80967894; //
@@ -8641,9 +8641,9 @@ D_809678AC_jp = 0x809678AC; //
 
 // .text
 
-func_80967920_jp = 0x80967920; // type:func
-func_80967A10_jp = 0x80967A10; // type:func
-func_80967A20_jp = 0x80967A20; // type:func
+Airplane_Actor_ct = 0x80967920; // type:func
+Airplane_Actor_dt = 0x80967A10; // type:func
+Airplane_Actor_draw = 0x80967A20; // type:func
 func_80967B50_jp = 0x80967B50; // type:func
 func_80967B78_jp = 0x80967B78; // type:func
 func_80967B9C_jp = 0x80967B9C; // type:func
@@ -8660,11 +8660,11 @@ func_80968304_jp = 0x80968304; // type:func
 func_80968464_jp = 0x80968464; // type:func
 func_809685B8_jp = 0x809685B8; // type:func
 func_80968638_jp = 0x80968638; // type:func
-func_80968674_jp = 0x80968674; // type:func
+Airplane_Actor_move = 0x80968674; // type:func
 
 // .data
 
-_0085C570_Profile = 0x80968710; //
+Airplane_Profile = 0x80968710; //
 D_80968734_jp = 0x80968734; // type:s16
 D_80968744_jp = 0x80968744; // type:s16
 D_80968754_jp = 0x80968754; //
@@ -8705,12 +8705,11 @@ jtbl_80968840_jp = 0x80968840; // type:jtbl
 func_80968A10_jp = 0x80968A10; // type:func
 func_80968AF4_jp = 0x80968AF4; // type:func
 func_80968B9C_jp = 0x80968B9C; // type:func
-func_80968D08_jp = 0x80968D08; // type:func
-func_80968F98_jp = 0x80968F98; // type:func
+aBALL_actor_ct = 0x80968D08; // type:func
+aBALL_actor_dt = 0x80968F98; // type:func
 func_80969040_jp = 0x80969040; // type:func
 func_80969114_jp = 0x80969114; // type:func
-func_809693EC_jp = 0x809693EC; // type:func
-D_80969690_jp = 0x80969690; // type:s16
+func_809693EC_jp = 0x809693EC; // type:func size:0x414
 func_80969800_jp = 0x80969800; // type:func
 func_8096983C_jp = 0x8096983C; // type:func
 func_809698E8_jp = 0x809698E8; // type:func
@@ -8724,16 +8723,16 @@ func_8096A0EC_jp = 0x8096A0EC; // type:func
 func_8096A23C_jp = 0x8096A23C; // type:func
 func_8096A334_jp = 0x8096A334; // type:func
 func_8096A3D8_jp = 0x8096A3D8; // type:func
-func_8096A678_jp = 0x8096A678; // type:func
-func_8096A77C_jp = 0x8096A77C; // type:func
+aBALL_actor_move = 0x8096A678; // type:func
+aBALL_actor_draw = 0x8096A77C; // type:func
 func_8096A86C_jp = 0x8096A86C; // type:func
 
 // .data
 
 D_8096A8B0_jp = 0x8096A8B0; //
-_0085D660_Profile = 0x8096A8BC; //
-D_8096A8E0_jp = 0x8096A8E0; //
-D_8096A8F0_jp = 0x8096A8F0; //
+Ball_Profile = 0x8096A8BC; //
+aBALL_CoInfoData = 0x8096A8E0; //
+aBALL_StatusData = 0x8096A8F0; //
 D_8096A8FC_jp = 0x8096A8FC; // type:s16
 
 // .rodata
@@ -8749,8 +8748,8 @@ RO_FLT_8096A934_jp = 0x8096A934; // type:f32
 RO_FLT_8096A938_jp = 0x8096A938; // type:f32
 RO_FLT_8096A93C_jp = 0x8096A93C; // type:f32
 RO_FLT_8096A940_jp = 0x8096A940; // type:f32
-RO_FLT_8096A944_jp = 0x8096A944; // type:f32
-RO_FLT_8096A948_jp = 0x8096A948; // type:f32
+RO_FLT_8096A944_jp = 0x8096A944; // type:f32 force_migration:True This symbol includes two floats instead of one as a workaround to make this file to match
+// RO_FLT_8096A948_jp = 0x8096A948; // type:f32
 RO_FLT_8096A94C_jp = 0x8096A94C; // type:f32
 RO_FLT_8096A950_jp = 0x8096A950; // type:f32
 RO_FLT_8096A954_jp = 0x8096A954; // type:f32
@@ -8771,8 +8770,8 @@ B_8096A980_jp = 0x8096A980; //
 
 // .text
 
-func_8096AB90_jp = 0x8096AB90; // type:func
-func_8096AC60_jp = 0x8096AC60; // type:func
+aHNW_actor_ct = 0x8096AB90; // type:func
+aHNW_actor_dt = 0x8096AC60; // type:func
 func_8096ACB8_jp = 0x8096ACB8; // type:func
 func_8096AD94_jp = 0x8096AD94; // type:func
 func_8096ADC0_jp = 0x8096ADC0; // type:func
@@ -8805,14 +8804,14 @@ func_8096BDE8_jp = 0x8096BDE8; // type:func
 func_8096BE18_jp = 0x8096BE18; // type:func
 func_8096C01C_jp = 0x8096C01C; // type:func
 func_8096C174_jp = 0x8096C174; // type:func
-func_8096C204_jp = 0x8096C204; // type:func
+aHNW_actor_init = 0x8096C204; // type:func
 func_8096C29C_jp = 0x8096C29C; // type:func
 
 // .data
 
-_0085F7D0_Profile = 0x8096C410; //
-D_8096C434_jp = 0x8096C434; //
-D_8096C444_jp = 0x8096C444; //
+Haniwa_Profile = 0x8096C410; //
+AcHaniwaCoInfoData = 0x8096C434; //
+AcHaniwaStatusData = 0x8096C444; //
 D_8096C450_jp = 0x8096C450; //
 D_8096C458_jp = 0x8096C458; //
 D_8096C46C_jp = 0x8096C46C; //
@@ -8837,8 +8836,8 @@ RO_FLT_8096C614_jp = 0x8096C614; // type:f32
 
 // .text
 
-func_8096C7E0_jp = 0x8096C7E0; // type:func
-func_8096C8D0_jp = 0x8096C8D0; // type:func
+aMBX_actor_ct = 0x8096C7E0; // type:func
+aMBX_actor_dt = 0x8096C8D0; // type:func
 func_8096C8FC_jp = 0x8096C8FC; // type:func
 func_8096C970_jp = 0x8096C970; // type:func
 func_8096CA0C_jp = 0x8096CA0C; // type:func
@@ -8853,13 +8852,13 @@ func_8096CFF4_jp = 0x8096CFF4; // type:func
 func_8096D070_jp = 0x8096D070; // type:func
 func_8096D0E0_jp = 0x8096D0E0; // type:func
 func_8096D194_jp = 0x8096D194; // type:func
-func_8096D1F0_jp = 0x8096D1F0; // type:func
+aMBX_actor_init = 0x8096D1F0; // type:func
 func_8096D28C_jp = 0x8096D28C; // type:func
 func_8096D314_jp = 0x8096D314; // type:func
 
 // .data
 
-_00861420_Profile = 0x8096D4A0; //
+MailBox_Profile = 0x8096D4A0; //
 D_8096D4C4_jp = 0x8096D4C4; //
 D_8096D518_jp = 0x8096D518; //
 D_8096D52C_jp = 0x8096D52C; //
@@ -8877,21 +8876,21 @@ D_8096D658_jp = 0x8096D658; //
 
 // .text
 
-func_8096D7A0_jp = 0x8096D7A0; // type:func
-func_8096D860_jp = 0x8096D860; // type:func
+aRP_actor_ct = 0x8096D7A0; // type:func
+aRP_actor_dt = 0x8096D860; // type:func
 func_8096D920_jp = 0x8096D920; // type:func
-func_8096DA44_jp = 0x8096DA44; // type:func
+aRP_actor_draw = 0x8096DA44; // type:func
 
 // .data
 
-_008623E0_Profile = 0x8096DBA0; //
+Rope_Profile = 0x8096DBA0; //
 D_8096DBC4_jp = 0x8096DBC4; //
 
 // .text
 
-func_8096DC30_jp = 0x8096DC30; // type:func
+aSMAN_actor_ct = 0x8096DC30; // type:func
 func_8096DDAC_jp = 0x8096DDAC; // type:func
-func_8096DF58_jp = 0x8096DF58; // type:func
+aSMAN_actor_dt = 0x8096DF58; // type:func
 func_8096E1A4_jp = 0x8096E1A4; // type:func
 func_8096E274_jp = 0x8096E274; // type:func
 func_8096E2EC_jp = 0x8096E2EC; // type:func
@@ -8940,14 +8939,14 @@ func_80971644_jp = 0x80971644; // type:func
 func_80971780_jp = 0x80971780; // type:func
 func_80971894_jp = 0x80971894; // type:func
 func_80971954_jp = 0x80971954; // type:func
-func_809719FC_jp = 0x809719FC; // type:func
-func_80971B38_jp = 0x80971B38; // type:func
+aSMAN_actor_move = 0x809719FC; // type:func
+aSMAN_actor_draw = 0x80971B38; // type:func
 
 // .data
 
-_00862870_Profile = 0x80971C40; //
-D_80971C64_jp = 0x80971C64; //
-D_80971C74_jp = 0x80971C74; //
+Snowman_Profile = 0x80971C40; //
+aSMAN_CoInfoData = 0x80971C64; //
+aSMAN_StatusData = 0x80971C74; //
 D_80971C80_jp = 0x80971C80; //
 D_80971C88_jp = 0x80971C88; // type:u16
 D_FLT_80971CA0_jp = 0x80971CA0; // type:f32
@@ -9027,16 +9026,16 @@ RO_FLT_80971E30_jp = 0x80971E30; // type:f32
 
 // .text
 
-func_80972290_jp = 0x80972290; // type:func
-func_809724D8_jp = 0x809724D8; // type:func
+aPSM_actor_ct = 0x80972290; // type:func
+aPSM_actor_dt = 0x809724D8; // type:func
 func_80972528_jp = 0x80972528; // type:func
 func_80972564_jp = 0x80972564; // type:func
-func_80972720_jp = 0x80972720; // type:func
-func_809727D4_jp = 0x809727D4; // type:func
+aPSM_actor_move = 0x80972720; // type:func
+aPSM_actor_draw = 0x809727D4; // type:func
 
 // .data
 
-_00866ED0_Profile = 0x80972940; //
+Psnowman_Profile = 0x80972940; //
 
 // .rodata
 
@@ -9047,30 +9046,30 @@ RO_FLT_8097297C_jp = 0x8097297C; // type:f32
 
 // .text
 
-func_809729E0_jp = 0x809729E0; // type:func
-func_80972A84_jp = 0x80972A84; // type:func
+aTRD_actor_ct = 0x809729E0; // type:func
+aTRD_actor_dt = 0x80972A84; // type:func
 func_80972AB0_jp = 0x80972AB0; // type:func
-func_80972B20_jp = 0x80972B20; // type:func
-func_80972B98_jp = 0x80972B98; // type:func
+aTRD_actor_move = 0x80972B20; // type:func
+aTRD_actor_draw = 0x80972B98; // type:func
 
 // .data
 
-_00867620_Profile = 0x80972C10; //
+TrainDoor_Profile = 0x80972C10; //
 D_80972C34_jp = 0x80972C34; //
 D_80972C3C_jp = 0x80972C3C; // type:u16
 
 // .text
 
-func_80972C80_jp = 0x80972C80; // type:func
-func_80972D20_jp = 0x80972D20; // type:func
-func_80972D4C_jp = 0x80972D4C; // type:func
-func_80972E14_jp = 0x80972E14; // type:func
+Mbg_Actor_ct = 0x80972C80; // type:func
+Mbg_Actor_dt = 0x80972D20; // type:func
+Mbg_Actor_draw = 0x80972D4C; // type:func
+Mbg_Actor_move = 0x80972E14; // type:func
 
 // .data
 
 D_80972EC0_jp = 0x80972EC0; //
 D_80972F40_jp = 0x80972F40; //
-_008678C0_Profile = 0x80972FA0; //
+Mbg_Profile = 0x80972FA0; //
 
 // .rodata
 
@@ -9078,37 +9077,37 @@ RO_FLT_80972FD0_jp = 0x80972FD0; // type:f32
 
 // .text
 
-func_80973020_jp = 0x80973020; // type:func
-func_80973030_jp = 0x80973030; // type:func
-func_80973040_jp = 0x80973040; // type:func
-func_80973050_jp = 0x80973050; // type:func
+BoxManager_Actor_ct = 0x80973020; // type:func
+BoxManager_Actor_dt = 0x80973030; // type:func
+BoxManager_Actor_move = 0x80973040; // type:func
+BoxManager_Actor_draw = 0x80973050; // type:func
 
 // .data
 
-_00867C60_Profile = 0x80973060; //
+BoxManager_Profile = 0x80973060; //
 
 // .text
 
-func_809730C0_jp = 0x809730C0; // type:func
-func_809730D0_jp = 0x809730D0; // type:func
-func_809730E0_jp = 0x809730E0; // type:func
-func_809730F0_jp = 0x809730F0; // type:func
+BoxMove_Actor_ct = 0x809730C0; // type:func
+BoxMove_Actor_dt = 0x809730D0; // type:func
+BoxMove_Actor_move = 0x809730E0; // type:func
+BoxMove_Actor_draw = 0x809730F0; // type:func
 
 // .data
 
-_00867D00_Profile = 0x80973100; //
+BoxMove_Profile = 0x80973100; //
 
 // .text
 
 func_80973160_jp = 0x80973160; // type:func
 func_80973280_jp = 0x80973280; // type:func
-func_8097335C_jp = 0x8097335C; // type:func
-func_809733C8_jp = 0x809733C8; // type:func
-func_809733EC_jp = 0x809733EC; // type:func
+BoxTrick01_Actor_ct = 0x8097335C; // type:func
+BoxTrick01_Actor_dt = 0x809733C8; // type:func
+BoxTrick01_Actor_move = 0x809733EC; // type:func
 
 // .data
 
-_00867DA0_Profile = 0x80973400; //
+BoxTrick01_Profile = 0x80973400; //
 D_80973424_jp = 0x80973424; //
 
 // .text
@@ -9484,8 +9483,8 @@ func_80980C58_jp = 0x80980C58; // type:func
 func_80980C84_jp = 0x80980C84; // type:func
 func_80980CB0_jp = 0x80980CB0; // type:func
 func_80980CDC_jp = 0x80980CDC; // type:func
-func_80980D74_jp = 0x80980D74; // type:func
-func_80981018_jp = 0x80981018; // type:func
+func_8053a354 = 0x80980D74; // type:func
+func_8053a6fc = 0x80981018; // type:func
 func_809810A0_jp = 0x809810A0; // type:func
 func_809811E8_jp = 0x809811E8; // type:func
 func_80981270_jp = 0x80981270; // type:func
@@ -9494,21 +9493,21 @@ func_809814CC_jp = 0x809814CC; // type:func
 func_80981520_jp = 0x80981520; // type:func
 func_8098154C_jp = 0x8098154C; // type:func
 func_80981594_jp = 0x80981594; // type:func
-func_809815C0_jp = 0x809815C0; // type:func
+func_8053aab0 = 0x809815C0; // type:func
 func_80981738_jp = 0x80981738; // type:func
 func_80981838_jp = 0x80981838; // type:func
 
 // .data
 
 D_80981940_jp = 0x80981940; //
-_008681F0_Profile = 0x8098194C; //
+Npc_Profile = 0x8098194C; //
 D_80981970_jp = 0x80981970; //
 D_80981974_jp = 0x80981974; //
 D_809820C4_jp = 0x809820C4; //
 D_809820CC_jp = 0x809820CC; //
 D_809821A4_jp = 0x809821A4; //
-D_809821B0_jp = 0x809821B0; //
-D_809821C0_jp = 0x809821C0; //
+aNPC_CoInfoData = 0x809821B0; //
+aNPC_StatusData = 0x809821C0; //
 D_809821CC_jp = 0x809821CC; //
 D_80982578_jp = 0x80982578; //
 D_80982924_jp = 0x80982924; //
@@ -9986,25 +9985,25 @@ func_809A08B0_jp = 0x809A08B0; // type:func
 func_809A0A98_jp = 0x809A0A98; // type:func
 func_809A0AB8_jp = 0x809A0AB8; // type:func
 func_809A0B34_jp = 0x809A0B34; // type:func
-func_809A0BA4_jp = 0x809A0BA4; // type:func
-func_809A0E28_jp = 0x809A0E28; // type:func
+func_80545034 = 0x809A0BA4; // type:func
+func_805453b8 = 0x809A0E28; // type:func
 func_809A0E50_jp = 0x809A0E50; // type:func
 func_809A0F98_jp = 0x809A0F98; // type:func
 func_809A1020_jp = 0x809A1020; // type:func
 func_809A121C_jp = 0x809A121C; // type:func
-func_809A127C_jp = 0x809A127C; // type:func
+func_80545604 = 0x809A127C; // type:func
 
 // .data
 
 D_809A1320_jp = 0x809A1320; //
-_008798C0_Profile = 0x809A132C; //
+Npc2_Profile = 0x809A132C; //
 D_809A1350_jp = 0x809A1350; //
 D_809A1354_jp = 0x809A1354; //
 D_809A1AA4_jp = 0x809A1AA4; //
 D_809A1AAC_jp = 0x809A1AAC; //
 D_809A1B58_jp = 0x809A1B58; //
-D_809A1B64_jp = 0x809A1B64; //
-D_809A1B74_jp = 0x809A1B74; //
+aNPC2_CoInfoData = 0x809A1B64; //
+aNPC2_StatusData = 0x809A1B74; //
 D_809A1B80_jp = 0x809A1B80; //
 D_809A1F2C_jp = 0x809A1F2C; //
 D_809A22D8_jp = 0x809A22D8; //
@@ -10154,10 +10153,10 @@ B_809A3668_jp = 0x809A3668; //
 
 // .text
 
-func_809A4780_jp = 0x809A4780; // type:func
-func_809A4800_jp = 0x809A4800; // type:func
-func_809A482C_jp = 0x809A482C; // type:func
-func_809A4858_jp = 0x809A4858; // type:func
+aHWN_actor_ct = 0x809A4780; // type:func
+aHWN_actor_dt = 0x809A4800; // type:func
+aHWN_actor_save = 0x809A482C; // type:func
+aHWN_actor_init = 0x809A4858; // type:func
 func_809A4884_jp = 0x809A4884; // type:func
 func_809A4928_jp = 0x809A4928; // type:func
 func_809A4954_jp = 0x809A4954; // type:func
@@ -10197,7 +10196,7 @@ func_809A5810_jp = 0x809A5810; // type:func
 
 // .data
 
-_00887F90_Profile = 0x809A5840; //
+Halloween_Npc_Profile = 0x809A5840; //
 D_809A5864_jp = 0x809A5864; //
 D_809A5888_jp = 0x809A5888; //
 D_809A58BC_jp = 0x809A58BC; //
@@ -10207,24 +10206,24 @@ D_809A58F0_jp = 0x809A58F0; //
 
 // .text
 
-func_809A5A60_jp = 0x809A5A60; // type:func
-func_809A5AC8_jp = 0x809A5AC8; // type:func
-func_809A5AF4_jp = 0x809A5AF4; // type:func
-func_809A5B20_jp = 0x809A5B20; // type:func
+aNOR_actor_ct = 0x809A5A60; // type:func
+aNOR_actor_dt = 0x809A5AC8; // type:func
+aNOR_actor_save = 0x809A5AF4; // type:func
+aNOR_actor_init = 0x809A5B20; // type:func
 func_809A5B4C_jp = 0x809A5B4C; // type:func
 func_809A5B78_jp = 0x809A5B78; // type:func
 
 // .data
 
-_00889270_Profile = 0x809A5BB0; //
+Normal_Npc_Profile = 0x809A5BB0; //
 D_809A5BD4_jp = 0x809A5BD4; //
 
 // .text
 
-func_809A5C30_jp = 0x809A5C30; // type:func
-func_809A5CC0_jp = 0x809A5CC0; // type:func
-func_809A5CEC_jp = 0x809A5CEC; // type:func
-func_809A5D18_jp = 0x809A5D18; // type:func
+aNCM_actor_ct = 0x809A5C30; // type:func
+aNCM_actor_save = 0x809A5CC0; // type:func
+aNCM_actor_dt = 0x809A5CEC; // type:func
+aNCM_actor_init = 0x809A5D18; // type:func
 func_809A5D44_jp = 0x809A5D44; // type:func
 func_809A5D98_jp = 0x809A5D98; // type:func
 func_809A5E38_jp = 0x809A5E38; // type:func
@@ -10342,7 +10341,7 @@ func_809A9650_jp = 0x809A9650; // type:func
 
 // .data
 
-_00889440_Profile = 0x809A9680; //
+Npc_Conv_Master_Profile = 0x809A9680; //
 D_809A96A4_jp = 0x809A96A4; //
 D_FLT_809A96C0_jp = 0x809A96C0; // type:f32
 D_809A96D0_jp = 0x809A96D0; // type:u8
@@ -10398,10 +10397,10 @@ RO_FLT_809A9F6C_jp = 0x809A9F6C; // type:f32
 
 // .text
 
-func_809AA4F0_jp = 0x809AA4F0; // type:func
-func_809AA5D8_jp = 0x809AA5D8; // type:func
-func_809AA604_jp = 0x809AA604; // type:func
-func_809AA630_jp = 0x809AA630; // type:func
+aNDM_actor_ct = 0x809AA4F0; // type:func
+aNDM_actor_save = 0x809AA5D8; // type:func
+aNDM_actor_dt = 0x809AA604; // type:func
+aNDM_actor_init = 0x809AA630; // type:func
 func_809AA65C_jp = 0x809AA65C; // type:func
 func_809AA690_jp = 0x809AA690; // type:func
 func_809AA734_jp = 0x809AA734; // type:func
@@ -10519,7 +10518,7 @@ func_809ADF90_jp = 0x809ADF90; // type:func
 
 // .data
 
-_0088DD00_Profile = 0x809ADFC0; //
+Npc_Depart_Master_Profile = 0x809ADFC0; //
 D_809ADFE4_jp = 0x809ADFE4; //
 D_809AE000_jp = 0x809AE000; //
 D_809AE00C_jp = 0x809AE00C; //
@@ -10576,24 +10575,24 @@ RO_FLT_809AE85C_jp = 0x809AE85C; // type:f32
 
 // .text
 
-func_809AEDF0_jp = 0x809AEDF0; // type:func
-func_809AEEA4_jp = 0x809AEEA4; // type:func
-func_809AEED0_jp = 0x809AEED0; // type:func
-func_809AEEFC_jp = 0x809AEEFC; // type:func
+aNEG_actor_ct = 0x809AEDF0; // type:func
+aNEG_actor_save = 0x809AEEA4; // type:func
+aNEG_actor_dt = 0x809AEED0; // type:func
+aNEG_actor_init = 0x809AEEFC; // type:func
 func_809AEF28_jp = 0x809AEF28; // type:func
 func_809AEF54_jp = 0x809AEF54; // type:func
 
 // .data
 
-_00892600_Profile = 0x809AEF80; //
+Npc_Engineer_Profile = 0x809AEF80; //
 D_809AEFA4_jp = 0x809AEFA4; //
 
 // .text
 
-func_809AF000_jp = 0x809AF000; // type:func
-func_809AF104_jp = 0x809AF104; // type:func
-func_809AF130_jp = 0x809AF130; // type:func
-func_809AF184_jp = 0x809AF184; // type:func
+aNGD_actor_ct = 0x809AF000; // type:func
+aNGD_actor_save = 0x809AF104; // type:func
+aNGD_actor_dt = 0x809AF130; // type:func
+aNGD_actor_init = 0x809AF184; // type:func
 func_809AF1B0_jp = 0x809AF1B0; // type:func
 func_809AF23C_jp = 0x809AF23C; // type:func
 func_809AF5E4_jp = 0x809AF5E4; // type:func
@@ -10662,7 +10661,7 @@ func_809B0C80_jp = 0x809B0C80; // type:func
 
 // .data
 
-_00892810_Profile = 0x809B0CB0; //
+Npc_Guide_Profile = 0x809B0CB0; //
 D_809B0CD4_jp = 0x809B0CD4; //
 D_809B0CF0_jp = 0x809B0CF0; //
 D_809B0D28_jp = 0x809B0D28; //
@@ -10691,10 +10690,10 @@ RO_FLT_809B0FAC_jp = 0x809B0FAC; // type:f32
 
 // .text
 
-func_809B1260_jp = 0x809B1260; // type:func
-func_809B134C_jp = 0x809B134C; // type:func
-func_809B1378_jp = 0x809B1378; // type:func
-func_809B13AC_jp = 0x809B13AC; // type:func
+aNG2_actor_ct = 0x809B1260; // type:func
+aNG2_actor_save = 0x809B134C; // type:func
+aNG2_actor_dt = 0x809B1378; // type:func
+aNG2_actor_init = 0x809B13AC; // type:func
 func_809B13D8_jp = 0x809B13D8; // type:func
 func_809B141C_jp = 0x809B141C; // type:func
 D_809B15CC_jp = 0x809B15CC; //
@@ -10763,7 +10762,7 @@ func_809B2CD4_jp = 0x809B2CD4; // type:func
 
 // .data
 
-_00894A70_Profile = 0x809B2D00; //
+Npc_Guide2_Profile = 0x809B2D00; //
 D_809B2D24_jp = 0x809B2D24; //
 D_809B2D40_jp = 0x809B2D40; //
 D_809B2E28_jp = 0x809B2E28; // type:s8
@@ -10791,10 +10790,10 @@ RO_FLT_809B2FAC_jp = 0x809B2FAC; // type:f32
 
 // .text
 
-func_809B3220_jp = 0x809B3220; // type:func
-func_809B3290_jp = 0x809B3290; // type:func
-func_809B32BC_jp = 0x809B32BC; // type:func
-func_809B3324_jp = 0x809B3324; // type:func
+aMJN_actor_ct = 0x809B3220; // type:func
+aMJN_actor_save = 0x809B3290; // type:func
+aMJN_actor_dt = 0x809B32BC; // type:func
+aMJN_actor_init = 0x809B3324; // type:func
 func_809B3350_jp = 0x809B3350; // type:func
 func_809B3388_jp = 0x809B3388; // type:func
 func_809B33C8_jp = 0x809B33C8; // type:func
@@ -10819,7 +10818,7 @@ func_809B3A24_jp = 0x809B3A24; // type:func
 
 // .data
 
-_00896A30_Profile = 0x809B3A50; //
+Npc_Majin_Profile = 0x809B3A50; //
 D_809B3A74_jp = 0x809B3A74; //
 D_809B3A90_jp = 0x809B3A90; // type:s16
 D_809B3A98_jp = 0x809B3A98; //
@@ -10838,10 +10837,10 @@ RO_FLT_809B3B34_jp = 0x809B3B34; // type:f32
 
 // .text
 
-func_809B3C40_jp = 0x809B3C40; // type:func
-func_809B3CB0_jp = 0x809B3CB0; // type:func
-func_809B3CDC_jp = 0x809B3CDC; // type:func
-func_809B3D44_jp = 0x809B3D44; // type:func
+aMJN2_actor_ct = 0x809B3C40; // type:func
+aMJN2_actor_save = 0x809B3CB0; // type:func
+aMJN2_actor_dt = 0x809B3CDC; // type:func
+aMJN2_actor_init = 0x809B3D44; // type:func
 func_809B3D70_jp = 0x809B3D70; // type:func
 func_809B3DA8_jp = 0x809B3DA8; // type:func
 func_809B3DE8_jp = 0x809B3DE8; // type:func
@@ -10872,7 +10871,7 @@ func_809B4730_jp = 0x809B4730; // type:func
 
 // .data
 
-_00897450_Profile = 0x809B4760; //
+Npc_Majin2_Profile = 0x809B4760; //
 D_809B4784_jp = 0x809B4784; //
 D_809B47A0_jp = 0x809B47A0; // type:s16
 D_809B47B0_jp = 0x809B47B0; //
@@ -10894,10 +10893,10 @@ RO_FLT_809B48B4_jp = 0x809B48B4; // type:f32
 
 // .text
 
-func_809B4A10_jp = 0x809B4A10; // type:func
-func_809B4A80_jp = 0x809B4A80; // type:func
-func_809B4AAC_jp = 0x809B4AAC; // type:func
-func_809B4B14_jp = 0x809B4B14; // type:func
+aMJN3_actor_ct = 0x809B4A10; // type:func
+aMJN3_actor_save = 0x809B4A80; // type:func
+aMJN3_actor_dt = 0x809B4AAC; // type:func
+aMJN3_actor_init = 0x809B4B14; // type:func
 func_809B4B40_jp = 0x809B4B40; // type:func
 func_809B4B78_jp = 0x809B4B78; // type:func
 func_809B4BB8_jp = 0x809B4BB8; // type:func
@@ -10931,7 +10930,7 @@ func_809B56B4_jp = 0x809B56B4; // type:func
 
 // .data
 
-_00898220_Profile = 0x809B56E0; //
+Npc_Majin3_Profile = 0x809B56E0; //
 D_809B5704_jp = 0x809B5704; //
 D_809B5720_jp = 0x809B5720; // type:s16
 D_809B572C_jp = 0x809B572C; //
@@ -10957,10 +10956,10 @@ RO_FLT_809B5820_jp = 0x809B5820; // type:f32
 
 // .text
 
-func_809B59A0_jp = 0x809B59A0; // type:func
-func_809B5A10_jp = 0x809B5A10; // type:func
-func_809B5A3C_jp = 0x809B5A3C; // type:func
-func_809B5AA4_jp = 0x809B5AA4; // type:func
+aMJN4_actor_ct = 0x809B59A0; // type:func
+aMJN4_actor_save = 0x809B5A10; // type:func
+aMJN4_actor_dt = 0x809B5A3C; // type:func
+aMJN4_actor_init = 0x809B5AA4; // type:func
 func_809B5AD0_jp = 0x809B5AD0; // type:func
 func_809B5B08_jp = 0x809B5B08; // type:func
 func_809B5B48_jp = 0x809B5B48; // type:func
@@ -10991,7 +10990,7 @@ func_809B6690_jp = 0x809B6690; // type:func
 
 // .data
 
-_008991B0_Profile = 0x809B66E0; //
+Npc_Majin4_Profile = 0x809B66E0; //
 D_809B6704_jp = 0x809B6704; //
 D_809B6720_jp = 0x809B6720; // type:s16
 D_809B6730_jp = 0x809B6730; //
@@ -11017,10 +11016,10 @@ B_809B681C_jp = 0x809B681C; //
 
 // .text
 
-func_809B69B0_jp = 0x809B69B0; // type:func
-func_809B6AD4_jp = 0x809B6AD4; // type:func
-func_809B6B00_jp = 0x809B6B00; // type:func
-func_809B6B2C_jp = 0x809B6B2C; // type:func
+aNMD_actor_ct = 0x809B69B0; // type:func
+aNMD_actor_save = 0x809B6AD4; // type:func
+aNMD_actor_dt = 0x809B6B00; // type:func
+aNMD_actor_init = 0x809B6B2C; // type:func
 func_809B6B58_jp = 0x809B6B58; // type:func
 func_809B6C34_jp = 0x809B6C34; // type:func
 func_809B6C80_jp = 0x809B6C80; // type:func
@@ -11139,7 +11138,7 @@ func_809BA100_jp = 0x809BA100; // type:func
 // .data
 
 D_809BA130_jp = 0x809BA130; //
-_0089A1B0_Profile = 0x809BA134; //
+Npc_Mamedanuki_Profile = 0x809BA134; //
 D_809BA158_jp = 0x809BA158; //
 D_809BA174_jp = 0x809BA174; //
 D_809BA17C_jp = 0x809BA17C; // type:u8
@@ -11222,10 +11221,10 @@ D_809BD87C_jp = 0x809BD87C; // type:s16
 
 // .text
 
-func_809BD970_jp = 0x809BD970; // type:func
-func_809BDAF0_jp = 0x809BDAF0; // type:func
-func_809BDB1C_jp = 0x809BDB1C; // type:func
-func_809BDB48_jp = 0x809BDB48; // type:func
+aNPS_actor_ct = 0x809BD970; // type:func
+aNPS_actor_save = 0x809BDAF0; // type:func
+aNPS_actor_dt = 0x809BDB1C; // type:func
+aNPS_actor_init = 0x809BDB48; // type:func
 func_809BDB74_jp = 0x809BDB74; // type:func
 func_809BDC54_jp = 0x809BDC54; // type:func
 func_809BDCC4_jp = 0x809BDCC4; // type:func
@@ -11250,7 +11249,7 @@ func_809BE548_jp = 0x809BE548; // type:func
 
 // .data
 
-_008A1160_Profile = 0x809BE580; //
+Npc_P_Sel_Profile = 0x809BE580; //
 D_809BE5A4_jp = 0x809BE5A4; // type:u8
 D_809BE5A8_jp = 0x809BE5A8; // type:u8
 D_809BE5AC_jp = 0x809BE5AC; //
@@ -11263,10 +11262,10 @@ D_809BE5F4_jp = 0x809BE5F4; //
 
 // .text
 
-func_809BE720_jp = 0x809BE720; // type:func
-func_809BE8C4_jp = 0x809BE8C4; // type:func
-func_809BE8F0_jp = 0x809BE8F0; // type:func
-func_809BE91C_jp = 0x809BE91C; // type:func
+aNPS2_actor_ct = 0x809BE720; // type:func
+aNPS2_actor_save = 0x809BE8C4; // type:func
+aNPS2_actor_dt = 0x809BE8F0; // type:func
+aNPS2_actor_init = 0x809BE91C; // type:func
 func_809BE948_jp = 0x809BE948; // type:func
 func_809BE9D8_jp = 0x809BE9D8; // type:func
 func_809BEA0C_jp = 0x809BEA0C; // type:func
@@ -11329,7 +11328,7 @@ func_809C0B94_jp = 0x809C0B94; // type:func
 
 // .data
 
-_008A1F10_Profile = 0x809C0BC0; //
+Npc_P_Sel2_Profile = 0x809C0BC0; //
 D_809C0BE4_jp = 0x809C0BE4; // type:u8
 D_809C0BE8_jp = 0x809C0BE8; // type:u8
 D_809C0BEC_jp = 0x809C0BEC; //
@@ -11367,10 +11366,10 @@ jtbl_809C0E10_jp = 0x809C0E10; // type:jtbl
 
 // .text
 
-func_809C1150_jp = 0x809C1150; // type:func
-func_809C128C_jp = 0x809C128C; // type:func
-func_809C1300_jp = 0x809C1300; // type:func
-func_809C132C_jp = 0x809C132C; // type:func
+aPOL_actor_ct = 0x809C1150; // type:func
+aPOL_actor_save = 0x809C128C; // type:func
+aPOL_actor_dt = 0x809C1300; // type:func
+aPOL_actor_init = 0x809C132C; // type:func
 func_809C1358_jp = 0x809C1358; // type:func
 func_809C14D0_jp = 0x809C14D0; // type:func
 func_809C1550_jp = 0x809C1550; // type:func
@@ -11399,7 +11398,7 @@ func_809C1D74_jp = 0x809C1D74; // type:func
 
 // .data
 
-_008A4940_Profile = 0x809C1DA0; //
+Npc_Police_Profile = 0x809C1DA0; //
 D_809C1DC4_jp = 0x809C1DC4; //
 D_809C1DE0_jp = 0x809C1DE0; //
 D_809C1DE8_jp = 0x809C1DE8; //
@@ -11410,10 +11409,10 @@ D_809C1E68_jp = 0x809C1E68; //
 
 // .text
 
-func_809C1F70_jp = 0x809C1F70; // type:func
-func_809C1FFC_jp = 0x809C1FFC; // type:func
-func_809C2028_jp = 0x809C2028; // type:func
-func_809C2054_jp = 0x809C2054; // type:func
+aPOL2_actor_ct = 0x809C1F70; // type:func
+aPOL2_actor_save = 0x809C1FFC; // type:func
+aPOL2_actor_dt = 0x809C2028; // type:func
+aPOL2_actor_init = 0x809C2054; // type:func
 func_809C2080_jp = 0x809C2080; // type:func
 func_809C20BC_jp = 0x809C20BC; // type:func
 func_809C20FC_jp = 0x809C20FC; // type:func
@@ -11449,7 +11448,7 @@ func_809C3144_jp = 0x809C3144; // type:func
 
 // .data
 
-_008A5760_Profile = 0x809C3170; //
+Npc_Police2_Profile = 0x809C3170; //
 D_809C3194_jp = 0x809C3194; //
 D_809C31B0_jp = 0x809C31B0; //
 D_FLT_809C31D4_jp = 0x809C31D4; // type:f32
@@ -11470,10 +11469,10 @@ RO_FLT_809C3268_jp = 0x809C3268; // type:f32
 
 // .text
 
-func_809C3420_jp = 0x809C3420; // type:func
-func_809C34E4_jp = 0x809C34E4; // type:func
-func_809C3510_jp = 0x809C3510; // type:func
-func_809C3554_jp = 0x809C3554; // type:func
+aPG_actor_ct = 0x809C3420; // type:func
+aPG_actor_save = 0x809C34E4; // type:func
+aPG_actor_dt = 0x809C3510; // type:func
+aPG_actor_init = 0x809C3554; // type:func
 func_809C3580_jp = 0x809C3580; // type:func
 func_809C35C0_jp = 0x809C35C0; // type:func
 func_809C360C_jp = 0x809C360C; // type:func
@@ -11544,7 +11543,7 @@ func_809C4FD4_jp = 0x809C4FD4; // type:func
 
 // .data
 
-_008A6C10_Profile = 0x809C5000; //
+Npc_Post_Girl_Profile = 0x809C5000; //
 D_809C5024_jp = 0x809C5024; //
 D_809C5040_jp = 0x809C5040; //
 D_809C5048_jp = 0x809C5048; //
@@ -11566,10 +11565,10 @@ jtbl_809C51F8_jp = 0x809C51F8; // type:jtbl
 
 // .text
 
-func_809C5490_jp = 0x809C5490; // type:func
-func_809C55D8_jp = 0x809C55D8; // type:func
-func_809C5654_jp = 0x809C5654; // type:func
-func_809C5680_jp = 0x809C5680; // type:func
+aPMAN_actor_ct = 0x809C5490; // type:func
+aPMAN_actor_save = 0x809C55D8; // type:func
+aPMAN_actor_dt = 0x809C5654; // type:func
+aPMAN_actor_init = 0x809C5680; // type:func
 func_809C56AC_jp = 0x809C56AC; // type:func
 func_809C56F4_jp = 0x809C56F4; // type:func
 func_809C5768_jp = 0x809C5768; // type:func
@@ -11613,7 +11612,7 @@ func_809C6720_jp = 0x809C6720; // type:func
 
 // .data
 
-_008A8C80_Profile = 0x809C6750; //
+Npc_Post_Man_Profile = 0x809C6750; //
 D_809C6774_jp = 0x809C6774; //
 D_809C6790_jp = 0x809C6790; //
 D_809C67F8_jp = 0x809C67F8; //
@@ -11638,14 +11637,15 @@ RO_FLT_809C6964_jp = 0x809C6964; // type:f32
 RO_FLT_809C6968_jp = 0x809C6968; // type:f32
 RO_FLT_809C696C_jp = 0x809C696C; // type:f32
 RO_FLT_809C6970_jp = 0x809C6970; // type:f32
-RO_FLT_809C6974_jp = 0x809C6974; // type:f32
+RO_FLT_809C6974_jp = 0x809C6974; // type:f32 size:0x4
+RO_809C6978_JP = 0x809C6978; // workaround for late rodata being too big for func_809C6480_jp. This is just file pad so it can be completely ignored
 
 // .text
 
-func_809C6B80_jp = 0x809C6B80; // type:func
-func_809C6C5C_jp = 0x809C6C5C; // type:func
-func_809C6C88_jp = 0x809C6C88; // type:func
-func_809C6CE4_jp = 0x809C6CE4; // type:func
+aNRG_actor_ct = 0x809C6B80; // type:func
+aNRG_actor_save = 0x809C6C5C; // type:func
+aNRG_actor_dt = 0x809C6C88; // type:func
+aNRG_actor_init = 0x809C6CE4; // type:func
 func_809C6D10_jp = 0x809C6D10; // type:func
 func_809C6DAC_jp = 0x809C6DAC; // type:func
 func_809C6E18_jp = 0x809C6E18; // type:func
@@ -11687,7 +11687,7 @@ func_809C7BB8_jp = 0x809C7BB8; // type:func
 
 // .data
 
-_008AA370_Profile = 0x809C7BF0; //
+Npc_Rcn_Guide_Profile = 0x809C7BF0; //
 D_809C7C14_jp = 0x809C7C14; //
 D_809C7C30_jp = 0x809C7C30; //
 D_809C7C48_jp = 0x809C7C48; //
@@ -11713,10 +11713,10 @@ D_809C7EA4_jp = 0x809C7EA4; //
 
 // .text
 
-func_809C7FF0_jp = 0x809C7FF0; // type:func
-func_809C80AC_jp = 0x809C80AC; // type:func
-func_809C80D8_jp = 0x809C80D8; // type:func
-func_809C8104_jp = 0x809C8104; // type:func
+aNRG2_actor_ct = 0x809C7FF0; // type:func
+aNRG2_actor_save = 0x809C80AC; // type:func
+aNRG2_actor_dt = 0x809C80D8; // type:func
+aNRG2_actor_init = 0x809C8104; // type:func
 func_809C8130_jp = 0x809C8130; // type:func
 func_809C8190_jp = 0x809C8190; // type:func
 func_809C81F0_jp = 0x809C81F0; // type:func
@@ -11792,7 +11792,7 @@ func_809C9EB4_jp = 0x809C9EB4; // type:func
 
 // .data
 
-_008AB7E0_Profile = 0x809C9EE0; //
+Npc_Rcn_Guide2_Profile = 0x809C9EE0; //
 D_809C9F04_jp = 0x809C9F04; //
 D_809C9F20_jp = 0x809C9F20; //
 D_809C9F4C_jp = 0x809C9F4C; // type:u16
@@ -11822,10 +11822,10 @@ jtbl_809CA380_jp = 0x809CA380; // type:jtbl
 
 // .text
 
-func_809CA750_jp = 0x809CA750; // type:func
-func_809CA7E0_jp = 0x809CA7E0; // type:func
-func_809CA80C_jp = 0x809CA80C; // type:func
-func_809CA838_jp = 0x809CA838; // type:func
+aNSM_actor_ct = 0x809CA750; // type:func
+aNSM_actor_save = 0x809CA7E0; // type:func
+aNSM_actor_dt = 0x809CA80C; // type:func
+aNSM_actor_init = 0x809CA838; // type:func
 func_809CA864_jp = 0x809CA864; // type:func
 func_809CA8EC_jp = 0x809CA8EC; // type:func
 func_809CA918_jp = 0x809CA918; // type:func
@@ -11942,7 +11942,7 @@ func_809CE0FC_jp = 0x809CE0FC; // type:func
 
 // .data
 
-_008ADF40_Profile = 0x809CE130; //
+Npc_Shop_Master_Profile = 0x809CE130; //
 D_809CE154_jp = 0x809CE154; //
 D_809CE170_jp = 0x809CE170; // type:u8
 D_FLT_809CE180_jp = 0x809CE180; // type:f32
@@ -11997,10 +11997,10 @@ RO_FLT_809CE94C_jp = 0x809CE94C; // type:f32
 
 // .text
 
-func_809CEEC0_jp = 0x809CEEC0; // type:func
-func_809CEF60_jp = 0x809CEF60; // type:func
-func_809CEF8C_jp = 0x809CEF8C; // type:func
-func_809CEFB8_jp = 0x809CEFB8; // type:func
+aNSO_actor_ct = 0x809CEEC0; // type:func
+aNSO_actor_save = 0x809CEF60; // type:func
+aNSO_actor_dt = 0x809CEF8C; // type:func
+aNSO_actor_init = 0x809CEFB8; // type:func
 func_809CEFE4_jp = 0x809CEFE4; // type:func
 func_809CF024_jp = 0x809CF024; // type:func
 func_809CF058_jp = 0x809CF058; // type:func
@@ -12021,7 +12021,7 @@ func_809CF380_jp = 0x809CF380; // type:func
 
 // .data
 
-_008B26B0_Profile = 0x809CF3B0; //
+Npc_Sleep_Obaba_Profile = 0x809CF3B0; //
 D_809CF3D4_jp = 0x809CF3D4; //
 D_809CF3F0_jp = 0x809CF3F0; //
 D_809CF3F8_jp = 0x809CF3F8; //
@@ -12032,10 +12032,10 @@ D_809CF41C_jp = 0x809CF41C; //
 
 // .text
 
-func_809CF4F0_jp = 0x809CF4F0; // type:func
-func_809CF580_jp = 0x809CF580; // type:func
-func_809CF5AC_jp = 0x809CF5AC; // type:func
-func_809CF5D8_jp = 0x809CF5D8; // type:func
+aNSPM_actor_ct = 0x809CF4F0; // type:func
+aNSPM_actor_save = 0x809CF580; // type:func
+aNSPM_actor_dt = 0x809CF5AC; // type:func
+aNSPM_actor_init = 0x809CF5D8; // type:func
 func_809CF604_jp = 0x809CF604; // type:func
 func_809CF638_jp = 0x809CF638; // type:func
 func_809CF808_jp = 0x809CF808; // type:func
@@ -12153,7 +12153,7 @@ func_809D302C_jp = 0x809D302C; // type:func
 
 // .data
 
-_008B2CE0_Profile = 0x809D3060; //
+Npc_Super_Master_Profile = 0x809D3060; //
 D_809D3084_jp = 0x809D3084; //
 D_809D30A0_jp = 0x809D30A0; //
 D_809D30B0_jp = 0x809D30B0; //
@@ -12211,10 +12211,10 @@ RO_FLT_809D3C1C_jp = 0x809D3C1C; // type:f32
 
 // .text
 
-func_809D41C0_jp = 0x809D41C0; // type:func
-func_809D424C_jp = 0x809D424C; // type:func
-func_809D4270_jp = 0x809D4270; // type:func
-func_809D42F4_jp = 0x809D42F4; // type:func
+aSTM_actor_ct = 0x809D41C0; // type:func
+aSTM_actor_save = 0x809D424C; // type:func
+aSTM_actor_dt = 0x809D4270; // type:func
+aSTM_actor_init = 0x809D42F4; // type:func
 func_809D4320_jp = 0x809D4320; // type:func
 func_809D43BC_jp = 0x809D43BC; // type:func
 func_809D43E8_jp = 0x809D43E8; // type:func
@@ -12261,7 +12261,7 @@ func_809D5448_jp = 0x809D5448; // type:func
 
 // .data
 
-_008B79B0_Profile = 0x809D5480; //
+Npc_Station_Master_Profile = 0x809D5480; //
 D_809D54A4_jp = 0x809D54A4; //
 D_809D54C0_jp = 0x809D54C0; // type:u8
 D_809D54D8_jp = 0x809D54D8; // type:u8
@@ -12280,10 +12280,10 @@ RO_FLT_809D5604_jp = 0x809D5604; // type:f32
 
 // .text
 
-func_809D57D0_jp = 0x809D57D0; // type:func
-func_809D588C_jp = 0x809D588C; // type:func
-func_809D58B8_jp = 0x809D58B8; // type:func
-func_809D58FC_jp = 0x809D58FC; // type:func
+aEANG_actor_ct = 0x809D57D0; // type:func
+aEANG_actor_save = 0x809D588C; // type:func
+aEANG_actor_dt = 0x809D58B8; // type:func
+aEANG_actor_init = 0x809D58FC; // type:func
 func_809D5928_jp = 0x809D5928; // type:func
 func_809D5978_jp = 0x809D5978; // type:func
 func_809D59E8_jp = 0x809D59E8; // type:func
@@ -12324,17 +12324,17 @@ func_809D69E4_jp = 0x809D69E4; // type:func
 
 // .data
 
-_008B8FC0_Profile = 0x809D6A10; //
+Ev_Angler_Profile = 0x809D6A10; //
 D_809D6A34_jp = 0x809D6A34; //
 D_809D6A50_jp = 0x809D6A50; //
 D_809D6A78_jp = 0x809D6A78; //
 
 // .text
 
-func_809D6BC0_jp = 0x809D6BC0; // type:func
-func_809D6C38_jp = 0x809D6C38; // type:func
-func_809D6C64_jp = 0x809D6C64; // type:func
-func_809D6CC8_jp = 0x809D6CC8; // type:func
+aEART_actor_ct = 0x809D6BC0; // type:func
+aEART_actor_save = 0x809D6C38; // type:func
+aEART_actor_dt = 0x809D6C64; // type:func
+aEART_actor_init = 0x809D6CC8; // type:func
 func_809D6CF4_jp = 0x809D6CF4; // type:func
 func_809D6D90_jp = 0x809D6D90; // type:func
 func_809D6DF8_jp = 0x809D6DF8; // type:func
@@ -12359,7 +12359,7 @@ func_809D74D8_jp = 0x809D74D8; // type:func
 
 // .data
 
-_008BA3B0_Profile = 0x809D7510; //
+Ev_Artist_Profile = 0x809D7510; //
 D_809D7534_jp = 0x809D7534; //
 D_809D7550_jp = 0x809D7550; //
 D_809D7564_jp = 0x809D7564; //
@@ -12368,10 +12368,10 @@ D_809D7598_jp = 0x809D7598; //
 
 // .text
 
-func_809D7670_jp = 0x809D7670; // type:func
-func_809D7754_jp = 0x809D7754; // type:func
-func_809D7780_jp = 0x809D7780; // type:func
-func_809D77D0_jp = 0x809D77D0; // type:func
+aEBRK_actor_ct = 0x809D7670; // type:func
+aEBRK_actor_save = 0x809D7754; // type:func
+aEBRK_actor_dt = 0x809D7780; // type:func
+aEBRK_actor_init = 0x809D77D0; // type:func
 func_809D77FC_jp = 0x809D77FC; // type:func
 func_809D783C_jp = 0x809D783C; // type:func
 func_809D785C_jp = 0x809D785C; // type:func
@@ -12404,7 +12404,7 @@ func_809D80D4_jp = 0x809D80D4; // type:func
 
 // .data
 
-_008BAE60_Profile = 0x809D8100; //
+Ev_Broker_Profile = 0x809D8100; //
 D_809D8124_jp = 0x809D8124; //
 D_809D8140_jp = 0x809D8140; //
 D_809D8150_jp = 0x809D8150; //
@@ -12419,10 +12419,10 @@ RO_FLT_809D8190_jp = 0x809D8190; // type:f32
 
 // .text
 
-func_809D82B0_jp = 0x809D82B0; // type:func
-func_809D836C_jp = 0x809D836C; // type:func
-func_809D8398_jp = 0x809D8398; // type:func
-func_809D83D8_jp = 0x809D83D8; // type:func
+aEBR2_actor_ct = 0x809D82B0; // type:func
+aEBR2_actor_save = 0x809D836C; // type:func
+aEBR2_actor_dt = 0x809D8398; // type:func
+aEBR2_actor_init = 0x809D83D8; // type:func
 func_809D8404_jp = 0x809D8404; // type:func
 func_809D8440_jp = 0x809D8440; // type:func
 func_809D8480_jp = 0x809D8480; // type:func
@@ -12472,7 +12472,7 @@ func_809D98FC_jp = 0x809D98FC; // type:func
 
 // .data
 
-_008BBAA0_Profile = 0x809D9930; //
+Ev_Broker2_Profile = 0x809D9930; //
 D_809D9954_jp = 0x809D9954; //
 D_809D9970_jp = 0x809D9970; //
 D_FLT_809D99A4_jp = 0x809D99A4; // type:f32
@@ -12493,10 +12493,10 @@ RO_FLT_809D9A5C_jp = 0x809D9A5C; // type:f32
 
 // .text
 
-func_809D9C90_jp = 0x809D9C90; // type:func
-func_809D9D08_jp = 0x809D9D08; // type:func
-func_809D9D34_jp = 0x809D9D34; // type:func
-func_809D9D7C_jp = 0x809D9D7C; // type:func
+aECPD_actor_ct = 0x809D9C90; // type:func
+aECPD_actor_save = 0x809D9D08; // type:func
+aECPD_actor_dt = 0x809D9D34; // type:func
+aECPD_actor_init = 0x809D9D7C; // type:func
 func_809D9DA8_jp = 0x809D9DA8; // type:func
 func_809D9F10_jp = 0x809D9F10; // type:func
 func_809D9FD8_jp = 0x809D9FD8; // type:func
@@ -12534,7 +12534,7 @@ func_809DAC44_jp = 0x809DAC44; // type:func
 
 // .data
 
-_008BD480_Profile = 0x809DAC70; //
+Ev_CarpetPeddler_Profile = 0x809DAC70; //
 D_809DAC94_jp = 0x809DAC94; //
 D_809DACB0_jp = 0x809DACB0; //
 D_809DACC0_jp = 0x809DACC0; // type:u16
@@ -12548,10 +12548,10 @@ D_809DAD3C_jp = 0x809DAD3C; //
 
 // .text
 
-func_809DAEA0_jp = 0x809DAEA0; // type:func
-func_809DAF20_jp = 0x809DAF20; // type:func
-func_809DAF4C_jp = 0x809DAF4C; // type:func
-func_809DAFE8_jp = 0x809DAFE8; // type:func
+aEDSN_actor_ct = 0x809DAEA0; // type:func
+aEDSN_actor_save = 0x809DAF20; // type:func
+aEDSN_actor_dt = 0x809DAF4C; // type:func
+aEDSN_actor_init = 0x809DAFE8; // type:func
 func_809DB014_jp = 0x809DB014; // type:func
 func_809DB0B0_jp = 0x809DB0B0; // type:func
 func_809DB12C_jp = 0x809DB12C; // type:func
@@ -12589,7 +12589,7 @@ func_809DC0A8_jp = 0x809DC0A8; // type:func
 
 // .data
 
-_008BE690_Profile = 0x809DC0E0; //
+Ev_Designer_Profile = 0x809DC0E0; //
 D_809DC104_jp = 0x809DC104; //
 D_809DC120_jp = 0x809DC120; //
 D_809DC18C_jp = 0x809DC18C; //
@@ -12610,10 +12610,10 @@ RO_FLT_809DC2B4_jp = 0x809DC2B4; // type:f32
 
 // .text
 
-func_809DC450_jp = 0x809DC450; // type:func
-func_809DC4F0_jp = 0x809DC4F0; // type:func
-func_809DC51C_jp = 0x809DC51C; // type:func
-func_809DC564_jp = 0x809DC564; // type:func
+aEGPS_actor_ct = 0x809DC450; // type:func
+aEGPS_actor_save = 0x809DC4F0; // type:func
+aEGPS_actor_dt = 0x809DC51C; // type:func
+aEGPS_actor_init = 0x809DC564; // type:func
 func_809DC590_jp = 0x809DC590; // type:func
 func_809DC608_jp = 0x809DC608; // type:func
 func_809DC6E4_jp = 0x809DC6E4; // type:func
@@ -12629,7 +12629,7 @@ func_809DCA44_jp = 0x809DCA44; // type:func
 
 // .data
 
-_008BFC40_Profile = 0x809DCA70; //
+Ev_Gypsy_Profile = 0x809DCA70; //
 D_809DCA94_jp = 0x809DCA94; //
 D_809DCAB0_jp = 0x809DCAB0; //
 D_809DCAC0_jp = 0x809DCAC0; //
@@ -12642,10 +12642,10 @@ D_809DCB1C_jp = 0x809DCB1C; //
 
 // .text
 
-func_809DCBF0_jp = 0x809DCBF0; // type:func
-func_809DCC60_jp = 0x809DCC60; // type:func
-func_809DCC8C_jp = 0x809DCC8C; // type:func
-func_809DCCB8_jp = 0x809DCCB8; // type:func
+func_80528514 = 0x809DCBF0; // type:func
+func_80528598 = 0x809DCC60; // type:func
+func_805285d0 = 0x809DCC8C; // type:func
+func_80528608 = 0x809DCCB8; // type:func
 func_809DCCE4_jp = 0x809DCCE4; // type:func
 func_809DCD34_jp = 0x809DCD34; // type:func
 func_809DCD60_jp = 0x809DCD60; // type:func
@@ -12676,7 +12676,7 @@ func_809DD63C_jp = 0x809DD63C; // type:func
 
 // .data
 
-_008C03E0_Profile = 0x809DD670; //
+Hanabi_Npc0_Profile = 0x809DD670; //
 D_809DD694_jp = 0x809DD694; //
 D_809DD6B0_jp = 0x809DD6B0; //
 D_FLT_809DD6C8_jp = 0x809DD6C8; // type:f32
@@ -12695,10 +12695,10 @@ RO_FLT_809DD724_jp = 0x809DD724; // type:f32
 
 // .text
 
-func_809DD850_jp = 0x809DD850; // type:func
-func_809DD8D0_jp = 0x809DD8D0; // type:func
-func_809DD8FC_jp = 0x809DD8FC; // type:func
-func_809DD928_jp = 0x809DD928; // type:func
+aHN1_actor_ct = 0x809DD850; // type:func
+aHN1_actor_save = 0x809DD8D0; // type:func
+aHN1_actor_dt = 0x809DD8FC; // type:func
+aHN1_actor_init = 0x809DD928; // type:func
 func_809DD954_jp = 0x809DD954; // type:func
 func_809DD9A4_jp = 0x809DD9A4; // type:func
 func_809DD9D0_jp = 0x809DD9D0; // type:func
@@ -12726,7 +12726,7 @@ func_809DE0F0_jp = 0x809DE0F0; // type:func
 
 // .data
 
-_008C1040_Profile = 0x809DE120; //
+Hanabi_Npc1_Profile = 0x809DE120; //
 D_809DE144_jp = 0x809DE144; //
 D_809DE160_jp = 0x809DE160; //
 D_809DE180_jp = 0x809DE180; //
@@ -12743,10 +12743,10 @@ D_809DE214_jp = 0x809DE214; //
 
 // .text
 
-func_809DE340_jp = 0x809DE340; // type:func
-func_809DE3B0_jp = 0x809DE3B0; // type:func
-func_809DE3DC_jp = 0x809DE3DC; // type:func
-func_809DE408_jp = 0x809DE408; // type:func
+aHM0_actor_ct = 0x809DE340; // type:func
+aHM0_actor_save = 0x809DE3B0; // type:func
+aHM0_actor_dt = 0x809DE3DC; // type:func
+aHM0_actor_init = 0x809DE408; // type:func
 func_809DE434_jp = 0x809DE434; // type:func
 func_809DE474_jp = 0x809DE474; // type:func
 func_809DE4A0_jp = 0x809DE4A0; // type:func
@@ -12773,7 +12773,7 @@ func_809DEA8C_jp = 0x809DEA8C; // type:func
 
 // .data
 
-_008C1B30_Profile = 0x809DEAC0; //
+Hanami_Npc0_Profile = 0x809DEAC0; //
 D_809DEAE4_jp = 0x809DEAE4; //
 D_809DEB00_jp = 0x809DEB00; //
 D_809DEB0C_jp = 0x809DEB0C; //
@@ -12790,10 +12790,10 @@ D_809DEB64_jp = 0x809DEB64; //
 
 // .text
 
-func_809DEC90_jp = 0x809DEC90; // type:func
-func_809DED00_jp = 0x809DED00; // type:func
-func_809DED2C_jp = 0x809DED2C; // type:func
-func_809DED58_jp = 0x809DED58; // type:func
+aHM1_actor_ct = 0x809DEC90; // type:func
+aHM1_actor_save = 0x809DED00; // type:func
+aHM1_actor_dt = 0x809DED2C; // type:func
+aHM1_actor_init = 0x809DED58; // type:func
 func_809DED84_jp = 0x809DED84; // type:func
 func_809DEDC4_jp = 0x809DEDC4; // type:func
 func_809DEDF0_jp = 0x809DEDF0; // type:func
@@ -12822,7 +12822,7 @@ func_809DF590_jp = 0x809DF590; // type:func
 
 // .data
 
-_008C2480_Profile = 0x809DF5C0; //
+Hanami_Npc1_Profile = 0x809DF5C0; //
 D_809DF5E4_jp = 0x809DF5E4; //
 D_809DF600_jp = 0x809DF600; //
 D_FLT_809DF608_jp = 0x809DF608; // type:f32
@@ -12840,10 +12840,10 @@ RO_FLT_809DF664_jp = 0x809DF664; // type:f32
 
 // .text
 
-func_809DF780_jp = 0x809DF780; // type:func
-func_809DF800_jp = 0x809DF800; // type:func
-func_809DF82C_jp = 0x809DF82C; // type:func
-func_809DF858_jp = 0x809DF858; // type:func
+aKM0_actor_ct = 0x809DF780; // type:func
+aKM0_actor_save = 0x809DF800; // type:func
+aKM0_actor_dt = 0x809DF82C; // type:func
+aKM0_actor_init = 0x809DF858; // type:func
 func_809DF884_jp = 0x809DF884; // type:func
 func_809DF8B4_jp = 0x809DF8B4; // type:func
 func_809DF8E4_jp = 0x809DF8E4; // type:func
@@ -12852,15 +12852,15 @@ func_809DF958_jp = 0x809DF958; // type:func
 
 // .data
 
-_008C2F70_Profile = 0x809DF990; //
+Kamakura_Npc0_Profile = 0x809DF990; //
 D_809DF9B4_jp = 0x809DF9B4; //
 
 // .text
 
-func_809DFA20_jp = 0x809DFA20; // type:func
-func_809DFA90_jp = 0x809DFA90; // type:func
-func_809DFABC_jp = 0x809DFABC; // type:func
-func_809DFAE8_jp = 0x809DFAE8; // type:func
+aTM0_actor_ct = 0x809DFA20; // type:func
+aTM0_actor_save = 0x809DFA90; // type:func
+aTM0_actor_dt = 0x809DFABC; // type:func
+aTM0_actor_init = 0x809DFAE8; // type:func
 func_809DFB14_jp = 0x809DFB14; // type:func
 func_809DFB48_jp = 0x809DFB48; // type:func
 func_809DFB74_jp = 0x809DFB74; // type:func
@@ -12881,7 +12881,7 @@ func_809E0050_jp = 0x809E0050; // type:func
 
 // .data
 
-_008C3210_Profile = 0x809E0080; //
+Tukimi_Npc0_Profile = 0x809E0080; //
 D_809E00A4_jp = 0x809E00A4; //
 D_809E00C0_jp = 0x809E00C0; //
 D_809E00CC_jp = 0x809E00CC; //
@@ -12893,10 +12893,10 @@ D_809E0124_jp = 0x809E0124; //
 
 // .text
 
-func_809E0210_jp = 0x809E0210; // type:func
-func_809E0280_jp = 0x809E0280; // type:func
-func_809E02AC_jp = 0x809E02AC; // type:func
-func_809E02D8_jp = 0x809E02D8; // type:func
+aTM1_actor_ct = 0x809E0210; // type:func
+aTM1_actor_save = 0x809E0280; // type:func
+aTM1_actor_dt = 0x809E02AC; // type:func
+aTM1_actor_init = 0x809E02D8; // type:func
 func_809E0304_jp = 0x809E0304; // type:func
 func_809E0344_jp = 0x809E0344; // type:func
 func_809E0370_jp = 0x809E0370; // type:func
@@ -12918,7 +12918,7 @@ func_809E0930_jp = 0x809E0930; // type:func
 
 // .data
 
-_008C3A00_Profile = 0x809E0960; //
+Tukimi_Npc1_Profile = 0x809E0960; //
 D_809E0984_jp = 0x809E0984; //
 D_809E09A0_jp = 0x809E09A0; //
 D_809E09A8_jp = 0x809E09A8; //
@@ -12930,10 +12930,10 @@ D_809E0A24_jp = 0x809E0A24; //
 
 // .text
 
-func_809E0B10_jp = 0x809E0B10; // type:func
-func_809E0B80_jp = 0x809E0B80; // type:func
-func_809E0BAC_jp = 0x809E0BAC; // type:func
-func_809E0BD8_jp = 0x809E0BD8; // type:func
+aCD0_actor_ct = 0x809E0B10; // type:func
+aCD0_actor_save = 0x809E0B80; // type:func
+aCD0_actor_dt = 0x809E0BAC; // type:func
+aCD0_actor_init = 0x809E0BD8; // type:func
 func_809E0C04_jp = 0x809E0C04; // type:func
 func_809E0C44_jp = 0x809E0C44; // type:func
 func_809E0C70_jp = 0x809E0C70; // type:func
@@ -12964,7 +12964,7 @@ func_809E1570_jp = 0x809E1570; // type:func
 
 // .data
 
-_008C4300_Profile = 0x809E15A0; //
+Countdown_Npc0_Profile = 0x809E15A0; //
 D_809E15C4_jp = 0x809E15C4; //
 D_809E15E0_jp = 0x809E15E0; //
 D_809E15EC_jp = 0x809E15EC; //
@@ -12977,10 +12977,10 @@ D_809E1638_jp = 0x809E1638; //
 
 // .text
 
-func_809E1780_jp = 0x809E1780; // type:func
-func_809E17F0_jp = 0x809E17F0; // type:func
-func_809E181C_jp = 0x809E181C; // type:func
-func_809E1848_jp = 0x809E1848; // type:func
+aCD1_actor_ct = 0x809E1780; // type:func
+aCD1_actor_save = 0x809E17F0; // type:func
+aCD1_actor_dt = 0x809E181C; // type:func
+aCD1_actor_init = 0x809E1848; // type:func
 func_809E1874_jp = 0x809E1874; // type:func
 func_809E18B4_jp = 0x809E18B4; // type:func
 func_809E18E0_jp = 0x809E18E0; // type:func
@@ -13020,7 +13020,7 @@ func_809E28D8_jp = 0x809E28D8; // type:func
 
 // .data
 
-_008C4F70_Profile = 0x809E2910; //
+Countdown_Npc1_Profile = 0x809E2910; //
 D_809E2934_jp = 0x809E2934; //
 D_809E2950_jp = 0x809E2950; //
 D_FLT_809E297C_jp = 0x809E297C; // type:f32
@@ -13039,10 +13039,10 @@ RO_FLT_809E2A14_jp = 0x809E2A14; // type:f32
 
 // .text
 
-func_809E2BA0_jp = 0x809E2BA0; // type:func
-func_809E2C84_jp = 0x809E2C84; // type:func
-func_809E2CB0_jp = 0x809E2CB0; // type:func
-func_809E2D14_jp = 0x809E2D14; // type:func
+func_805900b0 = 0x809E2BA0; // type:func
+aTR0_actor_save = 0x809E2C84; // type:func
+func_805901d8 = 0x809E2CB0; // type:func
+aTR0_actor_init = 0x809E2D14; // type:func
 func_809E2D40_jp = 0x809E2D40; // type:func
 func_809E2D80_jp = 0x809E2D80; // type:func
 func_809E2DAC_jp = 0x809E2DAC; // type:func
@@ -13068,7 +13068,7 @@ func_809E3364_jp = 0x809E3364; // type:func
 // .data
 
 D_809E3390_jp = 0x809E3390; //
-_008C6390_Profile = 0x809E3394; //
+Turi_Npc0_Profile = 0x809E3394; //
 D_809E33B8_jp = 0x809E33B8; //
 D_809E33D4_jp = 0x809E33D4; //
 D_809E33D8_jp = 0x809E33D8; //
@@ -13086,10 +13086,10 @@ B_809E3460_jp = 0x809E3460; //
 
 // .text
 
-func_809E35B0_jp = 0x809E35B0; // type:func
-func_809E3648_jp = 0x809E3648; // type:func
-func_809E3674_jp = 0x809E3674; // type:func
-func_809E3724_jp = 0x809E3724; // type:func
+aTS0_actor_ct = 0x809E35B0; // type:func
+aTS0_actor_save = 0x809E3648; // type:func
+aTS0_actor_dt = 0x809E3674; // type:func
+aTS0_actor_init = 0x809E3724; // type:func
 func_809E3750_jp = 0x809E3750; // type:func
 func_809E37C4_jp = 0x809E37C4; // type:func
 func_809E3814_jp = 0x809E3814; // type:func
@@ -13140,7 +13140,7 @@ D_809E4640_jp = 0x809E4640; //
 D_FLT_809E4668_jp = 0x809E4668; // type:f32
 D_FLT_809E4690_jp = 0x809E4690; // type:f32
 D_FLT_809E46B8_jp = 0x809E46B8; // type:f32
-_008C6D80_Profile = 0x809E4708; //
+Taisou_Npc0_Profile = 0x809E4708; //
 D_809E472C_jp = 0x809E472C; //
 D_809E4748_jp = 0x809E4748; //
 D_809E4750_jp = 0x809E4750; //
@@ -13159,10 +13159,10 @@ RO_FLT_809E47F4_jp = 0x809E47F4; // type:f32
 
 // .text
 
-func_809E4A20_jp = 0x809E4A20; // type:func
-func_809E4A98_jp = 0x809E4A98; // type:func
-func_809E4AC4_jp = 0x809E4AC4; // type:func
-func_809E4B04_jp = 0x809E4B04; // type:func
+aEKPD_actor_ct = 0x809E4A20; // type:func
+aEKPD_actor_save = 0x809E4A98; // type:func
+aEKPD_actor_dt = 0x809E4AC4; // type:func
+aEKPD_actor_init = 0x809E4B04; // type:func
 func_809E4B30_jp = 0x809E4B30; // type:func
 func_809E4BB0_jp = 0x809E4BB0; // type:func
 func_809E4C04_jp = 0x809E4C04; // type:func
@@ -13190,7 +13190,7 @@ func_809E54E8_jp = 0x809E54E8; // type:func
 
 // .data
 
-_008C81F0_Profile = 0x809E5520; //
+Ev_KabuPeddler_Profile = 0x809E5520; //
 D_809E5544_jp = 0x809E5544; //
 D_809E5560_jp = 0x809E5560; //
 D_809E5570_jp = 0x809E5570; //
@@ -13206,10 +13206,10 @@ D_809E55F4_jp = 0x809E55F4; //
 
 // .text
 
-func_809E5740_jp = 0x809E5740; // type:func
-func_809E5848_jp = 0x809E5848; // type:func
-func_809E5874_jp = 0x809E5874; // type:func
-func_809E58B4_jp = 0x809E58B4; // type:func
+aEMK_actor_ct = 0x809E5740; // type:func
+aEMK_actor_save = 0x809E5848; // type:func
+aEMK_actor_dt = 0x809E5874; // type:func
+aEMK_actor_init = 0x809E58B4; // type:func
 func_809E58E0_jp = 0x809E58E0; // type:func
 func_809E597C_jp = 0x809E597C; // type:func
 func_809E59C4_jp = 0x809E59C4; // type:func
@@ -13231,7 +13231,7 @@ func_809E6234_jp = 0x809E6234; // type:func
 
 // .data
 
-_008C8F10_Profile = 0x809E6260; //
+Ev_Miko_Profile = 0x809E6260; //
 D_809E6284_jp = 0x809E6284; //
 D_809E62A0_jp = 0x809E62A0; //
 D_809E62B0_jp = 0x809E62B0; // type:u16
@@ -13246,10 +13246,10 @@ B_809E62F0_jp = 0x809E62F0; //
 
 // .text
 
-func_809E63F0_jp = 0x809E63F0; // type:func
-func_809E6464_jp = 0x809E6464; // type:func
-func_809E6490_jp = 0x809E6490; // type:func
-func_809E64D8_jp = 0x809E64D8; // type:func
+aEPK_actor_ct = 0x809E63F0; // type:func
+aEPK_actor_save = 0x809E6464; // type:func
+aEPK_actor_dt = 0x809E6490; // type:func
+aEPK_actor_init = 0x809E64D8; // type:func
 func_809E6504_jp = 0x809E6504; // type:func
 func_809E6530_jp = 0x809E6530; // type:func
 func_809E66CC_jp = 0x809E66CC; // type:func
@@ -13277,16 +13277,16 @@ func_809E6FE8_jp = 0x809E6FE8; // type:func
 
 // .data
 
-_008C9BB0_Profile = 0x809E7020; //
+Ev_Pumpkin_Profile = 0x809E7020; //
 D_809E7044_jp = 0x809E7044; //
 D_809E7068_jp = 0x809E7068; //
 
 // .text
 
-func_809E7190_jp = 0x809E7190; // type:func
-func_809E726C_jp = 0x809E726C; // type:func
-func_809E7298_jp = 0x809E7298; // type:func
-func_809E72D8_jp = 0x809E72D8; // type:func
+aESNT_actor_ct = 0x809E7190; // type:func
+aESNT_actor_save = 0x809E726C; // type:func
+aESNT_actor_dt = 0x809E7298; // type:func
+aESNT_actor_init = 0x809E72D8; // type:func
 func_809E7304_jp = 0x809E7304; // type:func
 func_809E73A0_jp = 0x809E73A0; // type:func
 func_809E7438_jp = 0x809E7438; // type:func
@@ -13313,7 +13313,7 @@ func_809E7C6C_jp = 0x809E7C6C; // type:func
 
 // .data
 
-_008CA950_Profile = 0x809E7CA0; //
+Ev_Santa_Profile = 0x809E7CA0; //
 D_809E7CC4_jp = 0x809E7CC4; //
 D_809E7CE0_jp = 0x809E7CE0; //
 D_809E7CFC_jp = 0x809E7CFC; //
@@ -13323,8 +13323,8 @@ D_809E7D38_jp = 0x809E7D38; //
 
 // .text
 
-func_809E7ED0_jp = 0x809E7ED0; // type:func
-func_809E7F0C_jp = 0x809E7F0C; // type:func
+aSTR_actor_ct = 0x809E7ED0; // type:func
+aSTR_actor_dt = 0x809E7F0C; // type:func
 func_809E7F34_jp = 0x809E7F34; // type:func
 func_809E7F94_jp = 0x809E7F94; // type:func
 func_809E8118_jp = 0x809E8118; // type:func
@@ -13354,11 +13354,11 @@ func_809E931C_jp = 0x809E931C; // type:func
 func_809E93C8_jp = 0x809E93C8; // type:func
 func_809E96E8_jp = 0x809E96E8; // type:func
 func_809E9764_jp = 0x809E9764; // type:func
-func_809E97F8_jp = 0x809E97F8; // type:func
+aSTR_actor_move = 0x809E97F8; // type:func
 
 // .data
 
-_008CB690_Profile = 0x809E9840; //
+Structure_Profile = 0x809E9840; //
 D_809E9864_jp = 0x809E9864; //
 D_809E986C_jp = 0x809E986C; //
 D_809E9874_jp = 0x809E9874; //
@@ -13396,8 +13396,8 @@ B_809FE3A0_jp = 0x809FE3A0; //
 
 // .text
 
-func_809FE880_jp = 0x809FE880; // type:func
-func_809FEA20_jp = 0x809FEA20; // type:func
+aBRS_actor_ct = 0x809FE880; // type:func
+aBRS_actor_dt = 0x809FEA20; // type:func
 func_809FEAEC_jp = 0x809FEAEC; // type:func
 func_809FECD4_jp = 0x809FECD4; // type:func
 func_809FEED4_jp = 0x809FEED4; // type:func
@@ -13410,14 +13410,14 @@ func_809FF2C8_jp = 0x809FF2C8; // type:func
 func_809FF2FC_jp = 0x809FF2FC; // type:func
 func_809FF330_jp = 0x809FF330; // type:func
 func_809FF3EC_jp = 0x809FF3EC; // type:func
-func_809FF534_jp = 0x809FF534; // type:func
+aBRS_actor_init = 0x809FF534; // type:func
 func_809FF59C_jp = 0x809FF59C; // type:func
 func_809FF650_jp = 0x809FF650; // type:func
-func_809FF7F8_jp = 0x809FF7F8; // type:func
+aBRS_actor_draw = 0x809FF7F8; // type:func
 
 // .data
 
-_008CD550_Profile = 0x809FF930; //
+BrShop_Profile = 0x809FF930; //
 D_809FF954_jp = 0x809FF954; //
 D_809FF95C_jp = 0x809FF95C; //
 D_809FF970_jp = 0x809FF970; //
@@ -13441,8 +13441,8 @@ RO_STR_809FFA78_jp = 0x809FFA78; // type:asciz
 
 // .text
 
-func_809FFBC0_jp = 0x809FFBC0; // type:func
-func_809FFCF8_jp = 0x809FFCF8; // type:func
+aBGY_actor_ct = 0x809FFBC0; // type:func
+aBGY_actor_dt = 0x809FFCF8; // type:func
 func_809FFDA8_jp = 0x809FFDA8; // type:func
 func_809FFF90_jp = 0x809FFF90; // type:func
 func_80A00190_jp = 0x80A00190; // type:func
@@ -13456,14 +13456,14 @@ func_80A005CC_jp = 0x80A005CC; // type:func
 func_80A00600_jp = 0x80A00600; // type:func
 func_80A00634_jp = 0x80A00634; // type:func
 func_80A006F0_jp = 0x80A006F0; // type:func
-func_80A0080C_jp = 0x80A0080C; // type:func
+aBGY_actor_init = 0x80A0080C; // type:func
 func_80A00874_jp = 0x80A00874; // type:func
 func_80A00918_jp = 0x80A00918; // type:func
-func_80A00AAC_jp = 0x80A00AAC; // type:func
+aBGY_actor_draw = 0x80A00AAC; // type:func
 
 // .data
 
-_008CE890_Profile = 0x80A00C30; //
+Buggy_Profile = 0x80A00C30; //
 D_80A00C54_jp = 0x80A00C54; //
 D_80A00C64_jp = 0x80A00C64; //
 D_80A00C78_jp = 0x80A00C78; //
@@ -13487,8 +13487,8 @@ RO_STR_80A00D80_jp = 0x80A00D80; // type:asciz
 
 // .text
 
-func_80A00ED0_jp = 0x80A00ED0; // type:func
-func_80A01034_jp = 0x80A01034; // type:func
+aCNV_actor_ct = 0x80A00ED0; // type:func
+aCNV_actor_dt = 0x80A01034; // type:func
 func_80A010E0_jp = 0x80A010E0; // type:func
 func_80A01110_jp = 0x80A01110; // type:func
 func_80A01214_jp = 0x80A01214; // type:func
@@ -13502,14 +13502,14 @@ func_80A0178C_jp = 0x80A0178C; // type:func
 func_80A017C0_jp = 0x80A017C0; // type:func
 func_80A017F4_jp = 0x80A017F4; // type:func
 func_80A018FC_jp = 0x80A018FC; // type:func
-func_80A01984_jp = 0x80A01984; // type:func
+aCNV_actor_init = 0x80A01984; // type:func
 func_80A019EC_jp = 0x80A019EC; // type:func
 func_80A01A80_jp = 0x80A01A80; // type:func
-func_80A01BFC_jp = 0x80A01BFC; // type:func
+aCNV_actor_draw = 0x80A01BFC; // type:func
 
 // .data
 
-_008CFBA0_Profile = 0x80A01D30; //
+Conveni_Profile = 0x80A01D30; //
 D_80A01D54_jp = 0x80A01D54; //
 D_80A01D60_jp = 0x80A01D60; //
 D_80A01D74_jp = 0x80A01D74; //
@@ -13534,8 +13534,8 @@ RO_FLT_80A01F14_jp = 0x80A01F14; // type:f32
 
 // .text
 
-func_80A02050_jp = 0x80A02050; // type:func
-func_80A021C0_jp = 0x80A021C0; // type:func
+aDPT_actor_ct = 0x80A02050; // type:func
+aDPT_actor_dt = 0x80A021C0; // type:func
 func_80A0226C_jp = 0x80A0226C; // type:func
 func_80A0229C_jp = 0x80A0229C; // type:func
 func_80A023A0_jp = 0x80A023A0; // type:func
@@ -13549,14 +13549,14 @@ func_80A02918_jp = 0x80A02918; // type:func
 func_80A0294C_jp = 0x80A0294C; // type:func
 func_80A02980_jp = 0x80A02980; // type:func
 func_80A02A88_jp = 0x80A02A88; // type:func
-func_80A02B10_jp = 0x80A02B10; // type:func
+aDPT_actor_init = 0x80A02B10; // type:func
 func_80A02B78_jp = 0x80A02B78; // type:func
 func_80A02C0C_jp = 0x80A02C0C; // type:func
-func_80A02D88_jp = 0x80A02D88; // type:func
+aDPT_actor_draw = 0x80A02D88; // type:func
 
 // .data
 
-_008D0D20_Profile = 0x80A02EC0; //
+Depart_Profile = 0x80A02EC0; //
 D_80A02EE4_jp = 0x80A02EE4; //
 D_80A02EEC_jp = 0x80A02EEC; //
 D_80A02F00_jp = 0x80A02F00; //
@@ -13582,30 +13582,30 @@ RO_FLT_80A030FC_jp = 0x80A030FC; // type:f32
 
 func_80A03230_jp = 0x80A03230; // type:func
 func_80A03240_jp = 0x80A03240; // type:func
-func_80A032CC_jp = 0x80A032CC; // type:func
-func_80A03320_jp = 0x80A03320; // type:func
+aFLS_actor_move = 0x80A032CC; // type:func
+aFLS_actor_draw = 0x80A03320; // type:func
 
 // .data
 
-_008D1F00_Profile = 0x80A03440; //
+FallS_Profile = 0x80A03440; //
 
 // .text
 
 func_80A034A0_jp = 0x80A034A0; // type:func
 func_80A034B0_jp = 0x80A034B0; // type:func
 D_80A03528_jp = 0x80A03528; //
-func_80A0353C_jp = 0x80A0353C; // type:func
-func_80A03590_jp = 0x80A03590; // type:func
+aFLEW_actor_move = 0x80A0353C; // type:func
+aFLEW_actor_draw = 0x80A03590; // type:func
 
 // .data
 
-_008D2170_Profile = 0x80A036D0; //
+FallSESW_Profile = 0x80A036D0; //
 D_80A036F4_jp = 0x80A036F4; //
 
 // .text
 
-func_80A03770_jp = 0x80A03770; // type:func
-func_80A03918_jp = 0x80A03918; // type:func
+aHUS_actor_ct = 0x80A03770; // type:func
+aHUS_actor_dt = 0x80A03918; // type:func
 func_80A039C0_jp = 0x80A039C0; // type:func
 func_80A039F0_jp = 0x80A039F0; // type:func
 func_80A03BD8_jp = 0x80A03BD8; // type:func
@@ -13623,15 +13623,14 @@ func_80A04654_jp = 0x80A04654; // type:func
 func_80A046C8_jp = 0x80A046C8; // type:func
 func_80A0477C_jp = 0x80A0477C; // type:func
 func_80A04798_jp = 0x80A04798; // type:func
-func_80A0480C_jp = 0x80A0480C; // type:func
+aHUS_actor_init = 0x80A0480C; // type:func
 func_80A04880_jp = 0x80A04880; // type:func
 func_80A04908_jp = 0x80A04908; // type:func
-func_80A04AA4_jp = 0x80A04AA4; // type:func
+aHUS_actor_draw = 0x80A04AA4; // type:func
 
 // .data
 
-_008D2440_Profile = 0x80A04C00; //
-D_80A04C04_jp = 0x80A04C04; //
+House_Profile = 0x80A04C00; // size:0x24
 D_80A04C24_jp = 0x80A04C24; //
 D_80A04C38_jp = 0x80A04C38; //
 D_80A04C54_jp = 0x80A04C54; //
@@ -13666,8 +13665,8 @@ RO_STR_80A04E90_jp = 0x80A04E90; // type:asciz
 
 // .text
 
-func_80A05030_jp = 0x80A05030; // type:func
-func_80A05074_jp = 0x80A05074; // type:func
+aKKR_actor_ct = 0x80A05030; // type:func
+aKKR_actor_dt = 0x80A05074; // type:func
 func_80A0510C_jp = 0x80A0510C; // type:func
 func_80A052F4_jp = 0x80A052F4; // type:func
 func_80A054F4_jp = 0x80A054F4; // type:func
@@ -13675,12 +13674,12 @@ func_80A055EC_jp = 0x80A055EC; // type:func
 func_80A05690_jp = 0x80A05690; // type:func
 func_80A05760_jp = 0x80A05760; // type:func
 func_80A05780_jp = 0x80A05780; // type:func
-func_80A05868_jp = 0x80A05868; // type:func
-func_80A058D0_jp = 0x80A058D0; // type:func
+aKKR_actor_init = 0x80A05868; // type:func
+aKKR_actor_draw = 0x80A058D0; // type:func
 
 // .data
 
-_008D3D00_Profile = 0x80A05B70; //
+Kamakura_Profile = 0x80A05B70; //
 D_80A05B94_jp = 0x80A05B94; //
 D_80A05BA8_jp = 0x80A05BA8; //
 D_80A05BBC_jp = 0x80A05BBC; //
@@ -13725,7 +13724,7 @@ func_80A071A0_jp = 0x80A071A0; // type:func
 
 // .data
 
-_008D4A20_Profile = 0x80A07370; //
+MyHouse_Profile = 0x80A07370; //
 D_80A07394_jp = 0x80A07394; //
 D_80A073A8_jp = 0x80A073A8; //
 D_80A073BC_jp = 0x80A073BC; //
@@ -13775,18 +13774,18 @@ RO_FLT_80A07660_jp = 0x80A07660; // type:f32
 
 // .text
 
-func_80A07880_jp = 0x80A07880; // type:func
+aPBOX_actor_ct = 0x80A07880; // type:func
 func_80A078A4_jp = 0x80A078A4; // type:func
 func_80A07930_jp = 0x80A07930; // type:func
 func_80A07B30_jp = 0x80A07B30; // type:func
 func_80A07C2C_jp = 0x80A07C2C; // type:func
 func_80A07CE0_jp = 0x80A07CE0; // type:func
-func_80A07DBC_jp = 0x80A07DBC; // type:func
-func_80A07E24_jp = 0x80A07E24; // type:func
+aPBOX_actor_init = 0x80A07DBC; // type:func
+aPBOX_actor_draw = 0x80A07E24; // type:func
 
 // .data
 
-_008D6550_Profile = 0x80A08100; //
+Police_Box_Profile = 0x80A08100; //
 D_80A08124_jp = 0x80A08124; //
 D_80A0813C_jp = 0x80A0813C; //
 D_80A08150_jp = 0x80A08150; //
@@ -13806,8 +13805,8 @@ RO_FLT_80A08234_jp = 0x80A08234; // type:f32
 
 // .text
 
-func_80A082F0_jp = 0x80A082F0; // type:func
-func_80A083F8_jp = 0x80A083F8; // type:func
+aPOFF_actor_ct = 0x80A082F0; // type:func
+aPOFF_actor_dt = 0x80A083F8; // type:func
 func_80A084B8_jp = 0x80A084B8; // type:func
 func_80A084E8_jp = 0x80A084E8; // type:func
 func_80A08574_jp = 0x80A08574; // type:func
@@ -13822,14 +13821,14 @@ func_80A08B0C_jp = 0x80A08B0C; // type:func
 func_80A08B74_jp = 0x80A08B74; // type:func
 func_80A08C08_jp = 0x80A08C08; // type:func
 func_80A08C24_jp = 0x80A08C24; // type:func
-func_80A08C90_jp = 0x80A08C90; // type:func
+aPOFF_actor_init = 0x80A08C90; // type:func
 func_80A08CF8_jp = 0x80A08CF8; // type:func
 func_80A08D80_jp = 0x80A08D80; // type:func
-func_80A08EFC_jp = 0x80A08EFC; // type:func
+aPOFF_actor_draw = 0x80A08EFC; // type:func
 
 // .data
 
-_008D6FC0_Profile = 0x80A09060; //
+Post_Office_Profile = 0x80A09060; //
 D_80A09084_jp = 0x80A09084; //
 D_80A09094_jp = 0x80A09094; //
 D_80A090A8_jp = 0x80A090A8; //
@@ -13854,19 +13853,19 @@ RO_STR_80A091E0_jp = 0x80A091E0; // type:asciz
 
 // .text
 
-func_80A09330_jp = 0x80A09330; // type:func
+aRSV_actor_ct = 0x80A09330; // type:func
 func_80A09370_jp = 0x80A09370; // type:func
 func_80A093FC_jp = 0x80A093FC; // type:func
 func_80A0940C_jp = 0x80A0940C; // type:func
 func_80A094EC_jp = 0x80A094EC; // type:func
 func_80A09580_jp = 0x80A09580; // type:func
 func_80A095A0_jp = 0x80A095A0; // type:func
-func_80A095C4_jp = 0x80A095C4; // type:func
-func_80A0962C_jp = 0x80A0962C; // type:func
+aRSV_actor_init = 0x80A095C4; // type:func
+aRSV_actor_draw = 0x80A0962C; // type:func
 
 // .data
 
-_008D8000_Profile = 0x80A09780; //
+Reserve_Profile = 0x80A09780; //
 D_80A097A4_jp = 0x80A097A4; //
 D_80A097A8_jp = 0x80A097A8; //
 D_80A097BC_jp = 0x80A097BC; //
@@ -13874,17 +13873,17 @@ D_80A097C0_jp = 0x80A097C0; //
 
 // .text
 
-func_80A09840_jp = 0x80A09840; // type:func
-func_80A0986C_jp = 0x80A0986C; // type:func
+aSCR_actor_ct = 0x80A09840; // type:func
+aSCR_actor_dt = 0x80A0986C; // type:func
 func_80A09928_jp = 0x80A09928; // type:func
 func_80A09A88_jp = 0x80A09A88; // type:func
-func_80A09C34_jp = 0x80A09C34; // type:func
+aSCR_actor_init = 0x80A09C34; // type:func
 func_80A09C9C_jp = 0x80A09C9C; // type:func
-func_80A09EF0_jp = 0x80A09EF0; // type:func
+aSCR_actor_draw = 0x80A09EF0; // type:func
 
 // .data
 
-_008D8510_Profile = 0x80A0A0A0; //
+S_Car_Profile = 0x80A0A0A0; //
 D_80A0A0C4_jp = 0x80A0A0C4; //
 D_80A0A0DC_jp = 0x80A0A0DC; //
 D_80A0A0F0_jp = 0x80A0A0F0; //
@@ -13899,8 +13898,8 @@ RO_STR_80A0A150_jp = 0x80A0A150; // type:asciz
 // .text
 
 func_80A0A1F0_jp = 0x80A0A1F0; // type:func
-func_80A0A240_jp = 0x80A0A240; // type:func
-func_80A0A358_jp = 0x80A0A358; // type:func
+aSHR_actor_ct = 0x80A0A240; // type:func
+aSHR_actor_dt = 0x80A0A358; // type:func
 func_80A0A3F8_jp = 0x80A0A3F8; // type:func
 func_80A0A410_jp = 0x80A0A410; // type:func
 func_80A0A448_jp = 0x80A0A448; // type:func
@@ -13915,15 +13914,15 @@ func_80A0AB08_jp = 0x80A0AB08; // type:func
 func_80A0AB44_jp = 0x80A0AB44; // type:func
 func_80A0AB64_jp = 0x80A0AB64; // type:func
 func_80A0ABE4_jp = 0x80A0ABE4; // type:func
-func_80A0ACAC_jp = 0x80A0ACAC; // type:func
+aSHR_actor_init = 0x80A0ACAC; // type:func
 func_80A0AD14_jp = 0x80A0AD14; // type:func
 func_80A0AED8_jp = 0x80A0AED8; // type:func
 func_80A0AF98_jp = 0x80A0AF98; // type:func
-func_80A0B030_jp = 0x80A0B030; // type:func
+aSHR_actor_draw = 0x80A0B030; // type:func
 
 // .data
 
-_008D8EC0_Profile = 0x80A0B1B0; //
+Shrine_Profile = 0x80A0B1B0; //
 D_80A0B1D4_jp = 0x80A0B1D4; //
 D_80A0B1EC_jp = 0x80A0B1EC; //
 D_80A0B200_jp = 0x80A0B200; //
@@ -13949,8 +13948,8 @@ B_80A0B2D0_jp = 0x80A0B2D0; //
 
 // .text
 
-func_80A0B400_jp = 0x80A0B400; // type:func
-func_80A0B570_jp = 0x80A0B570; // type:func
+aSPR_actor_ct = 0x80A0B400; // type:func
+aSPR_actor_dt = 0x80A0B570; // type:func
 func_80A0B61C_jp = 0x80A0B61C; // type:func
 func_80A0B64C_jp = 0x80A0B64C; // type:func
 func_80A0B750_jp = 0x80A0B750; // type:func
@@ -13964,14 +13963,14 @@ func_80A0BCC8_jp = 0x80A0BCC8; // type:func
 func_80A0BCFC_jp = 0x80A0BCFC; // type:func
 func_80A0BD30_jp = 0x80A0BD30; // type:func
 func_80A0BE38_jp = 0x80A0BE38; // type:func
-func_80A0BEC0_jp = 0x80A0BEC0; // type:func
+aSPR_actor_init = 0x80A0BEC0; // type:func
 func_80A0BF28_jp = 0x80A0BF28; // type:func
 func_80A0BFBC_jp = 0x80A0BFBC; // type:func
-func_80A0C138_jp = 0x80A0C138; // type:func
+aSPR_actor_draw = 0x80A0C138; // type:func
 
 // .data
 
-_008DA0C0_Profile = 0x80A0C270; //
+Super_Profile = 0x80A0C270; //
 D_80A0C294_jp = 0x80A0C294; //
 D_80A0C29C_jp = 0x80A0C29C; //
 D_80A0C2B0_jp = 0x80A0C2B0; //
@@ -13995,8 +13994,8 @@ RO_FLT_80A0C4AC_jp = 0x80A0C4AC; // type:f32
 
 // .text
 
-func_80A0C5E0_jp = 0x80A0C5E0; // type:func
-func_80A0C6C0_jp = 0x80A0C6C0; // type:func
+func_805bfc28 = 0x80A0C5E0; // type:func
+func_805bfcdc = 0x80A0C6C0; // type:func
 func_80A0C7A4_jp = 0x80A0C7A4; // type:func
 func_80A0C874_jp = 0x80A0C874; // type:func
 func_80A0C990_jp = 0x80A0C990; // type:func
@@ -14007,12 +14006,12 @@ func_80A0CBC0_jp = 0x80A0CBC0; // type:func
 func_80A0CC90_jp = 0x80A0CC90; // type:func
 func_80A0CD20_jp = 0x80A0CD20; // type:func
 func_80A0CD8C_jp = 0x80A0CD8C; // type:func
-func_80A0CE50_jp = 0x80A0CE50; // type:func
-func_80A0CF44_jp = 0x80A0CF44; // type:func
+func_805c03ec = 0x80A0CE50; // type:func
+func_805c04e0 = 0x80A0CF44; // type:func
 
 // .data
 
-_008DB2A0_Profile = 0x80A0D160; //
+Train0_Profile = 0x80A0D160; //
 D_FLT_80A0D184_jp = 0x80A0D184; // type:f32
 D_80A0D18C_jp = 0x80A0D18C; // type:s16
 
@@ -14026,8 +14025,8 @@ RO_FLT_80A0D1A0_jp = 0x80A0D1A0; // type:f32
 
 // .text
 
-func_80A0D240_jp = 0x80A0D240; // type:func
-func_80A0D2E0_jp = 0x80A0D2E0; // type:func
+aTR1_actor_ct = 0x80A0D240; // type:func
+aTR1_actor_dt = 0x80A0D2E0; // type:func
 func_80A0D3A4_jp = 0x80A0D3A4; // type:func
 func_80A0D3D4_jp = 0x80A0D3D4; // type:func
 func_80A0D444_jp = 0x80A0D444; // type:func
@@ -14035,12 +14034,12 @@ func_80A0D480_jp = 0x80A0D480; // type:func
 func_80A0D558_jp = 0x80A0D558; // type:func
 func_80A0D5F4_jp = 0x80A0D5F4; // type:func
 func_80A0D708_jp = 0x80A0D708; // type:func
-func_80A0D82C_jp = 0x80A0D82C; // type:func
-func_80A0D8D0_jp = 0x80A0D8D0; // type:func
+aTR1_actor_move = 0x80A0D82C; // type:func
+aTR1_actor_draw = 0x80A0D8D0; // type:func
 
 // .data
 
-_008DBF00_Profile = 0x80A0D9D0; //
+Train1_Profile = 0x80A0D9D0; //
 D_80A0D9F4_jp = 0x80A0D9F4; //
 D_80A0DA00_jp = 0x80A0DA00; //
 D_FLT_80A0DA08_jp = 0x80A0DA08; // type:f32
@@ -14056,8 +14055,8 @@ RO_FLT_80A0DA6C_jp = 0x80A0DA6C; // type:f32
 
 // .text
 
-func_80A0DB10_jp = 0x80A0DB10; // type:func
-func_80A0DC94_jp = 0x80A0DC94; // type:func
+aSHOP_actor_ct = 0x80A0DB10; // type:func
+aSHOP_actor_dt = 0x80A0DC94; // type:func
 func_80A0DD54_jp = 0x80A0DD54; // type:func
 func_80A0DED4_jp = 0x80A0DED4; // type:func
 func_80A0DFD0_jp = 0x80A0DFD0; // type:func
@@ -14070,14 +14069,14 @@ func_80A0E440_jp = 0x80A0E440; // type:func
 func_80A0E474_jp = 0x80A0E474; // type:func
 func_80A0E4A8_jp = 0x80A0E4A8; // type:func
 func_80A0E564_jp = 0x80A0E564; // type:func
-func_80A0E5EC_jp = 0x80A0E5EC; // type:func
+aSHOP_actor_init = 0x80A0E5EC; // type:func
 func_80A0E654_jp = 0x80A0E654; // type:func
 func_80A0E6E8_jp = 0x80A0E6E8; // type:func
-func_80A0E864_jp = 0x80A0E864; // type:func
+aSHOP_actor_draw = 0x80A0E864; // type:func
 
 // .data
 
-_008DC7D0_Profile = 0x80A0E9A0; //
+Shop_Profile = 0x80A0E9A0; //
 D_80A0E9C4_jp = 0x80A0E9C4; //
 D_80A0E9CC_jp = 0x80A0E9CC; //
 D_80A0E9E0_jp = 0x80A0E9E0; //
@@ -14103,14 +14102,14 @@ RO_FLT_80A0EB14_jp = 0x80A0EB14; // type:f32
 
 // .text
 
-func_80A0EC50_jp = 0x80A0EC50; // type:func
-func_80A0ED60_jp = 0x80A0ED60; // type:func
+aSTA_actor_ct = 0x80A0EC50; // type:func
+aSTA_actor_dt = 0x80A0ED60; // type:func
 func_80A0EE1C_jp = 0x80A0EE1C; // type:func
 func_80A0EE2C_jp = 0x80A0EE2C; // type:func
 func_80A0EECC_jp = 0x80A0EECC; // type:func
-func_80A0EEF0_jp = 0x80A0EEF0; // type:func
+aSTA_actor_init = 0x80A0EEF0; // type:func
 func_80A0EF58_jp = 0x80A0EF58; // type:func
-func_80A0EFD0_jp = 0x80A0EFD0; // type:func
+aSTA_actor_draw = 0x80A0EFD0; // type:func
 func_80A0F108_jp = 0x80A0F108; // type:func
 func_80A0F12C_jp = 0x80A0F12C; // type:func
 func_80A0F13C_jp = 0x80A0F13C; // type:func
@@ -14138,7 +14137,7 @@ func_80A0FE60_jp = 0x80A0FE60; // type:func
 
 // .data
 
-_008DD910_Profile = 0x80A0FE80; //
+Station_Profile = 0x80A0FE80; //
 D_80A0FEA4_jp = 0x80A0FEA4; //
 D_80A0FEC4_jp = 0x80A0FEC4; //
 D_80A0FF04_jp = 0x80A0FF04; //
@@ -14166,8 +14165,8 @@ B_80A10050_jp = 0x80A10050; //
 
 // .text
 
-func_80A10210_jp = 0x80A10210; // type:func
-func_80A1026C_jp = 0x80A1026C; // type:func
+aINS_actor_ct = 0x80A10210; // type:func
+aINS_actor_dt = 0x80A1026C; // type:func
 func_80A102B8_jp = 0x80A102B8; // type:func
 func_80A10314_jp = 0x80A10314; // type:func
 func_80A1035C_jp = 0x80A1035C; // type:func
@@ -14184,14 +14183,14 @@ func_80A10B88_jp = 0x80A10B88; // type:func
 func_80A10D88_jp = 0x80A10D88; // type:func
 func_80A10E54_jp = 0x80A10E54; // type:func
 func_80A10EF4_jp = 0x80A10EF4; // type:func
-func_80A1102C_jp = 0x80A1102C; // type:func
+aINS_actor_move = 0x80A1102C; // type:func
 func_80A11264_jp = 0x80A11264; // type:func
-func_80A114A8_jp = 0x80A114A8; // type:func
+aINS_actor_draw = 0x80A114A8; // type:func
 
 // .data
 
 D_80A11690_jp = 0x80A11690; //
-_008DEEC0_Profile = 0x80A11694; //
+Insect_Profile = 0x80A11694; //
 D_80A116B8_jp = 0x80A116B8; //
 D_80A11738_jp = 0x80A11738; //
 D_80A117B8_jp = 0x80A117B8; //
@@ -14274,14 +14273,14 @@ func_80A18794_jp = 0x80A18794; // type:func
 func_80A187F8_jp = 0x80A187F8; // type:func
 func_80A188E4_jp = 0x80A188E4; // type:func
 func_80A18940_jp = 0x80A18940; // type:func
-func_80A1896C_jp = 0x80A1896C; // type:func
+eEC_actor_ct = 0x80A1896C; // type:func
 func_80A189F0_jp = 0x80A189F0; // type:func
-func_80A18A58_jp = 0x80A18A58; // type:func
+eEC_actor_dt = 0x80A18A58; // type:func
 func_80A18A8C_jp = 0x80A18A8C; // type:func
-func_80A18C10_jp = 0x80A18C10; // type:func
+eEC_actor_draw = 0x80A18C10; // type:func
 func_80A18D50_jp = 0x80A18D50; // type:func
 func_80A18E68_jp = 0x80A18E68; // type:func
-func_80A18FCC_jp = 0x80A18FCC; // type:func
+eEC_actor_move = 0x80A18FCC; // type:func
 func_80A1902C_jp = 0x80A1902C; // type:func
 func_80A1906C_jp = 0x80A1906C; // type:func
 func_80A19170_jp = 0x80A19170; // type:func
@@ -14300,7 +14299,7 @@ D_80A19B90_jp = 0x80A19B90; //
 D_80A1A43C_jp = 0x80A1A43C; //
 D_80A1A7B4_jp = 0x80A1A7B4; // type:u8
 D_80A1A824_jp = 0x80A1A824; //
-_008E0A30_Profile = 0x80A1A830; //
+Effect_Control_Profile = 0x80A1A830; //
 D_80A1A854_jp = 0x80A1A854; //
 D_80A1A860_jp = 0x80A1A860; //
 D_80A1A86C_jp = 0x80A1A86C; //
@@ -14345,19 +14344,19 @@ B_80A1C69C_jp = 0x80A1C69C; //
 // .text
 
 func_80A1CBD0_jp = 0x80A1CBD0; // type:func
-func_80A1CD0C_jp = 0x80A1CD0C; // type:func
-func_80A1CDB8_jp = 0x80A1CDB8; // type:func
+Effectbg_actor_ct = 0x80A1CD0C; // type:func
+Effectbg_actor_dt = 0x80A1CDB8; // type:func
 func_80A1CDE4_jp = 0x80A1CDE4; // type:func
 func_80A1D1A0_jp = 0x80A1D1A0; // type:func
 func_80A1D47C_jp = 0x80A1D47C; // type:func
 func_80A1D760_jp = 0x80A1D760; // type:func
 func_80A1D770_jp = 0x80A1D770; // type:func
-func_80A1DBD8_jp = 0x80A1DBD8; // type:func
+Effectbg_actor_move = 0x80A1DBD8; // type:func
 func_80A1DC64_jp = 0x80A1DC64; // type:func
 func_80A1DE88_jp = 0x80A1DE88; // type:func
 func_80A1E2A4_jp = 0x80A1E2A4; // type:func
 func_80A1E324_jp = 0x80A1E324; // type:func
-func_80A1E604_jp = 0x80A1E604; // type:func
+Effectbg_actor_draw = 0x80A1E604; // type:func
 func_80A1E71C_jp = 0x80A1E71C; // type:func
 
 // .data
@@ -14368,7 +14367,7 @@ D_80A1EA08_jp = 0x80A1EA08; //
 D_80A1EA44_jp = 0x80A1EA44; //
 D_80A1EA80_jp = 0x80A1EA80; //
 D_80A1EABC_jp = 0x80A1EABC; //
-_008E46A0_Profile = 0x80A1EAF8; //
+Effectbg_Profile = 0x80A1EAF8; //
 
 // .rodata
 
@@ -14385,7 +14384,7 @@ B_80A1EB74_jp = 0x80A1EB74; //
 
 // .text
 
-func_80A1ECB0_jp = 0x80A1ECB0; // type:func
+aTUMB_actor_ct = 0x80A1ECB0; // type:func
 func_80A1ECD4_jp = 0x80A1ECD4; // type:func
 func_80A1ED04_jp = 0x80A1ED04; // type:func
 func_80A1ED4C_jp = 0x80A1ED4C; // type:func
@@ -14393,12 +14392,12 @@ func_80A1EE48_jp = 0x80A1EE48; // type:func
 func_80A1EE84_jp = 0x80A1EE84; // type:func
 func_80A1EF00_jp = 0x80A1EF00; // type:func
 func_80A1EF20_jp = 0x80A1EF20; // type:func
-func_80A1EF94_jp = 0x80A1EF94; // type:func
-func_80A1EFE4_jp = 0x80A1EFE4; // type:func
+aTUMB_actor_move = 0x80A1EF94; // type:func
+aTUMB_actor_draw = 0x80A1EFE4; // type:func
 
 // .data
 
-_008E6770_Profile = 0x80A1F1B0; //
+T_Umbrella_Profile = 0x80A1F1B0; //
 D_80A1F1D4_jp = 0x80A1F1D4; //
 D_80A1F1EC_jp = 0x80A1F1EC; //
 D_80A1F21C_jp = 0x80A1F21C; //
@@ -14422,20 +14421,20 @@ RO_FLT_80A1F440_jp = 0x80A1F440; // type:f32
 
 // .text
 
-func_80A1F510_jp = 0x80A1F510; // type:func
+aTKT_actor_ct = 0x80A1F510; // type:func
 func_80A1F58C_jp = 0x80A1F58C; // type:func
 func_80A1F634_jp = 0x80A1F634; // type:func
 func_80A1F6C0_jp = 0x80A1F6C0; // type:func
 func_80A1F6E0_jp = 0x80A1F6E0; // type:func
 func_80A1F700_jp = 0x80A1F700; // type:func
 func_80A1F720_jp = 0x80A1F720; // type:func
-func_80A1F7C8_jp = 0x80A1F7C8; // type:func
-func_80A1F824_jp = 0x80A1F824; // type:func
+aTKT_actor_move = 0x80A1F7C8; // type:func
+aTKT_actor_draw = 0x80A1F824; // type:func
 
 // .data
 
 D_80A1F960_jp = 0x80A1F960; //
-_008E6FD0_Profile = 0x80A1F99C; //
+T_Keitai_Profile = 0x80A1F99C; //
 D_FLT_80A1F9C0_jp = 0x80A1F9C0; // type:f32
 D_FLT_80A1F9C8_jp = 0x80A1F9C8; // type:f32
 D_FLT_80A1F9D0_jp = 0x80A1F9D0; // type:f32
@@ -14449,18 +14448,18 @@ RO_FLT_80A1FA00_jp = 0x80A1FA00; // type:f32
 
 // .text
 
-func_80A1FAA0_jp = 0x80A1FAA0; // type:func
+aTUT_actor_ct = 0x80A1FAA0; // type:func
 func_80A1FAC4_jp = 0x80A1FAC4; // type:func
 func_80A1FB2C_jp = 0x80A1FB2C; // type:func
 func_80A1FB4C_jp = 0x80A1FB4C; // type:func
 func_80A1FB6C_jp = 0x80A1FB6C; // type:func
 func_80A1FB8C_jp = 0x80A1FB8C; // type:func
-func_80A1FBC4_jp = 0x80A1FBC4; // type:func
-func_80A1FC08_jp = 0x80A1FC08; // type:func
+aTUT_actor_move = 0x80A1FBC4; // type:func
+aTUT_actor_draw = 0x80A1FC08; // type:func
 
 // .data
 
-_008E7560_Profile = 0x80A1FD00; //
+T_Utiwa_Profile = 0x80A1FD00; //
 D_80A1FD24_jp = 0x80A1FD24; //
 D_80A1FD2C_jp = 0x80A1FD2C; //
 D_FLT_80A1FD40_jp = 0x80A1FD40; // type:f32
@@ -14472,19 +14471,19 @@ RO_FLT_80A1FD60_jp = 0x80A1FD60; // type:f32
 
 // .text
 
-func_80A1FDE0_jp = 0x80A1FDE0; // type:func
-func_80A1FE04_jp = 0x80A1FE04; // type:func
+aTHB_actor_ct = 0x80A1FDE0; // type:func
+aTHB_actor_dt = 0x80A1FE04; // type:func
 func_80A1FE14_jp = 0x80A1FE14; // type:func
 func_80A1FE7C_jp = 0x80A1FE7C; // type:func
 func_80A1FE9C_jp = 0x80A1FE9C; // type:func
 func_80A1FEBC_jp = 0x80A1FEBC; // type:func
 func_80A1FEDC_jp = 0x80A1FEDC; // type:func
-func_80A1FF14_jp = 0x80A1FF14; // type:func
-func_80A1FF58_jp = 0x80A1FF58; // type:func
+aTHB_actor_move = 0x80A1FF14; // type:func
+aTHB_actor_draw = 0x80A1FF58; // type:func
 
 // .data
 
-_008E78A0_Profile = 0x80A20050; //
+T_Hanabi_Profile = 0x80A20050; //
 D_80A20074_jp = 0x80A20074; //
 D_80A2007C_jp = 0x80A2007C; //
 D_FLT_80A20090_jp = 0x80A20090; // type:f32
@@ -14496,18 +14495,18 @@ RO_FLT_80A200B0_jp = 0x80A200B0; // type:f32
 
 // .text
 
-func_80A20130_jp = 0x80A20130; // type:func
+aTCR_actor_ct = 0x80A20130; // type:func
 func_80A20154_jp = 0x80A20154; // type:func
 func_80A201BC_jp = 0x80A201BC; // type:func
 func_80A201DC_jp = 0x80A201DC; // type:func
 func_80A201FC_jp = 0x80A201FC; // type:func
 func_80A2021C_jp = 0x80A2021C; // type:func
-func_80A20254_jp = 0x80A20254; // type:func
-func_80A20298_jp = 0x80A20298; // type:func
+aTCR_actor_move = 0x80A20254; // type:func
+aTCR_actor_draw = 0x80A20298; // type:func
 
 // .data
 
-_008E7BF0_Profile = 0x80A20390; //
+T_Cracker_Profile = 0x80A20390; //
 D_80A203B4_jp = 0x80A203B4; //
 D_80A203BC_jp = 0x80A203BC; //
 D_FLT_80A203D0_jp = 0x80A203D0; // type:f32
@@ -14519,18 +14518,18 @@ RO_FLT_80A203F0_jp = 0x80A203F0; // type:f32
 
 // .text
 
-func_80A20470_jp = 0x80A20470; // type:func
+aTPT_actor_ct = 0x80A20470; // type:func
 func_80A20494_jp = 0x80A20494; // type:func
 func_80A204FC_jp = 0x80A204FC; // type:func
 func_80A2051C_jp = 0x80A2051C; // type:func
 func_80A2053C_jp = 0x80A2053C; // type:func
 func_80A2055C_jp = 0x80A2055C; // type:func
-func_80A20594_jp = 0x80A20594; // type:func
-func_80A205D8_jp = 0x80A205D8; // type:func
+aTPT_actor_move = 0x80A20594; // type:func
+aTPT_actor_draw = 0x80A205D8; // type:func
 
 // .data
 
-_008E7F30_Profile = 0x80A206D0; //
+T_Pistol_Profile = 0x80A206D0; //
 D_80A206F4_jp = 0x80A206F4; //
 D_80A206FC_jp = 0x80A206FC; //
 D_FLT_80A20710_jp = 0x80A20710; // type:f32
@@ -14544,11 +14543,11 @@ RO_FLT_80A20730_jp = 0x80A20730; // type:f32
 
 func_80A207B0_jp = 0x80A207B0; // type:func
 func_80A2083C_jp = 0x80A2083C; // type:func
-func_80A20A1C_jp = 0x80A20A1C; // type:func
+aTFL_actor_draw = 0x80A20A1C; // type:func
 
 // .data
 
-_008E8270_Profile = 0x80A20BE0; //
+T_Flag_Profile = 0x80A20BE0; //
 D_80A20C04_jp = 0x80A20C04; //
 
 // .rodata
@@ -14557,18 +14556,18 @@ RO_FLT_80A20C10_jp = 0x80A20C10; // type:f32
 
 // .text
 
-func_80A20C60_jp = 0x80A20C60; // type:func
+aTTB_actor_ct = 0x80A20C60; // type:func
 func_80A20C84_jp = 0x80A20C84; // type:func
 func_80A20CEC_jp = 0x80A20CEC; // type:func
 func_80A20D0C_jp = 0x80A20D0C; // type:func
 func_80A20D2C_jp = 0x80A20D2C; // type:func
 func_80A20D4C_jp = 0x80A20D4C; // type:func
-func_80A20D84_jp = 0x80A20D84; // type:func
-func_80A20DC8_jp = 0x80A20DC8; // type:func
+aTTB_actor_move = 0x80A20D84; // type:func
+aTTB_actor_draw = 0x80A20DC8; // type:func
 
 // .data
 
-_008E8720_Profile = 0x80A20EC0; //
+T_Tumbler_Profile = 0x80A20EC0; //
 D_80A20EE4_jp = 0x80A20EE4; //
 D_80A20EEC_jp = 0x80A20EEC; //
 D_FLT_80A20F00_jp = 0x80A20F00; // type:f32
@@ -14580,15 +14579,15 @@ RO_FLT_80A20F20_jp = 0x80A20F20; // type:f32
 
 // .text
 
-func_80A20FA0_jp = 0x80A20FA0; // type:func
+aTNS_actor_ct = 0x80A20FA0; // type:func
 func_80A20FC4_jp = 0x80A20FC4; // type:func
 func_80A20FE4_jp = 0x80A20FE4; // type:func
-func_80A2100C_jp = 0x80A2100C; // type:func
-func_80A21138_jp = 0x80A21138; // type:func
+aTNS_actor_move = 0x80A2100C; // type:func
+aTNS_actor_draw = 0x80A21138; // type:func
 
 // .data
 
-_008E8A60_Profile = 0x80A212B0; //
+T_NpcSao_Profile = 0x80A212B0; //
 D_80A212D4_jp = 0x80A212D4; //
 D_80A212E8_jp = 0x80A212E8; //
 
@@ -14599,11 +14598,11 @@ RO_FLT_80A21304_jp = 0x80A21304; // type:f32
 
 // .text
 
-func_80A21360_jp = 0x80A21360; // type:func
+aTTM_actor_draw = 0x80A21360; // type:func
 
 // .data
 
-_008E8E20_Profile = 0x80A215A0; //
+T_Tama_Profile = 0x80A215A0; //
 D_80A215C4_jp = 0x80A215C4; //
 D_80A215D4_jp = 0x80A215D4; //
 D_80A21604_jp = 0x80A21604; //
@@ -14635,10 +14634,10 @@ func_80A21F3C_jp = 0x80A21F3C; // type:func
 func_80A21FA0_jp = 0x80A21FA0; // type:func
 func_80A22028_jp = 0x80A22028; // type:func
 func_80A220CC_jp = 0x80A220CC; // type:func
-func_80A2212C_jp = 0x80A2212C; // type:func
-func_80A22310_jp = 0x80A22310; // type:func
+Weather_Actor_ct = 0x80A2212C; // type:func
+Weather_Actor_dt = 0x80A22310; // type:func
 func_80A2236C_jp = 0x80A2236C; // type:func
-func_80A22464_jp = 0x80A22464; // type:func
+Weather_Actor_draw = 0x80A22464; // type:func
 func_80A22484_jp = 0x80A22484; // type:func
 func_80A224C8_jp = 0x80A224C8; // type:func
 func_80A225D0_jp = 0x80A225D0; // type:func
@@ -14647,7 +14646,7 @@ func_80A22740_jp = 0x80A22740; // type:func
 func_80A2276C_jp = 0x80A2276C; // type:func
 func_80A227E4_jp = 0x80A227E4; // type:func
 func_80A22950_jp = 0x80A22950; // type:func
-func_80A22ACC_jp = 0x80A22ACC; // type:func
+Weather_Actor_move = 0x80A22ACC; // type:func
 func_80A22BF0_jp = 0x80A22BF0; // type:func
 
 // .data
@@ -14658,7 +14657,7 @@ D_80A22CAC_jp = 0x80A22CAC; //
 D_80A22CB4_jp = 0x80A22CB4; //
 D_80A22CBC_jp = 0x80A22CBC; //
 D_80A22CC4_jp = 0x80A22CC4; //
-_008E9130_Profile = 0x80A22CD8; //
+Weather_Profile = 0x80A22CD8; //
 D_80A22CFC_jp = 0x80A22CFC; // type:s16
 D_80A22D10_jp = 0x80A22D10; //
 
@@ -14712,9 +14711,9 @@ func_80A24A8C_jp = 0x80A24A8C; // type:func
 func_80A24D08_jp = 0x80A24D08; // type:func
 func_80A24F24_jp = 0x80A24F24; // type:func
 func_80A2513C_jp = 0x80A2513C; // type:func
-func_80A2522C_jp = 0x80A2522C; // type:func
-func_80A253B4_jp = 0x80A253B4; // type:func
-func_80A25528_jp = 0x80A25528; // type:func
+aSNMgr_actor_move = 0x80A2522C; // type:func
+aSNMgr_actor_ct = 0x80A253B4; // type:func
+aSNMgr_actor_dt = 0x80A25528; // type:func
 
 // .data
 
@@ -14727,7 +14726,7 @@ D_80A25588_jp = 0x80A25588; //
 D_80A255AC_jp = 0x80A255AC; //
 D_80A255D0_jp = 0x80A255D0; // type:u8
 D_80A255D4_jp = 0x80A255D4; //
-_008EA970_Profile = 0x80A255DC; //
+Set_Npc_Manager_Profile = 0x80A255DC; //
 
 // .rodata
 
@@ -17809,10 +17808,10 @@ D_80A592F0_jp = 0x80A592F0; //
 // .text
 
 func_80A59360_jp = 0x80A59360; // type:func
-func_80A5952C_jp = 0x80A5952C; // type:func
-func_80A5960C_jp = 0x80A5960C; // type:func
+Train_Window_Actor_ct = 0x80A5952C; // type:func
+Train_Window_Actor_dt = 0x80A5960C; // type:func
 func_80A5961C_jp = 0x80A5961C; // type:func
-func_80A59974_jp = 0x80A59974; // type:func
+Train_Window_Actor_move = 0x80A59974; // type:func
 func_80A599DC_jp = 0x80A599DC; // type:func
 func_80A59A2C_jp = 0x80A59A2C; // type:func
 func_80A59AB0_jp = 0x80A59AB0; // type:func
@@ -17822,7 +17821,7 @@ func_80A59E88_jp = 0x80A59E88; // type:func
 func_80A59EA4_jp = 0x80A59EA4; // type:func
 func_80A5A034_jp = 0x80A5A034; // type:func
 func_80A5A120_jp = 0x80A5A120; // type:func
-func_80A5A198_jp = 0x80A5A198; // type:func
+Train_Window_Actor_draw = 0x80A5A198; // type:func
 
 // .data
 
@@ -17830,7 +17829,7 @@ D_80A5A580_jp = 0x80A5A580; //
 D_80A5A588_jp = 0x80A5A588; //
 D_80A5A768_jp = 0x80A5A768; //
 D_80A5A76C_jp = 0x80A5A76C; //
-_00920E00_Profile = 0x80A5A774; //
+Train_Window_Profile = 0x80A5A774; //
 D_80A5A798_jp = 0x80A5A798; // type:u8
 D_80A5A799_jp = 0x80A5A799; // type:u8
 D_80A5A79A_jp = 0x80A5A79A; // type:u8
@@ -17870,8 +17869,8 @@ RO_FLT_80A5AF00_jp = 0x80A5AF00; // type:f32
 
 // .text
 
-func_80A5AF70_jp = 0x80A5AF70; // type:func
-func_80A5B000_jp = 0x80A5B000; // type:func
+aGYO_actor_ct = 0x80A5AF70; // type:func
+aGYO_actor_dt = 0x80A5B000; // type:func
 func_80A5B04C_jp = 0x80A5B04C; // type:func
 func_80A5B0DC_jp = 0x80A5B0DC; // type:func
 func_80A5B15C_jp = 0x80A5B15C; // type:func
@@ -17892,16 +17891,16 @@ func_80A5BB08_jp = 0x80A5BB08; // type:func
 func_80A5BB70_jp = 0x80A5BB70; // type:func
 func_80A5BBAC_jp = 0x80A5BBAC; // type:func
 func_80A5BC80_jp = 0x80A5BC80; // type:func
-func_80A5BCC8_jp = 0x80A5BCC8; // type:func
+aGYO_actor_move = 0x80A5BCC8; // type:func
 func_80A5BE14_jp = 0x80A5BE14; // type:func
 func_80A5BED4_jp = 0x80A5BED4; // type:func
 func_80A5C234_jp = 0x80A5C234; // type:func
-func_80A5C454_jp = 0x80A5C454; // type:func
+aGYO_actor_draw = 0x80A5C454; // type:func
 
 // .data
 
 D_80A5C540_jp = 0x80A5C540; //
-_00922A10_Profile = 0x80A5C544; //
+Gyoei_Profile = 0x80A5C544; //
 D_80A5C568_jp = 0x80A5C568; //
 D_80A5C5F8_jp = 0x80A5C5F8; //
 D_80A5C688_jp = 0x80A5C688; //
@@ -17981,8 +17980,8 @@ D_80A64930_jp = 0x80A64930; //
 
 // .text
 
-func_80A649A0_jp = 0x80A649A0; // type:func
-func_80A64AF4_jp = 0x80A64AF4; // type:func
+aUKI_actor_ct = 0x80A649A0; // type:func
+aUKI_actor_dt = 0x80A64AF4; // type:func
 func_80A64B20_jp = 0x80A64B20; // type:func
 func_80A64B68_jp = 0x80A64B68; // type:func
 func_80A64BAC_jp = 0x80A64BAC; // type:func
@@ -18010,15 +18009,15 @@ func_80A66434_jp = 0x80A66434; // type:func
 func_80A66624_jp = 0x80A66624; // type:func
 func_80A666AC_jp = 0x80A666AC; // type:func
 func_80A66714_jp = 0x80A66714; // type:func
-func_80A66798_jp = 0x80A66798; // type:func
+aUKI_actor_move = 0x80A66798; // type:func
 func_80A668AC_jp = 0x80A668AC; // type:func
 func_80A66978_jp = 0x80A66978; // type:func
 
 // .data
 
-_00924C40_Profile = 0x80A66CA0; //
-D_80A66CC4_jp = 0x80A66CC4; //
-D_80A66CD4_jp = 0x80A66CD4; //
+Uki_Profile = 0x80A66CA0; //
+aUKI_CoInfoData = 0x80A66CC4; //
+aUKI_StatusData = 0x80A66CD4; //
 D_80A66CE0_jp = 0x80A66CE0; // type:s16
 D_80A66E00_jp = 0x80A66E00; // type:u16
 D_80A66E48_jp = 0x80A66E48; // type:s16
@@ -18375,10 +18374,10 @@ D_80A6C534_jp = 0x80A6C534; //
 
 // .text
 
-func_80A6C5B0_jp = 0x80A6C5B0; // type:func
-func_80A6C63C_jp = 0x80A6C63C; // type:func
-func_80A6C660_jp = 0x80A6C660; // type:func
-func_80A6C68C_jp = 0x80A6C68C; // type:func
+aSHM_actor_ct = 0x80A6C5B0; // type:func
+aSHM_actor_save = 0x80A6C63C; // type:func
+aSHM_actor_dt = 0x80A6C660; // type:func
+aSHM_actor_init = 0x80A6C68C; // type:func
 func_80A6C6B8_jp = 0x80A6C6B8; // type:func
 func_80A6C6EC_jp = 0x80A6C6EC; // type:func
 func_80A6C724_jp = 0x80A6C724; // type:func
@@ -18447,7 +18446,7 @@ func_80A6E374_jp = 0x80A6E374; // type:func
 
 // .data
 
-_0092C850_Profile = 0x80A6E3A0; //
+Npc_Shop_Mastersp_Profile = 0x80A6E3A0; //
 D_80A6E3C4_jp = 0x80A6E3C4; //
 D_80A6E3E0_jp = 0x80A6E3E0; // type:s16
 D_80A6E3E8_jp = 0x80A6E3E8; // type:s16
@@ -18676,21 +18675,21 @@ RO_FLT_80A727AC_jp = 0x80A727AC; // type:f32
 
 // .text
 
-func_80A72800_jp = 0x80A72800; // type:func
-func_80A72810_jp = 0x80A72810; // type:func
-func_80A72820_jp = 0x80A72820; // type:func
-func_80A72830_jp = 0x80A72830; // type:func
+eChryMgr_move = 0x80A72800; // type:func
+eChryMgr_draw = 0x80A72810; // type:func
+eChryMgr_ct = 0x80A72820; // type:func
+eChryMgr_dt = 0x80A72830; // type:func
 
 // .data
 
-_00932AA0_Profile = 0x80A72860; //
+Ev_Cherry_Manager_Profile = 0x80A72860; //
 
 // .text
 
-func_80A728C0_jp = 0x80A728C0; // type:func
-func_80A72A38_jp = 0x80A72A38; // type:func
-func_80A72A64_jp = 0x80A72A64; // type:func
-func_80A72ABC_jp = 0x80A72ABC; // type:func
+aEYMS_actor_ct = 0x80A728C0; // type:func
+aEYMS_actor_save = 0x80A72A38; // type:func
+aEYMS_actor_dt = 0x80A72A64; // type:func
+aEYMS_actor_init = 0x80A72ABC; // type:func
 func_80A72AE8_jp = 0x80A72AE8; // type:func
 func_80A72B0C_jp = 0x80A72B0C; // type:func
 func_80A72BD8_jp = 0x80A72BD8; // type:func
@@ -18718,7 +18717,7 @@ func_80A73A38_jp = 0x80A73A38; // type:func
 
 // .data
 
-_00932B60_Profile = 0x80A73A70; //
+Ev_Yomise_Profile = 0x80A73A70; //
 D_80A73A94_jp = 0x80A73A94; //
 D_80A73AB0_jp = 0x80A73AB0; // type:u16
 D_80A73ABC_jp = 0x80A73ABC; //
@@ -18731,10 +18730,10 @@ D_80A73AF0_jp = 0x80A73AF0; //
 
 // .text
 
-func_80A73C60_jp = 0x80A73C60; // type:func
-func_80A73D80_jp = 0x80A73D80; // type:func
-func_80A73DA4_jp = 0x80A73DA4; // type:func
-func_80A73E00_jp = 0x80A73E00; // type:func
+aTKN0_actor_ct = 0x80A73C60; // type:func
+aTKN0_actor_save = 0x80A73D80; // type:func
+aTKN0_actor_dt = 0x80A73DA4; // type:func
+aTKN0_actor_init = 0x80A73E00; // type:func
 func_80A73E2C_jp = 0x80A73E2C; // type:func
 func_80A73EC8_jp = 0x80A73EC8; // type:func
 func_80A73F2C_jp = 0x80A73F2C; // type:func
@@ -18766,7 +18765,7 @@ func_80A74890_jp = 0x80A74890; // type:func
 
 // .data
 
-_00933F00_Profile = 0x80A748C0; //
+Tokyoso_Npc0_Profile = 0x80A748C0; //
 D_80A748E4_jp = 0x80A748E4; //
 D_80A74900_jp = 0x80A74900; //
 D_80A74918_jp = 0x80A74918; //
@@ -18777,10 +18776,10 @@ D_80A74994_jp = 0x80A74994; //
 
 // .text
 
-func_80A74AB0_jp = 0x80A74AB0; // type:func
-func_80A74B60_jp = 0x80A74B60; // type:func
-func_80A74B84_jp = 0x80A74B84; // type:func
-func_80A74BB0_jp = 0x80A74BB0; // type:func
+aTKN1_actor_ct = 0x80A74AB0; // type:func
+aTKN1_actor_save = 0x80A74B60; // type:func
+aTKN1_actor_dt = 0x80A74B84; // type:func
+aTKN1_actor_init = 0x80A74BB0; // type:func
 func_80A74BDC_jp = 0x80A74BDC; // type:func
 func_80A74C78_jp = 0x80A74C78; // type:func
 func_80A74D0C_jp = 0x80A74D0C; // type:func
@@ -18816,7 +18815,7 @@ func_80A75F0C_jp = 0x80A75F0C; // type:func
 
 // .data
 
-_00934D50_Profile = 0x80A75F40; //
+Tokyoso_Npc1_Profile = 0x80A75F40; //
 D_80A75F64_jp = 0x80A75F64; //
 D_80A75F80_jp = 0x80A75F80; //
 D_80A75F98_jp = 0x80A75F98; // type:u8
@@ -18830,18 +18829,18 @@ RO_FLT_80A76064_jp = 0x80A76064; // type:f32
 
 // .text
 
-func_80A761D0_jp = 0x80A761D0; // type:func
+aGOZ_actor_ct = 0x80A761D0; // type:func
 func_80A76208_jp = 0x80A76208; // type:func
 func_80A76294_jp = 0x80A76294; // type:func
 func_80A76494_jp = 0x80A76494; // type:func
 func_80A764A4_jp = 0x80A764A4; // type:func
 func_80A764C0_jp = 0x80A764C0; // type:func
-func_80A765A8_jp = 0x80A765A8; // type:func
-func_80A76610_jp = 0x80A76610; // type:func
+aGOZ_actor_init = 0x80A765A8; // type:func
+aGOZ_actor_draw = 0x80A76610; // type:func
 
 // .data
 
-_00936470_Profile = 0x80A76770; //
+Goza_Profile = 0x80A76770; //
 D_80A76794_jp = 0x80A76794; //
 D_80A767AC_jp = 0x80A767AC; //
 D_80A767C0_jp = 0x80A767C0; //
@@ -18858,18 +18857,18 @@ RO_STR_80A76860_jp = 0x80A76860; // type:asciz
 
 // .text
 
-func_80A76920_jp = 0x80A76920; // type:func
+aRAD_actor_ct = 0x80A76920; // type:func
 func_80A76958_jp = 0x80A76958; // type:func
 func_80A769E4_jp = 0x80A769E4; // type:func
 func_80A76A30_jp = 0x80A76A30; // type:func
 func_80A76B2C_jp = 0x80A76B2C; // type:func
 func_80A76B4C_jp = 0x80A76B4C; // type:func
-func_80A76C34_jp = 0x80A76C34; // type:func
-func_80A76C9C_jp = 0x80A76C9C; // type:func
+aRAD_actor_init = 0x80A76C34; // type:func
+aRAD_actor_draw = 0x80A76C9C; // type:func
 
 // .data
 
-_00936BC0_Profile = 0x80A76DD0; //
+Radio_Profile = 0x80A76DD0; //
 D_80A76DF4_jp = 0x80A76DF4; //
 D_80A76DFC_jp = 0x80A76DFC; //
 D_80A76E10_jp = 0x80A76E10; //
@@ -18877,18 +18876,18 @@ D_80A76E1C_jp = 0x80A76E1C; //
 
 // .text
 
-func_80A76E80_jp = 0x80A76E80; // type:func
+aYAT_actor_ct = 0x80A76E80; // type:func
 func_80A76EC4_jp = 0x80A76EC4; // type:func
 func_80A76F50_jp = 0x80A76F50; // type:func
 func_80A77160_jp = 0x80A77160; // type:func
 func_80A77170_jp = 0x80A77170; // type:func
 func_80A77190_jp = 0x80A77190; // type:func
-func_80A77278_jp = 0x80A77278; // type:func
-func_80A772E0_jp = 0x80A772E0; // type:func
+aYAT_actor_init = 0x80A77278; // type:func
+aYAT_actor_draw = 0x80A772E0; // type:func
 
 // .data
 
-_00937120_Profile = 0x80A77430; //
+Yatai_Profile = 0x80A77430; //
 D_80A77454_jp = 0x80A77454; //
 D_80A77460_jp = 0x80A77460; //
 D_80A77474_jp = 0x80A77474; //
@@ -18908,9 +18907,9 @@ RO_STR_80A77568_jp = 0x80A77568; // type:asciz
 
 // .text
 
-func_80A77620_jp = 0x80A77620; // type:func
-func_80A77710_jp = 0x80A77710; // type:func
-func_80A77744_jp = 0x80A77744; // type:func
+aTKC_actor_ct = 0x80A77620; // type:func
+aTKC_actor_dt = 0x80A77710; // type:func
+aTKC_actor_move = 0x80A77744; // type:func
 func_80A777C0_jp = 0x80A777C0; // type:func
 func_80A77814_jp = 0x80A77814; // type:func
 func_80A77878_jp = 0x80A77878; // type:func
@@ -18955,7 +18954,7 @@ func_80A78A68_jp = 0x80A78A68; // type:func
 
 // .data
 
-_009378C0_Profile = 0x80A78AF0; //
+Tokyoso_Control_Profile = 0x80A78AF0; //
 D_80A78B14_jp = 0x80A78B14; //
 D_80A78B38_jp = 0x80A78B38; //
 D_80A78B8C_jp = 0x80A78B8C; // type:s16
@@ -19028,13 +19027,13 @@ func_80A79A34_jp = 0x80A79A34; // type:func
 func_80A79A88_jp = 0x80A79A88; // type:func
 func_80A79B04_jp = 0x80A79B04; // type:func
 func_80A79BD0_jp = 0x80A79BD0; // type:func
-func_80A79C10_jp = 0x80A79C10; // type:func
-func_80A79C8C_jp = 0x80A79C8C; // type:func
-func_80A79D30_jp = 0x80A79D30; // type:func
+Shop_Umbrella_Actor_ct = 0x80A79C10; // type:func
+Shop_Umbrella_Actor_dt = 0x80A79C8C; // type:func
+Shop_Umbrella_Actor_draw = 0x80A79D30; // type:func
 func_80A79F5C_jp = 0x80A79F5C; // type:func
 func_80A79F70_jp = 0x80A79F70; // type:func
 func_80A79FC8_jp = 0x80A79FC8; // type:func
-func_80A79FDC_jp = 0x80A79FDC; // type:func
+Shop_Umbrella_Actor_move = 0x80A79FDC; // type:func
 func_80A7A068_jp = 0x80A7A068; // type:func
 func_80A7A148_jp = 0x80A7A148; // type:func
 
@@ -19043,7 +19042,7 @@ func_80A7A148_jp = 0x80A7A148; // type:func
 D_80A7A2A0_jp = 0x80A7A2A0; //
 D_80A7A3A0_jp = 0x80A7A3A0; //
 D_80A7A420_jp = 0x80A7A420; //
-_009395F0_Profile = 0x80A7A4A0; //
+Shop_Umbrella_Profile = 0x80A7A4A0; //
 D_80A7A4C4_jp = 0x80A7A4C4; //
 D_80A7A4D4_jp = 0x80A7A4D4; //
 D_80A7A4D8_jp = 0x80A7A4D8; //
@@ -19068,19 +19067,19 @@ func_80A7A708_jp = 0x80A7A708; // type:func
 func_80A7A748_jp = 0x80A7A748; // type:func
 func_80A7A7F0_jp = 0x80A7A7F0; // type:func
 func_80A7A82C_jp = 0x80A7A82C; // type:func
-func_80A7A914_jp = 0x80A7A914; // type:func
-func_80A7AAC4_jp = 0x80A7AAC4; // type:func
+aGYR_actor_ct = 0x80A7A914; // type:func
+aGYR_actor_dt = 0x80A7AAC4; // type:func
 func_80A7AB0C_jp = 0x80A7AB0C; // type:func
 func_80A7AB50_jp = 0x80A7AB50; // type:func
 func_80A7AB90_jp = 0x80A7AB90; // type:func
 func_80A7ACAC_jp = 0x80A7ACAC; // type:func
 func_80A7AD14_jp = 0x80A7AD14; // type:func
-func_80A7B0C4_jp = 0x80A7B0C4; // type:func
-func_80A7B164_jp = 0x80A7B164; // type:func
+aGYR_actor_move = 0x80A7B0C4; // type:func
+aGYR_actor_draw = 0x80A7B164; // type:func
 
 // .data
 
-_0093A920_Profile = 0x80A7B300; //
+Gyo_Release_Profile = 0x80A7B300; //
 D_80A7B324_jp = 0x80A7B324; // type:s16
 D_80A7B444_jp = 0x80A7B444; //
 D_80A7B4D4_jp = 0x80A7B4D4; //
@@ -19331,20 +19330,20 @@ D_80A7F90C_jp = 0x80A7F90C; //
 
 // .text
 
-func_80A7F970_jp = 0x80A7F970; // type:func
-func_80A7FA34_jp = 0x80A7FA34; // type:func
+aTUK_actor_ct = 0x80A7F970; // type:func
+aTUK_actor_dt = 0x80A7FA34; // type:func
 func_80A7FAD0_jp = 0x80A7FAD0; // type:func
 func_80A7FB1C_jp = 0x80A7FB1C; // type:func
 func_80A7FB2C_jp = 0x80A7FB2C; // type:func
 func_80A7FBC0_jp = 0x80A7FBC0; // type:func
-func_80A7FCDC_jp = 0x80A7FCDC; // type:func
+aTUK_actor_init = 0x80A7FCDC; // type:func
 func_80A7FD44_jp = 0x80A7FD44; // type:func
 func_80A7FD64_jp = 0x80A7FD64; // type:func
-func_80A7FE80_jp = 0x80A7FE80; // type:func
+aTUK_actor_draw = 0x80A7FE80; // type:func
 
 // .data
 
-_0093FC10_Profile = 0x80A7FFC0; //
+Tukimi_Profile = 0x80A7FFC0; //
 D_80A7FFE4_jp = 0x80A7FFE4; //
 D_80A7FFEC_jp = 0x80A7FFEC; //
 D_80A80000_jp = 0x80A80000; //
@@ -19360,20 +19359,20 @@ RO_FLT_80A80040_jp = 0x80A80040; // type:f32
 
 // .text
 
-func_80A800E0_jp = 0x80A800E0; // type:func
-func_80A8019C_jp = 0x80A8019C; // type:func
+Kamakura_Indoor_Actor_ct = 0x80A800E0; // type:func
+Kamakura_Indoor_Actor_dt = 0x80A8019C; // type:func
 func_80A801C8_jp = 0x80A801C8; // type:func
 func_80A80370_jp = 0x80A80370; // type:func
 func_80A80440_jp = 0x80A80440; // type:func
 func_80A806B8_jp = 0x80A806B8; // type:func
-func_80A807C0_jp = 0x80A807C0; // type:func
+Kamakura_Indoor_Actor_draw = 0x80A807C0; // type:func
 func_80A80804_jp = 0x80A80804; // type:func
 func_80A80A9C_jp = 0x80A80A9C; // type:func
-func_80A80C38_jp = 0x80A80C38; // type:func
+Kamakura_Indoor_Actor_move = 0x80A80C38; // type:func
 
 // .data
 
-_00940380_Profile = 0x80A81210; //
+Kamakura_Indoor_Profile = 0x80A81210; //
 D_80A81234_jp = 0x80A81234; //
 D_80A81244_jp = 0x80A81244; //
 D_FLT_80A81250_jp = 0x80A81250; // type:f32
@@ -19420,17 +19419,17 @@ func_80A81A6C_jp = 0x80A81A6C; // type:func
 func_80A81AD0_jp = 0x80A81AD0; // type:func
 func_80A81B0C_jp = 0x80A81B0C; // type:func
 func_80A81BF4_jp = 0x80A81BF4; // type:func
-func_80A81E28_jp = 0x80A81E28; // type:func
-func_80A81F60_jp = 0x80A81F60; // type:func
+aGYO_KAGE_actor_ct = 0x80A81E28; // type:func
+aGYO_KAGE_actor_dt = 0x80A81F60; // type:func
 func_80A81F90_jp = 0x80A81F90; // type:func
 func_80A81FCC_jp = 0x80A81FCC; // type:func
 func_80A8200C_jp = 0x80A8200C; // type:func
-func_80A820A8_jp = 0x80A820A8; // type:func
-func_80A82204_jp = 0x80A82204; // type:func
+aGYO_KAGE_actor_move = 0x80A820A8; // type:func
+aGYO_KAGE_actor_draw = 0x80A82204; // type:func
 
 // .data
 
-_00941BF0_Profile = 0x80A82430; //
+Gyo_Kage_Profile = 0x80A82430; //
 D_80A82454_jp = 0x80A82454; //
 D_80A82464_jp = 0x80A82464; // type:u8
 D_80A8248C_jp = 0x80A8248C; // type:u8
@@ -19448,18 +19447,18 @@ RO_FLT_80A8252C_jp = 0x80A8252C; // type:f32
 
 // .text
 
-func_80A82600_jp = 0x80A82600; // type:func
+func_805b414c = 0x80A82600; // type:func
 func_80A82638_jp = 0x80A82638; // type:func
 func_80A826C4_jp = 0x80A826C4; // type:func
 func_80A82848_jp = 0x80A82848; // type:func
 func_80A82858_jp = 0x80A82858; // type:func
 func_80A82878_jp = 0x80A82878; // type:func
-func_80A82960_jp = 0x80A82960; // type:func
-func_80A829C8_jp = 0x80A829C8; // type:func
+func_805b437c = 0x80A82960; // type:func
+func_805b43f4 = 0x80A829C8; // type:func
 
 // .data
 
-_009428A0_Profile = 0x80A82B00; //
+Mikuji_Profile = 0x80A82B00; //
 D_80A82B24_jp = 0x80A82B24; //
 D_80A82B2C_jp = 0x80A82B2C; //
 D_80A82B40_jp = 0x80A82B40; //
@@ -19526,7 +19525,7 @@ D_80A8365C_jp = 0x80A8365C; //
 
 // .text
 
-func_80A836C0_jp = 0x80A836C0; // type:func
+aHG_actor_ct = 0x80A836C0; // type:func
 func_80A83770_jp = 0x80A83770; // type:func
 func_80A83780_jp = 0x80A83780; // type:func
 func_80A837C4_jp = 0x80A837C4; // type:func
@@ -19537,12 +19536,12 @@ func_80A83A24_jp = 0x80A83A24; // type:func
 func_80A83D4C_jp = 0x80A83D4C; // type:func
 func_80A8401C_jp = 0x80A8401C; // type:func
 func_80A8409C_jp = 0x80A8409C; // type:func
-func_80A840E8_jp = 0x80A840E8; // type:func
-func_80A84480_jp = 0x80A84480; // type:func
+aHG_actor_move = 0x80A840E8; // type:func
+aHG_actor_draw = 0x80A84480; // type:func
 
 // .data
 
-_00943960_Profile = 0x80A845A0; //
+House_Goki_Profile = 0x80A845A0; //
 D_80A845C4_jp = 0x80A845C4; //
 D_80A845D0_jp = 0x80A845D0; //
 D_80A845DC_jp = 0x80A845DC; //
@@ -19603,8 +19602,8 @@ D_80A84B74_jp = 0x80A84B74; //
 
 // .text
 
-func_80A84BF0_jp = 0x80A84BF0; // type:func
-func_80A84C8C_jp = 0x80A84C8C; // type:func
+func_805ac0ac = 0x80A84BF0; // type:func
+func_805ac120 = 0x80A84C8C; // type:func
 func_80A84D2C_jp = 0x80A84D2C; // type:func
 func_80A84D44_jp = 0x80A84D44; // type:func
 func_80A84D7C_jp = 0x80A84D7C; // type:func
@@ -19614,13 +19613,13 @@ func_80A8502C_jp = 0x80A8502C; // type:func
 func_80A85060_jp = 0x80A85060; // type:func
 func_80A85088_jp = 0x80A85088; // type:func
 func_80A8512C_jp = 0x80A8512C; // type:func
-func_80A8525C_jp = 0x80A8525C; // type:func
+func_805ac5ec = 0x80A8525C; // type:func
 func_80A852C4_jp = 0x80A852C4; // type:func
-func_80A85450_jp = 0x80A85450; // type:func
+func_805ac7b0 = 0x80A85450; // type:func
 
 // .data
 
-_00944E90_Profile = 0x80A85630; //
+Count_Profile = 0x80A85630; //
 D_80A85654_jp = 0x80A85654; //
 D_80A85658_jp = 0x80A85658; //
 D_80A8566C_jp = 0x80A8566C; //
@@ -19662,20 +19661,20 @@ func_80A85F48_jp = 0x80A85F48; // type:func
 func_80A85F74_jp = 0x80A85F74; // type:func
 func_80A85FA8_jp = 0x80A85FA8; // type:func
 func_80A86074_jp = 0x80A86074; // type:func
-func_80A86084_jp = 0x80A86084; // type:func
-func_80A860E0_jp = 0x80A860E0; // type:func
-func_80A8611C_jp = 0x80A8611C; // type:func
+Garagara_Actor_ct = 0x80A86084; // type:func
+Garagara_Actor_dt = 0x80A860E0; // type:func
+Garagara_Actor_draw_dummy = 0x80A8611C; // type:func
 func_80A8612C_jp = 0x80A8612C; // type:func
 func_80A8624C_jp = 0x80A8624C; // type:func
 func_80A8629C_jp = 0x80A8629C; // type:func
 func_80A86300_jp = 0x80A86300; // type:func
 func_80A8632C_jp = 0x80A8632C; // type:func
-func_80A863BC_jp = 0x80A863BC; // type:func
+Garagara_Actor_move_dummy = 0x80A863BC; // type:func
 func_80A863CC_jp = 0x80A863CC; // type:func
 
 // .data
 
-_00945B10_Profile = 0x80A864B0; //
+Garagara_Profile = 0x80A864B0; //
 D_80A864D4_jp = 0x80A864D4; //
 D_80A864DC_jp = 0x80A864DC; //
 D_80A864E4_jp = 0x80A864E4; //
@@ -19696,10 +19695,10 @@ RO_FLT_80A86540_jp = 0x80A86540; // type:f32
 
 // .text
 
-func_80A86670_jp = 0x80A86670; // type:func
-func_80A86738_jp = 0x80A86738; // type:func
-func_80A8675C_jp = 0x80A8675C; // type:func
-func_80A86788_jp = 0x80A86788; // type:func
+aTMN0_actor_ct = 0x80A86670; // type:func
+aTMN0_actor_save = 0x80A86738; // type:func
+aTMN0_actor_dt = 0x80A8675C; // type:func
+aTMN0_actor_init = 0x80A86788; // type:func
 func_80A867B4_jp = 0x80A867B4; // type:func
 func_80A86850_jp = 0x80A86850; // type:func
 func_80A8687C_jp = 0x80A8687C; // type:func
@@ -19728,7 +19727,7 @@ func_80A87068_jp = 0x80A87068; // type:func
 
 // .data
 
-_00946900_Profile = 0x80A870A0; //
+Tamaire_Npc0_Profile = 0x80A870A0; //
 D_80A870C4_jp = 0x80A870C4; //
 D_80A870E0_jp = 0x80A870E0; //
 D_80A870E4_jp = 0x80A870E4; //
@@ -19739,10 +19738,10 @@ D_80A87154_jp = 0x80A87154; //
 
 // .text
 
-func_80A87260_jp = 0x80A87260; // type:func
-func_80A87368_jp = 0x80A87368; // type:func
-func_80A8738C_jp = 0x80A8738C; // type:func
-func_80A873E0_jp = 0x80A873E0; // type:func
+aTMN1_actor_ct = 0x80A87260; // type:func
+aTMN1_actor_save = 0x80A87368; // type:func
+aTMN1_actor_dt = 0x80A8738C; // type:func
+aTMN1_actor_init = 0x80A873E0; // type:func
 func_80A8740C_jp = 0x80A8740C; // type:func
 func_80A874A8_jp = 0x80A874A8; // type:func
 func_80A87598_jp = 0x80A87598; // type:func
@@ -19786,7 +19785,7 @@ func_80A88468_jp = 0x80A88468; // type:func
 
 // .data
 
-_009474F0_Profile = 0x80A884A0; //
+Tamaire_Npc1_Profile = 0x80A884A0; //
 D_80A884C4_jp = 0x80A884C4; //
 D_80A884E0_jp = 0x80A884E0; //
 D_80A884F8_jp = 0x80A884F8; // type:u8
@@ -19810,10 +19809,10 @@ B_80A885C0_jp = 0x80A885C0; // type:s16
 
 // .text
 
-func_80A887A0_jp = 0x80A887A0; // type:func
-func_80A888AC_jp = 0x80A888AC; // type:func
-func_80A888D0_jp = 0x80A888D0; // type:func
-func_80A88944_jp = 0x80A88944; // type:func
+func_8052ab54 = 0x80A887A0; // type:func
+func_8052ac70 = 0x80A888AC; // type:func
+func_8052ac90 = 0x80A888D0; // type:func
+func_8052ad14 = 0x80A88944; // type:func
 func_80A88970_jp = 0x80A88970; // type:func
 func_80A88A10_jp = 0x80A88A10; // type:func
 func_80A88A5C_jp = 0x80A88A5C; // type:func
@@ -19851,7 +19850,7 @@ func_80A89734_jp = 0x80A89734; // type:func
 
 // .data
 
-_00948A20_Profile = 0x80A89760; //
+Hatumode_Npc0_Profile = 0x80A89760; //
 D_80A89784_jp = 0x80A89784; //
 D_80A897A0_jp = 0x80A897A0; //
 D_80A897B8_jp = 0x80A897B8; // type:u8
@@ -19861,10 +19860,10 @@ D_80A89804_jp = 0x80A89804; //
 
 // .text
 
-func_80A89960_jp = 0x80A89960; // type:func
-func_80A89B8C_jp = 0x80A89B8C; // type:func
-func_80A89BB0_jp = 0x80A89BB0; // type:func
-func_80A89C28_jp = 0x80A89C28; // type:func
+aNTT_actor_ct = 0x80A89960; // type:func
+aNTT_actor_save = 0x80A89B8C; // type:func
+aNTT_actor_dt = 0x80A89BB0; // type:func
+aNTT_actor_init = 0x80A89C28; // type:func
 func_80A89C54_jp = 0x80A89C54; // type:func
 func_80A89CA0_jp = 0x80A89CA0; // type:func
 func_80A89D14_jp = 0x80A89D14; // type:func
@@ -19900,7 +19899,7 @@ func_80A8AF68_jp = 0x80A8AF68; // type:func
 
 // .data
 
-_00949BE0_Profile = 0x80A8B000; //
+Npc_Totakeke_Profile = 0x80A8B000; //
 D_80A8B024_jp = 0x80A8B024; //
 D_80A8B040_jp = 0x80A8B040; //
 D_80A8B05C_jp = 0x80A8B05C; // type:u8
@@ -19911,21 +19910,21 @@ D_80A8B0BC_jp = 0x80A8B0BC; //
 
 // .text
 
-func_80A8B230_jp = 0x80A8B230; // type:func
-func_80A8B330_jp = 0x80A8B330; // type:func
+func_805ab8b8 = 0x80A8B230; // type:func
+func_805ab988 = 0x80A8B330; // type:func
 func_80A8B3C8_jp = 0x80A8B3C8; // type:func
 func_80A8B430_jp = 0x80A8B430; // type:func
 func_80A8B5DC_jp = 0x80A8B5DC; // type:func
 func_80A8B61C_jp = 0x80A8B61C; // type:func
 func_80A8B754_jp = 0x80A8B754; // type:func
 func_80A8B7E8_jp = 0x80A8B7E8; // type:func
-func_80A8B8D0_jp = 0x80A8B8D0; // type:func
+func_805abdac = 0x80A8B8D0; // type:func
 func_80A8B938_jp = 0x80A8B938; // type:func
-func_80A8B9B0_jp = 0x80A8B9B0; // type:func
+func_805abe88 = 0x80A8B9B0; // type:func
 
 // .data
 
-_0094B4B0_Profile = 0x80A8BC50; //
+Count02_Profile = 0x80A8BC50; //
 D_80A8BC74_jp = 0x80A8BC74; //
 D_80A8BC84_jp = 0x80A8BC84; //
 D_80A8BCAC_jp = 0x80A8BCAC; //
@@ -19962,8 +19961,8 @@ RO_FLT_80A8D5C4_jp = 0x80A8D5C4; // type:f32
 
 // .text
 
-func_80A8D6A0_jp = 0x80A8D6A0; // type:func
-func_80A8D70C_jp = 0x80A8D70C; // type:func
+aHTC_actor_ct = 0x80A8D6A0; // type:func
+aHTC_actor_dt = 0x80A8D70C; // type:func
 func_80A8D740_jp = 0x80A8D740; // type:func
 func_80A8D810_jp = 0x80A8D810; // type:func
 func_80A8D8F8_jp = 0x80A8D8F8; // type:func
@@ -19978,7 +19977,7 @@ func_80A8DC90_jp = 0x80A8DC90; // type:func
 func_80A8DCF8_jp = 0x80A8DCF8; // type:func
 func_80A8DD3C_jp = 0x80A8DD3C; // type:func
 func_80A8DDE4_jp = 0x80A8DDE4; // type:func
-func_80A8DE0C_jp = 0x80A8DE0C; // type:func
+aHTC_actor_move = 0x80A8DE0C; // type:func
 func_80A8DE30_jp = 0x80A8DE30; // type:func
 func_80A8DECC_jp = 0x80A8DECC; // type:func
 func_80A8DFF8_jp = 0x80A8DFF8; // type:func
@@ -20006,7 +20005,7 @@ func_80A8EA44_jp = 0x80A8EA44; // type:func
 
 // .data
 
-_0094D920_Profile = 0x80A8EAE0; //
+Hatumode_Control_Profile = 0x80A8EAE0; //
 D_80A8EB04_jp = 0x80A8EB04; //
 D_80A8EB14_jp = 0x80A8EB14; // type:u16
 D_80A8EB1C_jp = 0x80A8EB1C; //
@@ -20030,34 +20029,34 @@ jtbl_80A8ECE0_jp = 0x80A8ECE0; // type:jtbl
 
 // .text
 
-func_80A8EEF0_jp = 0x80A8EEF0; // type:func
+aTAM_actor_ct = 0x80A8EEF0; // type:func
 func_80A8EF30_jp = 0x80A8EF30; // type:func
 func_80A8EFBC_jp = 0x80A8EFBC; // type:func
 func_80A8EFCC_jp = 0x80A8EFCC; // type:func
 func_80A8EFEC_jp = 0x80A8EFEC; // type:func
-func_80A8F0D4_jp = 0x80A8F0D4; // type:func
-func_80A8F13C_jp = 0x80A8F13C; // type:func
+aTAM_actor_init = 0x80A8F0D4; // type:func
+aTAM_actor_draw = 0x80A8F13C; // type:func
 
 // .data
 
-_0094F170_Profile = 0x80A8F270; //
+Tama_Profile = 0x80A8F270; //
 D_80A8F294_jp = 0x80A8F294; //
 D_80A8F298_jp = 0x80A8F298; //
 
 // .text
 
-func_80A8F2F0_jp = 0x80A8F2F0; // type:func
+aKAG_actor_ct = 0x80A8F2F0; // type:func
 func_80A8F340_jp = 0x80A8F340; // type:func
 func_80A8F3CC_jp = 0x80A8F3CC; // type:func
 func_80A8F418_jp = 0x80A8F418; // type:func
 func_80A8F428_jp = 0x80A8F428; // type:func
 func_80A8F448_jp = 0x80A8F448; // type:func
-func_80A8F530_jp = 0x80A8F530; // type:func
-func_80A8F598_jp = 0x80A8F598; // type:func
+aKAG_actor_init = 0x80A8F530; // type:func
+aKAG_actor_draw = 0x80A8F598; // type:func
 
 // .data
 
-_0094F570_Profile = 0x80A8F6E0; //
+Kago_Profile = 0x80A8F6E0; //
 D_80A8F704_jp = 0x80A8F704; //
 D_80A8F714_jp = 0x80A8F714; //
 D_80A8F728_jp = 0x80A8F728; //
@@ -20125,8 +20124,8 @@ D_80A8FC74_jp = 0x80A8FC74; //
 
 // .text
 
-func_80A8FCF0_jp = 0x80A8FCF0; // type:func
-func_80A8FD4C_jp = 0x80A8FD4C; // type:func
+aTUR_actor_ct = 0x80A8FCF0; // type:func
+aTUR_actor_dt = 0x80A8FD4C; // type:func
 func_80A8FDE0_jp = 0x80A8FDE0; // type:func
 func_80A8FE28_jp = 0x80A8FE28; // type:func
 func_80A8FE38_jp = 0x80A8FE38; // type:func
@@ -20141,12 +20140,12 @@ func_80A90334_jp = 0x80A90334; // type:func
 func_80A90530_jp = 0x80A90530; // type:func
 func_80A90540_jp = 0x80A90540; // type:func
 func_80A90560_jp = 0x80A90560; // type:func
-func_80A90648_jp = 0x80A90648; // type:func
-func_80A906B0_jp = 0x80A906B0; // type:func
+aTUR_actor_init = 0x80A90648; // type:func
+aTUR_actor_draw = 0x80A906B0; // type:func
 
 // .data
 
-_0094FF70_Profile = 0x80A90800; //
+Turi_Profile = 0x80A90800; //
 D_80A90824_jp = 0x80A90824; //
 D_80A9082C_jp = 0x80A9082C; //
 D_80A90840_jp = 0x80A90840; //
@@ -20180,15 +20179,15 @@ func_80A90CE0_jp = 0x80A90CE0; // type:func
 func_80A90D14_jp = 0x80A90D14; // type:func
 func_80A90D4C_jp = 0x80A90D4C; // type:func
 func_80A90DCC_jp = 0x80A90DCC; // type:func
-func_80A90EB4_jp = 0x80A90EB4; // type:func
-func_80A90F4C_jp = 0x80A90F4C; // type:func
+House_Clock_Actor_ct = 0x80A90EB4; // type:func
+House_Clock_Actor_dt = 0x80A90F4C; // type:func
 func_80A90F80_jp = 0x80A90F80; // type:func
 func_80A9101C_jp = 0x80A9101C; // type:func
 func_80A9106C_jp = 0x80A9106C; // type:func
 func_80A912A8_jp = 0x80A912A8; // type:func
-func_80A91388_jp = 0x80A91388; // type:func
+House_Clock_Actor_draw = 0x80A91388; // type:func
 func_80A9140C_jp = 0x80A9140C; // type:func
-func_80A914D0_jp = 0x80A914D0; // type:func
+House_Clock_Actor_move = 0x80A914D0; // type:func
 
 // .data
 
@@ -20198,7 +20197,7 @@ D_80A9158C_jp = 0x80A9158C; //
 D_80A9159C_jp = 0x80A9159C; // type:s16
 D_80A91630_jp = 0x80A91630; //
 D_80A91640_jp = 0x80A91640; //
-_00950DE0_Profile = 0x80A916A0; //
+House_Clock_Profile = 0x80A916A0; //
 D_80A916C4_jp = 0x80A916C4; //
 
 // .rodata
@@ -20210,15 +20209,15 @@ RO_FLT_80A916EC_jp = 0x80A916EC; // type:f32
 
 // .text
 
-func_80A91800_jp = 0x80A91800; // type:func
-func_80A91874_jp = 0x80A91874; // type:func
-func_80A918A0_jp = 0x80A918A0; // type:func
+aTNC_actor_ct = 0x80A91800; // type:func
+aTNC_actor_dt = 0x80A91874; // type:func
+aTNC_actor_move = 0x80A918A0; // type:func
 func_80A918C4_jp = 0x80A918C4; // type:func
 func_80A919E8_jp = 0x80A919E8; // type:func
 
 // .data
 
-_00951A70_Profile = 0x80A91A10; //
+Tunahiki_Control_Profile = 0x80A91A10; //
 D_80A91A34_jp = 0x80A91A34; //
 
 // .rodata
@@ -20229,10 +20228,10 @@ RO_FLT_80A91A48_jp = 0x80A91A48; // type:f32
 
 // .text
 
-func_80A91AA0_jp = 0x80A91AA0; // type:func
-func_80A91BA8_jp = 0x80A91BA8; // type:func
-func_80A91BCC_jp = 0x80A91BCC; // type:func
-func_80A91C40_jp = 0x80A91C40; // type:func
+aTNN0_actor_ct = 0x80A91AA0; // type:func
+aTNN0_actor_save = 0x80A91BA8; // type:func
+aTNN0_actor_dt = 0x80A91BCC; // type:func
+aTNN0_actor_init = 0x80A91C40; // type:func
 func_80A91C6C_jp = 0x80A91C6C; // type:func
 func_80A91D08_jp = 0x80A91D08; // type:func
 func_80A91D6C_jp = 0x80A91D6C; // type:func
@@ -20253,7 +20252,7 @@ func_80A92338_jp = 0x80A92338; // type:func
 
 // .data
 
-_00951D10_Profile = 0x80A92370; //
+Tunahiki_Npc0_Profile = 0x80A92370; //
 D_80A92394_jp = 0x80A92394; //
 D_80A923B0_jp = 0x80A923B0; //
 D_80A923C8_jp = 0x80A923C8; //
@@ -20264,10 +20263,10 @@ D_80A923EC_jp = 0x80A923EC; //
 
 // .text
 
-func_80A924C0_jp = 0x80A924C0; // type:func
-func_80A925B4_jp = 0x80A925B4; // type:func
-func_80A925D8_jp = 0x80A925D8; // type:func
-func_80A92644_jp = 0x80A92644; // type:func
+aTNN1_actor_ct = 0x80A924C0; // type:func
+aTNN1_actor_save = 0x80A925B4; // type:func
+aTNN1_actor_dt = 0x80A925D8; // type:func
+aTNN1_actor_init = 0x80A92644; // type:func
 func_80A92670_jp = 0x80A92670; // type:func
 func_80A9270C_jp = 0x80A9270C; // type:func
 func_80A927A0_jp = 0x80A927A0; // type:func
@@ -20293,7 +20292,7 @@ func_80A93380_jp = 0x80A93380; // type:func
 
 // .data
 
-_00952730_Profile = 0x80A933B0; //
+Tunahiki_Npc1_Profile = 0x80A933B0; //
 D_80A933D4_jp = 0x80A933D4; //
 D_80A933F0_jp = 0x80A933F0; //
 D_80A93408_jp = 0x80A93408; //
@@ -20309,18 +20308,18 @@ RO_FLT_80A93464_jp = 0x80A93464; // type:f32
 
 // .text
 
-func_80A93570_jp = 0x80A93570; // type:func
-func_80A93604_jp = 0x80A93604; // type:func
+aKOI_actor_ct = 0x80A93570; // type:func
+aKOI_actor_dt = 0x80A93604; // type:func
 func_80A9369C_jp = 0x80A9369C; // type:func
 func_80A936AC_jp = 0x80A936AC; // type:func
 func_80A936BC_jp = 0x80A936BC; // type:func
 func_80A9373C_jp = 0x80A9373C; // type:func
-func_80A93870_jp = 0x80A93870; // type:func
-func_80A938D8_jp = 0x80A938D8; // type:func
+aKOI_actor_init = 0x80A93870; // type:func
+aKOI_actor_draw = 0x80A938D8; // type:func
 
 // .data
 
-_009537E0_Profile = 0x80A93A70; //
+Koinobori_Profile = 0x80A93A70; //
 D_80A93A94_jp = 0x80A93A94; //
 D_80A93A9C_jp = 0x80A93A9C; //
 D_80A93AB0_jp = 0x80A93AB0; //
@@ -20332,7 +20331,7 @@ D_80A93C50_jp = 0x80A93C50; //
 
 // .text
 
-func_80A93CC0_jp = 0x80A93CC0; // type:func
+aBEE_actor_ct = 0x80A93CC0; // type:func
 func_80A93DD0_jp = 0x80A93DD0; // type:func
 func_80A93DE0_jp = 0x80A93DE0; // type:func
 func_80A93E38_jp = 0x80A93E38; // type:func
@@ -20342,12 +20341,12 @@ func_80A93EFC_jp = 0x80A93EFC; // type:func
 func_80A94408_jp = 0x80A94408; // type:func
 func_80A94450_jp = 0x80A94450; // type:func
 func_80A9449C_jp = 0x80A9449C; // type:func
-func_80A94528_jp = 0x80A94528; // type:func
-func_80A94788_jp = 0x80A94788; // type:func
+aBEE_actor_move = 0x80A94528; // type:func
+aBEE_actor_draw = 0x80A94788; // type:func
 
 // .data
 
-_00953F30_Profile = 0x80A94950; //
+Bee_Profile = 0x80A94950; //
 D_80A94974_jp = 0x80A94974; //
 D_80A94980_jp = 0x80A94980; //
 D_80A9498C_jp = 0x80A9498C; //
@@ -20486,11 +20485,11 @@ func_80A963C0_jp = 0x80A963C0; // type:func
 func_80A963D0_jp = 0x80A963D0; // type:func
 func_80A963E0_jp = 0x80A963E0; // type:func
 func_80A9648C_jp = 0x80A9648C; // type:func
-func_80A96520_jp = 0x80A96520; // type:func
+aNP_actor_init = 0x80A96520; // type:func
 
 // .data
 
-_00956630_Profile = 0x80A96590; //
+Nameplate_Profile = 0x80A96590; //
 D_80A96600_jp = 0x80A96600; //
 D_80A96670_jp = 0x80A96670; //
 D_80A966E0_jp = 0x80A966E0; //
@@ -20502,20 +20501,20 @@ D_80A96910_jp = 0x80A96910; //
 
 // .text
 
-func_80A96980_jp = 0x80A96980; // type:func
-func_80A969CC_jp = 0x80A969CC; // type:func
+aDUM_actor_ct = 0x80A96980; // type:func
+aDUM_actor_dt = 0x80A969CC; // type:func
 func_80A96A70_jp = 0x80A96A70; // type:func
 func_80A96B28_jp = 0x80A96B28; // type:func
 func_80A96BE4_jp = 0x80A96BE4; // type:func
 func_80A96C50_jp = 0x80A96C50; // type:func
 func_80A96D04_jp = 0x80A96D04; // type:func
 func_80A96D24_jp = 0x80A96D24; // type:func
-func_80A96E0C_jp = 0x80A96E0C; // type:func
-func_80A96E74_jp = 0x80A96E74; // type:func
+aDUM_actor_init = 0x80A96E0C; // type:func
+aDUM_actor_draw = 0x80A96E74; // type:func
 
 // .data
 
-_00956BF0_Profile = 0x80A96FF0; //
+Dump_Profile = 0x80A96FF0; //
 D_80A97014_jp = 0x80A97014; //
 D_80A97044_jp = 0x80A97044; //
 D_80A97058_jp = 0x80A97058; //
@@ -20579,10 +20578,10 @@ D_80A97F40_jp = 0x80A97F40; //
 
 // .text
 
-func_80A97FB0_jp = 0x80A97FB0; // type:func
-func_80A98104_jp = 0x80A98104; // type:func
-func_80A98128_jp = 0x80A98128; // type:func
-func_80A98180_jp = 0x80A98180; // type:func
+aEDZ_actor_ct = 0x80A97FB0; // type:func
+aEDZ_actor_save = 0x80A98104; // type:func
+aEDZ_actor_dt = 0x80A98128; // type:func
+aEDZ_actor_init = 0x80A98180; // type:func
 func_80A981AC_jp = 0x80A981AC; // type:func
 func_80A98248_jp = 0x80A98248; // type:func
 func_80A98274_jp = 0x80A98274; // type:func
@@ -20616,7 +20615,7 @@ func_80A98D50_jp = 0x80A98D50; // type:func
 
 // .data
 
-_00958220_Profile = 0x80A98D80; //
+Ev_Dozaemon_Profile = 0x80A98D80; //
 D_80A98DA4_jp = 0x80A98DA4; //
 D_80A98DC0_jp = 0x80A98DC0; //
 D_80A98DD0_jp = 0x80A98DD0; // type:u8
@@ -20753,18 +20752,18 @@ RO_FLT_80A9C358_jp = 0x80A9C358; // type:f32
 // .text
 
 func_80A9C3C0_jp = 0x80A9C3C0; // type:func
-func_80A9C4AC_jp = 0x80A9C4AC; // type:func
+aWIN_actor_dt = 0x80A9C4AC; // type:func
 func_80A9C554_jp = 0x80A9C554; // type:func
 func_80A9C754_jp = 0x80A9C754; // type:func
 func_80A9C77C_jp = 0x80A9C77C; // type:func
 func_80A9C81C_jp = 0x80A9C81C; // type:func
-func_80A9C888_jp = 0x80A9C888; // type:func
+aWIN_actor_init = 0x80A9C888; // type:func
 func_80A9C8FC_jp = 0x80A9C8FC; // type:func
-func_80A9CA08_jp = 0x80A9CA08; // type:func
+aWIN_actor_draw = 0x80A9CA08; // type:func
 
 // .data
 
-_0095C630_Profile = 0x80A9CB40; //
+Windmill_Profile = 0x80A9CB40; //
 D_80A9CB64_jp = 0x80A9CB64; //
 D_80A9CB6C_jp = 0x80A9CB6C; //
 D_80A9CB80_jp = 0x80A9CB80; //
@@ -20901,22 +20900,22 @@ D_80A9EC30_jp = 0x80A9EC30; //
 
 // .text
 
-func_80A9ECA0_jp = 0x80A9ECA0; // type:func
-func_80A9EDA8_jp = 0x80A9EDA8; // type:func
+aLOT_actor_ct = 0x80A9ECA0; // type:func
+aLOT_actor_dt = 0x80A9EDA8; // type:func
 func_80A9EE40_jp = 0x80A9EE40; // type:func
 func_80A9EE60_jp = 0x80A9EE60; // type:func
 func_80A9EF04_jp = 0x80A9EF04; // type:func
 func_80A9EF6C_jp = 0x80A9EF6C; // type:func
 func_80A9F004_jp = 0x80A9F004; // type:func
-func_80A9F090_jp = 0x80A9F090; // type:func
+aLOT_actor_init = 0x80A9F090; // type:func
 func_80A9F0F8_jp = 0x80A9F0F8; // type:func
-func_80A9F188_jp = 0x80A9F188; // type:func
+aLOT_actor_draw = 0x80A9F188; // type:func
 
 // .data
 
-_0095EF10_Profile = 0x80A9F2C0; //
-D_80A9F2E4_jp = 0x80A9F2E4; //
-D_80A9F2F0_jp = 0x80A9F2F0; //
+Lotus_Profile = 0x80A9F2C0; //
+lotus_StatusData = 0x80A9F2E4; //
+lotus_CoInfoData = 0x80A9F2F0; //
 D_80A9F300_jp = 0x80A9F300; //
 D_80A9F348_jp = 0x80A9F348; //
 D_80A9F354_jp = 0x80A9F354; //
@@ -20937,7 +20936,7 @@ RO_STR_80A9F4D0_jp = 0x80A9F4D0; // type:asciz
 
 // .bss
 
-B_80A9F4E0_jp = 0x80A9F4E0; //
+pipeinfo = 0x80A9F4E0; //
 
 // .text
 
@@ -20991,14 +20990,14 @@ func_80AA1458_jp = 0x80AA1458; // type:func
 func_80AA19CC_jp = 0x80AA19CC; // type:func
 func_80AA1B78_jp = 0x80AA1B78; // type:func
 func_80AA1C50_jp = 0x80AA1C50; // type:func
-func_80AA1C5C_jp = 0x80AA1C5C; // type:func
-func_80AA1DE0_jp = 0x80AA1DE0; // type:func
-func_80AA1E58_jp = 0x80AA1E58; // type:func
-func_80AA1EF0_jp = 0x80AA1EF0; // type:func
+aAL_actor_ct = 0x80AA1C5C; // type:func
+aAL_actor_dt = 0x80AA1DE0; // type:func
+aAL_actor_move = 0x80AA1E58; // type:func
+aAL_actor_draw = 0x80AA1EF0; // type:func
 
 // .data
 
-_0095FEC0_Profile = 0x80AA1F40; //
+Animal_Logo_Profile = 0x80AA1F40; //
 D_80AA1F64_jp = 0x80AA1F64; //
 D_80AA2018_jp = 0x80AA2018; //
 D_80AA2024_jp = 0x80AA2024; //
@@ -21124,8 +21123,8 @@ RO_FLT_80AA3B38_jp = 0x80AA3B38; // type:f32
 
 // .text
 
-func_80AA3BA0_jp = 0x80AA3BA0; // type:func
-func_80AA3C78_jp = 0x80AA3C78; // type:func
+func_805b3010 = 0x80AA3BA0; // type:func
+aMIK_actor_dt = 0x80AA3C78; // type:func
 func_80AA3D08_jp = 0x80AA3D08; // type:func
 func_80AA3D94_jp = 0x80AA3D94; // type:func
 func_80AA406C_jp = 0x80AA406C; // type:func
@@ -21152,14 +21151,14 @@ func_80AA49EC_jp = 0x80AA49EC; // type:func
 func_80AA49FC_jp = 0x80AA49FC; // type:func
 func_80AA4A0C_jp = 0x80AA4A0C; // type:func
 func_80AA4A2C_jp = 0x80AA4A2C; // type:func
-func_80AA4A50_jp = 0x80AA4A50; // type:func
+func_805b3e58 = 0x80AA4A50; // type:func
 func_80AA4AB8_jp = 0x80AA4AB8; // type:func
-func_80AA4C04_jp = 0x80AA4C04; // type:func
-func_80AA4D18_jp = 0x80AA4D18; // type:func
+func_805b4054 = 0x80AA4C04; // type:func
+aMIK_actor_save = 0x80AA4D18; // type:func
 
 // .data
 
-_00963DF0_Profile = 0x80AA4D30; //
+Mikanbox_Profile = 0x80AA4D30; //
 D_80AA4D54_jp = 0x80AA4D54; // type:u8
 D_80AA4D68_jp = 0x80AA4D68; // type:u8
 D_80AA4D69_jp = 0x80AA4D69; // type:u8
@@ -21218,8 +21217,8 @@ RO_FLT_80AA5A08_jp = 0x80AA5A08; // type:f32
 
 // .text
 
-func_80AA5A70_jp = 0x80AA5A70; // type:func
-func_80AA5B98_jp = 0x80AA5B98; // type:func
+aDOU_actor_ct = 0x80AA5A70; // type:func
+aDOU_actor_dt = 0x80AA5B98; // type:func
 func_80AA5C30_jp = 0x80AA5C30; // type:func
 func_80AA5D54_jp = 0x80AA5D54; // type:func
 func_80AA5D94_jp = 0x80AA5D94; // type:func
@@ -21232,13 +21231,13 @@ func_80AA63E4_jp = 0x80AA63E4; // type:func
 func_80AA64A4_jp = 0x80AA64A4; // type:func
 func_80AA6744_jp = 0x80AA6744; // type:func
 func_80AA67DC_jp = 0x80AA67DC; // type:func
-func_80AA6868_jp = 0x80AA6868; // type:func
+aDOU_actor_init = 0x80AA6868; // type:func
 func_80AA68D0_jp = 0x80AA68D0; // type:func
-func_80AA6A90_jp = 0x80AA6A90; // type:func
+aDOU_actor_draw = 0x80AA6A90; // type:func
 
 // .data
 
-_00965BE0_Profile = 0x80AA6D80; //
+Douzou_Profile = 0x80AA6D80; //
 D_80AA6DA4_jp = 0x80AA6DA4; //
 D_80AA6E24_jp = 0x80AA6E24; //
 D_FLT_80AA6EA4_jp = 0x80AA6EA4; // type:f32
@@ -21431,10 +21430,10 @@ D_80AAA0B0_jp = 0x80AAA0B0; //
 
 // .text
 
-func_80AAA120_jp = 0x80AAA120; // type:func
-func_80AAA298_jp = 0x80AAA298; // type:func
-func_80AAA2C4_jp = 0x80AAA2C4; // type:func
-func_80AAA2F0_jp = 0x80AAA2F0; // type:func
+aNRTC_actor_ct = 0x80AAA120; // type:func
+aNRTC_actor_save = 0x80AAA298; // type:func
+aNRTC_actor_dt = 0x80AAA2C4; // type:func
+aNRTC_actor_init = 0x80AAA2F0; // type:func
 func_80AAA31C_jp = 0x80AAA31C; // type:func
 func_80AAA3FC_jp = 0x80AAA3FC; // type:func
 func_80AAA438_jp = 0x80AAA438; // type:func
@@ -21459,7 +21458,7 @@ func_80AAACD0_jp = 0x80AAACD0; // type:func
 
 // .data
 
-_0096A290_Profile = 0x80AAAD00; //
+Npc_Rtc_Profile = 0x80AAAD00; //
 D_80AAAD24_jp = 0x80AAAD24; // type:u8
 D_80AAAD28_jp = 0x80AAAD28; // type:u8
 D_80AAAD2C_jp = 0x80AAAD2C; //
@@ -21516,8 +21515,8 @@ D_80AAB294_jp = 0x80AAB294; //
 
 // .text
 
-func_80AAB300_jp = 0x80AAB300; // type:func
-func_80AAB3D0_jp = 0x80AAB3D0; // type:func
+aTOU_actor_ct = 0x80AAB300; // type:func
+aTOU_actor_dt = 0x80AAB3D0; // type:func
 func_80AAB488_jp = 0x80AAB488; // type:func
 func_80AAB60C_jp = 0x80AAB60C; // type:func
 func_80AAB81C_jp = 0x80AAB81C; // type:func
@@ -21526,14 +21525,14 @@ func_80AAB894_jp = 0x80AAB894; // type:func
 func_80AAB8D8_jp = 0x80AAB8D8; // type:func
 func_80AAB918_jp = 0x80AAB918; // type:func
 func_80AAB9C8_jp = 0x80AAB9C8; // type:func
-func_80AABA50_jp = 0x80AABA50; // type:func
+aTOU_actor_init = 0x80AABA50; // type:func
 func_80AABAB8_jp = 0x80AABAB8; // type:func
 func_80AABAD8_jp = 0x80AABAD8; // type:func
-func_80AABEB0_jp = 0x80AABEB0; // type:func
+aTOU_actor_draw = 0x80AABEB0; // type:func
 
 // .data
 
-_0096B470_Profile = 0x80AAC060; //
+Toudai_Profile = 0x80AAC060; //
 D_80AAC084_jp = 0x80AAC084; //
 D_80AAC098_jp = 0x80AAC098; //
 D_80AAC0AC_jp = 0x80AAC0AC; //
@@ -21556,10 +21555,10 @@ RO_STR_80AAC128_jp = 0x80AAC128; // type:asciz
 
 // .text
 
-func_80AAC230_jp = 0x80AAC230; // type:func
-func_80AAC3A8_jp = 0x80AAC3A8; // type:func
-func_80AAC3D4_jp = 0x80AAC3D4; // type:func
-func_80AAC400_jp = 0x80AAC400; // type:func
+aNRST_actor_ct = 0x80AAC230; // type:func
+aNRST_actor_save = 0x80AAC3A8; // type:func
+aNRST_actor_dt = 0x80AAC3D4; // type:func
+aNRST_actor_init = 0x80AAC400; // type:func
 func_80AAC42C_jp = 0x80AAC42C; // type:func
 func_80AAC458_jp = 0x80AAC458; // type:func
 func_80AAC470_jp = 0x80AAC470; // type:func
@@ -21582,7 +21581,7 @@ func_80AAC9A8_jp = 0x80AAC9A8; // type:func
 
 // .data
 
-_0096C3A0_Profile = 0x80AAC9E0; //
+Npc_Restart_Profile = 0x80AAC9E0; //
 D_80AACA04_jp = 0x80AACA04; // type:u8
 D_80AACA08_jp = 0x80AACA08; // type:u8
 D_80AACA0C_jp = 0x80AACA0C; //
@@ -21597,10 +21596,10 @@ D_80AACA6C_jp = 0x80AACA6C; //
 
 // .text
 
-func_80AACB80_jp = 0x80AACB80; // type:func
-func_80AACC9C_jp = 0x80AACC9C; // type:func
-func_80AACCC0_jp = 0x80AACCC0; // type:func
-func_80AACD08_jp = 0x80AACD08; // type:func
+aNMJ5_actor_ct = 0x80AACB80; // type:func
+aNMJ5_actor_save = 0x80AACC9C; // type:func
+aNMJ5_actor_dt = 0x80AACCC0; // type:func
+aNMJ5_actor_init = 0x80AACD08; // type:func
 func_80AACD34_jp = 0x80AACD34; // type:func
 func_80AACDD0_jp = 0x80AACDD0; // type:func
 func_80AACE50_jp = 0x80AACE50; // type:func
@@ -21613,13 +21612,13 @@ func_80AAD010_jp = 0x80AAD010; // type:func
 
 // .data
 
-_0096CCF0_Profile = 0x80AAD040; //
+Npc_Majin5_Profile = 0x80AAD040; //
 D_80AAD064_jp = 0x80AAD064; //
 
 // .text
 
-func_80AAD0E0_jp = 0x80AAD0E0; // type:func
-func_80AAD230_jp = 0x80AAD230; // type:func
+aFSN_actor_ct = 0x80AAD0E0; // type:func
+aFSN_actor_dt = 0x80AAD230; // type:func
 func_80AAD270_jp = 0x80AAD270; // type:func
 func_80AAD490_jp = 0x80AAD490; // type:func
 func_80AAD4A0_jp = 0x80AAD4A0; // type:func
@@ -21630,13 +21629,13 @@ func_80AADB9C_jp = 0x80AADB9C; // type:func
 func_80AADDA8_jp = 0x80AADDA8; // type:func
 func_80AADEC4_jp = 0x80AADEC4; // type:func
 func_80AADF10_jp = 0x80AADF10; // type:func
-func_80AADF9C_jp = 0x80AADF9C; // type:func
+aFSN_actor_move = 0x80AADF9C; // type:func
 func_80AAE10C_jp = 0x80AAE10C; // type:func
-func_80AAE198_jp = 0x80AAE198; // type:func
+aFSN_actor_draw = 0x80AAE198; // type:func
 
 // .data
 
-_0096D250_Profile = 0x80AAE4B0; //
+Fuusen_Profile = 0x80AAE4B0; //
 D_80AAE4D4_jp = 0x80AAE4D4; //
 D_80AAE4E0_jp = 0x80AAE4E0; //
 D_80AAE520_jp = 0x80AAE520; //
@@ -21681,10 +21680,10 @@ D_80AAE9A0_jp = 0x80AAE9A0; //
 
 // .text
 
-func_80AAE9C0_jp = 0x80AAE9C0; // type:func
-func_80AAEA4C_jp = 0x80AAEA4C; // type:func
-func_80AAEA70_jp = 0x80AAEA70; // type:func
-func_80AAEA9C_jp = 0x80AAEA9C; // type:func
+aEVD_actor_ct = 0x80AAE9C0; // type:func
+aEVD_actor_save = 0x80AAEA4C; // type:func
+aEVD_actor_dt = 0x80AAEA70; // type:func
+aEVD_actor_init = 0x80AAEA9C; // type:func
 func_80AAEAC8_jp = 0x80AAEAC8; // type:func
 func_80AAEB64_jp = 0x80AAEB64; // type:func
 func_80AAEB90_jp = 0x80AAEB90; // type:func
@@ -21707,7 +21706,7 @@ func_80AAF084_jp = 0x80AAF084; // type:func
 
 // .data
 
-_0096EB20_Profile = 0x80AAF0B0; //
+Ev_Dokutu_Profile = 0x80AAF0B0; //
 D_80AAF0D4_jp = 0x80AAF0D4; //
 D_80AAF0F0_jp = 0x80AAF0F0; //
 D_80AAF0F4_jp = 0x80AAF0F4; //
@@ -21783,14 +21782,14 @@ RO_FLT_80AB06B8_jp = 0x80AB06B8; // type:f32
 
 // .text
 
-func_80AB0720_jp = 0x80AB0720; // type:func
-func_80AB0730_jp = 0x80AB0730; // type:func
-func_80AB0740_jp = 0x80AB0740; // type:func
-func_80AB0750_jp = 0x80AB0750; // type:func
+Dummy_Actor_ct = 0x80AB0720; // type:func
+Dummy_Actor_dt = 0x80AB0730; // type:func
+Dummy_Actor_draw = 0x80AB0740; // type:func
+Dummy_Actor_move = 0x80AB0750; // type:func
 
 // .data
 
-_00970880_Profile = 0x80AB0760; //
+Dummy_Profile = 0x80AB0760; //
 
 // .text
 

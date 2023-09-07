@@ -1,3 +1,5 @@
 -r tools/splat/requirements.txt
 mapfile-parser>=1.2.1,<2.0.0
 colorama
+
+spimdisasm>=1.16.3,<2.0.0

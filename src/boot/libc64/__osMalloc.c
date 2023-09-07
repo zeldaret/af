@@ -1,10 +1,10 @@
 #include "libc64/osmalloc.h"
 #include "alignment.h"
-#include "boot_functions.h"
 #include "fault.h"
 #include "libc/stdbool.h"
 #include "libc/stddef.h"
 #include "libc/stdint.h"
+#include "libc/memmove.h"
 #include "macros.h"
 
 #define NODE_MAGIC (0x7373)
@@ -430,7 +430,7 @@ void* __osRealloc(Arena* arena, void* ptr, size_t newSize) {
 
                 node->next = (ArenaNode*)((uintptr_t)next + sizeDiff);
                 node->size = newSize;
-                func_8003BA60_jp(node->next, next, sizeof(ArenaNode));
+                memmove(node->next, next, sizeof(ArenaNode));
             } else {
                 // Create a new pointer and manually copy the data from the old pointer to the new one.
                 void* newPtr;

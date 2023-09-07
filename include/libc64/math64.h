@@ -3,20 +3,17 @@
 
 #include "ultra64.h"
 
-// void Math_FTanF();
-// void Math_FFloorF();
-// void Math_FCeilF();
-// void Math_FRoundF();
-// void Math_FTruncF();
-// void Math_FNearbyIntF();
-// void Math_FAtanTaylorQF();
-// void Math_FAtanTaylorF();
-// void Math_FAtanContFracF();
-// void fatan();
+f32 Math_FTanF(f32 x);
+f32 Math_FFloorF(f32 x);
+f32 Math_FCeilF(f32 x);
+f32 Math_FRoundF(f32 x);
+f32 Math_FTruncF(f32 x);
+f32 Math_FNearbyIntF(f32 x);
+f32 fatan(f32 x);
 f32 fatan2(f32 y, f32 x);
-// void Math_FAsinF();
-// void Math_FAcosF();
+f32 Math_FAsinF(f32 x);
+f32 Math_FAcosF(f32 x);
 
-// extern UNK_TYPE B_800419B0_jp;
+extern s32 gFatanUseContFrac;
 
 #endif

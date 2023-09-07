@@ -18,6 +18,6 @@
 // void mLd_PlayerManKindCheck();
 // void func_800951E4_jp();
 // void func_80095218_jp();
-// void func_8009524C_jp();
+void mLd_LandDataInit(void);
 
 #endif

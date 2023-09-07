@@ -28,16 +28,16 @@ void ovlmgr_Free(void* ptr) {
     }
 }
 
-void ovlmgr_LoadImpl(void* vromStart, UNUSED UNK_TYPE arg1, void* vramStart, void* vramEnd, void* allocatedRamAddr,
-                     struct OverlayRelocationSection* ovl, size_t size) {
-    void* vromEnd;
-    void* ovlStart;
-    void* ovlEnd;
+void ovlmgr_LoadImpl(RomOffset vromStart, UNUSED RomOffset vromEndUnused, void* vramStart, void* vramEnd,
+                     void* allocatedRamAddr, struct OverlayRelocationSection* ovl, size_t size) {
+    RomOffset vromEnd;
+    RomOffset ovlStart;
+    RomOffset ovlEnd;
     size_t ovlSize;
     OverlayRelocationSection* ovlRelocs;
     char ovlSizeStr[80];
 
-    func_80026C4C_jp(vromStart, &vromEnd, &ovlStart, &ovlEnd);
+    DmaMgr_GetOvlOffsets(vromStart, &vromEnd, &ovlStart, &ovlEnd);
 
     ovlSize = (uintptr_t)ovlEnd - (uintptr_t)ovlStart;
 
@@ -49,7 +49,7 @@ void ovlmgr_LoadImpl(void* vromStart, UNUSED UNK_TYPE arg1, void* vramStart, voi
 
     if (ovlRelocs == NULL) {
         sprintf(ovlSizeStr, "%ld", ovlSize);
-        Fault_AddHungupAndCrashImpl("ovlmgr: Out of Memory", ovlSizeStr);
+        fault_AddHungupAndCrashImpl("ovlmgr: Out of Memory", ovlSizeStr);
     }
 
     Overlay_Load(vromStart, vromEnd, ovlStart, ovlEnd, vramStart, vramEnd, allocatedRamAddr, ovlRelocs);
@@ -58,6 +58,6 @@ void ovlmgr_LoadImpl(void* vromStart, UNUSED UNK_TYPE arg1, void* vramStart, voi
     }
 }
 
-void ovlmgr_Load(void* vromStart, UNK_TYPE arg1, void* vramStart, void* vramEnd, void* allocatedRamAddr) {
-    ovlmgr_LoadImpl(vromStart, arg1, vramStart, vramEnd, allocatedRamAddr, NULL, 0);
+void ovlmgr_Load(RomOffset vromStart, RomOffset vromEnd, void* vramStart, void* vramEnd, void* allocatedRamAddr) {
+    ovlmgr_LoadImpl(vromStart, vromEnd, vramStart, vramEnd, allocatedRamAddr, NULL, 0);
 }

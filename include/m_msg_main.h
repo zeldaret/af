@@ -2,14 +2,17 @@
 #define M_MSG_MAIN_H
 
 #include "ultra64.h"
+#include "unk.h"
 
-// void func_8009D1F0_jp();
+struct Game_Play;
+
+UNK_TYPE mMsg_Get_base_window_p(void);
 // void func_8009D200_jp();
 // void func_8009D210_jp();
 // void func_8009D260_jp();
 // void func_8009D274_jp();
-// void func_8009D294_jp();
-// void func_8009D2E8_jp();
+UNK_RET mMsg_Check_not_series_main_wait(UNK_TYPE arg0);
+UNK_RET mMsg_Check_main_hide(UNK_TYPE arg0);
 // void func_8009D308_jp();
 // void func_8009D3B4_jp();
 // void func_8009D3E4_jp();
@@ -128,7 +131,7 @@
 // void func_8009FC5C_jp();
 // void func_8009FCB8_jp();
 // void func_8009FCE0_jp();
-// void func_8009FD40_jp();
+void mMsg_sound_spec_change_voice(UNK_TYPE arg0);
 // void func_8009FD80_jp();
 // void func_8009FDA0_jp();
 // void func_8009FDF8_jp();
@@ -281,18 +284,18 @@
 // void func_800A3190_jp();
 // void func_800A31D8_jp();
 // void func_800A3220_jp();
-// void func_800A32D0_jp();
-// void func_800A3304_jp();
+void mMsg_ct(struct Game_Play* game_play);
+void func_800A3304_jp(struct Game_Play* game_play);
 // void func_800A332C_jp();
-// void func_800A339C_jp();
-// void func_800A33D8_jp();
+void mMsg_Main(struct Game_Play* game_play);
+void mMsg_Draw(struct Game_Play* game_play);
 // void func_800A3400_jp();
 // void func_800A3420_jp();
 // void func_800A345C_jp();
 // void func_800A34E8_jp();
 // void func_800A35C8_jp();
 // void func_800A3658_jp();
-// void func_800A36CC_jp();
+void mMsm_SendInformationMail(void);
 // void func_800A3784_jp();
 // void func_800A37D0_jp();
 // void func_800A3810_jp();
@@ -316,7 +319,7 @@
 // void func_800A49E8_jp();
 // void func_800A4A84_jp();
 // void func_800A4B00_jp();
-// void func_800A4D10_jp();
+void func_800A4D10_jp(void);
 // void func_800A4DC8_jp();
 // void func_800A4E74_jp();
 // void func_800A4F38_jp();

@@ -26,7 +26,7 @@
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_snowman/mSN_ClearSnowmanData.s")
 void mSN_ClearSnowmanData(u16 *arg0, s32 arg1)
 {
-    bzero(&common_data.save.snowmanData[arg1], sizeof(SnowmanData));
+    bzero(&common_data.snowmanData[arg1], sizeof(SnowmanData));
     *arg0 = 0;
 }
 
@@ -56,17 +56,17 @@ s32 mSN_ClearSnowman(u16 *arg0)
         
 //         if (days < 0) {
 //             days = 1;
-//             common_data.save.snowmanYear = 0;
-//             common_data.save.snowmanMonth = 0;
-//             common_data.save.snowmanDay = 0;
-//             common_data.save.snowmanHour = 0;
+//             common_data.snowmanYear = 0;
+//             common_data.snowmanMonth = 0;
+//             common_data.snowmanDay = 0;
+//             common_data.snowmanHour = 0;
 //         }
         
 //         if (mSN_check_life(days, temp_lo) == 0) {
 //             mSN_ClearSnowmanData(actorName, temp_lo);
             
 //         } else {
-//             SnowmanData* snowmanDataTemp = &common_data.save.snowmanData[temp_lo];
+//             SnowmanData* snowmanDataTemp = &common_data.snowmanData[temp_lo];
             
 //             *actorName += days;
 
@@ -85,7 +85,7 @@ s32 mSN_ClearSnowman(u16 *arg0)
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_snowman/mSN_get_free_space.s")
 s32 mSN_get_free_space(void)
 {
-    SnowmanData* var_v0 = common_data.save.snowmanData;
+    SnowmanData* var_v0 = common_data.snowmanData;
     s32  var_v1 = 0;
 
     for (var_v1 = 0; var_v1 != 3; var_v1++)
@@ -108,7 +108,7 @@ void func_800C8BC4_jp(SnowmanInfo* snowmanInfo) {
     s32 pad UNUSED;
     
     if (temp_v0_2 != -1) {
-        mem_copy(&common_data.save.snowmanData[temp_v0_2], snowmanInfo, sizeof(SnowmanData));
+        mem_copy((u8*)&common_data.snowmanData[temp_v0_2], (u8*)snowmanInfo, sizeof(SnowmanData));
         if (sp2E != 0) {
             mPB_keep_item(sp2E);
             mFI_Wpos2DepositOFF(snowmanInfo->position);
@@ -127,6 +127,6 @@ void mSN_decide_msg(void)
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_snowman/mSN_snowman_init.s")
 void mSN_snowman_init(void)
 {
-    bzero(common_data.save.snowmanData, sizeof(SnowmanData[SNOWMAN_SAVE_COUNT]));
+    bzero(common_data.snowmanData, sizeof(SnowmanData[SNOWMAN_SAVE_COUNT]));
     mSN_decide_msg();
 }

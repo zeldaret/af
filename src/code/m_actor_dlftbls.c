@@ -96,12 +96,12 @@ FaultAddrConvClient sActorOverlayTableFaultAddrConvClient;
 
 void actor_dlftbls_init(void) {
     actor_dlftbls_num = ACTOR_ID_MAX;
-    Fault_AddClient(&sActorOverlayTableFaultClient, ActorOverlayTable_FaultClient, NULL, NULL);
-    Fault_AddAddrConvClient(&sActorOverlayTableFaultAddrConvClient, ActorOverlayTable_FaultAddrConv, NULL);
+    fault_AddClient(&sActorOverlayTableFaultClient, ActorOverlayTable_FaultClient, NULL, NULL);
+    fault_AddressConverterAddClient(&sActorOverlayTableFaultAddrConvClient, ActorOverlayTable_FaultAddrConv, NULL);
 }
 
 void actor_dlftbls_cleanup(void) {
-    Fault_RemoveClient(&sActorOverlayTableFaultClient);
-    Fault_RemoveAddrConvClient(&sActorOverlayTableFaultAddrConvClient);
+    fault_RemoveClient(&sActorOverlayTableFaultClient);
+    fault_AddressConverterRemoveClient(&sActorOverlayTableFaultAddrConvClient);
     actor_dlftbls_num = 0;
 }

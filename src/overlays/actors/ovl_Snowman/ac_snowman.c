@@ -1,0 +1,138 @@
+#include "ac_snowman.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
+
+void aSMAN_actor_ct(Actor* thisx, Game_Play* game_play);
+void aSMAN_actor_dt(Actor* thisx, Game_Play* game_play);
+void aSMAN_actor_move(Actor* thisx, Game_Play* game_play);
+void aSMAN_actor_draw(Actor* thisx, Game_Play* game_play);
+
+#if 0
+ActorProfile Snowman_Profile = {
+    /* */ ACTOR_SNOWMAN,
+    /* */ ACTOR_PART_4,
+    /* */ ACTOR_FLAG_10,
+    /* */ 0x800D,
+    /* */ OBJECT_25,
+    /* */ sizeof(Snowman),
+    /* */ aSMAN_actor_ct,
+    /* */ aSMAN_actor_dt,
+    /* */ aSMAN_actor_move,
+    /* */ aSMAN_actor_draw,
+    /* */ NULL,
+};
+#endif
+
+extern ClObjPipe_Init aSMAN_CoInfoData;
+extern CollisionCheck_Status_Init aSMAN_StatusData;
+#if 0
+ClObjPipe_Init aSMAN_CoInfoData = { { OC1_1 | OC1_TYPE_8 | OC1_TYPE_10 | OC1_TYPE_20, OC2_TYPE_20, COLSHAPE_PIPE }, { ELEM_FLAG_1 }, { { 5, 5, 0, { 0, 0, 0 } } } };
+CollisionCheck_Status_Init aSMAN_StatusData = { 0, 5, 5, 0, 196 };
+#endif
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/aSMAN_actor_ct.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096DDAC_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/aSMAN_actor_dt.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096E1A4_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096E274_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096E2EC_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096E388_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096E638_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096E674_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096E8DC_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096EA18_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096ED34_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096ED6C_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096EE0C_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096EE74_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096EF44_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096F0BC_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096F0EC_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096F1E4_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096F298_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096F348_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096F654_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096F8C4_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096FAAC_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096FBDC_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096FD08_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096FDF0_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8096FF24_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_809700F4_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_80970318_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8097033C_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_809703C4_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_80970468_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_80970954_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_80970968_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_80970A68_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_80970A90_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_80970CAC_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_80970DA4_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8097100C_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_80971040_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_80971054_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_809710F0_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8097112C_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_80971354_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_8097158C_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_80971608_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_80971644_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_80971780_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_80971894_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/func_80971954_jp.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/aSMAN_actor_move.s")
+
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Snowman/ac_snowman/aSMAN_actor_draw.s")

@@ -2,8 +2,10 @@
 #define M_FIELD_INFO_H
 
 #include "ultra64.h"
+#include "z64math.h"
 
 struct CommonData;
+struct Game_Play;
 
 // void func_80087C30_jp();
 // void func_80087C40_jp();
@@ -92,7 +94,7 @@ u16* mFI_GetUnitFG(Vec3f);
 // void func_8008A74C_jp();
 // void func_8008A81C_jp();
 // void func_8008A960_jp();
-s32 mFI_SetFG_common(u16, Vec3f, s32);
+UNK_TYPE mFI_SetFG_common(u16 fgName, Vec3f arg1, s32 arg2);
 // void func_8008AA98_jp();
 // void func_8008AB14_jp();
 // void func_8008AC74_jp();
@@ -109,8 +111,8 @@ s32 mFI_SetFG_common(u16, Vec3f, s32);
 // void func_8008B2D0_jp();
 // void func_8008B300_jp();
 // void func_8008B318_jp();
-// void mFI_SetBearActor();
-// void func_8008B3E8_jp();
+void mFI_SetBearActor(struct Game_Play* game_play, Vec3f arg1, s32 arg2);
+s32 func_8008B3E8_jp(Vec3f* arg0, UNK_TYPE arg1);
 // void func_8008B4C0_jp();
 // void func_8008B598_jp();
 // void func_8008B66C_jp();
@@ -141,7 +143,7 @@ s32 mFI_SetFG_common(u16, Vec3f, s32);
 // void func_8008C3D4_jp();
 // void func_8008C3E8_jp();
 // void func_8008C458_jp();
-// void func_8008C478_jp();
+void func_8008C478_jp(u16* deposit, int ut_x, int ut_z);
 // void func_8008C498_jp();
 // void func_8008C4B8_jp();
 // void func_8008C504_jp();
@@ -180,14 +182,14 @@ void mFI_Wpos2DepositOFF(Vec3f);
 // void func_8008D884_jp();
 // void func_8008D928_jp();
 // void func_8008DA4C_jp();
-// void func_8008DCF8_jp();
+void func_8008DCF8_jp(void);
 // void func_8008DD0C_jp();
 // void func_8008DD3C_jp();
 // void func_8008DDC8_jp();
 // void func_8008DF04_jp();
 // void func_8008E058_jp();
 // void func_8008E514_jp();
-// void func_8008E5F4_jp();
+void func_8008E5F4_jp(Vec3f arg0);
 // void mFI_PrintNowBGNum();
 // void mFI_PrintFgAttr();
 // void func_8008E8E0_jp();
@@ -204,8 +206,8 @@ void mFI_Wpos2DepositOFF(Vec3f);
 // void func_8008EEB4_jp();
 // void func_8008EEE8_jp();
 // void func_8008EF0C_jp();
-// void mFRm_CheckSaveData();
-void mFRm_ClearSaveCheckData(CommonData* common_data);
+s32 mFRm_CheckSaveData(void);
+void mFRm_ClearSaveCheckData(struct CommonData* common_data);
 // void func_8008EFDC_jp();
 // void func_8008F020_jp();
 // void func_8008F040_jp();

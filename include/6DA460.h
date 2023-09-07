@@ -3,6 +3,8 @@
 
 #include "ultra64.h"
 
+struct Game_Play;
+
 // void func_800B67C0_jp();
 // void func_800B6838_jp();
 // void func_800B68E8_jp();
@@ -28,8 +30,8 @@
 // void func_800B7468_jp();
 // void func_800B74E8_jp();
 // void func_800B7560_jp();
-// void func_800B7624_jp();
-// void func_800B7680_jp();
+void mPO_business_proc(struct Game_Play* game_play);
+void func_800B7680_jp(struct Game_Play* game_play);
 // void func_800B7700_jp();
 
 #endif

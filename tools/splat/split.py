@@ -7,7 +7,11 @@ import pickle
 from typing import Any, Dict, List, Optional, Set, Tuple, Union
 from disassembler import disassembler_instance
 from util import progress_bar
+
+# This unused import makes the yaml library faster. don't remove
+import pylibyaml  # pyright: ignore
 import yaml
+
 from colorama import Fore, Style
 from intervaltree import Interval, IntervalTree
 import sys
@@ -20,7 +24,7 @@ from segtypes.linker_entry import (
 from segtypes.segment import Segment
 from util import log, options, palettes, symbols, relocs
 
-VERSION = "0.16.2"
+VERSION = "0.16.9"
 
 parser = argparse.ArgumentParser(
     description="Split a rom given a rom, a config, and output directory"
@@ -38,6 +42,11 @@ parser.add_argument(
 )
 parser.add_argument(
     "--stdout-only", help="Print all output to stdout", action="store_true"
+)
+parser.add_argument(
+    "--disassemble-all",
+    help="Disasemble matched functions and migrated data",
+    action="store_true",
 )
 
 linker_writer: LinkerWriter
@@ -220,6 +229,7 @@ def main(
     use_cache=True,
     skip_version_check=False,
     stdout_only=False,
+    disassemble_all=False,
 ):
     global config
 
@@ -233,7 +243,7 @@ def main(
             additional_config = yaml.load(f.read(), Loader=yaml.SafeLoader)
         config = merge_configs(config, additional_config)
 
-    options.initialize(config, config_path, modes, verbose)
+    options.initialize(config, config_path, modes, verbose, disassemble_all)
 
     disassembler_instance.create_disassembler_instance(options.opts.platform)
     disassembler_instance.get_instance().check_version(skip_version_check, VERSION)
@@ -492,4 +502,5 @@ if __name__ == "__main__":
         args.use_cache,
         args.skip_version_check,
         args.stdout_only,
+        args.disassemble_all,
     )
