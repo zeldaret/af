@@ -22,10 +22,14 @@ ActorProfile BoxManager_Profile = {
     /* */ NULL,
 };
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_BoxManager/ac_boxManager/BoxManager_Actor_ct.s")
+void BoxManager_Actor_ct(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_BoxManager/ac_boxManager/BoxManager_Actor_dt.s")
+void BoxManager_Actor_dt(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_BoxManager/ac_boxManager/BoxManager_Actor_move.s")
+void BoxManager_Actor_move(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_BoxManager/ac_boxManager/BoxManager_Actor_draw.s")
+void BoxManager_Actor_draw(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
