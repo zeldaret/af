@@ -8,7 +8,6 @@ void Arrange_Furniture_Actor_dt(Actor* thisx, Game_Play* game_play);
 void Arrange_Furniture_Actor_move(Actor* thisx, Game_Play* game_play);
 void Arrange_Furniture_Actor_draw(Actor* thisx, Game_Play* game_play);
 
-#if 0
 ActorProfile Arrange_Furniture_Profile = {
     /* */ ACTOR_ARRANGE_FURNITURE,
     /* */ ACTOR_PART_4,
@@ -22,7 +21,6 @@ ActorProfile Arrange_Furniture_Profile = {
     /* */ Arrange_Furniture_Actor_draw,
     /* */ NULL,
 };
-#endif
 
 // clang-format off
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr/Arrange_Furniture_Actor_ct.s")

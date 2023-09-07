@@ -1324,7 +1324,7 @@
     bss_size: 0x0
     subsegments:
       - [0x846430, c, overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr]
-      - [0x846470, data, overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr]
+      - [0x846470, .data, overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr]
   - name: ovl_Arrange_Furniture_reloc
     type: code
     start: 0x8464A0
