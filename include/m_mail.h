@@ -36,7 +36,7 @@ typedef struct MailHeaderCommon {
 } MailHeaderCommon; //size = 0x1C
 
 // MailBox?
-typedef struct mMl {
+typedef struct Mail {
     /* 0x00 */ mMl_unk_00 unk_00;
     /* 0x12 */ mMl_unk_00 unk_12;
     /* 0x24 */ UNK_TYPE1 unk_24[0x2];
@@ -45,31 +45,31 @@ typedef struct mMl {
     /* 0x28 */ u8 unk_28;
     /* 0x29 */ u8 unk_29;
     /* 0x2A */ mMl_unk_2A unk_2A;
-} mMl; // size = 0xA4
+} Mail; // size = 0xA4
 
-s32 func_8009C1C0_jp(const char* arg0, s32 size, char c);
-s32 func_8009C284_jp(s32* arg0, const char* arg1, s32 size, char c);
-void func_8009C2D8_jp(char* dst, const char* src, s32 size);
-void mMl_clear_mail_header(mMl* arg0);
-void mMl_clear_mail(mMl* arg0);
-void mMl_clear_mail_box(mMl* arg0, s32 arg1);
-s32 mMl_check_not_used_mail(mMl* arg0);
+s32 mMl_strlen(const char* arg0, s32 size, char c);
+s32 mMl_strlen2(s32* arg0, const char* arg1, s32 size, char c);
+void mMl_strcpy_back(char* dst, const char* src, s32 size);
+void mMl_clear_mail_header(Mail* mail);
+void mMl_clear_mail(Mail* mail);
+void mMl_clear_mail_box(Mail* mail, s32 arg1);
+s32 mMl_check_not_used_mail(Mail* mail);
 void mMl_copy_header_name(mMl_unk_00* arg0, mMl_unk_00* arg1);
-void mMl_set_from_name(mMl* arg0, mMl* arg1);
-void mMl_set_to_name(mMl* arg0, mMl* arg1);
-void mMl_set_to_plname(mMl* arg0, mMl* arg1);
-void mMl_set_playername(mMl* arg0, PersonalID* arg1);
-void mMl_init_mail(mMl* arg0, PersonalID* arg1);
-s32 mMl_chk_mail_free_space(mMl arg0[], s32 arg1);
-s32 mMl_use_mail_space(mMl arg0[], s32 arg1, PersonalID* arg2);
-s32 mMl_count_use_mail_space(mMl arg0[], s32 arg1);
-void mMl_copy_mail(mMl* arg0, mMl* arg1);
+void mMl_set_from_name(Mail* mail, Mail* arg1);
+void mMl_set_to_name(Mail* mail, Mail* arg1);
+void mMl_set_to_plname(Mail* mail, Mail* arg1);
+void mMl_set_playername(Mail* mail, PersonalID* arg1);
+void mMl_init_mail(Mail* mail, PersonalID* arg1);
+s32 mMl_chk_mail_free_space(Mail arg0[], s32 arg1);
+s32 mMl_use_mail_space(Mail arg0[], s32 arg1, PersonalID* arg2);
+s32 mMl_count_use_mail_space(Mail arg0[], s32 arg1);
+void mMl_copy_mail(Mail* mail, Mail* arg1);
 void mMl_clear_mail_header_common(MailHeaderCommon* arg0);
 void mMl_copy_mail_header_common(MailHeaderCommon* arg0, MailHeaderCommon* arg1);
 void mMl_set_mail_name_npcinfo(mMl_unk_00* arg0, mMl_get_npcinfo_from_mail_name_arg0* arg1);
 s32 mMl_get_npcinfo_from_mail_name(mMl_get_npcinfo_from_mail_name_arg0* arg0, mMl_unk_00* arg1);
-s32 mMl_hunt_for_send_address(mMl* arg0);
+s32 mMl_hunt_for_send_address(Mail* mail);
 s32 mMl_check_send_mail(struct struct_func_8085CE18_jp_arg4* arg0);
-s32 mMl_check_set_present_myself(mMl* arg0);
+s32 mMl_check_set_present_myself(Mail* mail);
 
 #endif

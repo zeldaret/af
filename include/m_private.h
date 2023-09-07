@@ -59,7 +59,7 @@ typedef struct Private_c {
     /* 0x25C */ mQst_errand_c errands[mPr_ERRAND_QUEST_NUM]; /* errand quests */
     /* 0x3EC */ UNK_TYPE1 unk_3EC[0x2];
     /* 0x3EE */ MailHeaderCommon unk_3EE;
-    /* 0x40A */ mMl unk_40A[10];
+    /* 0x40A */ Mail unk_40A[10];
     /* 0xA72 */ UNK_TYPE1 unk_A72[0x2];
     /* 0xA74 */ u8 exists;
     /* 0xA75 */ UNK_TYPE1 unkA75[0x11];

@@ -159,7 +159,7 @@ typedef struct CommonData {
     /* 0x0EE40 */ u8 unk0EE40[0x118];
     /* 0x0EF58 */ u16 fruit;
     /* 0x0EF5A */ UNK_TYPE1 unk_0EF5A[0x12];
-    /* 0x0EF6C */ mMl unk_0EF6C[5];
+    /* 0x0EF6C */ Mail unk_0EF6C[5];
     /* 0x0F2A0 */ UNK_TYPE1 unk_0F2A0[0x198];
     /* 0x0F438 */ u8 station_type; /* train station type */
     /* 0x0F439 */ u8 unk0F439[0x3];

@@ -6,7 +6,7 @@
 #include "unknown_structs.h"
 #include "macros.h"
 
-s32 func_8009C1C0_jp(const char* arg0, s32 size, char c) {
+s32 mMl_strlen(const char* arg0, s32 size, char c) {
     arg0 += size - 1;
 
     while (size != 0) {
@@ -20,7 +20,7 @@ s32 func_8009C1C0_jp(const char* arg0, s32 size, char c) {
     return 0;
 }
 
-s32 func_8009C284_jp(s32* arg0, const char* arg1, s32 size, char c) {
+s32 mMl_strlen2(s32* arg0, const char* arg1, s32 size, char c) {
     s32 count = 0;
 
     if (arg0 != NULL) {
@@ -43,39 +43,39 @@ s32 func_8009C284_jp(s32* arg0, const char* arg1, s32 size, char c) {
     return count;
 }
 
-void func_8009C2D8_jp(char* dst, const char* src, s32 size) {
+void mMl_strcpy_back(char* dst, const char* src, s32 size) {
     while (size != 0) {
         *dst-- = *src--;
         size--;
     }
 }
 
-void mMl_clear_mail_header(mMl* arg0) {
-    mPr_ClearPersonalID(&arg0->unk_00.unk_00);
-    arg0->unk_00.unk_10 = 0xFF;
-    mPr_ClearPersonalID(&arg0->unk_12.unk_00);
-    arg0->unk_12.unk_10 = 0xFF;
+void mMl_clear_mail_header(Mail* mail) {
+    mPr_ClearPersonalID(&mail->unk_00.unk_00);
+    mail->unk_00.unk_10 = 0xFF;
+    mPr_ClearPersonalID(&mail->unk_12.unk_00);
+    mail->unk_12.unk_10 = 0xFF;
 }
 
-void mMl_clear_mail(mMl* arg0) {
-    bzero(arg0, sizeof(mMl));
-    mMl_clear_mail_header(arg0);
-    mem_clear(&arg0->unk_2A, sizeof(mMl_unk_2A), 0x20);
-    arg0->unk_26 = 0xFF;
+void mMl_clear_mail(Mail* mail) {
+    bzero(mail, sizeof(Mail));
+    mMl_clear_mail_header(mail);
+    mem_clear(&mail->unk_2A, sizeof(mMl_unk_2A), 0x20);
+    mail->unk_26 = 0xFF;
 }
 
-void mMl_clear_mail_box(mMl arg0[], s32 arg1) {
+void mMl_clear_mail_box(Mail mail[], s32 arg1) {
     while (arg1 != 0) {
         arg1--;
-        mMl_clear_mail(arg0);
-        arg0++;
+        mMl_clear_mail(mail);
+        mail++;
     }
 }
 
-s32 mMl_check_not_used_mail(mMl* arg0) {
+s32 mMl_check_not_used_mail(Mail* mail) {
     s32 ret = 0;
 
-    if (arg0->unk_26 == 0xFF) {
+    if (mail->unk_26 == 0xFF) {
         ret = 1;
     }
     return ret;
@@ -86,68 +86,68 @@ void mMl_copy_header_name(mMl_unk_00* arg0, mMl_unk_00* arg1) {
     mPr_CopyPersonalID(&arg0->unk_00, &arg1->unk_00);
 }
 
-void mMl_set_from_name(mMl* arg0, mMl* arg1) {
+void mMl_set_from_name(Mail* arg0, Mail* arg1) {
     mMl_copy_header_name(&arg0->unk_12, &arg1->unk_00);
 }
 
-void mMl_set_to_name(mMl* arg0, mMl* arg1) {
+void mMl_set_to_name(Mail* arg0, Mail* arg1) {
     mMl_copy_header_name(&arg0->unk_00, &arg1->unk_00);
 }
 
-void mMl_set_to_plname(mMl* arg0, mMl* arg1) {
+void mMl_set_to_plname(Mail* arg0, Mail* arg1) {
     mPr_CopyPersonalID(&arg0->unk_00.unk_00, &arg1->unk_00.unk_00);
     arg0->unk_00.unk_10 = 0;
 }
 
-void mMl_set_playername(mMl* arg0, PersonalID* arg1) {
-    mPr_CopyPersonalID(&arg0->unk_12.unk_00, arg1);
-    arg0->unk_12.unk_10 = 0;
+void mMl_set_playername(Mail* mail, PersonalID* arg1) {
+    mPr_CopyPersonalID(&mail->unk_12.unk_00, arg1);
+    mail->unk_12.unk_10 = 0;
 }
 
-void mMl_init_mail(mMl* arg0, PersonalID* arg1) {
-    mMl_clear_mail(arg0);
-    mMl_set_playername(arg0, arg1);
-    arg0->unk_26 = 1;
-    arg0->unk_28 = 0;
-    arg0->unk_29 = 0;
+void mMl_init_mail(Mail* mail, PersonalID* arg1) {
+    mMl_clear_mail(mail);
+    mMl_set_playername(mail, arg1);
+    mail->unk_26 = 1;
+    mail->unk_28 = 0;
+    mail->unk_29 = 0;
 }
 
-s32 mMl_chk_mail_free_space(mMl arg0[], s32 arg1) {
+s32 mMl_chk_mail_free_space(Mail mail[], s32 arg1) {
     s32 i;
 
     for (i = 0; i < arg1; i++) {
-        if (mMl_check_not_used_mail(arg0) == 1) {
+        if (mMl_check_not_used_mail(mail) == 1) {
             return i;
         }
-        arg0++;
+        mail++;
     }
     return -1;
 }
 
-s32 mMl_use_mail_space(mMl arg0[], s32 arg1, PersonalID* arg2) {
-    s32 index = mMl_chk_mail_free_space(arg0, arg1);
+s32 mMl_use_mail_space(Mail mail[], s32 arg1, PersonalID* arg2) {
+    s32 index = mMl_chk_mail_free_space(mail, arg1);
 
     if (index != -1) {
-        mMl_init_mail(&arg0[index], arg2);
+        mMl_init_mail(&mail[index], arg2);
     }
     return index;
 }
 
-s32 mMl_count_use_mail_space(mMl arg0[], s32 arg1) {
+s32 mMl_count_use_mail_space(Mail mail[], s32 arg1) {
     s32 i;
     s32 ret = 0;
 
     for (i = 0; i < arg1; i++) {
-        if (mMl_check_not_used_mail(arg0) != 1) {
+        if (mMl_check_not_used_mail(mail) != 1) {
             ret++;
         }
-        arg0++;
+        mail++;
     }
     return ret;
 }
 
-void mMl_copy_mail(mMl* arg0, mMl* arg1) {
-    mem_copy(arg0, arg1, sizeof(mMl));
+void mMl_copy_mail(Mail* dst, Mail* src) {
+    mem_copy(dst, src, sizeof(Mail));
 }
 
 void mMl_clear_mail_header_common(MailHeaderCommon* arg0) {
@@ -186,16 +186,16 @@ s32 mMl_get_npcinfo_from_mail_name(mMl_get_npcinfo_from_mail_name_arg0* arg0, mM
     return var_v1;
 }
 
-s32 mMl_hunt_for_send_address(mMl* arg0) {
-    s32 var_s0;
+s32 mMl_hunt_for_send_address(Mail* mail) {
+    s32 i;
 
-    if (arg0->unk_00.unk_10 != 0) {
+    if (mail->unk_00.unk_10 != 0) {
         return -1;
     }
 
-    for (var_s0 = 0; var_s0 < ARRAY_COUNT(common_data.homes); var_s0++) {
-        if (mPr_CheckCmpPersonalID(&common_data.homes[var_s0].unk_000, &arg0->unk_00.unk_00) == 1) {
-            return var_s0;
+    for (i = 0; i < ARRAY_COUNT(common_data.homes); i++) {
+        if (mPr_CheckCmpPersonalID(&common_data.homes[i].unk_000, &mail->unk_00.unk_00) == 1) {
+            return i;
         }
     }
 
@@ -212,8 +212,8 @@ s32 mMl_check_send_mail(struct_func_8085CE18_jp_arg4* arg0) {
     }
 }
 
-s32 mMl_check_set_present_myself(mMl* arg0) {
-    switch (arg0->unk_26) {
+s32 mMl_check_set_present_myself(Mail* mail) {
+    switch (mail->unk_26) {
         case 1:
         case 3:
         case 4:
