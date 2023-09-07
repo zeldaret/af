@@ -17312,7 +17312,7 @@
     bss_size: 0x0
     subsegments:
       - [0x970880, c, overlays/actors/ovl_Dummy/ac_dumm]
-      - [0x9708C0, data, overlays/actors/ovl_Dummy/ac_dumm]
+      - [0x9708C0, .data, overlays/actors/ovl_Dummy/ac_dumm]
   - name: ovl_Dummy_reloc
     type: code
     start: 0x9708F0
