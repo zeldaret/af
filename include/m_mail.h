@@ -47,8 +47,8 @@ typedef struct mMl {
     /* 0x2A */ mMl_unk_2A unk_2A;
 } mMl; // size = 0xA4
 
-// void func_8009C1C0_jp();
-s32 func_8009C284_jp(s32* arg0, u8 arg1[], s32 arg2, u8 arg3);
+s32 func_8009C1C0_jp(char* arg0, s32 size, char c);
+s32 func_8009C284_jp(s32* arg0, char arg1[], s32 arg2, char arg3);
 // void func_8009C2D8_jp();
 void mMl_clear_mail_header(mMl* arg0);
 void mMl_clear_mail(mMl* arg0);

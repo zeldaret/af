@@ -6,63 +6,21 @@
 #include "unknown_structs.h"
 #include "macros.h"
 
-#if 0
-s32 func_8009C1C0_jp(s32 arg0, s32 arg1, s32 arg2) {
-    s32 temp_a2;
-    s32 temp_a3;
-    s32 temp_v1;
-    s32 var_a1;
-    u8* var_a0;
-    u8* temp_a0;
+s32 func_8009C1C0_jp(char* arg0, s32 size, char c) {
+    arg0 += size - 1;
 
-    var_a1 = arg1;
-    temp_a2 = arg2 & 0xFF;
-    var_a0 = (arg0 + var_a1) - 1;
-    if (var_a1 != 0) {
-        temp_a3 = -(var_a1 & 3);
-        temp_v1 = temp_a3 + var_a1;
-        if (temp_a3 != 0) {
-loop_3:
-            if (temp_a2 != *var_a0) {
-                return var_a1;
-            }
-            var_a1 -= 1;
-            var_a0 -= 1;
-            if (temp_v1 == var_a1) {
-                if (var_a1 != 0) {
-                    goto block_7;
-                }
-                /* Duplicate return node #17. Try simplifying control flow for better match */
-                return 0;
-            }
-            goto loop_3;
+    while (size != 0) {
+        if (c != *arg0) {
+            return size;
         }
-block_7:
-        do {
-            if (temp_a2 != var_a0[0]) {
-                return var_a1;
-            }
-            temp_a0 = var_a0 - 1;
-            if (temp_a2 != var_a0[-1]) {
-                return var_a1 - 1;
-            }
-            if (temp_a2 != var_a0[-2]) {
-                return var_a1 - 2;
-            }
-            if (temp_a2 != temp_a0[-2]) {
-                return var_a1 - 3;
-            }
-            var_a1 -= 4;
-            var_a0 = ((temp_a0 - 1) - 1) - 1;
-        } while (var_a1 != 0);
+        size--;
+        arg0--;
     }
+
     return 0;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C1C0_jp.s")
-#endif
 
-s32 func_8009C284_jp(s32* arg0, u8 arg1[], s32 size, u8 c) {
+s32 func_8009C284_jp(s32* arg0, char arg1[], s32 size, char c) {
     s32 count = 0;
 
     if (arg0 != NULL) {
