@@ -22,12 +22,14 @@ ActorProfile Arrange_Furniture_Profile = {
     /* */ NULL,
 };
 
-// clang-format off
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr/Arrange_Furniture_Actor_ct.s")
+void Arrange_Furniture_Actor_ct(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr/Arrange_Furniture_Actor_dt.s")
+void Arrange_Furniture_Actor_dt(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr/Arrange_Furniture_Actor_draw.s")
+void Arrange_Furniture_Actor_draw(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr/Arrange_Furniture_Actor_move.s")
-// clang-format on
+void Arrange_Furniture_Actor_move(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
