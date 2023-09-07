@@ -6,11 +6,130 @@
 #include "unknown_structs.h"
 #include "macros.h"
 
+#if 0
+s32 func_8009C1C0_jp(s32 arg0, s32 arg1, s32 arg2) {
+    s32 temp_a2;
+    s32 temp_a3;
+    s32 temp_v1;
+    s32 var_a1;
+    u8* var_a0;
+    u8* temp_a0;
+
+    var_a1 = arg1;
+    temp_a2 = arg2 & 0xFF;
+    var_a0 = (arg0 + var_a1) - 1;
+    if (var_a1 != 0) {
+        temp_a3 = -(var_a1 & 3);
+        temp_v1 = temp_a3 + var_a1;
+        if (temp_a3 != 0) {
+loop_3:
+            if (temp_a2 != *var_a0) {
+                return var_a1;
+            }
+            var_a1 -= 1;
+            var_a0 -= 1;
+            if (temp_v1 == var_a1) {
+                if (var_a1 != 0) {
+                    goto block_7;
+                }
+                /* Duplicate return node #17. Try simplifying control flow for better match */
+                return 0;
+            }
+            goto loop_3;
+        }
+block_7:
+        do {
+            if (temp_a2 != var_a0[0]) {
+                return var_a1;
+            }
+            temp_a0 = var_a0 - 1;
+            if (temp_a2 != var_a0[-1]) {
+                return var_a1 - 1;
+            }
+            if (temp_a2 != var_a0[-2]) {
+                return var_a1 - 2;
+            }
+            if (temp_a2 != temp_a0[-2]) {
+                return var_a1 - 3;
+            }
+            var_a1 -= 4;
+            var_a0 = ((temp_a0 - 1) - 1) - 1;
+        } while (var_a1 != 0);
+    }
+    return 0;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C1C0_jp.s")
+#endif
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C284_jp.s")
+s32 func_8009C284_jp(s32* arg0, u8 arg1[], s32 size, u8 c) {
+    s32 count = 0;
 
+    if (arg0 != NULL) {
+        *arg0 = false;
+    }
+
+    while (size != 0) {
+        count++;
+        size--;
+        if (c == *arg1) {
+            if (arg0 != NULL) {
+                *arg0 = true;
+            }
+            break;
+        }
+
+        arg1++;
+    }
+
+    return count;
+}
+
+#if 0
+void func_8009C2D8_jp(void* arg0, u8* arg1, s32 arg2) {
+    s32 temp_v0;
+    s32 temp_v1;
+    s32 var_a2;
+    u8 temp_t6;
+    u8 temp_t8;
+    u8* var_a1;
+    void* var_a0;
+
+    var_a0 = arg0;
+    var_a1 = arg1;
+    var_a2 = arg2;
+    if (var_a2 != 0) {
+        temp_v1 = -(var_a2 & 3);
+        temp_v0 = temp_v1 + var_a2;
+        if (temp_v1 != 0) {
+            do {
+                temp_t6 = *var_a1;
+                var_a2 -= 1;
+                var_a0 -= 1;
+                var_a1 -= 1;
+                var_a0->unk_1 = temp_t6;
+            } while (temp_v0 != var_a2);
+            if (var_a2 != 0) {
+                goto loop_4;
+            }
+        } else {
+            do {
+loop_4:
+                var_a2 -= 4;
+                var_a0 -= 4;
+                var_a0->unk_4 = (u8) var_a1->unk_0;
+                temp_t8 = var_a1->unk_-1;
+                var_a1 -= 4;
+                var_a0->unk_3 = temp_t8;
+                var_a0->unk_2 = (u8) var_a1->unk_2;
+                var_a0->unk_1 = (u8) var_a1->unk_1;
+            } while (var_a2 != 0);
+        }
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C2D8_jp.s")
+#endif
 
 void mMl_clear_mail_header(mMl* arg0) {
     mPr_ClearPersonalID(&arg0->unk_00.unk_00);
