@@ -172,10 +172,10 @@ typedef struct CommonData {
     /* 0x0F89C */ lbRTC_time_c unk_0F89C;
     /* 0x0F8A4 */ lbRTC_time_c unk_0F8A4;
     /* 0x0F8AC */ UNK_TYPE1 unk0F8AC;
-    /* 0x0F8AD */ u8 snowmanYear;
-    /* 0x0F8AE */ u8 snowmanMonth;
-    /* 0x0F8AF */ u8 snowmanDay;
-    /* 0x0F8B0 */ u8 snowmanHour;
+    /* 0x0F8AD */ u8 snowmanYear; // Year last snowman was built.
+    /* 0x0F8AE */ u8 snowmanMonth; // Month last snowman was built.
+    /* 0x0F8AF */ u8 snowmanDay; // Day last snowman was built.
+    /* 0x0F8B0 */ u8 snowmanHour; // Hour last snowman was built.
     /* 0x0F8B1 */ UNK_TYPE1 unk0F8B1[0x74F];
     /* 0x10000 */ u8 unk_10000; // named "game_started" in AC GCN decomp
     /* 0x10001 */ u8 unk_10001;

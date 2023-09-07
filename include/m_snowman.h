@@ -10,20 +10,20 @@ typedef struct {
     /* 0x00 */ u8 exists;
     /* 0x01 */ u8 headSize;
     /* 0x02 */ u8 bodySize;
-    /* 0x03 */ u8 score;
+    /* 0x03 */ u8 unk3; //score
 } SnowmanData; // size = 0x4
 
 typedef struct {
-    /* 0x00 */ s32 scale;
+    /* 0x00 */ s32 unk0; //scale
     /* 0x04 */ Vec3f position;
 } SnowmanInfo; // size = 0x4
 
-// void mSN_check_life();
-// void mSN_ClearSnowmanData();
-// void mSN_ClearSnowman();
-// void mSN_MeltSnowman();
-// void mSN_get_free_space();
-// void func_800C8BC4_jp();
+s32 mSN_check_life(u16* name, s32 daysElapsed);
+void mSN_ClearSnowmanData(u16* name, s32 snowmanIndex);
+s32 mSN_ClearSnowman(u16* name);
+s32 mSN_MeltSnowman(u16* name, s32 daysElapsed);
+s32 mSN_get_free_space(void);
+void mSN_regist_snowman_society(SnowmanInfo* snowmanInfo);
 void mSN_decide_msg(void);
 void mSN_snowman_init(void);
 
