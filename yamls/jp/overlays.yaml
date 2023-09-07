@@ -1224,7 +1224,7 @@
     bss_size: 0x0
     subsegments:
       - [0x82BB80, c, overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw]
-      - [0x82BBC0, data, overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw]
+      - [0x82BBC0, .data, overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw]
   - name: ovl_Fieldm_Draw_reloc
     type: code
     start: 0x82BBF0
