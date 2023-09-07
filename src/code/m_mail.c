@@ -165,10 +165,23 @@ s32 mMl_hunt_for_send_address(mMl* arg0) {
 }
 
 s32 mMl_check_send_mail(struct_func_8085CE18_jp_arg4* arg0) {
-    if (arg0->unk_26 == 1) {
-        return 1;
+    switch (arg0->unk_26) {
+        case 1:
+            return 1;
+
+        default:
+            return 0;
     }
-    return 0;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/mMl_check_set_present_myself.s")
+s32 mMl_check_set_present_myself(mMl* arg0) {
+    switch (arg0->unk_26) {
+        case 1:
+        case 3:
+        case 4:
+            return 1;
+
+        default:
+            return 0;
+    }
+}

@@ -42,6 +42,7 @@ typedef struct struct_809AEFA4 {
     /* 0x14 */ UNK_PTR unk_14;
 } struct_809AEFA4; // size >= 0x18
 
+// Maybe same struct as mMl?
 typedef struct struct_func_8085CE18_jp_arg4 {
     /* 0x00 */ UNK_TYPE1 unk_00[0x24];
     /* 0x24 */ u16 unk_24;
