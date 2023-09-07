@@ -3,6 +3,7 @@
 #include "m_lib.h"
 #include "m_npc.h"
 #include "6B8A70.h"
+#include "unknown_structs.h"
 #include "macros.h"
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C1C0_jp.s")
@@ -163,6 +164,11 @@ s32 mMl_hunt_for_send_address(mMl* arg0) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/mMl_check_send_mail.s")
+s32 mMl_check_send_mail(struct_func_8085CE18_jp_arg4* arg0) {
+    if (arg0->unk_26 == 1) {
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/mMl_check_set_present_myself.s")

@@ -6,6 +6,8 @@
 #include "6DB420.h"
 #include "unk.h"
 
+struct struct_func_8085CE18_jp_arg4;
+
 // TODO: move to a better header
 typedef struct mMl_get_npcinfo_from_mail_name_arg0 {
     /* 0x0 */ u16 unk_0;
@@ -67,7 +69,7 @@ void mMl_copy_mail_header_common(MailHeaderCommon* arg0, MailHeaderCommon* arg1)
 void mMl_set_mail_name_npcinfo(mMl_unk_00* arg0, mMl_get_npcinfo_from_mail_name_arg0* arg1);
 s32 mMl_get_npcinfo_from_mail_name(mMl_get_npcinfo_from_mail_name_arg0* arg0, mMl_unk_00* arg1);
 s32 mMl_hunt_for_send_address(mMl* arg0);
-// void mMl_check_send_mail();
+s32 mMl_check_send_mail(struct struct_func_8085CE18_jp_arg4* arg0);
 // void mMl_check_set_present_myself();
 
 #endif
