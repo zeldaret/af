@@ -7,7 +7,6 @@
 
 struct Game_Play;
 struct Structure;
-struct Game;
 
 typedef void (*StructureActionFunc)(struct Structure*, struct Game_Play*);
 
