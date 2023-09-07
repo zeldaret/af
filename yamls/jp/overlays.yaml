@@ -1880,7 +1880,7 @@
     bss_size: 0x0
     subsegments:
       - [0x867C60, c, overlays/actors/ovl_BoxManager/ac_boxManager]
-      - [0x867CA0, data, overlays/actors/ovl_BoxManager/ac_boxManager]
+      - [0x867CA0, .data, overlays/actors/ovl_BoxManager/ac_boxManager]
   - name: ovl_BoxManager_reloc
     type: code
     start: 0x867CD0
