@@ -13046,7 +13046,7 @@
     bss_size: 0x0
     subsegments:
       - [0x932AA0, c, overlays/actors/ovl_Ev_Cherry_Manager/ev_cherry_manager]
-      - [0x932B00, data, overlays/actors/ovl_Ev_Cherry_Manager/ev_cherry_manager]
+      - [0x932B00, .data, overlays/actors/ovl_Ev_Cherry_Manager/ev_cherry_manager]
   - name: ovl_Ev_Cherry_Manager_reloc
     type: code
     start: 0x932B30
