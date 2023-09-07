@@ -6,7 +6,7 @@
 #include "unknown_structs.h"
 #include "macros.h"
 
-s32 func_8009C1C0_jp(char* arg0, s32 size, char c) {
+s32 func_8009C1C0_jp(const char* arg0, s32 size, char c) {
     arg0 += size - 1;
 
     while (size != 0) {
@@ -20,7 +20,7 @@ s32 func_8009C1C0_jp(char* arg0, s32 size, char c) {
     return 0;
 }
 
-s32 func_8009C284_jp(s32* arg0, char arg1[], s32 size, char c) {
+s32 func_8009C284_jp(s32* arg0, const char* arg1, s32 size, char c) {
     s32 count = 0;
 
     if (arg0 != NULL) {
@@ -43,51 +43,12 @@ s32 func_8009C284_jp(s32* arg0, char arg1[], s32 size, char c) {
     return count;
 }
 
-#if 0
-void func_8009C2D8_jp(void* arg0, u8* arg1, s32 arg2) {
-    s32 temp_v0;
-    s32 temp_v1;
-    s32 var_a2;
-    u8 temp_t6;
-    u8 temp_t8;
-    u8* var_a1;
-    void* var_a0;
-
-    var_a0 = arg0;
-    var_a1 = arg1;
-    var_a2 = arg2;
-    if (var_a2 != 0) {
-        temp_v1 = -(var_a2 & 3);
-        temp_v0 = temp_v1 + var_a2;
-        if (temp_v1 != 0) {
-            do {
-                temp_t6 = *var_a1;
-                var_a2 -= 1;
-                var_a0 -= 1;
-                var_a1 -= 1;
-                var_a0->unk_1 = temp_t6;
-            } while (temp_v0 != var_a2);
-            if (var_a2 != 0) {
-                goto loop_4;
-            }
-        } else {
-            do {
-loop_4:
-                var_a2 -= 4;
-                var_a0 -= 4;
-                var_a0->unk_4 = (u8) var_a1->unk_0;
-                temp_t8 = var_a1->unk_-1;
-                var_a1 -= 4;
-                var_a0->unk_3 = temp_t8;
-                var_a0->unk_2 = (u8) var_a1->unk_2;
-                var_a0->unk_1 = (u8) var_a1->unk_1;
-            } while (var_a2 != 0);
-        }
+void func_8009C2D8_jp(char* dst, const char* src, s32 size) {
+    while (size != 0) {
+        *dst-- = *src--;
+        size--;
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_mail/func_8009C2D8_jp.s")
-#endif
 
 void mMl_clear_mail_header(mMl* arg0) {
     mPr_ClearPersonalID(&arg0->unk_00.unk_00);
@@ -103,7 +64,7 @@ void mMl_clear_mail(mMl* arg0) {
     arg0->unk_26 = 0xFF;
 }
 
-void mMl_clear_mail_box(mMl* arg0, s32 arg1) {
+void mMl_clear_mail_box(mMl arg0[], s32 arg1) {
     while (arg1 != 0) {
         arg1--;
         mMl_clear_mail(arg0);

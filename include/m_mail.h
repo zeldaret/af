@@ -47,9 +47,9 @@ typedef struct mMl {
     /* 0x2A */ mMl_unk_2A unk_2A;
 } mMl; // size = 0xA4
 
-s32 func_8009C1C0_jp(char* arg0, s32 size, char c);
-s32 func_8009C284_jp(s32* arg0, char arg1[], s32 arg2, char arg3);
-// void func_8009C2D8_jp();
+s32 func_8009C1C0_jp(const char* arg0, s32 size, char c);
+s32 func_8009C284_jp(s32* arg0, const char* arg1, s32 size, char c);
+void func_8009C2D8_jp(char* dst, const char* src, s32 size);
 void mMl_clear_mail_header(mMl* arg0);
 void mMl_clear_mail(mMl* arg0);
 void mMl_clear_mail_box(mMl* arg0, s32 arg1);
@@ -70,6 +70,6 @@ void mMl_set_mail_name_npcinfo(mMl_unk_00* arg0, mMl_get_npcinfo_from_mail_name_
 s32 mMl_get_npcinfo_from_mail_name(mMl_get_npcinfo_from_mail_name_arg0* arg0, mMl_unk_00* arg1);
 s32 mMl_hunt_for_send_address(mMl* arg0);
 s32 mMl_check_send_mail(struct struct_func_8085CE18_jp_arg4* arg0);
-// void mMl_check_set_present_myself();
+s32 mMl_check_set_present_myself(mMl* arg0);
 
 #endif
