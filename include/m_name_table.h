@@ -149,14 +149,14 @@
 #define DEAD_GOLD_SAPLING (GOLD_TREE + 1)
 /* end of environmental objects */
 
-#define SNOWMAN0 (40968)
-#define SNOWMAN1 (40969)
-#define SNOWMAN2 (40970)
-#define SNOWMAN3 (40971)
-#define SNOWMAN4 (40972)
-#define SNOWMAN5 (40973)
-#define SNOWMAN6 (40974)
-#define SNOWMAN7 (40975)
-#define SNOWMAN8 (40976)
+#define SNOWMAN0 40968
+#define SNOWMAN1 (SNOWMAN0 + 1)
+#define SNOWMAN2 (SNOWMAN1 + 1)
+#define SNOWMAN3 (SNOWMAN2 + 1)
+#define SNOWMAN4 (SNOWMAN3 + 1)
+#define SNOWMAN5 (SNOWMAN4 + 1)
+#define SNOWMAN6 (SNOWMAN5 + 1)
+#define SNOWMAN7 (SNOWMAN6 + 1)
+#define SNOWMAN8 (SNOWMAN7 + 1)
 
 #endif
