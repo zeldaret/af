@@ -219,12 +219,15 @@ $(shell mkdir -p $(BUILD_DIR)/linker_scripts/$(VERSION) $(BUILD_DIR)/linker_scri
 
 # directory flags
 build/src/boot/O2/%.o: OPTFLAGS := -O2
+build/src/boot/libc/%.o: OPTFLAGS := -O2
 build/src/boot/libc64/%.o: OPTFLAGS := -O2
+build/src/boot/libm/%.o: OPTFLAGS := -O2
 build/src/boot/libu64/%.o: OPTFLAGS := -O2
 
-build/src/boot/libc64/%.o: OPTFLAGS := -O2
-
 # per-file flags
+
+build/src/boot/fault.o: CFLAGS += -trapuv
+build/src/boot/fault_drawer.o: CFLAGS += -trapuv
 
 # cc & asm-processor
 build/src/%.o: CC := $(ASM_PROC) $(ASM_PROC_FLAGS) $(CC) -- $(AS) $(ASFLAGS) --

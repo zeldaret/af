@@ -253,7 +253,7 @@ void Actor_draw(Game_Play* game_play, Actor* actor) {
     FaultClient faultClient;
     LightsN* light;
 
-    Fault_AddClient(&faultClient, func_80056380_jp, actor, "Actor_draw");
+    fault_AddClient(&faultClient, func_80056380_jp, actor, "Actor_draw");
 
     //! FAKE
     if (1) {}
@@ -289,7 +289,7 @@ void Actor_draw(Game_Play* game_play, Actor* actor) {
 
     CLOSE_DISPS(game_play->state.gfxCtx);
 
-    Fault_RemoveClient(&faultClient);
+    fault_RemoveClient(&faultClient);
 }
 
 s32 Actor_draw_actor_no_culling_check(Actor* actor) {

@@ -13,7 +13,6 @@
 #include "6F5550.h"
 #include "libc/stddef.h"
 #include "attributes.h"
-#include "boot_variables.h"
 #include "segment_symbols.h"
 #include "macros.h"
 
@@ -174,22 +173,20 @@ void* mSM_ovlptr_dllcnv(void* vram, mSM* submenu) {
     return (void*)((uintptr_t)vram + area->relocationDiff);
 }
 
-#ifdef NON_MATCHING
-// regalloc
 void func_800C47B4_jp(UNUSED void* arg0, UNUSED void* arg1) {
     void* temp_s0;
     Player* temp_v0_3;
     UNUSED void* temp_v0_2;
-    struct_800418D8* temp_v0;
+    OSThread* temp_v0;
     u32 temp_a3; // sp34
     u32 var_t1;  // sp30
     u32 var_t0;  // sp2C
     size_t ovlSize;
     void* temp_a2; // sp20
 
-    temp_v0 = B_800418D8_jp;
-    var_t0 = (temp_v0 != NULL) ? temp_v0->unk_11C : 0;
-    var_t1 = (temp_v0 != NULL) ? temp_v0->unk_104 : 0;
+    temp_v0 = gFaultMgr.faultedThread;
+    var_t0 = (temp_v0 != NULL) ? temp_v0->context.pc : 0;
+    var_t1 = (temp_v0 != NULL) ? temp_v0->context.ra : 0;
 
     FaultDrawer_Printf("SubmenuArea_visit\n");
     FaultDrawer_Printf("RamStart-RamEnd  Offset\n");
@@ -226,10 +223,6 @@ void func_800C47B4_jp(UNUSED void* arg0, UNUSED void* arg1) {
         }
     }
 }
-#else
-void func_800C47B4_jp(void*, void*);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/func_800C47B4_jp.s")
-#endif
 
 uintptr_t func_800C497C_jp(uintptr_t address, UNUSED void* param) {
     uintptr_t addr = address;
@@ -297,13 +290,13 @@ dummy_label_255895:
     D_8010DCE4_jp = var_s0;
     SubmenuArea_visit = NULL;
 
-    Fault_AddClient(&B_80144670_jp, func_800C47B4_jp, NULL, NULL);
-    Fault_AddAddrConvClient(&B_80144680_jp, func_800C497C_jp, NULL);
+    fault_AddClient(&B_80144670_jp, func_800C47B4_jp, NULL, NULL);
+    fault_AddressConverterAddClient(&B_80144680_jp, func_800C497C_jp, NULL);
 }
 
 void mSM_submenu_ovlptr_cleanup(mSM* submenu) {
-    Fault_RemoveClient(&B_80144670_jp);
-    Fault_RemoveAddrConvClient(&B_80144680_jp);
+    fault_RemoveClient(&B_80144670_jp);
+    fault_AddressConverterRemoveClient(&B_80144680_jp);
     if (SubmenuArea_visit != NULL) {
         SubmenuArea_DoUnlink(SubmenuArea_visit, submenu);
         SubmenuArea_visit = NULL;

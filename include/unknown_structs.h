@@ -33,18 +33,13 @@ typedef struct Game_Play_unk_0110 {
     /* 0x52 */ UNK_TYPE1 unk_52[0x2];
 } Game_Play_unk_0110; // size = 0x54
 
-typedef struct struct_800418D8 {
-    /* 0x000 */ UNK_TYPE1 unk_000[0x104];
-    /* 0x104 */ UNK_TYPE unk_104;
-    /* 0x108 */ UNK_TYPE1 unk_108[0x14];
-    /* 0x11C */ UNK_TYPE unk_11C;
-} struct_800418D8; // size >= 0x120
-
 typedef struct struct_809AEFA4 {
-    /* 0x0 */ UNK_PTR unk_0;
-    /* 0x4 */ UNK_PTR unk_4;
-    /* 0x8 */ UNK_TYPE unk_8;
-    /* 0xC */ UNK_TYPE unk_C;
-} struct_809AEFA4; // size >= 0x10
+    /* 0x00 */ UNK_PTR unk_00;
+    /* 0x04 */ UNK_PTR unk_04;
+    /* 0x08 */ UNK_TYPE unk_08;
+    /* 0x0C */ UNK_PTR unk_0C;
+    /* 0x10 */ UNK_PTR unk_10;
+    /* 0x14 */ UNK_PTR unk_14;
+} struct_809AEFA4; // size >= 0x18
 
 #endif

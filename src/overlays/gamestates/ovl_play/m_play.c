@@ -38,6 +38,7 @@
 #include "overlays/gamestates/ovl_trademark/m_trademark.h"
 #include "6A7D20.h"
 #include "m_scene_table.h"
+#include "zurumode.h"
 
 void play_main(Game* game);
 void Gameplay_Scene_Read(Game_Play* game_play, s16 arg1);
@@ -811,7 +812,7 @@ void* func_80804138_jp(Game_Play* game_play, Struct_8010EAA0* arg1) {
     u32 sp24 = arg1->unk_04 - arg1->unk_00;
     void* sp20 = THA_alloc16(&game_play->state.heap, sp24);
 
-    func_80026E10_jp(sp20, arg1->unk_00, sp24, "../m_play.c", 2302);
+    DmaMgr_RequestSyncDebug(sp20, arg1->unk_00, sp24, "../m_play.c", 2302);
     return sp20;
 }
 

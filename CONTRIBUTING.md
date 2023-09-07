@@ -4,14 +4,34 @@ Thank you for your interest in the Animal Forest decompilation. This is a brief 
 
 ## Useful Links
 
-- [MM decomp tutorial](https://github.com/zeldaret/mm/blob/master/docs/tutorial/contents.md) Detailed tutorial for learning in general how decomp works and how to decompile a small, simple file. Note that this project uses a different build system, so some information doesn't apply.
+- [Working With Splat](docs/working_with_splat.md)
+- [MM decomp tutorial](https://github.com/zeldaret/mm/blob/master/docs/tutorial/contents.md) Detailed tutorial for learning in general how decomp works and how to decompile a small, simple file. Note that mm doesn't use splat, so some information doesn't apply.
 - [Introduction to OOT decomp](https://github.com/zeldaret/oot/blob/master/docs/tutorial/contents.md) - Covers slightly different topics.
 
 Most discussions happen in the `#af-decomp` channel on our [Discord Server](https://discord.zelda64.dev) where you are welcome to ask if you need help getting started.
 
-## Preparing a Pull Request
+## Tips for Successful Pull Requests
 
-You should work on a branch on your fork separate from your copy of main: it is always useful to have a clean main branch around if you need to fix something.
+- Don't bundle together multiple files worth of decompiled code into a single PR. Large PRs require a lot of effort to review, and make things difficult for everyone.
+- You don't necessarily have to decompile a whole file, you can just decompile a couple of functions in a single PR if that suits your workflow better.
+- Review the [Style Guide](docs/STYLE.md) and see if there's anything you can preemptively fix before code reviews.
+- After a PR is opened always merge main instead of rebasing. Rebasing changes how commits are shown in PRs, making changes difficult to follow.
+
+## Making a Pull Request
+
+You should work on a branch on your fork separate from your copy of `main`. You can create branches from `upstream/main` so you don't have to sync your `main` branch every time.
+
+If you haven't done so already, add the main repo as `upstream`
+
+```bash
+git remote add upstream https://github.com/zeldaret/af.git
+```
+
+Then create new branches with this:
+
+```bash
+git fetch upstream && git checkout -b new-branch-name upstream/main
+```
 
 We squash commits when merging, so your commit history does not have to be completely spotless.
 
@@ -57,11 +77,9 @@ python3 ./tools/format.py
 
 ### Merge main
 
-To make sure the PR builds correctly with the current master, you need to merge `upstream/main` before you make the PR. While your branch is private (in particular, not used for a PR), you can rebase, but when your branch is public/used for a PR always merge main instead of rebasing: it makes it much easier for people to understand what you changed since the last review.
+To make sure the PR builds correctly with the current main, you need to merge `upstream/main` before you make the PR. The simplest way to do this is to use "Sync Fork" on your branch on the GitHub website. Then sync the remote branch with your local branch using `git fetch && git pull`. This tends to break things, and requires some modifications to get your branch to correctly compile again.
 
-The simplest way to do this is to use "Sync Fork" on your branch on the GitHub website. Then sync the remote branch with your local branch using `git pull`. This tends to break things, and requires some modifications to get your branch to correctly compile again.
-
-If the Sync Fork method doesn't work because there are merge conflicts, you can use `git merge upstream/main` instead. Manually resolve the conflicts with your text editor, make sure it builds, and then commit the changes.
+If the Sync Fork method doesn't work because there are merge conflicts, you can use `git fetch upstream && git merge upstream/main` instead. Manually resolve the conflicts with your text editor, make sure it builds, and then commit the changes.
 
 ## Checklist
 
@@ -103,4 +121,4 @@ Push commits to your fork of the repository on GitHub, and then open a pull requ
 
 and so on, although these four tend to cover most cases. Feel free to add a comment describing anything interesting you had to do or issues in non-matchings.
 
-Please also update the status of the file on the spreadsheet.
+Please also update the status of the file on the [spreadsheet](https://docs.google.com/spreadsheets/d/1IkamT3ZFhgtZAaS5HS47b2_PcLlYmEFWk2oUPDhYfI8/).
