@@ -1899,7 +1899,7 @@
     bss_size: 0x0
     subsegments:
       - [0x867D00, c, overlays/actors/ovl_BoxMove/ac_boxMove]
-      - [0x867D40, data, overlays/actors/ovl_BoxMove/ac_boxMove]
+      - [0x867D40, .data, overlays/actors/ovl_BoxMove/ac_boxMove]
   - name: ovl_BoxMove_reloc
     type: code
     start: 0x867D70
