@@ -1224,7 +1224,7 @@
     bss_size: 0x0
     subsegments:
       - [0x82BB80, c, overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw]
-      - [0x82BBC0, data, overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw]
+      - [0x82BBC0, .data, overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw]
   - name: ovl_Fieldm_Draw_reloc
     type: code
     start: 0x82BBF0
@@ -1880,7 +1880,7 @@
     bss_size: 0x0
     subsegments:
       - [0x867C60, c, overlays/actors/ovl_BoxManager/ac_boxManager]
-      - [0x867CA0, data, overlays/actors/ovl_BoxManager/ac_boxManager]
+      - [0x867CA0, .data, overlays/actors/ovl_BoxManager/ac_boxManager]
   - name: ovl_BoxManager_reloc
     type: code
     start: 0x867CD0
@@ -17311,8 +17311,8 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x970880, c, overlays/actors/ovl_Dummy/ac_dumm]
-      - [0x9708C0, data, overlays/actors/ovl_Dummy/ac_dumm]
+      - [0x970880, c, overlays/actors/ovl_Dummy/ac_dummy]
+      - [0x9708C0, .data, overlays/actors/ovl_Dummy/ac_dummy]
   - name: ovl_Dummy_reloc
     type: code
     start: 0x9708F0
@@ -17320,7 +17320,7 @@
     follows_vram: ovl_Dummy
     compress: True
     subsegments:
-      - [0x9708F0, data, overlays/actors/ovl_Dummy/ac_dumm_reloc]
+      - [0x9708F0, data, overlays/actors/ovl_Dummy/ac_dummy_reloc]
 
   - name: ovl__00970920
     type: code
