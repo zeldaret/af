@@ -74,9 +74,9 @@ void aTOU_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
 }
 
 mCoBG_OffsetTable height_table_ct_360[] = { { 0x64, 16, 16, 16, 16, 16, 0 },
-                                        { 0x64, 16, 16, 16, 16, 16, 0 },
-                                        { 0x64, 16, 16, 16, 16, 16, 0 },
-                                        { 0x64, 16, 16, 16, 16, 16, 0 } };
+                                            { 0x64, 16, 16, 16, 16, 16, 0 },
+                                            { 0x64, 16, 16, 16, 16, 16, 0 },
+                                            { 0x64, 16, 16, 16, 16, 16, 0 } };
 mCoBG_OffsetTable* height_table_361[] = { height_table_ct_360, height_table_ct_360 };
 f32 addX_362[] = { -40.0f, 0.0f };
 f32 addZ_363[] = { -40.0f, 0.0f };
@@ -172,8 +172,8 @@ void aTOU_setup_action(Toudai* this, s32 processIndex) {
 
     if (processIndex == 0) {
         type = (common_data.time.season == WINTER);
-        cKF_SkeletonInfo_R_init(&this->skeletonInfo, this->skeletonInfo.skeleton, ani_484[type], 1.0f, 100.0f, 51.0f, 0.0f,
-                                0.0f, ANIMATION_REPEAT, NULL);
+        cKF_SkeletonInfo_R_init(&this->skeletonInfo, this->skeletonInfo.skeleton, ani_484[type], 1.0f, 100.0f, 51.0f,
+                                0.0f, 0.0f, ANIMATION_REPEAT, NULL);
     }
 
     this->unk2A0 = process_485[processIndex];
