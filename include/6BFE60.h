@@ -4,6 +4,8 @@
 #include "ultra64.h"
 #include "unk.h"
 
+struct struct_func_8085CE18_jp_arg4;
+
 typedef struct mMl {
     /* 0x00 */ UNK_TYPE1 unk_00[0xA4];
 } mMl; // size = 0xA4
@@ -30,7 +32,7 @@ void mMl_clear_mail(mMl* arg0);
 // void mMl_set_mail_name_npcinfo();
 // void mMl_get_npcinfo_from_mail_name();
 // void mMl_hunt_for_send_address();
-// void func_8009C89C_jp();
+UNK_TYPE mMl_check_send_mail(struct struct_func_8085CE18_jp_arg4* arg0);
 // void func_8009C8C0_jp();
 
 #endif

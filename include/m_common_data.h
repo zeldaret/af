@@ -16,7 +16,7 @@
 struct Actor;
 struct ActorOverlay;
 struct struct_801161E8_jp;
-struct Game_Play_unk_0110;
+struct Game_Play_unk_0110_unk_0000;
 struct CommonData_unk_1004C_unk_14_arg0;
 struct Game_Play;
 struct struct_809AEFA4;
@@ -39,9 +39,9 @@ typedef UNK_RET (*CommonData_unk_1004C_unk_D0)(void);
 
 typedef UNK_RET (*CommonData_unk_1004C_unk_E4)(void);
 
-typedef UNK_RET (*CommonData_unk_1004C_unk_EC)(struct Game_Play_unk_0110*, s16, s16);
-typedef UNK_RET (*CommonData_unk_1004C_unk_F0)(struct Game_Play_unk_0110*, struct Actor*);
-typedef s32 (*CommonData_unk_1004C_unk_F4)(struct Game_Play_unk_0110*, struct Actor*);
+typedef UNK_RET (*CommonData_unk_1004C_unk_EC)(struct Game_Play_unk_0110_unk_0000*, s16, s16);
+typedef UNK_RET (*CommonData_unk_1004C_unk_F0)(struct Game_Play_unk_0110_unk_0000*, struct Actor*);
+typedef s32 (*CommonData_unk_1004C_unk_F4)(struct Game_Play_unk_0110_unk_0000*, struct Actor*);
 
 typedef UNK_RET (*CommonData_unk_1004C_unk_118)(struct Actor*);
 
