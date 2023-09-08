@@ -47,14 +47,14 @@ ShadowData aTOU_shadow_data[] = { 20, aTOU_shadow_vtx_fix_flg_table, 60.0f, obj_
 
 extern BaseSkeletonR cKF_bs_r_obj_s_toudai;
 extern BaseSkeletonR cKF_bs_r_obj_w_toudai;
-BaseSkeletonR* skl[] = { &cKF_bs_r_obj_s_toudai, &cKF_bs_r_obj_w_toudai };
+BaseSkeletonR* skl_324[] = { &cKF_bs_r_obj_s_toudai, &cKF_bs_r_obj_w_toudai };
 
 void aTOU_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
     Toudai* this = THIS;
     s32 type = (common_data.time.season == WINTER);
 
     gSegments[6] = OS_K0_TO_PHYSICAL(common_data.unk_10098->unk_AC(45));
-    cKF_SkeletonInfo_R_ct(&this->skeletonInfo, skl[type], NULL, this->jointTable, this->morphTable);
+    cKF_SkeletonInfo_R_ct(&this->skeletonInfo, skl_324[type], NULL, this->jointTable, this->morphTable);
     aTOU_set_bgOffset(this, 1);
     aTOU_setup_action(this, 0);
     cKF_SkeletonInfo_R_play(&this->skeletonInfo);
@@ -73,25 +73,25 @@ void aTOU_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
     thisx->world.pos.z += 20.0f;
 }
 
-mCoBG_OffsetTable height_table_ct[] = { { 0x64, 16, 16, 16, 16, 16, 0 },
+mCoBG_OffsetTable height_table_ct_360[] = { { 0x64, 16, 16, 16, 16, 16, 0 },
                                         { 0x64, 16, 16, 16, 16, 16, 0 },
                                         { 0x64, 16, 16, 16, 16, 16, 0 },
                                         { 0x64, 16, 16, 16, 16, 16, 0 } };
-mCoBG_OffsetTable* height_table[] = { height_table_ct, height_table_ct };
-f32 addX[] = { -40.0f, 0.0f };
-f32 addZ[] = { -40.0f, 0.0f };
+mCoBG_OffsetTable* height_table_361[] = { height_table_ct_360, height_table_ct_360 };
+f32 addX_362[] = { -40.0f, 0.0f };
+f32 addZ_363[] = { -40.0f, 0.0f };
 
 void aTOU_set_bgOffset(Toudai* this, s32 heightTableIndex) {
     s32 i;
     Vec3f pos;
-    mCoBG_OffsetTable* offsetTable = height_table[heightTableIndex];
+    mCoBG_OffsetTable* offsetTable = height_table_361[heightTableIndex];
 
     for (i = 0; i < 2; i++) {
-        pos.z = addZ[i] + this->actor.home.pos.z;
-        pos.x = addX[0] + this->actor.home.pos.x;
+        pos.z = addZ_363[i] + this->actor.home.pos.z;
+        pos.x = addX_362[0] + this->actor.home.pos.x;
         mCoBG_SetPluss5PointOffset_file(pos, *offsetTable, "../ac_toudai_move.c_inc", 76);
         offsetTable++;
-        pos.x = addX[1] + this->actor.home.pos.x;
+        pos.x = addX_362[1] + this->actor.home.pos.x;
         mCoBG_SetPluss5PointOffset_file(pos, *offsetTable, "../ac_toudai_move.c_inc", 80);
         offsetTable++;
     }
@@ -164,19 +164,19 @@ void aTOU_lightout(Toudai* this, Game_Play* game_play UNUSED) {
 
 extern BaseAnimationR cKF_ba_r_obj_s_toudai;
 extern BaseAnimationR cKF_ba_r_obj_w_toudai;
-BaseAnimationR* ani[] = { &cKF_ba_r_obj_s_toudai, &cKF_ba_r_obj_w_toudai };
-ToudaiActionFunc process[] = { aTOU_init, aTOU_wait, aTOU_lighting, aTOU_lightout };
+BaseAnimationR* ani_484[] = { &cKF_ba_r_obj_s_toudai, &cKF_ba_r_obj_w_toudai };
+ToudaiActionFunc process_485[] = { aTOU_init, aTOU_wait, aTOU_lighting, aTOU_lightout };
 
 void aTOU_setup_action(Toudai* this, s32 processIndex) {
     s32 type;
 
     if (processIndex == 0) {
         type = (common_data.time.season == WINTER);
-        cKF_SkeletonInfo_R_init(&this->skeletonInfo, this->skeletonInfo.skeleton, ani[type], 1.0f, 100.0f, 51.0f, 0.0f,
+        cKF_SkeletonInfo_R_init(&this->skeletonInfo, this->skeletonInfo.skeleton, ani_484[type], 1.0f, 100.0f, 51.0f, 0.0f,
                                 0.0f, ANIMATION_REPEAT, NULL);
     }
 
-    this->unk2A0 = process[processIndex];
+    this->unk2A0 = process_485[processIndex];
     this->unk2B4 = processIndex;
 }
 
@@ -209,8 +209,8 @@ s32 aTOU_actor_draw_before(Game_Play* game_play UNUSED, SkeletonInfoR* skeletonI
 
 extern Gfx obj_s_toudai_light_model[];
 extern Gfx obj_w_toudai_light_model[];
-Gfx* mdl[] = { obj_s_toudai_light_model, obj_w_toudai_light_model };
-Color_RGBA8 prmcol = { 255, 255, 150, 120 };
+Gfx* mdl_519[] = { obj_s_toudai_light_model, obj_w_toudai_light_model };
+Color_RGBA8 prmcol_520 = { 255, 255, 150, 120 };
 
 #ifdef NON_EQUIVALENT
 s32 aTOU_actor_draw_after(Game_Play* game_play, SkeletonInfoR* skeletonInfo, s32 jointIndex, Gfx** dlist,
@@ -245,9 +245,9 @@ s32 aTOU_actor_draw_after(Game_Play* game_play, SkeletonInfoR* skeletonInfo, s32
                 arg5->unk2CC = temp_v1;
             }
             gDPPipeSync(gfx++);
-            gDPSetPrimColor(gfx++, 0, arg5->unk2D0, prmcol.r, prmcol.g, temp, var_a0);
+            gDPSetPrimColor(gfx++, 0, arg5->unk2D0, prmcol_520.r, prmcol_520.g, temp, var_a0);
             gSPMatrix(gfx++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-            gSPDisplayList(gfx++, mdl[type]);
+            gSPDisplayList(gfx++, mdl_519[type]);
             if (!temp_a3) {}
         }
         CLOSE_DISPS(temp_a3);

@@ -21535,15 +21535,15 @@ aTOU_actor_draw = 0x80AABEB0; // type:func
 Toudai_Profile = 0x80AAC060; //
 aTOU_shadow_vtx_fix_flg_table = 0x80AAC084; //
 aTOU_shadow_data = 0x80AAC098; //
-skl = 0x80AAC0AC; //
-height_table_ct = 0x80AAC0B4; //
-height_table = 0x80AAC0D0; //
-addX = 0x80AAC0D8; // type:f32
-addZ = 0x80AAC0E0; // type:f32
-ani = 0x80AAC0E8; //
-process = 0x80AAC0F0; //
-mdl = 0x80AAC100; //
-prmcol = 0x80AAC108; //
+skl_324 = 0x80AAC0AC; //
+height_table_ct_360 = 0x80AAC0B4; //
+height_table_361 = 0x80AAC0D0; //
+addX_362 = 0x80AAC0D8; // type:f32
+addZ_363 = 0x80AAC0E0; // type:f32
+ani_484 = 0x80AAC0E8; //
+process_485 = 0x80AAC0F0; //
+mdl_519 = 0x80AAC100; //
+prmcol_520 = 0x80AAC108; //
 
 // .rodata
 
