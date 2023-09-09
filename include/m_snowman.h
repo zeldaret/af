@@ -6,17 +6,17 @@
 
 #define SNOWMAN_SAVE_COUNT 3
 
-typedef struct {
+typedef struct SnowmanData {
     /* 0x00 */ u8 exists;
     /* 0x01 */ u8 headSize;
     /* 0x02 */ u8 bodySize;
     /* 0x03 */ u8 unk3; //score
 } SnowmanData; // size = 0x4
 
-typedef struct {
+typedef struct SnowmanInfo {
     /* 0x00 */ s32 unk0; //scale
     /* 0x04 */ Vec3f position;
-} SnowmanInfo; // size = 0x4
+} SnowmanInfo; // size = 0x10
 
 s32 mSN_check_life(u16* name, s32 daysElapsed);
 void mSN_ClearSnowmanData(u16* name, s32 snowmanIndex);
