@@ -24,7 +24,6 @@
  *
  * @return True if the snowman is alive, False if the snowman is dead.
  */
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_snowman/mSN_check_life.s")
 s32 mSN_check_life(u16* name, s32 daysElapsed) {
     s32 ret = false;
 
