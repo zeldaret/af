@@ -24,13 +24,13 @@
  *
  * @return True if the snowman is alive, False if the snowman is dead.
  */
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_snowman/mSN_check_life.s")
 s32 mSN_check_life(u16* name, s32 daysElapsed) {
     s32 ret = false;
 
     // Snowmen outside of winter die regardless of daysElapsed.
-    if (common_data.time.season == 3) // WINTER
-    {
-        s32 snowmanAge = (*name - SNOWMAN0) % SNOWMAN_SAVE_COUNT;
+    if (common_data.time.season == WINTER) {
+        s32 snowmanAge = ((*name - SNOWMAN0) % SNOWMAN_SAVE_COUNT);
 
         if (snowmanAge + daysElapsed < 3) {
             ret = true;

@@ -101,6 +101,13 @@ typedef struct mPr_mother_mail_info_c {
     /* 0x00 */ UNK_TYPE1 unk_00[0xE];
 } mPr_mother_mail_info_c; // size = 0xE
 
+typedef enum Season {
+    /* 0 */ SPRING,
+    /* 1 */ SUMMER,
+    /* 2 */ FALL,
+    /* 3 */ WINTER,
+} Season;
+
 typedef struct Time_c {
     /* 0x00 */ u32 season;
     /* 0x04 */ u32 term_idx;
