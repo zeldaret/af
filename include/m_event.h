@@ -106,7 +106,7 @@ void mEv_finish(Event* event);
 // void func_8007FD40_jp();
 // void func_8007FDA8_jp();
 // void func_8007FE0C_jp();
-// void func_8007FE74_jp();
+void mEv_clear_status(s32, s16);
 // void func_8007FEBC_jp();
 // void func_8007FF08_jp();
 // void func_8007FF8C_jp();

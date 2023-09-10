@@ -2,19 +2,27 @@
 #define M_VIEW_H
 
 #include "ultra64.h"
+#include "z64math.h"
+#include "unk.h"
 
 struct Game_Play;
 struct GraphicsContext;
 
 typedef struct Game_Play1938 {
-    /* 0x000 */ char unk000[0x28];
+    /* 0x000 */ UNK_TYPE1 unk_000[0x8];
+    /* 0x008 */ s32 unk_008;
+    /* 0x00C */ s32 unk_00C;
+    /* 0x010 */ s32 unk_010;
+    /* 0x018 */ s32 unk_014;
+    /* 0x01C */ UNK_TYPE1 unk_018[0x10];
     /* 0x028 */ Vec3f unk_028;
-    /* 0x034 */ char unk034[0x2C];
+    /* 0x034 */ UNK_TYPE1 unk_034[0x1C];
+    /* 0x050 */ Vp vp;
     /* 0x060 */ Mtx unk_060;
     /* 0x0A0 */ Mtx unk_0A0;
-    /* 0x0E0 */ char unk0E0[0x40];
+    /* 0x0E0 */ UNK_TYPE1 unk_0E0[0x40];
     /* 0x120 */ s32 unk_120;
-    /* 0x124 */ char unk124[0x4];
+    /* 0x124 */ UNK_TYPE1 unk_124[0x4];
 } Game_Play1938; // size = 0x128
 
 typedef struct ScissorViewArg1 {

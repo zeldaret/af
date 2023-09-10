@@ -48,7 +48,7 @@
       - [0x6BD560, asm, code/m_lib]
       - [0x6BEE80, c, code/m_lights]
       - [0x6BFC60, c, code/m_malloc]
-      - [0x6BFE60, asm, code/6BFE60]
+      - [0x6BFE60, c, code/m_mail]
       - [0x6C05A0, asm, code/6C05A0]
       - [0x6C0690, asm, code/6C0690]
       - [0x6C0E90, asm, code/m_msg_main]

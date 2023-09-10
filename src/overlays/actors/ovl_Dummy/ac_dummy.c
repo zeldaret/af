@@ -1,4 +1,4 @@
-#include "ac_dumm.h"
+#include "ac_dummy.h"
 #include "m_actor_dlftbls.h"
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
@@ -8,7 +8,6 @@ void Dummy_Actor_dt(Actor* thisx, Game_Play* game_play);
 void Dummy_Actor_move(Actor* thisx, Game_Play* game_play);
 void Dummy_Actor_draw(Actor* thisx, Game_Play* game_play);
 
-#if 0
 ActorProfile Dummy_Profile = {
     /* */ ACTOR_DUMMY,
     /* */ ACTOR_PART_7,
@@ -22,12 +21,15 @@ ActorProfile Dummy_Profile = {
     /* */ Dummy_Actor_draw,
     /* */ NULL,
 };
-#endif
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Dummy/ac_dumm/Dummy_Actor_ct.s")
+void Dummy_Actor_ct(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Dummy/ac_dumm/Dummy_Actor_dt.s")
+void Dummy_Actor_dt(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Dummy/ac_dumm/Dummy_Actor_draw.s")
+void Dummy_Actor_draw(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Dummy/ac_dumm/Dummy_Actor_move.s")
+void Dummy_Actor_move(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
