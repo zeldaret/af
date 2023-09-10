@@ -24,14 +24,22 @@ typedef struct CommonData_unk_1004C_unk_14_arg0 {
     /* 0x04 */ UNK_TYPE1 unk_04[0x60];
 } CommonData_unk_1004C_unk_14_arg0; // size >= 0x64, maybe less, guessed from stack usage
 
-typedef struct Game_Play_unk_0110 {
+typedef struct Game_Play_unk_0110_unk_0000 {
     /* 0x00 */ s16 unk_00;
     /* 0x02 */ UNK_TYPE1 unk_02[0x2];
     /* 0x04 */ void* segment;
     /* 0x08 */ UNK_TYPE1 unk_08[0x48];
     /* 0x50 */ s16 unk_50;
     /* 0x52 */ UNK_TYPE1 unk_52[0x2];
-} Game_Play_unk_0110; // size = 0x54
+} Game_Play_unk_0110_unk_0000; // size = 0x54
+
+typedef struct Game_Play_unk_0110 {
+    /* 0x0000 */ Game_Play_unk_0110_unk_0000 unk_0000[UNK_SIZE];
+    /* 0x0054 */ UNK_TYPE1 unk_0054[0x17A8];
+    /* 0x17FC */ s32 unk_17FC;
+    /* 0x1800 */ UNK_TYPE1 unk_1800[0x18];
+    /* 0x1818 */ void* unk_1818;
+} Game_Play_unk_0110; // size >= 0x181C
 
 typedef struct struct_809AEFA4 {
     /* 0x00 */ UNK_PTR unk_00;

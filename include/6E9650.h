@@ -4,7 +4,7 @@
 #include "ultra64.h"
 
 struct Game_Play;
-struct Game_Play_unk_0110;
+struct Game_Play_unk_0110_unk_0000;
 
 // void func_800C59B0_jp();
 // void func_800C5A08_jp();
@@ -19,14 +19,14 @@ struct Game_Play_unk_0110;
 // void func_800C5E10_jp();
 // void func_800C5EA0_jp();
 // void func_800C5F0C_jp();
-void mSc_dmacopy_data_bank(struct Game_Play_unk_0110* arg0);
-s32 mSc_bank_regist_check(struct Game_Play_unk_0110* arg0, s16 arg1);
-void func_800C6144_jp(struct Game_Play_unk_0110* arg0, s16 arg1);
+void mSc_dmacopy_data_bank(struct Game_Play_unk_0110_unk_0000* arg0);
+s32 mSc_bank_regist_check(struct Game_Play_unk_0110_unk_0000* arg0, s16 arg1);
+void func_800C6144_jp(struct Game_Play_unk_0110_unk_0000* arg0, s16 arg1);
 void mSc_regist_initial_exchange_bank(struct Game_Play* game_play);
 // void func_800C62C4_jp();
-void mSc_dmacopy_all_exchange_bank(struct Game_Play_unk_0110* arg0);
-void mSc_data_bank_ct(struct Game_Play* game_play, struct Game_Play_unk_0110* arg1);
-void mSc_decide_exchange_bank(struct Game_Play_unk_0110* arg0);
+void mSc_dmacopy_all_exchange_bank(struct Game_Play_unk_0110_unk_0000* arg0);
+void mSc_data_bank_ct(struct Game_Play* game_play, struct Game_Play_unk_0110_unk_0000* arg1);
+void mSc_decide_exchange_bank(struct Game_Play_unk_0110_unk_0000* arg0);
 // void func_800C6690_jp();
 void Scene_ct(struct Game_Play* game_play, void* arg1);
 // void func_800C6960_jp();
