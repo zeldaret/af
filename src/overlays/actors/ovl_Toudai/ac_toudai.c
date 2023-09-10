@@ -42,8 +42,8 @@ u8 aTOU_shadow_vtx_fix_flg_table[] = { 0x01, 0x00, 0x01, 0x00, 0x00, 0x01, 0x01,
 
 extern Vtx obj_s_toudai_shadow_v[];
 extern Gfx obj_s_toudai_shadow_1_model[];
-ShadowData aTOU_shadow_data[] = { 20, aTOU_shadow_vtx_fix_flg_table, 60.0f, obj_s_toudai_shadow_v,
-                                  obj_s_toudai_shadow_1_model };
+ShadowData aTOU_shadow_data = { 20, aTOU_shadow_vtx_fix_flg_table, 60.0f, obj_s_toudai_shadow_v,
+                                obj_s_toudai_shadow_1_model };
 
 extern BaseSkeletonR cKF_bs_r_obj_s_toudai;
 extern BaseSkeletonR cKF_bs_r_obj_w_toudai;
