@@ -9,6 +9,7 @@ struct GraphicsContext;
 struct Game_Play;
 struct Submenu;
 struct PreRender;
+struct struct_func_8085CE18_jp_arg4;
 
 // TODO: Consider merging this two typedefs into one
 typedef void (*SubmenuProgramOverlayFunc)(struct Submenu*);
@@ -48,12 +49,6 @@ typedef struct struct_func_8085C20C_jp_arg1 {
     /* 0x18 */ UNK_TYPE1 unk_18[0x8];
     /* 0x20 */ TexturePtr unk_20;
 } struct_func_8085C20C_jp_arg1; // size >= 0x24
-
-typedef struct struct_func_8085CE18_jp_arg4 {
-    /* 0x00 */ UNK_TYPE1 unk_00[0x24];
-    /* 0x24 */ u16 unk_24;
-    /* 0x26 */ u8 unk_26;
-} struct_func_8085CE18_jp_arg4; // size >= 0x28
 
 typedef struct struct_mSM_move_Move_arg1 {
     /* 0x00 */ UNK_TYPE1 unk_00[0x4];
@@ -130,7 +125,7 @@ typedef void (*struct_8085E9B0_unk_106B4)(struct GraphicsContext*);
 typedef void (*struct_8085E9B0_unk_106B8)(struct GraphicsContext*, struct PreRender*, s32, s32, s32);
 typedef void (*struct_8085E9B0_unk_106BC)(struct GraphicsContext*, struct struct_func_8085C20C_jp_arg1*, f32, f32, s16);
 typedef void (*struct_8085E9B0_unk_106C0)(struct GraphicsContext*, f32, f32, f32, u16, s32, s32, s32, s32);
-typedef void (*struct_8085E9B0_unk_106C4)(struct GraphicsContext*, f32, f32, f32, struct_func_8085CE18_jp_arg4*, s32, s32);
+typedef void (*struct_8085E9B0_unk_106C4)(struct GraphicsContext*, f32, f32, f32, struct struct_func_8085CE18_jp_arg4*, s32, s32);
 typedef void (*struct_8085E9B0_unk_106C8)(struct Submenu*, struct GraphicsContext*, s32);
 typedef void (*struct_8085E9B0_unk_106CC)(struct Submenu*, void**, struct_func_8085D43C_jp_arg2*);
 

@@ -2,23 +2,35 @@
 #define C_6DB420_H
 
 #include "ultra64.h"
-#include "m_actor.h"
+#include "6B8A70.h"
+#include "unk.h"
 
 struct Private_c;
 struct mPr_map_info_c;
 struct mLd_land_info_c;
 struct mPr_mother_mail_info_c;
 
+typedef struct PlayerName {
+    /* 0x0 */ UNK_TYPE1 unk_0[0x6];
+} PlayerName; // size = 0x6
+
+typedef struct PersonalID {
+    /* 0x0 */ PlayerName unk_0;
+    /* 0x6 */ LandName unk_6;
+    /* 0xC */ u16 unk_C;
+    /* 0xE */ u16 unk_E;
+} PersonalID; // size = 0x10
+
 // void func_800B7780_jp();
-// void mPr_CopyPlayerName();
+void mPr_CopyPlayerName(PlayerName* dst, PlayerName* src);
 // void func_800B77C4_jp();
 // void func_800B7804_jp();
 // void func_800B785C_jp();
 // void func_800B7914_jp();
-// void func_800B795C_jp();
+void mPr_ClearPersonalID(PersonalID* arg0);
 // void func_800B7998_jp();
-// void func_800B79E0_jp();
-// void mPr_CheckCmpPersonalID();
+void mPr_CopyPersonalID(PersonalID* arg0, PersonalID* arg1);
+s32 mPr_CheckCmpPersonalID(PersonalID* arg0, PersonalID* arg1);
 // void func_800B7A94_jp();
 // void func_800B7AB0_jp();
 void mPr_ClearPrivateInfo(struct Private_c* private);

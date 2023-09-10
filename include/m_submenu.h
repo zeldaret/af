@@ -2,7 +2,7 @@
 #define M_SUBMENU_H
 
 #include "ultra64.h"
-#include "6BFE60.h"
+#include "m_mail.h"
 #include "z64math.h"
 #include "libc/stdint.h"
 #include "other_types.h"
@@ -84,7 +84,7 @@ typedef struct Submenu {
     /* 0x2C */ struct struct_8085E9B0* unk_2C;
     /* 0x30 */ SubmenuMoveFunc move;
     /* 0x34 */ SubmenuDrawFunc draw;
-    /* 0x38 */ mMl mail;
+    /* 0x38 */ Mail mail;
     /* 0xDC */ u8 unk_DC;
     /* 0xDD */ u8 unk_DD;
     /* 0xDE */ u8 unk_DE;
