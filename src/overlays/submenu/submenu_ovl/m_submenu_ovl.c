@@ -1,4 +1,5 @@
 #include "m_submenu_ovl.h"
+#include "m_mail.h"
 #include "m_submenu.h"
 #include "m_lib.h"
 #include "game.h"
@@ -6,7 +7,6 @@
 #include "PreRender.h"
 #include "sys_matrix.h"
 #include "z_std_dma.h"
-#include "6BFE60.h"
 #include "6E0F50.h"
 #include "macros.h"
 #include "segment_symbols.h"
