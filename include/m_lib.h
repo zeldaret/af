@@ -7,7 +7,7 @@
 
 struct Game_Play;
 
-void mem_copy(u8* dst, u8* src, u32 size);
+void mem_copy(void* dst, void* src, u32 size);
 s32 mem_clear(void* ptr, size_t size, u8 value);
 // void mem_cmp();
 f32 cos_s(s16 angle);

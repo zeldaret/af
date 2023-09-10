@@ -2,22 +2,23 @@
 #define M_COMMON_DATA_H
 
 #include "ultra64.h"
-#include "unk.h"
-#include "m_npc.h"
-#include "m_npc_walk.h"
-#include "m_quest.h"
-#include "m_private.h"
-#include "m_land.h"
 #include "lb_rtc.h"
-#include "m_home.h"
 #include "m_event.h"
 #include "m_field_make.h"
+#include "m_home.h"
+#include "m_land.h"
+#include "m_mail.h"
+#include "m_npc.h"
+#include "m_npc_walk.h"
+#include "m_private.h"
+#include "m_quest.h"
+#include "unk.h"
 #include "m_snowman.h"
 
 struct Actor;
 struct ActorOverlay;
 struct struct_801161E8_jp;
-struct Game_Play_unk_0110;
+struct Game_Play_unk_0110_unk_0000;
 struct CommonData_unk_1004C_unk_14_arg0;
 struct Game_Play;
 struct struct_809AEFA4;
@@ -40,9 +41,9 @@ typedef UNK_RET (*CommonData_unk_1004C_unk_D0)(void);
 
 typedef UNK_RET (*CommonData_unk_1004C_unk_E4)(void);
 
-typedef UNK_RET (*CommonData_unk_1004C_unk_EC)(struct Game_Play_unk_0110*, s16, s16);
-typedef UNK_RET (*CommonData_unk_1004C_unk_F0)(struct Game_Play_unk_0110*, struct Actor*);
-typedef s32 (*CommonData_unk_1004C_unk_F4)(struct Game_Play_unk_0110*, struct Actor*);
+typedef UNK_RET (*CommonData_unk_1004C_unk_EC)(struct Game_Play_unk_0110_unk_0000*, s16, s16);
+typedef UNK_RET (*CommonData_unk_1004C_unk_F0)(struct Game_Play_unk_0110_unk_0000*, struct Actor*);
+typedef s32 (*CommonData_unk_1004C_unk_F4)(struct Game_Play_unk_0110_unk_0000*, struct Actor*);
 
 typedef UNK_RET (*CommonData_unk_1004C_unk_118)(struct Actor*);
 
@@ -165,7 +166,9 @@ typedef struct CommonData {
     /* 0x0EDA4 */ mEv_event_save_c event_save_data;
     /* 0x0EE40 */ u8 unk0EE40[0x118];
     /* 0x0EF58 */ u16 fruit;
-    /* 0x0EF5A */ UNK_TYPE1 unk0EF5A[0x4C2];
+    /* 0x0EF5A */ UNK_TYPE1 unk_0EF5A[0x12];
+    /* 0x0EF6C */ Mail unk_0EF6C[5];
+    /* 0x0F2A0 */ UNK_TYPE1 unk_0F2A0[0x17C];
     /* 0x0F41C */ SnowmanData snowmanData[SNOWMAN_SAVE_COUNT];
     /* 0x0F428 */ UNK_TYPE1 unk_F428[0x10];
     /* 0x0F438 */ u8 station_type; /* train station type */

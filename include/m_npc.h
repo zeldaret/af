@@ -5,6 +5,8 @@
 #include "m_actor.h"
 #include "unk.h"
 
+struct mMl_get_npcinfo_from_mail_name_arg0;
+
 #define ANIMAL_NUM_MAX 15 /* Maximum number of villagers possible in town */
 
 typedef struct mNpc_NpcList_c {
@@ -108,7 +110,7 @@ void func_800A91DC_jp(void);
 // void func_800AA0B8_jp();
 void func_800AA124_jp(void);
 // void func_800AA14C_jp();
-// void mNpc_GetLooks();
+s32 mNpc_GetLooks(u16 arg0);
 // void func_800AA218_jp();
 // void func_800AA29C_jp();
 // void func_800AA2F8_jp();
@@ -160,7 +162,7 @@ void mNpc_SetReturnAnimal(s32 arg0);
 // void func_800ACB54_jp();
 // void func_800ACC38_jp();
 // void func_800ACCAC_jp();
-// void mNpc_GetNpcWorldNameAnm();
+void mNpc_GetNpcWorldNameAnm(PlayerName* arg0, struct mMl_get_npcinfo_from_mail_name_arg0* arg1);
 // void func_800ACD74_jp();
 // void func_800ACDF8_jp();
 // void func_800ACE90_jp();

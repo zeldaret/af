@@ -121,7 +121,7 @@ void mSN_regist_snowman_society(SnowmanInfo* snowmanInfo) {
     u16 name;
 
     if (snowmanIndex != -1) {
-        mem_copy((u8*)&common_data.snowmanData[snowmanIndex], (u8*)snowmanInfo, sizeof(SnowmanData));
+        mem_copy(&common_data.snowmanData[snowmanIndex], snowmanInfo, sizeof(SnowmanData));
 
         if (sp2E) {
             mPB_keep_item(sp2E);
