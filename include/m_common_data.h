@@ -120,7 +120,7 @@ typedef enum Season {
 } Season;
 
 typedef struct Time_c {
-    /* 0x00 */ Season season;
+    /* 0x00 */ u32 season;
     /* 0x04 */ u32 term_idx;
     /* 0x08 */ s16 bgitem_profile;
     /* 0x0A */ s16 bgitem_bank;
