@@ -3,7 +3,6 @@
 
 #include "ultra64.h"
 
-
 u32 qrand(void);
 void sqrand(u32 seed);
 f32 fqrand(void);
