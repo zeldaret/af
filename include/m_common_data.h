@@ -13,6 +13,7 @@
 #include "m_private.h"
 #include "m_quest.h"
 #include "unk.h"
+#include "m_snowman.h"
 
 struct Actor;
 struct ActorOverlay;
@@ -177,7 +178,9 @@ typedef struct CommonData {
     /* 0x0EF58 */ u16 fruit;
     /* 0x0EF5A */ UNK_TYPE1 unk_0EF5A[0x12];
     /* 0x0EF6C */ Mail unk_0EF6C[5];
-    /* 0x0F2A0 */ UNK_TYPE1 unk_0F2A0[0x198];
+    /* 0x0F2A0 */ UNK_TYPE1 unk_0F2A0[0x17C];
+    /* 0x0F41C */ SnowmanData snowmanData[SNOWMAN_SAVE_COUNT];
+    /* 0x0F428 */ UNK_TYPE1 unk_F428[0x10];
     /* 0x0F438 */ u8 station_type; /* train station type */
     /* 0x0F439 */ u8 unk0F439[0x3];
     /* 0x0F43C */ u16 deposit[FG_BLOCK_X_NUM * FG_BLOCK_Z_NUM][UT_Z_NUM]; /* flags for which items are buried around town */
@@ -188,7 +191,12 @@ typedef struct CommonData {
     /* 0x0F86A */ u8 unk0F86A[0x32];
     /* 0x0F89C */ lbRTC_time_c unk_0F89C;
     /* 0x0F8A4 */ lbRTC_time_c unk_0F8A4;
-    /* 0x0F8AC */ u8 unk0F8AC[0x754];
+    /* 0x0F8AC */ UNK_TYPE1 unk0F8AC;
+    /* 0x0F8AD */ u8 snowmanYear; // Year last snowman was built.
+    /* 0x0F8AE */ u8 snowmanMonth; // Month last snowman was built.
+    /* 0x0F8AF */ u8 snowmanDay; // Day last snowman was built.
+    /* 0x0F8B0 */ u8 snowmanHour; // Hour last snowman was built.
+    /* 0x0F8B1 */ UNK_TYPE1 unk0F8B1[0x74F];
     /* 0x10000 */ u8 unk_10000; // named "game_started" in AC GCN decomp
     /* 0x10001 */ u8 unk_10001;
     /* 0x10002 */ u8 unk10002[0x1];
@@ -226,7 +234,9 @@ typedef struct CommonData {
     /* 0x105A0 */ u32 scene_from_title_demo;
     /* 0x105A4 */ UNK_TYPE1 unk_105A4[0xF0];
     /* 0x10694 */ mNpc_walk_c npc_walk;
-    /* 0x10710 */ UNK_TYPE1 unk_10710[0xA6];
+    /* 0x10710 */ UNK_TYPE1 unk_10710[0x3C];
+    /* 0x1074C */ UNK_TYPE unk_1074C;
+    /* 0x10750 */ UNK_TYPE1 unk_10750[0x66];
     /* 0x107B6 */ s16 unk_107B6; // named "demo_profile" in AC GCN decomp (though it's an array of two s16s in that game)
     /* 0x107B8 */ u8 unk107B8[0x28];
     /* 0x107E0 */ s8 player_decoy_flag;
