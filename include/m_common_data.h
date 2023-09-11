@@ -84,11 +84,12 @@ typedef struct CommonData_unk_10078 {
 
 typedef UNK_RET (*CommonData_unk_10098_unk_4)(struct ActorOverlay*, size_t);
 typedef UNK_RET (*CommonData_unk_10098_unk_8)(void);
-
 // TODO: figure out if this is a generic memory allocation or if it is Actor specific
 typedef UNK_PTR (*CommonData_unk_10098_unk_0C)(void);
-
 typedef UNK_RET (*CommonData_unk_10098_unk_10)(struct Actor*);
+typedef UNK_RET (*CommonData_unk_10098_unk_A8)(UNK_PTR, UNK_TYPE, u16 name, Actor* actor);
+typedef UNK_RET (*CommonData_unk_10098_unk_AC)(u16);
+typedef UNK_RET (*CommonData_unk_10098_unk_450)(u16);
 
 typedef struct CommonData_unk_10098 {
     /* 0x00 */ UNK_TYPE1 unk_00[0x4];
@@ -96,7 +97,16 @@ typedef struct CommonData_unk_10098 {
     /* 0x08 */ CommonData_unk_10098_unk_8 unk_08;
     /* 0x0C */ CommonData_unk_10098_unk_0C unk_0C;
     /* 0x10 */ CommonData_unk_10098_unk_10 unk_10;
-} CommonData_unk_10098; // size >= 0x10
+    /* 0x014 */ UNK_TYPE1 unk_14[0x94];
+    /* 0x0A8 */ CommonData_unk_10098_unk_A8 unk_A8; // unload object
+    /* 0x0AC */ CommonData_unk_10098_unk_AC unk_AC; // load object
+    /* 0x0B0 */ UNK_TYPE unk_B0;
+    /* 0x0B4 */ UNK_TYPE1 pad[0x450-0xb4];
+    /* 0x450 */ CommonData_unk_10098_unk_450 unk_450; // load palette
+    /* 0x454 */ UNK_TYPE unk_454;
+    /* 0x458 */ UNK_TYPE1 pad2[0x86C-0x458];
+    /* 0x86C */ UNK_TYPE unk_86C;
+} CommonData_unk_10098; // size >= 0x870
 
 typedef struct mPr_mother_mail_info_c {
     /* 0x00 */ UNK_TYPE1 unk_00[0xE];

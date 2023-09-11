@@ -41,6 +41,14 @@ typedef struct Game_Play_unk_0110 {
     /* 0x1818 */ void* unk_1818;
 } Game_Play_unk_0110; // size >= 0x181C
 
+typedef struct ShadowData {
+    /* 0x00 */ u32 numberOfVertices;
+    /* 0x04 */ u8* vertexFixFlagTable;
+    /* 0x08 */ f32 size;
+    /* 0x0C */ Vtx* vertices;
+    /* 0x10 */ Gfx* model;
+} ShadowData; // size = 0x14
+
 typedef struct struct_809AEFA4 {
     /* 0x00 */ UNK_PTR unk_00;
     /* 0x04 */ UNK_PTR unk_04;

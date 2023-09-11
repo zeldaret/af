@@ -16991,7 +16991,7 @@
     bss_size: 0x0
     subsegments:
       - [0x96B470, c, overlays/actors/ovl_Toudai/ac_toudai]
-      - [0x96C1D0, data, overlays/actors/ovl_Toudai/ac_toudai]
+      - [0x96C1D0, .data, overlays/actors/ovl_Toudai/ac_toudai]
       - [0x96C280, .rodata, overlays/actors/ovl_Toudai/ac_toudai]
   - name: ovl_Toudai_reloc
     type: code

@@ -4,7 +4,7 @@
 #include "macros.h"
 #include "sys_matrix.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
-#include "6E0F50.h"
+#include "m_rcp.h"
 
 extern Gfx D_400AA00[]; // point_light_init_model
 extern Gfx D_400AA40[]; // point_light_model

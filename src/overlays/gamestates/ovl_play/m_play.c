@@ -23,7 +23,7 @@
 #include "libc64/qrand.h"
 #include "m_controller.h"
 #include "m_debug_display.h"
-#include "6E0F50.h"
+#include "m_rcp.h"
 #include "6D2720.h"
 #include "m_lights.h"
 #include "m_private.h"
