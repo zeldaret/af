@@ -85,27 +85,27 @@ enum {
     /* 5 */ NPCW_INFO_STATUS_NUM
 };
 
-mNpcW_GoalData_c* mNpcW_GetGoalDataInfo(s32 /*looks*/, s32 /*time*/);
-void mNpcW_ClearNpcWalkAppear(mNpcW_Appear_c* /*info*/);
-void mNpcW_ClearNpcWalkInfo(mNpcW_info_c* /*info*/, s32 /*count*/);
-void mNpcW_ClearNpcWalk(mNpcW_walk_c* /*walk*/);
-s32 mNpcW_CheckFreeNpcWalkInfo(mNpcW_info_c* /*info*/);
-s32 mNpcW_GetFreeNpcWalkInfoIdx(mNpcW_info_c* /*info*/, s32 /*num*/);
-s32 mNpcW_GetNpcWalkInfoIdx(mNpcW_info_c* /*info*/, s32 /*num*/, AnmPersonalID_c* /*anmId*/);
-s32 mNpcW_GetNpcWalkInfoIdxbyIdx(mNpcW_info_c* /*info*/, s32 /*num*/, s32 /*idx*/);
-s32 mNpcW_DecideNpc(Animal_c* /*animal*/, u16 /*used*/);
-void mNpcW_SetNpcWalkInfo(mNpcW_info_c* /*info*/, Animal_c* /*animal*/, s32 /*idx*/);
-s32 mNpcW_ChangeNpcWalk(mNpcW_walk_c* /*walk*/, mNpcW_info_c* /*info*/);
-s32 mNpcW_GetAloneBlock(u8* /*goalBlockX*/, u8* /*goalBlockZ*/);
-void mNpcW_GetBlockXZNumExceptHome(s32* /*goalBlockX*/, s32* /*goalBlockZ*/, Animal_c* /*animal*/);
-s32 mNpcW_CheckDiffBlockWalkNpcHome(s32 /*blockX*/, s32 /*blockZ*/, mNpcW_info_c* /*info*/);
-void mNpcW_SetHomeBlockSource(mNpcW_walk_c* /*walk*/, Animal_c* /*animal*/);
-void mNpcW_InitGoalBlockSource(mNpcW_walk_c* /*walk*/, Animal_c* /*animal*/);
-void mNpcW_SetGoalBlock(mNpcW_info_c* /*info*/);
-void mNpcW_InitNpcWalk(mNpcW_walk_c* /*walk*/);
-s32 mNpcW_GetAppearStatusWay(u8* /*status*/, u8* /*way*/, Animal_c* /*animal*/);
-s32* mNpcW_GetArriveStayCountP(s32 /*idx*/);
-s32 mNpcW_GetWalkInfoStatusGoalAnimalIdx(s32* /*status*/, s32* /*goal*/, s32 /*idx*/);
-s32 mNpcW_GetNearGate(s32* /*targetUtX*/, s32* /*targetUtZ*/, s32 /*blockX*/, s32 /*blockZ*/, s32 /*utX*/, s32 /*utZ*/);
+mNpcW_GoalData_c* mNpcW_GetGoalDataInfo(s32 looks, s32 time);
+void mNpcW_ClearNpcWalkAppear(mNpcW_Appear_c* info);
+void mNpcW_ClearNpcWalkInfo(mNpcW_info_c*  info , s32 count);
+void mNpcW_ClearNpcWalk(mNpcW_walk_c* walk);
+s32 mNpcW_CheckFreeNpcWalkInfo(mNpcW_info_c*  info );
+s32 mNpcW_GetFreeNpcWalkInfoIdx(mNpcW_info_c*  info , s32  num );
+s32 mNpcW_GetNpcWalkInfoIdx(mNpcW_info_c*  info , s32  num , AnmPersonalID_c*  anmId );
+s32 mNpcW_GetNpcWalkInfoIdxbyIdx(mNpcW_info_c*  info , s32  num , s32  idx );
+s32 mNpcW_DecideNpc(Animal_c*  animal , u16  used );
+void mNpcW_SetNpcWalkInfo(mNpcW_info_c*  info , Animal_c*  animal , s32  idx );
+s32 mNpcW_ChangeNpcWalk(mNpcW_walk_c*  walk , mNpcW_info_c*  info );
+s32 mNpcW_GetAloneBlock(u8*  goalBlockX , u8*  goalBlockZ );
+void mNpcW_GetBlockXZNumExceptHome(s32*  goalBlockX , s32*  goalBlockZ , Animal_c*  animal );
+s32 mNpcW_CheckDiffBlockWalkNpcHome(s32  blockX , s32  blockZ , mNpcW_info_c*  info );
+void mNpcW_SetHomeBlockSource(mNpcW_walk_c*  walk , Animal_c*  animal );
+void mNpcW_InitGoalBlockSource(mNpcW_walk_c*  walk , Animal_c*  animal );
+void mNpcW_SetGoalBlock(mNpcW_info_c*  info );
+void mNpcW_InitNpcWalk(mNpcW_walk_c*  walk );
+s32 mNpcW_GetAppearStatusWay(u8*  status , u8*  way , Animal_c*  animal );
+s32* mNpcW_GetArriveStayCountP(s32  idx );
+s32 mNpcW_GetWalkInfoStatusGoalAnimalIdx(s32*  status , s32*  goal , s32  idx );
+s32 mNpcW_GetNearGate(s32*  targetUtX , s32*  targetUtZ , s32  blockX , s32  blockZ , s32  utX , s32  utZ );
 
 #endif
