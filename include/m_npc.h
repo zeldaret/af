@@ -38,10 +38,7 @@ typedef struct Animal_c {
     /* 0x4E5 */ char unk4E5[0x43]; 
 } Animal_c;
 
-
-
-
-enum {
+typedef enum NpcLooks{
     /* 0 */ NPC_LOOKS_GIRL,
     /* 1 */ NPC_LOOKS_KO_GIRL,
     /* 2 */ NPC_LOOKS_BOY,
@@ -50,7 +47,7 @@ enum {
     /* 5 */ NPC_LOOKS_NANIWA_LADY,
 
     /* 6 */ NPC_LOOKS_NUM
-};
+}NpcLooks;
 
 // void func_800A6920_jp();
 // void func_800A6940_jp();

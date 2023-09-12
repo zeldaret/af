@@ -9,14 +9,14 @@
 #define RANDOM_FIELD_BLOCK_TYPE_MAX 108 
 #define RANDOM_FIELD_DIRECT_ERROR 100
 
-typedef enum RANDOM_FIELD_DIRECT {
+typedef enum RandomFieldDirection {
   /* 0 */ RANDOM_FIELD_DIRECT_NORTH,
   /* 1 */ RANDOM_FIELD_DIRECT_WEST,
   /* 2 */ RANDOM_FIELD_DIRECT_SOUTH,
   /* 3 */ RANDOM_FIELD_DIRECT_EAST,
 
   /* 4 */ RANDOM_FIELD_DIRECT_NUM
-} RANDOM_FIELD_DIRECT;
+}RandomFieldDirection;
 
 typedef struct RandomFieldGate {
   /* 0x00 */ s32 ut0;

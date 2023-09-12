@@ -44,38 +44,39 @@ typedef struct mNpcW_walk_c {
     /* 0x7B */ u8 infoMax;
 } mNpcW_walk_c; //size = 0x7C
 
-enum {
+typedef enum WalkGoal{
     /* 0 */ NPCW_GOAL_SHRINE,    /* Shrine/Wishing Well acre */
     /* 1 */ NPCW_GOAL_HOME,      /* Randomly selected acre with a villager house */
     /* 2 */ NPCW_GOAL_ALONE,     /* Randomly selected acre with no other animals in it */
     /* 3 */ NPCW_GOAL_MY_HOME,   /* Acre containing the villager's house */
 
     /* 4 */ NPCW_GOAL_NUM
-};
+}WalkGoal;
 
-enum {
+typedef enum WalkGoalBlock{
     /* 0 */ NPCW_GOAL_BLOCK_SHRINE,
     /* 1 */ NPCW_GOAL_BLOCK_HOME,
 
     /* 2 */ NPCW_GOAL_BLOCK_NUM
-};
+}WalkGoalBlock;
 
-enum {
+typedef enum WalkAppearStatus {
     /* 0 */ NPCW_APPEAR_STATUS_0,
     /* 1 */ NPCW_APPEAR_STATUS_1,
 
     /* 2 */ NPCW_APPEAR_STATUS_NUM
-};
+}WalkAppearStatus;
 
-enum {
+typedef enum WalkAppearDirection {
     /* 0 */ NPCW_APPEAR_WAY_UP,
     /* 1 */ NPCW_APPEAR_WAY_DOWN,
     /* 2 */ NPCW_APPEAR_WAY_LEFT,
     /* 3 */ NPCW_APPEAR_WAY_RIGHT,
 
     /* 4 */ NPCW_APPEAR_WAY_NUM
-};
-enum {
+}WalkAppearDirection;
+
+typedef enum WalkInfoStatus {
     /* 0 */ NPCW_INFO_STATUS_0,
     /* 1 */ NPCW_INFO_STATUS_WALKING,
     /* 2 */ NPCW_INFO_STATUS_2,
@@ -83,7 +84,7 @@ enum {
     /* 4 */ NPCW_INFO_STATUS_4,    
 
     /* 5 */ NPCW_INFO_STATUS_NUM
-};
+}WalkInfoStatus;
 
 mNpcW_GoalData_c* mNpcW_GetGoalDataInfo(s32 looks, s32 time);
 void mNpcW_ClearNpcWalkAppear(mNpcW_Appear_c* info);
