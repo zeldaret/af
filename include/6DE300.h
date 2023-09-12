@@ -69,20 +69,6 @@ UNK_RET mQst_CheckLimitbyPossessionIdx(s32 arg0);
 // void func_800BC724_jp();
 // void func_800BC830_jp();
 // void mQst_PrintQuestInfo();
-// void func_800BCBA0_jp();
-// void func_800BCBDC_jp();
-// void func_800BCC20_jp();
-// void func_800BCC30_jp();
-// void func_800BCC40_jp();
-// void func_800BCCFC_jp();
-// void func_800BCDCC_jp();
-// void func_800BCDFC_jp();
-// void func_800BCE80_jp();
-// void func_800BCEA4_jp();
-// void func_800BCF64_jp();
-// void func_800BCFA4_jp();
-// void func_800BCFC8_jp();
-// void func_800BD02C_jp();
-// void func_800BD1E4_jp();
+
 
 #endif

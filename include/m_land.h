@@ -4,7 +4,7 @@
 #include "ultra64.h"
 
 // Town name character count
-#define LAND_NAME_SIZE 8
+#define LAND_NAME_SIZE 6
 #define LAND_NAME_MURA_SIZE (LAND_NAME_SIZE + 2)
 
 typedef struct mLd_land_info_c {

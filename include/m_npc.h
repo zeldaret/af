@@ -4,27 +4,61 @@
 #include "ultra64.h"
 #include "m_actor.h"
 #include "unk.h"
-
-struct mMl_get_npcinfo_from_mail_name_arg0;
+#include "m_land.h"
+#include "6DB420.h"
 
 #define ANIMAL_NUM_MAX 15 /* Maximum number of villagers possible in town */
 
 typedef struct mNpc_NpcList_c {
-    /* 0x00 */ char unk00[0x38];
+    /* 0x00 */ char unk00[0x10];
+    /* 0x10 */ Vec3f position;
+    /* 0x14 */ char unk14[0x1C];
 } mNpc_NpcList_c; // size = 0x38
 
-typedef struct Animal_c {
-  /* 0x000 */ char unk000[0x528];
-} Animal_c; // size = 0x528
+typedef struct AnmHome_c {
+    /* 0x00 */ u8 typeUnused; /* Likely the house type, but seems to be unused outside of SChk_Anmhome_c_sub */
+    /* 0x01 */ u8 blockX; /* acre x position */
+    /* 0x02 */ u8 blockZ; /* acre y position */
+    /* 0x03 */ u8 utX; /* unit x position */
+    /* 0x04 */ u8 utZ; /* unit z position */
+} AnmHome_c; // size = 0x5
 
-// void func_800A6810_jp();
+typedef struct AnmPersonalId_c {
+    /* 0x00 */ u16 npcId; /* id */
+    /* 0x02 */ u16 landId; /* town id */
+    /* 0x04 */ u8 landName[LAND_NAME_SIZE]; /* town name */
+    /* 0x0A */ u8 nameId; /* lower byte of the id */
+    /* 0x0B */ u8 looks; /* internal name for personality */
+} AnmPersonalID_c; // size = 0xC
+
+typedef struct Animal_c {
+    /* 0x000 */ AnmPersonalID_c id; 
+    /* 0x00C */ char unk00C[0x4D4];
+    /* 0x4E0 */ AnmHome_c homeInfo;
+    /* 0x4E5 */ char unk4E5[0x43]; 
+} Animal_c;
+
+
+
+
+enum {
+    /* 0 */ NPC_LOOKS_GIRL,
+    /* 1 */ NPC_LOOKS_KO_GIRL,
+    /* 2 */ NPC_LOOKS_BOY,
+    /* 3 */ NPC_LOOKS_SPORT_MAN,
+    /* 4 */ NPC_LOOKS_GRIM_MAN,
+    /* 5 */ NPC_LOOKS_NANIWA_LADY,
+
+    /* 6 */ NPC_LOOKS_NUM
+};
+
 // void func_800A6920_jp();
 // void func_800A6940_jp();
 // void func_800A695C_jp();
-// void func_800A6978_jp();
-// void func_800A69C8_jp();
-// void mNpc_CopyAnimalPersonalID();
-// void func_800A6A6C_jp();
+void mNpc_ClearAnimalPersonalID(AnmPersonalID_c*);
+s32 mNpc_CheckFreeAnimalPersonalID(AnmPersonalID_c*);
+void mNpc_CopyAnimalPersonalID(AnmPersonalID_c*, AnmPersonalID_c*);
+s32 mNpc_CheckCmpAnimalPersonalID(AnmPersonalID_c*, AnmPersonalID_c*);
 // void func_800A6AF0_jp();
 // void func_800A6B58_jp();
 // void func_800A6B6C_jp();

@@ -24,6 +24,7 @@
 #include "m_controller.h"
 #include "m_debug_display.h"
 #include "m_rcp.h"
+#include "m_npc_walk.h"
 #include "6D2720.h"
 #include "m_lights.h"
 #include "m_private.h"
@@ -101,11 +102,11 @@ static u16 S_se_endcheck_timeout;
 
 void Game_play_Reset_destiny(void) {
     Private_Sub_A86* temp = &common_data.now_private->unk_A86;
-    u8* day = &common_data.time.rtc_time.day;
-    u8* month = &common_data.time.rtc_time.month;
+    u8* day = &common_data.time.rtcTime.day;
+    u8* month = &common_data.time.rtcTime.month;
 
     if ((temp->unk_08 != 0) &&
-        ((common_data.time.rtc_time.year != temp->unk_06) || (*month != temp->unk_05) || (*day != temp->unk_03))) {
+        ((common_data.time.rtcTime.year != temp->unk_06) || (*month != temp->unk_05) || (*day != temp->unk_03))) {
         temp->unk_08 = 0;
     }
 }

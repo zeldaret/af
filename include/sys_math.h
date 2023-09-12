@@ -2,6 +2,7 @@
 #define SYS_MATH_H
 
 #include "ultra64.h"
+#include "libc64/qrand.h"
 
 /* Macro to generate a random float in the range of [0, n) */
 #define RANDOM_F(n) (fqrand() * (f32)(n))
