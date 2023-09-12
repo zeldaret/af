@@ -17,12 +17,13 @@ s32 l_arrive_stay_count[ANIMAL_NUM_MAX];
 u8 l_girl_time_12[] = { NPCW_GOAL_SHRINE, NPCW_GOAL_HOME, NPCW_GOAL_ALONE };
 u8 l_girl_time_18_30[] = { NPCW_GOAL_SHRINE, NPCW_GOAL_HOME };
 
-mNpcW_GoalData_c l_girl_goal_data[] = { { NULL, 0, mNpcW_TIME_2_SEC(6, 0, 0) },
-                                        { l_girl_time_12, ARRAY_COUNT(l_girl_time_12), mNpcW_TIME_2_SEC(12, 0, 0) },
-                                        { NULL, 0, mNpcW_TIME_2_SEC(13, 0, 0) },
-                                        { l_girl_time_18_30, ARRAY_COUNT(l_girl_time_18_30),
-                                          mNpcW_TIME_2_SEC(18, 30, 0) },
-                                        { NULL, 0, mNpcW_TIME_2_SEC(24, 0, 0) } };
+mNpcW_GoalData_c l_girl_goal_data[] = {
+    { NULL, 0, mNpcW_TIME_2_SEC(6, 0, 0) },
+    { l_girl_time_12, ARRAY_COUNT(l_girl_time_12), mNpcW_TIME_2_SEC(12, 0, 0) },
+    { NULL, 0, mNpcW_TIME_2_SEC(13, 0, 0) },
+    { l_girl_time_18_30, ARRAY_COUNT(l_girl_time_18_30), mNpcW_TIME_2_SEC(18, 30, 0) },
+    { NULL, 0, mNpcW_TIME_2_SEC(24, 0, 0) },
+};
 
 mNpcW_GoalDataTable_c l_girl_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_girl_goal_data);
 
@@ -36,11 +37,13 @@ mNpcW_GoalDataTable_c l_kogirl_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_kogirl_g
 u8 l_boy_time_12[] = { NPCW_GOAL_ALONE };
 u8 l_boy_time_19_30[] = { NPCW_GOAL_SHRINE, NPCW_GOAL_HOME };
 
-mNpcW_GoalData_c l_boy_goal_data[] = { { NULL, 0, mNpcW_TIME_2_SEC(9, 0, 0) },
-                                       { l_boy_time_12, ARRAY_COUNT(l_boy_time_12), mNpcW_TIME_2_SEC(12, 0, 0) },
-                                       { NULL, 0, mNpcW_TIME_2_SEC(14, 0, 0) },
-                                       { l_boy_time_19_30, ARRAY_COUNT(l_boy_time_19_30), mNpcW_TIME_2_SEC(19, 30, 0) },
-                                       { NULL, 0, mNpcW_TIME_2_SEC(24, 0, 0) } };
+mNpcW_GoalData_c l_boy_goal_data[] = {
+    { NULL, 0, mNpcW_TIME_2_SEC(9, 0, 0) },
+    { l_boy_time_12, ARRAY_COUNT(l_boy_time_12), mNpcW_TIME_2_SEC(12, 0, 0) },
+    { NULL, 0, mNpcW_TIME_2_SEC(14, 0, 0) },
+    { l_boy_time_19_30, ARRAY_COUNT(l_boy_time_19_30), mNpcW_TIME_2_SEC(19, 30, 0) },
+    { NULL, 0, mNpcW_TIME_2_SEC(24, 0, 0) },
+};
 
 mNpcW_GoalDataTable_c l_boy_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_boy_goal_data);
 
@@ -60,8 +63,9 @@ mNpcW_GoalDataTable_c l_sports_man_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_spor
 u8 l_grim_man_time_ed[] = { NPCW_GOAL_SHRINE, NPCW_GOAL_SHRINE, NPCW_GOAL_SHRINE, NPCW_GOAL_ALONE, NPCW_GOAL_ALONE,
                             NPCW_GOAL_ALONE,  NPCW_GOAL_ALONE,  NPCW_GOAL_ALONE,  NPCW_GOAL_ALONE, NPCW_GOAL_ALONE };
 
-mNpcW_GoalData_c l_grim_man_goal_data[] = { { l_grim_man_time_ed, ARRAY_COUNT(l_grim_man_time_ed),
-                                              mNpcW_TIME_2_SEC(24, 0, 0) } };
+mNpcW_GoalData_c l_grim_man_goal_data[] = {
+    { l_grim_man_time_ed, ARRAY_COUNT(l_grim_man_time_ed), mNpcW_TIME_2_SEC(24, 0, 0) },
+};
 
 mNpcW_GoalDataTable_c l_grim_man_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_grim_man_goal_data);
 
@@ -78,7 +82,7 @@ mNpcW_GoalData_c l_naniwa_lady_goal_data[] = {
     { NULL, 0, mNpcW_TIME_2_SEC(14, 0, 0) },
     { l_naniwa_lady_time_21, ARRAY_COUNT(l_naniwa_lady_time_21), mNpcW_TIME_2_SEC(21, 0, 0) },
     { NULL, 0, mNpcW_TIME_2_SEC(22, 0, 0) },
-    { l_naniwa_lady_time_1_30, ARRAY_COUNT(l_naniwa_lady_time_1_30), mNpcW_TIME_2_SEC(24, 0, 0) }
+    { l_naniwa_lady_time_1_30, ARRAY_COUNT(l_naniwa_lady_time_1_30), mNpcW_TIME_2_SEC(24, 0, 0) },
 };
 
 mNpcW_GoalDataTable_c l_naniwa_lady_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_naniwa_lady_goal_data);

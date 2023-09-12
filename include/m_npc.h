@@ -6,6 +6,7 @@
 #include "unk.h"
 #include "m_land.h"
 #include "6DB420.h"
+#include "m_mail.h"
 
 #define ANIMAL_NUM_MAX 15 /* Maximum number of villagers possible in town */
 
