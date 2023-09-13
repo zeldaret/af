@@ -10,11 +10,11 @@
 
 #define ANIMAL_NUM_MAX 15 /* Maximum number of villagers possible in town */
 
-typedef struct mNpc_NpcList_c {
+typedef struct NpcList {
     /* 0x00 */ char unk00[0x10];
     /* 0x10 */ Vec3f position;
     /* 0x14 */ char unk14[0x1C];
-} mNpc_NpcList_c; // size = 0x38
+} NpcList; // size = 0x38
 
 typedef struct AnmHome_c {
     /* 0x00 */ u8 typeUnused; /* Likely the house type, but seems to be unused outside of SChk_Anmhome_c_sub */
@@ -162,7 +162,7 @@ s32 mNpc_GetLooks(u16 arg0);
 // void func_800AAEFC_jp();
 void func_800AB054_jp(void);
 void func_800AB09C_jp(void);
-void mNpc_SetNpcList(mNpc_NpcList_c* npclist, Animal_c* animals, s32 count, s32 malloc_flag);
+void mNpc_SetNpcList(NpcList* npclist, Animal_c* animals, s32 count, s32 malloc_flag);
 void mNpc_SetNpcinfo(struct Actor* actor, s8 arg1);
 // void func_800AB498_jp();
 // void func_800AB62C_jp();

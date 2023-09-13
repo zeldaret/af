@@ -17,7 +17,7 @@ s32 l_arrive_stay_count[ANIMAL_NUM_MAX];
 u8 l_girl_time_12[] = { NPCW_GOAL_SHRINE, NPCW_GOAL_HOME, NPCW_GOAL_ALONE };
 u8 l_girl_time_18_30[] = { NPCW_GOAL_SHRINE, NPCW_GOAL_HOME };
 
-mNpcW_GoalData_c l_girl_goal_data[] = {
+NpcWalkGoalData l_girl_goal_data[] = {
     { NULL, 0, mNpcW_TIME_2_SEC(6, 0, 0) },
     { l_girl_time_12, ARRAY_COUNT(l_girl_time_12), mNpcW_TIME_2_SEC(12, 0, 0) },
     { NULL, 0, mNpcW_TIME_2_SEC(13, 0, 0) },
@@ -25,19 +25,19 @@ mNpcW_GoalData_c l_girl_goal_data[] = {
     { NULL, 0, mNpcW_TIME_2_SEC(24, 0, 0) },
 };
 
-mNpcW_GoalDataTable_c l_girl_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_girl_goal_data);
+NpcWalkGoalDataTable l_girl_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_girl_goal_data);
 
 u8 l_kogirl_time_ed[] = { NPCW_GOAL_SHRINE, NPCW_GOAL_HOME };
 
-mNpcW_GoalData_c l_kogirl_goal_data[] = { { l_kogirl_time_ed, ARRAY_COUNT(l_kogirl_time_ed),
-                                            mNpcW_TIME_2_SEC(24, 0, 0) } };
+NpcWalkGoalData l_kogirl_goal_data[] = { { l_kogirl_time_ed, ARRAY_COUNT(l_kogirl_time_ed),
+                                           mNpcW_TIME_2_SEC(24, 0, 0) } };
 
-mNpcW_GoalDataTable_c l_kogirl_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_kogirl_goal_data);
+NpcWalkGoalDataTable l_kogirl_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_kogirl_goal_data);
 
 u8 l_boy_time_12[] = { NPCW_GOAL_ALONE };
 u8 l_boy_time_19_30[] = { NPCW_GOAL_SHRINE, NPCW_GOAL_HOME };
 
-mNpcW_GoalData_c l_boy_goal_data[] = {
+NpcWalkGoalData l_boy_goal_data[] = {
     { NULL, 0, mNpcW_TIME_2_SEC(9, 0, 0) },
     { l_boy_time_12, ARRAY_COUNT(l_boy_time_12), mNpcW_TIME_2_SEC(12, 0, 0) },
     { NULL, 0, mNpcW_TIME_2_SEC(14, 0, 0) },
@@ -45,12 +45,12 @@ mNpcW_GoalData_c l_boy_goal_data[] = {
     { NULL, 0, mNpcW_TIME_2_SEC(24, 0, 0) },
 };
 
-mNpcW_GoalDataTable_c l_boy_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_boy_goal_data);
+NpcWalkGoalDataTable l_boy_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_boy_goal_data);
 
 u8 l_sports_man_time_12[] = { NPCW_GOAL_SHRINE, NPCW_GOAL_HOME, NPCW_GOAL_ALONE, NPCW_GOAL_ALONE };
 u8 l_sports_man_time_23[] = { NPCW_GOAL_SHRINE, NPCW_GOAL_SHRINE, NPCW_GOAL_HOME, NPCW_GOAL_HOME, NPCW_GOAL_ALONE };
 
-mNpcW_GoalData_c l_sports_man_goal_data[] = {
+NpcWalkGoalData l_sports_man_goal_data[] = {
     { NULL, 0, mNpcW_TIME_2_SEC(6, 30, 0) },
     { l_sports_man_time_12, ARRAY_COUNT(l_sports_man_time_12), mNpcW_TIME_2_SEC(12, 0, 0) },
     { NULL, 0, mNpcW_TIME_2_SEC(12, 30, 0) },
@@ -58,16 +58,16 @@ mNpcW_GoalData_c l_sports_man_goal_data[] = {
     { NULL, 0, mNpcW_TIME_2_SEC(24, 0, 0) }
 };
 
-mNpcW_GoalDataTable_c l_sports_man_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_sports_man_goal_data);
+NpcWalkGoalDataTable l_sports_man_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_sports_man_goal_data);
 
 u8 l_grim_man_time_ed[] = { NPCW_GOAL_SHRINE, NPCW_GOAL_SHRINE, NPCW_GOAL_SHRINE, NPCW_GOAL_ALONE, NPCW_GOAL_ALONE,
                             NPCW_GOAL_ALONE,  NPCW_GOAL_ALONE,  NPCW_GOAL_ALONE,  NPCW_GOAL_ALONE, NPCW_GOAL_ALONE };
 
-mNpcW_GoalData_c l_grim_man_goal_data[] = {
+NpcWalkGoalData l_grim_man_goal_data[] = {
     { l_grim_man_time_ed, ARRAY_COUNT(l_grim_man_time_ed), mNpcW_TIME_2_SEC(24, 0, 0) },
 };
 
-mNpcW_GoalDataTable_c l_grim_man_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_grim_man_goal_data);
+NpcWalkGoalDataTable l_grim_man_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_grim_man_goal_data);
 
 u8 l_naniwa_lady_time_1_30[] = { NPCW_GOAL_SHRINE, NPCW_GOAL_SHRINE, NPCW_GOAL_SHRINE, NPCW_GOAL_SHRINE,
                                  NPCW_GOAL_SHRINE, NPCW_GOAL_SHRINE, NPCW_GOAL_SHRINE, NPCW_GOAL_ALONE,
@@ -75,7 +75,7 @@ u8 l_naniwa_lady_time_1_30[] = { NPCW_GOAL_SHRINE, NPCW_GOAL_SHRINE, NPCW_GOAL_S
 u8 l_naniwa_lady_time_13[] = { NPCW_GOAL_HOME };
 u8 l_naniwa_lady_time_21[] = { NPCW_GOAL_SHRINE, NPCW_GOAL_SHRINE, NPCW_GOAL_HOME, NPCW_GOAL_HOME, NPCW_GOAL_ALONE };
 
-mNpcW_GoalData_c l_naniwa_lady_goal_data[] = {
+NpcWalkGoalData l_naniwa_lady_goal_data[] = {
     { l_naniwa_lady_time_1_30, ARRAY_COUNT(l_naniwa_lady_time_1_30), mNpcW_TIME_2_SEC(1, 30, 0) },
     { NULL, 0, mNpcW_TIME_2_SEC(10, 0, 0) },
     { l_naniwa_lady_time_13, ARRAY_COUNT(l_naniwa_lady_time_13), mNpcW_TIME_2_SEC(13, 0, 0) },
@@ -85,15 +85,15 @@ mNpcW_GoalData_c l_naniwa_lady_goal_data[] = {
     { l_naniwa_lady_time_1_30, ARRAY_COUNT(l_naniwa_lady_time_1_30), mNpcW_TIME_2_SEC(24, 0, 0) },
 };
 
-mNpcW_GoalDataTable_c l_naniwa_lady_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_naniwa_lady_goal_data);
+NpcWalkGoalDataTable l_naniwa_lady_goal_table = mNpcW_MAKE_SCHEDULE_TABLE(l_naniwa_lady_goal_data);
 
-mNpcW_GoalDataTable_c* l_looks_goal_table[NPC_LOOKS_NUM] = { &l_girl_goal_table,     &l_kogirl_goal_table,
-                                                             &l_boy_goal_table,      &l_sports_man_goal_table,
-                                                             &l_grim_man_goal_table, &l_naniwa_lady_goal_table };
+NpcWalkGoalDataTable* l_looks_goal_table[NPC_LOOKS_NUM] = { &l_girl_goal_table,     &l_kogirl_goal_table,
+                                                            &l_boy_goal_table,      &l_sports_man_goal_table,
+                                                            &l_grim_man_goal_table, &l_naniwa_lady_goal_table };
 
-mNpcW_GoalData_c* mNpcW_GetGoalDataInfo(s32 looks, s32 time) {
-    mNpcW_GoalDataTable_c* table = l_looks_goal_table[looks];
-    mNpcW_GoalData_c* data = table->data;
+NpcWalkGoalData* mNpcW_GetGoalDataInfo(s32 looks, s32 time) {
+    NpcWalkGoalDataTable* table = l_looks_goal_table[looks];
+    NpcWalkGoalData* data = table->data;
     s32 i;
 
     for (i = 0; i < table->count; i++) {
@@ -111,13 +111,13 @@ mNpcW_GoalData_c* mNpcW_GetGoalDataInfo(s32 looks, s32 time) {
     return data;
 }
 
-void mNpcW_ClearNpcWalkAppear(mNpcW_Appear_c* info) {
+void mNpcW_ClearNpcWalkAppear(NpcWalkAppear* info) {
     info->status = NPCW_APPEAR_STATUS_NUM;
     info->way = NPCW_APPEAR_WAY_NUM;
 }
-void mNpcW_ClearNpcWalkInfo(mNpcW_info_c* info, s32 count) {
+void mNpcW_ClearNpcWalkInfo(NpcWalkInfo* info, s32 count) {
     for (; count != 0 && info != NULL; count--) {
-        bzero(info, sizeof(mNpcW_info_c));
+        bzero(info, sizeof(NpcWalkInfo));
         mNpc_ClearAnimalPersonalID(&info->id);
         info->idx = -1;
         info->status = NPCW_INFO_STATUS_NUM;
@@ -128,12 +128,12 @@ void mNpcW_ClearNpcWalkInfo(mNpcW_info_c* info, s32 count) {
     }
 }
 
-void mNpcW_ClearNpcWalk(mNpcW_walk_c* walk) {
-    bzero(walk, sizeof(mNpcW_walk_c));
+void mNpcW_ClearNpcWalk(NpcWalking* walk) {
+    bzero(walk, sizeof(NpcWalking));
     mNpcW_ClearNpcWalkInfo(&walk->info[0], NPCW_MAX);
 }
 
-s32 mNpcW_CheckFreeNpcWalkInfo(mNpcW_info_c* info) {
+s32 mNpcW_CheckFreeNpcWalkInfo(NpcWalkInfo* info) {
     s32 res = FALSE;
 
     if (info != NULL) {
@@ -143,7 +143,7 @@ s32 mNpcW_CheckFreeNpcWalkInfo(mNpcW_info_c* info) {
     return res;
 }
 
-s32 mNpcW_GetFreeNpcWalkInfoIdx(mNpcW_info_c* info, s32 num) {
+s32 mNpcW_GetFreeNpcWalkInfoIdx(NpcWalkInfo* info, s32 num) {
     s32 idx = -1;
     s32 i;
 
@@ -159,7 +159,7 @@ s32 mNpcW_GetFreeNpcWalkInfoIdx(mNpcW_info_c* info, s32 num) {
     return idx;
 }
 
-s32 mNpcW_GetNpcWalkInfoIdx(mNpcW_info_c* info, s32 num, AnmPersonalID_c* anmId) {
+s32 mNpcW_GetNpcWalkInfoIdx(NpcWalkInfo* info, s32 num, AnmPersonalID_c* anmId) {
     s32 idx = -1;
     s32 i;
 
@@ -177,7 +177,7 @@ s32 mNpcW_GetNpcWalkInfoIdx(mNpcW_info_c* info, s32 num, AnmPersonalID_c* anmId)
     return idx;
 }
 
-s32 mNpcW_GetNpcWalkInfoIdxbyIdx(mNpcW_info_c* info, s32 num, s32 idx) {
+s32 mNpcW_GetNpcWalkInfoIdxbyIdx(NpcWalkInfo* info, s32 num, s32 idx) {
     s32 ret = -1;
     s32 i;
 
@@ -211,7 +211,7 @@ s32 mNpcW_DecideNpc(Animal_c* animal, u16 used) {
 
     for (i = 0; i < ANIMAL_NUM_MAX; i++) {
         if (mNpc_CheckFreeAnimalPersonalID(&animal->id) == FALSE) {
-            mNpcW_GoalData_c* data;
+            NpcWalkGoalData* data;
             exist |= (1 << i);
 
             data = mNpcW_GetGoalDataInfo(animal->id.looks, nowSec);
@@ -246,8 +246,8 @@ s32 mNpcW_DecideNpc(Animal_c* animal, u16 used) {
     return idx;
 }
 
-void mNpcW_SetNpcWalkInfo(mNpcW_info_c* info, Animal_c* animal, s32 idx) {
-    mNpcW_GoalData_c* data;
+void mNpcW_SetNpcWalkInfo(NpcWalkInfo* info, Animal_c* animal, s32 idx) {
+    NpcWalkGoalData* data;
     s32 nowSec = common_data.time.nowSec;
     u32 index;
 
@@ -264,7 +264,7 @@ void mNpcW_SetNpcWalkInfo(mNpcW_info_c* info, Animal_c* animal, s32 idx) {
     info->status = 1;
 }
 
-s32 mNpcW_ChangeNpcWalk(mNpcW_walk_c* walk, mNpcW_info_c* info) {
+s32 mNpcW_ChangeNpcWalk(NpcWalking* walk, NpcWalkInfo* info) {
     s32 free_idx;
     s32 idx = -1;
     s32 i;
@@ -274,7 +274,7 @@ s32 mNpcW_ChangeNpcWalk(mNpcW_walk_c* walk, mNpcW_info_c* info) {
     free_idx = mNpcW_GetFreeNpcWalkInfoIdx(walk->info, NPCW_MAX);
 
     if (free_idx != -1) {
-        mNpcW_info_c* free_info = &walk->info[free_idx];
+        NpcWalkInfo* free_info = &walk->info[free_idx];
 
         mNpcW_ClearNpcWalkInfo(free_info, 1);
         idx = mNpcW_DecideNpc(common_data.animals, walk->idxUse);
@@ -300,7 +300,7 @@ s32 mNpcW_ChangeNpcWalk(mNpcW_walk_c* walk, mNpcW_info_c* info) {
 
 s32 mNpcW_GetAloneBlock(u8* goalBlockX, u8* goalBlockZ) {
     Animal_c* animal = common_data.animals;
-    mNpc_NpcList_c* npcList = common_data.npclist;
+    NpcList* npcList = common_data.npclist;
     u8 block_field[FG_BLOCK_Z_NUM + 2];
     u8 count = 0;
     s32 selected;
@@ -405,7 +405,7 @@ void mNpcW_GetBlockXZNumExceptHome(s32* goalBlockX, s32* goalBlockZ, Animal_c* a
     *goalBlockZ = i + 1;
 }
 
-s32 mNpcW_CheckDiffBlockWalkNpcHome(s32 blockX, s32 blockZ, mNpcW_info_c* info) {
+s32 mNpcW_CheckDiffBlockWalkNpcHome(s32 blockX, s32 blockZ, NpcWalkInfo* info) {
     s32 res = FALSE;
     AnmHome_c* home;
     s32 i;
@@ -431,7 +431,7 @@ s32 mNpcW_CheckDiffBlockWalkNpcHome(s32 blockX, s32 blockZ, mNpcW_info_c* info) 
     return res;
 }
 
-void mNpcW_SetHomeBlockSource(mNpcW_walk_c* walk, Animal_c* animal) {
+void mNpcW_SetHomeBlockSource(NpcWalking* walk, Animal_c* animal) {
     Animal_c* animalP = animal;
     u16 field;
     s32 num;
@@ -481,7 +481,7 @@ void mNpcW_SetHomeBlockSource(mNpcW_walk_c* walk, Animal_c* animal) {
     }
 }
 
-void mNpcW_InitGoalBlockSource(mNpcW_walk_c* walk, Animal_c* animal) {
+void mNpcW_InitGoalBlockSource(NpcWalking* walk, Animal_c* animal) {
     s32 shrineX;
     s32 shrineZ;
     UNUSED s32 pad;
@@ -493,7 +493,7 @@ void mNpcW_InitGoalBlockSource(mNpcW_walk_c* walk, Animal_c* animal) {
 
     mNpcW_SetHomeBlockSource(walk, animal);
 }
-void mNpcW_SetGoalBlock(mNpcW_info_c* info) {
+void mNpcW_SetGoalBlock(NpcWalkInfo* info) {
     s32 idx;
 
     switch (info->type) {
@@ -525,9 +525,9 @@ void mNpcW_SetGoalBlock(mNpcW_info_c* info) {
     }
 }
 
-void mNpcW_InitNpcWalk(mNpcW_walk_c* walk) {
+void mNpcW_InitNpcWalk(NpcWalking* walk) {
     Animal_c* animals;
-    mNpcW_info_c* info = walk->info;
+    NpcWalkInfo* info = walk->info;
     s32 idx;
     s32 i;
 
@@ -551,7 +551,7 @@ void mNpcW_InitNpcWalk(mNpcW_walk_c* walk) {
 }
 
 s32 mNpcW_GetAppearStatusWay(u8* status, u8* way, Animal_c* animal) {
-    mNpcW_walk_c* walk = &common_data.npcWalk;
+    NpcWalking* walk = &common_data.npcWalk;
     s32 infoIdx;
     s32 res = FALSE;
 
@@ -586,7 +586,7 @@ s32 mNpcW_GetWalkInfoStatusGoalAnimalIdx(s32* status, s32* goal, s32 idx) {
     *goal = NPCW_GOAL_NUM;
 
     if (idx >= 0 && idx < ANIMAL_NUM_MAX) {
-        mNpcW_walk_c* walk = &common_data.npcWalk;
+        NpcWalking* walk = &common_data.npcWalk;
         s32 info_idx = mNpcW_GetNpcWalkInfoIdx(walk->info, NPCW_MAX, &common_data.animals[idx].id);
 
         if (info_idx >= 0) {

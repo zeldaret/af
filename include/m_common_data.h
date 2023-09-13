@@ -225,7 +225,7 @@ typedef struct CommonData {
     /* 0x1014C */ UNK_TYPE1 unk_1014C[0x2];
     /* 0x1014E */ s16 unk_1014E;
     /* 0x10150 */ UNK_TYPE1 unk_10150[0x10];
-    /* 0x10160 */ mNpc_NpcList_c npclist[ANIMAL_NUM_MAX];
+    /* 0x10160 */ NpcList npclist[ANIMAL_NUM_MAX];
     /* 0x104A8 */ u16 house_owner_name;
     /* 0x104AA */ u16 last_field_id;
     /* 0x104AC */ UNK_TYPE1 unk_104AC[0x1];
@@ -235,7 +235,7 @@ typedef struct CommonData {
     /* 0x10598 */ mQst_not_saved_c quest;
     /* 0x105A0 */ u32 scene_from_title_demo;
     /* 0x105A4 */ UNK_TYPE1 unk_105A4[0xF0];
-    /* 0x10694 */ mNpcW_walk_c npcWalk;
+    /* 0x10694 */ NpcWalking npcWalk;
     /* 0x10710 */ UNK_TYPE1 unk_10710[0x3C];
     /* 0x1074C */ UNK_TYPE unk_1074C;
     /* 0x10750 */ UNK_TYPE1 unk_10750[0x66];
