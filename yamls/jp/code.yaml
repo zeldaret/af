@@ -56,6 +56,8 @@
       - [0x6C97F0, asm, code/6C97F0]
       - [0x6CA4B0, asm, code/m_npc]
       - [0x6D2720, asm, code/6D2720]
+      - [0x6D2A70, c, code/m_npc_walk]
+      - [0x6D3CB0, asm, code/800B0010]
       - [0x6D3D20, asm, code/m_olib]
       - [0x6D4440, c, code/m_pause]
       - [0x6D44F0, asm, code/6D44F0]
@@ -65,6 +67,7 @@
       - [0x6DA460, asm, code/6DA460]
       - [0x6DB420, asm, code/6DB420]
       - [0x6DE300, asm, code/6DE300]
+      - [0x6E08E0, asm, code/m_random_field]
       - [0x6E0F50, asm, code/m_rcp]
       - [0x6E2300, asm, code/6E2300]
       - [0x6E30B0, asm, code/6E30B0]
@@ -145,6 +148,7 @@
       - [0x72B7A0, data, code/m_lib]
       - [0x72B7D0, .data, code/m_lights]
       - [0x72B7F0, data, code/72B7F0]
+      - [0x72F7D0, .data, code/m_npc_walk]
       - [0x72F980, .data, code/m_player_call]
       - [0x72F9B0, data, code/72F9B0]
       - [0x731940, .data, code/m_start_data_init]
@@ -258,6 +262,7 @@
       - { start: 0x73F4D0, type: .bss, vram: 0x80141E10, name: code/m_lights }
       - { start: 0x75B600, type: .bss, vram: 0x80141FA0, name: code/m_malloc }
       - { start: 0x75B600, type: bss, vram: 0x80141FE0, name: code/80141FE0 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x801438B0, name: code/m_npc_walk }
       - { start: 0x73F4D0, type: .bss, vram: 0x80143900, name: code/m_player_call }
       - { start: 0x73F4D0, type: bss, vram: 0x80143910, name: code/80143910 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80144670, name: code/m_submenu }

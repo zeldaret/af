@@ -141,7 +141,7 @@ void aTOU_init(Toudai* this, Game_Play* game_play UNUSED) {
 }
 
 void aTOU_wait(Toudai* this, Game_Play* game_play UNUSED) {
-    if ((common_data.time.now_sec >= 0xFD20) || (common_data.time.now_sec < 0x4650)) {
+    if ((common_data.time.nowSec >= 0xFD20) || (common_data.time.nowSec < 0x4650)) {
         this->unk2BC = 1;
         this->skeletonInfo.frameControl.speed = 1.0f;
         aTOU_setup_action(this, 2);
@@ -149,7 +149,7 @@ void aTOU_wait(Toudai* this, Game_Play* game_play UNUSED) {
 }
 
 void aTOU_lighting(Toudai* this, Game_Play* game_play UNUSED) {
-    if ((common_data.time.now_sec < 64800) && (common_data.time.now_sec >= 18000)) {
+    if ((common_data.time.nowSec < 64800) && (common_data.time.nowSec >= 18000)) {
         aTOU_setup_action(this, 3);
     }
 }

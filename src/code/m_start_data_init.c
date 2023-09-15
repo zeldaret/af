@@ -42,24 +42,24 @@
 void famicom_emu_initial_common_data(void) {
     FamicomEmuCommonData* famicom = &common_data.famicom_emu_common_data;
 
-    famicom->unk_00 = 0;
-    famicom->unk_02 = 0x3E8;
-    famicom->unk_04 = 0x3E8;
-    famicom->unk_06 = 0x9C4;
-    famicom->unk_08 = 0;
-    famicom->unk_0A = 0;
-    famicom->unk_0C = 0;
-    famicom->unk_0E = 0;
-    famicom->unk_10 = 0x64;
-    famicom->unk_14 = 0;
-    famicom->unk_16 = 0;
-    famicom->unk_18 = 0;
-    famicom->unk_1A = 0;
-    famicom->unk_1C = 0;
-    famicom->unk_1E = 0;
-    famicom->unk_20 = 0;
-    famicom->unk_22 = 0;
-    famicom->unk_24 = 0;
+    famicom->unk00 = 0;
+    famicom->unk02 = 0x3E8;
+    famicom->unk04 = 0x3E8;
+    famicom->unk06 = 0x9C4;
+    famicom->unk08 = 0;
+    famicom->unk0A = 0;
+    famicom->unk0C = 0;
+    famicom->unk0E = 0;
+    famicom->unk10 = 0x64;
+    famicom->unk14 = 0;
+    famicom->unk16 = 0;
+    famicom->unk18 = 0;
+    famicom->unk1A = 0;
+    famicom->unk1C = 0;
+    famicom->unk1E = 0;
+    famicom->unk20 = 0;
+    famicom->unk22 = 0;
+    famicom->unk24 = 0;
 }
 
 void decide_fruit(u16* fruit) {
@@ -193,7 +193,7 @@ s32 mSDI_StartInitNew(Game* game2, s32 player_no, s32 malloc_flag) {
     UNUSED s32 pad[2];
 
     common_data.scene_from_title_demo = SCENE_START_DEMO;
-    lbRTC_GetTime(&common_data.time.rtc_time);
+    lbRTC_GetTime(&common_data.time.rtcTime);
 
     priv = &common_data.private[player_no];
     common_data.now_private = priv;
@@ -271,7 +271,7 @@ s32 mSDI_StartInitFrom(Game* game2, s32 player_no, s32 malloc_flag) {
     }
 
     common_data.scene_from_title_demo = SCENE_FG;
-    lbRTC_GetTime(&common_data.time.rtc_time);
+    lbRTC_GetTime(&common_data.time.rtcTime);
 
     if (mFRm_CheckSaveData() == TRUE) {
         priv = &common_data.private[player_no];
@@ -320,7 +320,7 @@ s32 mSDI_StartInitNewPlayer(Game* game, s32 player_no, s32 malloc_flag) {
     UNUSED s32 pad;
 
     common_data.scene_from_title_demo = SCENE_START_DEMO2;
-    lbRTC_GetTime(&common_data.time.rtc_time);
+    lbRTC_GetTime(&common_data.time.rtcTime);
 
     priv = &common_data.private[player_no];
     if (mFRm_CheckSaveData() == TRUE) {
@@ -411,7 +411,7 @@ void mSDI_StartInitAfter(Game* game, s32 renewal_reserve_flag, s32 malloc_flag) 
     }
     mQst_ClearNotSaveQuest(&common_data.quest);
     mNPS_set_all_schedule_area();
-    mNpcW_InitNpcWalk(&common_data.npc_walk);
+    mNpcW_InitNpcWalk(&common_data.npcWalk);
     mHm_CheckRehouseOrder();
     decide_fish_location(&common_data.fish_location);
     mTRC_init(game_play);
