@@ -235,7 +235,7 @@ typedef struct CommonData {
     /* 0x104B0 */ UNK_TYPE1 unk_104B0[0xE8];
     /* 0x10598 */ mQst_not_saved_c quest;
     /* 0x105A0 */ u32 scene_from_title_demo;
-    /* 0x105A4 */ NpsSchedule npcSchedule[ANIMAL_NUM_MAX]; 
+    /* 0x105A4 */ NpsSchedule npcSchedule[ANIMAL_NUM_MAX];
     /* 0x10694 */ NpcWalking npcWalk;
     /* 0x10710 */ UNK_TYPE1 unk_10710[0x3C];
     /* 0x1074C */ UNK_TYPE unk_1074C;

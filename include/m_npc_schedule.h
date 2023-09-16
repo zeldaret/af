@@ -4,8 +4,18 @@
 #include "ultra64.h"
 #include "m_npc.h"
 
+typedef enum NpsScheduleType{
+    /* 0 */ NPS_SCHEDULE_FIELD, /* in same acre as their home */
+    /* 1 */ NPS_SCHEDULE_IN_HOUSE, /* inside their house */
+    /* 2 */ NPS_SCHEDULE_SLEEP, /* asleep in their house */
+    /* 3 */ NPS_SCHEDULE_STAND, /* standing around town?? */
+    /* 4 */ NPS_SCHEDULE_WANDER, /* wander around town */
+    /* 5 */ NPS_SCHEDULE_SPECIAL, /* unique schedule method for each NPC actor type */
+    /* 6 */ NPS_SCHEDULE_TYPE_NUM
+} NpsScheduleType;
+
 typedef struct NpsScheduleData {
-    /* 0x00 */ u32 type;
+    /* 0x00 */ NpsScheduleType type;
     /* 0x04 */ s32 endTime;
 } NpsScheduleData; // size = 0x8
 
@@ -23,15 +33,7 @@ typedef struct NpsSchedule{
     /* 0x0C */ s32 forcedTimer;
 }NpsSchedule; // size = 0x10
 
-typedef enum NpsScheduleType{
-    /* 0 */ NPS_SCHEDULE_FIELD, /* in same acre as their home */
-    /* 1 */ NPS_SCHEDULE_IN_HOUSE, /* inside their house */
-    /* 2 */ NPS_SCHEDULE_SLEEP, /* asleep in their house */
-    /* 3 */ NPS_SCHEDULE_STAND, /* standing around town?? */
-    /* 4 */ NPS_SCHEDULE_WANDER, /* wander around town */
-    /* 5 */ NPS_SCHEDULE_SPECIAL, /* unique schedule method for each NPC actor type */
-    /* 6 */ NPS_SCHEDULE_TYPE_NUM
-} NpsScheduleType;
+
 
 NpsSchedule* mNPS_get_schedule_area(AnmPersonalID_c* id);
 void mNPS_set_schedule_area(AnmPersonalID_c* id);
