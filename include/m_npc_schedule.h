@@ -5,8 +5,8 @@
 #include "m_npc.h"
 
 typedef struct NpsScheduleData {
-    /* 0x00 */   u32 type;
-    /* 0x04 */   s32 endTime;
+    /* 0x00 */ u32 type;
+    /* 0x04 */ s32 endTime;
 } NpsScheduleData; // size = 0x8
 
 typedef struct NpsScheduleDataTable {
@@ -21,7 +21,7 @@ typedef struct NpsSchedule{
     /* 0x09 */ u8 forcedType;
     /* 0x0A */ u8 savedType;
     /* 0x0C */ s32 forcedTimer;
-}NpsSchedule;
+}NpsSchedule; // size = 0x10
 
 typedef enum NpsScheduleType{
     /* 0 */ NPS_SCHEDULE_FIELD, /* in same acre as their home */
