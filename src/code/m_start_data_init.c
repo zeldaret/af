@@ -8,7 +8,7 @@
 #include "6BA500.h"
 #include "6C0690.h"
 #include "6C97F0.h"
-#include "6D2720.h"
+#include "m_npc_schedule.h"
 #include "6D9D80.h"
 #include "6DA460.h"
 #include "6DB420.h"
