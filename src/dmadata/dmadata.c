@@ -11,7 +11,7 @@
 // dmadata Table definition
 #define DEFINE_DMA_ENTRY(name, _1) { SEGMENT_ROM_START(name), SEGMENT_ROM_END(name), SEGMENT_ROM_START(name), 0 },
 
-DmaEntry gDmaDataTable[] = {
+DmaEntry dma_rom_ad[] = {
 #include "tables/dmadata_table.h"
     { 0 },
 };

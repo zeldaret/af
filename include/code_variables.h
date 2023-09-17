@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "unknown_structs.h"
+#include "z64math.h"
 
 
 
@@ -14,7 +15,6 @@
 // extern UNK_TYPE D_80100C60_jp;
 // extern UNK_TYPE D_80100C64_jp;
 // extern UNK_TYPE D_80100C68_jp;
-// extern UNK_TYPE D_80100C70_jp;
 
 // extern UNK_TYPE D_801025C0_jp;
 // extern UNK_TYPE D_FLT_801025C8_jp;
@@ -180,15 +180,7 @@
 // extern UNK_TYPE D_8010467C_jp;
 // extern UNK_TYPE D_80104688_jp;
 // extern UNK_TYPE D_80104690_jp;
-// extern UNK_TYPE D_801046A0_jp;
-// extern UNK_TYPE D_801046AC_jp;
-// extern UNK_TYPE D_801046C4_jp;
-// extern UNK_TYPE D_801046D0_jp;
-// extern UNK_TYPE D_80104710_jp;
-// extern UNK_TYPE D_8010471C_jp;
-// extern UNK_TYPE D_80104740_jp;
-// extern UNK_TYPE D_80104764_jp;
-// extern UNK_TYPE D_80104770_jp;
+
 // extern UNK_TYPE D_80104790_jp;
 // extern UNK_TYPE D_80104794_jp;
 // extern UNK_TYPE D_80104798_jp;
@@ -761,20 +753,11 @@
 // extern UNK_TYPE D_8010DC88_jp;
 // extern UNK_TYPE D_8010DC8C_jp;
 // extern UNK_TYPE D_8010DC90_jp;
-// extern UNK_TYPE D_8010DCA0_jp;
-// extern UNK_TYPE D_8010DCB0_jp;
-// extern UNK_TYPE D_8010DCC4_jp;
-// extern UNK_TYPE D_8010DCE0_jp;
-// extern UNK_TYPE D_8010DCE4_jp;
-// extern UNK_TYPE D_8010DCE8_jp;
-// extern UNK_TYPE D_8010DCEC_jp;
-// extern UNK_TYPE D_8010DD08_jp;
-// extern UNK_TYPE D_8010DD24_jp;
-// extern UNK_TYPE D_8010DD38_jp;
+
 // extern UNK_TYPE D_8010DD80_jp;
 // extern UNK_TYPE D_8010DDAC_jp;
 // extern UNK_TYPE D_8010DDBC_jp;
-// extern UNK_TYPE D_8010DDD0_jp;
+
 // extern UNK_TYPE D_8010ED60_jp;
 // extern UNK_TYPE D_8010EDA0_jp;
 // extern UNK_TYPE D_8010EDA4_jp;
@@ -827,12 +810,7 @@ extern vs32 D_8010EFB0_jp; // TODO: Determine where this goes
 // extern UNK_TYPE D_8010F4C0_jp;
 // extern UNK_TYPE D_8010FCC0_jp;
 // extern UNK_TYPE D_8010FCD0_jp;
-// extern UNK_TYPE MtxF_clear;
-// extern UNK_TYPE D_8010FD50_jp;
-// extern UNK_TYPE D_8010FD54_jp;
-// extern UNK_TYPE D_8010FD58_jp;
-// extern UNK_TYPE D_8010FD5C_jp;
-extern s32 zurumode_flag;
+extern MtxF MtxF_clear;
 // extern UNK_TYPE D_8010FD70_jp;
 // extern UNK_TYPE D_80110000_jp;
 // extern UNK_TYPE D_80110D70_jp;
@@ -1724,7 +1702,6 @@ extern s32 zurumode_flag;
 
 // extern UNK_TYPE B_8011B830_jp;
 // extern UNK_TYPE B_8011B83C_jp;
-// extern UNK_TYPE B_8011B850_jp;
 
 // extern UNK_TYPE B_8011B8B0_jp;
 // extern UNK_TYPE B_8011B8B4_jp;
@@ -1824,11 +1801,6 @@ extern s32 zurumode_flag;
 // extern UNK_TYPE B_80126D5C_jp;
 // extern UNK_TYPE B_80126D60_jp;
 // extern UNK_TYPE B_80126E60_jp;
-// extern UNK_TYPE B_80126E70_jp;
-// extern UNK_TYPE B_80126E74_jp;
-// extern UNK_TYPE B_80126E9C_jp;
-
-// extern UNK_TYPE common_data;
 
 // extern UNK_TYPE B_80137960_jp;
 // extern UNK_TYPE B_80137C40_jp;
@@ -1896,8 +1868,6 @@ extern s32 zurumode_flag;
 // extern UNK_TYPE B_FLT_80141DFC_jp;
 // extern UNK_TYPE B_80141E00_jp;
 // extern UNK_TYPE B_80141E04_jp;
-// extern UNK_TYPE B_80141E10_jp;
-// extern UNK_TYPE B_80141E18_jp;
 
 // extern UNK_TYPE B_80141FE0_jp;
 // extern UNK_TYPE B_80141FF0_jp;
@@ -1941,10 +1911,7 @@ extern s32 zurumode_flag;
 // extern UNK_TYPE B_801438B8_jp;
 // extern UNK_TYPE B_801438BC_jp;
 // extern UNK_TYPE B_801438C0_jp;
-// extern UNK_TYPE Player_actor_ct_func;
-// extern UNK_TYPE Player_actor_dt_func;
-// extern UNK_TYPE Player_actor_move_func;
-// extern UNK_TYPE Player_actor_draw_func;
+
 // extern UNK_TYPE B_80143910_jp;
 // extern UNK_TYPE B_80143960_jp;
 // extern UNK_TYPE B_8014399C_jp;
@@ -1956,8 +1923,7 @@ extern s32 zurumode_flag;
 // extern UNK_TYPE B_8014462C_jp;
 // extern UNK_TYPE B_80144650_jp;
 // extern UNK_TYPE B_80144660_jp;
-// extern UNK_TYPE B_80144670_jp;
-// extern UNK_TYPE B_80144680_jp;
+
 // extern UNK_TYPE B_80144690_jp;
 // extern UNK_TYPE B_801446A0_jp;
 // extern UNK_TYPE B_FLT_801446A8_jp;
@@ -2010,12 +1976,9 @@ extern s32 zurumode_flag;
 // extern UNK_TYPE B_80145880_jp;
 // extern UNK_TYPE B_80145898_jp;
 // extern UNK_TYPE B_8014589C_jp;
-// extern UNK_TYPE B_801458A0_jp;
-// extern UNK_TYPE B_801458B0_jp;
-// extern UNK_TYPE B_801458B8_jp;
-// extern UNK_TYPE B_801458E0_jp;
-// extern UNK_TYPE B_801458EC_jp;
-// extern UNK_TYPE B_801458F0_jp;
+
+extern uintptr_t gSegments[NUM_SEGMENTS];
+
 // extern UNK_TYPE B_80145D70_jp;
 // extern UNK_TYPE B_80145D80_jp;
 // extern UNK_TYPE B_80145DB8_jp;

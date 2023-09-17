@@ -3,13 +3,13 @@
 
 #include "ultra64.h"
 
-// void func_80084080_jp();
-// void func_800840AC_jp();
-// void func_8008418C_jp();
-// void func_800843C8_jp();
-// void func_80084480_jp();
-// void func_800844B0_jp();
+void fbdemo_wipe1_init(void*);
+void fbdemo_wipe1_move(void*, u8);
+void fbdemo_wipe1_draw(void*, Gfx**);
+void fbdemo_wipe1_startup(void*);
+void fbdemo_wipe1_settype(void*, s32);
+void fbdemo_wipe1_setcolor_rgba8888(void*, s32);
 // void func_800844BC_jp();
-// void func_800844C8_jp();
+s32 fbdemo_wipe1_is_finish(void*, Game_Play* game_play);
 
 #endif

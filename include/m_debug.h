@@ -53,7 +53,7 @@ typedef enum {
 
 #define DEBUG_REG_COUNT (DEBUG_REG_SIZE * DEBUG_REG_GROUP * DEBUG_REG_MAX)
 
-typedef struct debug_mode_s {
+typedef struct Debug_mode {
     /* 0x00 */ u8 mode;
     /* 0x01 */ u8 type;
     /* 0x02 */ s8 inputR;
@@ -114,4 +114,3 @@ extern Debug_mode* debug_mode;
 extern void new_Debug_mode(void);
 
 #endif
-

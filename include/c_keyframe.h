@@ -4,7 +4,7 @@
 #include "ultra64.h"
 #include "z64math.h"
 
-struct PlayState;
+struct Game_Play;
 
 typedef enum AnimationMode {
     /* 0 */ ANIMATION_STOP,
@@ -83,7 +83,7 @@ typedef struct {
     /* 0x1C */ s32 keyframeStartIndex;
 } SkeletonInfoRCombineWork; // size = 0x20
 
-typedef s32 (*DrawCallback)(struct PlayState* play, SkeletonInfoR* skeletonInfo, s32 jointIndex, Gfx** dlist, u8* displayBufferFlag, void*, Vec3s* rotation, Vec3f* translation);
+typedef s32 (*DrawCallback)(struct Game_Play* game_play, SkeletonInfoR* skeletonInfo, s32 jointIndex, Gfx** dlist, u8* displayBufferFlag, void*, Vec3s* rotation, Vec3f* translation);
 
 void cKF_FrameControl_zeroClear(FrameControl* frameControl);
 void cKF_FrameControl_ct(FrameControl* frameControl);
@@ -99,6 +99,8 @@ s16 cKF_KeyCalc(s16 startIndex, s16 sequenceLength, Keyframe* dataSource, f32 cu
 void cKF_SkeletonInfo_subRotInterpolation(f32 t, s16* out, s16 jointRotation, s16 morphRotation);
 void cKF_SkeletonInfo_morphST(s16* joint, s16* morph, f32 t);
 void cKF_SkeletonInfo_R_zeroClear(SkeletonInfoR* skeletonInfo);
+void cKF_SkeletonInfo_R_ct(SkeletonInfoR* skeletonInfo, BaseSkeletonR* skeleton, BaseAnimationR* animation,
+                           Vec3s* jointTable, Vec3s* morphTable);
 void cKF_SkeletonInfo_R_dt(SkeletonInfoR* skeletonInfo);
 void cKF_SkeletonInfo_R_init_standard_stop(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation, Vec3s* diffRotTable);
 void cKF_SkeletonInfo_R_init_standard_stop_speedset(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
@@ -117,9 +119,9 @@ void cKF_SkeletonInfo_R_init(SkeletonInfoR* skeletonInfo, BaseSkeletonR* skeleto
 void cKF_SkeletonInfo_R_setAnim(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation);
 void cKF_SkeletonInfo_R_morphJoint(SkeletonInfoR* skeletonInfo);
 s32 cKF_SkeletonInfo_R_play(SkeletonInfoR* skeletonInfo);
-void cKF_Si3_draw_SV_R_child(struct PlayState* play, SkeletonInfoR* skeletonInfo, s32* jointIndex,
+void cKF_Si3_draw_SV_R_child(struct Game_Play* game_play, SkeletonInfoR* skeletonInfo, s32* jointIndex,
                              DrawCallback beforeCallback, DrawCallback afterCallback, void* arg, Mtx** mtx);
-void cKF_Si3_draw_R_SV(struct PlayState* play, SkeletonInfoR* skeletonInfo, Mtx* mtx, DrawCallback beforeCallback,
+void cKF_Si3_draw_R_SV(struct Game_Play* game_play, SkeletonInfoR* skeletonInfo, Mtx* mtx, DrawCallback beforeCallback,
                        DrawCallback afterCallback, void* arg);
 void cKF_SkeletonInfo_R_init_standard_repeat_speedsetandmorph(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
                                                               Vec3s* diffRotTable, f32 speed, f32 morphCounter);

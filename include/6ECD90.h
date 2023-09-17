@@ -3,6 +3,8 @@
 
 #include "ultra64.h"
 
+struct Game_Play;
+
 // void func_800C90F0_jp();
 // void func_800C91E0_jp();
 // void func_800C92FC_jp();
@@ -17,7 +19,7 @@
 // void func_800C9728_jp();
 // void func_800C98A0_jp();
 // void func_800C9D38_jp();
-// void func_800C9F88_jp();
-// void func_800CA008_jp();
+void mTRC_init(struct Game_Play* game_play);
+void mTRC_move(struct Game_Play* game_play);
 
 #endif

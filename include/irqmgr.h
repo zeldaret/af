@@ -47,7 +47,7 @@ void IrqMgr_HandleRetrace(void);
 void irqmgr_Main(void* arg);
 void CreateIRQManager(void* stack, OSPri priority, u8 retracecount);
 
-extern vu32 ResetStatus;
+extern vs32 ResetStatus;
 extern volatile OSTime ResetTime;
 extern volatile OSTime RetraceTime;
 extern u32 RetraceCount;

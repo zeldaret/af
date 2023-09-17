@@ -3,9 +3,11 @@
 
 #include "ultra64.h"
 
-// void func_800CBF80_jp();
-// void func_800CBFBC_jp();
-// void func_800CC3EC_jp();
+struct Game_Play;
+
+void func_800CBF80_jp(void);
+void watch_my_step_move(struct Game_Play* game_play);
+void watch_my_step_draw(struct Game_Play* game_play);
 // void func_800CC9C4_jp();
 // void func_800CC9EC_jp();
 // void func_800CCB44_jp();

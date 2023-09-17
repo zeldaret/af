@@ -5,14 +5,14 @@
 #include "z64math.h"
 
 struct GraphicsContext;
-struct GameState;
+struct Game;
 
 typedef enum {
     /* 0 */ MTXMODE_NEW,  // generates a new matrix
     /* 1 */ MTXMODE_APPLY // applies transformation to the current matrix
 } MatrixMode;
 
-void new_Matrix(struct GameState* gameState);
+void new_Matrix(struct Game* game);
 void Matrix_push(void);
 void Matrix_pull(void);
 void Matrix_get(MtxF* dest);
@@ -49,5 +49,7 @@ void suMtxMakeSRT(Mtx* mtx, f32 scaleX, f32 scaleY, f32 scaleZ, s16 rotX, s16 ro
                   f32 translateY, f32 translateZ);
 void suMtxMakeSRT_ZXY(Mtx* mtx, f32 scaleX, f32 scaleY, f32 scaleZ, s16 rotX, s16 rotY, s16 rotZ, f32 translateX,
                       f32 translateY, f32 translateZ);
+
+extern Mtx Mtx_clear;
 
 #endif

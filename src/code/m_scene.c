@@ -5,8 +5,9 @@
 #include "TwoHeadArena.h"
 #include "m_lib.h"
 #include "m_submenu.h"
-#include "m_play.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 #include "game.h"
+#include "code_variables.h"
 
 //   mSc_set_bank_status_after
 //   mSc_clear_bank_status
@@ -38,48 +39,6 @@
 //   goto_next_scene 
 //   goto_emu_game 
 //   return_emu_game 
-
-#define OBJECT_EXCHANGE_BANK_MAX 73
-
-typedef struct {
-    /* 0x00 */ s16 id;
-    /* 0x04 */ s32 unk4; //ram_start
-    /* 0x08 */ s32 segment;
-    /* 0x0C */ uintptr_t vrom;
-    /* 0x10 */ size_t size;
-    /* 0x14 */ UNK_TYPE unk14;
-    /* 0x18 */ char pad18[0x1C];
-    /* 0x34 */ OSMesgQueue unk34;
-    /* 0x4C */ UNK_TYPE unk4C;
-    /* 0x50 */ s16 unk50;
-    /* 0x52 */ u8 unk52;
-    /* 0x53 */ u8 unk53;
-} ObjectStatus; // size = 0x54
-
-typedef struct {
-    /* 0x0000 */ ObjectStatus status[OBJECT_EXCHANGE_BANK_MAX];
-    /* 0x17F4 */ s32 num; 
-    /* 0x17F8 */ UNK_TYPE unk17F8; // index
-    /* 0x17FC */ UNK_TYPE unk17FC; // index
-    /* 0x1800 */ UNK_TYPE unk1800; // start pointers
-    /* 0x1804 */ UNK_TYPE unk1804; // end pointers
-    /* 0x1808 */ UNK_TYPE unk1808; // start pointers
-    /* 0x180C */ UNK_TYPE unk180C; // start pointers
-    /* 0x1810 */ UNK_TYPE unk1810; // end pointers
-    /* 0x1814 */ UNK_TYPE unk1814; // end pointers
-    /* 0x1818 */ UNK_TYPE unk1818;
-    /* 0x181C */ UNK_TYPE unk181C;
-    /* 0x1820 */ UNK_TYPE unk1820;
-} ObjectExchangeBank; // size = 0x1824
-
-typedef struct {
-    /* 0x0000 */ char unk0;
-} DoorInfo;
-
-typedef struct {
-    /* 0x0000 */ char unk0;
-    //object_bank
-} SceneInfo;
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C59B0_jp.s")
 s32 func_800C59B0_jp(ObjectExchangeBank *objectBank)
@@ -145,7 +104,7 @@ s32 func_800C5A60_jp(ObjectExchangeBank* objectBank) {
 void func_800C5B30_jp(ObjectStatus* objectStatus) {
     objectStatus->id = (objectStatus->id >= 0) ? objectStatus->id : -objectStatus->id;
     objectStatus->unk53 = 0;
-    objectStatus->unk4 = objectStatus->segment;
+    objectStatus->segment = objectStatus->unk_08;
 }
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C5B5C_jp.s")
@@ -154,8 +113,8 @@ void func_800C5B5C_jp(ObjectStatus *objectStatus)
 {
     objectStatus->id = 0;
     objectStatus->size = 0;
+    objectStatus->unk_08 = 0;
     objectStatus->segment = 0;
-    objectStatus->unk4 = 0;
 }
 
 void func_80026E10_jp(void*, uintptr_t, size_t, const char *file, s32);         /* extern */
@@ -173,7 +132,7 @@ s32 func_800C5B74_jp(ObjectExchangeBank* objectBank, s16 id) {
         {
             //DmaMgr_RequestSyncDebug
             //TODO set the right types for these pointers in the structs
-            func_80026E10_jp((void*)objectStatus->segment, objectStatus->vrom, objectStatus->size, "../m_scene.c", 317);
+            DmaMgr_RequestSyncDebug((void*)objectStatus->unk_08, objectStatus->vrom, objectStatus->size, "../m_scene.c", 317);
             func_800C5B30_jp(objectStatus);
             objectStatus->unk50 = 1;
             objectBank->num++;
@@ -217,8 +176,8 @@ u32 func_800C5CC4_jp(ObjectExchangeBank* objectBank, s16 id, s32 size) {
             var_a3 = 0;
         } else {
             objectStatus->id = id;
-            objectStatus->unk4 = objectBank->unk1800;
             objectStatus->segment = objectBank->unk1800;
+            objectStatus->unk_08 = objectBank->unk1800;
             objectStatus->vrom = 0;
             objectStatus->size = size;
             objectStatus->unk50 = 0;
@@ -306,7 +265,7 @@ s32 func_800C5F0C_jp(ObjectStatus* objectStatus, ObjectExchangeBank* objectBank)
     if (temp_v0 >= (u32) objectBank->unk1804) {
         var_v1 = 0;
     } else {
-        objectStatus->segment = objectBank->unk1800;
+        objectStatus->unk_08 = objectBank->unk1800;
         objectStatus->unk52 = objectBank->unk181C;
         objectStatus->unk53 = 1;
         objectStatus->unk14 = 0;
@@ -315,11 +274,11 @@ s32 func_800C5F0C_jp(ObjectStatus* objectStatus, ObjectExchangeBank* objectBank)
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C5F64_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/mSc_dmacopy_data_bank.s")
 // ? func_80026DCC_jp(s32 *, void *, u32, u32, s32, OSMesgQueue *, s32, ? *, s32); /* extern */
 // ? func_800C5EA0_jp(ObjectExchangeBank *);               /* extern */
 
-// void func_800C5F64_jp(ObjectExchangeBank *arg0)
+// void mSc_dmacopy_data_bank(ObjectExchangeBank *arg0)
 // {
 //     OSMesgQueue *temp_s1;
 //     ObjectExchangeBank *var_s0;
@@ -353,7 +312,7 @@ s32 func_800C5F0C_jp(ObjectStatus* objectStatus, ObjectExchangeBank* objectBank)
 //             if (var_s0->status[0].unk14 == 0)
 //             {
 //                 osCreateMesgQueue(temp_s1, &var_s0->status[0].unk4C, 1);
-//                 func_80026DCC_jp(&var_s0->status[0].unk14, var_s0->status[0].segment, var_s0->status[0].vrom, var_s0->status[0].size, 0, temp_s1, 0, "../m_scene.c", 0x265);
+//                 func_80026DCC_jp(&var_s0->status[0].unk14, var_s0->status[0].unk_08, var_s0->status[0].vrom, var_s0->status[0].size, 0, temp_s1, 0, "../m_scene.c", 0x265);
 //                 var_s0->status[0].unk53 = 2;
 //             }
 //             break;
@@ -481,21 +440,18 @@ typedef struct {
 //             objectBank->unk1804 = (u32) temp_v0->unk1810;
 //             var_a0 = (var_v1 + objectStatus->size + 0xF) & ~0xF;
 //         }
-//         objectStatus->segment = var_v1;
+//         objectStatus->unk_08 = var_v1;
 //         objectStatus->unk52 = (u8) objectBank->unk181C;
 //         objectBank->unk1800 = var_a0;
 //     }
-//     func_80026E10_jp((void *)objectStatus->segment, objectStatus->vrom, objectStatus->size, "../m_scene.c", 828);
+//     func_80026E10_jp((void *)objectStatus->unk_08, objectStatus->vrom, objectStatus->size, "../m_scene.c", 828);
 //     func_800C5B30_jp(objectStatus);
 // }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C639C_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/mSc_dmacopy_all_exchange_bank.s")
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C65E4_jp.s")
-extern s32 B_801458B0_jp; // this is gsegments[4]
-
-//mSc_data_bank_ct
-void func_800C65E4_jp(PlayState* play, ObjectExchangeBank *objectBank)
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/mSc_data_bank_ct.s")
+void mSc_data_bank_ct(Game_Play* game_play, ObjectExchangeBank *objectBank)
 {
     s32 temp_v0;
     u32 temp_v1;
@@ -503,7 +459,7 @@ void func_800C65E4_jp(PlayState* play, ObjectExchangeBank *objectBank)
     bzero(objectBank, 0x1824);
     objectBank->unk17F8 = -1;
     objectBank->unk17FC = -1;
-    temp_v0 = THA_alloc16(&play->state.heap, 0x93400);
+    temp_v0 = THA_alloc16(&game_play->state.heap, 0x93400);
     temp_v1 = temp_v0 + 0x93400;
     objectBank->unk1800 = temp_v0;
     objectBank->unk1808 = temp_v0;
@@ -512,12 +468,11 @@ void func_800C65E4_jp(PlayState* play, ObjectExchangeBank *objectBank)
     objectBank->unk1810 = temp_v1;
     objectBank->unk1814 = temp_v1;
     func_800C5B74_jp(objectBank, 3); //gameplay_keep object 3
-    B_801458B0_jp = OS_PHYSICAL_TO_K0(objectBank->status[0].unk4); 
+    gSegments[4] = OS_PHYSICAL_TO_K0(objectBank->status[0].segment); 
 }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C6678_jp.s")
-//mSc_decide_exchange_bank
-void func_800C6678_jp(ObjectExchangeBank *objectBank)
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/mSc_decide_exchange_bank.s")
+void mSc_decide_exchange_bank(ObjectExchangeBank *objectBank)
 {
     objectBank->unk17F8 = objectBank->num;
     objectBank->unk1818 = objectBank->unk1800;
@@ -525,12 +480,11 @@ void func_800C6678_jp(ObjectExchangeBank *objectBank)
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C6690_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C68C8_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/Scene_ct.s")
 // void func_800C6690_jp(s32, u16);
 // extern UNK_TYPE D_8010DD80_jp;
 
-//Scene_ct
-// void func_800C68C8_jp(s32 arg0, u8 *arg1)
+// void Scene_ct(s32 arg0, u8 *arg1)
 // {
 //     u8 *var_s0;
 //     u8 temp_v0;
@@ -566,18 +520,17 @@ typedef struct {
 } unkStruct2;
 
 //Scene_Proc_Door_Data_Ptr 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C6A90_jp.s")
-void func_800C6A90_jp(PlayState *play, unkStruct2* arg1)
-{
-    UNK_PTR temp = arg1->unk4;
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C6A90_jp.s")
+// void func_800C6A90_jp(Game_Play *game_play, unkStruct2* arg1)
+// {
+//     UNK_PTR temp = arg1->unk4;
 
-    play->unk_1E10 = arg1->unk1;
-    play->unk_1E14 = Lib_SegmentedToVirtual(temp);
-}
+//     game_play->unk_1E10 = arg1->unk1;
+//     game_play->unk_1E14 = Lib_SegmentedToVirtual(temp);
+// }
 
-//Door_info_ct
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C6AC4_jp.s")
-void func_800C6AC4_jp(s8 *arg0)
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/Door_info_ct.s")
+void Door_info_ct(s8 *arg0)
 {
     *arg0 = 0;
 }
@@ -607,12 +560,12 @@ void func_800C6AD0_jp(s32 arg0 UNUSED, UNK_TYPE arg1 UNUSED)
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C6E14_jp.s")
 
-void func_800C6E14_jp(GameState *arg0)
+void func_800C6E14_jp(Game *arg0)
 {
     mem_copy(&common_data.unk_10754, &common_data.unk_107A0, 0x14U);
     common_data.unk_10754 = common_data.unk_107A0 + 1;
     arg0->unk_74 = 0;
     game_goto_next_game_play(arg0);
-    common_data.save.unk_14 = common_data.unk_107A0;
+    common_data.unk_00014 = common_data.unk_107A0;
 }
 

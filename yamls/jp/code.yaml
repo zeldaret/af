@@ -9,7 +9,7 @@
       - [0x675720, c, code/c_keyframe]
       - [0x678660, asm, code/evw_anime]
       - [0x6792F0, asm, code/6792F0]
-      - [0x67A020, asm, code/m_actor]
+      - [0x67A020, c, code/m_actor]
       - [0x67C6B0, c, code/m_actor_dlftbls]
       - [0x67C890, asm, code/m_actor_shadow]
       - [0x67D890, asm, code/67D890]
@@ -19,9 +19,9 @@
       - [0x68AAF0, asm, code/68AAF0]
       - [0x68AB30, asm, code/68AB30]
       - [0x68B0D0, asm, code/m_collision_bg]
-      - [0x69A7E0, asm, code/69A7E0]
+      - [0x69A7E0, c, code/m_collision_obj]
       - [0x69C6B0, c, code/m_common_data]
-      - [0x69C770, asm, code/m_controller]
+      - [0x69C770, c, code/m_controller]
       - [0x69CB30, asm, code/69CB30]
       - [0x69DD60, c, code/m_debug]
       - [0x69DDF0, asm, code/m_debug_display]
@@ -29,23 +29,26 @@
       - [0x6A0DE0, asm, code/6A0DE0]
       - [0x6A5B00, asm, code/6A5B00]
       - [0x6A6C40, asm, code/6A6C40]
-      - [0x6A6E80, asm, code/6A6E80]
-      - [0x6A7D20, asm, code/6A7D20]
-      - [0x6A8180, asm, code/6A8180]
-      - [0x6A83A0, asm, code/6A83A0]
+      - [0x6A6E80, asm, code/m_fbdemo]
+      - [0x6A78A0, asm, code/m_fbdemo_triforce]
+      - [0x6A7D20, asm, code/m_fbdemo_wipe1]
+      - [0x6A8180, asm, code/m_fbdemo_fade]
+      - [0x6A83A0, asm, code/m_field_assessment]
       - [0x6A8B70, asm, code/m_field_make]
       - [0x6AB8D0, asm, code/m_field_info]
       - [0x6B3DC0, asm, code/6B3DC0]
       - [0x6B6560, asm, code/m_handbill]
-      - [0x6B81C0, asm, code/6B81C0]
-      - [0x6B8A70, asm, code/6B8A70]
+      - [0x6B81C0, asm, code/m_home]
+      - [0x6B8880, asm, code/m_house]
+      - [0x6B8A70, asm, code/m_land]
       - [0x6B8F20, asm, code/6B8F20]
       - [0x6BA3B0, asm, code/m_item_name]
       - [0x6BA500, asm, code/6BA500]
+      - [0x6BA930, asm, code/m_kankyo]
       - [0x6BD560, asm, code/m_lib]
-      - [0x6BEE80, asm, code/m_lights]
+      - [0x6BEE80, c, code/m_lights]
       - [0x6BFC60, c, code/m_malloc]
-      - [0x6BFE60, asm, code/6BFE60]
+      - [0x6BFE60, c, code/m_mail]
       - [0x6C05A0, asm, code/6C05A0]
       - [0x6C0690, asm, code/6C0690]
       - [0x6C0E90, asm, code/m_msg_main]
@@ -53,27 +56,30 @@
       - [0x6C97F0, asm, code/6C97F0]
       - [0x6CA4B0, asm, code/m_npc]
       - [0x6D2720, asm, code/6D2720]
+      - [0x6D2A70, c, code/m_npc_walk]
+      - [0x6D3CB0, asm, code/800B0010]
       - [0x6D3D20, asm, code/m_olib]
       - [0x6D4440, c, code/m_pause]
       - [0x6D44F0, asm, code/6D44F0]
-      - [0x6D4C60, asm, code/m_player_call]
+      - [0x6D4C60, c, code/m_player_call]
       - [0x6D4E00, asm, code/m_player_lib]
       - [0x6D9D80, asm, code/6D9D80]
       - [0x6DA460, asm, code/6DA460]
       - [0x6DB420, asm, code/6DB420]
       - [0x6DE300, asm, code/6DE300]
-      - [0x6E0F50, asm, code/6E0F50]
+      - [0x6E08E0, asm, code/m_random_field]
+      - [0x6E0F50, asm, code/m_rcp]
       - [0x6E2300, asm, code/6E2300]
       - [0x6E30B0, asm, code/6E30B0]
-      - [0x6E6C90, asm, code/m_start_data_init]
+      - [0x6E6C90, c, code/m_start_data_init]
       - [0x6E7AD0, asm, code/6E7AD0]
-      - [0x6E80C0, asm, code/m_submenu]
+      - [0x6E80C0, c, code/m_submenu]
       - [0x6E9650, c, code/m_scene]
       - [0x6EAB20, asm, code/m_skin_matrix]
-      - [0x6EC430, asm, code/m_snowman]
+      - [0x6EC430, c, code/m_snowman]
       - [0x6EC9E0, asm, code/6EC9E0]
       - [0x6ECD90, asm, code/6ECD90]
-      - [0x6EDD10, asm, code/6EDD10]
+      - [0x6EDD10, asm, code/m_time]
       - [0x6EE540, asm, code/m_view]
       - [0x6EFC20, asm, code/6EFC20]
       - [0x6F12E0, asm, code/6F12E0]
@@ -100,9 +106,9 @@
       - [0x6FD530, asm, code/sys_initial_check]
       - [0x6FD840, asm, code/sys_math]
       - [0x6FDC40, asm, code/sys_math3d]
-      - [0x703C30, asm, code/sys_math_atan]
+      - [0x703C30, c, code/sys_math_atan]
       - [0x703E70, c, code/sys_matrix]
-      - [0x706580, asm, code/sys_ucode]
+      - [0x706580, c, code/sys_ucode]
       - [0x7065F0, c, code/zurumode]
       - [0x7069C0, asm, code/audio_synthesis]
       - [0x70A1A0, asm, code/audio_heap]
@@ -131,26 +137,40 @@
       - [0x723010, data, code/rsp/723010]
 
       - [0x7248D0, data, code/7248D0]
+      - [0x724910, .data, code/m_actor]
       - [0x724930, .data, code/m_actor_dlftbls]
       - [0x726260, data, code/m_actor_shadow]
       - [0x7262C0, data, code/7262C0]
+      - [0x728340, .data, code/m_collision_obj]
+      - [0x728430, data, code/728430]
       - [0x72AAC0, .data, code/m_game_dlftbls]
       - [0x72ACB0, data, code/72ACB0]
       - [0x72B7A0, data, code/m_lib]
-      - [0x72B7D0, data, code/72B7D0]
+      - [0x72B7D0, .data, code/m_lights]
+      - [0x72B7F0, data, code/72B7F0]
+      - [0x72F7D0, .data, code/m_npc_walk]
+      - [0x72F980, .data, code/m_player_call]
+      - [0x72F9B0, data, code/72F9B0]
+      - [0x731940, .data, code/m_start_data_init]
+      - [0x731980, .data, code/m_submenu]
+      - [0x731A20, data, code/731A20]
+      - [0x731A70, .data, code/m_object] # made-up name
+      - [0x732740, data, code/732740]
+      - [0x732AF0, data, code/m_time]
+      - [0x732BA0, data, code/m_view]
       - [0x732C30, .data, code/game]
       - [0x732C40, data, code/732C40]
       - [0x732C50, .data, code/irqmgr]
       - [0x732C70, data, code/732C70]
+      - [0x733160, .data, code/sys_math_atan]
       - [0x733970, .data, code/sys_matrix]
-      - [0x7339F0, data, code/sys_ucode]
+      - [0x7339F0, .data, code/sys_ucode]
       - [0x733A00, .data, code/zurumode]
       - [0x733A10, data, code/733A10]
 
       - [0x739DB0, .rodata, code/c_keyframe]
       - [0x739E00, rodata, code/739E00]
-      - [0x739E50, rodata, code/m_actor]
-      - [0x739E90, rodata, code/739E90]
+      - [0x739E50, .rodata, code/m_actor]
       - [0x739EA0, .rodata, code/m_actor_dlftbls]
       - [0x739EF0, rodata, code/739EF0]
       - [0x739F20, rodata, code/739F20]
@@ -158,8 +178,8 @@
       - [0x739FA0, rodata, code/739FA0]
       - [0x73A080, rodata, code/73A080]
       - [0x73A0F0, rodata, code/73A0F0]
-      - [0x73A480, rodata, code/73A480]
-      - [0x73A490, rodata, code/73A490]
+      - [0x73A480, .rodata, code/m_collision_obj]
+      - [0x73A490, .rodata, code/m_controller]
       - [0x73A4A0, rodata, code/73A4A0]
       - [0x73A4D0, rodata, code/73A4D0]
       - [0x73A6A0, rodata, code/73A6A0]
@@ -177,9 +197,9 @@
       - [0x73AD40, rodata, code/73AD40]
       - [0x73AD50, rodata, code/73AD50]
       - [0x73AD70, rodata, code/73AD70]
-      - [0x73AD90, rodata, code/73AD90]
+      - [0x73AD90, rodata, code/m_kankyo]
       - [0x73AED0, rodata, code/m_lib]
-      - [0x73AEE0, rodata, code/m_lights]
+      - [0x73AEE0, .rodata, code/m_lights]
       - [0x73AEF0, rodata, code/m_msg_main]
       - [0x73AF40, rodata, code/73AF40]
       - [0x73AF50, rodata, code/73AF50]
@@ -193,13 +213,13 @@
       - [0x73B3E0, rodata, code/m_scene_ftr]
       - [0x73B400, rodata, code/m_shop]
       - [0x73B580, rodata, code/m_string]
-      - [0x73B5C0, rodata, code/m_submenu]
+      - [0x73B5C0, .rodata, code/m_submenu]
       - [0x73B6D0, .rodata, code/m_scene]
       - [0x73B700, rodata, code/73B700]
-      - [0x73B710, rodata, code/73B710]
+      - [0x73B710, .rodata, code/m_snowman]
       - [0x73B720, rodata, code/m_titledemo]
       - [0x73B740, rodata, code/73B740]
-      - [0x73B780, rodata, code/73B780]
+      - [0x73B780, rodata, code/m_time]
       - [0x73B7D0, rodata, code/73B7D0]
       - [0x73B7E0, rodata, code/73B7E0]
       - [0x73B830, rodata, code/73B830]
@@ -217,7 +237,7 @@
       - [0x73BD30, rodata, code/73BD30]
       - [0x73BD50, rodata, code/73BD50]
       - [0x73BD70, rodata, code/sys_math3d]
-      - [0x73BE00, rodata, code/sys_math_atan]
+      - [0x73BE00, .rodata, code/sys_math_atan]
       - [0x73BE10, .rodata, code/sys_matrix]
       - [0x73BE40, .rodata, code/zurumode]
       - [0x73BE70, rodata, code/audio_synthesis]
@@ -231,26 +251,27 @@
       - [0x73CEE0, rodata, code/73CEE0]
 
       - { start: 0x73F4D0, type: bss, vram: 0x8011B830, name: code/8011B830 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x8011B850, name: code/m_actor }
       - { start: 0x73F4D0, type: .bss, vram: 0x8011B890, name: code/m_actor_dlftbls }
       - { start: 0x73F4D0, type: bss, vram: 0x8011B8B0, name: code/8011B8B0 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x80126E70, name: code/m_collision_obj }
       - { start: 0x74AB40, type: .bss, vram: 0x80126EA0, name: code/m_common_data }
       - { start: 0x75B600, type: bss, vram: 0x80137960, name: code/80137960 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80138E50, name: code/m_debug}
       - { start: 0x73F4D0, type: bss, vram: 0x80138E60, name: code/m_debug_display}
+      - { start: 0x73F4D0, type: .bss, vram: 0x80141E10, name: code/m_lights }
       - { start: 0x75B600, type: .bss, vram: 0x80141FA0, name: code/m_malloc }
       - { start: 0x75B600, type: bss, vram: 0x80141FE0, name: code/80141FE0 }
-      - { start: 0x73F4D0, type: bss, vram: 0x80143900, name: code/m_player_call }
+      - { start: 0x73F4D0, type: .bss, vram: 0x801438B0, name: code/m_npc_walk }
+      - { start: 0x73F4D0, type: .bss, vram: 0x80143900, name: code/m_player_call }
       - { start: 0x73F4D0, type: bss, vram: 0x80143910, name: code/80143910 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x80144670, name: code/m_submenu }
+      - { start: 0x73F4D0, type: bss, vram: 0x80144690, name: code/80144690 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80145020, name: code/game }
       - { start: 0x73F4D0, type: bss, vram: 0x80145060, name: code/80145060 }
-      - { start: 0x73F4D0, type: bss, vram: 0x80143900, name: code/m_player_call }
-      - { start: 0x73F4D0, type: bss, vram: 0x80143910, name: code/80143910 } 
       - { start: 0x73F4D0, type: .bss, vram: 0x80145390, name: code/irqmgr }
       - { start: 0x73F4D0, type: bss, vram: 0x80145620, name: code/80145620}
-      - { start: 0x73F4D0, type: .bss, vram: 0x801458A0, name: code/c_keyframe }
-      - { start: 0x73F4D0, type: bss, vram: 0x801458B0, name: code/801458B0 }
       - { start: 0x73F4D0, type: .bss, vram: 0x801462B0, name: code/sys_matrix }
       - { start: 0x73F4D0, type: bss, vram: 0x801462C0, name: code/801462C0 }
       - { start: 0x73F4D0, type: .bss, vram: 0x801492C0, name: code/zurumode }
       - { start: 0x73F4D0, type: bss, vram: 0x801492D0, name: code/801492D0 }
-
