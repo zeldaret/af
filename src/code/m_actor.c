@@ -17,7 +17,6 @@
 #include "sys_matrix.h"
 #include "ovlmgr.h"
 #include "gfx.h"
-#include "m_scene.h"
 #include "unknown_structs.h"
 #include "code_variables.h"
 #include "macros.h"
@@ -452,7 +451,8 @@ void Actor_info_call_actor(Game_Play* game_play, ActorInfo* actorInfo) {
 
             if (actor->ct != NULL) {
                 if (Actor_data_bank_dma_end_check(actor, game_play) == 1) {
-                    gSegments[6] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->objectExchangeBank.status[actor->unk_026].segment);
+                    gSegments[6] =
+                        (uintptr_t)OS_K0_TO_PHYSICAL(game_play->objectExchangeBank.status[actor->unk_026].segment);
 
                     game_play->state.unk_9D = 0x98;
                     actor->ct(actor, game_play);
@@ -488,7 +488,8 @@ void Actor_info_call_actor(Game_Play* game_play, ActorInfo* actorInfo) {
 
                 actor->flags &= ~ACTOR_FLAG_1000000;
                 if ((actor->flags & (ACTOR_FLAG_40 | ACTOR_FLAG_10)) || (actor->part == ACTOR_PART_NPC)) {
-                    gSegments[6] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->objectExchangeBank.status[actor->unk_026].segment);
+                    gSegments[6] =
+                        (uintptr_t)OS_K0_TO_PHYSICAL(game_play->objectExchangeBank.status[actor->unk_026].segment);
                     game_play->state.unk_9D = 0xA1;
                     actor->update(actor, game_play);
                     game_play->state.unk_9D = 0xA2;

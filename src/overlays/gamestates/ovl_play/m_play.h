@@ -91,8 +91,8 @@ typedef struct Game_Play {
     /* 0x1EA7 */ u8 unk_1EA7;
     /* 0x1EA8 */ struct ActorEntry* unk_1EA8;
     /* 0x1EAC */ struct ActorEntry* unk_1EAC;
-    /* 0x1EB0 */ s16 *unk_1EB0;
-    /* 0x1EB4 */ UNK_TYPE1 unk_1EB4[0x4];
+    /* 0x1EB0 */ s16* unk_1EB0;
+    /* 0x1EB4 */ UNK_TYPE unk_1EB4;
     /* 0x1EB8 */ s32 unk_1EB8;
     /* 0x1EBC */ Event event;
     /* 0x1ECC */ UNK_TYPE1 unk_1ECC[0x14];
