@@ -15,7 +15,6 @@ typedef struct ActorEntry {
 
 typedef struct ObjectStatus {
     /* 0x00 */ s16 id;
-    /* 0x02 */ UNK_TYPE1 unk_02[0x2]; //can i remove this?
     /* 0x04 */ void* segment;
     /* 0x08 */ s32 unk_08;
     /* 0x0C */ uintptr_t vrom;
@@ -29,11 +28,11 @@ typedef struct ObjectStatus {
     /* 0x53 */ u8 unk53;
 } ObjectStatus; // size = 0x54
 
-#define OBJECT_EXCHANGE_BANK_MAX 73
+#define OBJECT_EXCHANGE_BANK_MAX 73 // Name taken from oot debug string
 
 typedef struct ObjectExchangeBank {
-    /* 0x0000 */ ObjectStatus status[OBJECT_EXCHANGE_BANK_MAX]; // From oot debug string
-    /* 0x17FC */ s32 num; // From oot debug string
+    /* 0x0000 */ ObjectStatus status[OBJECT_EXCHANGE_BANK_MAX]; // Name taken from oot debug string
+    /* 0x17FC */ s32 num; // Name taken from oot debug string
     /* 0x17F8 */ UNK_TYPE unk17F8; // index
     /* 0x17FC */ UNK_TYPE unk17FC; // index
     /* 0x1800 */ UNK_TYPE unk1800; // start pointers

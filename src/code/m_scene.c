@@ -520,14 +520,14 @@ typedef struct {
 } unkStruct2;
 
 //Scene_Proc_Door_Data_Ptr 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C6A90_jp.s")
-// void func_800C6A90_jp(Game_Play *game_play, unkStruct2* arg1)
-// {
-//     UNK_PTR temp = arg1->unk4;
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C6A90_jp.s")
+void func_800C6A90_jp(Game_Play *game_play, unkStruct2* arg1)
+{
+    UNK_PTR temp = arg1->unk4;
 
-//     game_play->unk_1E10 = arg1->unk1;
-//     game_play->unk_1E14 = Lib_SegmentedToVirtual(temp);
-// }
+    game_play->unk_1E10 = arg1->unk1;
+    game_play->unk_1E14 = Lib_SegmentedToVirtual(temp);
+}
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/Door_info_ct.s")
 void Door_info_ct(s8 *arg0)
