@@ -8,39 +8,40 @@
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "game.h"
 #include "code_variables.h"
+#include "m_object.h"
+#include "m_player_lib.h"
 
-//   mSc_set_bank_status_after
-//   mSc_clear_bank_status
-//   Object_Exchange_keep_new_Player
-//   mSc_secure_exchange_keep_bank 
-//   mSc_background_dmacopy_controller 
-//   mSc_dmacopy_data_bank 
-//   mSc_bank_regist_check 
-//   mSc_regist_initial_exchange_bank 
-//   mSc_dmacopy_all_exchange_bank_sub
-//   mSc_dmacopy_all_exchange_bank 
-//   mSc_data_bank_ct 
-//   mSc_decide_exchange_bank 
-//   Scene_player_select 
-//   Scene_ct 
-//   Scene_Proc_Player_Ptr 
-//   Scene_Proc_Ctrl_Actor_Ptr 
-//   Scene_Proc_Actor_Ptr 
-//   Scene_Proc_Object_Exchange_Bank_Ptr 
-//   Scene_Proc_Door_Data_Ptr 
-//   Door_info_ct 
-//   Scene_Proc_Sound 
-//   set_item_info
-//   Scene_Proc_Field_ct 
-//   Scene_Proc_MyRoom_ct 
-//   Scene_Proc_ArrangeRoom_ct 
-//   Scene_Proc_ArrangeFurniture_ct 
-//   goto_other_scene 
-//   goto_next_scene 
-//   goto_emu_game 
-//   return_emu_game 
+// mSc_set_bank_status_after
+// mSc_clear_bank_status
+// Object_Exchange_keep_new_Player
+// mSc_secure_exchange_keep_bank
+// mSc_background_dmacopy_controller
+// mSc_dmacopy_data_bank
+// mSc_bank_regist_check
+// mSc_regist_initial_exchange_bank
+// mSc_dmacopy_all_exchange_bank_sub
+// mSc_dmacopy_all_exchange_bank
+// mSc_data_bank_ct
+// mSc_decide_exchange_bank
+// Scene_player_select
+// Scene_ct
+// Scene_Proc_Player_Ptr
+// Scene_Proc_Ctrl_Actor_Ptr
+// Scene_Proc_Actor_Ptr
+// Scene_Proc_Object_Exchange_Bank_Ptr
+// Scene_Proc_Door_Data_Ptr
+// Door_info_ct
+// Scene_Proc_Sound
+// set_item_info
+// Scene_Proc_Field_ct
+// Scene_Proc_MyRoom_ct
+// Scene_Proc_ArrangeRoom_ct
+// Scene_Proc_ArrangeFurniture_ct
+// goto_other_scene
+// goto_next_scene
+// goto_emu_game
+// return_emu_game
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C59B0_jp.s")
 s32 func_800C59B0_jp(ObjectExchangeBank *objectBank)
 {
     ObjectStatus *objectStatus = &objectBank->status[objectBank->unk17FC];
@@ -62,7 +63,6 @@ s32 func_800C59B0_jp(ObjectExchangeBank *objectBank)
     return ret;
 }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C5A08_jp.s")
 s32 func_800C5A08_jp(ObjectExchangeBank *objectBank)
 {
     ObjectStatus* objectStatus = &objectBank->status[objectBank->unk17FC];
@@ -84,7 +84,6 @@ s32 func_800C5A08_jp(ObjectExchangeBank *objectBank)
     return ret;
 }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C5A60_jp.s")
 s32 func_800C5A60_jp(ObjectExchangeBank* objectBank) {
     s32 temp_v0;
     s32 var_v1;
@@ -97,17 +96,36 @@ s32 func_800C5A60_jp(ObjectExchangeBank* objectBank) {
     return var_v1;
 }
 
-// s32 func_800C5AA0_jp(ObjectStatus* objectStatus, ObjectExchangeBank* objectBank, s16 arg2);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C5AA0_jp.s")
+s32 func_800C5AA0_jp(ObjectStatus* objectStatus, ObjectExchangeBank* objectExchangeBank, s16 objectBankIndex)
+{
+    s32 ret = 1;
+    s32 objectSize = gObjectTable[objectBankIndex].vromEnd - gObjectTable[objectBankIndex].vromStart;
+    u32 temp_t0 = (objectExchangeBank->unk1800 + objectSize + 0xF) & ~0xF;
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C5B30_jp.s")
+    if (temp_t0 >= objectExchangeBank->unk1804)
+    {
+        ret = 0;
+    }
+    else
+    {
+        objectStatus->id = -objectBankIndex;
+        objectStatus->unk_08 = objectExchangeBank->unk1800;
+        objectStatus->segment = 0;
+        objectStatus->vrom = gObjectTable[objectBankIndex].vromStart;
+        objectStatus->size = objectSize;
+        objectStatus->unk50 = 0;
+        objectStatus->unk53 = 1;
+        objectExchangeBank->unk1800 = temp_t0;
+    }
+    return ret;
+}
+
 void func_800C5B30_jp(ObjectStatus* objectStatus) {
     objectStatus->id = (objectStatus->id >= 0) ? objectStatus->id : -objectStatus->id;
     objectStatus->unk53 = 0;
     objectStatus->segment = objectStatus->unk_08;
 }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C5B5C_jp.s")
 //mSc_clear_bank_status
 void func_800C5B5C_jp(ObjectStatus *objectStatus)
 {
@@ -117,11 +135,7 @@ void func_800C5B5C_jp(ObjectStatus *objectStatus)
     objectStatus->segment = 0;
 }
 
-void func_80026E10_jp(void*, uintptr_t, size_t, const char *file, s32);         /* extern */
-s32 func_800C5AA0_jp(void*, void*, s16);            /* extern */
-
 //objectspawn equivalent
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C5B74_jp.s")
 s32 func_800C5B74_jp(ObjectExchangeBank* objectBank, s16 id) {
     s32 ret = 0;
 
@@ -130,9 +144,8 @@ s32 func_800C5B74_jp(ObjectExchangeBank* objectBank, s16 id) {
 
         if (func_800C5AA0_jp(objectStatus, objectBank, id) == 1)
         {
-            //DmaMgr_RequestSyncDebug
-            //TODO set the right types for these pointers in the structs
-            DmaMgr_RequestSyncDebug((void*)objectStatus->unk_08, objectStatus->vrom, objectStatus->size, "../m_scene.c", 317);
+
+            DmaMgr_RequestSyncDebug(objectStatus->unk_08, objectStatus->vrom, objectStatus->size, "../m_scene.c", 317);
             func_800C5B30_jp(objectStatus);
             objectStatus->unk50 = 1;
             objectBank->num++;
@@ -141,14 +154,6 @@ s32 func_800C5B74_jp(ObjectExchangeBank* objectBank, s16 id) {
     }
     return ret;
 }
-
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C5C30_jp.s")
-void func_800B1784_jp(s32);                            /* extern */
-void func_800B190C_jp(s32);                            /* extern */
-void func_800B1960_jp(s32, s32, s32);                      /* extern */
-void func_800B19C4_jp(s32, s32, s32);                      /* extern */
-void func_800B1A28_jp(s32);                            /* extern */
-void func_800B1A60_jp(s32);                            /* extern */
 
 //Object_Exchange_keep_new_Player
 void func_800C5C30_jp(s32 arg0)
@@ -165,7 +170,7 @@ void func_800C5C30_jp(s32 arg0)
     func_800B1A60_jp(arg0);
 }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C5CC4_jp.s")
+//mSc_secure_exchange_keep_bank
 u32 func_800C5CC4_jp(ObjectExchangeBank* objectBank, s16 id, s32 size) {
     ObjectStatus* objectStatus = &objectBank->status[objectBank->num];
     u32 var_a3 = 0;
@@ -220,7 +225,6 @@ u32 func_800C5CC4_jp(ObjectExchangeBank* objectBank, s16 id, s32 size) {
 //     return var_v1;
 // }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C5E10_jp.s")
 void func_800C5E10_jp(ObjectExchangeBank *objectBank) {
     s32 temp_s3 = objectBank->unk181C;
     s32 var_s1 = objectBank->unk17FC;
@@ -237,27 +241,10 @@ void func_800C5E10_jp(ObjectExchangeBank *objectBank) {
     }
 }
 
-// s32 func_800C5D68_jp(ObjectExchangeBank* objectBank);
+s32 func_800C5D68_jp(ObjectExchangeBank* objectBank);
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C5EA0_jp.s")
-// void func_800C5EA0_jp(ObjectExchangeBank* objectBank) {
-//     s32 temp_v0;
-//     UNK_PTR* temp_v0_2;
 
-//     if (objectBank->unk1820 == 1) {
-//         temp_v0 = func_800C5D68_jp();
-//         if (temp_v0 != objectBank->unk181C) {
-//             objectBank->unk181C = temp_v0;
-//             temp_v0_2 = objectBank + (temp_v0 * 4);
-//             objectBank->unk1800 = temp_v0_2->unk1808;
-//             objectBank->unk1804 = temp_v0_2->unk1810;
-//             func_800C5E10_jp(objectBank);
-//         }
-//         objectBank->unk1820 = 0;
-//     }
-// }
-
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C5F0C_jp.s")
 s32 func_800C5F0C_jp(ObjectStatus* objectStatus, ObjectExchangeBank* objectBank) {
     s32 var_v1 = 1;
     u32 temp_v0 = (objectBank->unk1800 + objectStatus->size + 0xF) & ~0xF;
@@ -328,9 +315,26 @@ s32 func_800C5F0C_jp(ObjectStatus* objectStatus, ObjectExchangeBank* objectBank)
 //     } while (var_s2 != 0x49);
 // }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/mSc_bank_regist_check.s")
+s32 mSc_bank_regist_check(ObjectExchangeBank* objectExchangeBank, s16 arg1)
+{
+    ObjectStatus *objectStatus;
+    s32 i;
+    s32 ret = -1;
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C6144_jp.s")
+    for (i = 0; i != OBJECT_EXCHANGE_BANK_MAX; i++)
+    {
+        objectStatus = &objectExchangeBank->status[i];
+        
+        if (((objectStatus->id >= 0) ? objectStatus->id : -objectStatus->id) == arg1)
+        {
+            ret = i;
+            break;
+        }
+    }
+
+    return ret;
+}
+
 s32 func_800C6144_jp(ObjectExchangeBank* objectBank, s16 arg1)
 {
     s32 temp_v0;
@@ -419,6 +423,7 @@ typedef struct {
 
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C62C4_jp.s")
+//mSc_dmacopy_all_exchange_bank_sub
 // void func_800C62C4_jp(ObjectStatus *objectStatus, ObjectExchangeBank *objectBank, s32 arg2)
 // {
 //     s32 temp_t3;
@@ -450,7 +455,6 @@ typedef struct {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/mSc_dmacopy_all_exchange_bank.s")
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/mSc_data_bank_ct.s")
 void mSc_data_bank_ct(Game_Play* game_play, ObjectExchangeBank *objectBank)
 {
     s32 temp_v0;
@@ -471,7 +475,6 @@ void mSc_data_bank_ct(Game_Play* game_play, ObjectExchangeBank *objectBank)
     gSegments[4] = OS_PHYSICAL_TO_K0(objectBank->status[0].segment); 
 }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/mSc_decide_exchange_bank.s")
 void mSc_decide_exchange_bank(ObjectExchangeBank *objectBank)
 {
     objectBank->unk17F8 = objectBank->num;
@@ -479,6 +482,7 @@ void mSc_decide_exchange_bank(ObjectExchangeBank *objectBank)
 }
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C6690_jp.s")
+//Scene_player_select
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/Scene_ct.s")
 // void func_800C6690_jp(s32, u16);
@@ -520,7 +524,6 @@ typedef struct {
 } unkStruct2;
 
 //Scene_Proc_Door_Data_Ptr 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C6A90_jp.s")
 void func_800C6A90_jp(Game_Play *game_play, unkStruct2* arg1)
 {
     UNK_PTR temp = arg1->unk4;
@@ -529,14 +532,11 @@ void func_800C6A90_jp(Game_Play *game_play, unkStruct2* arg1)
     game_play->unk_1E14 = Lib_SegmentedToVirtual(temp);
 }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/Door_info_ct.s")
 void Door_info_ct(s8 *arg0)
 {
     *arg0 = 0;
 }
 
-
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C6AD0_jp.s")
 void func_800C6AD0_jp(s32 arg0 UNUSED, UNK_TYPE arg1 UNUSED)
 {
 
@@ -557,8 +557,6 @@ void func_800C6AD0_jp(s32 arg0 UNUSED, UNK_TYPE arg1 UNUSED)
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C6D14_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C6D5C_jp.s")
-
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C6E14_jp.s")
 
 void func_800C6E14_jp(Game *arg0)
 {

@@ -16,7 +16,7 @@ typedef struct ActorEntry {
 typedef struct ObjectStatus {
     /* 0x00 */ s16 id;
     /* 0x04 */ void* segment;
-    /* 0x08 */ s32 unk_08;
+    /* 0x08 */ void* unk_08;
     /* 0x0C */ uintptr_t vrom;
     /* 0x10 */ size_t size;
     /* 0x14 */ UNK_TYPE unk14;
@@ -32,7 +32,7 @@ typedef struct ObjectStatus {
 
 typedef struct ObjectExchangeBank {
     /* 0x0000 */ ObjectStatus status[OBJECT_EXCHANGE_BANK_MAX]; // Name taken from oot debug string
-    /* 0x17FC */ s32 num; // Name taken from oot debug string
+    /* 0x17F4 */ s32 num; // Name taken from oot debug string
     /* 0x17F8 */ UNK_TYPE unk17F8; // index
     /* 0x17FC */ UNK_TYPE unk17FC; // index
     /* 0x1800 */ UNK_TYPE unk1800; // start pointers
@@ -52,7 +52,6 @@ typedef struct {
 
 typedef struct {
     /* 0x0000 */ char unk0;
-    //object_bank
 } SceneInfo;
 
 // void func_800C59B0_jp();
@@ -69,7 +68,7 @@ typedef struct {
 // void func_800C5EA0_jp();
 // void func_800C5F0C_jp();
 void mSc_dmacopy_data_bank(ObjectStatus* arg0);
-s32 mSc_bank_regist_check(ObjectStatus* arg0, s16 arg1);
+s32 mSc_bank_regist_check(ObjectExchangeBank* arg0, s16 arg1);
 s32 func_800C6144_jp(ObjectExchangeBank* objectBank, s16 arg1);
 void mSc_regist_initial_exchange_bank(struct Game_Play* game_play);
 // void func_800C62C4_jp();
