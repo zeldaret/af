@@ -457,7 +457,7 @@ void Game_play_move_fbdemo_not_move(Game_Play* game_play) {
     game_play->state.unk_9C = 4;
     mDemo_stock_clear();
     game_play->state.unk_9C = 5;
-    mSc_dmacopy_data_bank(game_play->objectExchangeBank.status);
+    mSc_dmacopy_data_bank(&game_play->objectExchangeBank);
     game_play->state.unk_9C = 6;
     mSM_submenu_move(&game_play->submenu);
     if ((game_play->submenu.moveProcIndex == MSM_MOVE_PROC_WAIT) && (REGADDR(IREG, 0x48) == 0)) {
@@ -827,12 +827,12 @@ void Gameplay_Scene_Init(Game_Play* game_play) {
     game_play->unk_1EA6 = 0;
     game_play->unk_1EA7 = 0;
     game_play->unk_1EB8 = 0;
-    mSc_data_bank_ct(game_play, game_play->objectExchangeBank.status);
+    mSc_data_bank_ct(game_play, &game_play->objectExchangeBank);
     Global_light_ct(&game_play->glight);
     Door_info_ct(&game_play->unk_1E10);
     common_data_clear();
     Scene_ct(game_play, game_play->unk_010C);
-    mSc_decide_exchange_bank(game_play->objectExchangeBank.status);
+    mSc_decide_exchange_bank(&game_play->objectExchangeBank);
     func_808041A4_jp(game_play);
 }
 
