@@ -88,7 +88,7 @@ void mNpc_RenewalAnimalMemory(void);
 // void func_800A78DC_jp();
 // void mNpc_ClearAnimalInfo();
 // void mNpc_ClearAnyAnimalInfo();
-// void mNpc_CheckFreeAnimalInfo();
+s32 mNpc_CheckFreeAnimalInfo(Animal_c*);
 // void mNpc_GetFreeAnimalInfo();
 // void mNpc_UseFreeAnimalInfo();
 // void mNpc_CopyAnimalInfo();
