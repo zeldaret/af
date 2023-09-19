@@ -50,7 +50,7 @@ typedef struct {
     /* 0x0000 */ u8 unk0;
     /* 0x0001 */ u8 unk1;
     /* 0x0004 */ UNK_PTR unk4;
-} unkStruct;
+} MSceneUnkStruct;
 
 s32 func_800C59B0_jp(ObjectExchangeBank* objectExchangeBank);
 s32 func_800C5A08_jp(ObjectExchangeBank* objectExchangeBank);
@@ -76,10 +76,10 @@ void mSc_decide_exchange_bank(ObjectExchangeBank* objectExchangeBank);
 // void func_800C6690_jp();
 void Scene_ct(struct Game_Play* game_play, void* arg1);
 // void func_800C6960_jp();
-void Scene_Proc_Ctrl_Actor_Ptr(struct Game_Play* /*game_play*/, unkStruct* /*arg1*/);
-void Scene_Proc_Actor_Ptr(struct Game_Play* /*game_play*/, unkStruct* /*arg1*/);
-void Scene_Proc_Object_Exchange_Bank_Ptr(struct Game_Play* /*game_play*/, unkStruct* /*arg1*/);
-void Scene_Proc_Door_Data_Ptr(struct Game_Play* /*game_play*/, unkStruct* /*arg1*/);
+void Scene_Proc_Ctrl_Actor_Ptr(struct Game_Play* /*game_play*/, MSceneUnkStruct* /*arg1*/);
+void Scene_Proc_Actor_Ptr(struct Game_Play* /*game_play*/, MSceneUnkStruct* /*arg1*/);
+void Scene_Proc_Object_Exchange_Bank_Ptr(struct Game_Play* /*game_play*/, MSceneUnkStruct* /*arg1*/);
+void Scene_Proc_Door_Data_Ptr(struct Game_Play* /*game_play*/, MSceneUnkStruct* /*arg1*/);
 void Door_info_ct(s8* arg0);
 void Scene_Proc_Sound(UNK_TYPE arg0, UNK_TYPE arg1);
 // void func_800C6AE0_jp();

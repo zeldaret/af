@@ -308,26 +308,26 @@ void mSc_decide_exchange_bank(ObjectExchangeBank* objectExchangeBank) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/Scene_Proc_Player_Ptr.s")
 
-void Scene_Proc_Ctrl_Actor_Ptr(Game_Play* game_play, unkStruct* arg1) {
+void Scene_Proc_Ctrl_Actor_Ptr(Game_Play* game_play, MSceneUnkStruct* arg1) {
     void* temp = arg1->unk4;
 
     game_play->unk_1EA6 = arg1->unk1;
     game_play->unk_1EB0 = Lib_SegmentedToVirtual(temp);
 }
 
-void Scene_Proc_Actor_Ptr(Game_Play* game_play, unkStruct* arg1) {
+void Scene_Proc_Actor_Ptr(Game_Play* game_play, MSceneUnkStruct* arg1) {
     void* temp = arg1->unk4;
 
     game_play->unk_1EA5 = arg1->unk1;
     game_play->unk_1EAC = Lib_SegmentedToVirtual(temp);
 }
 
-void Scene_Proc_Object_Exchange_Bank_Ptr(Game_Play* game_play, unkStruct* arg1) {
+void Scene_Proc_Object_Exchange_Bank_Ptr(Game_Play* game_play, MSceneUnkStruct* arg1) {
     game_play->unk_1EA7 = arg1->unk1;
     game_play->unk_1EB4 = Lib_SegmentedToVirtual(arg1->unk4);
 }
 
-void Scene_Proc_Door_Data_Ptr(Game_Play* game_play, unkStruct* arg1) {
+void Scene_Proc_Door_Data_Ptr(Game_Play* game_play, MSceneUnkStruct* arg1) {
     UNK_PTR temp = arg1->unk4;
 
     game_play->unk_1E10 = arg1->unk1;
