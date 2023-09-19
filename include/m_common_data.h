@@ -161,19 +161,6 @@ typedef struct FamicomEmuCommonData {
 
 typedef void (*CommonData_100E4_Func)(struct Game_Play*);
 
-typedef struct {
-    /* 0x0000 */ UNK_TYPE1 unk_0[0x14];
-    /* 0x0014 */ UNK_TYPE unk_14;
-    /* 0x0018 */ UNK_TYPE1 unk_18[0xF404];
-    /* 0xF41C */ u8 snowmanData[0xC];
-    /* 0xF428 */ u8 unk_F428[0x485];
-    /* 0xF8AD */ u8 snowmanYear;
-    /* 0xF8AE */ u8 snowmanMonth;
-    /* 0xF8AF */ u8 snowmanDay;
-    /* 0xF8B0 */ u8 snowmanHour;
-    /* 0xF8B1 */ u8 unk_F8B1[0x74F];
-} Save; // size = 0x10000
-
 typedef struct CommonData {
     /* 0x00000 */ u8 unk00000[0x14];
     /* 0x00014 */ s32 unk_00014;
