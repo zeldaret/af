@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 
+struct GraphicsContext;
 struct Game_Play;
 
 // void func_800BD2B0_jp();
@@ -16,9 +17,9 @@ Gfx* gfx_set_fog_nosync(Gfx* gfx, u8 arg1, u8 arg2, u8 arg3, s32 arg4, s16 arg5,
 // void func_800BD4E8_jp();
 // void _texture_z_light_fog_prim_shadow();
 // void func_800BD538_jp();
-// void func_800BD598_jp();
-// void func_800BD5C0_jp();
-// void func_800BD5E8_jp();
+void func_800BD598_jp(Gfx* gfx);
+void func_800BD5C0_jp(struct GraphicsContext* gfxCtx);
+void func_800BD5E8_jp(Gfx* gfx);
 // void func_800BD648_jp();
 // void func_800BD68C_jp();
 // void func_800BD6D0_jp();
@@ -34,7 +35,7 @@ Gfx* func_800BD7C0_jp(Gfx* gfx);
 // void func_800BD9FC_jp();
 // void func_800BDA20_jp();
 // void two_tex_scroll();
-void DisplayList_initialize(GraphicsContext* gfxCtx, u8 arg1, u8 arg2, u8 arg3, struct Game_Play* game_play);
+void DisplayList_initialize(struct GraphicsContext* gfxCtx, u8 arg1, u8 arg2, u8 arg3, struct Game_Play* game_play);
 void fade_rgba8888_draw(Gfx** gfx, s32 arg1);
 // void func_800BE030_jp();
 // void fade_black_draw();
@@ -44,7 +45,7 @@ Gfx *func_800BE12C_jp(Gfx *gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 // void func_800BE184_jp();
 // void func_800BE1D4_jp();
 // void func_800BE27C_jp();
-// void func_800BE320_jp();
+Gfx* func_800BE320_jp(Gfx*, s32, s32, s32, s32, s32, s32, s32, s32, s32);
 // void func_800BE4F8_jp();
 
 #endif

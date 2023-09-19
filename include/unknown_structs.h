@@ -24,22 +24,45 @@ typedef struct CommonData_unk_1004C_unk_14_arg0 {
     /* 0x04 */ UNK_TYPE1 unk_04[0x60];
 } CommonData_unk_1004C_unk_14_arg0; // size >= 0x64, maybe less, guessed from stack usage
 
-typedef struct Game_Play_unk_0110 {
+typedef struct Game_Play_unk_0110_unk_0000 {
     /* 0x00 */ s16 unk_00;
     /* 0x02 */ UNK_TYPE1 unk_02[0x2];
     /* 0x04 */ void* segment;
     /* 0x08 */ UNK_TYPE1 unk_08[0x48];
     /* 0x50 */ s16 unk_50;
     /* 0x52 */ UNK_TYPE1 unk_52[0x2];
-} Game_Play_unk_0110; // size = 0x54
+} Game_Play_unk_0110_unk_0000; // size = 0x54
+
+typedef struct Game_Play_unk_0110 {
+    /* 0x0000 */ Game_Play_unk_0110_unk_0000 unk_0000[UNK_SIZE];
+    /* 0x0054 */ UNK_TYPE1 unk_0054[0x17A8];
+    /* 0x17FC */ s32 unk_17FC;
+    /* 0x1800 */ UNK_TYPE1 unk_1800[0x18];
+    /* 0x1818 */ void* unk_1818;
+} Game_Play_unk_0110; // size >= 0x181C
+
+typedef struct ShadowData {
+    /* 0x00 */ u32 numberOfVertices;
+    /* 0x04 */ u8* vertexFixFlagTable;
+    /* 0x08 */ f32 size;
+    /* 0x0C */ Vtx* vertices;
+    /* 0x10 */ Gfx* model;
+} ShadowData; // size = 0x14
 
 typedef struct struct_809AEFA4 {
-    /* 0x00 */ UNK_PTR unk_0;
-    /* 0x04 */ UNK_PTR unk_4;
-    /* 0x08 */ UNK_TYPE unk_8;
-    /* 0x0C */ UNK_PTR unk_C;
+    /* 0x00 */ UNK_PTR unk_00;
+    /* 0x04 */ UNK_PTR unk_04;
+    /* 0x08 */ UNK_TYPE unk_08;
+    /* 0x0C */ UNK_PTR unk_0C;
     /* 0x10 */ UNK_PTR unk_10;
     /* 0x14 */ UNK_PTR unk_14;
 } struct_809AEFA4; // size >= 0x18
+
+// Maybe same struct as mMl?
+typedef struct struct_func_8085CE18_jp_arg4 {
+    /* 0x00 */ UNK_TYPE1 unk_00[0x24];
+    /* 0x24 */ u16 unk_24;
+    /* 0x26 */ u8 unk_26;
+} struct_func_8085CE18_jp_arg4; // size >= 0x28
 
 #endif

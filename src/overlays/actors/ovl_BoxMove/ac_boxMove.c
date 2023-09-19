@@ -8,7 +8,6 @@ void BoxMove_Actor_dt(Actor* thisx, Game_Play* game_play);
 void BoxMove_Actor_move(Actor* thisx, Game_Play* game_play);
 void BoxMove_Actor_draw(Actor* thisx, Game_Play* game_play);
 
-#if 0
 ActorProfile BoxMove_Profile = {
     /* */ ACTOR_BOX_MOVE,
     /* */ ACTOR_PART_4,
@@ -22,12 +21,15 @@ ActorProfile BoxMove_Profile = {
     /* */ BoxMove_Actor_draw,
     /* */ NULL,
 };
-#endif
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_BoxMove/ac_boxMove/BoxMove_Actor_ct.s")
+void BoxMove_Actor_ct(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_BoxMove/ac_boxMove/BoxMove_Actor_dt.s")
+void BoxMove_Actor_dt(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_BoxMove/ac_boxMove/BoxMove_Actor_move.s")
+void BoxMove_Actor_move(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_BoxMove/ac_boxMove/BoxMove_Actor_draw.s")
+void BoxMove_Actor_draw(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}

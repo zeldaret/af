@@ -99,6 +99,8 @@ s16 cKF_KeyCalc(s16 startIndex, s16 sequenceLength, Keyframe* dataSource, f32 cu
 void cKF_SkeletonInfo_subRotInterpolation(f32 t, s16* out, s16 jointRotation, s16 morphRotation);
 void cKF_SkeletonInfo_morphST(s16* joint, s16* morph, f32 t);
 void cKF_SkeletonInfo_R_zeroClear(SkeletonInfoR* skeletonInfo);
+void cKF_SkeletonInfo_R_ct(SkeletonInfoR* skeletonInfo, BaseSkeletonR* skeleton, BaseAnimationR* animation,
+                           Vec3s* jointTable, Vec3s* morphTable);
 void cKF_SkeletonInfo_R_dt(SkeletonInfoR* skeletonInfo);
 void cKF_SkeletonInfo_R_init_standard_stop(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation, Vec3s* diffRotTable);
 void cKF_SkeletonInfo_R_init_standard_stop_speedset(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,

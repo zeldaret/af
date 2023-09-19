@@ -4,6 +4,16 @@
 #include "ultra64.h"
 #include "z64math.h"
 
+typedef struct mCoBG_OffsetTable {
+    /* 0x00 */ u8 unitAttribute;
+    /* 0x01 */ s8 crOffset;
+    /* 0x02 */ s8 luOffset;
+    /* 0x03 */ s8 ldOffset;
+    /* 0x04 */ s8 rdOffset;
+    /* 0x05 */ s8 ruOffset;
+    /* 0x06 */ s8 slateSwitch;
+} mCoBG_OffsetTable; // size = 0x7
+
 // void func_80067430_jp();
 // void func_800674B0_jp();
 // void func_800674D8_jp();
@@ -215,7 +225,7 @@ s32 mCoBG_SearchWaterLimitDistN(UNK_TYPE* arg0, Vec3f arg1, s16 arg4, f32 arg5, 
 // void func_800739FC_jp();
 // void func_80073C38_jp();
 // void func_80073CC0_jp();
-// void mCoBG_SetPluss5PointOffset_file();
+void mCoBG_SetPluss5PointOffset_file(Vec3f pos, mCoBG_OffsetTable offsetData, char* file, s32 line);
 // void func_80074090_jp();
 // void func_80074174_jp();
 // void func_800741DC_jp();
