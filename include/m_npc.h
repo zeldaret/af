@@ -198,7 +198,7 @@ void mNpc_GetNpcWorldNameAnm(PlayerName* arg0, struct mMl_get_npcinfo_from_mail_
 // void func_800ACD74_jp();
 // void func_800ACDF8_jp();
 // void func_800ACE90_jp();
-// void func_800ACF84_jp();
+void mNpc_GetAnimalPlateName(s32 arg0, Vec3f arg1);
 // void func_800AD084_jp();
 // void func_800AD0B8_jp();
 // void func_800AD104_jp();
