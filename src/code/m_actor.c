@@ -161,7 +161,7 @@ void Actor_ct(Actor* actor, Game_Play* game_play) {
         npc = (Npc*)actor;
 
         common_data.unk_1004C->unk_14(&sp34, npc->actor.fgName);
-        npc->unk_708 = mSc_bank_regist_check(temp_a0->status, sp34.unk_02);
+        npc->unk_708 = mSc_bank_regist_check(temp_a0, sp34.unk_02);
         temp_a0->status[npc->unk_708].unk50++;
     }
 
@@ -693,8 +693,8 @@ s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile UNUSED, ActorOverlay* over
         sp90 = sp24.unk_02;
     }
 
-    *arg0 = mSc_bank_regist_check(game_play->objectExchangeBank.status, sp92);
-    temp_v0 = mSc_bank_regist_check(game_play->objectExchangeBank.status, sp90);
+    *arg0 = mSc_bank_regist_check(&game_play->objectExchangeBank, sp92);
+    temp_v0 = mSc_bank_regist_check(&game_play->objectExchangeBank, sp90);
 
     if ((*arg0 < 0) || (temp_v0 < 0)) {
         if (*arg0 >= 0) {
@@ -714,10 +714,10 @@ s32 func_80057B70_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntr
     s32 pad UNUSED;
     s32 ret = 1;
 
-    *arg0 = mSc_bank_regist_check(game_play->objectExchangeBank.status, profile->objectId);
+    *arg0 = mSc_bank_regist_check(&game_play->objectExchangeBank, profile->objectId);
 
     if (*arg0 == -1) {
-        func_800C6144_jp(game_play->objectExchangeBank.status, profile->objectId);
+        func_800C6144_jp(&game_play->objectExchangeBank, profile->objectId);
         actor_free_check(overlayEntry, fgName);
         ret = 0;
     }

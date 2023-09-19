@@ -16,7 +16,7 @@ typedef struct ActorEntry {
 typedef struct ObjectStatus {
     /* 0x00 */ s16 id;
     /* 0x04 */ void* segment;
-    /* 0x08 */ void* unk_08;
+    /* 0x08 */ UNK_TYPE unk_08;
     /* 0x0C */ uintptr_t vrom;
     /* 0x10 */ size_t size;
     /* 0x14 */ UNK_TYPE unk14;

@@ -1,4 +1,5 @@
-#include "global.h"
+#include "unk.h"
+#include "libc/stdint.h"
 #include "m_scene.h"
 #include "m_common_data.h"
 #include "TwoHeadArena.h"
@@ -9,6 +10,7 @@
 #include "code_variables.h"
 #include "m_object.h"
 #include "m_player_lib.h"
+#include "z_std_dma.h"
 
 s32 func_800C59B0_jp(ObjectExchangeBank* objectExchangeBank) {
     ObjectStatus* objectStatus = &objectExchangeBank->status[objectExchangeBank->unk17FC];
@@ -42,7 +44,7 @@ s32 func_800C5A08_jp(ObjectExchangeBank* objectExchangeBank) {
             }
             objectStatus++;
             statusIndex++;
-        } while (statusIndex != OBJECT_EXCHANGE_BANK_MAX);
+        } while (statusIndex < OBJECT_EXCHANGE_BANK_MAX);
     }
 
     return ret;
@@ -87,7 +89,7 @@ s32 func_800C5AA0_jp(ObjectStatus* objectStatus, ObjectExchangeBank* objectExcha
 void func_800C5B30_jp(ObjectStatus* objectStatus) {
     objectStatus->id = (objectStatus->id >= 0) ? objectStatus->id : -objectStatus->id;
     objectStatus->unk53 = 0;
-    objectStatus->segment = objectStatus->unk_08;
+    objectStatus->segment = (void*)objectStatus->unk_08;
 }
 
 void mSc_clear_bank_status(ObjectStatus* objectStatus) {
@@ -106,7 +108,8 @@ s32 func_800C5B74_jp(ObjectExchangeBank* objectExchangeBank, s16 id) {
 
         if (func_800C5AA0_jp(objectStatus, objectExchangeBank, id) == 1) {
 
-            DmaMgr_RequestSyncDebug(objectStatus->unk_08, objectStatus->vrom, objectStatus->size, "../m_scene.c", 317);
+            DmaMgr_RequestSyncDebug((void*)objectStatus->unk_08, objectStatus->vrom, objectStatus->size, "../m_scene.c",
+                                    317);
             func_800C5B30_jp(objectStatus);
             objectStatus->unk50 = 1;
             objectExchangeBank->num++;
@@ -132,27 +135,27 @@ void Object_Exchange_keep_new_Player(s32 arg0) {
 
 u32 mSc_secure_exchange_keep_bank(ObjectExchangeBank* objectExchangeBank, s16 id, s32 size) {
     ObjectStatus* objectStatus = &objectExchangeBank->status[objectExchangeBank->num];
-    u32 var_a3 = 0;
+    u32 ret = 0;
 
     if (objectExchangeBank->num < OBJECT_EXCHANGE_BANK_MAX) {
-        var_a3 = (objectExchangeBank->unk1800 + size + 0xF) & ~0xF;
-        if (var_a3 >= objectExchangeBank->unk1804) {
-            var_a3 = 0;
+        ret = (objectExchangeBank->unk1800 + size + 0xF) & ~0xF;
+        if (ret >= objectExchangeBank->unk1804) {
+            ret = 0;
 
         } else {
             objectStatus->id = id;
-            objectStatus->segment = objectExchangeBank->unk1800;
+            objectStatus->segment = (void*)objectExchangeBank->unk1800;
             objectStatus->unk_08 = objectExchangeBank->unk1800;
             objectStatus->vrom = 0;
             objectStatus->size = size;
             objectStatus->unk50 = 0;
             objectStatus->unk53 = 3;
-            objectExchangeBank->unk1800 = var_a3;
+            objectExchangeBank->unk1800 = ret;
             objectExchangeBank->num++;
         }
     }
 
-    return var_a3;
+    return ret;
 }
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C5D68_jp.s")
@@ -169,7 +172,7 @@ void func_800C5E10_jp(ObjectExchangeBank* objectExchangeBank) {
                 objectStatus++;
             }
             var_s1++;
-        } while (var_s1 != OBJECT_EXCHANGE_BANK_MAX);
+        } while (var_s1 < OBJECT_EXCHANGE_BANK_MAX);
     }
 }
 
@@ -200,7 +203,7 @@ s32 mSc_bank_regist_check(ObjectExchangeBank* objectExchangeBank, s16 id) {
     s32 i;
     s32 ret = -1;
 
-    for (i = 0; i != OBJECT_EXCHANGE_BANK_MAX; i++) {
+    for (i = 0; i < OBJECT_EXCHANGE_BANK_MAX; i++) {
         objectStatus = &objectExchangeBank->status[i];
 
         if (((objectStatus->id >= 0) ? objectStatus->id : -objectStatus->id) == id) {
@@ -276,13 +279,13 @@ void mSc_regist_initial_exchange_bank(Game_Play* game_play) {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/mSc_dmacopy_all_exchange_bank.s")
 
 void mSc_data_bank_ct(Game_Play* game_play, ObjectExchangeBank* objectExchangeBank) {
-    s32 temp_v0;
+    u32 temp_v0;
     u32 temp_v1;
 
     bzero(objectExchangeBank, 0x1824);
     objectExchangeBank->unk17F8 = -1;
     objectExchangeBank->unk17FC = -1;
-    temp_v0 = THA_alloc16(&game_play->state.heap, 0x93400);
+    temp_v0 = (u32)THA_alloc16(&game_play->state.heap, 0x93400);
     temp_v1 = temp_v0 + 0x93400;
     objectExchangeBank->unk1800 = temp_v0;
     objectExchangeBank->unk1808 = temp_v0;
@@ -291,12 +294,12 @@ void mSc_data_bank_ct(Game_Play* game_play, ObjectExchangeBank* objectExchangeBa
     objectExchangeBank->unk1810 = temp_v1;
     objectExchangeBank->unk1814 = temp_v1;
     func_800C5B74_jp(objectExchangeBank, GAMEPLAY_KEEP);
-    gSegments[4] = OS_PHYSICAL_TO_K0(objectExchangeBank->status[0].segment);
+    gSegments[4] = (uintptr_t)OS_PHYSICAL_TO_K0(objectExchangeBank->status[0].segment);
 }
 
 void mSc_decide_exchange_bank(ObjectExchangeBank* objectExchangeBank) {
     objectExchangeBank->unk17F8 = objectExchangeBank->num;
-    objectExchangeBank->unk1818 = objectExchangeBank->unk1800;
+    objectExchangeBank->unk1818 = (void*)objectExchangeBank->unk1800;
 }
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C6690_jp.s")
@@ -354,10 +357,10 @@ void Scene_Proc_Sound(UNK_TYPE arg0 UNUSED, UNK_TYPE arg1 UNUSED) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C6D5C_jp.s")
 
-void return_emu_game(Game* arg0) {
-    mem_copy(&common_data.unk_10754, &common_data.unk_107A0, 0x14U);
+void return_emu_game(Game* game) {
+    mem_copy(&common_data.unk_10754, &common_data.unk_107A0, 0x14);
     common_data.unk_10754 = common_data.unk_107A0 + 1;
-    arg0->unk_74 = 0;
-    game_goto_next_game_play(arg0);
+    game->unk_74 = 0;
+    game_goto_next_game_play(game);
     common_data.unk_00014 = common_data.unk_107A0;
 }

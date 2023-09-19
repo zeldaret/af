@@ -72,7 +72,7 @@ void mSM_load_player_anime(Game_Play* game_play) {
     }
 
     var_s4 = game_play->objectExchangeBank.status;
-    var_s4 += mSc_bank_regist_check(var_s4, 9);
+    var_s4 += mSc_bank_regist_check(&game_play->objectExchangeBank, 9);
 
     for (var_s3 = 0; var_s3 < 2; var_s3++, var_s4++) {
         segment = var_s4->segment;
@@ -506,7 +506,7 @@ void mSM_move_End(Submenu* submenu) {
 
     sp24 = mMsg_Get_base_window_p();
     submenu->unk_00 = 0;
-    mSc_dmacopy_all_exchange_bank(sp28->objectExchangeBank.status);
+    mSc_dmacopy_all_exchange_bank(&sp28->objectExchangeBank);
     SubmenuArea_DoUnlink(SubmenuArea_dlftbl, submenu);
     load_player(submenu);
     mSM_load_player_anime(sp28);
