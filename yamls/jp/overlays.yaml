@@ -15234,7 +15234,7 @@
     bss_size: 0x0
     subsegments:
       - [0x956630, c, overlays/actors/ovl_Nameplate/ac_nameplate]
-      - [0x956800, data, overlays/actors/ovl_Nameplate/ac_nameplate]
+      - [0x956800, .data, overlays/actors/ovl_Nameplate/ac_nameplate]
   - name: ovl_Nameplate_reloc
     type: code
     start: 0x956830
