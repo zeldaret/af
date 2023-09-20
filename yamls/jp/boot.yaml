@@ -315,7 +315,7 @@
       - { start: 0x019D40, type: .bss, vram: 0x80041AE0, name: ../lib/ultralib/src/io/siacs }
       - { start: 0x019D40, type: .bss, vram: 0x80041B00, name: ../lib/ultralib/src/os/initialize }
       - { start: 0x019D40, type: .bss, vram: 0x80041B10, name: ../lib/ultralib/src/debug/kdebugserver }
-      - { start: 0x019D40, type: .bss, vram: 0x80041B10, name: ../lib/ultralib/src/flash/flashinit }
+      - { start: 0x019D40, type: .bss, vram: 0x80041CC0, name: ../lib/ultralib/src/flash/flashinit }
       - { start: 0x019D40, type: .bss, vram: 0x80041D80, name: ../lib/ultralib/src/io/motor }
       - { start: 0x019D40, type: .bss, vram: 0x80041E80, name: ../lib/ultralib/src/io/pimgr }
       - { start: 0x019D40, type: .bss, vram: 0x80043140, name: ../lib/ultralib/src/io/piacs }
