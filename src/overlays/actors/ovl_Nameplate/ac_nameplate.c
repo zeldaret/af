@@ -8,6 +8,7 @@
 #include "m_msg_main.h"
 #include "69E2C0.h"
 #include "overlays/actors/player_actor/m_player.h"
+#include "color.h"
 
 void aNP_actor_ct(Actor* thisx, Game_Play* game_play);
 void aNP_actor_dt(Actor* thisx, Game_Play* game_play);
@@ -29,19 +30,18 @@ ActorProfile Nameplate_Profile = {
     /* */ NULL,
 };
 
-void aNP_actor_ct(Actor* thisx, Game_Play* game_play) {
+void aNP_actor_ct(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
 }
 
-void aNP_actor_dt(Actor* thisx, Game_Play* game_play) {
+void aNP_actor_dt(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
 }
 
 void aNP_set_talk_info(Actor* thisx) {
     Color_RGBA8 color;
-    s32 pad; // TODO: find out what this pad is/if it's part of sp1C
-    s32 sp1C;
+    char villagerName[8];
 
-    mNpc_GetAnimalPlateName(&sp1C, thisx->world.pos);
-    mMsg_Set_free_str(mMsg_Get_base_window_p(), 0, &sp1C, 6);
+    mNpc_GetAnimalPlateName(villagerName, thisx->world.pos);
+    mMsg_Set_free_str(mMsg_Get_base_window_p(), 0, villagerName, 6);
     mDemo_Set_msg_num(0x1369);
     mDemo_Set_talk_display_name(0);
     mDemo_Set_ListenAble();

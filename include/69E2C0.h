@@ -2,10 +2,12 @@
 #define C_69E2C0_H
 
 #include "ultra64.h"
+#include "color.h"
 
 struct Input;
 struct GraphicsContext;
 struct Game_Play;
+struct Actor;
 
 // void func_8007A620_jp();
 // void func_8007A630_jp();
@@ -36,7 +38,7 @@ void mDemo_Set_talk_display_name(s8 arg0);
 // void func_8007B8CC_jp();
 // void func_8007B908_jp();
 // void func_8007B944_jp();
-void mDemo_Set_talk_window_color(s8* arg0);
+void mDemo_Set_talk_window_color(Color_RGBA8* color);
 // void func_8007B9E0_jp();
 void mDemo_Set_camera(s32 arg0);
 // void func_8007BA38_jp();
@@ -72,8 +74,8 @@ void mDemo_Set_camera(s32 arg0);
 // void func_8007CBEC_jp();
 // void func_8007CC9C_jp();
 void mDemo_stock_clear(void);
-void mDemo_Request(s32 arg0, s32 arg1, s32 arg2);
-s32 mDemo_Check(s32 arg0, s32 arg1);
+void mDemo_Request(s32 arg0, struct Actor* actor, void* arg2);
+s32 mDemo_Check(s32 arg0, struct Actor* actor);
 // void func_8007CF34_jp();
 // void func_8007CF44_jp();
 // void func_8007CF84_jp();
@@ -82,7 +84,7 @@ void func_8007CFD8_jp(struct Game_Play* game_play);
 // void func_8007D030_jp();
 // void func_8007D048_jp();
 // void func_8007D080_jp();
-void mDemo_Set_ListenAble();
+void mDemo_Set_ListenAble(void);
 // void func_8007D0B0_jp();
 // void func_8007D0C4_jp();
 // void func_8007D0D8_jp();
