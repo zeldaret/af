@@ -8,7 +8,7 @@
 #include "ovlmgr.h"
 #include "game.h"
 #include "sys_math3d.h"
-#include "6E9650.h"
+#include "m_scene.h"
 #include "6DE300.h"
 #include "6F5550.h"
 #include "libc/stddef.h"
@@ -60,7 +60,7 @@ s32 SubmenuArea_IsPlayer(void) {
 #ifdef NON_MATCHING
 // regalloc
 void mSM_load_player_anime(Game_Play* game_play) {
-    Game_Play_unk_0110_unk_0000* var_s4;
+    ObjectStatus* var_s4;
     s32 var_s0;
     s32 var_s3;
     Player* temp_v0;
@@ -71,8 +71,8 @@ void mSM_load_player_anime(Game_Play* game_play) {
         return;
     }
 
-    var_s4 = game_play->unk_0110.unk_0000;
-    var_s4 += mSc_bank_regist_check(var_s4, 9);
+    var_s4 = game_play->objectExchangeBank.status;
+    var_s4 += mSc_bank_regist_check(&game_play->objectExchangeBank, 9);
 
     for (var_s3 = 0; var_s3 < 2; var_s3++, var_s4++) {
         segment = var_s4->segment;
@@ -506,7 +506,7 @@ void mSM_move_End(Submenu* submenu) {
 
     sp24 = mMsg_Get_base_window_p();
     submenu->unk_00 = 0;
-    mSc_dmacopy_all_exchange_bank(sp28->unk_0110.unk_0000);
+    mSc_dmacopy_all_exchange_bank(&sp28->objectExchangeBank);
     SubmenuArea_DoUnlink(SubmenuArea_dlftbl, submenu);
     load_player(submenu);
     mSM_load_player_anime(sp28);

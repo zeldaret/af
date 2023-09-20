@@ -1529,7 +1529,7 @@ void mSM_menu_ovl_draw(Submenu* submenu, Game_Play* game_play) {
 }
 
 void mSM_menu_ovl_init(Submenu* submenu) {
-    Game_Play_unk_0110* var_v1;
+    ObjectExchangeBank* var_v1;
     void* func = none_proc1;
     u16 temp = 0x2000;
 
@@ -1539,12 +1539,12 @@ void mSM_menu_ovl_init(Submenu* submenu) {
 //! FAKE
 label:
     if (submenu->unk_00 != 4) {
-        var_v1 = &((Game_Play*)gamePT)->unk_0110;
+        var_v1 = &((Game_Play*)gamePT)->objectExchangeBank;
     } else {
         var_v1 = &((Game__00743CD0*)gamePT)->unk_02FC;
     }
 
-    ovl_base.unk_10000.unk_00 = var_v1->unk_1818;
+    ovl_base.unk_10000.unk_00 = var_v1->unk1818;
     submenu->unk_08 = SUBMENU_PROGRAM_0;
     ovl_base.unk_10670.unk_00 = func;
     ovl_base.unk_10670.unk_04 = func;

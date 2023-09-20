@@ -17,7 +17,6 @@
 #include "sys_matrix.h"
 #include "ovlmgr.h"
 #include "gfx.h"
-#include "6E9650.h"
 #include "unknown_structs.h"
 #include "code_variables.h"
 #include "macros.h"
@@ -103,11 +102,11 @@ s32 Actor_data_bank_dma_end_check(Actor* actor, Game_Play* game_play) {
     switch (ACTOR_FGNAME_GET_F000(actor->fgName)) {
         case FGNAME_F000_D:
         case FGNAME_F000_E:
-            var_v1 = common_data.unk_1004C->unk_F4(game_play->unk_0110.unk_0000, actor);
+            var_v1 = common_data.unk_1004C->unk_F4(game_play->objectExchangeBank.status, actor);
             break;
 
         default:
-            var_v1 = game_play->unk_0110.unk_0000[actor->unk_026].unk_00 > 0;
+            var_v1 = game_play->objectExchangeBank.status[actor->unk_026].id > 0;
             break;
     }
 
@@ -147,23 +146,23 @@ void Actor_delete(Actor* actor) {
 
 void Actor_ct(Actor* actor, Game_Play* game_play) {
     s32 pad[2] UNUSED;
-    Game_Play_unk_0110_unk_0000* temp;
+    ObjectStatus* temp;
     Npc* npc;
     CommonData_unk_1004C_unk_14_arg0 sp34;
-    Game_Play_unk_0110* temp_a0;
+    ObjectExchangeBank* temp_a0;
 
-    temp_a0 = &game_play->unk_0110;
+    temp_a0 = &game_play->objectExchangeBank;
 
-    temp = temp_a0->unk_0000;
+    temp = temp_a0->status;
     temp += actor->unk_026;
-    temp->unk_50++;
+    temp->unk50++;
 
     if (actor->part == ACTOR_PART_NPC) {
         npc = (Npc*)actor;
 
         common_data.unk_1004C->unk_14(&sp34, npc->actor.fgName);
-        npc->unk_708 = mSc_bank_regist_check(temp_a0->unk_0000, sp34.unk_02);
-        temp_a0->unk_0000[npc->unk_708].unk_50++;
+        npc->unk_708 = mSc_bank_regist_check(temp_a0, sp34.unk_02);
+        temp_a0->status[npc->unk_708].unk50++;
     }
 
     actor->world = actor->home;
@@ -193,7 +192,7 @@ void Actor_ct(Actor* actor, Game_Play* game_play) {
     Shape_Info_init(actor, 0.0f, NULL, 0.0f, 0.0f);
 
     if (Actor_data_bank_dma_end_check(actor, game_play) == 1) {
-        gSegments[6] = (uintptr_t)OS_K0_TO_PHYSICAL(temp_a0->unk_0000[actor->unk_026].segment);
+        gSegments[6] = (uintptr_t)OS_K0_TO_PHYSICAL(temp_a0->status[actor->unk_026].segment);
         actor->ct(actor, game_play);
         actor->ct = NULL;
     }
@@ -201,7 +200,7 @@ void Actor_ct(Actor* actor, Game_Play* game_play) {
 
 #ifdef NON_MATCHING
 void Actor_dt(Actor* actor, Game_Play* game_play) {
-    Game_Play_unk_0110_unk_0000* temp_v0_6;
+    ObjectStatus* temp_v0_6;
     s32 new_var;
 
     if (actor->save != NULL) {
@@ -222,7 +221,7 @@ void Actor_dt(Actor* actor, Game_Play* game_play) {
         actor->parent->child = NULL;
     }
 
-    temp_v0_6 = game_play->unk_0110.unk_0000;
+    temp_v0_6 = game_play->objectExchangeBank.status;
     if (0) {}
 
     switch ((actor->fgName & 0xF000) >> 0xC) {
@@ -232,13 +231,13 @@ void Actor_dt(Actor* actor, Game_Play* game_play) {
             break;
 
         default:
-            new_var = game_play->unk_0110.unk_17FC;
+            new_var = game_play->objectExchangeBank.num;
 
             if (actor->unk_026 >= new_var) {
                 temp_v0_6 = &temp_v0_6[(void)0, actor->unk_026];
-                if (temp_v0_6->unk_50 > 0) {
+                if (temp_v0_6->unk50 > 0) {
                     actor->unk_026 = -1;
-                    temp_v0_6->unk_50--;
+                    temp_v0_6->unk50--;
                 }
             }
             break;
@@ -272,7 +271,7 @@ void Actor_draw(Game_Play* game_play, Actor* actor) {
     Matrix_scale(actor->scale.x, actor->scale.y, actor->scale.z, MTXMODE_APPLY);
 
     {
-        void* segment = game_play->unk_0110.unk_0000[(void)0, actor->unk_026].segment;
+        void* segment = game_play->objectExchangeBank.status[(void)0, actor->unk_026].segment;
 
         gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(segment);
 
@@ -452,7 +451,8 @@ void Actor_info_call_actor(Game_Play* game_play, ActorInfo* actorInfo) {
 
             if (actor->ct != NULL) {
                 if (Actor_data_bank_dma_end_check(actor, game_play) == 1) {
-                    gSegments[6] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_0110.unk_0000[actor->unk_026].segment);
+                    gSegments[6] =
+                        (uintptr_t)OS_K0_TO_PHYSICAL(game_play->objectExchangeBank.status[actor->unk_026].segment);
 
                     game_play->state.unk_9D = 0x98;
                     actor->ct(actor, game_play);
@@ -488,7 +488,8 @@ void Actor_info_call_actor(Game_Play* game_play, ActorInfo* actorInfo) {
 
                 actor->flags &= ~ACTOR_FLAG_1000000;
                 if ((actor->flags & (ACTOR_FLAG_40 | ACTOR_FLAG_10)) || (actor->part == ACTOR_PART_NPC)) {
-                    gSegments[6] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_0110.unk_0000[actor->unk_026].segment);
+                    gSegments[6] =
+                        (uintptr_t)OS_K0_TO_PHYSICAL(game_play->objectExchangeBank.status[actor->unk_026].segment);
                     game_play->state.unk_9D = 0xA1;
                     actor->update(actor, game_play);
                     game_play->state.unk_9D = 0xA2;
@@ -692,8 +693,8 @@ s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile UNUSED, ActorOverlay* over
         sp90 = sp24.unk_02;
     }
 
-    *arg0 = mSc_bank_regist_check(game_play->unk_0110.unk_0000, sp92);
-    temp_v0 = mSc_bank_regist_check(game_play->unk_0110.unk_0000, sp90);
+    *arg0 = mSc_bank_regist_check(&game_play->objectExchangeBank, sp92);
+    temp_v0 = mSc_bank_regist_check(&game_play->objectExchangeBank, sp90);
 
     if ((*arg0 < 0) || (temp_v0 < 0)) {
         if (*arg0 >= 0) {
@@ -702,7 +703,7 @@ s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile UNUSED, ActorOverlay* over
         if (temp_v0 >= 0) {
             sp90 = 0;
         }
-        common_data.unk_1004C->unk_EC(game_play->unk_0110.unk_0000, sp92, sp90);
+        common_data.unk_1004C->unk_EC(game_play->objectExchangeBank.status, sp92, sp90);
         actor_free_check(overlayEntry, fgName);
         ret = 0;
     }
@@ -713,10 +714,10 @@ s32 func_80057B70_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntr
     s32 pad UNUSED;
     s32 ret = 1;
 
-    *arg0 = mSc_bank_regist_check(game_play->unk_0110.unk_0000, profile->objectId);
+    *arg0 = mSc_bank_regist_check(&game_play->objectExchangeBank, profile->objectId);
 
     if (*arg0 == -1) {
-        func_800C6144_jp(game_play->unk_0110.unk_0000, profile->objectId);
+        func_800C6144_jp(&game_play->objectExchangeBank, profile->objectId);
         actor_free_check(overlayEntry, fgName);
         ret = 0;
     }

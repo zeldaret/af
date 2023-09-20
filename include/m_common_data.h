@@ -19,7 +19,7 @@
 struct Actor;
 struct ActorOverlay;
 struct struct_801161E8_jp;
-struct Game_Play_unk_0110_unk_0000;
+struct ObjectStatus;
 struct CommonData_unk_1004C_unk_14_arg0;
 struct Game_Play;
 struct struct_809AEFA4;
@@ -42,9 +42,9 @@ typedef UNK_RET (*CommonData_unk_1004C_unk_D0)(void);
 
 typedef UNK_RET (*CommonData_unk_1004C_unk_E4)(void);
 
-typedef UNK_RET (*CommonData_unk_1004C_unk_EC)(struct Game_Play_unk_0110_unk_0000*, s16, s16);
-typedef UNK_RET (*CommonData_unk_1004C_unk_F0)(struct Game_Play_unk_0110_unk_0000*, struct Actor*);
-typedef s32 (*CommonData_unk_1004C_unk_F4)(struct Game_Play_unk_0110_unk_0000*, struct Actor*);
+typedef UNK_RET (*CommonData_unk_1004C_unk_EC)(struct ObjectStatus*, s16, s16);
+typedef UNK_RET (*CommonData_unk_1004C_unk_F0)(struct ObjectStatus*, struct Actor*);
+typedef s32 (*CommonData_unk_1004C_unk_F4)(struct ObjectStatus*, struct Actor*);
 
 typedef UNK_RET (*CommonData_unk_1004C_unk_118)(struct Actor*);
 
@@ -239,7 +239,11 @@ typedef struct CommonData {
     /* 0x10694 */ NpcWalking npcWalk;
     /* 0x10710 */ UNK_TYPE1 unk_10710[0x3C];
     /* 0x1074C */ UNK_TYPE unk_1074C;
-    /* 0x10750 */ UNK_TYPE1 unk_10750[0x66];
+    /* 0x10750 */ UNK_TYPE1 unk_10750[0x4];
+    /* 0x10754 */ UNK_TYPE unk_10754;
+    /* 0x10758 */ UNK_TYPE1 unk_10758[0x48];
+    /* 0x107A0 */ UNK_TYPE unk_107A0;
+    /* 0x107A4 */ UNK_TYPE1 unk_107A4[0x12];
     /* 0x107B6 */ s16 unk_107B6; // named "demo_profile" in AC GCN decomp (though it's an array of two s16s in that game)
     /* 0x107B8 */ u8 unk107B8[0x28];
     /* 0x107E0 */ s8 player_decoy_flag;
