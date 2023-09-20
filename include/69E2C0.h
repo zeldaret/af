@@ -2,10 +2,12 @@
 #define C_69E2C0_H
 
 #include "ultra64.h"
+#include "color.h"
 
 struct Input;
 struct GraphicsContext;
 struct Game_Play;
+struct Actor;
 
 // void func_8007A620_jp();
 // void func_8007A630_jp();
@@ -20,7 +22,7 @@ void Debug_mode_output(struct GraphicsContext* gfxCtx);
 // void func_8007B44C_jp();
 // void func_8007B49C_jp();
 // void func_8007B4EC_jp();
-// void func_8007B5C0_jp();
+void mDemo_Set_msg_num(s32 arg0); 
 // void func_8007B5F4_jp();
 // void func_8007B650_jp();
 // void func_8007B670_jp();
@@ -28,7 +30,7 @@ void Debug_mode_output(struct GraphicsContext* gfxCtx);
 // void func_8007B6A4_jp();
 // void func_8007B724_jp();
 // void func_8007B760_jp();
-// void func_8007B79C_jp();
+void mDemo_Set_talk_display_name(s8 arg0);
 // void func_8007B7DC_jp();
 // void func_8007B818_jp();
 // void func_8007B854_jp();
@@ -36,9 +38,9 @@ void Debug_mode_output(struct GraphicsContext* gfxCtx);
 // void func_8007B8CC_jp();
 // void func_8007B908_jp();
 // void func_8007B944_jp();
-// void func_8007B980_jp();
+void mDemo_Set_talk_window_color(Color_RGBA8* color);
 // void func_8007B9E0_jp();
-// void func_8007BA1C_jp();
+void mDemo_Set_camera(s32 arg0);
 // void func_8007BA38_jp();
 // void func_8007BA4C_jp();
 // void func_8007BA84_jp();
@@ -72,8 +74,8 @@ void Debug_mode_output(struct GraphicsContext* gfxCtx);
 // void func_8007CBEC_jp();
 // void func_8007CC9C_jp();
 void mDemo_stock_clear(void);
-// void func_8007CDD8_jp();
-// void func_8007CF00_jp();
+void mDemo_Request(s32 arg0, struct Actor* actor, void* arg2);
+s32 mDemo_Check(s32 arg0, struct Actor* actor);
 // void func_8007CF34_jp();
 // void func_8007CF44_jp();
 // void func_8007CF84_jp();
@@ -82,7 +84,7 @@ void func_8007CFD8_jp(struct Game_Play* game_play);
 // void func_8007D030_jp();
 // void func_8007D048_jp();
 // void func_8007D080_jp();
-// void func_8007D098_jp();
+void mDemo_Set_ListenAble(void);
 // void func_8007D0B0_jp();
 // void func_8007D0C4_jp();
 // void func_8007D0D8_jp();
