@@ -88,7 +88,7 @@ void mNpc_RenewalAnimalMemory(void);
 // void func_800A78DC_jp();
 // void mNpc_ClearAnimalInfo();
 // void mNpc_ClearAnyAnimalInfo();
-// void mNpc_CheckFreeAnimalInfo();
+s32 mNpc_CheckFreeAnimalInfo(Animal_c*);
 // void mNpc_GetFreeAnimalInfo();
 // void mNpc_UseFreeAnimalInfo();
 // void mNpc_CopyAnimalInfo();
@@ -198,7 +198,7 @@ void mNpc_GetNpcWorldNameAnm(PlayerName* arg0, struct mMl_get_npcinfo_from_mail_
 // void func_800ACD74_jp();
 // void func_800ACDF8_jp();
 // void func_800ACE90_jp();
-// void func_800ACF84_jp();
+void mNpc_GetAnimalPlateName(char* arg0, Vec3f arg1);
 // void func_800AD084_jp();
 // void func_800AD0B8_jp();
 // void func_800AD104_jp();

@@ -147,7 +147,7 @@ s32 mPlib_able_submenu_type1(struct Game_Play* game_play);
 // void func_800B55D0_jp();
 // void func_800B5620_jp();
 // void func_800B5678_jp();
-// void func_800B56A4_jp();
+void mPlib_Set_able_hand_all_item_in_demo(s8 arg0);
 // void func_800B56D0_jp();
 // void func_800B5718_jp();
 // void func_800B5760_jp();

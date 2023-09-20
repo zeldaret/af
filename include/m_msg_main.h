@@ -26,7 +26,7 @@ UNK_RET mMsg_Check_main_hide(UNK_TYPE arg0);
 // void func_8009D620_jp();
 // void func_8009D640_jp();
 // void func_8009D688_jp();
-// void func_8009D6D0_jp();
+void mMsg_Set_free_str(UNK_TYPE arg0, s32 arg1, UNK_PTR arg2, s32 arg3); 
 // void func_8009D820_jp();
 // void func_8009D88C_jp();
 // void func_8009D9A4_jp();
