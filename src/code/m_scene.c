@@ -86,7 +86,7 @@ s32 func_800C5AA0_jp(ObjectStatus* objectStatus, ObjectExchangeBank* objectExcha
     return ret;
 }
 
-void func_800C5B30_jp(ObjectStatus* objectStatus) {
+void mSc_set_bank_status_after(ObjectStatus* objectStatus) {
     objectStatus->id = (objectStatus->id >= 0) ? objectStatus->id : -objectStatus->id;
     objectStatus->unk53 = 0;
     objectStatus->segment = (void*)objectStatus->unk_08;
@@ -110,7 +110,7 @@ s32 func_800C5B74_jp(ObjectExchangeBank* objectExchangeBank, s16 id) {
 
             DmaMgr_RequestSyncDebug((void*)objectStatus->unk_08, objectStatus->vrom, objectStatus->size, "../m_scene.c",
                                     317);
-            func_800C5B30_jp(objectStatus);
+            mSc_set_bank_status_after(objectStatus);
             objectStatus->unk50 = 1;
             objectExchangeBank->num++;
             ret = 1;
