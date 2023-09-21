@@ -12,7 +12,7 @@ void Mbg_Actor_move(Actor* thisx, Game_Play* game_play);
 void Mbg_Actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
-ActorProfile Mbg_Profile = {
+ActorProfile Mbg_Profile = {  //TODO: import data (some is DisplayList)
     /* */ ACTOR_MBG,
     /* */ ACTOR_PART_0,
     /* */ 0,
