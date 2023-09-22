@@ -25,9 +25,6 @@ ActorProfile Mbg_Profile = {  //TODO: import data (some is DisplayList)
     /* */ Mbg_Actor_draw,
     /* */ NULL,
 };
-static Gfx D_80972F40_jp = {
-
-};
 #endif
 
 extern Gfx D_80972F40_jp[];
