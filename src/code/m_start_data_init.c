@@ -17,7 +17,7 @@
 #include "6E7AD0.h"
 #include "6ECD90.h"
 #include "6EDD10.h"
-#include "6F8A60.h"
+#include "lb_rtc.h"
 #include "global.h"
 #include "libc64/qrand.h"
 #include "m_all_grow.h"

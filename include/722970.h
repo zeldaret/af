@@ -3,6 +3,6 @@
 
 #include "ultra64.h"
 
-// void func_800FECD0_jp();
+s32 func_800FECD0_jp(OSMesgQueue*);
 
 #endif

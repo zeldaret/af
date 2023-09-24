@@ -32,8 +32,8 @@ do { \
 } while (0)
 
 
-// void padmgr_LockSerialMesgQ();
-// void padmgr_UnlockSerialMesgQ();
+OSMesgQueue* padmgr_LockSerialMesgQ(void);
+void padmgr_UnlockSerialMesgQ(OSMesgQueue*);
 // void padmgr_LockContData();
 // void padmgr_UnlockContData();
 // void func_800D6AD4_jp();
