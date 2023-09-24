@@ -152,13 +152,13 @@ s32 lbRTC_IsEqualDate(lbRTC_year_t y0, lbRTC_month_t m0, lbRTC_day_t d0, lbRTC_y
 
     res = ymd0.raw - ymd1.raw;
     if (res == 0) {
-        return 0;
+        return lbRTC_EQUAL;
     }
 
     if (res < 0) {
-        return -1;
+        return lbRTC_LESS;
     }
-    return 1;
+    return lbRTC_OVER;
 }
 
 s32 lbRTC_IsEqualTime(const lbRTC_time_c* t0, const lbRTC_time_c* t1, s32 flags) {
@@ -212,7 +212,7 @@ s32 lbRTC_IsEqualTime(const lbRTC_time_c* t0, const lbRTC_time_c* t1, s32 flags)
 s32 lbRTC_IsOverTime(const lbRTC_time_c* t0, const lbRTC_time_c* t1) {
 
     if (t1->year < t0->year) {
-        return -1;
+        return lbRTC_LESS;
     }
 
     if (t1->year == t0->year) {
@@ -225,27 +225,27 @@ s32 lbRTC_IsOverTime(const lbRTC_time_c* t0, const lbRTC_time_c* t1) {
                                 if (t1->min >= t0->min) {
                                     if (t1->min == t0->min) {
                                         if (t1->sec < t0->sec) {
-                                            return -1;
+                                            return lbRTC_LESS;
                                         }
                                     }
                                 } else {
-                                    return -1;
+                                    return lbRTC_LESS;
                                 }
                             }
                         } else {
-                            return -1;
+                            return lbRTC_LESS;
                         }
                     }
                 } else {
-                    return -1;
+                    return lbRTC_LESS;
                 }
             }
         } else {
-            return -1;
+            return lbRTC_LESS;
         }
     }
 
-    return 1;
+    return lbRTC_OVER;
 }
 
 s32 lbRTC_IsJustAtRTC(const lbRTC_time_c* time, s32 flags) {
@@ -261,7 +261,7 @@ s32 lbRTC_IsOverRTC(const lbRTC_time_c* time) {
 
     lbRTC_GetTime(&rtcTime);
 
-    return lbRTC_IsOverTime(time, &rtcTime) == 1;
+    return lbRTC_IsOverTime(time, &rtcTime) == lbRTC_OVER;
 }
 
 s32 lbRTC_IsOverWeekRTC(const lbRTC_time_c* t0, lbRTC_weekday_t week) {
