@@ -28,7 +28,7 @@ s32 lbRTC_Initial() {
     return B_80145620_jp;
 }
 
-s32 lbRTC_IsOki(lbRTC_time_c* p) {
+s32 lbRTC_IsOki(lbRTC_time_c* ptr) {
     s32 isInitial;
     OSMesgQueue* mq;
 
@@ -36,7 +36,7 @@ s32 lbRTC_IsOki(lbRTC_time_c* p) {
 
     if (isInitial == 0) {
         mq = padmgr_LockSerialMesgQ();
-        isInitial = func_800FE220_jp(mq, p);
+        isInitial = func_800FE220_jp(mq, ptr);
         padmgr_UnlockSerialMesgQ(mq);
         if (isInitial == 0) {
             return isInitial;
@@ -161,7 +161,7 @@ s32 lbRTC_IsEqualDate(lbRTC_year_t y0, lbRTC_month_t m0, lbRTC_day_t d0, lbRTC_y
     return 1;
 }
 
-s32 lbRTC_IsEqualTime(const lbRTC_time_c* t0, const lbRTC_time_c* t1, int flags) {
+s32 lbRTC_IsEqualTime(const lbRTC_time_c* t0, const lbRTC_time_c* t1, s32 flags) {
     s32 equal = 0;
 
     if (flags & lbRTC_CHECK_SECONDS) {
@@ -248,7 +248,7 @@ s32 lbRTC_IsOverTime(const lbRTC_time_c* t0, const lbRTC_time_c* t1) {
     return 1;
 }
 
-s32 lbRTC_IsJustAtRTC(const lbRTC_time_c* time, int flags) {
+s32 lbRTC_IsJustAtRTC(const lbRTC_time_c* time, s32 flags) {
     lbRTC_time_c rtcTime;
 
     lbRTC_GetTime(&rtcTime);
