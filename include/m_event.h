@@ -2,6 +2,7 @@
 #define M_EVENT_H
 
 #include "ultra64.h"
+#include "unk.h"
 
 typedef struct mEv_event_save_c {
     /* 0x00 */ char unk00[0x9C];

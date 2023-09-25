@@ -95,7 +95,7 @@
       - [0x6F7500, asm, code/gfxalloc]
       - [0x6F7580, asm, code/graph]
       - [0x6F83B0, c, code/irqmgr]
-      - [0x6F8A60, asm, code/6F8A60]
+      - [0x6F8A60, c, code/lb_rtc]
       - [0x6F9B10, asm, code/6F9B10]
       - [0x6FA030, asm, code/listalloc]
       - [0x6FA180, asm, code/main]
@@ -162,7 +162,8 @@
       - [0x732C30, .data, code/game]
       - [0x732C40, data, code/732C40]
       - [0x732C50, .data, code/irqmgr]
-      - [0x732C70, data, code/732C70]
+      - [0x732C70, .data, code/lb_rtc]
+      - [0x732C80, data, code/732C80]
       - [0x733160, .data, code/sys_math_atan]
       - [0x733970, .data, code/sys_matrix]
       - [0x7339F0, .data, code/sys_ucode]
@@ -231,7 +232,7 @@
       - [0x73B980, .rodata, code/game]
       - [0x73B9C0, rodata, code/73B9C0]
       - [0x73BA50, .rodata, code/irqmgr]
-      - [0x73BA70, rodata, code/73BA70]
+      - [0x73BA70, .rodata, code/lb_rtc]
       - [0x73BB10, rodata, code/73BB10]
       - [0x73BCA0, rodata, code/73BCA0]
       - [0x73BD20, rodata, code/73BD20]
@@ -271,7 +272,8 @@
       - { start: 0x73F4D0, type: .bss, vram: 0x80145020, name: code/game }
       - { start: 0x73F4D0, type: bss, vram: 0x80145060, name: code/80145060 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80145390, name: code/irqmgr }
-      - { start: 0x73F4D0, type: bss, vram: 0x80145620, name: code/80145620}
+      - { start: 0x73F4D0, type: .bss, vram: 0x80145620, name: code/lb_rtc}
+      - { start: 0x73F4D0, type: bss, vram: 0x80145630, name: code/80145630}
       - { start: 0x73F4D0, type: .bss, vram: 0x801462B0, name: code/sys_matrix }
       - { start: 0x73F4D0, type: bss, vram: 0x801462C0, name: code/801462C0 }
       - { start: 0x73F4D0, type: .bss, vram: 0x801492C0, name: code/zurumode }

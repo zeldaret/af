@@ -789,9 +789,6 @@ extern vs32 D_8010EFB0_jp; // TODO: Determine where this goes
 // extern UNK_TYPE D_8010EFB8_jp;
 // extern UNK_TYPE D_8010EFC0_jp;
 // extern UNK_TYPE D_8010EFC8_jp;
-// extern UNK_TYPE D_8010EFD0_jp;
-// extern UNK_TYPE D_8010EFD4_jp;
-// extern UNK_TYPE D_8010EFD8_jp;
 // extern UNK_TYPE D_8010EFE0_jp;
 // extern UNK_TYPE D_8010EFFC_jp;
 // extern UNK_TYPE D_8010F3DC_jp;
@@ -1965,8 +1962,6 @@ extern MtxF MtxF_clear;
 // extern UNK_TYPE B_80145370_jp;
 // extern UNK_TYPE B_80145390_jp;
 // extern UNK_TYPE B_80145610_jp;
-// extern UNK_TYPE B_80145620_jp;
-// extern UNK_TYPE B_80145628_jp;
 // extern UNK_TYPE B_80145630_jp;
 // extern UNK_TYPE B_801457E0_jp;
 // extern UNK_TYPE B_80145800_jp;
