@@ -628,14 +628,14 @@ s32 _Game_play_isPause(Game_Play* play) {
 }
 
 void* Lib_SegmentedToVirtual(void* ptr) {
-    return SEGMENTED_TO_VIRTUAL(ptr);
+    return SEGMENTED_TO_K0(ptr);
 }
 
 void* Lib_SegmentedToVirtualNull(void* ptr) {
     if (((uintptr_t)ptr >> 28) == 0) {
         return ptr;
     } else {
-        return SEGMENTED_TO_VIRTUAL(ptr);
+        return SEGMENTED_TO_K0(ptr);
     }
 }
 
