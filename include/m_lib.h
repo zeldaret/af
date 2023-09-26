@@ -3,7 +3,7 @@
 
 #include "ultra64.h"
 #include "z64math.h"
-#include "../src/overlays/gamestates/ovl_play/m_play.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 #include "color.h"
 #include "sys_math.h"
 
@@ -15,7 +15,11 @@ typedef struct {
     s32 value:  16;
 } ValueSet; 
 
-extern void (*D_80107B00_jp[])(u8*,  ValueSet*); 
+
+typedef void (*ValueSetProc)(u8*, ValueSet*);
+
+
+extern ValueSetProc D_80107B00_jp[];
 
 void mem_copy(u8* dest, u8* src, size_t len);
 void mem_clear(u8* ptr, size_t len, u8 value);
@@ -67,7 +71,7 @@ s16 add_calc_short_angle3(s16* pValue, s16 target, f32 fraction, s16 maxStep, s1
 void adds(s16* pValue, s16 target, s16 scale, s16 maxStep);
 void rgba_t_move(Color_RGBA8* dest, Color_RGBA8* src);
 s32 none_proc1();
-s32 none_proc2(Actor* actor, struct Game_Play* play);
+void none_proc2(Actor* actor, struct Game_Play* play);
 void Cheap_gfx_display(struct Game_Play* play, Gfx* dl);
 void Cheap_gfx_display_xlu(struct Game_Play* play, Gfx* dl);
 s32 _Game_play_isPause(struct Game_Play* play);

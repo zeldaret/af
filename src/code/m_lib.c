@@ -6,7 +6,7 @@
 #include "sys_math.h"
 #include "sys_math_atan.h"
 
-void (*D_80107B00_jp[])(u8*, ValueSet*) = {
+ValueSetProc D_80107B00_jp[] = {
     ValueSet__s_char, ValueSet__u_char,      ValueSet__s_short, ValueSet__u_short,     ValueSet__s_int, ValueSet__u_int,
     ValueSet__float,  ValueSet__float_x1000, ValueSet__xyz_t,   ValueSet__xyz_t_x1000, ValueSet__s_xyz,
 };
@@ -590,11 +590,11 @@ s32 none_proc1() {
     return 0;
 }
 
-s32 none_proc2(Actor* actor UNUSED, Game_Play* play UNUSED) {
+void none_proc2(Actor* actor UNUSED, Game_Play* play UNUSED) {
 }
 
 void Cheap_gfx_display(Game_Play* play, Gfx* dl) {
-
+    //! FAKE
     if ((!(&play->state)) && (!(&play->state))) {}
 
     OPEN_DISPS(play->state.gfxCtx);
@@ -609,7 +609,7 @@ void Cheap_gfx_display(Game_Play* play, Gfx* dl) {
 }
 
 void Cheap_gfx_display_xlu(Game_Play* play, Gfx* dl) {
-
+    //! FAKE
     if ((!(&play->state)) && (!(&play->state))) {}
 
     OPEN_DISPS(play->state.gfxCtx);
@@ -624,24 +624,22 @@ void Cheap_gfx_display_xlu(Game_Play* play, Gfx* dl) {
 }
 
 s32 _Game_play_isPause(Game_Play* play) {
-
     return play->pause.enabled != 0;
 }
 
 void* Lib_SegmentedToVirtual(void* ptr) {
-    return (void*)SEGMENTED_TO_VIRTUAL(ptr);
+    return SEGMENTED_TO_VIRTUAL(ptr);
 }
 
 void* Lib_SegmentedToVirtualNull(void* ptr) {
     if (((uintptr_t)ptr >> 28) == 0) {
         return ptr;
     } else {
-        return (void*)SEGMENTED_TO_VIRTUAL(ptr);
+        return SEGMENTED_TO_VIRTUAL(ptr);
     }
 }
 
 void* PhysicalToVirtual(uintptr_t ptr) {
-
     if (ptr == 0) {
         return 0;
     }
@@ -650,7 +648,6 @@ void* PhysicalToVirtual(uintptr_t ptr) {
 }
 
 void* PhysicalToVirtualNull(uintptr_t ptr) {
-
     if (ptr == 0) {
         return 0;
     }
