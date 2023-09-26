@@ -65,14 +65,14 @@ typedef struct ActorProfile {
 } ActorProfile; // size = 0x24
 
 typedef struct PosRot {
-    /* 0x00 */ Vec3f pos;
-    /* 0x0C */ Vec3s rot;
+    /* 0x00 */ xyz_t pos;
+    /* 0x0C */ s_xyz rot;
 } PosRot; // size = 0x14
 
 typedef void (*Shape_Info_unk_0C)(struct Actor*, struct LightsN*, struct Game_Play*);
 
 typedef struct Shape_Info {
-    /* 0x00 */ Vec3s rot;
+    /* 0x00 */ s_xyz rot;
     /* 0x08 */ f32 unk_08;
     /* 0x0C */ Shape_Info_unk_0C unk_0C;
     /* 0x10 */ f32 unk_10;
@@ -80,13 +80,13 @@ typedef struct Shape_Info {
     /* 0x18 */ f32 unk_18;
     /* 0x1C */ f32 unk_1C;
     /* 0x20 */ s32 unk_20;
-    /* 0x24 */ Vec3f* unk_24; // maybe PosRot*
+    /* 0x24 */ xyz_t* unk_24; // maybe PosRot*
     /* 0x28 */ s32 unk_28;
     /* 0x2C */ s8 unk_2C;
     /* 0x2D */ s8 unk_2D;
     /* 0x2E */ s8 unk_2E;
     /* 0x2F */ UNK_TYPE1 unk_2F[0x1];
-    /* 0x30 */ Vec3f feetPos[FOOT_MAX];
+    /* 0x30 */ xyz_t feetPos[FOOT_MAX];
 } Shape_Info; // size = 0x48
 
 typedef struct Actor {
@@ -103,10 +103,10 @@ typedef struct Actor {
     /* 0x024 */ s16 params;
     /* 0x026 */ s16 unk_026; // objBankIndex
     /* 0x028 */ PosRot world;
-    /* 0x03C */ Vec3f prevPos;
+    /* 0x03C */ xyz_t prevPos;
     /* 0x048 */ PosRot eye; // focus
-    /* 0x05C */ Vec3f scale;
-    /* 0x068 */ Vec3f velocity;
+    /* 0x05C */ xyz_t scale;
+    /* 0x068 */ xyz_t velocity;
     /* 0x074 */ f32 speed;
     /* 0x078 */ f32 gravity;
     /* 0x07C */ f32 terminalVelocity;
@@ -119,7 +119,7 @@ typedef struct Actor {
     /* 0x0C0 */ f32 playerHeightRel;
     /* 0x0C4 */ CollisionCheck_Status colStatus; // made-up name
     /* 0x0DC */ Shape_Info shape;
-    /* 0x124 */ Vec3f projectedPos;
+    /* 0x124 */ xyz_t projectedPos;
     /* 0x130 */ f32 projectedW;
     /* 0x134 */ f32 uncullZoneScale;
     /* 0x138 */ f32 uncullZoneDownward;
@@ -229,7 +229,7 @@ typedef struct ActorInfo {
 
 #define ACTOR_FGNAME_GET_F000(fgName) (((fgName) & 0xF000) >> 12)
 
-void projection_pos_set(struct Game_Play* game_play, Vec3f* worldPos, Vec3f* projectedPos, f32* invW);
+void projection_pos_set(struct Game_Play* game_play, xyz_t* worldPos, xyz_t* projectedPos, f32* invW);
 void Actor_world_to_eye(Actor* actor, f32 arg1);
 void Actor_position_move(Actor* actor);
 void Actor_position_speed_set(Actor* actor);
@@ -237,10 +237,10 @@ void Actor_position_moveF(Actor* actor);
 s32 Actor_player_look_direction_check(Actor* actor, s16 maxAngleDiff, struct Game_Play* game_play);
 void Actor_display_position_set(struct Game_Play* game_play, Actor* actor, s16* x, s16* y);
 void Shape_Info_init(Actor* actor, f32 arg1, Shape_Info_unk_0C arg2, f32 arg3, f32 arg4);
-void Actor_foot_shadow_pos_set(Actor* actor, s32 limbIndex, s32 leftFootIndex, Vec3f* leftFootPos, s32 rightFootIndex, Vec3f* rightFootPos);
+void Actor_foot_shadow_pos_set(Actor* actor, s32 limbIndex, s32 leftFootIndex, xyz_t* leftFootPos, s32 rightFootIndex, xyz_t* rightFootPos);
 void Actor_delete(Actor* actor);
 s32 Actor_draw_actor_no_culling_check(Actor* actor);
-s32 Actor_draw_actor_no_culling_check2(Actor* actor, Vec3f* arg1, f32 arg2);
+s32 Actor_draw_actor_no_culling_check2(Actor* actor, xyz_t* arg1, f32 arg2);
 void Actor_cull_check(Actor* actor);
 void Actor_delete_check(Actor* actor, struct Game_Play* game_play);
 void Actor_info_ct(struct Game_Play* game_play2, ActorInfo* actorInfo, struct ActorEntry* actorEntry);
@@ -260,12 +260,12 @@ Actor* Actor_info_delete(ActorInfo* actorInfo, Actor* actor, struct Game_Play* g
 Actor* Actor_info_name_search(ActorInfo* actorInfo, s16 name, ActorPart part);
 Actor* Actor_info_fgName_search(ActorInfo* actorInfo, u16 fgName, ActorPart part);
 void Part_Break_init(Part_Break* partBreak, s32 count, UNK_TYPE arg2);
-Gfx* HiliteReflect_new(Vec3f* object, Vec3f* eye, Vec3f* lightDir, struct GraphicsContext* gfxCtx, Gfx* gfx, Hilite** hilite);
-Hilite* HiliteReflect_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, struct GraphicsContext* gfxCtx);
-Hilite* HiliteReflect_xlu_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, struct GraphicsContext* gfxCtx);
-Hilite* HiliteReflect_light_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, struct GraphicsContext* gfxCtx);
-Hilite* Setpos_HiliteReflect_init(Vec3f* object, struct Game_Play* game_play);
-Hilite* Setpos_HiliteReflect_xlu_init(Vec3f* object, struct Game_Play* game_play);
-Hilite* Setpos_HiliteReflect_light_init(Vec3f* object, struct Game_Play* game_play);
+Gfx* HiliteReflect_new(xyz_t* object, xyz_t* eye, xyz_t* lightDir, struct GraphicsContext* gfxCtx, Gfx* gfx, Hilite** hilite);
+Hilite* HiliteReflect_init(xyz_t* object, xyz_t* eye, xyz_t* lightDir, struct GraphicsContext* gfxCtx);
+Hilite* HiliteReflect_xlu_init(xyz_t* object, xyz_t* eye, xyz_t* lightDir, struct GraphicsContext* gfxCtx);
+Hilite* HiliteReflect_light_init(xyz_t* object, xyz_t* eye, xyz_t* lightDir, struct GraphicsContext* gfxCtx);
+Hilite* Setpos_HiliteReflect_init(xyz_t* object, struct Game_Play* game_play);
+Hilite* Setpos_HiliteReflect_xlu_init(xyz_t* object, struct Game_Play* game_play);
+Hilite* Setpos_HiliteReflect_light_init(xyz_t* object, struct Game_Play* game_play);
 
 #endif

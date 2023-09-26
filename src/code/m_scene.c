@@ -358,7 +358,7 @@ void Scene_Proc_Sound(UNK_TYPE arg0 UNUSED, UNK_TYPE arg1 UNUSED) {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_scene/func_800C6D5C_jp.s")
 
 void return_emu_game(Game* game) {
-    mem_copy(&common_data.unk_10754, &common_data.unk_107A0, 0x14);
+    mem_copy((u8*)&common_data.unk_10754, (u8*)&common_data.unk_107A0, 0x14);
     common_data.unk_10754 = common_data.unk_107A0 + 1;
     game->unk_74 = 0;
     game_goto_next_game_play(game);

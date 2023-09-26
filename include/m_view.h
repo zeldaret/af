@@ -15,7 +15,7 @@ typedef struct Game_Play1938 {
     /* 0x010 */ s32 unk_010;
     /* 0x018 */ s32 unk_014;
     /* 0x01C */ UNK_TYPE1 unk_018[0x10];
-    /* 0x028 */ Vec3f unk_028;
+    /* 0x028 */ xyz_t unk_028;
     /* 0x034 */ UNK_TYPE1 unk_034[0x1C];
     /* 0x050 */ Vp vp;
     /* 0x060 */ Mtx unk_060;

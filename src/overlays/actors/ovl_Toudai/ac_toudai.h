@@ -17,8 +17,8 @@ typedef struct Toudai {
     /* 0x174 */ s32 unk174;
     /* 0x178 */ SkeletonInfoR skeletonInfo;
     /* 0x1E8 */ s32 unk1E8;
-    /* 0x1EC */ Vec3s jointTable[15];
-    /* 0x246 */ Vec3s morphTable[15];
+    /* 0x1EC */ s_xyz jointTable[15];
+    /* 0x246 */ s_xyz morphTable[15];
     /* 0x2A0 */ ToudaiActionFunc unk2A0;
     /* 0x2A4 */ UNK_TYPE1 unk2A4[0x10];
     /* 0x2B4 */ UNK_TYPE unk2B4;

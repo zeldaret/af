@@ -15,7 +15,7 @@ typedef struct SnowmanData {
 
 typedef struct SnowmanInfo {
     /* 0x00 */ s32 unk0; //scale
-    /* 0x04 */ Vec3f position;
+    /* 0x04 */ xyz_t position;
 } SnowmanInfo; // size = 0x10
 
 s32 mSN_check_life(u16* name, s32 daysElapsed);

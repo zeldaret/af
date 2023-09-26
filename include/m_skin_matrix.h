@@ -4,7 +4,7 @@
 #include "ultra64.h"
 #include "z64math.h"
 
-void Skin_Matrix_PrjMulVector(MtxF* mf, Vec3f* src, Vec3f* xyzDest, f32* wDest);
+void Skin_Matrix_PrjMulVector(MtxF* mf, xyz_t* src, xyz_t* xyzDest, f32* wDest);
 // void Skin_Matrix_MulVector();
 void Skin_Matrix_MulMatrix(MtxF* mfB, MtxF* mfA, MtxF* dest);
 // void Skin_Matrix_getUnitMatrixPointer();
