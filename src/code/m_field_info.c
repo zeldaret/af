@@ -1,3 +1,4 @@
+#include "global.h"
 #include "m_field_info.h"
 #include "m_collision_bg.h"
 #include "libc64/qrand.h"
@@ -349,7 +350,7 @@
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008D884_jp.s")
 
 s32 mFI_GetWaveUtinBlock(s32* arg0, s32* arg1, s32 arg2, s32 arg3) {
-    s32 pad[4];
+    UNUSED s32 pad[4];
     s32 i;
     s32 ret = 0;
     s32 var_s2;

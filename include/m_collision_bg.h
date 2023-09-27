@@ -5,6 +5,9 @@
 #include "z64math.h"
 #include "unk.h"
 
+struct Actor;
+struct PosRot;
+
 typedef struct mCoBG_OffsetTable {
     /* 0x00 */ u8 unitAttribute;
     /* 0x01 */ s8 crOffset;
@@ -116,7 +119,7 @@ typedef union mCoBG_unkStructUnion {
 // void func_8006B5C0_jp();
 // void func_8006B664_jp();
 // void func_8006B92C_jp();
-s32 mCoBG_RegistMoveBg(s8 *arg0, PosRot *arg1, Vec3f *arg2, s16 *arg3, f32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8, s32 arg9, s32 argA, f32 argB);
+s32 mCoBG_RegistMoveBg(s8 *arg0, struct PosRot *arg1, Vec3f *arg2, s16 *arg3, f32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8, s32 arg9, s32 argA, f32 argB);
 // void func_8006BAA8_jp();
 void mCoBG_CrossOffMoveBg(s32 arg0, struct Actor *actor);  
 void func_8006BB64_jp(void);
