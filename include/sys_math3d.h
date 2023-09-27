@@ -6,17 +6,17 @@
 #include "unk.h"
 
 typedef struct Sphere {
-    /* 0x0 */ Vec3s center;
+    /* 0x0 */ s_xyz center;
     /* 0x6 */ s16 radius;
 } Sphere; // size = 0x6
 
 typedef struct Triangle {
-    /* 0x00 */ Vec3f vertices[3];
+    /* 0x00 */ xyz_t vertices[3];
 } Triangle; // size = 0x24
 
 typedef struct Triangle3 {
     /* 0x00 */ Triangle unk_00;
-    /* 0x24 */ Vec3f unk_24;
+    /* 0x24 */ xyz_t unk_24;
     /* 0x30 */ f32 unk_30;
 } Triangle3; // size = 0x34
 
@@ -24,7 +24,7 @@ typedef struct Pipe {
     /* 0x0 */ s16 radius;
     /* 0x2 */ s16 unk_2;
     /* 0x4 */ s16 yShift;
-    /* 0x6 */ Vec3s pos;
+    /* 0x6 */ s_xyz pos;
 } Pipe; // size = 0xC
 
 // void Math3d_normalizeXyz_t();
@@ -62,7 +62,7 @@ typedef struct Pipe {
 // void func_800DB4E4_jp();
 // void func_800DBF5C_jp();
 // void func_800DC0C8_jp();
-void Math3DPlane(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, f32* arg3, f32* arg4, f32* arg5, f32* arg6);
+void Math3DPlane(xyz_t* arg0, xyz_t* arg1, xyz_t* arg2, f32* arg3, f32* arg4, f32* arg5, f32* arg6);
 // void func_800DC268_jp();
 // void func_800DC2A8_jp();
 // void Math3DLengthPlaneAndPos();
@@ -95,10 +95,10 @@ void Math3DPlane(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, f32* arg3, f32* arg4, f3
 // void func_800DDCAC_jp();
 // void Math3D_sphereCrossLineSegment();
 // void Math3D_sphereCrossTriangleCalc_cp();
-s32 Math3D_sphereCrossTriangle3_cp(Sphere* sphere, Triangle3* triangle3, Vec3f* arg2);
+s32 Math3D_sphereCrossTriangle3_cp(Sphere* sphere, Triangle3* triangle3, xyz_t* arg2);
 // void func_800DE55C_jp();
 // void func_800DE618_jp();
-s32 Math3D_pipeCrossTriangle_cp(Pipe* pipe, Triangle* arg1, Vec3f* arg2);
+s32 Math3D_pipeCrossTriangle_cp(Pipe* pipe, Triangle* arg1, xyz_t* arg2);
 // void func_800DF46C_jp();
 // void func_800DF48C_jp();
 s32 Math3D_sphereCrossSphere_cl(Sphere* sphere1, Sphere* sphere2, f32* arg2);
@@ -115,6 +115,6 @@ s32 Math3D_pipeVsPipe_cl(Pipe* pipe1, Pipe* pipe2, f32* arg2);
 // void sMath_RotateX();
 // void sMath_RotateZ();
 
-extern Vec3f ZeroVec;
+extern xyz_t ZeroVec;
 
 #endif

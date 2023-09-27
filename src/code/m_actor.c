@@ -39,7 +39,7 @@ void func_80056380_jp(void* arg0, void* arg1 UNUSED) {
     FaultDrawer_Printf("ACTOR NAME %08x:%s", actor, name);
 }
 
-void projection_pos_set(Game_Play* game_play, Vec3f* worldPos, Vec3f* projectedPos, f32* invW) {
+void projection_pos_set(Game_Play* game_play, xyz_t* worldPos, xyz_t* projectedPos, f32* invW) {
     Skin_Matrix_PrjMulVector(&game_play->viewProjectionMtxF, worldPos, projectedPos, invW);
 
     *invW = (*invW < 1.0f) ? 1.0f : (1.0f / *invW);
@@ -86,7 +86,7 @@ s32 Actor_player_look_direction_check(Actor* actor, s16 maxAngleDiff, Game_Play*
 }
 
 void Actor_display_position_set(Game_Play* game_play, Actor* actor, s16* x, s16* y) {
-    Vec3f projectedPos;
+    xyz_t projectedPos;
     f32 invW;
 
     projection_pos_set(game_play, &actor->world.pos, &projectedPos, &invW);
@@ -128,8 +128,8 @@ void Shape_Info_init(Actor* actor, f32 arg1, Shape_Info_unk_0C arg2, f32 arg3, f
     actor->shape.unk_2D = 0;
 }
 
-void Actor_foot_shadow_pos_set(Actor* actor, s32 limbIndex, s32 leftFootIndex, Vec3f* leftFootPos, s32 rightFootIndex,
-                               Vec3f* rightFootPos) {
+void Actor_foot_shadow_pos_set(Actor* actor, s32 limbIndex, s32 leftFootIndex, xyz_t* leftFootPos, s32 rightFootIndex,
+                               xyz_t* rightFootPos) {
     if (limbIndex == leftFootIndex) {
         Matrix_Position(leftFootPos, &actor->shape.feetPos[FOOT_LEFT]);
     } else if (limbIndex == rightFootIndex) {
@@ -295,7 +295,7 @@ s32 Actor_draw_actor_no_culling_check(Actor* actor) {
     return Actor_draw_actor_no_culling_check2(actor, &actor->projectedPos, actor->projectedW);
 }
 
-s32 Actor_draw_actor_no_culling_check2(Actor* actor, Vec3f* arg1, f32 arg2) {
+s32 Actor_draw_actor_no_culling_check2(Actor* actor, xyz_t* arg1, f32 arg2) {
     s32 ret = 0;
 
     if ((-actor->unk_140 < arg1->z) && (arg1->z < (actor->unk_13C + actor->unk_140))) {
@@ -773,7 +773,7 @@ s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay
 void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* overlayEntry, Game_Play* game_play,
                             s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 argB, s8 argC, s16 argD,
                             u16 fgName, s16 params) {
-    mem_clear(actor, profile->instanceSize, 0);
+    mem_clear((u8*)actor, profile->instanceSize, 0);
 
     actor->overlayEntry = overlayEntry;
 
@@ -864,7 +864,7 @@ Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, Game_Play*
 }
 
 void restore_fgdata(Actor* actor, Game_Play* game_play UNUSED) {
-    Vec3f sp34;
+    xyz_t sp34;
 
     if ((actor->fgName == 0) || (actor->unk_00A != -1)) {
         return;
@@ -1043,9 +1043,9 @@ void Part_Break_init(Part_Break* partBreak, s32 count, s32 arg2 UNUSED) {
         goto cleanup;
     }
 
-    mem_clear(partBreak->matrices, matricesSize, 0);
-    mem_clear(partBreak->dLists, dListsSize, 0);
-    mem_clear(partBreak->objectIds, objectIdsSize, 0);
+    mem_clear((u8*)partBreak->matrices, matricesSize, 0);
+    mem_clear((u8*)partBreak->dLists, dListsSize, 0);
+    mem_clear((u8*)partBreak->objectIds, objectIdsSize, 0);
 
     partBreak->val = 1;
     return;
@@ -1064,7 +1064,7 @@ cleanup:
 
 Mtx B_8011B850_jp;
 
-Gfx* HiliteReflect_new(Vec3f* object, Vec3f* eye, Vec3f* lightDir, GraphicsContext* gfxCtx, Gfx* gfx, Hilite** hilite) {
+Gfx* HiliteReflect_new(xyz_t* object, xyz_t* eye, xyz_t* lightDir, GraphicsContext* gfxCtx, Gfx* gfx, Hilite** hilite) {
     LookAt* sp64 = GRAPH_ALLOC(gfxCtx, sizeof(LookAt));
     f32 var_fa1 = ((eye->x == object->x) && (eye->z == object->z)) ? (eye->x + 0.001f) : eye->x;
 
@@ -1081,7 +1081,7 @@ Gfx* HiliteReflect_new(Vec3f* object, Vec3f* eye, Vec3f* lightDir, GraphicsConte
     return gfx;
 }
 
-Hilite* HiliteReflect_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, GraphicsContext* gfxCtx) {
+Hilite* HiliteReflect_init(xyz_t* object, xyz_t* eye, xyz_t* lightDir, GraphicsContext* gfxCtx) {
     Hilite* hilite;
 
     OPEN_DISPS(gfxCtx);
@@ -1093,7 +1093,7 @@ Hilite* HiliteReflect_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, GraphicsC
     return hilite;
 }
 
-Hilite* HiliteReflect_xlu_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, GraphicsContext* gfxCtx) {
+Hilite* HiliteReflect_xlu_init(xyz_t* object, xyz_t* eye, xyz_t* lightDir, GraphicsContext* gfxCtx) {
     Hilite* hilite;
 
     OPEN_DISPS(gfxCtx);
@@ -1105,7 +1105,7 @@ Hilite* HiliteReflect_xlu_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, Graph
     return hilite;
 }
 
-Hilite* HiliteReflect_light_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, GraphicsContext* gfxCtx) {
+Hilite* HiliteReflect_light_init(xyz_t* object, xyz_t* eye, xyz_t* lightDir, GraphicsContext* gfxCtx) {
     Hilite* hilite;
 
     OPEN_DISPS(gfxCtx);
@@ -1117,8 +1117,8 @@ Hilite* HiliteReflect_light_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, Gra
     return hilite;
 }
 
-Hilite* Setpos_HiliteReflect_init(Vec3f* object, Game_Play* game_play) {
-    Vec3f sp24;
+Hilite* Setpos_HiliteReflect_init(xyz_t* object, Game_Play* game_play) {
+    xyz_t sp24;
 
     sp24.x = game_play->kankyo.unk_02;
     sp24.y = game_play->kankyo.unk_03;
@@ -1126,8 +1126,8 @@ Hilite* Setpos_HiliteReflect_init(Vec3f* object, Game_Play* game_play) {
     return HiliteReflect_init(object, &game_play->unk_1938.unk_028, &sp24, game_play->state.gfxCtx);
 }
 
-Hilite* Setpos_HiliteReflect_xlu_init(Vec3f* object, Game_Play* game_play) {
-    Vec3f sp24;
+Hilite* Setpos_HiliteReflect_xlu_init(xyz_t* object, Game_Play* game_play) {
+    xyz_t sp24;
 
     sp24.x = game_play->kankyo.unk_02;
     sp24.y = game_play->kankyo.unk_03;
@@ -1135,8 +1135,8 @@ Hilite* Setpos_HiliteReflect_xlu_init(Vec3f* object, Game_Play* game_play) {
     return HiliteReflect_xlu_init(object, &game_play->unk_1938.unk_028, &sp24, game_play->state.gfxCtx);
 }
 
-Hilite* Setpos_HiliteReflect_light_init(Vec3f* object, Game_Play* game_play) {
-    Vec3f sp24;
+Hilite* Setpos_HiliteReflect_light_init(xyz_t* object, Game_Play* game_play) {
+    xyz_t sp24;
 
     sp24.x = game_play->kankyo.unk_02;
     sp24.y = game_play->kankyo.unk_03;

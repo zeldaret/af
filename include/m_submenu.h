@@ -92,7 +92,7 @@ typedef struct Submenu {
     /* 0xE0 */ u16 unk_E0;
     /* 0xE2 */ u8 unk_E2;
     /* 0xE3 */ u8 unk_E3;
-    /* 0xE4 */ Vec3f unk_E4;
+    /* 0xE4 */ xyz_t unk_E4;
 } Submenu; // size = 0xF0
 
 s32 SubmenuArea_IsPlayer(void);

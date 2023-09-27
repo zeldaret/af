@@ -110,7 +110,7 @@ typedef struct ClObjTrisElemAttr_Init {
 
 typedef struct ClObjTrisElemAttr {
     /* 0x00 */ Triangle3 unk_00;
-    /* 0x34 */ Vec3f unk_34;
+    /* 0x34 */ xyz_t unk_34;
 } ClObjTrisElemAttr; // size = 0x40
 
 
@@ -154,7 +154,7 @@ typedef struct CollisionCheck_Status_Init {
 } CollisionCheck_Status_Init; // size = 0xA
 
 typedef struct CollisionCheck_Status {
-    /* 0x00 */ Vec3f displacement;
+    /* 0x00 */ xyz_t displacement;
     /* 0x0C */ s16 unk_0C;
     /* 0x0E */ s16 unk_0E;
     /* 0x10 */ s16 unk_10;

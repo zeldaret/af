@@ -8,8 +8,8 @@ struct Game_Play;
 
 typedef struct ActorEntry {
     /* 0x0 */ s16 id;
-    /* 0x2 */ Vec3s pos;
-    /* 0x8 */ Vec3s rot;
+    /* 0x2 */ s_xyz pos;
+    /* 0x8 */ s_xyz rot;
     /* 0xE */ s16 params;
 } ActorEntry; // size = 0x10
 
