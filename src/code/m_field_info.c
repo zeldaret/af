@@ -366,15 +366,17 @@ s32 mFI_GetWaveUtinBlock(s32* arg0, s32* arg1, s32 arg2, s32 arg3) {
     if (temp_v0 != NULL) {
 
         for (i = 0; i < 0x100; i++) {
+
             if (func_80076358_jp(var_s1->data.unk6) == 1) {
                 var_s3 += 1;
             }
+
             var_s1++;
         }
 
         if (var_s3 > 0) {
             var_s1 = temp_v0;
-            var_s2 = (s32)(fqrand() * (f32)var_s3);
+            var_s2 = fqrand() * var_s3;
 
             for (i = 0; i < 0x100; i++) {
 
@@ -385,10 +387,9 @@ s32 mFI_GetWaveUtinBlock(s32* arg0, s32* arg1, s32 arg2, s32 arg3) {
                         arg1[0] = i >> 4;
                         ret = 1;
                         break;
-
-                    } else {
-                        var_s2 -= 1;
                     }
+
+                    var_s2 -= 1;
                 }
 
                 var_s1++;
