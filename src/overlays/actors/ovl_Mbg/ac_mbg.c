@@ -48,7 +48,7 @@ void Mbg_Actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
 }
 
 void Mbg_Actor_draw(Actor* thisx, Game_Play* game_play) {
-    Vec3f sp3C;
+    xyz_t sp3C;
     s16 sp3A;
 
     sp3C = thisx->world.pos;

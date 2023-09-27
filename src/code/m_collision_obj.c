@@ -17,7 +17,7 @@ typedef void (*CollisionVsFunc)(struct Game_Play*, CollisionCheck*, ClObj*, ClOb
 
 typedef s32 (*ClearFunc)(struct Game_Play*, ClObj*);
 
-void CollisionCheck_workTrisElemCenter(ClObjTrisElem* arg0, Vec3f* arg1) {
+void CollisionCheck_workTrisElemCenter(ClObjTrisElem* arg0, xyz_t* arg1) {
     arg1->x = (arg0->attr.unk_00.unk_00.vertices[0].x + arg0->attr.unk_00.unk_00.vertices[1].x +
                arg0->attr.unk_00.unk_00.vertices[2].x) *
               (1.0f / 3.0f);
@@ -243,8 +243,8 @@ s32 ClObjTrisElemAttr_dt(UNUSED struct Game_Play* game_play, UNUSED ClObjTrisEle
 }
 
 s32 ClObjTrisElemAttr_set(UNUSED struct Game_Play* game_play, ClObjTrisElemAttr* attr, ClObjTrisElemAttr_Init* init) {
-    Vec3f* var_v0;
-    Vec3f* var_v1;
+    xyz_t* var_v0;
+    xyz_t* var_v1;
     f32 sp44;
     f32 sp40;
     f32 sp3C;
@@ -418,8 +418,8 @@ ColMassType get_type(u8 mass) {
     return MASSTYPE_NORMAL;
 }
 
-void CollisionCheck_setOC_HitInfo(ClObj* cl1, ClObjElem* clElem1, Vec3f* pos1, ClObj* cl2, ClObjElem* clElem2,
-                                  Vec3f* pos2, f32 overlap) {
+void CollisionCheck_setOC_HitInfo(ClObj* cl1, ClObjElem* clElem1, xyz_t* pos1, ClObj* cl2, ClObjElem* clElem2,
+                                  xyz_t* pos2, f32 overlap) {
     f32 zDelta;
     f32 massInverse;
     f32 xDelta;
@@ -549,8 +549,8 @@ void CollisionCheck_OC_JntSph_Vs_JntSph(UNUSED struct Game_Play* game_play, UNUS
             }
 
             if (Math3D_sphereCrossSphere_cl(&elem1->attr.unk_08, &elem2->attr.unk_08, &overlap) == 1) {
-                Vec3f pos1;
-                Vec3f pos2;
+                xyz_t pos1;
+                xyz_t pos2;
 
                 xyz_t_move_s_xyz(&pos1, &elem1->attr.unk_08.center);
                 xyz_t_move_s_xyz(&pos2, &elem2->attr.unk_08.center);
@@ -584,8 +584,8 @@ void CollisionCheck_OC_JntSph_Vs_Pipe(UNUSED struct Game_Play* game_play, UNUSED
         }
 
         if (Math3D_sphereVsPipe_cl(&sphElem->attr.unk_08, &colPipe->attribute.dim, &overlap) == 1) {
-            Vec3f sphPos;
-            Vec3f pipePos;
+            xyz_t sphPos;
+            xyz_t pipePos;
 
             xyz_t_move_s_xyz(&sphPos, &sphElem->attr.unk_08.center);
             xyz_t_move_s_xyz(&pipePos, &colPipe->attribute.dim.pos);
@@ -604,8 +604,8 @@ void CollisionCheck_OC_Pipe_Vs_Pipe(UNUSED struct Game_Play* game_play, UNUSED C
     ClObjPipe* pipe1 = (ClObjPipe*)cl1;
     ClObjPipe* pipe2 = (ClObjPipe*)cl2;
     f32 overlap;
-    Vec3f pos1;
-    Vec3f pos2;
+    xyz_t pos1;
+    xyz_t pos2;
 
     if ((!(pipe1->base.prop.ocFlags1 & OC1_1) || !(pipe2->base.prop.ocFlags1 & OC1_1) ||
          !(pipe1->element.flags & ELEM_FLAG_1) || !(pipe2->element.flags & ELEM_FLAG_1))) {
@@ -676,8 +676,8 @@ void CollisionCheck_OC(struct Game_Play* game_play, CollisionCheck* colCheck) {
 }
 
 void CollisionCheck_setOCC_HitInfo(UNUSED struct Game_Play* game_play, ClObj* cl1, ClObjTrisElem* trisElem,
-                                   UNUSED Vec3f* arg3, ClObj* cl2, UNUSED ClObjElem* arg5, UNUSED Vec3f* arg6,
-                                   Vec3f* arg7) {
+                                   UNUSED xyz_t* arg3, ClObj* cl2, UNUSED ClObjElem* arg5, UNUSED xyz_t* arg6,
+                                   xyz_t* arg7) {
     cl1->oc = cl2->actor;
     cl1->prop.ocFlags2 |= OC2_4;
 
@@ -699,7 +699,7 @@ void CollisionCheck_OCC_Tris_Vs_JntSph(struct Game_Play* game_play, UNUSED Colli
 
     for (sphElem = colJntSph->elements; sphElem < &colJntSph->elements[colJntSph->count]; sphElem++) {
         ClObjTrisElem* trisElem;
-        Vec3f sp74;
+        xyz_t sp74;
 
         if (!(sphElem->elem.flags & ELEM_FLAG_1)) {
             continue;
@@ -707,8 +707,8 @@ void CollisionCheck_OCC_Tris_Vs_JntSph(struct Game_Play* game_play, UNUSED Colli
 
         for (trisElem = colTris->elements; trisElem < &colTris->elements[colTris->count]; trisElem++) {
             if (Math3D_sphereCrossTriangle3_cp(&sphElem->attr.unk_08, &trisElem->attr.unk_00, &sp74) != 0) {
-                Vec3f sphPos;
-                Vec3f trisPos;
+                xyz_t sphPos;
+                xyz_t trisPos;
 
                 xyz_t_move_s_xyz(&sphPos, &sphElem->attr.unk_08.center);
                 CollisionCheck_workTrisElemCenter(trisElem, &trisPos);
@@ -735,11 +735,11 @@ void CollisionCheck_OCC_Tris_Vs_Pipe(struct Game_Play* game_play, UNUSED Collisi
     }
 
     for (elem = colTris->elements; elem < &colTris->elements[colTris->count]; elem++) {
-        Vec3f sp68;
+        xyz_t sp68;
 
         if (Math3D_pipeCrossTriangle_cp(&colPipe->attribute.dim, &elem->attr.unk_00.unk_00, &sp68) != 0) {
-            Vec3f pipePos;
-            Vec3f trisPos;
+            xyz_t pipePos;
+            xyz_t trisPos;
 
             CollisionCheck_workTrisElemCenter(elem, &trisPos);
             xyz_t_move_s_xyz(&pipePos, &colPipe->attribute.dim.pos);
