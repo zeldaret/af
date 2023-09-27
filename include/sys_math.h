@@ -15,7 +15,7 @@
 // void ffact();
 // void ifact();
 // void powi();
-// void sinf_table();
+f32 sinf_table(f32);
 // void cosf_table();
 // void tanf_table();
 
