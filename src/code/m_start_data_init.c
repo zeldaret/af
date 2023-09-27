@@ -38,6 +38,7 @@
 #include "m_time.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "sys_math.h"
+#include "m_flashrom.h"
 
 void famicom_emu_initial_common_data(void) {
     FamicomEmuCommonData* famicom = &common_data.famicom_emu_common_data;
