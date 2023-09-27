@@ -22,13 +22,13 @@ typedef struct lbRekiPhase {
 
 #define lbRk_KYUU_DAY_START 1
 
-s32 lbRk_SeirekiDays(s32 /*year*/, s32 /*month*/);
-lbRekiPhase* lbRk_ToSeiyoMonthAndDay(s32 /*year*/, s32 /*month*/);
-s32 lbRk_KyuurekiLeapDays(s32 /*year*/);
-s32 lbRk_IsKyuurekiLeapYear(s32 /*year*/);
-s32 lbRk_IsLeapMonth(s32 /*month*/);
-s32 lbRk_IsLeapOnNextMonth(s32 /*year*/, s32 /*month*/);
-s32 lbRk_KyuurekiDays(s32 /*year*/, s32 /*month*/);
-s32 lbRk_ToSeiyouReki(lbRTC_ymd_t* /*seiyoTime*/, const lbRTC_ymd_t* /*kyuuTime*/);
-s32 lbRk_ToKyuuReki(lbRTC_ymd_t* /*kyuuTime*/, const lbRTC_ymd_t* /*seiyoTime*/);
+s32 lbRk_SeirekiDays(s32 year, s32 month);
+lbRekiPhase* lbRk_ToSeiyoMonthAndDay(s32 year, s32 month);
+s32 lbRk_KyuurekiLeapDays(s32 year);
+s32 lbRk_IsKyuurekiLeapYear(s32 year);
+s32 lbRk_IsLeapMonth(s32 month);
+s32 lbRk_IsLeapOnNextMonth(s32 year, s32 month);
+s32 lbRk_KyuurekiDays(s32 year, s32 month);
+s32 lbRk_ToSeiyouReki(lbRTC_ymd_t* seiyoTime, const lbRTC_ymd_t* kyuuTime);
+s32 lbRk_ToKyuuReki(lbRTC_ymd_t* kyuuTime, const lbRTC_ymd_t* seiyoTime);
 #endif
