@@ -3,6 +3,10 @@
 
 #include "ultra64.h"
 #include "z64math.h"
+#include "unk.h"
+
+struct Actor;
+struct PosRot;
 
 typedef struct mCoBG_OffsetTable {
     /* 0x00 */ u8 unitAttribute;
@@ -13,6 +17,22 @@ typedef struct mCoBG_OffsetTable {
     /* 0x05 */ s8 ruOffset;
     /* 0x06 */ s8 slateSwitch;
 } mCoBG_OffsetTable; // size = 0x7
+
+// collision bg data
+typedef struct mCoBG_unkStruct {
+    /* 0x0 */ u32 unk0:1; // [31] shape
+    /* 0x0 */ u32 unk1:5; // [30:25] center
+    /* 0x0 */ u32 unk2:5; // [25:20] top_left
+    /* 0x0 */ u32 unk3:5; // [20:15] bot_left
+    /* 0x0 */ u32 unk4:5; // [15:10] top_right
+    /* 0x0 */ u32 unk5:5; // [10:5] bot_right
+    /* 0x0 */ u32 unk6:6; // [5:0] unit_attribute
+} mCoBG_unkStruct; // size = 0x4
+
+typedef union mCoBG_unkStructUnion {
+    mCoBG_unkStruct data;
+    u32 raw;
+} mCoBG_unkStructUnion;
 
 // void func_80067430_jp();
 // void func_800674B0_jp();
@@ -99,7 +119,7 @@ typedef struct mCoBG_OffsetTable {
 // void func_8006B5C0_jp();
 // void func_8006B664_jp();
 // void func_8006B92C_jp();
-s32 mCoBG_RegistMoveBg(s8 *arg0, PosRot *arg1, xyz_t *arg2, s16 *arg3, f32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8, s32 arg9, s32 argA, f32 argB);
+s32 mCoBG_RegistMoveBg(s8 *arg0, struct PosRot *arg1, xyz_t *arg2, s16 *arg3, f32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8, s32 arg9, s32 argA, f32 argB);
 // void func_8006BAA8_jp();
 void mCoBG_CrossOffMoveBg(s32 arg0, struct Actor *actor);  
 void func_8006BB64_jp(void);
@@ -254,7 +274,7 @@ void mCoBG_SetPluss5PointOffset_file(xyz_t pos, mCoBG_OffsetTable offsetData, ch
 // void func_80076270_jp();
 // void func_80076280_jp();
 // void func_80076290_jp();
-// void func_80076358_jp();
+s32 func_80076358_jp(u32 attribute);
 // void func_8007638C_jp();
 // void func_800763F0_jp();
 // void func_800763FC_jp();
