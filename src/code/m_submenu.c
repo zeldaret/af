@@ -15,6 +15,7 @@
 #include "attributes.h"
 #include "segment_symbols.h"
 #include "macros.h"
+#include "prevent_bss_reordering.h"
 
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "overlays/actors/player_actor/m_player.h"

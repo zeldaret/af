@@ -1603,8 +1603,8 @@
     bss_size: 0x10
     subsegments:
       - [0x85A400, c, overlays/actors/ovl_Tools/ac_tools]
-      - [0x85A7A0, data, overlays/actors/ovl_Tools/ac_tools]
-      - { start: 0x85A880, type: bss, vram: 0x80965C20, name: overlays/actors/ovl_Tools/ac_tools }
+      - [0x85A7A0, .data, overlays/actors/ovl_Tools/ac_tools]
+      - { start: 0x85A880, type: .bss, vram: 0x80965C20, name: overlays/actors/ovl_Tools/ac_tools }
   - name: ovl_Tools_reloc
     type: code
     start: 0x85A880
