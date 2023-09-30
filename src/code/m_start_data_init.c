@@ -1,6 +1,6 @@
 #include "m_start_data_init.h"
 #include "6792F0.h"
-#include "68AB30.h"
+#include "m_cockroach.h"
 #include "69CB30.h"
 #include "6A83A0.h"
 #include "6B81C0.h"
@@ -255,7 +255,7 @@ s32 mSDI_StartInitNew(Game* game2, s32 player_no, s32 malloc_flag) {
     }
 
     mPr_SetPossessionItem(common_data.now_private, 0, ITM_MONEY_1000, mPr_ITEM_COND_QUEST);
-    mNW_InitMyOriginal();
+    mCkRh_InitGokiSaveData_InitNewPlayer();
     mEv_2nd_init(&game_play->event);
     famicom_emu_initial_common_data();
     return TRUE;
