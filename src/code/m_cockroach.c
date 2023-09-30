@@ -4,6 +4,7 @@
 #include "m_house.h"
 #include "m_field_info.h"
 #include "code_variables.h"
+#include "attributes.h"
 
 s32 mCkRh_GokiFamilyCount2Good(s32 count) {
     if (count < 0) {
@@ -54,7 +55,7 @@ void mCkRh_SavePlayTime(s32 player) {
 
 s32 mCkRh_DaysGapCompareWithSaveTime(s32 player) {
     s32 home;
-    s32 interval;
+    s32 pad UNUSED;
 
     if (player < PLAYER_NUM) {
         lbRTC_time_c gokiTime;
@@ -97,7 +98,7 @@ s32 mCkRh_PlussGokiN_NowRoom(s32 count) {
     s32 housefieldId;
     s32 homeId;
     s32 num;
-    s32 pad[1];
+    s32 pad[1] UNUSED;
 
     if (mFI_IS_PLAYER_ROOM(fieldId)) {
         player = common_data.player_no;
@@ -119,7 +120,7 @@ s32 mCkRh_MinusGokiN_NowRoom(s32 count) {
     s32 housefieldId;
     s32 homeId;
     s32 num;
-    s32 pad[1];
+    s32 pad[1] UNUSED;
 
     if (mFI_IS_PLAYER_ROOM(fieldId)) {
         player = common_data.player_no;
