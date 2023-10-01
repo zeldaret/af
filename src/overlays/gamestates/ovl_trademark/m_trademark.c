@@ -3,7 +3,10 @@
 #include "m_common_data.h"
 #include "m_event.h"
 #include "m_field_info.h"
+#include "m_flashrom.h"
+#include "m_mail.h"
 #include "m_npc.h"
+#include "m_rcp.h"
 #include "m_view.h"
 #include "sys_math.h"
 #include "sys_matrix.h"
@@ -13,10 +16,8 @@
 #include "69CB30.h"
 #include "6B3DC0.h"
 #include "6B8F20.h"
-#include "6BFE60.h"
 #include "6DE300.h"
 #include "6DB420.h"
-#include "6E0F50.h"
 #include "6EC9E0.h"
 #include "6EDD10.h"
 #include "6F5550.h"
@@ -105,17 +106,16 @@ s32 set_npc_4_title_demo(Game_Trademark* this) {
 }
 
 void mTM_demotime_set(s32 arg0) {
-
-    common_data.time.rtc_enabled = 0;
-    common_data.time.rtc_time.year = 0x7D1;
-    common_data.time.rtc_time.min = 0;
+    common_data.time.rtcEnabled = 0;
+    common_data.time.rtcTime.year = 0x7D1;
+    common_data.time.rtcTime.min = 0;
 
     if (arg0 != 0) {
         struct_80805CB4* temp_v0 = &D_80805CB4_jp[arg0-1];
 
-        common_data.time.rtc_time.month = temp_v0->unk_0;
-        common_data.time.rtc_time.day = temp_v0->unk_1;
-        common_data.time.rtc_time.hour = temp_v0->unk_2;
+        common_data.time.rtcTime.month = temp_v0->unk_0;
+        common_data.time.rtcTime.day = temp_v0->unk_1;
+        common_data.time.rtcTime.hour = temp_v0->unk_2;
         common_data.unk_1056C = temp_v0->unk_4;
     }
 }
@@ -462,7 +462,7 @@ void trademark_init(Game* thisx) {
     func_8008FA50_jp();
     func_8008F210_jp();
 
-    func_80026E10_jp(&this->unk_00260, SEGMENT_ROM_START(segment_01136000), SEGMENT_ROM_SIZE(segment_01136000), "../m_trademark.c", 1081);
+    DmaMgr_RequestSyncDebug(&this->unk_00260, SEGMENT_ROM_START(segment_01136000), SEGMENT_ROM_SIZE(segment_01136000), "../m_trademark.c", 1081);
     func_800924CC_jp(&B_80828560_jp, B_80828620_jp, &B_808286B0_jp);
 
     func_8005EAA0_jp(0);
