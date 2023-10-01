@@ -26,17 +26,15 @@
 
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-#if 0
-D_80805B20_jp
-D_80805B34_jp
-D_80805B48_jp
-D_80805B5C_jp
-D_80805B70_jp
-#endif
+extern demo_door_data D_80805B20_jp;
+extern demo_door_data D_80805B34_jp;
+extern demo_door_data D_80805B48_jp;
+extern demo_door_data D_80805B5C_jp;
+extern demo_door_data D_80805B70_jp;
 
 extern demo_door_data* l_demo_door_data_table[];
 
-extern UNK_TYPE demo_npc_list;
+extern s32 demo_npc_list;
 extern s32 demo_npc_num;
 
 typedef struct struct_80805CB4 {
@@ -48,29 +46,25 @@ typedef struct struct_80805CB4 {
 
 extern struct_80805CB4 tradeday_table[];
 
-#if 0
-D_80805CD8_jp
-D_80805ED8_jp
-D_808060D8_jp
-D_80806158_jp
-D_80806338_jp
-D_80806458_jp
-D_808065D8_jp
-#endif
+extern Vtx D_80805CD8_jp[];
+extern Vtx D_80805ED8_jp[];
+extern Vtx D_808060D8_jp[];
+extern Vtx D_80806158_jp[];
+extern Vtx D_80806338_jp[];
+extern Vtx D_80806458_jp[];
 
-extern UNK_TYPE D_808075D8_jp;
+extern u8 D_808065D8_jp[];
 
-extern UNK_TYPE D_80807908_jp;
+extern Gfx D_808075D8_jp[];
 
-#if 0
-D_80808000_jp
-#endif
+extern u8 D_80807908_jp[];
 
 extern Lightsn D_80808508_jp;
 
 extern u8 s_titlebgm[];
 
 
+// bss
 
 extern UNK_TYPE B_80808560_jp;
 extern UNK_TYPE B_80818560_jp;
@@ -273,7 +267,7 @@ void func_80805104_jp(Game_Trademark* this) {
     } while (0);
 
     gSPMatrix(POLY_OPA_DISP++, _Matrix_to_Mtx_new(temp_s0), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    gSPDisplayList(POLY_OPA_DISP++, &D_808075D8_jp);
+    gSPDisplayList(POLY_OPA_DISP++, D_808075D8_jp);
 
     CLOSE_DISPS(temp_s0);
 }
