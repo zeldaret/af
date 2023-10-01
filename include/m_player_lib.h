@@ -3,6 +3,9 @@
 
 #include "ultra64.h"
 
+struct Player;
+struct Game_Play;
+
 // void func_800B1160_jp();
 // void func_800B11B0_jp();
 // void func_800B11F8_jp();
@@ -10,7 +13,7 @@
 // void func_800B12A0_jp();
 // void func_800B12C8_jp();
 // void func_800B12F4_jp();
-// void func_800B131C_jp();
+UNK_RET func_800B131C_jp(UNK_TYPE arg0);
 // void func_800B1364_jp();
 // void func_800B1384_jp();
 // void func_800B1410_jp();
@@ -19,31 +22,31 @@
 // void func_800B1590_jp();
 // void func_800B1614_jp();
 // void func_800B1650_jp();
-// void func_800B167C_jp();
+void func_800B167C_jp(s32 arg0, UNK_RET arg1);
 // void func_800B16D0_jp();
 // void func_800B16F8_jp();
-// void func_800B1784_jp();
+void func_800B1784_jp(UNK_TYPE);
 // void func_800B1838_jp();
-// void func_800B190C_jp();
+void func_800B190C_jp(UNK_TYPE);
 // void func_800B1944_jp();
-// void func_800B1960_jp();
-// void func_800B19C4_jp();
-// void func_800B1A28_jp();
-// void func_800B1A60_jp();
-// void func_800B1AA0_jp();
+void func_800B1960_jp(UNK_TYPE, UNK_TYPE, UNK_TYPE);
+void func_800B19C4_jp(UNK_TYPE, UNK_TYPE, UNK_TYPE);
+void func_800B1A28_jp(UNK_TYPE);
+void func_800B1A60_jp(UNK_TYPE);
+void mPlib_Object_Exchange_keep_Player_dt(struct Game_Play* game_play);
 // void func_800B1AE0_jp();
 // void func_800B1B3C_jp();
 // void func_800B1B6C_jp();
 // void func_800B1BB8_jp();
 // void func_800B1BE8_jp();
-// void get_player_actor_withoutCheck();
+struct Player* get_player_actor_withoutCheck(struct Game_Play* game_play);
 // void func_800B1C90_jp();
 // void func_800B1CBC_jp();
 // void func_800B1CE0_jp();
 // void func_800B1D14_jp();
 // void func_800B1D40_jp();
 // void func_800B1D68_jp();
-// void func_800B1D94_jp();
+UNK_RET func_800B1D94_jp(void* segment, UNK_TYPE arg1);
 // void func_800B1DE8_jp();
 // void func_800B1E94_jp();
 // void func_800B1EB0_jp();
@@ -110,7 +113,7 @@
 // void func_800B32FC_jp();
 // void func_800B3330_jp();
 // void func_800B33AC_jp();
-// void func_800B3408_jp();
+s32 mPlib_able_submenu_type1(struct Game_Play* game_play);
 // void func_800B34B8_jp();
 // void func_800B34F4_jp();
 // void func_800B3534_jp();
@@ -144,7 +147,7 @@
 // void func_800B55D0_jp();
 // void func_800B5620_jp();
 // void func_800B5678_jp();
-// void func_800B56A4_jp();
+void mPlib_Set_able_hand_all_item_in_demo(s8 arg0);
 // void func_800B56D0_jp();
 // void func_800B5718_jp();
 // void func_800B5760_jp();
@@ -155,7 +158,7 @@
 // void func_800B58C4_jp();
 // void func_800B5910_jp();
 // void func_800B593C_jp();
-// void func_800B594C_jp();
+void func_800B594C_jp(void);
 // void func_800B5980_jp();
 // void func_800B5AA0_jp();
 // void func_800B5AB8_jp();

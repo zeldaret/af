@@ -1,9 +1,22 @@
 #ifndef Z_STD_DMA_H
 #define Z_STD_DMA_H
 
-#include "libc/stdint.h"
 #include "ultra64.h"
+#include "libc/stdint.h"
+#include "alignment.h"
 #include "other_types.h"
+#include "unk.h"
+
+typedef struct DmaRequest {
+    /* 0x00 */ RomOffset vrom;
+    /* 0x04 */ void* vram;
+    /* 0x08 */ size_t size;
+    /* 0x0C */ const char* filename;
+    /* 0x10 */ s32 line;
+    /* 0x14 */ UNK_TYPE unk_14;
+    /* 0x18 */ OSMesgQueue* mq;
+    /* 0x1C */ OSMesg msg;
+} DmaRequest; // size = 0x20
 
 typedef struct DmaEntry {
     /* 0x0 */ RomOffset vromStart;
@@ -12,26 +25,26 @@ typedef struct DmaEntry {
     /* 0xC */ RomOffset romEnd;
 } DmaEntry; // size = 0x10
 
-extern DmaEntry gDmaDataTable[];
+extern DmaEntry dma_rom_ad[];
 
-// void func_800263F0_jp();
-// void DmaMgr_DmaRomToRam();
-// void func_800266C4_jp();
-// void func_80026714_jp();
-// void func_80026770_jp();
-// void func_800267DC_jp();
-// void func_80026814_jp();
-// void func_80026828_jp();
-// void func_800269E4_jp();
-// void func_80026A64_jp();
-void DmaMgr_RequestSync(void* ram, void* vrom, size_t size);
-// void func_80026BC0_jp();
-// void func_80026C00_jp();
-// void func_80026C28_jp();
-s32 func_80026C4C_jp(void* vromStart, void* vromEnd, void* ovlStart, void* ovlEnd);
-void func_80026CAC_jp(void);
-void func_80026DA0_jp(void);
-// void func_80026DCC_jp();
-void func_80026E10_jp(void* arg0, RomOffset arg1, size_t arg2, const char* arg3, s32 arg4);
+s32 DmaMgr_DmaRomToRam(RomOffset vrom, void* vram, size_t size);
+s32 DmaMgr_AudioDmaHandler(OSPiHandle* pihandle, OSIoMesg* mb, s32 direction);
+s32 DmaMgr_RequestSync(void* vram, RomOffset vrom, size_t size);
+s32 DmaMgr_RequestSyncNoSize(void* vram, RomOffset vrom);
+size_t DmaMgr_GetSegmentSize(RomOffset vrom);
+RomOffset DmaMgr_GetOvlStart(RomOffset vrom);
+s32 DmaMgr_GetOvlOffsets(RomOffset vromStart, RomOffset* vromEnd, RomOffset* ovlStart, RomOffset* ovlEnd);
+void DmaMgr_Init(void);
+void DmaMgr_Stop(void);
+void DmaMgr_RequestAsync(DmaRequest* req, void* vram, RomOffset vrom, size_t size, s32 arg4, OSMesgQueue* mq, OSMesg msg, const char* filename, s32 line);
+s32 DmaMgr_RequestSyncDebug(void* vram, RomOffset vrom, size_t size, const char* filename, s32 line);
+
+
+#define DMAMGR_DEFAULT_BUFSIZE ALIGN16(0x2000)
+
+extern size_t gDmaMgrDmaBuffSize;
+
+extern size_t B_800406B0_jp;
+extern size_t B_800406B4_jp;
 
 #endif

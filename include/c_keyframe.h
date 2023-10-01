@@ -4,7 +4,7 @@
 #include "ultra64.h"
 #include "z64math.h"
 
-struct PlayState;
+struct Game_Play;
 
 typedef enum AnimationMode {
     /* 0 */ ANIMATION_STOP,
@@ -24,7 +24,7 @@ typedef struct {
     /* 0x0 */ Gfx* shape;
     /* 0x4 */ u8 numberOfChildren;
     /* 0x5 */ u8 displayBufferFlag;
-    /* 0x6 */ Vec3s translation;
+    /* 0x6 */ s_xyz translation;
 } JointElemR; // size = 0xC
 
 typedef struct {
@@ -51,13 +51,13 @@ typedef struct {
 
 typedef struct {
     /* 0x00 */ s32 transformationFlag;
-    /* 0x04 */ Vec3f baseWorldPosition;
+    /* 0x04 */ xyz_t baseWorldPosition;
     /* 0x10 */ s16 baseAngleY;
-    /* 0x14 */ Vec3f baseShapeTranslation;
-    /* 0x20 */ Vec3s baseShapeRotation;
-    /* 0x26 */ Vec3s updatedBaseShapeRotation;
+    /* 0x14 */ xyz_t baseShapeTranslation;
+    /* 0x20 */ s_xyz baseShapeRotation;
+    /* 0x26 */ s_xyz updatedBaseShapeRotation;
     /* 0x2C */ f32 counter;
-    /* 0x30 */ Vec3f shapeWorldPositionCorrection;
+    /* 0x30 */ xyz_t shapeWorldPositionCorrection;
     /* 0x3C */ s16 shapeAngleCorrection;
 } AnimationMove; // size = 0x40
 
@@ -66,9 +66,9 @@ typedef struct {
     /* 0x18 */ BaseSkeletonR* skeleton;
     /* 0x1C */ BaseAnimationR* animation;
     /* 0x20 */ f32 morphCounter;
-    /* 0x24 */ Vec3s* jointTable;
-    /* 0x28 */ Vec3s* morphTable;
-    /* 0x2C */ Vec3s* diffRotTable;
+    /* 0x24 */ s_xyz* jointTable;
+    /* 0x28 */ s_xyz* morphTable;
+    /* 0x2C */ s_xyz* diffRotTable;
     /* 0x30 */ AnimationMove animationMove;
 } SkeletonInfoR; // size = 0x70
 
@@ -83,7 +83,7 @@ typedef struct {
     /* 0x1C */ s32 keyframeStartIndex;
 } SkeletonInfoRCombineWork; // size = 0x20
 
-typedef s32 (*DrawCallback)(struct PlayState* play, SkeletonInfoR* skeletonInfo, s32 jointIndex, Gfx** dlist, u8* displayBufferFlag, void*, Vec3s* rotation, Vec3f* translation);
+typedef s32 (*DrawCallback)(struct Game_Play* game_play, SkeletonInfoR* skeletonInfo, s32 jointIndex, Gfx** dlist, u8* displayBufferFlag, void*, s_xyz* rotation, xyz_t* translation);
 
 void cKF_FrameControl_zeroClear(FrameControl* frameControl);
 void cKF_FrameControl_ct(FrameControl* frameControl);
@@ -99,39 +99,41 @@ s16 cKF_KeyCalc(s16 startIndex, s16 sequenceLength, Keyframe* dataSource, f32 cu
 void cKF_SkeletonInfo_subRotInterpolation(f32 t, s16* out, s16 jointRotation, s16 morphRotation);
 void cKF_SkeletonInfo_morphST(s16* joint, s16* morph, f32 t);
 void cKF_SkeletonInfo_R_zeroClear(SkeletonInfoR* skeletonInfo);
+void cKF_SkeletonInfo_R_ct(SkeletonInfoR* skeletonInfo, BaseSkeletonR* skeleton, BaseAnimationR* animation,
+                           s_xyz* jointTable, s_xyz* morphTable);
 void cKF_SkeletonInfo_R_dt(SkeletonInfoR* skeletonInfo);
-void cKF_SkeletonInfo_R_init_standard_stop(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation, Vec3s* diffRotTable);
+void cKF_SkeletonInfo_R_init_standard_stop(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation, s_xyz* diffRotTable);
 void cKF_SkeletonInfo_R_init_standard_stop_speedset(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
-                                                    Vec3s* diffRotTable, f32 speed);
+                                                    s_xyz* diffRotTable, f32 speed);
 void cKF_SkeletonInfo_R_init_standard_stop_morph(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
-                                                 Vec3s* diffRotTable, f32 morphCounter);
+                                                 s_xyz* diffRotTable, f32 morphCounter);
 void cKF_SkeletonInfo_R_init_standard_repeat(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
-                                             Vec3s* diffRotTable);
+                                             s_xyz* diffRotTable);
 void cKF_SkeletonInfo_R_init_standard_repeat_speedset(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
-                                                      Vec3s* diffRotTable, f32 speed);
+                                                      s_xyz* diffRotTable, f32 speed);
 void cKF_SkeletonInfo_R_init_standard_repeat_morph(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
-                                                   Vec3s* diffRotTable, f32 morphCounter);
+                                                   s_xyz* diffRotTable, f32 morphCounter);
 void cKF_SkeletonInfo_R_init(SkeletonInfoR* skeletonInfo, BaseSkeletonR* skeleton, BaseAnimationR* animation,
                              f32 startFrame, f32 endFrame, f32 currentFrame, f32 speed, f32 morphCounter,
-                             AnimationMode mode, Vec3s* diffRotTable);
+                             AnimationMode mode, s_xyz* diffRotTable);
 void cKF_SkeletonInfo_R_setAnim(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation);
 void cKF_SkeletonInfo_R_morphJoint(SkeletonInfoR* skeletonInfo);
 s32 cKF_SkeletonInfo_R_play(SkeletonInfoR* skeletonInfo);
-void cKF_Si3_draw_SV_R_child(struct PlayState* play, SkeletonInfoR* skeletonInfo, s32* jointIndex,
+void cKF_Si3_draw_SV_R_child(struct Game_Play* game_play, SkeletonInfoR* skeletonInfo, s32* jointIndex,
                              DrawCallback beforeCallback, DrawCallback afterCallback, void* arg, Mtx** mtx);
-void cKF_Si3_draw_R_SV(struct PlayState* play, SkeletonInfoR* skeletonInfo, Mtx* mtx, DrawCallback beforeCallback,
+void cKF_Si3_draw_R_SV(struct Game_Play* game_play, SkeletonInfoR* skeletonInfo, Mtx* mtx, DrawCallback beforeCallback,
                        DrawCallback afterCallback, void* arg);
 void cKF_SkeletonInfo_R_init_standard_repeat_speedsetandmorph(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
-                                                              Vec3s* diffRotTable, f32 speed, f32 morphCounter);
+                                                              s_xyz* diffRotTable, f32 speed, f32 morphCounter);
 void cKF_SkeletonInfo_R_init_standard_repeat_setframeandspeedandmorph(SkeletonInfoR* skeletonInfo,
-                                                                      BaseAnimationR* animation, Vec3s* diffRotTable,
+                                                                      BaseAnimationR* animation, s_xyz* diffRotTable,
                                                                       f32 currentFrame, f32 speed, f32 morphCounter);
 void cKF_SkeletonInfo_R_init_standard_setframeandspeedandmorphandmode(SkeletonInfoR* skeletonInfo,
-                                                                      BaseAnimationR* animation, Vec3s* diffRotTable,
+                                                                      BaseAnimationR* animation, s_xyz* diffRotTable,
                                                                       f32 currentFrame, f32 speed, f32 morphCounter,
                                                                       AnimationMode mode);
 void cKF_SkeletonInfo_R_init_reverse_setspeedandmorphandmode(SkeletonInfoR* skeletonInfo, BaseAnimationR* animation,
-                                                             Vec3s* diffRotTable, f32 currentFrame, f32 speed,
+                                                             s_xyz* diffRotTable, f32 currentFrame, f32 speed,
                                                              AnimationMode mode);
 void func_80053384_jp(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, UNK_PTR* arg6, UNK_PTR* arg7,
                       UNK_PTR* arg8);
@@ -145,12 +147,12 @@ void cKF_SkeletonInfo_R_T_combine_play(s32* arg0, s32* arg1, s32* arg2, Skeleton
                                        s32 arg8, s32 arg9, s32 argA, s32 argB, s8* flag);
 void cKF_SkeletonInfo_R_Animation_Set_base_shape_trs(SkeletonInfoR* skeletonInfo, f32 translationX, f32 translationY,
                                                      f32 translationZ, s16 rotX, s16 rotY, s16 rotZ);
-void cKF_SkeletonInfo_R_AnimationMove_ct_base(Vec3f* arg0, Vec3f* arg1, s16 arg2, s16 arg3, f32 arg4,
+void cKF_SkeletonInfo_R_AnimationMove_ct_base(xyz_t* arg0, xyz_t* arg1, s16 arg2, s16 arg3, f32 arg4,
                                               SkeletonInfoR* skeletonInfo, s32 transformationFlag);
 void cKF_SkeletonInfo_R_AnimationMove_dt(SkeletonInfoR* skeletonInfo);
-void cKF_SkeletonInfo_R_AnimationMove_base(Vec3f* arg0, Vec3s* arg1, Vec3f* arg2, s16 arg3,
+void cKF_SkeletonInfo_R_AnimationMove_base(xyz_t* arg0, s_xyz* arg1, xyz_t* arg2, s16 arg3,
                                            SkeletonInfoR* skeletonInfo);
-void cKF_SkeletonInfo_R_AnimationMove_CulcTransToWorld(Vec3f* arg0, Vec3f* arg1, f32 arg2, f32 arg3, f32 arg4, s16 arg5,
-                                                       Vec3f* arg6, SkeletonInfoR* skeleton, s32 arg8);
+void cKF_SkeletonInfo_R_AnimationMove_CulcTransToWorld(xyz_t* arg0, xyz_t* arg1, f32 arg2, f32 arg3, f32 arg4, s16 arg5,
+                                                       xyz_t* arg6, SkeletonInfoR* skeleton, s32 arg8);
 
 #endif

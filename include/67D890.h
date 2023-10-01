@@ -3,12 +3,14 @@
 
 #include "ultra64.h"
 
-// void func_80059BF0_jp();
-// void func_80059C24_jp();
+struct Game_Play;
+
+void func_80059BF0_jp(void);
+void banti_move(struct Game_Play* game_play);
 // void func_80059EC0_jp();
 // void func_8005A070_jp();
 // void func_8005A154_jp();
 // void func_8005A238_jp();
-// void func_8005A2FC_jp();
+void banti_draw(struct Game_Play* game_play);
 
 #endif

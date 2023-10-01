@@ -3,7 +3,7 @@ import re
 from typing import Dict, List, Optional, Set, TYPE_CHECKING
 
 import spimdisasm
-import tqdm
+
 from intervaltree import IntervalTree
 from disassembler import disassembler_instance
 from pathlib import Path
@@ -12,7 +12,7 @@ from pathlib import Path
 if TYPE_CHECKING:
     from segtypes.segment import Segment
 
-from util import log, options
+from util import log, options, progress_bar
 
 all_symbols: List["Symbol"] = []
 all_symbols_dict: Dict[int, List["Symbol"]] = {}
@@ -72,16 +72,25 @@ def to_cname(symbol_name: str) -> str:
     return symbol_name
 
 
-def handle_sym_addrs(path: Path, sym_addrs_lines: List[str], all_segments):
+def handle_sym_addrs(
+    path: Path, sym_addrs_lines: List[str], all_segments: "List[Segment]"
+):
     def get_seg_for_name(name: str) -> Optional["Segment"]:
         for segment in all_segments:
             if segment.name == name:
                 return segment
         return None
 
-    for line_num, line in enumerate(
-        tqdm.tqdm(sym_addrs_lines, desc=f"Loading symbols ({path.stem})")
-    ):
+    def get_seg_for_rom(rom: int) -> Optional["Segment"]:
+        for segment in all_segments:
+            if segment.contains_rom(rom):
+                return segment
+        return None
+
+    prog_bar = progress_bar.get_progress_bar(sym_addrs_lines)
+    prog_bar.set_description(f"Loading symbols ({path.stem})")
+    line: str
+    for line_num, line in enumerate(prog_bar):
         line = line.strip()
         if not line == "" and not line.startswith("//"):
             comment_loc = line.find("//")
@@ -233,6 +242,9 @@ def handle_sym_addrs(path: Path, sym_addrs_lines: List[str], all_segments):
                     )
 
                 continue
+
+            if sym.segment is None and sym.rom is not None:
+                sym.segment = get_seg_for_rom(sym.rom)
 
             if sym.segment:
                 sym.segment.add_symbol(sym)

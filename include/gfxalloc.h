@@ -4,7 +4,7 @@
 #include "ultra64.h"
 
 Gfx* gfxopen(Gfx* gfxHead);
-void gfxclose(Gfx* gfxHead, Gfx* gfx);
+Gfx* gfxclose(Gfx* gfxHead, Gfx* gfx);
 // void gfxalloc();
 
 #endif

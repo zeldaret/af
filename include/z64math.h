@@ -22,7 +22,7 @@ typedef struct {
     /* 0x0 */ f32 x;
     /* 0x4 */ f32 y;
     /* 0x8 */ f32 z;
-} Vec3f; // size = 0xC
+} xyz_t; // size = 0xC
 
 typedef struct {
     /* 0x0 */ u16 x;
@@ -34,7 +34,7 @@ typedef struct {
     /* 0x0 */ s16 x;
     /* 0x2 */ s16 y;
     /* 0x4 */ s16 z;
-} Vec3s; // size = 0x6
+} s_xyz; // size = 0x6
 
 typedef struct {
     /* 0x0 */ s32 x;
@@ -58,8 +58,6 @@ typedef union {
 // Calculate the floating point remainder of x / y.
 #define FMOD(x, y) ((x) - ((s32)((x) * (1.0f / (y))) * (f32)(y)))
 
-#define ABS(x) (x >= 0.0f) ? x : -x;
-
 // Casting a float to an integer, when the float value is larger than what the integer type can hold,
 // leads to undefined behavior. For example (f32)0x8000 doesn't fit in a s16, so it cannot be cast to s16.
 // This isn't an issue with IDO, but is one with for example GCC.
@@ -82,5 +80,10 @@ typedef union {
 #define BINANG_TO_RAD(binang) ((f32)(binang) * ((f32)M_PI / 0x8000))
 #define BINANG_TO_RAD_ALT(binang) (((f32)(binang) / 0x8000) * (f32)M_PI)
 #define BINANG_TO_RAD_ALT2(binang) (((f32)(binang) * (f32)M_PI) / 0x8000)
+
+// Angle arithmetic macros
+#define BINANG_ROT180(angle) ((s16)(angle + 0x8000))
+#define BINANG_SUB(a, b) ((s16)(a - b))
+#define BINANG_ADD(a, b) ((s16)(a + b))
 
 #endif

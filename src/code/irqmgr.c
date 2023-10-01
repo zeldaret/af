@@ -1,14 +1,14 @@
-
 #include "irqmgr.h"
 #include "libu64/stackcheck.h"
 #include "m_thread.h"
 #include "PR/os_internal.h"
 #include "macros.h"
+#include "attributes.h"
 
 Irqmgr irqmgr_class;
 Irqmgr* this;
 
-vu32 ResetStatus = 0;
+vs32 ResetStatus = 0;
 volatile OSTime ResetTime = 0;
 volatile OSTime RetraceTime = 0;
 u32 RetraceCount = 0;
@@ -130,7 +130,7 @@ void irqmgr_HandleRetrace(void) {
     irqmgr_SendMesgToClients(&this->msgRetrace);
 }
 
-void irqmgr_Main(void* arg) {
+void irqmgr_Main(void* arg UNUSED) {
     OSMesg msg = (OSMesg)0;
     u8 exit = 0;
 

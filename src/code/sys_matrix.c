@@ -75,8 +75,8 @@ MtxF* Matrix_now;   // Top of the stack.
 /**
  * Create the matrix stack and set the pointer to the top of it.
  */
-void new_Matrix(GameState* gameState) {
-    Matrix_now = THA_alloc16(&gameState->heap, MATRIX_STACK_SIZE * sizeof(MtxF));
+void new_Matrix(Game* game) {
+    Matrix_now = THA_alloc16(&game->heap, MATRIX_STACK_SIZE * sizeof(MtxF));
     Matrix_stack = Matrix_now;
 }
 
@@ -600,7 +600,7 @@ void Matrix_rotateXYZ(s16 x, s16 y, s16 z, MatrixMode mode) {
  * @param translation vector by which to translate.
  * @param rot vector of rotation angles.
  */
-void Matrix_softcv3_mult(Vec3f* translation, Vec3s* rot) {
+void Matrix_softcv3_mult(xyz_t* translation, s_xyz* rot) {
     MtxF* top = Matrix_now;
     f32 sin = sin_s(rot->z);
     f32 cos = cos_s(rot->z);
@@ -695,7 +695,7 @@ void Matrix_softcv3_mult(Vec3f* translation, Vec3s* rot) {
  * @param z amount to translate in Z direction.
  * @param rot vector of rotation angles.
  */
-void Matrix_softcv3_load(f32 x, f32 y, f32 z, Vec3s* rot) {
+void Matrix_softcv3_load(f32 x, f32 y, f32 z, s_xyz* rot) {
     MtxF* top = Matrix_now;
     f32 sinY = sin_s(rot->y);
     f32 cosY = cos_s(rot->y);
@@ -908,7 +908,7 @@ void _MtxF_to_Mtx_new(MtxF* src, GraphicsContext* gfxCtx) {
  * @param[in] src input vector
  * @param[out] dest output vector
  */
-void Matrix_Position(Vec3f* src, Vec3f* dest) {
+void Matrix_Position(xyz_t* src, xyz_t* dest) {
     MtxF* top = Matrix_now;
 
     dest->x = top->xw + (top->xx * src->x + top->xy * src->y + top->xz * src->z);
@@ -926,7 +926,7 @@ void Matrix_Position(Vec3f* src, Vec3f* dest) {
  *
  * @param[out] dest output vector.
  */
-void Matrix_Position_Zero(Vec3f* dest) {
+void Matrix_Position_Zero(xyz_t* dest) {
     MtxF* top = Matrix_now;
 
     dest->x = top->xw;
@@ -944,7 +944,7 @@ void Matrix_Position_Zero(Vec3f* dest) {
  * @param[in] x multiplier of unit vector in x direction.
  * @param[out] dest output vector.
  */
-void Matrix_Position_VecX(f32 x, Vec3f* dest) {
+void Matrix_Position_VecX(f32 x, xyz_t* dest) {
     MtxF* top = Matrix_now;
 
     dest->x = top->xw + top->xx * x;
@@ -962,7 +962,7 @@ void Matrix_Position_VecX(f32 x, Vec3f* dest) {
  * @param[in] y multiplier of unit vector in y direction.
  * @param[out] dest output vector.
  */
-void Matrix_Position_VecY(f32 y, Vec3f* dest) {
+void Matrix_Position_VecY(f32 y, xyz_t* dest) {
     MtxF* top = Matrix_now;
 
     dest->x = top->xw + top->xy * y;
@@ -980,7 +980,7 @@ void Matrix_Position_VecY(f32 y, Vec3f* dest) {
  * @param[in] z multiplier of unit vector in z direction.
  * @param[out] dest output vector.
  */
-void Matrix_Position_VecZ(f32 z, Vec3f* dest) {
+void Matrix_Position_VecZ(f32 z, xyz_t* dest) {
     MtxF* top = Matrix_now;
 
     dest->x = top->xw + top->xz * z;
@@ -1045,7 +1045,7 @@ void Matrix_MtxtoMtxF(Mtx* src, MtxF* dest) {
  * @param[out] dest output vector
  * @param[in] mf matrix to multiply by
  */
-void Matrix_MtxF_Position2(Vec3f* src, Vec3f* dest, MtxF* mf) {
+void Matrix_MtxF_Position2(xyz_t* src, xyz_t* dest, MtxF* mf) {
     dest->x = mf->xw + (mf->xx * src->x + mf->xy * src->y + mf->xz * src->z);
     dest->y = mf->yw + (mf->yx * src->x + mf->yy * src->y + mf->yz * src->z);
     dest->z = mf->zw + (mf->zx * src->x + mf->zy * src->y + mf->zz * src->z);
@@ -1155,7 +1155,7 @@ void Matrix_rotate_scale_exchange(MtxF* mf) {
  * @param[out] dest vector to write angles to.
  * @param[in] nonUniformScale boolean: true enables handling matrices with differently-scaled columns.
  */
-void Matrix_to_rotate_new(MtxF* src, Vec3s* dest, s32 nonUniformScale) {
+void Matrix_to_rotate_new(MtxF* src, s_xyz* dest, s32 nonUniformScale) {
     f32 temp;
     f32 temp2;
     f32 temp3;
@@ -1224,7 +1224,7 @@ void Matrix_to_rotate_new(MtxF* src, Vec3s* dest, s32 nonUniformScale) {
  *
  * See Matrix_to_rotate_new() for full inline documentation.
  */
-void Matrix_to_rotate2_new(MtxF* src, Vec3s* dest, s32 nonUniformScale) {
+void Matrix_to_rotate2_new(MtxF* src, s_xyz* dest, s32 nonUniformScale) {
     f32 temp;
     f32 temp2;
     f32 temp3;
@@ -1274,7 +1274,7 @@ void Matrix_to_rotate2_new(MtxF* src, Vec3s* dest, s32 nonUniformScale) {
  * @param axis axis about which to rotate, must be a unit vector.
  * @param mode APPLY or NEW.
  */
-void Matrix_RotateVector(s16 angle, Vec3f* axis, u8 mode) {
+void Matrix_RotateVector(s16 angle, xyz_t* axis, u8 mode) {
     MtxF* top;
     f32 sin;
     f32 cos;

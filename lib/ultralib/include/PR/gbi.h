@@ -1353,11 +1353,11 @@ typedef struct {
 
 typedef struct {
     unsigned char col[3];
-    unsigned char unk3;
+    unsigned char kc;
     unsigned char colc[3];
-    unsigned char unk7;
+    unsigned char kl;
     short pos[3];
-    unsigned char unkE;
+    unsigned char kq;
 } PointLight_t;
 
 typedef struct {
@@ -2677,8 +2677,8 @@ _DW({									\
 
 #define gSPLookAt(pkt, la)						\
 _DW({									\
-	gSPLookAtX(pkt,la)						\
-	gSPLookAtY(pkt,(char *)(la)+16)					\
+	gSPLookAtX(pkt,la);						\
+	gSPLookAtY(pkt,(char *)(la)+16);					\
 })
 #define gsSPLookAt(la)							\
 	gsSPLookAtX(la),						\
@@ -4147,7 +4147,7 @@ _DW({									\
 		G_TX_LOADTILE, 0 , 0, 0, 0, 0, 0, 0);			\
 	gDPLoadSync(pkt);						\
 	gDPLoadTLUTCmd(pkt, G_TX_LOADTILE, 15);				\
-	gDPPipeSync(pkt)						\
+	gDPPipeSync(pkt);						\
 })
 
 #else /* **** WORKAROUND hardware 1 load_tlut bug ****** */

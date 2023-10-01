@@ -304,6 +304,10 @@ class Segment:
     def is_noload() -> bool:
         return False
 
+    @staticmethod
+    def estimate_size(yaml: Union[Dict, List]) -> Optional[int]:
+        return None
+
     @property
     def needs_symbols(self) -> bool:
         return False
@@ -424,6 +428,24 @@ class Segment:
     def get_linker_section(self) -> str:
         return ".data"
 
+    def get_section_flags(self) -> Optional[str]:
+        """
+        Allows specifying flags for a section.
+
+        This can be useful when creating a custom section, since sections not recognized by the linker will not be linked properly.
+
+        GNU as docs about the section directive and flags: https://sourceware.org/binutils/docs/as/Section.html#ELF-Version
+
+        Example:
+
+        ```
+        def get_section_flags(self) -> Optional[str]:
+            # Tells the linker to allocate this section
+            return "a"
+        ```
+        """
+        return None
+
     def out_path(self) -> Optional[Path]:
         return None
 
@@ -454,9 +476,6 @@ class Segment:
 
     def warn(self, msg: str):
         self.warnings.append(msg)
-
-    def max_length(self):
-        return None
 
     @staticmethod
     def get_default_name(addr) -> str:
@@ -501,6 +520,27 @@ class Segment:
             pass
         if len(items) == 0:
             return None
+        return items[0]
+
+    def retrieve_sym_type(
+        self, syms: Dict[int, List[Symbol]], addr: int, type: str
+    ) -> Optional[symbols.Symbol]:
+        if addr not in syms:
+            return None
+
+        items = syms[addr]
+
+        items = [
+            i
+            for i in items
+            if i.segment is None
+            or Segment.visible_ram(self, i.segment)
+            and (type == i.type)
+        ]
+
+        if len(items) == 0:
+            return None
+
         return items[0]
 
     def get_symbol(

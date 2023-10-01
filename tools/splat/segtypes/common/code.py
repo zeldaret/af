@@ -7,7 +7,7 @@ from util.range import Range
 from util.symbols import Symbol
 
 from segtypes.common.group import CommonSegGroup
-from segtypes.segment import Segment
+from segtypes.segment import Segment, parse_segment_align
 
 CODE_TYPES = ["c", "asm", "hasm"]
 
@@ -44,7 +44,10 @@ class CommonSegCode(CommonSegGroup):
         self.jtbl_glabels_to_add: Set[int] = set()
         self.jumptables: Dict[int, Tuple[int, int]] = {}
         self.rodata_syms: Dict[int, List[Symbol]] = {}
-        self.align = 0x10
+
+        self.align = parse_segment_align(yaml)
+        if self.align is None:
+            self.align = 0x10
 
     @property
     def needs_symbols(self) -> bool:
@@ -178,12 +181,12 @@ class CommonSegCode(CommonSegGroup):
         # Mark any manually added dot types
         cur_section = None
 
-        for i, subsection_yaml in enumerate(segment_yaml["subsegments"]):
+        for i, subsegment_yaml in enumerate(segment_yaml["subsegments"]):
             # endpos marker
-            if isinstance(subsection_yaml, list) and len(subsection_yaml) == 1:
+            if isinstance(subsegment_yaml, list) and len(subsegment_yaml) == 1:
                 continue
 
-            typ = Segment.parse_segment_type(subsection_yaml)
+            typ = Segment.parse_segment_type(subsegment_yaml)
             if typ.startswith("all_"):
                 typ = typ[4:]
             if not typ.startswith("."):
@@ -218,15 +221,15 @@ class CommonSegCode(CommonSegGroup):
 
         inserts = self.find_inserts(found_sections)
 
-        last_rom_end = 0
+        last_rom_end = None
 
-        for i, subsection_yaml in enumerate(segment_yaml["subsegments"]):
+        for i, subsegment_yaml in enumerate(segment_yaml["subsegments"]):
             # endpos marker
-            if isinstance(subsection_yaml, list) and len(subsection_yaml) == 1:
+            if isinstance(subsegment_yaml, list) and len(subsegment_yaml) == 1:
                 continue
 
-            typ = Segment.parse_segment_type(subsection_yaml)
-            start = Segment.parse_segment_start(subsection_yaml)
+            typ = Segment.parse_segment_type(subsegment_yaml)
+            start = Segment.parse_segment_start(subsegment_yaml)
 
             # Add dummy segments to be expanded later
             if typ.startswith("all_"):
@@ -253,11 +256,21 @@ class CommonSegCode(CommonSegGroup):
 
             end = self.get_next_seg_start(i, segment_yaml["subsegments"])
 
-            if (
-                isinstance(start, int)
-                and isinstance(prev_start, int)
-                and start < prev_start
-            ):
+            if start is None:
+                # Attempt to infer the start address
+                if i == 0:
+                    # The start address of this segment is the start address of the group
+                    start = self.rom_start
+                else:
+                    # The start address is the end address of the previous segment
+                    start = last_rom_end
+
+            if start is not None and end is None:
+                est_size = segment_class.estimate_size(subsegment_yaml)
+                if est_size is not None:
+                    end = start + est_size
+
+            if start is not None and prev_start is not None and start < prev_start:
                 log.error(
                     f"Error: Group segment {self.name} contains subsegments which are out of ascending rom order (0x{prev_start:X} followed by 0x{start:X})"
                 )
@@ -274,7 +287,7 @@ class CommonSegCode(CommonSegGroup):
                 end = last_rom_end
 
             segment: Segment = Segment.from_yaml(
-                segment_class, subsection_yaml, start, end, vram
+                segment_class, subsegment_yaml, start, end, vram
             )
 
             segment.sibling = base_segments.get(segment.name, None)

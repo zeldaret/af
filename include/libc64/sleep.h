@@ -3,10 +3,10 @@
 
 #include "ultra64.h"
 
-// void csleep();
-// void nsleep();
-// void usleep();
-// void msleep();
-// void sleep();
+void csleep(OSTime t);
+void nsleep(u32 t);
+void usleep(u32 t);
+void msleep(u32 t);
+void sleep(u32 t);
 
 #endif

@@ -197,6 +197,7 @@ class CommonSegC(CommonSegCodeSubsegment):
                     if (
                         entry.function.getName() in self.global_asm_funcs
                         or is_new_c_file
+                        or options.opts.disassemble_all
                     ):
                         func_sym = self.get_symbol(
                             entry.function.vram,
@@ -212,6 +213,7 @@ class CommonSegC(CommonSegCodeSubsegment):
                         if (
                             spim_rodata_sym.getName() in self.global_asm_rodata_syms
                             or is_new_c_file
+                            or options.opts.disassemble_all
                         ):
                             rodata_sym = self.get_symbol(
                                 spim_rodata_sym.vram, in_segment=True, local_only=True
@@ -340,6 +342,7 @@ class CommonSegC(CommonSegCodeSubsegment):
         # Terrible hack to "auto-decompile" empty functions
         if (
             options.opts.auto_decompile_empty_functions
+            and len(func.instructions) == 2
             and func.instructions[0].isReturn()
             and func.instructions[1].isNop()
         ):

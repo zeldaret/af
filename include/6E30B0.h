@@ -3,6 +3,8 @@
 
 #include "ultra64.h"
 
+struct Game;
+
 // void func_800BF410_jp();
 // void func_800BF480_jp();
 // void func_800BF4F4_jp();
@@ -37,7 +39,7 @@
 // void func_800C0E98_jp();
 // void func_800C1070_jp();
 // void func_800C1230_jp();
-// void func_800C1428_jp();
+void mSP_ExchangeLineUp_InGame(struct Game* game);
 // void func_800C1498_jp();
 // void func_800C15A8_jp();
 // void func_800C1610_jp();
@@ -77,6 +79,6 @@
 // void func_800C2D8C_jp();
 // void func_800C2DF0_jp();
 // void func_800C2E80_jp();
-// void func_800C2EE0_jp();
+void func_800C2EE0_jp(void);
 
 #endif

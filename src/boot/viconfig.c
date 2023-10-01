@@ -1,4 +1,4 @@
-#include "global.h"
+#include "viconfig.h"
 #include "idle.h"
 #include "irqmgr.h"
 

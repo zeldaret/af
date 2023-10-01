@@ -1,9 +1,80 @@
 # splat Release Notes
 
+### 0.16.9
+
+* Add command line argument `--disassemble-all`, which has the same effect as the `disassemble_all` yaml option so will disamble already matched functions as well as migrated data.
+  * Note: the command line argument takes precedence over the yaml, so will take effect even if the yaml option is set to false.
+
+### 0.16.8
+
+* Avoid ignoring the `align` defined in a segment for `code` segments
+
+### 0.16.7
+
+* Use `pylibyaml` to speed-up yaml parsing
+
+### 0.16.6
+
+* Add option `ld_rom_start`.
+  * Allows offsetting rom address linker symbols by some arbitrary value.
+    * Useful for SN64 games which often have rom addresses offset by 0xB0000000.
+  * Defaults to 0.
+
+### 0.16.5
+
+* Add option `segment_symbols_style`.
+  * Allows changing the style of the generated segment symbols in the linker script.
+  * Possible values:
+    * `splat`: The current style for segment symbols.
+    * `makerom`: Style that aims to be compatible with makerom generated symbols.
+  * Defaults to `splat`.
+
+### 0.16.4
+
+* Add `get_section_flags` method to the `Segment` class.
+  * Useful for providing linker section flags when creating a custom section when making splat extensions.
+  * This may be necessary for some custom section types, because sections unrecognized by the linker will not link its data properly.
+  * More info about section flags: <https://sourceware.org/binutils/docs/as/Section.html#ELF-Version>
+
+### 0.16.3
+
+* Add `--stdout-only` flag. Redirects the progress bar output to `stdout` instead of `stderr`.
+* Add a check to prevent relocs with duplicated rom addresses.
+* Check empty functions only have 2 instructions before autodecompiling them.
+
+### 0.16.2
+
+* Add option `disassemble_all`. If enabled then already matched functions and migrated data will be disassembled to files anyways.
+
+### 0.16.1
+
+* Various changes so that series of image and palette subsegments can have `auto` rom addresses (as long as the first can find its rom address from the parent segment or its own definition)
+
+### 0.16.0
+
+* Add option `detect_redundant_function_end`. It tries to detect redundant and unreferenced functions ends and merge them together.
+  * This option is ignored if the compiler is not set to IDO.
+  * This type of codegen is only affected by flags `-g`, `-g1` and `-g2`.
+  * This option can also be overriden per file.
+* Disable `include_macro_inc` by default for IDO projects.
+* Disable `asm_emit_size_directive` by default for SN64 projects.
+* `spimdisasm` 1.16.0 or above is now required.
+
+### 0.15.4
+
+* Try to assign a segment to an user-declared symbol if the user declared the rom address.
+  * Helps to disambiguate symbols for same-address overlays.
+
+### 0.15.3
+
+* Disabled `asm_emit_size_directive` by default for IDO projects.
+
 ### 0.15.2
+
 * Various cleanup and fixes to support more liberal use of `auto` for rom addresses
 
 ### 0.15.1
+
 * Made some modifications such that linker object paths should be simpler in some circumstances
 
 ### 0.15.0
@@ -349,7 +420,7 @@ The `auto_all_sections` option, when set to true, will automatically add `all_` 
     * Code and ASM modes have been combined into the `code` mode
 * BREAKING: The `name` attribute of a segment now should no longer be a subdirectory but rather a meaningful name for the segment which will be used as the name of the linker section. If your `name` was previously a directory, please change it into a `dir`.
 * BREAKING: `subsections` has been renamed to `subsegments`
-* New `dir` segment attribute specifies a subdirectory into which files will be saved. You can combine `dir` ("foo") with a subsection file name containing a subdirectory ("bar/out"), and the paths will be joined (foo/bar/out.c)
+* New `dir` segment attribute specifies a subdirectory into which files will be saved. You can combine `dir` ("foo") with a subsegment name containing a subdirectory ("bar/out"), and the paths will be joined (foo/bar/out.c)
   * If the `dir` attribute is specified but the `name` isn't, the `name` becomes `dir` with directory separation slashes replaced with underscores (foo/bar/baz -> foo_bar_baz)
 * BREAKING: Many configuration options have been renamed. `_dir` options have been changed to the suffix `_path`.
 * BREAKING: Assets (non-code, like `bin` and images) are now placed in the directory `asset_path` (defaults to `assets`).
