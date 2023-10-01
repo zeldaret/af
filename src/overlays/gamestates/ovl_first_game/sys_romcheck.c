@@ -6,7 +6,7 @@ typedef struct NmiBuffer {
     /* 0x3C */ s32 unk_3C;
 } NmiBuffer; // size = 0x40
 
-void func_80802A60_jp(void) {
+void sys_romcheck(void) {
     u32 sp24;
     s32 pad;
     u8 temp;
@@ -21,5 +21,5 @@ void func_80802A60_jp(void) {
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_first_game/741F30/func_80802A60_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/gamestates/ovl_first_game/sys_romcheck/sys_romcheck.s")
 #endif

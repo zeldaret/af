@@ -5,10 +5,10 @@
 #include "overlays/gamestates/ovl_second_game/second_game.h"
 
 void func_808029D0_jp(Game_FirstGame* this);
-void func_80802A60_jp(void);
+void sys_romcheck(void);
 
 void func_808029D0_jp(Game_FirstGame* this) {
-    func_80802A60_jp();
+    sys_romcheck();
     mBGM_ct();
     common_data_init();
 
