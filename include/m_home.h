@@ -49,6 +49,7 @@ typedef struct Haniwa_c {
     /* 0x58 */ u32 bells; /* held bells from selling items */
 } Haniwa_c; // size = 0x5C
 
+// Original name is mHm_goki_c
 typedef struct mHm_goki_c {
   /* 0x00 */ lbRTC_ymd_t time;
   /* 0x04 */ u8 num;

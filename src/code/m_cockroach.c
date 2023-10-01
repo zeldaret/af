@@ -59,6 +59,7 @@ s32 mCkRh_DaysGapCompareWithSaveTime(s32 player) {
 
     if (player < PLAYER_NUM) {
         lbRTC_time_c gokiTime;
+
         home = mHS_get_arrange_idx(player) & 3;
         gokiTime.year = common_data.homes[home].goki.time.year;
         gokiTime.month = common_data.homes[home].goki.time.month;
@@ -100,9 +101,9 @@ s32 mCkRh_PlussGokiN_NowRoom(s32 count) {
     s32 num;
     s32 pad[1] UNUSED;
 
-    if (mFI_IS_PLAYER_ROOM(fieldId)) {
+    if (FI_IS_PLAYER_ROOM(fieldId)) {
         player = common_data.player_no;
-        housefieldId = mFI_GET_PLAYER_ROOM_NO(fieldId);
+        housefieldId = FI_GET_PLAYER_ROOM_NO(fieldId);
         homeId = mHS_get_arrange_idx(player) & 3;
         if ((player < PLAYER_NUM) && (housefieldId == homeId)) {
             num = common_data.homes[homeId].goki.num;
@@ -122,9 +123,9 @@ s32 mCkRh_MinusGokiN_NowRoom(s32 count) {
     s32 num;
     s32 pad[1] UNUSED;
 
-    if (mFI_IS_PLAYER_ROOM(fieldId)) {
+    if (FI_IS_PLAYER_ROOM(fieldId)) {
         player = common_data.player_no;
-        housefieldId = mFI_GET_PLAYER_ROOM_NO(fieldId);
+        housefieldId = FI_GET_PLAYER_ROOM_NO(fieldId);
         homeId = mHS_get_arrange_idx(player) & 3;
         if ((player < PLAYER_NUM) && (housefieldId == homeId)) {
             num = common_data.homes[homeId].goki.num;
@@ -138,8 +139,8 @@ s32 mCkRh_MinusGokiN_NowRoom(s32 count) {
 s32 mCkRh_NowSceneGokiFamilyCount() {
     u16 fieldid = mFI_GetFieldId();
 
-    if (mFI_IS_PLAYER_ROOM(fieldid)) {
-        return common_data.homes[mFI_GET_PLAYER_ROOM_NO(fieldid)].goki.num;
+    if (FI_IS_PLAYER_ROOM(fieldid)) {
+        return common_data.homes[FI_GET_PLAYER_ROOM_NO(fieldid)].goki.num;
     } else {
         return 0;
     }
