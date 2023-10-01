@@ -4,14 +4,16 @@
 
 void sys_romcheck(void) {
     u32 sp24;
-    u8 temp;
+    u8 version;
     s32 pad;
 
+    // Read the last 4 bytes from the ROM header
     osEPiReadIo(carthandle, 0x3C, &sp24);
 
-    temp = sp24;
+    version = sp24;
     sp24 = 0x23;
-    if (temp == sp24) {
+    // Check if the version byte is equal to 0x23
+    if (version == sp24) {
         APPNMI_ZURUMODE2_SET();
     }
 }
