@@ -263,7 +263,7 @@ D_80805B70_jp = 0x80805B70; // size:0x14
 l_demo_door_data_table = 0x80805B84; // size:0x14
 demo_npc_list = 0x80805B98; //
 demo_npc_num = 0x80805CB0; //
-D_80805CB4_jp = 0x80805CB4; //
+tradeday_table = 0x80805CB4; //
 D_80805CD8_jp = 0x80805CD8; //
 D_80805ED8_jp = 0x80805ED8; //
 D_808060D8_jp = 0x808060D8; //
@@ -276,7 +276,7 @@ D_80807908_jp = 0x80807908; //
 D_80808000_jp = 0x80808000; //
 D_80808508_jp = 0x80808508; //
 D_80808510_jp = 0x80808510; //
-D_80808520_jp = 0x80808520; // type:u8
+s_titlebgm = 0x80808520; // type:u8
 
 // .rodata
 

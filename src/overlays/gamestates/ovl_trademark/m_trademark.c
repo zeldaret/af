@@ -40,14 +40,13 @@ extern UNK_TYPE demo_npc_list;
 extern s32 demo_npc_num;
 
 typedef struct struct_80805CB4 {
-    /* 0x0 */ u8 unk_0;
-    /* 0x1 */ u8 unk_1;
-    /* 0x2 */ u8 unk_2;
-    /* 0x0 */ UNK_TYPE1 unk_3[0x1];
+    /* 0x0 */ u8 month;
+    /* 0x1 */ u8 day;
+    /* 0x2 */ u8 hour;
     /* 0x4 */ s16 unk_4;
 } struct_80805CB4; // size = 0x6
 
-extern struct_80805CB4 D_80805CB4_jp[];
+extern struct_80805CB4 tradeday_table[];
 
 #if 0
 D_80805CD8_jp
@@ -69,7 +68,7 @@ D_80808000_jp
 
 extern Lightsn D_80808508_jp;
 
-extern u8 D_80808520_jp[];
+extern u8 s_titlebgm[];
 
 
 
@@ -107,15 +106,15 @@ s32 set_npc_4_title_demo(Game_Trademark* this) {
 
 void mTM_demotime_set(s32 arg0) {
     common_data.time.rtcEnabled = 0;
-    common_data.time.rtcTime.year = 0x7D1;
+    common_data.time.rtcTime.year = 2001;
     common_data.time.rtcTime.min = 0;
 
     if (arg0 != 0) {
-        struct_80805CB4* temp_v0 = &D_80805CB4_jp[arg0-1];
+        struct_80805CB4* temp_v0 = &tradeday_table[arg0-1];
 
-        common_data.time.rtcTime.month = temp_v0->unk_0;
-        common_data.time.rtcTime.day = temp_v0->unk_1;
-        common_data.time.rtcTime.hour = temp_v0->unk_2;
+        common_data.time.rtcTime.month = temp_v0->month;
+        common_data.time.rtcTime.day = temp_v0->day;
+        common_data.time.rtcTime.hour = temp_v0->hour;
         common_data.unk_1056C = temp_v0->unk_4;
     }
 }
@@ -128,14 +127,14 @@ void trademark_goto_demo_scene(Game_Trademark* this) {
 
     if (mFRm_CheckSaveData() == 0) {
         Private_c* var_s0;
-        s32 var_s1;
+        s32 i;
 
         // TODO: make a substruct
         bzero(&common_data, 0x10000);
         mFRm_ClearSaveCheckData(&common_data);
 
         var_s0 = common_data.private;
-        for (var_s1 = 0; var_s1 < ARRAY_COUNT(common_data.private); var_s1++) {
+        for (i = 0; i < ARRAY_COUNT(common_data.private); i++) {
             mPr_ClearPrivateInfo(var_s0);
             var_s0++;
         }
@@ -190,14 +189,14 @@ void func_80804F78_jp(Game_Trademark* this) {
     f32 temp_fv1;
     f32 var_fa0;
     f32 var_fv0;
-    s16 temp_a2; // sp22
-    s16 temp_a1; // sp20
+    s16 temp_a2;
+    s16 temp_a1;
 
     temp_a2 = this->unk_25A6A;
     this->unk_25A6A = temp_a2 + this->unk_25A6C;
     temp_a1 = this->unk_25A6A;
 
-    temp_fv1 = sinf_table(temp_a1 * 0.0000958738f) * this->unk_00214;
+    temp_fv1 = sinf_table(temp_a1 * (f32)(M_PI / 0x8000)) * this->unk_00214;
 
     if (this->unk_25A6F == 0) {
         var_fa0 = temp_fv1 * 3.0f;
@@ -338,7 +337,7 @@ void trademark_cancel(Game_Trademark* this) {
 void trademark_move(Game_Trademark* this) {
     if (this->unk_25A6E == 0) {
         if (DECR(this->unk_25A68) == 0) {
-            mBGMPsComp_make_ps_lost_fanfare(D_80808520_jp[mTD_get_titledemo_no()], 0x168);
+            mBGMPsComp_make_ps_lost_fanfare(s_titlebgm[mTD_get_titledemo_no()], 0x168);
             func_800D1A9C_jp(0x105);
             this->unk_25A60 = 0;
             this->unk_25A6E = 1;
@@ -413,10 +412,10 @@ void trademark_main(Game* thisx) {
 
 void trademark_cleanup(UNUSED Game* thisx) {
     mHm_hs_c* var_s0 = common_data.homes;
-    s32 var_s1;
+    s32 i;
 
-    for (var_s1 = 0; var_s1 != ARRAY_COUNT(common_data.homes); var_s1++, var_s0++) {
-        var_s0->unk_024 = var_s1;
+    for (i = 0; i != ARRAY_COUNT(common_data.homes); i++, var_s0++) {
+        var_s0->unk_024 = i;
         mMl_clear_mail_box(var_s0->unk_478, ARRAY_COUNT(var_s0->unk_478));
     }
 }
@@ -424,14 +423,14 @@ void trademark_cleanup(UNUSED Game* thisx) {
 void trademark_init(Game* thisx) {
     UNUSED s32 pad;
     Game_Trademark* this = (Game_Trademark*)thisx;
-    GraphicsContext* sp2C = this->state.gfxCtx;
+    GraphicsContext* gfxCtx = this->state.gfxCtx;
 
     common_data_reinit();
 
     this->state.main = trademark_main;
     this->state.destroy = trademark_cleanup;
 
-    initView(&this->view, sp2C);
+    initView(&this->view, gfxCtx);
     new_Matrix(&this->state);
 
     this->unk_25A60 = 0xFF;
