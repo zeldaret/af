@@ -3,6 +3,8 @@
 #include "m_nmi_buf.h"
 #include "attributes.h"
 
+#define DEBUG_ROM_VERSION 0x23
+
 void sys_romcheck(void) {
     u32 sp24;
     u8 version;
@@ -12,8 +14,8 @@ void sys_romcheck(void) {
     osEPiReadIo(carthandle, 0x3C, &sp24);
 
     version = sp24;
-    sp24 = 0x23;
-    // Check if the version byte is equal to 0x23
+    sp24 = DEBUG_ROM_VERSION;
+    // Check if the version byte is equal to DEBUG_ROM_VERSION
     if (version == sp24) {
         APPNMI_ZURUMODE2_SET();
     }

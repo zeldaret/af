@@ -4,10 +4,10 @@
 #include "attributes.h"
 #include "overlays/gamestates/ovl_second_game/second_game.h"
 
-void func_808029D0_jp(Game_FirstGame* this);
+void exit_game(Game_FirstGame* this);
 void sys_romcheck(void);
 
-void func_808029D0_jp(Game_FirstGame* this) {
+void exit_game(Game_FirstGame* this) {
     sys_romcheck();
     mBGM_ct();
     common_data_init();
@@ -23,5 +23,5 @@ void first_game_init(Game* thisx) {
     Game_FirstGame* this = (Game_FirstGame*)thisx;
 
     thisx->destroy = first_game_cleanup;
-    func_808029D0_jp(this);
+    exit_game(this);
 }
