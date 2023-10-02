@@ -3,9 +3,11 @@
 
 #include "ultra64.h"
 #include "unk.h"
+#include "m_lights.h"
 
 struct Actor;
 struct Global_light;
+struct Lights;
 
 typedef void (*Kankyo_unk_C0)(struct Actor*);
 
@@ -15,7 +17,9 @@ typedef struct Kankyo {
     /* 0x03 */ s8 unk_03;
     /* 0x04 */ s8 unk_04;
     /* 0x05 */ UNK_TYPE1 unk_05[0x3];
-    /* 0x08 */ UNK_TYPE1 unk_08[0xA6];
+    /* 0x08 */ UNK_TYPE1 unk_08[0x14];
+    /* 0x1C */ Lights* unk_1C;
+    /* 0x2C */ UNK_TYPE1 unk_20[0x8E];
     /* 0xAE */ u8 unk_AE;
     /* 0xAF */ u8 unk_AF;
     /* 0xB0 */ u8 unk_B0;

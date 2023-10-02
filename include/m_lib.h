@@ -13,7 +13,7 @@ s32 mem_clear(void* ptr, size_t size, u8 value);
 f32 cos_s(s16 angle);
 f32 sin_s(s16 angle);
 // void chase_angle();
-// void chase_s();
+s32 chase_s(s16* arg0, s16 arg1, s16 arg2); 
 s32 chase_f(f32* arg0, f32 arg1, f32 arg2);
 // void chase_angle2();
 // void chase_s2();
