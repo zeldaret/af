@@ -60,7 +60,7 @@ void mMl_clear_mail_header(Mail* mail) {
 void mMl_clear_mail(Mail* mail) {
     bzero(mail, sizeof(Mail));
     mMl_clear_mail_header(mail);
-    mem_clear(&mail->unk_2A, sizeof(mMl_unk_2A), 0x20);
+    mem_clear((u8*)&mail->unk_2A, sizeof(mMl_unk_2A), 0x20);
     mail->unk_26 = 0xFF;
 }
 
@@ -147,18 +147,18 @@ s32 mMl_count_use_mail_space(Mail mail[], s32 arg1) {
 }
 
 void mMl_copy_mail(Mail* dst, Mail* src) {
-    mem_copy(dst, src, sizeof(Mail));
+    mem_copy((u8*)dst, (u8*)src, sizeof(Mail));
 }
 
 void mMl_clear_mail_header_common(MailHeaderCommon* arg0) {
     arg0->unk_00 = -1;
     arg0->unk_01 = 0;
-    mem_clear(arg0->unk_02, 0xA, 0x20);
-    mem_clear(arg0->unk_0C, 0x10, 0x20);
+    mem_clear((u8*)arg0->unk_02, 0xA, 0x20);
+    mem_clear((u8*)arg0->unk_0C, 0x10, 0x20);
 }
 
 void mMl_copy_mail_header_common(MailHeaderCommon* arg0, MailHeaderCommon* arg1) {
-    mem_copy(arg0, arg1, sizeof(MailHeaderCommon));
+    mem_copy((u8*)arg0, (u8*)arg1, sizeof(MailHeaderCommon));
 }
 
 void mMl_set_mail_name_npcinfo(mMl_unk_00* arg0, mMl_get_npcinfo_from_mail_name_arg0* arg1) {

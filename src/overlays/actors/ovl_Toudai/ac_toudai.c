@@ -83,7 +83,7 @@ f32 addZ_363[] = { -40.0f, 0.0f };
 
 void aTOU_set_bgOffset(Toudai* this, s32 heightTableIndex) {
     s32 i;
-    Vec3f pos;
+    xyz_t pos;
     mCoBG_OffsetTable* offsetTable = height_table_361[heightTableIndex];
 
     for (i = 0; i < 2; i++) {
@@ -214,7 +214,7 @@ Color_RGBA8 prmcol_520 = { 255, 255, 150, 120 };
 
 #ifdef NON_EQUIVALENT
 s32 aTOU_actor_draw_after(Game_Play* game_play, SkeletonInfoR* skeletonInfo, s32 jointIndex, Gfx** dlist,
-                          u8* displayBufferFlag, Toudai* arg5, Vec3s* rotation, Vec3f* translation) {
+                          u8* displayBufferFlag, Toudai* arg5, s_xyz* rotation, xyz_t* translation) {
     s32 type;    // sp24
     s32 object;  // sp20
     s32 palette; // sp1C
@@ -281,7 +281,7 @@ void aTOU_actor_draw(Actor* thisx, Game_Play* game_play) {
         gSegments[6] = OS_K0_TO_PHYSICAL(sp68);
         gSPSegment(gfx++, 0x06, sp68);
         POLY_OPA_DISP = gfx;
-        func_800BD598_jp(gfx);
+        _texture_z_light_fog_prim_xlu(gfx);
 
         gfx = POLY_XLU_DISP;
         gSPSegment(gfx++, 0x08, sp64);

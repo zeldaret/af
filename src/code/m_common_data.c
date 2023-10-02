@@ -1,6 +1,6 @@
 #include "global.h"
 #include "m_common_data.h"
-#include "m_field_info.h"
+#include "m_flashrom.h"
 #include "68AAF0.h"
 
 CommonData common_data;
