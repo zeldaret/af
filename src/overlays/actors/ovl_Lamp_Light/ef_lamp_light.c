@@ -9,10 +9,10 @@
 
 void Ef_Lamp_Light_actor_ct(Actor* thisx, Game_Play* game_play);
 void Ef_Lamp_Light_actor_dt(Actor* thisx, Game_Play* game_play);
-s32 func_80967644_jp(void);
-s32 func_80967678_jp(Lamp_Light* this UNUSED);
-s32 func_809676BC_jp(void);
-void func_809676E4_jp(Lamp_Light* this);
+s32 eLL_get_light_sw_other_room(void);
+s32 eLL_get_light_sw_player_room(Lamp_Light* this UNUSED);
+s32 eLL_get_light_sw_start_demo(void);
+void eLL_ctrl_light_sw(Lamp_Light* this);
 void Ef_Lamp_Light_actor_move(Actor* thisx, Game_Play* game_play);
 
 ActorProfile Lamp_Light_Profile = {
@@ -28,19 +28,19 @@ ActorProfile Lamp_Light_Profile = {
     /* */ (void*)none_proc1,
     /* */ NULL,
 };
-static s16 D_80967884_jp[4] = { 2, 2, 1, 0 };
-static s16 D_8096788C_jp[4] = { 0x10, 0x10, 8, 0 };
-static s16* D_80967894_jp[2] = { D_80967884_jp, D_8096788C_jp };
-static s16 D_8096789C_jp[4] = { 0, 0, 0, 0 };
-static s16 D_809678A4_jp[4] = { 0xC8, 0xC8, 0x96, 0 };
-static s16* D_809678AC_jp[2] = { D_8096789C_jp, D_809678A4_jp };
+static s16 add_data_off[4] = { 2, 2, 1, 0 };
+static s16 add_data_on[4] = { 0x10, 0x10, 8, 0 };
+static s16* add_data[2] = { add_data_off, add_data_on };
+static s16 cmp_data_off[4] = { 0, 0, 0, 0 };
+static s16 cmp_data_on[4] = { 0xC8, 0xC8, 0x96, 0 };
+static s16* cmp_data[2] = { cmp_data_off, cmp_data_on };
 
 void Ef_Lamp_Light_actor_ct(Actor* thisx, Game_Play* game_play) {
     s32 pad UNUSED;
     Lamp_Light* this = (Lamp_Light*)thisx;
 
     game_play->kankyo.unk_1C = &this->unk_178;
-    Light_diffuse_ct(&this->unk_178, 0, 0x50, 0, (u8)0, (u8)0, (u8)0);
+    Light_diffuse_ct(&this->unk_178, 0, 0x50, 0, 0, 0, 0);
     this->unk_188 = Global_light_list_new(game_play, &game_play->glight, &this->unk_178);
 }
 
@@ -51,7 +51,7 @@ void Ef_Lamp_Light_actor_dt(Actor* thisx, Game_Play* game_play) {
     Global_light_list_delete(&game_play->glight, this->unk_188);
 }
 
-s32 func_80967644_jp(void) {
+s32 eLL_get_light_sw_other_room(void) {
     s32 var_v1;
     s32 temp_v0;
 
@@ -63,7 +63,7 @@ s32 func_80967644_jp(void) {
     return var_v1;
 }
 
-s32 func_80967678_jp(Lamp_Light* this UNUSED) {
+s32 eLL_get_light_sw_player_room(Lamp_Light* this UNUSED) {
     s32 var_v1;
     s32 temp_v0;
 
@@ -72,17 +72,17 @@ s32 func_80967678_jp(Lamp_Light* this UNUSED) {
     return var_v1;
 }
 
-s32 func_809676BC_jp(void) {
+s32 eLL_get_light_sw_start_demo(void) {
     s32 var_v1;
 
     var_v1 = 1;
-    if ((u8)common_data.unk_104AE[0] == 1) {
+    if (common_data.unk_104AE == 1) {
         var_v1 = 0;
     }
     return var_v1;
 }
 
-void func_809676E4_jp(Lamp_Light* this) {
+void eLL_ctrl_light_sw(Lamp_Light* this) {
     s32 var_v1 = 0;
 
     switch (common_data.unk_10001) {
@@ -93,22 +93,22 @@ void func_809676E4_jp(Lamp_Light* this) {
                 case 0x6001:
                 case 0x6002:
                 case 0x6003:
-                    var_v1 = func_80967678_jp(this);
+                    var_v1 = eLL_get_light_sw_player_room(this);
                     break;
 
                 case 0x5000:
                 case 0x5001:
-                    var_v1 = func_809676BC_jp();
+                    var_v1 = eLL_get_light_sw_start_demo();
                     break;
 
                 default:
-                    var_v1 = func_80967644_jp();
+                    var_v1 = eLL_get_light_sw_other_room();
                     break;
             }
             break;
 
         case 1:
-            var_v1 = func_80967678_jp(this);
+            var_v1 = eLL_get_light_sw_player_room(this);
             break;
     }
 
@@ -120,17 +120,17 @@ void Ef_Lamp_Light_actor_move(Actor* thisx, Game_Play* game_play UNUSED) {
     s16* var_s1;
     s16* var_s2;
     s32 temp_v1;
-    s32 var_s3;
+    s32 i;
     s16 sp3A;
     u8* var_s0;
 
-    func_809676E4_jp(this);
+    eLL_ctrl_light_sw(this);
     var_s0 = this->unk_178.lights.diffuse.color;
     temp_v1 = this->unk_174;
-    var_s1 = D_80967894_jp[temp_v1];
-    var_s2 = D_809678AC_jp[temp_v1];
+    var_s1 = add_data[temp_v1];
+    var_s2 = cmp_data[temp_v1];
 
-    for (var_s3 = 0; var_s3 < 3; var_s3++, var_s1++, var_s2++, var_s0++) {
+    for (i = 0; i < 3; i++, var_s1++, var_s2++, var_s0++) {
         sp3A = *var_s0;
         chase_s(&sp3A, *var_s2, *var_s1);
         *var_s0 = sp3A;

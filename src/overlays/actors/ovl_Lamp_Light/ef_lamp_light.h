@@ -15,7 +15,6 @@ typedef struct Lamp_Light {
     /* 0x000 */ Actor actor;
     /* 0x174 */ s32 unk_174;
     /* 0x178 */ Lights unk_178;
-    /* 0x174 */ char unk_186[0x2];
     /* 0x188 */ LightNode* unk_188;
 } Lamp_Light; // size = 0x18C
 
