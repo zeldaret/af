@@ -5,6 +5,7 @@
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "m_common_data.h"
 #include "m_scene.h"
+#include "macros.h"
 
 void aTOL_actor_ct(Actor* thisx, Game_Play* game_play);
 void aTOL_actor_dt(Actor* thisx, Game_Play* game_play);
@@ -15,11 +16,11 @@ ActorProfile Tools_Profile = {
     /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20 | ACTOR_FLAG_20000000,
     /* */ 0x0000,
     /* */ GAMEPLAY_KEEP,
-    /* */ sizeof(Tools),
+    /* */ sizeof(Actor),
     /* */ aTOL_actor_ct,
     /* */ aTOL_actor_dt,
-    /* */ (ActorFunc)none_proc1,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ NULL,
 };
 
@@ -48,8 +49,8 @@ s32 aTOL_check_data_bank(ObjectExchangeBank* objectExchangeBank, ToolName toolNa
         ObjectStatus* objectStatus = &objectExchangeBank->status[common_data.toolClip->umbrellaObjectIndex];
         Actor* temp_a0;
 
-        if (((objectStatus->id >= 0) ? (objectStatus->id) : (-objectStatus->id)) != objectIndex) {
-            u32 objectSize = gObjectTable[objectIndex].vromEnd - gObjectTable[objectIndex].vromStart;
+        if (ABS(objectStatus->id) != objectIndex) {
+            size_t objectSize = gObjectTable[objectIndex].vromEnd - gObjectTable[objectIndex].vromStart;
 
             if (objectSize <= 0xC00) {
                 temp_a0 = toolActor->actor.child;

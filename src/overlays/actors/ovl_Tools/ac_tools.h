@@ -6,13 +6,6 @@
 #include "unk.h"
 
 struct Game_Play;
-struct Tools;
-
-typedef void (*ToolsActionFunc)(struct Tools*, struct Game_Play*);
-
-typedef struct Tools {
-    /* 0x000 */ Actor actor;
-} Tools; // size = 0x174
 
 typedef enum ToolName {
     /* 0x00 */ TOOL_UMBRELLA0,
