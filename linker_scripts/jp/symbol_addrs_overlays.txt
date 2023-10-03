@@ -177,10 +177,10 @@ jtbl_80802550_jp = 0x80802550; // type:jtbl
 
 // .text
 
-func_808029D0_jp = 0x808029D0; // type:func
+exit_game = 0x808029D0; // type:func
 first_game_cleanup = 0x80802A20; // type:func
 first_game_init = 0x80802A2C; // type:func
-func_80802A60_jp = 0x80802A60; // type:func
+sys_romcheck = 0x80802A60; // type:func
 Game_play_Reset_destiny = 0x80802AE0; // type:func
 event_title_flag_on = 0x80802B40; // type:func
 event_title_flag_off = 0x80802B64; // type:func
