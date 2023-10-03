@@ -19,7 +19,7 @@ ActorProfile Set_Manager_Profile = {
     /* */ aSetMgr_ct,
     /* */ aSetMgr_dt,
     /* */ aSetMgr_move,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ NULL,
 };
 #endif

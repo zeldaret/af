@@ -16,8 +16,8 @@ ActorProfile BgPostItem_Profile = {
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(BgPostItem),
     /* */ bPTI_actor_ct,
-    /* */ (ActorFunc)none_proc1,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ bPTI_actor_draw,
     /* */ NULL,
 };

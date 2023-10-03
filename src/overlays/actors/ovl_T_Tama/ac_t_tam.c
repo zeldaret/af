@@ -14,9 +14,9 @@ ActorProfile T_Tama_Profile = {
     /* */ 0x0000,
     /* */ OBJECT_391,
     /* */ sizeof(T_Tama),
-    /* */ (ActorFunc)none_proc1,
-    /* */ (ActorFunc)none_proc1,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
+    /* */ (void*)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTTM_actor_draw,
     /* */ NULL,
 };

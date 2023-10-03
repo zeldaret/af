@@ -14,9 +14,9 @@ ActorProfile T_Flag_Profile = {
     /* */ 0x0000,
     /* */ OBJECT_6,
     /* */ sizeof(T_Flag),
-    /* */ (ActorFunc)none_proc1,
-    /* */ (ActorFunc)none_proc1,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
+    /* */ (void*)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTFL_actor_draw,
     /* */ NULL,
 };

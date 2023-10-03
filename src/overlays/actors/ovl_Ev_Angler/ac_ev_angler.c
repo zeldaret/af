@@ -20,7 +20,7 @@ ActorProfile Ev_Angler_Profile = {
     /* */ aEANG_actor_ct,
     /* */ aEANG_actor_dt,
     /* */ aEANG_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aEANG_actor_save,
 };
 #endif

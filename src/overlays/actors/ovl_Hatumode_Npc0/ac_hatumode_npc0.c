@@ -20,7 +20,7 @@ ActorProfile Hatumode_Npc0_Profile = {
     /* */ func_8052ab54,
     /* */ func_8052ac90,
     /* */ func_8052ad14,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ func_8052ac70,
 };
 #endif

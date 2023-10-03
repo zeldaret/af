@@ -20,7 +20,7 @@ ActorProfile Ev_Yomise_Profile = {
     /* */ aEYMS_actor_ct,
     /* */ aEYMS_actor_dt,
     /* */ aEYMS_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aEYMS_actor_save,
 };
 #endif

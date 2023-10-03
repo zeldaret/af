@@ -20,7 +20,7 @@ ActorProfile Npc_Conv_Master_Profile = {
     /* */ aNCM_actor_ct,
     /* */ aNCM_actor_dt,
     /* */ aNCM_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aNCM_actor_save,
 };
 #endif

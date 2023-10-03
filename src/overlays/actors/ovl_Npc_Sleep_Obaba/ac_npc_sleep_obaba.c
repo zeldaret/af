@@ -20,7 +20,7 @@ ActorProfile Npc_Sleep_Obaba_Profile = {
     /* */ aNSO_actor_ct,
     /* */ aNSO_actor_dt,
     /* */ aNSO_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aNSO_actor_save,
 };
 #endif

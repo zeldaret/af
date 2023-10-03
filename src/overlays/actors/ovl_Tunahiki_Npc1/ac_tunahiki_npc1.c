@@ -20,7 +20,7 @@ ActorProfile Tunahiki_Npc1_Profile = {
     /* */ aTNN1_actor_ct,
     /* */ aTNN1_actor_dt,
     /* */ aTNN1_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTNN1_actor_save,
 };
 #endif

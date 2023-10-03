@@ -20,7 +20,7 @@ ActorProfile Turi_Npc0_Profile = {
     /* */ func_805900b0,
     /* */ func_805901d8,
     /* */ aTR0_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTR0_actor_save,
 };
 #endif

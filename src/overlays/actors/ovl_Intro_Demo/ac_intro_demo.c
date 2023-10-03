@@ -19,7 +19,7 @@ ActorProfile Intro_Demo_Profile = {
     /* */ aID_actor_ct,
     /* */ aID_actor_dt,
     /* */ aID_actor_move,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ NULL,
 };
 #endif

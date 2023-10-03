@@ -20,7 +20,7 @@ ActorProfile Ev_Santa_Profile = {
     /* */ aESNT_actor_ct,
     /* */ aESNT_actor_dt,
     /* */ aESNT_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aESNT_actor_save,
 };
 #endif

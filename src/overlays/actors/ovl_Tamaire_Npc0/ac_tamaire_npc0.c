@@ -20,7 +20,7 @@ ActorProfile Tamaire_Npc0_Profile = {
     /* */ aTMN0_actor_ct,
     /* */ aTMN0_actor_dt,
     /* */ aTMN0_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTMN0_actor_save,
 };
 #endif

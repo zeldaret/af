@@ -20,7 +20,7 @@ ActorProfile Halloween_Npc_Profile = {
     /* */ aHWN_actor_ct,
     /* */ aHWN_actor_dt,
     /* */ aHWN_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aHWN_actor_save,
 };
 #endif

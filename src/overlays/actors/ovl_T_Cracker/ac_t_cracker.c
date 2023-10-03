@@ -17,7 +17,7 @@ ActorProfile T_Cracker_Profile = {
     /* */ OBJECT_395,
     /* */ sizeof(T_Cracker),
     /* */ aTCR_actor_ct,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTCR_actor_move,
     /* */ aTCR_actor_draw,
     /* */ NULL,

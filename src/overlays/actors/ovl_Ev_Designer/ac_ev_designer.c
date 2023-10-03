@@ -20,7 +20,7 @@ ActorProfile Ev_Designer_Profile = {
     /* */ aEDSN_actor_ct,
     /* */ aEDSN_actor_dt,
     /* */ aEDSN_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aEDSN_actor_save,
 };
 #endif

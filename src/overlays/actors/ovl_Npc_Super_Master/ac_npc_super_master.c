@@ -20,7 +20,7 @@ ActorProfile Npc_Super_Master_Profile = {
     /* */ aNSPM_actor_ct,
     /* */ aNSPM_actor_dt,
     /* */ aNSPM_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aNSPM_actor_save,
 };
 #endif

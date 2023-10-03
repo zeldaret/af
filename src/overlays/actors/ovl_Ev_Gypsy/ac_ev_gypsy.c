@@ -20,7 +20,7 @@ ActorProfile Ev_Gypsy_Profile = {
     /* */ aEGPS_actor_ct,
     /* */ aEGPS_actor_dt,
     /* */ aEGPS_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aEGPS_actor_save,
 };
 #endif

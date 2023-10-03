@@ -20,7 +20,7 @@ ActorProfile Taisou_Npc0_Profile = {
     /* */ aTS0_actor_ct,
     /* */ aTS0_actor_dt,
     /* */ aTS0_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTS0_actor_save,
 };
 #endif

@@ -17,8 +17,8 @@ ActorProfile Tools_Profile = {
     /* */ sizeof(Tools),
     /* */ aTOL_actor_ct,
     /* */ aTOL_actor_dt,
-    /* */ (ActorFunc)none_proc1,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ NULL,
 };
 #endif

@@ -17,7 +17,7 @@ ActorProfile T_Utiwa_Profile = {
     /* */ OBJECT_53,
     /* */ sizeof(T_Utiwa),
     /* */ aTUT_actor_ct,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTUT_actor_move,
     /* */ aTUT_actor_draw,
     /* */ NULL,

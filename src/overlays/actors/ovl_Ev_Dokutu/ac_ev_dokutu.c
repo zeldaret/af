@@ -20,7 +20,7 @@ ActorProfile Ev_Dokutu_Profile = {
     /* */ aEVD_actor_ct,
     /* */ aEVD_actor_dt,
     /* */ aEVD_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aEVD_actor_save,
 };
 #endif

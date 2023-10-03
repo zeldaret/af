@@ -19,7 +19,7 @@ ActorProfile Set_Npc_Manager_Profile = {
     /* */ aSNMgr_actor_ct,
     /* */ aSNMgr_actor_dt,
     /* */ aSNMgr_actor_move,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ NULL,
 };
 #endif

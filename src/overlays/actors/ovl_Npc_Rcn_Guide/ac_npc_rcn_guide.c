@@ -20,7 +20,7 @@ ActorProfile Npc_Rcn_Guide_Profile = {
     /* */ aNRG_actor_ct,
     /* */ aNRG_actor_dt,
     /* */ aNRG_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aNRG_actor_save,
 };
 #endif

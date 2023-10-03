@@ -17,7 +17,7 @@ ActorProfile T_Umbrella_Profile = {
     /* */ OBJECT_28,
     /* */ sizeof(T_Umbrella),
     /* */ aTUMB_actor_ct,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTUMB_actor_move,
     /* */ aTUMB_actor_draw,
     /* */ NULL,

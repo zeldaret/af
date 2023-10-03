@@ -20,7 +20,7 @@ ActorProfile Hanami_Npc1_Profile = {
     /* */ aHM1_actor_ct,
     /* */ aHM1_actor_dt,
     /* */ aHM1_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aHM1_actor_save,
 };
 #endif

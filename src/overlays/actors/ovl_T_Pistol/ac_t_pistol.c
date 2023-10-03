@@ -17,7 +17,7 @@ ActorProfile T_Pistol_Profile = {
     /* */ OBJECT_16,
     /* */ sizeof(T_Pistol),
     /* */ aTPT_actor_ct,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTPT_actor_move,
     /* */ aTPT_actor_draw,
     /* */ NULL,

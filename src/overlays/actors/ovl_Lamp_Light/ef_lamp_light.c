@@ -19,7 +19,7 @@ ActorProfile Lamp_Light_Profile = {
     /* */ Ef_Lamp_Light_actor_ct,
     /* */ Ef_Lamp_Light_actor_dt,
     /* */ Ef_Lamp_Light_actor_move,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ NULL,
 };
 #endif
