@@ -10,7 +10,7 @@ struct Game_Play;
 // void func_80087C30_jp();
 // void func_80087C40_jp();
 // void func_80087C64_jp();
-// void mFI_GetFieldId();
+s32 mFI_GetFieldId(void);
 // void func_80087C9C_jp();
 // void func_80087D30_jp();
 // void func_80087DC8_jp();

@@ -1684,7 +1684,7 @@
     bss_size: 0x0
     subsegments:
       - [0x85C200, c, overlays/actors/ovl_Lamp_Light/ef_lamp_light]
-      - [0x85C4B0, data, overlays/actors/ovl_Lamp_Light/ef_lamp_light]
+      - [0x85C4B0, .data, overlays/actors/ovl_Lamp_Light/ef_lamp_light]
   - name: ovl_Lamp_Light_reloc
     type: code
     start: 0x85C510

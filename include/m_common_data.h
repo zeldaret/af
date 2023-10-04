@@ -234,7 +234,8 @@ typedef struct CommonData {
     /* 0x104AA */ u16 last_field_id;
     /* 0x104AC */ UNK_TYPE1 unk_104AC[0x1];
     /* 0x104AD */ u8 unk_104AD;
-    /* 0x104AE */ UNK_TYPE1 unk_104AE[0x2];
+    /* 0x104AE */ u8 unk_104AE;
+    /* 0x104AF */ UNK_TYPE1 unk_104AF[0x1];
     /* 0x104B0 */ UNK_TYPE1 unk_104B0[0xE8];
     /* 0x10598 */ mQst_not_saved_c quest;
     /* 0x105A0 */ u32 scene_from_title_demo;
