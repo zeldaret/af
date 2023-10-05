@@ -16,7 +16,7 @@ typedef enum FieldType {
   /* 5 */ FI_FIELDTYPE_DEMO,
   /* 6 */ FI_FIELDTYPE_PLAYER_ROOM,
   /* 7 */ FI_FIELDTYPE_NUM,
-}FieldType;
+} FieldType;
 
 
 #define FI_TO_FIELD_ID(type, index) (((type) << 12) | (index))
@@ -26,7 +26,7 @@ typedef enum FieldRoom{
   /* 0x6001 */ FI_FIELD_PLAYER1_ROOM,
   /* 0x6002 */ FI_FIELD_PLAYER2_ROOM,
   /* 0x6003 */ FI_FIELD_PLAYER3_ROOM,
-}FieldRoom;
+} FieldRoom;
 
 
 #define FI_GET_PLAYER_ROOM_NO(fieldId) (((fieldId)-FI_FIELD_PLAYER0_ROOM) & 3)
@@ -37,7 +37,7 @@ typedef enum FieldRoom{
 // void func_80087C30_jp();
 // void func_80087C40_jp();
 // void func_80087C64_jp();
-u16 mFI_GetFieldId(void);
+s32 mFI_GetFieldId(void);
 // void func_80087C9C_jp();
 // void func_80087D30_jp();
 // void func_80087DC8_jp();
