@@ -1105,9 +1105,9 @@
     compress: True
     bss_size: 0x310
     subsegments:
-      - [0x821B40, asm, overlays/other_ovl/ovl__00821B40/ovl__00821B40]
-      - [0x822B30, data, overlays/other_ovl/ovl__00821B40/ovl__00821B40]
-      - { start: 0x8240D0, type: bss, vram: 0x8092C5C0, name: overlays/other_ovl/ovl__00821B40/ovl__00821B40 }
+      - [0x821B40, c, overlays/managers/ovl__00821B40/ovl__00821B40]
+      - [0x822B30, data, overlays/managers/ovl__00821B40/ovl__00821B40]
+      - { start: 0x8240D0, type: bss, vram: 0x8092C5C0, name: overlays/managers/ovl__00821B40/ovl__00821B40 }
   - name: ovl__00821B40_reloc
     type: code
     start: 0x8240D0
@@ -1115,7 +1115,7 @@
     follows_vram: ovl__00821B40
     compress: True
     subsegments:
-      - [0x8240D0, data, overlays/other_ovl/ovl__00821B40/ovl__00821B40_reloc]
+      - [0x8240D0, data, overlays/managers/ovl__00821B40/ovl__00821B40_reloc]
 
   - name: ovl__00824500
     type: code
@@ -1144,9 +1144,9 @@
     compress: True
     bss_size: 0x380
     subsegments:
-      - [0x8253C0, asm, overlays/other_ovl/ovl__008253C0/ovl__008253C0]
-      - [0x8267B0, data, overlays/other_ovl/ovl__008253C0/ovl__008253C0]
-      - { start: 0x827BE0, type: bss, vram: 0x809303E0, name: overlays/other_ovl/ovl__008253C0/ovl__008253C0 }
+      - [0x8253C0, asm, overlays/managers/ovl__008253C0/ovl__008253C0]
+      - [0x8267B0, data, overlays/managers/ovl__008253C0/ovl__008253C0]
+      - { start: 0x827BE0, type: bss, vram: 0x809303E0, name: overlays/managers/ovl__008253C0/ovl__008253C0 }
   - name: ovl__008253C0_reloc
     type: code
     start: 0x827BE0
@@ -1154,7 +1154,7 @@
     follows_vram: ovl__008253C0
     compress: True
     subsegments:
-      - [0x827BE0, data, overlays/other_ovl/ovl__008253C0/ovl__008253C0_reloc]
+      - [0x827BE0, data, overlays/managers/ovl__008253C0/ovl__008253C0_reloc]
 
   - name: ovl__00827DE0
     type: code
@@ -1463,7 +1463,7 @@
     bss_size: 0x0
     subsegments:
       - [0x84CBC0, c, overlays/actors/ovl_Set_Manager/ac_set_manager]
-      - [0x84D0A0, data, overlays/actors/ovl_Set_Manager/ac_set_manager]
+      - [0x84D0A0, .data, overlays/actors/ovl_Set_Manager/ac_set_manager]
   - name: ovl_Set_Manager_reloc
     type: code
     start: 0x84D110

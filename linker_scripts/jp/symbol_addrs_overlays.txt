@@ -8064,17 +8064,17 @@ Quest_Manager_Profile = 0x80957AAC; //
 
 // .text
 
-func_80957DF0_jp = 0x80957DF0; // type:func
-func_80957E74_jp = 0x80957E74; // type:func
-func_80957F0C_jp = 0x80957F0C; // type:func
-func_80957F68_jp = 0x80957F68; // type:func
-func_80957F88_jp = 0x80957F88; // type:func
-func_80957FA8_jp = 0x80957FA8; // type:func
-func_80957FD4_jp = 0x80957FD4; // type:func
-func_8095804C_jp = 0x8095804C; // type:func
-func_8095806C_jp = 0x8095806C; // type:func
-func_809580D4_jp = 0x809580D4; // type:func
-func_80958130_jp = 0x80958130; // type:func
+aSetMgr_get_player_block = 0x80957DF0; // type:func
+aSetMgr_renewal_player_next_pos = 0x80957E74; // type:func
+aSetMgr_renewal_player_pos = 0x80957F0C; // type:func
+aSetMgr_check_player_wade_start = 0x80957F68; // type:func
+aSetMgr_check_player_wade_end = 0x80957F88; // type:func
+aSetMgr_clear_set_ovl = 0x80957FA8; // type:func
+aSetMgr_ovl = 0x80957FD4; // type:func
+aSetMgr_clear_keep = 0x8095804C; // type:func
+aSetMgr_move_check_set = 0x8095806C; // type:func
+aSetMgr_move_check_wait = 0x809580D4; // type:func
+aSetMgr_move_set = 0x80958130; // type:func
 aSetMgr_move = 0x809581F0; // type:func
 aSetMgr_ct = 0x8095824C; // type:func
 aSetMgr_dt = 0x809582B4; // type:func

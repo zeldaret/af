@@ -160,7 +160,7 @@ s32 func_8008B3E8_jp(xyz_t* arg0, UNK_TYPE arg1);
 // void func_8008BF34_jp();
 // void func_8008BFC4_jp();
 // void func_8008C058_jp();
-// void func_8008C0FC_jp();
+s32 mFI_CheckPlayerWade(s32);
 // void func_8008C120_jp();
 // void func_8008C130_jp();
 // void func_8008C1E0_jp();
