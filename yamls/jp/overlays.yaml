@@ -25,7 +25,8 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x741EA0, asm, overlays/gamestates/ovl_first_game/first_game]
+      - [0x741EA0, c, overlays/gamestates/ovl_first_game/first_game]
+      - [0x741F30, c, overlays/gamestates/ovl_first_game/sys_romcheck]
   - name: ovl_first_game_reloc
     type: code
     start: 0x741F80
@@ -1603,8 +1604,8 @@
     bss_size: 0x10
     subsegments:
       - [0x85A400, c, overlays/actors/ovl_Tools/ac_tools]
-      - [0x85A7A0, data, overlays/actors/ovl_Tools/ac_tools]
-      - { start: 0x85A880, type: bss, vram: 0x80965C20, name: overlays/actors/ovl_Tools/ac_tools }
+      - [0x85A7A0, .data, overlays/actors/ovl_Tools/ac_tools]
+      - { start: 0x85A880, type: .bss, vram: 0x80965C20, name: overlays/actors/ovl_Tools/ac_tools }
   - name: ovl_Tools_reloc
     type: code
     start: 0x85A880
@@ -1683,7 +1684,7 @@
     bss_size: 0x0
     subsegments:
       - [0x85C200, c, overlays/actors/ovl_Lamp_Light/ef_lamp_light]
-      - [0x85C4B0, data, overlays/actors/ovl_Lamp_Light/ef_lamp_light]
+      - [0x85C4B0, .data, overlays/actors/ovl_Lamp_Light/ef_lamp_light]
   - name: ovl_Lamp_Light_reloc
     type: code
     start: 0x85C510

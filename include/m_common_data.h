@@ -23,6 +23,7 @@ struct ObjectStatus;
 struct CommonData_unk_1004C_unk_14_arg0;
 struct Game_Play;
 struct struct_809AEFA4;
+struct ToolClip;
 
 typedef UNK_RET (*CommonData_unk_1004C_unk_04)(struct ActorOverlay*, const struct struct_801161E8_jp*, size_t, s32);
 typedef UNK_RET (*CommonData_unk_1004C_unk_08)(void);
@@ -211,7 +212,9 @@ typedef struct CommonData {
     /* 0x10078 */ CommonData_unk_10078 *unk_10078;
     /* 0x1007C */ UNK_TYPE1 unk_1007C[0x1C];
     /* 0x10098 */ CommonData_unk_10098 *unk_10098;
-    /* 0x1009C */ UNK_TYPE1 unk_1009C[0x48];
+    /* 0x1009C */ UNK_TYPE1 unk_1009C[0x4];
+    /* 0x100A0 */ struct ToolClip* toolClip;
+    /* 0x100A4 */ UNK_TYPE1 unk_100A4[0x40];
     /* 0x100E4 */ CommonData_100E4_Func* unk_100E4;
     /* 0x100E8 */ u8 unk100E8[0x24];
     /* 0x1010C */ Time_c time;
@@ -231,7 +234,8 @@ typedef struct CommonData {
     /* 0x104AA */ u16 last_field_id;
     /* 0x104AC */ UNK_TYPE1 unk_104AC[0x1];
     /* 0x104AD */ u8 unk_104AD;
-    /* 0x104AE */ UNK_TYPE1 unk_104AE[0x2];
+    /* 0x104AE */ u8 unk_104AE;
+    /* 0x104AF */ UNK_TYPE1 unk_104AF[0x1];
     /* 0x104B0 */ UNK_TYPE1 unk_104B0[0xE8];
     /* 0x10598 */ mQst_not_saved_c quest;
     /* 0x105A0 */ u32 scene_from_title_demo;

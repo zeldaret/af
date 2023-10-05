@@ -180,7 +180,7 @@ void mBGMPsComp_make_ps_wipe(s32 arg0, struct Game_Play* game_play);
 // void func_8005EE20_jp();
 // void func_8005EEA0_jp();
 void mBGM_main(struct Game* game);
-// void mBGM_ct();
+void mBGM_ct(void);
 void func_8005F020_jp(void);
 void mBGM_cleanup(void);
 // void func_8005F250_jp();
