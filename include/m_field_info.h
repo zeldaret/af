@@ -7,10 +7,37 @@
 
 struct Game_Play;
 
+typedef enum FieldType {
+  /* 0 */ FI_FIELDTYPE_FG,
+  /* 1 */ FI_FIELDTYPE_1,
+  /* 2 */ FI_FIELDTYPE_2,
+  /* 3 */ FI_FIELDTYPE_ROOM,
+  /* 4 */ FI_FIELDTYPE_NPC_ROOM,
+  /* 5 */ FI_FIELDTYPE_DEMO,
+  /* 6 */ FI_FIELDTYPE_PLAYER_ROOM,
+  /* 7 */ FI_FIELDTYPE_NUM,
+} FieldType;
+
+
+#define FI_TO_FIELD_ID(type, index) (((type) << 12) | (index))
+
+typedef enum FieldRoom {
+  /* 0x6000 */ FI_FIELD_PLAYER0_ROOM = FI_TO_FIELD_ID(FI_FIELDTYPE_PLAYER_ROOM, 0),
+  /* 0x6001 */ FI_FIELD_PLAYER1_ROOM,
+  /* 0x6002 */ FI_FIELD_PLAYER2_ROOM,
+  /* 0x6003 */ FI_FIELD_PLAYER3_ROOM,
+} FieldRoom;
+
+
+#define FI_GET_PLAYER_ROOM_NO(fieldId) (((fieldId)-FI_FIELD_PLAYER0_ROOM) & 3)
+#define FI_IS_PLAYER_ROOM(fieldId) \
+  ((fieldId) == FI_FIELD_PLAYER0_ROOM || (fieldId) == FI_FIELD_PLAYER1_ROOM || \
+   (fieldId) == FI_FIELD_PLAYER2_ROOM || (fieldId) == FI_FIELD_PLAYER3_ROOM)
+
 // void func_80087C30_jp();
 // void func_80087C40_jp();
 // void func_80087C64_jp();
-s32 mFI_GetFieldId(void);
+u16 mFI_GetFieldId(void);
 // void func_80087C9C_jp();
 // void func_80087D30_jp();
 // void func_80087DC8_jp();

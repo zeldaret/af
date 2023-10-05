@@ -60,7 +60,8 @@
 // extern UNK_TYPE D_80102C68_jp;
 // extern UNK_TYPE D_80103C68_jp;
 // extern UNK_TYPE D_80103CE0_jp;
-// extern UNK_TYPE D_80103D50_jp;
+//TODO: find where this belongs
+extern s32 CanLookGokiCount;
 // extern UNK_TYPE D_80103D55_jp;
 // extern UNK_TYPE D_80103D59_jp;
 // extern UNK_TYPE D_80103D60_jp;

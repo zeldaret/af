@@ -4,6 +4,7 @@
 #include "ultra64.h"
 #include "6DB420.h"
 #include "unk.h"
+#include "lb_rtc.h"
 
 #define HOME_MAILBOX_SIZE 10
 #define HANIWA_ITEM_HOLD_NUM 4
@@ -48,6 +49,13 @@ typedef struct Haniwa_c {
     /* 0x58 */ u32 bells; /* held bells from selling items */
 } Haniwa_c; // size = 0x5C
 
+// Original name is mHm_goki_c
+typedef struct mHm_goki_c {
+  /* 0x00 */ lbRTC_ymd_t time;
+  /* 0x04 */ u8 num;
+  /* 0x05 */ u8 pad;
+} mHm_goki_c; // size = 0x6
+
 typedef struct mHm_hs_c {
     /* 0x000 */ PersonalID unk_000;
     /* 0x010 */ UNK_TYPE1 unk_010[0x12];
@@ -56,7 +64,8 @@ typedef struct mHm_hs_c {
     /* 0x024 */ u8 unk_024;
     /* 0x025 */ UNK_TYPE1 unk025[0xABB];
     /* 0xAE0 */ Haniwa_c haniwa;
-    /* 0xB3C */ UNK_TYPE1 unkB3C[0xC];
+    /* 0xB3C */ mHm_goki_c goki;
+    /* 0xB42 */ UNK_TYPE1 unkB42[0x6];
 } mHm_hs_c; // size = 0xB48
 
 
