@@ -19,7 +19,7 @@ ActorProfile MailBox_Profile = {
     /* */ aMBX_actor_ct,
     /* */ aMBX_actor_dt,
     /* */ aMBX_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ NULL,
 };
 #endif

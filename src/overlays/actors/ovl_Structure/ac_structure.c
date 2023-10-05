@@ -19,7 +19,7 @@ ActorProfile Structure_Profile = {
     /* */ aSTR_actor_ct,
     /* */ aSTR_actor_dt,
     /* */ aSTR_actor_move,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ NULL,
 };
 #endif

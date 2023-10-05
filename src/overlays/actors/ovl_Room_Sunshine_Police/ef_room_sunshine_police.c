@@ -17,7 +17,7 @@ ActorProfile Room_Sunshine_Police_Profile = {
     /* */ OBJECT_44,
     /* */ sizeof(Room_Sunshine_Police),
     /* */ Ef_Room_Sunshine_Police_actor_ct,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ Ef_Room_Sunshine_PoliceR_actor_move,
     /* */ Ef_Room_Sunshine_PoliceR_actor_draw,
     /* */ NULL,

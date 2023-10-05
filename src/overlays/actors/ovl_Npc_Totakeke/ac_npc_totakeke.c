@@ -20,7 +20,7 @@ ActorProfile Npc_Totakeke_Profile = {
     /* */ aNTT_actor_ct,
     /* */ aNTT_actor_dt,
     /* */ aNTT_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aNTT_actor_save,
 };
 #endif

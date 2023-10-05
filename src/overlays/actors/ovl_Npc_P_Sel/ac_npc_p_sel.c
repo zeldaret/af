@@ -20,7 +20,7 @@ ActorProfile Npc_P_Sel_Profile = {
     /* */ aNPS_actor_ct,
     /* */ aNPS_actor_dt,
     /* */ aNPS_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aNPS_actor_save,
 };
 #endif

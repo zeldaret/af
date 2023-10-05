@@ -20,7 +20,7 @@ ActorProfile Npc_Station_Master_Profile = {
     /* */ aSTM_actor_ct,
     /* */ aSTM_actor_dt,
     /* */ aSTM_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aSTM_actor_save,
 };
 #endif

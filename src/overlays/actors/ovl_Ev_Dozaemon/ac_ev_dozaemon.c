@@ -20,7 +20,7 @@ ActorProfile Ev_Dozaemon_Profile = {
     /* */ aEDZ_actor_ct,
     /* */ aEDZ_actor_dt,
     /* */ aEDZ_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aEDZ_actor_save,
 };
 #endif

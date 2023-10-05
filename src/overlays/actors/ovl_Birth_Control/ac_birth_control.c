@@ -14,10 +14,10 @@ ActorProfile Birth_Control_Profile = {
     /* */ 0x0000,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Birth_Control),
-    /* */ (ActorFunc)none_proc1,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aBC_actor_move,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ NULL,
 };
 #endif

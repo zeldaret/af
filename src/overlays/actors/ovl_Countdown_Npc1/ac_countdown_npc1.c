@@ -20,7 +20,7 @@ ActorProfile Countdown_Npc1_Profile = {
     /* */ aCD1_actor_ct,
     /* */ aCD1_actor_dt,
     /* */ aCD1_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aCD1_actor_save,
 };
 #endif

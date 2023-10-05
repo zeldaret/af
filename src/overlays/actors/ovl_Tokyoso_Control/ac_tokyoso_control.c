@@ -19,7 +19,7 @@ ActorProfile Tokyoso_Control_Profile = {
     /* */ aTKC_actor_ct,
     /* */ aTKC_actor_dt,
     /* */ aTKC_actor_move,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ NULL,
 };
 #endif

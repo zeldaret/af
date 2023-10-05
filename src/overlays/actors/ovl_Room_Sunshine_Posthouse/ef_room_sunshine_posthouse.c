@@ -17,7 +17,7 @@ ActorProfile Room_Sunshine_Posthouse_Profile = {
     /* */ OBJECT_43,
     /* */ sizeof(Room_Sunshine_Posthouse),
     /* */ Ef_Room_Sunshine_Posthouse_actor_ct,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ Ef_Room_Sunshine_PosthouseR_actor_move,
     /* */ Ef_Room_Sunshine_PosthouseR_actor_draw,
     /* */ NULL,

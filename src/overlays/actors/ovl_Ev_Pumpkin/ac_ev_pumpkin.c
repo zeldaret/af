@@ -20,7 +20,7 @@ ActorProfile Ev_Pumpkin_Profile = {
     /* */ aEPK_actor_ct,
     /* */ aEPK_actor_dt,
     /* */ aEPK_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aEPK_actor_save,
 };
 #endif

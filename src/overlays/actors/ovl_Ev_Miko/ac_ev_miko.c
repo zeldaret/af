@@ -20,7 +20,7 @@ ActorProfile Ev_Miko_Profile = {
     /* */ aEMK_actor_ct,
     /* */ aEMK_actor_dt,
     /* */ aEMK_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aEMK_actor_save,
 };
 #endif

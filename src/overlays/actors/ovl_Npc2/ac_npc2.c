@@ -19,7 +19,7 @@ ActorProfile Npc2_Profile = {
     /* */ func_80545034,
     /* */ func_805453b8,
     /* */ func_80545604,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ NULL,
 };
 #endif

@@ -17,7 +17,7 @@ ActorProfile T_NpcSao_Profile = {
     /* */ OBJECT_370,
     /* */ sizeof(T_NpcSao),
     /* */ aTNS_actor_ct,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTNS_actor_move,
     /* */ aTNS_actor_draw,
     /* */ NULL,

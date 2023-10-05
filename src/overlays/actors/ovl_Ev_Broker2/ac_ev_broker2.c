@@ -20,7 +20,7 @@ ActorProfile Ev_Broker2_Profile = {
     /* */ aEBR2_actor_ct,
     /* */ aEBR2_actor_dt,
     /* */ aEBR2_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aEBR2_actor_save,
 };
 #endif

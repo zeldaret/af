@@ -20,7 +20,7 @@ ActorProfile Npc_Majin5_Profile = {
     /* */ aNMJ5_actor_ct,
     /* */ aNMJ5_actor_dt,
     /* */ aNMJ5_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aNMJ5_actor_save,
 };
 #endif

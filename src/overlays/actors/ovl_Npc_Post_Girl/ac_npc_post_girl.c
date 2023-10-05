@@ -20,7 +20,7 @@ ActorProfile Npc_Post_Girl_Profile = {
     /* */ aPG_actor_ct,
     /* */ aPG_actor_dt,
     /* */ aPG_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aPG_actor_save,
 };
 #endif

@@ -20,7 +20,7 @@ ActorProfile Quest_Manager_Profile = {
     /* */ aQMgr_actor_ct,
     /* */ aQMgr_actor_dt,
     /* */ aQMgr_actor_move_main,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aQMgr_actor_save,
 };
 #endif

@@ -19,7 +19,7 @@ ActorProfile Ride_Off_Demo_Profile = {
     /* */ aROD_actor_ct,
     /* */ aROD_actor_dt,
     /* */ aROD_actor_move,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ NULL,
 };
 #endif

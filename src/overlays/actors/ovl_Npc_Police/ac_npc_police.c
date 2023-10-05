@@ -20,7 +20,7 @@ ActorProfile Npc_Police_Profile = {
     /* */ aPOL_actor_ct,
     /* */ aPOL_actor_dt,
     /* */ aPOL_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aPOL_actor_save,
 };
 #endif

@@ -20,7 +20,7 @@ ActorProfile Npc_Guide2_Profile = {
     /* */ aNG2_actor_ct,
     /* */ aNG2_actor_dt,
     /* */ aNG2_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aNG2_actor_save,
 };
 #endif

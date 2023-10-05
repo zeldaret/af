@@ -20,7 +20,7 @@ ActorProfile Npc_Restart_Profile = {
     /* */ aNRST_actor_ct,
     /* */ aNRST_actor_dt,
     /* */ aNRST_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aNRST_actor_save,
 };
 #endif

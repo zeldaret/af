@@ -20,7 +20,7 @@ ActorProfile Npc_Rtc_Profile = {
     /* */ aNRTC_actor_ct,
     /* */ aNRTC_actor_dt,
     /* */ aNRTC_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aNRTC_actor_save,
 };
 #endif

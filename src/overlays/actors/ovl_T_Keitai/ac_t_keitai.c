@@ -17,7 +17,7 @@ ActorProfile T_Keitai_Profile = {
     /* */ OBJECT_45,
     /* */ sizeof(T_Keitai),
     /* */ aTKT_actor_ct,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTKT_actor_move,
     /* */ aTKT_actor_draw,
     /* */ NULL,

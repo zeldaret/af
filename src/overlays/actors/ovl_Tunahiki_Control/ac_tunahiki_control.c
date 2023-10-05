@@ -19,7 +19,7 @@ ActorProfile Tunahiki_Control_Profile = {
     /* */ aTNC_actor_ct,
     /* */ aTNC_actor_dt,
     /* */ aTNC_actor_move,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ NULL,
 };
 #endif

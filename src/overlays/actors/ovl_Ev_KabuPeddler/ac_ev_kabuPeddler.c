@@ -20,7 +20,7 @@ ActorProfile Ev_KabuPeddler_Profile = {
     /* */ aEKPD_actor_ct,
     /* */ aEKPD_actor_dt,
     /* */ aEKPD_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aEKPD_actor_save,
 };
 #endif

@@ -20,7 +20,7 @@ ActorProfile Npc_Majin2_Profile = {
     /* */ aMJN2_actor_ct,
     /* */ aMJN2_actor_dt,
     /* */ aMJN2_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aMJN2_actor_save,
 };
 #endif

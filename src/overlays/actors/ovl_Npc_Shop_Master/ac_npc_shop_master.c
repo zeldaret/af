@@ -20,7 +20,7 @@ ActorProfile Npc_Shop_Master_Profile = {
     /* */ aNSM_actor_ct,
     /* */ aNSM_actor_dt,
     /* */ aNSM_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aNSM_actor_save,
 };
 #endif

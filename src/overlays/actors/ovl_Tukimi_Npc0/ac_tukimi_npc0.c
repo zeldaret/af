@@ -20,7 +20,7 @@ ActorProfile Tukimi_Npc0_Profile = {
     /* */ aTM0_actor_ct,
     /* */ aTM0_actor_dt,
     /* */ aTM0_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTM0_actor_save,
 };
 #endif

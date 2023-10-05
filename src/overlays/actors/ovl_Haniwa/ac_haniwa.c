@@ -19,7 +19,7 @@ ActorProfile Haniwa_Profile = {
     /* */ aHNW_actor_ct,
     /* */ aHNW_actor_dt,
     /* */ aHNW_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ NULL,
 };
 #endif

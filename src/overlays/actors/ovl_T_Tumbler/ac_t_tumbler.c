@@ -17,7 +17,7 @@ ActorProfile T_Tumbler_Profile = {
     /* */ OBJECT_371,
     /* */ sizeof(T_Tumbler),
     /* */ aTTB_actor_ct,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTTB_actor_move,
     /* */ aTTB_actor_draw,
     /* */ NULL,

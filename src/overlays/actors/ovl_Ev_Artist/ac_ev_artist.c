@@ -20,7 +20,7 @@ ActorProfile Ev_Artist_Profile = {
     /* */ aEART_actor_ct,
     /* */ aEART_actor_dt,
     /* */ aEART_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aEART_actor_save,
 };
 #endif

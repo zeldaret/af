@@ -19,7 +19,7 @@ ActorProfile Hatumode_Control_Profile = {
     /* */ aHTC_actor_ct,
     /* */ aHTC_actor_dt,
     /* */ aHTC_actor_move,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ NULL,
 };
 #endif

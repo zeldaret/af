@@ -20,7 +20,7 @@ ActorProfile Npc_Depart_Master_Profile = {
     /* */ aNDM_actor_ct,
     /* */ aNDM_actor_dt,
     /* */ aNDM_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aNDM_actor_save,
 };
 #endif

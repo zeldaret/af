@@ -20,7 +20,7 @@ ActorProfile Tokyoso_Npc1_Profile = {
     /* */ aTKN1_actor_ct,
     /* */ aTKN1_actor_dt,
     /* */ aTKN1_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTKN1_actor_save,
 };
 #endif

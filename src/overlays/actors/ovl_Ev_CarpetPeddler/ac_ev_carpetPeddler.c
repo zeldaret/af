@@ -20,7 +20,7 @@ ActorProfile Ev_CarpetPeddler_Profile = {
     /* */ aECPD_actor_ct,
     /* */ aECPD_actor_dt,
     /* */ aECPD_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aECPD_actor_save,
 };
 #endif
