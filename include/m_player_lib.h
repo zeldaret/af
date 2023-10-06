@@ -178,7 +178,4 @@ void func_800B594C_jp(void);
 // void func_800B5FD0_jp();
 // void func_800B6074_jp();
 
-#define GET_CURRENT_PLAYER_ACTOR() get_player_actor_withoutCheck((struct Game_Play*)gamePT)
-
-
 #endif

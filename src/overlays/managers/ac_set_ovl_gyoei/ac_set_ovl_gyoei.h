@@ -1,5 +1,5 @@
-#ifndef OVL__008253C0_H
-#define OVL__008253C0_H
+#ifndef AC_SET_OVL_GYOEI_H
+#define AC_SET_OVL_GYOEI_H
 
 #include "ultra64.h"
 

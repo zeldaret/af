@@ -10,8 +10,8 @@
 #include "overlays/actors/player_actor/m_player.h"
 
 // Fish and Insect overlay managers
-#include "overlays/managers/ovl__00821B40/ovl__00821B40.h"
-#include "overlays/managers/ovl__008253C0/ovl__008253C0.h"
+#include "overlays/managers/ac_set_ovl_insect/ac_set_ovl_insect.h"
+#include "overlays/managers/ac_set_ovl_gyoei/ac_set_ovl_gyoei.h"
 
 void aSetMgr_ct(Actor* thisx, Game_Play* game_play);
 void aSetMgr_dt(Actor* thisx, Game_Play* game_play);
@@ -21,8 +21,8 @@ s32 aSetMgr_check_player_wade_end(void);
 s32 aSetMgr_check_player_wade_start(void);
 
 SetMgrOvlInfo proc_table[SETMGR_OVERLAY_MAX] = {
-    SETMGR_OVERLAY(ovl__00821B40, func_8092A030_jp, func_8092AF0C_jp), // Fish
-    SETMGR_OVERLAY(ovl__008253C0, func_8092DBC0_jp, func_8092ECAC_jp), // Insect
+    SETMGR_OVERLAY(ac_set_ovl_insect, func_8092A030_jp, func_8092AF0C_jp),
+    SETMGR_OVERLAY(ac_set_ovl_gyoei, func_8092DBC0_jp, func_8092ECAC_jp),
 };
 
 s32 aSetMgr_get_player_block(s32* bx, s32* bz, Game_Play* play) {
@@ -30,9 +30,9 @@ s32 aSetMgr_get_player_block(s32* bx, s32* bz, Game_Play* play) {
     Player* player = get_player_actor_withoutCheck(play);
 
     if (player != NULL) {
-        xyz_t temp;
-        temp = player->actor.world.pos;
-        res = mFI_Wpos2BlockNum(bx, bz, temp);
+        xyz_t pos = player->actor.world.pos;
+
+        res = mFI_Wpos2BlockNum(bx, bz, pos);
     }
 
     return res;
@@ -42,7 +42,7 @@ s32 aSetMgr_renewal_player_next_pos(s32* next_bx, s32* next_bz) {
     xyz_t endpos = { 0.0f, 0.0f, 0.0f };
     s32 endPosRes;
 
-    endPosRes = GET_CURRENT_PLAYER_ACTOR()->getEndPos(gamePT, &endpos);
+    endPosRes = get_player_actor_withoutCheck((Game_Play*)gamePT)->getEndPos(gamePT, &endpos);
 
     return mFI_Wpos2BlockNum(next_bx, next_bz, endpos) | endPosRes;
 }
@@ -157,7 +157,7 @@ void aSetMgr_move(Actor* thisx, Game_Play* play) {
     Set_Manager* setManager = (Set_Manager*)thisx;
     u8 proc = setManager->moveProc;
 
-    if ((move[proc])(play, setManager) == TRUE) {
+    if (move[proc](play, setManager) == TRUE) {
         setManager->moveProc = setManager->nextMove;
     }
 }

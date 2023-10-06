@@ -17,14 +17,14 @@ typedef s32 (*SetManagerMoveProc)(struct Game_Play*, struct Set_Manager*);
 
 #define SETMGR_TIMER 5
 
-typedef struct SetMgrPlayerPos{
+typedef struct SetMgrPlayerPos {
     /* 0x00 */ s32 nextBx;
     /* 0x04 */ s32 nextBz;
     /* 0x08 */ s32 curBx;
     /* 0x0C */ s32 curBz;
     /* 0x10 */ s32 prevBx;
     /* 0x14 */ s32 prevBz;
-}SetMgrPlayerPos;
+} SetMgrPlayerPos;
 
 typedef struct SetMgrKeep {
     /* 0x148 */ u8 unk_0[0x148];
@@ -38,13 +38,13 @@ typedef struct SetMgrOvl {
 #define SETMGR_OVERLAY(name, proc1, proc2) \
     { SEGMENT_ROM_START(name), SEGMENT_ROM_END(name), proc1, SEGMENT_VRAM_END(name), proc2, }
 
-typedef struct SetMgrOvlInfo{
-    /* 0x00 */ u32 vromStart;
-    /* 0x04 */ u32 vromEnd;
+typedef struct SetMgrOvlInfo {
+    /* 0x00 */ RomOffset vromStart;
+    /* 0x04 */ RomOffset vromEnd;
     /* 0x08 */ void* vramStart;
     /* 0x0C */ void* vramEnd;
     /* 0x10 */ void* ovlTypeEnd;
-}SetMgrOvlInfo; // size = 0x14
+} SetMgrOvlInfo; // size = 0x14
 
 typedef struct Set_Manager {
   /* 0x0000 */ Actor actor;
@@ -57,14 +57,14 @@ typedef struct Set_Manager {
   /* 0x4198 */ SetMgrKeep keep;
   /* 0x42E0 */ s16 timer;
   /* 0x42E4 */ s32 unk_42E4;
-}Set_Manager; // size = 0x42E8
+} Set_Manager; // size = 0x42E8
 
 typedef enum SetMgrOverlayType {
     /* 0 */ SETMGR_OVERLAY_START,
     /* 0 */ SETMGR_OVERLAY_INSECT = SETMGR_OVERLAY_START,
     /* 1 */ SETMGR_OVERLAY_GYOEI,
     /* 2 */ SETMGR_OVERLAY_MAX,
-}SetMgrOverlayType; 
+} SetMgrOverlayType; 
 
 typedef enum SetMgrMoveProcType {
     /* 0 */ SETMGR_MOVE_CHECK_SET,

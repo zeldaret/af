@@ -1,5 +1,5 @@
-#ifndef OVL__00821B40_H
-#define OVL__00821B40_H
+#ifndef AC_SET_OVL_INSECT_H
+#define AC_SET_OVL_INSECT_H
 
 #include "ultra64.h"
 
