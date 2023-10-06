@@ -255,7 +255,7 @@
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008C058_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008C0FC_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_CheckPlayerWade.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008C120_jp.s")
 

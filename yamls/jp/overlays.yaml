@@ -1097,7 +1097,7 @@
     subsegments:
       - [0x821740, data, overlays/other_ovl/ovl__0081D9D0/ovl__0081D9D0_reloc]
 
-  - name: ovl__00821B40
+  - name: ac_set_ovl_insect
     type: code
     start: 0x821B40
     vram: 0x8092A030
@@ -1105,23 +1105,23 @@
     compress: True
     bss_size: 0x310
     subsegments:
-      - [0x821B40, asm, overlays/other_ovl/ovl__00821B40/ovl__00821B40]
-      - [0x822B30, data, overlays/other_ovl/ovl__00821B40/ovl__00821B40]
-      - { start: 0x8240D0, type: bss, vram: 0x8092C5C0, name: overlays/other_ovl/ovl__00821B40/ovl__00821B40 }
-  - name: ovl__00821B40_reloc
+      - [0x821B40, c, overlays/managers/ac_set_ovl_insect/ac_set_ovl_insect]
+      - [0x822B30, data, overlays/managers/ac_set_ovl_insect/ac_set_ovl_insect]
+      - { start: 0x8240D0, type: bss, vram: 0x8092C5C0, name: overlays/managers/ac_set_ovl_insect/ac_set_ovl_insect }
+  - name: ac_set_ovl_insect_reloc
     type: code
     start: 0x8240D0
     vram: 0x8092C8D0
-    follows_vram: ovl__00821B40
+    follows_vram: ac_set_ovl_insect
     compress: True
     subsegments:
-      - [0x8240D0, data, overlays/other_ovl/ovl__00821B40/ovl__00821B40_reloc]
+      - [0x8240D0, data, overlays/managers/ac_set_ovl_insect/ac_set_ovl_insect_reloc]
 
   - name: ovl__00824500
     type: code
     start: 0x824500
     vram: 0x8092CD00
-    follows_vram: ovl__00821B40_reloc
+    follows_vram: ac_set_ovl_insect_reloc
     compress: True
     bss_size: 0x0
     subsegments:
@@ -1136,7 +1136,7 @@
     subsegments:
       - [0x8252E0, data, overlays/other_ovl/ovl__00824500/ovl__00824500_reloc]
 
-  - name: ovl__008253C0
+  - name: ac_set_ovl_gyoei
     type: code
     start: 0x8253C0
     vram: 0x8092DBC0
@@ -1144,23 +1144,23 @@
     compress: True
     bss_size: 0x380
     subsegments:
-      - [0x8253C0, asm, overlays/other_ovl/ovl__008253C0/ovl__008253C0]
-      - [0x8267B0, data, overlays/other_ovl/ovl__008253C0/ovl__008253C0]
-      - { start: 0x827BE0, type: bss, vram: 0x809303E0, name: overlays/other_ovl/ovl__008253C0/ovl__008253C0 }
-  - name: ovl__008253C0_reloc
+      - [0x8253C0, c, overlays/managers/ac_set_ovl_gyoei/ac_set_ovl_gyoei]
+      - [0x8267B0, data, overlays/managers/ac_set_ovl_gyoei/ac_set_ovl_gyoei]
+      - { start: 0x827BE0, type: bss, vram: 0x809303E0, name: overlays/managers/ac_set_ovl_gyoei/ac_set_ovl_gyoei }
+  - name: ac_set_ovl_gyoei_reloc
     type: code
     start: 0x827BE0
     vram: 0x80930760
-    follows_vram: ovl__008253C0
+    follows_vram: ac_set_ovl_gyoei
     compress: True
     subsegments:
-      - [0x827BE0, data, overlays/other_ovl/ovl__008253C0/ovl__008253C0_reloc]
+      - [0x827BE0, data, overlays/managers/ac_set_ovl_gyoei/ac_set_ovl_gyoei_reloc]
 
   - name: ovl__00827DE0
     type: code
     start: 0x827DE0
     vram: 0x80930960
-    follows_vram: ovl__008253C0_reloc
+    follows_vram: ac_set_ovl_gyoei_reloc
     compress: True
     bss_size: 0x0
     subsegments:
@@ -1463,7 +1463,7 @@
     bss_size: 0x0
     subsegments:
       - [0x84CBC0, c, overlays/actors/ovl_Set_Manager/ac_set_manager]
-      - [0x84D0A0, data, overlays/actors/ovl_Set_Manager/ac_set_manager]
+      - [0x84D0A0, .data, overlays/actors/ovl_Set_Manager/ac_set_manager]
   - name: ovl_Set_Manager_reloc
     type: code
     start: 0x84D110

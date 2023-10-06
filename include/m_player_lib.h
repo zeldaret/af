@@ -6,6 +6,7 @@
 struct Player;
 struct Game_Play;
 
+
 // void func_800B1160_jp();
 // void func_800B11B0_jp();
 // void func_800B11F8_jp();
