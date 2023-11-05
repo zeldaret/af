@@ -68,7 +68,27 @@ To start the extraction/build process, run the following command:
 ```bash
 make setup
 make extract
+make lib
 make
+```
+
+### Docker
+
+#### 1. Install Docker
+
+#### 2. Prepare a base ROM
+
+Copy your ROM to inside the root of this new project directory, and rename the file of the baserom to reflect the version of ROM you are using. ex: `baserom.jp.z64`
+
+#### 3. Make and Build the ROM
+
+To start the extraction/build process, run the following commands:
+
+```bash
+docker run -it --rm -v ${PWD}:/af af make setup
+docker run -it --rm -v ${PWD}:/af af make extract
+docker run -it --rm -v ${PWD}:/af af make lib
+docker run -it --rm -v ${PWD}:/af af make
 ```
 
 ## Note about licensing
