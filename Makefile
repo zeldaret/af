@@ -82,7 +82,7 @@ $(error Native Windows is currently unsupported for building this repository, us
 else ifeq ($(UNAME_S),Linux)
     DETECTED_OS := linux
 else ifeq ($(UNAME_S),Darwin)
-    DETECTED_OS := mac
+    DETECTED_OS := macos
     MAKE := gmake
     CPPFLAGS += -xc++
 endif
