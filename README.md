@@ -68,6 +68,7 @@ To start the extraction/build process, run the following command:
 ```bash
 make setup
 make extract
+make lib
 make
 ```
 
