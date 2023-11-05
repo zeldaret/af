@@ -5,6 +5,9 @@
 
 MAKEFLAGS += --no-builtin-rules
 
+SHELL = /bin/bash
+.SHELLFLAGS = -o pipefail -c
+
 #### Defaults ####
 
 # If COMPARE is 1, check the output md5sum after building
