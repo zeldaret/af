@@ -5,6 +5,9 @@
 
 MAKEFLAGS += --no-builtin-rules
 
+SHELL = /bin/bash
+.SHELLFLAGS = -o pipefail -c
+
 #### Defaults ####
 
 # If COMPARE is 1, check the output md5sum after building
@@ -79,7 +82,7 @@ $(error Native Windows is currently unsupported for building this repository, us
 else ifeq ($(UNAME_S),Linux)
     DETECTED_OS := linux
 else ifeq ($(UNAME_S),Darwin)
-    DETECTED_OS := mac
+    DETECTED_OS := macos
     MAKE := gmake
     CPPFLAGS += -xc++
 endif
@@ -315,7 +318,7 @@ $(BUILD_DIR)/%.o: %.bin
 	$(OBJCOPY) -I binary -O elf32-big $< $@
 
 $(BUILD_DIR)/%.o: %.s
-	$(CPP) $(CPPFLAGS) $(BUILD_DEFINES) $(IINC) -I $(dir $*) $(COMMON_DEFINES) $(RELEASE_DEFINES) $(GBI_DEFINES) $(AS_DEFINES) $< | $(ICONV) $(ICONV_FLAGS) | $(AS) $(ASFLAGS) $(ENDIAN) $(IINC) -I $(dir $*) -o $@
+	$(ICONV) $(ICONV_FLAGS) $< | $(AS) $(ASFLAGS) $(ENDIAN) $(IINC) -I $(dir $*) -o $@
 	$(OBJDUMP_CMD)
 
 $(BUILD_DIR)/%.o: %.c
