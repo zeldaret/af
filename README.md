@@ -59,7 +59,7 @@ python3 -m pip install -U -r requirements.txt
 
 #### 3. Prepare a base ROM
 
-Copy your ROM to inside the root of this new project directory, and rename the file of the baserom to reflect the version of ROM you are using. ex: `baserom.jp.z64`
+Copy your ROM to inside the root of this new project directory, and rename the file of the baserom to reflect the version of ROM you are using. e.g.: `baserom.jp.z64`
 
 #### 4. Make and Build the ROM
 
@@ -74,11 +74,13 @@ make
 
 ### Docker
 
-#### 1. Install Docker
+#### 1. Build the Docker image
+
+Run `docker build -t af .` inside the root of your project directory.
 
 #### 2. Prepare a base ROM
 
-Copy your ROM to inside the root of this new project directory, and rename the file of the baserom to reflect the version of ROM you are using. ex: `baserom.jp.z64`
+Copy your ROM to inside the root of the project directory, and rename the file of the baserom to reflect the version of ROM you are using. e.g.: `baserom.jp.z64`
 
 #### 3. Make and Build the ROM
 
