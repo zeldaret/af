@@ -57,7 +57,8 @@ typedef enum ToolName {
 typedef struct ToolActor {
     /* 0x000 */ Actor actor;
     /* 0x174 */ ToolName toolName;
-    /* 0x178 */ UNK_TYPE1 unk178[0x44];
+    /* 0x178 */ MtxF unk178;
+    /* 0x1B8 */ UNK_TYPE unk1B8;
     /* 0x1BC */ UNK_TYPE unk1BC;
 } ToolActor; // size >= 0x1C0
 
