@@ -207,56 +207,58 @@ s32 aTOU_actor_draw_before(Game_Play* game_play UNUSED, SkeletonInfoR* skeletonI
     return 1;
 }
 
+#define OPEN_LIGHT_DISPS(gfxCtx)   \
+    OPEN_DISPS(gfxCtx);            \
+    {                              \
+        Gfx* __light = LIGHT_DISP; \
+        s32 __lightPad UNUSED;     \
+        do {                       \
+        } while (0)
+
+#define CLOSE_LIGHT_DISPS(gfxCtx) \
+    LIGHT_DISP = __light;         \
+    (void)0;                      \
+    }                             \
+    CLOSE_DISPS(gfxCtx)
+
 extern Gfx obj_s_toudai_light_model[];
 extern Gfx obj_w_toudai_light_model[];
-Gfx* mdl_519[] = { obj_s_toudai_light_model, obj_w_toudai_light_model };
-Color_RGBA8 prmcol_520 = { 255, 255, 150, 120 };
 
-#ifdef NON_EQUIVALENT
-s32 aTOU_actor_draw_after(Game_Play* game_play, SkeletonInfoR* skeletonInfo, s32 jointIndex, Gfx** dlist,
-                          u8* displayBufferFlag, Toudai* arg5, s_xyz* rotation, xyz_t* translation) {
-    s32 type;    // sp24
-    s32 object;  // sp20
-    s32 palette; // sp1C
-    GraphicsContext* temp_a3;
-    u8 var_a0;
-    Mtx* mtx; // sp18
-    u32 temp_v1;
-    u32 temp;
-    Gfx* gfx;
+s32 aTOU_actor_draw_after(Game_Play* game_play, SkeletonInfoR* skeletonInfo UNUSED, s32 jointIndex, Gfx** dlist UNUSED,
+                          u8* displayBufferFlag UNUSED, Actor* thisx, s_xyz* rotation UNUSED, xyz_t* translation UNUSED) {
+    static Gfx* mdl[] = { obj_s_toudai_light_model, obj_w_toudai_light_model };
+    static Color_RGBA8 prmcol = { 255, 255, 150, 120 };
+    GraphicsContext* gfxCtx = game_play->state.gfxCtx;
+    Toudai* this = THIS;
+    s32 type;
+    s32 object;
+    s32 palette;
+    Mtx* mtx;
 
-    // LIGHTHOUSE_JOINT_LIGHT
-    if ((jointIndex == 4) && (arg5->unk2CC)) {
-        OPEN_DISPS(temp_a3);
-        mtx = _Matrix_to_Mtx_new(temp_a3);
+    if ((jointIndex == 4) && ((s32)this->unk2CC != 0)) {
+        mtx = _Matrix_to_Mtx_new(gfxCtx);
         if (mtx != NULL) {
-            type = (common_data.time.season == 3);
-            object = common_data.unk_10098->unk_AC(45);
-            palette = common_data.unk_10098->unk_450(90);
-            func_800BD5C0_jp(game_play->state.gfxCtx);
-            gfx = LIGHT_DISP;
-            gSPSegment(gfx++, 0x08, palette);
-            gSPSegment(gfx++, 0x06, object);
-
-            temp = arg5->unk2C8;
-            var_a0 = arg5->unk2CC;
-            temp_v1 = arg5->unk2D0;
-            if (arg5->unk2D0 < arg5->unk2CC) {
-                arg5->unk2CC = temp_v1;
+            type = common_data.time.season == 3;
+            object = common_data.unk_10098->unk_AC(0x2D);
+            palette = common_data.unk_10098->unk_450(0x5A);
+            func_800BD5C0_jp(gfxCtx);
+            OPEN_LIGHT_DISPS(gfxCtx);
+            gSPSegment(__light++, 0x08, palette);
+            gSPSegment(__light++, 0x06, object);
+            prmcol.b = this->unk2C8;
+            prmcol.a = this->unk2CC;
+            if ((u8)this->unk2D0 < prmcol.a) {
+                prmcol.a = this->unk2D0;
             }
-            gDPPipeSync(gfx++);
-            gDPSetPrimColor(gfx++, 0, arg5->unk2D0, prmcol_520.r, prmcol_520.g, temp, var_a0);
-            gSPMatrix(gfx++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-            gSPDisplayList(gfx++, mdl_519[type]);
-            if (!temp_a3) {}
+            gDPPipeSync(__light++);
+            gDPSetPrimColor(__light++, 0, (u8)this->unk2D0, prmcol.r, prmcol.g, prmcol.b, prmcol.a);
+            gSPMatrix(__light++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+            gSPDisplayList(__light++, mdl[type]);
+            CLOSE_LIGHT_DISPS(gfxCtx);
         }
-        CLOSE_DISPS(temp_a3);
     }
     return 1;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Toudai/ac_toudai/aTOU_actor_draw_after.s")
-#endif
 
 #ifdef NON_EQUIVALENT
 void aTOU_actor_draw(Actor* thisx, Game_Play* game_play) {
