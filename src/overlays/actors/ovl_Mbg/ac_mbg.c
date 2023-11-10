@@ -54,9 +54,8 @@ void Mbg_Actor_draw(Actor* thisx, Game_Play* game_play) {
     sp3C = thisx->world.pos;
     sp3A = thisx->shape.rot.y;
     OPEN_DISPS(game_play->state.gfxCtx);
-    if (1) {}
     _texture_z_light_fog_prim(game_play->state.gfxCtx);
-    Matrix_translate(sp3C.x, sp3C.y, sp3C.z, 0U);
+    Matrix_translate(sp3C.x, sp3C.y, sp3C.z, MTXMODE_NEW);
     Matrix_RotateY(sp3A, MTXMODE_APPLY);
     gSPMatrix(POLY_OPA_DISP++, _Matrix_to_Mtx_new(game_play->state.gfxCtx),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
