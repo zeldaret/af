@@ -104,45 +104,48 @@ void aTHB_actor_move(Actor *thisx, Game_Play *game_play UNUSED)
     this->unk1C8(this);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_T_Hanabi/ac_t_hanabi/aTHB_actor_draw.s")
-// extern Gfx* D_6000080;
-// extern xyz_t D_80A200A4_jp;
+#define OPEN_POLY_OPA_DISPS()                 \
+    {                                         \
+        Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
+        int __opa_opened = 0;                 \
+        while (0)
 
-// void aTHB_actor_draw(Actor *thisx, Game_Play *game_play)
-// {
-//     T_Hanabi* this = THIS;
-//     GraphicsContext* gfxCtx;
+#define CLOSE_POLY_OPA_DISPS()           \
+        __gfxCtx->polyOpa.p = __polyOpa; \
+        (void)__opa_opened;              \
+    }                                    \
+    while (0)
 
-//     {
-//         GraphicsContext* __gfxCtx;
-//         s32 __dispPad;
-//         gfxCtx = game_play->state.gfxCtx;
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_T_Hanabi/ac_t_hanabi/aTHB_actor_draw.s")
+extern Gfx* D_6000080;
+extern xyz_t D_80A200A4_jp;
 
-//         if (this->toolActor.unk1B8 == 1)
-//         {
-//             Matrix_put(&this->toolActor.unk178);
-//             Matrix_Position(&D_80A200A4_jp, &this->toolActor.actor.world.pos);
-//             this->toolActor.unk1B8 = 0;
-//         }
-//         else
-//         {
-//             Matrix_translate(thisx->world.pos.x, thisx->world.pos.y, thisx->world.pos.z, MTXMODE_NEW);
-//             Matrix_scale(0.01f, 0.01f, 0.01f, MTXMODE_APPLY);
-//         }
-//         Matrix_scale(thisx->scale.x, thisx->scale.y, thisx->scale.z, MTXMODE_APPLY);
-//         func_800BD5E8_jp(gfxCtx);
+void aTHB_actor_draw(Actor *thisx, Game_Play *game_play)
+{
+    T_Hanabi* this = THIS;
+    GraphicsContext* gfxCtx = game_play->state.gfxCtx;
 
-//         {
-//             Gfx* __polyOpa = gfxCtx->polyOpa.tha.head;
-//             s32 __opaPad;
+    if (this->toolActor.unk1B8 == 1)
+    {
+        Matrix_put(&this->toolActor.unk178);
+        Matrix_Position(&D_80A200A4_jp, &this->toolActor.actor.world.pos);
+        this->toolActor.unk1B8 = 0;
+    }
+    else
+    {
+        Matrix_translate(thisx->world.pos.x, thisx->world.pos.y, thisx->world.pos.z, MTXMODE_NEW);
+        Matrix_scale(0.01f, 0.01f, 0.01f, MTXMODE_APPLY);
+    }
 
-//             gSPMatrix(__polyOpa++, _Matrix_to_Mtx_new(gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-//             gSPDisplayList(__polyOpa++, &D_6000080);
+    Matrix_scale(thisx->scale.x, thisx->scale.y, thisx->scale.z, MTXMODE_APPLY);
+    func_800BD5E8_jp(gfxCtx);
 
-//             __gfxCtx->polyOpa.p = __polyOpa;
-//             // gfxCtx = game_play->state.gfxCtx;
-//         }
-        
-//         (void)0;
-//     }
-// }
+    OPEN_DISPS(gfxCtx);
+    OPEN_POLY_OPA_DISPS();
+
+    gSPMatrix(__polyOpa++, _Matrix_to_Mtx_new(gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    gSPDisplayList(__polyOpa++, &D_6000080);
+
+    CLOSE_POLY_OPA_DISPS();
+    CLOSE_DISPS(gfxCtx);
+}
