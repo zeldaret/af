@@ -14455,20 +14455,20 @@ RO_FLT_80A1FD60_jp = 0x80A1FD60; // type:f32
 
 aTHB_actor_ct = 0x80A1FDE0; // type:func
 aTHB_actor_dt = 0x80A1FE04; // type:func
-func_80A1FE14_jp = 0x80A1FE14; // type:func
-func_80A1FE7C_jp = 0x80A1FE7C; // type:func
-func_80A1FE9C_jp = 0x80A1FE9C; // type:func
-func_80A1FEBC_jp = 0x80A1FEBC; // type:func
-func_80A1FEDC_jp = 0x80A1FEDC; // type:func
+aTHB_calc_scale = 0x80A1FE14; // type:func
+aTHB_takeout = 0x80A1FE7C; // type:func
+aTHB_putaway = 0x80A1FE9C; // type:func
+aTHB_destruct = 0x80A1FEBC; // type:func
+aTHB_setupAction = 0x80A1FEDC; // type:func
 aTHB_actor_move = 0x80A1FF14; // type:func
 aTHB_actor_draw = 0x80A1FF58; // type:func
 
 // .data
 
 T_Hanabi_Profile = 0x80A20050; //
-D_80A20074_jp = 0x80A20074; //
-D_80A2007C_jp = 0x80A2007C; //
-D_FLT_80A20090_jp = 0x80A20090; // type:f32
+aim = 0x80A20074; // type:f32
+process = 0x80A2007C; //
+start_scale = 0x80A20090; // type:f32
 D_80A200A4_jp = 0x80A200A4; //
 
 // .rodata

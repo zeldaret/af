@@ -14,8 +14,8 @@ typedef void (*T_HanabiActionFunc)(struct T_Hanabi*);
 typedef struct T_Hanabi {
     /* 0x000 */ ToolActor toolActor;
     /* 0x1C0 */ UNK_TYPE1 unk1C0[0x8];
-    /* 0x1C8 */ T_HanabiActionFunc unk1C8;
-    /* 0x1CC */ UNK_TYPE unk1CC;
+    /* 0x1C8 */ T_HanabiActionFunc process;
+    /* 0x1CC */ s32 processIndex;
 } T_Hanabi; // size = 0x1D0
 
 #endif

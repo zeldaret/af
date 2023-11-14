@@ -59,7 +59,7 @@ typedef struct ToolActor {
     /* 0x174 */ ToolName toolName;
     /* 0x178 */ MtxF unk178;
     /* 0x1B8 */ UNK_TYPE unk1B8;
-    /* 0x1BC */ UNK_TYPE unk1BC;
+    /* 0x1BC */ UNK_TYPE unk1BC; // process index
 } ToolActor; // size >= 0x1C0
 
 typedef ToolActor* (*ToolBirthProc)(ToolName, s32, ToolActor*, struct Game_Play*, s16, s32*);
