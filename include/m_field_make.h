@@ -18,9 +18,9 @@ struct Game;
 #define UT_Z_NUM UT_BASE_NUM /* Spaces per block (acre) in z direction */
 #define UT_TOTAL_NUM (UT_X_NUM * UT_Z_NUM)
 
-typedef struct mFM_fg_c {
+typedef struct Foreground {
   /* 0x000 */ u16 items[UT_Z_NUM][UT_X_NUM];
-} mFM_fg_c; // size = 0x200
+} Foreground; // size = 0x200
 
 // void func_80084ED0_jp();
 // void func_80084FAC_jp();

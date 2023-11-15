@@ -102,7 +102,7 @@ s32 mCkRh_PlussGokiN_NowRoom(s32 count) {
     s32 pad[1] UNUSED;
 
     if (FI_IS_PLAYER_ROOM(fieldId)) {
-        player = common_data.player_no;
+        player = common_data.playerNumber;
         housefieldId = FI_GET_PLAYER_ROOM_NO(fieldId);
         homeId = mHS_get_arrange_idx(player) & 3;
         if ((player < PLAYER_NUM) && (housefieldId == homeId)) {
@@ -124,7 +124,7 @@ s32 mCkRh_MinusGokiN_NowRoom(s32 count) {
     s32 pad[1] UNUSED;
 
     if (FI_IS_PLAYER_ROOM(fieldId)) {
-        player = common_data.player_no;
+        player = common_data.playerNumber;
         housefieldId = FI_GET_PLAYER_ROOM_NO(fieldId);
         homeId = mHS_get_arrange_idx(player) & 3;
         if ((player < PLAYER_NUM) && (housefieldId == homeId)) {

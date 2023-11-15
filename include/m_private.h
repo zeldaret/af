@@ -50,7 +50,7 @@ typedef struct PrivateInventory {
     /* 0x28 */ u32 loan;
 } PrivateInventory; // size = 0x2C
 
-typedef struct Private_c {
+typedef struct PrivateInfo {
     /* 0x000 */ UNK_TYPE1 unk000[0x10];
     /* 0x010 */ s8 gender;
     /* 0x011 */ UNK_TYPE1 unk011[0x3];
@@ -67,6 +67,6 @@ typedef struct Private_c {
     /* 0xA90 */ UNK_TYPE1 unkA8F[0xF8];
     /* 0xB88 */ mPr_map_info_c maps[mPr_FOREIGN_MAP_COUNT]; /* maps 'collected' for foreign towns */
     /* 0xBC8 */ UNK_TYPE1 unkBC8[0x8];
-} Private_c; // size = 0xBD0
+} PrivateInfo; // size = 0xBD0
 
 #endif

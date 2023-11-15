@@ -471,7 +471,7 @@ void mSM_move_LINKWait(Submenu* submenu) {
 
     if (submenu->unk_00 != 4) {
         if (((submenu->programId == SUBMENU_PROGRAM_LEDIT) && (submenu->unk_10 == 0)) ||
-            (common_data.now_private->gender == 0)) {
+            (common_data.privateInfo->gender == 0)) {
             sAdo_SpecChange(5);
         } else {
             sAdo_SpecChange(6);
@@ -551,11 +551,11 @@ void mSM_submenu_draw(Submenu* submenu, struct Game_Play* game_play) {
 }
 
 s32 mSM_check_item_for_furniture(s32 index, UNUSED s32 arg1) {
-    u16 temp_v0 = common_data.now_private->inventory.pockets[index];
+    u16 temp_v0 = common_data.privateInfo->inventory.pockets[index];
 
     if (((temp_v0 & 0xF000) >> 0xC) == 2) {
         if ((((temp_v0 & 0xF00) >> 8) != 3) && (((temp_v0 & 0xF00) >> 8) != 0xF) && (((temp_v0 & 0xF00) >> 8) != 0xD)) {
-            if (!((common_data.now_private->inventory.item_conditions >> (index << 1)) & 3)) {
+            if (!((common_data.privateInfo->inventory.item_conditions >> (index << 1)) & 3)) {
                 if (temp_v0 != 0) {
                     return true;
                 }
@@ -566,8 +566,8 @@ s32 mSM_check_item_for_furniture(s32 index, UNUSED s32 arg1) {
 }
 
 s32 mSM_check_item_for_sell(s32 index, UNUSED s32 arg1) {
-    u16 temp_v0 = common_data.now_private->inventory.pockets[index];
-    Private_c* private = common_data.now_private;
+    u16 temp_v0 = common_data.privateInfo->inventory.pockets[index];
+    PrivateInfo* private = common_data.privateInfo;
 
     if (!((private->inventory.item_conditions >> (index << 1)) & 3)) {
         if (temp_v0 != 0) {
@@ -580,7 +580,7 @@ s32 mSM_check_item_for_sell(s32 index, UNUSED s32 arg1) {
 }
 
 s32 mSM_check_item_for_give(s32 index, UNUSED s32 arg1) {
-    Private_c* private = common_data.now_private;
+    PrivateInfo* private = common_data.privateInfo;
 
     if (!((private->inventory.item_conditions >> (index << 1)) & 3)) {
         if (private->inventory.pockets[index] != 0) {
@@ -591,8 +591,8 @@ s32 mSM_check_item_for_give(s32 index, UNUSED s32 arg1) {
 }
 
 s32 mSM_check_item_for_take(s32 index, s32 arg1) {
-    u16 temp_v0 = common_data.now_private->inventory.pockets[index];
-    Private_c* private = common_data.now_private;
+    u16 temp_v0 = common_data.privateInfo->inventory.pockets[index];
+    PrivateInfo* private = common_data.privateInfo;
 
     if (temp_v0 != 0) {
         if (!((private->inventory.item_conditions >> (index << 1)) & 3)) {
@@ -607,8 +607,8 @@ s32 mSM_check_item_for_take(s32 index, s32 arg1) {
 }
 
 s32 mSM_check_item_for_minidisk(s32 index, UNUSED s32 arg1) {
-    u16 temp_v0 = common_data.now_private->inventory.pockets[index];
-    Private_c* private = common_data.now_private;
+    u16 temp_v0 = common_data.privateInfo->inventory.pockets[index];
+    PrivateInfo* private = common_data.privateInfo;
 
     if (((temp_v0 & 0xF000) >> 0xC) == 2) {
         if (!((private->inventory.item_conditions >> (index << 1)) & 3)) {
@@ -621,7 +621,7 @@ s32 mSM_check_item_for_minidisk(s32 index, UNUSED s32 arg1) {
 }
 
 s32 mSM_check_item_for_shrine(s32 index, UNUSED s32 arg1) {
-    if (((common_data.now_private->inventory.item_conditions >> (index * 2)) & 3) == 2) {
+    if (((common_data.privateInfo->inventory.item_conditions >> (index * 2)) & 3) == 2) {
         if (mQst_CheckLimitbyPossessionIdx(index) != 0) {
             return true;
         }
@@ -631,8 +631,8 @@ s32 mSM_check_item_for_shrine(s32 index, UNUSED s32 arg1) {
 }
 
 s32 mSM_check_item_for_entrust(s32 index, UNUSED s32 arg1) {
-    u16 temp_v0 = common_data.now_private->inventory.pockets[index];
-    Private_c* temp_v1 = common_data.now_private;
+    u16 temp_v0 = common_data.privateInfo->inventory.pockets[index];
+    PrivateInfo* temp_v1 = common_data.privateInfo;
 
     if ((temp_v0 == 0) || (!((temp_v1->inventory.item_conditions >> (index << 1)) & 3) &&
                            ((((temp_v0 & 0xF000) >> 0xC) != 2) || (((temp_v0 & 0xF00) >> 8) != 1)))) {
@@ -643,7 +643,7 @@ s32 mSM_check_item_for_entrust(s32 index, UNUSED s32 arg1) {
 }
 
 s32 mSM_check_item_for_exchange(s32 index, s32 arg1) {
-    Private_c* temp_v0 = common_data.now_private;
+    PrivateInfo* temp_v0 = common_data.privateInfo;
     u16 temp_v1 = temp_v0->inventory.pockets[index];
     UNUSED s32 pad;
 
