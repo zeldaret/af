@@ -35,15 +35,15 @@ void aTHB_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
 void aTHB_actor_dt(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
 }
 
-void aTHB_calc_scale(T_Hanabi* this, s32 arg1) {
+void aTHB_calc_scale(T_Hanabi* this, s32 aimIndex) {
     static f32 aim[] = { 1.0f, 0.0f };
-    xyz_t* scale = &this->toolActor.actor.scale;
-    f32 newScale = scale->x;
+    xyz_t* actorScale = &this->toolActor.actor.scale;
+    f32 newScale = actorScale->x;
 
-    chase_f(&newScale, aim[arg1], 0.1f);
-    scale->x = newScale;
-    scale->y = newScale;
-    scale->z = newScale;
+    chase_f(&newScale, aim[aimIndex], 0.1f);
+    actorScale->x = newScale;
+    actorScale->y = newScale;
+    actorScale->z = newScale;
 }
 
 void aTHB_takeout(T_Hanabi* this) {
@@ -59,8 +59,8 @@ void aTHB_destruct(T_Hanabi* this) {
 }
 
 void aTHB_setupAction(T_Hanabi* this, s32 processIndex) {
-    static T_HanabiActionFunc process[] = { aTHB_takeout, aTHB_putaway, aTHB_destruct, (T_HanabiActionFunc)none_proc1,
-                                            NULL };
+    static T_HanabiActionFunc process[] = { aTHB_takeout, aTHB_putaway, aTHB_destruct,
+                                            (T_HanabiActionFunc)(void*)none_proc1, NULL };
     static f32 start_scale[] = { 0.0f, 1.0f, 1.0f, 1.0f, 0.0f };
     f32 scale;
 
