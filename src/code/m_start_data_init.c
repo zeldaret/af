@@ -113,7 +113,7 @@ void mSDI_ClearMoneyPlayerHomeStationBlock(void) {
         block_x = block_num[i][0];
 
         depositOffset = block_num[i][1] * FG_BLOCK_X_NUM + block_x;
-        items = common_data.fg[block_z][block_x].items[0];
+        items = common_data.foreground[block_z][block_x].items[0];
 
         if (items != NULL) {
             for (ut_z = 0; ut_z < UT_Z_NUM; ut_z++) {
@@ -154,12 +154,12 @@ void mSDI_PullTreeBlock(u16* items_p, s32 ut) {
 }
 
 void mSDI_PullTree(void) {
-    mFM_fg_c* fg_block;
+    Foreground* fg_block;
     s32 block_z;
 
     for (block_z = 0; block_z < FG_BLOCK_Z_NUM; block_z++) {
         /* Clear trees against the cliffs on the left and right town cliff borders */
-        fg_block = &common_data.fg[block_z][0];
+        fg_block = &common_data.foreground[block_z][0];
         mSDI_PullTreeBlock(fg_block->items[0], 0);
         mSDI_PullTreeBlock((fg_block + FG_BLOCK_X_NUM - 1)->items[0], UT_X_NUM - 1);
     }
@@ -177,7 +177,7 @@ void mSDI_PullTreeUnderPlayerBlock(void) {
      * ...
      **/
 
-    u16* items = &common_data.fg[2][2].items[0][0];
+    u16* items = &common_data.foreground[2][2].items[0][0];
 
     mSDI_PullTreeUT(&items[7]);
     mSDI_PullTreeUT(&items[8]);
@@ -219,7 +219,7 @@ s32 mSDI_StartInitNew(Game* game2, s32 player_no, s32 malloc_flag) {
 
     mMld_SetDefaultMelody();
     mLd_LandDataInit();
-    mEv_ClearEventSaveInfo(&common_data.event_save_data);
+    mEv_ClearEventSaveInfo(&common_data.eventSaveInfo);
     mEv_init(&game_play->event);
     mNpc_InitNpcAllInfo(malloc_flag);
 

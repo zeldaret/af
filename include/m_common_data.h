@@ -168,11 +168,11 @@ typedef struct CommonData {
     /* 0x02F60 */ LandInfo landInfo; // town name & id
     /* 0x02F6A */ u8 unk_02F6A[0x61E];
     /* 0x03588 */ mHm_hs_c homes[PLAYER_NUM];
-    /* 0x062A8 */ mFM_fg_c fg[FG_BLOCK_Z_NUM][FG_BLOCK_X_NUM]; // fg items (fg = foreground?)
+    /* 0x062A8 */ Foreground foreground[FG_BLOCK_Z_NUM][FG_BLOCK_X_NUM];
     /* 0x09EA8 */ u8 unk_09EA8[0x70];
     /* 0x09F18 */ Animal_c animals[ANIMAL_NUM_MAX]; // villagers in town
     /* 0x0EC70 */ u8 unk_0EC70[0x134];
-    /* 0x0EDA4 */ mEv_event_save_c event_save_data;
+    /* 0x0EDA4 */ EventSaveInfo eventSaveInfo;
     /* 0x0EE40 */ u8 unk_0EE40[0x118];
     /* 0x0EF58 */ u16 fruit;
     /* 0x0EF5A */ UNK_TYPE1 unk_0EF5A[0x12];
