@@ -41,7 +41,7 @@
 #include "m_flashrom.h"
 
 void famicom_emu_initial_common_data(void) {
-    FamicomEmuCommonData* famicom = &common_data.famicom_emu_common_data;
+    FamicomEmuCommonData* famicom = &common_data.famicomEmuCommonData;
 
     famicom->unk00 = 0;
     famicom->unk02 = 0x3E8;
@@ -187,20 +187,20 @@ void mSDI_PullTreeUnderPlayerBlock(void) {
 
 s32 mSDI_StartInitNew(Game* game2, s32 player_no, s32 malloc_flag) {
     Game_Play* game_play = (Game_Play*)game2;
-    Private_c* priv;
-    Private_c* priv_p;
+    PrivateInfo* priv;
+    PrivateInfo* priv_p;
     Game* game = NULL;
     s32 i;
     UNUSED s32 pad[2];
 
-    common_data.scene_from_title_demo = SCENE_START_DEMO;
+    common_data.sceneFromTitleDemo = SCENE_START_DEMO;
     lbRTC_GetTime(&common_data.time.rtcTime);
 
-    priv = &common_data.private[player_no];
-    common_data.now_private = priv;
-    common_data.player_no = player_no;
+    priv = &common_data.saveFilePrivateInfo[player_no];
+    common_data.privateInfo = priv;
+    common_data.playerNumber = player_no;
 
-    common_data.now_private->gender = mPr_SEX_MALE;
+    common_data.privateInfo->gender = mPr_SEX_MALE;
 
     decide_fruit(&common_data.fruit);
     if (malloc_flag == 0) {
@@ -215,7 +215,7 @@ s32 mSDI_StartInitNew(Game* game2, s32 player_no, s32 malloc_flag) {
     mFM_SetBlockKindLoadCombi(game);
     mAGrw_ChangeTree2FruitTree();
 
-    priv_p = &common_data.private[0];
+    priv_p = &common_data.saveFilePrivateInfo[0];
 
     mMld_SetDefaultMelody();
     mLd_LandDataInit();
@@ -248,13 +248,13 @@ s32 mSDI_StartInitNew(Game* game2, s32 player_no, s32 malloc_flag) {
         common_data.homes[i].unk_024 = i;
     }
 
-    common_data.station_type = RANDOM_F(15);
+    common_data.stationType = RANDOM_F(15);
 
     for (i = 0; i < PLAYER_NUM; i++) {
-        mPr_ClearMotherMailInfo(&common_data.mother_mail[i]);
+        mPr_ClearMotherMailInfo(&common_data.motherMailInfo[i]);
     }
 
-    mPr_SetPossessionItem(common_data.now_private, 0, ITM_MONEY_1000, mPr_ITEM_COND_QUEST);
+    mPr_SetPossessionItem(common_data.privateInfo, 0, ITM_MONEY_1000, mPr_ITEM_COND_QUEST);
     mCkRh_InitGokiSaveData_InitNewPlayer();
     mEv_2nd_init(&game_play->event);
     famicom_emu_initial_common_data();
@@ -263,7 +263,7 @@ s32 mSDI_StartInitNew(Game* game2, s32 player_no, s32 malloc_flag) {
 
 s32 mSDI_StartInitFrom(Game* game2, s32 player_no, s32 malloc_flag) {
     Game_Play* game_play = (Game_Play*)game2;
-    Private_c* priv;
+    PrivateInfo* priv;
     Game* game = game2;
     s32 res = FALSE;
 
@@ -271,15 +271,15 @@ s32 mSDI_StartInitFrom(Game* game2, s32 player_no, s32 malloc_flag) {
         game = NULL;
     }
 
-    common_data.scene_from_title_demo = SCENE_FG;
+    common_data.sceneFromTitleDemo = SCENE_FG;
     lbRTC_GetTime(&common_data.time.rtcTime);
 
     if (mFRm_CheckSaveData() == TRUE) {
-        priv = &common_data.private[player_no];
+        priv = &common_data.saveFilePrivateInfo[player_no];
         if (mPr_CheckPrivate(priv) == TRUE) {
             if (priv->exists == TRUE) {
-                common_data.now_private = priv;
-                common_data.player_no = player_no;
+                common_data.privateInfo = priv;
+                common_data.playerNumber = player_no;
                 mFM_SetBlockKindLoadCombi(game);
                 mEv_init_force(&game_play->event);
                 mHsRm_GetHuusuiRoom(game, player_no);
@@ -291,8 +291,8 @@ s32 mSDI_StartInitFrom(Game* game2, s32 player_no, s32 malloc_flag) {
             } else {
                 common_data.player_decoy_flag = TRUE;
                 priv->exists = TRUE;
-                common_data.now_private = priv;
-                common_data.player_no = player_no;
+                common_data.privateInfo = priv;
+                common_data.playerNumber = player_no;
                 mFM_SetBlockKindLoadCombi(game);
                 mHsRm_GetHuusuiRoom(game, player_no);
                 mSP_ExchangeLineUp_InGame(game);
@@ -316,21 +316,21 @@ s32 mSDI_StartInitFrom(Game* game2, s32 player_no, s32 malloc_flag) {
 
 s32 mSDI_StartInitNewPlayer(Game* game, s32 player_no, s32 malloc_flag) {
     Game_Play* game_play = (Game_Play*)game;
-    Private_c* priv;
+    PrivateInfo* priv;
     s32 res = FALSE;
     UNUSED s32 pad;
 
-    common_data.scene_from_title_demo = SCENE_START_DEMO2;
+    common_data.sceneFromTitleDemo = SCENE_START_DEMO2;
     lbRTC_GetTime(&common_data.time.rtcTime);
 
-    priv = &common_data.private[player_no];
+    priv = &common_data.saveFilePrivateInfo[player_no];
     if (mFRm_CheckSaveData() == TRUE) {
         if (mPr_CheckPrivate(priv) != TRUE) {
             mPr_InitPrivateInfo(priv);
-            common_data.now_private = priv;
-            mPr_SetPossessionItem(common_data.now_private, 0, ITM_MONEY_1000, mPr_ITEM_COND_QUEST);
-            common_data.player_no = player_no;
-            common_data.now_private->gender = mPr_SEX_MALE;
+            common_data.privateInfo = priv;
+            mPr_SetPossessionItem(common_data.privateInfo, 0, ITM_MONEY_1000, mPr_ITEM_COND_QUEST);
+            common_data.playerNumber = player_no;
+            common_data.privateInfo->gender = mPr_SEX_MALE;
             if (malloc_flag == 0) {
                 mFM_SetBlockKindLoadCombi(game);
                 mEv_init_force(&game_play->event);
@@ -360,7 +360,7 @@ s32 mSDI_StartInitPak(Game* game2, s32 player_no, s32 malloc_flag) {
     }
 
     if (player_no < 5) {
-        common_data.scene_from_title_demo = SCENE_FG;
+        common_data.sceneFromTitleDemo = SCENE_FG;
     }
 
     if (mFRm_CheckSaveData() == TRUE) {
@@ -389,8 +389,8 @@ s32 mSDI_StartInitErr(UNUSED Game* game, UNUSED s32 player_no, UNUSED s32 malloc
 void mSDI_StartInitAfter(Game* game, s32 renewal_reserve_flag, s32 malloc_flag) {
     Game_Play* game_play = (Game_Play*)game;
 
-    common_data.house_owner_name = -1;
-    common_data.last_field_id = -1;
+    common_data.houseOwnerName = -1;
+    common_data.lastFieldId = -1;
 
     mHm_SetNowHome();
     mNpc_RenewalAnimalMemory();
@@ -416,17 +416,17 @@ void mSDI_StartInitAfter(Game* game, s32 renewal_reserve_flag, s32 malloc_flag) 
     mHm_CheckRehouseOrder();
     decide_fish_location(&common_data.fish_location);
     mTRC_init(game_play);
-    common_data.goki_shocked_flag = FALSE;
+    common_data.gokiShockedFlag = FALSE;
     func_800A6548_jp();
     func_800B9B2C_jp();
     func_800A91DC_jp();
-    mPr_SendForeingerAnimalMail(common_data.now_private);
+    mPr_SendForeingerAnimalMail(common_data.privateInfo);
     mPr_StartSetCompleteTalkInfo();
     mMsm_SendInformationMail();
     func_8008DCF8_jp();
     func_800A4D10_jp();
     mSN_decide_msg();
-    mPr_RenewalMapInfo(common_data.now_private->maps, mPr_FOREIGN_MAP_COUNT, &common_data.land_info);
+    mPr_RenewalMapInfo(common_data.privateInfo->maps, mPr_FOREIGN_MAP_COUNT, &common_data.landInfo);
 }
 
 typedef s32 (*mSDI_INIT_PROC)(Game*, s32, s32);

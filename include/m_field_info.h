@@ -15,7 +15,7 @@ typedef enum FieldType {
   /* 4 */ FI_FIELDTYPE_NPC_ROOM,
   /* 5 */ FI_FIELDTYPE_DEMO,
   /* 6 */ FI_FIELDTYPE_PLAYER_ROOM,
-  /* 7 */ FI_FIELDTYPE_NUM,
+  /* 7 */ FI_FIELDTYPE_NUM
 } FieldType;
 
 
@@ -25,7 +25,7 @@ typedef enum FieldRoom {
   /* 0x6000 */ FI_FIELD_PLAYER0_ROOM = FI_TO_FIELD_ID(FI_FIELDTYPE_PLAYER_ROOM, 0),
   /* 0x6001 */ FI_FIELD_PLAYER1_ROOM,
   /* 0x6002 */ FI_FIELD_PLAYER2_ROOM,
-  /* 0x6003 */ FI_FIELD_PLAYER3_ROOM,
+  /* 0x6003 */ FI_FIELD_PLAYER3_ROOM
 } FieldRoom;
 
 

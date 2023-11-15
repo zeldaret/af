@@ -7,8 +7,8 @@
 #define LAND_NAME_SIZE 6
 #define LAND_NAME_MURA_SIZE (LAND_NAME_SIZE + 2)
 
-typedef struct mLd_land_info_c {
+typedef struct LandInfo {
     char unk00[0xA];
-} mLd_land_info_c; // size >= 0xA
+} LandInfo; // size >= 0xA
 
 #endif

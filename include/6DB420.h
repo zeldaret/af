@@ -5,10 +5,10 @@
 #include "6B8A70.h"
 #include "unk.h"
 
-struct Private_c;
+struct PrivateInfo;
 struct mPr_map_info_c;
-struct mLd_land_info_c;
-struct mPr_mother_mail_info_c;
+struct LandInfo;
+struct MotherMailInfo;
 
 typedef struct PlayerName {
     /* 0x0 */ UNK_TYPE1 unk_0[0x6];
@@ -33,15 +33,15 @@ void mPr_CopyPersonalID(PersonalID* arg0, PersonalID* arg1);
 s32 mPr_CheckCmpPersonalID(PersonalID* arg0, PersonalID* arg1);
 // void func_800B7A94_jp();
 // void func_800B7AB0_jp();
-void mPr_ClearPrivateInfo(struct Private_c* private);
+void mPr_ClearPrivateInfo(struct PrivateInfo* private);
 // void func_800B7B8C_jp();
 // void func_800B7BC0_jp();
 // void func_800B7CD0_jp();
 // void func_800B7D50_jp();
-void mPr_InitPrivateInfo(struct Private_c* private);
+void mPr_InitPrivateInfo(struct PrivateInfo* private);
 // void func_800B7F00_jp();
 // void func_800B7F48_jp();
-s32 mPr_CheckPrivate(struct Private_c* private);
+s32 mPr_CheckPrivate(struct PrivateInfo* private);
 // void func_800B7FA0_jp();
 // void func_800B7FD4_jp();
 // void func_800B8068_jp();
@@ -56,7 +56,7 @@ s32 mPr_CheckPrivate(struct Private_c* private);
 // void func_800B86EC_jp();
 // void func_800B88EC_jp();
 // void func_800B8A88_jp();
-void mPr_SetPossessionItem(struct Private_c* priv, int idx, u16 item, u32 cond);
+void mPr_SetPossessionItem(struct PrivateInfo* priv, int idx, u16 item, u32 cond);
 // void func_800B8B8C_jp();
 // void func_800B8BE4_jp();
 // void func_800B8C10_jp();
@@ -66,7 +66,7 @@ void mPr_SetPossessionItem(struct Private_c* priv, int idx, u16 item, u32 cond);
 // void func_800B8D18_jp();
 // void func_800B8D3C_jp();
 s32 func_800B8D64_jp(u8 player_no, s32 arg1);
-void mPr_ClearMotherMailInfo(struct mPr_mother_mail_info_c* arg0);
+void mPr_ClearMotherMailInfo(struct MotherMailInfo* arg0);
 // void func_800B8F20_jp();
 // void func_800B8FB8_jp();
 // void func_800B9038_jp();
@@ -83,7 +83,7 @@ void mPr_ClearMotherMailInfo(struct mPr_mother_mail_info_c* arg0);
 // void func_800B9AF0_jp();
 void func_800B9B2C_jp(void);
 // void func_800B9C34_jp();
-void mPr_SendForeingerAnimalMail(struct Private_c* now_private);
+void mPr_SendForeingerAnimalMail(struct PrivateInfo* privateInfo);
 void mPr_StartSetCompleteTalkInfo(void);
 // void func_800B9E90_jp();
 // void func_800B9EB4_jp();
@@ -103,7 +103,7 @@ void mPr_StartSetCompleteTalkInfo(void);
 // void func_800BA2D4_jp();
 // void func_800BA344_jp();
 // void func_800BA3D0_jp();
-void mPr_RenewalMapInfo(struct mPr_map_info_c* maps, s32 count, struct mLd_land_info_c* land_info);
+void mPr_RenewalMapInfo(struct mPr_map_info_c* maps, s32 count, struct LandInfo* landInfo);
 // void mPr_RandomSetPlayerData_title_demo();
 // void mPr_PrintMapInfo_debug();
 

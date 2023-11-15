@@ -102,7 +102,7 @@ static u16 S_back_title_timer;
 static u16 S_se_endcheck_timeout;
 
 void Game_play_Reset_destiny(void) {
-    Private_Sub_A86* temp = &common_data.now_private->unk_A86;
+    Private_Sub_A86* temp = &common_data.privateInfo->unk_A86;
     u8* day = &common_data.time.rtcTime.day;
     u8* month = &common_data.time.rtcTime.month;
 
@@ -272,8 +272,8 @@ void Game_play_fbdemo_wipe_move(Game_Play* game_play) {
 
                 case 8:
                     if (common_data.unk_100E4 != NULL) {
-                        if (*common_data.unk_100E4 != NULL) {
-                            (*common_data.unk_100E4)(game_play);
+                        if (common_data.unk_100E4->unk_00 != NULL) {
+                            common_data.unk_100E4->unk_00(game_play);
                             Game_play_change_scene_move_end(game_play);
                         }
                     }
@@ -363,7 +363,7 @@ void play_cleanup(Game* game) {
     game_play->unk_1DAC = -1;
     mSM_submenu_ovlptr_cleanup(&game_play->submenu);
     mPlib_Object_Exchange_keep_Player_dt(game_play);
-    mHsRm_GetHuusuiRoom(0, common_data.player_no);
+    mHsRm_GetHuusuiRoom(0, common_data.playerNumber);
     func_80087280_jp();
     zelda_CleanupArena();
 }

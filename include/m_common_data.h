@@ -27,26 +27,19 @@ struct ToolClip;
 
 typedef UNK_RET (*CommonData_unk_1004C_unk_04)(struct ActorOverlay*, const struct struct_801161E8_jp*, size_t, s32);
 typedef UNK_RET (*CommonData_unk_1004C_unk_08)(void);
-
-// TODO: figure out if this is a generic memory allocation or if it is Actor specific
 typedef UNK_PTR (*CommonData_unk_1004C_unk_0C)(size_t, const struct struct_801161E8_jp*, s32);
-
 typedef UNK_RET (*CommonData_unk_1004C_unk_10)(struct Actor*);
 typedef UNK_RET (*CommonData_unk_1004C_unk_14)(struct CommonData_unk_1004C_unk_14_arg0*, u16);
-
 typedef UNK_RET (*CommonData_unk_1004C_unk_BC)(struct Actor*, struct Game_Play*);
 typedef void (*CommonData_unk_1004C_unk_C0)(struct Actor*, struct Game_Play*, struct struct_809AEFA4*);
 typedef UNK_RET (*CommonData_unk_1004C_unk_C4)(struct Actor*, struct Game_Play*);
 typedef UNK_RET (*CommonData_unk_1004C_unk_C8)(struct Actor*, struct Game_Play*);
 typedef UNK_RET (*CommonData_unk_1004C_unk_CC)(struct Actor*, struct Game_Play*);
 typedef UNK_RET (*CommonData_unk_1004C_unk_D0)(void);
-
 typedef UNK_RET (*CommonData_unk_1004C_unk_E4)(void);
-
 typedef UNK_RET (*CommonData_unk_1004C_unk_EC)(struct ObjectStatus*, s16, s16);
 typedef UNK_RET (*CommonData_unk_1004C_unk_F0)(struct ObjectStatus*, struct Actor*);
 typedef s32 (*CommonData_unk_1004C_unk_F4)(struct ObjectStatus*, struct Actor*);
-
 typedef UNK_RET (*CommonData_unk_1004C_unk_118)(struct Actor*);
 
 typedef struct CommonData_unk_1004C {
@@ -77,7 +70,6 @@ typedef UNK_RET (*CommonData_unk_10078_unk_00)(UNK_TYPE);
 typedef UNK_RET (*CommonData_unk_10078_unk_04)(UNK_TYPE);
 typedef UNK_RET (*CommonData_unk_10078_unk_08)(UNK_TYPE);
 
-
 typedef struct CommonData_unk_10078 {
     /* 0x00 */ CommonData_unk_10078_unk_00 unk_00;
     /* 0x04 */ CommonData_unk_10078_unk_04 unk_04;
@@ -86,7 +78,6 @@ typedef struct CommonData_unk_10078 {
 
 typedef UNK_RET (*CommonData_unk_10098_unk_4)(struct ActorOverlay*, size_t);
 typedef UNK_RET (*CommonData_unk_10098_unk_8)(void);
-// TODO: figure out if this is a generic memory allocation or if it is Actor specific
 typedef UNK_PTR (*CommonData_unk_10098_unk_0C)(void);
 typedef UNK_RET (*CommonData_unk_10098_unk_10)(struct Actor*);
 typedef UNK_RET (*CommonData_unk_10098_unk_A8)(UNK_PTR, UNK_TYPE, u16 name, Actor* actor);
@@ -103,25 +94,25 @@ typedef struct CommonData_unk_10098 {
     /* 0x0A8 */ CommonData_unk_10098_unk_A8 unk_A8; // unload object
     /* 0x0AC */ CommonData_unk_10098_unk_AC unk_AC; // load object
     /* 0x0B0 */ UNK_TYPE unk_B0;
-    /* 0x0B4 */ UNK_TYPE1 pad[0x450-0xb4];
+    /* 0x0B4 */ UNK_TYPE1 pad[0x450 - 0xb4];
     /* 0x450 */ CommonData_unk_10098_unk_450 unk_450; // load palette
     /* 0x454 */ UNK_TYPE unk_454;
-    /* 0x458 */ UNK_TYPE1 pad2[0x86C-0x458];
+    /* 0x458 */ UNK_TYPE1 pad2[0x86C - 0x458];
     /* 0x86C */ UNK_TYPE unk_86C;
 } CommonData_unk_10098; // size >= 0x870
 
-typedef struct mPr_mother_mail_info_c {
+typedef struct MotherMailInfo {
     /* 0x00 */ UNK_TYPE1 unk_00[0xE];
-} mPr_mother_mail_info_c; // size = 0xE
+} MotherMailInfo; // size = 0xE
 
 typedef enum Season {
     /* 0 */ SPRING,
     /* 1 */ SUMMER,
     /* 2 */ FALL,
-    /* 3 */ WINTER,
+    /* 3 */ WINTER
 } Season;
 
-typedef struct Time_c {
+typedef struct Time {
     /* 0x00 */ u32 season;
     /* 0x04 */ u32 termIdx;
     /* 0x08 */ s16 bgitemProfile;
@@ -137,7 +128,7 @@ typedef struct Time_c {
     /* 0x20 */ s32 rtcEnabled;
     /* 0x24 */ s32 addSec;
     /* 0x28 */ s32 addIdx;
-} Time_c; // size = 0x2C
+} Time; // size = 0x2C
 
 typedef struct FamicomEmuCommonData {
     /* 0x00 */ s16 unk00;
@@ -159,70 +150,74 @@ typedef struct FamicomEmuCommonData {
     /* 0x20 */ s16 unk20;
     /* 0x22 */ s16 unk22;
     /* 0x24 */ s16 unk24;
-}FamicomEmuCommonData; // size >= 0x26
+} FamicomEmuCommonData; // size >= 0x26
 
-typedef void (*CommonData_100E4_Func)(struct Game_Play*);
+typedef void (*CommonData_100E4_unk_00)(struct Game_Play* game_play);
+
+typedef struct CommonData_unk_100E4 {
+    /* 0x00 */ CommonData_100E4_unk_00 unk_00;
+} CommonData_unk_100E4; // size >= 0x4
 
 typedef struct CommonData {
-    /* 0x00000 */ u8 unk00000[0x14];
+    /* 0x00000 */ u8 unk_00000[0x14];
     /* 0x00014 */ s32 unk_00014;
     /* 0x00018 */ u8 nowNpcMax;
     /* 0x00019 */ u8 removeAnimalIdx;
-    /* 0x0001A */ u8 unk1A[0x20 - 0x1A];
-    /* 0x00020 */ Private_c private[PLAYER_NUM]; /* player data */
-    /* 0x02F60 */ mLd_land_info_c land_info; /* town name & id */
-    /* 0x02F6A */ u8 unk02F6A[0x61E];
+    /* 0x0001A */ u8 unk_1A[0x20 - 0x1A];
+    /* 0x00020 */ PrivateInfo saveFilePrivateInfo[PLAYER_NUM]; // player data
+    /* 0x02F60 */ LandInfo landInfo; // town name & id
+    /* 0x02F6A */ u8 unk_02F6A[0x61E];
     /* 0x03588 */ mHm_hs_c homes[PLAYER_NUM];
-    /* 0x062A8 */ mFM_fg_c fg[FG_BLOCK_Z_NUM][FG_BLOCK_X_NUM]; /* fg items (fg = foreground?) */
-    /* 0x09EA8 */ u8 unk09EA8[0x70];
-    /* 0x09F18 */ Animal_c animals[ANIMAL_NUM_MAX]; /* villagers in town */
-    /* 0x0EC70 */ u8 unk0EC70[0x134];
+    /* 0x062A8 */ mFM_fg_c fg[FG_BLOCK_Z_NUM][FG_BLOCK_X_NUM]; // fg items (fg = foreground?)
+    /* 0x09EA8 */ u8 unk_09EA8[0x70];
+    /* 0x09F18 */ Animal_c animals[ANIMAL_NUM_MAX]; // villagers in town
+    /* 0x0EC70 */ u8 unk_0EC70[0x134];
     /* 0x0EDA4 */ mEv_event_save_c event_save_data;
-    /* 0x0EE40 */ u8 unk0EE40[0x118];
+    /* 0x0EE40 */ u8 unk_0EE40[0x118];
     /* 0x0EF58 */ u16 fruit;
     /* 0x0EF5A */ UNK_TYPE1 unk_0EF5A[0x12];
     /* 0x0EF6C */ Mail unk_0EF6C[5];
     /* 0x0F2A0 */ UNK_TYPE1 unk_0F2A0[0x17C];
     /* 0x0F41C */ SnowmanData snowmanData[SNOWMAN_SAVE_COUNT];
     /* 0x0F428 */ UNK_TYPE1 unk_F428[0x10];
-    /* 0x0F438 */ u8 station_type; /* train station type */
-    /* 0x0F439 */ u8 unk0F439[0x3];
-    /* 0x0F43C */ u16 deposit[FG_BLOCK_X_NUM * FG_BLOCK_Z_NUM][UT_Z_NUM]; /* flags for which items are buried around town */
+    /* 0x0F438 */ u8 stationType;
+    /* 0x0F439 */ u8 unk_F439[0x3];
+    /* 0x0F43C */ u16 deposit[FG_BLOCK_X_NUM * FG_BLOCK_Z_NUM][UT_Z_NUM]; // flags for which items are buried around town
     /* 0x0F7FC */ lbRTC_time_c unk_0F7FC;
-    /* 0x0F804 */ mPr_mother_mail_info_c mother_mail[PLAYER_NUM];
-    /* 0x0F83C */ u8 unk0F83C[0x8];
-    /* 0x0F844 */ FamicomEmuCommonData famicom_emu_common_data;
-    /* 0x0F86A */ u8 unk0F86A[0x32];
+    /* 0x0F804 */ MotherMailInfo motherMailInfo[PLAYER_NUM];
+    /* 0x0F83C */ u8 unk_0F83C[0x8];
+    /* 0x0F844 */ FamicomEmuCommonData famicomEmuCommonData;
+    /* 0x0F86A */ u8 unk_0F86A[0x32];
     /* 0x0F89C */ lbRTC_time_c unk_0F89C;
     /* 0x0F8A4 */ lbRTC_time_c unk_0F8A4;
-    /* 0x0F8AC */ UNK_TYPE1 unk0F8AC;
-    /* 0x0F8AD */ u8 snowmanYear; // Year last snowman was built.
+    /* 0x0F8AC */ UNK_TYPE1 unk_0F8AC;
+    /* 0x0F8AD */ u8 snowmanYear;  // Year last snowman was built.
     /* 0x0F8AE */ u8 snowmanMonth; // Month last snowman was built.
-    /* 0x0F8AF */ u8 snowmanDay; // Day last snowman was built.
-    /* 0x0F8B0 */ u8 snowmanHour; // Hour last snowman was built.
-    /* 0x0F8B1 */ UNK_TYPE1 unk0F8B1[0x74F];
+    /* 0x0F8AF */ u8 snowmanDay;   // Day last snowman was built.
+    /* 0x0F8B0 */ u8 snowmanHour;  // Hour last snowman was built.
+    /* 0x0F8B1 */ UNK_TYPE1 unk_0F8B1[0x74F];
     /* 0x10000 */ u8 unk_10000; // named "game_started" in AC GCN decomp
     /* 0x10001 */ u8 unk_10001;
-    /* 0x10002 */ u8 unk10002[0x1];
-    /* 0x10003 */ u8 player_no;
+    /* 0x10002 */ u8 unk_10002[0x1];
+    /* 0x10003 */ u8 playerNumber;
     /* 0x10004 */ s32 unk_10004; // named "last_scene_no" in AC GCN decomp
     /* 0x10008 */ UNK_TYPE1 unk_10008[0x44];
-    /* 0x1004C */ CommonData_unk_1004C *unk_1004C;
+    /* 0x1004C */ CommonData_unk_1004C* unk_1004C;
     /* 0x10050 */ UNK_TYPE1 unk_10050[0x28];
-    /* 0x10078 */ CommonData_unk_10078 *unk_10078;
+    /* 0x10078 */ CommonData_unk_10078* unk_10078;
     /* 0x1007C */ UNK_TYPE1 unk_1007C[0x1C];
-    /* 0x10098 */ CommonData_unk_10098 *unk_10098;
+    /* 0x10098 */ CommonData_unk_10098* unk_10098;
     /* 0x1009C */ UNK_TYPE1 unk_1009C[0x4];
     /* 0x100A0 */ struct ToolClip* toolClip;
     /* 0x100A4 */ UNK_TYPE1 unk_100A4[0x40];
-    /* 0x100E4 */ CommonData_100E4_Func* unk_100E4;
-    /* 0x100E8 */ u8 unk100E8[0x24];
-    /* 0x1010C */ Time_c time;
-    /* 0x10138 */ Private_c* now_private;
-    /* 0x1013C */ u8 unk1013C[0x4];
+    /* 0x100E4 */ CommonData_unk_100E4* unk_100E4;
+    /* 0x100E8 */ u8 unk_100E8[0x24];
+    /* 0x1010C */ Time time;
+    /* 0x10138 */ PrivateInfo* privateInfo;
+    /* 0x1013C */ u8 unk_1013C[0x4];
     /* 0x10140 */ u8 unk_10140;
     /* 0x10141 */ u8 fish_location;
-    /* 0x10142 */ u8 unk10142[0x7];
+    /* 0x10142 */ u8 unk_10142[0x7];
     /* 0x10149 */ u8 unk_10149;
     /* 0x1014A */ u8 unk_1014A;
     /* 0x1014B */ u8 unk_1014B; // named "wipeType" in AC GCN decomp
@@ -230,15 +225,15 @@ typedef struct CommonData {
     /* 0x1014E */ s16 unk_1014E;
     /* 0x10150 */ UNK_TYPE1 unk_10150[0x10];
     /* 0x10160 */ NpcList npclist[ANIMAL_NUM_MAX];
-    /* 0x104A8 */ u16 house_owner_name;
-    /* 0x104AA */ u16 last_field_id;
+    /* 0x104A8 */ u16 houseOwnerName;
+    /* 0x104AA */ u16 lastFieldId;
     /* 0x104AC */ UNK_TYPE1 unk_104AC[0x1];
     /* 0x104AD */ u8 unk_104AD;
     /* 0x104AE */ u8 unk_104AE;
     /* 0x104AF */ UNK_TYPE1 unk_104AF[0x1];
     /* 0x104B0 */ UNK_TYPE1 unk_104B0[0xE8];
     /* 0x10598 */ mQst_not_saved_c quest;
-    /* 0x105A0 */ u32 scene_from_title_demo;
+    /* 0x105A0 */ u32 sceneFromTitleDemo;
     /* 0x105A4 */ NpsSchedule npcSchedule[ANIMAL_NUM_MAX];
     /* 0x10694 */ NpcWalking npcWalk;
     /* 0x10710 */ UNK_TYPE1 unk_10710[0x3C];
@@ -249,12 +244,12 @@ typedef struct CommonData {
     /* 0x107A0 */ UNK_TYPE unk_107A0;
     /* 0x107A4 */ UNK_TYPE1 unk_107A4[0x12];
     /* 0x107B6 */ s16 unk_107B6; // named "demo_profile" in AC GCN decomp (though it's an array of two s16s in that game)
-    /* 0x107B8 */ u8 unk107B8[0x28];
+    /* 0x107B8 */ u8 unk_107B8[0x28];
     /* 0x107E0 */ s8 player_decoy_flag;
-    /* 0x107E1 */ u8 unk107E1[0x3];
+    /* 0x107E1 */ u8 unk_107E1[0x3];
     /* 0x107E4 */ s16 unk_107E4;
-    /* 0x107E6 */ u8 unk107E6[0x254];
-    /* 0x10A3A */ u8 goki_shocked_flag;
+    /* 0x107E6 */ u8 unk_107E6[0x254];
+    /* 0x10A3A */ u8 gokiShockedFlag;
     /* 0x10A3B */ UNK_TYPE1 unk_10A3B[0x1];
     /* 0x10A3C */ UNK_TYPE1 unk_10A3C[0x2C];
     /* 0x10A68 */ u8 unk_10A68;
@@ -262,7 +257,7 @@ typedef struct CommonData {
     /* 0x10A6C */ UNK_TYPE1 unk_10A6C[0x14];
     /* 0x10A80 */ UNK_TYPE1 unk_10A80[0x2];
     /* 0x10A82 */ s16 unk_10A82;
-    /* 0x10A84 */ u8 unk10A84[0x2C];
+    /* 0x10A84 */ u8 unk_10A84[0x2C];
     /* 0x10AB0 */ u8 unk_10AB0; // named "pad_connected" in AC GCN decomp
     /* 0x10AB1 */ UNK_TYPE1 unk_10AB1[0x7];
 } CommonData; // size = 0x10AB8
