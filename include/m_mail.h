@@ -5,6 +5,14 @@
 #include "6B8A70.h"
 #include "6DB420.h"
 #include "unk.h"
+#include "m_private.h"
+
+#define MAIL_HEADER_LEN (16 - PLAYER_NAME_LEN)
+#define MAIL_FOOTER_LEN 16 
+#define MAIL_BODY_LEN 96
+
+#define MAIL_FOOTER2_LEN 26  
+#define MAIL_HEADER2_LEN (MAIL_FOOTER2_LEN - PLAYER_NAME_LEN)
 
 struct struct_func_8085CE18_jp_arg4;
 

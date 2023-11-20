@@ -4,10 +4,20 @@
 #include "ultra64.h"
 #include "m_mail.h"
 #include "m_quest.h"
+#include "m_land.h"
 #include "unk.h"
 
 #define mPr_FOREIGN_MAP_COUNT 8
 #define PLAYER_NUM 4
+
+#define PLAYER_NAME_LEN 6
+
+typedef struct PersonalID_c {
+  /* 0x00 */ u8 playerName[PLAYER_NAME_LEN];
+  /* 0x06 */ u8 landName[LAND_NAME_SIZE];
+  /* 0x0C */ u16 playerId;
+  /* 0x0E */ u16 landId;
+} PersonalID_c; // size = 0x10 
 
 typedef enum mPr_SEX {
     /* 0 */ mPr_SEX_MALE,

@@ -7,22 +7,67 @@
 #include "m_land.h"
 #include "6DB420.h"
 #include "m_mail.h"
+#include "lb_rtc.h"
+
 
 #define ANIMAL_NUM_MAX 15 /* Maximum number of villagers possible in town */
+#define ANIMAL_MEMORY_NUM 7
+#define ANIMAL_CATCHPHRASE_LEN 4
+#define ANIMAL_NAME_LEN PLAYER_NAME_LEN
+
+#define NPC_NUM 216
+
+
+typedef struct NpcHouseData{
+    /* 0x00 */ u8 type;
+    /* 0x01 */ u8 palette;
+    /* 0x02 */ u8 wallId;
+    /* 0x03 */ u8 floorId;
+    /* 0x04 */ u16 mainLayerId;
+    /* 0x06 */ u16 secondaryLayerId;
+} NpcHouseData; // size = 0x8
+
+typedef struct NpcListFlags{
+    /* 0x00 */ u8 beeSting:1; // [8]
+    /* 0x00 */ u8 fishComplete:1; // [7]
+    /* 0x00 */ u8 insectComplete:1; // [6]
+    /* 0x00 */ u8 unk3:6; // [5:0]
+}NpcListFlags; //size = 0x1
 
 typedef struct NpcList {
-    /* 0x00 */ char unk00[0x10];
+    /* 0x00 */ u16 name;
+    /* 0x02 */ u16 fieldName;
+    /* 0x04 */ xyz_t homePosition;
     /* 0x10 */ xyz_t position;
-    /* 0x14 */ char unk14[0x1C];
+    /* 0x1C */ u8 appearFlag;
+    /* 0x1D */ NpcListFlags flags;
+    /* 0x1F */ u8 unk1F; 
+    /* 0x20 */ char unk20[0xC];
+    /* 0x2C */ NpcHouseData houseData;
+    /* 0x34 */ u16 rewardFurniture;
 } NpcList; // size = 0x38
 
-typedef struct AnmHome_c {
+typedef struct Anmland{
+    /* 0x00 */ u8 name[LAND_NAME_SIZE];
+    /* 0x08 */ u16 id;
+}Anmland; // size = 0x10
+
+typedef struct Anmhome_c {
     /* 0x00 */ u8 typeUnused; /* Likely the house type, but seems to be unused outside of SChk_Anmhome_c_sub */
     /* 0x01 */ u8 blockX; /* acre x position */
     /* 0x02 */ u8 blockZ; /* acre y position */
     /* 0x03 */ u8 utX; /* unit x position */
     /* 0x04 */ u8 utZ; /* unit z position */
-} AnmHome_c; // size = 0x5
+} Anmhome_c; // size = 0x5
+
+typedef struct Anmlet {
+    /* 0x00 */ u8 exists:1;   /* letter received by villager and exists */
+    /* 0x00 */ u8 cond:1;   /* mNpc_LETTER_RANK_* */
+    /* 0x00 */ u8 sendReply:1;   /* set when the villager should reply */
+    /* 0x00 */ u8 hasPresentCloth:1;   /* set when the villager's held present shirt is from this letter */
+    /* 0x00 */ u8 wearingPresentCloth:1;   /* set when a villager is wearing the shirt sent with the saved letter */
+    /* 0x00 */ u8 unk5:3; /* seemingly unused */
+} Anmlet; // size = 0x1
 
 typedef struct AnmPersonalId_c {
     /* 0x00 */ u16 npcId; /* id */
@@ -32,12 +77,79 @@ typedef struct AnmPersonalId_c {
     /* 0x0B */ u8 looks; /* internal name for personality */
 } AnmPersonalID_c; // size = 0xC
 
-typedef struct Animal_c {
-    /* 0x000 */ AnmPersonalID_c id; 
-    /* 0x00C */ char unk00C[0x4D4];
-    /* 0x4E0 */ AnmHome_c homeInfo;
-    /* 0x4E5 */ char unk4E5[0x43]; 
-} Animal_c;
+typedef struct Anmplmail_c {
+  /* 0x000 */ u8 font; /* 'font' to use for letter info */
+  /* 0x001 */ u8 paperType; 
+  /* 0x002 */ u16 present;
+  /* 0x004 */ u8 headerBackStart; /* position for name insertion in header */
+  /* 0x005 */ u8 header[MAIL_HEADER_LEN];
+  /* 0x00F */ u8 body[MAIL_BODY_LEN];
+  /* 0x06F */ u8 footer[MAIL_FOOTER_LEN];
+  /* 0x07F */ u8 unk7F; /* likely pad */
+  /* 0x080 */ lbRTC_ymd_t date; /* sent date */
+} Anmplmail_c; // size = 0x84
+
+typedef struct Anmmem_c {
+  /* 0x000 */ PersonalID_c memoryPlayerId; /* personal id of the player memory belongs to */
+  /* 0x014 */ lbRTC_time_c lastSpeakTime; /* time the player last spoke to this villager */
+  /* 0x01C */ Anmland land; /* union between town NPC land memory & islander player action memory */
+  /* 0x028 */ u64 savedTownTune; /* memory origin town tune */
+  /* 0x030 */ s8 friendship; /* friendship with the player */
+  /* 0x031 */ Anmlet letterInfo; /* saved letter flags */
+  /* 0x032 */ Anmplmail_c letter; /* saved letter */
+} Anmmem_c; // size 0xB0
+
+typedef struct Animal_c { 
+    /* 0x000 */ AnmPersonalID_c id;
+    /* 0x00C */ Anmmem_c memories[ANIMAL_MEMORY_NUM];  
+    /* 0x4E0 */ Anmhome_c homeInfo;
+    /* 0x4E5 */ u8 catchphrase[ANIMAL_CATCHPHRASE_LEN];
+    /* 0x4E9 */ char unk4E9[0x3];
+    /* 0x4EC */ QuestContest contestQuest;
+    /* 0x4E9 */ u8 previousLandName[LAND_NAME_SIZE];
+    /* 0x4E9 */ char parentName[ANIMAL_NAME_LEN]; 
+    /* 0x51C */ u16 previousLandId;
+    /* 0x4E9 */ u8 mood;
+    /* 0x4E9 */ u8 moodTime;
+    /* 0x4E9 */ u16 cloth;
+    /* 0x4E9 */ u16 removeInfo;
+    /* 0x4E9 */ u8 isHome;
+    /* 0x4E9 */ u8 movedIn;
+    /* 0x4E9 */ u8 isMoving;
+} Animal_c; // size = 0x528
+
+typedef struct SpecialNpcData {
+    /* 0x00 */ u16 specialNpcId;
+    /* 0x02 */ u16 sex;
+    /* 0x04 */ s32 nameStringNumber;
+    /* 0x08 */ s32 soundId;
+} SpecialNpcData; // size = 0xC
+
+typedef struct NpcDefaultData {
+    /* 0x00 */ u16 cloth;
+    /* 0x02 */ u16 catchphraseIdx;
+    /* 0x04 */ s8 umbrella;
+} NpcDefaultData; // size = 0x5
+
+typedef struct NpcTalkInfo {
+    /* 0x00 */ u16 timer;
+    /* 0x02 */ u8 talkNum;
+    /* 0x03 */ u8 questRequest;
+    /* 0x04 */ u16 unlockTimer;
+    /* 0x06 */ u16 resetTimer;
+} NpcTalkInfo; // size = 0x8
+
+typedef struct NpcTemper {
+    /* 0x0 */ u16 unlockTimer;
+    /* 0x2 */ u8 overImpatientNum;
+    /* 0x3 */ u8 talkNumMax;
+} NpcTemper; // size = 0x4
+
+typedef enum NpcSex{
+    NPC_SEX_MALE,
+    NPC_SEX_FEMALE,
+    NPC_SEX_OTHER
+}NpcSex;
 
 typedef enum NpcLooks{
     /* 0 */ NPC_LOOKS_GIRL,
@@ -49,6 +161,23 @@ typedef enum NpcLooks{
 
     /* 6 */ NPC_LOOKS_NUM
 }NpcLooks;
+
+typedef enum NpcFeels{
+    /* 0 */ NPC_FEEL_NORMAL,
+    /* 1 */ NPC_FEEL_HAPPY,
+    /* 2 */ NPC_FEEL_ANGRY,
+    /* 3 */ NPC_FEEL_SAD,
+    /* 4 */ NPC_FEEL_SLEEPY,
+    /* 5 */ NPC_FEEL_PITFALL,
+    /* 6 */ NPC_FEEL_NUM
+}NpcFeels;
+
+typedef enum NpcPatience {
+    /* 0 */ NPC_PATIENCE_MILDLY_ANNOYED,
+    /* 1 */ NPC_PATIENCE_ANNOYED,
+    /* 2 */ NPC_PATIENCE_NORMAL,
+    /* 3 */ NPC_PATIENCE_NUM
+}NpcPatience;
 
 // void func_800A6920_jp();
 // void func_800A6940_jp();
