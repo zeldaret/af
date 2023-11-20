@@ -5718,6 +5718,9 @@ cKF_ba_r_obj_w_toudai = 0x06080A74;
 obj_s_toudai_light_model = 0x0607E188;
 obj_w_toudai_light_model = 0x0607FD90;
 
+// ac_t_hanabi
+
+main_utiwa1_model = 0x06000080;
 
 // Buffers
 

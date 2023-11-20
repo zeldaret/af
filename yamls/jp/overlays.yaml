@@ -3406,7 +3406,7 @@
     bss_size: 0x0
     subsegments:
       - [0x8E78A0, c, overlays/actors/ovl_T_Hanabi/ac_t_hanabi]
-      - [0x8E7B10, data, overlays/actors/ovl_T_Hanabi/ac_t_hanabi]
+      - [0x8E7B10, .data, overlays/actors/ovl_T_Hanabi/ac_t_hanabi]
       - [0x8E7B70, .rodata, overlays/actors/ovl_T_Hanabi/ac_t_hanabi]
   - name: ovl_T_Hanabi_reloc
     type: code
