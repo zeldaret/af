@@ -9,7 +9,7 @@
 #include "game.h"
 #include "sys_math3d.h"
 #include "m_scene.h"
-#include "6DE300.h"
+#include "m_quest.h"
 #include "6F5550.h"
 #include "libc/stddef.h"
 #include "attributes.h"

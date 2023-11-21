@@ -4,6 +4,6 @@
 #include "ultra64.h"
 
 // void func_80096710_jp();
-// void func_80096740_jp();
+void mIN_copy_name_str(u8*, u16);
 
 #endif

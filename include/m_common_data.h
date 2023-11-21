@@ -101,10 +101,6 @@ typedef struct CommonData_unk_10098 {
     /* 0x86C */ UNK_TYPE unk_86C;
 } CommonData_unk_10098; // size >= 0x870
 
-typedef struct MotherMailInfo {
-    /* 0x00 */ UNK_TYPE1 unk_00[0xE];
-} MotherMailInfo; // size = 0xE
-
 typedef enum Season {
     /* 0 */ SPRING,
     /* 1 */ SUMMER,
@@ -171,23 +167,26 @@ typedef struct CommonData {
     /* 0x062A8 */ Foreground foreground[FG_BLOCK_Z_NUM][FG_BLOCK_X_NUM];
     /* 0x09EA8 */ u8 unk_09EA8[0x70];
     /* 0x09F18 */ Animal_c animals[ANIMAL_NUM_MAX]; // villagers in town
-    /* 0x0EC70 */ u8 unk_0EC70[0x134];
+    /* 0x0EC70 */ AnmPersonalID_c lastRemovedAnimalId;
+    /* 0x0EC7C */ u8 unk_0EC7C[0x124];
     /* 0x0EDA4 */ EventSaveInfo eventSaveInfo;
     /* 0x0EE40 */ u8 unk_0EE40[0x118];
     /* 0x0EF58 */ u16 fruit;
     /* 0x0EF5A */ UNK_TYPE1 unk_0EF5A[0x12];
-    /* 0x0EF6C */ Mail unk_0EF6C[5];
+    /* 0x0EF6C */ Mail_c unk_0EF6C[5];
     /* 0x0F2A0 */ UNK_TYPE1 unk_0F2A0[0x17C];
     /* 0x0F41C */ SnowmanData snowmanData[SNOWMAN_SAVE_COUNT];
-    /* 0x0F428 */ UNK_TYPE1 unk_F428[0x10];
+    /* 0x0F428 */ u64 melody;
+    /* 0x0F430 */ UNK_TYPE1 unk_F430[8];
     /* 0x0F438 */ u8 stationType;
     /* 0x0F439 */ u8 unk_F439[0x3];
     /* 0x0F43C */ u16 deposit[FG_BLOCK_X_NUM * FG_BLOCK_Z_NUM][UT_Z_NUM]; // flags for which items are buried around town
-    /* 0x0F7FC */ lbRTC_time_c unk_0F7FC;
-    /* 0x0F804 */ MotherMailInfo motherMailInfo[PLAYER_NUM];
+    /* 0x0F7FC */ lbRTC_time_c lastGrowTime;
+    /* 0x0F804 */ PrivateMotherMail motherMailInfo[PLAYER_NUM];
     /* 0x0F83C */ u8 unk_0F83C[0x8];
     /* 0x0F844 */ FamicomEmuCommonData famicomEmuCommonData;
-    /* 0x0F86A */ u8 unk_0F86A[0x32];
+    /* 0x0F86A */ u8 npcUsedTable[32];
+    /* 0x0F88A */ u8 unk_0F88A[0x12];
     /* 0x0F89C */ lbRTC_time_c unk_0F89C;
     /* 0x0F8A4 */ lbRTC_time_c unk_0F8A4;
     /* 0x0F8AC */ UNK_TYPE1 unk_0F8AC;
@@ -236,7 +235,7 @@ typedef struct CommonData {
     /* 0x105A0 */ u32 sceneFromTitleDemo;
     /* 0x105A4 */ NpsSchedule npcSchedule[ANIMAL_NUM_MAX];
     /* 0x10694 */ NpcWalking npcWalk;
-    /* 0x10710 */ UNK_TYPE1 unk_10710[0x3C];
+    /* 0x10710 */ NpcEvent npcEvent[5];
     /* 0x1074C */ UNK_TYPE unk_1074C;
     /* 0x10750 */ UNK_TYPE1 unk_10750[0x4];
     /* 0x10754 */ UNK_TYPE unk_10754;
@@ -248,7 +247,9 @@ typedef struct CommonData {
     /* 0x107E0 */ s8 player_decoy_flag;
     /* 0x107E1 */ u8 unk_107E1[0x3];
     /* 0x107E4 */ s16 unk_107E4;
-    /* 0x107E6 */ u8 unk_107E6[0x254];
+    /* 0x107E6 */ u8 unk107E6[0x252];
+    /* 0x10A38 */ s8 beeStingFlag;
+    /* 0x10A39 */ u8 unk_10A39;
     /* 0x10A3A */ u8 gokiShockedFlag;
     /* 0x10A3B */ UNK_TYPE1 unk_10A3B[0x1];
     /* 0x10A3C */ UNK_TYPE1 unk_10A3C[0x2C];

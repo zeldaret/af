@@ -2,9 +2,10 @@
 #define M_HOME_H_H
 
 #include "ultra64.h"
-#include "6DB420.h"
 #include "unk.h"
 #include "lb_rtc.h"
+#include "m_private_internals.h"
+#include "m_mail.h"
 
 #define HOME_MAILBOX_SIZE 10
 #define HANIWA_ITEM_HOLD_NUM 4
@@ -57,12 +58,13 @@ typedef struct mHm_goki_c {
 } mHm_goki_c; // size = 0x6
 
 typedef struct mHm_hs_c {
-    /* 0x000 */ PersonalID unk_000;
+    /* 0x000 */ PersonalID_c ownerID;
     /* 0x010 */ UNK_TYPE1 unk_010[0x12];
     /* 0x022 */ u8 unk_022;
     /* 0x023 */ UNK_TYPE1 unk023[0x1];
     /* 0x024 */ u8 unk_024;
-    /* 0x025 */ UNK_TYPE1 unk025[0xABB];
+    /* 0x025 */ UNK_TYPE1 unk025[0x453];
+    /* 0x478 */ Mail_c mailbox[HOME_MAILBOX_SIZE];
     /* 0xAE0 */ Haniwa_c haniwa;
     /* 0xB3C */ mHm_goki_c goki;
     /* 0xB42 */ UNK_TYPE1 unkB42[0x6];

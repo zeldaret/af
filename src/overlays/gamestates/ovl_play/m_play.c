@@ -358,7 +358,7 @@ void play_cleanup(Game* game) {
 
     Actor_info_dt(&game_play->actorInfo, game_play);
     mEv_finish(&game_play->event);
-    func_800AA124_jp();
+    mNpc_ClearEventNpc();
     mSM_submenu_dt(&game_play->submenu);
     game_play->unk_1DAC = -1;
     mSM_submenu_ovlptr_cleanup(&game_play->submenu);

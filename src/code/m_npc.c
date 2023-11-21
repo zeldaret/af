@@ -1,12 +1,31 @@
 #include "m_npc.h"
+#include "macros.h"
+#include "m_lib.h"
+#include "m_land.h"
+#include "m_time.h"
+#include "m_field_info.h"
+#include "m_mail_check.h"
+#include "6E30B0.h"
+#include "6E7AD0.h"
+#include "m_handbill.h"
+#include "z_std_dma.h"
+#include "6DA460.h"
+#include "m_house.h"
+#include "m_malloc.h"
+#include "segment_symbols.h"
+#include "m_item_name.h"
+#include "m_name_table.h"
+#include "m_police_box.h"
+#include "6A5B00.h"
+#include "6A83A0.h"
 
 NpcDefaultData npc_def_list[];
 s8 npc_grow_list[];
 NpcList npc_house_list[];
 
-SpecialNpcData l_sp_actor_name[];
-
-s32 mNpc_SearchAnimalPersonalID(AnmPersonalID_c* id);
+SpecialNpcData l_sp_actor_name[] = {
+    {0xD008, NPC_SEX_MALE,0x205, 2},
+};
 
 u8 l_no_ending_npc_ending[ANIMAL_CATCHPHRASE_LEN] = { 0xD3, 0xAF, 0x9D, 0x20 };
 u8 l_no_name_npc_name[ANIMAL_NAME_LEN] = { 0xD4, 0x8E, 0xA6, 0x90, 0x85, 0x42 };
@@ -134,7 +153,7 @@ void mNpc_SetParentName(Animal_c* animal, PersonalID_c* parentId) {
 
 void mNpc_SetParentNameAllAnimal() {
     Animal_c* animal = common_data.animals;  
-    Private_c* priv = common_data.nowPrivate;
+    PrivateInfo* priv = common_data.privateInfo;
     s32 i;
     
     if (priv != NULL) {
@@ -156,11 +175,11 @@ void mNpc_ClearAnimalMail(Anmplmail_c* mail) {
 }
 
 void mNpc_CopyAnimalMail(Anmplmail_c* dst, Anmplmail_c* src) {
-    mem_copy(dst, src, sizeof(Anmplmail_c));
+    mem_copy((u8*)dst, (u8*)src, sizeof(Anmplmail_c));
 }
 
 void mNpc_ClearAnimalMemory(Anmmem_c* memory, s32 num) {
-    for (num; num != 0; num--) {
+    for (; num != 0; num--) {
         if (memory != NULL) {
         mPr_ClearPersonalID(&memory->memoryPlayerId);
         lbRTC_TimeCopy(&memory->lastSpeakTime, &mTM_rtcTime_clear_code);
@@ -179,7 +198,7 @@ void mNpc_ClearAnimalMemory(Anmmem_c* memory, s32 num) {
 }
 
 void mNpc_CopyAnimalMemory(Anmmem_c* dst, Anmmem_c* src) {
-    mem_copy(dst, src, sizeof(Anmmem_c));
+    mem_copy((u8*)dst, (u8*)src, sizeof(Anmmem_c));
 }
 
 
@@ -213,7 +232,7 @@ s32 mNpc_CheckFreeAnimalMemory(Anmmem_c* memory) {
 
 
 void mNpc_RenewalAnimalMemory() {
-    Private_c* priv;
+    PrivateInfo* priv;
     Animal_c* animal = common_data.animals;  
     Anmmem_c* memory;
     s32 i;
@@ -225,7 +244,7 @@ void mNpc_RenewalAnimalMemory() {
 
         for (j = 0; j < ANIMAL_MEMORY_NUM; j++) {
             if (mNpc_CheckFreeAnimalMemory(memory) == FALSE && mLd_CheckThisLand(memory->memoryPlayerId.landName, memory->memoryPlayerId.landId) == TRUE) {
-                priv = common_data.private ;
+                priv = common_data.saveFilePrivateInfo ;
 
                 for (k = 0; k < PLAYER_NUM; k++) {
                     if (mPr_NullCheckPersonalID(&priv->playerId) == FALSE && mPr_CheckCmpPersonalID(&priv->playerId, &memory->memoryPlayerId) == TRUE) {
@@ -319,7 +338,7 @@ s32 mNpc_ForceGetFreeAnimalMemoryIdx(Anmmem_c* memory, s32 num) {
 
 void mNpc_SetAnimalMemory_NotSetDay(PersonalID_c* pid, Anmmem_c* memory) {
     if (memory != NULL) {
-        mNpc_ClearIslandAnimalMemory(memory, 1);
+        mNpc_ClearAnimalMemory(memory, 1);
         mPr_CopyPersonalID(&memory->memoryPlayerId, pid);
         memory->friendship = 1;
     }
@@ -351,12 +370,12 @@ s32 mNpc_GetAnimalMemoryIdx(PersonalID_c* pid, Anmmem_c* memory, s32 num) {
 
 
 void mNpc_SetAnimalLastTalk(Animal_c* animal) {
-    Private_c* priv;
+    PrivateInfo* priv;
     Anmmem_c* memory = NULL;
     s32 memoryIdx;  
     
-    if ( (&common_data.nowPrivate->playerId != NULL) && (animal != NULL)) {  
-        priv = common_data.nowPrivate; 
+    if ( (&common_data.privateInfo->playerId != NULL) && (animal != NULL)) {  
+        priv = common_data.privateInfo; 
         memoryIdx = mNpc_GetAnimalMemoryIdx(&priv->playerId, animal->memories, ANIMAL_MEMORY_NUM);
 
         if (memoryIdx != -1) { 
@@ -381,7 +400,7 @@ void mNpc_SetAnimalLastTalk(Animal_c* animal) {
 }
 
 void mNpc_SetAnimalPersonalID2Memory(AnmPersonalID_c* anmId) {
-    Private_c* priv = priv =  common_data.nowPrivate;
+    PrivateInfo* priv = priv =  common_data.privateInfo;
     Animal_c* animal;
     s32 id;
     
@@ -393,7 +412,7 @@ void mNpc_SetAnimalPersonalID2Memory(AnmPersonalID_c* anmId) {
              id = mNpc_GetAnimalMemoryIdx(&priv->playerId, animal->memories, ANIMAL_MEMORY_NUM);
 
             if (id == -1) {
-                 id = mNpc_ForceGetFreeAnimalMemoryIdx(&animal->memories, ANIMAL_MEMORY_NUM);
+                 id = mNpc_ForceGetFreeAnimalMemoryIdx(animal->memories, ANIMAL_MEMORY_NUM);
  
                 if (id != -1) { 
                     mNpc_SetAnimalMemory_NotSetDay(&priv->playerId, animal->memories + id);
@@ -459,7 +478,7 @@ s32 mNpc_GetAnimalMemoryBestFriend(Anmmem_c* memory, s32 num) {
     Anmmem_c* memoryP = memory;
     Anmmem_c* best_friend = NULL;
     s8 best_friendship = 0;
-    s8 pad;
+    UNUSED s8 pad;
     s32 res = -1;
     s32 i;
 
@@ -489,7 +508,7 @@ s32 mNpc_GetAnimalMemoryFriend_Land_Sex(Anmmem_c* memory, s32 num, s32 sex) {
         if (mNpc_CheckFreeAnimalMemory(memory) == FALSE) {
             id = mPr_GetPrivateIdx(&memory->memoryPlayerId);
 
-            if (id != -1 && common_data.private[id].gender == sex && mNpc_SelectBestFriend(&bestFriend, memory, &bestFriendship) == TRUE) {
+            if (id != -1 && common_data.saveFilePrivateInfo[id].gender == sex && mNpc_SelectBestFriend(&bestFriend, memory, &bestFriendship) == TRUE) {
                 res = i;
             }
         }
@@ -629,7 +648,7 @@ s32 mNpc_UseFreeAnimalInfo(Animal_c* animal, s32 count) {
 }
 
 void mNpc_CopyAnimalInfo(Animal_c* dst, Animal_c* src) {
-    mem_copy(dst, src, sizeof(Animal_c));
+    mem_copy((u8*)dst, (u8*)src, sizeof(Animal_c));
 }
 
 s32 mNpc_SearchAnimalinfo(Animal_c* animal, u16 npcName, s32 count) {
@@ -650,7 +669,7 @@ s32 mNpc_SearchAnimalinfo(Animal_c* animal, u16 npcName, s32 count) {
 }
 
 Animal_c* mNpc_GetAnimalInfoP(u16 id) {
-    s32 pad; 
+    UNUSED s32 pad; 
     Animal_c* animal = NULL;
     s32 idx = mNpc_SearchAnimalinfo(common_data.animals, id, ANIMAL_NUM_MAX);
 
@@ -680,15 +699,15 @@ s32 mNpc_SearchAnimalPersonalID(AnmPersonalID_c* id) {
 }
 
 AnmPersonalID_c* mNpc_GetOtherAnimalPersonalIDOtherBlock(AnmPersonalID_c* pids, s32 count, s32 blockX, s32 blockY, s32 flag) {
-    s32 pad;
+    UNUSED s32 pad;
     AnmPersonalID_c* otherId;
     u8 npcMax;
-    s32 pad1;
+    UNUSED s32 pad1;
     s32 ids;
     u16 bitfield;
     s32 j; 
     s32 i; 
-    s32 pad2[2]; 
+    UNUSED s32 pad2[2]; 
     s32 valid; 
     Animal_c* animal = common_data.animals;
     s32 tempHome;
@@ -781,9 +800,9 @@ AnmPersonalID_c* mNpc_GetOtherAnimalPersonalID(AnmPersonalID_c* pids, s32 count)
 }
 
 void mNpc_SetAnimalThisLand(Animal_c* animal, s32 count) {
-    mLd_land_info_c* landInfo = &common_data.landInfo;
+    LandInfo* landInfo = &common_data.landInfo;
 
-    for (count; count != 0; count--) {
+    for (; count != 0; count--) {
         if (!mNpc_CheckFreeAnimalPersonalID(&animal->id)) {
             animal->id.landId = landInfo->id; 
             mLd_CopyLandName(animal->id.landName, landInfo->name);
@@ -812,13 +831,13 @@ s32 mNpc_GetSameLooksNum(u8 looks) {
 }
 
 s32 mNpc_CheckNpcExistBlock(s32 idx, s32 checkBx, s32 checkBz) {
-    s32 pad;  
+    UNUSED s32 pad;  
     s32 bx;
     s32 bz;
     s32 res = FALSE;
 
     if (idx >= 0 && idx < (ANIMAL_NUM_MAX)) {
-        if ((mFI_Wpos2BlockNum(&bx, &bz, common_data.npcList[idx].position) == TRUE) && (bx == checkBx) && (bz == checkBz)) {
+        if ((mFI_Wpos2BlockNum(&bx, &bz, common_data.npclist[idx].position) == TRUE) && (bx == checkBx) && (bz == checkBz)) {
             res = TRUE;
         }
     }
@@ -827,9 +846,9 @@ s32 mNpc_CheckNpcExistBlock(s32 idx, s32 checkBx, s32 checkBz) {
 }
 
 void mNpc_Mail2AnimalMail(Anmplmail_c* animalMail, Mail_c* mail) {
-    mem_copy(animalMail->body, mail->content.body, MAIL_BODY_LEN);
-    mem_copy(animalMail->header, mail->content.header, MAIL_HEADER_LEN);
-    mem_copy(animalMail->footer, mail->content.footer, MAIL_FOOTER_LEN);
+    mem_copy((u8*)animalMail->body, (u8*)mail->content.body, MAIL_BODY_LEN);
+    mem_copy((u8*)animalMail->header, (u8*)mail->content.header, MAIL_HEADER_LEN);
+    mem_copy((u8*)animalMail->footer, (u8*)mail->content.footer, MAIL_FOOTER_LEN);
 
     animalMail->headerBackStart = mail->content.headerBackStart;
     animalMail->font = mail->content.font;
@@ -838,9 +857,9 @@ void mNpc_Mail2AnimalMail(Anmplmail_c* animalMail, Mail_c* mail) {
 }
 
 void mNpc_AnimalMail2Mail(Mail_c* mail, Anmplmail_c* animal_mail, PersonalID_c* pid, AnmPersonalID_c* anmId) {
-    mem_copy(mail->content.body, animal_mail->body, MAIL_BODY_LEN);
-    mem_copy(mail->content.header, animal_mail->header, MAIL_HEADER_LEN);
-    mem_copy(mail->content.footer, animal_mail->footer, MAIL_FOOTER_LEN);
+    mem_copy((u8*)mail->content.body, (u8*)animal_mail->body, MAIL_BODY_LEN);
+    mem_copy((u8*)mail->content.header, (u8*)animal_mail->header, MAIL_HEADER_LEN);
+    mem_copy((u8*)mail->content.footer, (u8*)animal_mail->footer, MAIL_FOOTER_LEN);
 
     mail->content.headerBackStart = animal_mail->headerBackStart;
     mail->content.font = animal_mail->font;
@@ -867,7 +886,7 @@ s32 mNpc_CheckMailChar(u8 c) {
 }
 
 s32 mNpc_CheckNormalMail_sub(s32* num, u8* body) {
-    s32 pad[2];
+    UNUSED s32 pad[2];
     s32 consecutiveChars = 0;
     u8 lastChar = 0x20;
     s32 runningLen = 1;
@@ -968,7 +987,7 @@ s32 mNpc_SetMailCondThisLand(Anmmem_c* memory, u8* body) {
     u8 cond = mNpc_CheckNormalMail(body);
 
     if (cond < 2) {
-        remail = &common_data.nowPrivate->remail; 
+        remail = &common_data.privateInfo->remail; 
 
 
         remail->date.year = common_data.time.rtcTime.year;
@@ -1001,7 +1020,7 @@ s32 mNpc_SendMailtoNpc(Mail_c* mail) {
     AnmPersonalID_c anmId;
     s32 res = FALSE;
     Animal_c* animal;
-    s32 pad; 
+    UNUSED s32 pad; 
     s32 anmIdx;
     Anmmem_c* memory;
     s32 cond;
@@ -1019,7 +1038,7 @@ s32 mNpc_SendMailtoNpc(Mail_c* mail) {
             memoryIdx = mNpc_GetAnimalMemoryIdx(&mail->header.sender.personalID, animal->memories, ANIMAL_MEMORY_NUM);
 
             if (memoryIdx == -1) {
-                memoryIdx = mNpc_ForceGetFreeAnimalMemoryIdx(&animal->memories, ANIMAL_MEMORY_NUM);
+                memoryIdx = mNpc_ForceGetFreeAnimalMemoryIdx(animal->memories, ANIMAL_MEMORY_NUM);
 
                 if (memoryIdx >= 0) {
                     mPr_CopyPersonalID(&animal->memories[memoryIdx].memoryPlayerId, &mail->header.sender.personalID);
@@ -1034,7 +1053,7 @@ s32 mNpc_SendMailtoNpc(Mail_c* mail) {
             cond = mNpc_SetRemailCond(animal, memory, mail->content.body);
 
             if (mEv_CheckFirstJob() == TRUE) {
-                mQst_errand_c* firstJob = mQst_GetFirstJobData();
+                QuestErrand* firstJob = mQst_GetFirstJobData();
 
                 if ( (firstJob->base.questKind == 6 || firstJob->base.questKind == 10) && firstJob->base.progress != 0) { 
                     firstJob->base.progress = 3;
@@ -1107,8 +1126,8 @@ s32 mNpc_GetHandbillz(Mail_c* mail, s32 superNum, s32 mailANum, s32 mailBNum, s3
     res = mHandbillz_load(&handbill);
     if (res == TRUE) {
         mail->content.headerBackStart = handbill.headerBackStart;
-        mem_copy(mail->content.header, tmp_super, MAIL_HEADER_LEN);
-        mem_copy(mail->content.footer, tmp_ps, MAIL_FOOTER_LEN);
+        mem_copy((u8*)mail->content.header, tmp_super, MAIL_HEADER_LEN);
+        mem_copy((u8*)mail->content.footer, tmp_ps, MAIL_FOOTER_LEN);
     }
 
     return res;
@@ -1136,27 +1155,27 @@ void mNpc_SetRemailFreeString(PersonalID_c* pid, AnmPersonalID_c* anmId, Anmrema
 
  
 
-    mHandbill_Set_free_str(HANDBILL_FREE_STR0, pid->playerName, PLAYER_NAME_LEN);
+    mHandbill_Set_free_str(0, pid->playerName, PLAYER_NAME_LEN);
   
     if (remail == NULL) {  
         mNpc_GetNpcWorldNameAnm(freeStr, anmId);
-        mHandbill_Set_free_str(HANDBILL_FREE_STR1, freeStr, ANIMAL_NAME_LEN);
+        mHandbill_Set_free_str(1, freeStr, ANIMAL_NAME_LEN);
 
         mNpc_GetNpcWorldNameAnm(freeStr, mNpc_GetOtherAnimalPersonalID(anmId, 1));
-        mHandbill_Set_free_str(HANDBILL_FREE_STR2, freeStr, ANIMAL_NAME_LEN);
+        mHandbill_Set_free_str(2, freeStr, ANIMAL_NAME_LEN);
     }
     else {
-        mHandbill_Set_free_str(HANDBILL_FREE_STR1, remail->name, ANIMAL_NAME_LEN); // foreign npc name
+        mHandbill_Set_free_str(1, remail->name, ANIMAL_NAME_LEN); // foreign npc name
         mNpc_GetNpcWorldNameAnm(freeStr,  mNpc_GetOtherAnimalPersonalID(NULL, 0));
-        mHandbill_Set_free_str(HANDBILL_FREE_STR2, freeStr, ANIMAL_NAME_LEN); // random player town npc name
-        mHandbill_Set_free_str(HANDBILL_FREE_STR14, remail->landName, LAND_NAME_SIZE); // foreign town name
-        mHandbill_Set_free_str(HANDBILL_FREE_STR15, mLd_GetLandName(), LAND_NAME_SIZE); // player town name
+        mHandbill_Set_free_str(2, freeStr, ANIMAL_NAME_LEN); // random player town npc name
+        mHandbill_Set_free_str(14, remail->landName, LAND_NAME_SIZE); // foreign town name
+        mHandbill_Set_free_str(15, mLd_GetLandName(), LAND_NAME_SIZE); // player town name
     }
 
     for (i = 0; i < ARRAY_COUNT(base_str_no); i++) {
      
         mString_Load_StringFromRom(freeStr, ARRAY_COUNT(freeStr), base_str_no[i] + RANDOM(32.0f)); 
-        mHandbill_Set_free_str(HANDBILL_FREE_STR3 + i, freeStr, ARRAY_COUNT(freeStr));
+        mHandbill_Set_free_str(3 + i, freeStr, ARRAY_COUNT(freeStr));
     }
 }
 
@@ -1234,8 +1253,8 @@ void mNpc_GetRemailWrongData(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* a
     msgNo += RANDOM2(3.0f);
     mHandbill_Load_HandbillFromRom(tmp_super, &headerBackStart, tmp_ps, mail->content.body, msgNo);
     mail->content.headerBackStart = headerBackStart;
-    mem_copy(mail->content.header, tmp_super, MAIL_HEADER_LEN);
-    mem_copy(mail->content.footer, tmp_ps, MAIL_FOOTER_LEN);
+    mem_copy((u8*)mail->content.header, tmp_super, MAIL_HEADER_LEN);
+    mem_copy((u8*)mail->content.footer, tmp_ps, MAIL_FOOTER_LEN);
     mail->present = 0;
 }
 
@@ -1293,7 +1312,7 @@ s32 mNpc_CheckLetterTime(lbRTC_ymd_t* letterDate, lbRTC_time_c* rtcTime) {
 void mNpc_Remail() {
     Animal_c* animal = common_data.animals;
     Anmremail* remail;
-    Private_c* priv = common_data.nowPrivate;
+    PrivateInfo* priv = common_data.privateInfo;
     Anmmem_c* memory;
     lbRTC_time_c* rtcTime = &common_data.time.rtcTime;
   
@@ -1373,19 +1392,19 @@ void mNpc_GetEventMail(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* anmId, 
     static u8 animal_name[ANIMAL_NAME_LEN];
 
     u16 present;
-    s32 pad;
+    UNUSED s32 pad;
 
-    mHandbill_Set_free_str(HANDBILL_FREE_STR0, pid->playerName, PLAYER_NAME_LEN);
+    mHandbill_Set_free_str(0, pid->playerName, PLAYER_NAME_LEN);
     mNpc_GetNpcWorldNameAnm(animal_name, anmId);
-    mHandbill_Set_free_str(HANDBILL_FREE_STR6, animal_name, ANIMAL_NAME_LEN);
+    mHandbill_Set_free_str(6, animal_name, ANIMAL_NAME_LEN);
     mNpc_GetEventPresent(&present, type); 
     mNpc_LoadMailDataCommon2(mail, pid, anmId, present, mNpc_GetPaperType(), 0x60 + (looks * 3) + type);
 }
 
 s32 mNpc_SendEventPresentMail(PersonalID_c* pid, s32 playerNo, AnmPersonalID_c* anmId, s32 type) {
-    s32 pad;
+    UNUSED s32 pad;
     mHm_hs_c* home; 
-    s32 pad2;
+    UNUSED s32 pad2;
     s32 freeIdx; 
     s32 looks;
     s32 res; 
@@ -1505,19 +1524,19 @@ void mNpc_GetBirthdayCard(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* anmI
     s32 mailNo = 0xEA + anmId->looks * 3 + RANDOM(3); 
     u16 present;
 
-    mHandbill_Set_free_str(HANDBILL_FREE_STR0, pid->playerName, PLAYER_NAME_LEN);
+    mHandbill_Set_free_str(0, pid->playerName, PLAYER_NAME_LEN);
     mNpc_GetNpcWorldNameAnm(animal_name, anmId);
-    mHandbill_Set_free_str(HANDBILL_FREE_STR1, animal_name, ANIMAL_NAME_LEN);
+    mHandbill_Set_free_str(1, animal_name, ANIMAL_NAME_LEN);
     mNpc_GetBirthdayPresent(&present); 
     mIN_copy_name_str(itemName, present); 
-    mHandbill_Set_free_str(HANDBILL_FREE_STR2, itemName, 10);
+    mHandbill_Set_free_str(2, itemName, 10);
     mNpc_LoadMailDataCommon2(mail, pid, anmId, present, mNpc_GetPaperType(), mailNo);
 }
 
 s32 mNpc_SendBirthdayCard(PersonalID_c* pid, s32 playerNo, AnmPersonalID_c* anm_id){
-    s32 pad; 
+    UNUSED s32 pad; 
     mHm_hs_c* home;
-    s32 pad2;
+    UNUSED s32 pad2;
     s32 freeIdx;
     s32 res = FALSE;
 
@@ -1539,7 +1558,7 @@ s32 mNpc_SendBirthdayCard(PersonalID_c* pid, s32 playerNo, AnmPersonalID_c* anm_
     return res;
 }
 
-s32 mNpc_SendEventBirthdayCard(PersonalID_c* pid) {
+s32 mNpc_SendEventBirthdayCard(UNUSED PersonalID_c* pid) {
     return FALSE;
 }
 
@@ -1567,7 +1586,7 @@ s32 mNpc_SendEventBirthdayCard2(PersonalID_c* pid, s32 playerNo){
 }
 
 void mNpc_GetXmasCardData(Mail_c* mail, PersonalID_c* pid){
-    UNUSED s32 pad;
+    UNUSED UNUSED s32 pad;
     s32 headerBackStart;
 
     mHandbill_Load_HandbillFromRom(mail->content.header, &headerBackStart, mail->content.footer, mail->content.body, 0xD7);
@@ -1581,9 +1600,9 @@ void mNpc_GetXmasCardData(Mail_c* mail, PersonalID_c* pid){
 }
 
 s32 mNpc_SendEventXmasCard(PersonalID_c* pid, s32 playerNo){
-    s32 pad; 
+    UNUSED s32 pad; 
     mHm_hs_c* home;
-    s32 pad2; 
+    UNUSED s32 pad2; 
     s32 freeSpace; 
     s32 res = FALSE;
 
@@ -1614,7 +1633,7 @@ u8* mNpc_GetWordEnding(Actor* actor){
     Animal_c* temp;
     u8* wordEnding;
 
-    if (actor != NULL & actor->part == ACTOR_PART_NPC) {
+    if ((actor != NULL) & actor->part == ACTOR_PART_NPC) {
         animalInfo = temp = ((Npc*)actor)->npcInfo.animal;
     }
     else{
@@ -1656,7 +1675,7 @@ void mNpc_ResetWordEnding(Actor* actor){
 }
 
 s32 mNpc_GetFreeEventNpcIdx(){
-    NpcEvent* npcEvent = &common_data.npcEvent;
+    NpcEvent* npcEvent = common_data.npcEvent;
     s32 i;
 
     for (i = 0; i < ARRAY_COUNT(common_data.npcEvent); i++) {
@@ -1812,13 +1831,13 @@ void mNpc_ResetHaveAppeared_common(u8* npcUsedTable, Animal_c* animal){
 void mNpc_ResetHaveAppeared(){
     s32 i;
 
-    for (i = 0; i < ARRAY_COUNT(npc_grow_list); i++) {
+    for (i = 0; i < NPC_NUM; i++) {
         if (mNpc_GetHaveAppeared_idx(i) == FALSE) {
             break;
         }
     }
 
-    if (i == ARRAY_COUNT(npc_grow_list)) {
+    if (i == NPC_NUM) {
         mNpc_ResetHaveAppeared_common(common_data.npcUsedTable,common_data.animals);
     }
 }
@@ -1982,7 +2001,7 @@ s32 mNpc_BlockNum2ReservedUtNum(s32* utX, s32* utZ, s32 bx, s32 bz) {
 }
 
 void mNpc_MakeReservedListBeforeFieldct(Anmhome_c* reserved, s32 reservedNum, u8* reservedCount) {
-    mFM_fg_c* fg = &common_data.fg[0][0];
+    Foreground* fg = &common_data.foreground[0][0];
     Anmhome_c* reservedp = reserved;
     u16* item; 
     u8 num = 0;
@@ -2094,7 +2113,7 @@ void mNpc_BuildHouseBeforeFieldct(u16 npcId, s32 bx, s32 bz, s32 utX, s32 utZ) {
                                       0xFFFF,}; 
 
     u16* deposit;
-    mFM_fg_c* fg;
+    Foreground* fg;
     s32 x;
     s32 z;
     s32 i;
@@ -2103,7 +2122,7 @@ void mNpc_BuildHouseBeforeFieldct(u16 npcId, s32 bx, s32 bz, s32 utX, s32 utZ) {
     if (bx >= 0 && bx < FG_BLOCK_X_NUM && bz >= 0 && bz < FG_BLOCK_Z_NUM && utX > 0 && utX < (UT_X_NUM - 1) &&
         utZ > 0 && utZ < (UT_Z_NUM - 1)) {
         set_fg[0] = house;
-        fg = &common_data.fg[bz][bx];
+        fg = &common_data.foreground[bz][bx];
 
         deposit = mFI_GetDepositP(bx + 1, bz + 1);
 
@@ -2131,15 +2150,15 @@ void mNpc_DestroyHouse(Anmhome_c* home) {
         utZ < (UT_Z_NUM - 1)) {
         u16 reserveNo = mFM_GetReseveName(home->blockX, home->blockZ);
 
-        common_data.fg[bz][bx].items[utZ][utX] = reserveNo;
-        common_data.fg[bz][bx].items[utZ + 1][utX - 1] = 0;
-        common_data.fg[bz][bx].items[utZ + 1][utX] = 0;
-        common_data.fg[bz][bx].items[utZ + 1][utX + 1] = 0;
-        common_data.fg[bz][bx].items[utZ][utX - 1] = 0;
-        common_data.fg[bz][bx].items[utZ][utX + 1] = 0;
-        common_data.fg[bz][bx].items[utZ - 1][utX - 1] = 0;
-        common_data.fg[bz][bx].items[utZ - 1][utX] = 0;
-        common_data.fg[bz][bx].items[utZ - 1][utX + 1] = 0;
+        common_data.foreground[bz][bx].items[utZ][utX] = reserveNo;
+        common_data.foreground[bz][bx].items[utZ + 1][utX - 1] = 0;
+        common_data.foreground[bz][bx].items[utZ + 1][utX] = 0;
+        common_data.foreground[bz][bx].items[utZ + 1][utX + 1] = 0;
+        common_data.foreground[bz][bx].items[utZ][utX - 1] = 0;
+        common_data.foreground[bz][bx].items[utZ][utX + 1] = 0;
+        common_data.foreground[bz][bx].items[utZ - 1][utX - 1] = 0;
+        common_data.foreground[bz][bx].items[utZ - 1][utX] = 0;
+        common_data.foreground[bz][bx].items[utZ - 1][utX + 1] = 0;
     }
 }
 
@@ -2183,7 +2202,7 @@ void mNpc_SetNpcHome(Animal_c* animal, Anmhome_c* reserved, u8 reserved_num) {
 
 void mNpc_InitNpcData() {
     static Anmhome_c reserved[60];
-    s32 pad; 
+    UNUSED s32 pad; 
     u8 reservedNum = 0;
 
     mNpc_MakeReservedListBeforeFieldct(reserved, ARRAY_COUNT(reserved), &reservedNum);
@@ -2191,7 +2210,7 @@ void mNpc_InitNpcData() {
 }
 
 void mNpc_InitNpcList() {
-    NpcList* npclist = common_data.npcList;
+    NpcList* npclist = common_data.npclist;
     s32 i;
 
     if (npclist != NULL) {
@@ -2199,7 +2218,7 @@ void mNpc_InitNpcList() {
 
         for (i = 0; i < ANIMAL_NUM_MAX; i++) {
             npclist->fieldName = 0xFFFF;
-            mQst_ClearQuestInfo(&npclist->unk20);
+            mQst_ClearQuestInfo(&npclist->questInfo);
             npclist->houseData.type = 0xFF;
             npclist->houseData.palette = 0xFF;
             npclist->houseData.wallId = 0xFF;
@@ -2293,7 +2312,7 @@ void mNpc_SetNpcinfo(Actor* actor, s8 npcInfoIdx) {
 
         if (npcInfoIdx >= 0 && npcInfoIdx < ANIMAL_NUM_MAX) {
             npc->npcInfo.animal = &common_data.animals[npcInfoIdx];
-            npc->npcInfo.list = &common_data.npcList[npcInfoIdx];
+            npc->npcInfo.list = &common_data.npclist[npcInfoIdx];
         } else {
             npc->npcInfo.animal = NULL;
             npc->npcInfo.list = NULL;
@@ -2301,13 +2320,13 @@ void mNpc_SetNpcinfo(Actor* actor, s8 npcInfoIdx) {
     } 
 }
 
-void mNpc_AddNpc_inNpcRoom(FMMoveActor* moveActor, u8 bx, u8 bz) {
+void mNpc_AddNpc_inNpcRoom(FieldMakeMoveActor* moveActor, u8 bx, u8 bz) {
     s32 animalId;
     s32 idx;
     u16 fieldId;
     u16 houseOwnerId;
     u8* animalIdInField;
-    s32 pad;
+    UNUSED s32 pad;
     u16 currentNpc;
     s32 npcId;
 
@@ -2319,7 +2338,7 @@ void mNpc_AddNpc_inNpcRoom(FMMoveActor* moveActor, u8 bx, u8 bz) {
             if ((fieldId & 0xF000) == 0x4000) {
                 houseOwnerId = common_data.houseOwnerName;
                 if ((idx < ANIMAL_NUM_MAX) && (houseOwnerId != 0xFFFF) && (houseOwnerId != 0)) {
-                    if (func_80082CC8_jp(houseOwnerId) != 1) {
+                    if (mEvNM_CheckJointEvent(houseOwnerId) != 1) {
                         animalId = mNpc_SearchAnimalinfo(common_data.animals, houseOwnerId, ANIMAL_NUM_MAX);
                         if (animalId != -1) {
                             moveActor->nameId = houseOwnerId;
@@ -2327,7 +2346,7 @@ void mNpc_AddNpc_inNpcRoom(FMMoveActor* moveActor, u8 bx, u8 bz) {
                             moveActor->utZ = 7;
                             moveActor->npcId = animalId;
                             moveActor->arg = -1;
-                            func_8008BC64_jp(idx, bx, bz);
+                            mFI_SetMoveActorBitData_ON(idx, bx, bz);
                         }
                     }
                 }
@@ -2342,7 +2361,7 @@ void mNpc_AddNpc_inNpcRoom(FMMoveActor* moveActor, u8 bx, u8 bz) {
                     moveActor->utZ = 7;
                     moveActor->npcId = npcId;
                     moveActor->arg = -1;
-                    func_8008BC64_jp(idx, bx, bz);
+                    mFI_SetMoveActorBitData_ON(idx, bx, bz);
                 }
             } 
         }
@@ -2359,10 +2378,10 @@ void mNpc_RenewalNpcRoom(s16* wallFloor){
     if ((fieldId & 0xF000) == 0x4000) {
         if ((ownerName != 0) && (ownerName != 0xFFFF)) {
             npcIdx = mNpc_SearchAnimalinfo(common_data.animals, ownerName, ANIMAL_NUM_MAX);
-            wallId = common_data.npcList[npcIdx].houseData.wallId;
-            floorId = common_data.npcList[npcIdx].houseData.floorId;
+            wallId = common_data.npclist[npcIdx].houseData.wallId;
+            floorId = common_data.npclist[npcIdx].houseData.floorId;
             *wallFloor = floorId | (wallId << 8);
-            {s32 scopedTemp;} 
+            {UNUSED s32 scopedTemp;} 
             return;
         }
     }
@@ -2382,7 +2401,7 @@ void mNpc_RenewalSetNpc(Actor* actor){
             npcList->appearFlag = TRUE; 
         }
     } else {
-        func_8008BD98_jp(actor);
+        mFI_MyMoveActorBitData_ON(actor);
     }
 }
 
@@ -2429,7 +2448,7 @@ s32 mNpc_CheckSelectFurniture(u16 item) {
     return res;
 }
 
-u16 func_800AB8A0_jp(FieldMakeFGData** data, NpcList* npcList, s32 count) {
+u16 mNpc_DecideNpcFurniture(FieldMakeFGData** data, NpcList* npcList, s32 count) {
     u16 layerId = npcList->houseData.mainLayerId;
     s32 idx = layerId - count;
     u16* fgItems;
@@ -2444,7 +2463,7 @@ u16 func_800AB8A0_jp(FieldMakeFGData** data, NpcList* npcList, s32 count) {
 
     for (i = 0; i < 10; i++) {
         for (j = 0; j < 10; j++) {
-            if ((ACTOR_FGNAME_GET_F000(*fgItems) == FGNAME_F000_1) && (func_800AB80C_jp(*fgItems) == TRUE)) {
+            if ((ACTOR_FGNAME_GET_F000(*fgItems) == FGNAME_F000_1) && (mNpc_CheckSelectFurniture(*fgItems) == TRUE)) {
                 num++;
             }
             fgItems++;
@@ -2458,7 +2477,7 @@ u16 func_800AB8A0_jp(FieldMakeFGData** data, NpcList* npcList, s32 count) {
 
         for (i = 0; i < 10; i++) {
             for (j = 0; j < 10; j++) {
-                if ((ACTOR_FGNAME_GET_F000(*fgItems) == FGNAME_F000_1) && (func_800AB80C_jp(*fgItems) == TRUE)) {
+                if ((ACTOR_FGNAME_GET_F000(*fgItems) == FGNAME_F000_1) && (mNpc_CheckSelectFurniture(*fgItems) == TRUE)) {
                     if (num <= 0) {
                         return *fgItems;
                     }
@@ -2474,7 +2493,7 @@ u16 func_800AB8A0_jp(FieldMakeFGData** data, NpcList* npcList, s32 count) {
 }
 
 void mNpc_SetNpcFurnitureRandom(FieldMakeFGData** data, s32 base) {
-    NpcList* npclist = common_data.npcList;
+    NpcList* npclist = common_data.npclist;
     Animal_c* animal = common_data.animals;
     s32 i;
 
@@ -2493,7 +2512,7 @@ u16 mNpc_GetNpcFurniture(AnmPersonalID_c* anmId) {
     s32 idx = mNpc_SearchAnimalPersonalID(anmId);
 
     if (idx != -1) {
-        furniture = common_data.npcList[idx].rewardFurniture;
+        furniture = common_data.npclist[idx].rewardFurniture;
     }
     return furniture;
 }
@@ -2509,7 +2528,7 @@ Animal_c* mNpc_GetInAnimalP() {
 }
 
 s32 mNpc_DecideRemoveAnimalNo_Friend(Animal_c* animal, s32 metFlag) {
-    Private_c* priv = common_data.private;
+    PrivateInfo* priv = common_data.saveFilePrivateInfo;
     s32 res = -1;
     s32 playerNumber = 0;
     s32 possibleNum = 0;
@@ -2528,7 +2547,7 @@ s32 mNpc_DecideRemoveAnimalNo_Friend(Animal_c* animal, s32 metFlag) {
     if (playerNumber > 0) {
         for (i = 0; i < ANIMAL_NUM_MAX; i++) {
             if (mNpc_CheckFreeAnimalInfo(animal) == FALSE){ 
-                priv = common_data.private;
+                priv = common_data.saveFilePrivateInfo;
                 met = 0;
             
                 for (j = 0; j < PLAYER_NUM; j++) {
@@ -2658,7 +2677,7 @@ s32 mNpc_CheckGoodbyAnimalMemoryNum(Animal_c* a0, Animal_c* a1) {
 }
 
 s32 mNpc_GetGoodbyAnimalIdx() {
-    s32 pad;
+    UNUSED s32 pad;
     Animal_c* animal = common_data.animals;
     Animal_c* otherAnimal = NULL;
     s32 res0;
@@ -2742,6 +2761,8 @@ s32 mNpc_GetGoodbyAnimalIdx() {
     return goodbyeIdx;
 }
 
+AnmGoodbyeMail l_mnpc_goodby_mail;
+
 void mNpc_ClearGoodbyMail(AnmGoodbyeMail* mail) {
     mNpc_ClearAnimalPersonalID(&mail->id);
     mail->deliverTo = 0;
@@ -2752,14 +2773,14 @@ void mNpc_FirstClearGoodbyMail() {
 }
 
 void mNpc_SetGoodbyAnimalMail(AnmGoodbyeMail* mail, Animal_c* animal) {
-    Private_c* priv = &common_data.private;
+    PrivateInfo* priv = common_data.saveFilePrivateInfo;
     s32 i;
 
     if ((animal != NULL) && (mNpc_CheckFreeAnimalPersonalID(&animal->id) == FALSE)) {
         mNpc_CopyAnimalPersonalID(&mail->id, &animal->id);
 
         for (i = 0; i < PLAYER_NUM; i++) {
-            if (func_800B7914_jp(&priv->playerId) == FALSE) {
+            if (mPr_NullCheckPersonalID(&priv->playerId) == FALSE) {
                 mail->deliverTo |= 1 << i;
             }
             priv++; 
@@ -2777,9 +2798,9 @@ s32 mNpc_SetGoodbyMailData(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* anm
         mailNo = (anm_id->looks * 3) + 0x20E;
         mailNo += mQst_GetRandom(3); 
         mNpc_GetNpcWorldNameAnm(animal_name, anm_id);
-        mHandbill_Set_free_str(HANDBILL_FREE_STR0, pid->playerName, PLAYER_NAME_LEN);
-        mHandbill_Set_free_str(HANDBILL_FREE_STR1, animal_name, ANIMAL_NAME_LEN);
-        mHandbill_Set_free_str(HANDBILL_FREE_STR3, common_data.landInfo.name, LAND_NAME_SIZE);
+        mHandbill_Set_free_str(0, pid->playerName, PLAYER_NAME_LEN);
+        mHandbill_Set_free_str(1, animal_name, ANIMAL_NAME_LEN);
+        mHandbill_Set_free_str(3, common_data.landInfo.name, LAND_NAME_SIZE);
         mNpc_LoadMailDataCommon2(mail, pid, anm_id, 0, mNpc_GetPaperType(), mailNo);
         res = TRUE;
     }
@@ -2787,7 +2808,7 @@ s32 mNpc_SetGoodbyMailData(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* anm
     return res;
 }
 
-s32 mNpc_SendGoodbyAnimalMailOne(Mail_c* mail, Private_c* priv, s32 playerNo, AnmPersonalID_c* anmId) {
+s32 mNpc_SendGoodbyAnimalMailOne(Mail_c* mail, PrivateInfo* priv, s32 playerNo, AnmPersonalID_c* anmId) {
     mHm_hs_c* home; 
     UNUSED s32 pad;
     s32 res = FALSE;
@@ -2811,12 +2832,12 @@ s32 mNpc_SendGoodbyAnimalMailOne(Mail_c* mail, Private_c* priv, s32 playerNo, An
 
 
 void mNpc_SendGoodbyAnimalMail(AnmGoodbyeMail* mail) {
-    Private_c* priv = &common_data.private;
+    PrivateInfo* priv = common_data.saveFilePrivateInfo;
     s32 i;
 
     if (mNpc_CheckFreeAnimalPersonalID(&mail->id) == FALSE) {
         for (i = 0; i < PLAYER_NUM; i++) {
-            if ((((mail->deliverTo >> i) & 1) == 1) && (mNpc_SendGoodbyAnimalMailOne(&l_npc_mail, &priv->playerId, i, mail) == TRUE)) {
+            if ((((mail->deliverTo >> i) & 1) == 1) && (mNpc_SendGoodbyAnimalMailOne(&l_npc_mail, priv, i, &mail->id) == TRUE)) {
                 mail->deliverTo &= ~(1 << i);
             }
             priv++;
@@ -2828,14 +2849,12 @@ void mNpc_SendGoodbyAnimalMail(AnmGoodbyeMail* mail) {
     }
 }
 
-Mail_c l_mnpc_goodby_mail;
-
 void mNpc_SendRegisteredGoodbyMail() {
     mNpc_SendGoodbyAnimalMail(&l_mnpc_goodby_mail);
 }
 
 void mNpc_GetRemoveAnimal(Animal_c* transferAnimal, s32 movingOut) {
-    Private_c* priv; 
+    PrivateInfo* priv; 
     UNUSED s32 pad[4];
     s32 newAnimal;
     Animal_c* animal;
@@ -2846,7 +2865,7 @@ void mNpc_GetRemoveAnimal(Animal_c* transferAnimal, s32 movingOut) {
 
     animal = common_data.animals;
     newAnimal = TRUE;
-    priv = common_data.nowPrivate;
+    priv = common_data.privateInfo;
     if (mLd_PlayerManKindCheck() == 0) { 
         if (movingOut == 1) {
             if (*removeAnimalIdx != 0xFF) {
@@ -2894,8 +2913,8 @@ void mNpc_GetRemoveAnimal(Animal_c* transferAnimal, s32 movingOut) {
             animal->homeInfo.blockZ = 0xFF;
             animal->homeInfo.utX = 0xFF;
             animal->homeInfo.utZ = 0xFF;
-            mLd_CopyLandName(animal->previousLandName, common_data.nowPrivate->playerId.landName);
-            animal->previousLandId = common_data.nowPrivate->playerId.landId;
+            mLd_CopyLandName(animal->previousLandName, common_data.privateInfo->playerId.landName);
+            animal->previousLandId = common_data.privateInfo->playerId.landId;
             mQst_ClearContest(&animal->contestQuest);
             transferAnimal->isMoving = 1;
             priv->animalMemory.npcId = animal->id.npcId;
@@ -2912,7 +2931,7 @@ s32 mNpc_CheckBuildHouse(s32 blockX, s32 blockZ, u8 utX, u8 utZ) {
     s32 res = FALSE;
 
     if ((blockX >= 0) && (blockX < 5) && (blockZ >= 0) && (blockZ < 6) && (utX < 0x10) && (utZ < 0x10)) {
-        u16 item = common_data.fg[blockZ][blockX].items[utZ][utX];
+        u16 item = common_data.foreground[blockZ][blockX].items[utZ][utX];
 
         if ((item >= 0x5810) && (item < 0x5825)) {
             res = TRUE;
@@ -2982,7 +3001,7 @@ void mNpc_SetReturnAnimal(Animal_c* returnAnimal) {
     }
 }
 
-void mNpc_AddActor_inBlock(FMMoveActor* moveActor, u8 bx, u8 bz) {
+void mNpc_AddActor_inBlock(FieldMakeMoveActor* moveActor, u8 bx, u8 bz) {
     mNpc_AddNpc_inNpcRoom(moveActor, bx, bz);
 }
 
@@ -3048,7 +3067,7 @@ void mNpc_GetNpcWorldNameP(u8* name, u16 npcId){
 
     for(i = 0; i < ARRAY_COUNT(l_sp_actor_name); i++){
         if(npcId == sp->specialNpcId){
-            func_800C3F70_jp(load_name,PLAYER_NAME_LEN, sp->nameStringNumber);
+            mString_Load_StringFromRom(load_name,PLAYER_NAME_LEN, sp->nameStringNumber);
             worldName = load_name;
             break;
         }
@@ -3258,7 +3277,7 @@ s32 mNpc_GetNpcSoundSpec(Actor* actor) {
 }
 
 
-void mNpc_GetMsg(s32 arg){
+void mNpc_GetMsg(UNUSED s32 arg){
      
 }
 
@@ -3288,7 +3307,7 @@ s32 mNpc_CheckGrowFieldRank() {
 }
 
 s32 mNpc_CheckGrow() {
-    s32 pad; 
+    UNUSED s32 pad; 
     lbRTC_time_c* rtcTime = &common_data.time.rtcTime;
     lbRTC_time_c* lastGrowTime = &common_data.lastGrowTime;
     s32 res = FALSE;
@@ -3306,7 +3325,7 @@ s32 mNpc_CheckGrow() {
             }
 
             if (interval >= (lbRTC_HOURS_PER_DAY * lbRTC_MINUTES_PER_HOUR) && mLd_PlayerManKindCheck() == FALSE &&
-                mNpc_CheckFriendAllAnimal(&common_data.nowPrivate->playerId) == TRUE) {
+                mNpc_CheckFriendAllAnimal(&common_data.privateInfo->playerId) == TRUE) {
                 res = TRUE;
             }
         }
@@ -3603,7 +3622,6 @@ s32 mNpc_GetMakeUtNuminBlock_hard_area(s32* ut_x, s32* ut_z, s32 bx, s32 bz, s32
     s32 nowUtZ;
     s32 minUtX;
     s32 minUtZ;
-    u32 center;
     s32 res;
     s32 i;
     s32 j;
@@ -3883,7 +3901,7 @@ s32 mNpc_GetNpcFloorNo() {
     if (((field_id & 0xF000) == 0x4000) && (owner_name != 0) && (owner_name != 0xFFFF)) { 
             s32 idx = mNpc_SearchAnimalinfo(common_data.animals, owner_name, ANIMAL_NUM_MAX);
 
-            floor_no = common_data.npcList[idx].houseData.floorId;
+            floor_no = common_data.npclist[idx].houseData.floorId;
         }
 
     return floor_no;
@@ -3892,7 +3910,7 @@ s32 mNpc_GetNpcFloorNo() {
 void mNpc_SetTalkBee() {
     if (common_data.beeStingFlag != TRUE) {
         Animal_c* animal = common_data.animals;
-        NpcList* npclist = common_data.npcList;
+        NpcList* npclist = common_data.npclist;
         s32 i;
 
         for (i = 0; i < ANIMAL_NUM_MAX; i++) {
@@ -3940,7 +3958,7 @@ void mNpc_SetInsectCompleteTalk(NpcList* npclist) {
 
 void mNpc_SetNpcHomeYpos() {
     Animal_c* animal = common_data.animals;
-    NpcList* npclist = common_data.npcList;
+    NpcList* npclist = common_data.npclist;
     s32 i;
 
     for (i = 0; i < ANIMAL_NUM_MAX; i++) {
@@ -3988,7 +4006,7 @@ void mNpc_SetTalkAnimalIdx_fdebug(AnmPersonalID_c* anm_id) {
 
 void mNpc_PrintFriendship_fdebug(gfxprint* gfxprint) {
     Anmmem_c* memory;
-    Private_c* priv;
+    PrivateInfo* priv;
     int x = 3;
     int y = 19;
     int i;
@@ -3999,7 +4017,7 @@ void mNpc_PrintFriendship_fdebug(gfxprint* gfxprint) {
         if (memory != NULL) {
             gfxprint_color(gfxprint, 250, 100, 170, 255);
             gfxprint_locate8x8(gfxprint, 3, 18);
-            priv = common_data.nowPrivate;
+            priv = common_data.privateInfo;
 
             if (priv != NULL) {
                 gfxprint_printf(gfxprint, "%4x ", priv->playerId.playerId);

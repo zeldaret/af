@@ -211,7 +211,7 @@ f32 mCoBG_GetBgY_OnlyCenter_FromWpos2(xyz_t arg0, f32 arg1);
 // void func_80072398_jp();
 // void func_800723C4_jp();
 // void func_80072418_jp();
-// void func_8007244C_jp();
+s32 func_8007244C_jp(u32);
 // void func_8007246C_jp();
 // void func_8007249C_jp();
 // void func_80072530_jp();

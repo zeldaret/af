@@ -5,18 +5,26 @@
 #include "m_actor.h"
 #include "unk.h"
 #include "m_land.h"
-#include "6DB420.h"
-#include "m_mail.h"
 #include "lb_rtc.h"
+#include "libu64/gfxprint.h"
+#include "m_quest.h"
+#include "m_mail.h"
+#include "m_private_internals.h"
+#include "overlays/actors/ovl_Npc/ac_npc.h"
+#include "m_field_make.h"
+#include "m_npc_base.h"
 
-
+#define ANIMAL_NUM_MIN 5
 #define ANIMAL_NUM_MAX 15 /* Maximum number of villagers possible in town */
+
 #define ANIMAL_MEMORY_NUM 7
 #define ANIMAL_CATCHPHRASE_LEN 4
 #define ANIMAL_NAME_LEN PLAYER_NAME_LEN
 
 #define NPC_NUM 216
 
+struct Game;
+struct PrivateInfo;
 
 typedef struct NpcHouseData{
     /* 0x00 */ u8 type;
@@ -42,7 +50,7 @@ typedef struct NpcList {
     /* 0x1C */ u8 appearFlag;
     /* 0x1D */ NpcListFlags flags;
     /* 0x1F */ u8 unk1F; 
-    /* 0x20 */ char unk20[0xC];
+    /* 0x20 */ QuestBase questInfo;
     /* 0x2C */ NpcHouseData houseData;
     /* 0x34 */ u16 rewardFurniture;
 } NpcList; // size = 0x38
@@ -69,13 +77,17 @@ typedef struct Anmlet {
     /* 0x00 */ u8 unk5:3; /* seemingly unused */
 } Anmlet; // size = 0x1
 
-typedef struct AnmPersonalId_c {
-    /* 0x00 */ u16 npcId; /* id */
-    /* 0x02 */ u16 landId; /* town id */
-    /* 0x04 */ u8 landName[LAND_NAME_SIZE]; /* town name */
-    /* 0x0A */ u8 nameId; /* lower byte of the id */
-    /* 0x0B */ u8 looks; /* internal name for personality */
-} AnmPersonalID_c; // size = 0xC
+typedef struct AnmRemailFlags{
+    /* 0x00 */ u8 cond:1;
+    /* 0x00 */ u8 looks:7;
+}AnmremailFlags; // size 0x1
+
+typedef struct Anmremail {
+    /* 0x00 */ lbRTC_ymd_t date; /* date sent */
+    /* 0x04 */ u8 name[ANIMAL_NAME_LEN]; /* villager name */
+    /* 0x0A */ u8 landName[LAND_NAME_SIZE]; /* town name */
+    /* 0x10 */ AnmremailFlags flags;
+} Anmremail; // size = 0x12
 
 typedef struct Anmplmail_c {
   /* 0x000 */ u8 font; /* 'font' to use for letter info */
@@ -88,6 +100,11 @@ typedef struct Anmplmail_c {
   /* 0x07F */ u8 unk7F; /* likely pad */
   /* 0x080 */ lbRTC_ymd_t date; /* sent date */
 } Anmplmail_c; // size = 0x84
+
+typedef struct AnmGoodbyeMail {
+  /* 0x000 */ AnmPersonalID_c id;
+  /* 0x00C */ u8 deliverTo;
+} AnmGoodbyeMail; // size = 0xE
 
 typedef struct Anmmem_c {
   /* 0x000 */ PersonalID_c memoryPlayerId; /* personal id of the player memory belongs to */
@@ -107,7 +124,7 @@ typedef struct Animal_c {
     /* 0x4E9 */ char unk4E9[0x3];
     /* 0x4EC */ QuestContest contestQuest;
     /* 0x4E9 */ u8 previousLandName[LAND_NAME_SIZE];
-    /* 0x4E9 */ char parentName[ANIMAL_NAME_LEN]; 
+    /* 0x4E9 */ u8 parentName[ANIMAL_NAME_LEN]; 
     /* 0x51C */ u16 previousLandId;
     /* 0x4E9 */ u8 mood;
     /* 0x4E9 */ u8 moodTime;
@@ -145,232 +162,219 @@ typedef struct NpcTemper {
     /* 0x3 */ u8 talkNumMax;
 } NpcTemper; // size = 0x4
 
-typedef enum NpcSex{
-    NPC_SEX_MALE,
-    NPC_SEX_FEMALE,
-    NPC_SEX_OTHER
-}NpcSex;
+typedef struct NpcEvent{
+    /* 0x0 */ u16 eventId;
+    /* 0x2 */ u16 textureId;
+    /* 0x4 */ u16 npcId; 
+    /* 0x6 */ u16 clothId; 
+    /* 0x8 */ u8 exists; 
+    /* 0x9 */ u8 use;
+    /* 0xA */ u16 unkA;
+}NpcEvent; // size = 0xC
 
-typedef enum NpcLooks{
-    /* 0 */ NPC_LOOKS_GIRL,
-    /* 1 */ NPC_LOOKS_KO_GIRL,
-    /* 2 */ NPC_LOOKS_BOY,
-    /* 3 */ NPC_LOOKS_SPORT_MAN,
-    /* 4 */ NPC_LOOKS_GRIM_MAN,
-    /* 5 */ NPC_LOOKS_NANIWA_LADY,
+typedef struct DemoNpc {
+    /* 0x0 */ u16 npcName; /* villager id */
+    /* 0x2 */ u32 blockX; // spawn acre x
+    /* 0x6 */ u32 blockZ; // spawn acre z
+    /* 0xA */ u32 utX; // spawn unit x in acre
+    /* 0xE */ u32 utZ; // spawn unit z in acre
+} DemoNpc;
 
-    /* 6 */ NPC_LOOKS_NUM
-}NpcLooks;
 
-typedef enum NpcFeels{
-    /* 0 */ NPC_FEEL_NORMAL,
-    /* 1 */ NPC_FEEL_HAPPY,
-    /* 2 */ NPC_FEEL_ANGRY,
-    /* 3 */ NPC_FEEL_SAD,
-    /* 4 */ NPC_FEEL_SLEEPY,
-    /* 5 */ NPC_FEEL_PITFALL,
-    /* 6 */ NPC_FEEL_NUM
-}NpcFeels;
 
-typedef enum NpcPatience {
-    /* 0 */ NPC_PATIENCE_MILDLY_ANNOYED,
-    /* 1 */ NPC_PATIENCE_ANNOYED,
-    /* 2 */ NPC_PATIENCE_NORMAL,
-    /* 3 */ NPC_PATIENCE_NUM
-}NpcPatience;
-
-// void func_800A6920_jp();
-// void func_800A6940_jp();
-// void func_800A695C_jp();
+void mNpc_MakeRandTable(s32*, s32, s32);
+void mNpc_ClearBufSpace1(u8*, s32);
+void mNpc_AddNowNpcMax(u8*);
+void mNpc_SubNowNpcMax(u8*);
 void mNpc_ClearAnimalPersonalID(AnmPersonalID_c*);
 s32 mNpc_CheckFreeAnimalPersonalID(AnmPersonalID_c*);
 void mNpc_CopyAnimalPersonalID(AnmPersonalID_c*, AnmPersonalID_c*);
 s32 mNpc_CheckCmpAnimalPersonalID(AnmPersonalID_c*, AnmPersonalID_c*);
-// void func_800A6AF0_jp();
-// void func_800A6B58_jp();
-// void func_800A6B6C_jp();
-// void func_800A6B7C_jp();
-// void func_800A6B9C_jp();
-// void func_800A6BC8_jp();
-// void func_800A6C1C_jp();
-// void func_800A6C84_jp();
-// void func_800A6CE4_jp();
-// void func_800A6D04_jp();
-// void func_800A6DB0_jp();
-// void func_800A6DD0_jp();
-// void func_800A6E0C_jp();
+s32 mNpc_GetAnimalNum(void);
+s32 mNpc_CheckRemoveExp(Animal_c*);
+s32 mNpc_GetRemoveTime(Animal_c*);
+void mNpc_AddRemoveTime(Animal_c*);
+void mNpc_SetRemoveExp(Animal_c*, u16);
+void mNpc_SetParentName(Animal_c*, PersonalID_c*);
+void mNpc_SetParentNameAllAnimal(void);
+void mNpc_ClearAnimalMail(Anmplmail_c*);
+void mNpc_CopyAnimalMail(Anmplmail_c*, Anmplmail_c*);
+void mNpc_ClearAnimalMemory(Anmmem_c*, s32);
+void mNpc_CopyAnimalMemory(Anmmem_c*, Anmmem_c*);
+void mNpc_AddFriendship(Anmmem_c*, s32);
+s32 mNpc_CheckFreeAnimalMemory(Anmmem_c*);
 void mNpc_RenewalAnimalMemory(void);
-// void func_800A6F48_jp();
-// void func_800A6FF4_jp();
-// void func_800A706C_jp();
-// void func_800A71AC_jp();
-// void func_800A71F8_jp();
-// void func_800A7238_jp();
-// void func_800A72C0_jp();
-// void func_800A73D8_jp();
-// void func_800A74A0_jp();
-// void func_800A7530_jp();
-// void func_800A75FC_jp();
-// void func_800A76E4_jp();
-// void func_800A77F0_jp();
-// void func_800A7858_jp();
-// void func_800A78DC_jp();
-// void mNpc_ClearAnimalInfo();
-// void mNpc_ClearAnyAnimalInfo();
+s32 mNpc_GetOldAnimalMemoryIdx(Anmmem_c*, s32);
+s32 mNpc_GetFreeAnimalMemoryIdx(Anmmem_c*, s32);
+s32 mNpc_ForceGetFreeAnimalMemoryIdx(Anmmem_c*, s32);
+void mNpc_SetAnimalMemory_NotSetDay(PersonalID_c*, Anmmem_c*);
+void mNpc_SetAnimalMemory(PersonalID_c*, Anmmem_c*);
+s32 mNpc_GetAnimalMemoryIdx(PersonalID_c*, Anmmem_c*, s32);
+void mNpc_SetAnimalLastTalk(Animal_c*);
+void mNpc_SetAnimalPersonalID2Memory(AnmPersonalID_c*);
+s32 mNpc_GetHighestFriendshipIdx(Anmmem_c*, s32);
+s32 mNpc_SelectBestFriend(Anmmem_c**, Anmmem_c*, s8*);
+s32 mNpc_GetAnimalMemoryBestFriend(Anmmem_c*, s32);
+s32 mNpc_GetAnimalMemoryFriend_Land_Sex(Anmmem_c*, s32, s32);
+s32 mNpc_GetAnimalMemoryNum(Anmmem_c*, s32);
+s32 mNpc_GetAnimalMemoryLetterNum(Anmmem_c*, s32);
+s32 mNpc_GetAnimalMemoryLandKindNum(Anmmem_c*, s32);
+void mNpc_ClearAnimalInfo(Animal_c*);
+void mNpc_ClearAnyAnimalInfo(Animal_c*, s32);
 s32 mNpc_CheckFreeAnimalInfo(Animal_c*);
-// void mNpc_GetFreeAnimalInfo();
-// void mNpc_UseFreeAnimalInfo();
-// void mNpc_CopyAnimalInfo();
-// void mNpc_SearchAnimalinfo();
-// void func_800A7C94_jp();
-// void func_800A7D08_jp();
-// void func_800A7DA0_jp();
-// void mNpc_GetOtherAnimalPersonalID();
-// void func_800A80D8_jp();
-// void func_800A8148_jp();
-// void func_800A820C_jp();
-// void func_800A82C8_jp();
-// void func_800A8344_jp();
-// void func_800A83F0_jp();
-// void func_800A845C_jp();
-// void func_800A8614_jp();
-// void func_800A86C4_jp();
-// void func_800A86E8_jp();
-// void func_800A8764_jp();
-// void func_800A8814_jp();
-// void func_800A8868_jp();
-// void func_800A8AB4_jp();
-// void func_800A8B10_jp();
-// void func_800A8B84_jp();
-// void func_800A8C48_jp();
-// void func_800A8DB4_jp();
-// void func_800A8F30_jp();
-// void func_800A9028_jp();
-// void func_800A9110_jp();
-// void func_800A918C_jp();
-void func_800A91DC_jp(void);
-// void func_800A9364_jp();
-// void func_800A93AC_jp();
-// void func_800A9468_jp();
-// void func_800A94C8_jp();
-// void func_800A956C_jp();
-// void func_800A96B0_jp();
-// void func_800A9780_jp();
-// void func_800A992C_jp();
-// void func_800A99B8_jp();
-// void func_800A9A98_jp();
-// void func_800A9BC4_jp();
-// void func_800A9BD4_jp();
-// void func_800A9CD4_jp();
-// void func_800A9D68_jp();
-// void func_800A9E54_jp();
-// void func_800A9E7C_jp();
-// void func_800A9EC8_jp();
-// void func_800A9F9C_jp();
-// void func_800AA028_jp();
-// void func_800AA0B8_jp();
-void func_800AA124_jp(void);
-// void func_800AA14C_jp();
-s32 mNpc_GetLooks(u16 arg0);
-// void func_800AA218_jp();
-// void func_800AA29C_jp();
-// void func_800AA2F8_jp();
-// void func_800AA35C_jp();
-// void func_800AA3A4_jp();
-// void func_800AA438_jp();
-// void func_800AA49C_jp();
-// void func_800AA4FC_jp();
-// void func_800AA51C_jp();
-// void mNpc_SetAnimalTitleDemo();
-// void func_800AA8C4_jp();
-// void func_800AA9F4_jp();
-// void func_800AAA40_jp();
-// void func_800AAB48_jp();
-// void func_800AAC88_jp();
-// void func_800AADE8_jp();
-// void func_800AAEFC_jp();
-void func_800AB054_jp(void);
-void func_800AB09C_jp(void);
-void mNpc_SetNpcList(NpcList* npclist, Animal_c* animals, s32 count, s32 malloc_flag);
-void mNpc_SetNpcinfo(struct Actor* actor, s8 arg1);
-// void func_800AB498_jp();
-// void func_800AB62C_jp();
-// void func_800AB6C8_jp();
-// void func_800AB734_jp();
-// void func_800AB7D0_jp();
-// void func_800AB80C_jp();
-// void func_800AB8A0_jp();
-// void func_800ABA14_jp();
-// void func_800ABAA8_jp();
-// void func_800ABAF0_jp();
-s32 mNpc_GetInAnimalP(void);
-// void func_800ABB24_jp();
-// void func_800ABCF8_jp();
-void mNpc_SetRemoveAnimalNo(Animal_c* animal);
-// void func_800ABE30_jp();
-// void func_800ABF40_jp();
-// void func_800AC1A0_jp();
-// void func_800AC1C8_jp();
-// void func_800AC1EC_jp();
-// void func_800AC284_jp();
-// void func_800AC358_jp();
-// void func_800AC488_jp();
+s32 mNpc_GetFreeAnimalInfo(Animal_c*, s32);
+s32 mNpc_UseFreeAnimalInfo(Animal_c*, s32);
+void mNpc_CopyAnimalInfo(Animal_c*, Animal_c*);
+s32 mNpc_SearchAnimalinfo(Animal_c*, u16, s32);
+Animal_c* mNpc_GetAnimalInfoP(u16);
+s32 mNpc_SearchAnimalPersonalID(AnmPersonalID_c*);
+AnmPersonalID_c* mNpc_GetOtherAnimalPersonalIDOtherBlock(AnmPersonalID_c*, s32, s32, s32, s32);
+AnmPersonalID_c* mNpc_GetOtherAnimalPersonalID(AnmPersonalID_c*, s32);
+void mNpc_SetAnimalThisLand(Animal_c*, s32);
+s32 mNpc_GetSameLooksNum(u8);
+s32 mNpc_CheckNpcExistBlock(s32, s32, s32);
+void mNpc_Mail2AnimalMail(Anmplmail_c*, Mail_c*);
+void mNpc_AnimalMail2Mail(Mail_c*, Anmplmail_c*, PersonalID_c*, AnmPersonalID_c*);
+s32 mNpc_CheckMailChar(u8);
+s32 mNpc_CheckNormalMail_sub(s32*, u8*);
+u8 mNpc_CheckNormalMail_length(s32*, u8*);
+u8 mNpc_CheckNormalMail(u8*);
+s32 mNpc_SetMailCondThisLand(Anmmem_c*, u8*);
+s32 mNpc_SetMailCondOtherLand(Animal_c*, u8*);
+s32 mNpc_SetRemailCond(Animal_c*, Anmmem_c*, u8*);
+s32 mNpc_SendMailtoNpc(Mail_c*);
+void mNpc_ClearRemail(Anmremail*);
+void mNpc_GetRemailPresent(u16*);
+s32 mNpc_GetHandbillz(Mail_c*, s32, s32, s32, s32, s32);
+void mNpc_SetRemailFreeString(PersonalID_c*, AnmPersonalID_c*, Anmremail*);
+void mNpc_GetRemailGoodData(Mail_c*, PersonalID_c*, AnmPersonalID_c*, Anmremail*, u8);
+void mNpc_GetRemailWrongData(Mail_c*, PersonalID_c*, AnmPersonalID_c*, Anmremail*, u8);
+void mNpc_GetRemailData(Mail_c*, PersonalID_c*, AnmPersonalID_c*, Anmremail*, s32, u8);
+s32 mNpc_SendRemailPostOffice(PersonalID_c*, AnmPersonalID_c*, Anmremail*, s32, u8);
+s32 mNpc_CheckLetterTime(lbRTC_ymd_t*, lbRTC_time_c*);
+void mNpc_Remail(void);
+u8 mNpc_GetPaperType(void);
+void mNpc_LoadMailDataCommon2(Mail_c*, PersonalID_c*, AnmPersonalID_c*, u16, u8, s32);
+void mNpc_GetEventPresent(u16*, s32);
+void mNpc_GetEventMail(Mail_c*, PersonalID_c*, AnmPersonalID_c*, s32, s32);
+s32 mNpc_SendEventPresentMail(PersonalID_c*, s32, AnmPersonalID_c*, s32);
+void mNpc_SendEventPresentMailSex(s32*, u8*, Animal_c*, s32);
+s32 mNpc_SendEventPresentMail_common(s32);
+void mNpc_GetBirthdayPresent(u16*);
+void mNpc_GetBirthdayCard(Mail_c*, PersonalID_c*, AnmPersonalID_c*);
+s32 mNpc_SendBirthdayCard(PersonalID_c*, s32, AnmPersonalID_c*);
+s32 mNpc_SendEventBirthdayCard(PersonalID_c*);
+s32 mNpc_SendEventBirthdayCard2(PersonalID_c*, s32);
+void mNpc_GetXmasCardData(Mail_c*, PersonalID_c*);
+s32 mNpc_SendEventXmasCard(PersonalID_c*, s32);
+void mNpc_SetWordEnding(Animal_c*, u8*);
+u8* mNpc_GetWordEnding(Actor*);
+void mNpc_ResetWordEnding(Actor*);
+s32 mNpc_GetFreeEventNpcIdx(void);
+s32 mNpc_RegistEventNpc(u16, u16, u16, u16);
+void mNpc_UnRegistEventNpc(u16);
+void mNpc_ClearEventNpc(void);
+NpcEvent* mNpc_GetSameEventNpc(u16);
+u8 mNpc_GetLooks(u16);
+void mNpc_SetDefAnimalInfo(Animal_c*, u16, u8, NpcDefaultData*);
+void mNpc_SetDefAnimal(Animal_c*, u16, NpcDefaultData*);
+void mNpc_SetHaveAppeared(u16);
+s32 mNpc_GetHaveAppeared_idx(s32);
+s32 mNpc_GetLooks2NotHaveAppearedNum(u8);
+void mNpc_ResetHaveAppeared_common(u8*, Animal_c*);
+void mNpc_ResetHaveAppeared(void);
+s32 mNpc_GetDefGrowPermission(s32, s8*, s32);
+void mNpc_DecideLivingNpcMax(Animal_c*, u8, s32);
+void mNpc_SetAnimalTitleDemo(DemoNpc*, Animal_c*, struct Game*);
+s32 mNpc_GetReservedUtNum(s32*, s32*, u16*);
+s32 mNpc_BlockNum2ReservedUtNum(s32*, s32*, s32, s32);
+void mNpc_MakeReservedListBeforeFieldct(Anmhome_c*, s32, u8*);
+void mNpc_MakeReservedListAfterFieldct(Anmhome_c*, s32, u8*, u8, u8);
+void mNpc_BuildHouseBeforeFieldct(u16, s32, s32, s32, s32);
+void mNpc_DestroyHouse(Anmhome_c*);
+void mNpc_SetNpcHome(Animal_c*, Anmhome_c*, u8);
+void mNpc_InitNpcData(void);
+void mNpc_InitNpcList(void);
+void mNpc_SetNpcList(NpcList*, Animal_c*, s32, s32);
+void mNpc_SetNpcinfo(Actor*, s8);
+void mNpc_AddNpc_inNpcRoom(FieldMakeMoveActor*, u8, u8);
+void mNpc_RenewalNpcRoom(s16*);
+void mNpc_RenewalSetNpc(Actor*);
+s32 mNpc_GetFriendAnimalNum(PersonalID_c*);
+s32 mNpc_CheckFriendAllAnimal(PersonalID_c*);
+s32 mNpc_CheckSelectFurniture(u16);
+u16 func_800AB8A0_jp(FieldMakeFGData**, NpcList*, s32);
+void mNpc_SetNpcFurnitureRandom(FieldMakeFGData**, s32);
+u16 mNpc_GetNpcFurniture(AnmPersonalID_c*);
+void mNpc_ClearInAnimal(void);
+Animal_c* mNpc_GetInAnimalP(void);
+u8 mNpc_DecideRemoveAnimalNo(Animal_c*, s32);
+void mNpc_SetRemoveAnimalNo(Animal_c*);
+s32 mNpc_CheckGoodbyAnimalMemoryNum(Animal_c*, Animal_c*);
+s32 mNpc_GetGoodbyAnimalIdx(void);
+void mNpc_ClearGoodbyMail(AnmGoodbyeMail*);
+void mNpc_FirstClearGoodbyMail(void);
+void mNpc_SetGoodbyAnimalMail(AnmGoodbyeMail*, Animal_c*);
+s32 mNpc_SetGoodbyMailData(Mail_c*, PersonalID_c*, AnmPersonalID_c*);
+s32 mNpc_SendGoodbyAnimalMailOne(Mail_c*, struct PrivateInfo*, s32, AnmPersonalID_c*);
+void mNpc_SendGoodbyAnimalMail(AnmGoodbyeMail*);
 void mNpc_SendRegisteredGoodbyMail(void);
-// void func_800AC57C_jp();
-// void func_800AC804_jp();
-void mNpc_SetReturnAnimal(s32 arg0);
-// void func_800ACB24_jp();
-// void func_800ACB54_jp();
-// void func_800ACC38_jp();
-// void func_800ACCAC_jp();
-void mNpc_GetNpcWorldNameAnm(PlayerName* arg0, struct mMl_get_npcinfo_from_mail_name_arg0* arg1);
-// void func_800ACD74_jp();
-// void func_800ACDF8_jp();
-// void func_800ACE90_jp();
-void mNpc_GetAnimalPlateName(char* arg0, xyz_t arg1);
-// void func_800AD084_jp();
-// void func_800AD0B8_jp();
-// void func_800AD104_jp();
-// void func_800AD154_jp();
-// void func_800AD188_jp();
-// void func_800AD1E0_jp();
-// void func_800AD22C_jp();
-// void func_800AD2B8_jp();
-void mNpc_InitNpcAllInfo(s32 arg0);
-// void func_800AD338_jp();
-// void func_800AD3BC_jp();
-// void func_800AD4B8_jp();
-// void func_800AD614_jp();
-// void func_800AD6D4_jp();
-// void func_800AD8C4_jp();
-// void func_800AD954_jp();
-void func_800AD9FC_jp(void);
-// void func_800ADBE4_jp();
-// void func_800ADC28_jp();
-// void func_800ADC8C_jp();
-// void func_800ADD20_jp();
-// void func_800ADEFC_jp();
-// void func_800AE110_jp();
+void mNpc_GetRemoveAnimal(Animal_c*, s32);
+s32 mNpc_CheckBuildHouse(s32, s32, u8, u8);
+void mNpc_SetReturnAnimal(Animal_c*);
+void mNpc_AddActor_inBlock(FieldMakeMoveActor*, u8, u8);
+void mNpc_SetNpcNameID(Animal_c*, s32);
+void mNpc_LoadNpcNameString(u8*, u8);
+void mNpc_GetNpcWorldNameTableNo(u8*, u16);
+void mNpc_GetNpcWorldNameAnm(u8*, AnmPersonalID_c*);
+void mNpc_GetNpcWorldNameP(u8*, u16);
+void mNpc_GetNpcWorldName(u8*,Npc*);
+void mNpc_GetRandomAnimalName(u8*);
+void mNpc_GetAnimalPlateName(u8*, xyz_t);
+s32 mNpc_GetNpcLooks(Actor*);
+s32 mNpc_GetActorSex(u16);
+s32 mNpc_GetLooks2Sex(s32);
+s32 mNpc_GetAnimalSex(Animal_c*);
+s32 mNpc_GetNpcSex(Actor*);
+s32 mNpc_GetNpcSoundSpecNotAnimal(u16);
+s32 mNpc_GetNpcSoundSpec(Actor*);
+void mNpc_GetMsg(s32);
+void mNpc_InitNpcAllInfo(s32);
+s32 mNpc_CheckGrowFieldRank(void);
+s32 mNpc_CheckGrow(void);
+u8 mNpc_GetMinLooks(u8*, s32*);
+s32 mNpc_GetMinSex(void);
+s32 mNpc_GrowLooksNpcIdx(u8);
+void mNpc_SetAnimalInfoNpcIdx(Animal_c*, s32);
+s32 mNpc_SetGrowNpc(u8);
+void mNpc_Grow(void);
+s32 mNpc_CheckNpcSet_fgcol(u16, u32);
+s32 mNpc_CheckNpcSet_fgcol_hard(u16, u32);
+s32 mNpc_CheckNpcSet(s32, s32, s32, s32);
+s32 mNpc_GetMakeUtNuminBlock_hard_area(s32*, s32*, s32, s32, s32);
+s32 mNpc_GetMakeUtNuminBlock_area(s32*, s32*, s32, s32, s32);
+s32 mNpc_GetMakeUtNuminBlock(s32*, s32*, s32, s32);
 void mNpc_ClearTalkInfo(void);
-// void func_800AE1A0_jp();
-// void func_800AE1B8_jp();
-// void func_800AE1D8_jp();
-// void func_800AE23C_jp();
-// void func_800AE284_jp();
-// void func_800AE2E8_jp();
-// void func_800AE320_jp();
-// void func_800AE37C_jp();
-// void func_800AE3B4_jp();
-// void func_800AE4B4_jp();
-// void func_800AE558_jp();
-// void func_800AE5C8_jp();
-// void func_800AE64C_jp();
-// void func_800AE670_jp();
-// void func_800AE694_jp();
-// void func_800AE6B0_jp();
-// void func_800AE6CC_jp();
-// void func_800AE76C_jp();
-// void func_800AE898_jp();
-// void mNpc_PrintFriendship_fdebug();
+void mNpc_TimerCountDown(NpcTalkInfo*);
+void mNpc_SetUnlockTimer(u16*, u16*, s32);
+s32 mNpc_CountTalkNum(s32, s32);
+s32 mNpc_CheckOverImpatient(s32, s32);
+s32 mNpc_GetOverImpatient(s32, s32);
+s32 mNpc_CheckQuestRequest(s32);
+void mNpc_SetQuestRequestOFF(s32, s32);
+void mNpc_UnlockTimerCountDown(NpcTalkInfo*);
+void mNpc_TalkInfoMove(void);
+void mNpc_TalkEndMove(s32, s32);
+s32 mNpc_GetNpcFloorNo(void);
+void mNpc_SetTalkBee(void);
+u8 mNpc_GetFishCompleteTalk(NpcList*);
+u8 mNpc_GetInsectCompleteTalk(NpcList*);
+void mNpc_SetFishCompleteTalk(NpcList*);
+void mNpc_SetInsectCompleteTalk(NpcList*);
+void mNpc_SetNpcHomeYpos(void);
+void mNpc_PrintRemoveInfo(gfxprint*);
+void mNpc_SetTalkAnimalIdx_fdebug(AnmPersonalID_c*);
+void mNpc_PrintFriendship_fdebug(gfxprint*);
+
 
 #endif
