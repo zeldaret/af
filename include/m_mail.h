@@ -50,8 +50,7 @@ typedef struct MailContent {
 
 typedef struct Mail_c {
     /* 0x000 */ MailHeader header;
-    /* 0x024 */
-    /* 0x026 */ u8 present;
+    /* 0x024 */ u16 present;
     /* 0x026 */ MailContent content;
 } Mail_c; //size = 0xA4
 

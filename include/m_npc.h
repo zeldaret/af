@@ -126,13 +126,13 @@ typedef struct Animal_c {
     /* 0x4E9 */ u8 previousLandName[LAND_NAME_SIZE];
     /* 0x4E9 */ u8 parentName[ANIMAL_NAME_LEN]; 
     /* 0x51C */ u16 previousLandId;
-    /* 0x4E9 */ u8 mood;
-    /* 0x4E9 */ u8 moodTime;
-    /* 0x4E9 */ u16 cloth;
-    /* 0x4E9 */ u16 removeInfo;
-    /* 0x4E9 */ u8 isHome;
-    /* 0x4E9 */ u8 movedIn;
-    /* 0x4E9 */ u8 isMoving;
+    /* 0x51E */ u8 mood;
+    /* 0x51F */ u8 moodTime;
+    /* 0x520 */ u16 cloth;
+    /* 0x522 */ u16 removeInfo;
+    /* 0x524 */ u8 isHome;
+    /* 0x525 */ u8 movedIn;
+    /* 0x526 */ u8 isMoving;
 } Animal_c; // size = 0x528
 
 typedef struct SpecialNpcData {
@@ -308,6 +308,7 @@ void mNpc_SetNpcFurnitureRandom(FieldMakeFGData**, s32);
 u16 mNpc_GetNpcFurniture(AnmPersonalID_c*);
 void mNpc_ClearInAnimal(void);
 Animal_c* mNpc_GetInAnimalP(void);
+u8 mNpc_DecideRemoveAnimalNo(Animal_c*, s32);
 u8 mNpc_DecideRemoveAnimalNo(Animal_c*, s32);
 void mNpc_SetRemoveAnimalNo(Animal_c*);
 s32 mNpc_CheckGoodbyAnimalMemoryNum(Animal_c*, Animal_c*);

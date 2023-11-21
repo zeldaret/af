@@ -61,7 +61,7 @@ void mMl_clear_mail(Mail_c* mail) {
     bzero(mail, sizeof(Mail_c));
     mMl_clear_mail_header(mail);
     mem_clear(mail->content.header, MAIL_HEADER_LEN + MAIL_BODY_LEN + MAIL_FOOTER_LEN, 0x20);
-    mail->present = 0xFF;
+    mail->content.font = 0xFF;
 }
 
 void mMl_clear_mail_box(Mail_c mail[], s32 arg1) {
@@ -75,7 +75,7 @@ void mMl_clear_mail_box(Mail_c mail[], s32 arg1) {
 s32 mMl_check_not_used_mail(Mail_c* mail) {
     s32 ret = 0;
 
-    if (mail->present == 0xFF) {
+    if (mail->content.font == 0xFF) {
         ret = 1;
     }
     return ret;
@@ -101,7 +101,7 @@ void mMl_set_to_plname(Mail_c* arg0, Mail_c* arg1) {
 
 void mMl_set_playername(Mail_c* mail, PersonalID_c* arg1) {
     mPr_CopyPersonalID(&mail->header.sender.personalID, arg1);
-    mail->header.recipient.type = 0;
+    mail->header.sender.type = 0;
 }
 
 void mMl_init_mail(Mail_c* mail, PersonalID_c* arg1) {
@@ -162,11 +162,11 @@ void mMl_copy_mail_header_common(MailHeaderCommon* arg0, MailHeaderCommon* arg1)
 }
 
 void mMl_set_mail_name_npcinfo(mMl_unk_00* arg0, AnmPersonalID_c* arg1) {
-    u8 sp20;
+    u8 name[PLAYER_NAME_LEN];
 
     arg0->type = 1;
-    mNpc_GetNpcWorldNameAnm(&sp20, arg1);
-    mPr_CopyPlayerName(arg0->personalID.playerName, &sp20);
+    mNpc_GetNpcWorldNameAnm(name, arg1);
+    mPr_CopyPlayerName(arg0->personalID.playerName, name);
     arg0->personalID.landId = arg1->landId;
     mLd_CopyLandName(arg0->personalID.landName, arg1->landName);
     arg0->personalID.playerId = ((arg1->npcId & 0xFF) << 8) | (arg1->nameId & 0xFF);
@@ -213,7 +213,7 @@ s32 mMl_check_send_mail(struct_func_8085CE18_jp_arg4* arg0) {
 }
 
 s32 mMl_check_set_present_myself(Mail_c* mail) {
-    switch (mail->present) {
+    switch (mail->content.font) {
         case 1:
         case 3:
         case 4:

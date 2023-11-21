@@ -19,16 +19,63 @@
 #include "6A5B00.h"
 #include "6A83A0.h"
 
-NpcDefaultData npc_def_list[];
-s8 npc_grow_list[];
-NpcList npc_house_list[];
 
 SpecialNpcData l_sp_actor_name[] = {
-    {0xD008, NPC_SEX_MALE,0x205, 2},
+    { 0xD008, NPC_SEX_MALE, 0x0205, 2 }, { 0xD01E, NPC_SEX_MALE, 0x0205, 2 },
+    { 0xD03A, NPC_SEX_MALE, 0x0205, 2 }, { 0xD03B, NPC_SEX_MALE, 0x0205, 2 },
+    { 0xD03C, NPC_SEX_MALE, 0x0205, 2 }, { 0xD009, NPC_SEX_MALE, 0x0205, 2 },
+    { 0xD00A, NPC_SEX_MALE, 0x0205, 2 }, { 0xD00B, NPC_SEX_MALE, 0x0205, 2 },
+    { 0xD014, NPC_SEX_MALE, 0x0205, 2 }, { 0xD019, NPC_SEX_MALE, 0x0205, 2 },
+    { 0xD015, NPC_SEX_MALE, 0x0205, 2 }, { 0xD01A, NPC_SEX_MALE, 0x0205, 2 },
+    { 0xD016, NPC_SEX_MALE, 0x0205, 2 }, { 0xD01B, NPC_SEX_MALE, 0x0205, 2 },
+    { 0xD017, NPC_SEX_MALE, 0x0205, 2 }, { 0xD01C, NPC_SEX_MALE, 0x0205, 2 },
+    { 0xD001, NPC_SEX_MALE, 0x0206, 2 }, { 0xD013, NPC_SEX_MALE, 0x0206, 2 },
+    { 0xD02C, NPC_SEX_MALE, 0x0206, 2 }, { 0xD039, NPC_SEX_MALE, 0x0206, 2 },
+    { 0xD00C, NPC_SEX_FEMALE, 0x0207, 2 }, { 0xD03D, NPC_SEX_FEMALE, 0x0207, 2 },
+    { 0xD006, NPC_SEX_MALE, 0x0208, 2 }, { 0xD000, NPC_SEX_MALE, 0x0209, 3 },
+    { 0xD00F, NPC_SEX_MALE, 0x020A, 2 }, { 0xD002, NPC_SEX_MALE, 0x020B, 2 },
+    { 0xD007, NPC_SEX_FEMALE, 0x020C, 8 }, { 0xD003, NPC_SEX_FEMALE, 0x020D, 4 },
+    { 0xD012, NPC_SEX_FEMALE, 0x020E, 4 }, { 0xD011, NPC_SEX_MALE, 0x020F, 3 },
+    { 0xD00D, NPC_SEX_MALE, 0x0210, 2 }, { 0xD010, NPC_SEX_MALE, 0x0210, 3 },
+    { 0xD04E, NPC_SEX_MALE, 0x0210, 2 }, { 0xD00E, NPC_SEX_MALE, 0x0211, 2 },
+    { 0xD025, NPC_SEX_MALE, 0x0212, 3 }, { 0xA004, NPC_SEX_OTHER, 0x0213, 2 },
+    { 0xA005, NPC_SEX_OTHER, 0x0213, 2 }, { 0xA006, NPC_SEX_OTHER, 0x0213, 2 },
+    { 0xA007, NPC_SEX_OTHER, 0x0213, 2 }, { 0xD018, NPC_SEX_OTHER, 0x0214, 2 },
+    { 0xD05D, NPC_SEX_OTHER, 0x0214, 2 }, { 0xD066, NPC_SEX_OTHER, 0x0214, 2 },
+    { 0xD004, NPC_SEX_MALE, 0x0215, 2 }, { 0xD005, NPC_SEX_MALE, 0x0215, 2 },
+    { 0xD01D, NPC_SEX_MALE, 0x0216, 2 }, { 0xD026, NPC_SEX_MALE, 0x0217, 2 },
+    { 0xD037, NPC_SEX_MALE, 0x0218, 2 }, { 0xD03E, NPC_SEX_MALE, 0x04E0, 2 },
+    { 0xD065, NPC_SEX_MALE, 0x04E0, 2 }, { 0xD068, NPC_SEX_MALE, 0x04E0, 2 },
+    { 0xD069, NPC_SEX_MALE, 0x04E0, 2 }, { 0xD06B, NPC_SEX_MALE, 0x04E0, 2 },
+    { 0xD064, NPC_SEX_MALE, 0x04E1, 2 }, { 0x800D, NPC_SEX_MALE, 0x04E2, 2 },
+    { 0x800E, NPC_SEX_MALE, 0x04E2, 2 }, { 0xA008, NPC_SEX_MALE, 0x04E2, 2 },
+    { 0xA009, NPC_SEX_MALE, 0x04E2, 2 }, { 0xA00A, NPC_SEX_MALE, 0x04E2, 2 },
+    { 0xA00B, NPC_SEX_MALE, 0x04E2, 2 }, { 0xA00C, NPC_SEX_MALE, 0x04E2, 2 },
+    { 0xA00D, NPC_SEX_MALE, 0x04E2, 2 }, { 0xA00E, NPC_SEX_MALE, 0x04E2, 2 },
+    { 0xA00F, NPC_SEX_MALE, 0x04E2, 2 }, { 0xA010, NPC_SEX_MALE, 0x04E2, 2 },
 };
-
-u8 l_no_ending_npc_ending[ANIMAL_CATCHPHRASE_LEN] = { 0xD3, 0xAF, 0x9D, 0x20 };
 u8 l_no_name_npc_name[ANIMAL_NAME_LEN] = { 0xD4, 0x8E, 0xA6, 0x90, 0x85, 0x42 };
+u8 l_no_ending_npc_ending[ANIMAL_CATCHPHRASE_LEN] = { 0xD3, 0xAF, 0x9D, 0x20 };
+
+s32 fake_table[60];
+u8 Handbillz_tmp_super[MAIL_HEADER2_LEN];
+Anmhome_c reserved[60];
+u8 Handbillz_tmp_ps[MAIL_FOOTER2_LEN];
+u8 candidate_table[27];
+static u32 bssPad;
+NpcDefaultData npc_def_list;
+u8 Remail_tmp_super[MAIL_HEADER2_LEN];
+u8 Remail_tmp_ps[MAIL_FOOTER2_LEN];
+u16 fg_flag[UT_Z_NUM];
+NpcTalkInfo l_npc_talk_info[ANIMAL_NUM_MAX];
+u8 Event_animal_name[ANIMAL_NAME_LEN];
+u8 Birthday_animal_name[ANIMAL_NAME_LEN];
+u8 Goodby_animal_name[ANIMAL_NAME_LEN];
+u8 load_name[ANIMAL_NAME_LEN];
+AnmGoodbyeMail l_mnpc_goodby_mail;
+Mail_c l_npc_mail;
+s32 fakeTable[NPC_NUM];
+Animal_c l_mnpc_remove_in_animal;
 
 void mNpc_MakeRandTable(s32* table, s32 count, s32 swapNum) {
     s32 b;
@@ -1020,7 +1067,7 @@ s32 mNpc_SendMailtoNpc(Mail_c* mail) {
     AnmPersonalID_c anmId;
     s32 res = FALSE;
     Animal_c* animal;
-    UNUSED s32 pad; 
+    s32 fakeTemp; 
     s32 anmIdx;
     Anmmem_c* memory;
     s32 cond;
@@ -1051,7 +1098,7 @@ s32 mNpc_SendMailtoNpc(Mail_c* mail) {
             mNpc_ClearAnimalMail(plmail);
             mNpc_Mail2AnimalMail(plmail, mail);
             cond = mNpc_SetRemailCond(animal, memory, mail->content.body);
-
+            fakeTemp = 0xFF;
             if (mEv_CheckFirstJob() == TRUE) {
                 QuestErrand* firstJob = mQst_GetFirstJobData();
 
@@ -1070,10 +1117,11 @@ s32 mNpc_SendMailtoNpc(Mail_c* mail) {
                     }
                 }        
 
-                friendship = 3;
+                /* FAKE! */
+                friendship = (3 & fakeTemp) & fakeTemp & fakeTemp & fakeTemp & fakeTemp & fakeTemp & fakeTemp & fakeTemp & fakeTemp & fakeTemp;
  
                 if (cond == 0) { 
-                    friendship -=  2;   
+                    friendship -=  5;   
                 }
 
                 if (mail->present != 0) {
@@ -1105,17 +1153,14 @@ void mNpc_GetRemailPresent(u16* present) {
 }
 
 s32 mNpc_GetHandbillz(Mail_c* mail, s32 superNum, s32 mailANum, s32 mailBNum, s32 mailCNum, s32 psNum) {
-    static u8 tmp_super[MAIL_HEADER2_LEN];
-    static u8 tmp_ps[MAIL_FOOTER2_LEN];
-
     HandbillzInfo handbill;
     s32 res;
 
-    handbill.superBuf = tmp_super;
+    handbill.superBuf = Handbillz_tmp_super;
     handbill.superBufSize = MAIL_HEADER2_LEN;
     handbill.mailBuf = mail->content.body;
     handbill.mailBufSize = MAIL_BODY_LEN;
-    handbill.psBuf = tmp_ps;
+    handbill.psBuf = Handbillz_tmp_ps;
     handbill.psBufSize = MAIL_FOOTER2_LEN;
     handbill.superNo = superNum;
     handbill.mailANo = mailANum;
@@ -1126,22 +1171,20 @@ s32 mNpc_GetHandbillz(Mail_c* mail, s32 superNum, s32 mailANum, s32 mailBNum, s3
     res = mHandbillz_load(&handbill);
     if (res == TRUE) {
         mail->content.headerBackStart = handbill.headerBackStart;
-        mem_copy((u8*)mail->content.header, tmp_super, MAIL_HEADER_LEN);
-        mem_copy((u8*)mail->content.footer, tmp_ps, MAIL_FOOTER_LEN);
+        mem_copy((u8*)mail->content.header, Handbillz_tmp_super, MAIL_HEADER_LEN);
+        mem_copy((u8*)mail->content.footer, Handbillz_tmp_ps, MAIL_FOOTER_LEN);
     }
 
     return res;
 }
-
-Mail_c l_npc_mail;
 
 void mNpc_SetRemailFreeString(PersonalID_c* pid, AnmPersonalID_c* anmId, Anmremail* remail) {
     static s32 base_str_no[11] = {
         0x314, // food
         0x334, // sports
         0x2F4, // hobby games
-        0x6A1, // fish
-        0x679, // insects
+        0x219, // fish
+        0x1E5, // insects
         0x354, // food tastes (sweet, spicy, ...)
         0x374, // feelings
         0x394, // music genres
@@ -1233,9 +1276,6 @@ void mNpc_GetRemailGoodData(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* an
 
 void mNpc_GetRemailWrongData(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* anmId, Anmremail* remail, u8 foreign) {
     static s32 mail_no[2] = { 0xC5, 0xD8 };
-    static u8 tmp_super[MAIL_HEADER2_LEN];
-    static u8 tmp_ps[MAIL_FOOTER2_LEN];
-
     s32 msgNo;
     s32 looks;
     s32 headerBackStart;
@@ -1251,10 +1291,10 @@ void mNpc_GetRemailWrongData(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* a
     mNpc_SetRemailFreeString(pid, anmId, remail);
     msgNo = mail_no[foreign] + looks * 3; 
     msgNo += RANDOM2(3.0f);
-    mHandbill_Load_HandbillFromRom(tmp_super, &headerBackStart, tmp_ps, mail->content.body, msgNo);
+    mHandbill_Load_HandbillFromRom(Remail_tmp_super, &headerBackStart, Remail_tmp_ps, mail->content.body, msgNo);
     mail->content.headerBackStart = headerBackStart;
-    mem_copy((u8*)mail->content.header, tmp_super, MAIL_HEADER_LEN);
-    mem_copy((u8*)mail->content.footer, tmp_ps, MAIL_FOOTER_LEN);
+    mem_copy((u8*)mail->content.header, Remail_tmp_super, MAIL_HEADER_LEN);
+    mem_copy((u8*)mail->content.footer, Remail_tmp_ps, MAIL_FOOTER_LEN);
     mail->present = 0;
 }
 
@@ -1374,9 +1414,7 @@ void mNpc_LoadMailDataCommon2(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* 
 
  void mNpc_GetEventPresent(u16* present, s32 type) {
     static s32 priority_table[3] = {
-        2,
-        1,
-        0 
+        5,2,
     };
 
     static s32 category_table[3] = {
@@ -1389,14 +1427,12 @@ void mNpc_LoadMailDataCommon2(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* 
 }
 
 void mNpc_GetEventMail(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* anmId, s32 type, s32 looks) {
-    static u8 animal_name[ANIMAL_NAME_LEN];
-
     u16 present;
     UNUSED s32 pad;
 
     mHandbill_Set_free_str(0, pid->playerName, PLAYER_NAME_LEN);
-    mNpc_GetNpcWorldNameAnm(animal_name, anmId);
-    mHandbill_Set_free_str(6, animal_name, ANIMAL_NAME_LEN);
+    mNpc_GetNpcWorldNameAnm(Event_animal_name, anmId);
+    mHandbill_Set_free_str(6, Event_animal_name, ANIMAL_NAME_LEN);
     mNpc_GetEventPresent(&present, type); 
     mNpc_LoadMailDataCommon2(mail, pid, anmId, present, mNpc_GetPaperType(), 0x60 + (looks * 3) + type);
 }
@@ -1507,7 +1543,7 @@ s32 mNpc_SendEventPresentMail_common(s32 sexType) {
 }
 
 void mNpc_GetBirthdayPresent(u16* present){
-    static u8 category_table[5] = { 0, 1,2, 2, 0xFF };
+    static u8 category_table[5] = { 0, 0,2, 2, 0xFF };
     
     s32 selected = category_table[RANDOM(ARRAY_COUNT(category_table))];
 
@@ -1517,7 +1553,7 @@ void mNpc_GetBirthdayPresent(u16* present){
         mSP_SelectRandomItem_New(NULL, present, 1, NULL, 0, selected, 2);
     }
 }
-u8 animal_name[ANIMAL_NAME_LEN];
+
 
 void mNpc_GetBirthdayCard(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* anmId){
     u8 itemName[10];
@@ -1525,8 +1561,8 @@ void mNpc_GetBirthdayCard(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* anmI
     u16 present;
 
     mHandbill_Set_free_str(0, pid->playerName, PLAYER_NAME_LEN);
-    mNpc_GetNpcWorldNameAnm(animal_name, anmId);
-    mHandbill_Set_free_str(1, animal_name, ANIMAL_NAME_LEN);
+    mNpc_GetNpcWorldNameAnm(Birthday_animal_name, anmId);
+    mHandbill_Set_free_str(1, Birthday_animal_name, ANIMAL_NAME_LEN);
     mNpc_GetBirthdayPresent(&present); 
     mIN_copy_name_str(itemName, present); 
     mHandbill_Set_free_str(2, itemName, 10);
@@ -1571,7 +1607,7 @@ s32 mNpc_SendEventBirthdayCard2(PersonalID_c* pid, s32 playerNo){
     if (pid != NULL && mLd_CheckThisLand(pid->landName, pid->landId) == TRUE) {
         for (i = 0; i < ANIMAL_NUM_MAX; i++) {
             if (mNpc_CheckFreeAnimalPersonalID(&animal->id) == FALSE) {
-                idx = mNpc_ForceGetFreeAnimalMemoryIdx(animal->memories, ANIMAL_MEMORY_NUM);
+                idx = mNpc_GetHighestFriendshipIdx(animal->memories, ANIMAL_MEMORY_NUM);
                     if ((idx != -1) && (mPr_CheckCmpPersonalID(pid, &animal->memories[idx].memoryPlayerId) != 0) &&
                         (mNpc_SendBirthdayCard(pid, playerNo, &animal->id) == 1)) {
                         res = TRUE;
@@ -1592,7 +1628,7 @@ void mNpc_GetXmasCardData(Mail_c* mail, PersonalID_c* pid){
     mHandbill_Load_HandbillFromRom(mail->content.header, &headerBackStart, mail->content.footer, mail->content.body, 0xD7);
     mail->content.headerBackStart = headerBackStart;
     mail->content.font = 0;
-    mail->content.mailType = 2;
+    mail->content.mailType = 1;
     mPr_CopyPersonalID(&mail->header.recipient.personalID, pid);
     mail->header.recipient.type = MAIL_NAME_TYPE_PLAYER;
     mSP_SelectRandomItem_New(NULL, &mail->present, 1, NULL, 0, 0, 3); 
@@ -1633,7 +1669,7 @@ u8* mNpc_GetWordEnding(Actor* actor){
     Animal_c* temp;
     u8* wordEnding;
 
-    if ((actor != NULL) & actor->part == ACTOR_PART_NPC) {
+    if ((actor != NULL) & (actor->part == ACTOR_PART_NPC)) {
         animalInfo = temp = ((Npc*)actor)->npcInfo.animal;
     }
     else{
@@ -1854,7 +1890,6 @@ s32 mNpc_GetDefGrowPermission(s32 idx, s8* growList, s32 count){
 }
 
 void mNpc_DecideLivingNpcMax(Animal_c* animal, u8 count, s32 mallocFlag) {
-    static s32 fakeTable[NPC_NUM];
     UNUSED s32 pad;
     NpcDefaultData* defList;
     s8* growList;
@@ -2163,8 +2198,6 @@ void mNpc_DestroyHouse(Anmhome_c* home) {
 }
 
 void mNpc_SetNpcHome(Animal_c* animal, Anmhome_c* reserved, u8 reserved_num) {
-    static s32 fake_table[60];
-
     Anmhome_c* homeInfo;
     s32 i;
     s32 idx;
@@ -2201,7 +2234,6 @@ void mNpc_SetNpcHome(Animal_c* animal, Anmhome_c* reserved, u8 reserved_num) {
 }
 
 void mNpc_InitNpcData() {
-    static Anmhome_c reserved[60];
     UNUSED s32 pad; 
     u8 reservedNum = 0;
 
@@ -2517,8 +2549,6 @@ u16 mNpc_GetNpcFurniture(AnmPersonalID_c* anmId) {
     return furniture;
 }
 
-Animal_c l_mnpc_remove_in_animal;
-
 void mNpc_ClearInAnimal() {
     mNpc_ClearAnimalInfo(&l_mnpc_remove_in_animal);
 }
@@ -2761,8 +2791,6 @@ s32 mNpc_GetGoodbyAnimalIdx() {
     return goodbyeIdx;
 }
 
-AnmGoodbyeMail l_mnpc_goodby_mail;
-
 void mNpc_ClearGoodbyMail(AnmGoodbyeMail* mail) {
     mNpc_ClearAnimalPersonalID(&mail->id);
     mail->deliverTo = 0;
@@ -2789,17 +2817,15 @@ void mNpc_SetGoodbyAnimalMail(AnmGoodbyeMail* mail, Animal_c* animal) {
 }
 
 s32 mNpc_SetGoodbyMailData(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* anm_id) {
-    static u8 animal_name[ANIMAL_NAME_LEN];
-
     s32 mailNo;
     s32 res = FALSE;
  
     if (anm_id->looks < NPC_LOOKS_NUM) {
         mailNo = (anm_id->looks * 3) + 0x20E;
         mailNo += mQst_GetRandom(3); 
-        mNpc_GetNpcWorldNameAnm(animal_name, anm_id);
+        mNpc_GetNpcWorldNameAnm(Goodby_animal_name, anm_id);
         mHandbill_Set_free_str(0, pid->playerName, PLAYER_NAME_LEN);
-        mHandbill_Set_free_str(1, animal_name, ANIMAL_NAME_LEN);
+        mHandbill_Set_free_str(1, Goodby_animal_name, ANIMAL_NAME_LEN);
         mHandbill_Set_free_str(3, common_data.landInfo.name, LAND_NAME_SIZE);
         mNpc_LoadMailDataCommon2(mail, pid, anm_id, 0, mNpc_GetPaperType(), mailNo);
         res = TRUE;
@@ -3060,7 +3086,6 @@ void mNpc_GetNpcWorldNameAnm(u8* name, AnmPersonalID_c* anmId) {
 }
 
 void mNpc_GetNpcWorldNameP(u8* name, u16 npcId){
-    static u8 load_name[ANIMAL_NAME_LEN];
     s32 i;
     SpecialNpcData* sp = l_sp_actor_name;
     u8* worldName = l_no_name_npc_name;
@@ -3410,8 +3435,6 @@ s32 mNpc_GetMinSex() {
 }
 
 s32 mNpc_GrowLooksNpcIdx(u8 looks) {
-    static u8 candidate_table[27];
-
     u8* looks_table = npc_looks_table;
     s32 npc_idx;
     s32 candidates;
@@ -3493,7 +3516,7 @@ void mNpc_SetAnimalInfoNpcIdx(Animal_c* animal, s32 idx) {
     if (idx >= 0 && idx < NPC_NUM) {
         offset = idx * 6;
         DmaMgr_RequestSyncDebug(&npc_def_list, (offset + SEGMENT_ROM_START(segment_00E03000)), 8, "../m_npc.c", 0x1CB3);
-        mNpc_SetDefAnimalInfo(animal, idx | 0xE000, npc_looks_table[idx], npc_def_list);
+        mNpc_SetDefAnimalInfo(animal, idx | 0xE000, npc_looks_table[idx], &npc_def_list);
     }
 } 
 
@@ -3615,13 +3638,14 @@ s32 mNpc_CheckNpcSet(s32 bx, s32 bz, s32 ut_x, s32 ut_z) {
     return res;
 }
 
-s32 mNpc_GetMakeUtNuminBlock_hard_area(s32* ut_x, s32* ut_z, s32 bx, s32 bz, s32 restrictArea) {
+s32 mNpc_GetMakeUtNuminBlock_hard_area(s32* utX, s32* utZ, s32 bx, s32 bz, s32 restrictArea) {
     mCoBG_unkStructUnion* col;
     u16* items; 
     s32 nowUtX;
     s32 nowUtZ;
     s32 minUtX;
     s32 minUtZ;
+    s32 idx;
     s32 res;
     s32 i;
     s32 j;
@@ -3640,7 +3664,7 @@ s32 mNpc_GetMakeUtNuminBlock_hard_area(s32* ut_x, s32* ut_z, s32 bx, s32 bz, s32
     if (items != NULL && col != NULL) {
         for (i = restrictArea; i < UT_Z_NUM - restrictArea; i++) {
             for (j = restrictArea; j < UT_X_NUM - restrictArea; j++) {
-                s32 idx = i * UT_X_NUM + j;
+                idx = i * UT_X_NUM + j;
                 if (mNpc_CheckNpcSet_fgcol_hard(items[idx], col[idx].data.unk6) == TRUE) {
                     if (
                     col[idx].data.unk1 == col[idx].data.unk2 && 
@@ -3655,8 +3679,8 @@ s32 mNpc_GetMakeUtNuminBlock_hard_area(s32* ut_x, s32* ut_z, s32 bx, s32 bz, s32
                         nowUtZ = ABS(nowUtZ);
 
                         if (minUtX > nowUtX && minUtZ > nowUtZ) {
-                            *ut_x = j;
-                            *ut_z = i;
+                            *utX = j;
+                            *utZ = i;
                             minUtX = nowUtX;
                             minUtZ = nowUtZ; 
                             res = TRUE;
@@ -3671,8 +3695,6 @@ s32 mNpc_GetMakeUtNuminBlock_hard_area(s32* ut_x, s32* ut_z, s32 bx, s32 bz, s32
 }
 
 s32 mNpc_GetMakeUtNuminBlock_area(s32* utX, s32* utZ, s32 bx, s32 bz, s32 restrictArea) {
-    static u16 fg_flag[UT_Z_NUM];
-
     s32 candidates;
     mCoBG_unkStructUnion* col;
     u16* fgTop;
@@ -3741,8 +3763,6 @@ s32 mNpc_GetMakeUtNuminBlock_area(s32* utX, s32* utZ, s32 bx, s32 bz, s32 restri
 s32 mNpc_GetMakeUtNuminBlock(s32* utX, s32* utZ, s32 bx, s32 bz) {
     return mNpc_GetMakeUtNuminBlock_area(utX, utZ, bx, bz, 1);
 }
-
-NpcTalkInfo l_npc_talk_info[ANIMAL_NUM_MAX];
 
 void mNpc_ClearTalkInfo() {
     NpcTalkInfo* talkInfo = l_npc_talk_info;

@@ -92,7 +92,7 @@ s32 mQst_GetOccuredContestIdx(s32);
 // void func_800BB86C_jp();
 // void func_800BB990_jp();
 // void func_800BBAB0_jp();
-void mQst_SetReceiveLetter(QuestContest*, PersonalID_c*, u8*, u8);
+void mQst_SetReceiveLetter(QuestContest*, PersonalID_c*, u8*, u16);
 QuestErrand* mQst_GetFirstJobData(void);
 // void func_800BBCBC_jp();
 // void func_800BBD00_jp();

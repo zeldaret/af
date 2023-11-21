@@ -168,7 +168,7 @@ typedef struct CommonData {
     /* 0x09EA8 */ u8 unk_09EA8[0x70];
     /* 0x09F18 */ Animal_c animals[ANIMAL_NUM_MAX]; // villagers in town
     /* 0x0EC70 */ AnmPersonalID_c lastRemovedAnimalId;
-    /* 0x0EC7C */ u8 unk_0EC7C[0x124];
+    /* 0x0EC7C */ u8 unk_0EC7C[0x128];
     /* 0x0EDA4 */ EventSaveInfo eventSaveInfo;
     /* 0x0EE40 */ u8 unk_0EE40[0x118];
     /* 0x0EF58 */ u16 fruit;
@@ -185,8 +185,9 @@ typedef struct CommonData {
     /* 0x0F804 */ PrivateMotherMail motherMailInfo[PLAYER_NUM];
     /* 0x0F83C */ u8 unk_0F83C[0x8];
     /* 0x0F844 */ FamicomEmuCommonData famicomEmuCommonData;
-    /* 0x0F86A */ u8 npcUsedTable[32];
-    /* 0x0F88A */ u8 unk_0F88A[0x12];
+    /* 0x0F86A */ u8 unk_0F86A[2];
+    /* 0x0F86C */ u8 npcUsedTable[32];
+    /* 0x0F88C */ u8 unk_0F88A[0x10];
     /* 0x0F89C */ lbRTC_time_c unk_0F89C;
     /* 0x0F8A4 */ lbRTC_time_c unk_0F8A4;
     /* 0x0F8AC */ UNK_TYPE1 unk_0F8AC;

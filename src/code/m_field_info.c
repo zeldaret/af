@@ -241,7 +241,7 @@
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008BCFC_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008BD98_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_MyMoveActorBitData_ON.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008BDCC_jp.s")
 

@@ -154,7 +154,7 @@ s32 func_8008B3E8_jp(xyz_t* arg0, UNK_TYPE arg1);
 // void func_8008BAEC_jp();
 // void func_8008BB64_jp();
 // void func_8008BBF0_jp();
-void mFI_SetMoveActorBitData_ON(s32, u8,u8);
+void mFI_SetMoveActorBitData_ON(s16, u8,u8);
 // void func_8008BCFC_jp();
 void mFI_MyMoveActorBitData_ON(struct Actor*);
 // void func_8008BDCC_jp();
