@@ -11,10 +11,10 @@
 #define PLAYER_NAME_LEN 6
 
 typedef struct PersonalID_c {
-  /* 0x00 */ u8 playerName[PLAYER_NAME_LEN];
-  /* 0x06 */ u8 landName[LAND_NAME_SIZE];
-  /* 0x0C */ u16 playerId;
-  /* 0x0E */ u16 landId;
+	/* 0x00 */ char playerName[PLAYER_NAME_LEN];
+    /* 0x06 */ char landName[LAND_NAME_SIZE];
+	/* 0x0C */ u16 playerId;
+	/* 0x0E */ u16 landId;
 } PersonalID_c; // size = 0x10 
 
 typedef struct Private_Sub_A86 {
@@ -35,9 +35,9 @@ typedef struct PrivateMotherMail {
 } PrivateMotherMail; // size = 0xE
 
 typedef struct PrivateAnimalMemory{
-    u16 npcId; 
-    u8 landName[LAND_NAME_SIZE];
-}PrivateAnimalMemory;
+    /* 0x00 */ u16 npcId; 
+    /* 0x02 */ char landName[LAND_NAME_SIZE];
+}PrivateAnimalMemory; // size 0x8
 
 typedef struct PrivateInventory {
     /* 0x00 */ u16 pockets[mPr_POCKETS_SLOT_COUNT]; /* items in inventory */

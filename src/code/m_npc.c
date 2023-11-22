@@ -43,8 +43,8 @@ SpecialNpcData l_sp_actor_name[] = {
     { 0xA00D, NPC_SEX_MALE, 0x04E2, 2 },   { 0xA00E, NPC_SEX_MALE, 0x04E2, 2 },   { 0xA00F, NPC_SEX_MALE, 0x04E2, 2 },
     { 0xA010, NPC_SEX_MALE, 0x04E2, 2 },
 };
-u8 l_no_name_npc_name[ANIMAL_NAME_LEN] = { 0xD4, 0x8E, 0xA6, 0x90, 0x85, 0x42 };
-u8 l_no_ending_npc_ending[ANIMAL_CATCHPHRASE_LEN] = { 0xD3, 0xAF, 0x9D, 0x20 };
+char l_no_name_npc_name[ANIMAL_NAME_LEN] = { 0xD4, 0x8E, 0xA6, 0x90, 0x85, 0x42 };
+char l_no_ending_npc_ending[ANIMAL_CATCHPHRASE_LEN] = { 0xD3, 0xAF, 0x9D, 0x20 };
 
 s32 fake_table[60];
 u8 Handbillz_tmp_super[MAIL_HEADER2_LEN];
@@ -57,10 +57,10 @@ u8 Remail_tmp_super[MAIL_HEADER2_LEN];
 u8 Remail_tmp_ps[MAIL_FOOTER2_LEN];
 u16 fg_flag[UT_Z_NUM];
 NpcTalkInfo l_npc_talk_info[ANIMAL_NUM_MAX];
-u8 Event_animal_name[ANIMAL_NAME_LEN];
-u8 Birthday_animal_name[ANIMAL_NAME_LEN];
-u8 Goodby_animal_name[ANIMAL_NAME_LEN];
-u8 load_name[ANIMAL_NAME_LEN];
+char Event_animal_name[ANIMAL_NAME_LEN];
+char Birthday_animal_name[ANIMAL_NAME_LEN];
+char Goodby_animal_name[ANIMAL_NAME_LEN];
+char load_name[ANIMAL_NAME_LEN];
 AnmGoodbyeMail l_mnpc_goodby_mail;
 Mail_c l_npc_mail;
 s32 fakeTable[NPC_NUM];
@@ -182,8 +182,8 @@ void mNpc_SetRemoveExp(Animal_c* animal, u16 removeExp) {
 }
 
 void mNpc_SetParentName(Animal_c* animal, PersonalID_c* parentId) {
-    if (parentId != NULL && mPr_NullCheckPersonalID(parentId) == FALSE &&
-        mPr_NullCheckPlayerName(animal->parentName) == TRUE) {
+    if ((parentId != NULL && mPr_NullCheckPersonalID(parentId) == FALSE) &&
+        (mPr_NullCheckPlayerName(animal->parentName) == TRUE)) {
         mPr_CopyPlayerName(animal->parentName, parentId->playerName);
     }
 }
@@ -626,7 +626,7 @@ void mNpc_ClearAnimalInfo(Animal_c* animal) {
     home->blockZ = 0xFF;
     home->utX = 0xFF;
     home->utZ = 0xFF;
-    mNpc_ClearBufSpace1(animal->catchphrase, ANIMAL_CATCHPHRASE_LEN);
+    mNpc_ClearBufSpace1((u8*)animal->catchphrase, ANIMAL_CATCHPHRASE_LEN);
     mQst_ClearContest(&animal->contestQuest);
     mLd_ClearLandName(animal->previousLandName);
     animal->previousLandId = 0;
@@ -1173,7 +1173,7 @@ void mNpc_SetRemailFreeString(PersonalID_c* pid, AnmPersonalID_c* anmId, Anmrema
     };
 
     s32 i;
-    u8 freeStr[10];
+    char freeStr[10];
 
     mHandbill_Set_free_str(0, pid->playerName, PLAYER_NAME_LEN);
 
@@ -1254,15 +1254,15 @@ void mNpc_GetRemailWrongData(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* a
     mail->present = 0;
 }
 
-typedef void (*NPC_GET_REMAIL_PROC)(Mail_c*, PersonalID_c*, AnmPersonalID_c*, Anmremail*, u8);
+typedef void (*NpcGetRemailProc)(Mail_c*, PersonalID_c*, AnmPersonalID_c*, Anmremail*, u8);
 
 void mNpc_GetRemailData(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* anmId, Anmremail* remail, s32 cond,
                         u8 foreign) {
-    static NPC_GET_REMAIL_PROC get_remail[2] = { &mNpc_GetRemailWrongData, &mNpc_GetRemailGoodData };
+    static NpcGetRemailProc get_remail[] = { &mNpc_GetRemailWrongData, &mNpc_GetRemailGoodData, };
 
     u16 paper;
 
-    (*get_remail[cond])(mail, pid, anmId, remail, foreign);
+    get_remail[cond](mail, pid, anmId, remail, foreign);
     mail->content.font = 0;
     mail->content.mailType = 0;
     mPr_CopyPersonalID(&mail->header.recipient.personalID, pid);
@@ -1371,12 +1371,9 @@ void mNpc_LoadMailDataCommon2(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* 
 }
 
 void mNpc_GetEventPresent(u16* present, s32 type) {
-    static s32 priority_table[3] = {
-        5,
-        2,
-    };
+    static s32 priority_table[3] = {5,2,0,};
 
-    static s32 category_table[3] = { 0, 0, 2 };
+    static s32 category_table[3] = { 0, 0, 2, };
 
     mSP_SelectRandomItem_New(NULL, present, 1, NULL, 0, category_table[type], priority_table[type]);
 }
@@ -1422,10 +1419,10 @@ s32 mNpc_SendEventPresentMail(PersonalID_c* pid, s32 playerNo, AnmPersonalID_c* 
     return res;
 }
 
-void mNpc_SendEventPresentMailSex(s32* selected, u8* type, Animal_c* animal, s32 animal_sex) {
+void mNpc_SendEventPresentMailSex(s32* selected, u8* type, Animal_c* animal, NpcSex sex) {
     s32 bestFriendIdx = mNpc_GetAnimalMemoryBestFriend(animal->memories, ANIMAL_MEMORY_NUM);
     s32 otherSexBestFriend =
-        mNpc_GetAnimalMemoryFriend_Land_Sex(animal->memories, ANIMAL_MEMORY_NUM, (~animal_sex) & 1);
+        mNpc_GetAnimalMemoryFriend_Land_Sex(animal->memories, ANIMAL_MEMORY_NUM, (~sex) & 1);
 
     if (bestFriendIdx != -1 && otherSexBestFriend == bestFriendIdx) {
         selected[0] = otherSexBestFriend;
@@ -1441,8 +1438,8 @@ void mNpc_SendEventPresentMailSex(s32* selected, u8* type, Animal_c* animal, s32
     }
 }
 
-s32 mNpc_SendEventPresentMail_common(s32 sexType) {
-    static s32 sex[] = { 1, 0 };
+s32 mNpc_SendEventPresentMail_common(NpcSex sexType) {
+    static NpcSex sex[] = { NPC_SEX_FEMALE, NPC_SEX_MALE};
 
     Animal_c* animal = common_data.animals;
     PersonalID_c* pid;
@@ -1507,7 +1504,7 @@ void mNpc_GetBirthdayPresent(u16* present) {
 }
 
 void mNpc_GetBirthdayCard(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* anmId) {
-    u8 itemName[10];
+    char itemName[10];
     s32 mailNo = 0xEA + anmId->looks * 3 + RANDOM(3);
     u16 present;
 
@@ -1611,14 +1608,14 @@ s32 mNpc_SendEventXmasCard(PersonalID_c* pid, s32 playerNo) {
     return res;
 }
 
-void mNpc_SetWordEnding(Animal_c* animal, u8* catchphrase) {
-    mem_copy(animal->catchphrase, catchphrase, ANIMAL_CATCHPHRASE_LEN);
+void mNpc_SetWordEnding(Animal_c* animal, char* catchphrase) {
+    mem_copy((u8*)animal->catchphrase, (u8*)catchphrase, ANIMAL_CATCHPHRASE_LEN);
 }
 
-u8* mNpc_GetWordEnding(Actor* actor) {
+char* mNpc_GetWordEnding(Actor* actor) {
     Animal_c* animalInfo;
     Animal_c* temp;
-    u8* wordEnding;
+    char* wordEnding;
 
     if ((actor != NULL) & (actor->part == ACTOR_PART_NPC)) {
         animalInfo = temp = ((Npc*)actor)->npcInfo.animal;
@@ -2974,20 +2971,20 @@ void mNpc_SetNpcNameID(Animal_c* animal, s32 count) {
     }
 }
 
-void mNpc_LoadNpcNameString(u8* name, u8 npcId) {
-    u8 npcName[ANIMAL_NAME_LEN];
+void mNpc_LoadNpcNameString(char* name, u8 npcId) {
+    char npcName[ANIMAL_NAME_LEN];
     s32 offset;
 
     if (npcId < 0xFF) {
         offset = npcId * ANIMAL_NAME_LEN;
         DmaMgr_RequestSyncDebug(npcName, (offset + 8) + SEGMENT_ROM_START(segment_00E04000), 8, "../m_npc.c", 0x1916);
-        mem_copy(name, npcName, ANIMAL_NAME_LEN);
+        mem_copy((u8*)name, (u8*)npcName, ANIMAL_NAME_LEN);
     }
 }
 
-void mNpc_GetNpcWorldNameTableNo(u8* name, u16 npcId) {
-    u8* worldName = l_no_name_npc_name;
-    u8 npcName[PLAYER_NAME_LEN];
+void mNpc_GetNpcWorldNameTableNo(char* name, u16 npcId) {
+    char* worldName = l_no_name_npc_name;
+    char npcName[PLAYER_NAME_LEN];
 
     if (name != NULL) {
         u8 id = npcId & 0xFF;
@@ -3000,9 +2997,9 @@ void mNpc_GetNpcWorldNameTableNo(u8* name, u16 npcId) {
     mPr_CopyPlayerName(name, worldName);
 }
 
-void mNpc_GetNpcWorldNameAnm(u8* name, AnmPersonalID_c* anmId) {
-    u8* worldName = l_no_name_npc_name;
-    u8 npcName[PLAYER_NAME_LEN];
+void mNpc_GetNpcWorldNameAnm(char* name, AnmPersonalID_c* anmId) {
+    char* worldName = l_no_name_npc_name;
+    char npcName[PLAYER_NAME_LEN];
 
     if (anmId != NULL) {
         if (ACTOR_FGNAME_GET_F000(anmId->npcId) == FGNAME_F000_E) {
@@ -3013,10 +3010,10 @@ void mNpc_GetNpcWorldNameAnm(u8* name, AnmPersonalID_c* anmId) {
     mPr_CopyPlayerName(name, worldName);
 }
 
-void mNpc_GetNpcWorldNameP(u8* name, u16 npcId) {
+void mNpc_GetNpcWorldNameP(char* name, u16 npcId) {
     s32 i;
     SpecialNpcData* sp = l_sp_actor_name;
-    u8* worldName = l_no_name_npc_name;
+    char* worldName = l_no_name_npc_name;
 
     for (i = 0; i < ARRAY_COUNT(l_sp_actor_name); i++) {
         if (npcId == sp->specialNpcId) {
@@ -3029,9 +3026,9 @@ void mNpc_GetNpcWorldNameP(u8* name, u16 npcId) {
     mPr_CopyPlayerName(name, worldName);
 }
 
-void mNpc_GetNpcWorldName(u8* name, Npc* npc) {
-    u8* worldName = l_no_name_npc_name;
-    u8 npcName[PLAYER_NAME_LEN];
+void mNpc_GetNpcWorldName(char* name, Npc* npc) {
+    char* worldName = l_no_name_npc_name;
+    char npcName[PLAYER_NAME_LEN];
 
     if ((name != NULL) && (npc != NULL)) {
         if (npc->actor.part == ACTOR_PART_NPC) {
@@ -3048,7 +3045,7 @@ void mNpc_GetNpcWorldName(u8* name, Npc* npc) {
     mPr_CopyPlayerName(name, worldName);
 }
 
-void mNpc_GetRandomAnimalName(u8* dst) {
+void mNpc_GetRandomAnimalName(char* dst) {
     Animal_c* animal = common_data.animals;
     u16 bitfield = 0;
     s32 num = 0;
@@ -3084,10 +3081,10 @@ void mNpc_GetRandomAnimalName(u8* dst) {
     }
 }
 
-void mNpc_GetAnimalPlateName(u8* dst, xyz_t wpos) {
+void mNpc_GetAnimalPlateName(char* dst, xyz_t wpos) {
     UNUSED s32 pad;
     Animal_c* animal = common_data.animals;
-    s32 bx;
+    s32 bx; 
     s32 bz;
     s32 utX;
     s32 utZ;
@@ -3113,8 +3110,8 @@ void mNpc_GetAnimalPlateName(u8* dst, xyz_t wpos) {
     }
 }
 
-s32 mNpc_GetNpcLooks(Actor* actor) {
-    s32 looks = NPC_LOOKS_BOY;
+NpcLooks mNpc_GetNpcLooks(Actor* actor) {
+    NpcLooks looks = NPC_LOOKS_BOY;
 
     if (actor != NULL && actor->part == ACTOR_PART_NPC) {
         Npc* npc = (Npc*)actor;
@@ -3127,9 +3124,9 @@ s32 mNpc_GetNpcLooks(Actor* actor) {
     return looks;
 }
 
-s32 mNpc_GetActorSex(u16 npcId) {
+NpcSex mNpc_GetActorSex(u16 npcId) {
     SpecialNpcData* spInfo = l_sp_actor_name;
-    s32 sex = NPC_SEX_MALE;
+    NpcSex sex = NPC_SEX_MALE;
     s32 i;
 
     for (i = 0; i < ARRAY_COUNT(l_sp_actor_name); i++) {
@@ -3144,8 +3141,8 @@ s32 mNpc_GetActorSex(u16 npcId) {
     return sex;
 }
 
-s32 mNpc_GetLooks2Sex(s32 looks) {
-    s32 sex = NPC_SEX_OTHER;
+NpcSex mNpc_GetLooks2Sex(NpcLooks looks) {
+    NpcSex sex = NPC_SEX_OTHER;
 
     if (looks == NPC_LOOKS_GIRL || looks == NPC_LOOKS_KO_GIRL || looks == NPC_LOOKS_NANIWA_LADY) {
         sex = NPC_SEX_FEMALE;
@@ -3156,8 +3153,8 @@ s32 mNpc_GetLooks2Sex(s32 looks) {
     return sex;
 }
 
-s32 mNpc_GetAnimalSex(Animal_c* animal) {
-    s32 sex = NPC_SEX_OTHER;
+NpcSex mNpc_GetAnimalSex(Animal_c* animal) {
+    NpcSex sex = NPC_SEX_OTHER;
 
     if (animal != NULL) {
         sex = mNpc_GetLooks2Sex(animal->id.looks);
@@ -3166,8 +3163,8 @@ s32 mNpc_GetAnimalSex(Animal_c* animal) {
     return sex;
 }
 
-s32 mNpc_GetNpcSex(Actor* actor) {
-    s32 sex;
+NpcSex mNpc_GetNpcSex(Actor* actor) {
+    NpcSex sex;
 
     if (actor != NULL && actor->part == ACTOR_PART_NPC) {
         Npc* npc = (Npc*)actor;
@@ -3325,11 +3322,11 @@ u8 mNpc_GetMinLooks(u8* bitfield, s32* minLooksNum) {
     return minLooks;
 }
 
-s32 mNpc_GetMinSex() {
+NpcSex mNpc_GetMinSex() {
     Animal_c* animal = common_data.animals;
     s32 males = 0;
     s32 females = 0;
-    s32 res;
+    NpcSex res;
     s32 i;
 
     for (i = 0; i < ANIMAL_NUM_MAX; i++) {
@@ -3340,6 +3337,8 @@ s32 mNpc_GetMinSex() {
                     break;
                 case NPC_SEX_FEMALE:
                     females++;
+                    break;
+                default:
                     break;
             }
         }
@@ -3469,7 +3468,7 @@ void mNpc_Grow() {
     s32 minLooksNum;
     u8 bitfieldSave;
     s32 looksSave;
-    s32 minSex;
+    NpcSex minSex;
     s32 selected;
     s32 growIdx;
     u8 looks;

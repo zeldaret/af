@@ -40,18 +40,18 @@ typedef struct PrivateInfo {
     /* 0xA74 */ u8 exists;
     /* 0xA75 */ UNK_TYPE1 unkA75[0x11];
     /* 0xA86 */ Private_Sub_A86 unk_A86;
-    /* 0xA8F */ s8 unkA8F[0x3c];
+    /* 0xA8F */ UNK_TYPE1 unkA8F[0x3c];
     /* 0xACB */ Anmremail remail;   
     /* 0xADE */ char unkADE[06];
     /* 0xADE */ PrivateAnimalMemory animalMemory;
-    /* 0xAE4 */ s8 unkAEA[0x9C]; 
+    /* 0xAE4 */ UNK_TYPE1 unkAEA[0x9C]; 
     /* 0xB88 */ mPr_map_info_c maps[mPr_FOREIGN_MAP_COUNT]; /* maps 'collected' for foreign towns */
     /* 0xBC8 */ UNK_TYPE1 unkBC8[0x8];
 } PrivateInfo; // size = 0xBD0
 
-void mPr_ClearPlayerName(u8* arg0);
-void mPr_CopyPlayerName(u8* dst, u8* src);
-s32 mPr_NullCheckPlayerName(u8* arg0);
+void mPr_ClearPlayerName(char* arg0);
+void mPr_CopyPlayerName(char* dst, char* src);
+s32 mPr_NullCheckPlayerName(char* arg0);
 // void func_800B7804_jp();
 // void func_800B785C_jp();
 s32 mPr_NullCheckPersonalID(PersonalID_c* arg0);

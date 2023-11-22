@@ -177,7 +177,7 @@ typedef struct CommonData {
     /* 0x0F2A0 */ UNK_TYPE1 unk_0F2A0[0x17C];
     /* 0x0F41C */ SnowmanData snowmanData[SNOWMAN_SAVE_COUNT];
     /* 0x0F428 */ u64 melody;
-    /* 0x0F430 */ UNK_TYPE1 unk_F430[8];
+    /* 0x0F430 */ UNK_TYPE1 unk_F430[0x8];
     /* 0x0F438 */ u8 stationType;
     /* 0x0F439 */ u8 unk_F439[0x3];
     /* 0x0F43C */ u16 deposit[FG_BLOCK_X_NUM * FG_BLOCK_Z_NUM][UT_Z_NUM]; // flags for which items are buried around town
@@ -185,9 +185,9 @@ typedef struct CommonData {
     /* 0x0F804 */ PrivateMotherMail motherMailInfo[PLAYER_NUM];
     /* 0x0F83C */ u8 unk_0F83C[0x8];
     /* 0x0F844 */ FamicomEmuCommonData famicomEmuCommonData;
-    /* 0x0F86A */ u8 unk_0F86A[2];
+    /* 0x0F86A */ UNK_TYPE1 unk_0F86A[0x2];
     /* 0x0F86C */ u8 npcUsedTable[32];
-    /* 0x0F88C */ u8 unk_0F88A[0x10];
+    /* 0x0F88C */ UNK_TYPE1 unk_0F88A[0x10];
     /* 0x0F89C */ lbRTC_time_c unk_0F89C;
     /* 0x0F8A4 */ lbRTC_time_c unk_0F8A4;
     /* 0x0F8AC */ UNK_TYPE1 unk_0F8AC;
@@ -244,13 +244,13 @@ typedef struct CommonData {
     /* 0x107A0 */ UNK_TYPE unk_107A0;
     /* 0x107A4 */ UNK_TYPE1 unk_107A4[0x12];
     /* 0x107B6 */ s16 unk_107B6; // named "demo_profile" in AC GCN decomp (though it's an array of two s16s in that game)
-    /* 0x107B8 */ u8 unk_107B8[0x28];
+    /* 0x107B8 */ UNK_TYPE1 unk_107B8[0x28];
     /* 0x107E0 */ s8 player_decoy_flag;
-    /* 0x107E1 */ u8 unk_107E1[0x3];
+    /* 0x107E1 */ UNK_TYPE1 unk_107E1[0x3];
     /* 0x107E4 */ s16 unk_107E4;
-    /* 0x107E6 */ u8 unk107E6[0x252];
+    /* 0x107E6 */ UNK_TYPE1 unk107E6[0x252];
     /* 0x10A38 */ s8 beeStingFlag;
-    /* 0x10A39 */ u8 unk_10A39;
+    /* 0x10A39 */ UNK_TYPE1 unk_10A39[0x1];
     /* 0x10A3A */ u8 gokiShockedFlag;
     /* 0x10A3B */ UNK_TYPE1 unk_10A3B[0x1];
     /* 0x10A3C */ UNK_TYPE1 unk_10A3C[0x2C];
@@ -259,7 +259,7 @@ typedef struct CommonData {
     /* 0x10A6C */ UNK_TYPE1 unk_10A6C[0x14];
     /* 0x10A80 */ UNK_TYPE1 unk_10A80[0x2];
     /* 0x10A82 */ s16 unk_10A82;
-    /* 0x10A84 */ u8 unk_10A84[0x2C];
+    /* 0x10A84 */ UNK_TYPE1 unk_10A84[0x2C];
     /* 0x10AB0 */ u8 unk_10AB0; // named "pad_connected" in AC GCN decomp
     /* 0x10AB1 */ UNK_TYPE1 unk_10AB1[0x7];
 } CommonData; // size = 0x10AB8

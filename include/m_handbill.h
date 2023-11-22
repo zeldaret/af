@@ -32,7 +32,7 @@ void Balloon_move(struct Game_Play* game_play);
 // void func_80092BE8_jp();
 void mHsRm_GetHuusuiRoom(struct Game* game_play, s32 player_no);
 
-void mHandbill_Set_free_str(s32, u8*, s32);
+void mHandbill_Set_free_str(s32, char*, s32);
 // void func_80092E14_jp();
 // void func_80092E80_jp();
 // void func_80092FC4_jp();

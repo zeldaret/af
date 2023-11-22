@@ -35,23 +35,23 @@ typedef struct QuestFirstJob {
 
 typedef struct QuestErrandChain {
     /* 0x00 */ AnmPersonalID_c usedId[3];
-    /* 0x2A */ u8 usedNum;
-} QuestErrandChain;
+    /* 0x24 */ u8 usedNum;
+} QuestErrandChain; // size 0x26
 
 
 typedef union ErrandInfo{
-  /* 0x00 */ QuestErrandChain chain;
-  /* 0x12 */ QuestFirstJob firstJob;
+    /* 0x00 */ QuestErrandChain chain;
+    /* 0x12 */ QuestFirstJob firstJob;
 } ErrandInfo; // size = 0x24
 
-typedef struct quest_errand_s {
-  /* 0x00 */ QuestBase base; /* quest base info */
-  /* 0x0C */ AnmPersonalID_c recipient; /* villager who will receive it */
-  /* 0x1A */ AnmPersonalID_c sender; /* villager who sent it */
-  /* 0x28 */ u16 item; /* errand item */
-  /* 0x2A */ s8 pocketIdx:5; /* index in player pockets where the errand item is */
-  /* 0x2A */ s8 errandType:3; /* errand type */
-  /* 0x2C */ ErrandInfo info; /* errand type-specific data */
+typedef struct QuestErrand {
+    /* 0x00 */ QuestBase base; /* quest base info */
+    /* 0x0C */ AnmPersonalID_c recipient; /* villager who will receive it */
+    /* 0x1A */ AnmPersonalID_c sender; /* villager who sent it */
+    /* 0x28 */ u16 item; /* errand item */
+    /* 0x2A */ s8 pocketIdx:5; /* index in player pockets where the errand item is */
+    /* 0x2A */ s8 errandType:3; /* errand type */
+    /* 0x2C */ ErrandInfo info; /* errand type-specific data */
 } QuestErrand; // size = 0x50
 
 typedef struct QuestContest {

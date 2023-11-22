@@ -2,8 +2,8 @@
 #define C_6DA460_H
 
 #include "ultra64.h"
-#include "m_mail.h"
 
+struct Mail_c;
 struct Game_Play;
 
 // void func_800B67C0_jp();

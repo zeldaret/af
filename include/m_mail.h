@@ -54,12 +54,12 @@ typedef struct Mail_c {
     /* 0x026 */ MailContent content;
 } Mail_c; //size = 0xA4
 
-typedef enum MailNameType{
-    /* 0 */ MAIL_NAME_TYPE_PLAYER,
-    /* 1 */ MAIL_NAME_TYPE_NPC,
-    /* 2 */ MAIL_NAME_NUM,
+typedef enum MailNameType {
+    /*   0 */ MAIL_NAME_TYPE_PLAYER,
+    /*   1 */ MAIL_NAME_TYPE_NPC,
+    /*   2 */ MAIL_NAME_NUM,
     /* 255 */ MAIL_NAME_TYPE_CLEAR = 0xFF
-}MailNameType;
+} MailNameType;
 
 s32 mMl_strlen(const char* arg0, s32 size, char c);
 s32 mMl_strlen2(s32* arg0, const char* arg1, s32 size, char c);

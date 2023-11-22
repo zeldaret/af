@@ -1880,7 +1880,6 @@ extern MtxF MtxF_clear;
 // extern UNK_TYPE B_80142BBE_jp;
 // extern UNK_TYPE B_80142BC0_jp;
 // extern UNK_TYPE B_80142BE0_jp;
-// extern UNK_TYPE fake_table;
 // extern UNK_TYPE B_80142CF0_jp;
 // extern UNK_TYPE B_80142D08_jp;
 // extern UNK_TYPE B_80142E38_jp;
