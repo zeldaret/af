@@ -1258,7 +1258,10 @@ typedef void (*NpcGetRemailProc)(Mail_c*, PersonalID_c*, AnmPersonalID_c*, Anmre
 
 void mNpc_GetRemailData(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* anmId, Anmremail* remail, s32 cond,
                         u8 foreign) {
-    static NpcGetRemailProc get_remail[] = { &mNpc_GetRemailWrongData, &mNpc_GetRemailGoodData, };
+    static NpcGetRemailProc get_remail[] = {
+        &mNpc_GetRemailWrongData,
+        &mNpc_GetRemailGoodData,
+    };
 
     u16 paper;
 
@@ -1371,9 +1374,17 @@ void mNpc_LoadMailDataCommon2(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* 
 }
 
 void mNpc_GetEventPresent(u16* present, s32 type) {
-    static s32 priority_table[3] = {5,2,0,};
+    static s32 priority_table[3] = {
+        5,
+        2,
+        0,
+    };
 
-    static s32 category_table[3] = { 0, 0, 2, };
+    static s32 category_table[3] = {
+        0,
+        0,
+        2,
+    };
 
     mSP_SelectRandomItem_New(NULL, present, 1, NULL, 0, category_table[type], priority_table[type]);
 }
@@ -1421,8 +1432,7 @@ s32 mNpc_SendEventPresentMail(PersonalID_c* pid, s32 playerNo, AnmPersonalID_c* 
 
 void mNpc_SendEventPresentMailSex(s32* selected, u8* type, Animal_c* animal, NpcSex sex) {
     s32 bestFriendIdx = mNpc_GetAnimalMemoryBestFriend(animal->memories, ANIMAL_MEMORY_NUM);
-    s32 otherSexBestFriend =
-        mNpc_GetAnimalMemoryFriend_Land_Sex(animal->memories, ANIMAL_MEMORY_NUM, (~sex) & 1);
+    s32 otherSexBestFriend = mNpc_GetAnimalMemoryFriend_Land_Sex(animal->memories, ANIMAL_MEMORY_NUM, (~sex) & 1);
 
     if (bestFriendIdx != -1 && otherSexBestFriend == bestFriendIdx) {
         selected[0] = otherSexBestFriend;
@@ -1439,7 +1449,7 @@ void mNpc_SendEventPresentMailSex(s32* selected, u8* type, Animal_c* animal, Npc
 }
 
 s32 mNpc_SendEventPresentMail_common(NpcSex sexType) {
-    static NpcSex sex[] = { NPC_SEX_FEMALE, NPC_SEX_MALE};
+    static NpcSex sex[] = { NPC_SEX_FEMALE, NPC_SEX_MALE };
 
     Animal_c* animal = common_data.animals;
     PersonalID_c* pid;
@@ -3084,7 +3094,7 @@ void mNpc_GetRandomAnimalName(char* dst) {
 void mNpc_GetAnimalPlateName(char* dst, xyz_t wpos) {
     UNUSED s32 pad;
     Animal_c* animal = common_data.animals;
-    s32 bx; 
+    s32 bx;
     s32 bz;
     s32 utX;
     s32 utZ;
