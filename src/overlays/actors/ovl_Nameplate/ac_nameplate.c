@@ -38,7 +38,7 @@ void aNP_actor_dt(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
 
 void aNP_set_talk_info(Actor* thisx) {
     Color_RGBA8 color;
-    u8 villagerName[8];
+    char villagerName[8];
 
     mNpc_GetAnimalPlateName(villagerName, thisx->world.pos);
     mMsg_Set_free_str(mMsg_Get_base_window_p(), 0, villagerName, 6);

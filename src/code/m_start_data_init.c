@@ -74,7 +74,7 @@ void decide_fish_location(u8* fish_location) {
 
 void title_game_haniwa_data_init(void) {
     s32 i;
-    u8 haniwa_buf[HANIWA_MESSAGE_LEN];
+    char haniwa_buf[HANIWA_MESSAGE_LEN];
     s32 j;
     Haniwa_c* haniwa;
 
@@ -83,7 +83,7 @@ void title_game_haniwa_data_init(void) {
     for (i = 0; i < mHS_HOUSE_NUM; i++) {
         haniwa = &common_data.homes[i].haniwa;
 
-        mem_copy(common_data.homes[i].haniwa.message, haniwa_buf, HANIWA_MESSAGE_LEN);
+        mem_copy(common_data.homes[i].haniwa.message, (u8*)haniwa_buf, HANIWA_MESSAGE_LEN);
 
         for (j = 0; j < HANIWA_ITEM_HOLD_NUM; j++) {
             haniwa->items[j].item = EMPTY_NO;

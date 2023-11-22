@@ -162,7 +162,7 @@ void mMl_copy_mail_header_common(MailHeaderCommon* arg0, MailHeaderCommon* arg1)
 }
 
 void mMl_set_mail_name_npcinfo(mMl_unk_00* arg0, AnmPersonalID_c* arg1) {
-    u8 name[PLAYER_NAME_LEN];
+    char name[PLAYER_NAME_LEN];
 
     arg0->type = 1;
     mNpc_GetNpcWorldNameAnm(name, arg1);
