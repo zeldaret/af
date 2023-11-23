@@ -116,7 +116,7 @@ s32 mEv_check_status(s32, s16);
 // void func_80080040_jp();
 // void func_80080080_jp();
 // void func_80080200_jp();
-// void func_8008033C_jp();
+u8* func_8008033C_jp(s32,s32);
 // void func_800804AC_jp();
 // void func_800806A0_jp();
 // void func_800807E0_jp();

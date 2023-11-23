@@ -4,15 +4,14 @@
 #include "69CB30.h"
 #include "6A83A0.h"
 #include "6B81C0.h"
-#include "6B8A70.h"
+#include "m_land.h"
 #include "6BA500.h"
 #include "6C0690.h"
 #include "6C97F0.h"
 #include "m_npc_schedule.h"
 #include "6D9D80.h"
 #include "6DA460.h"
-#include "6DB420.h"
-#include "6DE300.h"
+#include "m_quest.h"
 #include "6E30B0.h"
 #include "6E7AD0.h"
 #include "6ECD90.h"
@@ -75,16 +74,16 @@ void decide_fish_location(u8* fish_location) {
 
 void title_game_haniwa_data_init(void) {
     s32 i;
-    u8 haniwa_buf[HANIWA_MESSAGE_LEN];
+    char haniwa_buf[HANIWA_MESSAGE_LEN];
     s32 j;
     Haniwa_c* haniwa;
 
-    func_800C3F70_jp(haniwa_buf, HANIWA_MESSAGE_LEN, 0x55C);
+    mString_Load_StringFromRom(haniwa_buf, HANIWA_MESSAGE_LEN, 0x55C);
 
     for (i = 0; i < mHS_HOUSE_NUM; i++) {
         haniwa = &common_data.homes[i].haniwa;
 
-        mem_copy(common_data.homes[i].haniwa.message, haniwa_buf, HANIWA_MESSAGE_LEN);
+        mem_copy(common_data.homes[i].haniwa.message, (u8*)haniwa_buf, HANIWA_MESSAGE_LEN);
 
         for (j = 0; j < HANIWA_ITEM_HOLD_NUM; j++) {
             haniwa->items[j].item = EMPTY_NO;
@@ -127,7 +126,7 @@ void mSDI_ClearMoneyPlayerHomeStationBlock(void) {
                         *items = EMPTY_NO;
 
                         if (deposit != NULL) {
-                            func_8008C478_jp(deposit, ut_x, ut_z);
+                            mFI_BlockDepositOFF(deposit, ut_x, ut_z);
                         }
                     }
 
@@ -237,7 +236,7 @@ s32 mSDI_StartInitNew(Game* game2, s32 player_no, s32 malloc_flag) {
     mSN_snowman_init();
     mHS_house_init();
 
-    lbRTC_TimeCopy(&common_data.unk_0F7FC, &mTM_rtcTime_clear_code);
+    lbRTC_TimeCopy(&common_data.lastGrowTime, &mTM_rtcTime_clear_code);
     lbRTC_TimeCopy(&common_data.unk_0F89C, &mTM_rtcTime_clear_code);
     lbRTC_TimeCopy(&common_data.unk_0F8A4, &mTM_rtcTime_clear_code);
 
@@ -401,10 +400,10 @@ void mSDI_StartInitAfter(Game* game, s32 renewal_reserve_flag, s32 malloc_flag) 
     mTM_set_season();
     func_80084DA4_jp();
     mEv_2nd_init(&game_play->event);
-    func_800AD9FC_jp();
+    mNpc_Grow();
     func_80096B64_jp();
-    func_800AB054_jp();
-    func_800AB09C_jp();
+    mNpc_InitNpcData();
+    mNpc_InitNpcList();
     mNpc_SetNpcList(common_data.npclist, common_data.animals, ANIMAL_NUM_MAX, malloc_flag);
     mNpc_ClearTalkInfo();
     if (renewal_reserve_flag == 1) {
@@ -419,7 +418,7 @@ void mSDI_StartInitAfter(Game* game, s32 renewal_reserve_flag, s32 malloc_flag) 
     common_data.gokiShockedFlag = FALSE;
     func_800A6548_jp();
     func_800B9B2C_jp();
-    func_800A91DC_jp();
+    mNpc_Remail();
     mPr_SendForeingerAnimalMail(common_data.privateInfo);
     mPr_StartSetCompleteTalkInfo();
     mMsm_SendInformationMail();

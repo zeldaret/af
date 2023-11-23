@@ -283,7 +283,7 @@ s32 lbRTC_IsOverWeekRTC(const lbRTC_time_c* t0, lbRTC_weekday_t week) {
     lbRTC_IsOverRTC(&t1);
 }
 
-void func_800D5480_jp(lbRTC_time_c* t0, lbRTC_time_c* t1) {
+s32 lbRTC_IntervalTime(lbRTC_time_c* t0, lbRTC_time_c* t1) {
 
     lbRTC_time_c t2;
     lbRTC_time_c t3;

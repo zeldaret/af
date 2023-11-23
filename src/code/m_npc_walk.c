@@ -407,7 +407,7 @@ void mNpcW_GetBlockXZNumExceptHome(s32* goalBlockX, s32* goalBlockZ, Animal_c* a
 
 s32 mNpcW_CheckDiffBlockWalkNpcHome(s32 blockX, s32 blockZ, NpcWalkInfo* info) {
     s32 res = FALSE;
-    AnmHome_c* home;
+    Anmhome_c* home;
     s32 i;
     s32 idx;
 
@@ -445,7 +445,7 @@ void mNpcW_SetHomeBlockSource(NpcWalking* walk, Animal_c* animal) {
 
     for (i = 0; i < ANIMAL_NUM_MAX; i++) {
         if (mNpc_CheckFreeAnimalPersonalID(&animal->id) == FALSE) {
-            AnmHome_c* home = &animal->homeInfo;
+            Anmhome_c* home = &animal->homeInfo;
 
             if (mNpcW_CheckDiffBlockWalkNpcHome(home->blockX, home->blockZ, walk->info) == TRUE) {
                 field |= (1 << i);
@@ -458,7 +458,7 @@ void mNpcW_SetHomeBlockSource(NpcWalking* walk, Animal_c* animal) {
 
     if (num > 0) {
         s32 chosen = RANDOM(num);
-        AnmHome_c* homeInfo;
+        Anmhome_c* homeInfo;
 
         for (i = 0; i < ANIMAL_NUM_MAX; i++) {
             if (((field >> i) & 1) == 1) {

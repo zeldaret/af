@@ -116,7 +116,7 @@ s32 lbRTC_IsOverTime(const lbRTC_time_c* t0, const lbRTC_time_c* t1);
 s32 lbRTC_IsJustAtRTC(const lbRTC_time_c* time, s32 flags);
 s32 lbRTC_IsOverRTC(const lbRTC_time_c* time);
 s32 lbRTC_IsOverWeekRTC(const lbRTC_time_c* t0, lbRTC_weekday_t week);
-void func_800D5480_jp(lbRTC_time_c* t0, lbRTC_time_c* t1);
+s32 lbRTC_IntervalTime(lbRTC_time_c* t0, lbRTC_time_c* t1);
 s32 lbRTC_GetIntervalDays(const lbRTC_time_c* t0, const lbRTC_time_c* t1);
 void lbRTC_Add_YY(lbRTC_time_c* time, s32 years);
 void lbRTC_Add_MM(lbRTC_time_c* time, s32 month);
