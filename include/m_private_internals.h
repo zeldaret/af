@@ -27,7 +27,7 @@ typedef struct Private_Sub_A86 {
 } Private_Sub_A86; // size >= 0xA
 
 typedef struct mPr_map_info_c {
-  /* 0x00 */ char unk00[0x8];
+    /* 0x00 */ char unk00[0x8];
 } mPr_map_info_c; // size = 0x8
 
 typedef struct PrivateMotherMail {

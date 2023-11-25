@@ -35,7 +35,7 @@ s32 chase_s3(s16* pValue, s16 target, s16 step);
 s32 chase_f2(f32* pValue, f32 limit, f32 step);
 s32 chase_f3(f32* pValue, f32 target, f32 incrStep, f32 decrStep);
 void inter_float(f32* pValue, f32 arg1, s32 stepCount);
-void stick_ratio_set(f32* radius, s16* angle, Input* input);
+void stick_ratio_set(f32* magnitude, s16* angle, Input* input);
 s16 get_random_timer(s16 base, s16 range);
 s16 get_random_pattern_timer(s16 base, s16 stride, s16 range);
 void xyz_t_move(xyz_t* dest, xyz_t* src);

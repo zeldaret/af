@@ -29,34 +29,37 @@ typedef enum mHm_ROOMTYPE {
 } mHm_ROOMTYPE;
 
 typedef enum mHm_HOMESIZE {
-    /* 0 */ mHm_HOMESIZE_SMALL,   /* initial size */
-    /* 1 */ mHm_HOMESIZE_MEDIUM,  /* paid off first debt */
-    /* 2 */ mHm_HOMESIZE_LARGE,   /* paid off second debt (excluding basement) */
-    /* 3 */ mHm_HOMESIZE_UPPER,   /* paid off third debt & basement */
-    /* 4 */ mHm_HOMESIZE_STATUE,  /* paid off final debt */
+    /* 0 */ mHm_HOMESIZE_SMALL,   // initial size
+    /* 1 */ mHm_HOMESIZE_MEDIUM,  // paid off first debt
+    /* 2 */ mHm_HOMESIZE_LARGE,   // paid off second debt (excluding basement)
+    /* 3 */ mHm_HOMESIZE_UPPER,   // paid off third debt & basement
+    /* 4 */ mHm_HOMESIZE_STATUE,  // paid off final debt
 
     /* 5 */ mHm_HOMESIZE_NUM
 }mHm_HOMESIZE;
 
+// original name, taken from m_flashrom
 typedef struct Haniwa_Item_c {
-    /* 0x00 */ u16 item; /* held item */
-    /* 0x02 */ s16 exchange_type; /* type of exchange (sale, free, trade) */
-    /* 0x04 */ u16 extra_data; /* trade related data */
+    /* 0x00 */ u16 item; // held item
+    /* 0x02 */ s16 exchange_type; // type of exchange (sale, free, trade)
+    /* 0x04 */ u16 extra_data; // trade related data
 } Haniwa_Item_c; // size = 0x6
 
-typedef struct Haniwa_c {
-    /* 0x00 */ Haniwa_Item_c items[HANIWA_ITEM_HOLD_NUM]; /* held items */
-    /* 0x18 */ u8 message[HANIWA_MESSAGE_LEN]; /* message for visitors */
-    /* 0x58 */ u32 bells; /* held bells from selling items */
+// original name, taken from m_flashrom
+typedef struct HomeHaniwa {
+    /* 0x00 */ Haniwa_Item_c items[HANIWA_ITEM_HOLD_NUM]; // held items
+    /* 0x18 */ u8 message[HANIWA_MESSAGE_LEN]; // message for visitors
+    /* 0x58 */ u32 bells; // held bells from selling items
 } Haniwa_c; // size = 0x5C
 
-// Original name is mHm_goki_c
+// Original name, taken from m_flashrom
 typedef struct mHm_goki_c {
   /* 0x00 */ lbRTC_ymd_t time;
   /* 0x04 */ u8 num;
   /* 0x05 */ u8 pad;
 } mHm_goki_c; // size = 0x6
 
+// Original name, taken from m_flashrom
 typedef struct mHm_hs_c {
     /* 0x000 */ PersonalID_c ownerID;
     /* 0x010 */ UNK_TYPE1 unk_010[0x12];
