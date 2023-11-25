@@ -385,7 +385,7 @@ s32 mSDI_StartInitErr(UNUSED Game* game, UNUSED s32 playerNumber, UNUSED s32 mal
     return TRUE;
 }
 
-void mSDI_StartInitAfter(Game* game, s32 renewal_reserve_flag, s32 mallocFlag) {
+void mSDI_StartInitAfter(Game* game, s32 renewalReserveFlag, s32 mallocFlag) {
     Game_Play* game_play = (Game_Play*)game;
 
     common_data.houseOwnerName = -1;
@@ -406,7 +406,7 @@ void mSDI_StartInitAfter(Game* game, s32 renewal_reserve_flag, s32 mallocFlag) {
     mNpc_InitNpcList();
     mNpc_SetNpcList(common_data.npclist, common_data.animals, ANIMAL_NUM_MAX, mallocFlag);
     mNpc_ClearTalkInfo();
-    if (renewal_reserve_flag == 1) {
+    if (renewalReserveFlag == 1) {
         mFM_RenewalReserve();
     }
     mQst_ClearNotSaveQuest(&common_data.quest);

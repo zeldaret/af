@@ -46,7 +46,7 @@ typedef struct Haniwa_Item_c {
 } Haniwa_Item_c; // size = 0x6
 
 // original name, taken from m_flashrom
-typedef struct HomeHaniwa {
+typedef struct Haniwa_c {
     /* 0x00 */ Haniwa_Item_c items[HANIWA_ITEM_HOLD_NUM]; // held items
     /* 0x18 */ u8 message[HANIWA_MESSAGE_LEN]; // message for visitors
     /* 0x58 */ u32 bells; // held bells from selling items

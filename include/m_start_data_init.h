@@ -35,8 +35,8 @@ s32 mSDI_StartInitNew(Game* game2, s32 playerNumber, s32 mallocFlag);
 s32 mSDI_StartInitFrom(Game* game2, s32 playerNumber, s32 mallocFlag);
 s32 mSDI_StartInitNewPlayer(Game* game, s32 playerNumber, s32 mallocFlag);
 s32 mSDI_StartInitPak(Game* game2, s32 playerNumber, s32 mallocFlag);
-s32 mSDI_StartInitErr(Game* game, s32 player_no, s32 malloc_flag);
-void mSDI_StartInitAfter(Game* game, s32 renewal_reserve_flag, s32 mallocFlag);
+s32 mSDI_StartInitErr(Game* game, s32 playerNumber, s32 mallocFlag);
+void mSDI_StartInitAfter(Game* game, s32 renewalReserveFlag, s32 mallocFlag);
 s32 mSDI_StartInitBefore(Game* game, s32 playerNumber, s32 initMode, s32 mallocFlag);
 s32 mSDI_StartDataInit(Game* game, s32 playerNumber, s32 initMode);
 
