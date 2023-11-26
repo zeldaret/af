@@ -24,20 +24,20 @@ typedef enum mSDI_MALLOC_FLAG {
 
 void famicom_emu_initial_common_data(void);
 void decide_fruit(u16* fruit);
-void decide_fish_location(u8* fish_location);
+void decide_fish_location(u8* fishLocation);
 void title_game_haniwa_data_init(void);
 void mSDI_ClearMoneyPlayerHomeStationBlock(void);
-void mSDI_PullTreeUT(u16* item_p);
-void mSDI_PullTreeBlock(u16* items_p, s32 ut);
+void mSDI_PullTreeUT(u16* itemP);
+void mSDI_PullTreeBlock(u16* itemsP, s32 ut);
 void mSDI_PullTree(void);
 void mSDI_PullTreeUnderPlayerBlock(void);
-s32 mSDI_StartInitNew(Game* game2, s32 player_no, s32 malloc_flag);
-s32 mSDI_StartInitFrom(Game* game2, s32 player_no, s32 malloc_flag);
-s32 mSDI_StartInitNewPlayer(Game* game, s32 player_no, s32 malloc_flag);
-s32 mSDI_StartInitPak(Game* game2, s32 player_no, s32 malloc_flag);
-s32 mSDI_StartInitErr(Game* game, s32 player_no, s32 malloc_flag);
-void mSDI_StartInitAfter(Game* game, s32 renewal_reserve_flag, s32 malloc_flag);
-s32 mSDI_StartInitBefore(Game* game, s32 player_no, s32 init_mode, s32 malloc_flag);
-s32 mSDI_StartDataInit(Game* game, s32 player_no, s32 init_mode);
+s32 mSDI_StartInitNew(Game* game2, s32 playerNumber, s32 mallocFlag);
+s32 mSDI_StartInitFrom(Game* game2, s32 playerNumber, s32 mallocFlag);
+s32 mSDI_StartInitNewPlayer(Game* game, s32 playerNumber, s32 mallocFlag);
+s32 mSDI_StartInitPak(Game* game2, s32 playerNumber, s32 mallocFlag);
+s32 mSDI_StartInitErr(Game* game, s32 playerNumber, s32 mallocFlag);
+void mSDI_StartInitAfter(Game* game, s32 renewalReserveFlag, s32 mallocFlag);
+s32 mSDI_StartInitBefore(Game* game, s32 playerNumber, s32 initMode, s32 mallocFlag);
+s32 mSDI_StartDataInit(Game* game, s32 playerNumber, s32 initMode);
 
 #endif

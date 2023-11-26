@@ -203,12 +203,12 @@ void inter_float(f32* pValue, f32 arg1, s32 stepCount) {
     }
 }
 
-void stick_ratio_set(f32* radius, s16* angle, Input* input) {
+void stick_ratio_set(f32* magnitude, s16* angle, Input* input) {
     f32 relX = input->rel.stick_x;
     f32 relY = input->rel.stick_y;
 
-    *radius = sqrtf(SQ(relX) + SQ(relY));
-    *radius = (*radius > 60.0f) ? 60.0f : *radius;
+    *magnitude = sqrtf(SQ(relX) + SQ(relY));
+    *magnitude = (*magnitude > 60.0f) ? 60.0f : *magnitude;
 
     *angle = atans_table(relY, -relX);
 }

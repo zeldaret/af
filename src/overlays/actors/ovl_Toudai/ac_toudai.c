@@ -73,18 +73,18 @@ void aTOU_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
     thisx->world.pos.z += 20.0f;
 }
 
-mCoBG_OffsetTable height_table_ct_360[] = { { 0x64, 16, 16, 16, 16, 16, 0 },
-                                            { 0x64, 16, 16, 16, 16, 16, 0 },
-                                            { 0x64, 16, 16, 16, 16, 16, 0 },
-                                            { 0x64, 16, 16, 16, 16, 16, 0 } };
-mCoBG_OffsetTable* height_table_361[] = { height_table_ct_360, height_table_ct_360 };
+mCoBG_unkStruct2 height_table_ct_360[] = { { 0x64, 16, 16, 16, 16, 16, 0 },
+                                           { 0x64, 16, 16, 16, 16, 16, 0 },
+                                           { 0x64, 16, 16, 16, 16, 16, 0 },
+                                           { 0x64, 16, 16, 16, 16, 16, 0 } };
+mCoBG_unkStruct2* height_table_361[] = { height_table_ct_360, height_table_ct_360 };
 f32 addX_362[] = { -40.0f, 0.0f };
 f32 addZ_363[] = { -40.0f, 0.0f };
 
 void aTOU_set_bgOffset(Toudai* this, s32 heightTableIndex) {
     s32 i;
     xyz_t pos;
-    mCoBG_OffsetTable* offsetTable = height_table_361[heightTableIndex];
+    mCoBG_unkStruct2* offsetTable = height_table_361[heightTableIndex];
 
     for (i = 0; i < 2; i++) {
         pos.z = addZ_363[i] + this->actor.home.pos.z;
