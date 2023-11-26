@@ -11,38 +11,35 @@
 #define HANIWA_ITEM_HOLD_NUM 4
 #define HANIWA_MESSAGE_LEN 64
 
-typedef enum mHm_ROOM{
-    /* 0 */ mHm_ROOM_MAIN,
-    /* 1 */ mHm_ROOM_UPPER,
-    /* 2 */ mHm_ROOM_BASEMENT,
+typedef enum Room {
+    /* 0 */ ROOM_MAIN,
+    /* 1 */ ROOM_UPPER,
+    /* 2 */ ROOM_BASEMENT,
+    /* 3 */ ROOM_NUM
+} Room;
 
-    /* 3 */ mHm_ROOM_NUM
-} mHm_ROOM;
+typedef enum RoomType {
+    /* 0 */ ROOMTYPE_SMALL,
+    /* 1 */ ROOMTYPE_MEDIUM,
+    /* 2 */ ROOMTYPE_LARGE,
+    /* 3 */ ROOMTYPE_COTTAGE,
+    /* 4 */ ROOMTYPE_NUM
+} RoomType;
 
-typedef enum mHm_ROOMTYPE {
-    /* 0 */ mHm_ROOMTYPE_SMALL,
-    /* 1 */ mHm_ROOMTYPE_MEDIUM,
-    /* 2 */ mHm_ROOMTYPE_LARGE,
-    /* 3 */ mHm_ROOMTYPE_COTTAGE,
-
-    /* 4 */ mHm_ROOMTYPE_NUM
-} mHm_ROOMTYPE;
-
-typedef enum mHm_HOMESIZE {
-    /* 0 */ mHm_HOMESIZE_SMALL,   // initial size
-    /* 1 */ mHm_HOMESIZE_MEDIUM,  // paid off first debt
-    /* 2 */ mHm_HOMESIZE_LARGE,   // paid off second debt (excluding basement)
-    /* 3 */ mHm_HOMESIZE_UPPER,   // paid off third debt & basement
-    /* 4 */ mHm_HOMESIZE_STATUE,  // paid off final debt
-
-    /* 5 */ mHm_HOMESIZE_NUM
-}mHm_HOMESIZE;
+typedef enum HomeSize {
+    /* 0 */ HOMESIZE_SMALL,   // initial size
+    /* 1 */ HOMESIZE_MEDIUM,  // paid off first debt
+    /* 2 */ HOMESIZE_LARGE,   // paid off second debt (excluding basement)
+    /* 3 */ HOMESIZE_UPPER,   // paid off third debt & basement
+    /* 4 */ HOMESIZE_STATUE,  // paid off final debt
+    /* 5 */ HOMESIZE_NUM
+} HomeSize;
 
 // original name, taken from m_flashrom
 typedef struct Haniwa_Item_c {
     /* 0x00 */ u16 item; // held item
-    /* 0x02 */ s16 exchange_type; // type of exchange (sale, free, trade)
-    /* 0x04 */ u16 extra_data; // trade related data
+    /* 0x02 */ s16 exchangeType; // type of exchange (sale, free, trade)
+    /* 0x04 */ u16 extraData; // trade related data
 } Haniwa_Item_c; // size = 0x6
 
 // original name, taken from m_flashrom
@@ -62,7 +59,7 @@ typedef struct mHm_goki_c {
 // Original name, taken from m_flashrom
 typedef struct mHm_hs_c {
     /* 0x000 */ PersonalID_c ownerID;
-    /* 0x010 */ UNK_TYPE1 unk_010[0x12];
+    /* 0x010 */ UNK_TYPE1 unk010[0x12];
     /* 0x022 */ u8 unk_022;
     /* 0x023 */ UNK_TYPE1 unk023[0x1];
     /* 0x024 */ u8 unk_024;
@@ -72,6 +69,5 @@ typedef struct mHm_hs_c {
     /* 0xB3C */ mHm_goki_c goki;
     /* 0xB42 */ UNK_TYPE1 unkB42[0x6];
 } mHm_hs_c; // size = 0xB48
-
 
 #endif
