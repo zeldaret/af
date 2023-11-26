@@ -59,15 +59,15 @@ typedef struct mHm_goki_c {
 // Original name, taken from m_flashrom
 typedef struct mHm_hs_c {
     /* 0x000 */ PersonalID_c ownerID;
-    /* 0x010 */ UNK_TYPE1 unk010[0x12];
+    /* 0x010 */ UNK_TYPE1 unk_010[0x12];
     /* 0x022 */ u8 unk_022;
-    /* 0x023 */ UNK_TYPE1 unk023[0x1];
+    /* 0x023 */ UNK_TYPE1 unk_023[0x1];
     /* 0x024 */ u8 unk_024;
-    /* 0x025 */ UNK_TYPE1 unk025[0x453];
+    /* 0x025 */ UNK_TYPE1 unk_025[0x453];
     /* 0x478 */ Mail_c mailbox[HOME_MAILBOX_SIZE];
     /* 0xAE0 */ Haniwa_c haniwa;
     /* 0xB3C */ mHm_goki_c goki;
-    /* 0xB42 */ UNK_TYPE1 unkB42[0x6];
+    /* 0xB42 */ UNK_TYPE1 unk_B42[0x6];
 } mHm_hs_c; // size = 0xB48
 
 #endif
