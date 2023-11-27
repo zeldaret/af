@@ -221,11 +221,11 @@ typedef struct CommonData {
     /* 0x10008 */ UNK_TYPE1 unk_10008[0x44];
     /* 0x1004C */ CommonData_unk_1004C* unk_1004C;
     /* 0x10050 */ UNK_TYPE1 unk_10050[0x28];
-    /* 0x10078 */ CommonData_unk_10078 *unk_10078;
+    /* 0x10078 */ CommonData_unk_10078*unk_10078;
     /* 0x1007C */ CommonData_unk_1007C* unk_1007C;
     /* 0x10080 */ CommonData_unk_10080* unk_10080;
     /* 0x10084 */ UNK_TYPE1 unk_10084[0x14];
-    /* 0x10098 */ CommonData_unk_10098 *unk_10098;
+    /* 0x10098 */ CommonData_unk_10098* unk_10098;
     /* 0x1009C */ UNK_TYPE1 unk_1009C[0x4];
     /* 0x100A0 */ struct ToolClip* toolClip;
     /* 0x100A4 */ UNK_TYPE1 unk_100A4[0x40];
