@@ -39,22 +39,20 @@ ActorProfile Toudai_Profile = {
 
 u8 aTOU_shadow_vtx_fix_flg_table[] = { 0x01, 0x00, 0x01, 0x00, 0x00, 0x01, 0x01, 0x00, 0x01, 0x00,
                                        0x00, 0x00, 0x01, 0x01, 0x00, 0x01, 0x01, 0x00, 0x01, 0x00 };
-
 extern Vtx obj_s_toudai_shadow_v[];
 extern Gfx obj_s_toudai_shadow_1_model[];
 ShadowData aTOU_shadow_data = { 20, aTOU_shadow_vtx_fix_flg_table, 60.0f, obj_s_toudai_shadow_v,
                                 obj_s_toudai_shadow_1_model };
-
 extern BaseSkeletonR cKF_bs_r_obj_s_toudai;
 extern BaseSkeletonR cKF_bs_r_obj_w_toudai;
-BaseSkeletonR* skl_324[] = { &cKF_bs_r_obj_s_toudai, &cKF_bs_r_obj_w_toudai };
 
 void aTOU_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
     Toudai* this = THIS;
+    static BaseSkeletonR* skl[] = { &cKF_bs_r_obj_s_toudai, &cKF_bs_r_obj_w_toudai };
     s32 type = (common_data.time.season == WINTER);
 
     gSegments[6] = OS_K0_TO_PHYSICAL(common_data.unk_10098->unk_AC(45));
-    cKF_SkeletonInfo_R_ct(&this->skeletonInfo, skl_324[type], NULL, this->jointTable, this->morphTable);
+    cKF_SkeletonInfo_R_ct(&this->skeletonInfo, skl[type], NULL, this->jointTable, this->morphTable);
     aTOU_set_bgOffset(this, 1);
     aTOU_setup_action(this, 0);
     cKF_SkeletonInfo_R_play(&this->skeletonInfo);
@@ -73,25 +71,24 @@ void aTOU_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
     thisx->world.pos.z += 20.0f;
 }
 
-mCoBG_unkStruct2 height_table_ct_360[] = { { 0x64, 16, 16, 16, 16, 16, 0 },
-                                           { 0x64, 16, 16, 16, 16, 16, 0 },
-                                           { 0x64, 16, 16, 16, 16, 16, 0 },
-                                           { 0x64, 16, 16, 16, 16, 16, 0 } };
-mCoBG_unkStruct2* height_table_361[] = { height_table_ct_360, height_table_ct_360 };
-f32 addX_362[] = { -40.0f, 0.0f };
-f32 addZ_363[] = { -40.0f, 0.0f };
-
 void aTOU_set_bgOffset(Toudai* this, s32 heightTableIndex) {
+    static mCoBG_unkStruct2 height_table_ct[] = { { 0x64, 16, 16, 16, 16, 16, 0 },
+                                                  { 0x64, 16, 16, 16, 16, 16, 0 },
+                                                  { 0x64, 16, 16, 16, 16, 16, 0 },
+                                                  { 0x64, 16, 16, 16, 16, 16, 0 } };
+    static mCoBG_unkStruct2* height_table[] = { height_table_ct, height_table_ct };
+    static f32 addX[] = { -40.0f, 0.0f };
+    static f32 addZ[] = { -40.0f, 0.0f };
     s32 i;
     xyz_t pos;
-    mCoBG_unkStruct2* offsetTable = height_table_361[heightTableIndex];
+    mCoBG_unkStruct2* offsetTable = height_table[heightTableIndex];
 
     for (i = 0; i < 2; i++) {
-        pos.z = addZ_363[i] + this->actor.home.pos.z;
-        pos.x = addX_362[0] + this->actor.home.pos.x;
+        pos.z = addZ[i] + this->actor.home.pos.z;
+        pos.x = addX[0] + this->actor.home.pos.x;
         mCoBG_SetPluss5PointOffset_file(pos, *offsetTable, "../ac_toudai_move.c_inc", 76);
         offsetTable++;
-        pos.x = addX_362[1] + this->actor.home.pos.x;
+        pos.x = addX[1] + this->actor.home.pos.x;
         mCoBG_SetPluss5PointOffset_file(pos, *offsetTable, "../ac_toudai_move.c_inc", 80);
         offsetTable++;
     }
@@ -164,19 +161,19 @@ void aTOU_lightout(Toudai* this, Game_Play* game_play UNUSED) {
 
 extern BaseAnimationR cKF_ba_r_obj_s_toudai;
 extern BaseAnimationR cKF_ba_r_obj_w_toudai;
-BaseAnimationR* ani_484[] = { &cKF_ba_r_obj_s_toudai, &cKF_ba_r_obj_w_toudai };
-ToudaiActionFunc process_485[] = { aTOU_init, aTOU_wait, aTOU_lighting, aTOU_lightout };
 
 void aTOU_setup_action(Toudai* this, s32 processIndex) {
+    static BaseAnimationR* ani[] = { &cKF_ba_r_obj_s_toudai, &cKF_ba_r_obj_w_toudai };
+    static ToudaiActionFunc process[] = { aTOU_init, aTOU_wait, aTOU_lighting, aTOU_lightout };
     s32 type;
 
     if (processIndex == 0) {
         type = (common_data.time.season == WINTER);
-        cKF_SkeletonInfo_R_init(&this->skeletonInfo, this->skeletonInfo.skeleton, ani_484[type], 1.0f, 100.0f, 51.0f,
-                                0.0f, 0.0f, ANIMATION_REPEAT, NULL);
+        cKF_SkeletonInfo_R_init(&this->skeletonInfo, this->skeletonInfo.skeleton, ani[type], 1.0f, 100.0f, 51.0f, 0.0f,
+                                0.0f, ANIMATION_REPEAT, NULL);
     }
 
-    this->unk2A0 = process_485[processIndex];
+    this->unk2A0 = process[processIndex];
     this->unk2B4 = processIndex;
 }
 
@@ -198,9 +195,9 @@ void aTOU_actor_init(Actor* thisx, Game_Play* game_play) {
     this->actor.update = aTOU_actor_move;
 }
 
-s32 aTOU_actor_draw_before(Game_Play* game_play UNUSED, SkeletonInfoR* skeletonInfo UNUSED, s32 jointIndex,
-                           Gfx** dlist, u8* displayBufferFlag UNUSED, void* thisx UNUSED, s_xyz* rotation UNUSED,
-                          xyz_t* translation UNUSED) {
+s32 aTOU_actor_draw_before(Game_Play* game_play UNUSED, SkeletonInfoR* skeletonInfo UNUSED, s32 jointIndex, Gfx** dlist,
+                           u8* displayBufferFlag UNUSED, void* thisx UNUSED, s_xyz* rotation UNUSED,
+                           xyz_t* translation UNUSED) {
     // LIGHTHOUSE_JOINT_LIGHT
     if (jointIndex == 4) {
         *dlist = NULL;
@@ -304,11 +301,10 @@ void aTOU_actor_draw(Actor* thisx, Game_Play* game_play) {
 
     mtx = GRAPH_ALLOC_2(gfxCtx, numberOfDisplayLists * sizeof(Mtx));
 
-    if (mtx != NULL)
-    {
+    if (mtx != NULL) {
         object = common_data.unk_10098->unk_AC(0x2D);
         palette = common_data.unk_10098->unk_450(0x5A);
-        
+
         func_800BD5E8_jp(gfxCtx);
         OPEN_DISPS(gfxCtx);
         OPEN_POLY_OPA_DISPS();
@@ -316,14 +312,14 @@ void aTOU_actor_draw(Actor* thisx, Game_Play* game_play) {
         gSegments[6] = OS_K0_TO_PHYSICAL(object);
         gSPSegment(__polyOpa++, 0x6, object);
         CLOSE_POLY_OPA_DISPS();
-        
+
         _texture_z_light_fog_prim_xlu(gfxCtx);
         OPEN_POLY_XLU_DISPS();
         gSPSegment(__polyXlu++, 0x8, palette);
         gSPSegment(__polyXlu++, 0x6, object);
         CLOSE_POLY_XLU_DISPS();
         CLOSE_DISPS(gfxCtx);
-        
+
         Setpos_HiliteReflect_init(worldPosition, game_play);
         Setpos_HiliteReflect_xlu_init(worldPosition, game_play);
         cKF_Si3_draw_R_SV(game_play, &this->skeletonInfo, mtx, aTOU_actor_draw_before, aTOU_actor_draw_after, this);
