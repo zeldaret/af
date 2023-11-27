@@ -3,6 +3,8 @@
 
 #include "ultra64.h"
 
+extern u8 npc_looks_table[];
+
 #define EMPTY_NO 0x0000
 
 #define ITM_MONEY_START 0x2100

@@ -8,15 +8,16 @@
 struct Actor;
 struct PosRot;
 
-typedef struct mCoBG_OffsetTable {
-    /* 0x00 */ u8 unitAttribute;
-    /* 0x01 */ s8 crOffset;
-    /* 0x02 */ s8 luOffset;
-    /* 0x03 */ s8 ldOffset;
-    /* 0x04 */ s8 rdOffset;
-    /* 0x05 */ s8 ruOffset;
-    /* 0x06 */ s8 slateSwitch;
-} mCoBG_OffsetTable; // size = 0x7
+// offset table
+typedef struct mCoBG_unkStruct2 {
+    /* 0x00 */ u8 unk0;
+    /* 0x01 */ s8 unk1;
+    /* 0x02 */ s8 unk2;
+    /* 0x03 */ s8 unk3;
+    /* 0x04 */ s8 unk4;
+    /* 0x05 */ s8 unk5;
+    /* 0x06 */ s8 unk6;
+} mCoBG_unkStruct2; // size = 0x7
 
 // collision bg data
 typedef struct mCoBG_unkStruct {
@@ -211,7 +212,7 @@ f32 mCoBG_GetBgY_OnlyCenter_FromWpos2(xyz_t arg0, f32 arg1);
 // void func_80072398_jp();
 // void func_800723C4_jp();
 // void func_80072418_jp();
-// void func_8007244C_jp();
+s32 func_8007244C_jp(u32);
 // void func_8007246C_jp();
 // void func_8007249C_jp();
 // void func_80072530_jp();
@@ -245,7 +246,7 @@ s32 mCoBG_SearchWaterLimitDistN(UNK_TYPE* arg0, xyz_t arg1, s16 arg4, f32 arg5, 
 // void func_800739FC_jp();
 // void func_80073C38_jp();
 // void func_80073CC0_jp();
-void mCoBG_SetPluss5PointOffset_file(xyz_t pos, mCoBG_OffsetTable offsetData, char* file, s32 line);
+void mCoBG_SetPluss5PointOffset_file(xyz_t pos, mCoBG_unkStruct2 arg1, char* file, s32 line);
 // void func_80074090_jp();
 // void func_80074174_jp();
 // void func_800741DC_jp();

@@ -4,6 +4,8 @@
 #include "ultra64.h"
 #include "m_mail.h"
 #include "m_quest.h"
+#include "m_private_internals.h"
+#include "m_npc.h"
 #include "unk.h"
 
 #define mPr_FOREIGN_MAP_COUNT 8
@@ -24,49 +26,113 @@ typedef enum mPr_ITEM_COND{
     /* 3 */ mPr_ITEM_COND_NUM
 } mPr_ITEM_COND;
 
-#define mPr_POCKETS_SLOT_COUNT 15
-#define mPr_DELIVERY_QUEST_NUM mPr_POCKETS_SLOT_COUNT
-#define mPr_ERRAND_QUEST_NUM 5
-
-typedef struct Private_Sub_A86 {
-    /* 0x00 */ char unk00[0x3];
-    /* 0x03 */ u8 unk_03;
-    /* 0x04 */ char unk04[0x1];
-    /* 0x05 */ u8 unk_05;
-    /* 0x06 */ u16 unk_06;
-    /* 0x08 */ u8 unk_08;
-} Private_Sub_A86; // size >= 0xA
-
-typedef struct mPr_map_info_c {
-  /* 0x00 */ char unk00[0x8];
-} mPr_map_info_c; // size = 0x8
-
-typedef struct PrivateInventory {
-    /* 0x00 */ u16 pockets[mPr_POCKETS_SLOT_COUNT]; /* items in inventory */
-    /* 0x1E */ u8 lotto_ticket_expiry_month;
-    /* 0x1F */ u8 lotto_ticket_mail_storage;
-    /* 0x20 */ u32 item_conditions; /* bitfield (15 values), 2 bits per pocket slot */
-    /* 0x24 */ u32 wallet;
-    /* 0x28 */ u32 loan;
-} PrivateInventory; // size = 0x2C
-
-typedef struct Private_c {
-    /* 0x000 */ UNK_TYPE1 unk000[0x10];
+typedef struct PrivateInfo {
+    /* 0x000 */ PersonalID_c playerId; 
     /* 0x010 */ s8 gender;
     /* 0x011 */ UNK_TYPE1 unk011[0x3];
     /* 0x014 */ PrivateInventory inventory;
     /* 0x040 */ mQst_delivery_c deliveries[mPr_DELIVERY_QUEST_NUM]; /* delivery quests */
-    /* 0x25C */ mQst_errand_c errands[mPr_ERRAND_QUEST_NUM]; /* errand quests */
+    /* 0x25C */ QuestErrand errands[mPr_ERRAND_QUEST_NUM]; /* errand quests */
     /* 0x3EC */ UNK_TYPE1 unk_3EC[0x2];
     /* 0x3EE */ MailHeaderCommon unk_3EE;
-    /* 0x40A */ Mail unk_40A[10];
+    /* 0x40A */ Mail_c unk_40A[10];
     /* 0xA72 */ UNK_TYPE1 unk_A72[0x2];
     /* 0xA74 */ u8 exists;
     /* 0xA75 */ UNK_TYPE1 unkA75[0x11];
     /* 0xA86 */ Private_Sub_A86 unk_A86;
-    /* 0xA90 */ UNK_TYPE1 unkA8F[0xF8];
+    /* 0xA8F */ UNK_TYPE1 unkA8F[0x3c];
+    /* 0xACB */ Anmremail remail;   
+    /* 0xADE */ char unkADE[06];
+    /* 0xADE */ PrivateAnimalMemory animalMemory;
+    /* 0xAE4 */ UNK_TYPE1 unkAEA[0x9C]; 
     /* 0xB88 */ mPr_map_info_c maps[mPr_FOREIGN_MAP_COUNT]; /* maps 'collected' for foreign towns */
     /* 0xBC8 */ UNK_TYPE1 unkBC8[0x8];
-} Private_c; // size = 0xBD0
+} PrivateInfo; // size = 0xBD0
+
+void mPr_ClearPlayerName(char* arg0);
+void mPr_CopyPlayerName(char* dst, char* src);
+s32 mPr_NullCheckPlayerName(char* arg0);
+// void func_800B7804_jp();
+// void func_800B785C_jp();
+s32 mPr_NullCheckPersonalID(PersonalID_c* arg0);
+void mPr_ClearPersonalID(PersonalID_c* arg0);
+// void func_800B7998_jp();
+void mPr_CopyPersonalID(PersonalID_c* arg0, PersonalID_c* arg1);
+s32 mPr_CheckCmpPersonalID(PersonalID_c* arg0, PersonalID_c* arg1);
+// void func_800B7A94_jp();
+// void func_800B7AB0_jp();
+void mPr_ClearPrivateInfo(PrivateInfo* private);
+// void func_800B7B8C_jp();
+// void func_800B7BC0_jp();
+// void func_800B7CD0_jp();
+// void func_800B7D50_jp();
+void mPr_InitPrivateInfo(PrivateInfo* private);
+// void func_800B7F00_jp();
+// void func_800B7F48_jp();
+s32 mPr_CheckPrivate(PrivateInfo* private);
+// void func_800B7FA0_jp();
+s32 mPr_GetPrivateIdx(PersonalID_c* arg0);
+// void func_800B8068_jp();
+// void func_800B80B4_jp();
+// void func_800B8128_jp();
+// void func_800B81A4_jp();
+// void func_800B8204_jp();
+// void func_800B828C_jp();
+// void func_800B8318_jp();
+// void func_800B83D4_jp();
+// void func_800B8544_jp();
+// void func_800B86EC_jp();
+// void func_800B88EC_jp();
+// void func_800B8A88_jp();
+void mPr_SetPossessionItem(PrivateInfo* priv, int idx, u16 item, u32 cond);
+// void func_800B8B8C_jp();
+// void func_800B8BE4_jp();
+// void func_800B8C10_jp();
+// void func_800B8C20_jp();
+// void func_800B8C34_jp();
+// void func_800B8C9C_jp();
+// void func_800B8D18_jp();
+// void func_800B8D3C_jp();
+s32 func_800B8D64_jp(u8 player_no, s32 arg1);
+void mPr_ClearMotherMailInfo(PrivateMotherMail* arg0);
+// void func_800B8F20_jp();
+// void func_800B8FB8_jp();
+// void func_800B9038_jp();
+// void func_800B9170_jp();
+// void func_800B9350_jp();
+// void func_800B93AC_jp();
+// void func_800B947C_jp();
+// void func_800B94E0_jp();
+// void func_800B9704_jp();
+// void func_800B9790_jp();
+// void func_800B97C8_jp();
+// void func_800B97F8_jp();
+// void func_800B996C_jp();
+// void func_800B9AF0_jp();
+void func_800B9B2C_jp(void);
+// void func_800B9C34_jp();
+void mPr_SendForeingerAnimalMail(PrivateInfo* privateInfo);
+void mPr_StartSetCompleteTalkInfo(void);
+// void func_800B9E90_jp();
+// void func_800B9EB4_jp();
+// void func_800B9ED4_jp();
+// void func_800B9F00_jp();
+// void func_800B9F74_jp();
+// void func_800B9FA0_jp();
+// void func_800BA014_jp();
+// void func_800BA054_jp();
+// void func_800BA09C_jp();
+// void func_800BA0E4_jp();
+// void func_800BA130_jp();
+// void func_800BA150_jp();
+// void func_800BA18C_jp();
+// void func_800BA214_jp();
+// void func_800BA2B0_jp();
+// void func_800BA2D4_jp();
+// void func_800BA344_jp();
+// void func_800BA3D0_jp();
+void mPr_RenewalMapInfo(mPr_map_info_c* maps, s32 count, struct LandInfo* landInfo);
+// void mPr_RandomSetPlayerData_title_demo();
+// void mPr_PrintMapInfo_debug();
 
 #endif

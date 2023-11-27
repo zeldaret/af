@@ -7,7 +7,7 @@
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80087C40_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80087C64_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_GetBlockTopP.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_GetFieldId.s")
 
@@ -51,7 +51,7 @@
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_Wpos2BlockNum.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80088780_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_Wpos2BkandUtNuminBlock.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008883C_jp.s")
 
@@ -65,7 +65,7 @@
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80088B3C_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80088BC0_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_UtNum2PosXZInBk.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80088BFC_jp.s")
 
@@ -119,7 +119,7 @@
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_800894D0_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80089538_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_GetBkNum2ColTop.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_800895B8_jp.s")
 
@@ -157,7 +157,7 @@
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008A000_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008A33C_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_BkNumtoUtFGTop.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008A3BC_jp.s")
 
@@ -237,11 +237,11 @@
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008BBF0_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008BC64_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_SetMoveActorBitData_ON.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008BCFC_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008BD98_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_MyMoveActorBitData_ON.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008BDCC_jp.s")
 
@@ -261,7 +261,7 @@
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008C130_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008C1E0_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_GetDepositP.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008C344_jp.s")
 
@@ -275,7 +275,7 @@
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008C458_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008C478_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_BlockDepositOFF.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008C498_jp.s")
 
@@ -361,7 +361,7 @@ s32 mFI_GetWaveUtinBlock(s32* arg0, s32* arg1, s32 arg2, s32 arg3) {
     arg0[0] = 0;
     arg1[0] = 0;
 
-    temp_v0 = var_s1 = func_80089538_jp(arg2, arg3);
+    temp_v0 = var_s1 = mFI_GetBkNum2ColTop(arg2, arg3);
 
     if (temp_v0 != NULL) {
 

@@ -529,7 +529,7 @@ s32 cKF_SkeletonInfo_R_play(SkeletonInfoR* skeletonInfo) {
         return cKF_FrameControl_play(&skeletonInfo->frameControl);
 
     } else if (skeletonInfo->morphCounter > 0.0f) {
-        // A positive morphCounter will wait to game_play the animation until the morph has finished.
+        // A positive morphCounter will wait to play the animation until the morph has finished.
         cKF_SkeletonInfo_R_morphJoint(skeletonInfo);
 
         skeletonInfo->morphCounter -= 1.0f;
@@ -539,7 +539,7 @@ s32 cKF_SkeletonInfo_R_play(SkeletonInfoR* skeletonInfo) {
         return 0;
 
     } else {
-        // A negative morphCounter will game_play the animation and morph at the same time.
+        // A negative morphCounter will play the animation and morph at the same time.
         cKF_SkeletonInfo_R_morphJoint(skeletonInfo);
 
         skeletonInfo->morphCounter += 1.0f;

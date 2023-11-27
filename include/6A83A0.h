@@ -16,7 +16,7 @@
 // void func_80084CD8_jp();
 // void func_80084D08_jp();
 void func_80084DA4_jp(void);
-// void func_80084DE0_jp();
+s32 mFAs_GetFieldRank(void);
 // void mFAs_PrintFieldAssessment();
 
 #endif

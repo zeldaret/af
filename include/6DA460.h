@@ -3,13 +3,14 @@
 
 #include "ultra64.h"
 
+struct Mail_c;
 struct Game_Play;
 
 // void func_800B67C0_jp();
 // void func_800B6838_jp();
-// void func_800B68E8_jp();
+s32 mPO_get_keep_mail_sum(void);
 // void func_800B690C_jp();
-// void func_800B6A3C_jp();
+s32 mPO_receipt_proc(Mail_c*, s32);
 // void func_800B6AC8_jp();
 // void func_800B6B94_jp();
 // void func_800B6C14_jp();
