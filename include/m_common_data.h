@@ -221,7 +221,7 @@ typedef struct CommonData {
     /* 0x10008 */ UNK_TYPE1 unk_10008[0x44];
     /* 0x1004C */ CommonData_unk_1004C* unk_1004C;
     /* 0x10050 */ UNK_TYPE1 unk_10050[0x28];
-    /* 0x10078 */ CommonData_unk_10078*unk_10078;
+    /* 0x10078 */ CommonData_unk_10078* unk_10078;
     /* 0x1007C */ CommonData_unk_1007C* unk_1007C;
     /* 0x10080 */ CommonData_unk_10080* unk_10080;
     /* 0x10084 */ UNK_TYPE1 unk_10084[0x14];
