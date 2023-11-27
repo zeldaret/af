@@ -57,7 +57,7 @@ void func_800D99F0_jp(u16* buffer)
     }
 }
 
-//move to fault.h
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/sys_initial_check/func_800D9A6C_jp.s")
 #define FAULT_FB_ADDRESS (void*)((PHYS_TO_K0(0x400000) - SCREEN_HEIGHT * SCREEN_WIDTH * sizeof(u16)))
 
 #define ERROR_TEX_WIDTH 208
@@ -66,27 +66,28 @@ void func_800D99F0_jp(u16* buffer)
 #define ERROR_TEX_VRAM (u8*)((uintptr_t)FAULT_FB_ADDRESS - ERROR_TEX_SIZE)
 
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/sys_initial_check/func_800D9A6C_jp.s")
-extern u8 D_1000680;
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/sys_initial_check/func_800D9A6C_jp.s")
+extern u8 D_1000680[];
 extern u8 D_8010F450_jp[1];
-extern RomOffset D_A21000;
+extern u64 D_A21000[]; // error texture
+extern u8 D_01000000[];
 
 //Check_DrawRegionLockErrorMessage
-// void func_800D9A6C_jp(void)
-// {
-//     s32 i;
+void func_800D9A6C_jp(void)
+{
+    s32 i;
 
-//     // DmaMgr_RequestSyncDebug((u8*)0x803DA180, D_A21000, D_1000680 - 0x01000000, "../sys_initial_check.c", 130);
-//     DmaMgr_RequestSyncDebug(ERROR_TEX_VRAM, D_A21000, D_1000680 - 0x01000000, "../sys_initial_check.c", 130);
-//     func_800D99F0_jp(FAULT_FB_ADDRESS);
-//     for (i = 0; i < 1; i++)
-//     {
-//         func_800D9900_jp(FAULT_FB_ADDRESS, 56, D_8010F450_jp[i], ERROR_TEX_WIDTH, ERROR_TEX_HEIGHT, ERROR_TEX_VRAM + i * ERROR_TEX_SIZE);
-//     }
-//     osWritebackDCacheAll();
-//     osViSwapBuffer(FAULT_FB_ADDRESS);
-//     osViBlack(false);
-// }
+    DmaMgr_RequestSyncDebug(ERROR_TEX_VRAM, D_A21000, D_1000680 - D_01000000, "../sys_initial_check.c", 130);
+    func_800D99F0_jp(FAULT_FB_ADDRESS);
+    for (i = 0; i < 1; i++)
+    {
+        func_800D9900_jp(FAULT_FB_ADDRESS, 56, D_8010F450_jp[i], ERROR_TEX_WIDTH, ERROR_TEX_HEIGHT, ERROR_TEX_VRAM + i * ERROR_TEX_SIZE);
+    }
+    osWritebackDCacheAll();
+    osViSwapBuffer(FAULT_FB_ADDRESS);
+    osViBlack(false);
+}
+
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/sys_initial_check/func_800D9B44_jp.s")
 //Check_RegionIsSupported
