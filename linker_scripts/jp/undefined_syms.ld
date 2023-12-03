@@ -1166,8 +1166,8 @@ D_6000778 = 0x06000778;
 
 // ovl_TrainDoor
 
-D_60000B0 = 0x060000B0;
-D_600073C = 0x0600073C;
+cKF_ba_r_obj_romtrain_door = 0x060000B0;
+cKF_bs_r_obj_romtrain_door = 0x0600073C;
 
 // ovl_Npc
 

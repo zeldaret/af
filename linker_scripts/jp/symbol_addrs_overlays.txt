@@ -9030,7 +9030,7 @@ RO_FLT_8097297C_jp = 0x8097297C; // type:f32
 
 aTRD_actor_ct = 0x809729E0; // type:func
 aTRD_actor_dt = 0x80972A84; // type:func
-func_80972AB0_jp = 0x80972AB0; // type:func
+aTRD_set_door_SE = 0x80972AB0; // type:func
 aTRD_actor_move = 0x80972B20; // type:func
 aTRD_actor_draw = 0x80972B98; // type:func
 

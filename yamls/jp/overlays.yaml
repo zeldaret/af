@@ -1842,7 +1842,7 @@
     bss_size: 0x0
     subsegments:
       - [0x867620, c, overlays/actors/ovl_TrainDoor/ac_train_door]
-      - [0x867850, data, overlays/actors/ovl_TrainDoor/ac_train_door]
+      - [0x867850, .data, overlays/actors/ovl_TrainDoor/ac_train_door]
   - name: ovl_TrainDoor_reloc
     type: code
     start: 0x867880

@@ -5,6 +5,7 @@
 
 struct Game_Play;
 struct Game_Play_Unk_1EE8;
+struct xyz_t;
 
 // void func_800D18B0_jp();
 // void func_800D195C_jp();
@@ -30,7 +31,7 @@ struct Game_Play_Unk_1EE8;
 // void func_800D1CB8_jp();
 // void func_800D1CE0_jp();
 // void func_800D1D08_jp();
-// void func_800D1D58_jp();
+void sAdo_OngenTrgStart(u16 arg0, xyz_t* arg1);
 // void func_800D1D94_jp();
 void sAdo_SetVoiceMode(s32 arg0);
 // void func_800D1DE4_jp();
