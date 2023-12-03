@@ -9,7 +9,7 @@
 typedef struct TrainDoor {
     /* 0x000 */ Actor actor;
     /* 0x174 */ UNK_TYPE1 unk_174 [0x17C - 0x174];
-    /* 0x17C */ SkeletonInfoR keyframe;
+    /* 0x17C */ SkeletonInfoR skeletonInfo;
     /* 0x1EC */ UNK_TYPE1 unk_1EC [0x210 - 0x1EC];
     /* 0x210 */ s_xyz work[4];
     /* 0x228 */ s_xyz target[4];
