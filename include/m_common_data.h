@@ -156,7 +156,7 @@ typedef struct CommonData_unk_100E4 {
 
 typedef struct CommonData {
     /* 0x00000 */ u8 unk_00000[0x14];
-    /* 0x00014 */ s32 unk_00014;
+    /* 0x00014 */ s32 sceneNo;
     /* 0x00018 */ u8 nowNpcMax;
     /* 0x00019 */ u8 removeAnimalIdx;
     /* 0x0001A */ u8 unk_1A[0x20 - 0x1A];
@@ -229,7 +229,7 @@ typedef struct CommonData {
     /* 0x104AA */ u16 lastFieldId;
     /* 0x104AC */ UNK_TYPE1 unk_104AC[0x1];
     /* 0x104AD */ u8 unk_104AD;
-    /* 0x104AE */ u8 unk_104AE;
+    /* 0x104AE */ u8 sunlightFlag;
     /* 0x104AF */ UNK_TYPE1 unk_104AF[0x1];
     /* 0x104B0 */ UNK_TYPE1 unk_104B0[0xE8];
     /* 0x10598 */ mQst_not_saved_c quest;

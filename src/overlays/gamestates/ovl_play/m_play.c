@@ -211,8 +211,8 @@ void Game_play_fbdemo_fade_out_game_end_move_end(Game_Play* game_play) {
 
 void Game_play_change_scene_move_end(Game_Play* game_play) {
     game_goto_next_game_play(&game_play->state);
-    common_data.unk_10004 = common_data.unk_00014;
-    common_data.unk_00014 = game_play->unk_1E18;
+    common_data.unk_10004 = common_data.sceneNo;
+    common_data.sceneNo = game_play->unk_1E18;
 }
 
 void Game_play_fbdemo_wipe_move(Game_Play* game_play) {
@@ -395,7 +395,7 @@ void play_init(Game* game) {
     func_8006BB64_jp();
     func_8006C8D0_jp();
     game_play->unk_1DAC = -1;
-    Gameplay_Scene_Read(game_play, common_data.unk_00014);
+    Gameplay_Scene_Read(game_play, common_data.sceneNo);
     mSM_submenu_ct(&game_play->submenu);
     game_play->submenu.unk_00 = 0;
     PreRender_init(&game_play->unk_1DC0);
@@ -871,5 +871,5 @@ void Gameplay_Scene_Read(Game_Play* game_play, s16 arg1) {
     sp1C->unk_13 = 0;
     gSegments[2] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_010C);
     Gameplay_Scene_Init(game_play);
-    sAdo_RoomType(mPl_SceneNo2SoundRoomType(common_data.unk_00014));
+    sAdo_RoomType(mPl_SceneNo2SoundRoomType(common_data.sceneNo));
 }

@@ -17808,17 +17808,11 @@ Train_Window_Actor_draw = 0x80A5A198; // type:func
 // .data
 
 D_80A5A580_jp = 0x80A5A580; //
-D_80A5A588_jp = 0x80A5A588; //
+aTrainWindow_tree_pal_table = 0x80A5A588; //
 D_80A5A768_jp = 0x80A5A768; //
-D_80A5A76C_jp = 0x80A5A76C; //
+aTrainWindow_evw_anime_data = 0x80A5A76C; //
 Train_Window_Profile = 0x80A5A774; //
-D_80A5A798_jp = 0x80A5A798; // type:u8
-D_80A5A799_jp = 0x80A5A799; // type:u8
-D_80A5A79A_jp = 0x80A5A79A; // type:u8
-D_80A5A79B_jp = 0x80A5A79B; // type:u8
-D_80A5A79C_jp = 0x80A5A79C; // type:u8
-D_80A5A79D_jp = 0x80A5A79D; // type:u8
-D_80A5A79E_jp = 0x80A5A79E; // type:u8
+till_data = 0x80A5A798; // type:u8
 
 // .rodata
 

@@ -3763,9 +3763,9 @@ D_6000D28 = 0x06000D28;
 
 // ovl_Train_Window
 
-D_6000300 = 0x06000300;
-D_6000398 = 0x06000398;
-D_6000508 = 0x06000508;
+rom_train_out_bgcloud_modelT = 0x06000300;
+rom_train_out_shineglass_modelT = 0x06000398;
+rom_train_out_bgsky_model = 0x06000508;
 
 // ovl__00922380
 
