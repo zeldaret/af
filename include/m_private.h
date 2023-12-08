@@ -29,7 +29,7 @@ typedef enum mPr_ITEM_COND{
 typedef struct PrivateInfo {
     /* 0x000 */ PersonalID_c playerId; 
     /* 0x010 */ s8 gender;
-    /* 0x011 */ UNK_TYPE1 unk011[0x3];
+    /* 0x011 */ UNK_TYPE1 unk_011[0x3];
     /* 0x014 */ PrivateInventory inventory;
     /* 0x040 */ mQst_delivery_c deliveries[mPr_DELIVERY_QUEST_NUM]; /* delivery quests */
     /* 0x25C */ QuestErrand errands[mPr_ERRAND_QUEST_NUM]; /* errand quests */
@@ -38,15 +38,15 @@ typedef struct PrivateInfo {
     /* 0x40A */ Mail_c unk_40A[10];
     /* 0xA72 */ UNK_TYPE1 unk_A72[0x2];
     /* 0xA74 */ u8 exists;
-    /* 0xA75 */ UNK_TYPE1 unkA75[0x11];
+    /* 0xA75 */ UNK_TYPE1 unk_A75[0x11];
     /* 0xA86 */ Private_Sub_A86 unk_A86;
-    /* 0xA8F */ UNK_TYPE1 unkA8F[0x3c];
-    /* 0xACB */ Anmremail remail;   
-    /* 0xADE */ char unkADE[06];
-    /* 0xADE */ PrivateAnimalMemory animalMemory;
-    /* 0xAE4 */ UNK_TYPE1 unkAEA[0x9C]; 
+    /* 0xA90 */ UNK_TYPE1 unk_A90[0x3C];
+    /* 0xACC */ Anmremail remail;   
+    /* 0xADE */ UNK_TYPE1 unk_ADE[0x6];
+    /* 0xAE4 */ PrivateAnimalMemory animalMemory;
+    /* 0xAEC */ UNK_TYPE1 unk_AEC[0x9C]; 
     /* 0xB88 */ mPr_map_info_c maps[mPr_FOREIGN_MAP_COUNT]; /* maps 'collected' for foreign towns */
-    /* 0xBC8 */ UNK_TYPE1 unkBC8[0x8];
+    /* 0xBC8 */ UNK_TYPE1 unk_BC8[0x8];
 } PrivateInfo; // size = 0xBD0
 
 void mPr_ClearPlayerName(char* arg0);
