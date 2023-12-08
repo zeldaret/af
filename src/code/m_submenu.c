@@ -10,7 +10,7 @@
 #include "sys_math3d.h"
 #include "m_scene.h"
 #include "m_quest.h"
-#include "6F5550.h"
+#include "audio.h"
 #include "libc/stddef.h"
 #include "attributes.h"
 #include "segment_symbols.h"

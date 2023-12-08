@@ -3,6 +3,6 @@
 
 #include "ultra64.h"
 
-// void func_800FC920_jp();
+s32 func_800FC920_jp(void*);
 
 #endif

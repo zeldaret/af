@@ -2,7 +2,7 @@
 #include "m_actor_dlftbls.h"
 #include "m_object.h"
 #include "m_rcp.h"
-#include "6F5550.h"
+#include "audio.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aTRD_actor_ct(Actor* thisx, Game_Play* game_play);

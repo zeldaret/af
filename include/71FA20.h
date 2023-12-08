@@ -9,15 +9,15 @@
 // void func_800FBFF8_jp();
 // void func_800FC02C_jp();
 // void func_800FC0B8_jp();
-// void func_800FC110_jp();
-// void func_800FC16C_jp();
-// void func_800FC19C_jp();
+void Na_RhythmStart(s32 arg0, s8 arg1, s8 arg2);
+void Na_RhythmStop(void);
+void Na_RhythmAllStop(void);
 // void func_800FC1F0_jp();
-// void func_800FC254_jp();
-// void func_800FC3F0_jp();
+f32 get_rhythm_buffer(void);
+s16 Na_GetRhythmSubTrack(void);
 // void func_800FC430_jp();
-// void func_800FC520_jp();
-// void func_800FC564_jp();
+void Na_GetRhythmInfo(void*);
+void Na_SetRhythmInfo(void*);
 // void func_800FC5C8_jp();
 // void func_800FC6A0_jp();
 
