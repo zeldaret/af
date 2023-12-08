@@ -12,9 +12,9 @@ typedef s32 (*TrainWindowType)(Actor*, struct Game*);
 typedef struct Train_Window{
     /* 0x000 */ Actor actor;
     /* 0x174 */ TrainWindowType drawType;
-    /* 0x178 */ s16 palleteId;
+    /* 0x178 */ s16 paletteId;
     /* 0x17C */ UNK_TYPE unk17C; 
-    /* 0x180 */ u16* currentPallete;
+    /* 0x180 */ u16* currentPalette;
     /* 0x184 */ u32 singleScrollX;
     /* 0x188 */ u32 singleScrollY;
     /* 0x18C */ u32 twoScrollX1;

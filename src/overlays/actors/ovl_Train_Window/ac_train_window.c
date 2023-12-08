@@ -37,9 +37,9 @@ extern u16 aTrainWindow_tree_pal_table[15][16];
 
 extern EvwAnimeUnk aTrainWindow_evw_anime_data;
 
-s32 aTrainWindow_NoDraw(Actor* /*thisx*/, Game* /*game*/);
-s32 aTrainWindow_DrawGoneOutTunnel(Actor* /*thisx*/, Game* /*game*/);
-s32 aTrainWindow_DrawInTunnel(Actor* /*thisx*/, Game* /*game*/);
+s32 aTrainWindow_NoDraw(Actor* thisx, Game* game);
+s32 aTrainWindow_DrawGoneOutTunnel(Actor* thisx, Game* game);
+s32 aTrainWindow_DrawInTunnel(Actor* thisx, Game* game);
 
 s32 aTrainWindow_GetTreePalletIdx(void) {
     s32 i;
@@ -81,8 +81,8 @@ void Train_Window_Actor_ct(Actor* thisx, UNUSED Game_Play* play) {
         this->twoScrollY2 = 0;
         this->scrollSpeed = 1.0f;
     }
-    this->palleteId = aTrainWindow_GetTreePalletIdx();
-    this->currentPallete = aTrainWindow_tree_pal_table[this->palleteId];
+    this->paletteId = aTrainWindow_GetTreePalletIdx();
+    this->currentPalette = aTrainWindow_tree_pal_table[this->paletteId];
     this->treeScrollX = 500;
     this->treeScrollY = 0;
     this->pos.x = 0;
@@ -164,7 +164,7 @@ s32 aTrainWindow_DrawGoneOutTunnel(Actor* thisx, Game* game) {
         return 0;
     } else {
         OPEN_DISPS(*graph);
-        if (!this->palleteId) {}
+        if (!this->paletteId) {}
         gSPSegment(POLY_OPA_DISP++, 11, ssc);
         gSPSegment(POLY_XLU_DISP++, 11, ssc);
 
@@ -192,7 +192,7 @@ s32 aTrainWindow_DrawGoingOutTunnel(Actor* thisx, Game* game) {
         return 0;
     } else {
         OPEN_DISPS(*graph);
-        if (!this->palleteId) {}
+        if (!this->paletteId) {}
         gSPSegment(POLY_OPA_DISP++, 11, ssc);
         gSPSegment(POLY_XLU_DISP++, 11, ssc);
         gSPSegment(POLY_OPA_DISP++, 12, tsc);
@@ -203,8 +203,8 @@ s32 aTrainWindow_DrawGoingOutTunnel(Actor* thisx, Game* game) {
 
             if (((s32)this->singleScrollX == 1000) && ((s32)this->twoScrollX1 == 1000)) {
                 this->drawType = aTrainWindow_DrawGoneOutTunnel;
-                this->palleteId = aTrainWindow_GetTreePalletIdx();
-                this->currentPallete = aTrainWindow_tree_pal_table[this->palleteId];
+                this->paletteId = aTrainWindow_GetTreePalletIdx();
+                this->currentPalette = aTrainWindow_tree_pal_table[this->paletteId];
             }
 
             return 1;
@@ -232,7 +232,7 @@ s32 aTrainWindow_DrawInTunnel(Actor* thisx, Game* game) {
         return 0;
     } else {
         OPEN_DISPS(game->gfxCtx);
-        if (!this->palleteId) {}
+        if (!this->paletteId) {}
         gSPSegment(POLY_OPA_DISP++, 11, ssc);
         gSPSegment(POLY_XLU_DISP++, 11, ssc);
 
@@ -242,8 +242,8 @@ s32 aTrainWindow_DrawInTunnel(Actor* thisx, Game* game) {
         CLOSE_DISPS(game->gfxCtx);
 
         if (common_data.sunlightFlag != 0) {
-            this->palleteId = aTrainWindow_GetTreePalletIdx();
-            this->currentPallete = aTrainWindow_tree_pal_table[this->palleteId];
+            this->paletteId = aTrainWindow_GetTreePalletIdx();
+            this->currentPalette = aTrainWindow_tree_pal_table[this->paletteId];
             this->drawType = aTrainWindow_DrawGoingOutTunnel;
         }
         return 1;
@@ -305,7 +305,7 @@ void Train_Window_Actor_draw(Actor* thisx, Game_Play* play) {
         _texture_z_light_fog_prim_xlu(play->state.gfxCtx);
         if (1) {}
         aTrainWindow_SetLightPrimColorDetail(&play->state, 127, 255, this->xluAlpha);
-        gSPSegment(POLY_XLU_DISP++, 10, this->currentPallete);
+        gSPSegment(POLY_XLU_DISP++, 10, this->currentPalette);
         if (1) {}
         Evw_Anime_Set(&play->state, &aTrainWindow_evw_anime_data);
 
