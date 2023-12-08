@@ -76,7 +76,7 @@ s32 eLL_get_light_sw_start_demo(void) {
     s32 var_v1;
 
     var_v1 = 1;
-    if (common_data.unk_104AE == 1) {
+    if (common_data.sunlightFlag == 1) {
         var_v1 = 0;
     }
     return var_v1;

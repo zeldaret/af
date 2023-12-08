@@ -362,5 +362,5 @@ void return_emu_game(Game* game) {
     common_data.unk_10754 = common_data.unk_107A0 + 1;
     game->unk_74 = 0;
     game_goto_next_game_play(game);
-    common_data.unk_00014 = common_data.unk_107A0;
+    common_data.sceneNo = common_data.unk_107A0;
 }
