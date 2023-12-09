@@ -8,7 +8,7 @@
 #include "m_msg_main.h"
 #include "m_debug.h"
 #include "m_player_lib.h"
-#include "6F5550.h"
+#include "audio.h"
 #include "6EC9E0.h"
 #include "6EDD10.h"
 #include "69E2C0.h"
@@ -227,15 +227,15 @@ void Game_play_fbdemo_wipe_move(Game_Play* game_play) {
                 S_se_endcheck_timeout--;
             }
 
-            if ((func_800D2334_jp(sp18, game_play) == 0) && (S_se_endcheck_timeout != 0)) {
+            if ((sAdo_SeFadeoutCheck() == 0) && (S_se_endcheck_timeout != 0)) {
                 sp20 = 0;
             } else {
-                func_800D2568_jp(1);
+                sAdo_Set_ongenpos_refuse_fg(1);
             }
         }
 
         if (game_play->unk_1EE0 == 11) {
-            func_800D2568_jp(2);
+            sAdo_Set_ongenpos_refuse_fg(2);
         }
 
         if (sp20 == 1) {
@@ -381,7 +381,7 @@ void play_init(Game* game) {
     if (game_play && game_play && game_play) {}
 
     game_resize_hyral(&game_play->state, 0x7D0000);
-    func_800D2568_jp(0);
+    sAdo_Set_ongenpos_refuse_fg(0);
     event_title_flag_on();
     func_800C9010_jp();
     mTM_set_season();

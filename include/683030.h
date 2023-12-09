@@ -4,6 +4,7 @@
 #include "ultra64.h"
 
 struct Game_Play;
+struct xyz_t;
 
 // void func_8005F390_jp();
 // void func_8005F3DC_jp();
@@ -46,7 +47,7 @@ struct Game_Play;
 void Camera2_ClearActorTalking_Cull(struct Game_Play* game_play);
 // void func_80060D1C_jp();
 // void func_80060D58_jp();
-// void func_80060D6C_jp();
+struct xyz_t* Camera2_getMicPos_p(struct Game_Play* game_play);
 // void func_80060D78_jp();
 // void func_80060DA8_jp();
 // void func_80060FDC_jp();

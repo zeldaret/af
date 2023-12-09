@@ -18,7 +18,7 @@ typedef struct {
     /* 0x4 */ f32 z;
 } Vec2f; // size = 0x8
 
-typedef struct {
+typedef struct xyz_t {
     /* 0x0 */ f32 x;
     /* 0x4 */ f32 y;
     /* 0x8 */ f32 z;

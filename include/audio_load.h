@@ -45,7 +45,7 @@
 // void func_800EBB90_jp();
 // void func_800EBBB0_jp();
 // void func_800EBF3C_jp();
-// void func_800EBF6C_jp();
+void func_800EBF6C_jp(void);
 // void func_800EBF78_jp();
 // void func_800EBF84_jp();
 // void func_800EBF90_jp();

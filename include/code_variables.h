@@ -781,7 +781,6 @@ extern s32 CanLookGokiCount;
 // extern UNK_TYPE D_8010EF50_jp;
 // extern UNK_TYPE D_8010EF60_jp;
 // extern UNK_TYPE D_8010EF70_jp;
-// extern UNK_TYPE D_8010EF80_jp;
 
 // extern UNK_TYPE D_8010EFA0_jp;
 extern vs32 D_8010EFB0_jp; // TODO: Determine where this goes
