@@ -48,8 +48,8 @@ void sAdo_GameFrame(void) {
     Na_GameFrame();
 }
 
-void func_800D19BC_jp(void) {
-    func_800F8984_jp();
+void* func_800D19BC_jp(void) {
+    return func_800F8984_jp();
 }
 
 void func_800D19DC_jp(void) {
@@ -262,8 +262,8 @@ void sAdo_Tenki(u8 mode) {
     Na_Tenki(mode);
 }
 
-void func_800D213C_jp(void) {
-    func_800EBF6C_jp();
+void func_800D213C_jp(DmaHandler handler) {
+    func_800EBF6C_jp(handler);
 }
 
 void sAdos_KishaStatusTrg(u8 state) {

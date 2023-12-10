@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "game.h"
+#include "z_std_dma.h"
 
 struct xyz_t;
  
@@ -12,7 +13,7 @@ void sAdo_Calc_MicPosition_common(f32* distanceVal, u16* angleVal, struct xyz_t*
 void sAdo_Calc_MicPosition_forTrig(f32* distanceVal, u16* angleVal, struct xyz_t* pos);
 void sAdo_Calc_MicPosition_forLevel(f32* distanceVal, u16* angleVal, struct xyz_t* pos);
 void sAdo_GameFrame(void);
-void func_800D19BC_jp(void);
+void* func_800D19BC_jp(void);
 void func_800D19DC_jp(void);
 void sAdo_BgmStart(u8 id);
 void sAdo_BgmStop(u16 id);
@@ -55,7 +56,7 @@ void sAdo_SubGameStart(void);
 void sAdo_SubGameEnd(void);
 s32 sAdo_SubGameOK(void);
 void sAdo_Tenki(u8 mode);
-void func_800D213C_jp(void);
+void func_800D213C_jp(DmaHandler);
 void sAdos_KishaStatusTrg(u8 state);
 void sAdos_KishaStatusLevel(f32 arg0, s32 arg1, f32 arg2, u16 arg3, s32 arg4, f32 arg5, u16 arg6);
 s32 func_800D21CC_jp(void* arg0);

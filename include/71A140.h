@@ -2,6 +2,15 @@
 #define C_71A140_H
 
 #include "ultra64.h"
+#include "other_types.h"
+
+typedef struct {
+    /* 0x00 */ OSTask task;
+    /* 0x40 */ OSMesgQueue* taskQueue;
+    /* 0x44 */ void* unk_44; // probably a message that gets unused.
+    /* 0x48 */ char unk_48[0x8];
+} AudioTask; // size = 0x50
+
 
 // void func_800F64A0_jp();
 // void func_800F65F4_jp();
@@ -43,8 +52,8 @@
 // void func_800F8848_jp();
 // void func_800F8850_jp();
 // void func_800F88BC_jp();
-// void func_800F88E8_jp();
-void func_800F8984_jp(void);
+void func_800F88E8_jp(void*,void*, RomOffset, RomOffset, RomOffset);
+void* func_800F8984_jp(void);
 void Na_GameFrame(void);
 void func_800F8B2C_jp(void);
 void Na_SoftReset(void);
