@@ -76,10 +76,10 @@ void fault_AddressConverterRemoveClient(FaultAddrConvClient* client);
 void fault_WaitForInput(void);
 void fault_FillScreenBlack(void);
 void fault_SetFrameBuffer(void* fb, u16 w, u16 h);
+void fault_DrawStackTrace(OSThread* thread, s32 x, s32 y, s32 height);
 void fault_Init(void);
 NORETURN void fault_AddHungupAndCrashImpl(const char* exp1, const char* exp2);
 NORETURN void fault_AddHungupAndCrash(const char* file, s32 line);
-
 void FaultDrawer_SetOsSyncPrintfEnabled(u32 enabled);
 void FaultDrawer_DrawRecImpl(s32 xStart, s32 yStart, s32 xEnd, s32 yEnd, u16 color);
 void FaultDrawer_SetForeColor(u16 color);
@@ -93,8 +93,9 @@ s32 FaultDrawer_Printf(const char* fmt, ...);
 void FaultDrawer_DrawText(s32 x, s32 y, const char* fmt, ...);
 void FaultDrawer_SetDrawerFB(void* fb, u16 w, u16 h);
 void FaultDrawer_SetInputCallback(void (*callback)(void));
+void FaultDrawer_WritebackFBDCache(void);
 void FaultDrawer_Init(void);
 
-extern FaultMgr gFaultMgr;
+extern FaultMgr fault_class;
 
 #endif

@@ -4,6 +4,7 @@
 #include "ultra64.h"
 
 struct GraphicsContext;
+extern OSThread graphThread;
 
 // void func_800D38E0_jp();
 // void graph_setup_double_buffer();

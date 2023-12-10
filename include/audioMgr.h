@@ -37,10 +37,8 @@ typedef struct Audiomgr{
 // void func_800D2B94_jp();
 // void func_800D2BEC_jp();
 
-extern Audiomgr audiomgr_class;
 extern Audiomgr* audiomgr_class_p;
-extern s8 B_80144FB2_jp;
-extern s8 B_80144FB3_jp;
+extern Audiomgr audiomgr_class;
 extern s32 B_80144FB8_jp;
 
 

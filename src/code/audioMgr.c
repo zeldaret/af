@@ -11,10 +11,8 @@
 #include "libc64/sleep.h"
 #include "macros.h"
 
-Audiomgr audiomgr_class;
 Audiomgr* audiomgr_class_p;
-s8 B_80144FB2_jp;
-s8 B_80144FB3_jp;
+Audiomgr audiomgr_class;
 s32 B_80144FB8_jp;
 
 
@@ -54,18 +52,18 @@ void func_800D25D0_jp(void){
         if (SREG(20) >= 2) {
             rspTask = NULL;
         } else {
-            B_80144FB2_jp = 5;
+            audiomgr_class.unk_28A = 5;
             rspTask = func_800D19BC_jp();
-            B_80144FB2_jp = 6;
+            audiomgr_class.unk_28A = 6;
         }
-        B_80144FB2_jp = 7;
+        audiomgr_class.unk_28A = 7;
         if (audiomgr_class_p->rspTask != NULL) {
             while (true) {
                 osSetTimer(&timer, OS_USEC_TO_CYCLES(20000), 0, &audiomgr_class_p->cmdQueue, (OSMesg)666);
                 osRecvMesg(&audiomgr_class_p->cmdQueue, (OSMesg*)&msg, OS_MESG_BLOCK);
                 osStopTimer(&timer);
                 if ((msg == (OSMesg)666) && (msg == (OSMesg)666)) {
-                    osSyncPrintf("AUDIO SP TIMEOUT %08x %08x\n", audiomgr_class_p->rspTask, &audiomgr_class_p->rspTask->task);
+                    osSyncPrintf("AUDIO SP TIMEOUT2 %08x %08x\n", audiomgr_class_p->rspTask, &audiomgr_class_p->rspTask->task);
                     B_80144FB8_jp++;
                     func_800D8618_jp();
                     osSyncPrintf("AUDIO CANSEL&RETRY %d\n", B_80144FB8_jp);
@@ -76,7 +74,7 @@ void func_800D25D0_jp(void){
             }
             func_800D2590_jp();
         }
-        B_80144FB2_jp = 8;
+        audiomgr_class.unk_28A = 8;
         audiomgr_class_p->rspTask = rspTask;
         
         if((SREG(20) >= 2) && (rspTask == NULL)){
@@ -168,5 +166,5 @@ void func_800D2B94_jp(void){
 
 void func_800D2BEC_jp(void){
     SREG(20) = 0;
-    B_80144FB3_jp = 0;
+    audiomgr_class.unk_28B = 0;
 }  
