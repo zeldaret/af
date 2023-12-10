@@ -56,7 +56,7 @@ void sAdo_SubGameStart(void);
 void sAdo_SubGameEnd(void);
 s32 sAdo_SubGameOK(void);
 void sAdo_Tenki(u8 mode);
-void func_800D213C_jp(DmaHandler);
+void func_800D213C_jp(DmaHandler /*handler*/);
 void sAdos_KishaStatusTrg(u8 state);
 void sAdos_KishaStatusLevel(f32 arg0, s32 arg1, f32 arg2, u16 arg3, s32 arg4, f32 arg5, u16 arg6);
 s32 func_800D21CC_jp(void* arg0);

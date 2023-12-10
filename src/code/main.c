@@ -9,10 +9,7 @@
 #include "m_debug.h"
 #include "getcurrentms.h"
 
-
-
-
-void func_800D64E0_jp(void){ 
+void func_800D64E0_jp(void) {
     u32 baseTime;
     u32 graphTime;
     u32 audioTime;
@@ -20,41 +17,41 @@ void func_800D64E0_jp(void){
     u32 audioreg;
     u8 unk9C;
     u8 unk9D;
-    
-    if((zurumode_flag != 0) && (fault_class.msgId == 0) && (D_8010F3E8_jp != 0)){
+
+    if ((zurumode_flag != 0) && (fault_class.msgId == 0) && (D_8010F3E8_jp != 0)) {
 
         baseTime = GetCurrentMilliseconds();
 
         graphTime = (B_80145FF8_jp != 0) ? (baseTime - B_80145FF8_jp) : 0;
         audioTime = (B_80145FFC_jp != 0) ? (baseTime - B_80145FFC_jp) : 0;
 
-        if(SREG(31) != 0){
+        if (SREG(31) != 0) {
             graphreg = SREG(31) < graphTime;
             audioreg = SREG(31) < audioTime;
-        }
-        else{
+        } else {
             graphreg = (graphTime >= 3001);
             audioreg = (audioTime >= 3001);
         }
 
-        if((graphreg != 0) || (audioreg != 0)){
+        if ((graphreg != 0) || (audioreg != 0)) {
             FaultDrawer_SetDrawerFB(osViGetCurrentFramebuffer(), SCREEN_WIDTH, SCREEN_HEIGHT);
             FaultDrawer_SetForeColor(65535);
             FaultDrawer_SetBackColor(32769);
-            FaultDrawer_SetCharPad(0,0);
-            if(graphreg != 0){
+            FaultDrawer_SetCharPad(0, 0);
+            if (graphreg != 0) {
                 unk9D = (game_class_p != NULL) ? game_class_p->unk_9D : 0;
- 
+
                 unk9C = (game_class_p != NULL) ? game_class_p->unk_9C : 0;
 
-                FaultDrawer_DrawText(24,16,"GRAPH INF.LOOP %2d %3d %3d %6lu", B_80145370_jp, unk9D, unk9C, graphTime);
+                FaultDrawer_DrawText(24, 16, "GRAPH INF.LOOP %2d %3d %3d %6lu", B_80145370_jp, unk9D, unk9C, graphTime);
                 fault_DrawStackTrace(&graphThread, 0x20, 0x1A, 0xA);
             }
-            if(audioreg != 0){
-                FaultDrawer_DrawText(24,126,"AUDIO INF.LOOP %2d %3d     %6lu", audiomgr_class.unk_28A, D_80113854_jp, audioTime);
+            if (audioreg != 0) {
+                FaultDrawer_DrawText(24, 126, "AUDIO INF.LOOP %2d %3d     %6lu", audiomgr_class.unk_28A, D_80113854_jp,
+                                     audioTime);
                 fault_DrawStackTrace(&audiomgr_class.thread, 0x20, 0x88, 0xA);
             }
-            FaultDrawer_WritebackFBDCache(); 
+            FaultDrawer_WritebackFBDCache();
         }
     }
 }

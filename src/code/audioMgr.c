@@ -2,7 +2,7 @@
 #include "irqmgr.h"
 #include "code_variables.h"
 #include "attributes.h"
-#include "segment_symbols.h" 
+#include "segment_symbols.h"
 #include "audio.h"
 #include "m_debug.h"
 #include "6FB340.h"
@@ -15,28 +15,27 @@ Audiomgr* audiomgr_class_p;
 Audiomgr audiomgr_class;
 s32 B_80144FB8_jp;
 
-
-void func_800D2590_jp(void){
+void func_800D2590_jp(void) {
     AudioTask* task = audiomgr_class_p->rspTask;
-  
-    if(audiomgr_class_p->rspTask->taskQueue != NULL){
-        osSendMesg(task->taskQueue, NULL, OS_MESG_BLOCK); 
+
+    if (audiomgr_class_p->rspTask->taskQueue != NULL) {
+        osSendMesg(task->taskQueue, NULL, OS_MESG_BLOCK);
     }
 }
 
-void func_800D25D0_jp(void){
+void func_800D25D0_jp(void) {
     AudioTask* rspTask;
     OSTimer timer;
     OSMesg msg;
-    
-    if(audiomgr_class_p->unk_28B == 0){
-        if(SREG(20) == 1){
+
+    if (audiomgr_class_p->unk_28B == 0) {
+        if (SREG(20) == 1) {
             audiomgr_class_p->rspTask = NULL;
         }
         while (!MQ_IS_EMPTY(&audiomgr_class_p->cmdQueue)) {
             osRecvMesg(&audiomgr_class_p->cmdQueue, NULL, OS_MESG_NOBLOCK);
         }
-        
+
         if (audiomgr_class_p->rspTask != NULL) {
             audiomgr_class_p->audioTask.next = NULL;
             audiomgr_class_p->audioTask.flags = OS_SC_NEEDS_RSP;
@@ -63,44 +62,45 @@ void func_800D25D0_jp(void){
                 osRecvMesg(&audiomgr_class_p->cmdQueue, (OSMesg*)&msg, OS_MESG_BLOCK);
                 osStopTimer(&timer);
                 if ((msg == (OSMesg)666) && (msg == (OSMesg)666)) {
-                    osSyncPrintf("AUDIO SP TIMEOUT2 %08x %08x\n", audiomgr_class_p->rspTask, &audiomgr_class_p->rspTask->task);
+                    osSyncPrintf("AUDIO SP TIMEOUT2 %08x %08x\n", audiomgr_class_p->rspTask,
+                                 &audiomgr_class_p->rspTask->task);
                     B_80144FB8_jp++;
                     func_800D8618_jp();
                     osSyncPrintf("AUDIO CANSEL&RETRY %d\n", B_80144FB8_jp);
                 } else {
                     break;
                 }
-                
             }
             func_800D2590_jp();
         }
         audiomgr_class.unk_28A = 8;
         audiomgr_class_p->rspTask = rspTask;
-        
-        if((SREG(20) >= 2) && (rspTask == NULL)){
+
+        if ((SREG(20) >= 2) && (rspTask == NULL)) {
             audiomgr_class_p->unk_28B = 1;
         }
-    }    
+    }
 }
 
 void func_800D287C_jp(void) {
     func_800D19DC_jp();
 }
 
-void audiomgr_proc(UNUSED void* arg){
+void audiomgr_proc(UNUSED void* arg) {
     IrqmgrClient irq;
     s16* msg = NULL;
     s32 exit;
     UNUSED s32 pad;
 
-    func_800F88E8_jp(malloc(0x47A00),(void*)0x47A00,SEGMENT_ROM_START(segment_027130), SEGMENT_ROM_END(segment_027130),SEGMENT_ROM_START(segment_13D9A0));
-    osSendMesg(&audiomgr_class_p->lockQueue, NULL, OS_MESG_BLOCK); 
+    func_800F88E8_jp(malloc(0x47A00), (void*)0x47A00, SEGMENT_ROM_START(segment_027130),
+                     SEGMENT_ROM_END(segment_027130), SEGMENT_ROM_START(segment_13D9A0));
+    osSendMesg(&audiomgr_class_p->lockQueue, NULL, OS_MESG_BLOCK);
     func_800D213C_jp(DmaMgr_AudioDmaHandler);
     irqmgr_AddClient(&irq, &audiomgr_class_p->interruptQueue);
 
     exit = false;
- 
-    while(!exit){
+
+    while (!exit) {
         B_80145FFC_jp = GetCurrentMilliseconds();
         audiomgr_class.unk_28A = 2;
         osRecvMesg(&audiomgr_class_p->interruptQueue, (OSMesg*)&msg, OS_MESG_BLOCK);
@@ -140,31 +140,34 @@ void audiomgr_proc(UNUSED void* arg){
 
 void func_800D2AA0_jp(void) {
     osRecvMesg(&audiomgr_class_p->lockQueue, NULL, OS_MESG_BLOCK);
-} 
+}
 
 void func_800D2AD0_jp(void* stack, OSPri pri, OSId id) {
     Audiomgr* mgr = audiomgr_class_p = &audiomgr_class;
-    
-    bzero(mgr, sizeof(Audiomgr)); 
+
+    bzero(mgr, sizeof(Audiomgr));
     audiomgr_class_p->rspTask = NULL;
-    
-    osCreateMesgQueue(&audiomgr_class_p->cmdQueue, audiomgr_class_p->cmdMsgBuf, ARRAY_COUNT(audiomgr_class_p->cmdMsgBuf));
-    osCreateMesgQueue(&audiomgr_class_p->interruptQueue, audiomgr_class_p->interruptMsgBuf, ARRAY_COUNT(audiomgr_class_p->interruptMsgBuf));
-    osCreateMesgQueue(&audiomgr_class_p->lockQueue, audiomgr_class_p->lockMsgBuf, ARRAY_COUNT(audiomgr_class_p->lockMsgBuf));
-    
+
+    osCreateMesgQueue(&audiomgr_class_p->cmdQueue, audiomgr_class_p->cmdMsgBuf,
+                      ARRAY_COUNT(audiomgr_class_p->cmdMsgBuf));
+    osCreateMesgQueue(&audiomgr_class_p->interruptQueue, audiomgr_class_p->interruptMsgBuf,
+                      ARRAY_COUNT(audiomgr_class_p->interruptMsgBuf));
+    osCreateMesgQueue(&audiomgr_class_p->lockQueue, audiomgr_class_p->lockMsgBuf,
+                      ARRAY_COUNT(audiomgr_class_p->lockMsgBuf));
+
     osCreateThread(&audiomgr_class_p->thread, id, audiomgr_proc, NULL, stack, pri);
     osStartThread(&audiomgr_class_p->thread);
 }
 
-void func_800D2B94_jp(void){
+void func_800D2B94_jp(void) {
     SREG(20) = 2;
 
-    while(audiomgr_class.unk_28B == 0){
+    while (audiomgr_class.unk_28B == 0) {
         usleep(1000);
     }
 }
 
-void func_800D2BEC_jp(void){
+void func_800D2BEC_jp(void) {
     SREG(20) = 0;
     audiomgr_class.unk_28B = 0;
-}  
+}
