@@ -89,7 +89,7 @@
       - [0x6F5180, c, code/THA_GA]
       - [0x6F5390, c, code/TwoHeadArena]
       - [0x6F5550, c, code/audio]
-      - [0x6F6230, asm, code/audioMgr]
+      - [0x6F6230, c, code/audioMgr]
       - [0x6F68B0, asm, code/cfbinfo]
       - [0x6F6AA0, c, code/game]
       - [0x6F73C0, c, code/gamealloc]
@@ -99,7 +99,7 @@
       - [0x6F8A60, c, code/lb_rtc]
       - [0x6F9B10, c, code/lb_reki]
       - [0x6FA030, asm, code/listalloc]
-      - [0x6FA180, asm, code/main]
+      - [0x6FA180, c, code/main]
       - [0x6FA6B0, asm, code/padmgr]
       - [0x6FB340, asm, code/6FB340]
       - [0x6FC540, asm, code/speed_meter]
@@ -232,13 +232,14 @@
       - [0x73B830, rodata, code/73B830]
       - [0x73B880, rodata, code/73B880]
       - [0x73B890, .rodata, code/audio]
-      - [0x73B920, rodata, code/73B920]
+      - [0x73B920, .rodata, code/audioMgr]
       - [0x73B960, rodata, code/73B960]
       - [0x73B980, .rodata, code/game]
       - [0x73B9C0, rodata, code/73B9C0]
       - [0x73BA50, .rodata, code/irqmgr]
       - [0x73BA70, .rodata, code/lb_rtc]
-      - [0x73BB10, rodata, code/73BB10]
+      - [0x73BB10, .rodata, code/main]
+      - [0x73BB80, rodata, code/73BB80]
       - [0x73BCA0, rodata, code/73BCA0]
       - [0x73BD20, rodata, code/73BD20]
       - [0x73BD30, rodata, code/73BD30]
@@ -275,6 +276,8 @@
       - { start: 0x73F4D0, type: bss, vram: 0x80143910, name: code/80143910 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80144670, name: code/m_submenu }
       - { start: 0x73F4D0, type: bss, vram: 0x80144690, name: code/80144690 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x80144D20, name: code/audioMgr }
+      - { start: 0x73F4D0, type: bss, vram: 0x80144FC0, name: code/80144FC0 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80145020, name: code/game }
       - { start: 0x73F4D0, type: bss, vram: 0x80145060, name: code/80145060 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80145390, name: code/irqmgr }

@@ -7,6 +7,8 @@
 #include "other_types.h"
 #include "unk.h"
 
+typedef s32 (*DmaHandler)(OSPiHandle* handle, OSIoMesg* mb, s32 direction);
+
 typedef struct DmaRequest {
     /* 0x00 */ RomOffset vrom;
     /* 0x04 */ void* vram;
