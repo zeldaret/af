@@ -9,7 +9,7 @@
 struct Irqmgr;
 struct SchedContext;
 
-typedef struct Audiomgr{
+typedef struct Audiomgr {
     /* 0x000 */ struct Irqmgr* irqMgr;
     /* 0x004 */ struct SchedContext* sched;
     /* 0x008 */ OSScTask audioTask;
@@ -25,7 +25,7 @@ typedef struct Audiomgr{
     /* 0x288 */ UNK_TYPE1 unk_288[2];
     /* 0x28A */ u8 unk_28A;
     /* 0x28B */ u8 unk_28B;
-}Audiomgr;
+} Audiomgr; //size = 0x290
 
 
 // void func_800D2590_jp();

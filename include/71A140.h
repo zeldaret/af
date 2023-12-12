@@ -4,7 +4,7 @@
 #include "ultra64.h"
 #include "other_types.h"
 
-typedef struct {
+typedef struct AudioTask {
     /* 0x00 */ OSTask task;
     /* 0x40 */ OSMesgQueue* taskQueue;
     /* 0x44 */ void* unk_44; // probably a message that gets unused.
