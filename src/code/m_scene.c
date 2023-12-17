@@ -10,7 +10,7 @@
 #include "code_variables.h"
 #include "m_object.h"
 #include "m_player_lib.h"
-#include "z_std_dma.h"
+#include "m_std_dma.h"
 
 s32 func_800C59B0_jp(ObjectExchangeBank* objectExchangeBank) {
     ObjectStatus* objectStatus = &objectExchangeBank->status[objectExchangeBank->unk17FC];

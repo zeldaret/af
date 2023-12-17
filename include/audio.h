@@ -3,7 +3,7 @@
 
 #include "ultra64.h"
 #include "game.h"
-#include "z_std_dma.h"
+#include "m_std_dma.h"
 
 struct xyz_t;
  

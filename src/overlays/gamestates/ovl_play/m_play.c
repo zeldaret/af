@@ -33,7 +33,7 @@
 #include "version.h"
 #include "libu64/gfxprint.h"
 #include "libc/alloca.h"
-#include "z_std_dma.h"
+#include "m_std_dma.h"
 #include "67E840.h"
 #include "overlays/gamestates/ovl_famicom_emu/famicom_emu.h"
 #include "overlays/gamestates/ovl_trademark/m_trademark.h"

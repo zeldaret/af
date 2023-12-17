@@ -1,7 +1,7 @@
 #include "yaz0.h"
 #include "libc64/sleep.h"
 #include "fault.h"
-#include "z_std_dma.h"
+#include "m_std_dma.h"
 
 u8 sYaz0DataBuffer[0x400];
 u8* sYaz0CurDataEnd;

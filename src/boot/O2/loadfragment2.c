@@ -9,7 +9,7 @@
 #include "loadfragment.h"
 #include "attributes.h"
 #include "libc/stddef.h"
-#include "z_std_dma.h"
+#include "m_std_dma.h"
 
 void DoRelocation(void* allocatedRamAddr, OverlayRelocationSection* ovlRelocs, void* vramStart);
 

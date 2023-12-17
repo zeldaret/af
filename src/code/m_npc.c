@@ -8,7 +8,7 @@
 #include "6E30B0.h"
 #include "6E7AD0.h"
 #include "m_handbill.h"
-#include "z_std_dma.h"
+#include "m_std_dma.h"
 #include "6DA460.h"
 #include "m_house.h"
 #include "m_malloc.h"
