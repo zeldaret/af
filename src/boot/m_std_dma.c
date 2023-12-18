@@ -14,7 +14,7 @@ UNK_TYPE sDmaMgrCurFileLine;
 size_t B_800406B0_jp;
 size_t B_800406B4_jp;
 
-#include "z_std_dma.h"
+#include "m_std_dma.h"
 #include "carthandle.h"
 #include "fault.h"
 #include "irqmgr.h"

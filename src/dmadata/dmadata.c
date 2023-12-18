@@ -1,5 +1,5 @@
 #include "segment_symbols.h"
-#include "z_std_dma.h"
+#include "m_std_dma.h"
 
 // Linker symbol declarations (used in the table below)
 #define DEFINE_DMA_ENTRY(name, _nameString) DECLARE_ROM_SEGMENT(name);

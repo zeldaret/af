@@ -7,7 +7,7 @@
 #include "segment_symbols.h"
 #include "stack.h"
 #include "libu64/stackcheck.h"
-#include "z_std_dma.h"
+#include "m_std_dma.h"
 
 OSThread sMainThread;
 STACK(sMainStack, 0x900);

@@ -6,7 +6,7 @@
 #include "ovlmgr.h"
 #include "PreRender.h"
 #include "sys_matrix.h"
-#include "z_std_dma.h"
+#include "m_std_dma.h"
 #include "m_rcp.h"
 #include "macros.h"
 #include "segment_symbols.h"

@@ -1,5 +1,5 @@
-#ifndef Z_STD_DMA_H
-#define Z_STD_DMA_H
+#ifndef M_STD_DMA_H
+#define M_STD_DMA_H
 
 #include "ultra64.h"
 #include "libc/stdint.h"
