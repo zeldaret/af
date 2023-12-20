@@ -51,7 +51,7 @@ typedef struct PrivateInventory {
 typedef struct PrivateCloth {
     /* 0x00 */ u16 id;
     /* 0x02 */ u16 item;
-}PrivateCloth; // size = 0x4
+} PrivateCloth; // size = 0x4
 
 
 #endif
