@@ -26,10 +26,23 @@ typedef enum mPr_ITEM_COND{
     /* 3 */ mPr_ITEM_COND_NUM
 } mPr_ITEM_COND;
 
+typedef enum mPr_FACE_TYPE {
+    /* 0 */ mPr_FACE_TYPE0,
+    /* 1 */ mPr_FACE_TYPE1,
+    /* 2 */ mPr_FACE_TYPE2,
+    /* 3 */ mPr_FACE_TYPE3,
+    /* 4 */ mPr_FACE_TYPE4,
+    /* 5 */ mPr_FACE_TYPE5,
+    /* 6 */ mPr_FACE_TYPE6,
+    /* 7 */ mPr_FACE_TYPE7,
+    /* 8 */ mPr_FACE_TYPE_NUM   
+} mPr_FACE_TYPE;
+
 typedef struct PrivateInfo {
     /* 0x000 */ PersonalID_c playerId; 
     /* 0x010 */ s8 gender;
-    /* 0x011 */ UNK_TYPE1 unk_011[0x3];
+    /* 0x011 */ s8 face;
+    /* 0x012 */ UNK_TYPE1 unk_012[0x2];
     /* 0x014 */ PrivateInventory inventory;
     /* 0x040 */ mQst_delivery_c deliveries[mPr_DELIVERY_QUEST_NUM]; /* delivery quests */
     /* 0x25C */ QuestErrand errands[mPr_ERRAND_QUEST_NUM]; /* errand quests */
@@ -38,7 +51,9 @@ typedef struct PrivateInfo {
     /* 0x40A */ Mail_c unk_40A[10];
     /* 0xA72 */ UNK_TYPE1 unk_A72[0x2];
     /* 0xA74 */ u8 exists;
-    /* 0xA75 */ UNK_TYPE1 unk_A75[0x11];
+    /* 0xA75 */ UNK_TYPE1 unkA75[1];
+    /* 0xA76 */ PrivateCloth cloth;
+    /* 0xA7A */ UNK_TYPE1 unkA7A[0xC];
     /* 0xA86 */ Private_Sub_A86 unk_A86;
     /* 0xA90 */ UNK_TYPE1 unk_A90[0x3C];
     /* 0xACC */ Anmremail remail;   

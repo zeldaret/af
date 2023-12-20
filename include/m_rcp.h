@@ -25,7 +25,7 @@ void func_800BD5E8_jp(struct GraphicsContext *gfxCtx);
 // void func_800BD6D0_jp();
 // void func_800BD6F8_jp();
 Gfx* func_800BD720_jp(Gfx* gfx);
-// void func_800BD748_jp();
+void rect_moji(struct GraphicsContext*);
 // void func_800BD770_jp();
 // void func_800BD798_jp();
 Gfx* func_800BD7C0_jp(Gfx* gfx);

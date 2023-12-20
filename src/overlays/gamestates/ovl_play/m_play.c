@@ -579,7 +579,7 @@ void setupFog(Game_Play* game_play, GraphicsContext* gfxCtx) {
 }
 
 void setupViewer(Game_Play* game_play) {
-    showView(&game_play->unk_1938, 0xF, game_play);
+    showView(&game_play->unk_1938, 0xF);
 }
 
 void setupViewMatrix(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsContext* gfxCtx2) {
@@ -614,7 +614,6 @@ s32 makeBumpTexture(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsCon
 
         if (game_play->unk_1EE3 == 3) {
             Game_Play1938 sp60;
-            ScissorViewArg1 sp50;
 
             initView(&sp60, gfxCtx2);
             {
@@ -622,10 +621,7 @@ s32 makeBumpTexture(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsCon
             //! FAKE
             label2:;
             }
-            sp50.unk_04 = 0xF0, sp50.unk_0C = 0x140;
-            sp50.unk_00 = 0;
-            sp50.unk_08 = 0;
-            setScissorView(&sp60, &sp50);
+            SET_FULLSCREEN_VIEWPORT(&sp60);
             showView1(&sp60, 0xF, &sp194);
             game_play->unk_1EE8.unk_21C.unk_0C(&game_play->unk_1EE8, &sp194);
         }
