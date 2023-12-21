@@ -39,6 +39,14 @@ typedef struct gfxprint  {
 
 #define GFXPRINT_UNUSED_CHAR '\x8E'
 
+#define GFXPRINT_CLEAR_GRADIENT "\x8A"
+#define GFXPRINT_ENABLE_GRADIENT "\x8B"
+
+#define GFXPRINT_KATAKANA_MODE "\x8C"
+#define GFXPRINT_HIRAGANA_MODE "\x8D"
+
+#define GFXPRINT_UNUSED "\x8E"
+
 /* Macros for quickly checking state of gfxprint struct */
 #define gfxprint_isFlagOn(this, flag) ((this->flags & flag) != 0)
 #define gfxprint_setFlag(this, flag) (this->flags |= flag)
