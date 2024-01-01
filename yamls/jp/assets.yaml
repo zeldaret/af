@@ -569,6 +569,7 @@
   - [0xD5D2E0]
 
   - name: object_00D5E000
+    dir: objects/object_00D5E000
     type: code
     start: 0xD5E000
     vram: 0x06000000
@@ -576,60 +577,61 @@
     compress: False
     align: 0x1000
     subsegments:
+      # - [auto, c, object_00D5E000]
       - start: 0xD5E000
         type: data
-        name: objects/object_00D5E000/object_00D5E000
+        name: object_00D5E000
         subsegments:
           - [0xD5E000]
-          - [0xDDB248, vtx,      objects/object_00D5E000/obj_s_toudai/obj_s_toudai_v]
-          - [0xDDBBD8, gfx,      objects/object_00D5E000/obj_s_toudai/obj_s_toudai_mirror_model]
-          - [0xDDBCA0, gfx,      objects/object_00D5E000/obj_s_toudai/obj_s_toudai_glass_model]
-          - [0xDDBD70, gfx,      objects/object_00D5E000/obj_s_toudai/obj_s_toudai_body_model]
-          - [0xDDC188, gfx,      objects/object_00D5E000/obj_s_toudai/obj_s_toudai_light_model]
-          - [0xDDC258, gfx,      objects/object_00D5E000/obj_s_toudai/obj_s_toudai_lenz_model]
-          - [0xDDC320, gfx,      objects/object_00D5E000/obj_s_toudai/obj_s_toudai_arm_model]
-          - [0xDDC3A8, i8,       objects/object_00D5E000/obj_s_toudai/obj_s_toudai_light_tex_txt, 16, 16]
-          - [0xDDC4A8, bin,      objects/object_00D5E000/obj_s_toudai/obj_s_toudai_arm_tex_txt]
-          - [0xDDC528, bin,      objects/object_00D5E000/obj_s_toudai/obj_s_toudai_dai_tex_txt]
-          - [0xDDC728, bin,      objects/object_00D5E000/obj_s_toudai/obj_s_toudai_dou_tex_txt]
-          - [0xDDCB28, bin,      objects/object_00D5E000/obj_s_toudai/obj_s_toudai_plate_tex_txt]
-          - [0xDDCBA8, bin,      objects/object_00D5E000/obj_s_toudai/obj_s_toudai_side_tex_txt]
-          - [0xDDCC28, bin,      objects/object_00D5E000/obj_s_toudai/obj_s_toudai_tesuri_tex_txt]
-          - [0xDDCCA8, bin,      objects/object_00D5E000/obj_s_toudai/obj_s_toudai_yane_tex_txt]
-          - [0xDDCD28, bin,      objects/object_00D5E000/obj_s_toudai/obj_s_toudai_glass_tex_pic_ci4_pal]
-          - [0xDDCD48, bin,      objects/object_00D5E000/obj_s_toudai/obj_s_toudai_glass_tex_pic_ci4]
-          - [0xDDCDC8, ckf_je,   objects/object_00D5E000/obj_s_toudai/cKF_je_r_obj_s_toudai_tbl]
-          - [0xDDCE1C, ckf_bs,   objects/object_00D5E000/obj_s_toudai/cKF_bs_r_obj_s_toudai]
-          - [0xDDCE24, ckf_ckcb, objects/object_00D5E000/obj_s_toudai/cKF_ckcb_r_obj_s_toudai_tbl]
-          - [0xDDCE2C, ckf_kn,   objects/object_00D5E000/obj_s_toudai/cKF_kn_obj_s_toudai_tbl]
-          - [0xDDCE30, ckf_c,    objects/object_00D5E000/obj_s_toudai/cKF_c_obj_s_toudai_tbl]
-          - [0xDDCE60, ckf_ds,   objects/object_00D5E000/obj_s_toudai/cKF_ds_obj_s_toudai_tbl]
-          - [0xDDCE6C, ckf_ba,   objects/object_00D5E000/obj_s_toudai/cKF_ba_r_obj_s_toudai]
+          - [0xDDB248, vtx,      obj_s_toudai/obj_s_toudai_v]
+          - [0xDDBBD8, gfx,      obj_s_toudai/obj_s_toudai_mirror_model]
+          - [0xDDBCA0, gfx,      obj_s_toudai/obj_s_toudai_glass_model]
+          - [0xDDBD70, gfx,      obj_s_toudai/obj_s_toudai_body_model]
+          - [0xDDC188, gfx,      obj_s_toudai/obj_s_toudai_light_model]
+          - [0xDDC258, gfx,      obj_s_toudai/obj_s_toudai_lenz_model]
+          - [0xDDC320, gfx,      obj_s_toudai/obj_s_toudai_arm_model]
+          - [0xDDC3A8, i8,       obj_s_toudai/obj_s_toudai_light_tex_txt, 16, 16]
+          - [0xDDC4A8, bin,      obj_s_toudai/obj_s_toudai_arm_tex_txt]
+          - [0xDDC528, bin,      obj_s_toudai/obj_s_toudai_dai_tex_txt]
+          - [0xDDC728, bin,      obj_s_toudai/obj_s_toudai_dou_tex_txt]
+          - [0xDDCB28, bin,      obj_s_toudai/obj_s_toudai_plate_tex_txt]
+          - [0xDDCBA8, bin,      obj_s_toudai/obj_s_toudai_side_tex_txt]
+          - [0xDDCC28, bin,      obj_s_toudai/obj_s_toudai_tesuri_tex_txt]
+          - [0xDDCCA8, bin,      obj_s_toudai/obj_s_toudai_yane_tex_txt]
+          - [0xDDCD28, bin,      obj_s_toudai/obj_s_toudai_glass_tex_pic_ci4_pal]
+          - [0xDDCD48, bin,      obj_s_toudai/obj_s_toudai_glass_tex_pic_ci4]
+          - [0xDDCDC8, ckf_je,   obj_s_toudai/cKF_je_r_obj_s_toudai_tbl]
+          - [0xDDCE1C, ckf_bs,   obj_s_toudai/cKF_bs_r_obj_s_toudai]
+          - [0xDDCE24, ckf_ckcb, obj_s_toudai/cKF_ckcb_r_obj_s_toudai_tbl]
+          - [0xDDCE2C, ckf_kn,   obj_s_toudai/cKF_kn_obj_s_toudai_tbl]
+          - [0xDDCE30, ckf_c,    obj_s_toudai/cKF_c_obj_s_toudai_tbl]
+          - [0xDDCE60, ckf_ds,   obj_s_toudai/cKF_ds_obj_s_toudai_tbl]
+          - [0xDDCE6C, ckf_ba,   obj_s_toudai/cKF_ba_r_obj_s_toudai]
           - [0xDDCE80] # padding
-          - [0xDDCE90, vtx,      objects/object_00D5E000/obj_w_toudai/obj_w_toudai_v]
-          - [0xDDD7E0, gfx,      objects/object_00D5E000/obj_w_toudai/obj_w_toudai_mirror_model]
-          - [0xDDD8A8, gfx,      objects/object_00D5E000/obj_w_toudai/obj_w_toudai_glass_model]
-          - [0xDDD978, gfx,      objects/object_00D5E000/obj_w_toudai/obj_w_toudai_body_model]
-          - [0xDDDD90, gfx,      objects/object_00D5E000/obj_w_toudai/obj_w_toudai_light_model]
-          - [0xDDDE60, gfx,      objects/object_00D5E000/obj_w_toudai/obj_w_toudai_lenz_model]
-          - [0xDDDF28, gfx,      objects/object_00D5E000/obj_w_toudai/obj_w_toudai_arm_model]
-          - [0xDDDFB0, i8,       objects/object_00D5E000/obj_w_toudai/obj_w_toudai_light_tex_txt, 16, 16]
-          - [0xDDE0B0, bin,      objects/object_00D5E000/obj_w_toudai/obj_w_toudai_arm_tex_txt]
-          - [0xDDE130, bin,      objects/object_00D5E000/obj_w_toudai/obj_w_toudai_dai_tex_txt]
-          - [0xDDE330, bin,      objects/object_00D5E000/obj_w_toudai/obj_w_toudai_dou_tex_txt]
-          - [0xDDE730, bin,      objects/object_00D5E000/obj_w_toudai/obj_w_toudai_plate_tex_txt]
-          - [0xDDE7B0, bin,      objects/object_00D5E000/obj_w_toudai/obj_w_toudai_side_tex_txt]
-          - [0xDDE830, bin,      objects/object_00D5E000/obj_w_toudai/obj_w_toudai_tesuri_tex_txt]
-          - [0xDDE8B0, bin,      objects/object_00D5E000/obj_w_toudai/obj_w_toudai_yane_tex_txt]
-          - [0xDDE930, bin,      objects/object_00D5E000/obj_w_toudai/obj_w_toudai_glass_tex_pic_ci4_pal]
-          - [0xDDE950, bin,      objects/object_00D5E000/obj_w_toudai/obj_w_toudai_glass_tex_pic_ci4]
-          - [0xDDE9D0, ckf_je,   objects/object_00D5E000/obj_w_toudai/cKF_je_r_obj_w_toudai_tbl]
-          - [0xDDEA24, ckf_bs,   objects/object_00D5E000/obj_w_toudai/cKF_bs_r_obj_w_toudai]
-          - [0xDDEA2C, ckf_ckcb, objects/object_00D5E000/obj_w_toudai/cKF_ckcb_r_obj_w_toudai_tbl]
-          - [0xDDEA34, ckf_kn,   objects/object_00D5E000/obj_w_toudai/cKF_kn_obj_w_toudai_tbl]
-          - [0xDDEA38, ckf_c,    objects/object_00D5E000/obj_w_toudai/cKF_c_obj_w_toudai_tbl]
-          - [0xDDEA68, ckf_ds,   objects/object_00D5E000/obj_w_toudai/cKF_ds_obj_w_toudai_tbl]
-          - [0xDDEA74, ckf_ba,   objects/object_00D5E000/obj_w_toudai/cKF_ba_r_obj_w_toudai]
+          - [0xDDCE90, vtx,      obj_w_toudai/obj_w_toudai_v]
+          - [0xDDD7E0, gfx,      obj_w_toudai/obj_w_toudai_mirror_model]
+          - [0xDDD8A8, gfx,      obj_w_toudai/obj_w_toudai_glass_model]
+          - [0xDDD978, gfx,      obj_w_toudai/obj_w_toudai_body_model]
+          - [0xDDDD90, gfx,      obj_w_toudai/obj_w_toudai_light_model]
+          - [0xDDDE60, gfx,      obj_w_toudai/obj_w_toudai_lenz_model]
+          - [0xDDDF28, gfx,      obj_w_toudai/obj_w_toudai_arm_model]
+          - [0xDDDFB0, i8,       obj_w_toudai/obj_w_toudai_light_tex_txt, 16, 16]
+          - [0xDDE0B0, bin,      obj_w_toudai/obj_w_toudai_arm_tex_txt]
+          - [0xDDE130, bin,      obj_w_toudai/obj_w_toudai_dai_tex_txt]
+          - [0xDDE330, bin,      obj_w_toudai/obj_w_toudai_dou_tex_txt]
+          - [0xDDE730, bin,      obj_w_toudai/obj_w_toudai_plate_tex_txt]
+          - [0xDDE7B0, bin,      obj_w_toudai/obj_w_toudai_side_tex_txt]
+          - [0xDDE830, bin,      obj_w_toudai/obj_w_toudai_tesuri_tex_txt]
+          - [0xDDE8B0, bin,      obj_w_toudai/obj_w_toudai_yane_tex_txt]
+          - [0xDDE930, bin,      obj_w_toudai/obj_w_toudai_glass_tex_pic_ci4_pal]
+          - [0xDDE950, bin,      obj_w_toudai/obj_w_toudai_glass_tex_pic_ci4]
+          - [0xDDE9D0, ckf_je,   obj_w_toudai/cKF_je_r_obj_w_toudai_tbl]
+          - [0xDDEA24, ckf_bs,   obj_w_toudai/cKF_bs_r_obj_w_toudai]
+          - [0xDDEA2C, ckf_ckcb, obj_w_toudai/cKF_ckcb_r_obj_w_toudai_tbl]
+          - [0xDDEA34, ckf_kn,   obj_w_toudai/cKF_kn_obj_w_toudai_tbl]
+          - [0xDDEA38, ckf_c,    obj_w_toudai/cKF_c_obj_w_toudai_tbl]
+          - [0xDDEA68, ckf_ds,   obj_w_toudai/cKF_ds_obj_w_toudai_tbl]
+          - [0xDDEA74, ckf_ba,   obj_w_toudai/cKF_ba_r_obj_w_toudai]
           - [0xDDEA88] # padding
   - [0xDF3480]
 
@@ -4522,15 +4524,25 @@
     #   - [0x1127000, data, assets/objects/object_01127000/object_01127000]
   - [0x1127A40]
 
-  - name: object_01128000
-    type: bin # code
+  - name: tol_utiwa_1
+    dir: objects/tol_utiwa_1
+    type: code
     start: 0x1128000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x1128000, data, assets/objects/object_01128000/object_01128000]
+    subsegments:
+      - [auto, c, tol_utiwa_1]
+      - start: 0x1128000
+        type: .data
+        name: tol_utiwa_1
+        subsegments:
+          - [0x1128000, vtx, tol_utiwa_1_v]
+          - [0x1128080, gfx, main_utiwa1_model]
+          - [0x1128188, palette, tol_utiwa_1_main1_tex_txt] # tol_utiwa1_pal
+          - [0x11281A8, ci4, tol_utiwa_1_main1_tex_txt, 32, 32]
+          - [0x11283A8, ci4, tol_utiwa_1_main2_tex_txt, 32, 32, tol_utiwa_1_main1_tex_txt]
   - [0x11285B0]
 
   - name: object_01129000

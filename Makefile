@@ -108,6 +108,7 @@ ASM_PROC_FLAGS  := --input-enc=utf-8 --output-enc=euc-jp --convert-statics=globa
 SPLAT           ?= tools/splat/split.py
 SPLAT_YAML      ?= $(TARGET).$(VERSION).yaml
 
+PIGMENT			?=pigment64
 
 
 IINC := -Iinclude -Isrc -Iassets/$(VERSION) -I.
@@ -182,11 +183,11 @@ $(shell mkdir -p asm/$(VERSION) bin linker_scripts/$(VERSION)/auto)
 
 SRC_DIRS      := $(shell find src -type d)
 ASM_DIRS      := $(shell find asm/$(VERSION) -type d -not -path "asm/$(VERSION)/nonmatchings/*" -not -path "asm/$(VERSION)/lib/*")
-BIN_DIRS      := $(shell find assets/$(VERSION) -type d)
+ASSET_DIRS      := $(shell find assets/$(VERSION) -type d)
 
 C_FILES       := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 S_FILES       := $(foreach dir,$(ASM_DIRS) $(SRC_DIRS),$(wildcard $(dir)/*.s))
-BIN_FILES     := $(foreach dir,$(BIN_DIRS),$(wildcard $(dir)/*.bin))
+BIN_FILES     := $(foreach dir,$(ASSET_DIRS),$(wildcard $(dir)/*.bin))
 O_FILES       := $(foreach f,$(C_FILES:.c=.o),$(BUILD_DIR)/$f) \
                  $(foreach f,$(S_FILES:.s=.o),$(BUILD_DIR)/$f) \
                  $(foreach f,$(BIN_FILES:.bin=.o),$(BUILD_DIR)/$f)
@@ -214,7 +215,7 @@ DEP_FILES := $(O_FILES:.o=.d) \
              $(O_FILES:.o=.asmproc.d)
 
 # create build directories
-$(shell mkdir -p $(BUILD_DIR)/linker_scripts/$(VERSION) $(BUILD_DIR)/linker_scripts/$(VERSION)/auto $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS),$(BUILD_DIR)/$(dir)))
+$(shell mkdir -p $(BUILD_DIR)/linker_scripts/$(VERSION) $(BUILD_DIR)/linker_scripts/$(VERSION)/auto $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(ASSET_DIRS),$(BUILD_DIR)/$(dir)))
 
 
 # directory flags
@@ -325,6 +326,10 @@ $(BUILD_DIR)/lib/%.o:
 ifneq ($(PERMUTER), 1)
 	$(error Library files has not been built, please run `$(MAKE) lib` first)
 endif
+
+# Build C files from assets
+$(BUILD_DIR)/%.bin: %.png
+	$(PIGMENT) -f ci4 -o $@ $<
 
 -include $(DEP_FILES)
 
