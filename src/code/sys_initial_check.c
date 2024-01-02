@@ -1,3 +1,8 @@
+/**
+ * @file sys_initial_check.c
+ * Functions for checking the TV type (PAL/NTSC/MPAL), and printing an error message to the screen if it's not NTSC
+ */
+
 #include "color.h"
 #include "macros.h"
 #include "z_std_dma.h"
