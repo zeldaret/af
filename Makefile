@@ -329,7 +329,7 @@ endif
 
 # Build C files from assets
 $(BUILD_DIR)/%.bin: %.png
-	$(PIGMENT) -f ci4 -o $@ $<
+	$(PIGMENT) to-bin -f ci4 -o $@ $<
 
 -include $(DEP_FILES)
 
