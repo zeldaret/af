@@ -168,6 +168,8 @@
       - [0x732C70, .data, code/lb_rtc]
       - [0x732C80, .data, code/lb_reki]
       - [0x733080, data, code/733080]
+      - [0x7330F0, .data, code/sys_initial_check]
+      - [0x733100, data, code/733100]
       - [0x733160, .data, code/sys_math_atan]
       - [0x733970, .data, code/sys_matrix]
       - [0x7339F0, .data, code/sys_ucode]

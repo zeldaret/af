@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "z64math.h"
+#include "unk.h"
 
 struct Game_Play;
 
