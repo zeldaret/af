@@ -97,6 +97,8 @@ DECLARE_SEGMENT(catalog_ovl);
 DECLARE_SEGMENT(ac_set_ovl_insect);
 DECLARE_SEGMENT(ac_set_ovl_gyoei);
 
+DECLARE_SEGMENT(locerrmsg);
+
 DECLARE_SEGMENT(segment_00A58000);
 
 DECLARE_SEGMENT(segment_00E02000);
