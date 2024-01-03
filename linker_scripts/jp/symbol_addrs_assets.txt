@@ -48,7 +48,7 @@ cKF_c_obj_w_toudai_tbl = 0x06080A38; // segment:object_00D5E000
 cKF_ds_obj_w_toudai_tbl = 0x06080A68; // segment:object_00D5E000
 cKF_ba_r_obj_w_toudai = 0x06080A74; // segment:object_00D5E000
 
-tol_utiwa_1_v = 0x6000000; // type:Vtx rom:0x1128000 segment:tol_utiwa_1
+tol_utiwa_1_v = 0x6000000; // segment:tol_utiwa_1
 main_utiwa1_model = 0x6000080; // segment:tol_utiwa_1
 tol_utiwa1_pal = 0x6000188; // segment:tol_utiwa_1
 tol_utiwa_1_main1_tex_txt = 0x60001A8; // segment:tol_utiwa_1

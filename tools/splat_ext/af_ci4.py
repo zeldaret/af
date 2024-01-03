@@ -1,8 +1,27 @@
-import n64img.image
+from n64img.image import Image, CI4
+from util import log, options
+from segtypes.n64.segment import N64Segment
 
-from .af_ci import N64SegAf_ci
+class N64SegAf_ci4(N64Segment):
+    def __init__(self, rom_start, rom_end, type, name, vram_start, args, yaml):
+        super().__init__(rom_start, rom_end, type, name, vram_start, args=args, yaml=yaml),
 
+        self.width = args[0]
+        self.height = args[1]
+        self.palette_start = args[2]
+        self.palette_end = args[3]
+            
+        self.n64img: Image = CI4(b"", 0, 0)
+        self.n64img.width = self.width
+        self.n64img.height = self.height
 
-class N64SegAf_ci4(N64SegAf_ci):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs, img_cls=n64img.image.CI4)
+    def scan(self, rom_bytes: bytes) -> None:
+        self.n64img.data = rom_bytes[self.rom_start : self.rom_end]
+        self.n64img.set_palette(rom_bytes[self.palette_start : self.palette_end])
+
+    def split(self, rom_bytes):
+        path = options.opts.asset_path / self.dir / f"{self.name}.ci4.png"
+        path.parent.mkdir(parents=True, exist_ok=True)
+
+        self.n64img.write(path)
+    
