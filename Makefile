@@ -111,7 +111,7 @@ SPLAT_YAML      ?= $(TARGET).$(VERSION).yaml
 PIGMENT			?=pigment64
 
 
-IINC := -Iinclude -Isrc -Iassets/$(VERSION) -I.
+IINC := -Iinclude -Isrc -Iassets/$(VERSION) -I. -I$(BUILD_DIR)
 IINC += -Ilib/ultralib/include -Ilib/ultralib/include/PR -Ilib/ultralib/include/ido
 
 ifeq ($(KEEP_MDEBUG),0)
@@ -191,6 +191,10 @@ BIN_FILES     := $(foreach dir,$(ASSET_DIRS),$(wildcard $(dir)/*.bin))
 O_FILES       := $(foreach f,$(C_FILES:.c=.o),$(BUILD_DIR)/$f) \
                  $(foreach f,$(S_FILES:.s=.o),$(BUILD_DIR)/$f) \
                  $(foreach f,$(BIN_FILES:.bin=.o),$(BUILD_DIR)/$f)
+
+ASSET_PNGS := $(foreach dir,$(ASSET_DIRS),$(wildcard $(dir)/*.png))
+ASSET_BINS := $(foreach f,$(ASSET_PNGS:.png=.bin),$(BUILD_DIR)/$f)
+ASSET_INC_C := $(foreach f,$(ASSET_PNGS:.png=.inc.c),$(BUILD_DIR)/$f)
 
 LIBULTRA_DIRS := $(shell find lib/ultralib/src -type d \
                   -not -path "lib/ultralib/src/audio" \
@@ -329,7 +333,16 @@ endif
 
 # Build C files from assets
 $(BUILD_DIR)/%.bin: %.png
-	$(PIGMENT) to-bin -f ci4 -o $@ $<
+# file names are formatted as <file name>.<image format>.png
+# The <image format> part is passed into pigment's format argument
+	$(PIGMENT) to-bin -f $(subst .,,$(suffix $*)) -o $@ $<
+%.inc.c: %.bin
+# The C name argument uses just the <file name> part, with .<image format>.bin removed
+	python3 tools/bin_inc_c.py $< $@ $(basename $(basename $(notdir $<)))
+
+# Add these as a dependency for .o files
+$(O_FILES): | $(ASSET_INC_C)
+.PHONY: $(ASSET_INC_C)
 
 -include $(DEP_FILES)
 
