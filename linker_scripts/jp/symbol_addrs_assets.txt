@@ -92,7 +92,12 @@ cKF_je_r_obj_w_windmill = 0x06092A38; // segment:object_00D5E000
 cKF_bs_r_obj_w_windmill = 0x06092A74; // segment:object_00D5E000
 
 tol_utiwa_1_v = 0x6000000; // segment:tol_utiwa_1 rom:0x1128000 size:0x80
-main_utiwa1_model = 0x6000080; // segment:tol_utiwa_1 rom:0x1128080
-tol_utiwa1_pal = 0x6000188; // segment:tol_utiwa_1 rom:0x1128188
-tol_utiwa_1_main1_tex_txt = 0x60001A8; // segment:tol_utiwa_1 rom:0x11281A8
-tol_utiwa_1_main2_tex_txt = 0x60003A8; // segment:tol_utiwa_1 rom:0x11283A8
+main_utiwa1_model = 0x6000080; // segment:tol_utiwa_1
+tol_utiwa1_pal = 0x6000188; // segment:tol_utiwa_1
+tol_utiwa_1_main1_tex_txt = 0x60001A8; // segment:tol_utiwa_1
+tol_utiwa_1_main2_tex_txt = 0x60003A8; // segment:tol_utiwa_1
+
+tol_cracker_1_v = 0x6000000; // segment:tol_cracker_1 rom:0x112F000 size:0x1C0
+tol_cracker_1T_model = 0x60001C0; // segment:tol_cracker_1
+tol_cracker_1_pal = 0x6000280; // segment:tol_cracker_1
+tol_cracker_1_tex = 0x60002A0; // segment:tol_cracker_1

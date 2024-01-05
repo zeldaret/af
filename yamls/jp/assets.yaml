@@ -616,7 +616,7 @@
           - [0xD5E7D8, gfx, 06000000/unk_model_5]
           - [0xD5E8C8, bin, 06000000/unk_tex_1]
           - [0xD5F0C8, bin, 06000000/unk_tex_2]
-          - [0xD5F8C8, i4, 06000000/unk_tex_3, 16, 16]
+          - [0xD5F8C8, af_i4, 06000000/unk_tex_3, 16, 16]
           - [0xD5F948] # todo c keyframe stuff
           - [0xD5FA28]
           - [0xDDB248, vtx, obj_s_toudai/obj_s_toudai_v]
@@ -626,7 +626,7 @@
           - [0xDDC188, gfx, obj_s_toudai/obj_s_toudai_light_model]
           - [0xDDC258, gfx, obj_s_toudai/obj_s_toudai_lenz_model]
           - [0xDDC320, gfx, obj_s_toudai/obj_s_toudai_arm_model]
-          - [0xDDC3A8, i8, obj_s_toudai/obj_s_toudai_light_tex_txt, 16, 16]
+          - [0xDDC3A8, af_i8, obj_s_toudai/obj_s_toudai_light_tex_txt, 16, 16]
           - [0xDDC4A8, af_ci4, obj_s_toudai/obj_s_toudai_arm_tex_txt, 16, 16, 0xD5C3A8, 0x20]
           - [0xDDC528, af_ci4, obj_s_toudai/obj_s_toudai_dai_tex_txt, 32, 32, 0xD5C3A8, 0x20]
           - [0xDDC728, af_ci4, obj_s_toudai/obj_s_toudai_dou_tex_txt, 32, 64, 0xD5C3A8, 0x20]
@@ -651,7 +651,7 @@
           - [0xDDDD90, gfx, obj_w_toudai/obj_w_toudai_light_model]
           - [0xDDDE60, gfx, obj_w_toudai/obj_w_toudai_lenz_model]
           - [0xDDDF28, gfx, obj_w_toudai/obj_w_toudai_arm_model]
-          - [0xDDDFB0, i8, obj_w_toudai/obj_w_toudai_light_tex_txt, 16, 16]
+          - [0xDDDFB0, af_i8, obj_w_toudai/obj_w_toudai_light_tex_txt, 16, 16]
           - [0xDDE0B0, af_ci4, obj_w_toudai/obj_w_toudai_arm_tex_txt, 16, 16, 0xD5C3C8, 0x20]
           - [0xDDE130, af_ci4, obj_w_toudai/obj_w_toudai_dai_tex_txt, 32, 32, 0xD5C3C8, 0x20]
           - [0xDDE330, af_ci4, obj_w_toudai/obj_w_toudai_dou_tex_txt, 32, 64, 0xD5C3C8, 0x20]
@@ -4666,15 +4666,25 @@
     #   - [0x112D000, data, assets/objects/object_0112D000/object_0112D000]
   - [0x112E1E0]
 
-  - name: object_0112F000
-    type: bin # code
+  - name: tol_cracker_1
+    dir: objects/tol_cracker_1
+    type: code
     start: 0x112F000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x112F000, data, assets/objects/object_0112F000/object_0112F000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, tol_cracker_1]
+      - start: 0x112F000
+        type: .data
+        name: tol_cracker_1
+        subsegments:
+          - [0x112F000, vtx, tol_cracker_1_v]
+          - [0x112F1C0, gfx, tol_cracker_1T_model]
+          - [0x112F280, af_palette, tol_cracker_1_pal]
+          - [0x112F2A0, af_ci4, tol_cracker_1_tex, 64, 16, 0x112F280, 0x20]
   - [0x112F4A0]
 
   - name: object_01130000

@@ -336,13 +336,15 @@ $(BUILD_DIR)/%.bin: %.png
 # file names are formatted as <file name>.<image format>.png
 # The <image format> part is passed into pigment's format argument
 	$(PIGMENT) to-bin -f $(subst .,,$(suffix $*)) -o $@ $<
+
 %.inc.c: %.bin
 # The C name argument uses just the <file name> part, with .<image format>.bin removed
 	python3 tools/bin_inc_c.py $< $@ $(basename $(basename $(notdir $<)))
 
 # Add these as a dependency for .o files
-$(O_FILES): | $(ASSET_INC_C)
-.PHONY: $(ASSET_INC_C)
+asset_files: $(ASSET_INC_C)
+$(O_FILES): | asset_files
+.PHONY: asset_files
 
 -include $(DEP_FILES)
 
