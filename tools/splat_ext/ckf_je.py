@@ -20,6 +20,8 @@ class N64SegCkf_je(CommonSegCodeSubsegment):
             log.error(f"Error: ckf_je segment {self.name} length ({len(data)}) is not a multiple of 12 bytes!")
 
         if not self.data_only:
+            lines.append(options.opts.generated_c_preamble)
+            lines.append("")
             lines.append(f"JointElemR {symbol.name}[{count}] = {{")
 
         for jointelem in struct.iter_unpack(">IBBhhh", data):

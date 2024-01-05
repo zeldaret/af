@@ -30,7 +30,7 @@ class N64SegAf_ci4(N64Segment):
         # self.n64img.set_palette(rom_bytes[palette.rom : palette.rom + palette.size])
         self.n64img.set_palette(rom_bytes[self.palette_start : self.palette_start + self.palette_size])
 
-    def split(self, rom_bytes):
+    def split(self, rom_bytes: bytes):
         path = options.opts.asset_path / self.dir / f"{self.name}.ci4.png"
         path.parent.mkdir(parents=True, exist_ok=True)
 

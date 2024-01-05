@@ -15,14 +15,11 @@ class N64SegAf_palette(CommonSegCodeSubsegment):
         lines = []
 
         if len(data) not in VALID_SIZES:
-            log.error(
-                f"Error: {self.name} (0x{len(data):X} bytes) is not a valid palette size ({', '.join(hex(s) for s in VALID_SIZES)})"
-            )
+            log.error(f"Error: {self.name} (0x{len(data):X} bytes) is not a valid palette size ({', '.join(hex(s) for s in VALID_SIZES)})")
 
         if not self.data_only:
             lines.append(options.opts.generated_c_preamble)
-
-        if not self.data_only:
+            lines.append("")
             lines.append(f"unsigned short {self.name}[] = {{")
 
         for short in struct.iter_unpack(">H", data):
@@ -41,7 +38,4 @@ class N64SegAf_palette(CommonSegCodeSubsegment):
             path.parent.mkdir(parents=True, exist_ok=True)
             with open(path, "w", newline="\n") as f:
                 f.write(self.file_text)
-    
-    def get_palette(self, rom_bytes: bytes):
-        return rom_bytes[self.rom_start : self.rom_end]
     
