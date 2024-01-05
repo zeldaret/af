@@ -1,4 +1,19 @@
-obj_s_toudai_v = 0x0607D248; // segment:object_00D5E000
+obj_s_house1_a_pal = 0x06000008; // segment:object_00D5B000 rom:0xD5B008
+obj_s_house1_b_pal = 0x06000028; // segment:object_00D5B000 rom:0xD5B028
+obj_s_windmill_a_pal = 0x060011E8; // segment:object_00D5B000 rom:0xD5C1E8
+obj_s_windmill_b_pal = 0x06001208; // segment:object_00D5B000 rom:0xD5C208
+obj_s_windmill_c_pal = 0x06001228; // segment:object_00D5B000 rom:0xD5C228
+obj_s_windmill_d_pal = 0x06001248; // segment:object_00D5B000 rom:0xD5C248
+obj_s_windmill_e_pal = 0x06001268; // segment:object_00D5B000 rom:0xD5C268
+obj_w_windmill_a_pal = 0x06001288; // segment:object_00D5B000 rom:0xD5C288
+obj_w_windmill_b_pal = 0x060012A8; // segment:object_00D5B000 rom:0xD5C2A8
+obj_w_windmill_c_pal = 0x060012C8; // segment:object_00D5B000 rom:0xD5C2C8
+obj_w_windmill_d_pal = 0x060012E8; // segment:object_00D5B000 rom:0xD5C2E8
+obj_w_windmill_e_pal = 0x06001308; // segment:object_00D5B000 rom:0xD5C308
+obj_s_toudai_pal = 0x060013A8; // segment:object_00D5B000 rom:0xD5C3A8
+obj_w_toudai_pal = 0x060013C8; // segment:object_00D5B000 rom:0xD5C3C8
+
+obj_s_toudai_v = 0x0607D248; // segment:object_00D5E000 rom:0xDDB248 size:0x990
 obj_s_toudai_mirror_model = 0x0607DBD8; // segment:object_00D5E000
 obj_s_toudai_glass_model = 0x0607DCA0; // segment:object_00D5E000
 obj_s_toudai_body_model = 0x0607DD70; // segment:object_00D5E000
@@ -23,7 +38,7 @@ cKF_c_obj_s_toudai_tbl = 0x0607EE30; // segment:object_00D5E000
 cKF_ds_obj_s_toudai_tbl = 0x0607EE60; // segment:object_00D5E000
 cKF_ba_r_obj_s_toudai = 0x0607EE6C; // segment:object_00D5E000
 
-obj_w_toudai_v = 0x0607EE90; // segment:object_00D5E000
+obj_w_toudai_v = 0x0607EE90; // segment:object_00D5E000 rom:0xDDCE90 size:0x990
 obj_w_toudai_mirror_model = 0x0607F7E0; // segment:object_00D5E000
 obj_w_toudai_glass_model = 0x0607F8A8; // segment:object_00D5E000
 obj_w_toudai_body_model = 0x0607F978; // segment:object_00D5E000
@@ -47,6 +62,34 @@ cKF_kn_obj_w_toudai_tbl = 0x06080A34; // segment:object_00D5E000
 cKF_c_obj_w_toudai_tbl = 0x06080A38; // segment:object_00D5E000
 cKF_ds_obj_w_toudai_tbl = 0x06080A68; // segment:object_00D5E000
 cKF_ba_r_obj_w_toudai = 0x06080A74; // segment:object_00D5E000
+
+obj_s_windmill_v = 0x0608E838; // segment:object_00D5E000 rom:0xDEC838 size:0x560
+obj_s_windmill_unk_model_1 = 0x0608ED98; // segment:object_00D5E000
+obj_s_windmill_unk_model_2 = 0x0608EE60; // segment:object_00D5E000 rom:0xDECE60
+obj_s_windmill_unk_model_3 = 0x0608EF10; // segment:object_00D5E000 rom:0xDECF10
+obj_s_windmill_unk_model_4 = 0x0608EFE8; // segment:object_00D5E000 rom:0xDECFE8
+obj_s_windmill_unk_tex_1 = 0x0608F0D8; // segment:object_00D5E000 rom:0xDED0D8
+obj_s_windmill_unk_tex_2 = 0x0608F8D8; // segment:object_00D5E000 rom:0xDED8D8
+obj_s_windmill_unk_tex_3 = 0x060900D8; // segment:object_00D5E000 rom:0xDEE0D8
+cKF_ckcb_r_obj_s_windmill_tbl = 0x060908D8; // segment:object_00D5E000 rom:0xDEE8D8
+cKF_c_obj_s_windmill_tbl = 0x060908E0; // segment:object_00D5E000 rom:0xDEE8E0
+cKF_ba_r_obj_s_windmill = 0x06090904; // segment:object_00D5E000 rom:0xDEE904
+cKF_je_r_obj_s_windmill = 0x06090918; // segment:object_00D5E000 rom:0xDEE918
+cKF_bs_r_obj_s_windmill = 0x06090954; // segment:object_00D5E000 rom:0xDEE954
+
+obj_w_windmill_v = 0x06090970; // segment:object_00D5E000 rom:0xDEE970 size:0x550
+obj_w_windmill_unk_model_1 = 0x06090EC0; // segment:object_00D5E000
+obj_w_windmill_unk_model_2 = 0x06090F88; // segment:object_00D5E000
+obj_w_windmill_unk_model_3 = 0x06091038; // segment:object_00D5E000
+obj_w_windmill_unk_model_4 = 0x06091110; // segment:object_00D5E000
+obj_w_windmill_unk_tex_1 = 0x060911F8; // segment:object_00D5E000
+obj_w_windmill_unk_tex_2 = 0x060919F8; // segment:object_00D5E000
+obj_w_windmill_unk_tex_3 = 0x060921F8; // segment:object_00D5E000
+cKF_ckcb_r_obj_w_windmill_tbl = 0x060929F8; // segment:object_00D5E000
+cKF_c_obj_w_windmill_tbl = 0x06092A00; // segment:object_00D5E000
+cKF_ba_r_obj_w_windmill = 0x06092A24; // segment:object_00D5E000
+cKF_je_r_obj_w_windmill = 0x06092A38; // segment:object_00D5E000
+cKF_bs_r_obj_w_windmill = 0x06092A74; // segment:object_00D5E000
 
 tol_utiwa_1_v = 0x6000000; // segment:tol_utiwa_1 rom:0x1128000 size:0x80
 main_utiwa1_model = 0x6000080; // segment:tol_utiwa_1 rom:0x1128080

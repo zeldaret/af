@@ -34,5 +34,5 @@ D_73F4D0 = 0x73F4D0; // ignore:true
 
 __osBbIsBb = 0x80000388; // ignore:True
 
-D_6000000 = 0x06000000; //ignore:True
-D_6000040 = 0x06000040; //ignore:True
+D_6000000 = 0x06000000; // ignore:True
+D_6000040 = 0x06000040; // ignore:True
