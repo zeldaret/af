@@ -63,10 +63,26 @@ class N64SegCkf_ba(CommonSegCodeSubsegment):
             lines.append(f"BaseAnimationR {self.format_sym_name(sym)} = ")
 
         ckcb, ds, kn, constval, unk10, duration = struct.unpack(">IIIIhh", extracted_data)
-        ckcb_symbol = self.format_sym_name(self.get_symbol(addr=ckcb))
-        ds_symbol = self.format_sym_name(self.get_symbol(addr=ds))
-        kn_symbol = self.format_sym_name(self.get_symbol(addr=kn))
-        constval_symbol = self.format_sym_name(self.get_symbol(addr=constval))
+        if ckcb:
+            ckcb_symbol = self.format_sym_name(self.get_symbol(addr=ckcb))
+        else:
+            ckcb_symbol = "NULL"
+
+        if ds:
+            ds_symbol = self.format_sym_name(self.get_symbol(addr=ds))
+        else:
+            ds_symbol = "NULL"
+
+        if kn:    
+            kn_symbol = self.format_sym_name(self.get_symbol(addr=kn))
+        else:
+            kn_symbol = "NULL"
+
+        if constval:
+            constval_symbol = self.format_sym_name(self.get_symbol(addr=constval))
+        else:
+            constval_symbol = "NULL"
+
         output = f"{{ {ckcb_symbol}, {ds_symbol}, {kn_symbol}, {constval_symbol}, {unk10}, {duration} }}"
         lines.append(output)
 

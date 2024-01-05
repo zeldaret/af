@@ -1,6 +1,4 @@
-#include "unk.h"
-
-extern u16 tol_utiwa1_pal[];
+extern unsigned short tol_utiwa1_pal[];
 extern unsigned char tol_utiwa_1_main1_tex_txt[];
 extern unsigned char tol_utiwa_1_main2_tex_txt[];
 
