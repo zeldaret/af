@@ -83,6 +83,5 @@ The licensing of this repository does not cover subrepos, namely:
 * `tools/asm-differ`
 * `tools/asm-processor`
 * `tools/fado`
-* `tools/splat`
 * `lib/ultralib`
 * `tools/z64compress`

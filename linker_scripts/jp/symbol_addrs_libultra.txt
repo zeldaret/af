@@ -338,11 +338,11 @@ __additional_scanline = 0x8003D17C; // size:0x4 (vimgr, true)
 
 __osRcpImTable = 0x8003E5D0; // type:u16 size:0x80 (setintmask, true)
 
-P = 0x8003E650; // type:f64 (sinf, false)
-rpi = 0x8003E678; // type:f64
-pihi = 0x8003E680; // type:f64
-pilo = 0x8003E688; // type:f64
-zero = 0x8003E690; // type:f32
+P_1 = 0x8003E650; // type:f64 (sinf, false)
+rpi_1 = 0x8003E678; // type:f64
+pihi_1 = 0x8003E680; // type:f64
+pilo_1 = 0x8003E688; // type:f64
+zero_1 = 0x8003E690; // type:f32
 
 __osIntOffTable = 0x8003E6A0; // type:u8 (exceptasm, false)
 jtbl_8003E6C0_jp = 0x8003E6C0; // type:jtbl
@@ -359,11 +359,11 @@ RO_STR_8003E734_jp = 0x8003E734; // type:asciz
 RO_8003E73C_jp = 0x8003E73C; //
 jtbl_8003E754_jp = 0x8003E754; // type:jtbl
 
-P = 0x8003E830; // type:f64 (cosf, false)
-rpi = 0x8003E858; // type:f64
-pihi = 0x8003E860; // type:f64
-pilo = 0x8003E868; // type:f64
-zero = 0x8003E870; // type:f32
+P_2 = 0x8003E830; // type:f64 (cosf, false)
+rpi_2 = 0x8003E858; // type:f64
+pihi_2 = 0x8003E860; // type:f64
+pilo_2 = 0x8003E868; // type:f64
+zero_2 = 0x8003E870; // type:f32
 
 __libm_qnan_f = 0x8003E880; // type:f32 size:0x4 (cosf, false)
 
