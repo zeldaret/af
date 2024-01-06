@@ -57,11 +57,20 @@ To install them simply run in a terminal:
 python3 -m pip install -U -r requirements.txt
 ```
 
-#### 3. Prepare a base ROM
+#### 3. Install pigment64
+
+Building also requires a rust crate called pigment64. To install rust and the crate, run these commands:
+
+```bash
+curl https://sh.rustup.rs -sSf | sh
+cargo install pigment64
+```
+
+#### 4. Prepare a base ROM
 
 Copy your ROM to inside the root of this new project directory, and rename the file of the baserom to reflect the version of ROM you are using. ex: `baserom.jp.z64`
 
-#### 4. Make and Build the ROM
+#### 5. Make and Build the ROM
 
 To start the extraction/build process, run the following command:
 
@@ -83,6 +92,5 @@ The licensing of this repository does not cover subrepos, namely:
 * `tools/asm-differ`
 * `tools/asm-processor`
 * `tools/fado`
-* `tools/splat`
 * `lib/ultralib`
 * `tools/z64compress`

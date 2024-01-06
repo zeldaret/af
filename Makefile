@@ -108,7 +108,7 @@ CAT             := cat
 
 ASM_PROC_FLAGS  := --input-enc=utf-8 --output-enc=euc-jp --convert-statics=global-with-filename
 
-SPLAT           ?= tools/splat/split.py
+SPLAT           ?= python3 -m splat split
 SPLAT_YAML      ?= $(TARGET).$(VERSION).yaml
 
 

@@ -1,4 +1,4 @@
--r tools/splat/requirements.txt
+splat64[mips]==0.21.0
 mapfile-parser>=1.2.1,<2.0.0
 colorama
 libyaz0
