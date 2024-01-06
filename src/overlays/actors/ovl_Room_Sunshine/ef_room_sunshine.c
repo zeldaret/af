@@ -1,5 +1,7 @@
 #include "ef_room_sunshine.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void Ef_Room_Sunshine_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -15,7 +17,7 @@ ActorProfile Room_Sunshine_Profile = {
     /* */ OBJECT_5,
     /* */ sizeof(Room_Sunshine),
     /* */ Ef_Room_Sunshine_actor_ct,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ Ef_Room_SunshineR_actor_move,
     /* */ Ef_Room_SunshineR_actor_draw,
     /* */ NULL,

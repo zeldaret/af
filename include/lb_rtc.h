@@ -100,4 +100,46 @@ typedef enum RTC_EQUALITY_FLAGS {
 #define lbRTC_IS_LEAPYEAR(year) \
   (((year % 4) == 0 && ((year % 100) != 0)) || ((year % 400) == 0))
 
+s32 lbRTC_Initial(void);
+s32 lbRTC_IsOki(lbRTC_time_c* ptr);
+s32 lbRTC_IsAbnormal(void);
+void lbRTC_Sampling(void);
+void func_800D4F6C_jp(lbRTC_time_c* time);
+void func_800D4FB8_jp(lbRTC_time_c* time);
+void lbRTC_SetTime(lbRTC_time_c* time);
+void lbRTC_GetTime(lbRTC_time_c* time);
+lbRTC_day_t lbRTC_GetDaysByMonth(lbRTC_year_t year, lbRTC_month_t month);
+s32 lbRTC_IsEqualDate(lbRTC_year_t y0, lbRTC_month_t m0, lbRTC_day_t d0, lbRTC_year_t y1,
+                      lbRTC_month_t m1, lbRTC_day_t d1);
+s32 lbRTC_IsEqualTime(const lbRTC_time_c* t0, const lbRTC_time_c* t1, s32 flags);
+s32 lbRTC_IsOverTime(const lbRTC_time_c* t0, const lbRTC_time_c* t1);
+s32 lbRTC_IsJustAtRTC(const lbRTC_time_c* time, s32 flags);
+s32 lbRTC_IsOverRTC(const lbRTC_time_c* time);
+s32 lbRTC_IsOverWeekRTC(const lbRTC_time_c* t0, lbRTC_weekday_t week);
+s32 lbRTC_IntervalTime(lbRTC_time_c* t0, lbRTC_time_c* t1);
+s32 lbRTC_GetIntervalDays(const lbRTC_time_c* t0, const lbRTC_time_c* t1);
+void lbRTC_Add_YY(lbRTC_time_c* time, s32 years);
+void lbRTC_Add_MM(lbRTC_time_c* time, s32 month);
+void lbRTC_Add_DD(lbRTC_time_c* time, s32 day);
+void lbRTC_Add_hh(lbRTC_time_c* time, s32 hour);
+void lbRTC_Add_mm(lbRTC_time_c* time, s32 min);
+void lbRTC_Add_ss(lbRTC_time_c* time, s32 sec);
+void lbRTC_Add_Date(lbRTC_time_c* time, const lbRTC_time_c* add_time);
+void lbRTC_Sub_YY(lbRTC_time_c* time, s32 year);
+void lbRTC_Sub_MM(lbRTC_time_c* time, s32 month);
+void lbRTC_Sub_DD(lbRTC_time_c* time, s32 days);
+void lbRTC_Sub_hh(lbRTC_time_c* time, s32 hour);
+void lbRTC_Sub_mm(lbRTC_time_c* time, s32 min);
+void lbRTC_Sub_ss(lbRTC_time_c* time, s32 sec);
+void lbRTC_Sub_Date(lbRTC_time_c* time, const lbRTC_time_c* sub_time);
+lbRTC_weekday_t lbRTC_Week(lbRTC_year_t year, lbRTC_month_t month, lbRTC_day_t day);
+void lbRTC_TimeCopy(lbRTC_time_c* dst, const lbRTC_time_c* src);
+s32 lbRTC_IsValidTime(const lbRTC_time_c* time);
+
+extern s32 l_lbRTC_isInitial;
+extern s32 l_lbRTC_IsSampled;
+
+extern s32 B_80145620_jp;
+extern lbRTC_time_c l_lbRTC_Time;
+
 #endif

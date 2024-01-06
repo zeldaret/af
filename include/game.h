@@ -2,12 +2,13 @@
 #define GAME_H
 
 #include "ultra64.h"
+#include "libc/stdbool.h"
 #include "TwoHeadArena.h"
 #include "other_types.h"
 #include "gamealloc.h"
 #include "libu64/pad.h"
-#include "unk.h"
 #include "m_controller.h"
+#include "unk.h"
 
 struct Game;
 struct GraphicsContext;

@@ -1,5 +1,7 @@
 #include "ac_t_tam.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aTTM_actor_draw(Actor* thisx, Game_Play* game_play);
@@ -12,9 +14,9 @@ ActorProfile T_Tama_Profile = {
     /* */ 0x0000,
     /* */ OBJECT_391,
     /* */ sizeof(T_Tama),
-    /* */ (ActorFunc)none_proc1,
-    /* */ (ActorFunc)none_proc1,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
+    /* */ (void*)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTTM_actor_draw,
     /* */ NULL,
 };

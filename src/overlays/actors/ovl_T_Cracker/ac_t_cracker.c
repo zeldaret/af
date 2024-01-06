@@ -1,5 +1,7 @@
 #include "ac_t_cracker.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aTCR_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -15,7 +17,7 @@ ActorProfile T_Cracker_Profile = {
     /* */ OBJECT_395,
     /* */ sizeof(T_Cracker),
     /* */ aTCR_actor_ct,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTCR_actor_move,
     /* */ aTCR_actor_draw,
     /* */ NULL,

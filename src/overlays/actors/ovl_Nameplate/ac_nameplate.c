@@ -1,11 +1,21 @@
 #include "ac_nameplate.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
+#include "m_field_info.h"
+#include "m_player_lib.h"
+#include "m_npc.h"
+#include "m_msg_main.h"
+#include "69E2C0.h"
+#include "overlays/actors/player_actor/m_player.h"
+#include "color.h"
 
-void func_80A963C0_jp(Actor* thisx, Game_Play* game_play);
-void func_80A963D0_jp(Actor* thisx, Game_Play* game_play);
+void aNP_actor_ct(Actor* thisx, Game_Play* game_play);
+void aNP_actor_dt(Actor* thisx, Game_Play* game_play);
+void aNP_set_talk_info(Actor* thisx);
+void aNP_actor_move(Actor* thisx, Game_Play* game_play);
 void aNP_actor_init(Actor* thisx, Game_Play* game_play);
 
-#if 0
 ActorProfile Nameplate_Profile = {
     /* */ ACTOR_NAMEPLATE,
     /* */ ACTOR_PART_0,
@@ -13,20 +23,56 @@ ActorProfile Nameplate_Profile = {
     /* */ 0xA012,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Nameplate),
-    /* */ func_80A963C0_jp,
-    /* */ func_80A963D0_jp,
+    /* */ aNP_actor_ct,
+    /* */ aNP_actor_dt,
     /* */ aNP_actor_init,
     /* */ NULL,
     /* */ NULL,
 };
-#endif
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Nameplate/ac_nameplate/func_80A963C0_jp.s")
+void aNP_actor_ct(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Nameplate/ac_nameplate/func_80A963D0_jp.s")
+void aNP_actor_dt(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Nameplate/ac_nameplate/func_80A963E0_jp.s")
+void aNP_set_talk_info(Actor* thisx) {
+    Color_RGBA8 color;
+    char villagerName[8];
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Nameplate/ac_nameplate/func_80A9648C_jp.s")
+    mNpc_GetAnimalPlateName(villagerName, thisx->world.pos);
+    mMsg_Set_free_str(mMsg_Get_base_window_p(), 0, villagerName, 6);
+    mDemo_Set_msg_num(0x1369);
+    mDemo_Set_talk_display_name(0);
+    mDemo_Set_ListenAble();
+    mDemo_Set_camera(1);
+    mPlib_Set_able_hand_all_item_in_demo(1);
+    color.r = 205;
+    color.g = 120;
+    color.b = 0;
+    color.a = 255;
+    mDemo_Set_talk_window_color(&color);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Nameplate/ac_nameplate/aNP_actor_init.s")
+void aNP_actor_move(Actor* thisx, Game_Play* game_play) {
+    Player* temp_v0;
+    s16 temp_v0_2;
+    s32 var_v1;
+
+    if (mDemo_Check(7, thisx) == 0) {
+        temp_v0 = get_player_actor_withoutCheck(game_play);
+        if ((temp_v0 != NULL) && (thisx->world.pos.z <= temp_v0->actor.world.pos.z)) {
+            temp_v0_2 = thisx->yawTowardsPlayer;
+            var_v1 = (temp_v0_2 >= 0) ? temp_v0_2 : -temp_v0_2;
+            if (var_v1 < 0x2000) {
+                mDemo_Request(7, thisx, aNP_set_talk_info);
+            }
+        }
+    }
+}
+
+void aNP_actor_init(Actor* thisx, Game_Play* game_play) {
+    mFI_SetFG_common(0xF0EE, thisx->home.pos, 0);
+    aNP_actor_move(thisx, game_play);
+    thisx->update = aNP_actor_move;
+}

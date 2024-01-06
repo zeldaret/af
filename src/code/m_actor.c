@@ -17,7 +17,6 @@
 #include "sys_matrix.h"
 #include "ovlmgr.h"
 #include "gfx.h"
-#include "6E9650.h"
 #include "unknown_structs.h"
 #include "code_variables.h"
 #include "macros.h"
@@ -40,7 +39,7 @@ void func_80056380_jp(void* arg0, void* arg1 UNUSED) {
     FaultDrawer_Printf("ACTOR NAME %08x:%s", actor, name);
 }
 
-void projection_pos_set(Game_Play* game_play, Vec3f* worldPos, Vec3f* projectedPos, f32* invW) {
+void projection_pos_set(Game_Play* game_play, xyz_t* worldPos, xyz_t* projectedPos, f32* invW) {
     Skin_Matrix_PrjMulVector(&game_play->viewProjectionMtxF, worldPos, projectedPos, invW);
 
     *invW = (*invW < 1.0f) ? 1.0f : (1.0f / *invW);
@@ -87,7 +86,7 @@ s32 Actor_player_look_direction_check(Actor* actor, s16 maxAngleDiff, Game_Play*
 }
 
 void Actor_display_position_set(Game_Play* game_play, Actor* actor, s16* x, s16* y) {
-    Vec3f projectedPos;
+    xyz_t projectedPos;
     f32 invW;
 
     projection_pos_set(game_play, &actor->world.pos, &projectedPos, &invW);
@@ -103,11 +102,11 @@ s32 Actor_data_bank_dma_end_check(Actor* actor, Game_Play* game_play) {
     switch (ACTOR_FGNAME_GET_F000(actor->fgName)) {
         case FGNAME_F000_D:
         case FGNAME_F000_E:
-            var_v1 = common_data.unk_1004C->unk_F4(game_play->unk_0110, actor);
+            var_v1 = common_data.unk_1004C->unk_F4(game_play->objectExchangeBank.status, actor);
             break;
 
         default:
-            var_v1 = game_play->unk_0110[actor->unk_026].unk_00 > 0;
+            var_v1 = game_play->objectExchangeBank.status[actor->unk_026].id > 0;
             break;
     }
 
@@ -129,8 +128,8 @@ void Shape_Info_init(Actor* actor, f32 arg1, Shape_Info_unk_0C arg2, f32 arg3, f
     actor->shape.unk_2D = 0;
 }
 
-void Actor_foot_shadow_pos_set(Actor* actor, s32 limbIndex, s32 leftFootIndex, Vec3f* leftFootPos, s32 rightFootIndex,
-                               Vec3f* rightFootPos) {
+void Actor_foot_shadow_pos_set(Actor* actor, s32 limbIndex, s32 leftFootIndex, xyz_t* leftFootPos, s32 rightFootIndex,
+                               xyz_t* rightFootPos) {
     if (limbIndex == leftFootIndex) {
         Matrix_Position(leftFootPos, &actor->shape.feetPos[FOOT_LEFT]);
     } else if (limbIndex == rightFootIndex) {
@@ -147,23 +146,23 @@ void Actor_delete(Actor* actor) {
 
 void Actor_ct(Actor* actor, Game_Play* game_play) {
     s32 pad[2] UNUSED;
-    Game_Play_unk_0110* temp;
+    ObjectStatus* temp;
     Npc* npc;
     CommonData_unk_1004C_unk_14_arg0 sp34;
-    Game_Play_unk_0110* temp_a0;
+    ObjectExchangeBank* temp_a0;
 
-    temp_a0 = game_play->unk_0110;
+    temp_a0 = &game_play->objectExchangeBank;
 
-    temp = temp_a0;
+    temp = temp_a0->status;
     temp += actor->unk_026;
-    temp->unk_50++;
+    temp->unk50++;
 
     if (actor->part == ACTOR_PART_NPC) {
         npc = (Npc*)actor;
 
         common_data.unk_1004C->unk_14(&sp34, npc->actor.fgName);
         npc->unk_708 = mSc_bank_regist_check(temp_a0, sp34.unk_02);
-        temp_a0[npc->unk_708].unk_50++;
+        temp_a0->status[npc->unk_708].unk50++;
     }
 
     actor->world = actor->home;
@@ -193,7 +192,7 @@ void Actor_ct(Actor* actor, Game_Play* game_play) {
     Shape_Info_init(actor, 0.0f, NULL, 0.0f, 0.0f);
 
     if (Actor_data_bank_dma_end_check(actor, game_play) == 1) {
-        gSegments[6] = (uintptr_t)OS_K0_TO_PHYSICAL(temp_a0[actor->unk_026].segment);
+        gSegments[6] = (uintptr_t)OS_K0_TO_PHYSICAL(temp_a0->status[actor->unk_026].segment);
         actor->ct(actor, game_play);
         actor->ct = NULL;
     }
@@ -201,7 +200,7 @@ void Actor_ct(Actor* actor, Game_Play* game_play) {
 
 #ifdef NON_MATCHING
 void Actor_dt(Actor* actor, Game_Play* game_play) {
-    Game_Play_unk_0110* temp_v0_6;
+    ObjectStatus* temp_v0_6;
     s32 new_var;
 
     if (actor->save != NULL) {
@@ -222,7 +221,7 @@ void Actor_dt(Actor* actor, Game_Play* game_play) {
         actor->parent->child = NULL;
     }
 
-    temp_v0_6 = game_play->unk_0110;
+    temp_v0_6 = game_play->objectExchangeBank.status;
     if (0) {}
 
     switch ((actor->fgName & 0xF000) >> 0xC) {
@@ -232,13 +231,13 @@ void Actor_dt(Actor* actor, Game_Play* game_play) {
             break;
 
         default:
-            new_var = game_play->unk_190C;
+            new_var = game_play->objectExchangeBank.num;
 
             if (actor->unk_026 >= new_var) {
                 temp_v0_6 = &temp_v0_6[(void)0, actor->unk_026];
-                if (temp_v0_6->unk_50 > 0) {
+                if (temp_v0_6->unk50 > 0) {
                     actor->unk_026 = -1;
-                    temp_v0_6->unk_50--;
+                    temp_v0_6->unk50--;
                 }
             }
             break;
@@ -253,7 +252,7 @@ void Actor_draw(Game_Play* game_play, Actor* actor) {
     FaultClient faultClient;
     LightsN* light;
 
-    Fault_AddClient(&faultClient, func_80056380_jp, actor, "Actor_draw");
+    fault_AddClient(&faultClient, func_80056380_jp, actor, "Actor_draw");
 
     //! FAKE
     if (1) {}
@@ -272,7 +271,7 @@ void Actor_draw(Game_Play* game_play, Actor* actor) {
     Matrix_scale(actor->scale.x, actor->scale.y, actor->scale.z, MTXMODE_APPLY);
 
     {
-        void* segment = game_play->unk_0110[(void)0, actor->unk_026].segment;
+        void* segment = game_play->objectExchangeBank.status[(void)0, actor->unk_026].segment;
 
         gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(segment);
 
@@ -289,14 +288,14 @@ void Actor_draw(Game_Play* game_play, Actor* actor) {
 
     CLOSE_DISPS(game_play->state.gfxCtx);
 
-    Fault_RemoveClient(&faultClient);
+    fault_RemoveClient(&faultClient);
 }
 
 s32 Actor_draw_actor_no_culling_check(Actor* actor) {
     return Actor_draw_actor_no_culling_check2(actor, &actor->projectedPos, actor->projectedW);
 }
 
-s32 Actor_draw_actor_no_culling_check2(Actor* actor, Vec3f* arg1, f32 arg2) {
+s32 Actor_draw_actor_no_culling_check2(Actor* actor, xyz_t* arg1, f32 arg2) {
     s32 ret = 0;
 
     if ((-actor->unk_140 < arg1->z) && (arg1->z < (actor->unk_13C + actor->unk_140))) {
@@ -452,7 +451,8 @@ void Actor_info_call_actor(Game_Play* game_play, ActorInfo* actorInfo) {
 
             if (actor->ct != NULL) {
                 if (Actor_data_bank_dma_end_check(actor, game_play) == 1) {
-                    gSegments[6] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_0110[actor->unk_026].segment);
+                    gSegments[6] =
+                        (uintptr_t)OS_K0_TO_PHYSICAL(game_play->objectExchangeBank.status[actor->unk_026].segment);
 
                     game_play->state.unk_9D = 0x98;
                     actor->ct(actor, game_play);
@@ -488,7 +488,8 @@ void Actor_info_call_actor(Game_Play* game_play, ActorInfo* actorInfo) {
 
                 actor->flags &= ~ACTOR_FLAG_1000000;
                 if ((actor->flags & (ACTOR_FLAG_40 | ACTOR_FLAG_10)) || (actor->part == ACTOR_PART_NPC)) {
-                    gSegments[6] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_0110[actor->unk_026].segment);
+                    gSegments[6] =
+                        (uintptr_t)OS_K0_TO_PHYSICAL(game_play->objectExchangeBank.status[actor->unk_026].segment);
                     game_play->state.unk_9D = 0xA1;
                     actor->update(actor, game_play);
                     game_play->state.unk_9D = 0xA2;
@@ -692,8 +693,8 @@ s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile UNUSED, ActorOverlay* over
         sp90 = sp24.unk_02;
     }
 
-    *arg0 = mSc_bank_regist_check(game_play->unk_0110, sp92);
-    temp_v0 = mSc_bank_regist_check(game_play->unk_0110, sp90);
+    *arg0 = mSc_bank_regist_check(&game_play->objectExchangeBank, sp92);
+    temp_v0 = mSc_bank_regist_check(&game_play->objectExchangeBank, sp90);
 
     if ((*arg0 < 0) || (temp_v0 < 0)) {
         if (*arg0 >= 0) {
@@ -702,7 +703,7 @@ s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile UNUSED, ActorOverlay* over
         if (temp_v0 >= 0) {
             sp90 = 0;
         }
-        common_data.unk_1004C->unk_EC(game_play->unk_0110, sp92, sp90);
+        common_data.unk_1004C->unk_EC(game_play->objectExchangeBank.status, sp92, sp90);
         actor_free_check(overlayEntry, fgName);
         ret = 0;
     }
@@ -713,10 +714,10 @@ s32 func_80057B70_jp(s32* arg0, ActorProfile* profile, ActorOverlay* overlayEntr
     s32 pad UNUSED;
     s32 ret = 1;
 
-    *arg0 = mSc_bank_regist_check(game_play->unk_0110, profile->objectId);
+    *arg0 = mSc_bank_regist_check(&game_play->objectExchangeBank, profile->objectId);
 
     if (*arg0 == -1) {
-        func_800C6144_jp(game_play->unk_0110, profile->objectId);
+        func_800C6144_jp(&game_play->objectExchangeBank, profile->objectId);
         actor_free_check(overlayEntry, fgName);
         ret = 0;
     }
@@ -772,7 +773,7 @@ s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay
 void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* overlayEntry, Game_Play* game_play,
                             s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 argB, s8 argC, s16 argD,
                             u16 fgName, s16 params) {
-    mem_clear(actor, profile->instanceSize, 0);
+    mem_clear((u8*)actor, profile->instanceSize, 0);
 
     actor->overlayEntry = overlayEntry;
 
@@ -863,7 +864,7 @@ Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, Game_Play*
 }
 
 void restore_fgdata(Actor* actor, Game_Play* game_play UNUSED) {
-    Vec3f sp34;
+    xyz_t sp34;
 
     if ((actor->fgName == 0) || (actor->unk_00A != -1)) {
         return;
@@ -1042,9 +1043,9 @@ void Part_Break_init(Part_Break* partBreak, s32 count, s32 arg2 UNUSED) {
         goto cleanup;
     }
 
-    mem_clear(partBreak->matrices, matricesSize, 0);
-    mem_clear(partBreak->dLists, dListsSize, 0);
-    mem_clear(partBreak->objectIds, objectIdsSize, 0);
+    mem_clear((u8*)partBreak->matrices, matricesSize, 0);
+    mem_clear((u8*)partBreak->dLists, dListsSize, 0);
+    mem_clear((u8*)partBreak->objectIds, objectIdsSize, 0);
 
     partBreak->val = 1;
     return;
@@ -1063,7 +1064,7 @@ cleanup:
 
 Mtx B_8011B850_jp;
 
-Gfx* HiliteReflect_new(Vec3f* object, Vec3f* eye, Vec3f* lightDir, GraphicsContext* gfxCtx, Gfx* gfx, Hilite** hilite) {
+Gfx* HiliteReflect_new(xyz_t* object, xyz_t* eye, xyz_t* lightDir, GraphicsContext* gfxCtx, Gfx* gfx, Hilite** hilite) {
     LookAt* sp64 = GRAPH_ALLOC(gfxCtx, sizeof(LookAt));
     f32 var_fa1 = ((eye->x == object->x) && (eye->z == object->z)) ? (eye->x + 0.001f) : eye->x;
 
@@ -1080,7 +1081,7 @@ Gfx* HiliteReflect_new(Vec3f* object, Vec3f* eye, Vec3f* lightDir, GraphicsConte
     return gfx;
 }
 
-Hilite* HiliteReflect_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, GraphicsContext* gfxCtx) {
+Hilite* HiliteReflect_init(xyz_t* object, xyz_t* eye, xyz_t* lightDir, GraphicsContext* gfxCtx) {
     Hilite* hilite;
 
     OPEN_DISPS(gfxCtx);
@@ -1092,7 +1093,7 @@ Hilite* HiliteReflect_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, GraphicsC
     return hilite;
 }
 
-Hilite* HiliteReflect_xlu_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, GraphicsContext* gfxCtx) {
+Hilite* HiliteReflect_xlu_init(xyz_t* object, xyz_t* eye, xyz_t* lightDir, GraphicsContext* gfxCtx) {
     Hilite* hilite;
 
     OPEN_DISPS(gfxCtx);
@@ -1104,7 +1105,7 @@ Hilite* HiliteReflect_xlu_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, Graph
     return hilite;
 }
 
-Hilite* HiliteReflect_light_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, GraphicsContext* gfxCtx) {
+Hilite* HiliteReflect_light_init(xyz_t* object, xyz_t* eye, xyz_t* lightDir, GraphicsContext* gfxCtx) {
     Hilite* hilite;
 
     OPEN_DISPS(gfxCtx);
@@ -1116,8 +1117,8 @@ Hilite* HiliteReflect_light_init(Vec3f* object, Vec3f* eye, Vec3f* lightDir, Gra
     return hilite;
 }
 
-Hilite* Setpos_HiliteReflect_init(Vec3f* object, Game_Play* game_play) {
-    Vec3f sp24;
+Hilite* Setpos_HiliteReflect_init(xyz_t* object, Game_Play* game_play) {
+    xyz_t sp24;
 
     sp24.x = game_play->kankyo.unk_02;
     sp24.y = game_play->kankyo.unk_03;
@@ -1125,8 +1126,8 @@ Hilite* Setpos_HiliteReflect_init(Vec3f* object, Game_Play* game_play) {
     return HiliteReflect_init(object, &game_play->unk_1938.unk_028, &sp24, game_play->state.gfxCtx);
 }
 
-Hilite* Setpos_HiliteReflect_xlu_init(Vec3f* object, Game_Play* game_play) {
-    Vec3f sp24;
+Hilite* Setpos_HiliteReflect_xlu_init(xyz_t* object, Game_Play* game_play) {
+    xyz_t sp24;
 
     sp24.x = game_play->kankyo.unk_02;
     sp24.y = game_play->kankyo.unk_03;
@@ -1134,8 +1135,8 @@ Hilite* Setpos_HiliteReflect_xlu_init(Vec3f* object, Game_Play* game_play) {
     return HiliteReflect_xlu_init(object, &game_play->unk_1938.unk_028, &sp24, game_play->state.gfxCtx);
 }
 
-Hilite* Setpos_HiliteReflect_light_init(Vec3f* object, Game_Play* game_play) {
-    Vec3f sp24;
+Hilite* Setpos_HiliteReflect_light_init(xyz_t* object, Game_Play* game_play) {
+    xyz_t sp24;
 
     sp24.x = game_play->kankyo.unk_02;
     sp24.y = game_play->kankyo.unk_03;

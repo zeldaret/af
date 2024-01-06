@@ -430,7 +430,7 @@ __CartRomHandle = 0x800433A0; // size:0x74 (cartrominit, true)
 
 
 viThread = 0x80043420; // size:0x1B0 (vimgr, false)
-viThreadStack = 0x800345D0
+viThreadStack = 0x800435D0; //
 viEventQueue = 0x800445D0; //
 viEventBuf = 0x800445E8; //
 viRetraceMsg = 0x80044600; //

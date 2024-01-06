@@ -3,7 +3,7 @@
 
 #include "m_collision_obj.h"
 #include "m_event.h"
-#include "6E80C0.h"
+#include "m_submenu.h"
 #include "ultra64.h"
 #include "game.h"
 #include "gfx.h"
@@ -20,7 +20,7 @@
 #include "m_collision_bg.h"
 #include "m_pause.h"
 #include "6A8180.h"
-#include "6E9650.h"
+#include "m_scene.h"
 
 struct Actor;
 struct ActorEntry;
@@ -66,23 +66,20 @@ typedef struct Game_Play {
     /* 0x00E6 */ UNK_TYPE1 unk_00E6[0x2];
     /* 0x00E8 */ UNK_TYPE1 unk_00E8[0x24];
     /* 0x010C */ void* unk_010C;
-    /* 0x0110 */ Game_Play_unk_0110 unk_0110[UNK_SIZE];
-    /* 0x0164 */ UNK_TYPE1 unk_0164[0x17A8];
-    /* 0x190C */ s32 unk_190C;
-    /* 0x1910 */ UNK_TYPE1 unk_1910[0x28];
+    /* 0x0110 */ ObjectExchangeBank objectExchangeBank;
     /* 0x1938 */ Game_Play1938 unk_1938;
     /* 0x1A60 */ UNK_TYPE1 unk_1A60[0x138];
     /* 0x1B98 */ Kankyo kankyo;
     /* 0x1C60 */ Global_light glight;
     /* 0x1C70 */ Pause pause;
     /* 0x1C78 */ ActorInfo actorInfo;
-    /* 0x1CBC */ Game_Play1CBC unk_1CBC;
+    /* 0x1CBC */ Submenu submenu;
     /* 0x1DAC */ s8 unk_1DAC;
     /* 0x1DAD */ UNK_TYPE1 unk_1DAD[0x3];
     /* 0x1DB0 */ UNK_TYPE1 unk_1DB0[0x10];
     /* 0x1DC0 */ PreRender unk_1DC0;
-    /* 0x1E10 */ s32 unk_1E10;
-    /* 0x1E14 */ char unk_1E14[0x4];
+    /* 0x1E10 */ s8 unk_1E10;
+    /* 0x1E14 */ UNK_PTR unk_1E14;
     /* 0x1E18 */ s32 unk_1E18;
     /* 0x1E1C */ MtxF viewProjectionMtxF;
     /* 0x1E5C */ MtxF billboardMtxF;
@@ -94,8 +91,8 @@ typedef struct Game_Play {
     /* 0x1EA7 */ u8 unk_1EA7;
     /* 0x1EA8 */ struct ActorEntry* unk_1EA8;
     /* 0x1EAC */ struct ActorEntry* unk_1EAC;
-    /* 0x1EB0 */ s16 *unk_1EB0;
-    /* 0x1EB4 */ UNK_TYPE1 unk_1EB4[0x4];
+    /* 0x1EB0 */ s16* unk_1EB0;
+    /* 0x1EB4 */ s16* unk_1EB4;
     /* 0x1EB8 */ s32 unk_1EB8;
     /* 0x1EBC */ Event event;
     /* 0x1ECC */ UNK_TYPE1 unk_1ECC[0x14];

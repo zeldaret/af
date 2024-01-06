@@ -1,5 +1,7 @@
 #include "ac_tunahiki_npc0.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aTNN0_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -18,7 +20,7 @@ ActorProfile Tunahiki_Npc0_Profile = {
     /* */ aTNN0_actor_ct,
     /* */ aTNN0_actor_dt,
     /* */ aTNN0_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTNN0_actor_save,
 };
 #endif

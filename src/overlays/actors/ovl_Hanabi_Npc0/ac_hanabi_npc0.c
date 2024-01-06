@@ -1,5 +1,7 @@
 #include "ac_hanabi_npc0.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void func_80528514(Actor* thisx, Game_Play* game_play);
@@ -18,7 +20,7 @@ ActorProfile Hanabi_Npc0_Profile = {
     /* */ func_80528514,
     /* */ func_805285d0,
     /* */ func_80528608,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ func_80528598,
 };
 #endif

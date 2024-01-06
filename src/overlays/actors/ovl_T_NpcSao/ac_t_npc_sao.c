@@ -1,5 +1,7 @@
 #include "ac_t_npc_sao.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aTNS_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -15,7 +17,7 @@ ActorProfile T_NpcSao_Profile = {
     /* */ OBJECT_370,
     /* */ sizeof(T_NpcSao),
     /* */ aTNS_actor_ct,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTNS_actor_move,
     /* */ aTNS_actor_draw,
     /* */ NULL,

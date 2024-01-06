@@ -1,5 +1,7 @@
 #include "ac_t_umbrella.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aTUMB_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -15,7 +17,7 @@ ActorProfile T_Umbrella_Profile = {
     /* */ OBJECT_28,
     /* */ sizeof(T_Umbrella),
     /* */ aTUMB_actor_ct,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTUMB_actor_move,
     /* */ aTUMB_actor_draw,
     /* */ NULL,

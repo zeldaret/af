@@ -42,11 +42,11 @@ s32 zelda_CheckArena(void) {
 
 void zelda_InitArena(void* heap, size_t size) {
     __osMallocInit(&zelda_arena, heap, size);
-    Fault_AddClient(&B_80141FC8_jp, (void*)ArenaImpl_FaultClient, &zelda_arena, NULL);
+    fault_AddClient(&B_80141FC8_jp, (void*)ArenaImpl_FaultClient, &zelda_arena, NULL);
 }
 
 void zelda_CleanupArena(void) {
-    Fault_RemoveClient(&B_80141FC8_jp);
+    fault_RemoveClient(&B_80141FC8_jp);
     __osMallocCleanup(&zelda_arena);
 }
 

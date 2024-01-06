@@ -1,5 +1,7 @@
 #include "ac_t_keitai.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aTKT_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -15,7 +17,7 @@ ActorProfile T_Keitai_Profile = {
     /* */ OBJECT_45,
     /* */ sizeof(T_Keitai),
     /* */ aTKT_actor_ct,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTKT_actor_move,
     /* */ aTKT_actor_draw,
     /* */ NULL,

@@ -1,4 +1,6 @@
 #include "ac_mikuji.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void func_805b414c(Actor* thisx, Game_Play* game_play);

@@ -19,7 +19,7 @@ void free(void* ptr) {
     __osFree(&malloc_arena, ptr);
 }
 
-void* calloc(s32 num, size_t size) {
+void* calloc(size_t num, size_t size) {
     void* ptr;
     u32 n = num * size;
 

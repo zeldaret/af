@@ -22,9 +22,9 @@
 // void func_80082910_jp();
 // void func_800829D4_jp();
 // void func_80082B4C_jp();
-// void func_80082BD8_jp();
+void func_80082BD8_jp(u16*, s32, s32, s32);
 // void func_80082C30_jp();
-// void func_80082CC8_jp();
+s32 mEvNM_CheckJointEvent(u16);
 // void func_80082DA0_jp();
 // void func_80082E40_jp();
 

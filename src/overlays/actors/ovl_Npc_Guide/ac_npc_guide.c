@@ -1,5 +1,7 @@
 #include "ac_npc_guide.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aNGD_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -18,7 +20,7 @@ ActorProfile Npc_Guide_Profile = {
     /* */ aNGD_actor_ct,
     /* */ aNGD_actor_dt,
     /* */ aNGD_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aNGD_actor_save,
 };
 #endif

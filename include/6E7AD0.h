@@ -4,7 +4,7 @@
 #include "ultra64.h"
 
 // void func_800C3E30_jp();
-void func_800C3F70_jp(u8* buffer, s32 buffer_len, s32 arg2);
+void mString_Load_StringFromRom(char* buffer, s32 buffer_len, s32 arg2);
 // void func_800C4084_jp();
 // void func_800C40F8_jp();
 // void func_800C4168_jp();

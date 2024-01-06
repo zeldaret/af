@@ -1,5 +1,7 @@
 #include "ac_hanami_npc1.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aHM1_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -18,7 +20,7 @@ ActorProfile Hanami_Npc1_Profile = {
     /* */ aHM1_actor_ct,
     /* */ aHM1_actor_dt,
     /* */ aHM1_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aHM1_actor_save,
 };
 #endif

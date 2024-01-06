@@ -1,5 +1,7 @@
 #include "ac_npc_station_master.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aSTM_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -18,7 +20,7 @@ ActorProfile Npc_Station_Master_Profile = {
     /* */ aSTM_actor_ct,
     /* */ aSTM_actor_dt,
     /* */ aSTM_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aSTM_actor_save,
 };
 #endif

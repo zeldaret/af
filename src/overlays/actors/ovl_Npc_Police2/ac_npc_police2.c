@@ -1,5 +1,7 @@
 #include "ac_npc_police2.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aPOL2_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -18,7 +20,7 @@ ActorProfile Npc_Police2_Profile = {
     /* */ aPOL2_actor_ct,
     /* */ aPOL2_actor_dt,
     /* */ aPOL2_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aPOL2_actor_save,
 };
 #endif

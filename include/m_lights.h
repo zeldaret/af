@@ -33,8 +33,8 @@ typedef union {
 
 typedef struct Lights {
     /* 0x00 */ u8 type;
-    /* 0x04 */ LightParams lights;
-} Lights; // size = 0x10
+    /* 0x02 */ LightParams lights;
+} Lights; // size = 0xE
 
 typedef struct LightNode {
     /* 0x0 */ Lights* info;
@@ -61,8 +61,8 @@ typedef struct Global_light {
     /* 0xC */ s16 fogFar; 
 } Global_light; // size = 0x10
 
-typedef void (*light_point_proc)(LightsN*, LightParams*, Vec3f*);
-typedef void (*light_P_point_proc)(LightsN*, LightParams*, Vec3f*);
+typedef void (*light_point_proc)(LightsN*, LightParams*, xyz_t*);
+typedef void (*light_P_point_proc)(LightsN*, LightParams*, xyz_t*);
 
 void point_data_set(Lights* lights, s16 x, s16 y, s16 z, u8 r, u8 g, u8 b, s16 radius, s32 type);
 void Light_point_ct(Lights* lights, s16 x, s16 y, s16 z, u8 r, u8 g, u8 b, s16 radius);
@@ -72,10 +72,10 @@ void Light_diffuse_ct(Lights* lights, s8 x, s8 y, s8 z, u8 r, u8 g, u8 b);
 void LightsN_ct(LightsN* lights, u8 r, u8 g, u8 b);
 void LightsN_disp(LightsN* lights, struct GraphicsContext* gfxCtx);
 Light* LightsN_new_diffuse(LightsN* lights);
-void LightsN__point_proc(LightsN* lights, LightParams* lightInfo, Vec3f* point);
-void LightsN__P_point_proc(LightsN* lights, LightParams* lightInfo, Vec3f* pos);
-void LightsN__diffuse_proc(LightsN* lights, LightParams* lightInfo, Vec3f* pos);
-void LightsN_list_check(LightsN* lights, LightNode* node, Vec3f* pos);
+void LightsN__point_proc(LightsN* lights, LightParams* lightInfo, xyz_t* point);
+void LightsN__P_point_proc(LightsN* lights, LightParams* lightInfo, xyz_t* pos);
+void LightsN__diffuse_proc(LightsN* lights, LightParams* lightInfo, xyz_t* pos);
+void LightsN_list_check(LightsN* lights, LightNode* node, xyz_t* pos);
 LightNode* Light_list_buf_new(void);
 void Light_list_buf_delete(LightNode* lightNode);
 void Global_light_ct(Global_light* glight);

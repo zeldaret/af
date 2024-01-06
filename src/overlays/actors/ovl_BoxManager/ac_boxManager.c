@@ -1,4 +1,6 @@
 #include "ac_boxManager.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void BoxManager_Actor_ct(Actor* thisx, Game_Play* game_play);
@@ -6,7 +8,6 @@ void BoxManager_Actor_dt(Actor* thisx, Game_Play* game_play);
 void BoxManager_Actor_move(Actor* thisx, Game_Play* game_play);
 void BoxManager_Actor_draw(Actor* thisx, Game_Play* game_play);
 
-#if 0
 ActorProfile BoxManager_Profile = {
     /* */ ACTOR_BOX_MANAGER,
     /* */ ACTOR_PART_4,
@@ -20,12 +21,15 @@ ActorProfile BoxManager_Profile = {
     /* */ BoxManager_Actor_draw,
     /* */ NULL,
 };
-#endif
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_BoxManager/ac_boxManager/BoxManager_Actor_ct.s")
+void BoxManager_Actor_ct(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_BoxManager/ac_boxManager/BoxManager_Actor_dt.s")
+void BoxManager_Actor_dt(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_BoxManager/ac_boxManager/BoxManager_Actor_move.s")
+void BoxManager_Actor_move(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_BoxManager/ac_boxManager/BoxManager_Actor_draw.s")
+void BoxManager_Actor_draw(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}

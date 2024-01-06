@@ -1,5 +1,7 @@
 #include "ac_ev_broker2.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aEBR2_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -18,7 +20,7 @@ ActorProfile Ev_Broker2_Profile = {
     /* */ aEBR2_actor_ct,
     /* */ aEBR2_actor_dt,
     /* */ aEBR2_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aEBR2_actor_save,
 };
 #endif

@@ -1,5 +1,7 @@
 #include "ac_npc_shop_mastersp.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aSHM_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -18,7 +20,7 @@ ActorProfile Npc_Shop_Mastersp_Profile = {
     /* */ aSHM_actor_ct,
     /* */ aSHM_actor_dt,
     /* */ aSHM_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aSHM_actor_save,
 };
 #endif

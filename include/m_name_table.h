@@ -3,6 +3,8 @@
 
 #include "ultra64.h"
 
+extern u8 npc_looks_table[];
+
 #define EMPTY_NO 0x0000
 
 #define ITM_MONEY_START 0x2100
@@ -148,5 +150,15 @@
 #define GOLD_TREE (GOLD_TREE_SHOVEL + 1) /* fully grown */
 #define DEAD_GOLD_SAPLING (GOLD_TREE + 1)
 /* end of environmental objects */
+
+#define SNOWMAN0 0xA008
+#define SNOWMAN1 (SNOWMAN0 + 1)
+#define SNOWMAN2 (SNOWMAN1 + 1)
+#define SNOWMAN3 (SNOWMAN2 + 1)
+#define SNOWMAN4 (SNOWMAN3 + 1)
+#define SNOWMAN5 (SNOWMAN4 + 1)
+#define SNOWMAN6 (SNOWMAN5 + 1)
+#define SNOWMAN7 (SNOWMAN6 + 1)
+#define SNOWMAN8 (SNOWMAN7 + 1)
 
 #endif

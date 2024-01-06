@@ -27,4 +27,6 @@ typedef enum mHS_HOUSE {
   /* 4 */ mHS_HOUSE_NUM
 } mHS_HOUSE;
 
+s32 mHS_get_arrange_idx(s32 player);
+
 #endif

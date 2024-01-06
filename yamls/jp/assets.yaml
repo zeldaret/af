@@ -62,10 +62,10 @@
     align: 0x1000
   - [0xA20010]
 
-  - name: segment_00A21000
+  - name: locerrmsg
     type: bin
     start: 0xA21000
-    # vram:
+    vram: 0x01000000
     compress: True
     align: 0x1000
   - [0xA21680]

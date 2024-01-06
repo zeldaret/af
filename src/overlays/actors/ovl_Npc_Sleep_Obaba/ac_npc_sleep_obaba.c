@@ -1,5 +1,7 @@
 #include "ac_npc_sleep_obaba.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aNSO_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -18,7 +20,7 @@ ActorProfile Npc_Sleep_Obaba_Profile = {
     /* */ aNSO_actor_ct,
     /* */ aNSO_actor_dt,
     /* */ aNSO_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aNSO_actor_save,
 };
 #endif

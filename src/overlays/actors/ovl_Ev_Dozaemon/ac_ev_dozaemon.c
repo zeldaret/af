@@ -1,5 +1,7 @@
 #include "ac_ev_dozaemon.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aEDZ_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -18,7 +20,7 @@ ActorProfile Ev_Dozaemon_Profile = {
     /* */ aEDZ_actor_ct,
     /* */ aEDZ_actor_dt,
     /* */ aEDZ_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aEDZ_actor_save,
 };
 #endif

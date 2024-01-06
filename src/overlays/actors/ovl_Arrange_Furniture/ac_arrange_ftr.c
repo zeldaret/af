@@ -1,4 +1,6 @@
 #include "ac_arrange_ftr.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void Arrange_Furniture_Actor_ct(Actor* thisx, Game_Play* game_play);
@@ -6,7 +8,6 @@ void Arrange_Furniture_Actor_dt(Actor* thisx, Game_Play* game_play);
 void Arrange_Furniture_Actor_move(Actor* thisx, Game_Play* game_play);
 void Arrange_Furniture_Actor_draw(Actor* thisx, Game_Play* game_play);
 
-#if 0
 ActorProfile Arrange_Furniture_Profile = {
     /* */ ACTOR_ARRANGE_FURNITURE,
     /* */ ACTOR_PART_4,
@@ -20,14 +21,15 @@ ActorProfile Arrange_Furniture_Profile = {
     /* */ Arrange_Furniture_Actor_draw,
     /* */ NULL,
 };
-#endif
 
-// clang-format off
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr/Arrange_Furniture_Actor_ct.s")
+void Arrange_Furniture_Actor_ct(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr/Arrange_Furniture_Actor_dt.s")
+void Arrange_Furniture_Actor_dt(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr/Arrange_Furniture_Actor_draw.s")
+void Arrange_Furniture_Actor_draw(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Arrange_Furniture/ac_arrange_ftr/Arrange_Furniture_Actor_move.s")
-// clang-format on
+void Arrange_Furniture_Actor_move(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}

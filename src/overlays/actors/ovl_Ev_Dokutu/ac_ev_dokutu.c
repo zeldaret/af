@@ -1,5 +1,7 @@
 #include "ac_ev_dokutu.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aEVD_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -18,7 +20,7 @@ ActorProfile Ev_Dokutu_Profile = {
     /* */ aEVD_actor_ct,
     /* */ aEVD_actor_dt,
     /* */ aEVD_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aEVD_actor_save,
 };
 #endif

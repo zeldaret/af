@@ -1,5 +1,7 @@
 #include "ac_ev_kabuPeddler.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aEKPD_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -18,7 +20,7 @@ ActorProfile Ev_KabuPeddler_Profile = {
     /* */ aEKPD_actor_ct,
     /* */ aEKPD_actor_dt,
     /* */ aEKPD_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aEKPD_actor_save,
 };
 #endif

@@ -1,5 +1,7 @@
 #include "ac_npc_rcn_guide2.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aNRG2_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -18,7 +20,7 @@ ActorProfile Npc_Rcn_Guide2_Profile = {
     /* */ aNRG2_actor_ct,
     /* */ aNRG2_actor_dt,
     /* */ aNRG2_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aNRG2_actor_save,
 };
 #endif

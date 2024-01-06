@@ -1,5 +1,7 @@
 #include "ac_turi_npc0.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void func_805900b0(Actor* thisx, Game_Play* game_play);
@@ -18,7 +20,7 @@ ActorProfile Turi_Npc0_Profile = {
     /* */ func_805900b0,
     /* */ func_805901d8,
     /* */ aTR0_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTR0_actor_save,
 };
 #endif

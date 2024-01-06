@@ -1,5 +1,7 @@
 #include "ac_halloween_npc.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aHWN_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -18,7 +20,7 @@ ActorProfile Halloween_Npc_Profile = {
     /* */ aHWN_actor_ct,
     /* */ aHWN_actor_dt,
     /* */ aHWN_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aHWN_actor_save,
 };
 #endif

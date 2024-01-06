@@ -4,7 +4,7 @@
 #include "macros.h"
 #include "sys_matrix.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
-#include "6E0F50.h"
+#include "m_rcp.h"
 
 extern Gfx D_400AA00[]; // point_light_init_model
 extern Gfx D_400AA40[]; // point_light_model
@@ -92,7 +92,7 @@ Light* LightsN_new_diffuse(LightsN* lights) {
     return &lights->lights.l[lights->diffuse_count++];
 }
 
-void LightsN__point_proc(LightsN* lights, LightParams* lightInfo, Vec3f* point) {
+void LightsN__point_proc(LightsN* lights, LightParams* lightInfo, xyz_t* point) {
     f32 xdiff;
     f32 ydiff;
     f32 zdiff;
@@ -130,7 +130,7 @@ void LightsN__point_proc(LightsN* lights, LightParams* lightInfo, Vec3f* point) 
     }
 }
 
-void LightsN__P_point_proc(LightsN* lights, LightParams* lightInfo, UNUSED Vec3f* pos) {
+void LightsN__P_point_proc(LightsN* lights, LightParams* lightInfo, UNUSED xyz_t* pos) {
     if (lightInfo->point.radius > 0) {
         Light* light = LightsN_new_diffuse(lights);
 
@@ -164,7 +164,7 @@ void LightsN__P_point_proc(LightsN* lights, LightParams* lightInfo, UNUSED Vec3f
     }
 }
 
-void LightsN__diffuse_proc(LightsN* lights, LightParams* lightInfo, UNUSED Vec3f* pos) {
+void LightsN__diffuse_proc(LightsN* lights, LightParams* lightInfo, UNUSED xyz_t* pos) {
     Light* light = LightsN_new_diffuse(lights);
 
     if (light != NULL) {
@@ -177,7 +177,7 @@ void LightsN__diffuse_proc(LightsN* lights, LightParams* lightInfo, UNUSED Vec3f
     }
 }
 
-void LightsN_list_check(LightsN* lights, LightNode* node, Vec3f* pos) {
+void LightsN_list_check(LightsN* lights, LightNode* node, xyz_t* pos) {
     static light_point_proc poslight_type_proc[] = {
         LightsN__point_proc,
         LightsN__diffuse_proc,

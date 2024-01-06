@@ -1,5 +1,7 @@
 #include "ac_structure.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aSTR_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -17,7 +19,7 @@ ActorProfile Structure_Profile = {
     /* */ aSTR_actor_ct,
     /* */ aSTR_actor_dt,
     /* */ aSTR_actor_move,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ NULL,
 };
 #endif

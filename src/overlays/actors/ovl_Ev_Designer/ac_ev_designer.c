@@ -1,5 +1,7 @@
 #include "ac_ev_designer.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aEDSN_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -18,7 +20,7 @@ ActorProfile Ev_Designer_Profile = {
     /* */ aEDSN_actor_ct,
     /* */ aEDSN_actor_dt,
     /* */ aEDSN_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aEDSN_actor_save,
 };
 #endif

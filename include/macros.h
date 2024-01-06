@@ -1,6 +1,9 @@
 #ifndef MACROS_H
 #define MACROS_H
 
+#include "ultra64.h"
+#include "code_variables.h"
+
 #if defined(__GNUC__) || defined(__clang__)
 #define UNREACHABLE __builtin_unreachable()
 #else
@@ -16,8 +19,12 @@
 #define ARRAY_COUNT(arr) (s32)(sizeof(arr) / sizeof(arr[0]))
 #define ARRAY_COUNTU(arr) (u32)(sizeof(arr) / sizeof(arr[0]))
 
+#define SEGMENTED_TO_K0(addr) (void*)((gSegments[SEGMENT_NUMBER(addr)] + K0BASE) + SEGMENT_OFFSET(addr))
+
 #define ABS(x) (((x) >= 0) ? (x): -(x))
 
 #define CLAMP(x, min, max) ((x) < (min) ? (min) : (x) > (max) ? (max) : (x))
+
+#define DECR(x) ((x) == 0 ? 0 : --(x))
 
 #endif

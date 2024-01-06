@@ -1,4 +1,6 @@
 #include "ac_count02.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void func_805ab8b8(Actor* thisx, Game_Play* game_play);

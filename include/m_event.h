@@ -2,10 +2,11 @@
 #define M_EVENT_H
 
 #include "ultra64.h"
+#include "unk.h"
 
-typedef struct mEv_event_save_c {
+typedef struct EventSaveInfo {
     /* 0x00 */ char unk00[0x9C];
-} mEv_event_save_c; // size >= 0x9C
+} EventSaveInfo; // size >= 0x9C
 
 typedef struct Event {
     /* 0x00 */ u8 unk_00;
@@ -20,7 +21,7 @@ typedef struct Event {
 
 // void func_8007D140_jp();
 // void func_8007D180_jp();
-void mEv_ClearEventSaveInfo(mEv_event_save_c* event_save);
+void mEv_ClearEventSaveInfo(EventSaveInfo* eventSaveInfo);
 void mEv_ClearEventInfo(void);
 // void func_8007D25C_jp();
 // void func_8007D2B8_jp();
@@ -49,7 +50,7 @@ void mEv_ClearEventInfo(void);
 s32 mEv_CheckFirstJob(void);
 // void func_8007D734_jp();
 // void func_8007D784_jp();
-// void func_8007D7BC_jp();
+UNK_RET mEv_CheckFirstIntro(void);
 // void func_8007D810_jp();
 void mEv_SetGateway(void);
 // void func_8007D880_jp();
@@ -106,16 +107,16 @@ void mEv_finish(Event* event);
 // void func_8007FD40_jp();
 // void func_8007FDA8_jp();
 // void func_8007FE0C_jp();
-// void func_8007FE74_jp();
+void mEv_clear_status(s32, s16);
 // void func_8007FEBC_jp();
-// void func_8007FF08_jp();
+s32 mEv_check_status(s32, s16);
 // void func_8007FF8C_jp();
 // void func_8007FFC4_jp();
 // void func_80080000_jp();
 // void func_80080040_jp();
 // void func_80080080_jp();
 // void func_80080200_jp();
-// void func_8008033C_jp();
+u8* func_8008033C_jp(s32,s32);
 // void func_800804AC_jp();
 // void func_800806A0_jp();
 // void func_800807E0_jp();

@@ -1,5 +1,7 @@
 #include "ac_tokyoso_npc1.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aTKN1_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -18,7 +20,7 @@ ActorProfile Tokyoso_Npc1_Profile = {
     /* */ aTKN1_actor_ct,
     /* */ aTKN1_actor_dt,
     /* */ aTKN1_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTKN1_actor_save,
 };
 #endif

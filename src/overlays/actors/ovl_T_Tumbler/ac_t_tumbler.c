@@ -1,5 +1,7 @@
 #include "ac_t_tumbler.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aTTB_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -15,7 +17,7 @@ ActorProfile T_Tumbler_Profile = {
     /* */ OBJECT_371,
     /* */ sizeof(T_Tumbler),
     /* */ aTTB_actor_ct,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aTTB_actor_move,
     /* */ aTTB_actor_draw,
     /* */ NULL,

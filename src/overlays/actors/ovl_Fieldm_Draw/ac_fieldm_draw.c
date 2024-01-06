@@ -1,4 +1,6 @@
 #include "ac_fieldm_draw.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void Fieldm_Actor_ct(Actor* thisx, Game_Play* game_play);
@@ -6,7 +8,6 @@ void Fieldm_Actor_dt(Actor* thisx, Game_Play* game_play);
 void Fieldm_Actor_move(Actor* thisx, Game_Play* game_play);
 void Fieldm_Actor_draw(Actor* thisx, Game_Play* game_play);
 
-#if 0
 ActorProfile Fieldm_Draw_Profile = {
     /* */ ACTOR_FIELDM_DRAW,
     /* */ ACTOR_PART_4,
@@ -20,12 +21,15 @@ ActorProfile Fieldm_Draw_Profile = {
     /* */ Fieldm_Actor_draw,
     /* */ NULL,
 };
-#endif
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw/Fieldm_Actor_ct.s")
+void Fieldm_Actor_ct(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw/Fieldm_Actor_dt.s")
+void Fieldm_Actor_dt(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw/Fieldm_Actor_move.s")
+void Fieldm_Actor_move(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Fieldm_Draw/ac_fieldm_draw/Fieldm_Actor_draw.s")
+void Fieldm_Actor_draw(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}

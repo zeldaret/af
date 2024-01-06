@@ -1,5 +1,7 @@
 #include "ac_npc_depart_master.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aNDM_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -18,7 +20,7 @@ ActorProfile Npc_Depart_Master_Profile = {
     /* */ aNDM_actor_ct,
     /* */ aNDM_actor_dt,
     /* */ aNDM_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aNDM_actor_save,
 };
 #endif

@@ -8,7 +8,7 @@
 #include "m_msg_main.h"
 #include "m_debug.h"
 #include "m_player_lib.h"
-#include "6F5550.h"
+#include "audio.h"
 #include "6EC9E0.h"
 #include "6EDD10.h"
 #include "69E2C0.h"
@@ -23,7 +23,8 @@
 #include "libc64/qrand.h"
 #include "m_controller.h"
 #include "m_debug_display.h"
-#include "6E0F50.h"
+#include "m_rcp.h"
+#include "m_npc_walk.h"
 #include "6D2720.h"
 #include "m_lights.h"
 #include "m_private.h"
@@ -32,12 +33,14 @@
 #include "version.h"
 #include "libu64/gfxprint.h"
 #include "libc/alloca.h"
-#include "z_std_dma.h"
+#include "m_std_dma.h"
 #include "67E840.h"
 #include "overlays/gamestates/ovl_famicom_emu/famicom_emu.h"
 #include "overlays/gamestates/ovl_trademark/m_trademark.h"
 #include "6A7D20.h"
 #include "m_scene_table.h"
+#include "zurumode.h"
+#include "prevent_bss_reordering.h"
 
 void play_main(Game* game);
 void Gameplay_Scene_Read(Game_Play* game_play, s16 arg1);
@@ -99,12 +102,12 @@ static u16 S_back_title_timer;
 static u16 S_se_endcheck_timeout;
 
 void Game_play_Reset_destiny(void) {
-    Private_Sub_A86* temp = &common_data.now_private->unk_A86;
-    u8* day = &common_data.time.rtc_time.day;
-    u8* month = &common_data.time.rtc_time.month;
+    Private_Sub_A86* temp = &common_data.privateInfo->unk_A86;
+    u8* day = &common_data.time.rtcTime.day;
+    u8* month = &common_data.time.rtcTime.month;
 
     if ((temp->unk_08 != 0) &&
-        ((common_data.time.rtc_time.year != temp->unk_06) || (*month != temp->unk_05) || (*day != temp->unk_03))) {
+        ((common_data.time.rtcTime.year != temp->unk_06) || (*month != temp->unk_05) || (*day != temp->unk_03))) {
         temp->unk_08 = 0;
     }
 }
@@ -208,8 +211,8 @@ void Game_play_fbdemo_fade_out_game_end_move_end(Game_Play* game_play) {
 
 void Game_play_change_scene_move_end(Game_Play* game_play) {
     game_goto_next_game_play(&game_play->state);
-    common_data.unk_10004 = common_data.unk_00014;
-    common_data.unk_00014 = game_play->unk_1E18;
+    common_data.unk_10004 = common_data.sceneNo;
+    common_data.sceneNo = game_play->unk_1E18;
 }
 
 void Game_play_fbdemo_wipe_move(Game_Play* game_play) {
@@ -224,15 +227,15 @@ void Game_play_fbdemo_wipe_move(Game_Play* game_play) {
                 S_se_endcheck_timeout--;
             }
 
-            if ((func_800D2334_jp(sp18, game_play) == 0) && (S_se_endcheck_timeout != 0)) {
+            if ((sAdo_SeFadeoutCheck() == 0) && (S_se_endcheck_timeout != 0)) {
                 sp20 = 0;
             } else {
-                func_800D2568_jp(1);
+                sAdo_Set_ongenpos_refuse_fg(1);
             }
         }
 
         if (game_play->unk_1EE0 == 11) {
-            func_800D2568_jp(2);
+            sAdo_Set_ongenpos_refuse_fg(2);
         }
 
         if (sp20 == 1) {
@@ -269,8 +272,8 @@ void Game_play_fbdemo_wipe_move(Game_Play* game_play) {
 
                 case 8:
                     if (common_data.unk_100E4 != NULL) {
-                        if (*common_data.unk_100E4 != NULL) {
-                            (*common_data.unk_100E4)(game_play);
+                        if (common_data.unk_100E4->unk_00 != NULL) {
+                            common_data.unk_100E4->unk_00(game_play);
                             Game_play_change_scene_move_end(game_play);
                         }
                     }
@@ -340,7 +343,7 @@ void play_cleanup(Game* game) {
     func_800A3304_jp(game_play);
     game_play->state.gfxCtx->unk_2F4 = 0;
     game_play->state.gfxCtx->unk_2F8 = 0;
-    game_play->unk_1CBC.unk_00 = 0;
+    game_play->submenu.unk_00 = 0;
     PreRender_cleanup(&game_play->unk_1DC0);
     CollisionCheck_dt(game_play, &game_play->unk_2138);
 
@@ -355,12 +358,12 @@ void play_cleanup(Game* game) {
 
     Actor_info_dt(&game_play->actorInfo, game_play);
     mEv_finish(&game_play->event);
-    func_800AA124_jp();
-    mSM_submenu_dt(&game_play->unk_1CBC);
+    mNpc_ClearEventNpc();
+    mSM_submenu_dt(&game_play->submenu);
     game_play->unk_1DAC = -1;
-    mSM_submenu_ovlptr_cleanup(&game_play->unk_1CBC);
+    mSM_submenu_ovlptr_cleanup(&game_play->submenu);
     mPlib_Object_Exchange_keep_Player_dt(game_play);
-    mHsRm_GetHuusuiRoom(0, common_data.player_no);
+    mHsRm_GetHuusuiRoom(0, common_data.playerNumber);
     func_80087280_jp();
     zelda_CleanupArena();
 }
@@ -378,12 +381,12 @@ void play_init(Game* game) {
     if (game_play && game_play && game_play) {}
 
     game_resize_hyral(&game_play->state, 0x7D0000);
-    func_800D2568_jp(0);
+    sAdo_Set_ongenpos_refuse_fg(0);
     event_title_flag_on();
     func_800C9010_jp();
     mTM_set_season();
     func_800B594C_jp();
-    func_800C49D4_jp(game_play);
+    mSM_submenu_ovlptr_init(game_play);
     func_8007CFD8_jp(game_play);
     mEv_init(&game_play->event);
     initView(&game_play->unk_1938, gfxCtx);
@@ -392,9 +395,9 @@ void play_init(Game* game) {
     func_8006BB64_jp();
     func_8006C8D0_jp();
     game_play->unk_1DAC = -1;
-    Gameplay_Scene_Read(game_play, common_data.unk_00014);
-    mSM_submenu_ct(&game_play->unk_1CBC);
-    game_play->unk_1CBC.unk_00 = 0;
+    Gameplay_Scene_Read(game_play, common_data.sceneNo);
+    mSM_submenu_ct(&game_play->submenu);
+    game_play->submenu.unk_00 = 0;
     PreRender_init(&game_play->unk_1DC0);
     PreRender_setup_savebuf(&game_play->unk_1DC0, 0x140, 0xF0, 0, 0, 0);
     PreRender_setup_renderbuf(&game_play->unk_1DC0, 0x140, 0xF0, NULL, NULL);
@@ -446,7 +449,7 @@ void Game_play_move_fbdemo_not_move(Game_Play* game_play) {
     game_play->state.unk_9D = 0x8F;
     game_play->state.unk_9C = 1;
     mSM_submenu_ctrl(game_play);
-    if (game_play->unk_1CBC.unk_0C == 0) {
+    if (game_play->submenu.moveProcIndex == MSM_MOVE_PROC_WAIT) {
         game_play->state.unk_9C = 2;
         mDemo_Main(game_play);
         game_play->state.unk_9C = 3;
@@ -455,10 +458,10 @@ void Game_play_move_fbdemo_not_move(Game_Play* game_play) {
     game_play->state.unk_9C = 4;
     mDemo_stock_clear();
     game_play->state.unk_9C = 5;
-    mSc_dmacopy_data_bank(game_play->unk_0110);
+    mSc_dmacopy_data_bank(&game_play->objectExchangeBank);
     game_play->state.unk_9C = 6;
-    mSM_submenu_move(&game_play->unk_1CBC);
-    if ((game_play->unk_1CBC.unk_0C == 0) && (REGADDR(IREG, 0x48) == 0)) {
+    mSM_submenu_move(&game_play->submenu);
+    if ((game_play->submenu.moveProcIndex == MSM_MOVE_PROC_WAIT) && (REGADDR(IREG, 0x48) == 0)) {
         game_play->unk_1EA0++;
         game_play->state.unk_9C = 7;
         CollisionCheck_OC(game_play, &game_play->unk_2138);
@@ -477,13 +480,13 @@ void Game_play_move_fbdemo_not_move(Game_Play* game_play) {
 }
 
 void Game_play_move(Game_Play* game_play) {
-    Game_Play_unk_0110* p = game_play->unk_0110;
+    ObjectExchangeBank* p = &game_play->objectExchangeBank;
     s32 var_v1;
 
     game_play->state.unk_9D = 0x8D;
     game_play->state.unk_9C = 1;
     Game_play_Reset_destiny();
-    gSegments[4] = (uintptr_t)OS_K0_TO_PHYSICAL(p->segment);
+    gSegments[4] = (uintptr_t)OS_K0_TO_PHYSICAL(p->status[0].segment);
     gSegments[2] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_010C);
     game_play->state.unk_9C = 2;
 
@@ -507,7 +510,7 @@ void Game_play_move(Game_Play* game_play) {
         }
     }
 
-    if (game_play->unk_1CBC.unk_0C == 0) {
+    if (game_play->submenu.moveProcIndex == MSM_MOVE_PROC_WAIT) {
         game_play->state.unk_9D = 0x92;
         game_play->state.unk_9C = 1;
         Game_play_camera_proc(game_play);
@@ -535,7 +538,7 @@ void Game_play_move(Game_Play* game_play) {
 }
 
 void func_80803810_jp(Game_Play* game_play, GraphicsContext* gfxCtx) {
-    void* temp_v0 = game_play->unk_0110[0].segment;
+    void* temp_v0 = game_play->objectExchangeBank.status[0].segment;
 
     gSegments[4] = (uintptr_t)OS_K0_TO_PHYSICAL(temp_v0);
     gSegments[2] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_010C);
@@ -576,7 +579,7 @@ void setupFog(Game_Play* game_play, GraphicsContext* gfxCtx) {
 }
 
 void setupViewer(Game_Play* game_play) {
-    showView(&game_play->unk_1938, 0xF, game_play);
+    showView(&game_play->unk_1938, 0xF);
 }
 
 void setupViewMatrix(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsContext* gfxCtx2) {
@@ -611,7 +614,6 @@ s32 makeBumpTexture(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsCon
 
         if (game_play->unk_1EE3 == 3) {
             Game_Play1938 sp60;
-            ScissorViewArg1 sp50;
 
             initView(&sp60, gfxCtx2);
             {
@@ -619,10 +621,7 @@ s32 makeBumpTexture(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsCon
             //! FAKE
             label2:;
             }
-            sp50.unk_04 = 0xF0, sp50.unk_0C = 0x140;
-            sp50.unk_00 = 0;
-            sp50.unk_08 = 0;
-            setScissorView(&sp60, &sp50);
+            SET_FULLSCREEN_VIEWPORT(&sp60);
             showView1(&sp60, 0xF, &sp194);
             game_play->unk_1EE8.unk_21C.unk_0C(&game_play->unk_1EE8, &sp194);
         }
@@ -645,15 +644,15 @@ s32 makeBumpTexture(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsCon
     }
 
     PreRender_setup_renderbuf(&game_play->unk_1DC0, 0x140, 0xF0, gfxCtx2->unk_2E4, gfxCtx2->unk_008);
-    if (game_play->unk_1CBC.unk_00 == 2) {
+    if (game_play->submenu.unk_00 == 2) {
         func_800B0010_jp();
         PreRender_ConvertFrameBuffer_fg(&game_play->unk_1DC0);
-        game_play->unk_1CBC.unk_00 = 3;
-    } else if (game_play->unk_1CBC.unk_00 >= 5) {
-        game_play->unk_1CBC.unk_00 = 0;
+        game_play->submenu.unk_00 = 3;
+    } else if (game_play->submenu.unk_00 >= 5) {
+        game_play->submenu.unk_00 = 0;
     }
 
-    if (game_play->unk_1CBC.unk_00 == 3) {
+    if (game_play->submenu.unk_00 == 3) {
         Gfx* sp44 = POLY_OPA_DISP;
 
         PreRender_loadFrameBufferCopy(&game_play->unk_1DC0, &sp44);
@@ -673,7 +672,7 @@ s32 makeBumpTexture(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsCon
     mMsg_Draw(game_play);
     Debug_Display_output(game_play);
 
-    if ((game_play->unk_1CBC.unk_00 == 1) || (game_play->unk_1EE2 == 1)) {
+    if ((game_play->submenu.unk_00 == 1) || (game_play->unk_1EE2 == 1)) {
         Gfx* sp3C;
         Gfx* sp38;
 
@@ -686,10 +685,10 @@ s32 makeBumpTexture(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsCon
         game_play->unk_1DC0.unk_14 = gfxCtx2->unk_008;
         PreRender_saveFrameBuffer(&game_play->unk_1DC0, &sp3C);
 
-        if (game_play->unk_1CBC.unk_00 == 1) {
+        if (game_play->submenu.unk_00 == 1) {
             game_play->unk_1DC0.unk_18 = gfxCtx2->unk_2E4;
             PreRender_saveCVG(&game_play->unk_1DC0, &sp3C);
-            game_play->unk_1CBC.unk_00 = 2;
+            game_play->submenu.unk_00 = 2;
         } else {
             game_play->unk_1EE2 = 2;
         }
@@ -760,7 +759,7 @@ label:;
     if (makeBumpTexture(game_play, gfxCtx, gfxCtx) == 1) {
         watch_my_step_draw(game_play);
         banti_draw(game_play);
-        mSM_submenu_draw(&game_play->unk_1CBC, game_play);
+        mSM_submenu_draw(&game_play->submenu, game_play);
     }
 
     if (zurumode_flag != 0) {
@@ -797,7 +796,7 @@ void play_main(Game* game) {
     Game_play_draw(game_play);
     game_play->state.unk_9D = 0xB4;
     game_play->state.unk_9C = 0;
-    if (game_play->unk_1CBC.unk_00 != 2) {
+    if (game_play->submenu.unk_00 != 2) {
         GraphicsContext* gfxCtx = game_play->state.gfxCtx;
 
         game_debug_draw_last(&game_play->state, gfxCtx);
@@ -811,7 +810,7 @@ void* func_80804138_jp(Game_Play* game_play, Struct_8010EAA0* arg1) {
     u32 sp24 = arg1->unk_04 - arg1->unk_00;
     void* sp20 = THA_alloc16(&game_play->state.heap, sp24);
 
-    func_80026E10_jp(sp20, arg1->unk_00, sp24, "../m_play.c", 2302);
+    DmaMgr_RequestSyncDebug(sp20, arg1->unk_00, sp24, "../m_play.c", 2302);
     return sp20;
 }
 
@@ -825,12 +824,12 @@ void Gameplay_Scene_Init(Game_Play* game_play) {
     game_play->unk_1EA6 = 0;
     game_play->unk_1EA7 = 0;
     game_play->unk_1EB8 = 0;
-    mSc_data_bank_ct(game_play, game_play->unk_0110);
+    mSc_data_bank_ct(game_play, &game_play->objectExchangeBank);
     Global_light_ct(&game_play->glight);
     Door_info_ct(&game_play->unk_1E10);
     common_data_clear();
     Scene_ct(game_play, game_play->unk_010C);
-    mSc_decide_exchange_bank(game_play->unk_0110);
+    mSc_decide_exchange_bank(&game_play->objectExchangeBank);
     func_808041A4_jp(game_play);
 }
 
@@ -868,5 +867,5 @@ void Gameplay_Scene_Read(Game_Play* game_play, s16 arg1) {
     sp1C->unk_13 = 0;
     gSegments[2] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_010C);
     Gameplay_Scene_Init(game_play);
-    sAdo_RoomType(mPl_SceneNo2SoundRoomType(common_data.unk_00014));
+    sAdo_RoomType(mPl_SceneNo2SoundRoomType(common_data.sceneNo));
 }

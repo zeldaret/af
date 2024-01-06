@@ -1,5 +1,7 @@
 #include "ac_quest_manager.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aQMgr_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -18,7 +20,7 @@ ActorProfile Quest_Manager_Profile = {
     /* */ aQMgr_actor_ct,
     /* */ aQMgr_actor_dt,
     /* */ aQMgr_actor_move_main,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aQMgr_actor_save,
 };
 #endif

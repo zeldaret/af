@@ -1,5 +1,7 @@
 #include "ac_npc_post_man.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aPMAN_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -18,7 +20,7 @@ ActorProfile Npc_Post_Man_Profile = {
     /* */ aPMAN_actor_ct,
     /* */ aPMAN_actor_dt,
     /* */ aPMAN_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aPMAN_actor_save,
 };
 #endif

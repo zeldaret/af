@@ -1,5 +1,7 @@
 #include "ac_ev_gypsy.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void aEGPS_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -18,7 +20,7 @@ ActorProfile Ev_Gypsy_Profile = {
     /* */ aEGPS_actor_ct,
     /* */ aEGPS_actor_dt,
     /* */ aEGPS_actor_init,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ aEGPS_actor_save,
 };
 #endif

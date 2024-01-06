@@ -1,5 +1,7 @@
 #include "ac_npc.h"
 #include "m_lib.h"
+#include "m_actor_dlftbls.h"
+#include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void func_8053a354(Actor* thisx, Game_Play* game_play);
@@ -17,7 +19,7 @@ ActorProfile Npc_Profile = {
     /* */ func_8053a354,
     /* */ func_8053a6fc,
     /* */ func_8053aab0,
-    /* */ (ActorFunc)none_proc1,
+    /* */ (void*)none_proc1,
     /* */ NULL,
 };
 #endif
