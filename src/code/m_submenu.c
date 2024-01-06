@@ -10,7 +10,7 @@
 #include "sys_math3d.h"
 #include "m_scene.h"
 #include "m_quest.h"
-#include "6F5550.h"
+#include "audio.h"
 #include "libc/stddef.h"
 #include "attributes.h"
 #include "segment_symbols.h"
@@ -185,7 +185,7 @@ void func_800C47B4_jp(UNUSED void* arg0, UNUSED void* arg1) {
     size_t ovlSize;
     void* temp_a2; // sp20
 
-    temp_v0 = gFaultMgr.faultedThread;
+    temp_v0 = fault_class.faultedThread;
     var_t0 = (temp_v0 != NULL) ? temp_v0->context.pc : 0;
     var_t1 = (temp_v0 != NULL) ? temp_v0->context.ra : 0;
 

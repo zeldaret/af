@@ -10,7 +10,7 @@
       - [0x0011F0, c, boot/idle]
       - [0x0014A0, c, boot/viconfig]
       - [0x001640, c, boot/ovlmgr]
-      - [0x0017F0, c, boot/z_std_dma]
+      - [0x0017F0, c, boot/m_std_dma]
       - [0x0022A0, c, boot/yaz0]
       - [0x0026C0, c, boot/syncprintf]
       - [0x002720, c, boot/fault]
@@ -217,7 +217,7 @@
       - [0x016FC0, .data, boot/idle]
 
       - [0x016FD0, .data, boot/carthandle]
-      - [0x016FE0, .data, boot/z_std_dma]
+      - [0x016FE0, .data, boot/m_std_dma]
       - [0x016FF0, .data, boot/fault]
       - [0x017050, .data, boot/fault_drawer]
 
@@ -264,7 +264,7 @@
       - [0x018580, .rodata, boot/boot_main]
       - [0x018590, .rodata, boot/idle]
       - [0x0185B0, .rodata, boot/ovlmgr]
-      - [0x0185D0, .rodata, boot/z_std_dma]
+      - [0x0185D0, .rodata, boot/m_std_dma]
       - [0x0187F0, .rodata, boot/yaz0]
       - [0x018840, .rodata, boot/fault]
       - [0x019250, .rodata, boot/fault_drawer]
@@ -295,7 +295,7 @@
       - { start: 0x019D40, type: .bss, vram: 0x8003E940, name: boot/boot_main }
       - { start: 0x019D40, type: .bss, vram: 0x8003F330, name: boot/idle }
       - { start: 0x019D40, type: .bss, vram: 0x8003FF30, name: boot/viconfig }
-      - { start: 0x019D40, type: .bss, vram: 0x8003FF40, name: boot/z_std_dma }
+      - { start: 0x019D40, type: .bss, vram: 0x8003FF40, name: boot/m_std_dma }
       - { start: 0x019D40, type: .bss, vram: 0x800406C0, name: boot/yaz0 }
       - { start: 0x019D40, type: .bss, vram: 0x80040AE0, name: boot/fault }
       - { start: 0x019D40, type: .bss, vram: 0x80041960, name: boot/fault_drawer }

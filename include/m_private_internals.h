@@ -48,4 +48,10 @@ typedef struct PrivateInventory {
     /* 0x28 */ u32 loan;
 } PrivateInventory; // size = 0x2C
 
+typedef struct PrivateCloth {
+    /* 0x00 */ u16 id;
+    /* 0x02 */ u16 item;
+} PrivateCloth; // size = 0x4
+
+
 #endif

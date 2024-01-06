@@ -5,9 +5,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x73F4D0, asm, overlays/gamestates/ovl_select/m_select]
-      - [0x741030, data, overlays/gamestates/ovl_select/m_select]
-      - [0x741310, rodata, overlays/gamestates/ovl_select/m_select]
+      - [0x73F4D0, c, overlays/gamestates/ovl_select/m_select]
+      - [0x741030, .data, overlays/gamestates/ovl_select/m_select]
+      - [0x741310, .rodata, overlays/gamestates/ovl_select/m_select]
   - name: ovl_select_reloc
     type: code
     start: 0x741A40
@@ -1842,7 +1842,7 @@
     bss_size: 0x0
     subsegments:
       - [0x867620, c, overlays/actors/ovl_TrainDoor/ac_train_door]
-      - [0x867850, data, overlays/actors/ovl_TrainDoor/ac_train_door]
+      - [0x867850, .data, overlays/actors/ovl_TrainDoor/ac_train_door]
   - name: ovl_TrainDoor_reloc
     type: code
     start: 0x867880

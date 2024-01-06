@@ -1,73 +1,62 @@
 // .text
 
-func_80800000_jp = 0x80800000; // type:func
-func_80800058_jp = 0x80800058; // type:func
-func_8080007C_jp = 0x8080007C; // type:func
-func_808000A4_jp = 0x808000A4; // type:func
-func_80800138_jp = 0x80800138; // type:func
-func_80800248_jp = 0x80800248; // type:func
-func_808002C8_jp = 0x808002C8; // type:func
-func_808002D8_jp = 0x808002D8; // type:func
-func_808002E8_jp = 0x808002E8; // type:func
-func_808002F8_jp = 0x808002F8; // type:func
-func_8080034C_jp = 0x8080034C; // type:func
-func_80800384_jp = 0x80800384; // type:func
-func_808003BC_jp = 0x808003BC; // type:func
-func_808003F0_jp = 0x808003F0; // type:func
-func_80800424_jp = 0x80800424; // type:func
-func_80800434_jp = 0x80800434; // type:func
-func_80800444_jp = 0x80800444; // type:func
-func_80800498_jp = 0x80800498; // type:func
-func_8080053C_jp = 0x8080053C; // type:func
-func_80800564_jp = 0x80800564; // type:func
-func_808005EC_jp = 0x808005EC; // type:func
-func_808006A8_jp = 0x808006A8; // type:func
-func_80800774_jp = 0x80800774; // type:func
-func_808007C8_jp = 0x808007C8; // type:func
-func_80800814_jp = 0x80800814; // type:func
-func_80800854_jp = 0x80800854; // type:func
-func_808008E4_jp = 0x808008E4; // type:func
-func_80800978_jp = 0x80800978; // type:func
-func_808009C0_jp = 0x808009C0; // type:func
-func_80800A08_jp = 0x80800A08; // type:func
-func_80800A5C_jp = 0x80800A5C; // type:func
-func_80800C3C_jp = 0x80800C3C; // type:func
-func_80800DE0_jp = 0x80800DE0; // type:func
-func_80800E34_jp = 0x80800E34; // type:func
-func_80800EBC_jp = 0x80800EBC; // type:func
-func_8080108C_jp = 0x8080108C; // type:func
-func_808010CC_jp = 0x808010CC; // type:func
-func_8080131C_jp = 0x8080131C; // type:func
-func_80801354_jp = 0x80801354; // type:func
-func_80801390_jp = 0x80801390; // type:func
-func_808013B4_jp = 0x808013B4; // type:func
-func_8080140C_jp = 0x8080140C; // type:func
-func_80801468_jp = 0x80801468; // type:func
-func_808014E4_jp = 0x808014E4; // type:func
-func_8080154C_jp = 0x8080154C; // type:func
-func_808015B4_jp = 0x808015B4; // type:func
-func_80801610_jp = 0x80801610; // type:func
-func_80801658_jp = 0x80801658; // type:func
-func_80801840_jp = 0x80801840; // type:func
-func_80801928_jp = 0x80801928; // type:func
-func_808019E4_jp = 0x808019E4; // type:func
+game_next_play	= 0x80800000; // type:func
+data2fcode	= 0x80800058; // type:func
+fcode2data	= 0x8080007C; // type:func
+select_pass	= 0x808000A4; // type:func
+select_start_proc	= 0x80800138; // type:func
+select_check_start	= 0x80800248; // type:func
+select_check_A_button_rtc	= 0x808002C8; // type:func
+select_check_A_button_time	= 0x808002D8; // type:func
+select_check_A_buttonStep	= 0x808002E8; // type:func
+select_check_A_button_weather	= 0x808002F8; // type:func
+select_check_A_button_sex	= 0x8080034C; // type:func
+select_check_A_button_face_type	= 0x80800384; // type:func
+select_check_A_button_swell	= 0x808003BC; // type:func
+select_check_A_button_decoy	= 0x808003F0; // type:func
+select_check_A_button_cloth	= 0x80800424; // type:func
+select_check_A_button_event	= 0x80800434; // type:func
+select_check_A_button	= 0x80800444; // type:func
+select_move_cursol	= 0x80800498; // type:func
+select_course_step_sub	= 0x8080053C; // type:func
+select_adjust_top_no	= 0x80800564; // type:func
+select_course_step	= 0x808005EC; // type:func
+select_course	= 0x808006A8; // type:func
+select_move_main	= 0x80800774; // type:func
+select_move_setup	= 0x808007C8; // type:func
+select_move_time_year_set	= 0x80800814; // type:func
+select_move_time_month_set	= 0x80800854; // type:func
+select_move_time_day_set	= 0x808008E4; // type:func
+select_move_time_hour_set	= 0x80800978; // type:func
+select_move_time_min_set	= 0x808009C0; // type:func
+select_move_time_week_set	= 0x80800A08; // type:func
+select_move_time_set	= 0x80800A5C; // type:func
+select_move_cloth_sel	= 0x80800C3C; // type:func
+select_move	= 0x80800DE0; // type:func
+select_print_wait	= 0x80800E34; // type:func
+select_print_course_name	= 0x80800EBC; // type:func
+select_print_rtc	= 0x8080108C; // type:func
+select_print_time_sub	= 0x808010CC; // type:func
+select_print_time	= 0x8080131C; // type:func
+select_print_step_sub2	= 0x80801354; // type:func
+select_print_step	= 0x80801390; // type:func
+select_print_weather	= 0x808013B4; // type:func
+select_print_sex	= 0x8080140C; // type:func
+select_print_cloth	= 0x80801468; // type:func
+select_print_swell	= 0x808014E4; // type:func
+select_print_decoy	= 0x8080154C; // type:func
+select_print_face_type	= 0x808015B4; // type:func
+select_print_event	= 0x80801610; // type:func
+select_draw_main	= 0x80801658; // type:func
+select_draw_wait	= 0x80801840; // type:func
+select_draw	= 0x80801928; // type:func
+select_main	= 0x808019E4; // type:func
 select_cleanup = 0x80801A28; // type:func
 select_init = 0x80801A34; // type:func
 
 // .data
 
-D_80801B60_jp = 0x80801B60; //
-D_80801D04_jp = 0x80801D04; //
-D_80801D2C_jp = 0x80801D2C; //
-D_80801D60_jp = 0x80801D60; //
-D_80801D68_jp = 0x80801D68; //
-D_80801D7C_jp = 0x80801D7C; //
-D_80801D8C_jp = 0x80801D8C; //
-D_80801DBC_jp = 0x80801DBC; //
-D_80801DD0_jp = 0x80801DD0; //
-D_80801DD8_jp = 0x80801DD8; //
-D_80801DF8_jp = 0x80801DF8; //
-D_80801E14_jp = 0x80801E14; //
+nf_tbl = 0x80801B60; //
 
 // .rodata
 
@@ -9030,7 +9019,7 @@ RO_FLT_8097297C_jp = 0x8097297C; // type:f32
 
 aTRD_actor_ct = 0x809729E0; // type:func
 aTRD_actor_dt = 0x80972A84; // type:func
-func_80972AB0_jp = 0x80972AB0; // type:func
+aTRD_set_door_SE = 0x80972AB0; // type:func
 aTRD_actor_move = 0x80972B20; // type:func
 aTRD_actor_draw = 0x80972B98; // type:func
 
@@ -17808,17 +17797,11 @@ Train_Window_Actor_draw = 0x80A5A198; // type:func
 // .data
 
 D_80A5A580_jp = 0x80A5A580; //
-D_80A5A588_jp = 0x80A5A588; //
+aTrainWindow_tree_pal_table = 0x80A5A588; //
 D_80A5A768_jp = 0x80A5A768; //
-D_80A5A76C_jp = 0x80A5A76C; //
+aTrainWindow_evw_anime_data = 0x80A5A76C; //
 Train_Window_Profile = 0x80A5A774; //
-D_80A5A798_jp = 0x80A5A798; // type:u8
-D_80A5A799_jp = 0x80A5A799; // type:u8
-D_80A5A79A_jp = 0x80A5A79A; // type:u8
-D_80A5A79B_jp = 0x80A5A79B; // type:u8
-D_80A5A79C_jp = 0x80A5A79C; // type:u8
-D_80A5A79D_jp = 0x80A5A79D; // type:u8
-D_80A5A79E_jp = 0x80A5A79E; // type:u8
+till_data = 0x80A5A798; // type:u8
 
 // .rodata
 

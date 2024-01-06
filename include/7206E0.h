@@ -4,6 +4,6 @@
 #include "ultra64.h"
 
 // void func_800FCA40_jp();
-// void func_800FCAD8_jp();
+void Na_GetStaffRollInfo(u16*);
 
 #endif

@@ -288,7 +288,7 @@ s32 mSDI_StartInitFrom(Game* game2, s32 playerNumber, s32 mallocFlag) {
                 mMkRm_MarkRoom(game);
                 res = TRUE;
             } else {
-                common_data.player_decoy_flag = TRUE;
+                common_data.playerDecoyFlag = TRUE;
                 privateInfo->exists = TRUE;
                 common_data.privateInfo = privateInfo;
                 common_data.playerNumber = playerNumber;

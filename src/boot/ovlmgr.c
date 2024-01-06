@@ -6,7 +6,7 @@
 #include "libc64/malloc.h"
 #include "m_malloc.h"
 #include "libc64/sprintf.h"
-#include "z_std_dma.h"
+#include "m_std_dma.h"
 
 void* ovlmgr_Malloc(size_t size) {
     void* ptr;

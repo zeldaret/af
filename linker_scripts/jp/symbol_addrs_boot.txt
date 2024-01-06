@@ -550,7 +550,7 @@ sFaultInstance = 0x80040AE0; //
 sFaultAwaitingInput = 0x80040AE4; // type:u8
 sFaultStack = 0x80040AE8; //
 sFaultThreadInfo = 0x800410E8; //
-gFaultMgr = 0x80041108; // size:0x850
+fault_class = 0x80041108; // size:0x850
 
 sFaultDrawer = 0x80041960; // size:0x3C
 

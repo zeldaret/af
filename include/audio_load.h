@@ -2,6 +2,7 @@
 #define AUDIO_LOAD_H
 
 #include "ultra64.h"
+#include "m_std_dma.h"
 
 // void func_800E9FF0_jp();
 // void func_800EA0DC_jp();
@@ -45,7 +46,7 @@
 // void func_800EBB90_jp();
 // void func_800EBBB0_jp();
 // void func_800EBF3C_jp();
-// void func_800EBF6C_jp();
+void func_800EBF6C_jp(DmaHandler);
 // void func_800EBF78_jp();
 // void func_800EBF84_jp();
 // void func_800EBF90_jp();

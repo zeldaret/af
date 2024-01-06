@@ -1,11 +1,13 @@
-#ifndef Z_STD_DMA_H
-#define Z_STD_DMA_H
+#ifndef M_STD_DMA_H
+#define M_STD_DMA_H
 
 #include "ultra64.h"
 #include "libc/stdint.h"
 #include "alignment.h"
 #include "other_types.h"
 #include "unk.h"
+
+typedef s32 (*DmaHandler)(OSPiHandle* handle, OSIoMesg* mb, s32 direction);
 
 typedef struct DmaRequest {
     /* 0x00 */ RomOffset vrom;

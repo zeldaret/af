@@ -1166,8 +1166,8 @@ D_6000778 = 0x06000778;
 
 // ovl_TrainDoor
 
-D_60000B0 = 0x060000B0;
-D_600073C = 0x0600073C;
+cKF_ba_r_obj_romtrain_door = 0x060000B0;
+cKF_bs_r_obj_romtrain_door = 0x0600073C;
 
 // ovl_Npc
 
@@ -3763,9 +3763,9 @@ D_6000D28 = 0x06000D28;
 
 // ovl_Train_Window
 
-D_6000300 = 0x06000300;
-D_6000398 = 0x06000398;
-D_6000508 = 0x06000508;
+rom_train_out_bgcloud_modelT = 0x06000300;
+rom_train_out_shineglass_modelT = 0x06000398;
+rom_train_out_bgsky_model = 0x06000508;
 
 // ovl__00922380
 
