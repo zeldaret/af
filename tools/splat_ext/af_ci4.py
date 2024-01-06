@@ -1,6 +1,6 @@
 from n64img.image import Image, CI4
-from util import log, options
-from segtypes.n64.segment import N64Segment
+from splat.util import log, options
+from splat.segtypes.n64.segment import N64Segment
 # from util import symbols
 
 class N64SegAf_ci4(N64Segment):

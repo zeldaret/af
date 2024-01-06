@@ -1,6 +1,6 @@
 import struct
-from util import options, log
-from segtypes.common.codesubsegment import CommonSegCodeSubsegment
+from splat.util import options, log
+from splat.segtypes.common.codesubsegment import CommonSegCodeSubsegment
 
 VALID_SIZES = [0x20, 0x40, 0x80, 0x100, 0x200]
 

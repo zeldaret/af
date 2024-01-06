@@ -1,7 +1,7 @@
 import struct
 from typing import Optional
-from util import options, log
-from segtypes.common.codesubsegment import CommonSegCodeSubsegment
+from splat.util import options, log
+from splat.segtypes.common.codesubsegment import CommonSegCodeSubsegment
 
 class N64SegCkf_bs(CommonSegCodeSubsegment):
     def __init__(self, rom_start, rom_end, type, name, vram_start, args, yaml):

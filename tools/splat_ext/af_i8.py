@@ -1,6 +1,6 @@
 from n64img.image import Image, I8
-from util import log, options
-from segtypes.n64.segment import N64Segment
+from splat.util import log, options
+from splat.segtypes.n64.segment import N64Segment
 
 class N64SegAf_i8(N64Segment):
     def __init__(self, rom_start, rom_end, type, name, vram_start, args, yaml):

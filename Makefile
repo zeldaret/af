@@ -111,7 +111,7 @@ ASM_PROC_FLAGS  := --input-enc=utf-8 --output-enc=euc-jp --convert-statics=globa
 SPLAT           ?= python3 -m splat split
 SPLAT_YAML      ?= $(TARGET).$(VERSION).yaml
 
-PIGMENT			?=pigment64
+PIGMENT			?=tools/pigment64/pigment64
 
 
 IINC := -Iinclude -Isrc -Iassets/$(VERSION) -I. -I$(BUILD_DIR)
