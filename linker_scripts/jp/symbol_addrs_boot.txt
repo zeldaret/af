@@ -279,7 +279,7 @@ sFpExceptionNames = 0x8003BC38; //
 sStackInfoListStart = 0x8003BC90; // size:0x4
 sStackInfoListEnd = 0x8003BC94; // size:0x4
 
-gOverlayLogSeverity = 0x8003BCA0 // type:s32 size:0x4
+gOverlayLogSeverity = 0x8003BCA0; // type:s32 size:0x4
 
 gfxprint_moji_tlut = 0x8003BCB0; // type:u8 size:0x80
 gfxprint_rainbow_tlut = 0x8003BD30; // type:u8 size:0x20
