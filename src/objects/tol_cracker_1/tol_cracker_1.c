@@ -1,5 +1,4 @@
-extern unsigned short tol_cracker_1_pal[];
-extern unsigned char tol_cracker_1_tex[];
+#include "tol_cracker_1.h"
 
 #include "assets/jp/objects/tol_cracker_1/tol_cracker_1_v.vtx.inc.c"
 #include "assets/jp/objects/tol_cracker_1/tol_cracker_1T_model.gfx.inc.c"

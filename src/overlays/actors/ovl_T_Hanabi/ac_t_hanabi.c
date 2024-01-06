@@ -3,6 +3,7 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "m_rcp.h"
+#include "objects/tol_utiwa_1/tol_utiwa_1.h"
 
 #define THIS ((T_Hanabi*)thisx)
 
@@ -17,7 +18,7 @@ ActorProfile T_Hanabi_Profile = {
     /* */ ACTOR_PART_4,
     /* */ ACTOR_FLAG_10 | ACTOR_FLAG_20,
     /* */ 0x0000,
-    /* */ OBJECT_53,
+    /* */ OBJECT_TOL_UTIWA_1,
     /* */ sizeof(T_Hanabi),
     /* */ aTHB_actor_ct,
     /* */ aTHB_actor_dt,
@@ -93,8 +94,6 @@ void aTHB_actor_move(Actor* thisx, Game_Play* game_play UNUSED) {
     (void)__opa_opened;              \
     }                                \
     while (0)
-
-extern Gfx main_utiwa1_model[];
 
 void aTHB_actor_draw(Actor* thisx, Game_Play* game_play) {
     static xyz_t D_80A200A4_jp = { 0.0f, 0.0f, 0.0f };
