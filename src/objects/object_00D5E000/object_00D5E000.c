@@ -1,7 +1,3 @@
-#include "ultra64.h"
-#include "z64math.h"
-#include "c_keyframe.h"
-
 // // obj_s_yamishop
 // #include "assets/jp/objects/object_00D5E000/obj_s_yamishop/obj_s_yamishop_v.vtx.inc.c"
 // #include "assets/jp/objects/object_00D5E000/obj_s_yamishop/obj_s_yamishop_window_model.gfx.inc.c"

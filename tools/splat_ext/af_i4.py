@@ -20,4 +20,3 @@ class N64SegAf_i4(N64Segment):
         path.parent.mkdir(parents=True, exist_ok=True)
 
         self.n64img.write(path)
-    

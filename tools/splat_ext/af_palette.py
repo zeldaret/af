@@ -38,4 +38,3 @@ class N64SegAf_palette(CommonSegCodeSubsegment):
             path.parent.mkdir(parents=True, exist_ok=True)
             with open(path, "w", newline="\n") as f:
                 f.write(self.file_text)
-    
