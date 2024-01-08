@@ -36,5 +36,6 @@ __osBbIsBb = 0x80000388; // ignore:true
 
 D_6000000 = 0x06000000; // ignore:true
 D_6000040 = 0x06000040; // ignore:true
+D_60000D0 = 0x060000D0; // ignore:true
 D_60003E8 = 0x060003E8; // ignore:true
 D_6001B68 = 0x06001B68; // ignore:true
