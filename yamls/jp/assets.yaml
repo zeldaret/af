@@ -547,14 +547,41 @@
   - [0xD5A1D0]
 
   - name: object_00D5B000
-    type: bin # code
+    dir: objects/object_00D5B000
+    type: code
     start: 0xD5B000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
-    # subsegments:
-    #   - [0xD5B000, data, assets/objects/object_00D5B000/object_00D5B000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, object_00D5B000]
+      - start: 0xD5B000
+        type: data
+        name: object_00D5B000
+        subsegments:
+          - [0xD5B000]
+          - [0xD5B008, af_palette, obj_s_house1_a_pal]
+          - [0xD5B028, af_palette, obj_s_house1_b_pal]
+          - [0xD5B048]
+          - [0xD5BA48, af_palette, obj_s_yamishop_pal]
+          - [0xD5BA68, af_palette, obj_w_yamishop_pal]
+          - [0xD5BA88]
+          - [0xD5C1E8, af_palette, obj_s_windmill_a_pal]
+          - [0xD5C208, af_palette, obj_s_windmill_b_pal]
+          - [0xD5C228, af_palette, obj_s_windmill_c_pal]
+          - [0xD5C248, af_palette, obj_s_windmill_d_pal]
+          - [0xD5C268, af_palette, obj_s_windmill_e_pal]
+          - [0xD5C288, af_palette, obj_w_windmill_a_pal]
+          - [0xD5C2A8, af_palette, obj_w_windmill_b_pal]
+          - [0xD5C2C8, af_palette, obj_w_windmill_c_pal]
+          - [0xD5C2E8, af_palette, obj_w_windmill_d_pal]
+          - [0xD5C308, af_palette, obj_w_windmill_e_pal]
+          - [0xD5C328]
+          - [0xD5C3A8, af_palette, obj_s_toudai_pal]
+          - [0xD5C3C8, af_palette, obj_w_toudai_pal]
+          - [0xD5C3E8]
   - [0xD5C3F0]
 
   - name: object_00D5D000
@@ -569,14 +596,137 @@
   - [0xD5D2E0]
 
   - name: object_00D5E000
-    type: bin # code
+    dir: objects/object_00D5E000
+    type: code
     start: 0xD5E000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
-    # subsegments:
-    #   - [0xD5E000, data, assets/objects/object_00D5E000/object_00D5E000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, object_00D5E000]
+      - start: 0xD5E000
+        type: data
+        name: object_00D5E000
+        subsegments:
+          - [0xD5E000] # padding
+          - [0xD5E008, vtx, obj_s_yamishop/obj_s_yamishop_v]
+          - [0xD5E428, gfx, obj_s_yamishop/obj_s_yamishop_window_model]
+          - [0xD5E4B8, gfx, obj_s_yamishop/obj_s_yamishop_t1_model]
+          - [0xD5E5D0, gfx, obj_s_yamishop/obj_s_yamishop_light_model]
+          - [0xD5E690, gfx, obj_s_yamishop/obj_s_yamishop_door1_model]
+          - [0xD5E7D8, gfx, obj_s_yamishop/obj_s_yamishop_door2_model]
+          - [0xD5E8C8, af_ci4, obj_s_yamishop/obj_s_yamishop_t2_tex_txt, 128, 32, 0xD5BA48, 0x20]
+          - [0xD5F0C8, af_ci4, obj_s_yamishop/obj_s_yamishop_t1_tex_txt, 128, 32, 0xD5BA48, 0x20]
+          - [0xD5F8C8, af_i4, obj_s_yamishop/obj_s_yamishop_window_tex_txt, 16, 16]
+          - [0xD5F948, ckf_je, obj_s_yamishop/cKF_je_r_obj_s_yamishop_tbl]
+          - [0xD5F990, ckf_bs, obj_s_yamishop/cKF_bs_r_obj_s_yamishop]
+          - [0xD5F998, ckf_ckcb, obj_s_yamishop/cKF_ckcb_r_obj_s_yamishop_tbl]
+          - [0xD5F9A0, ckf_kn, obj_s_yamishop/cKF_kn_obj_s_yamishop_tbl]
+          - [0xD5F9A4, ckf_c, obj_s_yamishop/cKF_c_obj_s_yamishop_tbl]
+          - [0xD5F9CC, ckf_ds, obj_s_yamishop/cKF_ds_obj_s_yamishop_tbl]
+          - [0xD5FA02] # padding
+          - [0xD5FA04, ckf_ba, obj_s_yamishop/cKF_ba_r_obj_s_yamishop]
+          - [0xD5FA18] # padding
+          - [0xD5FA28, vtx, obj_w_yamishop/obj_w_yamishop_v]
+          - [0xD5FE48, gfx, obj_w_yamishop/obj_w_yamishop_window_model]
+          - [0xD5FED8, gfx, obj_w_yamishop/obj_w_yamishop_t1_model]
+          - [0xD5FFF0, gfx, obj_w_yamishop/obj_w_yamishop_light_model]
+          - [0xD600B0, gfx, obj_w_yamishop/obj_w_yamishop_door1_model]
+          - [0xD601F8, gfx, obj_w_yamishop/obj_w_yamishop_door2_model]
+          - [0xD602E8, af_ci4, obj_w_yamishop/obj_w_yamishop_t2_tex_txt, 128, 32, 0xD5BA68, 0x20]
+          - [0xD60AE8, af_ci4, obj_w_yamishop/obj_w_yamishop_t1_tex_txt, 128, 32, 0xD5BA68, 0x20]
+          - [0xD612E8, af_i4, obj_w_yamishop/obj_w_yamishop_window_tex_txt, 16, 16]
+          - [0xD61368, ckf_je, obj_w_yamishop/cKF_je_r_obj_w_yamishop_tbl]
+          - [0xD613B0, ckf_bs, obj_w_yamishop/cKF_bs_r_obj_w_yamishop]
+          - [0xD613B8, ckf_ckcb, obj_w_yamishop/cKF_ckcb_r_obj_w_yamishop_tbl]
+          - [0xD613C0, ckf_kn, obj_w_yamishop/cKF_kn_obj_w_yamishop_tbl]
+          - [0xD613C4, ckf_c, obj_w_yamishop/cKF_c_obj_w_yamishop_tbl]
+          - [0xD613EC, ckf_ds, obj_w_yamishop/cKF_ds_obj_w_yamishop_tbl]
+          - [0xD61422] # padding
+          - [0xD61424, ckf_ba, obj_w_yamishop/cKF_ba_r_obj_w_yamishop]
+          - [0xD61438] # padding
+          - [0xD61448]
+          - [0xDDB248, vtx, obj_s_toudai/obj_s_toudai_v]
+          - [0xDDBBD8, gfx, obj_s_toudai/obj_s_toudai_mirror_model]
+          - [0xDDBCA0, gfx, obj_s_toudai/obj_s_toudai_glass_model]
+          - [0xDDBD70, gfx, obj_s_toudai/obj_s_toudai_body_model]
+          - [0xDDC188, gfx, obj_s_toudai/obj_s_toudai_light_model]
+          - [0xDDC258, gfx, obj_s_toudai/obj_s_toudai_lenz_model]
+          - [0xDDC320, gfx, obj_s_toudai/obj_s_toudai_arm_model]
+          - [0xDDC3A8, af_i8, obj_s_toudai/obj_s_toudai_light_tex_txt, 16, 16]
+          - [0xDDC4A8, af_ci4, obj_s_toudai/obj_s_toudai_arm_tex_txt, 16, 16, 0xD5C3A8, 0x20]
+          - [0xDDC528, af_ci4, obj_s_toudai/obj_s_toudai_dai_tex_txt, 32, 32, 0xD5C3A8, 0x20]
+          - [0xDDC728, af_ci4, obj_s_toudai/obj_s_toudai_dou_tex_txt, 32, 64, 0xD5C3A8, 0x20]
+          - [0xDDCB28, af_ci4, obj_s_toudai/obj_s_toudai_plate_tex_txt, 16, 16, 0xD5C3A8, 0x20]
+          - [0xDDCBA8, af_ci4, obj_s_toudai/obj_s_toudai_side_tex_txt, 16, 16, 0xD5C3A8, 0x20]
+          - [0xDDCC28, af_ci4, obj_s_toudai/obj_s_toudai_tesuri_tex_txt, 16, 16, 0xD5C3A8, 0x20]
+          - [0xDDCCA8, af_ci4, obj_s_toudai/obj_s_toudai_yane_tex_txt, 16, 16, 0xD5C3A8, 0x20]
+          - [0xDDCD28, af_palette, obj_s_toudai/obj_s_toudai_glass_tex_pic_ci4_pal]
+          - [0xDDCD48, af_ci4, obj_s_toudai/obj_s_toudai_glass_tex_pic_ci4, 16, 16, 0xDDCD28, 0x20]
+          - [0xDDCDC8, ckf_je, obj_s_toudai/cKF_je_r_obj_s_toudai_tbl]
+          - [0xDDCE1C, ckf_bs, obj_s_toudai/cKF_bs_r_obj_s_toudai]
+          - [0xDDCE24, ckf_ckcb, obj_s_toudai/cKF_ckcb_r_obj_s_toudai_tbl]
+          - [0xDDCE2C, ckf_kn, obj_s_toudai/cKF_kn_obj_s_toudai_tbl]
+          - [0xDDCE30, ckf_c, obj_s_toudai/cKF_c_obj_s_toudai_tbl]
+          - [0xDDCE60, ckf_ds, obj_s_toudai/cKF_ds_obj_s_toudai_tbl]
+          - [0xDDCE6C, ckf_ba, obj_s_toudai/cKF_ba_r_obj_s_toudai]
+          - [0xDDCE80] # padding
+          - [0xDDCE90, vtx, obj_w_toudai/obj_w_toudai_v]
+          - [0xDDD7E0, gfx, obj_w_toudai/obj_w_toudai_mirror_model]
+          - [0xDDD8A8, gfx, obj_w_toudai/obj_w_toudai_glass_model]
+          - [0xDDD978, gfx, obj_w_toudai/obj_w_toudai_body_model]
+          - [0xDDDD90, gfx, obj_w_toudai/obj_w_toudai_light_model]
+          - [0xDDDE60, gfx, obj_w_toudai/obj_w_toudai_lenz_model]
+          - [0xDDDF28, gfx, obj_w_toudai/obj_w_toudai_arm_model]
+          - [0xDDDFB0, af_i8, obj_w_toudai/obj_w_toudai_light_tex_txt, 16, 16]
+          - [0xDDE0B0, af_ci4, obj_w_toudai/obj_w_toudai_arm_tex_txt, 16, 16, 0xD5C3C8, 0x20]
+          - [0xDDE130, af_ci4, obj_w_toudai/obj_w_toudai_dai_tex_txt, 32, 32, 0xD5C3C8, 0x20]
+          - [0xDDE330, af_ci4, obj_w_toudai/obj_w_toudai_dou_tex_txt, 32, 64, 0xD5C3C8, 0x20]
+          - [0xDDE730, af_ci4, obj_w_toudai/obj_w_toudai_plate_tex_txt, 16, 16, 0xD5C3C8, 0x20]
+          - [0xDDE7B0, af_ci4, obj_w_toudai/obj_w_toudai_side_tex_txt, 16, 16, 0xD5C3C8, 0x20]
+          - [0xDDE830, af_ci4, obj_w_toudai/obj_w_toudai_tesuri_tex_txt, 16, 16, 0xD5C3C8, 0x20]
+          - [0xDDE8B0, af_ci4, obj_w_toudai/obj_w_toudai_yane_tex_txt, 16, 16, 0xD5C3C8, 0x20]
+          - [0xDDE930, af_palette, obj_w_toudai/obj_w_toudai_glass_tex_pic_ci4_pal]
+          - [0xDDE950, af_ci4, obj_w_toudai/obj_w_toudai_glass_tex_pic_ci4, 16, 16, 0xDDE930, 0x20]
+          - [0xDDE9D0, ckf_je, obj_w_toudai/cKF_je_r_obj_w_toudai_tbl]
+          - [0xDDEA24, ckf_bs, obj_w_toudai/cKF_bs_r_obj_w_toudai]
+          - [0xDDEA2C, ckf_ckcb, obj_w_toudai/cKF_ckcb_r_obj_w_toudai_tbl]
+          - [0xDDEA34, ckf_kn, obj_w_toudai/cKF_kn_obj_w_toudai_tbl]
+          - [0xDDEA38, ckf_c, obj_w_toudai/cKF_c_obj_w_toudai_tbl]
+          - [0xDDEA68, ckf_ds, obj_w_toudai/cKF_ds_obj_w_toudai_tbl]
+          - [0xDDEA74, ckf_ba, obj_w_toudai/cKF_ba_r_obj_w_toudai]
+          - [0xDDEA88] # padding
+          - [0xDDEA98]
+          - [0xDEC838, vtx, obj_s_windmill/obj_s_windmill_v]
+          - [0xDECD98, gfx, obj_s_windmill/obj_s_windmill_unk_model_1]
+          - [0xDECE60, gfx, obj_s_windmill/obj_s_windmill_unk_model_2]
+          - [0xDECF10, gfx, obj_s_windmill/obj_s_windmill_unk_model_3]
+          - [0xDECFE8, gfx, obj_s_windmill/obj_s_windmill_unk_model_4]
+          - [0xDED0D8, af_ci4, obj_s_windmill/obj_s_windmill_unk_tex_1, 128, 32, 0xD5C1E8, 0x20]
+          - [0xDED8D8, af_ci4, obj_s_windmill/obj_s_windmill_unk_tex_2, 128, 32, 0xD5C1E8, 0x20]
+          - [0xDEE0D8, af_ci4, obj_s_windmill/obj_s_windmill_unk_tex_3, 128, 32, 0xD5C1E8, 0x20]
+          - [0xDEE8D8, ckf_ckcb, obj_s_windmill/cKF_ckcb_r_obj_s_windmill_tbl]
+          - [0xDEE8E0, ckf_c, obj_s_windmill/cKF_c_obj_s_windmill_tbl]
+          - [0xDEE904, ckf_ba, obj_s_windmill/cKF_ba_r_obj_s_windmill]
+          - [0xDEE918, ckf_je, obj_s_windmill/cKF_je_r_obj_s_windmill]
+          - [0xDEE954, ckf_bs, obj_s_windmill/cKF_bs_r_obj_s_windmill]
+          - [0xDEE95C] # padding
+          - [0xDEE970, vtx, obj_w_windmill/obj_w_windmill_v]
+          - [0xDEEEC0, gfx, obj_w_windmill/obj_w_windmill_unk_model_1]
+          - [0xDEEF88, gfx, obj_w_windmill/obj_w_windmill_unk_model_2]
+          - [0xDEF038, gfx, obj_w_windmill/obj_w_windmill_unk_model_3]
+          - [0xDEF110, gfx, obj_w_windmill/obj_w_windmill_unk_model_4]
+          - [0xDEF1F8, af_ci4, obj_w_windmill/obj_w_windmill_unk_tex_1, 128, 32, 0xD5C288, 0x20]
+          - [0xDEF9F8, af_ci4, obj_w_windmill/obj_w_windmill_unk_tex_2, 128, 32, 0xD5C288, 0x20]
+          - [0xDF01F8, af_ci4, obj_w_windmill/obj_w_windmill_unk_tex_3, 128, 32, 0xD5C288, 0x20]
+          - [0xDF09F8, ckf_ckcb, obj_w_windmill/cKF_ckcb_r_obj_w_windmill_tbl]
+          - [0xDF0A00, ckf_c, obj_w_windmill/cKF_c_obj_w_windmill_tbl]
+          - [0xDF0A24, ckf_ba, obj_w_windmill/cKF_ba_r_obj_w_windmill]
+          - [0xDF0A38, ckf_je, obj_w_windmill/cKF_je_r_obj_w_windmill]
+          - [0xDF0A74, ckf_bs, obj_w_windmill/cKF_bs_r_obj_w_windmill]
+          - [0xDF0A7C] # padding
   - [0xDF3480]
 
   - name: object_00DF4000
@@ -4468,15 +4618,26 @@
     #   - [0x1127000, data, assets/objects/object_01127000/object_01127000]
   - [0x1127A40]
 
-  - name: object_01128000
-    type: bin # code
+  - name: tol_utiwa_1
+    dir: objects/tol_utiwa_1
+    type: code
     start: 0x1128000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x1128000, data, assets/objects/object_01128000/object_01128000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, tol_utiwa_1]
+      - start: 0x1128000
+        type: .data
+        name: tol_utiwa_1
+        subsegments:
+          - [0x1128000, vtx, tol_utiwa_1_v]
+          - [0x1128080, gfx, main_utiwa1_model]
+          - [0x1128188, af_palette, tol_utiwa1_pal]
+          - [0x11281A8, af_ci4, tol_utiwa_1_main1_tex_txt, 32, 32, 0x1128188, 0x20]
+          - [0x11283A8, af_ci4, tol_utiwa_1_main2_tex_txt, 32, 32, 0x1128188, 0x20]
   - [0x11285B0]
 
   - name: object_01129000
@@ -4534,15 +4695,25 @@
     #   - [0x112D000, data, assets/objects/object_0112D000/object_0112D000]
   - [0x112E1E0]
 
-  - name: object_0112F000
-    type: bin # code
+  - name: tol_cracker_1
+    dir: objects/tol_cracker_1
+    type: code
     start: 0x112F000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x112F000, data, assets/objects/object_0112F000/object_0112F000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, tol_cracker_1]
+      - start: 0x112F000
+        type: .data
+        name: tol_cracker_1
+        subsegments:
+          - [0x112F000, vtx, tol_cracker_1_v]
+          - [0x112F1C0, gfx, tol_cracker_1T_model]
+          - [0x112F280, af_palette, tol_cracker_1_pal]
+          - [0x112F2A0, af_ci4, tol_cracker_1_tex, 64, 16, 0x112F280, 0x20]
   - [0x112F4A0]
 
   - name: object_01130000

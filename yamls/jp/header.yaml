@@ -19,13 +19,14 @@ options:
     - linker_scripts/jp/symbol_addrs_code.txt
     - linker_scripts/jp/symbol_addrs_buffers.txt
     - linker_scripts/jp/symbol_addrs_overlays.txt
+    - linker_scripts/jp/symbol_addrs_assets.txt
     - linker_scripts/jp/ignored_addresses.txt
   reloc_addrs_path:
     - relocs/reloc_addrs.jp.txt
 
   asm_path: asm/jp
   src_path: src
-  asset_path: bin/jp
+  asset_path: assets/jp
 
   build_path: build
 
