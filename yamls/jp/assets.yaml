@@ -4328,27 +4328,55 @@
           - [0x1109930, af_ci4, tol_umb_03_tuka_tex_txt, 32, 32, 0x1109510, 0x20]
   - [0x1109B30]
 
-  - name: object_0110A000
-    type: bin # code
+  - name: tol_umb_04
+    dir: objects/tol_umb_04
+    type: code
     start: 0x110A000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x110A000, data, assets/objects/object_0110A000/object_0110A000]
+    subsegments:
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, tol_umb_04]
+      - start: 0x110A000
+        type: .data
+        name: tol_umb_04
+        subsegments:
+          - [0x110A000, vtx, tol_umb_04_v]
+          - [0x110A380, gfx, kasa_umb04_model]
+          - [0x110A4C0, gfx, e_umb04_model]
+          - [0x110A580, af_palette, tol_umb_04_pal]
+          - [0x110A5A0, af_ci4, tol_umb_04_kasa1_tex_txt, 16, 32, 0x110A580, 0x20]
+          - [0x110A6A0, af_ci4, tol_umb_04_kasa2_tex_txt, 16, 32, 0x110A580, 0x20]
+          - [0x110A7A0, af_ci4, tol_umb_04_tuka_tex_txt, 32, 32, 0x110A580, 0x20]
   - [0x110A9A0]
 
-  - name: object_0110B000
-    type: bin # code
+  - name: tol_umb_05
+    dir: objects/tol_umb_05
+    type: code
     start: 0x110B000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x110B000, data, assets/objects/object_0110B000/object_0110B000]
+    subsegments:
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, tol_umb_05]
+      - start: 0x110B000
+        type: .data
+        name: tol_umb_05
+        subsegments:
+          - [0x110B000, vtx, tol_umb_05_v]
+          - [0x110B380, gfx, kasa_umb05_model]
+          - [0x110B448, gfx, e_umb05_model]
+          - [0x110B508, af_palette, tol_umb_05_pal]
+          - [0x110B528, af_ci4, tol_umb_05_kasa_tex_txt, 32, 32, 0x110B508, 0x20]
+          - [0x110B728, af_ci4, tol_umb_05_tuka_tex_txt, 32, 32, 0x110B508, 0x20]
   - [0x110B930]
+
 
   - name: object_0110C000
     type: bin # code

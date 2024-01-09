@@ -44,7 +44,7 @@ s32 aTOL_check_data_bank(ObjectExchangeBank* objectExchangeBank, ToolName toolNa
                          s16 objectIndex) {
     s32 ret = -1;
 
-    if ((toolActor->actor.part == ACTOR_PART_PLAYER) && (toolName <= TOOL_UMBRELLA31) &&
+    if ((toolActor->actor.part == ACTOR_PART_PLAYER) && (toolName <= TOOL_UMBRELLA32) &&
         (common_data.toolClip->umbrellaObjectIndex != -1)) {
         ObjectStatus* objectStatus = &objectExchangeBank->status[common_data.toolClip->umbrellaObjectIndex];
         Actor* temp_a0;
@@ -95,14 +95,17 @@ ToolActor* aTOL_birth_proc(ToolName toolName, s32 arg1, ToolActor* toolActor, Ga
         ACTOR_T_TAMA,     ACTOR_T_TAMA,
     };
     static s16 objectTable[] = {
-        OBJECT_TOL_UMB_01,  OBJECT_TOL_UMB_02,  OBJECT_TOL_UMB_03,  OBJECT_73,          OBJECT_74,          OBJECT_75,
-        OBJECT_76,  OBJECT_77,  OBJECT_78,  OBJECT_79,          OBJECT_80,          OBJECT_81,
-        OBJECT_82,  OBJECT_83,  OBJECT_84,  OBJECT_55,          OBJECT_56,          OBJECT_57,
-        OBJECT_58,  OBJECT_59,  OBJECT_60,  OBJECT_61,          OBJECT_62,          OBJECT_63,
-        OBJECT_64,  OBJECT_65,  OBJECT_66,  OBJECT_67,          OBJECT_68,          OBJECT_69,
-        OBJECT_70,  OBJECT_71,  OBJECT_45,  OBJECT_TOL_UTIWA_1, OBJECT_TOL_UTIWA_1, OBJECT_TOL_CRACKER_1,
-        OBJECT_16,  OBJECT_6,   OBJECT_371, OBJECT_370,         OBJECT_391,         OBJECT_391,
-        OBJECT_391, OBJECT_391,
+        OBJECT_TOL_UMB_01, OBJECT_TOL_UMB_02,  OBJECT_TOL_UMB_03,  OBJECT_TOL_UMB_04,
+        OBJECT_TOL_UMB_05,         OBJECT_75,          OBJECT_76,          OBJECT_77,
+        OBJECT_78,         OBJECT_79,          OBJECT_80,          OBJECT_81,
+        OBJECT_82,         OBJECT_83,          OBJECT_84,          OBJECT_55,
+        OBJECT_56,         OBJECT_57,          OBJECT_58,          OBJECT_59,
+        OBJECT_60,         OBJECT_61,          OBJECT_62,          OBJECT_63,
+        OBJECT_64,         OBJECT_65,          OBJECT_66,          OBJECT_67,
+        OBJECT_68,         OBJECT_69,          OBJECT_70,          OBJECT_71,
+        OBJECT_45,         OBJECT_TOL_UTIWA_1, OBJECT_TOL_UTIWA_1, OBJECT_TOL_CRACKER_1,
+        OBJECT_16,         OBJECT_6,           OBJECT_371,         OBJECT_370,
+        OBJECT_391,        OBJECT_391,         OBJECT_391,         OBJECT_391,
     };
     s32 pad[3] UNUSED;
     ToolActor* ret = NULL;

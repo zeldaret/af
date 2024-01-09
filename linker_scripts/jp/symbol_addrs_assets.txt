@@ -149,6 +149,21 @@ tol_umb_03_pal = 0x6000510; // segment:tol_umb_03 rom:0x1109510
 tol_umb_03_kasa1_tex_txt = 0x6000530; // segment:tol_umb_03 rom:0x1109530
 tol_umb_03_tuka_tex_txt = 0x6000930; // segment:tol_umb_03 rom:0x1109930
 
+tol_umb_04_v = 0x6000000; // segment:tol_umb_04 rom:0x110A000 size:0x380
+kasa_umb04_model = 0x6000380; // segment:tol_umb_04 rom:0x110A380
+e_umb04_model = 0x60004C0; // segment:tol_umb_04 rom:0x110A4C0
+tol_umb_04_pal = 0x6000580; // segment:tol_umb_04 rom:0x110A580
+tol_umb_04_kasa1_tex_txt = 0x60005A0; // segment:tol_umb_04 rom:0x110A5A0
+tol_umb_04_kasa2_tex_txt = 0x60006A0; // segment:tol_umb_04 rom:0x110A6A0
+tol_umb_04_tuka_tex_txt = 0x60007A0; // segment:tol_umb_04 rom:0x110A7A0
+
+tol_umb_05_v = 0x6000000; // segment:tol_umb_05 rom:0x110B000 size:0x380
+kasa_umb05_model = 0x6000380; // segment:tol_umb_05 rom:0x110B380
+e_umb05_model = 0x6000448; // segment:tol_umb_05 rom:0x110B448
+tol_umb_05_pal = 0x6000508; // segment:tol_umb_05 rom:0x110B508
+tol_umb_05_kasa_tex_txt = 0x6000528; // segment:tol_umb_05 rom:0x110B528
+tol_umb_05_tuka_tex_txt = 0x6000728; // segment:tol_umb_05 rom:0x110B728
+
 tol_utiwa_1_v = 0x6000000; // segment:tol_utiwa_1 rom:0x1128000 size:0x80
 main_utiwa1_model = 0x6000080; // segment:tol_utiwa_1 rom:0x1128080
 tol_utiwa1_pal = 0x6000188; // segment:tol_utiwa_1 rom:0x1128188
