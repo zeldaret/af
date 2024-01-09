@@ -4377,39 +4377,80 @@
           - [0x110B728, af_ci4, tol_umb_05_tuka_tex_txt, 32, 32, 0x110B508, 0x20]
   - [0x110B930]
 
-
-  - name: object_0110C000
-    type: bin # code
+  - name: tol_umb_06
+    dir: objects/tol_umb_06
+    type: code
     start: 0x110C000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x110C000, data, assets/objects/object_0110C000/object_0110C000]
+    subsegments:
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, tol_umb_06]
+      - start: 0x110C000
+        type: .data
+        name: tol_umb_06
+        subsegments:
+          - [0x110C000, vtx, tol_umb_06_v]
+          - [0x110C5E0, gfx, kasa_umb06_model]
+          - [0x110C6D0, gfx, e_umb06_model]
+          - [0x110C790, af_palette, tol_umb_06_pal]
+          - [0x110C7B0, af_ci4, tol_umb_06_kasa1_tex_txt, 32, 32, 0x110C790, 0x20]
+          - [0x110C9B0, af_ci4, tol_umb_06_tuka_tex_txt, 32, 32, 0x110C790, 0x20]
   - [0x110CBB0]
 
-  - name: object_0110D000
-    type: bin # code
+  - name: tol_umb_07
+    dir: objects/tol_umb_07
+    type: code
     start: 0x110D000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x110D000, data, assets/objects/object_0110D000/object_0110D000]
+    subsegments:
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, tol_umb_07]
+      - start: 0x110D000
+        type: .data
+        name: tol_umb_07
+        subsegments:
+          - [0x110D000, vtx, tol_umb_07_v]
+          - [0x110D260, gfx, kasa_umb07_model]
+          - [0x110D380, gfx, e_umb07_model]
+          - [0x110D440, af_palette, tol_umb07_pal]
+          - [0x110D460, af_ci4, tol_umb07_kasa2_tex_txt, 16, 32, 0x110D440, 0x20]
+          - [0x110D560, af_ci4, tol_umb07_kasa1_tex_txt, 32, 64, 0x110D440, 0x20]
+          - [0x110D960, af_ci4, tol_umb07_tuka_tex_txt, 32, 32, 0x110D440, 0x20]
   - [0x110DB60]
 
-  - name: object_0110E000
-    type: bin # code
+  - name: tol_umb_08
+    dir: objects/tol_umb_08
+    type: code
     start: 0x110E000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x110E000, data, assets/objects/object_0110E000/object_0110E000]
+    subsegments:
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, tol_umb_08]
+      - start: 0x110E000
+        type: .data
+        name: tol_umb_08
+        subsegments:
+          - [0x110E000, vtx, tol_umb_08_v]
+          - [0x110E390, gfx, kasa_umb08_model]
+          - [0x110E458, gfx, e_umb08_model]
+          - [0x110E570, af_palette, tol_umb08_pal]
+          - [0x110E590, af_ci4, tol_umb08_kasa1_tex_txt, 32, 32, 0x110E570, 0x20]
+          - [0x110E790, af_ci4, tol_umb08_kasa2_tex_txt, 8, 16, 0x110E570, 0x20]
+          - [0x110E7D0, af_ci4, tol_umb08_tuka_tex_txt, 32, 32, 0x110E570, 0x20]
   - [0x110E9D0]
+
 
   - name: object_0110F000
     type: bin # code
