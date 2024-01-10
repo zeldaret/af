@@ -97,8 +97,8 @@ ToolActor* aTOL_birth_proc(ToolName toolName, s32 arg1, ToolActor* toolActor, Ga
     static s16 objectTable[] = {
         OBJECT_TOL_UMB_01, OBJECT_TOL_UMB_02,  OBJECT_TOL_UMB_03,  OBJECT_TOL_UMB_04,
         OBJECT_TOL_UMB_05, OBJECT_TOL_UMB_06,  OBJECT_TOL_UMB_07,  OBJECT_TOL_UMB_08,
-        OBJECT_TOL_UMB_09,         OBJECT_79,          OBJECT_80,          OBJECT_81,
-        OBJECT_82,         OBJECT_83,          OBJECT_84,          OBJECT_55,
+        OBJECT_TOL_UMB_09, OBJECT_TOL_UMB_10,  OBJECT_TOL_UMB_11,  OBJECT_TOL_UMB_12,
+        OBJECT_TOL_UMB_13, OBJECT_TOL_UMB_14,  OBJECT_TOL_UMB_15,  OBJECT_TOL_UMB_16,
         OBJECT_56,         OBJECT_57,          OBJECT_58,          OBJECT_59,
         OBJECT_60,         OBJECT_61,          OBJECT_62,          OBJECT_63,
         OBJECT_64,         OBJECT_65,          OBJECT_66,          OBJECT_67,
