@@ -256,6 +256,43 @@ tol_umb_17_pal = 0x6000680; // segment:tol_umb_17 rom:0x1117680
 tol_umb_17_kasa_tex_txt = 0x60006A0; // segment:tol_umb_17 rom:0x11176A0
 tol_umb_17_tuka_tex_txt = 0x60008A0; // segment:tol_umb_17 rom:0x11178A0
 
+tol_umb_18_v = 0x6000000; // segment:tol_umb_18 rom:0x1118000 size:0x280
+kasa_umb18_model = 0x6000280; // segment:tol_umb_18 rom:0x1118280
+e_umb18_model = 0x6000348; // segment:tol_umb_18 rom:0x1118348
+tol_umb18_pal = 0x6000460; // segment:tol_umb_18 rom:0x1118460
+tol_umb18_kasa1_tex_txt = 0x6000480; // segment:tol_umb_18 rom:0x1118480
+tol_umb18_kasa2_tex_txt = 0x6000580; // segment:tol_umb_18 rom:0x1118580
+tol_umb18_tuka_tex_txt = 0x6000600; // segment:tol_umb_18 rom:0x1118600
+
+tol_umb_19_v = 0x6000000; // segment:tol_umb_19 rom:0x1119000 size:0x400
+kasa_umb19_model = 0x6000400; // segment:tol_umb_19 rom:0x1119400
+e_umb19_model = 0x60004E0; // segment:tol_umb_19 rom:0x11194E0
+tol_umb_19_pal = 0x6000610; // segment:tol_umb_19 rom:0x1119610
+tol_umb_19_kasa_tex_txt = 0x6000630; // segment:tol_umb_19 rom:0x1119630
+tol_umb_19_tuka_tex_txt = 0x6000830; // segment:tol_umb_19 rom:0x1119830
+tol_umb_19_e_tex_txt = 0x6000A30; // segment:tol_umb_19 rom:0x1119A30
+
+tol_umb_20_v = 0x6000000; // segment:tol_umb_20 rom:0x111A000 size:0x280
+kasa_umb20_model = 0x6000280; // segment:tol_umb_20 rom:0x111A280
+e_umb20_model = 0x6000338; // segment:tol_umb_20 rom:0x111A338
+tol_umb_20_pal = 0x6000408; // segment:tol_umb_20 rom:0x111A408
+tol_umb_20_kasa_tex_txt = 0x6000428; // segment:tol_umb_20 rom:0x111A428
+tol_umb_20_e_tex_txt = 0x6000828; // segment:tol_umb_20 rom:0x111A828
+
+tol_umb_21_v = 0x6000000; // segment:tol_umb_21 rom:0x111B000 size:0x380
+kasa_umb21_model = 0x6000380; // segment:tol_umb_21 rom:0x111B380
+e_umb21_model = 0x6000468; // segment:tol_umb_21 rom:0x111B468
+tol_umb_21_pal = 0x6000520; // segment:tol_umb_21 rom:0x111B520
+tol_umb_21_kasa_tex_txt = 0x6000540; // segment:tol_umb_21 rom:0x111B540
+tol_umb_21_tuka_tex_txt = 0x6000940; // segment:tol_umb_21 rom:0x111B940
+
+tol_umb_22_v = 0x6000000; // segment:tol_umb_22 rom:0x111C000 size:0x480
+kasa_umb22_model = 0x6000480; // segment:tol_umb_22 rom:0x111C480
+e_umb22_model = 0x6000580; // segment:tol_umb_22 rom:0x111C580
+tol_umb_22_pal = 0x6000620; // segment:tol_umb_22 rom:0x111C620
+tol_umb_22_kasa_tex_txt = 0x6000640; // segment:tol_umb_22 rom:0x111C640
+tol_umb_22_e_tex_txt = 0x6000840; // segment:tol_umb_22 rom:0x111C840
+
 tol_utiwa_1_v = 0x6000000; // segment:tol_utiwa_1 rom:0x1128000 size:0x80
 main_utiwa1_model = 0x6000080; // segment:tol_utiwa_1 rom:0x1128080
 tol_utiwa1_pal = 0x6000188; // segment:tol_utiwa_1 rom:0x1128188
