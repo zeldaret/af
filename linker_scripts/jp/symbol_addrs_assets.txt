@@ -293,6 +293,14 @@ tol_umb_22_pal = 0x6000620; // segment:tol_umb_22 rom:0x111C620
 tol_umb_22_kasa_tex_txt = 0x6000640; // segment:tol_umb_22 rom:0x111C640
 tol_umb_22_e_tex_txt = 0x6000840; // segment:tol_umb_22 rom:0x111C840
 
+tol_umb_23_v = 0x6000000; // segment:tol_umb_23 rom:0x111D000 size:0x360
+kasa_umb23_model = 0x6000360; // segment:tol_umb_23 rom:0x111D360
+e_umb23_model = 0x6000428; // segment:tol_umb_23 rom:0x111D428
+tol_umb_23_pal = 0x6000528; // segment:tol_umb_23 rom:0x111D528
+tol_umb_23_kasa_tex_txt = 0x6000548; // segment:tol_umb_23 rom:0x111D548
+tol_umb_23_tuka_tex_txt = 0x6000948; // segment:tol_umb_23 rom:0x111D948
+tol_umb_23_e_tex_txt = 0x6000B48; // segment:tol_umb_23 rom:0x111DB48
+
 tol_utiwa_1_v = 0x6000000; // segment:tol_utiwa_1 rom:0x1128000 size:0x80
 main_utiwa1_model = 0x6000080; // segment:tol_utiwa_1 rom:0x1128080
 tol_utiwa1_pal = 0x6000188; // segment:tol_utiwa_1 rom:0x1128188
