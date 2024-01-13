@@ -4263,7 +4263,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_01]
@@ -4287,7 +4286,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_02]
@@ -4312,7 +4310,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_03]
@@ -4336,7 +4333,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_04]
@@ -4361,7 +4357,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_05]
@@ -4385,7 +4380,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_06]
@@ -4409,7 +4403,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_07]
@@ -4434,7 +4427,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_08]
@@ -4460,7 +4452,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_09]
@@ -4485,7 +4476,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_10]
@@ -4510,7 +4500,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_11]
@@ -4535,7 +4524,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_12]
@@ -4560,7 +4548,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_13]
@@ -4585,7 +4572,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_14]
@@ -4609,7 +4595,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_15]
@@ -4634,7 +4619,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_16]
@@ -4658,7 +4642,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_17]
@@ -4682,7 +4665,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_18]
@@ -4707,7 +4689,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_19]
@@ -4732,7 +4713,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_20]
@@ -4756,7 +4736,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_21]
@@ -4780,7 +4759,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_22]
@@ -4804,7 +4782,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_23]
@@ -4829,7 +4806,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_24]
@@ -4854,7 +4830,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_25]
@@ -4878,7 +4853,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_26]
@@ -4903,7 +4877,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_27]
@@ -4928,7 +4901,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_28]
@@ -4952,7 +4924,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_29]
@@ -4976,7 +4947,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_30]
@@ -5000,7 +4970,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_31]
@@ -5025,7 +4994,6 @@
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    subsegments:
     symbol_name_format: $VRAM_$ROM
     subsegments:
       - [auto, c, tol_umb_32]
