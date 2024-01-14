@@ -53,9 +53,9 @@ $(IDO_7_1): | $(IDO_7_1_DIR)
 	$(RM) ido-7.1-recomp-$(DETECTED_OS).tar.gz
 
 $(PIGMENT64): | $(PIGMENT64_DIR)
-	wget $(WGET_FLAGS) https://github.com/decompals/pigment64/releases/download/0.3.0/pigment64_0.3.0_$(PIGMENT64_OS).tar.gz
-	tar xf pigment64_0.3.0_$(PIGMENT64_OS).tar.gz -C $(PIGMENT64_DIR)
-	$(RM) pigment64_0.3.0_$(PIGMENT64_OS).tar.gz
+	wget $(WGET_FLAGS) https://github.com/decompals/pigment64/releases/download/0.4.3/pigment64_0.4.3_$(PIGMENT64_OS).tar.gz
+	tar xf pigment64_0.4.3_$(PIGMENT64_OS).tar.gz -C $(PIGMENT64_DIR)
+	$(RM) pigment64_0.4.3_$(PIGMENT64_OS).tar.gz
 
 $(IDO_5_3_DIR):
 	mkdir -p $@
