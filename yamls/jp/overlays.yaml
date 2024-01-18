@@ -1205,8 +1205,8 @@
     bss_size: 0x40
     subsegments:
       - [0x82B3C0, c, overlays/actors/ovl_Sample/ac_sample]
-      - [0x82BA80, data, overlays/actors/ovl_Sample/ac_sample]
-      - { start: 0x82BAE0, type: bss, vram: 0x80934660, name: overlays/actors/ovl_Sample/ac_sample }
+      - [0x82BA80, .data, overlays/actors/ovl_Sample/ac_sample]
+      - { start: 0x82BAE0, type: .bss, vram: 0x80934660, name: overlays/actors/ovl_Sample/ac_sample }
   - name: ovl_Sample_reloc
     type: code
     start: 0x82BAE0
