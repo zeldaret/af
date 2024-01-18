@@ -408,7 +408,7 @@ void mNpc_SetAnimalLastTalk(Animal_c* animal) {
     Anmmem_c* memory = NULL;
     s32 memoryIdx;
 
-    if ((&common_data.privateInfo->playerId != NULL) && (animal != NULL)) {
+    if (((uintptr_t)&common_data.privateInfo->playerId != NULL) && (animal != NULL)) {
         priv = common_data.privateInfo;
         memoryIdx = mNpc_GetAnimalMemoryIdx(&priv->playerId, animal->memories, ANIMAL_MEMORY_NUM);
 

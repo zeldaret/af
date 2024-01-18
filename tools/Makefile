@@ -31,7 +31,8 @@ PIGMENT64     := $(PIGMENT64_DIR)/pigment64
 
 all: $(IDO_5_3) $(IDO_7_1) $(PIGMENT64)
 	$(MAKE) -C fado
-	$(MAKE) -C z64compress
+# Some gcc versions give a warning about the -flto flag with no parameters. So we override the CFLAGS as a workaround
+	$(MAKE) -C z64compress CFLAGS="-Os -flto=auto"
 
 clean:
 	$(RM) -rf $(IDO_5_3_DIR) $(IDO_7_1_DIR)
