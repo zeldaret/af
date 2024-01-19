@@ -145,7 +145,7 @@ void Ac_Sample_Actor_ct(Actor* thisx, Game_Play* play) {
     Sample* this = (Sample*)thisx;
 
     info = &this->skeletonInfo;
-    cKF_SkeletonInfo_R_ct(info, &cKF_bs_r_hnw, &cKF_ba_r_hnw_move, this->workArea, this->morphArea);
+    cKF_SkeletonInfo_R_ct(info, &cKF_bs_r_hnw, &cKF_ba_r_hnw_move, this->jointTable, this->morphTable);
     cKF_SkeletonInfo_R_init_standard_stop(info, &cKF_ba_r_hnw_move, NULL);
     Ac_Sample_ct_forCorect(thisx, play);
 
