@@ -19,12 +19,14 @@ extern BaseAnimationR cKF_ba_r_hnw_move;
 extern u8 hnw_tmem_txt[];
 extern u16 hnw_face[];
 
+ClObjPipe_Init Ac_Sample_OcInfoData_forStand = {
+    { OC1_1 | OC1_TYPE_8 | OC1_TYPE_10 | OC1_TYPE_20, OC2_TYPE_20, COLSHAPE_PIPE },
+    { ELEM_FLAG_1 },
+    { { 0x1E, 0x3C, 0, { 0, 0, 0 } } },
+};
+
 void Ac_Sample_ct_forCorect(Actor* thisx, Game_Play* play) {
-    static ClObjPipe_Init Ac_Sample_OcInfoData_forStand = {
-        { OC1_1 | OC1_TYPE_8 | OC1_TYPE_10 | OC1_TYPE_20, OC2_TYPE_20, COLSHAPE_PIPE },
-        { ELEM_FLAG_1 },
-        { { 0x1E, 0x3C, 0, { 0, 0, 0 } } },
-    };
+
     Sample* this = (Sample*)thisx;
 
     ClObjPipe_ct(play, &this->stand);
@@ -32,9 +34,7 @@ void Ac_Sample_ct_forCorect(Actor* thisx, Game_Play* play) {
 }
 
 void Ac_Sample_Excute_Corect(Actor* thisx, Game_Play* play) {
-    UNUSED s32 pad;
-    UNUSED s32 pad2;
-    UNUSED s32 pad3;
+    UNUSED s32 pad[3];
     Sample* this = (Sample*)thisx;
     ClObjPipe* stand = &this->stand;
 
@@ -58,7 +58,7 @@ void Ac_Sample_Animation_Base(Sample* this) {
     cKF_SkeletonInfo_R_play(&this->skeletonInfo);
 }
 
-char str_mail[64];
+char Ac_Sample_str_mail[64];
 
 void Ac_Sample_Actor_wait_demo_ct(UNUSED Actor* thisx) {
     static char str0[] = {
@@ -75,7 +75,7 @@ void Ac_Sample_Actor_wait_demo_ct(UNUSED Actor* thisx) {
     mMsg_Set_item_str(mMsg_Get_base_window_p(), 4, str9, sizeof(str9));
     mMsg_Set_free_str(mMsg_Get_base_window_p(), 0, str0, sizeof(str0));
     mMsg_Set_free_str(mMsg_Get_base_window_p(), 9, str9, sizeof(str9));
-    mMsg_Set_mail_str(mMsg_Get_base_window_p(), 0, str_mail, sizeof(str_mail));
+    mMsg_Set_mail_str(mMsg_Get_base_window_p(), 0, Ac_Sample_str_mail, sizeof(Ac_Sample_str_mail));
 }
 
 void func_80934104_jp(Actor* thisx, Game_Play* play) {
@@ -140,8 +140,7 @@ void Ac_Sample_Actor_main(Actor* thisx, Game_Play* play) {
 
 void Ac_Sample_Actor_ct(Actor* thisx, Game_Play* play) {
     SkeletonInfoR* info;
-    UNUSED s32 pad;
-    UNUSED s32 pad2;
+    UNUSED s32 pad[2];
     Sample* this = (Sample*)thisx;
 
     info = &this->skeletonInfo;
