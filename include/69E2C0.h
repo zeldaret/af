@@ -88,8 +88,8 @@ void mDemo_Set_ListenAble(void);
 // void func_8007D0B0_jp();
 // void func_8007D0C4_jp();
 // void func_8007D0D8_jp();
-// void func_8007D0EC_jp();
-// void func_8007D100_jp();
+s32 mDemo_Check_ListenAble(void);
+s32 mDemo_Check_DiffAngle_forTalk(s16 angle);
 // void func_8007D128_jp();
 
 #endif

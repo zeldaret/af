@@ -1052,10 +1052,10 @@ D_C000000 = 0x0C000000;
 
 // ovl_Sample
 
-D_60018AC = 0x060018AC;
-D_60019B8 = 0x060019B8;
-D_60019D0 = 0x060019D0;
-D_60019F0 = 0x060019F0;
+cKF_bs_r_hnw = 0x060018AC;
+cKF_ba_r_hnw_move = 0x060019B8;
+hnw_face = 0x060019D0;
+hnw_tmem_txt = 0x060019F0;
 
 // ovl_My_Room
 

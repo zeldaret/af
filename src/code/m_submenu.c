@@ -489,7 +489,7 @@ void mSM_move_Play(Submenu* submenu) {
 void mSM_move_End(Submenu* submenu) {
     UNUSED s32 pad;
     Game_Play* sp28;
-    UNK_TYPE sp24;
+    UNK_PTR sp24;
     UNUSED s32 sp20[1];
 
     sp28 = (Game_Play*)gamePT;
