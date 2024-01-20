@@ -368,6 +368,27 @@ obj_shop_umb_32_pal = 0x6000508; // segment:tol_umb_32 rom:0x1126508
 obj_shop_umb_32_kasa1_tex_txt = 0x6000528; // segment:tol_umb_32 rom:0x1126528
 obj_shop_umb_32_tuka1_tex_txt = 0x6000728; // segment:tol_umb_32 rom:0x1126728
 
+cKF_ckcb_r_tol_keitai_1_keitai_off1_tbl = 0x6000000; // segment:tol_keitai_1 rom:0x1127000
+cKF_kn_tol_keitai_1_keitai_off1_tbl = 0x6000004; // segment:tol_keitai_1 rom:0x1127004
+cKF_c_tol_keitai_1_keitai_off1_tbl = 0x6000018; // segment:tol_keitai_1 rom:0x1127018
+cKF_ds_tol_keitai_1_keitai_off1_tbl = 0x6000020; // segment:tol_keitai_1 rom:0x1127020
+cKF_ba_r_tol_keitai_1_keitai_off1 = 0x60000A4; // segment:tol_keitai_1 rom:0x11270A4
+cKF_ckcb_r_tol_keitai_1_keitai_on1_tbl = 0x60000C0; // segment:tol_keitai_1 rom:0x11270C0
+cKF_kn_tol_keitai_1_keitai_on1_tbl = 0x60000C4; // segment:tol_keitai_1 rom:0x11270C4
+cKF_c_tol_keitai_1_keitai_on1_tbl = 0x60000C8; // segment:tol_keitai_1 rom:0x11270C8
+cKF_ds_tol_keitai_1_keitai_on1_tbl = 0x60000E0; // segment:tol_keitai_1 rom:0x11270E0
+cKF_ba_r_tol_keitai_1_keitai_on1 = 0x6000134; // segment:tol_keitai_1 rom:0x1127134
+tol_keitai_1_v = 0x6000150; // segment:tol_keitai_1 rom:0x1127150 size:0x1D0
+main1_keitai1_model = 0x6000320; // segment:tol_keitai_1 rom:0x1127320
+main2_keitai1_model = 0x6000480; // segment:tol_keitai_1 rom:0x1127480
+tol_keitai_1_pal = 0x60005E8; // segment:tol_keitai_1 rom:0x11275E8
+tol_keitai_1_ueura1_tex_txt = 0x6000608; // segment:tol_keitai_1 rom:0x1127608
+tol_keitai_1_ueomote1_tex_txt = 0x6000708; // segment:tol_keitai_1 rom:0x1127708
+tol_keitai_1_shitaura1_tex_txt = 0x6000808; // segment:tol_keitai_1 rom:0x1127808
+tol_keitai_1_shitaomote1_tex_txt = 0x6000908; // segment:tol_keitai_1 rom:0x1127908
+cKF_je_r_tol_keitai_1_tbl = 0x6000A08; // segment:tol_keitai_1 rom:0x1127A08
+cKF_bs_r_tol_keitai_1 = 0x6000A2C; // segment:tol_keitai_1 rom:0x1127A2C
+
 tol_utiwa_1_v = 0x6000000; // segment:tol_utiwa_1 rom:0x1128000 size:0x80
 main_utiwa1_model = 0x6000080; // segment:tol_utiwa_1 rom:0x1128080
 tol_utiwa1_pal = 0x6000188; // segment:tol_utiwa_1 rom:0x1128188
