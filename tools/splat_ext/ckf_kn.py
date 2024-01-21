@@ -26,8 +26,8 @@ class N64SegCkf_kn(CommonSegCodeSubsegment):
             lines.append("")
             lines.append(f"s16 {symbol.name}[{count}] = {{")
 
-        for byte in struct.iter_unpack(">h", data):
-            lines.append(f"    {byte[0]},")
+        for short in struct.iter_unpack(">h", data):
+            lines.append(f"    {short[0]},")
 
         if not self.data_only:
             lines.append("};")
