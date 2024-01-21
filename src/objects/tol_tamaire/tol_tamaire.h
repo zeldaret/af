@@ -3,6 +3,11 @@
 
 #include "gbi.h"
 
+/**
+ * @file tol_tamaire
+ * 玉入れ Balls for the Sports Fair Ball Toss
+ */
+
 extern Vtx ef_tamaire01_r_v[];
 extern Gfx tama01_model[];
 extern unsigned short ef_tamaire01_r_pal[];

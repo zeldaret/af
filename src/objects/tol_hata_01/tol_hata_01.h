@@ -4,6 +4,12 @@
 #include "gbi.h"
 #include "evw_anime.h"
 
+/**
+ * @file tol_hata_01
+ * 旗 Flag used in the Sports Fair
+ * 
+ */
+
 extern Vtx tol_hata_01_v[];
 extern Gfx tol_hata_e_model[];
 extern Gfx tol_hata_hataT_model[];

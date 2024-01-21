@@ -3,6 +3,11 @@
 
 #include "gbi.h"
 
+/**
+ * @file tol_cracker_1
+ * クラッカー Party Popper
+ */
+
 extern Vtx tol_cracker_1_v[];
 extern Gfx tol_cracker_1T_model[];
 extern unsigned short tol_cracker_1_pal[];
