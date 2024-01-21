@@ -44,5 +44,3 @@ D_6000180 = 0x06000180; // ignore:true
 D_6000220 = 0x06000220; // ignore:true
 D_60003E8 = 0x060003E8; // ignore:true
 D_6001B68 = 0x06001B68; // ignore:true
-
-D_A000090 = 0x0A000090; // ignore:true
