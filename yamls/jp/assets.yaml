@@ -5019,23 +5019,33 @@
     align: 0x1000
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [auto, c, tol_keitai_1]
+      - [auto, c, keitai_off1]
       - start: 0x1127000
         type: .data
-        name: tol_keitai_1
+        name: keitai_off1
         subsegments:
           - [0x1127000, ckf_ckcb, cKF_ckcb_r_tol_keitai_1_keitai_off1_tbl]
           - [0x1127004, ckf_kn, cKF_kn_tol_keitai_1_keitai_off1_tbl]
           - [0x1127018, ckf_c, cKF_c_tol_keitai_1_keitai_off1_tbl]
           - [0x1127020, ckf_ds, cKF_ds_tol_keitai_1_keitai_off1_tbl]
           - [0x11270A4, ckf_ba, cKF_ba_r_tol_keitai_1_keitai_off1]
-          - [0x11270B8, pad]
+          - [0x11270B8]
+      - [auto, c, keitai_on1]
+      - start: 0x11270C0
+        type: .data
+        name: keitai_on1
+        subsegments:
           - [0x11270C0, ckf_ckcb, cKF_ckcb_r_tol_keitai_1_keitai_on1_tbl]
           - [0x11270C4, ckf_kn, cKF_kn_tol_keitai_1_keitai_on1_tbl]
           - [0x11270C8, ckf_c, cKF_c_tol_keitai_1_keitai_on1_tbl]
           - [0x11270E0, ckf_ds, cKF_ds_tol_keitai_1_keitai_on1_tbl]
           - [0x1127134, ckf_ba, cKF_ba_r_tol_keitai_1_keitai_on1]
-          - [0x1127148, pad]
+          - [0x1127148]
+      - [auto, c, tol_keitai_1]
+      - start: 0x1127150
+        type: .data
+        name: tol_keitai_1
+        subsegments:
           - [0x1127150, vtx, tol_keitai_1_v]
           - [0x1127320, gfx, main1_keitai1_model]
           - [0x1127480, gfx, main2_keitai1_model]
@@ -5046,7 +5056,7 @@
           - [0x1127908, af_ci4, tol_keitai_1_shitaomote1_tex_txt, 16, 32, 0x11275E8, 0x20]
           - [0x1127A08, ckf_je, cKF_je_r_tol_keitai_1_tbl]
           - [0x1127A2C, ckf_bs, cKF_bs_r_tol_keitai_1]
-          - [0x1127A34, pad]
+          - [0x1127A34]
   - [0x1127A40]
 
 
@@ -5105,15 +5115,25 @@
     #   - [0x112B000, data, assets/objects/object_0112B000/object_0112B000]
   - [0x112B670]
 
-  - name: object_0112C000
-    type: bin # code
+  - name: tol_kenjyu_1
+    dir: objects/tol_kenjyu_1
+    type: code
     start: 0x112C000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x112C000, data, assets/objects/object_0112C000/object_0112C000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, tol_kenjyu_1]
+      - start: 0x112C000
+        type: .data
+        name: tol_kenjyu_1
+        subsegments:
+          - [0x112C000, vtx, tol_kenjyu_1_v]
+          - [0x112C410, gfx, tol_kenjyu_1T_model]
+          - [0x112C528, af_palette, tol_kenjyu_1_pal]
+          - [0x112C548, af_ci4, tol_kenjyu_1_tex, 32, 32, 0x112C528, 0x20]
   - [0x112C750]
 
   - name: object_0112D000

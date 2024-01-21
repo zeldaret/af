@@ -1,17 +1,5 @@
 #include "tol_keitai_1.h"
 
-#include "assets/jp/objects/tol_keitai_1/cKF_ckcb_r_tol_keitai_1_keitai_off1_tbl.inc.c"
-#include "assets/jp/objects/tol_keitai_1/cKF_kn_tol_keitai_1_keitai_off1_tbl.inc.c"
-#include "assets/jp/objects/tol_keitai_1/cKF_c_tol_keitai_1_keitai_off1_tbl.inc.c"
-#include "assets/jp/objects/tol_keitai_1/cKF_ds_tol_keitai_1_keitai_off1_tbl.inc.c"
-#include "assets/jp/objects/tol_keitai_1/cKF_ba_r_tol_keitai_1_keitai_off1.inc.c"
-s32 pad[] = {0x00000000, 0x00000000};
-#include "assets/jp/objects/tol_keitai_1/cKF_ckcb_r_tol_keitai_1_keitai_on1_tbl.inc.c"
-#include "assets/jp/objects/tol_keitai_1/cKF_kn_tol_keitai_1_keitai_on1_tbl.inc.c"
-#include "assets/jp/objects/tol_keitai_1/cKF_c_tol_keitai_1_keitai_on1_tbl.inc.c"
-#include "assets/jp/objects/tol_keitai_1/cKF_ds_tol_keitai_1_keitai_on1_tbl.inc.c"
-#include "assets/jp/objects/tol_keitai_1/cKF_ba_r_tol_keitai_1_keitai_on1.inc.c"
-s32 pad2[] = {0x00000000, 0x00000000};
 #include "assets/jp/objects/tol_keitai_1/tol_keitai_1_v.vtx.inc.c"
 #include "assets/jp/objects/tol_keitai_1/main1_keitai1_model.gfx.inc.c"
 #include "assets/jp/objects/tol_keitai_1/main2_keitai1_model.gfx.inc.c"

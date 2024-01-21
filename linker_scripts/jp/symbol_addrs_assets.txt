@@ -395,6 +395,11 @@ tol_utiwa1_pal = 0x6000188; // segment:tol_utiwa_1 rom:0x1128188
 tol_utiwa_1_main1_tex_txt = 0x60001A8; // segment:tol_utiwa_1 rom:0x11281A8
 tol_utiwa_1_main2_tex_txt = 0x60003A8; // segment:tol_utiwa_1 rom:0x11283A8
 
+tol_kenjyu_1_v = 0x6000000; // segment:tol_kenjyu_1 rom:0x112C000 size:0x410
+tol_kenjyu_1T_model = 0x6000410; // segment:tol_kenjyu_1 rom:0x112C410
+tol_kenjyu_1_pal = 0x6000528; // segment:tol_kenjyu_1 rom:0x112C528
+tol_kenjyu_1_tex = 0x6000548; // segment:tol_kenjyu_1 rom:0x112C548
+
 tol_cracker_1_v = 0x6000000; // segment:tol_cracker_1 rom:0x112F000 size:0x1C0
 tol_cracker_1T_model = 0x60001C0; // segment:tol_cracker_1 rom:0x112F1C0
 tol_cracker_1_pal = 0x6000280; // segment:tol_cracker_1 rom:0x112F280

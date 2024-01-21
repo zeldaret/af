@@ -104,7 +104,7 @@ ToolActor* aTOL_birth_proc(ToolName toolName, s32 arg1, ToolActor* toolActor, Ga
         OBJECT_TOL_UMB_25,   OBJECT_TOL_UMB_26,  OBJECT_TOL_UMB_27,  OBJECT_TOL_UMB_28,
         OBJECT_TOL_UMB_29,   OBJECT_TOL_UMB_30,  OBJECT_TOL_UMB_31,  OBJECT_TOL_UMB_32,
         OBJECT_TOL_KEITAI_1, OBJECT_TOL_UTIWA_1, OBJECT_TOL_UTIWA_1, OBJECT_TOL_CRACKER_1,
-        OBJECT_16,           OBJECT_6,           OBJECT_371,         OBJECT_370,
+        OBJECT_TOL_KENJYU_1, OBJECT_6,           OBJECT_371,         OBJECT_370,
         OBJECT_391,          OBJECT_391,         OBJECT_391,         OBJECT_391,
     };
     s32 pad[3] UNUSED;
