@@ -5,7 +5,7 @@
 
 /**
  * @file tol_utiwa_1
- * 団扇 Firework Festivals Blue Uchiwa Fan
+ * 団扇 Firework Festival Blue Uchiwa Fan
  */
 
 extern Vtx tol_utiwa_1_v[];

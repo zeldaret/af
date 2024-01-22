@@ -7,7 +7,6 @@
 /**
  * @file tol_hata_01
  * 旗 Flag used in the Sports Fair
- * 
  */
 
 extern Vtx tol_hata_01_v[];
