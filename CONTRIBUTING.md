@@ -5,6 +5,7 @@ Thank you for your interest in the Animal Forest decompilation. This is a brief 
 ## Useful Links
 
 - [Working With Splat](docs/working_with_splat.md)
+- [Extracting Assets](docs/asset_extraction.md)
 - [MM decomp tutorial](https://github.com/zeldaret/mm/blob/master/docs/tutorial/contents.md) Detailed tutorial for learning in general how decomp works and how to decompile a small, simple file. Note that mm doesn't use splat, so some information doesn't apply.
 - [Introduction to OOT decomp](https://github.com/zeldaret/oot/blob/master/docs/tutorial/contents.md) - Covers slightly different topics.
 
