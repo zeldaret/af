@@ -180,7 +180,7 @@ There's a few changes we need to make though. The definitions for the textures n
 
 Because we renamed the segment, we also need to adjust the DMA table and the object table, which specify where files are in the ROM.
 
-In `dma_table.h`, rename object_01127A40 to tol_keitai_1:
+In `dmadata_table_jp.h`, rename object_01127A40 to tol_keitai_1:
 
 ```
 DEFINE_DMA_ENTRY(tol_keitai_1, "tol_keitai_1")
