@@ -250,9 +250,9 @@ Next we need to create these .c files. Copy `tol_keitai_1.c` and rename it to `k
 
 # Building
 
-Everything should be set up. Run `make extract` and then `make` to see if the rom builds correctly.
+Everything should be set up. Run `make extract` and then `make` to see if the ROM builds correctly.
 
-Note: sometimes you'll get a compile error in one of the extracted display lists. This is because of segmented addresses. Something else in code generated a symbol for that segmented address, eg `D_6000180`, and the display list extracting script will use that symbol instead of the the vertex symbol in the object. This can be resolved by adding that symbol to `ignored_addresses.txt`. As an example:
+Note: sometimes you'll get a compile error in one of the extracted display lists. This is because of segmented addresses. Something else in code generated a symbol for that segmented address, eg `D_6000180`, and the display list extracting script will use that symbol instead of the vertex symbol in the object. This can be resolved by adding that symbol to `ignored_addresses.txt`. As an example:
 
 ```
 D_6000180 = 0x06000180; // ignore:true
