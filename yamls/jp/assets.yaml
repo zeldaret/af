@@ -5244,7 +5244,6 @@
           - [0x11303D4, evw_animeptn, tol_hata_01_evw_anime_1_anime_ptn]
           - [0x11303D8, evw_texanime, tol_hata_01_evw_anime_1]
           - [0x11303E8, evw_scroll, tol_hata_01_evw_anime_2]
-          - [0x11303EC, pad]
           - [0x11303F0, evw_data, tol_hata_01_evw_anime]
   - [0x1130400]
 

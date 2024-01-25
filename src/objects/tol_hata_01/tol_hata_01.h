@@ -18,7 +18,7 @@ extern unsigned char tol_hata_hata_tex_inta_ia8[];
 extern void* tol_hata_01_evw_anime_1_tex_table;
 extern u8 tol_hata_01_evw_anime_1_anime_ptn[];
 extern EvwAnimeTexAnime tol_hata_01_evw_anime_1;
-extern EvwAnimeScroll tol_hata_01_evw_anime_2;
+extern EvwAnimeScroll tol_hata_01_evw_anime_2[];
 extern EvwAnimeData tol_hata_01_evw_anime[];
 
 #endif
