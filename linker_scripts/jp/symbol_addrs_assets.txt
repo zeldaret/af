@@ -107,6 +107,27 @@ obj_e_count01_evw_anime_1 = 0x6008C58; // segment:object_00D5E000 rom:0xD66C58
 obj_e_count01_evw_anime_2 = 0x6008C68; // segment:object_00D5E000 rom:0xD66C68
 obj_e_count01_evw_anime = 0x6008C70; // segment:object_00D5E000 rom:0xD66C70
 
+obj_e_count02_cl_v = 0x6008C98; // segment:object_00D5E000 rom:0xD66C98 size:0x100
+obj_e_c2_ani_cl01_sita_model = 0x6008D98; // segment:object_00D5E000 rom:0xD66D98
+obj_e_c2_ani_ci01_mae_model = 0x6008E98; // segment:object_00D5E000 rom:0xD66E98
+obj_e_count02_1_tex = 0x6008F98; // segment:object_00D5E000 rom:0xD66F98
+obj_e_count02_0_tex = 0x6009198; // segment:object_00D5E000 rom:0xD67198
+obj_e_count02_2_tex = 0x6009398; // segment:object_00D5E000 rom:0xD67398
+obj_e_count02_3_tex = 0x6009598; // segment:object_00D5E000 rom:0xD67598
+obj_e_count02_4_tex = 0x6009798; // segment:object_00D5E000 rom:0xD67798
+obj_e_count02_5_tex = 0x6009998; // segment:object_00D5E000 rom:0xD67998
+obj_e_count02_6_tex = 0x6009B98; // segment:object_00D5E000 rom:0xD67B98
+obj_e_count02_7_tex = 0x6009D98; // segment:object_00D5E000 rom:0xD67D98
+obj_e_count02_8_tex = 0x6009F98; // segment:object_00D5E000 rom:0xD67F98
+obj_e_count02_9_tex = 0x600A198; // segment:object_00D5E000 rom:0xD68198
+cKF_je_r_obj_e_count02_cl_tbl = 0x600A398; // segment:object_00D5E000 rom:0xD68398
+cKF_bs_r_obj_e_count02_cl = 0x600A3BC; // segment:object_00D5E000 rom:0xD683BC
+cKF_ckcb_r_obj_e_count02_cl_tbl = 0x600A3C4; // segment:object_00D5E000 rom:0xD683C4
+cKF_kn_obj_e_count02_cl_tbl = 0x600A3C8; // segment:object_00D5E000 rom:0xD683C8
+cKF_c_obj_e_count02_cl_tbl = 0x600A3CC; // segment:object_00D5E000 rom:0xD683CC
+cKF_ds_obj_e_count02_cl_tbl = 0x600A3E4; // segment:object_00D5E000 rom:0xD683E4
+cKF_ba_r_obj_e_count02_cl = 0x600A404; // segment:object_00D5E000 rom:0xD68404
+
 obj_s_toudai_v = 0x0607D248; // segment:object_00D5E000 rom:0xDDB248 size:0x990
 obj_s_toudai_mirror_model = 0x0607DBD8; // segment:object_00D5E000 rom:0xDDBBD8
 obj_s_toudai_glass_model = 0x0607DCA0; // segment:object_00D5E000 rom:0xDDBCA0
