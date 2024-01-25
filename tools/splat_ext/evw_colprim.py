@@ -26,7 +26,7 @@ class N64SegEvw_colprim(CommonSegCodeSubsegment):
 
         for EvwAnimeColPrim in struct.iter_unpack(">bbbbb", data):
             r, g, b, a, l = EvwAnimeColPrim
-            lines.append(f"    {{ {r}, {g}, {b}, {a}, {l} }}")
+            lines.append(f"    {{ {r}, {g}, {b}, {a}, {l} }},")
 
         if not self.data_only:
             lines.append("};")

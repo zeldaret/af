@@ -26,7 +26,7 @@ class N64SegEvw_colenv(CommonSegCodeSubsegment):
 
         for EvwAnimeColEnv in struct.iter_unpack(">bbbb", data):
             r, g, b, a = EvwAnimeColEnv
-            lines.append(f"    {{ {r}, {g}, {b}, {a} }}")
+            lines.append(f"    {{ {r}, {g}, {b}, {a} }},")
 
         if not self.data_only:
             lines.append("};")
