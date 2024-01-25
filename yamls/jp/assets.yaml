@@ -721,7 +721,7 @@
           - [0xD66C36, pad]
           - [0xD66C38, ckf_ba, obj_e_count01/cKF_ba_r_obj_e_count01]
           - [0xD66C4C, evw_colprim, obj_e_count01/obj_e_count01_evw_anime_1_prim]
-          - [0xD66C56]
+          - [0xD66C56, pad]
           - [0xD66C58, evw_colreg, obj_e_count01/obj_e_count01_evw_anime_1]
           - [0xD66C68, evw_scroll, obj_e_count01/obj_e_count01_evw_anime_2]
           - [0xD66C70, evw_data, obj_e_count01/obj_e_count01_evw_anime]

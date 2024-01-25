@@ -24,9 +24,9 @@ extern s16 cKF_kn_obj_e_count01_tbl[];
 extern s16 cKF_c_obj_e_count01_tbl[];
 extern Keyframe cKF_ds_obj_e_count01_tbl[];
 extern BaseAnimationR cKF_ba_r_obj_e_count01;
-extern EvwAnimeColPrim obj_e_count01_evw_anime_1_prim;
+extern EvwAnimeColPrim obj_e_count01_evw_anime_1_prim[];
 extern EvwAnimeColReg obj_e_count01_evw_anime_1;
-extern EvwAnimeScroll obj_e_count01_evw_anime_2;
+extern EvwAnimeScroll obj_e_count01_evw_anime_2[];
 extern EvwAnimeData obj_e_count01_evw_anime[];
 
 #endif

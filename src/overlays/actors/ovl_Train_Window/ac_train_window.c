@@ -35,7 +35,7 @@ extern Gfx rom_train_out_shineglass_modelT[];
 extern u8 till_data[15][2];
 extern u16 aTrainWindow_tree_pal_table[15][16];
 
-extern EvwAnimeUnk aTrainWindow_evw_anime_data;
+extern EvwAnimeData aTrainWindow_evw_anime_data;
 
 s32 aTrainWindow_NoDraw(Actor* thisx, Game* game);
 s32 aTrainWindow_DrawGoneOutTunnel(Actor* thisx, Game* game);

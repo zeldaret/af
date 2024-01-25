@@ -1,5 +1,6 @@
 #include "obj_e_count01.h"
 
+s32 padD64830[] = { 0x00000000, 0x00000000 };
 #include "assets/jp/objects/object_00D5E000/obj_e_count01/obj_e_count01_v.vtx.inc.c"
 #include "assets/jp/objects/object_00D5E000/obj_e_count01/obj_e_count_spot_model.gfx.inc.c"
 #include "assets/jp/objects/object_00D5E000/obj_e_count01/obj_e_count_lamp_model.gfx.inc.c"
@@ -23,3 +24,4 @@
 #include "assets/jp/objects/object_00D5E000/obj_e_count01/obj_e_count01_evw_anime_1.inc.c"
 #include "assets/jp/objects/object_00D5E000/obj_e_count01/obj_e_count01_evw_anime_2.inc.c"
 #include "assets/jp/objects/object_00D5E000/obj_e_count01/obj_e_count01_evw_anime.inc.c"
+s32 pad0xD66C80[] = { 0x00000000, 0x00000000, 0x00000000, 0x00000000 };
