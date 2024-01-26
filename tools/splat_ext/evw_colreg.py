@@ -3,7 +3,7 @@ from typing import Optional
 from splat.util import options, log
 from splat.segtypes.common.codesubsegment import CommonSegCodeSubsegment
 
-class N64SegCkf_c(CommonSegCodeSubsegment):
+class N64SegEvw_colreg(CommonSegCodeSubsegment):
     def __init__(self, rom_start, rom_end, type, name, vram_start, args, yaml):
         super().__init__(rom_start, rom_end, type, name, vram_start, args=args, yaml=yaml),
 
@@ -13,25 +13,40 @@ class N64SegCkf_c(CommonSegCodeSubsegment):
     def scan(self, rom_bytes: bytes):
         data = rom_bytes[self.rom_start : self.rom_end]
         symbol = self.create_symbol(addr=self.vram_start, in_segment=True, type="data", define=True)
-        count = len(data) // 2
         lines = []
 
-        if (len(data)) % 2 != 0:
-            log.error(f"Error: ckf_c segment {self.name} length ({len(data)}) is not a multiple of 2!")
+        if (len(data)) != 16:
+            log.error(f"Error: evw_colreg segment {self.name} length ({len(data)}) is not 16 bytes!")
 
         if not self.data_only:
             lines.append(options.opts.generated_c_preamble)
-            lines.append("")
-            lines.append(f"s16 {symbol.name}[{count}] = {{")
+            lines.append("\n")
+            lines.append(f"EvwAnimeColReg {symbol.name} = ")
 
-        for short in struct.iter_unpack(">h", data):
-            lines.append(f"    {short[0]},")
+        frameCount, keyframeCount, prim, env, keyframes = struct.unpack(">HHIII", data)
+
+        if prim:
+            prim_symbol = self.get_symbol(addr=prim).name
+        else:
+            prim_symbol = "NULL"
+
+        if env:
+            env_symbol = self.get_symbol(addr=env).name
+        else:
+            env_symbol = "NULL"
+        
+        if keyframes:
+            keyframes_symbol = self.get_symbol(addr=keyframes).name
+        else:
+            keyframes_symbol = "NULL"
+
+        lines.append(f"{{ {frameCount}, {keyframeCount}, {prim_symbol}, {env_symbol}, {keyframes_symbol} }}")
 
         if not self.data_only:
-            lines.append("};")
+            lines.append(";")
 
-        lines.append("")
-        self.file_text = "\n".join(lines)
+        lines.append("\n")
+        self.file_text = "".join(lines)
 
     def split(self, rom_bytes: bytes):
         path = options.opts.asset_path / self.dir / f"{self.name}.inc.c"

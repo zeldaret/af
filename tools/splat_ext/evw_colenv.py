@@ -3,7 +3,7 @@ from typing import Optional
 from splat.util import options, log
 from splat.segtypes.common.codesubsegment import CommonSegCodeSubsegment
 
-class N64SegCkf_c(CommonSegCodeSubsegment):
+class N64SegEvw_colenv(CommonSegCodeSubsegment):
     def __init__(self, rom_start, rom_end, type, name, vram_start, args, yaml):
         super().__init__(rom_start, rom_end, type, name, vram_start, args=args, yaml=yaml),
 
@@ -13,19 +13,20 @@ class N64SegCkf_c(CommonSegCodeSubsegment):
     def scan(self, rom_bytes: bytes):
         data = rom_bytes[self.rom_start : self.rom_end]
         symbol = self.create_symbol(addr=self.vram_start, in_segment=True, type="data", define=True)
-        count = len(data) // 2
+        count = len(data) // 4
         lines = []
 
-        if (len(data)) % 2 != 0:
-            log.error(f"Error: ckf_c segment {self.name} length ({len(data)}) is not a multiple of 2!")
+        if (len(data)) % 4 != 0:
+            log.error(f"Error: evw_colenv segment {self.name} length ({len(data)}) is not a multiple of 4!")
 
         if not self.data_only:
             lines.append(options.opts.generated_c_preamble)
             lines.append("")
-            lines.append(f"s16 {symbol.name}[{count}] = {{")
+            lines.append(f"EvwAnimeColEnv {symbol.name}[{count}] = {{")
 
-        for short in struct.iter_unpack(">h", data):
-            lines.append(f"    {short[0]},")
+        for EvwAnimeColEnv in struct.iter_unpack(">bbbb", data):
+            r, g, b, a = EvwAnimeColEnv
+            lines.append(f"    {{ {r}, {g}, {b}, {a} }},")
 
         if not self.data_only:
             lines.append("};")

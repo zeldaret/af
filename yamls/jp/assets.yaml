@@ -612,11 +612,11 @@
         subsegments:
           - [0xD5E000] # padding
           - [0xD5E008, vtx, obj_s_yamishop/obj_s_yamishop_v]
-          - [0xD5E428, gfx, obj_s_yamishop/obj_s_yamishop_window_model]
-          - [0xD5E4B8, gfx, obj_s_yamishop/obj_s_yamishop_t1_model]
-          - [0xD5E5D0, gfx, obj_s_yamishop/obj_s_yamishop_light_model]
-          - [0xD5E690, gfx, obj_s_yamishop/obj_s_yamishop_door1_model]
-          - [0xD5E7D8, gfx, obj_s_yamishop/obj_s_yamishop_door2_model]
+          - [0xD5E428, af_gfx, obj_s_yamishop/obj_s_yamishop_window_model]
+          - [0xD5E4B8, af_gfx, obj_s_yamishop/obj_s_yamishop_t1_model]
+          - [0xD5E5D0, af_gfx, obj_s_yamishop/obj_s_yamishop_light_model]
+          - [0xD5E690, af_gfx, obj_s_yamishop/obj_s_yamishop_door1_model]
+          - [0xD5E7D8, af_gfx, obj_s_yamishop/obj_s_yamishop_door2_model]
           - [0xD5E8C8, af_ci4, obj_s_yamishop/obj_s_yamishop_t2_tex_txt, 128, 32, 0xD5BA48, 0x20]
           - [0xD5F0C8, af_ci4, obj_s_yamishop/obj_s_yamishop_t1_tex_txt, 128, 32, 0xD5BA48, 0x20]
           - [0xD5F8C8, af_i4, obj_s_yamishop/obj_s_yamishop_window_tex_txt, 16, 16]
@@ -630,11 +630,11 @@
           - [0xD5FA04, ckf_ba, obj_s_yamishop/cKF_ba_r_obj_s_yamishop]
           - [0xD5FA18] # padding
           - [0xD5FA28, vtx, obj_w_yamishop/obj_w_yamishop_v]
-          - [0xD5FE48, gfx, obj_w_yamishop/obj_w_yamishop_window_model]
-          - [0xD5FED8, gfx, obj_w_yamishop/obj_w_yamishop_t1_model]
-          - [0xD5FFF0, gfx, obj_w_yamishop/obj_w_yamishop_light_model]
-          - [0xD600B0, gfx, obj_w_yamishop/obj_w_yamishop_door1_model]
-          - [0xD601F8, gfx, obj_w_yamishop/obj_w_yamishop_door2_model]
+          - [0xD5FE48, af_gfx, obj_w_yamishop/obj_w_yamishop_window_model]
+          - [0xD5FED8, af_gfx, obj_w_yamishop/obj_w_yamishop_t1_model]
+          - [0xD5FFF0, af_gfx, obj_w_yamishop/obj_w_yamishop_light_model]
+          - [0xD600B0, af_gfx, obj_w_yamishop/obj_w_yamishop_door1_model]
+          - [0xD601F8, af_gfx, obj_w_yamishop/obj_w_yamishop_door2_model]
           - [0xD602E8, af_ci4, obj_w_yamishop/obj_w_yamishop_t2_tex_txt, 128, 32, 0xD5BA68, 0x20]
           - [0xD60AE8, af_ci4, obj_w_yamishop/obj_w_yamishop_t1_tex_txt, 128, 32, 0xD5BA68, 0x20]
           - [0xD612E8, af_i4, obj_w_yamishop/obj_w_yamishop_window_tex_txt, 16, 16]
@@ -649,12 +649,12 @@
           - [0xD61438] # padding
           - [0xD61448]
           - [0xDDB248, vtx, obj_s_toudai/obj_s_toudai_v]
-          - [0xDDBBD8, gfx, obj_s_toudai/obj_s_toudai_mirror_model]
-          - [0xDDBCA0, gfx, obj_s_toudai/obj_s_toudai_glass_model]
-          - [0xDDBD70, gfx, obj_s_toudai/obj_s_toudai_body_model]
-          - [0xDDC188, gfx, obj_s_toudai/obj_s_toudai_light_model]
-          - [0xDDC258, gfx, obj_s_toudai/obj_s_toudai_lenz_model]
-          - [0xDDC320, gfx, obj_s_toudai/obj_s_toudai_arm_model]
+          - [0xDDBBD8, af_gfx, obj_s_toudai/obj_s_toudai_mirror_model]
+          - [0xDDBCA0, af_gfx, obj_s_toudai/obj_s_toudai_glass_model]
+          - [0xDDBD70, af_gfx, obj_s_toudai/obj_s_toudai_body_model]
+          - [0xDDC188, af_gfx, obj_s_toudai/obj_s_toudai_light_model]
+          - [0xDDC258, af_gfx, obj_s_toudai/obj_s_toudai_lenz_model]
+          - [0xDDC320, af_gfx, obj_s_toudai/obj_s_toudai_arm_model]
           - [0xDDC3A8, af_i8, obj_s_toudai/obj_s_toudai_light_tex_txt, 16, 16]
           - [0xDDC4A8, af_ci4, obj_s_toudai/obj_s_toudai_arm_tex_txt, 16, 16, 0xD5C3A8, 0x20]
           - [0xDDC528, af_ci4, obj_s_toudai/obj_s_toudai_dai_tex_txt, 32, 32, 0xD5C3A8, 0x20]
@@ -674,12 +674,12 @@
           - [0xDDCE6C, ckf_ba, obj_s_toudai/cKF_ba_r_obj_s_toudai]
           - [0xDDCE80] # padding
           - [0xDDCE90, vtx, obj_w_toudai/obj_w_toudai_v]
-          - [0xDDD7E0, gfx, obj_w_toudai/obj_w_toudai_mirror_model]
-          - [0xDDD8A8, gfx, obj_w_toudai/obj_w_toudai_glass_model]
-          - [0xDDD978, gfx, obj_w_toudai/obj_w_toudai_body_model]
-          - [0xDDDD90, gfx, obj_w_toudai/obj_w_toudai_light_model]
-          - [0xDDDE60, gfx, obj_w_toudai/obj_w_toudai_lenz_model]
-          - [0xDDDF28, gfx, obj_w_toudai/obj_w_toudai_arm_model]
+          - [0xDDD7E0, af_gfx, obj_w_toudai/obj_w_toudai_mirror_model]
+          - [0xDDD8A8, af_gfx, obj_w_toudai/obj_w_toudai_glass_model]
+          - [0xDDD978, af_gfx, obj_w_toudai/obj_w_toudai_body_model]
+          - [0xDDDD90, af_gfx, obj_w_toudai/obj_w_toudai_light_model]
+          - [0xDDDE60, af_gfx, obj_w_toudai/obj_w_toudai_lenz_model]
+          - [0xDDDF28, af_gfx, obj_w_toudai/obj_w_toudai_arm_model]
           - [0xDDDFB0, af_i8, obj_w_toudai/obj_w_toudai_light_tex_txt, 16, 16]
           - [0xDDE0B0, af_ci4, obj_w_toudai/obj_w_toudai_arm_tex_txt, 16, 16, 0xD5C3C8, 0x20]
           - [0xDDE130, af_ci4, obj_w_toudai/obj_w_toudai_dai_tex_txt, 32, 32, 0xD5C3C8, 0x20]
@@ -700,10 +700,10 @@
           - [0xDDEA88] # padding
           - [0xDDEA98]
           - [0xDEC838, vtx, obj_s_windmill/obj_s_windmill_v]
-          - [0xDECD98, gfx, obj_s_windmill/obj_s_windmill_unk_model_1]
-          - [0xDECE60, gfx, obj_s_windmill/obj_s_windmill_unk_model_2]
-          - [0xDECF10, gfx, obj_s_windmill/obj_s_windmill_unk_model_3]
-          - [0xDECFE8, gfx, obj_s_windmill/obj_s_windmill_unk_model_4]
+          - [0xDECD98, af_gfx, obj_s_windmill/obj_s_windmill_unk_model_1]
+          - [0xDECE60, af_gfx, obj_s_windmill/obj_s_windmill_unk_model_2]
+          - [0xDECF10, af_gfx, obj_s_windmill/obj_s_windmill_unk_model_3]
+          - [0xDECFE8, af_gfx, obj_s_windmill/obj_s_windmill_unk_model_4]
           - [0xDED0D8, af_ci4, obj_s_windmill/obj_s_windmill_unk_tex_1, 128, 32, 0xD5C1E8, 0x20]
           - [0xDED8D8, af_ci4, obj_s_windmill/obj_s_windmill_unk_tex_2, 128, 32, 0xD5C1E8, 0x20]
           - [0xDEE0D8, af_ci4, obj_s_windmill/obj_s_windmill_unk_tex_3, 128, 32, 0xD5C1E8, 0x20]
@@ -714,10 +714,10 @@
           - [0xDEE954, ckf_bs, obj_s_windmill/cKF_bs_r_obj_s_windmill]
           - [0xDEE95C] # padding
           - [0xDEE970, vtx, obj_w_windmill/obj_w_windmill_v]
-          - [0xDEEEC0, gfx, obj_w_windmill/obj_w_windmill_unk_model_1]
-          - [0xDEEF88, gfx, obj_w_windmill/obj_w_windmill_unk_model_2]
-          - [0xDEF038, gfx, obj_w_windmill/obj_w_windmill_unk_model_3]
-          - [0xDEF110, gfx, obj_w_windmill/obj_w_windmill_unk_model_4]
+          - [0xDEEEC0, af_gfx, obj_w_windmill/obj_w_windmill_unk_model_1]
+          - [0xDEEF88, af_gfx, obj_w_windmill/obj_w_windmill_unk_model_2]
+          - [0xDEF038, af_gfx, obj_w_windmill/obj_w_windmill_unk_model_3]
+          - [0xDEF110, af_gfx, obj_w_windmill/obj_w_windmill_unk_model_4]
           - [0xDEF1F8, af_ci4, obj_w_windmill/obj_w_windmill_unk_tex_1, 128, 32, 0xD5C288, 0x20]
           - [0xDEF9F8, af_ci4, obj_w_windmill/obj_w_windmill_unk_tex_2, 128, 32, 0xD5C288, 0x20]
           - [0xDF01F8, af_ci4, obj_w_windmill/obj_w_windmill_unk_tex_3, 128, 32, 0xD5C288, 0x20]
@@ -4271,8 +4271,8 @@
         name: tol_umb_01
         subsegments:
           - [0x1107000, vtx, tol_umb_01_v]
-          - [0x1107380, gfx, kasa_umb01_model]
-          - [0x1107448, gfx, e_umb01_model]
+          - [0x1107380, af_gfx, kasa_umb01_model]
+          - [0x1107448, af_gfx, e_umb01_model]
           - [0x1107508, af_palette, tol_umb_01_pal]
           - [0x1107528, af_ci4, tol_umb_01_kasa_tex_txt, 32, 32, 0x1107508, 0x20]
           - [0x1107728, af_ci4, tol_umb_01_tuka_tex_txt, 32, 32, 0x1107508, 0x20]
@@ -4294,8 +4294,8 @@
         name: tol_umb_02
         subsegments:
           - [0x1108000, vtx, tol_umb_02_v]
-          - [0x11083E0, gfx, kasa_umb02_model]
-          - [0x1108508, gfx, e_umb02_model]
+          - [0x11083E0, af_gfx, kasa_umb02_model]
+          - [0x1108508, af_gfx, e_umb02_model]
           - [0x11085C8, af_palette, tol_umb02_pal]
           - [0x11085E8, af_ci4, tol_umb02_kasa2_tex_txt, 16, 64, 0x11085C8, 0x20]
           - [0x11087E8, af_ci4, tol_umb02_kasa1_tex_txt, 16, 64, 0x11085C8, 0x20]
@@ -4318,8 +4318,8 @@
         name: tol_umb_03
         subsegments:
           - [0x1109000, vtx, tol_umb_03_v]
-          - [0x1109380, gfx, kasa_umb03_model]
-          - [0x1109450, gfx, e_umb03_model]
+          - [0x1109380, af_gfx, kasa_umb03_model]
+          - [0x1109450, af_gfx, e_umb03_model]
           - [0x1109510, af_palette, tol_umb_03_pal]
           - [0x1109530, af_ci4, tol_umb_03_kasa1_tex_txt, 32, 64, 0x1109510, 0x20]
           - [0x1109930, af_ci4, tol_umb_03_tuka_tex_txt, 32, 32, 0x1109510, 0x20]
@@ -4341,8 +4341,8 @@
         name: tol_umb_04
         subsegments:
           - [0x110A000, vtx, tol_umb_04_v]
-          - [0x110A380, gfx, kasa_umb04_model]
-          - [0x110A4C0, gfx, e_umb04_model]
+          - [0x110A380, af_gfx, kasa_umb04_model]
+          - [0x110A4C0, af_gfx, e_umb04_model]
           - [0x110A580, af_palette, tol_umb_04_pal]
           - [0x110A5A0, af_ci4, tol_umb_04_kasa1_tex_txt, 16, 32, 0x110A580, 0x20]
           - [0x110A6A0, af_ci4, tol_umb_04_kasa2_tex_txt, 16, 32, 0x110A580, 0x20]
@@ -4365,8 +4365,8 @@
         name: tol_umb_05
         subsegments:
           - [0x110B000, vtx, tol_umb_05_v]
-          - [0x110B380, gfx, kasa_umb05_model]
-          - [0x110B448, gfx, e_umb05_model]
+          - [0x110B380, af_gfx, kasa_umb05_model]
+          - [0x110B448, af_gfx, e_umb05_model]
           - [0x110B508, af_palette, tol_umb_05_pal]
           - [0x110B528, af_ci4, tol_umb_05_kasa_tex_txt, 32, 32, 0x110B508, 0x20]
           - [0x110B728, af_ci4, tol_umb_05_tuka_tex_txt, 32, 32, 0x110B508, 0x20]
@@ -4388,8 +4388,8 @@
         name: tol_umb_06
         subsegments:
           - [0x110C000, vtx, tol_umb_06_v]
-          - [0x110C5E0, gfx, kasa_umb06_model]
-          - [0x110C6D0, gfx, e_umb06_model]
+          - [0x110C5E0, af_gfx, kasa_umb06_model]
+          - [0x110C6D0, af_gfx, e_umb06_model]
           - [0x110C790, af_palette, tol_umb_06_pal]
           - [0x110C7B0, af_ci4, tol_umb_06_kasa1_tex_txt, 32, 32, 0x110C790, 0x20]
           - [0x110C9B0, af_ci4, tol_umb_06_tuka_tex_txt, 32, 32, 0x110C790, 0x20]
@@ -4411,8 +4411,8 @@
         name: tol_umb_07
         subsegments:
           - [0x110D000, vtx, tol_umb_07_v]
-          - [0x110D260, gfx, kasa_umb07_model]
-          - [0x110D380, gfx, e_umb07_model]
+          - [0x110D260, af_gfx, kasa_umb07_model]
+          - [0x110D380, af_gfx, e_umb07_model]
           - [0x110D440, af_palette, tol_umb07_pal]
           - [0x110D460, af_ci4, tol_umb07_kasa2_tex_txt, 16, 32, 0x110D440, 0x20]
           - [0x110D560, af_ci4, tol_umb07_kasa1_tex_txt, 32, 64, 0x110D440, 0x20]
@@ -4435,8 +4435,8 @@
         name: tol_umb_08
         subsegments:
           - [0x110E000, vtx, tol_umb_08_v]
-          - [0x110E390, gfx, kasa_umb08_model]
-          - [0x110E458, gfx, e_umb08_model]
+          - [0x110E390, af_gfx, kasa_umb08_model]
+          - [0x110E458, af_gfx, e_umb08_model]
           - [0x110E570, af_palette, tol_umb08_pal]
           - [0x110E590, af_ci4, tol_umb08_kasa1_tex_txt, 32, 32, 0x110E570, 0x20]
           - [0x110E790, af_ci4, tol_umb08_kasa2_tex_txt, 8, 16, 0x110E570, 0x20]
@@ -4460,8 +4460,8 @@
         name: tol_umb_09
         subsegments:
           - [0x110F000, vtx, tol_umb_09_v]
-          - [0x110F390, gfx, kasa_umb09_model]
-          - [0x110F458, gfx, e_umb09_model]
+          - [0x110F390, af_gfx, kasa_umb09_model]
+          - [0x110F458, af_gfx, e_umb09_model]
           - [0x110F570, af_palette, tol_umb09_pal]
           - [0x110F590, af_ci4, tol_umb09_kasa1_tex_txt, 32, 32, 0x110F570, 0x20]
           - [0x110F790, af_ci4, tol_umb09_kasa2_tex_txt, 8, 16, 0x110F570, 0x20]
@@ -4484,8 +4484,8 @@
         name: tol_umb_10
         subsegments:
           - [0x1110000, vtx, tol_umb_10_v]
-          - [0x1110390, gfx, kasa_umb10_model]
-          - [0x1110458, gfx, e_umb10_model]
+          - [0x1110390, af_gfx, kasa_umb10_model]
+          - [0x1110458, af_gfx, e_umb10_model]
           - [0x1110570, af_palette, tol_umb10_pal]
           - [0x1110590, af_ci4, tol_umb10_kasa1_tex_txt, 16, 64, 0x1110570, 0x20]
           - [0x1110790, af_ci4, tol_umb10_kasa2_tex_txt, 8, 16, 0x1110570, 0x20]
@@ -4508,8 +4508,8 @@
         name: tol_umb_11
         subsegments:
           - [0x1111000, vtx, tol_umb_11_v]
-          - [0x1111390, gfx, kasa_umb11_model]
-          - [0x1111458, gfx, e_umb11_model]
+          - [0x1111390, af_gfx, kasa_umb11_model]
+          - [0x1111458, af_gfx, e_umb11_model]
           - [0x1111570, af_palette, tol_umb11_pal]
           - [0x1111590, af_ci4, tol_umb11_kasa1_tex_txt, 16, 64, 0x1111570, 0x20]
           - [0x1111790, af_ci4, tol_umb11_kasa2_tex_txt, 8, 16, 0x1111570, 0x20]
@@ -4532,8 +4532,8 @@
         name: tol_umb_12
         subsegments:
           - [0x1112000, vtx, tol_umb_12_v]
-          - [0x1112390, gfx, kasa_umb12_model]
-          - [0x1112458, gfx, e_umb12_model]
+          - [0x1112390, af_gfx, kasa_umb12_model]
+          - [0x1112458, af_gfx, e_umb12_model]
           - [0x1112570, af_palette, tol_umb12_pal]
           - [0x1112590, af_ci4, tol_umb12_kasa1_tex_txt, 32, 64, 0x1112570, 0x20]
           - [0x1112990, af_ci4, tol_umb12_kasa2_tex_txt, 8, 16, 0x1112570, 0x20]
@@ -4556,8 +4556,8 @@
         name: tol_umb_13
         subsegments:
           - [0x1113000, vtx, tol_umb_13_v]
-          - [0x1113390, gfx, kasa_umb13_model]
-          - [0x1113458, gfx, e_umb13_model]
+          - [0x1113390, af_gfx, kasa_umb13_model]
+          - [0x1113458, af_gfx, e_umb13_model]
           - [0x1113570, af_palette, tol_umb13_pal]
           - [0x1113590, af_ci4, tol_umb13_kasa1_tex_txt, 32, 32, 0x1113570, 0x20]
           - [0x1113790, af_ci4, tol_umb13_kasa2_tex_txt, 8, 16, 0x1113570, 0x20]
@@ -4580,8 +4580,8 @@
         name: tol_umb_14
         subsegments:
           - [0x1114000, vtx, tol_umb_14_v]
-          - [0x1114380, gfx, kasa_umb14_model]
-          - [0x1114448, gfx, e_umb14_model]
+          - [0x1114380, af_gfx, kasa_umb14_model]
+          - [0x1114448, af_gfx, e_umb14_model]
           - [0x1114508, af_palette, tol_umb_14_pal]
           - [0x1114528, af_ci4, tol_umb_14_kasa_tex_txt, 32, 32, 0x1114508, 0x20]
           - [0x1114728, af_ci4, tol_umb_14_tuka_tex_txt, 32, 32, 0x1114508, 0x20]
@@ -4603,8 +4603,8 @@
         name: tol_umb_15
         subsegments:
           - [0x1115000, vtx, tol_umb_15_v]
-          - [0x11153C0, gfx, kasa_umb15_model]
-          - [0x11154D8, gfx, e_umb15_model]
+          - [0x11153C0, af_gfx, kasa_umb15_model]
+          - [0x11154D8, af_gfx, e_umb15_model]
           - [0x1115598, af_palette, tol_umb_15_pal]
           - [0x11155B8, af_ci4, tol_umb_15_kasa1_tex_txt, 16, 32, 0x1115598, 0x20]
           - [0x11156B8, af_ci4, tol_umb_15_kasa2_tex_txt, 32, 32, 0x1115598, 0x20]
@@ -4627,8 +4627,8 @@
         name: tol_umb_16
         subsegments:
           - [0x1116000, vtx, tol_umb_16_v]
-          - [0x1116380, gfx, kasa_umb16_model]
-          - [0x1116448, gfx, e_umb16_model]
+          - [0x1116380, af_gfx, kasa_umb16_model]
+          - [0x1116448, af_gfx, e_umb16_model]
           - [0x1116508, af_palette, tol_umb_16_pal]
           - [0x1116528, af_ci4, tol_umb_16_kasa1_tex_txt, 32, 32, 0x1116508, 0x20]
           - [0x1116728, af_ci4, tol_umb_16_tuka_tex_txt, 32, 32, 0x1116508, 0x20]
@@ -4650,8 +4650,8 @@
         name: tol_umb_17
         subsegments:
           - [0x1117000, vtx, tol_umb_17_v]
-          - [0x11174D0, gfx, kasa_umb17_model]
-          - [0x11175D8, gfx, e_umb17_model]
+          - [0x11174D0, af_gfx, kasa_umb17_model]
+          - [0x11175D8, af_gfx, e_umb17_model]
           - [0x1117680, af_palette, tol_umb_17_pal]
           - [0x11176A0, af_ci4, tol_umb_17_kasa_tex_txt, 32, 32, 0x1117680, 0x20]
           - [0x11178A0, af_ci4, tol_umb_17_tuka_tex_txt, 32, 32, 0x1117680, 0x20]
@@ -4673,8 +4673,8 @@
         name: tol_umb_18
         subsegments:
           - [0x1118000, vtx, tol_umb_18_v]
-          - [0x1118280, gfx, kasa_umb18_model]
-          - [0x1118348, gfx, e_umb18_model]
+          - [0x1118280, af_gfx, kasa_umb18_model]
+          - [0x1118348, af_gfx, e_umb18_model]
           - [0x1118460, af_palette, tol_umb18_pal]
           - [0x1118480, af_ci4, tol_umb18_kasa1_tex_txt, 16, 32, 0x1118460, 0x20]
           - [0x1118580, af_ci4, tol_umb18_kasa2_tex_txt, 16, 16, 0x1118460, 0x20]
@@ -4697,8 +4697,8 @@
         name: tol_umb_19
         subsegments:
           - [0x1119000, vtx, tol_umb_19_v]
-          - [0x1119400, gfx, kasa_umb19_model]
-          - [0x11194E0, gfx, e_umb19_model]
+          - [0x1119400, af_gfx, kasa_umb19_model]
+          - [0x11194E0, af_gfx, e_umb19_model]
           - [0x1119610, af_palette, tol_umb_19_pal]
           - [0x1119630, af_ci4, tol_umb_19_kasa_tex_txt, 32, 32, 0x1119610, 0x20]
           - [0x1119830, af_ci4, tol_umb_19_tuka_tex_txt, 32, 32, 0x1119610, 0x20]
@@ -4721,8 +4721,8 @@
         name: tol_umb_20
         subsegments:
           - [0x111A000, vtx, tol_umb_20_v]
-          - [0x111A280, gfx, kasa_umb20_model]
-          - [0x111A338, gfx, e_umb20_model]
+          - [0x111A280, af_gfx, kasa_umb20_model]
+          - [0x111A338, af_gfx, e_umb20_model]
           - [0x111A408, af_palette, tol_umb_20_pal]
           - [0x111A428, af_ci4, tol_umb_20_kasa_tex_txt, 32, 64, 0x111A408, 0x20]
           - [0x111A828, af_ci4, tol_umb_20_e_tex_txt, 16, 16, 0x111A408, 0x20]
@@ -4744,8 +4744,8 @@
         name: tol_umb_21
         subsegments:
           - [0x111B000, vtx, tol_umb_21_v]
-          - [0x111B380, gfx, kasa_umb21_model]
-          - [0x111B468, gfx, e_umb21_model]
+          - [0x111B380, af_gfx, kasa_umb21_model]
+          - [0x111B468, af_gfx, e_umb21_model]
           - [0x111B520, af_palette, tol_umb_21_pal]
           - [0x111B540, af_ci4, tol_umb_21_kasa_tex_txt, 64, 32, 0x111B520, 0x20]
           - [0x111B940, af_ci4, tol_umb_21_tuka_tex_txt, 32, 32, 0x111B520, 0x20]
@@ -4767,8 +4767,8 @@
         name: tol_umb_22
         subsegments:
           - [0x111C000, vtx, tol_umb_22_v]
-          - [0x111C480, gfx, kasa_umb22_model]
-          - [0x111C580, gfx, e_umb22_model]
+          - [0x111C480, af_gfx, kasa_umb22_model]
+          - [0x111C580, af_gfx, e_umb22_model]
           - [0x111C620, af_palette, tol_umb_22_pal]
           - [0x111C640, af_ci4, tol_umb_22_kasa_tex_txt, 32, 32, 0x111C620, 0x20]
           - [0x111C840, af_ci4, tol_umb_22_e_tex_txt, 16, 32, 0x111C620, 0x20]
@@ -4790,8 +4790,8 @@
         name: tol_umb_23
         subsegments:
           - [0x111D000, vtx, tol_umb_23_v]
-          - [0x111D360, gfx, kasa_umb23_model]
-          - [0x111D428, gfx, e_umb23_model]
+          - [0x111D360, af_gfx, kasa_umb23_model]
+          - [0x111D428, af_gfx, e_umb23_model]
           - [0x111D528, af_palette, tol_umb_23_pal]
           - [0x111D548, af_ci4, tol_umb_23_kasa_tex_txt, 32, 64, 0x111D528, 0x20]
           - [0x111D948, af_ci4, tol_umb_23_tuka_tex_txt, 32, 32, 0x111D528, 0x20]
@@ -4814,8 +4814,8 @@
         name: tol_umb_24
         subsegments:
           - [0x111E000, vtx, tol_umb_24_v]
-          - [0x111E3C0, gfx, kasa_umb24_model]
-          - [0x111E4D8, gfx, e_umb24_model]
+          - [0x111E3C0, af_gfx, kasa_umb24_model]
+          - [0x111E4D8, af_gfx, e_umb24_model]
           - [0x111E598, af_palette, tol_umb_24_pal]
           - [0x111E5B8, af_ci4, tol_umb_24_kasa1_tex_txt, 16, 32, 0x111E598, 0x20]
           - [0x111E6B8, af_ci4, tol_umb_24_kasa2_tex_txt, 16, 32, 0x111E598, 0x20]
@@ -4838,8 +4838,8 @@
         name: tol_umb_25
         subsegments:
           - [0x111F000, vtx, tol_umb_25_v]
-          - [0x111F350, gfx, kasa_umb25_model]
-          - [0x111F470, gfx, e_umb25_model]
+          - [0x111F350, af_gfx, kasa_umb25_model]
+          - [0x111F470, af_gfx, e_umb25_model]
           - [0x111F510, af_palette, tol_umb_25_pal]
           - [0x111F530, af_ci4, tol_umb_25_kasa_tex_txt, 32, 32, 0x111F510, 0x20]
           - [0x111F730, af_ci4, tol_umb_25_ya_tex_txt, 16, 64, 0x111F510, 0x20]
@@ -4861,8 +4861,8 @@
         name: tol_umb_26
         subsegments:
           - [0x1120000, vtx, tol_umb_26_v]
-          - [0x11203C0, gfx, kasa_umb26_model]
-          - [0x11204D0, gfx, e_umb26_model]
+          - [0x11203C0, af_gfx, kasa_umb26_model]
+          - [0x11204D0, af_gfx, e_umb26_model]
           - [0x1120590, af_palette, tol_umb_26_pal]
           - [0x11205B0, af_ci4, tol_umb_26_kasa1_tex_txt, 16, 32, 0x1120590, 0x20]
           - [0x11206B0, af_ci4, tol_umb_26_kasa2_tex_txt, 16, 32, 0x1120590, 0x20]
@@ -4885,8 +4885,8 @@
         name: tol_umb_27
         subsegments:
           - [0x1121000, vtx, tol_umb_27_v]
-          - [0x11214B0, gfx, kasa_umb27_model]
-          - [0x11215F8, gfx, e_umb27_model]
+          - [0x11214B0, af_gfx, kasa_umb27_model]
+          - [0x11215F8, af_gfx, e_umb27_model]
           - [0x1121698, af_palette, tol_umb_27_pal]
           - [0x11216B8, af_ci4, tol_umb_27_kasa1_tex_txt, 32, 32, 0x1121698, 0x20]
           - [0x11218B8, af_ci4, tol_umb_27_kasa2_tex_txt, 32, 32, 0x1121698, 0x20]
@@ -4909,8 +4909,8 @@
         name: tol_umb_28
         subsegments:
           - [0x1122000, vtx, tol_umb_28_v]
-          - [0x1122360, gfx, kasa_umb28_model]
-          - [0x1122428, gfx, e_umb28_model]
+          - [0x1122360, af_gfx, kasa_umb28_model]
+          - [0x1122428, af_gfx, e_umb28_model]
           - [0x11224E0, af_palette, tol_umb_28_pal]
           - [0x1122500, af_ci4, tol_umb_28_kasa_tex_txt, 32, 32, 0x11224E0, 0x20]
           - [0x1122700, af_ci4, tol_umb_28_tuka_tex_txt, 32, 32, 0x11224E0, 0x20]
@@ -4932,8 +4932,8 @@
         name: tol_umb_29
         subsegments:
           - [0x1123000, vtx, tol_umb_29_v]
-          - [0x1123380, gfx, kasa_umb29_model]
-          - [0x1123448, gfx, e_umb29_model]
+          - [0x1123380, af_gfx, kasa_umb29_model]
+          - [0x1123448, af_gfx, e_umb29_model]
           - [0x1123508, af_palette, tol_umb_29_pal]
           - [0x1123528, af_ci4, tol_umb_29_kasa1_tex_txt, 32, 32, 0x1123508, 0x20]
           - [0x1123728, af_ci4, tol_umb_29_tuka_tex_txt, 32, 32, 0x1123508, 0x20]
@@ -4955,8 +4955,8 @@
         name: tol_umb_30
         subsegments:
           - [0x1124000, vtx, tol_umb_30_v]
-          - [0x1124380, gfx, kasa_umb30_model]
-          - [0x1124450, gfx, e_umb30_model]
+          - [0x1124380, af_gfx, kasa_umb30_model]
+          - [0x1124450, af_gfx, e_umb30_model]
           - [0x1124510, af_palette, obj_shop_umb_30_pal]
           - [0x1124530, af_ci4, tol_umb_30_kasa1_tex_txt, 32, 32, 0x1124510, 0x20]
           - [0x1124730, af_ci4, tol_umb_30_tuka_tex_txt, 32, 32, 0x1124510, 0x20]
@@ -4978,8 +4978,8 @@
         name: tol_umb_31
         subsegments:
           - [0x1125000, vtx, tol_umb_31_v]
-          - [0x1125360, gfx, kasa_umb31_model]
-          - [0x1125428, gfx, e_umb31_model]
+          - [0x1125360, af_gfx, kasa_umb31_model]
+          - [0x1125428, af_gfx, e_umb31_model]
           - [0x1125528, af_palette, tol_umb_31_pal]
           - [0x1125548, af_ci4, tol_umb_31_kasa_tex_txt, 32, 32, 0x1125528, 0x20]
           - [0x1125748, af_ci4, tol_umb_31_tuka_tex_txt, 32, 32, 0x1125528, 0x20]
@@ -5002,22 +5002,61 @@
         name: tol_umb_32
         subsegments:
           - [0x1126000, vtx, tol_umb_32_v]
-          - [0x1126380, gfx, kasa_umb32_model]
-          - [0x1126448, gfx, e_umb32_model]
+          - [0x1126380, af_gfx, kasa_umb32_model]
+          - [0x1126448, af_gfx, e_umb32_model]
           - [0x1126508, af_palette, obj_shop_umb_32_pal]
           - [0x1126528, af_ci4, obj_shop_umb_32_kasa1_tex_txt, 32, 32, 0x1126508, 0x20]
           - [0x1126728, af_ci4, obj_shop_umb_32_tuka1_tex_txt, 32, 32, 0x1126508, 0x20]
   - [0x1126930]
 
-  - name: object_01127000
-    type: bin # code
+  - name: tol_keitai_1
+    dir: objects/tol_keitai_1
+    type: code
     start: 0x1127000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x1127000, data, assets/objects/object_01127000/object_01127000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, keitai_off1]
+      - start: 0x1127000
+        type: .data
+        name: keitai_off1
+        subsegments:
+          - [0x1127000, ckf_ckcb, cKF_ckcb_r_tol_keitai_1_keitai_off1_tbl]
+          - [0x1127004, ckf_kn, cKF_kn_tol_keitai_1_keitai_off1_tbl]
+          - [0x1127018, ckf_c, cKF_c_tol_keitai_1_keitai_off1_tbl]
+          - [0x1127020, ckf_ds, cKF_ds_tol_keitai_1_keitai_off1_tbl]
+          - [0x11270A4, ckf_ba, cKF_ba_r_tol_keitai_1_keitai_off1]
+          - [0x11270B8]
+      - [auto, c, keitai_on1]
+      - start: 0x11270C0
+        type: .data
+        name: keitai_on1
+        subsegments:
+          - [0x11270C0, ckf_ckcb, cKF_ckcb_r_tol_keitai_1_keitai_on1_tbl]
+          - [0x11270C4, ckf_kn, cKF_kn_tol_keitai_1_keitai_on1_tbl]
+          - [0x11270C8, ckf_c, cKF_c_tol_keitai_1_keitai_on1_tbl]
+          - [0x11270E0, ckf_ds, cKF_ds_tol_keitai_1_keitai_on1_tbl]
+          - [0x1127134, ckf_ba, cKF_ba_r_tol_keitai_1_keitai_on1]
+          - [0x1127148]
+      - [auto, c, tol_keitai_1]
+      - start: 0x1127150
+        type: .data
+        name: tol_keitai_1
+        subsegments:
+          - [0x1127150, vtx, tol_keitai_1_v]
+          - [0x1127320, af_gfx, main1_keitai1_model]
+          - [0x1127480, af_gfx, main2_keitai1_model]
+          - [0x11275E8, af_palette, tol_keitai_1_pal]
+          - [0x1127608, af_ci4, tol_keitai_1_ueura1_tex_txt, 16, 32, 0x11275E8, 0x20]
+          - [0x1127708, af_ci4, tol_keitai_1_ueomote1_tex_txt, 16, 32, 0x11275E8, 0x20]
+          - [0x1127808, af_ci4, tol_keitai_1_shitaura1_tex_txt, 16, 32, 0x11275E8, 0x20]
+          - [0x1127908, af_ci4, tol_keitai_1_shitaomote1_tex_txt, 16, 32, 0x11275E8, 0x20]
+          - [0x1127A08, ckf_je, cKF_je_r_tol_keitai_1_tbl]
+          - [0x1127A2C, ckf_bs, cKF_bs_r_tol_keitai_1]
+          - [0x1127A34]
   - [0x1127A40]
 
   - name: tol_utiwa_1
@@ -5036,7 +5075,7 @@
         name: tol_utiwa_1
         subsegments:
           - [0x1128000, vtx, tol_utiwa_1_v]
-          - [0x1128080, gfx, main_utiwa1_model]
+          - [0x1128080, af_gfx, main_utiwa1_model]
           - [0x1128188, af_palette, tol_utiwa1_pal]
           - [0x11281A8, af_ci4, tol_utiwa_1_main1_tex_txt, 32, 32, 0x1128188, 0x20]
           - [0x11283A8, af_ci4, tol_utiwa_1_main2_tex_txt, 32, 32, 0x1128188, 0x20]
@@ -5053,48 +5092,104 @@
     #   - [0x1129000, data, assets/objects/object_01129000/object_01129000]
   - [0x1129A80]
 
-  - name: object_0112A000
-    type: bin # code
+  - name: tol_npcsao_1
+    dir: objects/tol_npcsao_1
+    type: code
     start: 0x112A000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x112A000, data, assets/objects/object_0112A000/object_0112A000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, tol_npcsao_1]
+      - start: 0x112A000
+        type: .data
+        name: tol_npcsao_1
+        subsegments:
+          - [0x112A000, vtx, tol_npcsao_1_v]
+          - [0x112A470, af_gfx, tol_npcsao_1_sao_model]
+          - [0x112A548, af_gfx, tol_npcsao_1_uki_model]
+          - [0x112A5D8, af_palette, tol_npcsao_1_pal]
+          - [0x112A5F8, af_ci4, tol_npcsao_1_tex, 64, 16, 0x112A5D8, 0x20]
   - [0x112A800]
 
-  - name: object_0112B000
-    type: bin # code
+  - name: tol_kamicup
+    dir: objects/tol_kamicup
+    type: code
     start: 0x112B000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x112B000, data, assets/objects/object_0112B000/object_0112B000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, tol_kamicup]
+      - start: 0x112B000
+        type: .data
+        name: tol_kamicup
+        subsegments:
+          - [0x112B000, vtx, tol_kamicup_1_v]
+          - [0x112B330, af_gfx, tol_kamicup_1T_model]
+          - [0x112B450, af_palette, tol_kamicup_pal]
+          - [0x112B470, af_ci4, tol_kamicup_tex, 32, 32, 0x112B450, 0x20]
   - [0x112B670]
 
-  - name: object_0112C000
-    type: bin # code
+  - name: tol_kenjyu_1
+    dir: objects/tol_kenjyu_1
+    type: code
     start: 0x112C000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x112C000, data, assets/objects/object_0112C000/object_0112C000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, tol_kenjyu_1]
+      - start: 0x112C000
+        type: .data
+        name: tol_kenjyu_1
+        subsegments:
+          - [0x112C000, vtx, tol_kenjyu_1_v]
+          - [0x112C410, af_gfx, tol_kenjyu_1T_model]
+          - [0x112C528, af_palette, tol_kenjyu_1_pal]
+          - [0x112C548, af_ci4, tol_kenjyu_1_tex, 32, 32, 0x112C528, 0x20]
   - [0x112C750]
 
-  - name: object_0112D000
-    type: bin # code
+  - name: tol_tamaire
+    dir: objects/tol_tamaire
+    type: code
     start: 0x112D000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x112D000, data, assets/objects/object_0112D000/object_0112D000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, ef_tamaire01]
+      - start: 0x112D000
+        type: .data
+        name: ef_tamaire01
+        subsegments:
+          - [0x112D000, vtx, ef_tamaire01_r_v]
+          - [0x112D040, af_gfx, tama01_model]
+          - [0x112D0C8, af_palette, ef_tamaire01_r_pal]
+          - [0x112D0E8, af_ci4, tama01_r_tex, 32, 32, 0x112D0C8, 0x20]
+          - [0x112D2E8, af_ci4, tama01_w_tex, 32, 32, 0x112D0C8, 0x20]
+      - [auto, c, tol_tamaire]
+      - start: 0x112D4F0
+        type: .data
+        name: tol_tamaire
+        subsegments:
+          - [0x112D4F0, vtx, tol_tamaire_v]
+          - [0x112D530, af_gfx, tol_tamaire_model]
+          - [0x112D5B8, af_palette, tol_tamaire_pal]
+          - [0x112D5D8, af_ci4, tol_tamaire_r1_tex, 32, 32, 0x112D5B8, 0x20]
+          - [0x112D7D8, af_ci4, tol_tamaire_r2_tex, 32, 32, 0x112D5B8, 0x20]
+          - [0x112D9D8, af_ci4, tol_tamaire_r3_tex, 32, 32, 0x112D5B8, 0x20]
+          - [0x112DBD8, af_ci4, tol_tamaire_w1_tex, 32, 32, 0x112D5B8, 0x20]
+          - [0x112DDD8, af_ci4, tol_tamaire_w2_tex, 32, 32, 0x112D5B8, 0x20]
+          - [0x112DFD8, af_ci4, tol_tamaire_w3_tex, 32, 32, 0x112D5B8, 0x20]
   - [0x112E1E0]
 
   - name: tol_cracker_1
@@ -5113,20 +5208,43 @@
         name: tol_cracker_1
         subsegments:
           - [0x112F000, vtx, tol_cracker_1_v]
-          - [0x112F1C0, gfx, tol_cracker_1T_model]
+          - [0x112F1C0, af_gfx, tol_cracker_1T_model]
           - [0x112F280, af_palette, tol_cracker_1_pal]
           - [0x112F2A0, af_ci4, tol_cracker_1_tex, 64, 16, 0x112F280, 0x20]
   - [0x112F4A0]
 
-  - name: object_01130000
-    type: bin # code
+  - name: tol_hata_01
+    dir: objects/tol_hata_01
+    type: code
     start: 0x1130000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x1130000, data, assets/objects/object_01130000/object_01130000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, tol_hata_01]
+      - start: 0x1130000
+        type: .data
+        name: tol_hata_01
+        subsegments:
+          - [0x1130000, vtx, tol_hata_01_v]
+          - [0x11300F0, af_gfx, tol_hata_e_model]
+          - [0x11301A0, af_gfx, tol_hata_hataT_model]
+          - [0x1130228, af_palette, tol_hata_e_pal]
+          - [0x1130248, af_ci4, tol_hata_e_tex, 16, 16, 0x1130228, 0x20]
+          - [0x11302C8, af_ia8, tol_hata_hata_tex_inta_ia8, 16, 16]
+          - [0x11303C8]
+      - [auto, c, tol_hata_01_evw_anime]
+      - start: 0x11303C8
+        type: .data
+        name: tol_hata_01_evw_anime
+        subsegments:
+          - [0x11303D0, evw_textable, tol_hata_01_evw_anime_1_tex_table]
+          - [0x11303D4, evw_animeptn, tol_hata_01_evw_anime_1_anime_ptn]
+          - [0x11303D8, evw_texanime, tol_hata_01_evw_anime_1]
+          - [0x11303E8, evw_scroll, tol_hata_01_evw_anime_2]
+          - [0x11303F0, evw_data, tol_hata_01_evw_anime]
   - [0x1130400]
 
   - name: object_01131000

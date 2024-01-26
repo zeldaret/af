@@ -3,7 +3,7 @@ from typing import Optional
 from splat.util import options, log
 from splat.segtypes.common.codesubsegment import CommonSegCodeSubsegment
 
-class N64SegCkf_c(CommonSegCodeSubsegment):
+class N64SegEvw_data(CommonSegCodeSubsegment):
     def __init__(self, rom_start, rom_end, type, name, vram_start, args, yaml):
         super().__init__(rom_start, rom_end, type, name, vram_start, args=args, yaml=yaml),
 
@@ -13,19 +13,26 @@ class N64SegCkf_c(CommonSegCodeSubsegment):
     def scan(self, rom_bytes: bytes):
         data = rom_bytes[self.rom_start : self.rom_end]
         symbol = self.create_symbol(addr=self.vram_start, in_segment=True, type="data", define=True)
-        count = len(data) // 2
+        count = len(data) // 8
         lines = []
 
-        if (len(data)) % 2 != 0:
-            log.error(f"Error: ckf_c segment {self.name} length ({len(data)}) is not a multiple of 2!")
+        if (len(data)) % 8 != 0:
+            log.error(f"Error: evw_data segment {self.name} length ({len(data)}) is not a multiple of 8!")
 
         if not self.data_only:
             lines.append(options.opts.generated_c_preamble)
             lines.append("")
-            lines.append(f"s16 {symbol.name}[{count}] = {{")
+            lines.append(f"EvwAnimeData {symbol.name}[{count}] = {{")
 
-        for short in struct.iter_unpack(">h", data):
-            lines.append(f"    {short[0]},")
+        for evwAnimeData in struct.iter_unpack(">bxhI", data):
+            segment, type, dataPtr = evwAnimeData
+
+            if dataPtr:
+                data_ptr_symbol = self.get_symbol(addr=dataPtr).name
+            else:
+                data_ptr_symbol = "NULL"
+
+            lines.append(f"    {{ {segment}, {type}, &{data_ptr_symbol} }},")
 
         if not self.data_only:
             lines.append("};")
