@@ -74,7 +74,7 @@ cKF_c_obj_s_toudai_tbl = 0x0607EE30; // segment:object_00D5E000 rom:0xDDCE30
 cKF_ds_obj_s_toudai_tbl = 0x0607EE60; // segment:object_00D5E000 rom:0xDDCE60
 cKF_ba_r_obj_s_toudai = 0x0607EE6C; // segment:object_00D5E000 rom:0xDDCE6C
 
-obj_w_toudai_v = 0x0607EE90; // segment:object_00D5E000 rom:0xDDCE90 size:0x990
+obj_w_toudai_v = 0x0607EE90; // segment:object_00D5E000 rom:0xDDCE90 size:0x950
 obj_w_toudai_mirror_model = 0x0607F7E0; // segment:object_00D5E000 rom:0xDDD7E0
 obj_w_toudai_glass_model = 0x0607F8A8; // segment:object_00D5E000 rom:0xDDD8A8
 obj_w_toudai_body_model = 0x0607F978; // segment:object_00D5E000 rom:0xDDD978
