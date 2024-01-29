@@ -4175,8 +4175,6 @@ func_800FEE10_jp = 0x800FEE10; // type:func
 func_800FEF9C_jp = 0x800FEF9C; // type:func
 func_800FF060_jp = 0x800FF060; // type:func
 gspS2DEX2_fifoTextStart = 0x800FF370; // type:u64 size:0x18C0 name_end:gspS2DEX2_fifoTextEnd
-func_801002CC_jp = 0x801002CC; // type:func
-D_801002F0_jp = 0x801002F0; //
 
 // .data
 

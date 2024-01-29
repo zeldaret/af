@@ -318,7 +318,7 @@ D_FLT_8003CFA0_jp = 0x8003CFA0; // type:f32
 osViModeNtscLan1 = 0x8003CFB0; // size:0x50 (vi, false)
 osViModeMpalLan1 = 0x8003D000; // size:0x50 (vi, false)
 
-vi = 0x8003D050; // size:0x70 (vi, false)
+vi = 0x8003D050; // size:0x60 (vi, false)
 __osViCurr = 0x8003D0B0; // size:0x4 (vi, true)
 __osViNext = 0x8003D0B4; // size:0x4 (vi, true)
 
