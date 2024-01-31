@@ -71,7 +71,7 @@ s32 mMl_check_not_used_mail(Mail_c* mail);
 void mMl_copy_header_name(mMl_unk_00* arg0, mMl_unk_00* arg1);
 void mMl_set_from_name(Mail_c* arg0, Mail_c* arg1);
 void mMl_set_to_name(Mail_c* arg0, Mail_c* arg1);
-void mMl_set_to_plname(Mail_c* arg0, Mail_c* arg1);
+void mMl_set_to_plname(Mail_c* arg0, PersonalID_c* arg1);
 void mMl_set_playername(Mail_c* mail, PersonalID_c* arg1);
 void mMl_init_mail(Mail_c* mail, PersonalID_c* arg1);
 s32 mMl_chk_mail_free_space(Mail_c mail[], s32 arg1);

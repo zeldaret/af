@@ -244,9 +244,10 @@ typedef struct CommonData {
     /* 0x105A4 */ NpsSchedule npcSchedule[ANIMAL_NUM_MAX];
     /* 0x10694 */ NpcWalking npcWalk;
     /* 0x10710 */ NpcEvent npcEvent[5];
-    /* 0x1074C */ UNK_TYPE unk_1074C;
-    /* 0x10750 */ UNK_TYPE1 unk_10750[0x4];
-    /* 0x10754 */ UNK_TYPE unk_10754;
+    /* 0x1074C */ s32 unk_1074C;
+    /* 0x10750 */ s16 moneyPower;
+    /* 0x10752 */ s16 goodsPower;
+    /* 0x10754 */ s32 unk_10754;
     /* 0x10758 */ UNK_TYPE1 unk_10758[0x48];
     /* 0x107A0 */ UNK_TYPE unk_107A0;
     /* 0x107A4 */ UNK_TYPE1 unk_107A4[0x12];

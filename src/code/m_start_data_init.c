@@ -352,7 +352,7 @@ s32 mSDI_StartInitPak(Game* game2, s32 playerNumber, s32 mallocFlag) {
     Game_Play* game_play = (Game_Play*)game;
     UNUSED s32 pad;
     s32 res = FALSE;
-    s32 sp1C;
+    void* sp1C;
 
     if (mallocFlag == 1) {
         game = NULL;
@@ -364,7 +364,7 @@ s32 mSDI_StartInitPak(Game* game2, s32 playerNumber, s32 mallocFlag) {
 
     if (mFRm_CheckSaveData() == TRUE) {
         sp1C = mCPk_get_pkinfo();
-        if ((func_80078E90_jp(sp1C, 0) == TRUE) && (func_800B8D64_jp(playerNumber, sp1C) == TRUE)) {
+        if ((func_80078E90_jp(sp1C, 0) == TRUE) && (mPr_LoadPak_and_SetPrivateInfo2(playerNumber, sp1C) == TRUE)) {
             mFM_SetBlockKindLoadCombi(game);
             mEv_init_force(&game_play->event);
             mHsRm_GetHuusuiRoom(game, playerNumber);
@@ -417,7 +417,7 @@ void mSDI_StartInitAfter(Game* game, s32 renewalReserveFlag, s32 mallocFlag) {
     mTRC_init(game_play);
     common_data.gokiShockedFlag = FALSE;
     func_800A6548_jp();
-    func_800B9B2C_jp();
+    mPr_SendMailFromMother();
     mNpc_Remail();
     mPr_SendForeingerAnimalMail(common_data.privateInfo);
     mPr_StartSetCompleteTalkInfo();

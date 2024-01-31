@@ -94,8 +94,8 @@ void mMl_set_to_name(Mail_c* arg0, Mail_c* arg1) {
     mMl_copy_header_name(&arg0->header.recipient, &arg1->header.recipient);
 }
 
-void mMl_set_to_plname(Mail_c* arg0, Mail_c* arg1) {
-    mPr_CopyPersonalID(&arg0->header.recipient.personalID, &arg1->header.recipient.personalID);
+void mMl_set_to_plname(Mail_c* arg0, PersonalID_c* arg1) {
+    mPr_CopyPersonalID(&arg0->header.recipient.personalID, arg1);
     arg0->header.recipient.type = 0;
 }
 
