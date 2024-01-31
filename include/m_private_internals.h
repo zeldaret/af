@@ -26,10 +26,10 @@ typedef struct mPr_map_info_c {
 	/* 0x06 */ u16 landId;
 } mPr_map_info_c; // size = 0x8
 
-typedef struct PrivateAnimalMemory{
+typedef struct PrivateAnimalMemory {
     /* 0x00 */ u16 npcId; 
     /* 0x02 */ char landName[LAND_NAME_SIZE];
-}PrivateAnimalMemory; // size 0x8
+} PrivateAnimalMemory; // size 0x8
 
 typedef struct PrivateInventory {
     /* 0x00 */ u16 pockets[mPr_POCKETS_SLOT_COUNT]; /* items in inventory */
@@ -61,11 +61,11 @@ typedef struct PrivateMotherMail {
     /* 0x8 */ PrivateMotherMailData data;
 } PrivateMotherMail; // size = 0xE
 
-typedef struct PrivateBirthday{
+typedef struct PrivateBirthday {
     /* 0x0 */ u16 year;
     /* 0x2 */ u8 month;
     /* 0x3 */ u8 day;
-}PrivateBirthday; // size = 0x4
+} PrivateBirthday; // size = 0x4
 
 
 #endif
