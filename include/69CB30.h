@@ -6,7 +6,7 @@
 struct Animal_c;
 struct PrivateInfo;
 
-s32 func_80078E90_jp(s32 arg0, s32 arg1);
+s32 func_80078E90_jp(void* arg0, s32 arg1);
 // void func_80078EB4_jp();
 // void func_80078EE0_jp();
 // void func_80078F08_jp();
@@ -40,7 +40,7 @@ s32 func_8007942C_jp(struct PrivateInfo*, struct Animal_c*, void*);
 // void func_80079EDC_jp();
 // void func_80079F44_jp();
 // void func_8007A008_jp();
-s32 mCPk_get_pkinfo(void);
+void* mCPk_get_pkinfo(void);
 // void func_8007A080_jp();
 
 #endif
