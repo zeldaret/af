@@ -66,7 +66,7 @@
       - [0x6D4E00, asm, code/m_player_lib]
       - [0x6D9D80, asm, code/6D9D80]
       - [0x6DA460, asm, code/6DA460]
-      - [0x6DB420, asm, code/m_private]
+      - [0x6DB420, c, code/m_private]
       - [0x6DE300, asm, code/6DE300]
       - [0x6E08E0, asm, code/m_random_field]
       - [0x6E0F50, asm, code/m_rcp]
@@ -155,6 +155,8 @@
       - [0x72F7D0, .data, code/m_npc_walk]
       - [0x72F980, .data, code/m_player_call]
       - [0x72F9B0, data, code/72F9B0]
+      - [0x7302E0, .data, code/m_private]
+      - [0x730320, data, code/730320]
       - [0x731940, .data, code/m_start_data_init]
       - [0x731980, .data, code/m_submenu]
       - [0x731A20, data, code/731A20]
@@ -215,7 +217,7 @@
       - [0x73B000, rodata, code/m_olib]
       - [0x73B020, rodata, code/m_player_lib]
       - [0x73B0F0, rodata, code/73B0F0]
-      - [0x73B130, rodata, code/73B130]
+      - [0x73B130, .rodata, code/m_private]
       - [0x73B210, rodata, code/73B210]
       - [0x73B250, rodata, code/73B250]
       - [0x73B360, rodata, code/73B360]
@@ -276,6 +278,7 @@
       - { start: 0x73F4D0, type: .bss, vram: 0x801438B0, name: code/m_npc_walk }
       - { start: 0x73F4D0, type: .bss, vram: 0x80143900, name: code/m_player_call }
       - { start: 0x73F4D0, type: bss, vram: 0x80143910, name: code/80143910 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x801439A0, name: code/m_private }
       - { start: 0x73F4D0, type: .bss, vram: 0x80144670, name: code/m_submenu }
       - { start: 0x73F4D0, type: bss, vram: 0x80144690, name: code/80144690 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80144D20, name: code/audioMgr }

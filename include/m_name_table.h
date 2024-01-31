@@ -5,6 +5,8 @@
 
 extern u8 npc_looks_table[];
 
+#define GET_NAME_ITEM_CATEGORY(f) (((f) & 0x0F00) >> 8)
+
 #define EMPTY_NO 0x0000
 
 #define ITM_MONEY_START 0x2100

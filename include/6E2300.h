@@ -16,7 +16,7 @@
 // void func_800BEE50_jp();
 // void func_800BEEB4_jp();
 // void func_800BEEC4_jp();
-// void func_800BEFCC_jp();
+u16 mRmTp_Item1ItemNo2FtrItemNo_AtPlayerRoom(u16 item);
 // void func_800BF10C_jp();
 // void func_800BF230_jp();
 // void func_800BF26C_jp();

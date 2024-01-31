@@ -102,13 +102,13 @@ static u16 S_back_title_timer;
 static u16 S_se_endcheck_timeout;
 
 void Game_play_Reset_destiny(void) {
-    Private_Sub_A86* temp = &common_data.privateInfo->unk_A86;
+    PrivateDestiny* destiny = &common_data.privateInfo->destiny;
     u8* day = &common_data.time.rtcTime.day;
     u8* month = &common_data.time.rtcTime.month;
 
-    if ((temp->unk_08 != 0) &&
-        ((common_data.time.rtcTime.year != temp->unk_06) || (*month != temp->unk_05) || (*day != temp->unk_03))) {
-        temp->unk_08 = 0;
+    if ((destiny->type != 0) &&
+        ((common_data.time.rtcTime.year != destiny->receivedTime.year) || (*month != destiny->receivedTime.month) || (*day != destiny->receivedTime.day))) {
+        destiny->type = 0;
     }
 }
 

@@ -6,9 +6,11 @@
 #include "m_quest.h"
 #include "m_private_internals.h"
 #include "m_npc.h"
+#include "m_museum.h"
 #include "unk.h"
 
 #define mPr_FOREIGN_MAP_COUNT 8
+#define mPr_INVENTORY_MAIL_COUNT 10
 #define PLAYER_NUM 4
 
 typedef enum mPr_SEX {
@@ -26,6 +28,8 @@ typedef enum mPr_ITEM_COND{
     /* 3 */ mPr_ITEM_COND_NUM
 } mPr_ITEM_COND;
 
+#define mPr_GET_ITEM_COND(allCond, slot) (((allCond) >> (((u32)(slot)) << 1)) & mPr_ITEM_COND_NUM)
+
 typedef enum mPr_FACE_TYPE {
     /* 0 */ mPr_FACE_TYPE0,
     /* 1 */ mPr_FACE_TYPE1,
@@ -42,112 +46,125 @@ typedef struct PrivateInfo {
     /* 0x000 */ PersonalID_c playerId; 
     /* 0x010 */ s8 gender;
     /* 0x011 */ s8 face;
-    /* 0x012 */ UNK_TYPE1 unk_012[0x2];
+    /* 0x012 */ s8 resetCount; 
+    /* 0x013 */ MuseumRecord museumRecord;
     /* 0x014 */ PrivateInventory inventory;
     /* 0x040 */ mQst_delivery_c deliveries[mPr_DELIVERY_QUEST_NUM]; /* delivery quests */
     /* 0x25C */ QuestErrand errands[mPr_ERRAND_QUEST_NUM]; /* errand quests */
     /* 0x3EC */ UNK_TYPE1 unk_3EC[0x2];
-    /* 0x3EE */ MailHeaderCommon unk_3EE;
-    /* 0x40A */ Mail_c unk_40A[10];
-    /* 0xA72 */ UNK_TYPE1 unk_A72[0x2];
+    /* 0x3EE */ MailHeaderCommon savedMailHeader;
+    /* 0x40A */ Mail_c mail[mPr_INVENTORY_MAIL_COUNT];
+    /* 0xA72 */ s16 backgroundTextureId;
     /* 0xA74 */ u8 exists;
-    /* 0xA75 */ UNK_TYPE1 unkA75[1];
+    /* 0xA75 */ u8 hintCount;
     /* 0xA76 */ PrivateCloth cloth;
-    /* 0xA7A */ UNK_TYPE1 unkA7A[0xC];
-    /* 0xA86 */ Private_Sub_A86 unk_A86;
-    /* 0xA90 */ UNK_TYPE1 unk_A90[0x3C];
-    /* 0xACC */ Anmremail remail;   
+    /* 0xA7A */ AnmPersonalID_c storedAnmId;
+    /* 0xA86 */ PrivateDestiny destiny;
+    /* 0xA90 */ PrivateBirthday birthday;
+    /* 0xA94 */ UNK_TYPE1 unk_A94[0x28];
+    /* 0xABC */ s32 completedFish;
+    /* 0xAC0 */ s32 completedInsect;
+    /* 0xAC4 */ UNK_TYPE1 unk_AC4[0x8];
+    /* 0xACC */ Anmremail remail;
     /* 0xADE */ UNK_TYPE1 unk_ADE[0x6];
     /* 0xAE4 */ PrivateAnimalMemory animalMemory;
-    /* 0xAEC */ UNK_TYPE1 unk_AEC[0x9C]; 
-    /* 0xB88 */ mPr_map_info_c maps[mPr_FOREIGN_MAP_COUNT]; /* maps 'collected' for foreign towns */
+    /* 0xAEC */ u8 completeFishInsectFlags;
+    /* 0xAEF */ UNK_TYPE1 unk_AEF[0x2];
+    /* 0x108 */ u32 catalogFurniture[30];
+    /* 0x1B4 */ u32 catalogWallpaper[2];
+    /* 0x1C0 */ u32 catalogCarpet[2];
+    /* 0x1CC */ u32 catalogPaper[2];
+    /* 0x1D4 */ u32 catalogMusic[2];
+    /* 0xB88 */ mPr_map_info_c maps[mPr_FOREIGN_MAP_COUNT];
     /* 0xBC8 */ UNK_TYPE1 unk_BC8[0x8];
 } PrivateInfo; // size = 0xBD0
 
-void mPr_ClearPlayerName(char* arg0);
+void mPr_ClearPlayerName(char* buf);
 void mPr_CopyPlayerName(char* dst, char* src);
-s32 mPr_NullCheckPlayerName(char* arg0);
-// void func_800B7804_jp();
-// void func_800B785C_jp();
-s32 mPr_NullCheckPersonalID(PersonalID_c* arg0);
-void mPr_ClearPersonalID(PersonalID_c* arg0);
-// void func_800B7998_jp();
-void mPr_CopyPersonalID(PersonalID_c* arg0, PersonalID_c* arg1);
-s32 mPr_CheckCmpPersonalID(PersonalID_c* arg0, PersonalID_c* arg1);
-// void func_800B7A94_jp();
-// void func_800B7AB0_jp();
-void mPr_ClearPrivateInfo(PrivateInfo* private);
-// void func_800B7B8C_jp();
-// void func_800B7BC0_jp();
-// void func_800B7CD0_jp();
-// void func_800B7D50_jp();
-void mPr_InitPrivateInfo(PrivateInfo* private);
-// void func_800B7F00_jp();
-// void func_800B7F48_jp();
-s32 mPr_CheckPrivate(PrivateInfo* private);
-// void func_800B7FA0_jp();
-s32 mPr_GetPrivateIdx(PersonalID_c* arg0);
-// void func_800B8068_jp();
-// void func_800B80B4_jp();
-// void func_800B8128_jp();
-// void func_800B81A4_jp();
-// void func_800B8204_jp();
-// void func_800B828C_jp();
-// void func_800B8318_jp();
-// void func_800B83D4_jp();
-// void func_800B8544_jp();
-// void func_800B86EC_jp();
-// void func_800B88EC_jp();
-// void func_800B8A88_jp();
-void mPr_SetPossessionItem(PrivateInfo* priv, int idx, u16 item, u32 cond);
-// void func_800B8B8C_jp();
-// void func_800B8BE4_jp();
-// void func_800B8C10_jp();
-// void func_800B8C20_jp();
-// void func_800B8C34_jp();
-// void func_800B8C9C_jp();
-// void func_800B8D18_jp();
-// void func_800B8D3C_jp();
-s32 func_800B8D64_jp(u8 player_no, s32 arg1);
-void mPr_ClearMotherMailInfo(PrivateMotherMail* arg0);
-// void func_800B8F20_jp();
-// void func_800B8FB8_jp();
-// void func_800B9038_jp();
-// void func_800B9170_jp();
-// void func_800B9350_jp();
-// void func_800B93AC_jp();
-// void func_800B947C_jp();
-// void func_800B94E0_jp();
-// void func_800B9704_jp();
-// void func_800B9790_jp();
-// void func_800B97C8_jp();
-// void func_800B97F8_jp();
-// void func_800B996C_jp();
-// void func_800B9AF0_jp();
-void func_800B9B2C_jp(void);
-// void func_800B9C34_jp();
-void mPr_SendForeingerAnimalMail(PrivateInfo* privateInfo);
+s32 mPr_NullCheckPlayerName(char* name);
+s32 mPr_CheckCmpPlayerName(char* name0, char* name1);
+s32 mPr_GetPlayerName(char* buf, s32 playerNumber);
+s32 mPr_NullCheckPersonalID(PersonalID_c* pid);
+void mPr_ClearPersonalID(PersonalID_c* pid);
+void mPr_ClearAnyPersonalID(PersonalID_c* pid, s32 count);
+void mPr_CopyPersonalID(PersonalID_c* dst, PersonalID_c* src);
+s32 mPr_CheckCmpPersonalID(PersonalID_c* pid0, PersonalID_c* pid1);
+void mPr_ClearPrivateBirthday(PrivateBirthday* birthday);
+void mPr_ClearAnimalMemory(PrivateAnimalMemory* memory);
+void mPr_ClearPrivateInfo(PrivateInfo* info);
+s32 mPr_GetRandomFace(void);
+s32 mPr_GetRandomOriginalFace(void);
+u16 mPr_GetRandomCloth(u8 sex);
+void mPr_SetNowPrivateCloth(void);
+void mPr_InitPrivateInfo(PrivateInfo* priv);
+void mPr_InitAnyPrivates(PrivateInfo* info, s32 amount);
+void mPr_CopyPrivateInfo(PrivateInfo* dst, PrivateInfo* src);
+s32 mPr_CheckPrivate(PrivateInfo* priv);
+s32 mPr_CheckCmpPrivate(PrivateInfo* priv0, PrivateInfo* priv1);
+s32 mPr_GetPrivateIdx(PersonalID_c* pid);
+s32 mPr_GetPossessionItemIdx(PrivateInfo* priv, u16 item);
+s32 mPr_GetPossessionItemIdxWithCond(PrivateInfo* priv, u16 item, u32 cond);
+s32 mPr_GetPossessionItemIdxFGTypeWithCond_cancel(PrivateInfo* priv, u16 fg_type, u32 cond);
+s32 mPr_GetPossessionItemIdxItem1Category(PrivateInfo* priv, u8 item1_type);
+s32 mPr_GetPossessionItemIdxItem1CategoryWithCond_cancel(PrivateInfo* priv, u8 item1_type, u32 cond);
+s32 mPr_GetPossessionItemIdxKindWithCond(PrivateInfo* priv, u16 kind_start, u16 kind_end, u32 cond);
+s32 mPr_GetPossessionItemSum(PrivateInfo* priv, u16 item);
+s32 mPr_GetPossessionItemSumWithCond(PrivateInfo* priv, u16 item, u32 cond);
+s32 mPr_GetPossessionItemSumFGTypeWithCond_cancel(PrivateInfo* priv, u16 fg_type, u32 cond);
+s32 mPr_GetPossessionItemSumItemCategoryWithCond_cancel(PrivateInfo* priv, u8 item1_type, u32 cond);
+void mPr_SetItemCollectBit(u16 item);
+u16 mPr_DummyPresentToTruePresent(void);
+void mPr_SetPossessionItem(PrivateInfo* priv, s32 idx, u16 item, u32 cond);
+s32 mPr_SetFreePossessionItem(PrivateInfo* priv, u16 item, u32 cond);
+void mPr_AddFirstJobHint(PrivateInfo* priv);
+s32 mPr_GetFirstJobHintTime(PrivateInfo* priv);
+s32 mPr_CheckFirstJobHint(PrivateInfo* priv);
+s16 mPr_GetMoneyPower(void);
+s16 mPr_GetGoodsPower(void);
+s32 mPr_CheckMuseumAddress(PrivateInfo* priv);
+s32 mPr_CheckMuseumInfoMail(PrivateInfo* priv);
+s32 mPr_LoadPak_and_SetPrivateInfo2(u8 player, void* pak);
+void mPr_ClearMotherMailInfo(PrivateMotherMail* motherMail);
+s32 mPr_GetMotherMailPaperType(s32 month, s32 day);
+void mPr_GetMotherMail(Mail_c* mail, PersonalID_c* pid, u16 present, s32 stationery, s32 mail_no);
+s32 mPr_SendMotherMailPost(PersonalID_c* pid, s32 player_no, u16 present, int stationery, s32 mail_no);
+s32 mPr_SendMotherMailDate(PrivateMotherMail* mother_mail, lbRTC_time_c* send_time);
+s32 mPr_CheckMotherMailMonthly(PrivateMotherMailData* send_data, s32 month, s32 idx);
+s32 mPr_GetMotherMailMonthlyNotSendNum(PrivateMotherMailData* send_data, s32 month);
+void mPr_SetMotherMailMonthly(PrivateMotherMailData* send_data, s32 month, s32 idx);
+void mPr_GetMotherMailMonthlyData(PrivateMotherMailData* send_data, s32* mail_no, u16* present,
+                                  s32* event_no, s32 month, s32 not_send_num);
+s32 mPr_GetMotherMailNormalNotSendNum(PrivateMotherMailData* send_data);
+void mPr_SetMotherMailNormal(PrivateMotherMailData* send_data, s32 idx);
+s32 mPr_CheckMotherMailNormal(PrivateMotherMailData* send_data, s32 idx);
+void mPr_GetMotherMailNormalData(PrivateMotherMailData* send_data, s32* mail_no, u16* present, s32* event_no,
+                                 s32 no_send_num);
+void mPr_SendMotherMailNormal(PrivateMotherMail* mother_mail, lbRTC_time_c* send_time);
+void mPr_SendMotherMail(PrivateMotherMail* mother_mail, lbRTC_time_c* send_time);
+void mPr_SendMailFromMother(void);
+void mPr_GetForeingerAnimalMail(Mail_c* mail, PrivateInfo* priv, PrivateAnimalMemory* anm_mem);
+void mPr_SendForeingerAnimalMail(PrivateInfo* priv);
 void mPr_StartSetCompleteTalkInfo(void);
-// void func_800B9E90_jp();
-// void func_800B9EB4_jp();
-// void func_800B9ED4_jp();
-// void func_800B9F00_jp();
-// void func_800B9F74_jp();
-// void func_800B9FA0_jp();
-// void func_800BA014_jp();
-// void func_800BA054_jp();
-// void func_800BA09C_jp();
-// void func_800BA0E4_jp();
-// void func_800BA130_jp();
-// void func_800BA150_jp();
-// void func_800BA18C_jp();
-// void func_800BA214_jp();
-// void func_800BA2B0_jp();
-// void func_800BA2D4_jp();
-// void func_800BA344_jp();
-// void func_800BA3D0_jp();
-void mPr_RenewalMapInfo(mPr_map_info_c* maps, s32 count, struct LandInfo* landInfo);
-// void mPr_RandomSetPlayerData_title_demo();
-// void mPr_PrintMapInfo_debug();
+void mPr_SetCompleteTalk(u8* comp_insect_fish_flags, s32 type);
+s32 mPr_GetCompleteTalk(u8 comp_insect_fish_flags, s32 type);
+void mPr_SetFishCompleteTalk(void);
+s32 mPr_CheckFishCompleteTalk(u8 player_no);
+void mPr_SetInsectCompleteTalk(void);
+s32 mPr_CheckInsectCompleteTalk(u8 player_no);
+s32 mPr_GetTalkPermission(u8 comp_insect_fish_flags, s32 type);
+s32 mPr_GetFishCompTalkPermission(void);
+s32 mPr_GetInsectCompTalkPermission(void);
+void mPr_ClearMapInfo(mPr_map_info_c* mapInfo, s32 max);
+void mPr_CopyMapInfo(mPr_map_info_c* dst, mPr_map_info_c* src);
+void mPr_SetMapThisLand(mPr_map_info_c* map_info);
+s32 mPr_GetMapFreeIdx(mPr_map_info_c* mapInfo, s32 max);
+s32 mPr_GetLandMapIdx(mPr_map_info_c* map_info, s32 max, LandInfo* land_info);
+s32 mPr_GetThisLandMapIdx(mPr_map_info_c* map_info, s32 max);
+void mPr_PushMapInfo(mPr_map_info_c* map_info, s32 max);
+void mPr_SetNewMap(mPr_map_info_c* map_info, s32 max);
+void mPr_SetUseMap(mPr_map_info_c* map_info, s32 max);
+void mPr_RenewalMapInfo(mPr_map_info_c* map_info, s32 max, LandInfo* land_info);
+void mPr_RandomSetPlayerData_title_demo(void);
+void mPr_PrintMapInfo_debug(gfxprint* gfxprint);
 
 #endif
