@@ -35,7 +35,7 @@ s32 mPr_NullCheckPlayerName(char* name) {
         name++;
     }
 
-    if (i == PLAYER_NAME_LEN) {
+    if (i == PLAYER_NAME_LEN) { 
         res = TRUE;
     }
 
@@ -50,7 +50,7 @@ s32 mPr_CheckCmpPlayerName(char* name0, char* name1) {
     }
 
     return res;
-}
+} 
 
 s32 mPr_GetPlayerName(char* buf, s32 playerNumber) {
     char* name;
@@ -307,7 +307,7 @@ s32 mPr_GetPrivateIdx(PersonalID_c* pid) {
 
     return res;
 }
-//
+
 s32 mPr_GetPossessionItemIdx(PrivateInfo* priv, u16 item) {
     s32 idx = -1;
 
