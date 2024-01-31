@@ -6,22 +6,22 @@
 #include "m_player_lib.h"
 #include "6E2300.h"
 #include "m_field_info.h"
-#include "6E30B0.h" 
+#include "6E30B0.h"
 #include "69CB30.h"
 #include "m_handbill.h"
 #include "m_house.h"
 #include "6DA460.h"
 #include "6EDD10.h"
 
+PrivateInfo g_foreigner_private;
 Mail_c l_mpr_mail;
-PrivateInfo g_foreigner_private; 
 
-void mPr_ClearPlayerName(char* buf) {  
-    mem_clear((u8*)buf, PLAYER_NAME_LEN, ' '); 
-} 
+void mPr_ClearPlayerName(char* buf) {
+    mem_clear((u8*)buf, PLAYER_NAME_LEN, ' ');
+}
 
-void mPr_CopyPlayerName(char* dst, char* src) { 
-    mem_copy((u8*)dst, (u8*)src, PLAYER_NAME_LEN);  
+void mPr_CopyPlayerName(char* dst, char* src) {
+    mem_copy((u8*)dst, (u8*)src, PLAYER_NAME_LEN);
 }
 
 s32 mPr_NullCheckPlayerName(char* name) {
@@ -35,7 +35,7 @@ s32 mPr_NullCheckPlayerName(char* name) {
         name++;
     }
 
-    if (i == PLAYER_NAME_LEN) { 
+    if (i == PLAYER_NAME_LEN) {
         res = TRUE;
     }
 
@@ -50,7 +50,7 @@ s32 mPr_CheckCmpPlayerName(char* name0, char* name1) {
     }
 
     return res;
-} 
+}
 
 s32 mPr_GetPlayerName(char* buf, s32 playerNumber) {
     char* name;
@@ -63,7 +63,7 @@ s32 mPr_GetPlayerName(char* buf, s32 playerNumber) {
         }
     } else if (mLd_PlayerManKindCheckNo(common_data.playerNumber) == TRUE) {
 
-        name =(common_data.privateInfo)->playerId.playerName;
+        name = (common_data.privateInfo)->playerId.playerName;
         mPr_CopyPlayerName(buf, name);
         res = TRUE;
     }
@@ -94,7 +94,6 @@ void mPr_ClearAnyPersonalID(PersonalID_c* pid, s32 count) {
         pid++;
     }
 }
-
 
 void mPr_CopyPersonalID(PersonalID_c* dst, PersonalID_c* src) {
     mem_copy((u8*)dst, (u8*)src, sizeof(PersonalID_c));
@@ -142,8 +141,8 @@ void mPr_ClearPrivateInfo(PrivateInfo* info) {
     mMsm_ClearRecord(&info->museumRecord);
 }
 
-s32 mPr_GetRandomFace(){
-    return fqrand() * (f32)mPr_FACE_TYPE_NUM; 
+s32 mPr_GetRandomFace() {
+    return fqrand() * (f32)mPr_FACE_TYPE_NUM;
 }
 
 s32 mPr_GetRandomOriginalFace() {
@@ -190,8 +189,8 @@ u16 mPr_girl_cloth_table[8] = {
 };
 
 u16 mPr_GetRandomCloth(u8 sex) {
-    static u16* cloth_table[mPr_SEX_NUM] = {mPr_boy_cloth_table, mPr_girl_cloth_table};
-    static s32 cloth_max[mPr_SEX_NUM] = {8, 8};
+    static u16* cloth_table[mPr_SEX_NUM] = { mPr_boy_cloth_table, mPr_girl_cloth_table };
+    static s32 cloth_max[mPr_SEX_NUM] = { 8, 8 };
 
     u16* table;
     s32 idx;
@@ -203,7 +202,7 @@ u16 mPr_GetRandomCloth(u8 sex) {
     }
 
     table = cloth_table[sex];
-    idx = RANDOM_F2(cloth_max[sex]);  
+    idx = RANDOM_F2(cloth_max[sex]);
     temp = table[idx];
     return temp;
 }
@@ -217,12 +216,11 @@ void mPr_SetNowPrivateCloth() {
 }
 
 void mPr_InitPrivateInfo(PrivateInfo* priv) {
-    PrivateInfo* o_priv;
-    u16 pid;  
+    PrivateInfo* ogPriv;
+    u16 pid;
     s32 i;
     s32 face;
     s32 exists;
- 
 
     exists = FALSE;
     face = mPr_GetRandomOriginalFace();
@@ -231,24 +229,22 @@ void mPr_InitPrivateInfo(PrivateInfo* priv) {
     mLd_CopyLandName(priv->playerId.landName, common_data.landInfo.name);
 
     pid = RANDOM_F(253);
-    o_priv = common_data.saveFilePrivateInfo;  
-    
+    ogPriv = common_data.saveFilePrivateInfo;
+
     for (i = 0; i < PLAYER_NUM - 1; i++, exists = FALSE) {
         s32 j;
         for (j = 0; j < PLAYER_NUM; j++) {
-            
-            if (pid == o_priv[j].playerId.playerId) {
-                pid = pid +1 ;
+
+            if (pid == ogPriv[j].playerId.playerId) {
+                pid = pid + 1;
                 exists = TRUE;
                 break;
             }
         }
 
         if (exists == FALSE) {
-            break; 
+            break;
         }
-
-            
     }
 
     priv->playerId.playerId = 0xF000 | pid;
@@ -257,12 +253,11 @@ void mPr_InitPrivateInfo(PrivateInfo* priv) {
     priv->gender = mPr_SEX_MALE;
     priv->inventory.loan = 100;
     priv->face = face;
-
 }
 
-void mPr_InitAnyPrivates(PrivateInfo* info, s32 amount){
-    
-    for(; amount != 0; amount--,info++){
+void mPr_InitAnyPrivates(PrivateInfo* info, s32 amount) {
+
+    for (; amount != 0; amount--, info++) {
         mPr_InitPrivateInfo(info);
     }
 }
@@ -295,14 +290,14 @@ s32 mPr_GetPrivateIdx(PersonalID_c* pid) {
     PrivateInfo* priv = common_data.saveFilePrivateInfo;
     s32 res = -1;
     s32 i;
-    
+
     for (i = 0; i < PLAYER_NUM; i++) {
         if ((mPr_NullCheckPersonalID(pid) == FALSE) && (mPr_CheckCmpPersonalID(pid, &priv->playerId) == TRUE)) {
-                res = i;
-                break;
+            res = i;
+            break;
         }
 
-            priv++;
+        priv++;
     }
 
     return res;
@@ -313,7 +308,7 @@ s32 mPr_GetPossessionItemIdx(PrivateInfo* priv, u16 item) {
 
     if (priv != NULL) {
         u16* pockets = priv->inventory.pockets;
-        int i;
+        s32 i;
 
         for (i = 0; i < mPr_POCKETS_SLOT_COUNT; i++) {
             if (*pockets == item) {
@@ -357,7 +352,7 @@ s32 mPr_GetPossessionItemIdxFGTypeWithCond_cancel(PrivateInfo* priv, u16 fg_type
 
         for (i = 0; i < mPr_POCKETS_SLOT_COUNT; i++) {
             if (ACTOR_FGNAME_GET_F000(*pockets) == fg_type &&
-                cond == mPr_GET_ITEM_COND(priv->inventory.item_conditions, i) ) {
+                cond == mPr_GET_ITEM_COND(priv->inventory.item_conditions, i)) {
                 idx = i;
                 break;
             }
@@ -388,7 +383,7 @@ s32 mPr_GetPossessionItemIdxItem1Category(PrivateInfo* priv, u8 type) {
     return idx;
 }
 
-s32 mPr_GetPossessionItemIdxItem1CategoryWithCond_cancel(PrivateInfo* priv, u8 item1_type, u32 cond) {
+s32 mPr_GetPossessionItemIdxItem1CategoryWithCond_cancel(PrivateInfo* priv, u8 itemType, u32 cond) {
     s32 idx = -1;
 
     if (priv != NULL) {
@@ -396,7 +391,7 @@ s32 mPr_GetPossessionItemIdxItem1CategoryWithCond_cancel(PrivateInfo* priv, u8 i
         s32 i;
 
         for (i = 0; i < mPr_POCKETS_SLOT_COUNT; i++) {
-            if (ACTOR_FGNAME_GET_F000(*pockets) == 2 && GET_NAME_ITEM_CATEGORY(*pockets) == item1_type &&
+            if (ACTOR_FGNAME_GET_F000(*pockets) == 2 && GET_NAME_ITEM_CATEGORY(*pockets) == itemType &&
                 cond == mPr_GET_ITEM_COND(priv->inventory.item_conditions, i)) {
                 idx = i;
                 break;
@@ -482,7 +477,7 @@ s32 mPr_GetPossessionItemSumFGTypeWithCond_cancel(PrivateInfo* priv, u16 fg_type
     return sum;
 }
 
-s32 mPr_GetPossessionItemSumItemCategoryWithCond_cancel(PrivateInfo* priv, u8 item1_type, u32 cond) {
+s32 mPr_GetPossessionItemSumItemCategoryWithCond_cancel(PrivateInfo* priv, u8 itemType, u32 cond) {
     s32 sum = 0;
 
     if (priv != NULL) {
@@ -490,7 +485,7 @@ s32 mPr_GetPossessionItemSumItemCategoryWithCond_cancel(PrivateInfo* priv, u8 it
         s32 i;
 
         for (i = 0; i < mPr_POCKETS_SLOT_COUNT; i++) {
-            if (ACTOR_FGNAME_GET_F000(*pockets) == 2 && GET_NAME_ITEM_CATEGORY(*pockets) == item1_type &&
+            if (ACTOR_FGNAME_GET_F000(*pockets) == 2 && GET_NAME_ITEM_CATEGORY(*pockets) == itemType &&
                 cond == mPr_GET_ITEM_COND(priv->inventory.item_conditions, i)) {
                 sum++;
             }
@@ -502,64 +497,63 @@ s32 mPr_GetPossessionItemSumItemCategoryWithCond_cancel(PrivateInfo* priv, u8 it
 }
 
 void mPr_SetItemCollectBit(u16 item) {
-    u16 ftr_item_no = mRmTp_Item1ItemNo2FtrItemNo_AtPlayerRoom(item);
+    u16 furnitureItemNumber = mRmTp_Item1ItemNo2FtrItemNo_AtPlayerRoom(item);
     s32 item_type;
 
-    if ((ftr_item_no >= 0x1C28 && ftr_item_no < 0x1CA8) ||
-        (ftr_item_no >= 0x1BA8 && ftr_item_no < 0x1C28)) {
+    if ((furnitureItemNumber >= 0x1C28 && furnitureItemNumber < 0x1CA8) ||
+        (furnitureItemNumber >= 0x1BA8 && furnitureItemNumber < 0x1C28)) {
         return;
     }
 
-    item_type = ACTOR_FGNAME_GET_F000(ftr_item_no);
+    item_type = ACTOR_FGNAME_GET_F000(furnitureItemNumber);
 
     if (item_type == 1) {
 
-        common_data.privateInfo->catalogFurniture[(ftr_item_no - 0x1000) >> 2 >> 5] |= (1 << ((ftr_item_no - 0x1000) >> 2 & 31));
+        common_data.privateInfo->catalogFurniture[(furnitureItemNumber - 0x1000) >> 2 >> 5] |=
+            (1 << ((furnitureItemNumber - 0x1000) >> 2 & 31));
 
     } else if (item_type == 2) {
-        s32 category = GET_NAME_ITEM_CATEGORY(ftr_item_no);
+        s32 category = GET_NAME_ITEM_CATEGORY(furnitureItemNumber);
         u16 idx;
         if (category == 0) {
-             idx = (ftr_item_no - 0x2000);
+            idx = (furnitureItemNumber - 0x2000);
             common_data.privateInfo->catalogPaper[idx >> 5] |= (1 << (idx & 31));
-        } else if (category == 5) { 
-             idx = ftr_item_no - 0x2600;
-            common_data.privateInfo->catalogCarpet[idx >> 5] |= (1 << (idx & 31));
         } else if (category == 6) {
-             idx = ftr_item_no - 0x2700;
+            idx = furnitureItemNumber - 0x2600;
+            common_data.privateInfo->catalogCarpet[idx >> 5] |= (1 << (idx & 31));
+        } else if (category == 7) {
+            idx = furnitureItemNumber - 0x2700;
             common_data.privateInfo->catalogWallpaper[idx >> 5] |= (1 << (idx & 31));
-        } else if (category == 9) {
-             idx =ftr_item_no - 0x2A00; 
+        } else if (category == 10) {
+            idx = furnitureItemNumber - 0x2A00;
             common_data.privateInfo->catalogMusic[idx >> 5] |= (1 << (idx & 31));
         }
     }
 }
 u16 mPr_DummyPresentToTruePresent() {
-    u16 true_present = 0;
+    u16 truePresent = 0;
 
-    /* 80% chance of rolling furniture from town's rare list */
     if (RANDOM(5) != 0) {
-        mSP_SelectRandomItem_New(NULL, &true_present, 1, NULL, 0, 0, 2);
+        mSP_SelectRandomItem_New(NULL, &truePresent, 1, NULL, 0, 0, 2);
     }
 
-    /* 20% (and default case) to get random non-native fruit */
-    if (true_present == 0) {
-        true_present = mFI_GetOtherFruit();
-    } 
+    if (truePresent == 0) {
+        truePresent = mFI_GetOtherFruit();
+    }
 
-    return true_present;
+    return truePresent;
 }
 
 void mPr_SetPossessionItem(PrivateInfo* priv, s32 idx, u16 item, u32 cond) {
 
-    if(item == 0x251C){
-        item = mPr_DummyPresentToTruePresent(); 
+    if (item == 0x251C) {
+        item = mPr_DummyPresentToTruePresent();
         cond = mPr_ITEM_COND_PRESENT;
     }
+
     // FAKEMATCH!!
     priv->inventory.pockets[idx & 0xFFFFFFFF] = item;
-    priv->inventory.item_conditions =
-        ((priv->inventory.item_conditions & (~(3 << (idx * 2)))) | (cond << (idx * 2)));
+    priv->inventory.item_conditions = ((priv->inventory.item_conditions & (~(3 << (idx * 2)))) | (cond << (idx * 2)));
 
     if (cond == mPr_ITEM_COND_NORMAL) {
         mPr_SetItemCollectBit(item);
@@ -575,28 +569,28 @@ s32 mPr_SetFreePossessionItem(PrivateInfo* priv, u16 item, u32 cond) {
         mPr_SetPossessionItem(priv, idx, item, cond);
         return 1;
     }
-
 }
 
 void mPr_AddFirstJobHint(PrivateInfo* priv) {
     u8 hints = priv->hintCount + 1;
     if ((hints & 0x7F) >= 10) {
-        hints = 0x80;  // signal all hints have been given
+        hints = 0x80;
     }
- 
+
     priv->hintCount = hints;
 }
 
-s32 mPr_GetFirstJobHintTime(PrivateInfo* priv) { 
+s32 mPr_GetFirstJobHintTime(PrivateInfo* priv) {
     s32 hints = priv->hintCount & 0x7F;
-    return hints; 
+    return hints;
 }
 
-s32 mPr_CheckFirstJobHint(PrivateInfo* priv) { 
+s32 mPr_CheckFirstJobHint(PrivateInfo* priv) {
     s32 hints = (priv->hintCount >> 7) & 1;
-    
-    return hints; 
+
+    return hints;
 }
+
 s16 mPr_GetMoneyPower() {
     s16 moneyPower = common_data.moneyPower;
     PrivateInfo* priv = common_data.privateInfo;
@@ -673,7 +667,7 @@ s32 mPr_LoadPak_and_SetPrivateInfo2(u8 player, void* pak) {
     PrivateInfo* priv;
     s32 res = FALSE;
     s32 save = func_8007942C_jp(&g_foreigner_private, mNpc_GetInAnimalP(), pak);
-    
+
     if (save == TRUE) {
         if (player < 4) {
             priv = &common_data.saveFilePrivateInfo[player];
@@ -701,7 +695,7 @@ s32 mPr_LoadPak_and_SetPrivateInfo2(u8 player, void* pak) {
             }
             if (exists == FALSE) {
                 common_data.privateInfo = &g_foreigner_private;
-                common_data.playerNumber = 4;
+                common_data.playerNumber = mPR_FOREIGNER_NUMBER;
                 res = TRUE;
             }
         }
@@ -715,12 +709,11 @@ void mPr_ClearMotherMailInfo(PrivateMotherMail* motherMail) {
 }
 
 s32 mPr_GetMotherMailPaperType(s32 month, s32 day) {
-    static u8 paper_table[lbRTC_MONTHS_MAX] = {13, 49, 32, 12, 62, 14, 19, 11, 59, 46, 47, 17};
+    static u8 paper_table[lbRTC_MONTHS_MAX] = { 13, 49, 32, 12, 62, 14, 19, 11, 59, 46, 47, 17 };
 
     PrivateBirthday* birthday = &common_data.privateInfo->birthday;
     s32 paper;
 
-    /* TODO: should paper be enums? */
     if (birthday->month == month && birthday->day == day) {
         paper = 1;
     } else if (month == lbRTC_JANUARY && day == 1) {
@@ -737,39 +730,39 @@ s32 mPr_GetMotherMailPaperType(s32 month, s32 day) {
     return paper - 1;
 }
 
-void mPr_GetMotherMail(Mail_c* mail, PersonalID_c* pid, u16 present, s32 stationery, s32 mail_no) {
+void mPr_GetMotherMail(Mail_c* mail, PersonalID_c* pid, u16 present, s32 stationery, s32 mailNumber) {
     s32 headerBackPos;
 
     mMl_clear_mail(mail);
     mHandbill_Load_HandbillFromRom(mail->content.header, &headerBackPos, mail->content.footer, mail->content.body,
-                                   mail_no);
+                                   mailNumber);
     mail->content.headerBackStart = headerBackPos;
     mail->content.font = 0;
     mail->content.mailType = 4;
-    mMl_set_to_plname(mail, pid); 
-    mail->present = present; 
+    mMl_set_to_plname(mail, pid);
+    mail->present = present;
     mail->content.paperType = stationery;
 }
 
-s32 mPr_SendMotherMailPost(PersonalID_c* pid, s32 player_no, u16 present, int stationery, s32 mail_no) {
+s32 mPr_SendMotherMailPost(PersonalID_c* pid, s32 playerNumber, u16 present, s32 stationery, s32 mailNumber) {
     Mail_c* mail;
-    mHm_hs_c* home; 
+    mHm_hs_c* home;
     UNUSED s32 pad2;
-    s32 mailbox_idx;
-    s32 res = FALSE;   
-    UNUSED s32 pad; 
+    s32 mailboxIdx;
+    s32 res = FALSE;
+    UNUSED s32 pad;
 
     mail = &l_mpr_mail;
-    home = &common_data.homes[mHS_get_arrange_idx(player_no)];
+    home = &common_data.homes[mHS_get_arrange_idx(playerNumber)];
 
-    if (mPr_CheckCmpPersonalID(pid, &home->ownerID) == TRUE) { 
-         mailbox_idx = mMl_chk_mail_free_space(home->mailbox, HOME_MAILBOX_SIZE);
-        if (mailbox_idx != -1) {
-            mPr_GetMotherMail(mail, pid, present, stationery, mail_no);
-            mMl_copy_mail(&home->mailbox[mailbox_idx], mail);
+    if (mPr_CheckCmpPersonalID(pid, &home->ownerID) == TRUE) {
+        mailboxIdx = mMl_chk_mail_free_space(home->mailbox, HOME_MAILBOX_SIZE);
+        if (mailboxIdx != -1) {
+            mPr_GetMotherMail(mail, pid, present, stationery, mailNumber);
+            mMl_copy_mail(&home->mailbox[mailboxIdx], mail);
             res = TRUE;
         } else if (mPO_get_keep_mail_sum() < 5) {
-            mPr_GetMotherMail(mail, pid, present, stationery, mail_no);
+            mPr_GetMotherMail(mail, pid, present, stationery, mailNumber);
             res = mPO_receipt_proc(mail, 0);
         }
     }
@@ -777,45 +770,44 @@ s32 mPr_SendMotherMailPost(PersonalID_c* pid, s32 player_no, u16 present, int st
     return res;
 }
 
-s32 mPr_SendMotherMailDate(PrivateMotherMail* mother_mail, lbRTC_time_c* send_time) {
+s32 mPr_SendMotherMailDate(PrivateMotherMail* motherMail, lbRTC_time_c* sendTime) {
     UNUSED s32 pad;
-    s32 mail_no = -1;
-    s32 letter_num;
+    s32 mailNumber = -1;
+    s32 letterNumber;
     u16 present = 0;
-    s32 res = FALSE; 
+    s32 res = FALSE;
     PrivateBirthday* birthday = &common_data.privateInfo->birthday;
     s32 rand;
- 
-    if (birthday->month == send_time->month &&
-        birthday->day == send_time->day) {
+
+    if (birthday->month == sendTime->month && birthday->day == sendTime->day) {
         rand = RANDOM2(2.0f);
-        mail_no = 0x184 + rand; 
+        mailNumber = 0x184 + rand;
         present = 0x11FC;
-    } else if (send_time->month == send_time->day) {
-        letter_num = ((send_time->month) * mPr_MOTHER_MAIL_MONTHLY_NUM) + RANDOM(2.0f);
-        mail_no = 0x162 + letter_num;
-        if (send_time->month == 1) {
+    } else if (sendTime->month == sendTime->day) {
+        letterNumber = ((sendTime->month) * mPr_MOTHER_MAIL_MONTHLY_NUM) + RANDOM(2.0f);
+        mailNumber = 0x162 + letterNumber;
+        if (sendTime->month == 1) {
             present = 0x2101;
-        } else if (letter_num == 20) {
+        } else if (letterNumber == 20) {
             present = 0x2805;
         }
-    } else if (send_time->month == lbRTC_APRIL && send_time->day == 1) {
+    } else if (sendTime->month == lbRTC_APRIL && sendTime->day == 1) {
         rand = RANDOM2(2.0f);
-        mail_no = rand + 0x180;
+        mailNumber = rand + 0x180;
     } else {
         if (mEv_check_status(0x1C, 1) == TRUE) {
             rand = RANDOM2(2.0f);
-            mail_no = rand + 0x17C;
+            mailNumber = rand + 0x17C;
         } else if (mEv_check_status(0x1B, 1) == TRUE) {
             rand = RANDOM2(2.0f);
-            mail_no = rand + 0x17E;
+            mailNumber = rand + 0x17E;
         }
     }
 
-    if (mail_no != -1) {
+    if (mailNumber != -1) {
         if (mPr_SendMotherMailPost(&common_data.privateInfo->playerId, common_data.playerNumber, present,
-                                   mPr_GetMotherMailPaperType(send_time->month, send_time->day), mail_no) == TRUE) {
-            mTM_set_renew_time(&mother_mail->date, send_time);
+                                   mPr_GetMotherMailPaperType(sendTime->month, sendTime->day), mailNumber) == TRUE) {
+            mTM_set_renew_time(&motherMail->date, sendTime);
         }
 
         res = TRUE;
@@ -824,19 +816,19 @@ s32 mPr_SendMotherMailDate(PrivateMotherMail* mother_mail, lbRTC_time_c* send_ti
     return res;
 }
 
-s32 mPr_CheckMotherMailMonthly(PrivateMotherMailData* send_data, s32 month, s32 idx) {
+s32 mPr_CheckMotherMailMonthly(PrivateMotherMailData* sendData, s32 month, s32 idx) {
     s32 ret;
     if (month == lbRTC_AUGUST) {
-        ret = (send_data->august >> (idx)) & 1;
+        ret = (sendData->august >> (idx)) & 1;
     } else {
         u8 monthlyTemp;
         s32 shift;
         s32 slot;
-        
+
         month--;
         shift = month * 2;
         slot = shift / 8;
-        monthlyTemp = send_data->monthly[slot];
+        monthlyTemp = sendData->monthly[slot];
         shift -= slot * 8;
 
         ret = (monthlyTemp >> (shift + idx)) & 1;
@@ -845,15 +837,15 @@ s32 mPr_CheckMotherMailMonthly(PrivateMotherMailData* send_data, s32 month, s32 
     return ret;
 }
 
-s32 mPr_GetMotherMailMonthlyNotSendNum(PrivateMotherMailData* send_data, s32 month) {
+s32 mPr_GetMotherMailMonthlyNotSendNum(PrivateMotherMailData* sendData, s32 month) {
     s32 slot;
-    s32 not_send_num = 0;
+    s32 notSendNum = 0;
     s32 i;
 
     if (month == lbRTC_AUGUST) {
         for (i = 0; i < 8; i++) {
-            if (((send_data->august >> i) & 1) == 0) {
-                not_send_num++;
+            if (((sendData->august >> i) & 1) == 0) {
+                notSendNum++;
             }
         }
     } else {
@@ -863,24 +855,23 @@ s32 mPr_GetMotherMailMonthlyNotSendNum(PrivateMotherMailData* send_data, s32 mon
         month--;
         shift = month * 2;
         slot = shift / 8;
-        byte = send_data->monthly[slot];
+        byte = sendData->monthly[slot];
         shift -= slot * 8;
-        
 
         for (i = 0; i < 2; i++) {
             if (((byte >> shift) & 1) == 0) {
-                not_send_num++;
+                notSendNum++;
                 shift++;
             }
         }
     }
 
-    return not_send_num;
+    return notSendNum;
 }
 
-void mPr_SetMotherMailMonthly(PrivateMotherMailData* send_data, s32 month, s32 idx) {
+void mPr_SetMotherMailMonthly(PrivateMotherMailData* sendData, s32 month, s32 idx) {
     if (month == lbRTC_AUGUST) {
-        send_data->august |= (1 << idx);
+        sendData->august |= (1 << idx);
     } else {
         s32 slot;
         s32 shift;
@@ -890,68 +881,65 @@ void mPr_SetMotherMailMonthly(PrivateMotherMailData* send_data, s32 month, s32 i
         shift = month * 2;
         slot = shift / 8;
         shift -= slot * 8;
- 
-        send_data->monthly[slot] |= 1 << (shift + idx); 
+
+        sendData->monthly[slot] |= 1 << (shift + idx);
     }
 }
 
-void mPr_GetMotherMailMonthlyData(PrivateMotherMailData* send_data, s32* mail_no, u16* present,
-                                  s32* event_no, s32 month, s32 not_send_num) {
-    s32 mail_start_idx; 
-    static s32 mail_start_no_table[4] = {0x18C, 0x192, 0x186, 0x19E};
-    static u16 may_2_item_table[1] = {0x2469};  // fortune shirt
-    static u16 december_2_item_table[6] = {
-        0x246C,  // aurora knit
-        0x246E,  // winter sweater
-        0x246F,  // go-go shirt
-        0x2490,  // deer shirt
-        0x2491,  // blue check shirt
-        0x249C   // fish knit
+void mPr_GetMotherMailMonthlyData(PrivateMotherMailData* sendData, s32* mailNumber, u16* present, s32* eventNumber,
+                                  s32 month, s32 notSendNum) {
+    s32 mailStartIdx;
+    static s32 mail_start_no_table[4] = {
+        0x18C,
+        0x192,
+        0x186,
+        0x19E,
     };
-    s32 selected_event; 
-    s32 i;   
-    s32 max;  
+    static u16 may_2_item_table[1] = { 0x2469 };
+    static u16 december_2_item_table[6] = {
+        0x246C, 0x246D, 0x246E, 0x2490, 0x2491, 0x249C,
+    };
+    s32 selectedEvent;
+    s32 i;
+    s32 max;
 
- 
-
-    *present = 0; 
-    mail_start_idx = 3;
+    *present = 0;
+    mailStartIdx = 3;
 
     if (month <= lbRTC_FEBRUARY) {
-        mail_start_idx = 3;
+        mailStartIdx = 3;
     } else if (month <= lbRTC_MAY) {
-        mail_start_idx = 0;
+        mailStartIdx = 0;
     } else if (month <= lbRTC_AUGUST) {
-        mail_start_idx = 1;
+        mailStartIdx = 1;
     } else if (month <= lbRTC_NOVEMBER) {
-        mail_start_idx = 2;
+        mailStartIdx = 2;
     }
 
-    *mail_no = mail_start_no_table[mail_start_idx];
+    *mailNumber = mail_start_no_table[mailStartIdx];
 
-    selected_event = RANDOM(not_send_num);
+    selectedEvent = RANDOM(notSendNum);
     max = mPr_MOTHER_MAIL_MONTHLY_NUM;
-    
-    max = (month == lbRTC_AUGUST) ? lbRTC_AUGUST : lbRTC_FEBRUARY;
-    
 
-    for (i = 0; i < max; i++) { 
-        if (mPr_CheckMotherMailMonthly(send_data, month, i) == FALSE) {
-            if (selected_event <= 0) {
-                *event_no = i;
+    max = (month == lbRTC_AUGUST) ? lbRTC_AUGUST : lbRTC_FEBRUARY;
+
+    for (i = 0; i < max; i++) {
+        if (mPr_CheckMotherMailMonthly(sendData, month, i) == FALSE) {
+            if (selectedEvent <= 0) {
+                *eventNumber = i;
                 break;
             }
 
-            selected_event--;
+            selectedEvent--;
         }
     }
 
-    *mail_no += (month - ((mail_start_idx * 3) << 1)) + *event_no - 2;
+    *mailNumber += (((month - (mailStartIdx * 3)) * 2) + *eventNumber) - 2;
 
-    if (month == lbRTC_MAY && *event_no == 1) { 
+    if (month == lbRTC_MAY && *eventNumber == 1) {
         *present = may_2_item_table[RANDOM(1.0f)];
     } else if (month == lbRTC_DECEMBER) {
-        if (*event_no == 0) { 
+        if (*eventNumber == 0) {
             *present = 0x2800;
         } else {
             *present = december_2_item_table[RANDOM(6)];
@@ -961,61 +949,61 @@ void mPr_GetMotherMailMonthlyData(PrivateMotherMailData* send_data, s32* mail_no
     }
 }
 
-s32 mPr_GetMotherMailNormalNotSendNum(PrivateMotherMailData* send_data) {
-    u8* shift = &send_data->normal[0];
-    s32 not_send_num;
-    s32 i, j;
+s32 mPr_GetMotherMailNormalNotSendNum(PrivateMotherMailData* sendData) {
+    u8* shift = &sendData->normal[0];
+    s32 notSendNum;
+    s32 i;
+    s32 j;
 
-    for (i = not_send_num = 0; i < mPr_MOTHER_MAIL_NORMAL_NUM; i++, shift++) {
+    for (i = notSendNum = 0; i < mPr_MOTHER_MAIL_NORMAL_NUM; i++, shift++) {
         for (j = 0; j < 8; j++) {
             if (((*shift >> j) & 1) == 0) {
-                not_send_num++;
+                notSendNum++;
             }
         }
     }
-    return not_send_num;
+    return notSendNum;
 }
 
-
-void mPr_SetMotherMailNormal(PrivateMotherMailData* send_data, s32 idx) {
+void mPr_SetMotherMailNormal(PrivateMotherMailData* sendData, s32 idx) {
     s32 slot = idx / 8;
-    u8 *p = &send_data->normal[slot];
+    u8* p = &sendData->normal[slot];
     idx -= slot * 8;
     *p |= (1 << idx);
 }
 
-s32 mPr_CheckMotherMailNormal(PrivateMotherMailData* send_data, s32 idx) {
+s32 mPr_CheckMotherMailNormal(PrivateMotherMailData* sendData, s32 idx) {
     s32 slot = idx / 8;
-    u8* p = &send_data->normal[slot];
+    u8* p = &sendData->normal[slot];
     s32 ret;
-    idx -= slot * 8;  
-    ret =(*p >> (idx)) & 1; 
-    
+    idx -= slot * 8;
+    ret = (*p >> (idx)) & 1;
+
     return ret;
 }
 
-void mPr_GetMotherMailNormalData(PrivateMotherMailData* send_data, s32* mail_no, u16* present, s32* event_no,
-                                 s32 no_send_num) {
-    s32 selected_event;
+void mPr_GetMotherMailNormalData(PrivateMotherMailData* sendData, s32* mailNumber, u16* present, s32* eventNumber,
+                                 s32 noSendNum) {
+    s32 selectedEvent;
     s32 i;
- 
-    *event_no = -1;
-    selected_event = RANDOM(no_send_num);
+
+    *eventNumber = -1;
+    selectedEvent = RANDOM(noSendNum); 
 
     for (i = 0; i < 56; i++) {
-        if (mPr_CheckMotherMailNormal(send_data, i) == FALSE) {
-            if (selected_event <= 0) {
-                *event_no = i;
+        if (mPr_CheckMotherMailNormal(sendData, i) == FALSE) {
+            if (selectedEvent <= 0) {
+                *eventNumber = i;
                 break;
             }
 
-            selected_event--;
+            selectedEvent--;
         }
     }
 
-    *mail_no = 0x12C + *event_no;
+    *mailNumber = 0x12C + *eventNumber;
 
-    switch (*event_no) {
+    switch (*eventNumber) {
         case 1:
         case 16:
             mSP_SelectRandomItem_New(NULL, present, 1, NULL, 0, 2, 8);
@@ -1050,80 +1038,79 @@ void mPr_GetMotherMailNormalData(PrivateMotherMailData* send_data, s32* mail_no,
     }
 }
 
-void mPr_SendMotherMailNormal(PrivateMotherMail* mother_mail, lbRTC_time_c* send_time) {
-  UNUSED s32 pad2;
-  s32 monthly_not_send_num;
-  s32 not_send_num;
-  UNUSED s32 pad;
-  s32 mail_no;
-  s32 event_no;
-  u16 present;
+void mPr_SendMotherMailNormal(PrivateMotherMail* motherMail, lbRTC_time_c* sendTime) {
+    UNUSED s32 pad2;
+    s32 monthlyNotSendNum;
+    s32 notSendNum;
+    UNUSED s32 pad;
+    s32 mailNumber;
+    s32 eventNumber;
+    u16 present;
 
-
-    mail_no = -1;
+    mailNumber = -1;
     present = 0;
-    monthly_not_send_num = 0;  
+    monthlyNotSendNum = 0;
 
     if (RANDOM(100) < 20) {
-        not_send_num = mPr_GetMotherMailNormalNotSendNum(&mother_mail->data);
-        if (not_send_num == 0) {
-            bzero(&mother_mail->data, sizeof(PrivateMotherMailData));
-            monthly_not_send_num = mPr_GetMotherMailMonthlyNotSendNum(&mother_mail->data, send_time->month);
+        notSendNum = mPr_GetMotherMailNormalNotSendNum(&motherMail->data);
+        if (notSendNum == 0) {
+            bzero(&motherMail->data, sizeof(PrivateMotherMailData));
+            monthlyNotSendNum = mPr_GetMotherMailMonthlyNotSendNum(&motherMail->data, sendTime->month);
         }
-        if (monthly_not_send_num > 0) {
-            mPr_GetMotherMailMonthlyData(&mother_mail->data, &mail_no, &present, &event_no, send_time->month,
-                                         monthly_not_send_num);
+        if (monthlyNotSendNum > 0) {
+            mPr_GetMotherMailMonthlyData(&motherMail->data, &mailNumber, &present, &eventNumber, sendTime->month,
+                                         monthlyNotSendNum);
 
             if (mPr_SendMotherMailPost(&common_data.privateInfo->playerId, common_data.playerNumber, present,
-                                       mPr_GetMotherMailPaperType(send_time->month, send_time->day), mail_no) == TRUE) {
-                mPr_SetMotherMailMonthly(&mother_mail->data, send_time->month, event_no);
+                                       mPr_GetMotherMailPaperType(sendTime->month, sendTime->day),
+                                       mailNumber) == TRUE) {
+                mPr_SetMotherMailMonthly(&motherMail->data, sendTime->month, eventNumber);
             }
         } else {
-            mPr_GetMotherMailNormalData(&mother_mail->data, &mail_no, &present, &event_no, not_send_num);
+            mPr_GetMotherMailNormalData(&motherMail->data, &mailNumber, &present, &eventNumber, notSendNum);
 
             if (mPr_SendMotherMailPost(&common_data.privateInfo->playerId, common_data.playerNumber, present,
-                                       mPr_GetMotherMailPaperType(send_time->month, send_time->day), mail_no) == TRUE) {
-                mPr_SetMotherMailNormal(&mother_mail->data, event_no);
+                                       mPr_GetMotherMailPaperType(sendTime->month, sendTime->day),
+                                       mailNumber) == TRUE) {
+                mPr_SetMotherMailNormal(&motherMail->data, eventNumber);
             }
         }
     }
- 
-    mTM_set_renew_time(&mother_mail->date, send_time);
+
+    mTM_set_renew_time(&motherMail->date, sendTime);
 }
 
-void mPr_SendMotherMail(PrivateMotherMail* mother_mail, lbRTC_time_c* send_time) {
-    if (mPr_SendMotherMailDate(mother_mail, send_time) == FALSE) {
-        mPr_SendMotherMailNormal(mother_mail, send_time);
+void mPr_SendMotherMail(PrivateMotherMail* motherMail, lbRTC_time_c* sendTime) {
+    if (mPr_SendMotherMailDate(motherMail, sendTime) == FALSE) {
+        mPr_SendMotherMailNormal(motherMail, sendTime);
     }
 }
 
 void mPr_SendMailFromMother() {
     PrivateInfo* priv = common_data.privateInfo;
-    UNUSED s32 pad;  
-    s32 player_no = common_data.playerNumber;
-    lbRTC_ymd_t* mail_date;
-    lbRTC_time_c* rtc_time = &common_data.time.rtcTime; 
+    UNUSED s32 pad;
+    s32 playerNumber = common_data.playerNumber;
+    lbRTC_ymd_t* mailDate;
+    lbRTC_time_c* rtcTime = &common_data.time.rtcTime;
 
-
-    if (mLd_PlayerManKindCheckNo(player_no) == FALSE && priv != NULL &&
+    if (mLd_PlayerManKindCheckNo(playerNumber) == FALSE && priv != NULL &&
         mPr_NullCheckPersonalID(&priv->playerId) == FALSE) {
-        mail_date = &common_data.motherMailInfo[player_no].date; 
+        mailDate = &common_data.motherMailInfo[playerNumber].date;
 
-        if (mail_date->year != mTM_rtcTime_ymd_clear_code.year &&
-            mail_date->month != mTM_rtcTime_ymd_clear_code.month && mail_date->day != mTM_rtcTime_ymd_clear_code.day) {
-            if (mail_date->year != rtc_time->year || mail_date->month != rtc_time->month ||
-                mail_date->day != rtc_time->day) {
-                mPr_SendMotherMail(&common_data.motherMailInfo[player_no], rtc_time);
+        if (mailDate->year != mTM_rtcTime_ymd_clear_code.year && mailDate->month != mTM_rtcTime_ymd_clear_code.month &&
+            mailDate->day != mTM_rtcTime_ymd_clear_code.day) {
+            if (mailDate->year != rtcTime->year || mailDate->month != rtcTime->month || mailDate->day != rtcTime->day) {
+                mPr_SendMotherMail(&common_data.motherMailInfo[playerNumber], rtcTime);
             }
         } else {
-            mTM_set_renew_time(mail_date, rtc_time); 
+            mTM_set_renew_time(mailDate, rtcTime);
         }
     }
 }
 
-void mPr_GetForeingerAnimalMail(Mail_c* mail, PrivateInfo* priv, PrivateAnimalMemory* anm_mem) {
+void mPr_GetForeingerAnimalMail(Mail_c* mail, PrivateInfo* priv, PrivateAnimalMemory* animalMemory) {
     AnmPersonalID_c pid;
-    s32 mailNo;
+    s32 mailNumber;
     char npcName[6];
     u8 header[20];
     u8 footer[26];
@@ -1132,18 +1119,18 @@ void mPr_GetForeingerAnimalMail(Mail_c* mail, PrivateInfo* priv, PrivateAnimalMe
     u16 id;
     s32 headerBackStart;
 
-    looks = mNpc_GetLooks(anm_mem->npcId);
+    looks = mNpc_GetLooks(animalMemory->npcId);
     mailfct = RANDOM(3);
-    mailNo = 0xFC;
+    mailNumber = 0xFC;
     mailfct = mailfct + (looks * 3);
-    mailNo += mailfct;
+    mailNumber += mailfct;
     mHandbill_Set_free_str(0, priv->playerId.playerName, PLAYER_NAME_LEN);
-    id = anm_mem->npcId;
+    id = animalMemory->npcId;
     mNpc_LoadNpcNameString(npcName, (s8)id);
     mHandbill_Set_free_str(1, npcName, ANIMAL_NAME_LEN);
-    mHandbill_Set_free_str(2, anm_mem->landName, LAND_NAME_SIZE);
+    mHandbill_Set_free_str(2, animalMemory->landName, LAND_NAME_SIZE);
     mHandbill_Set_free_str(3, priv->playerId.landName, LAND_NAME_SIZE);
-    mHandbill_Load_HandbillFromRom2(header, 20, &headerBackStart, footer, 26, mail->content.body, mailNo);
+    mHandbill_Load_HandbillFromRom2(header, 20, &headerBackStart, footer, 26, mail->content.body, mailNumber);
     mem_copy(mail->content.header, header, 10);
     mem_copy(mail->content.footer, footer, 16);
 
@@ -1153,10 +1140,10 @@ void mPr_GetForeingerAnimalMail(Mail_c* mail, PrivateInfo* priv, PrivateAnimalMe
     mail->present = 0;
     mail->content.paperType = mNpc_GetPaperType();
 
-    pid.npcId = anm_mem->npcId;
+    pid.npcId = animalMemory->npcId;
     pid.landId = 0x3000;
-    mLd_CopyLandName(pid.landName, anm_mem->landName);
-    pid.nameId = anm_mem->npcId & 0xFF;
+    mLd_CopyLandName(pid.landName, animalMemory->landName);
+    pid.nameId = animalMemory->npcId & 0xFF;
     pid.looks = looks;
 
     mMl_set_mail_name_npcinfo(&mail->header.sender, &pid);
@@ -1166,20 +1153,20 @@ void mPr_GetForeingerAnimalMail(Mail_c* mail, PrivateInfo* priv, PrivateAnimalMe
 
 void mPr_SendForeingerAnimalMail(PrivateInfo* priv) {
     Mail_c* mail = &l_mpr_mail;
-    PrivateAnimalMemory* anm_mem = &priv->animalMemory;
+    PrivateAnimalMemory* animalMemory = &priv->animalMemory;
 
     if (mLd_PlayerManKindCheck() == FALSE) {
-        if (anm_mem->npcId != 0xFFFF && ACTOR_FGNAME_GET_F000(anm_mem->npcId) == 14 &&
-            mPO_get_keep_mail_sum() < 5) { 
+        if (animalMemory->npcId != 0xFFFF && ACTOR_FGNAME_GET_F000(animalMemory->npcId) == 14 &&
+            mPO_get_keep_mail_sum() < 5) {
             mMl_clear_mail(mail);
-            mPr_GetForeingerAnimalMail(mail, priv, anm_mem);
+            mPr_GetForeingerAnimalMail(mail, priv, animalMemory);
             mPO_receipt_proc(mail, 0);
-            mPr_ClearAnimalMemory(anm_mem);
+            mPr_ClearAnimalMemory(animalMemory);
         }
     }
-} 
+}
 
-void mPr_StartSetCompleteTalkInfo() { 
+void mPr_StartSetCompleteTalkInfo() {
     if (common_data.privateInfo->completedFish == -1) {
         common_data.privateInfo->completeFishInsectFlags |= (1 << 0);
     }
@@ -1189,23 +1176,23 @@ void mPr_StartSetCompleteTalkInfo() {
     }
 }
 
-void mPr_SetCompleteTalk(u8* comp_insect_fish_flags, s32 type) { 
-    *comp_insect_fish_flags |= (1 << ((type * 2) + 1)); 
+void mPr_SetCompleteTalk(u8* flags, s32 type) {
+    *flags |= (1 << ((type * 2) + 1));
 }
 
-s32 mPr_GetCompleteTalk(u8 comp_insect_fish_flags, s32 type) {
-    return (comp_insect_fish_flags >> ((type * 2) + 1)) & 1;
+s32 mPr_GetCompleteTalk(u8 flags, s32 type) {
+    return (flags >> ((type * 2) + 1)) & 1;
 }
 
-void mPr_SetFishCompleteTalk() { 
-    mPr_SetCompleteTalk(&common_data.privateInfo->completeFishInsectFlags, 0); 
+void mPr_SetFishCompleteTalk() {
+    mPr_SetCompleteTalk(&common_data.privateInfo->completeFishInsectFlags, 0);
 }
 
-s32 mPr_CheckFishCompleteTalk(u8 player_no) {
+s32 mPr_CheckFishCompleteTalk(u8 playerNumber) {
     s32 res = FALSE;
 
-    if (player_no < 4 &&
-        mPr_GetCompleteTalk(common_data.saveFilePrivateInfo[player_no].completeFishInsectFlags, 0) == TRUE) {
+    if (playerNumber < PLAYER_NUM &&
+        mPr_GetCompleteTalk(common_data.saveFilePrivateInfo[playerNumber].completeFishInsectFlags, 0) == TRUE) {
         res = TRUE;
     }
 
@@ -1216,23 +1203,23 @@ void mPr_SetInsectCompleteTalk() {
     mPr_SetCompleteTalk(&common_data.privateInfo->completeFishInsectFlags, 1);
 }
 
-s32 mPr_CheckInsectCompleteTalk(u8 player_no) {
+s32 mPr_CheckInsectCompleteTalk(u8 playerNumber) {
     s32 res = FALSE;
 
-    if (player_no < 4 &&
-        mPr_GetCompleteTalk(common_data.saveFilePrivateInfo[player_no].completeFishInsectFlags, 1) == TRUE) {
+    if (playerNumber < PLAYER_NUM &&
+        mPr_GetCompleteTalk(common_data.saveFilePrivateInfo[playerNumber].completeFishInsectFlags, 1) == TRUE) {
         res = TRUE;
     }
 
     return res;
 }
 
-s32 mPr_GetTalkPermission(u8 comp_insect_fish_flags, s32 type) {
+s32 mPr_GetTalkPermission(u8 flags, s32 type) {
     s32 base = type * 2;
     s32 talk = base + 1;
 
     s32 res = FALSE;
-    if (((comp_insect_fish_flags >> base) & 1) == 0 || ((comp_insect_fish_flags >> talk) & 1) == 0) {
+    if (((flags >> base) & 1) == 0 || ((flags >> talk) & 1) == 0) {
         res = TRUE;
     }
 
@@ -1267,15 +1254,14 @@ void mPr_ClearMapInfo(mPr_map_info_c* mapInfo, s32 max) {
     }
 }
 
-
 void mPr_CopyMapInfo(mPr_map_info_c* dst, mPr_map_info_c* src) {
     mem_copy((u8*)dst, (u8*)src, sizeof(mPr_map_info_c));
 }
 
-void mPr_SetMapThisLand(mPr_map_info_c* map_info) {
-    if (map_info != NULL) {
-        mLd_CopyLandName(map_info->landName, common_data.landInfo.name);
-        map_info->landId = common_data.landInfo.id;
+void mPr_SetMapThisLand(mPr_map_info_c* mapInfo) {
+    if (mapInfo != NULL) {
+        mLd_CopyLandName(mapInfo->landName, common_data.landInfo.name);
+        mapInfo->landId = common_data.landInfo.id;
     }
 }
 
@@ -1287,27 +1273,27 @@ s32 mPr_GetMapFreeIdx(mPr_map_info_c* mapInfo, s32 max) {
         if (!mLd_CheckId(mapInfo->landId) || mLd_NullCheckLandName(mapInfo->landName) == TRUE) {
             res = i;
             break;
-        }  
- 
-        mapInfo++; 
+        }
+
+        mapInfo++;
     }
 
     return res;
 }
 
-s32 mPr_GetLandMapIdx(mPr_map_info_c* map_info, s32 max, LandInfo* land_info) {
+s32 mPr_GetLandMapIdx(mPr_map_info_c* mapInfo, s32 max, LandInfo* landInfo) {
     s32 res = -1;
 
-    if (map_info != NULL && land_info != NULL) {
+    if (mapInfo != NULL && landInfo != NULL) {
         s32 i;
 
         for (i = 0; i < max; i++) {
-            if (mLd_CheckCmpLand(map_info->landName, map_info->landId, land_info->name, land_info->id) == TRUE) {
+            if (mLd_CheckCmpLand(mapInfo->landName, mapInfo->landId, landInfo->name, landInfo->id) == TRUE) {
                 res = i;
                 break;
             }
 
-            map_info++;
+            mapInfo++;
         }
     }
 
@@ -1350,27 +1336,26 @@ void mPr_SetNewMap(mPr_map_info_c* map_info, s32 max) {
     }
 }
 
-void mPr_SetUseMap(mPr_map_info_c* map_info, s32 max){
-    if(mPr_GetThisLandMapIdx(map_info, max) != -1){
+void mPr_SetUseMap(mPr_map_info_c* map_info, s32 max) {
+    if (mPr_GetThisLandMapIdx(map_info, max) != -1) {
         common_data.unk_10140 = 1;
     }
 }
 
-void mPr_RenewalMapInfo(mPr_map_info_c* map_info, s32 max, LandInfo* land_info) {
+void mPr_RenewalMapInfo(mPr_map_info_c* mapInfo, s32 max, LandInfo* landInfo) {
     mPr_map_info_c map_save;
 
-    s32 map_idx = mPr_GetLandMapIdx(map_info, max, land_info);
+    s32 map_idx = mPr_GetLandMapIdx(mapInfo, max, landInfo);
     if (map_idx != -1) {
-        mPr_CopyMapInfo(&map_save, map_info + map_idx);
-        mPr_PushMapInfo(map_info + map_idx, max - map_idx);
+        mPr_CopyMapInfo(&map_save, mapInfo + map_idx);
+        mPr_PushMapInfo(mapInfo + map_idx, max - map_idx);
 
-        map_idx = mPr_GetMapFreeIdx(map_info, max);
+        map_idx = mPr_GetMapFreeIdx(mapInfo, max);
         if (map_idx != -1) {
-            mPr_CopyMapInfo(map_info + map_idx, &map_save);
+            mPr_CopyMapInfo(mapInfo + map_idx, &map_save);
         }
     }
 }
-
 
 void mPr_RandomSetPlayerData_title_demo() {
     PrivateInfo* priv = common_data.privateInfo;
@@ -1379,16 +1364,15 @@ void mPr_RandomSetPlayerData_title_demo() {
     priv->gender &= 1;
     mPlib_change_player_cloth_info_lv2(priv, mPr_GetRandomCloth(priv->gender));
     priv->face = mPr_GetRandomFace();
-
 }
 
 void mPr_PrintMapInfo_debug(gfxprint* gfxprint) {
     PrivateInfo* priv = common_data.privateInfo;
-    mPr_map_info_c* map_info;
+    mPr_map_info_c* mapInfo;
     int i;
 
     if (priv != NULL) {
-        map_info = priv->maps;
+        mapInfo = priv->maps;
         gfxprint_color(gfxprint, 30, 100, 100, 255);
         gfxprint_locate8x8(gfxprint, 3, 21);
         gfxprint_printf(gfxprint, "%04x ", common_data.landInfo.id);
@@ -1401,14 +1385,13 @@ void mPr_PrintMapInfo_debug(gfxprint* gfxprint) {
                 gfxprint_locate8x8(gfxprint, 3, 23);
             }
 
-            if (mLd_CheckId(map_info->landId) == TRUE) {
-                gfxprint_printf(gfxprint, "%04x ", map_info->landId);
+            if (mLd_CheckId(mapInfo->landId) == TRUE) {
+                gfxprint_printf(gfxprint, "%04x ", mapInfo->landId);
             } else {
                 gfxprint_printf(gfxprint, "**** ");
             }
 
-            map_info++;
+            mapInfo++;
         }
     }
 }
-

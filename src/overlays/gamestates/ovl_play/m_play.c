@@ -106,8 +106,8 @@ void Game_play_Reset_destiny(void) {
     u8* day = &common_data.time.rtcTime.day;
     u8* month = &common_data.time.rtcTime.month;
 
-    if ((destiny->type != 0) &&
-        ((common_data.time.rtcTime.year != destiny->receivedTime.year) || (*month != destiny->receivedTime.month) || (*day != destiny->receivedTime.day))) {
+    if ((destiny->type != 0) && ((common_data.time.rtcTime.year != destiny->receivedTime.year) ||
+                                 (*month != destiny->receivedTime.month) || (*day != destiny->receivedTime.day))) {
         destiny->type = 0;
     }
 }

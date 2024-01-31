@@ -12,6 +12,7 @@
 #define mPr_FOREIGN_MAP_COUNT 8
 #define mPr_INVENTORY_MAIL_COUNT 10
 #define PLAYER_NUM 4
+#define mPR_FOREIGNER_NUMBER 4 
 
 typedef enum mPr_SEX {
     /* 0 */ mPr_SEX_MALE,
@@ -105,13 +106,13 @@ s32 mPr_GetPrivateIdx(PersonalID_c* pid);
 s32 mPr_GetPossessionItemIdx(PrivateInfo* priv, u16 item);
 s32 mPr_GetPossessionItemIdxWithCond(PrivateInfo* priv, u16 item, u32 cond);
 s32 mPr_GetPossessionItemIdxFGTypeWithCond_cancel(PrivateInfo* priv, u16 fg_type, u32 cond);
-s32 mPr_GetPossessionItemIdxItem1Category(PrivateInfo* priv, u8 item1_type);
-s32 mPr_GetPossessionItemIdxItem1CategoryWithCond_cancel(PrivateInfo* priv, u8 item1_type, u32 cond);
+s32 mPr_GetPossessionItemIdxItem1Category(PrivateInfo* priv, u8 type);
+s32 mPr_GetPossessionItemIdxItem1CategoryWithCond_cancel(PrivateInfo* priv, u8 itemType, u32 cond);
 s32 mPr_GetPossessionItemIdxKindWithCond(PrivateInfo* priv, u16 kind_start, u16 kind_end, u32 cond);
 s32 mPr_GetPossessionItemSum(PrivateInfo* priv, u16 item);
 s32 mPr_GetPossessionItemSumWithCond(PrivateInfo* priv, u16 item, u32 cond);
 s32 mPr_GetPossessionItemSumFGTypeWithCond_cancel(PrivateInfo* priv, u16 fg_type, u32 cond);
-s32 mPr_GetPossessionItemSumItemCategoryWithCond_cancel(PrivateInfo* priv, u8 item1_type, u32 cond);
+s32 mPr_GetPossessionItemSumItemCategoryWithCond_cancel(PrivateInfo* priv, u8 itemType, u32 cond);
 void mPr_SetItemCollectBit(u16 item);
 u16 mPr_DummyPresentToTruePresent(void);
 void mPr_SetPossessionItem(PrivateInfo* priv, s32 idx, u16 item, u32 cond);
@@ -126,44 +127,44 @@ s32 mPr_CheckMuseumInfoMail(PrivateInfo* priv);
 s32 mPr_LoadPak_and_SetPrivateInfo2(u8 player, void* pak);
 void mPr_ClearMotherMailInfo(PrivateMotherMail* motherMail);
 s32 mPr_GetMotherMailPaperType(s32 month, s32 day);
-void mPr_GetMotherMail(Mail_c* mail, PersonalID_c* pid, u16 present, s32 stationery, s32 mail_no);
-s32 mPr_SendMotherMailPost(PersonalID_c* pid, s32 player_no, u16 present, int stationery, s32 mail_no);
-s32 mPr_SendMotherMailDate(PrivateMotherMail* mother_mail, lbRTC_time_c* send_time);
-s32 mPr_CheckMotherMailMonthly(PrivateMotherMailData* send_data, s32 month, s32 idx);
-s32 mPr_GetMotherMailMonthlyNotSendNum(PrivateMotherMailData* send_data, s32 month);
-void mPr_SetMotherMailMonthly(PrivateMotherMailData* send_data, s32 month, s32 idx);
-void mPr_GetMotherMailMonthlyData(PrivateMotherMailData* send_data, s32* mail_no, u16* present,
-                                  s32* event_no, s32 month, s32 not_send_num);
-s32 mPr_GetMotherMailNormalNotSendNum(PrivateMotherMailData* send_data);
-void mPr_SetMotherMailNormal(PrivateMotherMailData* send_data, s32 idx);
-s32 mPr_CheckMotherMailNormal(PrivateMotherMailData* send_data, s32 idx);
-void mPr_GetMotherMailNormalData(PrivateMotherMailData* send_data, s32* mail_no, u16* present, s32* event_no,
+void mPr_GetMotherMail(Mail_c* mail, PersonalID_c* pid, u16 present, s32 stationery, s32 mailNumber);
+s32 mPr_SendMotherMailPost(PersonalID_c* pid, s32 player_no, u16 present, s32 stationery, s32 mail_no);
+s32 mPr_SendMotherMailDate(PrivateMotherMail* motherMail, lbRTC_time_c* sendTime);
+s32 mPr_CheckMotherMailMonthly(PrivateMotherMailData* sendData, s32 month, s32 idx);
+s32 mPr_GetMotherMailMonthlyNotSendNum(PrivateMotherMailData* sendData, s32 month);
+void mPr_SetMotherMailMonthly(PrivateMotherMailData* sendData, s32 month, s32 idx);
+void mPr_GetMotherMailMonthlyData(PrivateMotherMailData* sendData, s32* mailNumber, u16* present,
+                                  s32* eventNumber, s32 month, s32 notSendNum);
+s32 mPr_GetMotherMailNormalNotSendNum(PrivateMotherMailData* sendData);
+void mPr_SetMotherMailNormal(PrivateMotherMailData* sendData, s32 idx);
+s32 mPr_CheckMotherMailNormal(PrivateMotherMailData* sendData, s32 idx);
+void mPr_GetMotherMailNormalData(PrivateMotherMailData* sendData, s32* mailNumber, u16* present, s32* eventNumber,
                                  s32 no_send_num);
-void mPr_SendMotherMailNormal(PrivateMotherMail* mother_mail, lbRTC_time_c* send_time);
-void mPr_SendMotherMail(PrivateMotherMail* mother_mail, lbRTC_time_c* send_time);
+void mPr_SendMotherMailNormal(PrivateMotherMail* motherMail, lbRTC_time_c* sendTime);
+void mPr_SendMotherMail(PrivateMotherMail* motherMail, lbRTC_time_c* sendTime);
 void mPr_SendMailFromMother(void);
-void mPr_GetForeingerAnimalMail(Mail_c* mail, PrivateInfo* priv, PrivateAnimalMemory* anm_mem);
+void mPr_GetForeingerAnimalMail(Mail_c* mail, PrivateInfo* priv, PrivateAnimalMemory* animalMemory);
 void mPr_SendForeingerAnimalMail(PrivateInfo* priv);
 void mPr_StartSetCompleteTalkInfo(void);
-void mPr_SetCompleteTalk(u8* comp_insect_fish_flags, s32 type);
-s32 mPr_GetCompleteTalk(u8 comp_insect_fish_flags, s32 type);
+void mPr_SetCompleteTalk(u8* flags, s32 type);
+s32 mPr_GetCompleteTalk(u8 flags, s32 type);
 void mPr_SetFishCompleteTalk(void);
-s32 mPr_CheckFishCompleteTalk(u8 player_no);
+s32 mPr_CheckFishCompleteTalk(u8 playerNumber);
 void mPr_SetInsectCompleteTalk(void);
-s32 mPr_CheckInsectCompleteTalk(u8 player_no);
-s32 mPr_GetTalkPermission(u8 comp_insect_fish_flags, s32 type);
+s32 mPr_CheckInsectCompleteTalk(u8 playerNumber);
+s32 mPr_GetTalkPermission(u8 flags, s32 type);
 s32 mPr_GetFishCompTalkPermission(void);
 s32 mPr_GetInsectCompTalkPermission(void);
 void mPr_ClearMapInfo(mPr_map_info_c* mapInfo, s32 max);
 void mPr_CopyMapInfo(mPr_map_info_c* dst, mPr_map_info_c* src);
-void mPr_SetMapThisLand(mPr_map_info_c* map_info);
+void mPr_SetMapThisLand(mPr_map_info_c* mapInfo);
 s32 mPr_GetMapFreeIdx(mPr_map_info_c* mapInfo, s32 max);
-s32 mPr_GetLandMapIdx(mPr_map_info_c* map_info, s32 max, LandInfo* land_info);
+s32 mPr_GetLandMapIdx(mPr_map_info_c* mapInfo, s32 max, LandInfo* landInfo);
 s32 mPr_GetThisLandMapIdx(mPr_map_info_c* map_info, s32 max);
 void mPr_PushMapInfo(mPr_map_info_c* map_info, s32 max);
 void mPr_SetNewMap(mPr_map_info_c* map_info, s32 max);
 void mPr_SetUseMap(mPr_map_info_c* map_info, s32 max);
-void mPr_RenewalMapInfo(mPr_map_info_c* map_info, s32 max, LandInfo* land_info);
+void mPr_RenewalMapInfo(mPr_map_info_c* mapInfo, s32 max, LandInfo* landInfo);
 void mPr_RandomSetPlayerData_title_demo(void);
 void mPr_PrintMapInfo_debug(gfxprint* gfxprint);
 
