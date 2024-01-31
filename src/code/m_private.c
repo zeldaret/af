@@ -988,7 +988,7 @@ void mPr_GetMotherMailNormalData(PrivateMotherMailData* sendData, s32* mailNumbe
     s32 i;
 
     *eventNumber = -1;
-    selectedEvent = RANDOM(noSendNum); 
+    selectedEvent = RANDOM(noSendNum);
 
     for (i = 0; i < 56; i++) {
         if (mPr_CheckMotherMailNormal(sendData, i) == FALSE) {

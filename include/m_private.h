@@ -128,7 +128,7 @@ s32 mPr_LoadPak_and_SetPrivateInfo2(u8 player, void* pak);
 void mPr_ClearMotherMailInfo(PrivateMotherMail* motherMail);
 s32 mPr_GetMotherMailPaperType(s32 month, s32 day);
 void mPr_GetMotherMail(Mail_c* mail, PersonalID_c* pid, u16 present, s32 stationery, s32 mailNumber);
-s32 mPr_SendMotherMailPost(PersonalID_c* pid, s32 player_no, u16 present, s32 stationery, s32 mail_no);
+s32 mPr_SendMotherMailPost(PersonalID_c* pid, s32 playerNumber, u16 present, s32 stationery, s32 mailNumber);
 s32 mPr_SendMotherMailDate(PrivateMotherMail* motherMail, lbRTC_time_c* sendTime);
 s32 mPr_CheckMotherMailMonthly(PrivateMotherMailData* sendData, s32 month, s32 idx);
 s32 mPr_GetMotherMailMonthlyNotSendNum(PrivateMotherMailData* sendData, s32 month);
@@ -139,7 +139,7 @@ s32 mPr_GetMotherMailNormalNotSendNum(PrivateMotherMailData* sendData);
 void mPr_SetMotherMailNormal(PrivateMotherMailData* sendData, s32 idx);
 s32 mPr_CheckMotherMailNormal(PrivateMotherMailData* sendData, s32 idx);
 void mPr_GetMotherMailNormalData(PrivateMotherMailData* sendData, s32* mailNumber, u16* present, s32* eventNumber,
-                                 s32 no_send_num);
+                                 s32 noSendNum);
 void mPr_SendMotherMailNormal(PrivateMotherMail* motherMail, lbRTC_time_c* sendTime);
 void mPr_SendMotherMail(PrivateMotherMail* motherMail, lbRTC_time_c* sendTime);
 void mPr_SendMailFromMother(void);
