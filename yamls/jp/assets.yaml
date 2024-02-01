@@ -574,6 +574,8 @@
           - [0xD5C0E8, af_palette, obj_e_count_pal]
           - [0xD5C108, af_palette, obj_e_count02_pal]
           - [0xD5C128]
+          - [0xD5C1C8, af_palette, obj_dump_pal]
+          - [0xD5C1E8]
           - [0xD5C1E8, af_palette, obj_s_windmill_a_pal]
           - [0xD5C208, af_palette, obj_s_windmill_b_pal]
           - [0xD5C228, af_palette, obj_s_windmill_c_pal]
@@ -838,7 +840,27 @@
           - [0xD6DE64, ckf_je, obj_douzou/cKF_je_r_obj_w_douzou_tbl]
           - [0xD6DED0, ckf_bs, obj_douzou/cKF_bs_r_obj_w_douzou]
           - [0xD6DED8]
-      - [0xD6DEE0, bin, 0D5E000_unextracted]
+      - [auto, c, obj_dump/obj_dump]
+      - start: 0xD6DEE0
+        type: .data
+        name: obj_dump/obj_dump
+        subsegments:
+          - [0xD6DEE0, pad]
+          - [0xD6DEE8, vtx, obj_dump/obj_s_dump_v]
+          - [0xD6E328, af_gfx, obj_dump/obj_s_dump_t1T_model]
+          - [0xD6E408, af_gfx, obj_dump/obj_s_dump_t2T_model]
+          - [0xD6E4B8, af_gfx, obj_dump/dump_s_DL_model]
+          - [0xD6E4D0, af_ci4, obj_dump/obj_s_dump_t1_tex, 128, 32, 0xD5C1C8, 0x20]
+          - [0xD6ECD0, af_ci4, obj_dump/obj_s_dump_t2_tex, 128, 32, 0xD5C1C8, 0x20]
+          - [0xD6F4D0, pad]
+          - [0xD6F4E0, vtx, obj_dump/obj_w_dump_v]
+          - [0xD6F920, af_gfx, obj_dump/obj_w_dump_t1T_model]
+          - [0xD6FA00, af_gfx, obj_dump/obj_w_dump_t2T_model]
+          - [0xD6FAB0, af_gfx, obj_dump/dump_w_DL_model]
+          - [0xD6FAC8, af_ci4, obj_dump/obj_w_dump_t1_tex, 128, 32, 0xD5C1C8, 0x20]
+          - [0xD702C8, af_ci4, obj_dump/obj_w_dump_t2_tex, 128, 32, 0xD5C1C8, 0x20]
+          - [0xD70AC8]
+      - [0xD70AD0, bin, 0D5E000_unextracted]
   - [0xDF3480]
 
   - name: object_00DF4000
