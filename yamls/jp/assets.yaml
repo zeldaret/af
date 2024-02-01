@@ -596,14 +596,17 @@
   - [0xD5C3F0]
 
   - name: object_00D5D000
-    type: bin # code
+    dir: objects/object_00D5D000
+    type: code
     start: 0xD5D000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
-    # subsegments:
-    #   - [0xD5D000, data, assets/objects/object_00D5D000/object_00D5D000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, object_00D5D000]
+      - [0xD5D000, .data, object_00D5D000]
   - [0xD5D2E0]
 
   - name: object_00D5E000
@@ -732,33 +735,33 @@
           - [0xD66C68, evw_scroll, obj_e_count01/obj_e_count01_evw_anime_2]
           - [0xD66C70, evw_data, obj_e_count01/obj_e_count01_evw_anime]
           - [0xD66C80]
-      - [auto, c, obj_e_count02/obj_e_count02]
+      - [auto, c, obj_e_count02_cl/obj_e_count02_cl]
       - start: 0xD66C90
         type: .data
-        name: obj_e_count02/obj_e_count02
+        name: obj_e_count02_cl/obj_e_count02_cl
         subsegments:
           - [0xD66C90, pad]
-          - [0xD66C98, vtx, obj_e_count02/obj_e_count02_cl_v]
-          - [0xD66D98, af_gfx, obj_e_count02/obj_e_c2_ani_cl01_sita_model]
-          - [0xD66E98, af_gfx, obj_e_count02/obj_e_c2_ani_ci01_mae_model]
-          - [0xD66F98, af_ci4, obj_e_count02/obj_e_count02_1_tex, 32, 32, 0xD5C108, 0x20]
-          - [0xD67198, af_ci4, obj_e_count02/obj_e_count02_0_tex, 32, 32, 0xD5C108, 0x20]
-          - [0xD67398, af_ci4, obj_e_count02/obj_e_count02_2_tex, 32, 32, 0xD5C108, 0x20]
-          - [0xD67598, af_ci4, obj_e_count02/obj_e_count02_3_tex, 32, 32, 0xD5C108, 0x20]
-          - [0xD67798, af_ci4, obj_e_count02/obj_e_count02_4_tex, 32, 32, 0xD5C108, 0x20]
-          - [0xD67998, af_ci4, obj_e_count02/obj_e_count02_5_tex, 32, 32, 0xD5C108, 0x20]
-          - [0xD67B98, af_ci4, obj_e_count02/obj_e_count02_6_tex, 32, 32, 0xD5C108, 0x20]
-          - [0xD67D98, af_ci4, obj_e_count02/obj_e_count02_7_tex, 32, 32, 0xD5C108, 0x20]
-          - [0xD67F98, af_ci4, obj_e_count02/obj_e_count02_8_tex, 32, 32, 0xD5C108, 0x20]
-          - [0xD68198, af_ci4, obj_e_count02/obj_e_count02_9_tex, 32, 32, 0xD5C108, 0x20]
-          - [0xD68398, ckf_je, obj_e_count02/cKF_je_r_obj_e_count02_cl_tbl]
-          - [0xD683BC, ckf_bs, obj_e_count02/cKF_bs_r_obj_e_count02_cl]
-          - [0xD683C4, ckf_ckcb, obj_e_count02/cKF_ckcb_r_obj_e_count02_cl_tbl]
-          - [0xD683C8, ckf_kn, obj_e_count02/cKF_kn_obj_e_count02_cl_tbl]
-          - [0xD683CC, ckf_c, obj_e_count02/cKF_c_obj_e_count02_cl_tbl]
-          - [0xD683E4, ckf_ds, obj_e_count02/cKF_ds_obj_e_count02_cl_tbl]
+          - [0xD66C98, vtx, obj_e_count02_cl/obj_e_count02_cl_v]
+          - [0xD66D98, af_gfx, obj_e_count02_cl/obj_e_c2_ani_cl01_sita_model]
+          - [0xD66E98, af_gfx, obj_e_count02_cl/obj_e_c2_ani_ci01_mae_model]
+          - [0xD66F98, af_ci4, obj_e_count02_cl/obj_e_count02_1_tex, 32, 32, 0xD5C108, 0x20]
+          - [0xD67198, af_ci4, obj_e_count02_cl/obj_e_count02_0_tex, 32, 32, 0xD5C108, 0x20]
+          - [0xD67398, af_ci4, obj_e_count02_cl/obj_e_count02_2_tex, 32, 32, 0xD5C108, 0x20]
+          - [0xD67598, af_ci4, obj_e_count02_cl/obj_e_count02_3_tex, 32, 32, 0xD5C108, 0x20]
+          - [0xD67798, af_ci4, obj_e_count02_cl/obj_e_count02_4_tex, 32, 32, 0xD5C108, 0x20]
+          - [0xD67998, af_ci4, obj_e_count02_cl/obj_e_count02_5_tex, 32, 32, 0xD5C108, 0x20]
+          - [0xD67B98, af_ci4, obj_e_count02_cl/obj_e_count02_6_tex, 32, 32, 0xD5C108, 0x20]
+          - [0xD67D98, af_ci4, obj_e_count02_cl/obj_e_count02_7_tex, 32, 32, 0xD5C108, 0x20]
+          - [0xD67F98, af_ci4, obj_e_count02_cl/obj_e_count02_8_tex, 32, 32, 0xD5C108, 0x20]
+          - [0xD68198, af_ci4, obj_e_count02_cl/obj_e_count02_9_tex, 32, 32, 0xD5C108, 0x20]
+          - [0xD68398, ckf_je, obj_e_count02_cl/cKF_je_r_obj_e_count02_cl_tbl]
+          - [0xD683BC, ckf_bs, obj_e_count02_cl/cKF_bs_r_obj_e_count02_cl]
+          - [0xD683C4, ckf_ckcb, obj_e_count02_cl/cKF_ckcb_r_obj_e_count02_cl_tbl]
+          - [0xD683C8, ckf_kn, obj_e_count02_cl/cKF_kn_obj_e_count02_cl_tbl]
+          - [0xD683CC, ckf_c, obj_e_count02_cl/cKF_c_obj_e_count02_cl_tbl]
+          - [0xD683E4, ckf_ds, obj_e_count02_cl/cKF_ds_obj_e_count02_cl_tbl]
           - [0xD68402, pad]
-          - [0xD68404, ckf_ba, obj_e_count02/cKF_ba_r_obj_e_count02_cl]
+          - [0xD68404, ckf_ba, obj_e_count02_cl/cKF_ba_r_obj_e_count02_cl]
           - [0xD68418]
       - [auto, c, obj_douzou/obj_douzou]
       - start: 0xD68420
@@ -864,14 +867,17 @@
   - [0xDF3480]
 
   - name: object_00DF4000
-    type: bin # code
+    dir: objects/object_00DF4000
+    type: code
     start: 0xDF4000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: False
     align: 0x1000
-    # subsegments:
-    #   - [0xDF4000, data, assets/objects/object_00DF4000/object_00DF4000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, object_00DF4000]
+      - [0xDF4000, .data, object_00DF4000]
   - [0xDF42F0]
 
   - name: object_00DF5000

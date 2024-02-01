@@ -1,4 +1,4 @@
-#include "obj_e_count02.h"
+#include "obj_e_count02_cl.h"
 
 s32 padD66C90[] = { 0x00000000, 0x00000000 };
 #include "assets/jp/objects/object_00D5E000/obj_e_count02/obj_e_count02_cl_v.vtx.inc.c"
