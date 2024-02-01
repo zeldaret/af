@@ -1249,55 +1249,6 @@ D_6001628 = 0x06001628;
 D_60030A0 = 0x060030A0;
 D_60036C0 = 0x060036C0;
 
-// ovl_T_Umbrella
-
-D_6000390 = 0x06000390;
-D_60003C0 = 0x060003C0;
-D_6000470 = 0x06000470;
-D_6000508 = 0x06000508;
-D_6000580 = 0x06000580;
-
-// ovl_T_Keitai
-
-D_6000A2C = 0x06000A2C;
-
-// ovl_T_Utiwa
-
-D_6000080 = 0x06000080;
-
-// ovl_T_Hanabi
-
-D_6000080 = 0x06000080;
-
-// ovl_T_Cracker
-
-D_60001C0 = 0x060001C0;
-
-// ovl_T_Pistol
-
-D_6000410 = 0x06000410;
-
-// ovl_T_Flag
-
-D_6000000 = 0x06000000;
-D_60000F0 = 0x060000F0;
-D_60001A0 = 0x060001A0;
-D_60003F0 = 0x060003F0;
-
-// ovl_T_Tumbler
-
-D_6000330 = 0x06000330;
-
-// ovl_T_NpcSao
-
-D_6000470 = 0x06000470;
-D_6000548 = 0x06000548;
-
-// ovl_T_Tama
-
-D_6000040 = 0x06000040;
-D_6000DD8 = 0x06000DD8;
-
 // ovl__008ED290
 
 D_600F5C8 = 0x0600F5C8;
@@ -5717,10 +5668,6 @@ cKF_ba_r_obj_s_toudai = 0x0607EE6C;
 cKF_ba_r_obj_w_toudai = 0x06080A74;
 obj_s_toudai_light_model = 0x0607E188;
 obj_w_toudai_light_model = 0x0607FD90;
-
-// ac_t_hanabi
-
-main_utiwa1_model = 0x06000080;
 
 // Buffers
 

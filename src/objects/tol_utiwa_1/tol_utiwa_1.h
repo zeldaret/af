@@ -3,6 +3,11 @@
 
 #include "gbi.h"
 
+/**
+ * @file tol_utiwa_1
+ * 団扇 Firework Festival Blue Uchiwa Fan
+ */
+
 extern Vtx tol_utiwa_1_v[];
 extern Gfx main_utiwa1_model[];
 extern unsigned short tol_utiwa1_pal[];

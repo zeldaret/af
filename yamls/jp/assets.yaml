@@ -5121,15 +5121,54 @@
           - [0x1126728, af_ci4, obj_shop_umb_32_tuka1_tex_txt, 32, 32, 0x1126508, 0x20]
   - [0x1126930]
 
-  - name: object_01127000
-    type: bin # code
+  - name: tol_keitai_1
+    dir: objects/tol_keitai_1
+    type: code
     start: 0x1127000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x1127000, data, assets/objects/object_01127000/object_01127000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, keitai_off1]
+      - start: 0x1127000
+        type: .data
+        name: keitai_off1
+        subsegments:
+          - [0x1127000, ckf_ckcb, cKF_ckcb_r_tol_keitai_1_keitai_off1_tbl]
+          - [0x1127004, ckf_kn, cKF_kn_tol_keitai_1_keitai_off1_tbl]
+          - [0x1127018, ckf_c, cKF_c_tol_keitai_1_keitai_off1_tbl]
+          - [0x1127020, ckf_ds, cKF_ds_tol_keitai_1_keitai_off1_tbl]
+          - [0x11270A4, ckf_ba, cKF_ba_r_tol_keitai_1_keitai_off1]
+          - [0x11270B8]
+      - [auto, c, keitai_on1]
+      - start: 0x11270C0
+        type: .data
+        name: keitai_on1
+        subsegments:
+          - [0x11270C0, ckf_ckcb, cKF_ckcb_r_tol_keitai_1_keitai_on1_tbl]
+          - [0x11270C4, ckf_kn, cKF_kn_tol_keitai_1_keitai_on1_tbl]
+          - [0x11270C8, ckf_c, cKF_c_tol_keitai_1_keitai_on1_tbl]
+          - [0x11270E0, ckf_ds, cKF_ds_tol_keitai_1_keitai_on1_tbl]
+          - [0x1127134, ckf_ba, cKF_ba_r_tol_keitai_1_keitai_on1]
+          - [0x1127148]
+      - [auto, c, tol_keitai_1]
+      - start: 0x1127150
+        type: .data
+        name: tol_keitai_1
+        subsegments:
+          - [0x1127150, vtx, tol_keitai_1_v]
+          - [0x1127320, af_gfx, main1_keitai1_model]
+          - [0x1127480, af_gfx, main2_keitai1_model]
+          - [0x11275E8, af_palette, tol_keitai_1_pal]
+          - [0x1127608, af_ci4, tol_keitai_1_ueura1_tex_txt, 16, 32, 0x11275E8, 0x20]
+          - [0x1127708, af_ci4, tol_keitai_1_ueomote1_tex_txt, 16, 32, 0x11275E8, 0x20]
+          - [0x1127808, af_ci4, tol_keitai_1_shitaura1_tex_txt, 16, 32, 0x11275E8, 0x20]
+          - [0x1127908, af_ci4, tol_keitai_1_shitaomote1_tex_txt, 16, 32, 0x11275E8, 0x20]
+          - [0x1127A08, ckf_je, cKF_je_r_tol_keitai_1_tbl]
+          - [0x1127A2C, ckf_bs, cKF_bs_r_tol_keitai_1]
+          - [0x1127A34]
   - [0x1127A40]
 
   - name: tol_utiwa_1
@@ -5165,48 +5204,104 @@
     #   - [0x1129000, data, assets/objects/object_01129000/object_01129000]
   - [0x1129A80]
 
-  - name: object_0112A000
-    type: bin # code
+  - name: tol_npcsao_1
+    dir: objects/tol_npcsao_1
+    type: code
     start: 0x112A000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x112A000, data, assets/objects/object_0112A000/object_0112A000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, tol_npcsao_1]
+      - start: 0x112A000
+        type: .data
+        name: tol_npcsao_1
+        subsegments:
+          - [0x112A000, vtx, tol_npcsao_1_v]
+          - [0x112A470, af_gfx, tol_npcsao_1_sao_model]
+          - [0x112A548, af_gfx, tol_npcsao_1_uki_model]
+          - [0x112A5D8, af_palette, tol_npcsao_1_pal]
+          - [0x112A5F8, af_ci4, tol_npcsao_1_tex, 64, 16, 0x112A5D8, 0x20]
   - [0x112A800]
 
-  - name: object_0112B000
-    type: bin # code
+  - name: tol_kamicup
+    dir: objects/tol_kamicup
+    type: code
     start: 0x112B000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x112B000, data, assets/objects/object_0112B000/object_0112B000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, tol_kamicup]
+      - start: 0x112B000
+        type: .data
+        name: tol_kamicup
+        subsegments:
+          - [0x112B000, vtx, tol_kamicup_1_v]
+          - [0x112B330, af_gfx, tol_kamicup_1T_model]
+          - [0x112B450, af_palette, tol_kamicup_pal]
+          - [0x112B470, af_ci4, tol_kamicup_tex, 32, 32, 0x112B450, 0x20]
   - [0x112B670]
 
-  - name: object_0112C000
-    type: bin # code
+  - name: tol_kenjyu_1
+    dir: objects/tol_kenjyu_1
+    type: code
     start: 0x112C000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x112C000, data, assets/objects/object_0112C000/object_0112C000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, tol_kenjyu_1]
+      - start: 0x112C000
+        type: .data
+        name: tol_kenjyu_1
+        subsegments:
+          - [0x112C000, vtx, tol_kenjyu_1_v]
+          - [0x112C410, af_gfx, tol_kenjyu_1T_model]
+          - [0x112C528, af_palette, tol_kenjyu_1_pal]
+          - [0x112C548, af_ci4, tol_kenjyu_1_tex, 32, 32, 0x112C528, 0x20]
   - [0x112C750]
 
-  - name: object_0112D000
-    type: bin # code
+  - name: tol_tamaire
+    dir: objects/tol_tamaire
+    type: code
     start: 0x112D000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x112D000, data, assets/objects/object_0112D000/object_0112D000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, ef_tamaire01]
+      - start: 0x112D000
+        type: .data
+        name: ef_tamaire01
+        subsegments:
+          - [0x112D000, vtx, ef_tamaire01_r_v]
+          - [0x112D040, af_gfx, tama01_model]
+          - [0x112D0C8, af_palette, ef_tamaire01_r_pal]
+          - [0x112D0E8, af_ci4, tama01_r_tex, 32, 32, 0x112D0C8, 0x20]
+          - [0x112D2E8, af_ci4, tama01_w_tex, 32, 32, 0x112D0C8, 0x20]
+      - [auto, c, tol_tamaire]
+      - start: 0x112D4F0
+        type: .data
+        name: tol_tamaire
+        subsegments:
+          - [0x112D4F0, vtx, tol_tamaire_v]
+          - [0x112D530, af_gfx, tol_tamaire_model]
+          - [0x112D5B8, af_palette, tol_tamaire_pal]
+          - [0x112D5D8, af_ci4, tol_tamaire_r1_tex, 32, 32, 0x112D5B8, 0x20]
+          - [0x112D7D8, af_ci4, tol_tamaire_r2_tex, 32, 32, 0x112D5B8, 0x20]
+          - [0x112D9D8, af_ci4, tol_tamaire_r3_tex, 32, 32, 0x112D5B8, 0x20]
+          - [0x112DBD8, af_ci4, tol_tamaire_w1_tex, 32, 32, 0x112D5B8, 0x20]
+          - [0x112DDD8, af_ci4, tol_tamaire_w2_tex, 32, 32, 0x112D5B8, 0x20]
+          - [0x112DFD8, af_ci4, tol_tamaire_w3_tex, 32, 32, 0x112D5B8, 0x20]
   - [0x112E1E0]
 
   - name: tol_cracker_1
@@ -5230,15 +5325,38 @@
           - [0x112F2A0, af_ci4, tol_cracker_1_tex, 64, 16, 0x112F280, 0x20]
   - [0x112F4A0]
 
-  - name: object_01130000
-    type: bin # code
+  - name: tol_hata_01
+    dir: objects/tol_hata_01
+    type: code
     start: 0x1130000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x1130000, data, assets/objects/object_01130000/object_01130000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, tol_hata_01]
+      - start: 0x1130000
+        type: .data
+        name: tol_hata_01
+        subsegments:
+          - [0x1130000, vtx, tol_hata_01_v]
+          - [0x11300F0, af_gfx, tol_hata_e_model]
+          - [0x11301A0, af_gfx, tol_hata_hataT_model]
+          - [0x1130228, af_palette, tol_hata_e_pal]
+          - [0x1130248, af_ci4, tol_hata_e_tex, 16, 16, 0x1130228, 0x20]
+          - [0x11302C8, af_ia8, tol_hata_hata_tex_inta_ia8, 16, 16]
+          - [0x11303C8]
+      - [auto, c, tol_hata_01_evw_anime]
+      - start: 0x11303C8
+        type: .data
+        name: tol_hata_01_evw_anime
+        subsegments:
+          - [0x11303D0, evw_textable, tol_hata_01_evw_anime_1_tex_table]
+          - [0x11303D4, evw_animeptn, tol_hata_01_evw_anime_1_anime_ptn]
+          - [0x11303D8, evw_texanime, tol_hata_01_evw_anime_1]
+          - [0x11303E8, evw_scroll, tol_hata_01_evw_anime_2]
+          - [0x11303F0, evw_data, tol_hata_01_evw_anime]
   - [0x1130400]
 
   - name: object_01131000
