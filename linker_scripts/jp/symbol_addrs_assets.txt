@@ -214,6 +214,23 @@ dump_w_DL_model = 0x6011AB0; // segment:object_00D5E000 rom:0xD6FAB0
 obj_w_dump_t1_tex = 0x6011AC8; // segment:object_00D5E000 rom:0xD6FAC8
 obj_w_dump_t2_tex = 0x60122C8; // segment:object_00D5E000 rom:0xD702C8
 
+obj_fallS_v = 0x6012AD8; // segment:object_00D5E000 rom:0xD70AD8 size:0x280
+obj_fallS_grpAT_model = 0x6012D58; // segment:object_00D5E000 rom:0xD70D58
+obj_fallS_grpBT_model = 0x6012E30; // segment:object_00D5E000 rom:0xD70E30
+obj_fallS_grpDT_model = 0x6012F30; // segment:object_00D5E000 rom:0xD70F30
+obj_fallS_grpCT_model = 0x6013008; // segment:object_00D5E000 rom:0xD71008
+obj_fallS_model = 0x60130F0; // segment:object_00D5E000 rom:0xD710F0
+obj_fallCA1_tex_rgb_ia8 = 0x6013118; // segment:object_00D5E000 rom:0xD71118
+obj_fallA2_tex_rgb_i4 = 0x6013518; // segment:object_00D5E000 rom:0xD71518
+obj_fallA3_tex_rgb_i4 = 0x6013718; // segment:object_00D5E000 rom:0xD71718
+obj_fallC2_tex_rgb_i4 = 0x6013798; // segment:object_00D5E000 rom:0xD71798
+obj_fallC3_tex_rgb_i4 = 0x6013998; // segment:object_00D5E000 rom:0xD71998
+obj_fallS_evw_anime_1 = 0x6013A18; // segment:object_00D5E000 rom:0xD71A18
+obj_fallS_evw_anime_2 = 0x6013A20; // segment:object_00D5E000 rom:0xD71A20
+obj_fallS_evw_anime_3 = 0x6013A28; // segment:object_00D5E000 rom:0xD71A28
+obj_fallS_evw_anime_4 = 0x6013A30; // segment:object_00D5E000 rom:0xD71A30
+obj_fallS_evw_anime = 0x6013A38; // segment:object_00D5E000 rom:0xD71A38
+
 obj_s_toudai_v = 0x0607D248; // segment:object_00D5E000 rom:0xDDB248 size:0x990
 obj_s_toudai_mirror_model = 0x0607DBD8; // segment:object_00D5E000 rom:0xDDBBD8
 obj_s_toudai_glass_model = 0x0607DCA0; // segment:object_00D5E000 rom:0xDDBCA0

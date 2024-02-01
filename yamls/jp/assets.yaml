@@ -863,7 +863,30 @@
           - [0xD6FAC8, af_ci4, obj_dump/obj_w_dump_t1_tex, 128, 32, 0xD5C1C8, 0x20]
           - [0xD702C8, af_ci4, obj_dump/obj_w_dump_t2_tex, 128, 32, 0xD5C1C8, 0x20]
           - [0xD70AC8]
-      - [0xD70AD0, bin, 0D5E000_unextracted]
+      - [auto, c, obj_fallS/obj_fallS]
+      - start: 0xD70AD0
+        type: .data
+        name: obj_fallS/obj_fallS
+        subsegments:
+          - [0xD70AD0, pad]
+          - [0xD70AD8, vtx, obj_fallS/obj_fallS_v]
+          - [0xD70D58, af_gfx, obj_fallS/obj_fallS_grpAT_model]
+          - [0xD70E30, af_gfx, obj_fallS/obj_fallS_grpBT_model]
+          - [0xD70F30, af_gfx, obj_fallS/obj_fallS_grpDT_model]
+          - [0xD71008, af_gfx, obj_fallS/obj_fallS_grpCT_model]
+          - [0xD710F0, af_gfx, obj_fallS/obj_fallS_model]
+          - [0xD71118, af_ia8, obj_fallS/obj_fallCA1_tex_rgb_ia8, 32, 32]
+          - [0xD71518, af_i4, obj_fallS/obj_fallA2_tex_rgb_i4, 32, 32]
+          - [0xD71718, af_i4, obj_fallS/obj_fallA3_tex_rgb_i4, 16, 16]
+          - [0xD71798, af_i4, obj_fallS/obj_fallC2_tex_rgb_i4, 32, 32]
+          - [0xD71998, af_i4, obj_fallS/obj_fallC3_tex_rgb_i4, 16, 16]
+          - [0xD71A18, evw_scroll, obj_fallS/obj_fallS_evw_anime_1]
+          - [0xD71A20, evw_scroll, obj_fallS/obj_fallS_evw_anime_2]
+          - [0xD71A28, evw_scroll, obj_fallS/obj_fallS_evw_anime_3]
+          - [0xD71A30, evw_scroll, obj_fallS/obj_fallS_evw_anime_4]
+          - [0xD71A38, evw_data, obj_fallS/obj_fallS_evw_anime]
+          - [0xD71A58]
+      - [0xD71A60, bin, 0D5E000_unextracted]
   - [0xDF3480]
 
   - name: object_00DF4000
