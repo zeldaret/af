@@ -30,8 +30,8 @@ void* StructureObjectPointers[] = {
     0x06000000, // obj_s_yamishop
     0x06003440, // obj_s_uranai
     0x06056180,
-    0x0601AA00,
-    0x060149F0,
+    0x0601AA00, // obj_w_kamakura
+    0x060149F0, // obj_e_goza
     0x060542D0,
     0x06092A90,
     0x060880B8,
@@ -39,11 +39,11 @@ void* StructureObjectPointers[] = {
     0x06021EE0,
     0x06006830, // obj_e_count01
     0x06008C90, // obj_e_count02_cl
-    0x06016A40,
-    0x06018A38,
+    0x06016A40, // obj_e_kago_r
+    0x06018A38, // obj_e_kago_w
     0x0608C7A0,
     0x0608A730,
-    0x0601CAE0,
+    0x0601CAE0, // obj_e_koinobori
     0x0600FEE0, // obj_s_dump
     0x0608E830, // obj_s_windmill
     0x0601F6F0,
@@ -122,8 +122,8 @@ void* StructureObjectPointers[] = {
     0x06001A20, // obj_w_yamishop
     0x06004E38, // obj_w_uranai
     0x06056180,
-    0x0601AA00,
-    0x060149F0,
+    0x0601AA00, // obj_w_kamakura
+    0x060149F0, // obj_e_goza
     0x060542D0,
     0x06092A90,
     0x060880B8,
@@ -131,11 +131,11 @@ void* StructureObjectPointers[] = {
     0x06021EE0,
     0x06006830, // obj_e_count01
     0x06008C90, // obj_e_count02_cl
-    0x06016A40,
-    0x06018A38,
+    0x06016A40, // obj_e_kago_r
+    0x06018A38, // obj_e_kago_w
     0x0608C7A0,
     0x0608A730,
-    0x0601CAE0,
+    0x0601CAE0, // obj_e_koinobori
     0x060114D8, // obj_w_dump
     0x06090968, // obj_w_windmill_v
     0x0601F6F0,
