@@ -20275,10 +20275,10 @@ RO_FLT_80A93464_jp = 0x80A93464; // type:f32
 
 aKOI_actor_ct = 0x80A93570; // type:func
 aKOI_actor_dt = 0x80A93604; // type:func
-func_80A9369C_jp = 0x80A9369C; // type:func
-func_80A936AC_jp = 0x80A936AC; // type:func
-func_80A936BC_jp = 0x80A936BC; // type:func
-func_80A9373C_jp = 0x80A9373C; // type:func
+aKOI_set_bgOffset = 0x80A9369C; // type:func
+aKOI_wait = 0x80A936AC; // type:func
+aKOI_setup_action = 0x80A936BC; // type:func
+aKOI_actor_move = 0x80A9373C; // type:func
 aKOI_actor_init = 0x80A93870; // type:func
 aKOI_actor_draw = 0x80A938D8; // type:func
 
