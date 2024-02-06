@@ -64,7 +64,7 @@ void aKOI_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
 void aKOI_set_bgOffset(Koinobori* this UNUSED, s32 processIndex UNUSED) {
 }
 
-void aKOI_wait(Koinobori* this UNUSED, s32 processIndex UNUSED) {
+void aKOI_wait(Koinobori* this UNUSED, Game_Play* game_play UNUSED) {
 }
 
 extern BaseAnimationR D_601F6D4;
@@ -100,7 +100,7 @@ void aKOI_actor_move(Actor* thisx, Game_Play* game_play) {
     gSegments[6] = OS_K0_TO_PHYSICAL(common_data.unk_10098->unk_AC(0x27));
     cKF_SkeletonInfo_R_play(&this->skeletonInfo);
     this->unk2A0(this, game_play);
-    sAdo_OngenPos(this, 0x35, &this->actor.world.pos);
+    sAdo_OngenPos((u32)this, 0x35, &this->actor.world.pos);
 }
 
 void aKOI_actor_init(Actor* thisx, Game_Play* game_play) {
