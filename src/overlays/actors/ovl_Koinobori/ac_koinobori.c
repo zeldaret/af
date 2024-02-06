@@ -40,13 +40,13 @@ extern Gfx obj_e_koinobori_shadowT_model[];
 ShadowData aKOI_shadow_data = { 8, aKOI_shadow_vtx_fix_flg_table, 60.0f, obj_e_koinobori_shadow_v,
                                 obj_e_koinobori_shadowT_model };
 
-extern BaseSkeletonR D_601F22C;
+extern BaseSkeletonR cKF_bs_r_obj_e_koinobori;
 
 void aKOI_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
     Koinobori* this = THIS;
 
     gSegments[6] = OS_K0_TO_PHYSICAL(common_data.unk_10098->unk_AC(0x27));
-    cKF_SkeletonInfo_R_ct(&this->skeletonInfo, &D_601F22C, 0, this->jointTable, this->morphTable);
+    cKF_SkeletonInfo_R_ct(&this->skeletonInfo, &cKF_bs_r_obj_e_koinobori, 0, this->jointTable, this->morphTable);
     aKOI_set_bgOffset(this, 1);
     aKOI_setup_action(this, 0);
     cKF_SkeletonInfo_R_play(&this->skeletonInfo);
@@ -67,26 +67,26 @@ void aKOI_set_bgOffset(Koinobori* this UNUSED, s32 processIndex UNUSED) {
 void aKOI_wait(Koinobori* this UNUSED, Game_Play* game_play UNUSED) {
 }
 
-extern BaseAnimationR D_601F6D4;
+extern BaseAnimationR cKF_ba_r_obj_e_koinobori;
 
 void aKOI_setup_action(Koinobori* this, s32 processIndex) {
     static KoinoboriActionFunc process[] = { aKOI_wait };
 
-    cKF_SkeletonInfo_R_init(&this->skeletonInfo, this->skeletonInfo.skeleton, &D_601F6D4, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-                            ANIMATION_REPEAT, NULL);
+    cKF_SkeletonInfo_R_init(&this->skeletonInfo, this->skeletonInfo.skeleton, &cKF_ba_r_obj_e_koinobori, 1.0f, 1.0f,
+                            1.0f, 1.0f, 0.0f, ANIMATION_REPEAT, NULL);
     this->unk2A0 = process[processIndex];
     this->unk2B4 = processIndex;
 }
 
 void aKOI_actor_move(Actor* thisx, Game_Play* game_play) {
     Koinobori* this = THIS;
-    s32 pad UNUSED;
+    UNUSED s32 pad;
     Player* player = get_player_actor_withoutCheck(game_play);
     s32 blockX;
     s32 blockY;
     s32 playerBlockX;
     s32 playerBlockY;
-    s32 pad2 UNUSED;
+    UNUSED s32 pad2;
 
     mFI_Wpos2BlockNum(&blockX, &blockY, this->actor.world.pos);
     mFI_Wpos2BlockNum(&playerBlockX, &playerBlockY, player->actor.world.pos);
@@ -132,7 +132,7 @@ void aKOI_actor_draw(Actor* thisx, Game_Play* game_play) {
     GraphicsContext* gfxCtx = game_play->state.gfxCtx;
     Koinobori* this = THIS;
     Mtx* mtx;
-    s32 pad UNUSED;
+    UNUSED s32 pad;
     s32 object;
     s32 palette;
 
