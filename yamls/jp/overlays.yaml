@@ -15114,6 +15114,7 @@
       - [0x9536E0, data, overlays/actors/ovl_Tunahiki_Npc1/ac_tunahiki_npc1_reloc]
 
   - name: ovl_Koinobori
+    dir: overlays/actors/ovl_Koinobori
     type: code
     start: 0x9537E0
     vram: 0x80A93570
@@ -15121,8 +15122,15 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x9537E0, c, overlays/actors/ovl_Koinobori/ac_koinobori]
-      - [0x953CE0, data, overlays/actors/ovl_Koinobori/ac_koinobori]
+      - [0x9537E0, c, ac_koinobori]
+      - start: 0x953CE0
+        type: .data
+        name: ac_koinobori
+        subsegments:
+          - [0x953CE0, .data, ac_koinobori]
+          - [0x953D24, af_palette, aKOI_obj_e_koinobori_a_pal]
+          - [0x953D44, af_palette, obj_e_koinobori_b_pal]
+          - [0x953D64]
   - name: ovl_Koinobori_reloc
     type: code
     start: 0x953D70
