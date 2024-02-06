@@ -313,6 +313,26 @@ cKF_c_obj_e_koinobori_tbl = 0x601F298; // segment:object_00D5E000 rom:0xD7D298
 cKF_ds_obj_e_koinobori_tbl = 0x601F2B8; // segment:object_00D5E000 rom:0xD7D2B8
 cKF_ba_r_obj_e_koinobori = 0x601F6D4; // segment:object_00D5E000 rom:0xD7D6D4
 
+obj_s_lotus_v = 0x601F6F8; // segment:object_00D5E000 rom:0xD7D6F8 size:0x9C0
+obj_s_lotus_flower1_model = 0x60200B8; // segment:object_00D5E000 rom:0xD7E0B8
+obj_s_lotus_leafH_model = 0x60201D8; // segment:object_00D5E000 rom:0xD7E1D8
+obj_s_lotus_leafG_model = 0x6020278; // segment:object_00D5E000 rom:0xD7E278
+obj_s_lotus_leafF_model = 0x6020318; // segment:object_00D5E000 rom:0xD7E318
+obj_s_lotus_leafE_model = 0x60203B8; // segment:object_00D5E000 rom:0xD7E3B8
+obj_s_lotus_leafD_model = 0x6020458; // segment:object_00D5E000 rom:0xD7E458
+obj_s_lotus_leafC_model = 0x60204F8; // segment:object_00D5E000 rom:0xD7E4F8
+obj_s_lotus_leafB_model = 0x6020598; // segment:object_00D5E000 rom:0xD7E598
+obj_s_lotus_leafA_model = 0x6020638; // segment:object_00D5E000 rom:0xD7E638
+obj_lotus_flower_tex_txt = 0x60206D8; // segment:object_00D5E000 rom:0xD7E6D8
+obj_lotus_leaf_tex_txt = 0x60208D8; // segment:object_00D5E000 rom:0xD7E8D8
+cKF_je_r_obj_s_lotus_tbl = 0x6020CD8; // segment:object_00D5E000 rom:0xD7ECD8
+cKF_bs_r_obj_s_lotus = 0x6020DBC; // segment:object_00D5E000 rom:0xD7EDBC
+cKF_ckcb_r_obj_s_lotus_tbl = 0x6020DC4; // segment:object_00D5E000 rom:0xD7EDC4
+cKF_kn_obj_s_lotus_tbl = 0x6020DD8; // segment:object_00D5E000 rom:0xD7EDD8
+cKF_c_obj_s_lotus_tbl = 0x6020E04; // segment:object_00D5E000 rom:0xD7EE04
+cKF_ds_obj_s_lotus_tbl = 0x6020E54; // segment:object_00D5E000 rom:0xD7EE54
+cKF_ba_r_obj_s_lotus = 0x6020FB8; // segment:object_00D5E000 rom:0xD7EFB8
+
 obj_s_toudai_v = 0x0607D248; // segment:object_00D5E000 rom:0xDDB248 size:0x990
 obj_s_toudai_mirror_model = 0x0607DBD8; // segment:object_00D5E000 rom:0xDDBBD8
 obj_s_toudai_glass_model = 0x0607DCA0; // segment:object_00D5E000 rom:0xDDBCA0

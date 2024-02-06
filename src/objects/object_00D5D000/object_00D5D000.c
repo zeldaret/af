@@ -90,7 +90,7 @@ void* StructurePalettePointers[] = {
     0x060012C8, // obj_w_windmill_c_pal
     0x060012E8, // obj_w_windmill_d_pal
     0x06001308, // obj_w_windmill_e_pal
-    0x06001328,
+    0x06001328, // obj_01_lotus_pal
     0x06001348,
     0x06001368, // obj_s_douzou_dai_pal
     0x060013A8,
@@ -181,7 +181,7 @@ void* StructurePalettePointers[] = {
     0x06001228, // obj_s_windmill_c_pal
     0x06001248, // obj_s_windmill_d_pal
     0x06001268, // obj_s_windmill_e_pal
-    0x06001328,
+    0x06001328, // obj_01_lotus_pal
     0x06001348,
     0x06001388, // obj_w_douzou_pal
     0x060013C8,
