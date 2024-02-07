@@ -6,7 +6,7 @@
 
 /**
  * @file obj_yamishop
- * Crazy Redd's tent
+ * 闇ショップ Crazy Redd's tent
  */
 
 extern Vtx obj_s_yamishop_v[];
