@@ -3,6 +3,11 @@
 
 #include "gbi.h"
 
+/**
+ * @file obj_dump
+ * The town dump
+ */
+
 extern Vtx obj_s_dump_v[];
 extern Gfx obj_s_dump_t1T_model[];
 extern Gfx obj_s_dump_t2T_model[];

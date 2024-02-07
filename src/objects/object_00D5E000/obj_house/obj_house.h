@@ -4,6 +4,11 @@
 #include "gbi.h"
 #include "c_keyframe.h"
 
+/**
+ * @file obj_house
+ * Villager houses
+ */
+
 extern Vtx obj_s_house1_v[];
 extern Gfx obj_s_house1_window_model[];
 extern Gfx obj_s_house1_light_model[];

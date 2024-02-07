@@ -4,8 +4,14 @@
 #include "gbi.h"
 #include "c_keyframe.h"
 
+/**
+ * @file obj_douzou
+ * 銅像 Statue awarded for completely paying off your debt
+ */
+
 extern Vtx obj_s_douzou_v[];
 extern Gfx obj_s_douzou_name_model[];
+// 台 Pedestal
 extern Gfx obj_s_douzou_dai_model[];
 extern Gfx obj_s_douzou_girl_mouth_model[];
 extern Gfx obj_s_douzou_girl_face_model[];

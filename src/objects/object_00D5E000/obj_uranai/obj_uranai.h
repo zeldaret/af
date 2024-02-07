@@ -4,6 +4,11 @@
 #include "gbi.h"
 #include "c_keyframe.h"
 
+/**
+ * @file obj_uranai
+ * 占い Katrina's tent
+ */
+
 extern Vtx obj_s_uranai_v[];
 extern Gfx obj_s_uranai_window_model[];
 extern Gfx obj_s_uranai_t2_model[];

@@ -4,6 +4,11 @@
 #include "gbi.h"
 #include "c_keyframe.h"
 
+/**
+ * @file obj_yamishop
+ * Crazy Redd's tent
+ */
+
 extern Vtx obj_s_yamishop_v[];
 extern Gfx obj_s_yamishop_window_model[];
 extern Gfx obj_s_yamishop_t1_model[];

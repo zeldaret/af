@@ -3,6 +3,11 @@
 
 #include "gbi.h"
 
+/**
+ * @file obj_e_goza
+ * ござ Ground mat and food for the cherry blossom festival
+ */
+
 extern Vtx obj_e_goza_v[];
 extern Gfx obj_e_goza_t2T_model[];
 extern Gfx obj_e_goza_t1T_model[];

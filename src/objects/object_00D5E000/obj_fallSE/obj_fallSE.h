@@ -4,6 +4,11 @@
 #include "gbi.h"
 #include "evw_anime.h"
 
+/**
+ * @file obj_fallSE
+ * Southeast and southwest facing waterfalls
+ */
+
 extern Vtx obj_fallSE_v[];
 extern Gfx obj_fallSE_grpAT_model[];
 extern Gfx obj_fallSE_grpBT_model[];

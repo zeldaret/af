@@ -6,7 +6,7 @@
 
 /**
  * @file obj_e_koinobori
- * 鯉幟 Carp Streamers (For Children's Day)
+ * 鯉幟 Carp streamers for Children's Day
  */
 
 extern Vtx obj_e_koinobori_v[];

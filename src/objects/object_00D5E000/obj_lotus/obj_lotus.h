@@ -4,6 +4,11 @@
 #include "gbi.h"
 #include "c_keyframe.h"
 
+/**
+ * @file obj_lotus
+ * Lotus flower that floats in the town lake
+ */
+
 extern Vtx obj_s_lotus_v[];
 extern Gfx obj_s_lotus_flower1_model[];
 extern Gfx obj_s_lotus_leafH_model[];

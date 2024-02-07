@@ -4,6 +4,11 @@
 #include "gbi.h"
 #include "c_keyframe.h"
 
+/**
+ * @file obj_e_count02_cl
+ * New years day countdown clock numbers
+ */
+
 extern Vtx obj_e_count02_cl_v[];
 extern Gfx obj_e_c2_ani_cl01_sita_model[];
 extern Gfx obj_e_c2_ani_ci01_mae_model[];

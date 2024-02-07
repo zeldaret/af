@@ -5,6 +5,11 @@
 #include "c_keyframe.h"
 #include "evw_anime.h"
 
+/**
+ * @file obj_e_count01
+ * New years day countdown clock
+ */
+
 extern Vtx obj_e_count01_v[];
 extern Gfx obj_e_count_spot_model[];
 extern Gfx obj_e_count_lamp_model[];

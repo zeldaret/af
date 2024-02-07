@@ -3,6 +3,11 @@
 
 #include "gbi.h"
 
+/**
+ * @file obj_e_kago
+ * 籠 Basket and balls for the Sports Fair ball toss
+ */
+
 extern Vtx obj_e_kago_r_v[];
 extern Gfx obj_e_kago_r_t1T_model[];
 extern Gfx obj_e_kago_r_t2T_model[];
