@@ -556,7 +556,7 @@
     align: 0x1000
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [auto, c, object_00D5B000]
+      # - [auto, c, object_00D5B000]
       - start: 0xD5B000
         type: data
         name: object_00D5B000
