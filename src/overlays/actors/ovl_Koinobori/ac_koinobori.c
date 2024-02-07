@@ -10,6 +10,7 @@
 #include "audio.h"
 #include "overlays/actors/player_actor/m_player.h"
 #include "m_rcp.h"
+#include "objects/object_00D5E000/obj_e_koinobori/obj_e_koinobori.h"
 
 #define THIS ((Koinobori*)thisx)
 
@@ -40,8 +41,6 @@ extern Gfx obj_e_koinobori_shadowT_model[];
 ShadowData aKOI_shadow_data = { 8, aKOI_shadow_vtx_fix_flg_table, 60.0f, obj_e_koinobori_shadow_v,
                                 obj_e_koinobori_shadowT_model };
 
-extern BaseSkeletonR cKF_bs_r_obj_e_koinobori;
-
 void aKOI_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
     Koinobori* this = THIS;
 
@@ -66,8 +65,6 @@ void aKOI_set_bgOffset(Koinobori* this UNUSED, s32 processIndex UNUSED) {
 
 void aKOI_wait(Koinobori* this UNUSED, Game_Play* game_play UNUSED) {
 }
-
-extern BaseAnimationR cKF_ba_r_obj_e_koinobori;
 
 void aKOI_setup_action(Koinobori* this, s32 processIndex) {
     static KoinoboriActionFunc process[] = { aKOI_wait };
