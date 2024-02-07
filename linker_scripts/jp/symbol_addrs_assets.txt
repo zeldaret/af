@@ -333,6 +333,13 @@ cKF_c_obj_s_lotus_tbl = 0x6020E04; // segment:object_00D5E000 rom:0xD7EE04
 cKF_ds_obj_s_lotus_tbl = 0x6020E54; // segment:object_00D5E000 rom:0xD7EE54
 cKF_ba_r_obj_s_lotus = 0x6020FB8; // segment:object_00D5E000 rom:0xD7EFB8
 
+obj_e_mikanbox_v = 0x6020FE8; // segment:object_00D5E000 rom:0xD7EFE8 size:0x1C0
+obj_e_mikanbox_model = 0x60211A8; // segment:object_00D5E000 rom:0xD7F1A8
+obj_e_mikanbox_tex = 0x6021258; // segment:object_00D5E000 rom:0xD7F258
+obj_e_mikanbox_copyrightT_model = 0x6021658; // segment:object_00D5E000 rom:0xD7F658
+copyright_tex = 0x6021660; // segment:object_00D5E000 rom:0xD7F660
+obj_e_mikanbox_copyrightT_model2 = 0x6021E60; // segment:object_00D5E000 rom:0xD7FE60
+
 obj_s_toudai_v = 0x0607D248; // segment:object_00D5E000 rom:0xDDB248 size:0x990
 obj_s_toudai_mirror_model = 0x0607DBD8; // segment:object_00D5E000 rom:0xDDBBD8
 obj_s_toudai_glass_model = 0x0607DCA0; // segment:object_00D5E000 rom:0xDDBCA0
