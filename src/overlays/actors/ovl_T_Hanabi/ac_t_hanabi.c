@@ -111,7 +111,7 @@ void aTHB_actor_draw(Actor* thisx, Game_Play* game_play) {
     }
 
     Matrix_scale(thisx->scale.x, thisx->scale.y, thisx->scale.z, MTXMODE_APPLY);
-    func_800BD5E8_jp(gfxCtx);
+    _texture_z_light_fog_prim_npc(gfxCtx);
     OPEN_DISPS(gfxCtx);
     OPEN_POLY_OPA_DISPS();
     gSPMatrix(__polyOpa++, _Matrix_to_Mtx_new(gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);

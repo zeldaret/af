@@ -14456,7 +14456,7 @@ aTHB_actor_draw = 0x80A1FF58; // type:func
 
 T_Hanabi_Profile = 0x80A20050; //
 aim = 0x80A20074; // type:f32
-process = 0x80A2007C; //
+process = 0x80A2007C; // allow_duplicated:true
 start_scale = 0x80A20090; // type:f32
 D_80A200A4_jp = 0x80A200A4; //
 
@@ -20275,24 +20275,21 @@ RO_FLT_80A93464_jp = 0x80A93464; // type:f32
 
 aKOI_actor_ct = 0x80A93570; // type:func
 aKOI_actor_dt = 0x80A93604; // type:func
-func_80A9369C_jp = 0x80A9369C; // type:func
-func_80A936AC_jp = 0x80A936AC; // type:func
-func_80A936BC_jp = 0x80A936BC; // type:func
-func_80A9373C_jp = 0x80A9373C; // type:func
+aKOI_set_bgOffset = 0x80A9369C; // type:func
+aKOI_wait = 0x80A936AC; // type:func
+aKOI_setup_action = 0x80A936BC; // type:func
+aKOI_actor_move = 0x80A9373C; // type:func
 aKOI_actor_init = 0x80A93870; // type:func
 aKOI_actor_draw = 0x80A938D8; // type:func
 
 // .data
 
 Koinobori_Profile = 0x80A93A70; //
-D_80A93A94_jp = 0x80A93A94; //
-D_80A93A9C_jp = 0x80A93A9C; //
-D_80A93AB0_jp = 0x80A93AB0; //
-D_80A93AB4_jp = 0x80A93AB4; //
-D_80A93AD4_jp = 0x80A93AD4; //
-D_80A93B70_jp = 0x80A93B70; //
-D_80A93BE0_jp = 0x80A93BE0; //
-D_80A93C50_jp = 0x80A93C50; //
+aKOI_shadow_vtx_fix_flg_table = 0x80A93A94; //
+aKOI_shadow_data = 0x80A93A9C; //
+process = 0x80A93AB0; // allow_duplicated:true
+aKOI_obj_e_koinobori_a_pal = 0x80A93AB4; //
+obj_e_koinobori_b_pal = 0x80A93AD4; //
 
 // .text
 
