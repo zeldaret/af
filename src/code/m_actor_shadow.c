@@ -55,12 +55,12 @@ void mActorShadow_GetTimeAngleY_TimeAlpha(ShadowInfo* shadow, Game_Play* play) {
         UNUSED f32 scopedTemp;
         timef = (timesec - 14400) / 57600.0f;
         angle = 16384;
-    }  // Between 12 a.m and 4 a.m
+    } // Between 12 a.m and 4 a.m
     else if (timesec < 14400) {
         UNUSED f32 scopedTemp;
         timef = 0.5f + timesec / 28800.0f;
         angle = 16384;
-    }  // Between 8 p.m and 12 a.m
+    } // Between 8 p.m and 12 a.m
     else {
         timef = (timesec - 72000) / 28800.0f;
         angle = 16384;
@@ -71,10 +71,10 @@ void mActorShadow_GetTimeAngleY_TimeAlpha(ShadowInfo* shadow, Game_Play* play) {
 
 void mActorShadow_GetGroundAverageAngle(ShadowInfo* shadow) {
     static xyz_t angle_range_table[4] = {
-        {10.0f, 0.0f, 10.0f},
-        {10.0f, 0.0f, -10.0f},
-        {-10.0f, 0.0f, 10.0f},
-        {-10.0f, 0.0f, -10.0f},
+        { 10.0f, 0.0f, 10.0f },
+        { 10.0f, 0.0f, -10.0f },
+        { -10.0f, 0.0f, 10.0f },
+        { -10.0f, 0.0f, -10.0f },
     };
 
     s32 x = 0;
@@ -84,7 +84,7 @@ void mActorShadow_GetGroundAverageAngle(ShadowInfo* shadow) {
 
     for (i = 0; i < 4; i++) {
         xyz_t pos = shadow->position;
-        s_xyz sangle = {0, 0, 0};
+        s_xyz sangle = { 0, 0, 0 };
 
         pos.x += angle_range_table[i].x;
         pos.y += angle_range_table[i].y;
@@ -118,12 +118,13 @@ void mActorShadow_GetDistanceRate(ShadowInfo* shadow, f32 rate) {
     }
 
     calcRate = (xcalc - disty) / xcalc;
-    shadow->unk14 = (( (0.04f * 10.0f) * calcRate) + 0.6f);
+    shadow->unk14 = (((0.04f * 10.0f) * calcRate) + 0.6f);
     shadow->unk18 = 1 * calcRate;
 }
 
 f32 mActorShadow_GetAbsBigger(f32 a, f32 b) {
-    f32 absA, absB;
+    f32 absA;
+    f32 absB;
     absA = ABS(a);
     absB = ABS(b);
 
@@ -148,7 +149,7 @@ void mActorShadow_GetShadowTopPos_GetSlideS(ShadowInfo* shadow) {
         base.y = 0.0f;
         base.z = -40.0f;
         sMath_RotateY(&base, BINANG_TO_RAD(shadow->unk26));
-        wpos.x = shadow->position.x + base.x; 
+        wpos.x = shadow->position.x + base.x;
         wpos.y = shadow->position.y + base.y;
         wpos.z = shadow->position.z + base.z;
         bgY = mCoBG_GetShadowBgY_AngleS_FromWpos(NULL, wpos, 0.0f);
@@ -176,8 +177,8 @@ Gfx* mActorShadow_SetTexScroll(Actor* actor, ShadowInfo* shadow, Game* game) {
         step = 0;
     }
 
-    mActorShadow_TileScroll2(&x1, &y1, 0, 0, 0, 0, 32, 16, &actor->shape.unk_20, &y2, step, 0, shadow->unk34, 0,
-                             32, 16, game);
+    mActorShadow_TileScroll2(&x1, &y1, 0, 0, 0, 0, 32, 16, &actor->shape.unk_20, &y2, step, 0, shadow->unk34, 0, 32, 16,
+                             game);
 }
 
 void mActorShadow_GetLastAlphaScale(f32* scale, u8* alpha, Actor* actor, ShadowInfo* shadow) {
@@ -220,9 +221,8 @@ void mActorShadow_DrawActorShadow(Actor* actor, ShadowInfo* shadow, Game* game, 
 
     _texture_z_light_fog_prim_shadow(play->state.gfxCtx);
 
-    yAdjust = (scene == 19 || scene == 27 || scene == 28 || scene == 34)
-                   ? 0.5f
-                   : ((scene == 15 || scene == 16) ? 0.6f : 2.0f);
+    yAdjust = (scene == 19 || scene == 27 || scene == 28 || scene == 34) ? 0.5f
+                                                                         : ((scene == 15 || scene == 16) ? 0.6f : 2.0f);
 
     switch (actor->shape.forceShadow) {
         f32 x;
@@ -269,7 +269,7 @@ void mActorShadow_DrawActorShadow(Actor* actor, ShadowInfo* shadow, Game* game, 
                 default:
                     Matrix_scale(scale, scale, scale, 1);
                     break;
-            } 
+            }
             break;
     }
 
@@ -325,8 +325,8 @@ void mAc_DecideShadowRadius_IamFish(ShadowInfo* shadow, Actor* actor, f32* radiu
     *radius = (actor->shape.shadowSizeZ / 19.0f) * 0.018f;
 }
 
-void mAc_ActorShadowDraw_ShadowDrawFlagOff(UNUSED Actor* actor,UNUSED Game_Play* play,UNUSED s32 arg2,UNUSED xyz_t arg3,UNUSED f32 arg6) {
-    
+void mAc_ActorShadowDraw_ShadowDrawFlagOff(UNUSED Actor* actor, UNUSED Game_Play* play, UNUSED s32 arg2,
+                                           UNUSED xyz_t arg3, UNUSED f32 arg6) {
 }
 
 typedef f32 (*GetGroundYProc)(ShadowInfo*);
@@ -382,11 +382,13 @@ void mAc_ActorShadowDraw(Actor* actor, Game_Play* play, s32 arg2, xyz_t arg3, f3
 }
 
 xyz_t mActorShadow_offset0 = {
-    0.0f, 0.0f, 0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
 };
 
 void mActorShadow_SetForceShadowPos(Actor* actor, xyz_t* pos) {
-    actor->shape.forceShadow = TRUE; 
+    actor->shape.forceShadow = TRUE;
     actor->shape.shadowPosition = pos;
 }
 
@@ -399,8 +401,8 @@ void mAc_NormalActorShadow(Actor* actor, Game_Play* play, f32 rad) {
     mAc_ActorShadowDraw(actor, play, 0, mActorShadow_offset0, rad);
 }
 
-void mAc_UnagiActorShadow(Actor* actor, Game_Play* play, xyz_t pos) { 
-    mAc_ActorShadowDraw(actor, play, 1, pos, 1.0f); 
+void mAc_UnagiActorShadow(Actor* actor, Game_Play* play, xyz_t pos) {
+    mAc_ActorShadowDraw(actor, play, 1, pos, 1.0f);
 }
 
 void mAc_ActorShadowCircle(Actor* actor, UNUSED LightsN* lights, Game_Play* play) {
