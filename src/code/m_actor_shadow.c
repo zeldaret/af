@@ -118,7 +118,7 @@ void mActorShadow_GetDistanceRate(ShadowInfo* shadow, f32 rate) {
     }
 
     calcRate = (xcalc - disty) / xcalc;
-    shadow->unk14 = (((40.0f / 100.0f) * calcRate) + 0.6f);
+    shadow->unk14 = (( (0.04f * 10.0f) * calcRate) + 0.6f);
     shadow->unk18 = 1 * calcRate;
 }
 

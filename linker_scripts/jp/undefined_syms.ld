@@ -198,7 +198,7 @@ D_C000000 = 0x0C000000;
 
 // m_actor_shadow
 
-D_4005540 = 0x04005540;
+ef_shadow_in_modelT = 0x04005540;
 ef_shadow_out_modelT = 0x04005710;
 D_6000000 = 0x06000000;
 D_6000008 = 0x06000008;

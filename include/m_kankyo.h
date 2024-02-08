@@ -25,7 +25,8 @@ typedef struct Kankyo {
     /* 0xAF */ u8 unk_AF;
     /* 0xB0 */ u8 unk_B0;
     /* 0xB1 */ UNK_TYPE1 unk_B1[0xB];
-    /* 0xBC */ s32 shadowAlpha;
+    /* 0xBC */ u8 shadowAlpha;
+    /* 0xBD */ UNK_TYPE1 unk_BD[0x2];
     /* 0xC0 */ Kankyo_unk_C0 unk_C0;
     /* 0xC4 */ UNK_TYPE1 unk_C4[0x4];
 } Kankyo; // size = 0xC8
