@@ -1,5 +1,12 @@
 #include "m_actor_shadow.h"
 #include "m_rcp.h"
+#include "m_collision_obj.h"
+#include "macros.h"
+#include "sys_math3d.h"
+#include "m_field_info.h"
+
+extern Gfx ef_shadow_out_modelT[];
+extern Gfx ef_shadow_in_modelT[];
 
 s32 mActorShadow_OperateScrollLimit(s32 value, s32 step, s32 limit) {
     if (step != 0) {
@@ -41,16 +48,16 @@ void mActorShadow_GetTimeAngleY_TimeAlpha(ShadowInfo* shadow, Game_Play* play) {
     f32 timef;
     s32 timesec = common_data.time.nowSec;
     f32 angle;
-    shadow->unk1C = play->kankyo.unk_BC;
+    shadow->unk1C = play->kankyo.shadowAlpha;
 
     // Between 4 a.m and 8 p.m
     if ((timesec >= 14400) && (timesec < 72000)) {
-        f32 scopedTemp;
+        UNUSED f32 scopedTemp;
         timef = (timesec - 14400) / 57600.0f;
         angle = 16384;
     }  // Between 12 a.m and 4 a.m
     else if (timesec < 14400) {
-        f32 scopedTemp;
+        UNUSED f32 scopedTemp;
         timef = 0.5f + timesec / 28800.0f;
         angle = 16384;
     }  // Between 8 p.m and 12 a.m
@@ -135,7 +142,6 @@ void mActorShadow_GetShadowTopPos_GetSlideS(ShadowInfo* shadow) {
     xyz_t wpos;
     xyz_t base;
     f32 bgY;
-    s32 res;
 
     if (shadow->kind == 0) {
         base.x = 0.0f;
@@ -145,7 +151,6 @@ void mActorShadow_GetShadowTopPos_GetSlideS(ShadowInfo* shadow) {
         wpos.x = shadow->position.x + base.x; 
         wpos.y = shadow->position.y + base.y;
         wpos.z = shadow->position.z + base.z;
-        res = 0;
         bgY = mCoBG_GetShadowBgY_AngleS_FromWpos(NULL, wpos, 0.0f);
         if ((shadow->position.y - bgY) > 20.0f) {
             shadow->unk34 = 28;
@@ -294,7 +299,7 @@ void mActorShadow_GetShadowPosition(Actor* actor, xyz_t* position) {
 }
 
 s32 mActorShadow_GetShadowKind(void) {
-    if (!(mFI_GET_TYPE(mFI_GetFieldId()))) {
+    if (!(FI_GET_TYPE(mFI_GetFieldId()))) {
         return 0;
     } else {
         return 1;
@@ -320,11 +325,13 @@ void mAc_DecideShadowRadius_IamFish(ShadowInfo* shadow, Actor* actor, f32* radiu
     *radius = (actor->shape.shadowSizeZ / 19.0f) * 0.018f;
 }
 
-void mAc_ActorShadowDraw_ShadowDrawFlagOff(Actor* actor, Game_Play* play, s32 arg2, xyz_t arg3, f32 arg6) {
+void mAc_ActorShadowDraw_ShadowDrawFlagOff(UNUSED Actor* actor,UNUSED Game_Play* play,UNUSED s32 arg2,UNUSED xyz_t arg3,UNUSED f32 arg6) {
     
 }
 
 typedef f32 (*GetGroundYProc)(ShadowInfo*);
+typedef void (*RadiusProc)(ShadowInfo*, Actor*, f32*);
+typedef void (*ShadowProc)(Actor* actor, Game_Play* play, s32 arg2, xyz_t arg3, f32 arg6);
 
 void mAc_ActorShadowDraw_ShadowDrawFlagOn(Actor* actor, Game_Play* play, s32 proc, xyz_t pos, f32 rate) {
     static RadiusProc set_raius_proc[] = {
@@ -359,7 +366,7 @@ void mAc_ActorShadowDraw_ShadowDrawFlagOn(Actor* actor, Game_Play* play, s32 pro
     actor->shape.forceShadow = FALSE;
 }
 
-void mAc_ActorShadowDraw(Actor* actor, Game_Play* play, int arg2, xyz_t arg3, f32 arg6) {
+void mAc_ActorShadowDraw(Actor* actor, Game_Play* play, s32 arg2, xyz_t arg3, f32 arg6) {
     static ShadowProc shadwo_draw_proc[] = {
         mAc_ActorShadowDraw_ShadowDrawFlagOff,
         mAc_ActorShadowDraw_ShadowDrawFlagOn,
@@ -396,10 +403,10 @@ void mAc_UnagiActorShadow(Actor* actor, Game_Play* play, xyz_t pos) {
     mAc_ActorShadowDraw(actor, play, 1, pos, 1.0f); 
 }
 
-void mAc_ActorShadowCircle(Actor* actor, LightsN* lights, Game_Play* play) {
+void mAc_ActorShadowCircle(Actor* actor, UNUSED LightsN* lights, Game_Play* play) {
     mAc_ActorShadowDraw(actor, play, 0, mActorShadow_offset0, 1.0f);
 }
 
-void mAc_ActorShadowEllipse(Actor* actor, LightsN* lights, Game_Play* play) {
+void mAc_ActorShadowEllipse(Actor* actor, UNUSED LightsN* lights, Game_Play* play) {
     mAc_ActorShadowDraw(actor, play, 0, mActorShadow_offset0, 1.0f);
 }

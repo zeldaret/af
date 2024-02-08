@@ -15,7 +15,7 @@ Gfx* gfx_set_fog_nosync(Gfx* gfx, u8 arg1, u8 arg2, u8 arg3, s32 arg4, s16 arg5,
 // void func_800BD498_jp();
 // void func_800BD4C0_jp();
 void _texture_z_light_fog_prim(struct GraphicsContext *gfxCtx);
-// void _texture_z_light_fog_prim_shadow();
+void _texture_z_light_fog_prim_shadow(struct GraphicsContext*); 
 // void func_800BD538_jp();
 void _texture_z_light_fog_prim_xlu(struct GraphicsContext *gfxCtx);
 void func_800BD5C0_jp(struct GraphicsContext* gfxCtx);

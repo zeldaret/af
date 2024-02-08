@@ -76,16 +76,16 @@ typedef struct Shape_Info {
     /* 0x00 */ s_xyz rot;
     /* 0x08 */ f32 unk_08;
     /* 0x0C */ Shape_Info_unk_0C unk_0C;
-    /* 0x10 */ f32 unk_10;
-    /* 0x14 */ f32 unk_14;
-    /* 0x18 */ f32 unk_18;
-    /* 0x1C */ f32 unk_1C;
-    /* 0x20 */ s32 unk_20;
-    /* 0x24 */ xyz_t* unk_24; // maybe PosRot*
+    /* 0x10 */ f32 shadowSizeX;
+    /* 0x14 */ f32 shadowSizeZ;
+    /* 0x18 */ f32 shadowSizeRate;
+    /* 0x1C */ f32 shadowAlphaRate;
+    /* 0x20 */ u32 unk_20;
+    /* 0x24 */ xyz_t* shadowPosition; // maybe PosRot*
     /* 0x28 */ s32 unk_28;
-    /* 0x2C */ s8 unk_2C;
+    /* 0x2C */ u8 drawShadow;
     /* 0x2D */ s8 unk_2D;
-    /* 0x2E */ s8 unk_2E;
+    /* 0x2E */ u8 forceShadow;
     /* 0x2F */ UNK_TYPE1 unk_2F[0x1];
     /* 0x30 */ xyz_t feetPos[FOOT_MAX];
 } Shape_Info; // size = 0x48

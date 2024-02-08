@@ -116,14 +116,14 @@ s32 Actor_data_bank_dma_end_check(Actor* actor, Game_Play* game_play) {
 void Shape_Info_init(Actor* actor, f32 arg1, Shape_Info_unk_0C arg2, f32 arg3, f32 arg4) {
     actor->shape.unk_08 = arg1;
     actor->shape.unk_0C = arg2;
-    actor->shape.unk_10 = arg3;
-    actor->shape.unk_14 = arg4;
-    actor->shape.unk_2C = 1;
+    actor->shape.shadowSizeX = arg3;
+    actor->shape.shadowSizeZ = arg4;
+    actor->shape.drawShadow = TRUE;
     actor->shape.unk_20 = 0;
-    actor->shape.unk_18 = 1.0f;
-    actor->shape.unk_1C = 1.0f;
-    actor->shape.unk_2E = 0;
-    actor->shape.unk_24 = &actor->world.pos;
+    actor->shape.shadowSizeRate = 1.0f;
+    actor->shape.shadowAlphaRate = 1.0f;
+    actor->shape.forceShadow = FALSE;
+    actor->shape.shadowPosition = &actor->world.pos;
     actor->shape.unk_28 = -1;
     actor->shape.unk_2D = 0;
 }
@@ -181,8 +181,8 @@ void Actor_ct(Actor* actor, Game_Play* game_play) {
     actor->uncullZoneScale = 350.0f;
     actor->uncullZoneDownward = 700.0f;
 
-    actor->shape.unk_18 = 1.0f;
-    actor->shape.unk_1C = 1.0f;
+    actor->shape.shadowSizeRate = 1.0f;
+    actor->shape.shadowAlphaRate = 1.0f;
 
     actor->unk_13C = 1000.0f;
     actor->unk_140 = 350.0f;
@@ -277,7 +277,7 @@ void Actor_draw(Game_Play* game_play, Actor* actor) {
 
         gSPSegment(POLY_OPA_DISP++, 0x06, segment);
         gSPSegment(POLY_XLU_DISP++, 0x06, segment);
-        gSPSegment(UNK_2C0_DISP++, 0x06, segment);
+        gSPSegment(SHADOW_DISP++, 0x06, segment);
     }
 
     actor->draw(actor, game_play);
