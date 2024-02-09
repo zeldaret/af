@@ -23,6 +23,7 @@ typedef enum FieldType {
 
 
 #define FI_TO_FIELD_ID(type, index) (((type) << 12) | (index))
+#define FI_GET_TYPE(id) ((id) & 0xF000)
 
 typedef enum FieldRoom {
   /* 0x6000 */ FI_FIELD_PLAYER0_ROOM = FI_TO_FIELD_ID(FI_FIELDTYPE_PLAYER_ROOM, 0),

@@ -145,9 +145,9 @@ void game_draw_first(GraphicsContext* gfxCtx) {
     gSPSegment(UNK_2B0_DISP++, 0x0F, gfxCtx->unk_2E4);
     gSPSegment(UNK_2B0_DISP++, 0x0E, temp_v0);
 
-    gSPSegment(UNK_2C0_DISP++, 0x00, NULL);
-    gSPSegment(UNK_2C0_DISP++, 0x0F, gfxCtx->unk_2E4);
-    gSPSegment(UNK_2C0_DISP++, 0x0E, temp_v0);
+    gSPSegment(SHADOW_DISP++, 0x00, NULL);
+    gSPSegment(SHADOW_DISP++, 0x0F, gfxCtx->unk_2E4);
+    gSPSegment(SHADOW_DISP++, 0x0E, temp_v0);
 
     gSPSegment(LIGHT_DISP++, 0x00, NULL);
     gSPSegment(LIGHT_DISP++, 0x0F, gfxCtx->unk_2E4);

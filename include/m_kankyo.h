@@ -24,7 +24,9 @@ typedef struct Kankyo {
     /* 0xAE */ u8 unk_AE;
     /* 0xAF */ u8 unk_AF;
     /* 0xB0 */ u8 unk_B0;
-    /* 0xB1 */ UNK_TYPE1 unk_B1[0xF];
+    /* 0xB1 */ UNK_TYPE1 unk_B1[0xB];
+    /* 0xBC */ u8 shadowAlpha;
+    /* 0xBD */ UNK_TYPE1 unk_BD[0x2];
     /* 0xC0 */ Kankyo_unk_C0 unk_C0;
     /* 0xC4 */ UNK_TYPE1 unk_C4[0x4];
 } Kankyo; // size = 0xC8
@@ -78,7 +80,7 @@ void mEnv_DecideWeather_NormalGameStart(void);
 // void func_8009949C_jp();
 // void func_80099594_jp();
 // void func_800996CC_jp();
-// void mEnv_GetShadowPrimColor_Light();
+void mEnv_GetShadowPrimColor_Light(u8*,u8*,u8*, struct Game*);
 // void func_80099718_jp();
 // void func_80099728_jp();
 // void mEnv_MakeWindowLightAlpha();
