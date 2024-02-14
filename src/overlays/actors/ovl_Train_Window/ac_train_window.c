@@ -10,7 +10,18 @@ void Train_Window_Actor_dt(Actor* thisx, Game_Play* game_play);
 void Train_Window_Actor_move(Actor* thisx, Game_Play* game_play);
 void Train_Window_Actor_draw(Actor* thisx, Game_Play* play);
 
-#if 0
+s32 pad922020[] = { 0x00000000, 0x00000000 };
+
+u16 aTrainWindow_tree_pal_table[15][16] = {
+#include "assets/jp/overlays/actors/ovl_Train_Window/aTrainWindow_tree_pal_table.palette.inc.c"
+};
+
+extern EvwAnimeScroll aTrainWindow_out_cloud[1];
+#include "assets/jp/overlays/actors/ovl_Train_Window/aTrainWindow_out_cloud.inc.c"
+
+extern EvwAnimeData aTrainWindow_evw_anime_data[1];
+#include "assets/jp/overlays/actors/ovl_Train_Window/aTrainWindow_evw_anime_data.inc.c"
+
 ActorProfile Train_Window_Profile = {
     /* */ ACTOR_TRAIN_WINDOW,
     /* */ ACTOR_PART_0,
@@ -24,18 +35,16 @@ ActorProfile Train_Window_Profile = {
     /* */ Train_Window_Actor_draw,
     /* */ NULL,
 };
-#endif
 
-// TODO: Import data
+u8 till_data[15][2] = {
+    { 0x02, 0x03 }, { 0x02, 0x11 }, { 0x02, 0x18 }, { 0x04, 0x03 }, { 0x04, 0x08 },
+    { 0x07, 0x16 }, { 0x09, 0x0F }, { 0x0A, 0x05 }, { 0x0A, 0x17 }, { 0x0B, 0x07 },
+    { 0x0B, 0x0E }, { 0x0B, 0x1C }, { 0x0C, 0x0A }, { 0x0C, 0x11 }, { 0x0C, 0x1F },
+};
 
 extern Gfx rom_train_out_bgsky_model[];
 extern Gfx rom_train_out_bgcloud_modelT[];
 extern Gfx rom_train_out_shineglass_modelT[];
-
-extern u8 till_data[15][2];
-extern u16 aTrainWindow_tree_pal_table[15][16];
-
-extern EvwAnimeData aTrainWindow_evw_anime_data;
 
 s32 aTrainWindow_NoDraw(Actor* thisx, Game* game);
 s32 aTrainWindow_DrawGoneOutTunnel(Actor* thisx, Game* game);
@@ -307,7 +316,7 @@ void Train_Window_Actor_draw(Actor* thisx, Game_Play* play) {
         aTrainWindow_SetLightPrimColorDetail(&play->state, 127, 255, this->xluAlpha);
         gSPSegment(POLY_XLU_DISP++, 10, this->currentPalette);
         if (1) {}
-        Evw_Anime_Set(&play->state, &aTrainWindow_evw_anime_data);
+        Evw_Anime_Set(&play->state, aTrainWindow_evw_anime_data);
 
         aTrainWindow_SetLightPrimColorDetail(&play->state, 255, 255, this->xluAlpha);
         gSPDisplayList(POLY_OPA_DISP++, rom_train_out_bgsky_model);
