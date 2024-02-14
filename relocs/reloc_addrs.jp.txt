@@ -42,6 +42,12 @@ rom:0x001240 symbol:code_BSS_END reloc:MIPS_LO16
 
 // code
 
+rom:0x6C8C80 symbol:D_8010AEE0_jp reloc:MIPS_HI16 addend:0x14
+rom:0x6C8C88 symbol:D_8010AEE0_jp reloc:MIPS_LO16 addend:0x14
+
+rom:0x6C8CE0 symbol:D_8010AEE0_jp reloc:MIPS_HI16 addend:0x14
+rom:0x6C8CE4 symbol:D_8010AEE0_jp reloc:MIPS_LO16 addend:0x14
+
 rom:0x6F657C symbol:segment_13D9A0_ROM_START reloc:MIPS_HI16
 rom:0x6F6580 symbol:segment_13D9A0_ROM_START reloc:MIPS_LO16
 
