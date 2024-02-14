@@ -26,7 +26,6 @@ typedef struct Train_Window{
     /* 0x1A4 */ f32 xluAlpha;
     /* 0x1A8 */ f32 scrollSpeed;
     /* 0x1AC */ s_xyz pos;
-    /* 0x1B0 */ UNK_TYPE unk_1B0;
 }Train_Window; // size = 0x1B4
 
 #endif
