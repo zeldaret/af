@@ -293,7 +293,11 @@ Gfx* texture_z_light_fog_prim_bb_pal_xlu(Gfx* gfx) {
     return gfx;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD6D0_jp.s")
+Gfx* texture_z_fog_lod_alpha_shadow(Gfx* gfx) {
+    gSPDisplayList(gfx++, z_gsCPModeSet_Data[14]);
+
+    return gfx;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD6F8_jp.s")
 
