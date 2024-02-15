@@ -20,7 +20,7 @@ void func_800BD538_jp(struct GraphicsContext* gfxCtx);
 void _texture_z_light_fog_prim_xlu(struct GraphicsContext *gfxCtx);
 void _texture_z_light_fog_prim_light(struct GraphicsContext* gfxCtx);
 void _texture_z_light_fog_prim_npc(struct GraphicsContext *gfxCtx);
-// void func_800BD648_jp();
+Gfx* texture_z_light_fog_prim_bb_pal_opa(Gfx* gfx);
 // void func_800BD68C_jp();
 // void func_800BD6D0_jp();
 // void func_800BD6F8_jp();

@@ -270,16 +270,21 @@ void _texture_z_light_fog_prim_light(GraphicsContext* gfxCtx) {
 }
 
 void _texture_z_light_fog_prim_npc(GraphicsContext* gfxCtx) {
-  OPEN_DISPS(gfxCtx);
+    OPEN_DISPS(gfxCtx);
 
-  gSPDisplayList(POLY_OPA_DISP++, z_gsCPModeSet_Data[10]);
-  gDPPipeSync(POLY_OPA_DISP++);
-  gDPSetPrimColor(POLY_OPA_DISP++, 0, 0x80, 255, 255, 255, 255);
+    gSPDisplayList(POLY_OPA_DISP++, z_gsCPModeSet_Data[10]);
+    gDPPipeSync(POLY_OPA_DISP++);
+    gDPSetPrimColor(POLY_OPA_DISP++, 0, 0x80, 255, 255, 255, 255);
 
-  CLOSE_DISPS(gfxCtx);
+    CLOSE_DISPS(gfxCtx);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD648_jp.s")
+Gfx* texture_z_light_fog_prim_bb_pal_opa(Gfx* gfx) {
+    gSPDisplayList(gfx++, z_gsCPModeSet_Data[12]);
+    gDPSetPrimColor(gfx++, 0, 0x80, 255, 255, 255, 255);
+
+    return gfx;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD68C_jp.s")
 
