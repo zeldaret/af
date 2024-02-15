@@ -25,6 +25,7 @@ ctx.c.m2c
 *.v64
 *.plf
 *.sym
+.venv
 
 .vscode/*
 !.vscode/c_cpp_properties.json
