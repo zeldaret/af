@@ -10,6 +10,8 @@
 #define GRAPH_ALLOC(gfxCtx, size) ((void*)((gfxCtx)->polyOpa.d = (Gfx*)((u8*)(gfxCtx)->polyOpa.d - ALIGN16(size))))
 #define GRAPH_ALLOC_NO_ALIGN(gfxCtx,size) ((void*)((gfxCtx)->polyOpa.d = (Gfx*)((u8*)(gfxCtx)->polyOpa.d - size)))
 
+#define TMEM_SIZE 0x1000
+
 typedef struct GraphicsContext {
     /* 0x000 */ UNK_TYPE1 unk_000[0x8];
     /* 0x008 */ UNK_PTR unk_008;

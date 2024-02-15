@@ -3,6 +3,7 @@
 #include "libc/stdbool.h"
 #include "PR/gs2dex.h"
 
+#include "gfx.h"
 #include "gfxalloc.h"
 #include "sys_ucode.h"
 
@@ -150,15 +151,15 @@ void PreRender_init(PreRender* render) {
     ListAlloc_Init(&render->alloc);
 }
 
-void PreRender_setup_renderbuf(PreRender* render, s32 arg1, s32 arg2, void* arg3, void* arg4) {
-    render->unk_00 = arg1;
-    render->unk_02 = arg2;
+void PreRender_setup_renderbuf(PreRender* render, s32 width, s32 height, void* arg3, void* arg4) {
+    render->width = width;
+    render->height = height;
     render->unk_10 = arg3;
     render->unk_1C = arg4;
     render->unk_2C = 0;
     render->unk_2E = 0;
-    render->unk_30 = arg1 - 1;
-    render->unk_32 = arg2 - 1;
+    render->unk_30 = width - 1;
+    render->unk_32 = height - 1;
 }
 
 void PreRender_cleanup(PreRender* render) {
@@ -169,17 +170,17 @@ void PreRender_TransBufferCopy(PreRender* render, Gfx** gfxP, void* img, void* i
     Gfx* gfx = *gfxP;
     u32 flags;
 
-    gfx = gfx_SetUpCFB(gfx, imgDst, render->unk_00, render->unk_02);
+    gfx = gfx_SetUpCFB(gfx, imgDst, render->width, render->height);
 
     flags = WALLPAPER_FLAGS_LOAD_S2DEX2 | WALLPAPER_FLAGS_COPY;
     if (useThresholdAlphaCompare == true) {
         flags |= WALLPAPER_FLAGS_AC_THRESHOLD;
     }
 
-    wallpaper_draw(&gfx, img, NULL, render->unk_00, render->unk_02, G_IM_FMT_RGBA, G_IM_SIZ_16b, G_TT_NONE, 0, 0.0f,
+    wallpaper_draw(&gfx, img, NULL, render->width, render->height, G_IM_FMT_RGBA, G_IM_SIZ_16b, G_TT_NONE, 0, 0.0f,
                    0.0f, 1.0f, 1.0f, flags);
 
-    *gfxP = gfx_SetUpCFB(gfx, render->unk_10, render->unk_00, render->unk_02);
+    *gfxP = gfx_SetUpCFB(gfx, render->unk_10, render->width, render->height);
 }
 
 void PreRender_TransBuffer(PreRender* render, Gfx** gfxP, void* arg2, void* arg3) {
@@ -212,17 +213,91 @@ void PreRender_TransBuffer1_env(PreRender* render, Gfx** gfxP, void* arg2, void*
     gDPSetCombineLERP(gfx++, TEXEL0, 0, ENVIRONMENT, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, ENVIRONMENT, 0, 0, 0, 0,
                       ENVIRONMENT);
 
-    gfx = gfx_SetUpCFB(gfx, arg3, render->unk_00, render->unk_02);
-    wallpaper_draw(&gfx, arg2, NULL, render->unk_00, render->unk_02, G_IM_FMT_RGBA, G_IM_SIZ_16b, G_TT_NONE, 0, 0.0f,
+    gfx = gfx_SetUpCFB(gfx, arg3, render->width, render->height);
+    wallpaper_draw(&gfx, arg2, NULL, render->width, render->height, G_IM_FMT_RGBA, G_IM_SIZ_16b, G_TT_NONE, 0, 0.0f,
                    0.0f, 1.0f, 1.0f, WALLPAPER_FLAGS_1 | WALLPAPER_FLAGS_2 | WALLPAPER_FLAGS_LOAD_S2DEX2);
-    *gfxP = gfx_SetUpCFB(gfx, render->unk_10, render->unk_00, render->unk_02);
+    *gfxP = gfx_SetUpCFB(gfx, render->unk_10, render->width, render->height);
 }
 
 void PreRender_TransBuffer1(PreRender* render, Gfx** gfxP, void* arg2, void* arg3) {
     PreRender_TransBuffer1_env(render, gfxP, arg2, arg3, 255, 255, 255, 255);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_TransBuffer2.s")
+void PreRender_TransBuffer2(PreRender* render, Gfx** gfxP, void* arg2, void* arg3) {
+    Gfx* gfx = *gfxP;
+    s32 rowsRemaining;
+    s32 curRow;
+    s32 nRows;
+    s32 pad UNUSED;
+
+    gDPPipeSync(gfx++);
+    gDPSetOtherMode(gfx++,
+                    G_AD_DISABLE | G_CD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_POINT | G_TT_NONE | G_TL_TILE |
+                        G_TD_CLAMP | G_TP_NONE | G_CYC_1CYCLE | G_PM_NPRIMITIVE,
+                    G_AC_NONE | G_ZS_PRIM | G_RM_PASS | G_RM_OPA_CI2);
+
+    // Set the combiner to draw the texture as-is, discarding alpha channel
+    gDPSetCombineLERP(gfx++, 0, 0, 0, TEXEL0, 0, 0, 0, 0, 0, 0, 0, TEXEL0, 0, 0, 0, 0);
+    // Set the destination color image to the provided address
+    gDPSetColorImage(gfx++, G_IM_FMT_I, G_IM_SIZ_8b, render->width, arg3);
+    // Set up a scissor based on the source image
+    gDPSetScissor(gfx++, G_SC_NON_INTERLACE, 0, 0, render->width, render->height);
+
+    // Calculate the max number of rows that can fit into TMEM at once
+    nRows = TMEM_SIZE / (render->width * G_IM_SIZ_16b_BYTES);
+
+    // Set up the number of remaining rows
+    rowsRemaining = render->height;
+    curRow = 0;
+    while (rowsRemaining > 0) {
+        s32 uls = 0;
+        s32 lrs = render->width - 1;
+        s32 ult;
+        s32 lrt;
+
+        // Make sure that we don't load past the end of the source image
+        if (nRows > rowsRemaining) {
+            nRows = rowsRemaining;
+        }
+
+        // Determine the upper and lower bounds of the rect to draw
+        ult = curRow;
+        lrt = curRow + nRows - 1;
+
+        // Load a horizontal strip of the source image in IA16 format. Since the source image is stored in memory as
+        // RGBA16, the bits are reinterpreted into IA16:
+        //
+        // r     g      b     a
+        // 11111 111 11 11111 1
+        // i         a
+        // 11111 111 11 11111 1
+        //
+        // I = (r << 3) | (g >> 2)
+        // A = (g << 6) | (b << 1) | a
+        //
+        // Since it is expected that r = g = b = cvg in the source image, this results in
+        //  I = (cvg << 3) | (cvg >> 2)
+        // This expands the 5-bit coverage into an 8-bit value
+        gDPLoadTextureTile(gfx++, arg2, G_IM_FMT_IA, G_IM_SIZ_16b, render->width, render->height, uls, ult, lrs, lrt, 0,
+                           G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
+                           G_TX_NOLOD);
+
+        // Draw that horizontal strip to the destination image. With the combiner and blender configuration set above,
+        // the intensity (I) channel of the loaded IA16 texture will be written as-is to the I8 color image, each pixel
+        // in the final image is
+        //  I = (cvg << 3) | (cvg >> 2)
+        gSPTextureRectangle(gfx++, uls << 2, ult << 2, (lrs + 1) << 2, (lrt + 1) << 2, G_TX_RENDERTILE, uls << 5,
+                            ult << 5, 1 << 10, 1 << 10);
+
+        // Update the number of rows remaining and index of the row being drawn
+        curRow += nRows;
+        rowsRemaining -= nRows;
+    }
+
+    // Reset the color image to the current framebuffer
+
+    *gfxP = gfx_SetUpCFB(gfx, render->unk_10, render->width, render->height);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_ShowCoveredge.s")
 
