@@ -74,7 +74,7 @@ void func_800D2E58_jp(u16 button, Gfx** gfxP) {
         if (button & (1 << i)) {
             j = i + 1;
             gDPSetFillColor(gfx++, (RO_80117CE0_jp[i] << 0x10) | RO_80117CE0_jp[i]);
-            gfx = func_800BE12C_jp(gfx, (i * 4) + 226, 220, (j * 4) + 226, 224);
+            gfx = gfx_gDPFillRectangleF(gfx, (i * 4) + 226, 220, (j * 4) + 226, 224);
 
             gDPPipeSync(gfx++);
         }
