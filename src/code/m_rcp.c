@@ -184,7 +184,7 @@ Gfx* gfx_set_fog_nosync(Gfx* gfx, s32 r, s32 g, s32 b, s32 a, s32 near, s32 far)
     return gfx;
 }
 
-void* func_800BD3EC_jp(Gfx* gfx, s32 i) {
+Gfx* func_800BD3EC_jp(Gfx* gfx, s32 i) {
     s32 dListIndex = 6 * i;
 
     gSPDisplayList(gfx++, &((Gfx*)z_gsCPModeSet_Data)[dListIndex]);
@@ -192,7 +192,9 @@ void* func_800BD3EC_jp(Gfx* gfx, s32 i) {
     return gfx;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD428_jp.s")
+Gfx* func_800BD428_jp(Gfx* gfx, s32 i) {
+    return func_800BD3EC_jp(gfx, i);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD448_jp.s")
 

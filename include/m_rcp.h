@@ -8,10 +8,8 @@ struct Game_Play;
 
 extern Gfx RSP_RDP_clear_data[];
 
-// void gfx_set_fog_position();
-Gfx* gfx_set_fog_nosync(Gfx* gfx, u8 arg1, u8 arg2, u8 arg3, s32 arg4, s16 arg5, s16 arg6);
-// void func_800BD3EC_jp();
-// void func_800BD428_jp();
+Gfx* gfx_set_fog_nosync(Gfx* gfx, u8 r, u8 g, u8 b, s32 a, s16 near, s16 far);
+Gfx* func_800BD428_jp(Gfx* gfx, s32 i);
 // void func_800BD448_jp();
 // void func_800BD470_jp();
 // void func_800BD498_jp();
