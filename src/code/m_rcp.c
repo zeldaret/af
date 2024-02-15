@@ -380,7 +380,7 @@ Gfx* gfx_softsprite_prim_xlu(Gfx* gfx) {
     return gfx;
 }
 
-Gfx* gfx_tex_scroll2(Gfx** gfxP, s32 x, s32 y, s32 width, s32 height) {
+Gfx* gfx_tex_scroll2(Gfx** gfxP, u32 x, u32 y, s32 width, s32 height) {
     Gfx* dList = gfxalloc(gfxP, 3 * sizeof(Gfx));
 
     gDPTileSync(dList);
@@ -390,7 +390,23 @@ Gfx* gfx_tex_scroll2(Gfx** gfxP, s32 x, s32 y, s32 width, s32 height) {
     return dList;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD8A8_jp.s")
+Gfx* gfx_two_tex_scroll(GraphicsContext* gfxCtx, s32 tile1, u32 x1, u32 y1, s32 width1, s32 height1, s32 tile2, u32 x2,
+                        u32 y2, s32 width2, s32 height2) {
+    Gfx* dList = gfxalloc(gfxCtx, 5 * sizeof(Gfx));
+
+    x1 %= 512 << 2;
+    y1 %= 512 << 2;
+    x2 %= 512 << 2;
+    y2 %= 512 << 2;
+
+    gDPTileSync(dList);
+    gDPSetTileSize(dList + 1, tile1, x1, y1, x1 + ((width1 - 1) << 2), y1 + ((height1 - 1) << 2));
+    gDPTileSync(dList + 2);
+    gDPSetTileSize(dList + 3, tile2, x2, y2, x2 + ((width2 - 1) << 2), y2 + ((height2 - 1) << 2));
+    gSPEndDisplayList(dList + 4);
+
+    return dList;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD9D8_jp.s")
 
