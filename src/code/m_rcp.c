@@ -1,8 +1,13 @@
 #include "m_rcp.h"
 
+#include "6B3DC0.h"
 #include "gfx.h"
 #include "gfxalloc.h"
 #include "macros.h"
+
+#include "overlays/gamestates/ovl_play/m_play.h"
+
+s32 fbdemo_mode;
 
 static Gfx z_gsCPModeSet_Data[][6] = {
     {
@@ -391,9 +396,9 @@ Gfx* gfx_tex_scroll2(Gfx** gfxP, u32 x, u32 y, s32 width, s32 height) {
     return dList;
 }
 
-Gfx* gfx_two_tex_scroll(GraphicsContext* gfxCtx, s32 tile1, u32 x1, u32 y1, s32 width1, s32 height1, s32 tile2, u32 x2,
-                        u32 y2, s32 width2, s32 height2) {
-    Gfx* dList = gfxalloc(gfxCtx, 5 * sizeof(Gfx));
+Gfx* gfx_two_tex_scroll(Gfx** gfxP, s32 tile1, u32 x1, u32 y1, s32 width1, s32 height1, s32 tile2, u32 x2, u32 y2,
+                        s32 width2, s32 height2) {
+    Gfx* dList = gfxalloc(gfxP, 5 * sizeof(Gfx));
 
     x1 %= 512 << 2;
     y1 %= 512 << 2;
@@ -433,9 +438,8 @@ Gfx* tex_scroll2(GraphicsContext* gfxCtx, u32 x, u32 y, s32 width, s32 height) {
 }
 
 Gfx* two_tex_scroll(GraphicsContext* gfxCtx, s32 tile1, u32 x1, u32 y1, s32 width1, s32 height1, s32 tile2, u32 x2,
-                      u32 y2, s32 width2, s32 height2) {
+                    u32 y2, s32 width2, s32 height2) {
     Gfx* dList = GRAPH_ALLOC_NO_ALIGN(gfxCtx, 5 * sizeof(Gfx));
-
 
     if (dList != NULL) {
         x1 %= 512 << 2;
@@ -453,7 +457,64 @@ Gfx* two_tex_scroll(GraphicsContext* gfxCtx, s32 tile1, u32 x1, u32 y1, s32 widt
     return dList;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/DisplayList_initialize.s")
+void DisplayList_initialize(GraphicsContext* gfxCtx, u8 clearR, u8 clearG, u8 clearB, Game_Play* game_play) {
+    void* unk_008;
+
+    OPEN_DISPS(gfxCtx);
+
+    gSPDisplayList(POLY_OPA_DISP++, RSP_RDP_clear_data);
+    gSPDisplayList(POLY_XLU_DISP++, RSP_RDP_clear_data);
+    gSPDisplayList(OVERLAY_DISP++, RSP_RDP_clear_data);
+    gSPDisplayList(UNK_2B0_DISP++, RSP_RDP_clear_data);
+    gSPDisplayList(SHADOW_DISP++, z_gsCPModeSet_Data[2]);
+    gSPDisplayList(LIGHT_DISP++, z_gsCPModeSet_Data[2]);
+
+    gDPSetScissor(POLY_OPA_DISP++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    gDPSetScissor(POLY_XLU_DISP++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    gDPSetScissor(OVERLAY_DISP++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    gDPSetScissor(UNK_2B0_DISP++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    gDPSetScissor(SHADOW_DISP++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    gDPSetScissor(LIGHT_DISP++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+    gDPSetColorImage(POLY_OPA_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_2E4);
+    gDPSetColorImage(POLY_XLU_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_2E4);
+    gDPSetColorImage(OVERLAY_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_2E4);
+    gDPSetColorImage(UNK_2B0_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_2E4);
+    gDPSetColorImage(SHADOW_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_2E4);
+    gDPSetColorImage(LIGHT_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_2E4);
+
+    unk_008 = gfxCtx->unk_008;
+
+    gDPSetDepthImage(POLY_OPA_DISP++, unk_008);
+    gDPSetDepthImage(POLY_XLU_DISP++, unk_008);
+    gDPSetDepthImage(OVERLAY_DISP++, unk_008);
+    gDPSetDepthImage(UNK_2B0_DISP++, unk_008);
+    gDPSetDepthImage(SHADOW_DISP++, unk_008);
+    gDPSetDepthImage(LIGHT_DISP++, unk_008);
+
+    if ((game_play == NULL) || ((game_play->submenu.unk_00 < 2) && (fbdemo_mode < 2))) {
+        gDPSetColorImage(POLY_OPA_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_008);
+        gDPSetCycleType(POLY_OPA_DISP++, G_CYC_FILL);
+        gDPSetRenderMode(POLY_OPA_DISP++, G_RM_NOOP, G_RM_NOOP2);
+        gDPSetFillColor(POLY_OPA_DISP++, (GPACK_RGBA5551(255, 255, 240, 0) << 16) | GPACK_RGBA5551(255, 255, 240, 0));
+        gDPFillRectangle(POLY_OPA_DISP++, 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1);
+        gDPPipeSync(POLY_OPA_DISP++);
+        gDPSetColorImage(POLY_OPA_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_2E4);
+        gDPSetCycleType(POLY_OPA_DISP++, G_CYC_FILL);
+        gDPSetRenderMode(POLY_OPA_DISP++, G_RM_NOOP, G_RM_NOOP2);
+        gDPSetFillColor(POLY_OPA_DISP++,
+                        (GPACK_RGBA5551(clearR, clearG, clearB, 1) << 16) | GPACK_RGBA5551(clearR, clearG, clearB, 1));
+        gDPFillRectangle(POLY_OPA_DISP++, 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1);
+        gDPPipeSync(POLY_OPA_DISP++);
+    }
+
+    //! FAKE:
+    if (gfxCtx && gfxCtx && gfxCtx) {}
+
+    CLOSE_DISPS(gfxCtx);
+
+    func_80091074_jp(gfxCtx);
+}
 
 static Gfx fade_gfx[] = {
     gsDPPipeSync(),

@@ -1897,7 +1897,7 @@ extern u8 D_80113854_jp;
 // extern UNK_TYPE B_80144624_jp;
 // extern UNK_TYPE B_80144628_jp;
 // extern UNK_TYPE B_8014462C_jp;
-// extern UNK_TYPE B_80144650_jp;
+
 // extern UNK_TYPE B_80144660_jp;
 
 // extern UNK_TYPE B_80144690_jp;

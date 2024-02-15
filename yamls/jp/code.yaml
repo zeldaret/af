@@ -284,6 +284,8 @@
       - { start: 0x73F4D0, type: bss, vram: 0x80143910, name: code/80143910 }
       - { start: 0x73F4D0, type: .bss, vram: 0x801439A0, name: code/m_private }
       - { start: 0x73F4D0, type: bss, vram: 0x80144620, name: code/80144620 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x80144650, name: code/m_rcp }
+      - { start: 0x73F4D0, type: bss, vram: 0x80144660, name: code/80144660 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80144670, name: code/m_submenu }
       - { start: 0x73F4D0, type: bss, vram: 0x80144690, name: code/80144690 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80144D20, name: code/audioMgr }
