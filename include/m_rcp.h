@@ -6,6 +6,8 @@
 struct GraphicsContext;
 struct Game_Play;
 
+extern Gfx RSP_RDP_clear_data[];
+
 // void gfx_set_fog_position();
 Gfx* gfx_set_fog_nosync(Gfx* gfx, u8 arg1, u8 arg2, u8 arg3, s32 arg4, s16 arg5, s16 arg6);
 // void func_800BD3EC_jp();

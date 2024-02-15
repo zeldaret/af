@@ -159,6 +159,8 @@
       - [0x72F9B0, data, code/72F9B0]
       - [0x7302C0, .data, code/m_private]
       - [0x730320, data, code/730320]
+      - [0x7307D0, .data, code/m_rcp]
+      - [0x730B60, data, code/730B60]
       - [0x731940, .data, code/m_start_data_init]
       - [0x731980, .data, code/m_submenu]
       - [0x731A20, data, code/731A20]
