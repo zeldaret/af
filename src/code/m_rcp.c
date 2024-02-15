@@ -8,7 +8,11 @@ void gfx_set_fog_position(Gfx** gfxP, s32 near, s32 far) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/gfx_set_fog_nosync.s")
+Gfx* gfx_set_fog_nosync(Gfx* gfx, s32 r, s32 g, s32 b, s32 a, s32 near, s32 far) {
+    gDPSetFogColor(gfx++, r, g, b, a);
+    gfx_set_fog_position(&gfx, near, far);
+    return gfx;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD3EC_jp.s")
 
