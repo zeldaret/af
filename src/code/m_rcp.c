@@ -539,11 +539,11 @@ void fade_rgba8888_draw(Gfx** gfxP, u32 color) {
     Gfx* gfx;
 
     if ((color & 0xFF) == 255) {
-        u32 pcolor;
+        u32 c;
 
         gfx = *gfxP;
-        pcolor = ((color >> 27) << 11) | ((color >> 19) << 6) | (color >> 10) | 1;
-        gDPSetFillColor(gfx, (pcolor << 0x10) | pcolor);
+        c = ((color >> 27) << 11) | ((color >> 19) << 6) | (color >> 10) | 1;
+        gDPSetFillColor(gfx, (c << 0x10) | c);
         gSPDisplayList(gfx + 1, fill_gfx);
         *gfxP = gfx + 2;
     } else if ((color & 0xFF) != 0) {
@@ -558,7 +558,10 @@ void func_800BE030_jp(Gfx** gfxP, u32 r, u32 g, u32 b, u32 a) {
     fade_rgba8888_draw(gfxP, (r << 24) | (g << 16) | (b << 8) | a);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/fade_black_draw.s")
+void fade_black_draw(Gfx** gfxP, u32 color) {
+    //! FAKE:
+    fade_rgba8888_draw(gfxP, color ^ 0);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BE094_jp.s")
 
