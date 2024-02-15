@@ -586,7 +586,10 @@ Gfx* gfx_gSPTextureRectangle1(Gfx* gfx, s32 xl, s32 yl, s32 xh, s32 yh, s32 tile
     return gfx;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BE27C_jp.s")
+Gfx* func_800BE27C_jp(Gfx* gfx, s32 xl, s32 yl, s32 xh, s32 yh, s32 tile, s32 s, s32 t) {
+    gSPTextureRectangle(gfx++, xl, yl, xh - 1, yh - 1, tile, s, t, 1 << 10, 1 << 10);
+    return gfx;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BE320_jp.s")
 
