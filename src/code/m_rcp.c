@@ -1,7 +1,12 @@
 #include "global.h"
 
-
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD2B0_jp.s")
+void gfx_set_fog_position(Gfx** gfxP, s32 near, s32 far) {
+    if (near == far) {
+        gSPFogFactor((*gfxP)++, 0, 0);
+    } else {
+        gSPFogPosition((*gfxP)++, near, far);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/gfx_set_fog_nosync.s")
 
