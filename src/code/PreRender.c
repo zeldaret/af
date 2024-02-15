@@ -144,7 +144,10 @@ void PreRender_setup_savebuf(PreRender* render, s32 arg1, s32 arg2, void* arg3, 
     render->unk_2A = arg2 - 1;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_init.s")
+void PreRender_init(PreRender* render) {
+    bzero(render, sizeof(PreRender));
+    ListAlloc_Init(&render->alloc);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_setup_renderbuf.s")
 
