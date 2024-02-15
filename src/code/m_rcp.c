@@ -299,7 +299,13 @@ Gfx* texture_z_fog_lod_alpha_shadow(Gfx* gfx) {
     return gfx;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD6F8_jp.s")
+void func_800BD6F8_jp(GraphicsContext* gfxCtx) {
+    OPEN_DISPS(gfxCtx);
+
+    gSPDisplayList(POLY_OPA_DISP++, z_gsCPModeSet_Data[5]);
+
+    CLOSE_DISPS(gfxCtx);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD720_jp.s")
 
