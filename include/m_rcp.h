@@ -31,7 +31,7 @@ void softsprite_prim(struct GraphicsContext* gfxCtx);
 Gfx* gfx_softsprite_prim_xlu(Gfx* gfx);
 Gfx* gfx_tex_scroll2(Gfx** gfxP, u32 x, u32 y, s32 width, s32 height);
 Gfx* gfx_two_tex_scroll(struct GraphicsContext* gfxCtx, s32 tile1, u32 x1, u32 y1, s32 width1, s32 height1, s32 tile2, u32 x2, u32 y2, s32 width2, s32 height2);
-// void func_800BD9D8_jp();
+Gfx* func_800BD9D8_jp(Gfx** gfxP, u32 x, u32 y);
 // void func_800BD9FC_jp();
 Gfx* tex_scroll2(struct GraphicsContext* gfxCtx, u32 x, u32 y, s32 width, s32 height);
 extern Gfx* two_tex_scroll(struct GraphicsContext* gfxCtx, s32 tile1, s32 x1, s32 y1, s32 width1, s32 height1, s32 tile2, s32 x2, s32 y2, s32 width2, s32 height2);

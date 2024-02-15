@@ -408,7 +408,9 @@ Gfx* gfx_two_tex_scroll(GraphicsContext* gfxCtx, s32 tile1, u32 x1, u32 y1, s32 
     return dList;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD9D8_jp.s")
+Gfx* func_800BD9D8_jp(Gfx** gfxP, u32 x, u32 y) {
+    return gfx_tex_scroll2(gfxP, x, y, 0, 0);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD9FC_jp.s")
 
