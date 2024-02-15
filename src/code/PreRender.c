@@ -1,5 +1,6 @@
 #include "PreRender.h"
 
+#include "libc/stdbool.h"
 #include "PR/gs2dex.h"
 
 #include "gfxalloc.h"
@@ -164,7 +165,22 @@ void PreRender_cleanup(PreRender* render) {
     ListAlloc_FreeAll(&render->alloc);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_TransBufferCopy.s")
+void PreRender_TransBufferCopy(PreRender* render, Gfx** gfxP, void* img, void* imgDst, u32 useThresholdAlphaCompare) {
+    Gfx* gfx = *gfxP;
+    u32 flags;
+
+    gfx = gfx_SetUpCFB(gfx, imgDst, render->unk_00, render->unk_02);
+
+    flags = WALLPAPER_FLAGS_LOAD_S2DEX2 | WALLPAPER_FLAGS_COPY;
+    if (useThresholdAlphaCompare == true) {
+        flags |= WALLPAPER_FLAGS_AC_THRESHOLD;
+    }
+
+    wallpaper_draw(&gfx, img, NULL, render->unk_00, render->unk_02, G_IM_FMT_RGBA, G_IM_SIZ_16b, G_TT_NONE, 0, 0.0f,
+                   0.0f, 1.0f, 1.0f, flags);
+
+    *gfxP = gfx_SetUpCFB(gfx, render->unk_10, render->unk_00, render->unk_02);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_TransBuffer.s")
 

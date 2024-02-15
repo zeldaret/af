@@ -41,7 +41,7 @@ void PreRender_setup_savebuf(PreRender* render, s32 arg1, s32 arg2, void* arg3, 
 void PreRender_init(PreRender* render);
 void PreRender_setup_renderbuf(PreRender* render, s32 arg1, s32 arg2, void* arg3, void* arg4);
 void PreRender_cleanup(PreRender* render);
-// void PreRender_TransBufferCopy();
+void PreRender_TransBufferCopy(PreRender* render, Gfx** gfxP, void* img, void* imgDst, u32 useThresholdAlphaCompare);
 // void PreRender_TransBuffer();
 // void PreRender_TransBuffer1_env();
 // void PreRender_TransBuffer1();
