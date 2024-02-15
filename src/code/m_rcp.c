@@ -240,7 +240,7 @@ void func_800BD498_jp(GraphicsContext* gfxCtx) {
     CLOSE_DISPS(gfxCtx);
 }
 
-void func_800BD4C0_jp(GraphicsContext* gfxCtx) {
+void texture_z_light_prim_xlu_disp(GraphicsContext* gfxCtx) {
     OPEN_DISPS(gfxCtx);
 
     gSPDisplayList(POLY_XLU_DISP++, z_gsCPModeSet_Data[2]);
