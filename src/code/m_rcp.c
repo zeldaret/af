@@ -416,7 +416,20 @@ Gfx* func_800BD9FC_jp(GraphicsContext* gfxCtx, u32 x, u32 y) {
     return tex_scroll2(gfxCtx, x, y, 0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/tex_scroll2.s")
+Gfx* tex_scroll2(GraphicsContext* gfxCtx, u32 x, u32 y, s32 width, s32 height) {
+    Gfx* dList = GRAPH_ALLOC_NO_ALIGN(gfxCtx, 3 * sizeof(Gfx));
+
+    x %= 512 << 2;
+    y %= 512 << 2;
+
+    if (dList != NULL) {
+        gDPTileSync(dList);
+        gDPSetTileSize(dList + 1, G_TX_RENDERTILE, x, y, x + ((width - 1) << 2), y + ((height - 1) << 2));
+        gSPEndDisplayList(dList + 2);
+    }
+
+    return dList;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/two_tex_scroll.s")
 
