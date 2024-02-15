@@ -124,7 +124,13 @@ void wallpaper_draw(Gfx** gfxp, void* timg, void* tlut, u16 width, u16 height, u
     wallpaper_draw1(wallpaperPtr, gfxp);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/gfx_SetUpCFB.s")
+Gfx* gfx_SetUpCFB(Gfx* gfx, void* imgDst, u32 width, u32 height) {
+    gDPPipeSync(gfx);
+    gDPSetColorImage(gfx + 1, G_IM_FMT_RGBA, G_IM_SIZ_16b, width, imgDst);
+    gDPSetScissor(gfx + 2, G_SC_NON_INTERLACE, 0, 0, width, height);
+
+    return gfx + 3;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_setup_savebuf.s")
 

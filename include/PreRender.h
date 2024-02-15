@@ -23,7 +23,6 @@ typedef struct PreRender {
 #define WALLPAPER_FLAGS_COPY (1 << 4)
 
 void wallpaper_draw(Gfx** gfxp, void* timg, void* tlut, u16 width, u16 height, u8 fmt, u8 siz, u16 tt, u16 tlutCount, f32 x, f32 y, f32 xScale, f32 yScale, u32 flags);
-// void gfx_SetUpCFB();
 void PreRender_setup_savebuf(PreRender* render, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
 void PreRender_init(PreRender* render);
 void PreRender_setup_renderbuf(PreRender* render, s32 arg1, s32 arg2, void* arg3, void* arg4);
