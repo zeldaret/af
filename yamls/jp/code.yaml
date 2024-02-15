@@ -87,7 +87,7 @@
       - [0x6EFC20, asm, code/6EFC20]
       - [0x6F12E0, asm, code/6F12E0]
       - [0x6F2150, asm, code/6F2150]
-      - [0x6F2EE0, asm, code/PreRender]
+      - [0x6F2EE0, c, code/PreRender]
       - [0x6F5180, c, code/THA_GA]
       - [0x6F5390, c, code/TwoHeadArena]
       - [0x6F5550, c, code/audio]
