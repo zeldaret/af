@@ -45,7 +45,7 @@ void PreRender_TransBufferCopy(PreRender* render, Gfx** gfxP, void* img, void* i
 void PreRender_TransBuffer(PreRender* render, Gfx** gfxP, void* arg2, void* arg3);
 void PreRender_TransBuffer1(PreRender* render, Gfx** gfxP, void* arg2, void* arg3);
 void PreRender_TransBuffer2(PreRender* render, Gfx** gfxP, void* arg2, void* arg3);
-// void PreRender_ShowCoveredge();
+void PreRender_ShowCoveredge(Gfx** gfxP, s32 ulx, s32 uly, s32 lrx, s32 lry);
 void PreRender_CopyRGBC(PreRender* render, Gfx** gfxP, s32 arg2, s32 arg3);
 // void PreRender_saveZBuffer();
 void PreRender_saveFrameBuffer(PreRender* render, Gfx** gfx);

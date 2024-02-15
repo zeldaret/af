@@ -299,7 +299,37 @@ void PreRender_TransBuffer2(PreRender* render, Gfx** gfxP, void* arg2, void* arg
     *gfxP = gfx_SetUpCFB(gfx, render->unk_10, render->width, render->height);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_ShowCoveredge.s")
+void PreRender_ShowCoveredge(Gfx** gfxP, s32 ulx, s32 uly, s32 lrx, s32 lry) {
+    Gfx* gfx = *gfxP;
+
+    gDPPipeSync(gfx++);
+    // Set the blend color to full white and set maximum depth
+    gDPSetBlendColor(gfx++, 255, 255, 255, 8);
+    gDPSetPrimDepth(gfx++, 0xFFFF, 0xFFFF);
+
+    // Uses G_RM_VISCVG to blit the coverage values to the framebuffer
+    //
+    // G_RM_VISCVG is the following special render mode:
+    //  IM_RD    : Allow read-modify-write operations on the framebuffer
+    //  FORCE_BL : Apply the blender to all pixels rather than just edges, skip the division step of the blend formula
+    //  (G_BL_CLR_IN * G_BL_0 + G_BL_CLR_BL * G_BL_A_MEM) = G_BL_CLR_BL * G_BL_A_MEM
+    //
+    // G_BL_A_MEM ("memory alpha") is coverage, therefore this blender configuration emits only the coverage (up to a
+    // constant factor determined by blend color) and discards any pixel colors. For an RGBA16 framebuffer, each of the
+    // three color channels r,g,b will receive the coverage value individually.
+    //
+    // Also disables other modes such as alpha compare and texture perspective correction
+    gDPSetOtherMode(gfx++,
+                    G_AD_DISABLE | G_CD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_POINT | G_TT_NONE | G_TL_TILE |
+                        G_TD_CLAMP | G_TP_NONE | G_CYC_1CYCLE | G_PM_NPRIMITIVE,
+                    G_AC_NONE | G_ZS_PRIM | G_RM_VISCVG | G_RM_VISCVG2);
+
+    // Fill rectangle to obtain the coverage values as an RGBA16 image
+    gDPFillRectangle(gfx++, ulx, uly, lrx, lry);
+    gDPPipeSync(gfx++);
+
+    *gfxP = gfx;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_CopyRGBC.s")
 
