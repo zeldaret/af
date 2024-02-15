@@ -218,7 +218,9 @@ void PreRender_TransBuffer1_env(PreRender* render, Gfx** gfxP, void* arg2, void*
     *gfxP = gfx_SetUpCFB(gfx, render->unk_10, render->unk_00, render->unk_02);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_TransBuffer1.s")
+void PreRender_TransBuffer1(PreRender* render, Gfx** gfxP, void* arg2, void* arg3) {
+    PreRender_TransBuffer1_env(render, gfxP, arg2, arg3, 255, 255, 255, 255);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_TransBuffer2.s")
 

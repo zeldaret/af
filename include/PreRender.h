@@ -43,8 +43,7 @@ void PreRender_setup_renderbuf(PreRender* render, s32 arg1, s32 arg2, void* arg3
 void PreRender_cleanup(PreRender* render);
 void PreRender_TransBufferCopy(PreRender* render, Gfx** gfxP, void* img, void* imgDst, u32 useThresholdAlphaCompare);
 void PreRender_TransBuffer(PreRender* render, Gfx** gfxP, void* arg2, void* arg3);
-void PreRender_TransBuffer1_env(PreRender* render, Gfx** gfxP, void* arg2, void* arg3, s32 envR, s32 envG, s32 envB, s32 envA);
-// void PreRender_TransBuffer1();
+void PreRender_TransBuffer1(PreRender* render, Gfx** gfxP, void* arg2, void* arg3);
 // void PreRender_TransBuffer2();
 // void PreRender_ShowCoveredge();
 void PreRender_CopyRGBC(PreRender* render, Gfx** gfxP, s32 arg2, s32 arg3);
