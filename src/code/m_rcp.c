@@ -243,7 +243,15 @@ void _texture_z_light_fog_prim_shadow(GraphicsContext* gfxCtx) {
     CLOSE_DISPS(gfxCtx);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD538_jp.s")
+void func_800BD538_jp(GraphicsContext* gfxCtx) {
+    OPEN_DISPS(gfxCtx);
+
+    gSPDisplayList(SHADOW_DISP++, z_gsCPModeSet_Data[10]);
+    gDPPipeSync(SHADOW_DISP++);
+    gDPSetPrimColor(SHADOW_DISP++, 0, 0x80, 255, 255, 255, 255);
+
+    CLOSE_DISPS(gfxCtx);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/_texture_z_light_fog_prim_xlu.s")
 
