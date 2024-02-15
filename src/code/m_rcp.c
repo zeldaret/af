@@ -169,7 +169,6 @@ Gfx RSP_RDP_clear_data[] = {
     gsSPEndDisplayList(),
 };
 
-
 void gfx_set_fog_position(Gfx** gfxP, s32 near, s32 far) {
     if (near == far) {
         gSPFogFactor((*gfxP)++, 0, 0);
@@ -196,7 +195,10 @@ Gfx* func_800BD428_jp(Gfx* gfx, s32 i) {
     return func_800BD3EC_jp(gfx, i);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD448_jp.s")
+Gfx* func_800BD448_jp(Gfx* gfx) {
+    gSPDisplayList(gfx++, z_gsCPModeSet_Data[7]);
+    return gfx;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD470_jp.s")
 
