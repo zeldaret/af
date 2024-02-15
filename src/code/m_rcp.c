@@ -1,4 +1,7 @@
-#include "global.h"
+#include "m_rcp.h"
+
+#include "gfx.h"
+#include "macros.h"
 
 static Gfx z_gsCPModeSet_Data[][6] = {
     {
@@ -200,7 +203,13 @@ Gfx* func_800BD448_jp(Gfx* gfx) {
     return gfx;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD470_jp.s")
+void func_800BD470_jp(GraphicsContext* gfxCtx) {
+    OPEN_DISPS(gfxCtx);
+
+    gSPDisplayList(POLY_OPA_DISP++, z_gsCPModeSet_Data[7]);
+
+    CLOSE_DISPS(gfxCtx);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD498_jp.s")
 
