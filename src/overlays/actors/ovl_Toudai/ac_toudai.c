@@ -233,7 +233,7 @@ s32 aTOU_actor_draw_after(Game_Play* game_play, SkeletonInfoR* skeletonInfo, s32
             type = (common_data.time.season == 3);
             object = common_data.unk_10098->unk_AC(45);
             palette = common_data.unk_10098->unk_450(90);
-            func_800BD5C0_jp(game_play->state.gfxCtx);
+            _texture_z_light_fog_prim_light(game_play->state.gfxCtx);
             gfx = LIGHT_DISP;
             gSPSegment(gfx++, 0x08, palette);
             gSPSegment(gfx++, 0x06, object);

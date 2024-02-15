@@ -18,7 +18,7 @@ void _texture_z_light_fog_prim(struct GraphicsContext *gfxCtx);
 void _texture_z_light_fog_prim_shadow(struct GraphicsContext* gfxCtx); 
 void func_800BD538_jp(struct GraphicsContext* gfxCtx);
 void _texture_z_light_fog_prim_xlu(struct GraphicsContext *gfxCtx);
-void func_800BD5C0_jp(struct GraphicsContext* gfxCtx);
+void _texture_z_light_fog_prim_light(struct GraphicsContext* gfxCtx);
 void _texture_z_light_fog_prim_npc(struct GraphicsContext *gfxCtx);
 // void func_800BD648_jp();
 // void func_800BD68C_jp();
