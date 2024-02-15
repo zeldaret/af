@@ -563,12 +563,14 @@ void fade_black_draw(Gfx** gfxP, u32 color) {
     fade_rgba8888_draw(gfxP, color ^ 0);
 }
 
-Gfx* func_800BE094_jp(Gfx* gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    gDPFillRectangle(gfx++, arg1, arg2, arg3, arg4);
+Gfx* func_800BE094_jp(Gfx* gfx, s32 ulx, s32 uly, s32 lrx, s32 lry) {
+    gDPFillRectangle(gfx++, ulx, uly, lrx, lry);
     return gfx;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BE0E4_jp.s")
+void func_800BE0E4_jp(Gfx** gfxP, s32 ulx, s32 uly, s32 lrx, s32 lry) {
+    gDPFillRectangle(*gfxP, ulx, uly, lrx, lry);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BE12C_jp.s")
 
