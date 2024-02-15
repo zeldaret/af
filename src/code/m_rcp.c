@@ -563,7 +563,10 @@ void fade_black_draw(Gfx** gfxP, u32 color) {
     fade_rgba8888_draw(gfxP, color ^ 0);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BE094_jp.s")
+Gfx* func_800BE094_jp(Gfx* gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    gDPFillRectangle(gfx++, arg1, arg2, arg3, arg4);
+    return gfx;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BE0E4_jp.s")
 

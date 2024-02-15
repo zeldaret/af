@@ -39,7 +39,7 @@ void DisplayList_initialize(struct GraphicsContext* gfxCtx, u8 clearR, u8 clearG
 void fade_rgba8888_draw(Gfx** gfxP, u32 color);
 void func_800BE030_jp(Gfx** gfxP, u32 r, u32 g, u32 b, u32 a);
 void fade_black_draw(Gfx** gfxP, u32 color);
-// void func_800BE094_jp();
+Gfx* func_800BE094_jp(Gfx* gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 // void func_800BE0E4_jp();
 Gfx *func_800BE12C_jp(Gfx* gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 // void func_800BE184_jp();
