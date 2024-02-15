@@ -219,7 +219,13 @@ void func_800BD498_jp(GraphicsContext* gfxCtx) {
     CLOSE_DISPS(gfxCtx);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD4C0_jp.s")
+void func_800BD4C0_jp(GraphicsContext* gfxCtx) {
+    OPEN_DISPS(gfxCtx);
+
+    gSPDisplayList(POLY_XLU_DISP++, z_gsCPModeSet_Data[2]);
+
+    CLOSE_DISPS(gfxCtx);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/_texture_z_light_fog_prim.s")
 
