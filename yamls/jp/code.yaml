@@ -69,7 +69,7 @@
       - [0x6DB420, c, code/m_private]
       - [0x6DE300, asm, code/6DE300]
       - [0x6E08E0, asm, code/m_random_field]
-      - [0x6E0F50, asm, code/m_rcp]
+      - [0x6E0F50, c, code/m_rcp]
       - [0x6E2300, asm, code/6E2300]
       - [0x6E30B0, asm, code/6E30B0]
       - [0x6E6C90, c, code/m_start_data_init]
@@ -159,6 +159,8 @@
       - [0x72F9B0, data, code/72F9B0]
       - [0x7302C0, .data, code/m_private]
       - [0x730320, data, code/730320]
+      - [0x7307D0, .data, code/m_rcp]
+      - [0x730B60, data, code/730B60]
       - [0x731940, .data, code/m_start_data_init]
       - [0x731980, .data, code/m_submenu]
       - [0x731A20, data, code/731A20]
@@ -282,6 +284,8 @@
       - { start: 0x73F4D0, type: bss, vram: 0x80143910, name: code/80143910 }
       - { start: 0x73F4D0, type: .bss, vram: 0x801439A0, name: code/m_private }
       - { start: 0x73F4D0, type: bss, vram: 0x80144620, name: code/80144620 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x80144650, name: code/m_rcp }
+      - { start: 0x73F4D0, type: bss, vram: 0x80144660, name: code/80144660 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80144670, name: code/m_submenu }
       - { start: 0x73F4D0, type: bss, vram: 0x80144690, name: code/80144690 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80144D20, name: code/audioMgr }

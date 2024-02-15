@@ -710,7 +710,7 @@ void draw_version(GraphicsContext* gfxCtx) {
 
     OPEN_DISPS(gfxCtx);
 
-    temp_s0 = func_800BD720_jp(OVERLAY_DISP);
+    temp_s0 = gfx_rect_moji(OVERLAY_DISP);
     printer = alloca(sizeof(gfxprint));
 
     gfxprint_init(printer);

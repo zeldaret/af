@@ -1106,7 +1106,7 @@ void mSM_draw_item(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 ar
         ar8 = (s32)((1.0f / arg3) * 1365.3334f);
         ar9 = (s32)((1.0f / arg3) * 1365.3334f);
 
-        gfx = func_800BE320_jp(gfx, ar1, ar2, ar3, ar4, ar5, ar6, ar7, ar8, ar9);
+        gfx = gfx_gSPScisTextureRectangle1(gfx, ar1, ar2, ar3, ar4, ar5, ar6, ar7, ar8, ar9);
     }
 
     gDPPipeSync(gfx++);

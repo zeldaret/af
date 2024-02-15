@@ -5,6 +5,6 @@
 
 Gfx* gfxopen(Gfx* gfxHead);
 Gfx* gfxclose(Gfx* gfxHead, Gfx* gfx);
-// void gfxalloc();
+void* gfxalloc(Gfx** gfxP, size_t size);
 
 #endif
