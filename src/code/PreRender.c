@@ -182,9 +182,41 @@ void PreRender_TransBufferCopy(PreRender* render, Gfx** gfxP, void* img, void* i
     *gfxP = gfx_SetUpCFB(gfx, render->unk_10, render->unk_00, render->unk_02);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_TransBuffer.s")
+void PreRender_TransBuffer(PreRender* render, Gfx** gfxP, void* arg2, void* arg3) {
+    PreRender_TransBufferCopy(render, gfxP, arg2, arg3, false);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_TransBuffer1_env.s")
+void PreRender_TransBuffer1_env(PreRender* render, Gfx** gfxP, void* arg2, void* arg3, s32 envR, s32 envG, s32 envB,
+                                s32 envA) {
+    Gfx* gfx = *gfxP;
+    u32 mode0;
+    u32 mode1;
+
+    gDPPipeSync(gfx++);
+
+    //! FAKE:
+    if (envA && envA && envA) {}
+
+    if (envA == 255) {
+        mode0 = G_AD_DISABLE | G_CD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_POINT | G_TT_NONE | G_TL_TILE | G_TD_CLAMP |
+                G_TP_NONE | G_CYC_1CYCLE | G_PM_NPRIMITIVE;
+        mode1 = G_AC_NONE | G_ZS_PRIM | G_RM_OPA_SURF | G_RM_OPA_SURF2;
+    } else {
+        mode0 = G_AD_NOISE | G_CD_NOISE | G_CK_NONE | G_TC_FILT | G_TF_POINT | G_TT_NONE | G_TL_TILE | G_TD_CLAMP |
+                G_TP_NONE | G_CYC_1CYCLE | G_PM_NPRIMITIVE;
+        mode1 = G_AC_NONE | G_ZS_PRIM | G_RM_CLD_SURF | G_RM_CLD_SURF2;
+    }
+
+    gDPSetOtherMode(gfx++, mode0, mode1);
+    gDPSetEnvColor(gfx++, envR, envG, envB, envA);
+    gDPSetCombineLERP(gfx++, TEXEL0, 0, ENVIRONMENT, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, ENVIRONMENT, 0, 0, 0, 0,
+                      ENVIRONMENT);
+
+    gfx = gfx_SetUpCFB(gfx, arg3, render->unk_00, render->unk_02);
+    wallpaper_draw(&gfx, arg2, NULL, render->unk_00, render->unk_02, G_IM_FMT_RGBA, G_IM_SIZ_16b, G_TT_NONE, 0, 0.0f,
+                   0.0f, 1.0f, 1.0f, WALLPAPER_FLAGS_1 | WALLPAPER_FLAGS_2 | WALLPAPER_FLAGS_LOAD_S2DEX2);
+    *gfxP = gfx_SetUpCFB(gfx, render->unk_10, render->unk_00, render->unk_02);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_TransBuffer1.s")
 
