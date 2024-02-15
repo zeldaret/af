@@ -577,7 +577,9 @@ Gfx* gfx_gDPFillRectangleF(Gfx* gfx, s32 ulx, s32 uly, s32 lrx, s32 lry) {
     return gfx;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BE184_jp.s")
+void func_800BE184_jp(Gfx** gfxP, s32 ulx, s32 uly, s32 lrx, s32 lry) {
+    gDPFillRectangle(*gfxP, ulx, uly, lrx - 1, lry - 1);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BE1D4_jp.s")
 

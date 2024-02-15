@@ -42,7 +42,7 @@ void fade_black_draw(Gfx** gfxP, u32 color);
 Gfx* gfx_gDPFillRectangle1(Gfx* gfx, s32 ulx, s32 uly, s32 lrx, s32 lry);
 void func_800BE0E4_jp(Gfx** gfxP, s32 ulx, s32 uly, s32 lrx, s32 lry);
 Gfx* gfx_gDPFillRectangleF(Gfx* gfx, s32 ulx, s32 uly, s32 lrx, s32 lry);
-// void func_800BE184_jp();
+void func_800BE184_jp(Gfx** gfxP, s32 ulx, s32 uly, s32 lrx, s32 lry);
 // void func_800BE1D4_jp();
 // void func_800BE27C_jp();
 Gfx* func_800BE320_jp(Gfx*, s32, s32, s32, s32, s32, s32, s32, s32, s32);
