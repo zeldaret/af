@@ -132,7 +132,17 @@ Gfx* gfx_SetUpCFB(Gfx* gfx, void* imgDst, u32 width, u32 height) {
     return gfx + 3;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_setup_savebuf.s")
+void PreRender_setup_savebuf(PreRender* render, s32 arg1, s32 arg2, void* arg3, void* arg4, void* arg5) {
+    render->unk_04 = arg1;
+    render->unk_06 = arg2;
+    render->unk_14 = arg3;
+    render->unk_18 = arg5;
+    render->unk_20 = arg4;
+    render->unk_24 = 0;
+    render->unk_26 = 0;
+    render->unk_28 = arg1 - 1;
+    render->unk_2A = arg2 - 1;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_init.s")
 

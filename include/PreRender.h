@@ -13,7 +13,13 @@ typedef struct PreRender {
     /* 0x10 */ UNK_PTR unk_10;
     /* 0x14 */ UNK_PTR unk_14;
     /* 0x18 */ UNK_PTR unk_18;
-    /* 0x1C */ UNK_TYPE1 unk_1C[0x34];
+    /* 0x1C */ UNK_TYPE1 unk_1C[0x4];
+    /* 0x20 */ UNK_PTR unk_20;
+    /* 0x24 */ u16 unk_24;
+    /* 0x26 */ u16 unk_26;
+    /* 0x28 */ u16 unk_28;
+    /* 0x2A */ u16 unk_2A;
+    /* 0x2C */ UNK_TYPE1 unk_2C[0x24];
 } PreRender; // size = 0x50
 
 #define WALLPAPER_FLAGS_1 (1 << 0)
@@ -23,7 +29,7 @@ typedef struct PreRender {
 #define WALLPAPER_FLAGS_COPY (1 << 4)
 
 void wallpaper_draw(Gfx** gfxp, void* timg, void* tlut, u16 width, u16 height, u8 fmt, u8 siz, u16 tt, u16 tlutCount, f32 x, f32 y, f32 xScale, f32 yScale, u32 flags);
-void PreRender_setup_savebuf(PreRender* render, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
+void PreRender_setup_savebuf(PreRender* render, s32 arg1, s32 arg2, void* arg3, void* arg4, void* arg5);
 void PreRender_init(PreRender* render);
 void PreRender_setup_renderbuf(PreRender* render, s32 arg1, s32 arg2, void* arg3, void* arg4);
 void PreRender_cleanup(PreRender* render);

@@ -399,7 +399,7 @@ void play_init(Game* game) {
     mSM_submenu_ct(&game_play->submenu);
     game_play->submenu.unk_00 = 0;
     PreRender_init(&game_play->unk_1DC0);
-    PreRender_setup_savebuf(&game_play->unk_1DC0, 0x140, 0xF0, 0, 0, 0);
+    PreRender_setup_savebuf(&game_play->unk_1DC0, 0x140, 0xF0, NULL, NULL, NULL);
     PreRender_setup_renderbuf(&game_play->unk_1DC0, 0x140, 0xF0, NULL, NULL);
 
     //! FAKE
