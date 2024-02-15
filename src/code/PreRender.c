@@ -160,7 +160,9 @@ void PreRender_setup_renderbuf(PreRender* render, s32 arg1, s32 arg2, void* arg3
     render->unk_32 = arg2 - 1;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_cleanup.s")
+void PreRender_cleanup(PreRender* render) {
+    ListAlloc_FreeAll(&render->alloc);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_TransBufferCopy.s")
 
