@@ -43,7 +43,7 @@ Gfx* gfx_gDPFillRectangle1(Gfx* gfx, s32 ulx, s32 uly, s32 lrx, s32 lry);
 void func_800BE0E4_jp(Gfx** gfxP, s32 ulx, s32 uly, s32 lrx, s32 lry);
 Gfx* gfx_gDPFillRectangleF(Gfx* gfx, s32 ulx, s32 uly, s32 lrx, s32 lry);
 void func_800BE184_jp(Gfx** gfxP, s32 ulx, s32 uly, s32 lrx, s32 lry);
-// void func_800BE1D4_jp();
+Gfx* gfx_gSPTextureRectangle1(Gfx* gfx, s32 xl, s32 yl, s32 xh, s32 yh, s32 tile, s32 s, s32 t, s32 dsdx, s32 dtdy);
 // void func_800BE27C_jp();
 Gfx* func_800BE320_jp(Gfx*, s32, s32, s32, s32, s32, s32, s32, s32, s32);
 // void func_800BE4F8_jp();
