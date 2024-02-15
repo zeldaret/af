@@ -554,7 +554,9 @@ void fade_rgba8888_draw(Gfx** gfxP, u32 color) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BE030_jp.s")
+void func_800BE030_jp(Gfx** gfxP, u32 r, u32 g, u32 b, u32 a) {
+    fade_rgba8888_draw(gfxP, (r << 24) | (g << 16) | (b << 8) | a);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/fade_black_draw.s")
 

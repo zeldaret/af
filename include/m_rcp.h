@@ -37,7 +37,7 @@ Gfx* tex_scroll2(struct GraphicsContext* gfxCtx, u32 x, u32 y, s32 width, s32 he
 extern Gfx* two_tex_scroll(struct GraphicsContext* gfxCtx, s32 tile1, u32 x1, u32 y1, s32 width1, s32 height1, s32 tile2, u32 x2, u32 y2, s32 width2, s32 height2);
 void DisplayList_initialize(struct GraphicsContext* gfxCtx, u8 clearR, u8 clearG, u8 clearB, struct Game_Play* game_play);
 void fade_rgba8888_draw(Gfx** gfxP, u32 color);
-// void func_800BE030_jp();
+void func_800BE030_jp(Gfx** gfxP, u32 r, u32 g, u32 b, u32 a);
 // void fade_black_draw();
 // void func_800BE094_jp();
 // void func_800BE0E4_jp();
