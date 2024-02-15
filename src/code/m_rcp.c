@@ -380,7 +380,15 @@ Gfx* gfx_softsprite_prim_xlu(Gfx* gfx) {
     return gfx;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD804_jp.s")
+Gfx* gfx_tex_scroll2(Gfx** gfxP, s32 x, s32 y, s32 width, s32 height) {
+    Gfx* dList = gfxalloc(gfxP, 3 * sizeof(Gfx));
+
+    gDPTileSync(dList);
+    gDPSetTileSize(dList + 1, G_TX_RENDERTILE, x, y, x + ((width - 1) << 2), y + ((height - 1) << 2));
+    gSPEndDisplayList(dList + 2);
+
+    return dList;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD8A8_jp.s")
 

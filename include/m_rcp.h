@@ -29,7 +29,7 @@ void rect_moji(struct GraphicsContext* gfxCtx);
 void polygon_z_light_prim(struct GraphicsContext* gfxCtx);
 void softsprite_prim(struct GraphicsContext* gfxCtx);
 Gfx* gfx_softsprite_prim_xlu(Gfx* gfx);
-// void func_800BD804_jp();
+Gfx* gfx_tex_scroll2(Gfx** gfxP, s32 x, s32 y, s32 width, s32 height);
 // void func_800BD8A8_jp();
 // void func_800BD9D8_jp();
 // void func_800BD9FC_jp();
