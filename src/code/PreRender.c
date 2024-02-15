@@ -102,7 +102,27 @@ void wallpaper_draw1(Wallpaper* wallpaper, Gfx** gfxp) {
     *gfxp = gfx;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/wallpaper_draw.s")
+void wallpaper_draw(Gfx** gfxp, void* timg, void* tlut, u16 width, u16 height, u8 fmt, u8 siz, u16 tt, u16 tlutCount,
+                    f32 x, f32 y, f32 xScale, f32 yScale, u32 flags) {
+    Wallpaper wallpaper;
+    Wallpaper* wallpaperPtr = &wallpaper;
+
+    wallpaper.timg = timg;
+    wallpaper.tlut = tlut;
+    wallpaper.width = width;
+    wallpaper.height = height;
+    wallpaper.fmt = fmt;
+    wallpaper.siz = siz;
+    wallpaper.tt = tt;
+    wallpaper.tlutCount = tlutCount;
+    wallpaper.x = x;
+    wallpaper.y = y;
+    wallpaper.xScale = xScale;
+    wallpaper.yScale = yScale;
+    wallpaper.flags = flags;
+
+    wallpaper_draw1(wallpaperPtr, gfxp);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/gfx_SetUpCFB.s")
 
