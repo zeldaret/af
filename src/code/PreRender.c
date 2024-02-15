@@ -149,7 +149,16 @@ void PreRender_init(PreRender* render) {
     ListAlloc_Init(&render->alloc);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_setup_renderbuf.s")
+void PreRender_setup_renderbuf(PreRender* render, s32 arg1, s32 arg2, void* arg3, void* arg4) {
+    render->unk_00 = arg1;
+    render->unk_02 = arg2;
+    render->unk_10 = arg3;
+    render->unk_1C = arg4;
+    render->unk_2C = 0;
+    render->unk_2E = 0;
+    render->unk_30 = arg1 - 1;
+    render->unk_32 = arg2 - 1;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_cleanup.s")
 

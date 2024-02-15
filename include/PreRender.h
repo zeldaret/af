@@ -15,13 +15,17 @@ typedef struct PreRender {
     /* 0x10 */ UNK_PTR unk_10;
     /* 0x14 */ UNK_PTR unk_14;
     /* 0x18 */ UNK_PTR unk_18;
-    /* 0x1C */ UNK_TYPE1 unk_1C[0x4];
+    /* 0x1C */ UNK_PTR unk_1C;
     /* 0x20 */ UNK_PTR unk_20;
     /* 0x24 */ u16 unk_24;
     /* 0x26 */ u16 unk_26;
     /* 0x28 */ u16 unk_28;
     /* 0x2A */ u16 unk_2A;
-    /* 0x2C */ UNK_TYPE1 unk_2C[0x18];
+    /* 0x2C */ u16 unk_2C;
+    /* 0x2E */ u16 unk_2E;
+    /* 0x30 */ u16 unk_30;
+    /* 0x32 */ u16 unk_32;
+    /* 0x34 */ UNK_TYPE1 UNK_34[0x10];
     /* 0x44 */ ListAlloc alloc;
     /* 0x4C */ UNK_TYPE1 unk_4C[0x4];
 } PreRender; // size = 0x50
