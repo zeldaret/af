@@ -24,7 +24,7 @@ Gfx* texture_z_light_fog_prim_bb_pal_opa(Gfx* gfx);
 Gfx* texture_z_light_fog_prim_bb_pal_xlu(Gfx* gfx);
 Gfx* texture_z_fog_lod_alpha_shadow(Gfx* gfx);
 void func_800BD6F8_jp(struct GraphicsContext* gfxCtx);
-Gfx* func_800BD720_jp(Gfx* gfx);
+Gfx* gfx_rect_moji(Gfx* gfx);
 void rect_moji(struct GraphicsContext*);
 // void func_800BD770_jp();
 // void func_800BD798_jp();

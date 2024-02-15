@@ -307,7 +307,11 @@ void func_800BD6F8_jp(GraphicsContext* gfxCtx) {
     CLOSE_DISPS(gfxCtx);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BD720_jp.s")
+Gfx* gfx_rect_moji(Gfx* gfx) {
+    gSPDisplayList(gfx++, z_gsCPModeSet_Data[4]);
+
+    return gfx;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/rect_moji.s")
 
