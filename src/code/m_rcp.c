@@ -516,28 +516,43 @@ void DisplayList_initialize(GraphicsContext* gfxCtx, u8 clearR, u8 clearG, u8 cl
     func_80091074_jp(gfxCtx);
 }
 
-static Gfx fade_gfx[] = {
-    gsDPPipeSync(),
-    gsDPSetOtherMode(G_AD_DISABLE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE |
-                         G_TD_CLAMP | G_TP_NONE | G_CYC_1CYCLE | G_PM_1PRIMITIVE,
-                     G_AC_NONE | G_ZS_PIXEL | G_RM_CLD_SURF | G_RM_CLD_SURF2),
-    gsDPSetCombineMode(G_CC_PRIMITIVE, G_CC_PRIMITIVE),
-    gsDPFillRectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT),
-    gsDPPipeSync(),
-    gsSPEndDisplayList(),
-};
+void fade_rgba8888_draw(Gfx** gfxP, u32 color) {
+    static Gfx fade_gfx[] = {
+        gsDPPipeSync(),
+        gsDPSetOtherMode(G_AD_DISABLE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE |
+                             G_TD_CLAMP | G_TP_NONE | G_CYC_1CYCLE | G_PM_1PRIMITIVE,
+                         G_AC_NONE | G_ZS_PIXEL | G_RM_CLD_SURF | G_RM_CLD_SURF2),
+        gsDPSetCombineMode(G_CC_PRIMITIVE, G_CC_PRIMITIVE),
+        gsDPFillRectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT),
+        gsDPPipeSync(),
+        gsSPEndDisplayList(),
+    };
+    static Gfx fill_gfx[] = {
+        gsDPPipeSync(),
+        gsDPSetOtherMode(G_AD_DISABLE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE |
+                             G_TD_CLAMP | G_TP_NONE | G_CYC_FILL | G_PM_1PRIMITIVE,
+                         G_AC_NONE | G_ZS_PIXEL | G_RM_NOOP | G_RM_NOOP2),
+        gsDPFillRectangle(0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1),
+        gsDPPipeSync(),
+        gsSPEndDisplayList(),
+    };
+    Gfx* gfx;
 
-static Gfx fill_gfx[] = {
-    gsDPPipeSync(),
-    gsDPSetOtherMode(G_AD_DISABLE | G_CD_MAGICSQ | G_CK_NONE | G_TC_FILT | G_TF_BILERP | G_TT_NONE | G_TL_TILE |
-                         G_TD_CLAMP | G_TP_NONE | G_CYC_FILL | G_PM_1PRIMITIVE,
-                     G_AC_NONE | G_ZS_PIXEL | G_RM_NOOP | G_RM_NOOP2),
-    gsDPFillRectangle(0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1),
-    gsDPPipeSync(),
-    gsSPEndDisplayList(),
-};
+    if ((color & 0xFF) == 255) {
+        u32 pcolor;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/fade_rgba8888_draw.s")
+        gfx = *gfxP;
+        pcolor = ((color >> 27) << 11) | ((color >> 19) << 6) | (color >> 10) | 1;
+        gDPSetFillColor(gfx, (pcolor << 0x10) | pcolor);
+        gSPDisplayList(gfx + 1, fill_gfx);
+        *gfxP = gfx + 2;
+    } else if ((color & 0xFF) != 0) {
+        gfx = *gfxP;
+        gDPSetColor(gfx, G_SETPRIMCOLOR, color);
+        gSPDisplayList(gfx + 1, fade_gfx);
+        *gfxP = gfx + 2;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BE030_jp.s")
 
