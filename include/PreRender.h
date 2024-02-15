@@ -16,6 +16,12 @@ typedef struct PreRender {
     /* 0x1C */ UNK_TYPE1 unk_1C[0x34];
 } PreRender; // size = 0x50
 
+#define WALLPAPER_FLAGS_1 (1 << 0)
+#define WALLPAPER_FLAGS_2 (1 << 1)
+#define WALLPAPER_FLAGS_AC_THRESHOLD (1 << 2)
+#define WALLPAPER_FLAGS_LOAD_S2DEX2 (1 << 3)
+#define WALLPAPER_FLAGS_COPY (1 << 4)
+
 // void wallpaper_draw1();
 // void wallpaper_draw();
 // void gfx_SetUpCFB();
