@@ -597,4 +597,7 @@ Gfx* gfx_gSPScisTextureRectangle1(Gfx* gfx, s32 xl, s32 yl, s32 xh, s32 yh, s32 
     return gfx;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_rcp/func_800BE4F8_jp.s")
+Gfx* func_800BE4F8_jp(Gfx* gfx, s32 xl, s32 yl, s32 xh, s32 yh, s32 tile, s32 s, s32 t) {
+    gSPScisTextureRectangle(gfx++, (s16)xl, (s16)yl, xh - 1, yh - 1, tile, s, t, 1 << 10, 1 << 10);
+    return gfx;
+}

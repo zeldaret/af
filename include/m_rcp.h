@@ -34,7 +34,7 @@ Gfx* gfx_two_tex_scroll(Gfx** gfxP, s32 tile1, u32 x1, u32 y1, s32 width1, s32 h
 Gfx* func_800BD9D8_jp(Gfx** gfxP, u32 x, u32 y);
 Gfx* func_800BD9FC_jp(struct GraphicsContext* gfxCtx, u32 x, u32 y);
 Gfx* tex_scroll2(struct GraphicsContext* gfxCtx, u32 x, u32 y, s32 width, s32 height);
-extern Gfx* two_tex_scroll(struct GraphicsContext* gfxCtx, s32 tile1, u32 x1, u32 y1, s32 width1, s32 height1, s32 tile2, u32 x2, u32 y2, s32 width2, s32 height2);
+Gfx* two_tex_scroll(struct GraphicsContext* gfxCtx, s32 tile1, u32 x1, u32 y1, s32 width1, s32 height1, s32 tile2, u32 x2, u32 y2, s32 width2, s32 height2);
 void DisplayList_initialize(struct GraphicsContext* gfxCtx, u8 clearR, u8 clearG, u8 clearB, struct Game_Play* game_play);
 void fade_rgba8888_draw(Gfx** gfxP, u32 color);
 void func_800BE030_jp(Gfx** gfxP, u32 r, u32 g, u32 b, u32 a);
@@ -46,6 +46,6 @@ void func_800BE184_jp(Gfx** gfxP, s32 ulx, s32 uly, s32 lrx, s32 lry);
 Gfx* gfx_gSPTextureRectangle1(Gfx* gfx, s32 xl, s32 yl, s32 xh, s32 yh, s32 tile, s32 s, s32 t, s32 dsdx, s32 dtdy);
 Gfx* func_800BE27C_jp(Gfx* gfx, s32 xl, s32 yl, s32 xh, s32 yh, s32 tile, s32 s, s32 t);
 Gfx* gfx_gSPScisTextureRectangle1(Gfx* gfx, s32 xl, s32 yl, s32 xh, s32 yh, s32 tile, s32 s, s32 t, s32 dsdx, s32 dtdy);
-// void func_800BE4F8_jp();
+Gfx* func_800BE4F8_jp(Gfx* gfx, s32 xl, s32 yl, s32 xh, s32 yh, s32 tile, s32 s, s32 t);
 
 #endif
