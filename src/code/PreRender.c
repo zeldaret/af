@@ -352,7 +352,9 @@ void PreRender_saveCVG(PreRender* render, Gfx** gfxP) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_loadZBuffer.s")
+void PreRender_loadZBuffer(PreRender* render, Gfx** gfxP) {
+    PreRender_TransBuffer(render, gfxP, render->unk_20, render->unk_1C);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_loadFrameBuffer.s")
 

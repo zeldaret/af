@@ -50,7 +50,7 @@ void PreRender_CopyRGBC(PreRender* render, Gfx** gfxP, s32 arg2, s32 arg3);
 void PreRender_saveZBuffer(PreRender* render, Gfx** gfxP);
 void PreRender_saveFrameBuffer(PreRender* render, Gfx** gfxP);
 void PreRender_saveCVG(PreRender* render, Gfx** gfxP);
-// void PreRender_loadZBuffer();
+void PreRender_loadZBuffer(PreRender* render, Gfx** gfxP);
 // void PreRender_loadFrameBuffer();
 // void PreRender_loadFrameBufferAlpha();
 void PreRender_loadFrameBufferCopy(PreRender* render, Gfx** gfx);
