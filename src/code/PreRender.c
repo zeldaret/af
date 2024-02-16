@@ -382,4 +382,8 @@ void PreRender_ConvertFrameBuffer_fg(PreRender* render) {
     render->unk_4D = 2;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_ConvertFrameBuffer.s")
+void PreRender_ConvertFrameBuffer(PreRender* render) {
+    if ((render->unk_18 != NULL) && (render->unk_14 != NULL)) {
+        PreRender_ConvertFrameBuffer_fg(render);
+    }
+}

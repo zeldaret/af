@@ -55,9 +55,7 @@ void PreRender_loadZBuffer(PreRender* render, Gfx** gfxP);
 // void PreRender_loadFrameBuffer();
 void PreRender_loadFrameBufferAlpha(PreRender* render, Gfx** gfxP, s32 alpha);
 void PreRender_loadFrameBufferCopy(PreRender* render, Gfx** gfxP);
-// void ASAlgorithm();
-// void AntiAliasFilter();
 void PreRender_ConvertFrameBuffer_fg(PreRender* render);
-// void PreRender_ConvertFrameBuffer();
+void PreRender_ConvertFrameBuffer(PreRender* render);
 
 #endif
