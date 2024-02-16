@@ -358,7 +358,9 @@ void PreRender_loadZBuffer(PreRender* render, Gfx** gfxP) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_loadFrameBuffer.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_loadFrameBufferAlpha.s")
+void PreRender_loadFrameBufferAlpha(PreRender* render, Gfx** gfxP, s32 alpha) {
+    PreRender_TransBuffer1_env(render, gfxP, render->unk_14, render->unk_10, 255, 255, 255, alpha);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_loadFrameBufferCopy.s")
 
