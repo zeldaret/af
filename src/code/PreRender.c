@@ -25,8 +25,8 @@ typedef struct {
     /* 0x24 */ u32 flags;
 } Wallpaper; // size = 0x28
 
-void wallpaper_draw1(Wallpaper* wallpaper, Gfx** gfxp) {
-    Gfx* gfx;
+void wallpaper_draw1(Wallpaper* wallpaper, Gfx** glistpp) {
+    Gfx* glistp;
     uObjBg* bg;
     u32 alphaCompare;
     Gfx* gfxHead;
@@ -35,9 +35,9 @@ void wallpaper_draw1(Wallpaper* wallpaper, Gfx** gfxp) {
     loadS2DEX2 = (wallpaper->flags & WALLPAPER_FLAGS_LOAD_S2DEX2) != 0;
     alphaCompare = (wallpaper->flags & WALLPAPER_FLAGS_AC_THRESHOLD) ? G_AC_THRESHOLD : G_AC_NONE;
 
-    gfxHead = *gfxp;
+    gfxHead = *glistpp;
     bg = gfxalloc(&gfxHead, sizeof(uObjBg));
-    gfx = gfxHead;
+    glistp = gfxHead;
 
     bg->b.imageX = 0;
     bg->b.imageW = (wallpaper->width * (1 << 2)) + 1;
@@ -55,13 +55,13 @@ void wallpaper_draw1(Wallpaper* wallpaper, Gfx** gfxp) {
     bg->b.imageFlip = 0;
 
     if (loadS2DEX2) {
-        gSPLoadUcode(gfx++, ucode_GetSpriteTextStart(), ucode_GetSpriteDataStart());
+        gSPLoadUcode(glistp++, ucode_GetSpriteTextStart(), ucode_GetSpriteDataStart());
     }
 
     if ((wallpaper->fmt == G_IM_FMT_CI) && (wallpaper->tlut != NULL)) {
-        gDPLoadTLUT(gfx++, wallpaper->tlutCount, 256, wallpaper->tlut);
+        gDPLoadTLUT(glistp++, wallpaper->tlutCount, 256, wallpaper->tlut);
     } else {
-        gDPPipeSync(gfx++);
+        gDPPipeSync(glistp++);
     }
 
     if (wallpaper->flags & WALLPAPER_FLAGS_COPY) {
@@ -71,10 +71,10 @@ void wallpaper_draw1(Wallpaper* wallpaper, Gfx** gfxp) {
         guS2DInitBg(bg);
 
         if (!(wallpaper->flags & WALLPAPER_FLAGS_1)) {
-            gDPSetOtherMode(gfx++, wallpaper->tt | G_CYC_COPY, alphaCompare);
+            gDPSetOtherMode(glistp++, wallpaper->tt | G_CYC_COPY, alphaCompare);
         }
 
-        gSPBgRectCopy(gfx++, bg);
+        gSPBgRectCopy(glistp++, bg);
     } else {
         bg->b.frameW = (s16)((u32)(wallpaper->width * (1 << 2)) * wallpaper->xScale);
         bg->b.frameH = (s16)((u32)(wallpaper->height * (1 << 2)) * wallpaper->yScale);
@@ -83,30 +83,30 @@ void wallpaper_draw1(Wallpaper* wallpaper, Gfx** gfxp) {
         bg->s.imageYorig = bg->b.imageY;
 
         if (!(wallpaper->flags & WALLPAPER_FLAGS_1)) {
-            gDPSetOtherMode(gfx++, wallpaper->tt | G_AD_DISABLE | G_CD_DISABLE | G_TC_FILT,
+            gDPSetOtherMode(glistp++, wallpaper->tt | G_AD_DISABLE | G_CD_DISABLE | G_TC_FILT,
                             AA_EN | CVG_X_ALPHA | ALPHA_CVG_SEL |
                                 GBL_c1(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_BL, G_BL_1MA) |
                                 GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_BL, G_BL_1MA) | alphaCompare);
         }
 
         if (!(wallpaper->flags & WALLPAPER_FLAGS_2)) {
-            gDPSetCombineLERP(gfx++, 0, 0, 0, TEXEL0, 0, 0, 0, 1, 0, 0, 0, TEXEL0, 0, 0, 0, 1);
+            gDPSetCombineLERP(glistp++, 0, 0, 0, TEXEL0, 0, 0, 0, 1, 0, 0, 0, TEXEL0, 0, 0, 0, 1);
         }
 
-        gSPObjRenderMode(gfx++, G_OBJRM_ANTIALIAS | G_OBJRM_BILERP);
-        gSPBgRect1Cyc(gfx++, bg);
+        gSPObjRenderMode(glistp++, G_OBJRM_ANTIALIAS | G_OBJRM_BILERP);
+        gSPBgRect1Cyc(glistp++, bg);
     }
 
-    gDPPipeSync(gfx++);
+    gDPPipeSync(glistp++);
 
     if (loadS2DEX2) {
-        gSPLoadUcode(gfx++, ucode_GetPolyTextStart(), ucode_GetPolyDataStart());
+        gSPLoadUcode(glistp++, ucode_GetPolyTextStart(), ucode_GetPolyDataStart());
     }
 
-    *gfxp = gfx;
+    *glistpp = glistp;
 }
 
-void wallpaper_draw(Gfx** gfxp, void* timg, void* tlut, u16 width, u16 height, u8 fmt, u8 siz, u16 tt, u16 tlutCount,
+void wallpaper_draw(Gfx** glistpp, void* timg, void* tlut, u16 width, u16 height, u8 fmt, u8 siz, u16 tt, u16 tlutCount,
                     f32 x, f32 y, f32 xScale, f32 yScale, u32 flags) {
     Wallpaper wallpaper;
     Wallpaper* wallpaperPtr = &wallpaper;
@@ -125,77 +125,77 @@ void wallpaper_draw(Gfx** gfxp, void* timg, void* tlut, u16 width, u16 height, u
     wallpaper.yScale = yScale;
     wallpaper.flags = flags;
 
-    wallpaper_draw1(wallpaperPtr, gfxp);
+    wallpaper_draw1(wallpaperPtr, glistpp);
 }
 
-Gfx* gfx_SetUpCFB(Gfx* gfx, void* imgDst, u32 width, u32 height) {
-    gDPPipeSync(gfx);
-    gDPSetColorImage(gfx + 1, G_IM_FMT_RGBA, G_IM_SIZ_16b, width, imgDst);
-    gDPSetScissor(gfx + 2, G_SC_NON_INTERLACE, 0, 0, width, height);
+Gfx* gfx_SetUpCFB(Gfx* glistp, void* imgDst, u32 width, u32 height) {
+    gDPPipeSync(glistp);
+    gDPSetColorImage(glistp + 1, G_IM_FMT_RGBA, G_IM_SIZ_16b, width, imgDst);
+    gDPSetScissor(glistp + 2, G_SC_NON_INTERLACE, 0, 0, width, height);
 
-    return gfx + 3;
+    return glistp + 3;
 }
 
-void PreRender_setup_savebuf(PreRender* render, s32 arg1, s32 arg2, void* arg3, void* arg4, void* arg5) {
-    render->widthSave = arg1;
-    render->heightSave = arg2;
-    render->fbufSave = arg3;
-    render->cvgSave = arg5;
-    render->zbufSave = arg4;
-    render->ulxSave = 0;
-    render->ulySave = 0;
-    render->lrxSave = arg1 - 1;
-    render->lrySave = arg2 - 1;
+void PreRender_setup_savebuf(PreRender* this, s32 width, s32 height, void* fbuf, void* zbuf, void* cvg) {
+    this->width_save = width;
+    this->height_save = height;
+    this->fbuf_save = fbuf;
+    this->cvg_save = cvg;
+    this->zbuf_save = zbuf;
+    this->ulx_save = 0;
+    this->uly_save = 0;
+    this->lrx_save = width - 1;
+    this->lry_save = height - 1;
 }
 
-void PreRender_init(PreRender* render) {
-    bzero(render, sizeof(PreRender));
-    ListAlloc_Init(&render->alloc);
+void PreRender_init(PreRender* this) {
+    bzero(this, sizeof(PreRender));
+    ListAlloc_Init(&this->alloc);
 }
 
-void PreRender_setup_renderbuf(PreRender* render, s32 width, s32 height, void* arg3, void* arg4) {
-    render->width = width;
-    render->height = height;
-    render->fbuf = arg3;
-    render->zbuf = arg4;
-    render->ulx = 0;
-    render->uly = 0;
-    render->lrx = width - 1;
-    render->lry = height - 1;
+void PreRender_setup_renderbuf(PreRender* this, s32 width, s32 height, void* fbuf, void* zbuf) {
+    this->width = width;
+    this->height = height;
+    this->fbuf = fbuf;
+    this->zbuf = zbuf;
+    this->ulx = 0;
+    this->uly = 0;
+    this->lrx = width - 1;
+    this->lry = height - 1;
 }
 
-void PreRender_cleanup(PreRender* render) {
-    ListAlloc_FreeAll(&render->alloc);
+void PreRender_cleanup(PreRender* this) {
+    ListAlloc_FreeAll(&this->alloc);
 }
 
-void PreRender_TransBufferCopy(PreRender* render, Gfx** gfxP, void* arg2, void* arg3, u32 useThresholdAlphaCompare) {
-    Gfx* gfx = *gfxP;
+void PreRender_TransBufferCopy(PreRender* this, Gfx** glistpp, void* arg2, void* arg3, u32 useThresholdAlphaCompare) {
+    Gfx* glistp = *glistpp;
     u32 flags;
 
-    gfx = gfx_SetUpCFB(gfx, arg3, render->width, render->height);
+    glistp = gfx_SetUpCFB(glistp, arg3, this->width, this->height);
 
     flags = WALLPAPER_FLAGS_LOAD_S2DEX2 | WALLPAPER_FLAGS_COPY;
     if (useThresholdAlphaCompare == true) {
         flags |= WALLPAPER_FLAGS_AC_THRESHOLD;
     }
 
-    wallpaper_draw(&gfx, arg2, NULL, render->width, render->height, G_IM_FMT_RGBA, G_IM_SIZ_16b, G_TT_NONE, 0, 0.0f,
+    wallpaper_draw(&glistp, arg2, NULL, this->width, this->height, G_IM_FMT_RGBA, G_IM_SIZ_16b, G_TT_NONE, 0, 0.0f,
                    0.0f, 1.0f, 1.0f, flags);
 
-    *gfxP = gfx_SetUpCFB(gfx, render->fbuf, render->width, render->height);
+    *glistpp = gfx_SetUpCFB(glistp, this->fbuf, this->width, this->height);
 }
 
-void PreRender_TransBuffer(PreRender* render, Gfx** gfxP, void* arg2, void* arg3) {
-    PreRender_TransBufferCopy(render, gfxP, arg2, arg3, false);
+void PreRender_TransBuffer(PreRender* this, Gfx** glistpp, void* arg2, void* arg3) {
+    PreRender_TransBufferCopy(this, glistpp, arg2, arg3, false);
 }
 
-void PreRender_TransBuffer1_env(PreRender* render, Gfx** gfxP, void* arg2, void* arg3, s32 envR, s32 envG, s32 envB,
+void PreRender_TransBuffer1_env(PreRender* this, Gfx** glistpp, void* arg2, void* arg3, s32 envR, s32 envG, s32 envB,
                                 s32 envA) {
-    Gfx* gfx = *gfxP;
+    Gfx* glistp = *glistpp;
     u32 mode0;
     u32 mode1;
 
-    gDPPipeSync(gfx++);
+    gDPPipeSync(glistp++);
 
     //! FAKE:
     if (envA && envA && envA) {}
@@ -210,50 +210,50 @@ void PreRender_TransBuffer1_env(PreRender* render, Gfx** gfxP, void* arg2, void*
         mode1 = G_AC_NONE | G_ZS_PRIM | G_RM_CLD_SURF | G_RM_CLD_SURF2;
     }
 
-    gDPSetOtherMode(gfx++, mode0, mode1);
-    gDPSetEnvColor(gfx++, envR, envG, envB, envA);
-    gDPSetCombineLERP(gfx++, TEXEL0, 0, ENVIRONMENT, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, ENVIRONMENT, 0, 0, 0, 0,
+    gDPSetOtherMode(glistp++, mode0, mode1);
+    gDPSetEnvColor(glistp++, envR, envG, envB, envA);
+    gDPSetCombineLERP(glistp++, TEXEL0, 0, ENVIRONMENT, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, ENVIRONMENT, 0, 0, 0, 0,
                       ENVIRONMENT);
 
-    gfx = gfx_SetUpCFB(gfx, arg3, render->width, render->height);
-    wallpaper_draw(&gfx, arg2, NULL, render->width, render->height, G_IM_FMT_RGBA, G_IM_SIZ_16b, G_TT_NONE, 0, 0.0f,
+    glistp = gfx_SetUpCFB(glistp, arg3, this->width, this->height);
+    wallpaper_draw(&glistp, arg2, NULL, this->width, this->height, G_IM_FMT_RGBA, G_IM_SIZ_16b, G_TT_NONE, 0, 0.0f,
                    0.0f, 1.0f, 1.0f, WALLPAPER_FLAGS_1 | WALLPAPER_FLAGS_2 | WALLPAPER_FLAGS_LOAD_S2DEX2);
-    *gfxP = gfx_SetUpCFB(gfx, render->fbuf, render->width, render->height);
+    *glistpp = gfx_SetUpCFB(glistp, this->fbuf, this->width, this->height);
 }
 
-void PreRender_TransBuffer1(PreRender* render, Gfx** gfxP, void* arg2, void* arg3) {
-    PreRender_TransBuffer1_env(render, gfxP, arg2, arg3, 255, 255, 255, 255);
+void PreRender_TransBuffer1(PreRender* this, Gfx** glistpp, void* arg2, void* arg3) {
+    PreRender_TransBuffer1_env(this, glistpp, arg2, arg3, 255, 255, 255, 255);
 }
 
-void PreRender_TransBuffer2(PreRender* render, Gfx** gfxP, void* arg2, void* arg3) {
-    Gfx* gfx = *gfxP;
+void PreRender_TransBuffer2(PreRender* this, Gfx** glistpp, void* arg2, void* arg3) {
+    Gfx* glistp = *glistpp;
     s32 rowsRemaining;
     s32 curRow;
     s32 nRows;
     s32 pad UNUSED;
 
-    gDPPipeSync(gfx++);
-    gDPSetOtherMode(gfx++,
+    gDPPipeSync(glistp++);
+    gDPSetOtherMode(glistp++,
                     G_AD_DISABLE | G_CD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_POINT | G_TT_NONE | G_TL_TILE |
                         G_TD_CLAMP | G_TP_NONE | G_CYC_1CYCLE | G_PM_NPRIMITIVE,
                     G_AC_NONE | G_ZS_PRIM | G_RM_PASS | G_RM_OPA_CI2);
 
     // Set the combiner to draw the texture as-is, discarding alpha channel
-    gDPSetCombineLERP(gfx++, 0, 0, 0, TEXEL0, 0, 0, 0, 0, 0, 0, 0, TEXEL0, 0, 0, 0, 0);
+    gDPSetCombineLERP(glistp++, 0, 0, 0, TEXEL0, 0, 0, 0, 0, 0, 0, 0, TEXEL0, 0, 0, 0, 0);
     // Set the destination color image to the provided address
-    gDPSetColorImage(gfx++, G_IM_FMT_I, G_IM_SIZ_8b, render->width, arg3);
+    gDPSetColorImage(glistp++, G_IM_FMT_I, G_IM_SIZ_8b, this->width, arg3);
     // Set up a scissor based on the source image
-    gDPSetScissor(gfx++, G_SC_NON_INTERLACE, 0, 0, render->width, render->height);
+    gDPSetScissor(glistp++, G_SC_NON_INTERLACE, 0, 0, this->width, this->height);
 
     // Calculate the max number of rows that can fit into TMEM at once
-    nRows = TMEM_SIZE / (render->width * G_IM_SIZ_16b_BYTES);
+    nRows = TMEM_SIZE / (this->width * G_IM_SIZ_16b_BYTES);
 
     // Set up the number of remaining rows
-    rowsRemaining = render->height;
+    rowsRemaining = this->height;
     curRow = 0;
     while (rowsRemaining > 0) {
         s32 uls = 0;
-        s32 lrs = render->width - 1;
+        s32 lrs = this->width - 1;
         s32 ult;
         s32 lrt;
 
@@ -280,7 +280,7 @@ void PreRender_TransBuffer2(PreRender* render, Gfx** gfxP, void* arg2, void* arg
         // Since it is expected that r = g = b = cvg in the source image, this results in
         //  I = (cvg << 3) | (cvg >> 2)
         // This expands the 5-bit coverage into an 8-bit value
-        gDPLoadTextureTile(gfx++, arg2, G_IM_FMT_IA, G_IM_SIZ_16b, render->width, render->height, uls, ult, lrs, lrt, 0,
+        gDPLoadTextureTile(glistp++, arg2, G_IM_FMT_IA, G_IM_SIZ_16b, this->width, this->height, uls, ult, lrs, lrt, 0,
                            G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                            G_TX_NOLOD);
 
@@ -288,7 +288,7 @@ void PreRender_TransBuffer2(PreRender* render, Gfx** gfxP, void* arg2, void* arg
         // the intensity (I) channel of the loaded IA16 texture will be written as-is to the I8 color image, each pixel
         // in the final image is
         //  I = (cvg << 3) | (cvg >> 2)
-        gSPTextureRectangle(gfx++, uls << 2, ult << 2, (lrs + 1) << 2, (lrt + 1) << 2, G_TX_RENDERTILE, uls << 5,
+        gSPTextureRectangle(glistp++, uls << 2, ult << 2, (lrs + 1) << 2, (lrt + 1) << 2, G_TX_RENDERTILE, uls << 5,
                             ult << 5, 1 << 10, 1 << 10);
 
         // Update the number of rows remaining and index of the row being drawn
@@ -298,16 +298,16 @@ void PreRender_TransBuffer2(PreRender* render, Gfx** gfxP, void* arg2, void* arg
 
     // Reset the color image to the current framebuffer
 
-    *gfxP = gfx_SetUpCFB(gfx, render->fbuf, render->width, render->height);
+    *glistpp = gfx_SetUpCFB(glistp, this->fbuf, this->width, this->height);
 }
 
-void PreRender_ShowCoveredge(Gfx** gfxP, s32 ulx, s32 uly, s32 lrx, s32 lry) {
-    Gfx* gfx = *gfxP;
+void PreRender_ShowCoveredge(Gfx** glistpp, s32 ulx, s32 uly, s32 lrx, s32 lry) {
+    Gfx* glistp = *glistpp;
 
-    gDPPipeSync(gfx++);
+    gDPPipeSync(glistp++);
     // Set the blend color to full white and set maximum depth
-    gDPSetBlendColor(gfx++, 255, 255, 255, 8);
-    gDPSetPrimDepth(gfx++, 0xFFFF, 0xFFFF);
+    gDPSetBlendColor(glistp++, 255, 255, 255, 8);
+    gDPSetPrimDepth(glistp++, 0xFFFF, 0xFFFF);
 
     // Uses G_RM_VISCVG to blit the coverage values to the framebuffer
     //
@@ -321,58 +321,58 @@ void PreRender_ShowCoveredge(Gfx** gfxP, s32 ulx, s32 uly, s32 lrx, s32 lry) {
     // three color channels r,g,b will receive the coverage value individually.
     //
     // Also disables other modes such as alpha compare and texture perspective correction
-    gDPSetOtherMode(gfx++,
+    gDPSetOtherMode(glistp++,
                     G_AD_DISABLE | G_CD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_POINT | G_TT_NONE | G_TL_TILE |
                         G_TD_CLAMP | G_TP_NONE | G_CYC_1CYCLE | G_PM_NPRIMITIVE,
                     G_AC_NONE | G_ZS_PRIM | G_RM_VISCVG | G_RM_VISCVG2);
 
     // Fill rectangle to obtain the coverage values as an RGBA16 image
-    gDPFillRectangle(gfx++, ulx, uly, lrx, lry);
-    gDPPipeSync(gfx++);
+    gDPFillRectangle(glistp++, ulx, uly, lrx, lry);
+    gDPPipeSync(glistp++);
 
-    *gfxP = gfx;
+    *glistpp = glistp;
 }
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_CopyRGBC.s")
 
-void PreRender_saveZBuffer(PreRender* render, Gfx** gfxP) {
-    if ((render->zbufSave != NULL) && (render->zbuf != NULL)) {
-        PreRender_TransBuffer(render, gfxP, render->zbuf, render->zbufSave);
+void PreRender_saveZBuffer(PreRender* this, Gfx** glistpp) {
+    if ((this->zbuf_save != NULL) && (this->zbuf != NULL)) {
+        PreRender_TransBuffer(this, glistpp, this->zbuf, this->zbuf_save);
     }
 }
 
-void PreRender_saveFrameBuffer(PreRender* render, Gfx** gfxP) {
-    if ((render->fbufSave != NULL) && (render->fbuf != NULL)) {
-        PreRender_TransBuffer1(render, gfxP, render->fbuf, render->fbufSave);
+void PreRender_saveFrameBuffer(PreRender* this, Gfx** glistpp) {
+    if ((this->fbuf_save != NULL) && (this->fbuf != NULL)) {
+        PreRender_TransBuffer1(this, glistpp, this->fbuf, this->fbuf_save);
     }
 }
 
-void PreRender_saveCVG(PreRender* render, Gfx** gfxP) {
-    PreRender_ShowCoveredge(gfxP, 0, 0, render->width, render->height);
-    if (render->cvgSave != NULL) {
-        PreRender_TransBuffer2(render, gfxP, render->fbuf, render->cvgSave);
+void PreRender_saveCVG(PreRender* this, Gfx** glistpp) {
+    PreRender_ShowCoveredge(glistpp, 0, 0, this->width, this->height);
+    if (this->cvg_save != NULL) {
+        PreRender_TransBuffer2(this, glistpp, this->fbuf, this->cvg_save);
     }
 }
 
-void PreRender_loadZBuffer(PreRender* render, Gfx** gfxP) {
-    PreRender_TransBuffer(render, gfxP, render->zbufSave, render->zbuf);
+void PreRender_loadZBuffer(PreRender* this, Gfx** glistpp) {
+    PreRender_TransBuffer(this, glistpp, this->zbuf_save, this->zbuf);
 }
 
-void PreRender_loadFrameBuffer(PreRender* render, Gfx** gfxP) {
-    Gfx* gfx;
+void PreRender_loadFrameBuffer(PreRender* this, Gfx** glistpp) {
+    Gfx* glistp;
     s32 rowsRemaining;
     s32 curRow;
     s32 nRows;
     s32 rtile = 1;
 
-    if (render->cvgSave != NULL) {
-        gfx = *gfxP;
+    if (this->cvg_save != NULL) {
+        glistp = *glistpp;
 
-        gDPPipeSync(gfx++);
-        gDPSetEnvColor(gfx++, 255, 255, 255, 32);
+        gDPPipeSync(glistp++);
+        gDPSetEnvColor(glistp++, 255, 255, 255, 32);
         // Effectively disable blending in both cycles. It's 2-cycle so that TEXEL1 can be used to point to a different
         // texture tile.
-        gDPSetOtherMode(gfx++,
+        gDPSetOtherMode(glistp++,
                         G_AD_DISABLE | G_CD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_POINT | G_TT_NONE | G_TL_TILE |
                             G_TD_CLAMP | G_TP_NONE | G_CYC_2CYCLE | G_PM_NPRIMITIVE,
                         G_AC_NONE | G_ZS_PRIM | AA_EN | CVG_DST_CLAMP | ZMODE_OPA | CVG_X_ALPHA |
@@ -380,16 +380,16 @@ void PreRender_loadFrameBuffer(PreRender* render, Gfx** gfxP) {
                             GBL_c2(G_BL_CLR_IN, G_BL_0, G_BL_CLR_IN, G_BL_1));
 
         // Set up the color combiner: first cycle: TEXEL0, TEXEL1 + ENVIRONMENT; second cycle: G_CC_PASS2
-        gDPSetCombineLERP(gfx++, 0, 0, 0, TEXEL0, 1, 0, TEXEL1, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
+        gDPSetCombineLERP(glistp++, 0, 0, 0, TEXEL0, 1, 0, TEXEL1, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
 
-        nRows = (render->width > SCREEN_WIDTH) ? 2 : 4;
+        nRows = (this->width > SCREEN_WIDTH) ? 2 : 4;
 
-        rowsRemaining = render->height;
+        rowsRemaining = this->height;
         curRow = 0;
 
         while (rowsRemaining > 0) {
             s32 uls = 0;
-            s32 lrs = render->width - 1;
+            s32 lrs = this->width - 1;
             s32 ult;
             s32 lrt;
 
@@ -403,35 +403,35 @@ void PreRender_loadFrameBuffer(PreRender* render, Gfx** gfxP) {
             lrt = curRow + nRows - 1;
 
             // Load the frame buffer line
-            gDPLoadMultiTile(gfx++, render->fbufSave, 0x0000, G_TX_RENDERTILE, G_IM_FMT_RGBA, G_IM_SIZ_16b,
-                             render->width, render->height, uls, ult, lrs, lrt, 0, G_TX_NOMIRROR | G_TX_WRAP,
+            gDPLoadMultiTile(glistp++, this->fbuf_save, 0x0000, G_TX_RENDERTILE, G_IM_FMT_RGBA, G_IM_SIZ_16b,
+                             this->width, this->height, uls, ult, lrs, lrt, 0, G_TX_NOMIRROR | G_TX_WRAP,
                              G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
 
             // Load the coverage line
-            gDPLoadMultiTile(gfx++, render->cvgSave, 0x0160, rtile, G_IM_FMT_I, G_IM_SIZ_8b, render->width,
-                             render->height, uls, ult, lrs, lrt, 0, G_TX_NOMIRROR | G_TX_WRAP,
-                             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+            gDPLoadMultiTile(glistp++, this->cvg_save, 0x0160, rtile, G_IM_FMT_I, G_IM_SIZ_8b, this->width, this->height,
+                             uls, ult, lrs, lrt, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK,
+                             G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
 
             // Draw a texture for which the rgb channels come from the framebuffer and the alpha channel comes from
             // coverage, modulated by env color
-            gSPTextureRectangle(gfx++, uls << 2, ult << 2, (lrs + 1) << 2, (lrt + 1) << 2, G_TX_RENDERTILE, uls << 5,
+            gSPTextureRectangle(glistp++, uls << 2, ult << 2, (lrs + 1) << 2, (lrt + 1) << 2, G_TX_RENDERTILE, uls << 5,
                                 ult << 5, 1 << 10, 1 << 10);
 
             curRow += nRows;
             rowsRemaining -= nRows;
         }
 
-        gDPPipeSync(gfx++);
-        *gfxP = gfx;
+        gDPPipeSync(glistp++);
+        *glistpp = glistp;
     }
 }
 
-void PreRender_loadFrameBufferAlpha(PreRender* render, Gfx** gfxP, s32 alpha) {
-    PreRender_TransBuffer1_env(render, gfxP, render->fbufSave, render->fbuf, 255, 255, 255, alpha);
+void PreRender_loadFrameBufferAlpha(PreRender* this, Gfx** glistpp, s32 alpha) {
+    PreRender_TransBuffer1_env(this, glistpp, this->fbuf_save, this->fbuf, 255, 255, 255, alpha);
 }
 
-void PreRender_loadFrameBufferCopy(PreRender* render, Gfx** gfxP) {
-    PreRender_TransBuffer(render, gfxP, render->fbufSave, render->fbuf);
+void PreRender_loadFrameBufferCopy(PreRender* this, Gfx** glistpp) {
+    PreRender_TransBuffer(this, glistpp, this->fbuf_save, this->fbuf);
 }
 
 /**
@@ -465,11 +465,11 @@ void PreRender_loadFrameBufferCopy(PreRender* render, Gfx** gfxP) {
  * Expired 2015-10-06
  * https://patents.google.com/patent/US5742277A/en
  *
- * @param render  PreRender instance
+ * @param this  PreRender instance
  * @param x     Center pixel x
  * @param y     Center pixel y
  */
-void ASAlgorithm(PreRender* render, s32 x, s32 y) {
+void ASAlgorithm(PreRender* this, s32 x, s32 y) {
     s32 i;
     s32 j;
     s32 buffCvg[3 * 5];
@@ -499,21 +499,21 @@ void ASAlgorithm(PreRender* render, s32 x, s32 y) {
         // Clamp coordinates to the edges of the image
         if (xi < 0) {
             xi = 0;
-        } else if (xi > (render->width - 1)) {
-            xi = render->width - 1;
+        } else if (xi > (this->width - 1)) {
+            xi = this->width - 1;
         }
         if (yi < 0) {
             yi = 0;
-        } else if (yi > (render->height - 1)) {
-            yi = render->height - 1;
+        } else if (yi > (this->height - 1)) {
+            yi = this->height - 1;
         }
 
         // Extract color channels for each pixel, convert 5-bit color channels to 8-bit
-        pxIn.rgba = render->fbufSave[xi + yi * render->width];
+        pxIn.rgba = this->fbuf_save[xi + yi * this->width];
         buffR[i] = (pxIn.r << 3) | (pxIn.r >> 2);
         buffG[i] = (pxIn.g << 3) | (pxIn.g >> 2);
         buffB[i] = (pxIn.b << 3) | (pxIn.b >> 2);
-        buffCvg[i] = render->cvgSave[xi + yi * render->width] >> 5;
+        buffCvg[i] = this->cvg_save[xi + yi * this->width] >> 5;
     }
 
     pmaxR = pminR = buffR[7];
@@ -594,37 +594,37 @@ void ASAlgorithm(PreRender* render, s32 x, s32 y) {
     pxOut.g = outG >> 3;
     pxOut.b = outB >> 3;
     pxOut.a = 1;
-    render->fbufSave[x + y * render->width] = pxOut.rgba;
+    this->fbuf_save[x + y * this->width] = pxOut.rgba;
 }
 
-void AntiAliasFilter(PreRender* render) {
+void AntiAliasFilter(PreRender* this) {
     s32 x;
     s32 y;
-    u8* cvg = render->cvgSave;
+    u8* cvg = this->cvg_save;
 
-    for (y = 0; y < render->height; y++) {
-        for (x = 0; x < render->width; x++) {
+    for (y = 0; y < this->height; y++) {
+        for (x = 0; x < this->width; x++) {
             if (*cvg != 0xFF) {
-                ASAlgorithm(render, x, y);
+                ASAlgorithm(this, x, y);
             }
             cvg++;
         }
     }
 }
 
-void PreRender_ConvertFrameBuffer_fg(PreRender* render) {
-    if ((render->cvgSave == NULL) || (render->fbufSave == NULL)) {
-        render->filterState = 0;
+void PreRender_ConvertFrameBuffer_fg(PreRender* this) {
+    if ((this->cvg_save == NULL) || (this->fbuf_save == NULL)) {
+        this->filterState = 0;
         return;
     }
 
-    render->filterState = 1;
-    AntiAliasFilter(render);
-    render->filterState = 2;
+    this->filterState = 1;
+    AntiAliasFilter(this);
+    this->filterState = 2;
 }
 
-void PreRender_ConvertFrameBuffer(PreRender* render) {
-    if ((render->cvgSave != NULL) && (render->fbufSave != NULL)) {
-        PreRender_ConvertFrameBuffer_fg(render);
+void PreRender_ConvertFrameBuffer(PreRender* this) {
+    if ((this->cvg_save != NULL) && (this->fbuf_save != NULL)) {
+        PreRender_ConvertFrameBuffer_fg(this);
     }
 }
