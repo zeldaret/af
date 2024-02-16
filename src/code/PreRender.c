@@ -6,6 +6,7 @@
 #include "color.h"
 #include "gfx.h"
 #include "gfxalloc.h"
+#include "macros.h"
 #include "sys_ucode.h"
 
 typedef struct {
@@ -357,7 +358,73 @@ void PreRender_loadZBuffer(PreRender* render, Gfx** gfxP) {
     PreRender_TransBuffer(render, gfxP, render->zbufSave, render->zbuf);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_loadFrameBuffer.s")
+void PreRender_loadFrameBuffer(PreRender* render, Gfx** gfxP) {
+    Gfx* gfx;
+    s32 rowsRemaining;
+    s32 curRow;
+    s32 nRows;
+    s32 rtile = 1;
+
+    if (render->cvgSave != NULL) {
+        gfx = *gfxP;
+
+        gDPPipeSync(gfx++);
+        gDPSetEnvColor(gfx++, 255, 255, 255, 32);
+        // Effectively disable blending in both cycles. It's 2-cycle so that TEXEL1 can be used to point to a different
+        // texture tile.
+        gDPSetOtherMode(gfx++,
+                        G_AD_DISABLE | G_CD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_POINT | G_TT_NONE | G_TL_TILE |
+                            G_TD_CLAMP | G_TP_NONE | G_CYC_2CYCLE | G_PM_NPRIMITIVE,
+                        G_AC_NONE | G_ZS_PRIM | AA_EN | CVG_DST_CLAMP | ZMODE_OPA | CVG_X_ALPHA |
+                            GBL_c1(G_BL_CLR_IN, G_BL_0, G_BL_CLR_IN, G_BL_1) |
+                            GBL_c2(G_BL_CLR_IN, G_BL_0, G_BL_CLR_IN, G_BL_1));
+
+        // Set up the color combiner: first cycle: TEXEL0, TEXEL1 + ENVIRONMENT; second cycle: G_CC_PASS2
+        gDPSetCombineLERP(gfx++, 0, 0, 0, TEXEL0, 1, 0, TEXEL1, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
+
+        nRows = (render->width > SCREEN_WIDTH) ? 2 : 4;
+
+        rowsRemaining = render->height;
+        curRow = 0;
+
+        while (rowsRemaining > 0) {
+            s32 uls = 0;
+            s32 lrs = render->width - 1;
+            s32 ult;
+            s32 lrt;
+
+            // Make sure that we don't load past the end of the source image
+            if (nRows > rowsRemaining) {
+                nRows = rowsRemaining;
+            }
+
+            // Determine the upper and lower bounds of the rect to draw
+            ult = curRow;
+            lrt = curRow + nRows - 1;
+
+            // Load the frame buffer line
+            gDPLoadMultiTile(gfx++, render->fbufSave, 0x0000, G_TX_RENDERTILE, G_IM_FMT_RGBA, G_IM_SIZ_16b,
+                             render->width, render->height, uls, ult, lrs, lrt, 0, G_TX_NOMIRROR | G_TX_WRAP,
+                             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+
+            // Load the coverage line
+            gDPLoadMultiTile(gfx++, render->cvgSave, 0x0160, rtile, G_IM_FMT_I, G_IM_SIZ_8b, render->width,
+                             render->height, uls, ult, lrs, lrt, 0, G_TX_NOMIRROR | G_TX_WRAP,
+                             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+
+            // Draw a texture for which the rgb channels come from the framebuffer and the alpha channel comes from
+            // coverage, modulated by env color
+            gSPTextureRectangle(gfx++, uls << 2, ult << 2, (lrs + 1) << 2, (lrt + 1) << 2, G_TX_RENDERTILE, uls << 5,
+                                ult << 5, 1 << 10, 1 << 10);
+
+            curRow += nRows;
+            rowsRemaining -= nRows;
+        }
+
+        gDPPipeSync(gfx++);
+        *gfxP = gfx;
+    }
+}
 
 void PreRender_loadFrameBufferAlpha(PreRender* render, Gfx** gfxP, s32 alpha) {
     PreRender_TransBuffer1_env(render, gfxP, render->fbufSave, render->fbuf, 255, 255, 255, alpha);
