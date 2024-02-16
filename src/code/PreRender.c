@@ -339,7 +339,11 @@ void PreRender_saveZBuffer(PreRender* render, Gfx** gfxP) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_saveFrameBuffer.s")
+void PreRender_saveFrameBuffer(PreRender* render, Gfx** gfxP) {
+    if ((render->unk_14 != NULL) && (render->unk_10 != NULL)) {
+        PreRender_TransBuffer1(render, gfxP, render->unk_10, render->unk_14);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_saveCVG.s")
 
