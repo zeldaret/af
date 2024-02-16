@@ -362,7 +362,9 @@ void PreRender_loadFrameBufferAlpha(PreRender* render, Gfx** gfxP, s32 alpha) {
     PreRender_TransBuffer1_env(render, gfxP, render->unk_14, render->unk_10, 255, 255, 255, alpha);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_loadFrameBufferCopy.s")
+void PreRender_loadFrameBufferCopy(PreRender* render, Gfx** gfxP) {
+    PreRender_TransBuffer(render, gfxP, render->unk_14, render->unk_10);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/ASAlgorithm.s")
 
