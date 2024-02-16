@@ -333,7 +333,11 @@ void PreRender_ShowCoveredge(Gfx** gfxP, s32 ulx, s32 uly, s32 lrx, s32 lry) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_CopyRGBC.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_saveZBuffer.s")
+void PreRender_saveZBuffer(PreRender* render, Gfx** gfxP) {
+    if ((render->unk_20 != NULL) && (render->unk_1C != NULL)) {
+        PreRender_TransBuffer(render, gfxP, render->unk_1C, render->unk_20);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_saveFrameBuffer.s")
 
