@@ -166,18 +166,18 @@ void PreRender_cleanup(PreRender* render) {
     ListAlloc_FreeAll(&render->alloc);
 }
 
-void PreRender_TransBufferCopy(PreRender* render, Gfx** gfxP, void* img, void* imgDst, u32 useThresholdAlphaCompare) {
+void PreRender_TransBufferCopy(PreRender* render, Gfx** gfxP, void* arg2, void* arg3, u32 useThresholdAlphaCompare) {
     Gfx* gfx = *gfxP;
     u32 flags;
 
-    gfx = gfx_SetUpCFB(gfx, imgDst, render->width, render->height);
+    gfx = gfx_SetUpCFB(gfx, arg3, render->width, render->height);
 
     flags = WALLPAPER_FLAGS_LOAD_S2DEX2 | WALLPAPER_FLAGS_COPY;
     if (useThresholdAlphaCompare == true) {
         flags |= WALLPAPER_FLAGS_AC_THRESHOLD;
     }
 
-    wallpaper_draw(&gfx, img, NULL, render->width, render->height, G_IM_FMT_RGBA, G_IM_SIZ_16b, G_TT_NONE, 0, 0.0f,
+    wallpaper_draw(&gfx, arg2, NULL, render->width, render->height, G_IM_FMT_RGBA, G_IM_SIZ_16b, G_TT_NONE, 0, 0.0f,
                    0.0f, 1.0f, 1.0f, flags);
 
     *gfxP = gfx_SetUpCFB(gfx, render->unk_10, render->width, render->height);
@@ -366,10 +366,23 @@ void PreRender_loadFrameBufferCopy(PreRender* render, Gfx** gfxP) {
     PreRender_TransBuffer(render, gfxP, render->unk_14, render->unk_10);
 }
 
+void ASAlgorithm(PreRender* render, s32 x, s32 y);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/ASAlgorithm.s")
 
-void AntiAliasFilter(PreRender* render);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/AntiAliasFilter.s")
+void AntiAliasFilter(PreRender* render) {
+    s32 x;
+    s32 y;
+    u8* cvg = render->unk_18;
+
+    for (y = 0; y < render->height; y++) {
+        for (x = 0; x < render->width; x++) {
+            if (*cvg != 0xFF) {
+                ASAlgorithm(render, x, y);
+            }
+            cvg++;
+        }
+    }
+}
 
 void PreRender_ConvertFrameBuffer_fg(PreRender* render) {
     if ((render->unk_18 == NULL) || (render->unk_14 == NULL)) {
