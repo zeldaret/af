@@ -368,8 +368,18 @@ void PreRender_loadFrameBufferCopy(PreRender* render, Gfx** gfxP) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/ASAlgorithm.s")
 
+void AntiAliasFilter(PreRender* render);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/AntiAliasFilter.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_ConvertFrameBuffer_fg.s")
+void PreRender_ConvertFrameBuffer_fg(PreRender* render) {
+    if ((render->unk_18 == NULL) || (render->unk_14 == NULL)) {
+        render->unk_4D = 0;
+        return;
+    }
+
+    render->unk_4D = 1;
+    AntiAliasFilter(render);
+    render->unk_4D = 2;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_ConvertFrameBuffer.s")

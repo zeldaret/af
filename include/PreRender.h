@@ -27,7 +27,8 @@ typedef struct PreRender {
     /* 0x32 */ u16 unk_32;
     /* 0x34 */ UNK_TYPE1 UNK_34[0x10];
     /* 0x44 */ ListAlloc alloc;
-    /* 0x4C */ UNK_TYPE1 unk_4C[0x4];
+    /* 0x4C */ u8 unk_4C;
+    /* 0x4D */ u8 unk_4D;
 } PreRender; // size = 0x50
 
 #define WALLPAPER_FLAGS_1 (1 << 0)
