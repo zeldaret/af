@@ -9,26 +9,26 @@
 typedef struct PreRender {
     /* 0x00 */ u16 width;
     /* 0x02 */ u16 height;
-    /* 0x04 */ u16 unk_04;
-    /* 0x04 */ u16 unk_06;
+    /* 0x04 */ u16 widthSave;
+    /* 0x04 */ u16 heightSave;
     /* 0x08 */ UNK_TYPE1 unk_08[0x8];
-    /* 0x10 */ UNK_PTR unk_10;
-    /* 0x14 */ UNK_PTR unk_14;
-    /* 0x18 */ u8* unk_18;
-    /* 0x1C */ UNK_PTR unk_1C;
-    /* 0x20 */ UNK_PTR unk_20;
-    /* 0x24 */ u16 unk_24;
-    /* 0x26 */ u16 unk_26;
-    /* 0x28 */ u16 unk_28;
-    /* 0x2A */ u16 unk_2A;
-    /* 0x2C */ u16 unk_2C;
-    /* 0x2E */ u16 unk_2E;
-    /* 0x30 */ u16 unk_30;
-    /* 0x32 */ u16 unk_32;
+    /* 0x10 */ u16* fbuf;
+    /* 0x14 */ u16* fbufSave;
+    /* 0x18 */ u8* cvgSave;
+    /* 0x1C */ u16* zbuf;
+    /* 0x20 */ u16* zbufSave;
+    /* 0x24 */ u16 ulxSave;
+    /* 0x26 */ u16 ulySave;
+    /* 0x28 */ u16 lrxSave;
+    /* 0x2A */ u16 lrySave;
+    /* 0x2C */ u16 ulx;
+    /* 0x2E */ u16 uly;
+    /* 0x30 */ u16 lrx;
+    /* 0x32 */ u16 lry;
     /* 0x34 */ UNK_TYPE1 UNK_34[0x10];
     /* 0x44 */ ListAlloc alloc;
     /* 0x4C */ u8 unk_4C;
-    /* 0x4D */ u8 unk_4D;
+    /* 0x4D */ u8 filterState;
 } PreRender; // size = 0x50
 
 #define WALLPAPER_FLAGS_1 (1 << 0)

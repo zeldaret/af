@@ -704,12 +704,12 @@ void mSM_cbuf_copy(GraphicsContext* gfxCtx, PreRender* render, s32 arg2, s32 arg
         return;
     }
 
-    temp_v0 = render->unk_04;
+    temp_v0 = render->widthSave;
     if (-(s32)temp_v0 >= arg2) {
         return;
     }
 
-    temp_a0 = render->unk_06;
+    temp_a0 = render->heightSave;
     if (1) {}
     if (1) {}
     if (1) {}
@@ -760,13 +760,13 @@ void mSM_cbuf_copy(GraphicsContext* gfxCtx, PreRender* render, s32 arg2, s32 arg
         var_t1 = arg3;
         var_t2 = var_v1;
         var_a2 = var_t3;
-        sp98 = render->unk_14;
+        sp98 = render->fbufSave;
     } else {
         spCC = (s32)temp_v0;
         var_ra = 0xF0;
         var_a1 = var_t3;
         var_t1 = var_v1;
-        sp9C = render->unk_14;
+        sp9C = render->fbufSave;
         var_t2 = arg3;
         var_a2 = arg2;
         sp98 = gfxCtx->unk_2E4;
@@ -777,7 +777,7 @@ void mSM_cbuf_copy(GraphicsContext* gfxCtx, PreRender* render, s32 arg2, s32 arg
         sp8C = POLY_OPA_DISP;
         render->width = 0x140;
         render->height = 0xF0;
-        render->unk_10 = gfxCtx->unk_2E4;
+        render->fbuf = gfxCtx->unk_2E4;
         PreRender_CopyRGBC(render, &sp8C, arg2 - var_t3, arg3 - var_v1);
         POLY_OPA_DISP = sp8C;
     } else {

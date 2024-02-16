@@ -3,6 +3,7 @@
 #include "libc/stdbool.h"
 #include "PR/gs2dex.h"
 
+#include "color.h"
 #include "gfx.h"
 #include "gfxalloc.h"
 #include "sys_ucode.h"
@@ -135,15 +136,15 @@ Gfx* gfx_SetUpCFB(Gfx* gfx, void* imgDst, u32 width, u32 height) {
 }
 
 void PreRender_setup_savebuf(PreRender* render, s32 arg1, s32 arg2, void* arg3, void* arg4, void* arg5) {
-    render->unk_04 = arg1;
-    render->unk_06 = arg2;
-    render->unk_14 = arg3;
-    render->unk_18 = arg5;
-    render->unk_20 = arg4;
-    render->unk_24 = 0;
-    render->unk_26 = 0;
-    render->unk_28 = arg1 - 1;
-    render->unk_2A = arg2 - 1;
+    render->widthSave = arg1;
+    render->heightSave = arg2;
+    render->fbufSave = arg3;
+    render->cvgSave = arg5;
+    render->zbufSave = arg4;
+    render->ulxSave = 0;
+    render->ulySave = 0;
+    render->lrxSave = arg1 - 1;
+    render->lrySave = arg2 - 1;
 }
 
 void PreRender_init(PreRender* render) {
@@ -154,12 +155,12 @@ void PreRender_init(PreRender* render) {
 void PreRender_setup_renderbuf(PreRender* render, s32 width, s32 height, void* arg3, void* arg4) {
     render->width = width;
     render->height = height;
-    render->unk_10 = arg3;
-    render->unk_1C = arg4;
-    render->unk_2C = 0;
-    render->unk_2E = 0;
-    render->unk_30 = width - 1;
-    render->unk_32 = height - 1;
+    render->fbuf = arg3;
+    render->zbuf = arg4;
+    render->ulx = 0;
+    render->uly = 0;
+    render->lrx = width - 1;
+    render->lry = height - 1;
 }
 
 void PreRender_cleanup(PreRender* render) {
@@ -180,7 +181,7 @@ void PreRender_TransBufferCopy(PreRender* render, Gfx** gfxP, void* arg2, void* 
     wallpaper_draw(&gfx, arg2, NULL, render->width, render->height, G_IM_FMT_RGBA, G_IM_SIZ_16b, G_TT_NONE, 0, 0.0f,
                    0.0f, 1.0f, 1.0f, flags);
 
-    *gfxP = gfx_SetUpCFB(gfx, render->unk_10, render->width, render->height);
+    *gfxP = gfx_SetUpCFB(gfx, render->fbuf, render->width, render->height);
 }
 
 void PreRender_TransBuffer(PreRender* render, Gfx** gfxP, void* arg2, void* arg3) {
@@ -216,7 +217,7 @@ void PreRender_TransBuffer1_env(PreRender* render, Gfx** gfxP, void* arg2, void*
     gfx = gfx_SetUpCFB(gfx, arg3, render->width, render->height);
     wallpaper_draw(&gfx, arg2, NULL, render->width, render->height, G_IM_FMT_RGBA, G_IM_SIZ_16b, G_TT_NONE, 0, 0.0f,
                    0.0f, 1.0f, 1.0f, WALLPAPER_FLAGS_1 | WALLPAPER_FLAGS_2 | WALLPAPER_FLAGS_LOAD_S2DEX2);
-    *gfxP = gfx_SetUpCFB(gfx, render->unk_10, render->width, render->height);
+    *gfxP = gfx_SetUpCFB(gfx, render->fbuf, render->width, render->height);
 }
 
 void PreRender_TransBuffer1(PreRender* render, Gfx** gfxP, void* arg2, void* arg3) {
@@ -296,7 +297,7 @@ void PreRender_TransBuffer2(PreRender* render, Gfx** gfxP, void* arg2, void* arg
 
     // Reset the color image to the current framebuffer
 
-    *gfxP = gfx_SetUpCFB(gfx, render->unk_10, render->width, render->height);
+    *gfxP = gfx_SetUpCFB(gfx, render->fbuf, render->width, render->height);
 }
 
 void PreRender_ShowCoveredge(Gfx** gfxP, s32 ulx, s32 uly, s32 lrx, s32 lry) {
@@ -334,45 +335,205 @@ void PreRender_ShowCoveredge(Gfx** gfxP, s32 ulx, s32 uly, s32 lrx, s32 lry) {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_CopyRGBC.s")
 
 void PreRender_saveZBuffer(PreRender* render, Gfx** gfxP) {
-    if ((render->unk_20 != NULL) && (render->unk_1C != NULL)) {
-        PreRender_TransBuffer(render, gfxP, render->unk_1C, render->unk_20);
+    if ((render->zbufSave != NULL) && (render->zbuf != NULL)) {
+        PreRender_TransBuffer(render, gfxP, render->zbuf, render->zbufSave);
     }
 }
 
 void PreRender_saveFrameBuffer(PreRender* render, Gfx** gfxP) {
-    if ((render->unk_14 != NULL) && (render->unk_10 != NULL)) {
-        PreRender_TransBuffer1(render, gfxP, render->unk_10, render->unk_14);
+    if ((render->fbufSave != NULL) && (render->fbuf != NULL)) {
+        PreRender_TransBuffer1(render, gfxP, render->fbuf, render->fbufSave);
     }
 }
 
 void PreRender_saveCVG(PreRender* render, Gfx** gfxP) {
     PreRender_ShowCoveredge(gfxP, 0, 0, render->width, render->height);
-    if (render->unk_18 != NULL) {
-        PreRender_TransBuffer2(render, gfxP, render->unk_10, render->unk_18);
+    if (render->cvgSave != NULL) {
+        PreRender_TransBuffer2(render, gfxP, render->fbuf, render->cvgSave);
     }
 }
 
 void PreRender_loadZBuffer(PreRender* render, Gfx** gfxP) {
-    PreRender_TransBuffer(render, gfxP, render->unk_20, render->unk_1C);
+    PreRender_TransBuffer(render, gfxP, render->zbufSave, render->zbuf);
 }
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_loadFrameBuffer.s")
 
 void PreRender_loadFrameBufferAlpha(PreRender* render, Gfx** gfxP, s32 alpha) {
-    PreRender_TransBuffer1_env(render, gfxP, render->unk_14, render->unk_10, 255, 255, 255, alpha);
+    PreRender_TransBuffer1_env(render, gfxP, render->fbufSave, render->fbuf, 255, 255, 255, alpha);
 }
 
 void PreRender_loadFrameBufferCopy(PreRender* render, Gfx** gfxP) {
-    PreRender_TransBuffer(render, gfxP, render->unk_14, render->unk_10);
+    PreRender_TransBuffer(render, gfxP, render->fbufSave, render->fbuf);
 }
 
-void ASAlgorithm(PreRender* render, s32 x, s32 y);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/ASAlgorithm.s")
+/**
+ * Applies the Video Interface anti-aliasing of silhouette edges to an image.
+ *
+ * This filter performs a linear interpolation on partially covered pixels between the current pixel color (called
+ * foreground color) and a "background" pixel color obtained by sampling fully covered pixels at the six highlighted
+ * points in the following 5x3 neighborhood:
+ *    _ _ _ _ _
+ *  |   o   o   |
+ *  | o   X   o |
+ *  |   o   o   |
+ *    ‾ ‾ ‾ ‾ ‾
+ * Whether a pixel is partially covered is determined by reading the coverage values associated with the image.
+ * Coverage is a measure of how many subpixels the last drawn primitive covered. A fully covered pixel is one with a
+ * full coverage value, the entire pixel was covered by the primitive.
+ * The background color is calculated as the average of the "penultimate" minimum and maximum colors in the 5x3
+ * neighborhood.
+ *
+ * The final color is calculated by interpolating the foreground and background color weighted by the coverage:
+ *      OutputColor = cvg * ForeGround + (1.0 - cvg) * BackGround
+ *
+ * This is a software implementation of the same algorithm used in the Video Interface hardware when Anti-Aliasing is
+ * enabled in the VI Control Register.
+ *
+ * Patent describing the algorithm:
+ *
+ * Gossett, C. P., & van Hook, T. J. (Filed 1995, Published 1998)
+ * Antialiasing of silhouette edges (USOO5742277A)
+ * U.S. Patent and Trademark Office
+ * Expired 2015-10-06
+ * https://patents.google.com/patent/US5742277A/en
+ *
+ * @param render  PreRender instance
+ * @param x     Center pixel x
+ * @param y     Center pixel y
+ */
+void ASAlgorithm(PreRender* render, s32 x, s32 y) {
+    s32 i;
+    s32 j;
+    s32 buffCvg[3 * 5];
+    s32 buffR[3 * 5];
+    s32 buffG[3 * 5];
+    s32 buffB[3 * 5];
+    s32 xi;
+    s32 yi;
+    s32 invCvg;
+    s32 pmaxR;
+    s32 pmaxG;
+    s32 pmaxB;
+    s32 pminR;
+    s32 pminG;
+    s32 pminB;
+    Color_RGBA16 pxIn;
+    Color_RGBA16 pxOut;
+    u32 outR;
+    u32 outG;
+    u32 outB;
+
+    // Extract pixels in the 5x3 neighborhood
+    for (i = 0; i < 5 * 3; i++) {
+        xi = x + (i % 5) - 2;
+        yi = y + (i / 5) - 1;
+
+        // Clamp coordinates to the edges of the image
+        if (xi < 0) {
+            xi = 0;
+        } else if (xi > (render->width - 1)) {
+            xi = render->width - 1;
+        }
+        if (yi < 0) {
+            yi = 0;
+        } else if (yi > (render->height - 1)) {
+            yi = render->height - 1;
+        }
+
+        // Extract color channels for each pixel, convert 5-bit color channels to 8-bit
+        pxIn.rgba = render->fbufSave[xi + yi * render->width];
+        buffR[i] = (pxIn.r << 3) | (pxIn.r >> 2);
+        buffG[i] = (pxIn.g << 3) | (pxIn.g >> 2);
+        buffB[i] = (pxIn.b << 3) | (pxIn.b >> 2);
+        buffCvg[i] = render->cvgSave[xi + yi * render->width] >> 5;
+    }
+
+    pmaxR = pminR = buffR[7];
+    pmaxG = pminG = buffG[7];
+    pmaxB = pminB = buffB[7];
+
+    // For each neighbor
+    for (i = 1; i < 5 * 3; i += 2) {
+        // Only sample fully covered pixels
+        if (buffCvg[i] != 7) {
+            continue;
+        }
+        // Determine "Penultimate Maximum" Value
+
+        // If current maximum is less than this neighbor
+        if (pmaxR < buffR[i]) {
+            // For each neighbor (again)
+            for (j = 1; j < 5 * 3; j += 2) {
+                // If not the neighbor we were at before, and this neighbor has a larger value and this pixel is
+                // fully covered, that means the neighbor at `i` is the "penultimate maximum"
+                if ((i != j) && (buffR[j] >= buffR[i]) && (buffCvg[j] == 7)) {
+                    pmaxR = buffR[i];
+                }
+            }
+        }
+        if (pmaxG < buffG[i]) {
+            for (j = 1; j < 5 * 3; j += 2) {
+                if ((i != j) && (buffG[j] >= buffG[i]) && (buffCvg[j] == 7)) {
+                    pmaxG = buffG[i];
+                }
+            }
+        }
+        if (pmaxB < buffB[i]) {
+            for (j = 1; j < 5 * 3; j += 2) {
+                if ((i != j) && (buffB[j] >= buffB[i]) && (buffCvg[j] == 7)) {
+                    pmaxB = buffB[i];
+                }
+            }
+        }
+
+        // Determine "Penultimate Minimum" Value
+
+        // Same as above with inverted conditions
+        if (pminR > buffR[i]) {
+            for (j = 1; j < 5 * 3; j += 2) {
+                if ((i != j) && (buffR[j] <= buffR[i]) && (buffCvg[j] == 7)) {
+                    pminR = buffR[i];
+                }
+            }
+        }
+        if (pminG > buffG[i]) {
+            for (j = 1; j < 5 * 3; j += 2) {
+                if ((i != j) && (buffG[j] <= buffG[i]) && (buffCvg[j] == 7)) {
+                    pminG = buffG[i];
+                }
+            }
+        }
+        if (pminB > buffB[i]) {
+            for (j = 1; j < 5 * 3; j += 2) {
+                if ((i != j) && (buffB[j] <= buffB[i]) && (buffCvg[j] == 7)) {
+                    pminB = buffB[i];
+                }
+            }
+        }
+    }
+
+    // The background color is determined by averaging the penultimate minimum and maximum pixels, and subtracting the
+    // Foreground color:
+    //      BackGround = (pMax + pMin) - (ForeGround) * 2
+
+    // OutputColor = cvg * ForeGround + (1.0 - cvg) * BackGround
+    invCvg = 7 - buffCvg[7];
+    outR = buffR[7] + ((s32)(invCvg * (pmaxR + pminR - (buffR[7] * 2)) + 4) >> 3);
+    outG = buffG[7] + ((s32)(invCvg * (pmaxG + pminG - (buffG[7] * 2)) + 4) >> 3);
+    outB = buffB[7] + ((s32)(invCvg * (pmaxB + pminB - (buffB[7] * 2)) + 4) >> 3);
+
+    pxOut.r = outR >> 3;
+    pxOut.g = outG >> 3;
+    pxOut.b = outB >> 3;
+    pxOut.a = 1;
+    render->fbufSave[x + y * render->width] = pxOut.rgba;
+}
 
 void AntiAliasFilter(PreRender* render) {
     s32 x;
     s32 y;
-    u8* cvg = render->unk_18;
+    u8* cvg = render->cvgSave;
 
     for (y = 0; y < render->height; y++) {
         for (x = 0; x < render->width; x++) {
@@ -385,18 +546,18 @@ void AntiAliasFilter(PreRender* render) {
 }
 
 void PreRender_ConvertFrameBuffer_fg(PreRender* render) {
-    if ((render->unk_18 == NULL) || (render->unk_14 == NULL)) {
-        render->unk_4D = 0;
+    if ((render->cvgSave == NULL) || (render->fbufSave == NULL)) {
+        render->filterState = 0;
         return;
     }
 
-    render->unk_4D = 1;
+    render->filterState = 1;
     AntiAliasFilter(render);
-    render->unk_4D = 2;
+    render->filterState = 2;
 }
 
 void PreRender_ConvertFrameBuffer(PreRender* render) {
-    if ((render->unk_18 != NULL) && (render->unk_14 != NULL)) {
+    if ((render->cvgSave != NULL) && (render->fbufSave != NULL)) {
         PreRender_ConvertFrameBuffer_fg(render);
     }
 }
