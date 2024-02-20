@@ -189,7 +189,7 @@ Palette textures require the palette name as a third argument. In this case, we 
 - [0x1127908, ci4, tol_keitai_1_shitaomote1_tex_txt, 16, 32, tol_keitai_1_pal]
 ```
 
-This object is simple, there's only one palette and it's included in the object. Sometimes palettes are located elsewhere. In order to use a palette from a different object, the palette needs to define a `global_id`. This is only available in dictionary format, so the definition needs to change a little.
+This object only has one palette and it's included in the object. However some objects use external palettes. In order to use a palette from a different object, it needs to define a `global_id`. This can only be set when the segment is in dictionary format.
 
 Here's `obj_s_house1` as an example:
 ```yaml
