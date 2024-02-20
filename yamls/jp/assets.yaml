@@ -5452,9 +5452,9 @@
         subsegments:
           - [0x1128000, vtx, tol_utiwa_1_v]
           - [0x1128080, af_gfx, main_utiwa1_model]
-          - [0x1128188, af_palette, tol_utiwa1_pal]
-          - [0x11281A8, af_ci4, tol_utiwa_1_main1_tex_txt, 32, 32, 0x1128188, 0x20]
-          - [0x11283A8, af_ci4, tol_utiwa_1_main2_tex_txt, 32, 32, 0x1128188, 0x20]
+          - [0x1128188, af_palette2, tol_utiwa1_pal]
+          - [0x11281A8, ci4, tol_utiwa_1_main1_tex_txt, 32, 32, tol_utiwa1_pal]
+          - [0x11283A8, ci4, tol_utiwa_1_main2_tex_txt, 32, 32, tol_utiwa1_pal]
   - [0x11285B0]
 
   - name: object_01129000
