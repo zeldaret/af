@@ -10,7 +10,7 @@
 
 extern Vtx tol_kenjyu_1_v[];
 extern Gfx tol_kenjyu_1T_model[];
-extern unsigned short tol_kenjyu_1_pal[];
-extern unsigned char tol_kenjyu_1_tex[];
+extern u16 tol_kenjyu_1_pal[];
+extern u8 tol_kenjyu_1_tex[];
 
 #endif

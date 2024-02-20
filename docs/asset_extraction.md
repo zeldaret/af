@@ -115,7 +115,7 @@ For the other textures, we need to identify what type they are. Because of how t
 
 ![](images/asset_extraction/z64utils_texture_view.png)
 
-For this object, all the textures are CI4. These use the `ci4` type. Other types could possibly be `i4`, `i8`, `ia4`, `ia8`, `ia16`, `ci8`, `rgba16`, or `rgba32`.
+For this object, all the textures are CI4. These use the `ci4` type. Other types include `i4`, `i8`, `ia4`, `ia8`, `ia16`, `ci8`, `rgba16`, or `rgba32`.
 
 At the bottom is one last unknown section. This is the model's skeleton. It's composed of a JointElemR and BaseSkeletonR. You can find the addresses for these by starting at the bottom until you find a segment address, which is a pointer to  `cKF_je_r_tol_keitai_1_tbl`. BaseSkeletonR is 8 bytes long, so count 8 bytes from the end of that address to get 0x06000A2C, which is the start of `cKF_bs_r_tol_keitai_1`. These use custom splat extensions `ckf_je` and `ckf_bs` respectively.
 
@@ -169,7 +169,18 @@ One important thing to point out is `tol_keitai_1_v`. It has an extra option for
 
 `output.txt` also contains the splat segment definitions. This should be pasted into `assets.yaml`, replacing the old auto generated one.
 
-There's a few changes we need to make though. The definitions for the textures need additional arguments for splat to extract them: width, height, and the palette. The width and height can be found in Z64Utils, in the text above the texture preview, similar to how we found the texture's format. The palette is `tol_keitai_1_pal`. This object conveniently has the palette in the same object, however sometimes they are located in other objects.
+### Textures
+
+Textures require a width and height argument in order to extract them. This can be found in Z64Utils in the text above the texture preview, similar to how we found the texture's format.
+
+An example from a separate object file:
+```yaml
+- [0xD66A58, i4, obj_e_count01/obj_e_count01_spot_tex_sgi_i4, 16, 16]
+```
+
+### Palette Textures
+
+Palette textures require the palette name as a third argument. In this case, we know the palette is `tol_keitai_1_pal`.
 
 ```yaml
 - [0x1127608, ci4, tol_keitai_1_ueura1_tex_txt, 16, 32, tol_keitai_1_pal]
@@ -177,6 +188,31 @@ There's a few changes we need to make though. The definitions for the textures n
 - [0x1127808, ci4, tol_keitai_1_shitaura1_tex_txt, 16, 32, tol_keitai_1_pal]
 - [0x1127908, ci4, tol_keitai_1_shitaomote1_tex_txt, 16, 32, tol_keitai_1_pal]
 ```
+
+This object is simple, there's only one palette and it's included in the object. Sometimes palettes are located elsewhere. In order to use a palette from a different object, the palette needs to define a `global_id`. This is only available in dictionary format, so the definition needs to change a little.
+
+Here's `obj_s_house1` as an example:
+```yaml
+- { start: 0xD5B008, type: af_palette, name: obj_s_house1_a_pal, global_id: obj_s_house1_a_pal }
+- { start: 0xD5B028, type: af_palette, name: obj_s_house1_b_pal, global_id: obj_s_house1_b_pal }
+- { start: 0xD5B048, type: af_palette, name: obj_s_house1_c_pal, global_id: obj_s_house1_c_pal }
+- { start: 0xD5B068, type: af_palette, name: obj_s_house1_d_pal, global_id: obj_s_house1_d_pal }
+- { start: 0xD5B088, type: af_palette, name: obj_s_house1_e_pal, global_id: obj_s_house1_e_pal }
+```
+
+`obj_s_house1` has 5 palettes, so for the palette argument you would put a list of each of them, like this:
+```yaml
+- start: 0xD83058
+  type: ci4
+  name: obj_house/obj_s_house1_t3_tex_txt
+  width: 128
+  height: 32
+  palettes: [obj_s_house1_a_pal, obj_s_house1_b_pal, obj_s_house1_c_pal, obj_s_house1_d_pal, obj_s_house1_e_pal]   
+```
+
+Finally, these textures will be extracted as `<filename>_<palette_name>.ci4.png`. Our script generated an include statement for `<filename>.ci4.png`, so you need to update this to `obj_s_house1_t3_tex_txt_obj_s_house1_a_pal.ci4.inc.c`
+
+### Adjusting code
 
 Because we renamed the segment, we also need to adjust the DMA table and the object table, which specify where files are in the ROM.
 

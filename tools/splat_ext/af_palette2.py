@@ -1,11 +1,11 @@
 import struct
 from splat.util import options, log
-from splat.segtypes.n64.palette import N64SegPalette
+from splat.segtypes.common.codesubsegment import CommonSegCodeSubsegment
 
-class N64SegAf_palette2(N64SegPalette):
+class N64SegAf_palette2(CommonSegCodeSubsegment):
     def __init__(self, rom_start, rom_end, type, name, vram_start, args, yaml):
         super().__init__(rom_start, rom_end, type, name, vram_start, args=args, yaml=yaml),
-        
+
         self.data_only = isinstance(yaml, dict) and yaml.get("data_only", False)
 
     def scan(self, rom_bytes: bytes):
@@ -15,7 +15,7 @@ class N64SegAf_palette2(N64SegPalette):
         if not self.data_only:
             lines.append(options.opts.generated_c_preamble)
             lines.append("")
-            lines.append(f"unsigned short {self.name}[] = {{")
+            lines.append(f"u16 {self.name}[] = {{")
 
         for short in struct.iter_unpack(">H", data):
             lines.append(f"    0x{short[0]:04X},")

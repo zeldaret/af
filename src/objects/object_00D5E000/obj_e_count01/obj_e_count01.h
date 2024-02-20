@@ -7,7 +7,7 @@
 
 /**
  * @file obj_e_count01
- * New years day countdown clock
+ * New years countdown clock
  */
 
 extern Vtx obj_e_count01_v[];
@@ -18,10 +18,10 @@ extern Gfx obj_e_count_baloon_model[];
 extern Gfx obj_e_count_back_model[];
 extern Gfx obj_e_count_new_model[];
 extern Gfx obj_e_count_down_model[];
-extern unsigned char obj_e_count_t1_tex_txt[];
-extern unsigned char obj_e_count_t2_tex_txt[];
-extern unsigned char obj_e_count_t3_tex_txt[];
-extern unsigned char obj_e_count01_spot_tex_sgi_i4[];
+extern u8 obj_e_count_t1_tex_txt[];
+extern u8 obj_e_count_t2_tex_txt[];
+extern u8 obj_e_count_t3_tex_txt[];
+extern u8 obj_e_count01_spot_tex_sgi_i4[];
 extern JointElemR cKF_je_r_obj_e_count01_tbl[];
 extern BaseSkeletonR cKF_bs_r_obj_e_count01;
 extern u8 cKF_ckcb_r_obj_e_count01_tbl[];

@@ -4,5 +4,9 @@
 #include "assets/jp/objects/tol_umb_22/kasa_umb22_model.gfx.inc.c"
 #include "assets/jp/objects/tol_umb_22/e_umb22_model.gfx.inc.c"
 #include "assets/jp/objects/tol_umb_22/tol_umb_22_pal.palette.inc.c"
+u8 tol_umb_22_kasa_tex_txt[] = {
 #include "assets/jp/objects/tol_umb_22/tol_umb_22_kasa_tex_txt.ci4.inc.c"
+};
+u8 tol_umb_22_e_tex_txt[] = {
 #include "assets/jp/objects/tol_umb_22/tol_umb_22_e_tex_txt.ci4.inc.c"
+};

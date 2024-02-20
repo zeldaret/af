@@ -13,8 +13,8 @@ extern Gfx obj_e_goza_t2T_model[];
 extern Gfx obj_e_goza_t1T_model[];
 extern Gfx obj_e_goza_t3T_model[];
 extern Gfx goza_DL_model[];
-extern unsigned char obj_e_goza_t1_tex[];
-extern unsigned char obj_e_goza_t2_tex[];
-extern unsigned char obj_e_goza_t3_tex[];
+extern u8 obj_e_goza_t1_tex[];
+extern u8 obj_e_goza_t2_tex[];
+extern u8 obj_e_goza_t3_tex[];
 
 #endif
