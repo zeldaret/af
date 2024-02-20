@@ -584,7 +584,8 @@
           - [0xD5C128, af_palette, obj_e_kago_r_pal]
           - [0xD5C148, af_palette, obj_e_kago_w_pal]
           - [0xD5C168]
-          - [0xD5C1A8, af_palette, obj_e_koinobori_a_pal]
+          # - [0xD5C1A8, af_palette, obj_e_koinobori_a_pal]
+          - { start: 0xD5C1A8, type: palette, name: obj_e_koinobori_a_pal, global_id: obj_e_koinobori_a_pal }
           - [0xD5C1C8, af_palette, obj_dump_pal]
           - [0xD5C1E8, af_palette, obj_s_windmill_a_pal]
           - [0xD5C208, af_palette, obj_s_windmill_b_pal]
@@ -999,7 +1000,8 @@
           - [0xD7BF00, af_gfx, obj_e_koinobori/obj_e_koinobori_fukiB_model]
           - [0xD7BFD0, af_gfx, obj_e_koinobori/obj_e_koinobori_fukiC_model]
           - [0xD7C0D0, af_gfx, obj_e_koinobori/obj_e_koinobori_yaguruma_model]
-          - [0xD7C160, af_ci4, obj_e_koinobori/obj_e_koinobori_t1_tex_txt, 128, 32, 0xD5C1A8, 0x20]
+          # - [0xD7C160, ci4, obj_e_koinobori/obj_e_koinobori_t1_tex_txt, 128, 32, obj_e_koinobori_a_pal]
+          - { start: 0xD7C160, type: ci4, name: obj_e_koinobori/obj_e_koinobori_t1_tex_txt, width: 128, height: 32, palettes: obj_e_koinobori_a_pal }
           - [0xD7C960, af_ci4, obj_e_koinobori/obj_e_koinobori_t3_tex_txt, 128, 32, 0xD5C1A8, 0x20]
           - [0xD7D160, ckf_je, obj_e_koinobori/cKF_je_r_obj_e_koinobori_tbl]
           - [0xD7D22C, ckf_bs, obj_e_koinobori/cKF_bs_r_obj_e_koinobori]
