@@ -888,25 +888,31 @@
           - [0xD6DE64, ckf_je, obj_w_douzou/cKF_je_r_obj_w_douzou_tbl]
           - [0xD6DED0, ckf_bs, obj_w_douzou/cKF_bs_r_obj_w_douzou]
           - [0xD6DED8]
-      - [auto, c, obj_dump/obj_dump]
+      - [auto, c, obj_s_dump/obj_s_dump]
       - start: 0xD6DEE0
         type: .data
-        name: obj_dump/obj_dump
+        name: obj_s_dump/obj_s_dump
         subsegments:
           - [0xD6DEE0, pad]
-          - [0xD6DEE8, vtx, obj_dump/obj_s_dump_v]
-          - [0xD6E328, af_gfx, obj_dump/obj_s_dump_t1T_model]
-          - [0xD6E408, af_gfx, obj_dump/obj_s_dump_t2T_model]
-          - [0xD6E4B8, af_gfx, obj_dump/dump_s_DL_model]
-          - [0xD6E4D0, ci4, obj_dump/obj_s_dump_t1_tex, 128, 32, obj_dump_pal]
-          - [0xD6ECD0, ci4, obj_dump/obj_s_dump_t2_tex, 128, 32, obj_dump_pal]
-          - [0xD6F4D0, pad]
-          - [0xD6F4E0, vtx, obj_dump/obj_w_dump_v]
-          - [0xD6F920, af_gfx, obj_dump/obj_w_dump_t1T_model]
-          - [0xD6FA00, af_gfx, obj_dump/obj_w_dump_t2T_model]
-          - [0xD6FAB0, af_gfx, obj_dump/dump_w_DL_model]
-          - [0xD6FAC8, ci4, obj_dump/obj_w_dump_t1_tex, 128, 32, obj_dump_pal]
-          - [0xD702C8, ci4, obj_dump/obj_w_dump_t2_tex, 128, 32, obj_dump_pal]
+          - [0xD6DEE8, vtx, obj_s_dump/obj_s_dump_v]
+          - [0xD6E328, af_gfx, obj_s_dump/obj_s_dump_t1T_model]
+          - [0xD6E408, af_gfx, obj_s_dump/obj_s_dump_t2T_model]
+          - [0xD6E4B8, af_gfx, obj_s_dump/dump_s_DL_model]
+          - [0xD6E4D0, ci4, obj_s_dump/obj_s_dump_t1_tex, 128, 32, obj_dump_pal]
+          - [0xD6ECD0, ci4, obj_s_dump/obj_s_dump_t2_tex, 128, 32, obj_dump_pal]
+          - [0xD6F4D0]
+      - [auto, c, obj_w_dump/obj_w_dump]
+      - start: 0xD6F4D8
+        type: .data
+        name: obj_w_dump/obj_w_dump
+        subsegments:
+          - [0xD6F4D8, pad]
+          - [0xD6F4E0, vtx, obj_w_dump/obj_w_dump_v]
+          - [0xD6F920, af_gfx, obj_w_dump/obj_w_dump_t1T_model]
+          - [0xD6FA00, af_gfx, obj_w_dump/obj_w_dump_t2T_model]
+          - [0xD6FAB0, af_gfx, obj_w_dump/dump_w_DL_model]
+          - [0xD6FAC8, ci4, obj_w_dump/obj_w_dump_t1_tex, 128, 32, obj_dump_pal]
+          - [0xD702C8, ci4, obj_w_dump/obj_w_dump_t2_tex, 128, 32, obj_dump_pal]
           - [0xD70AC8]
       - [auto, c, obj_fallS/obj_fallS]
       - start: 0xD70AD0
