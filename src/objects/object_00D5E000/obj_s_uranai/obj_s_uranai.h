@@ -5,7 +5,7 @@
 #include "c_keyframe.h"
 
 /**
- * @file obj_uranai
+ * @file obj_s_uranai
  * 占い Katrina's tent (non winter)
  */
 

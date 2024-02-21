@@ -4,7 +4,7 @@
 #include "gbi.h"
 
 /**
- * @file obj_e_kago_r
+ * @file obj_e_kago_w
  * 籠 Basket and balls for the Sports Fair ball toss (white)
  */
 

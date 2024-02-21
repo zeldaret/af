@@ -1,11 +1,11 @@
-#ifndef OBJECT_OBJ_LOTUS_H
-#define OBJECT_OBJ_LOTUS_H
+#ifndef OBJECT_OBJ_S_LOTUS_H
+#define OBJECT_OBJ_S_LOTUS_H
 
 #include "gbi.h"
 #include "c_keyframe.h"
 
 /**
- * @file obj_lotus
+ * @file obj_s_lotus
  * Lotus flower that floats in the town lake
  */
 

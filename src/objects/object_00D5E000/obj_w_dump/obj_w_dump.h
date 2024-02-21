@@ -4,7 +4,7 @@
 #include "gbi.h"
 
 /**
- * @file obj_dump
+ * @file obj_w_dump
  * The town dump (winter)
  */
 

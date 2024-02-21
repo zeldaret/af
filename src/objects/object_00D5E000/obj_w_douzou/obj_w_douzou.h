@@ -5,7 +5,7 @@
 #include "c_keyframe.h"
 
 /**
- * @file obj_s_douzou
+ * @file obj_w_douzou
  * 銅像 Statue awarded for completely paying off your debt (winter)
  */
 
