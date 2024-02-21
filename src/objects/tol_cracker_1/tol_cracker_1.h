@@ -10,7 +10,7 @@
 
 extern Vtx tol_cracker_1_v[];
 extern Gfx tol_cracker_1T_model[];
-extern unsigned short tol_cracker_1_pal[];
-extern unsigned char tol_cracker_1_tex[];
+extern u16 tol_cracker_1_pal[];
+extern u8 tol_cracker_1_tex[];
 
 #endif

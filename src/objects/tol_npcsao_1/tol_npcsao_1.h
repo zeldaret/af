@@ -12,7 +12,7 @@ extern Vtx tol_npcsao_1_v[];
 extern Gfx tol_npcsao_1_sao_model[];
 // 浮き Fishing Bobber
 extern Gfx tol_npcsao_1_uki_model[];
-extern unsigned short tol_npcsao_1_pal[];
-extern unsigned char tol_npcsao_1_tex[];
+extern u16 tol_npcsao_1_pal[];
+extern u8 tol_npcsao_1_tex[];
 
 #endif

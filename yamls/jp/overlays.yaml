@@ -11289,7 +11289,7 @@
         name: ac_train_window
         subsegments:
           - [0x922020, pad]
-          - { start: 0x922028, type: af_palette, name: aTrainWindow_tree_pal_table, data_only: true }
+          - { start: 0x922028, type: af_palette2, name: aTrainWindow_tree_pal_table, data_only: true }
           - [0x922208, evw_scroll, aTrainWindow_out_cloud]
           - [0x92220C, evw_data, aTrainWindow_evw_anime_data]
           - [0x922214, .data, ac_train_window]
@@ -15137,8 +15137,8 @@
         name: ac_koinobori
         subsegments:
           - [0x953CE0, .data, ac_koinobori]
-          - [0x953D24, af_palette, aKOI_obj_e_koinobori_a_pal]
-          - [0x953D44, af_palette, obj_e_koinobori_b_pal]
+          - [0x953D24, af_palette2, aKOI_obj_e_koinobori_a_pal]
+          - [0x953D44, af_palette2, obj_e_koinobori_b_pal]
           - [0x953D64]
   - name: ovl_Koinobori_reloc
     type: code

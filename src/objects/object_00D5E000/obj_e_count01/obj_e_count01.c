@@ -9,10 +9,18 @@ s32 padD64830[] = { 0x00000000, 0x00000000 };
 #include "assets/jp/objects/object_00D5E000/obj_e_count01/obj_e_count_back_model.gfx.inc.c"
 #include "assets/jp/objects/object_00D5E000/obj_e_count01/obj_e_count_new_model.gfx.inc.c"
 #include "assets/jp/objects/object_00D5E000/obj_e_count01/obj_e_count_down_model.gfx.inc.c"
+u8 obj_e_count_t1_tex_txt[] = {
 #include "assets/jp/objects/object_00D5E000/obj_e_count01/obj_e_count_t1_tex_txt.ci4.inc.c"
+};
+u8 obj_e_count_t2_tex_txt[] = {
 #include "assets/jp/objects/object_00D5E000/obj_e_count01/obj_e_count_t2_tex_txt.ci4.inc.c"
+};
+u8 obj_e_count_t3_tex_txt[] = {
 #include "assets/jp/objects/object_00D5E000/obj_e_count01/obj_e_count_t3_tex_txt.ci4.inc.c"
+};
+u8 obj_e_count01_spot_tex_sgi_i4[] = {
 #include "assets/jp/objects/object_00D5E000/obj_e_count01/obj_e_count01_spot_tex_sgi_i4.i4.inc.c"
+};
 #include "assets/jp/objects/object_00D5E000/obj_e_count01/cKF_je_r_obj_e_count01_tbl.inc.c"
 #include "assets/jp/objects/object_00D5E000/obj_e_count01/cKF_bs_r_obj_e_count01.inc.c"
 #include "assets/jp/objects/object_00D5E000/obj_e_count01/cKF_ckcb_r_obj_e_count01_tbl.inc.c"

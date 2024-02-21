@@ -120,8 +120,8 @@ void aKOI_actor_init(Actor* thisx, Game_Play* game_play) {
     }                                \
     while (0)
 
-extern unsigned short aKOI_obj_e_koinobori_a_pal[];
-extern unsigned short obj_e_koinobori_b_pal[];
+extern u16 aKOI_obj_e_koinobori_a_pal[];
+extern u16 obj_e_koinobori_b_pal[];
 #include "assets/jp/overlays/actors/ovl_Koinobori/aKOI_obj_e_koinobori_a_pal.palette.inc.c"
 #include "assets/jp/overlays/actors/ovl_Koinobori/obj_e_koinobori_b_pal.palette.inc.c"
 

@@ -26,8 +26,8 @@ extern Gfx obj_e_koinobori_fukiB_model[];
 extern Gfx obj_e_koinobori_fukiC_model[];
 // 矢車 Spinning wheel at the top of the pole
 extern Gfx obj_e_koinobori_yaguruma_model[];
-extern unsigned char obj_e_koinobori_t1_tex_txt[];
-extern unsigned char obj_e_koinobori_t3_tex_txt[];
+extern u8 obj_e_koinobori_t1_tex_txt[];
+extern u8 obj_e_koinobori_t3_tex_txt[];
 extern JointElemR cKF_je_r_obj_e_koinobori_tbl[];
 extern BaseSkeletonR cKF_bs_r_obj_e_koinobori;
 extern u8 cKF_ckcb_r_obj_e_koinobori_tbl[];

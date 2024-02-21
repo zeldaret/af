@@ -4,6 +4,12 @@
 #include "assets/jp/objects/tol_umb_10/kasa_umb10_model.gfx.inc.c"
 #include "assets/jp/objects/tol_umb_10/e_umb10_model.gfx.inc.c"
 #include "assets/jp/objects/tol_umb_10/tol_umb10_pal.palette.inc.c"
+u8 tol_umb10_kasa1_tex_txt[] = {
 #include "assets/jp/objects/tol_umb_10/tol_umb10_kasa1_tex_txt.ci4.inc.c"
+};
+u8 tol_umb10_kasa2_tex_txt[] = {
 #include "assets/jp/objects/tol_umb_10/tol_umb10_kasa2_tex_txt.ci4.inc.c"
+};
+u8 tol_umb10_tuka_tex_txt[] = {
 #include "assets/jp/objects/tol_umb_10/tol_umb10_tuka_tex_txt.ci4.inc.c"
+};

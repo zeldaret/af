@@ -15,9 +15,9 @@ extern Gfx obj_w_kamakura_window_model[];
 extern Gfx obj_w_kamakura_t1_onT_model[];
 extern Gfx obj_w_kamakura_t3_onT_model[];
 extern Gfx kamakura_DL_model[];
-extern unsigned char obj_w_kamakura_t1_tex[];
-extern unsigned char obj_w_kamakura_t2_tex[];
-extern unsigned char obj_w_kamakura_t3_tex[];
-extern unsigned char obj_w_kamakura_light02_tex[];
+extern u8 obj_w_kamakura_t1_tex[];
+extern u8 obj_w_kamakura_t2_tex[];
+extern u8 obj_w_kamakura_t3_tex[];
+extern u8 obj_w_kamakura_light02_tex[];
 
 #endif
