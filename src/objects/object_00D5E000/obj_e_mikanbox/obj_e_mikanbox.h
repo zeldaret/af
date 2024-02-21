@@ -12,9 +12,9 @@
 
 extern Vtx obj_e_mikanbox_v[];
 extern Gfx obj_e_mikanbox_model[];
-extern unsigned char obj_e_mikanbox_tex[];
+extern u8 obj_e_mikanbox_tex[];
 extern Gfx obj_e_mikanbox_copyrightT_model[];
-extern unsigned char copyright_tex[];
+extern u8 copyright_tex[];
 extern Gfx obj_e_mikanbox_copyrightT_model2[];
 
 #endif

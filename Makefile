@@ -338,14 +338,10 @@ ifneq ($(PERMUTER), 1)
 endif
 
 # Build C files from assets
-$(BUILD_DIR)/%.bin: %.png
-# file names are formatted as <file name>.<image format>.png
+$(BUILD_DIR)/%.inc.c: %.png
+# File names are formatted as <file name>.<image format>.png
 # The <image format> part is passed into pigment's format argument
-	$(PIGMENT) to-bin -f $(subst .,,$(suffix $*)) -o $@ $<
-
-%.inc.c: %.bin
-# The C name argument uses just the <file name> part, with .<image format>.bin removed
-	python3 tools/bin_inc_c.py $< $@ $(basename $(basename $(notdir $<)))
+	$(PIGMENT) to-bin -f $(subst .,,$(suffix $*)) --c-array -o $@ $<
 
 # Add these as a dependency for .o files
 asset_files: $(ASSET_INC_C)

@@ -1,4 +1,4 @@
-splat64[mips]==0.21.9
+splat64[mips]==0.22.1
 mapfile-parser>=1.2.1,<2.0.0
 colorama
 libyaz0

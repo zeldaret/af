@@ -2,10 +2,28 @@
 #define M_NAME_TABLE_H
 
 #include "ultra64.h"
+#include "m_collision_bg.h"
 
+typedef struct NameTableOffsetTable {
+    s32 type;
+    mCoBG_unkStruct2 unk4;
+} NameTableOffsetTable;
+
+extern s16 move_obj_profile_table[];
+extern s16 actor_profile_table[];
+extern s16 props_profile_table[];
 extern u8 npc_looks_table[];
 
+s32 mNT_get_itemTableNo(u16 item);
+u16 mNT_FishIdx2FishItemNo(s32 idx);
+u16 bg_item_fg_sub(u16 item, s16 flag);
+u16 bg_item_fg_sub_tree_grow(u16 item, s32 pastDays, s32 checkPlant);
+u16 bg_item_fg_sub_dig2take_conv(u16 item);
+NameTableOffsetTable* obj_hight_table_item0_nogrow(u16 item);
+
 #define GET_NAME_ITEM_CATEGORY(f) (((f) & 0x0F00) >> 8)
+#define GET_NAME_ITEM_TYPE(n) (((n) & 0xF000) >> 12)
+#define GET_NAME_ITEM_INDEX(n) ((u16)(n) & 0xFF)
 
 #define EMPTY_NO 0x0000
 

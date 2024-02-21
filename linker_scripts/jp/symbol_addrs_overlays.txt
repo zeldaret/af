@@ -17796,9 +17796,8 @@ Train_Window_Actor_draw = 0x80A5A198; // type:func
 
 // .data
 
-D_80A5A580_jp = 0x80A5A580; //
 aTrainWindow_tree_pal_table = 0x80A5A588; //
-D_80A5A768_jp = 0x80A5A768; //
+aTrainWindow_out_cloud = 0x80A5A768; //
 aTrainWindow_evw_anime_data = 0x80A5A76C; //
 Train_Window_Profile = 0x80A5A774; //
 till_data = 0x80A5A798; // type:u8

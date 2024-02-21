@@ -8,7 +8,15 @@ s32 padD78A00[] = { 0x00000000, 0x00000000 };
 #include "assets/jp/objects/object_00D5E000/obj_w_kamakura/obj_w_kamakura_t1_onT_model.gfx.inc.c"
 #include "assets/jp/objects/object_00D5E000/obj_w_kamakura/obj_w_kamakura_t3_onT_model.gfx.inc.c"
 #include "assets/jp/objects/object_00D5E000/obj_w_kamakura/kamakura_DL_model.gfx.inc.c"
+u8 obj_w_kamakura_t1_tex[] = {
 #include "assets/jp/objects/object_00D5E000/obj_w_kamakura/obj_w_kamakura_t1_tex.ci4.inc.c"
+};
+u8 obj_w_kamakura_t2_tex[] = {
 #include "assets/jp/objects/object_00D5E000/obj_w_kamakura/obj_w_kamakura_t2_tex.ci4.inc.c"
+};
+u8 obj_w_kamakura_t3_tex[] = {
 #include "assets/jp/objects/object_00D5E000/obj_w_kamakura/obj_w_kamakura_t3_tex.ci4.inc.c"
+};
+u8 obj_w_kamakura_light02_tex[] = {
 #include "assets/jp/objects/object_00D5E000/obj_w_kamakura/obj_w_kamakura_light02_tex.i4.inc.c"
+};
