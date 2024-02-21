@@ -850,7 +850,7 @@
         type: .data
         name: obj_w_douzou/obj_w_douzou
         subsegments:
-          - [0xD6B180]
+          - [0xD6B180, pad]
           - [0xD6B188, vtx, obj_w_douzou/obj_w_douzou_v]
           - [0xD6C338, af_gfx, obj_w_douzou/obj_w_douzou_name_model]
           - [0xD6C3C0, af_gfx, obj_w_douzou/obj_w_douzou_dai_model]
@@ -969,33 +969,39 @@
           - [0xD73A38, ci4, obj_e_goza/obj_e_goza_t2_tex, 128, 32, obj_e_goza_pal]
           - [0xD74238, ci4, obj_e_goza/obj_e_goza_t3_tex, 128, 32, obj_e_goza_pal]
           - [0xD74A38]
-      - [auto, c, obj_e_kago/obj_e_kago]
+      - [auto, c, obj_e_kago_r/obj_e_kago_r]
       - start: 0xD74A40
         type: .data
-        name: obj_e_kago/obj_e_kago
+        name: obj_e_kago_r/obj_e_kago_r
         subsegments:
           - [0xD74A40, pad]
-          - [0xD74A48, vtx, obj_e_kago/obj_e_kago_r_v]
-          - [0xD74CD8, af_gfx, obj_e_kago/obj_e_kago_r_t1T_model]
-          - [0xD74DA8, af_gfx, obj_e_kago/obj_e_kago_r_t2T_model]
-          - [0xD74EA8, af_gfx, obj_e_kago/kago_r_DL_model]
-          - [0xD74EC0, ci4, obj_e_kago/obj_e_kago_r_t1_tex, 128, 32, obj_e_kago_r_pal]
-          - [0xD756C0, ci4, obj_e_kago/obj_e_kago_r_t2_tex, 128, 32, obj_e_kago_r_pal]
-          - [0xD75EC0, vtx, obj_e_kago/obj_e_kago_r_ball_v]
-          - [0xD76130, af_gfx, obj_e_kago/obj_e_kago_r_ball_t1T_model]
-          - [0xD76220, af_gfx, obj_e_kago/kago_r_ball_DL_model]
-          - [0xD76230, ci4, obj_e_kago/obj_e_kago_r_ball_t1_tex, 128, 32, obj_e_kago_r_pal]
-          - [0xD76A30, pad]
-          - [0xD76A40, vtx, obj_e_kago/obj_e_kago_w_v]
-          - [0xD76CD0, af_gfx, obj_e_kago/obj_e_kago_w_t1T_model]
-          - [0xD76DA0, af_gfx, obj_e_kago/obj_e_kago_w_t2T_model]
-          - [0xD76EA0, af_gfx, obj_e_kago/kago_w_DL_model]
-          - [0xD76EB8, ci4, obj_e_kago/obj_e_kago_w_t1_tex, 128, 32, obj_e_kago_w_pal]
-          - [0xD776B8, ci4, obj_e_kago/obj_e_kago_w_t2_tex, 128, 32, obj_e_kago_w_pal]
-          - [0xD77EB8, vtx, obj_e_kago/obj_e_kago_w_ball_v]
-          - [0xD780F8, af_gfx, obj_e_kago/obj_e_kago_w_ball_t1T_model]
-          - [0xD781E0, af_gfx, obj_e_kago/kago_w_ball_DL_model]
-          - [0xD781F0, ci4, obj_e_kago/obj_e_kago_w_ball_t1_tex, 128, 32, obj_e_kago_w_pal]
+          - [0xD74A48, vtx, obj_e_kago_r/obj_e_kago_r_v]
+          - [0xD74CD8, af_gfx, obj_e_kago_r/obj_e_kago_r_t1T_model]
+          - [0xD74DA8, af_gfx, obj_e_kago_r/obj_e_kago_r_t2T_model]
+          - [0xD74EA8, af_gfx, obj_e_kago_r/kago_r_DL_model]
+          - [0xD74EC0, ci4, obj_e_kago_r/obj_e_kago_r_t1_tex, 128, 32, obj_e_kago_r_pal]
+          - [0xD756C0, ci4, obj_e_kago_r/obj_e_kago_r_t2_tex, 128, 32, obj_e_kago_r_pal]
+          - [0xD75EC0, vtx, obj_e_kago_r/obj_e_kago_r_ball_v]
+          - [0xD76130, af_gfx, obj_e_kago_r/obj_e_kago_r_ball_t1T_model]
+          - [0xD76220, af_gfx, obj_e_kago_r/kago_r_ball_DL_model]
+          - [0xD76230, ci4, obj_e_kago_r/obj_e_kago_r_ball_t1_tex, 128, 32, obj_e_kago_r_pal]
+          - [0xD76A30]
+      - [auto, c, obj_e_kago_w/obj_e_kago_w]
+      - start: 0xD76A38
+        type: .data
+        name: obj_e_kago_w/obj_e_kago_w
+        subsegments:
+          - [0xD76A38, pad]
+          - [0xD76A40, vtx, obj_e_kago_w/obj_e_kago_w_v]
+          - [0xD76CD0, af_gfx, obj_e_kago_w/obj_e_kago_w_t1T_model]
+          - [0xD76DA0, af_gfx, obj_e_kago_w/obj_e_kago_w_t2T_model]
+          - [0xD76EA0, af_gfx, obj_e_kago_w/kago_w_DL_model]
+          - [0xD76EB8, ci4, obj_e_kago_w/obj_e_kago_w_t1_tex, 128, 32, obj_e_kago_w_pal]
+          - [0xD776B8, ci4, obj_e_kago_w/obj_e_kago_w_t2_tex, 128, 32, obj_e_kago_w_pal]
+          - [0xD77EB8, vtx, obj_e_kago_w/obj_e_kago_w_ball_v]
+          - [0xD780F8, af_gfx, obj_e_kago_w/obj_e_kago_w_ball_t1T_model]
+          - [0xD781E0, af_gfx, obj_e_kago_w/kago_w_ball_DL_model]
+          - [0xD781F0, ci4, obj_e_kago_w/obj_e_kago_w_ball_t1_tex, 128, 32, obj_e_kago_w_pal]
           - [0xD789F0]
       - [auto, c, obj_w_kamakura/obj_w_kamakura]
       - start: 0xD78A00
