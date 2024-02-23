@@ -4,14 +4,11 @@ bin/
 assets/
 build/
 
-linker_scripts/jp/auto/
-linker_scripts/cn/auto/
-linker_scripts/jp/animalforest.ld
-linker_scripts/cn/animalforest.ld
+linker_scripts/*/auto/
+linker_scripts/*/animalforest.ld
 *_auto.ld
 animalforest.ld
-animalforest.jp.yaml
-animalforest.cn.yaml
+animalforest-*yaml
 
 __pycache__/
 .make_options
