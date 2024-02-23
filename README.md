@@ -70,6 +70,7 @@ make setup
 make extract
 make lib
 make
+make compress
 ```
 
 ## Note about licensing
