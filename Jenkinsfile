@@ -21,23 +21,18 @@ pipeline {
         stage('Install Python dependencies') {
             steps {
                 echo 'Installing Python dependencies'
-                sh 'python3 -m venv .venv'
-                sh '''. .venv/bin/activate
-                python3 -m pip install -U -r requirements.txt
-                '''
+                sh 'make venv'
             }
         }
         stage('Copy ROM') {
             steps {
                 echo 'Setting up ROM...'
-                sh 'cp /usr/local/etc/roms/af.jp.z64 baserom.jp.z64'
+                sh 'cp /usr/local/etc/roms/af.jp.z64 baseroms/jp/baserom.z64'
             }
         }
         stage('Setup') {
             steps {
-                sh '''. .venv/bin/activate
-                bash -c "make WARNINGS_CHECK=1 -j setup 2> >(tee tools/warnings_count/warnings_setup_new.txt)"
-                '''
+                sh 'bash -c "make WARNINGS_CHECK=1 -j setup 2> >(tee tools/warnings_count/warnings_setup_new.txt)"'
             }
         }
         stage('Check setup warnings') {
@@ -47,9 +42,7 @@ pipeline {
         }
         stage('Lib') {
             steps {
-                sh '''. .venv/bin/activate
-                bash -c "make WARNINGS_CHECK=1 -j lib 2> >(tee tools/warnings_count/warnings_lib_new.txt)"
-                '''
+                sh 'bash -c "make WARNINGS_CHECK=1 -j lib 2> >(tee tools/warnings_count/warnings_lib_new.txt)"'
             }
         }
         stage('Check Lib warnings') {
@@ -59,9 +52,7 @@ pipeline {
         }
         stage('Extract') {
             steps {
-                sh '''. .venv/bin/activate
-                bash -c "make WARNINGS_CHECK=1 -j extract 2> >(tee tools/warnings_count/warnings_extract_new.txt)"
-                '''
+                sh 'bash -c "make WARNINGS_CHECK=1 -j extract 2> >(tee tools/warnings_count/warnings_extract_new.txt)"'
             }
         }
         stage('Check extraction warnings') {
@@ -71,9 +62,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh '''. .venv/bin/activate
-                bash -c "make WARNINGS_CHECK=1 -j uncompressed 2> >(tee tools/warnings_count/warnings_uncompressed_new.txt)"
-                '''
+                sh 'bash -c "make WARNINGS_CHECK=1 -j uncompressed 2> >(tee tools/warnings_count/warnings_uncompressed_new.txt)"'
             }
         }
         stage('Check build uncompressed warnings') {
@@ -83,9 +72,7 @@ pipeline {
         }
         stage('Build compressed') {
             steps {
-                sh '''. .venv/bin/activate
-                bash -c "make WARNINGS_CHECK=1 -j compressed 2> >(tee tools/warnings_count/warnings_compress_new.txt)"
-                '''
+                sh 'bash -c "make WARNINGS_CHECK=1 -j compressed 2> >(tee tools/warnings_count/warnings_compress_new.txt)"'
             }
         }
         stage('Check compress warnings') {
@@ -98,9 +85,7 @@ pipeline {
                 branch 'main'
             }
             steps {
-                sh '''. .venv/bin/activate
-                python3 ./tools/upload_frogress.py jp --apikey $FROGRESS_KEY
-                '''
+                sh '.venv/bin/python3 ./tools/upload_frogress.py jp --apikey $FROGRESS_KEY'
             }
         }
     }
