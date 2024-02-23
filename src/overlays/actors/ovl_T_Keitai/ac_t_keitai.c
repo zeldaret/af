@@ -14,13 +14,13 @@ void aTKT_actor_draw(Actor* thisx, Game_Play* game_play);
 
 void aTKT_setupAction(T_Keitai* this, s32 processIndex);
 
-typedef struct T_Keitai_Animation_Data {
+typedef struct TKeitaiAnimationData {
     /* 0x0 */ BaseAnimationR* animation;
     /* 0x4 */ f32 startFrame;
     /* 0x8 */ f32 endFrame;
-} T_Keitai_Animation_Data; // size = 0xC
+} TKeitaiAnimationData; // size = 0xC
 
-T_Keitai_Animation_Data aTKT_anm_dt[] = {
+TKeitaiAnimationData aTKT_anm_dt[] = {
     { &cKF_ba_r_tol_keitai_1_keitai_on1, 1.0f, 68.0f },
     { &cKF_ba_r_tol_keitai_1_keitai_off1, 1.0f, 61.0f },
     { &cKF_ba_r_tol_keitai_1_keitai_off1, 1.0f, 61.0f },
@@ -54,7 +54,7 @@ void func_80A1F58C_jp(T_Keitai* this, Game_Play* game_play) {
     UNUSED s32 pad;
     void* segment = game_play->objectExchangeBank.status[this->toolActor.actor.unk_026].segment;
     SkeletonInfoR* skeletonInfo;
-    T_Keitai_Animation_Data* animData;
+    TKeitaiAnimationData* animData;
 
     if (this->segment != segment) {
         animData = &aTKT_anm_dt[this->processIndex];
@@ -111,7 +111,7 @@ void aTKT_setupAction(T_Keitai* this, s32 processIndex) {
     this->processIndex = processIndex;
 
     {
-        T_Keitai_Animation_Data* animData = &aTKT_anm_dt[processIndex];
+        TKeitaiAnimationData* animData = &aTKT_anm_dt[processIndex];
 
         cKF_SkeletonInfo_R_init(&this->skeletonInfo, this->skeletonInfo.skeleton, animData->animation,
                                 animData->startFrame, animData->endFrame, animData->startFrame, 1.0f, 0.0f,
