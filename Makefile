@@ -5,8 +5,26 @@
 
 MAKEFLAGS += --no-builtin-rules
 
+# Ensure the build fails if a piped command fails
 SHELL = /bin/bash
 .SHELLFLAGS = -o pipefail -c
+
+# OS Detection
+ifeq ($(OS),Windows_NT)
+$(error Native Windows is currently unsupported for building this repository, use WSL instead c:)
+else
+  UNAME_S := $(shell uname -s)
+  ifeq ($(UNAME_S),Linux)
+    DETECTED_OS = linux
+    MAKE = make
+    VENV_BIN_DIR = bin
+  endif
+  ifeq ($(UNAME_S),Darwin)
+    DETECTED_OS = macos
+    MAKE = gmake
+    VENV_BIN_DIR = bin
+  endif
+endif
 
 #### Defaults ####
 
@@ -29,6 +47,8 @@ N_THREADS ?= $(shell nproc)
 WARNINGS_CHECK ?= 0
 # Disassembles matched functions and migrated data as well
 FULL_DISASM ?= 0
+# Emulator w/ flags
+N64_EMULATOR ?=
 
 # Set prefix to mips binutils binaries (mips-linux-gnu-ld => 'mips-linux-gnu-') - Change at your own risk!
 # In nearly all cases, not having 'mips-linux-gnu-*' binaries on the PATH is indicative of missing dependencies
@@ -45,11 +65,11 @@ TARGET               := animalforest
 ### Output ###
 
 BUILD_DIR := build
-ROM       := $(BUILD_DIR)/$(TARGET)_uncompressed.$(VERSION).z64
-ELF       := $(BUILD_DIR)/$(TARGET).$(VERSION).elf
-LD_MAP    := $(BUILD_DIR)/$(TARGET).$(VERSION).map
-LD_SCRIPT := linker_scripts/$(VERSION)/$(TARGET).ld
-ROMC      := $(BUILD_DIR)/$(TARGET).$(VERSION).z64
+ROM       := $(BUILD_DIR)/$(TARGET)-$(VERSION).z64
+ROMC      := $(ROM:.z64=-compressed.z64)
+ELF       := $(ROM:.z64=.elf)
+MAP       := $(ROM:.z64=.map)
+LDSCRIPT  := $(ROM:.z64=.ld)
 
 
 #### Setup ####
@@ -57,10 +77,10 @@ ROMC      := $(BUILD_DIR)/$(TARGET).$(VERSION).z64
 BUILD_DEFINES ?=
 
 ifeq ($(VERSION),jp)
-    BUILD_DEFINES   += -DVERSION_JP=1
+  BUILD_DEFINES   += -DVERSION_JP=1
 else
 ifeq ($(VERSION),cn)
-    BUILD_DEFINES   += -DVERSION_CN=1 -DBBPLAYER=1
+  BUILD_DEFINES   += -DVERSION_CN=1 -DBBPLAYER=1
 else
 $(error Invalid VERSION variable detected. Please use either 'jp' or 'cn')
 endif
@@ -68,23 +88,16 @@ endif
 
 
 ifeq ($(NON_MATCHING),1)
-    BUILD_DEFINES   += -DNON_MATCHING -DAVOID_UB
-    COMPARE  := 0
+  BUILD_DEFINES   += -DNON_MATCHING -DAVOID_UB
+  COMPARE  := 0
 endif
 
 MAKE = make
 CPPFLAGS += -fno-dollars-in-identifiers -P
 LDFLAGS  := --no-check-sections --accept-unknown-input-arch --emit-relocs
 
-UNAME_S := $(shell uname -s)
-ifeq ($(OS),Windows_NT)
-$(error Native Windows is currently unsupported for building this repository, use WSL instead c:)
-else ifeq ($(UNAME_S),Linux)
-    DETECTED_OS := linux
-else ifeq ($(UNAME_S),Darwin)
-    DETECTED_OS := macos
-    MAKE := gmake
-    CPPFLAGS += -xc++
+ifeq ($(DETECTED_OS), macos)
+  CPPFLAGS += -xc++
 endif
 
 #### Tools ####
@@ -109,9 +122,9 @@ CAT             := cat
 ASM_PROC_FLAGS  := --input-enc=utf-8 --output-enc=euc-jp --convert-statics=global-with-filename
 
 SPLAT           ?= python3 -m splat split
-SPLAT_YAML      ?= $(TARGET).$(VERSION).yaml
+SPLAT_YAML      ?= $(TARGET)-$(VERSION).yaml
 
-PIGMENT			?=tools/pigment64/pigment64
+PIGMENT         ?= tools/pigment64/pigment64
 
 
 IINC := -Iinclude -Isrc -Iassets/$(VERSION) -I. -I$(BUILD_DIR)
@@ -129,13 +142,13 @@ CHECK_WARNINGS := -Wall -Wextra -Wimplicit-fallthrough -Wno-unknown-pragmas -Wno
 MIPS_BUILTIN_DEFS := -DMIPSEB -D_MIPS_FPSET=16 -D_MIPS_ISA=2 -D_ABIO32=1 -D_MIPS_SIM=_ABIO32 -D_MIPS_SZINT=32 -D_MIPS_SZPTR=32
 ifneq ($(RUN_CC_CHECK),0)
 #   The -MMD flags additionaly creates a .d file with the same name as the .o file.
-    CC_CHECK          := $(CC_CHECK_COMP)
-    CC_CHECK_FLAGS    := -MMD -MP -fno-builtin -fsyntax-only -funsigned-char -fdiagnostics-color -std=gnu89 -m32 -DNON_MATCHING -DAVOID_UB -DCC_CHECK=1
-    ifneq ($(WERROR), 0)
-        CHECK_WARNINGS += -Werror
-    endif
+  CC_CHECK          := $(CC_CHECK_COMP)
+  CC_CHECK_FLAGS    := -MMD -MP -fno-builtin -fsyntax-only -funsigned-char -fdiagnostics-color -std=gnu89 -m32 -DNON_MATCHING -DAVOID_UB -DCC_CHECK=1
+  ifneq ($(WERROR), 0)
+    CHECK_WARNINGS += -Werror
+  endif
 else
-    CC_CHECK          := @:
+  CC_CHECK          := @:
 endif
 
 
@@ -158,26 +171,26 @@ ICONV_FLAGS     := --from-code=UTF-8 --to-code=EUC-JP
 OBJDUMP_FLAGS := --disassemble --reloc --disassemble-zeroes -Mreg-names=32 -Mno-aliases
 
 ifneq ($(OBJDUMP_BUILD), 0)
-    OBJDUMP_CMD = $(OBJDUMP) $(OBJDUMP_FLAGS) $@ > $(@:.o=.dump.s)
-    OBJCOPY_BIN = $(OBJCOPY) -O binary $@ $@.bin
+  OBJDUMP_CMD = $(OBJDUMP) $(OBJDUMP_FLAGS) $@ > $(@:.o=.dump.s)
+  OBJCOPY_BIN = $(OBJCOPY) -O binary $@ $@.bin
 else
-    OBJDUMP_CMD = @:
-    OBJCOPY_BIN = @:
+  OBJDUMP_CMD = @:
+  OBJCOPY_BIN = @:
 endif
 
 # rom compression flags
 COMPFLAGS := --threads $(N_THREADS)
 ifeq ($(NON_MATCHING),0)
-    COMPFLAGS += --matching
+  COMPFLAGS += --matching
 endif
 
 SPLAT_FLAGS ?=
 ifneq ($(WARNINGS_CHECK), 0)
-    SPLAT_FLAGS += --stdout-only
+  SPLAT_FLAGS += --stdout-only
 endif
 
 ifneq ($(FULL_DISASM), 0)
-	SPLAT_FLAGS += --disassemble-all
+  SPLAT_FLAGS += --disassemble-all
 endif
 
 #### Files ####
@@ -243,29 +256,29 @@ build/src/%.o: CC := $(ASM_PROC) $(ASM_PROC_FLAGS) $(CC) -- $(AS) $(ASFLAGS) --
 
 #### Main Targets ###
 
-all: uncompressed compressed
+all: rom compress
 
-uncompressed: $(ROM)
+rom: $(ROM)
 ifneq ($(COMPARE),0)
 	@md5sum $(ROM)
-	@md5sum -c $(TARGET)_uncompressed.$(VERSION).md5
+	@md5sum -c $(TARGET)-$(VERSION).md5
 endif
 
-compressed: $(ROMC)
+compress: $(ROMC)
 ifneq ($(COMPARE),0)
 	@md5sum $(ROMC)
-	@md5sum -c $(TARGET).$(VERSION).md5
+	@md5sum -c $(TARGET)-$(VERSION)-compressed.md5
 endif
 
 clean:
-	$(RM) -r $(BUILD_DIR)/asm $(BUILD_DIR)/assets $(BUILD_DIR)/src $(ROM) $(ROMC) $(ELF)
+	$(RM) -r $(BUILD_DIR)/asm $(BUILD_DIR)/assets $(BUILD_DIR)/src $(ROM) $(ROMC) $(ELF) $(LDSCRIPT)
 
 libclean:
 	$(MAKE) -C lib clean
 
 distclean: clean
 	$(RM) -r $(BUILD_DIR) asm/ assets/ .splat/
-	$(RM) -r linker_scripts/$(VERSION)/auto $(LD_SCRIPT)
+	$(RM) -r linker_scripts/$(VERSION)/auto $(LDSCRIPT)
 	$(MAKE) -C tools distclean
 	$(MAKE) -C lib distclean
 
@@ -286,16 +299,21 @@ diff-init: uncompressed
 	mkdir -p expected/
 	cp -r $(BUILD_DIR) expected/$(BUILD_DIR)
 
-init:
-	$(MAKE) distclean
+init: distclean
 	$(MAKE) setup
 	$(MAKE) lib
 	$(MAKE) extract
 	$(MAKE) all
 	$(MAKE) diff-init
 
-.PHONY: all compressed uncompressed clean libclean distclean setup extract lib diff-init init
-.DEFAULT_GOAL := uncompressed
+run: $(ROM)
+ifeq ($(N64_EMULATOR),)
+	$(error Emulator path not set. Set N64_EMULATOR in the Makefile, .make_options, or define it as an environment variable)
+endif
+	$(N64_EMULATOR) $<
+
+.PHONY: all rom compress clean libclean distclean setup extract lib diff-init init run
+.DEFAULT_GOAL := rom
 # Prevent removing intermediate files
 .SECONDARY:
 
@@ -310,11 +328,14 @@ $(ROMC): $(ROM)
 	python3 tools/z64compress_wrapper.py $(COMPFLAGS) $< $@ $(ELF) $(SPLAT_YAML)
 
 # TODO: avoid using auto/undefined
-$(ELF): $(LIBULTRA_O) $(O_FILES) $(LD_SCRIPT) $(BUILD_DIR)/linker_scripts/$(VERSION)/hardware_regs.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/undefined_syms.ld $(BUILD_DIR)/linker_scripts/common_undef_syms.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_syms_auto.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_funcs_auto.ld
-	$(LD) $(LDFLAGS) -T $(LD_SCRIPT) \
+$(ELF): $(LIBULTRA_O) $(O_FILES) $(LDSCRIPT) $(BUILD_DIR)/linker_scripts/$(VERSION)/hardware_regs.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/undefined_syms.ld $(BUILD_DIR)/linker_scripts/common_undef_syms.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_syms_auto.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_funcs_auto.ld
+	$(LD) $(LDFLAGS) -T $(LDSCRIPT) \
 		-T $(BUILD_DIR)/linker_scripts/$(VERSION)/hardware_regs.ld -T $(BUILD_DIR)/linker_scripts/$(VERSION)/undefined_syms.ld -T $(BUILD_DIR)/linker_scripts/common_undef_syms.ld \
 		-T $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_syms_auto.ld -T $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_funcs_auto.ld \
-		-Map $(LD_MAP) -o $@
+		-Map $(MAP) -o $@
+
+$(LDSCRIPT): linker_scripts/$(VERSION)/$(TARGET).ld
+	cp $< $@
 
 $(BUILD_DIR)/%.ld: %.ld
 	$(CPP) $(CPPFLAGS) $(BUILD_DEFINES) $(IINC) $< > $@
