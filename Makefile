@@ -60,10 +60,11 @@ MIPS_BINUTILS_PREFIX ?= mips-linux-gnu-
 
 
 VERSION ?= jp
+TARGET  := animalforest
 
-BASEROM              := baserom.$(VERSION).z64
-BASEROM_UNCOMPRESSED := baserom_uncompressed.$(VERSION).z64
-TARGET               := animalforest
+BASEROM_DIR := baseroms/$(VERSION)
+BASEROM     := $(BASEROM_DIR)/baserom.z64
+BASEROMD    := $(BASEROM_DIR)/baserom-decompressed.z64
 
 
 ### Output ###
@@ -265,13 +266,13 @@ all: rom compress
 rom: $(ROM)
 ifneq ($(COMPARE),0)
 	@md5sum $(ROM)
-	@md5sum -c $(TARGET)-$(VERSION).md5
+	@md5sum -c $(BASEROM_DIR)/checksum.md5
 endif
 
 compress: $(ROMC)
 ifneq ($(COMPARE),0)
 	@md5sum $(ROMC)
-	@md5sum -c $(TARGET)-$(VERSION)-compressed.md5
+	@md5sum -c $(BASEROM_DIR)/checksum-compressed.md5
 endif
 
 clean:
@@ -293,7 +294,7 @@ venv:
 
 setup:
 	$(MAKE) -C tools WARNINGS_CHECK=$(WARNINGS_CHECK)
-	$(PYTHON) tools/decompress_baserom.py
+	$(PYTHON) tools/decompress_baserom.py $(VERSION)
 
 extract:
 	$(RM) -r asm/$(VERSION) assets/$(VERSION)

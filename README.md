@@ -59,7 +59,7 @@ make venv
 
 #### 3. Prepare a base ROM
 
-Copy your ROM to inside the root of this new project directory, and rename the file of the baserom to reflect the version of ROM you are using. ex: `baserom.jp.z64`
+Copy your ROM to inside `baseroms/` in the version folder corresponding to your ROM's version, and rename the file of the baserom to `baserom.z64`. ex: `baseroms/jp/baserom.z64`
 
 #### 4. Make and Build the ROM
 

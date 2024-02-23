@@ -2,7 +2,7 @@ name: Doubutsunomori (Japanese)
 sha1: 3ee1f866eb08c0ce57a30e09f0c8b0a16a760c8f
 options:
   basename: animalforest
-  target_path: baserom_uncompressed.jp.z64
+  target_path: baseroms/jp/baserom-decompressed.z64
   ld_script_path: linker_scripts/jp/animalforest.ld
   base_path: .
   compiler: IDO
