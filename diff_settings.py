@@ -12,8 +12,8 @@ def apply(config, args):
                 if "VERSION" in line and "=" in line:
                     version = line.split("=")[1].strip()
 
-    config["baseimg"] = f"expected/build/animalforest.{version}.z64"
-    config["myimg"]   = f"build/animalforest.{version}.z64"
+    config["baseimg"] = f"expected/build/animalforest-{version}.z64"
+    config["myimg"]   = f"build/animalforest-{version}.z64"
     config["mapfile"] = f"build/animalforest-{version}.map"
     config["source_directories"] = ["./src", "./include", "./asm"]
     config["objdump_flags"] = ["-Mreg-names=32"]
