@@ -3366,7 +3366,7 @@
     bss_size: 0x0
     subsegments:
       - [0x8E6FD0, c, overlays/actors/ovl_T_Keitai/ac_t_keitai]
-      - [0x8E7420, data, overlays/actors/ovl_T_Keitai/ac_t_keitai]
+      - [0x8E7420, .data, overlays/actors/ovl_T_Keitai/ac_t_keitai]
       - [0x8E74C0, .rodata, overlays/actors/ovl_T_Keitai/ac_t_keitai]
   - name: ovl_T_Keitai_reloc
     type: code
