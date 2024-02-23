@@ -27,7 +27,9 @@ else
 endif
 
 #### Defaults ####
-
+# Target game version. Currently only the following version is supported:
+#   jp   N64 Japan (default)
+VERSION ?= jp
 # If COMPARE is 1, check the output md5sum after building
 COMPARE ?= 1
 # If NON_MATCHING is 1, define the NON_MATCHING C flag when building
@@ -53,13 +55,10 @@ VENV ?= .venv
 PYTHON ?= $(VENV)/$(VENV_BIN_DIR)/python3
 # Emulator w/ flags
 N64_EMULATOR ?=
-
 # Set prefix to mips binutils binaries (mips-linux-gnu-ld => 'mips-linux-gnu-') - Change at your own risk!
 # In nearly all cases, not having 'mips-linux-gnu-*' binaries on the PATH is indicative of missing dependencies
 MIPS_BINUTILS_PREFIX ?= mips-linux-gnu-
 
-
-VERSION ?= jp
 TARGET  := animalforest
 
 BASEROM_DIR := baseroms/$(VERSION)
