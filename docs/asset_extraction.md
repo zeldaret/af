@@ -76,7 +76,7 @@ Searching for `tol_keitai` brings up these lines:
 
 We will also use a program called Z64Utils. Currently it doesn't have full support for Animal Forest yet, but a modified build with partial functionality is pinned in the `#af_decomp` channel of our discord.
 
-First load a ROM by going to ROM > Open. `af/baserom.jp.z64` or `af/baserom-decompressed.jp.z64` are fine.
+First load a ROM by going to ROM > Open. `af/baserom-jp.z64` or `af/baserom-decompressed-jp.z64` are fine.
 
 In the filter field at the top put the object's rom start address (1127000), and click the entry that shows up. For the segment id, enter 6 and click OK.
 

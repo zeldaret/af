@@ -271,7 +271,7 @@ ifneq ($(COMPARE),0)
 endif
 
 clean:
-	$(RM) -r $(BUILD_DIR)/asm $(BUILD_DIR)/assets $(BUILD_DIR)/src $(ROM) $(ROMC) $(ELF) $(MAP) $(LDSCRIPT)
+	$(RM) -r $(BUILD_DIR)/asm $(BUILD_DIR)/assets $(BUILD_DIR)/src $(ROM) $(ROMC) $(ELF) $(MAP) $(LDSCRIPT) $(BUILD_DIR)/compress_ranges.txt
 
 libclean:
 	$(MAKE) -C lib clean
