@@ -18,7 +18,7 @@ The main configuration file for splat. Most of the time you can ignore this.
 
 These yaml files are responsible for defining each file from the rom. Currently we don't have a complete definition of every file, so these files are constantly being updated as we learn more.
 
-`animalforest.jp.yaml`
+`animalforest-jp.yaml`
 
 This is an automatically generated file that combines the other yaml files. you shouldn't edit this file, as changes will just be overwritten when it gets generated again.
 

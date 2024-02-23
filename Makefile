@@ -119,6 +119,8 @@ AS              := $(MIPS_BINUTILS_PREFIX)as
 LD              := $(MIPS_BINUTILS_PREFIX)ld
 OBJCOPY         := $(MIPS_BINUTILS_PREFIX)objcopy
 OBJDUMP         := $(MIPS_BINUTILS_PREFIX)objdump
+NM              := $(MIPS_BINUTILS_PREFIX)nm
+
 CPP             := cpp
 ICONV           := iconv
 ASM_PROC        := $(PYTHON) tools/asm-processor/build.py
@@ -181,12 +183,6 @@ ifneq ($(OBJDUMP_BUILD), 0)
 else
   OBJDUMP_CMD = @:
   OBJCOPY_BIN = @:
-endif
-
-# rom compression flags
-COMPFLAGS := --threads $(N_THREADS)
-ifeq ($(NON_MATCHING),0)
-  COMPFLAGS += --matching
 endif
 
 SPLAT_FLAGS ?=
@@ -335,8 +331,12 @@ $(ROM): $(ELF)
 	$(OBJCOPY) -O binary --pad-to=0x1914000 --gap-fill=0x00 $< $@
 # TODO: update rom header checksum
 
-$(ROMC): $(ROM)
-	$(PYTHON) tools/z64compress_wrapper.py $(COMPFLAGS) $< $@ $(ELF) $(SPLAT_YAML)
+$(ROMC): $(ROM) $(ELF) $(BUILD_DIR)/compress_ranges.txt
+	$(PYTHON) tools/compress.py --in $(ROM) --out $@ --dma-start `tools/dmadata_start.sh $(NM) $(ELF)` --compress `cat $(BUILD_DIR)/compress_ranges.txt` --threads $(N_THREADS)
+	$(PYTHON) -m ipl3checksum sum --cic 6102 --update $@
+
+$(BUILD_DIR)/compress_ranges.txt:
+	$(PYTHON) tools/compress_ranges.py $(SPLAT_YAML) -o $@
 
 # TODO: avoid using auto/undefined
 $(ELF): $(LIBULTRA_O) $(O_FILES) $(LDSCRIPT) $(BUILD_DIR)/linker_scripts/$(VERSION)/hardware_regs.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/undefined_syms.ld $(BUILD_DIR)/linker_scripts/common_undef_syms.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_syms_auto.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_funcs_auto.ld

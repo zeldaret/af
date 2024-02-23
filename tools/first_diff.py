@@ -46,8 +46,8 @@ def firstDiffMain():
 
     buildFolder = Path("build")
 
-    BUILTROM = buildFolder / f"animalforest_uncompressed.{args.version}.z64"
-    BUILTMAP = buildFolder / f"animalforest.{args.version}.map"
+    BUILTROM = buildFolder / f"animalforest-{args.version}.z64"
+    BUILTMAP = buildFolder / f"animalforest-{args.version}.map"
 
     EXPECTEDROM = "expected" / BUILTROM
     EXPECTEDMAP = "expected" / BUILTMAP
