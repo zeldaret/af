@@ -47,6 +47,10 @@ N_THREADS ?= $(shell nproc)
 WARNINGS_CHECK ?= 0
 # Disassembles matched functions and migrated data as well
 FULL_DISASM ?= 0
+# Python virtual environment
+VENV ?= .venv
+# Python interpreter
+PYTHON ?= $(VENV)/$(VENV_BIN_DIR)/python3
 # Emulator w/ flags
 N64_EMULATOR ?=
 
@@ -116,12 +120,12 @@ OBJCOPY         := $(MIPS_BINUTILS_PREFIX)objcopy
 OBJDUMP         := $(MIPS_BINUTILS_PREFIX)objdump
 CPP             := cpp
 ICONV           := iconv
-ASM_PROC        := python3 tools/asm-processor/build.py
+ASM_PROC        := $(PYTHON) tools/asm-processor/build.py
 CAT             := cat
 
 ASM_PROC_FLAGS  := --input-enc=utf-8 --output-enc=euc-jp --convert-statics=global-with-filename
 
-SPLAT           ?= python3 -m splat split
+SPLAT           ?= $(PYTHON) -m splat split
 SPLAT_YAML      ?= $(TARGET)-$(VERSION).yaml
 
 PIGMENT         ?= tools/pigment64/pigment64
@@ -145,7 +149,7 @@ ifneq ($(RUN_CC_CHECK),0)
   CC_CHECK          := $(CC_CHECK_COMP)
   CC_CHECK_FLAGS    := -MMD -MP -fno-builtin -fsyntax-only -funsigned-char -fdiagnostics-color -std=gnu89 -m32 -DNON_MATCHING -DAVOID_UB -DCC_CHECK=1
   ifneq ($(WERROR), 0)
-    CHECK_WARNINGS += -Werror
+    CHECK_WARNINGS  += -Werror
   endif
 else
   CC_CHECK          := @:
@@ -271,7 +275,7 @@ ifneq ($(COMPARE),0)
 endif
 
 clean:
-	$(RM) -r $(BUILD_DIR)/asm $(BUILD_DIR)/assets $(BUILD_DIR)/src $(ROM) $(ROMC) $(ELF) $(LDSCRIPT)
+	$(RM) -r $(BUILD_DIR)/asm $(BUILD_DIR)/assets $(BUILD_DIR)/src $(ROM) $(ROMC) $(ELF) $(MAP) $(LDSCRIPT)
 
 libclean:
 	$(MAKE) -C lib clean
@@ -282,9 +286,14 @@ distclean: clean
 	$(MAKE) -C tools distclean
 	$(MAKE) -C lib distclean
 
+venv:
+	test -d $(VENV) || python3 -m venv $(VENV)
+	$(PYTHON) -m pip install -U pip
+	$(PYTHON) -m pip install -U -r requirements.txt
+
 setup:
 	$(MAKE) -C tools WARNINGS_CHECK=$(WARNINGS_CHECK)
-	python3 tools/decompress_baserom.py
+	$(PYTHON) tools/decompress_baserom.py
 
 extract:
 	$(RM) -r asm/$(VERSION) assets/$(VERSION)
@@ -294,12 +303,13 @@ extract:
 lib:
 	$(MAKE) -C lib
 
-diff-init: uncompressed
+diff-init: rom
 	$(RM) -rf expected/
 	mkdir -p expected/
 	cp -r $(BUILD_DIR) expected/$(BUILD_DIR)
 
 init: distclean
+	$(MAKE) venv
 	$(MAKE) setup
 	$(MAKE) lib
 	$(MAKE) extract
@@ -312,7 +322,7 @@ ifeq ($(N64_EMULATOR),)
 endif
 	$(N64_EMULATOR) $<
 
-.PHONY: all rom compress clean libclean distclean setup extract lib diff-init init run
+.PHONY: all rom compress clean libclean distclean venv setup extract lib diff-init init run
 .DEFAULT_GOAL := rom
 # Prevent removing intermediate files
 .SECONDARY:
@@ -325,7 +335,7 @@ $(ROM): $(ELF)
 # TODO: update rom header checksum
 
 $(ROMC): $(ROM)
-	python3 tools/z64compress_wrapper.py $(COMPFLAGS) $< $@ $(ELF) $(SPLAT_YAML)
+	$(PYTHON) tools/z64compress_wrapper.py $(COMPFLAGS) $< $@ $(ELF) $(SPLAT_YAML)
 
 # TODO: avoid using auto/undefined
 $(ELF): $(LIBULTRA_O) $(O_FILES) $(LDSCRIPT) $(BUILD_DIR)/linker_scripts/$(VERSION)/hardware_regs.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/undefined_syms.ld $(BUILD_DIR)/linker_scripts/common_undef_syms.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_syms_auto.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_funcs_auto.ld
