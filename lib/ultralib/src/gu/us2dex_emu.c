@@ -27,7 +27,9 @@ static	u32	imageTop;
 static  s16	tmemSrcLines;
 
 /* Addition 99/05/31(Y) */
+#if BUILD_VERSION >= VERSION_K
 static s8 bgflg;
+#endif
 
 /*----------------------------------------------------------------------------*
  * Set scissoring parameters
@@ -63,8 +65,12 @@ static	void	tmemLoad_B(Gfx **pkt, u32 imagePtr, s16 loadLines, s16 tmemSH)
   /* [LoadTile] CMD=0x34 TILE=7 SH=TMEMW*16-1 TMEMH*4-1 */
   (*pkt)->words.w0 = (G_LOADTILE<<24)|0x000000;
 /* addition 99/5/31(Y) */
+#if BUILD_VERSION >= VERSION_K
   if(bgflg==3) (*pkt)->words.w1 = 0x07000000 | (tmemSH-1)<<16;
   else  (*pkt)->words.w1 = 0x07000000 | (tmemSH-1)<<16 | (loadLines<<2)-1;
+#else
+  (*pkt)->words.w1 = 0x07000000 | (tmemSH-1)<<16 | (loadLines<<2)-1;
+#endif
   (*pkt) ++;
 }
 
@@ -188,9 +194,11 @@ void	guS2DEmuBgRect1Cyc(Gfx **pkt, uObjBg *bg)
   scaleH = bg->s.scaleH;  
 
 /* addition 99/05/31(Y) */
+#if BUILD_VERSION >= VERSION_K
   bgflg=bg->s.imageSiz;
   if(scaleW==0) scaleW=1;
   if(scaleH==0) scaleH=1;
+#endif
 
     
 {
@@ -327,14 +335,20 @@ end */
   //	o Cut image width end number at TMEM Word boundary. 
   //	o tmem width + 1 when start position not in agreement with Word boundary */
 /* addition 99/05/31(Y) */
+#if BUILD_VERSION >= VERSION_K
   if(bgflg==3){
      tmemSize=480;
      imageSliceWmax = 0x2800;
   }
   else{
      imageSliceWmax = (((s32)bg->s.frameW * (s32)scaleW)>>7) + (flagBilerp<<5);
+     if (imageSliceWmax > imageSrcW) imageSliceWmax = imageSrcW;  
+  }
+#else
+  imageSliceWmax = (((s32)bg->s.frameW * (s32)scaleW)>>7) + (flagBilerp<<5);
   if (imageSliceWmax > imageSrcW) imageSliceWmax = imageSrcW;  
-       }
+#endif
+
   tmemSliceWmax  = (imageSliceWmax + tmemMask) / tmemShift + 1;
   
   /* Get TMEM/image/frame line number that can be loaded at once */
@@ -390,6 +404,7 @@ end */
   /*	u32	rdpSetTimg_w0; 
   	u32	rdpSetTile_w0; */
 /* Addition 99/05/31(Y) */
+#if BUILD_VERSION >= VERSION_K
   if(bgflg==3){
     rdpSetTimg_w0 = (G_SETTIMG<<24)+0x180000+(imageSrcWsize>>1)-1;
     rdpSetTile_w0 = (G_SETTILE<<24)+0x180000+(tmemSliceWmax<<9);
@@ -398,6 +413,10 @@ end */
     rdpSetTimg_w0 = (G_SETTIMG<<24)+0x100000+(imageSrcWsize>>1)-1;
     rdpSetTile_w0 = (G_SETTILE<<24)+0x100000+(tmemSliceWmax<<9);
   }
+#else
+  rdpSetTimg_w0 = (G_SETTIMG<<24)+0x100000+(imageSrcWsize>>1)-1;
+  rdpSetTile_w0 = (G_SETTILE<<24)+0x100000+(tmemSliceWmax<<9);
+#endif
   /* [SetTile:7] */
   (*pkt)->words.w0 = rdpSetTile_w0;
   (*pkt)->words.w1 = 0x07000000;

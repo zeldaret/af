@@ -47,10 +47,10 @@
 
 
 
-
-
-
-
+// Adjust line numbers to match assert
+#if BUILD_VERSION < VERSION_J
+#line 52
+#endif
 
 // TODO: this comes from a header
 #ident "$Revision: 1.17 $"

@@ -11,17 +11,19 @@ Currently this repo supports building the following versions:
 | 2.0E       | :x: / N/A | :x: / N/A | :x: / N/A |
 | 2.0F       | :x: / N/A | :x: / N/A | :x: / N/A |
 | 2.0G       | :x: / N/A | :x: / N/A | :x: / N/A |
-| 2.0H       | :x: / :x: | :x: / :x: | :x: / :x: |
-| 2.0I       | :x: / :x: | :x: / :x: | :x: / :x: |
+| 2.0H       | N/A / :x: | N/A / :x: | N/A / :x: |
+| 2.0I       | :heavy_check_mark: / :heavy_check_mark: | :x: / :heavy_check_mark: | :heavy_check_mark: / :heavy_check_mark: |
 | 2.0I_patch | :x: / :x: | :x: / :x: | :x: / :x: |
-| 2.0J       | :x: / :x: | :x: / :x: | :x: / :x: |
-| 2.0K       | :x: / :x: | :x: / :x: | :x: / :x: |
+| 2.0J       | :heavy_check_mark: / :heavy_check_mark: | :x: / :heavy_check_mark: | :heavy_check_mark: / :heavy_check_mark: |
+| 2.0K       | :heavy_check_mark: / :heavy_check_mark: | :x: / :heavy_check_mark: | :heavy_check_mark: / :heavy_check_mark: |
 | 2.0L       | :heavy_check_mark: / :heavy_check_mark: | :x: / :heavy_check_mark: | :heavy_check_mark: / :heavy_check_mark: |
 | ique_v1.5  | :x: | :x: | :x: |
 
 ## Preparation
 
-After cloning the repo, put a copy of the target archive on the root of this directory.
+After cloning the repo, put a copy of the target archive(s) in their correct version folder in `base/`.
+For example, if your target archive is libgultra_rom.a 2.0L then you'd place it in `base/L/`.
+If you will be building without a target archive by setting `COMPARE=0` then you can skip this step.
 
 ## Build dependencies
 
@@ -46,5 +48,18 @@ sudo apt install binutils-mips-linux-gnu
 
 ## Building
 
-- `make setup`
-- `make`
+Run make setup with the proper flags set followed by make with optional jobs.
+For example, if building the 2.0L PC archive you'd do the following: 
+
+- `make VERSION=L TARGET=libgultra_rom setup`
+- `make VERSION=L TARGET=libgultra_rom`
+
+Every target flag combination requires separate a setup command.
+
+If building without an target archive, than you can use `COMPARE=0` like the the following:
+
+- `make VERSION=L TARGET=libgultra_rom COMPARE=0 setup`
+- `make VERSION=L TARGET=libgultra_rom COMPARE=0`
+
+note that running setup without `COMPARE=0` and no archive will result in an error,
+and only needs to be run once instead of per target flag combination

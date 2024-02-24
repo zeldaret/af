@@ -1,5 +1,6 @@
 #include "PR/os_internal.h"
 #include "controller.h"
+#include "os_version.h"
 
 s32 __osGbpakSetBank(OSPfs* pfs, u8 bank);
 
@@ -18,9 +19,11 @@ s32 osGbpakReadWrite(OSPfs* pfs, u16 flag, u16 address, u8* buffer, u16 size) {
         }
     }
 
+#if BUILD_VERSION >= VERSION_K
     if (size == 0) {
         return 0;
     }
+#endif
 
     size = (u16)(size >> 5);
     address = (u16)((address | 0xC000) >> 5);

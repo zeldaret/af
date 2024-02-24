@@ -9,10 +9,25 @@ export COMPILER_PATH := $(WORKING_DIR)/tools/gcc
 
 CFLAGS := -w -nostdinc -c -G 0 -mgp32 -mfp32 -D_LANGUAGE_C
 ASFLAGS := -w -nostdinc -c -G 0 -mgp32 -mfp32 -DMIPSEB -D_LANGUAGE_ASSEMBLY -D_MIPS_SIM=1 -D_ULTRA64 -x assembler-with-cpp
-CPPFLAGS = -D_MIPS_SZLONG=32 -D__USE_ISOC99 $(GBIDEFINE)
+CPPFLAGS = -D_MIPS_SZLONG=32 -D__USE_ISOC99 $(GBIDEFINE) $(VERSION_DEFINE) $(DEBUGFLAG)
 IINC = -I . -I $(WORKING_DIR)/include -I $(WORKING_DIR)/include/gcc -I $(WORKING_DIR)/include/PR
 MIPS_VERSION := -mips3
 ASOPTFLAGS :=
+
+ifneq ($(filter $(VERSION),D E F G H I J),)
+CFLAGS += -funsigned-char
+endif
+
+# 2.0I libgultra_rom was not compiled with -DNDEBUG and instead libgultra had -DNDEBUG
+ifneq ($(filter $(VERSION),I),)
+ifeq ($(findstring _rom,$(TARGET)),_rom)
+DEBUGFLAG :=
+else ifeq ($(findstring _d,$(TARGET)),_d)
+DEBUGFLAG := -D_DEBUG
+else
+DEBUGFLAG := -DNDEBUG
+endif
+endif
 
 ifeq ($(findstring _d,$(TARGET)),_d)
 OPTFLAGS := -O0
@@ -33,7 +48,9 @@ export VR4300MUL := ON
 $(BUILD_DIR)/src/os/initialize_isv.marker: OPTFLAGS := -O2
 $(BUILD_DIR)/src/os/initialize_isv.marker: STRIP = && tools/gcc/strip-2.7 -N initialize_isv.c $(WORKING_DIR)/$(@:.marker=.o)
 $(BUILD_DIR)/src/os/assert.marker: OPTFLAGS := -O0
+ifeq ($(filter $(VERSION),D E F G H I),)
 $(BUILD_DIR)/src/os/seterrorhandler.marker: OPTFLAGS := -O0
+endif
 $(BUILD_DIR)/src/mgu/%.marker: export VR4300MUL := OFF
 $(BUILD_DIR)/src/mgu/rotate.marker: export VR4300MUL := ON
 $(BUILD_DIR)/src/debug/%.marker: ASFLAGS += -P

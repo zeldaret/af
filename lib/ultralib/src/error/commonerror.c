@@ -8,8 +8,16 @@
 
 #ifndef _FINALROM
 
+void __osSyncVPrintf(const char* fmt, va_list args);
+
 static u32 errorLogData[19] ALIGNED(8);
-static OSLog errorLog = { OS_ERROR_MAGIC, 76, errorLogData, 0, 0 };
+static OSLog errorLog = {
+    OS_ERROR_MAGIC, // magic
+    sizeof(errorLogData), // len
+    errorLogData, // base
+    0, //startCount
+    0, //writeOffset
+};
 
 static void __commonErrorHandler(s16 code, s16 numArgs, ...);
 OSErrorHandler __osCommonHandler = __commonErrorHandler;
@@ -126,7 +134,7 @@ const char* __os_error_message[] = {
     "Synthesizer: no free updates",
     "alSndPDeallocate: attempt to deallocate a sound which is playing",
     "alSndpDelete: attempt to delete player with playing sounds",
-    "alSndpPlay: attempt to game_play a sound which is playing",
+    "alSndpPlay: attempt to play a sound which is playing",
     "alSndpSetSound: sound id (%d) out of range (0 - %d)",
     "alSndpSetPriority: sound id (%d) out of range (0 - %d)",
     "alSndpSet Parameter: target (%d) out of range (0 - %d)",

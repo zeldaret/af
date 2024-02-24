@@ -20,6 +20,10 @@
 #include <gt.h>
 #include "macros.h"
 
+#if BUILD_VERSION < VERSION_J
+#ident "$Revision: 1.4 $"
+#endif
+
 #undef  PRINTF
 #define PRINTF      rmonPrintf
 

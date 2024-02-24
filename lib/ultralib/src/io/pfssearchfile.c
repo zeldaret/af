@@ -8,15 +8,20 @@ s32 osPfsFindFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name, u8
     s32 ret = 0;
     int fail;
 
+#if BUILD_VERSION >= VERSION_J
     if (!(pfs->status & PFS_INITIALIZED)) {
         return PFS_ERR_INVALID;
     }
-
     ERRCK(__osCheckId(pfs));
+#else
+    PFS_CHECK_ID;
+#endif
 
     for (j = 0; j < pfs->dir_size; j++) {
         ERRCK(__osContRamRead(pfs->queue, pfs->channel, pfs->dir_table + j, (u8*)&dir));
+#if BUILD_VERSION >= VERSION_J
         ERRCK(__osPfsGetStatus(pfs->queue, pfs->channel));
+#endif
 
         if ((dir.company_code == company_code) && dir.game_code == game_code) {
             fail = FALSE;
