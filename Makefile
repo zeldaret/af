@@ -65,6 +65,8 @@ BASEROM_DIR := baseroms/$(VERSION)
 BASEROM     := $(BASEROM_DIR)/baserom.z64
 BASEROMD    := $(BASEROM_DIR)/baserom-decompressed.z64
 
+ULTRALIB_VERSION     := L
+ULTRALIB_TARGET      := libultra_rom
 
 ### Output ###
 
@@ -113,24 +115,24 @@ endif
 CC              := tools/ido/$(DETECTED_OS)/7.1/cc
 CC_OLD          := tools/ido/$(DETECTED_OS)/5.3/cc
 
-
 AS              := $(MIPS_BINUTILS_PREFIX)as
 LD              := $(MIPS_BINUTILS_PREFIX)ld
 OBJCOPY         := $(MIPS_BINUTILS_PREFIX)objcopy
 OBJDUMP         := $(MIPS_BINUTILS_PREFIX)objdump
 NM              := $(MIPS_BINUTILS_PREFIX)nm
 
+AR              := ar
 CPP             := cpp
 ICONV           := iconv
-ASM_PROC        := $(PYTHON) tools/asm-processor/build.py
 CAT             := cat
 
+ASM_PROC        := $(PYTHON) tools/asm-processor/build.py
 ASM_PROC_FLAGS  := --input-enc=utf-8 --output-enc=euc-jp --convert-statics=global-with-filename
 
-SPLAT           ?= $(PYTHON) -m splat split
-SPLAT_YAML      ?= $(TARGET)-$(VERSION).yaml
+SPLAT           := $(PYTHON) -m splat split
+SPLAT_YAML      := $(TARGET)-$(VERSION).yaml
 
-PIGMENT         ?= tools/pigment64/pigment64
+PIGMENT         := tools/pigment64/pigment64
 
 
 IINC := -Iinclude -Isrc -Iassets/$(VERSION) -I. -I$(BUILD_DIR)
@@ -160,14 +162,15 @@ endif
 
 CFLAGS          += -G 0 -non_shared -Xcpluscomm -nostdinc -Wab,-r4300_mul
 
-WARNINGS        := -fullwarn -verbose -woff 624,649,838,712,516,513,596,564,594
-ASFLAGS         := -march=vr4300 -32 -G0
-COMMON_DEFINES  := -D_MIPS_SZLONG=32
-GBI_DEFINES     := -DF3DEX_GBI_2
-RELEASE_DEFINES := -DNDEBUG -D_FINALROM
-AS_DEFINES      := -DMIPSEB -D_LANGUAGE_ASSEMBLY -D_ULTRA64
-C_DEFINES       := -DLANGUAGE_C -D_LANGUAGE_C
-ENDIAN          := -EB
+WARNINGS         := -fullwarn -verbose -woff 624,649,838,712,516,513,596,564,594
+ASFLAGS          := -march=vr4300 -32 -G0
+COMMON_DEFINES   := -D_MIPS_SZLONG=32
+GBI_DEFINES      := -DF3DEX_GBI_2
+RELEASE_DEFINES  := -DNDEBUG -D_FINALROM
+AS_DEFINES       := -DMIPSEB -D_LANGUAGE_ASSEMBLY -D_ULTRA64
+C_DEFINES        := -DLANGUAGE_C -D_LANGUAGE_C
+LIBULTRA_DEFINES := -DBUILD_VERSION=VERSION_$(ULTRALIB_VERSION)
+ENDIAN           := -EB
 
 OPTFLAGS        := -O2 -g3
 MIPS_VERSION    := -mips2
@@ -177,11 +180,13 @@ ICONV_FLAGS     := --from-code=UTF-8 --to-code=EUC-JP
 OBJDUMP_FLAGS := --disassemble --reloc --disassemble-zeroes -Mreg-names=32 -Mno-aliases
 
 ifneq ($(OBJDUMP_BUILD), 0)
-  OBJDUMP_CMD = $(OBJDUMP) $(OBJDUMP_FLAGS) $@ > $(@:.o=.dump.s)
+  OBJDUMP_CMD = $(OBJDUMP) $(OBJDUMP_FLAGS) $@ > $(@:.o=.s)
   OBJCOPY_BIN = $(OBJCOPY) -O binary $@ $@.bin
+  LIBDUMP_CMD = $(AR) xo --output $(@:.a=) $@
 else
   OBJDUMP_CMD = @:
   OBJCOPY_BIN = @:
+  LIBDUMP_CMD = @:
 endif
 
 SPLAT_FLAGS ?=
@@ -197,9 +202,15 @@ endif
 
 $(shell mkdir -p asm/$(VERSION) assets/$(VERSION) linker_scripts/$(VERSION)/auto)
 
+ULTRALIB_DIR  := lib/ultralib
+ULTRALIB_LIB  := $(ULTRALIB_DIR)/build/$(ULTRALIB_VERSION)/$(ULTRALIB_TARGET)/$(ULTRALIB_TARGET).a
+LIBULTRA_DIR  := lib/libultra
+LIBULTRA_LIB  := $(BUILD_DIR)/$(LIBULTRA_DIR).a
+
 SRC_DIRS      := $(shell find src -type d)
 ASM_DIRS      := $(shell find asm/$(VERSION) -type d -not -path "asm/$(VERSION)/nonmatchings/*" -not -path "asm/$(VERSION)/lib/*")
 ASSET_DIRS    := $(shell find assets/$(VERSION) -type d)
+LIB_DIRS      := $(foreach f, $(LIBULTRA_DIR), $f)
 
 C_FILES       := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 S_FILES       := $(foreach dir,$(ASM_DIRS) $(SRC_DIRS),$(wildcard $(dir)/*.s))
@@ -212,30 +223,13 @@ ASSET_PNGS := $(foreach dir,$(ASSET_DIRS),$(wildcard $(dir)/*.png))
 ASSET_BINS := $(foreach f,$(ASSET_PNGS:.png=.bin),$(BUILD_DIR)/$f)
 ASSET_INC_C := $(foreach f,$(ASSET_PNGS:.png=.inc.c),$(BUILD_DIR)/$f)
 
-LIBULTRA_DIRS := $(shell find lib/ultralib/src -type d \
-                  -not -path "lib/ultralib/src/audio" \
-                  -not -path "lib/ultralib/src/error" \
-                  -not -path "lib/ultralib/src/gio" \
-                  -not -path "lib/ultralib/src/gt" \
-                  -not -path "lib/ultralib/src/host" \
-                  -not -path "lib/ultralib/src/log" \
-                  -not -path "lib/ultralib/src/rg" \
-                  -not -path "lib/ultralib/src/rmon" \
-                  -not -path "lib/ultralib/src/sched" \
-                  -not -path "lib/ultralib/src/voice")
-
-LIBULTRA_C    := $(foreach dir,$(LIBULTRA_DIRS),$(wildcard $(dir)/*.c))
-LIBULTRA_S    := $(foreach dir,$(LIBULTRA_DIRS),$(wildcard $(dir)/*.s))
-LIBULTRA_O    := $(foreach f,$(LIBULTRA_C:.c=.o),$(BUILD_DIR)/$f) \
-                 $(foreach f,$(LIBULTRA_S:.s=.o),$(BUILD_DIR)/$f)
-
 
 # Automatic dependency files
 DEP_FILES := $(O_FILES:.o=.d) \
              $(O_FILES:.o=.asmproc.d)
 
 # create build directories
-$(shell mkdir -p $(BUILD_DIR)/linker_scripts/$(VERSION) $(BUILD_DIR)/linker_scripts/$(VERSION)/auto $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(ASSET_DIRS),$(BUILD_DIR)/$(dir)))
+$(shell mkdir -p $(BUILD_DIR)/linker_scripts/$(VERSION) $(BUILD_DIR)/linker_scripts/$(VERSION)/auto $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(ASSET_DIRS) $(LIB_DIRS),$(BUILD_DIR)/$(dir)))
 
 
 # directory flags
@@ -271,16 +265,15 @@ ifneq ($(COMPARE),0)
 endif
 
 clean:
-	$(RM) -r $(BUILD_DIR)/asm $(BUILD_DIR)/assets $(BUILD_DIR)/src $(ROM) $(ROMC) $(ELF) $(MAP) $(LDSCRIPT) $(BUILD_DIR)/compress_ranges.txt
+	$(RM) -r $(BUILD_DIR)
 
 libclean:
-	$(MAKE) -C lib clean
+	$(MAKE) -C lib/ultralib clean VERSION=$(ULTRALIB_VERSION) TARGET=$(ULTRALIB_TARGET)
 
-distclean: clean
+distclean: clean libclean
 	$(RM) -r $(BUILD_DIR) asm/ assets/ .splat/
 	$(RM) -r linker_scripts/$(VERSION)/auto $(LDSCRIPT)
 	$(MAKE) -C tools distclean
-	$(MAKE) -C lib distclean
 
 venv:
 	test -d $(VENV) || python3 -m venv $(VENV)
@@ -296,18 +289,16 @@ extract:
 	$(CAT) yamls/$(VERSION)/header.yaml yamls/$(VERSION)/makerom.yaml yamls/$(VERSION)/boot.yaml yamls/$(VERSION)/code.yaml yamls/$(VERSION)/overlays.yaml yamls/$(VERSION)/assets.yaml > $(SPLAT_YAML)
 	$(SPLAT) $(SPLAT_FLAGS) $(SPLAT_YAML)
 
-lib:
-	$(MAKE) -C lib
+lib: $(ULTRALIB_LIB)
 
 diff-init: rom
-	$(RM) -rf expected/
+	$(RM) -r expected/
 	mkdir -p expected/
 	cp -r $(BUILD_DIR) expected/$(BUILD_DIR)
 
 init: distclean
 	$(MAKE) venv
 	$(MAKE) setup
-	$(MAKE) lib
 	$(MAKE) extract
 	$(MAKE) all
 	$(MAKE) diff-init
@@ -338,17 +329,25 @@ $(BUILD_DIR)/compress_ranges.txt:
 	$(PYTHON) tools/compress_ranges.py $(SPLAT_YAML) -o $@
 
 # TODO: avoid using auto/undefined
-$(ELF): $(LIBULTRA_O) $(O_FILES) $(LDSCRIPT) $(BUILD_DIR)/linker_scripts/$(VERSION)/hardware_regs.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/undefined_syms.ld $(BUILD_DIR)/linker_scripts/common_undef_syms.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_syms_auto.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_funcs_auto.ld
+$(ELF): $(O_FILES) $(LIBULTRA_LIB) $(LDSCRIPT) $(BUILD_DIR)/linker_scripts/$(VERSION)/hardware_regs.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/undefined_syms.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/unused_syms.ld $(BUILD_DIR)/linker_scripts/common_undef_syms.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_syms_auto.ld $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_funcs_auto.ld
 	$(LD) $(LDFLAGS) -T $(LDSCRIPT) \
-		-T $(BUILD_DIR)/linker_scripts/$(VERSION)/hardware_regs.ld -T $(BUILD_DIR)/linker_scripts/$(VERSION)/undefined_syms.ld -T $(BUILD_DIR)/linker_scripts/common_undef_syms.ld \
+		-T $(BUILD_DIR)/linker_scripts/$(VERSION)/hardware_regs.ld -T $(BUILD_DIR)/linker_scripts/$(VERSION)/undefined_syms.ld \
+		-T $(BUILD_DIR)/linker_scripts/$(VERSION)/unused_syms.ld -T $(BUILD_DIR)/linker_scripts/common_undef_syms.ld \
 		-T $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_syms_auto.ld -T $(BUILD_DIR)/linker_scripts/$(VERSION)/auto/undefined_funcs_auto.ld \
-		-Map $(MAP) -o $@
+		-Map $(MAP) $(LIBULTRA_LIB) -o $@
 
 $(LDSCRIPT): linker_scripts/$(VERSION)/$(TARGET).ld
 	cp $< $@
 
 $(BUILD_DIR)/%.ld: %.ld
 	$(CPP) $(CPPFLAGS) $(BUILD_DEFINES) $(IINC) $< > $@
+
+$(LIBULTRA_LIB): $(ULTRALIB_LIB)
+	cp $< $@
+	$(LIBDUMP_CMD)
+
+$(ULTRALIB_LIB):
+	$(MAKE) -C lib/ultralib VERSION=$(ULTRALIB_VERSION) TARGET=$(ULTRALIB_TARGET) COMPARE=0 CROSS=$(MIPS_BINUTILS_PREFIX) CC=../../$(CC_OLD)
 
 $(BUILD_DIR)/%.o: %.bin
 	$(OBJCOPY) -I binary -O elf32-big $< $@
@@ -358,15 +357,10 @@ $(BUILD_DIR)/%.o: %.s
 	$(OBJDUMP_CMD)
 
 $(BUILD_DIR)/%.o: %.c
-	$(CC_CHECK) $(CC_CHECK_FLAGS) $(IINC) -I $(dir $*) $(CHECK_WARNINGS) $(BUILD_DEFINES) $(COMMON_DEFINES) $(RELEASE_DEFINES) $(GBI_DEFINES) $(C_DEFINES) $(MIPS_BUILTIN_DEFS) -o $@ $<
-	$(CC) -c $(CFLAGS) $(BUILD_DEFINES) $(IINC) $(WARNINGS) $(MIPS_VERSION) $(ENDIAN) $(COMMON_DEFINES) $(RELEASE_DEFINES) $(GBI_DEFINES) $(C_DEFINES) $(OPTFLAGS) -o $@ $<
+	$(CC_CHECK) $(CC_CHECK_FLAGS) $(IINC) -I $(dir $*) $(CHECK_WARNINGS) $(BUILD_DEFINES) $(COMMON_DEFINES) $(RELEASE_DEFINES) $(GBI_DEFINES) $(LIBULTRA_DEFINES) $(C_DEFINES) $(MIPS_BUILTIN_DEFS) -o $@ $<
+	$(CC) -c $(CFLAGS) $(BUILD_DEFINES) $(IINC) $(WARNINGS) $(MIPS_VERSION) $(ENDIAN) $(COMMON_DEFINES) $(RELEASE_DEFINES) $(GBI_DEFINES) $(LIBULTRA_DEFINES) $(C_DEFINES) $(OPTFLAGS) -o $@ $<
 	$(OBJDUMP_CMD)
 	$(RM_MDEBUG)
-
-$(BUILD_DIR)/lib/%.o:
-ifneq ($(PERMUTER), 1)
-	$(error Library files has not been built, please run `$(MAKE) lib` first)
-endif
 
 # Build C files from assets
 $(BUILD_DIR)/%.inc.c: %.png

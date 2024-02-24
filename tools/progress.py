@@ -18,31 +18,48 @@ def getProgressFromMapFile(mapFile: mapfile_parser.MapFile, asmPath: Path, nonma
     totalStats = mapfile_parser.ProgressStats()
     progressPerFolder: dict[str, mapfile_parser.ProgressStats] = dict()
 
-    for file in mapFile:
-        if len(file.symbols) == 0:
-            continue
+    for segment in mapFile:
+        for file in segment:
+            if len(file) == 0:
+                continue
 
-        folder = file.filepath.parts[pathIndex]
-        if folder in aliases:
-            folder = aliases[folder]
+            folder = file.filepath.parts[pathIndex]
 
-        if folder not in progressPerFolder:
-            progressPerFolder[folder] = mapfile_parser.ProgressStats()
+            if ".a" in folder:
+                folder = folder.split('.a')[0]
 
-        originalFilePath = Path(*file.filepath.parts[pathIndex:])
-        fullAsmFile = asmPath / originalFilePath.with_suffix(".s")
-        wholeFileIsUndecomped = fullAsmFile.exists()
+            if folder in aliases:
+                folder = aliases[folder]
 
-        for func in file.symbols:
-            if wholeFileIsUndecomped:
-                totalStats.undecompedSize += func.size
-                progressPerFolder[folder].undecompedSize += func.size
-            elif mapFile.findSymbolByName(func.name) is not None:
-                totalStats.undecompedSize += func.size
-                progressPerFolder[folder].undecompedSize += func.size
-            else:
-                totalStats.decompedSize += func.size
-                progressPerFolder[folder].decompedSize += func.size
+            if folder not in progressPerFolder:
+                progressPerFolder[folder] = mapfile_parser.ProgressStats()
+
+            originalFilePath = Path(*file.filepath.parts[pathIndex:])
+
+            extensionlessFilePath = originalFilePath
+            while extensionlessFilePath.suffix:
+                extensionlessFilePath = extensionlessFilePath.with_suffix("")
+
+            fullAsmFile = asmPath / extensionlessFilePath.with_suffix(".s")
+            wholeFileIsUndecomped = fullAsmFile.exists()
+
+
+            for func in file:
+                funcAsmPath = nonmatchings / extensionlessFilePath / f"{func.name}.s"
+
+                symSize = 0
+                if func.size is not None:
+                    symSize = func.size
+
+                if wholeFileIsUndecomped:
+                    totalStats.undecompedSize += symSize
+                    progressPerFolder[folder].undecompedSize += symSize
+                elif funcAsmPath.exists():
+                    totalStats.undecompedSize += symSize
+                    progressPerFolder[folder].undecompedSize += symSize
+                else:
+                    totalStats.decompedSize += symSize
+                    progressPerFolder[folder].decompedSize += symSize
 
     return totalStats, progressPerFolder
 
@@ -51,18 +68,19 @@ def getProgress(mapPath: Path, version: str) -> tuple[mapfile_parser.ProgressSta
     mapFile = mapfile_parser.MapFile()
     mapFile.readMapFile(mapPath)
 
-    for file in mapFile:
-        if len(file.symbols) == 0:
-            continue
+    for segment in mapFile:
+        for file in segment:
+            if len(file) == 0:
+                continue
 
-        filepathParts = list(file.filepath.parts)
-        if version in filepathParts:
-            filepathParts.remove(version)
-        file.filepath = Path(*filepathParts)
+            filepathParts = list(file.filepath.parts)
+            if version in filepathParts:
+                filepathParts.remove(version)
+            file.filepath = Path(*filepathParts)
 
     nonMatchingsPath = ASMPATH / version / NONMATCHINGS
 
-    return mapFile.filterBySegmentType(".text").getProgress(ASMPATH / version, nonMatchingsPath, aliases={"ultralib": "libultra"})
+    return getProgressFromMapFile(mapFile.filterBySectionType(".text"), ASMPATH / version, nonMatchingsPath, aliases={"ultralib": "libultra"})
 
 def progressMain():
     parser = argparse.ArgumentParser()
