@@ -63,3 +63,10 @@ If building without an target archive, than you can use `COMPARE=0` like the the
 
 note that running setup without `COMPARE=0` and no archive will result in an error,
 and only needs to be run once instead of per target flag combination
+
+If building for use with modern linkers, than you can use `FIXUPS=1` like the the following:
+
+- `make VERSION=L TARGET=libgultra_rom FIXUPS=1 setup`
+- `make VERSION=L TARGET=libgultra_rom FIXUPS=1`
+
+note that running with `FIXUPS=1` will automatically set `COMPARE=0`.

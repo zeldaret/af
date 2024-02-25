@@ -1,4 +1,9 @@
 COMPARE ?= 1
+FIXUPS ?= 0
+
+ifneq ($(FIXUPS),0)
+COMPARE := 0
+endif
 
 # One of:
 # libgultra_rom, libgultra_d, libgultra
@@ -49,9 +54,8 @@ CPPFLAGS += -D_FINALROM
 endif
 
 SRC_DIRS := $(shell find src -type d)
-ASM_DIRS := $(shell find asm -type d)
 C_FILES  := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
-S_FILES  := $(foreach dir,$(SRC_DIRS) $(ASM_DIRS),$(wildcard $(dir)/*.s))
+S_FILES  := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.s))
 
 # Versions J and below used the C matrix math implementations
 MGU_MATRIX_FILES := mtxcatf normalize scale translate
@@ -104,15 +108,15 @@ AR_OBJECTS := $(shell ar t $(BASE_AR))
 endif
 
 
-# Try to find a file corresponding to an archive file in any of src/ asm/ or the base directory, prioritizing src then asm then the original file
-AR_ORDER = $(foreach f,$(AR_OBJECTS),$(shell find $(BUILD_DIR)/src $(BUILD_DIR)/asm $(BASE_DIR) -iname $f -type f -print -quit))
+# Try to find a file corresponding to an archive file in src/ or the base directory, prioritizing src then the original file
+AR_ORDER = $(foreach f,$(AR_OBJECTS),$(shell find $(BUILD_DIR)/src $(BASE_DIR) -iname $f -type f -print -quit))
 MATCHED_OBJS = $(filter-out $(BASE_DIR)/%,$(AR_ORDER))
 UNMATCHED_OBJS = $(filter-out $(MATCHED_OBJS),$(AR_ORDER))
 NUM_OBJS = $(words $(AR_ORDER))
 NUM_OBJS_MATCHED = $(words $(MATCHED_OBJS))
 NUM_OBJS_UNMATCHED = $(words $(UNMATCHED_OBJS))
 
-$(shell mkdir -p asm $(BASE_DIR) src $(foreach dir,$(ASM_DIRS) $(SRC_DIRS),$(BUILD_DIR)/$(dir)))
+$(shell mkdir -p $(BASE_DIR) src $(foreach dir,$(SRC_DIRS),$(BUILD_DIR)/$(dir)))
 
 .PHONY: all clean distclean setup
 all: $(BUILD_AR)
@@ -174,11 +178,13 @@ ifneq ($(COMPARE),0)
 	 touch -r $(BASE_DIR)/$(@F:.marker=.o) $(@:.marker=.o), \
 	 echo "Object file $(@F:.marker=.o) is not in the current archive" \
 	)
-# create or update the marker file
-else
+endif
+ifneq ($(FIXUPS),0)
 	tools/set_o32abi_bit.py $(WORKING_DIR)/$(@:.marker=.o)
 	$(CROSS)strip $(WORKING_DIR)/$(@:.marker=.o) -N asdasdasdasd
+	$(CROSS)objcopy --remove-section .mdebug $(WORKING_DIR)/$(@:.marker=.o)
 endif
+# create or update the marker file
 	@touch $@
 
 $(S_MARKER_FILES): $(BUILD_DIR)/%.marker: %.s
@@ -191,11 +197,13 @@ ifneq ($(COMPARE),0)
 	 touch -r $(BASE_DIR)/$(@F:.marker=.o) $(@:.marker=.o), \
 	 echo "Object file $(@F:.marker=.o) is not in the current archive" \
 	)
-# create or update the marker file
-else
+endif
+ifneq ($(FIXUPS),0)
 	tools/set_o32abi_bit.py $(WORKING_DIR)/$(@:.marker=.o)
 	$(CROSS)strip $(WORKING_DIR)/$(@:.marker=.o) -N asdasdasdasd
+	$(CROSS)objcopy --remove-section .mdebug $(WORKING_DIR)/$(@:.marker=.o)
 endif
+# create or update the marker file
 	@touch $@
 
 # Rule for building files that require specific file paths in the mdebug section
@@ -212,11 +220,13 @@ ifneq ($(COMPARE),0)
 	 touch -r $(BASE_DIR)/$(@F:.marker=.o) $(@:.marker=.o), \
 	 echo "Object file $(@F:.marker=.o) is not in the current archive" \
 	)
-# create or update the marker file
-else
+endif
+ifneq ($(FIXUPS),0)
 	tools/set_o32abi_bit.py $(WORKING_DIR)/$(@:.marker=.o)
 	$(CROSS)strip $(WORKING_DIR)/$(@:.marker=.o) -N asdasdasdasd
+	$(CROSS)objcopy --remove-section .mdebug $(WORKING_DIR)/$(@:.marker=.o)
 endif
+# create or update the marker file
 	@touch $@
 
 # Disable built-in rules
