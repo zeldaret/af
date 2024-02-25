@@ -76,7 +76,7 @@ s32 osPfsChecker(OSPfs* pfs) {
             if (cc != 0 || next_page.ipage != PFS_EOF) {
                 bzero(&tmp_dir, sizeof(__OSDir));
 
-                SET_ACTIVEBANK_TO_ZERO;
+                SET_ACTIVEBANK_TO_ZERO();
                 ERRCK(__osContRamWrite(pfs->queue, pfs->channel, pfs->dir_table + j, (u8*)&tmp_dir, FALSE));
                 fixed++;
             }
@@ -111,7 +111,7 @@ s32 osPfsChecker(OSPfs* pfs) {
                 tmp_dir.status = DIR_STATUS_EMPTY;
                 tmp_dir.data_sum = 0;
 
-                SET_ACTIVEBANK_TO_ZERO;
+                SET_ACTIVEBANK_TO_ZERO();
                 ERRCK(__osContRamWrite(pfs->queue, pfs->channel, pfs->dir_table + j, (u8*)&tmp_dir, FALSE));
                 fixed++;
             }
@@ -123,7 +123,7 @@ s32 osPfsChecker(OSPfs* pfs) {
                 tmp_dir.status = DIR_STATUS_EMPTY;
                 tmp_dir.data_sum = 0;
 
-                SET_ACTIVEBANK_TO_ZERO;
+                SET_ACTIVEBANK_TO_ZERO();
                 ERRCK(__osContRamWrite(pfs->queue, pfs->channel, pfs->dir_table + j, (u8*)&tmp_dir, FALSE));
                 fixed++;
             }

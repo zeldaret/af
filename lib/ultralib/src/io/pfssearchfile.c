@@ -14,7 +14,7 @@ s32 osPfsFindFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name, u8
     }
     ERRCK(__osCheckId(pfs));
 #else
-    PFS_CHECK_ID;
+    PFS_CHECK_ID();
 #endif
 
     for (j = 0; j < pfs->dir_size; j++) {

@@ -178,7 +178,7 @@ s32 osPfsAllocateFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name
         return PFS_ERR_INVALID;
     }
 
-    PFS_CHECK_ID;
+    PFS_CHECK_ID();
 
     if (((ret = osPfsFindFile(pfs, company_code, game_code, game_name, ext_name, file_no)) != 0) &&
         ret != PFS_ERR_INVALID) {

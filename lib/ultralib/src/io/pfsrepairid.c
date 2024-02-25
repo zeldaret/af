@@ -30,7 +30,7 @@ s32 osPfsRepairId(OSPfs *pfs) {
     s32 ret;
     __OSPackId *id;
 
-    SET_ACTIVEBANK_TO_ZERO;
+    SET_ACTIVEBANK_TO_ZERO();
     ERRCK(__osContRamRead(pfs->queue, pfs->channel, 1, (u8*)&temp));
     __osIdCheckSum((u16*)&temp, &sum, &isum);
     id = (__OSPackId*)&temp;

@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:decompals/ultralib.git
 	branch = main
-	commit = 34e07ce1c15d625e16fb5d7477c10805202a4c9e
+	commit = caf88debe9e65f8396846e45b4e489cedffec891
 	parent = a10bb11ed6784c6a16a09b7eb17657d2e1bb303c
 	method = merge
 	cmdver = 0.4.6

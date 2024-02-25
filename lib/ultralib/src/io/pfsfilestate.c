@@ -19,13 +19,13 @@ s32 osPfsFileState(OSPfs* pfs, s32 file_no, OSPfsState* state) {
         return PFS_ERR_INVALID;
     }
 
-    PFS_CHECK_STATUS;
+    PFS_CHECK_STATUS();
 #if BUILD_VERSION >= VERSION_J
     ERRCK(__osCheckId(pfs));
 #else
-    PFS_CHECK_ID;
+    PFS_CHECK_ID();
 #endif
-    SET_ACTIVEBANK_TO_ZERO;
+    SET_ACTIVEBANK_TO_ZERO();
 
     ERRCK(__osContRamRead(pfs->queue, pfs->channel, pfs->dir_table + file_no, (u8*)&dir));
 

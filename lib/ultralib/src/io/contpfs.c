@@ -56,7 +56,7 @@ s32 __osRepairPackId(OSPfs* pfs, __OSPackId* badid, __OSPackId* newid) {
 #if BUILD_VERSION >= VERSION_J
     j = 0;
 #else
-    SET_ACTIVEBANK_TO_ZERO;
+    SET_ACTIVEBANK_TO_ZERO();
 #endif
 
     newid->repaired = -1;
@@ -65,7 +65,7 @@ s32 __osRepairPackId(OSPfs* pfs, __OSPackId* badid, __OSPackId* newid) {
     newid->serial_low = badid->serial_low;
 
 #if BUILD_VERSION >= VERSION_J
-    SET_ACTIVEBANK_TO_ZERO;
+    SET_ACTIVEBANK_TO_ZERO();
 #else
     j = 0;
 #endif
@@ -105,7 +105,7 @@ s32 __osRepairPackId(OSPfs* pfs, __OSPackId* badid, __OSPackId* newid) {
     } while (j < PFS_MAX_BANKS);
 
 #if BUILD_VERSION >= VERSION_J
-    SET_ACTIVEBANK_TO_ZERO;
+    SET_ACTIVEBANK_TO_ZERO();
 #else
     ERRCK(SELECT_BANK(pfs, 0));
 #endif
@@ -147,7 +147,7 @@ s32 __osCheckPackId(OSPfs* pfs, __OSPackId* temp) {
     int i;
     int j;
 
-    SET_ACTIVEBANK_TO_ZERO;
+    SET_ACTIVEBANK_TO_ZERO();
     index[0] = PFS_ID_0AREA;
     index[1] = PFS_ID_1AREA;
     index[2] = PFS_ID_2AREA;
@@ -184,7 +184,7 @@ s32 __osGetId(OSPfs* pfs) {
     s32 ret;
     __OSPackId* id;
 
-    SET_ACTIVEBANK_TO_ZERO;
+    SET_ACTIVEBANK_TO_ZERO();
     ERRCK(__osContRamRead(pfs->queue, pfs->channel, PFS_ID_0AREA, (u8*)temp));
     __osIdCheckSum((u16*)temp, &sum, &isum);
     id = (__OSPackId*)temp;
@@ -247,7 +247,7 @@ s32 __osCheckId(OSPfs* pfs) {
         }
     }
 #else
-    SET_ACTIVEBANK_TO_ZERO;
+    SET_ACTIVEBANK_TO_ZERO();
 #endif
 
     ret = __osContRamRead(pfs->queue, pfs->channel, PFS_ID_0AREA, (u8*)temp);
@@ -287,7 +287,7 @@ s32 __osPfsRWInode(OSPfs* pfs, __OSInode* inode, u8 flag, u8 bank) {
     }
 #endif
 
-    SET_ACTIVEBANK_TO_ZERO;
+    SET_ACTIVEBANK_TO_ZERO();
 
     offset = (bank > 0) ? 1 : pfs->inode_start_page;
 

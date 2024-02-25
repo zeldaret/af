@@ -65,7 +65,7 @@ s32 __osLeoInterrupt() {
         } else {
             blockInfo->dramAddr = (void *)((u32)blockInfo->dramAddr + blockInfo->sectorSize);
             info->sectorNum++;
-            osEPiRawStartDma(__osDiskHandle, OS_WRITE, LEO_SECTOR_BUFF, blockInfo->dramAddr, blockInfo->sectorSize);
+            __osEPiRawStartDma(__osDiskHandle, OS_WRITE, LEO_SECTOR_BUFF, blockInfo->dramAddr, blockInfo->sectorSize);
             return 1;
         }
     } else if (info->cmdType == LEO_CMD_TYPE_0) {
@@ -120,7 +120,7 @@ s32 __osLeoInterrupt() {
                 blockInfo->errStatus = LEO_ERROR_GOOD;
             }
 
-            osEPiRawStartDma(__osDiskHandle, OS_READ, LEO_C2_BUFF, blockInfo->C2Addr, blockInfo->sectorSize * 4);
+            __osEPiRawStartDma(__osDiskHandle, OS_READ, LEO_C2_BUFF, blockInfo->C2Addr, blockInfo->sectorSize * 4);
             return 1;
         }
 
@@ -145,7 +145,7 @@ s32 __osLeoInterrupt() {
                 return 1;
             }
 
-            osEPiRawStartDma(__osDiskHandle, 0, LEO_SECTOR_BUFF, blockInfo->dramAddr, blockInfo->sectorSize);
+            __osEPiRawStartDma(__osDiskHandle, 0, LEO_SECTOR_BUFF, blockInfo->dramAddr, blockInfo->sectorSize);
             blockInfo->errStatus = LEO_ERROR_GOOD;
             return 1;
         } else if (info->sectorNum <= 0x54) {
