@@ -10,8 +10,13 @@ void osThreadProfileStop(void) {
 
 #ifndef NDEBUG
     if (__osThprofFlag == 0) {
+#if BUILD_VERSION >= VERSION_L
         __osRestoreInt(saveMask);
         __osError(138, 0);
+#else
+        __osError(138, 0);
+        __osRestoreInt(saveMask);
+#endif
         return;
     }
 #endif
@@ -23,9 +28,13 @@ void osThreadProfileStop(void) {
             thprof[id].time += now_time - __osThprofLastTimer;
         } else {
 #ifndef NDEBUG
+#if BUILD_VERSION >= VERSION_L
             __osRestoreInt(saveMask);
+#endif
             __osError(147, 1, id);
+#if BUILD_VERSION >= VERSION_L
             saveMask = __osDisableInt();
+#endif
 #endif
         }
     }

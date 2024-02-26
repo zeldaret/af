@@ -80,7 +80,9 @@ ALMicroTime _sndpVoiceHandler(void *node)
         switch (sndp->nextEvent.type) {
             case (AL_SNDP_API_EVT):
                 evt.common.type = AL_SNDP_API_EVT;
-		evt.common.state = (ALSoundState*)-1;
+#if BUILD_VERSION >= VERSION_K
+		        evt.common.state = (ALSoundState*)-1;
+#endif
                 alEvtqPostEvent(&sndp->evtq, (ALEvent *)&evt, sndp->frameTime);
                 break;
 
@@ -230,9 +232,7 @@ void _handleEvent(ALSndPlayer *sndp, ALSndpEvent *event)
             break;
     }
 }
-
-static
-void _removeEvents(ALEventQueue *evtq, ALSoundState *state)
+static void _removeEvents(ALEventQueue *evtq, ALSoundState *state)
 {
     ALLink              *thisNode;
     ALLink              *nextNode;
@@ -260,8 +260,6 @@ void _removeEvents(ALEventQueue *evtq, ALSoundState *state)
     
     osSetIntMask(mask);
 }
-
-
 /*
   This routine safely divides a signed 32-bit integer
   by a floating point value.  It avoids overflow by using
@@ -275,17 +273,18 @@ void _removeEvents(ALEventQueue *evtq, ALSoundState *state)
   very small pitch ratios can cause the reult to overflow,
   causing a floating point exception.
 */
-static
-s32 _DivS32ByF32 (s32 i, f32 f)
+#if BUILD_VERSION == VERSION_J // Adjust line numbers to match assert
+#line 277
+#elif BUILD_VERSION < VERSION_J
+#line 278
+#endif
+static s32 _DivS32ByF32 (s32 i, f32 f)
 {
     #define INT_MAX         2147483647      /* Should be in a limits.h file. */
-
     f64	rd;
     int	ri;
 
-#ifdef _DEBUG
     assert(f!=0);	/* Caller must make sure we do not divide by zero! */
-#endif
 
     rd = i/f;		/* Store result as a double to avoid overflow. */
     

@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [L] # [E, F, G, H, I, I_patch, J, K, L]
+        version: [I, J, K, L] # [E, F, G, H, I, I_patch, J, K, L]
         suffix: [~, _rom] # [~, _d, _rom]
 
     steps:
@@ -32,7 +32,7 @@ jobs:
         token: ${{ secrets.SECRETTOKEN }}
         path: deps_repo
     - name: Get the dependency
-      run: cp deps_repo/libultra/${{ matrix.version }}/* .
+      run: cp deps_repo/libultra/${{ matrix.version }}/* base/${{ matrix.version }}
 
     - name: Setup
       run: make setup -j $(nproc) TARGET=libultra${{ matrix.suffix }} VERSION=${{ matrix.version }}

@@ -23,6 +23,10 @@
 #include <ultraerror.h>
 #include <os_internal.h>
 
+#if BUILD_VERSION < VERSION_J
+#ident "$Revision: 1.17 $"
+#endif
+
 void alSynStartVoiceParams(ALSynth *s, ALVoice *v, ALWaveTable *w,
                            f32 pitch, s16 vol, ALPan pan, u8 fxmix,
                            ALMicroTime t)
@@ -37,8 +41,15 @@ void alSynStartVoiceParams(ALSynth *s, ALVoice *v, ALWaveTable *w,
         update = (ALStartParamAlt *)__allocParam();
         ALFailIf(update == 0, ERR_ALSYN_NO_UPDATE);
 
-	if (fxmix > 127)
+#if BUILD_VERSION >= VERSION_J
+        if (fxmix > 127) {
             fxmix = 127;
+        }
+#else
+        if (fxmix < 0) { // Not possible
+            fxmix = -fxmix;
+        }
+#endif
         
         /*
          * set offset and fxmix data

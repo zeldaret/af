@@ -77,7 +77,11 @@ void guParseGbiDL(u64 *gbi_dl, u32 nbytes, u8 flags)
                 word0 = (u32*)curGfx;       /* get ptr to first word */
                 param = ((*word0) & 0x00ff0000) >> 16; /* get param */
                 word1 = word0 + 1;          /* get pointer to second word */
+#if BUILD_VERSION >= VERSION_J
                 seg = ((*word1) & 0x0f000000) >> 24; /* get the segment */
+#else
+                seg = ((*word1) & 0xff000000) >> 24; /* get the segment */
+#endif
                 paddr = segments[seg] + ((*word1) & 0x00ffffff);
                 vaddr = (Gfx*)osPhysicalToVirtual(paddr);
                 len = 1;
@@ -109,7 +113,11 @@ void guParseGbiDL(u64 *gbi_dl, u32 nbytes, u8 flags)
             case G_MTX:
                 word0 = (u32*)curGfx;       /* get ptr to first word */
                 word1 = word0 + 1;          /* get pointer to second word */
+#if BUILD_VERSION >= VERSION_J
                 seg = ((*word1) & 0x0f000000) >> 24; /* get the segment */
+#else
+                seg = ((*word1) & 0xff000000) >> 24; /* get the segment */
+#endif
                 paddr = segments[seg] + ((*word1) & 0x00ffffff);
                 vaddr = (Gfx*)osPhysicalToVirtual(paddr);
                 len = (*word0) & 0x0000ffff;

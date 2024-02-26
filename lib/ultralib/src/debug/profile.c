@@ -85,7 +85,7 @@ void osProfileInit(OSProf* profp, u32 profcnt) {
     u32 i;
     OSProf* t;
 
-#ifndef NDEBUG
+#if !defined(NDEBUG) && BUILD_VERSION >= VERSION_K
     if (__osProfileActive) {
         __osError(ERR_OSPROFILEINIT_STR, 0);
         return;

@@ -81,9 +81,9 @@ void alCSPNew(ALCSPlayer *seqp, ALSeqpConfig *c)
     seqp->initOsc       = c->initOsc;
     seqp->updateOsc     = c->updateOsc;
     seqp->stopOsc       = c->stopOsc;
-    
+
     seqp->nextEvent.type = AL_SEQP_API_EVT;	/* this will start the voice handler "spinning" */
-    
+
     /*
      * init the channel state
      */
@@ -104,14 +104,13 @@ void alCSPNew(ALCSPlayer *seqp, ALSeqpConfig *c)
     
     seqp->vAllocHead = 0;
     seqp->vAllocTail = 0;    
-        
-    /*
-     * init the event queue
-     */
+#if BUILD_VERSION < VERSION_J
+#line 109
+#endif
+    // init the event queue
     items = alHeapAlloc(hp, c->maxEvents, sizeof(ALEventListItem));
     alEvtqNew(&seqp->evtq, items, c->maxEvents);
 
-    
     /*
      * add ourselves to the driver
      */
@@ -292,10 +291,10 @@ static ALMicroTime __CSPVoiceHandler(void *node)
 	    break;
 
 	case (AL_SEQP_SEQ_EVT):
-
-#ifdef _DEBUG
-	    assert(seqp->state != AL_PLAYING);	/* Must be done playing to change sequences. */
+#if BUILD_VERSION < VERSION_J
+#line 294
 #endif
+	    assert(seqp->state != AL_PLAYING);	/* Must be done playing to change sequences. */
 
 	    seqp->target = seqp->nextEvent.msg.spseq.seq;
 	    __setUsptFromTempo (seqp, 500000.0);
@@ -304,10 +303,10 @@ static ALMicroTime __CSPVoiceHandler(void *node)
 	    break;
 
 	case (AL_SEQP_BANK_EVT):
-
-#ifdef _DEBUG
-	    assert(seqp->state == AL_STOPPED);	/* Must be fully stopped to change banks. */
+#if BUILD_VERSION < VERSION_J
+#line 303
 #endif
+	    assert(seqp->state == AL_STOPPED);	/* Must be fully stopped to change banks. */
 
 	    seqp->bank = seqp->nextEvent.msg.spbank.bank;
 	    __initFromBank((ALSeqPlayer *)seqp, seqp->bank);
@@ -317,10 +316,10 @@ static ALMicroTime __CSPVoiceHandler(void *node)
 	case (AL_SEQ_END_EVT):
 	case (AL_TEMPO_EVT):
 	case (AL_SEQ_MIDI_EVT):
-
-#ifdef _DEBUG
-	    assert(FALSE);		
+#if BUILD_VERSION < VERSION_J
+#line 313
 #endif
+	    assert(FALSE);		
 
 	    break;
         }
@@ -407,15 +406,15 @@ __CSPHandleNextSeqEvent(ALCSPlayer *seqp)
 	  break;
 	  
       default:
-
-#ifdef _DEBUG
-	  assert(FALSE);	/* Sequence event type not supported. */
+#if BUILD_VERSION < VERSION_J
+#line 399
 #endif
-
+	  assert(FALSE);	/* Sequence event type not supported. */
+#if BUILD_VERSION >= VERSION_J
 	  break;
+#endif
     }
 }
-
 
 static void __CSPHandleMIDIMsg(ALCSPlayer *seqp, ALEvent *event)
 {
@@ -723,10 +722,10 @@ static void __CSPHandleMIDIMsg(ALCSPlayer *seqp, ALEvent *event)
             break;
         case (AL_MIDI_ProgramChange):
 	    /* sct 1/16/96 - We must have a valid bank in order to process the program change. */
-
-#ifdef _DEBUG
-	    assert(seqp->bank != NULL);
+#if BUILD_VERSION < VERSION_J
+#line 710
 #endif
+	    assert(seqp->bank != NULL);
 
             if (key < seqp->bank->instCount)
             {

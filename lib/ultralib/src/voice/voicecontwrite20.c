@@ -5,17 +5,15 @@
 #include "io/controller_voice.h"
 #include "io/siint.h"
 
-#define WRITE20FORMAT(p) ((__OSVoiceWrite20Format*)(ptr))
+#define WRITE20FORMAT(ptr) ((__OSVoiceWrite20Format*)(ptr))
 
 s32 __osVoiceContWrite20(OSMesgQueue* mq, int channel, u16 address, u8* buffer) {
     s32 ret = 0;
     u8 status;
     int i;
     u8* ptr;
-    int retry;
+    int retry = 2;
     u8 crc;
-
-    retry = 2;
 
     __osSiGetAccess();
 
@@ -27,7 +25,7 @@ s32 __osVoiceContWrite20(OSMesgQueue* mq, int channel, u16 address, u8* buffer) 
             __osContLastCmd = CONT_CMD_WRITE20_VOICE;
             __osPfsLastChannel = channel;
 
-            for (i = 0; i < channel; i++) { *ptr++ = 0; }
+            for (i = 0; i < channel; i++) { *ptr++ = CONT_CMD_REQUEST_STATUS; }
 
             __osPfsPifRam.pifstatus = CONT_CMD_EXE;
 
@@ -45,15 +43,15 @@ s32 __osVoiceContWrite20(OSMesgQueue* mq, int channel, u16 address, u8* buffer) 
         WRITE20FORMAT(ptr)->addrh = address >> 3;
         WRITE20FORMAT(ptr)->addrl = (address << 5) | __osContAddressCrc(address);
 
-        bcopy(buffer, &WRITE20FORMAT(ptr)->data, 20);
+        bcopy(buffer, WRITE20FORMAT(ptr)->data, ARRLEN(WRITE20FORMAT(ptr)->data));
 
         ret = __osSiRawStartDma(OS_WRITE, &__osPfsPifRam);
-        crc = __osVoiceContDataCrc(buffer, 20);
+        crc = __osVoiceContDataCrc(buffer, ARRLEN(WRITE20FORMAT(ptr)->data));
         osRecvMesg(mq, NULL, OS_MESG_BLOCK);
         ret = __osSiRawStartDma(OS_READ, &__osPfsPifRam);
         osRecvMesg(mq, NULL, OS_MESG_BLOCK);
 
-        ret = (WRITE20FORMAT(ptr)->rxsize & 0xC0) >> 4;
+        ret = CHNL_ERR(*WRITE20FORMAT(ptr));
 
         if (ret == 0) {
             if (crc != WRITE20FORMAT(ptr)->datacrc) {

@@ -46,7 +46,6 @@ extern u32 load_num, load_cnt, load_max, load_min, save_num, save_cnt, save_max,
 }
 
 
-
 Acmd *_loadOutputBuffer(ALFx *r, ALDelay *d, s32 buff, s32 incount, Acmd *p);
 Acmd *_loadBuffer(ALFx *r, s16 *curr_ptr, s32 buff, s32 count, Acmd *p);
 Acmd *_saveBuffer(ALFx *r, s16 *curr_ptr, s32 buff, s32 count, Acmd *p);
@@ -71,10 +70,10 @@ Acmd *alFxPull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset,
 #ifdef AUD_PROFILE
     lastCnt[++cnt_index] = osGetCount();
 #endif
-    
-#ifdef _DEBUG
-    assert(source);
+#if BUILD_VERSION < VERSION_J
+#line 74
 #endif
+    assert(source);
 
     /*
      * pull channels going into this effect first

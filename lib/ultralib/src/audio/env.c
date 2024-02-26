@@ -93,19 +93,19 @@ Acmd *alEnvmixerPull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset,
      */
     inp = AL_RESAMPLER_OUT;
 
-    while (e->ctrlList != 0) {
-            
+    while (e->ctrlList != 0) { 
         lastOffset = thisOffset;
         thisOffset = e->ctrlList->delta;
         samples    = thisOffset - lastOffset;
         if (samples > outCount)
             break;
-        
-#ifdef _DEBUG
+#if BUILD_VERSION < VERSION_J
+#line 103
+#endif
         assert(samples >= 0);
         assert(samples <= AL_MAX_RSP_SAMPLES);
-#endif
-        
+
+
         switch (e->ctrlList->type) {
           case (AL_FILTER_START_VOICE_ALT):
               {                  
@@ -307,8 +307,7 @@ Acmd *alEnvmixerPull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset,
     return ptr;
 }
 
-s32
-alEnvmixerParam(void *filter, s32 paramID, void *param)
+s32 alEnvmixerParam(void *filter, s32 paramID, void *param)
 {
     ALFilter      *f = (ALFilter *) filter;
     ALEnvMixer	*e = (ALEnvMixer *) filter;
@@ -349,9 +348,10 @@ alEnvmixerParam(void *filter, s32 paramID, void *param)
     }
     return 0;
 }
-
-static
-Acmd* _pullSubFrame(void *filter, s16 *inp, s16 *outp, s32 outCount,
+#if BUILD_VERSION < VERSION_J
+#line 350
+#endif
+static Acmd* _pullSubFrame(void *filter, s16 *inp, s16 *outp, s32 outCount,
                     s32 sampleOffset, Acmd *p) 
 {
     Acmd        *ptr = p;
@@ -366,9 +366,9 @@ Acmd* _pullSubFrame(void *filter, s16 *inp, s16 *outp, s32 outCount,
      * ask all filters upstream from us to build their command
      * lists.
      */
-#ifdef _DEBUG
+
     assert(source);
-#endif
+
     
     ptr = (*source->handler)(source, inp, outCount, sampleOffset, p);
 

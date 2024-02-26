@@ -9,8 +9,12 @@ s32 osPfsFreeBlocks(OSPfs* pfs, s32* bytes_not_used) {
     u8 bank;
     int offset;
 
-    PFS_CHECK_STATUS;
+    PFS_CHECK_STATUS();
+#if BUILD_VERSION >= VERSION_J
     ERRCK(__osCheckId(pfs));
+#else
+    PFS_CHECK_ID();
+#endif
     for (bank = 0; bank < pfs->banks; bank++) {
         ERRCK(__osPfsRWInode(pfs, &inode, OS_READ, bank));
         offset = ((bank > 0) ? 1 : pfs->inode_start_page);
