@@ -50,11 +50,11 @@ ActorProfile MyHouse_Profile = {
 
 // aMHS_make_bgOffset
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_MyHouse/ac_my_house/func_80A067D8_jp.s")
-extern u8 D_80A07510_jp[];
+extern s8 D_80A07510_jp[];
 
 typedef struct collision_offset_table_s {
     /* 0x00 */ u8 unit_attribute;
-    /* 0x01 */ s8 centerRight_offset; 
+    /* 0x01 */ s8 centerRight_offset;
     /* 0x02 */ s8 leftUp_offset;
     /* 0x03 */ s8 leftDown_offset;
     /* 0x04 */ s8 rightDown_offset;
@@ -62,71 +62,22 @@ typedef struct collision_offset_table_s {
     /* 0x06 */ s8 shape;
 } mCoBG_OffsetTable_c; // size = 0x7
 
-void func_80A067D8_jp(mCoBG_OffsetTable_c* arg0, s8 arg1, s32 arg2)
-{
+#define GET_VALUE(a, b) (a != 0xB) ? a : b
+
+void func_80A067D8_jp(mCoBG_OffsetTable_c* arg0, s8 arg1, s32 arg2) {
     s32 var_v0;
-    s32 var_v1;
-    s8 *var_a1;
-    
-    if (arg2 == 0)
-    {
-        var_v0 = 0;
-    }
-    else
-    {
-        var_v0 = 0x60;
-    }
+    s32 i;
 
-    for (var_v1 = 0; var_v1 != 16; var_v1++, arg0++)
-    {
-        var_a1 = &D_80A07510_jp[var_v0];
+    var_v0 = (arg2 == 0) ? 0 : 0x60;
+
+    for (i = 0; i != 16; i++, arg0++) {
         arg0->unit_attribute = 0x64;
-        if (var_a1[var_v1 * 6 + 0] != 0xB)
-        {
-            arg0->centerRight_offset = var_a1[var_v1 * 6 + 0];
-        }
-        else
-        {
-            arg0->centerRight_offset = arg1;
-        }
-
-        if (var_a1[var_v1 * 6 + 1] != 0xB)
-        {
-            arg0->leftUp_offset = var_a1[var_v1 * 6 + 1];
-        }
-        else
-        {
-            arg0->leftUp_offset = arg1;
-        }
-
-        if (var_a1[var_v1 * 6 + 2] != 0xB)
-        {
-            arg0->leftDown_offset = var_a1[var_v1 * 6 + 2];
-        }
-        else
-        {
-            arg0->leftDown_offset = arg1;
-        }
-
-        if (var_a1[var_v1 * 6 + 3] != 0xB)
-        {
-            arg0->rightDown_offset = var_a1[var_v1 * 6 + 3];
-        }
-        else
-        {
-            arg0->rightDown_offset = arg1;
-        }
-
-        if (var_a1[var_v1 * 6 + 4] != 0xB)
-        {
-            arg0->rightUp_offset = var_a1[var_v1 * 6 + 4];
-        }
-        else
-        {
-            arg0->rightUp_offset = arg1;
-        }
-
-        arg0->shape = var_a1[var_v1 * 6 + 5];
+        arg0->centerRight_offset = GET_VALUE(D_80A07510_jp[var_v0 + i * 6], arg1);
+        arg0->leftUp_offset = GET_VALUE(D_80A07510_jp[var_v0 + i * 6 + 1], arg1);
+        arg0->leftDown_offset = GET_VALUE(D_80A07510_jp[var_v0 + i * 6 + 2], arg1);
+        arg0->rightDown_offset = GET_VALUE(D_80A07510_jp[var_v0 + i * 6 + 3], arg1);
+        arg0->rightUp_offset = GET_VALUE(D_80A07510_jp[var_v0 + i * 6 + 4], arg1);
+        arg0->shape = D_80A07510_jp[var_v0 + i * 6 + 5];
     }
 }
 
