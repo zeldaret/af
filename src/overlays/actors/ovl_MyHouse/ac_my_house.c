@@ -52,10 +52,8 @@ ActorProfile MyHouse_Profile = {
 extern s8 D_80A07510_jp[];
 
 void aMHS_make_bgOffset(mCoBG_unkStruct2* arg0, s8 arg1, s32 arg2) {
-    s32 var_v0;
+    s32 var_v0 = (arg2 == 0) ? 0 : 0x60;
     s32 i;
-
-    var_v0 = (arg2 == 0) ? 0 : 0x60;
 
     for (i = 0; i != 16; i++, arg0++) {
         arg0->unk0 = 0x64;
