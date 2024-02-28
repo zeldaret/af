@@ -2,6 +2,7 @@
 #include "m_actor_dlftbls.h"
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
+#include "m_collision_bg.h"
 
 void func_80A05D50_jp(Actor* thisx, Game_Play* game_play);
 void func_80A05F88_jp(Actor* thisx, Game_Play* game_play);
@@ -48,36 +49,22 @@ ActorProfile MyHouse_Profile = {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_MyHouse/ac_my_house/func_80A066B4_jp.s")
 
-// aMHS_make_bgOffset
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_MyHouse/ac_my_house/func_80A067D8_jp.s")
 extern s8 D_80A07510_jp[];
 
-typedef struct collision_offset_table_s {
-    /* 0x00 */ u8 unit_attribute;
-    /* 0x01 */ s8 centerRight_offset;
-    /* 0x02 */ s8 leftUp_offset;
-    /* 0x03 */ s8 leftDown_offset;
-    /* 0x04 */ s8 rightDown_offset;
-    /* 0x05 */ s8 rightUp_offset;
-    /* 0x06 */ s8 shape;
-} mCoBG_OffsetTable_c; // size = 0x7
-
-#define GET_VALUE(a, b) (a != 0xB) ? a : b
-
-void func_80A067D8_jp(mCoBG_OffsetTable_c* arg0, s8 arg1, s32 arg2) {
+void aMHS_make_bgOffset(mCoBG_unkStruct2* arg0, s8 arg1, s32 arg2) {
     s32 var_v0;
     s32 i;
 
     var_v0 = (arg2 == 0) ? 0 : 0x60;
 
     for (i = 0; i != 16; i++, arg0++) {
-        arg0->unit_attribute = 0x64;
-        arg0->centerRight_offset = GET_VALUE(D_80A07510_jp[var_v0 + i * 6], arg1);
-        arg0->leftUp_offset = GET_VALUE(D_80A07510_jp[var_v0 + i * 6 + 1], arg1);
-        arg0->leftDown_offset = GET_VALUE(D_80A07510_jp[var_v0 + i * 6 + 2], arg1);
-        arg0->rightDown_offset = GET_VALUE(D_80A07510_jp[var_v0 + i * 6 + 3], arg1);
-        arg0->rightUp_offset = GET_VALUE(D_80A07510_jp[var_v0 + i * 6 + 4], arg1);
-        arg0->shape = D_80A07510_jp[var_v0 + i * 6 + 5];
+        arg0->unk0 = 0x64;
+        arg0->unk1 = (D_80A07510_jp[var_v0 + i * 6 + 0] != 0xB) ? D_80A07510_jp[var_v0 + i * 6 + 0] : arg1;
+        arg0->unk2 = (D_80A07510_jp[var_v0 + i * 6 + 1] != 0xB) ? D_80A07510_jp[var_v0 + i * 6 + 1] : arg1;
+        arg0->unk3 = (D_80A07510_jp[var_v0 + i * 6 + 2] != 0xB) ? D_80A07510_jp[var_v0 + i * 6 + 2] : arg1;
+        arg0->unk4 = (D_80A07510_jp[var_v0 + i * 6 + 3] != 0xB) ? D_80A07510_jp[var_v0 + i * 6 + 3] : arg1;
+        arg0->unk5 = (D_80A07510_jp[var_v0 + i * 6 + 4] != 0xB) ? D_80A07510_jp[var_v0 + i * 6 + 4] : arg1;
+        arg0->unk6 = D_80A07510_jp[var_v0 + i * 6 + 5];
     }
 }
 
