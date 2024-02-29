@@ -15,7 +15,7 @@ def symInfoMain():
 
     args = parser.parse_args()
 
-    BUILTMAP = Path(f"build") / f"animalforest.{args.version}.map"
+    BUILTMAP = Path(f"build") / f"animalforest-{args.version}.map"
 
     mapPath = BUILTMAP
     if args.use_expected:

@@ -37,12 +37,14 @@ void osCreateThread(OSThread* t, OSId id, void (*entry)(void*), void* arg, void*
     t->state = OS_STATE_STOPPED;
     t->flags = 0;
 
+#if BUILD_VERSION >= VERSION_K
 #ifndef _FINALROM
     if (id < THPROF_IDMAX) {
         t->thprof = &thprof[id];
     } else {
         t->thprof = &thprof[THPROF_IDMAX - 1];
     }
+#endif
 #endif
 
     saveMask = __osDisableInt();

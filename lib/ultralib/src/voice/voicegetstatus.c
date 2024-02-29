@@ -17,7 +17,7 @@ s32 __osVoiceGetStatus(OSMesgQueue* mq, s32 port, u8* status) {
         if (ret != CONT_ERR_CONTRFAIL) {
             __osContPifRam.pifstatus = CONT_CMD_EXE;
 
-            for (i = 0; i < port; i++, *ptr++ = 0) {
+            for (i = 0; i < port; i++, *ptr++ = CONT_CMD_REQUEST_STATUS) {
                 ;
             }
 

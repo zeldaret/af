@@ -13680,7 +13680,7 @@ func_80A064E0_jp = 0x80A064E0; // type:func
 func_80A0664C_jp = 0x80A0664C; // type:func
 func_80A0668C_jp = 0x80A0668C; // type:func
 func_80A066B4_jp = 0x80A066B4; // type:func
-func_80A067D8_jp = 0x80A067D8; // type:func
+aMHS_make_bgOffset = 0x80A067D8; // type:func
 func_80A068AC_jp = 0x80A068AC; // type:func
 func_80A06A58_jp = 0x80A06A58; // type:func
 func_80A06AF4_jp = 0x80A06AF4; // type:func
@@ -14394,23 +14394,23 @@ RO_FLT_80A1F440_jp = 0x80A1F440; // type:f32
 
 aTKT_actor_ct = 0x80A1F510; // type:func
 func_80A1F58C_jp = 0x80A1F58C; // type:func
-func_80A1F634_jp = 0x80A1F634; // type:func
-func_80A1F6C0_jp = 0x80A1F6C0; // type:func
-func_80A1F6E0_jp = 0x80A1F6E0; // type:func
-func_80A1F700_jp = 0x80A1F700; // type:func
-func_80A1F720_jp = 0x80A1F720; // type:func
+aTKT_calc_scale = 0x80A1F634; // type:func
+aTKT_takeout = 0x80A1F6C0; // type:func
+aTKT_putaway = 0x80A1F6E0; // type:func
+aTKT_destruct = 0x80A1F700; // type:func
+aTKT_setupAction = 0x80A1F720; // type:func
 aTKT_actor_move = 0x80A1F7C8; // type:func
 aTKT_actor_draw = 0x80A1F824; // type:func
 
 // .data
 
-D_80A1F960_jp = 0x80A1F960; //
+aTKT_anm_dt = 0x80A1F960; //
 T_Keitai_Profile = 0x80A1F99C; //
-D_FLT_80A1F9C0_jp = 0x80A1F9C0; // type:f32
-D_FLT_80A1F9C8_jp = 0x80A1F9C8; // type:f32
-D_FLT_80A1F9D0_jp = 0x80A1F9D0; // type:f32
-D_FLT_80A1F9D8_jp = 0x80A1F9D8; // type:f32
-D_80A1F9E0_jp = 0x80A1F9E0; //
+start_scale = 0x80A1F9C0; // type:f32 allow_duplicated:true
+end_scale = 0x80A1F9C8; // type:f32
+start_chno = 0x80A1F9D0; // type:f32
+end_chno = 0x80A1F9D8; // type:f32
+process = 0x80A1F9E0; // allow_duplicated:true
 D_80A1F9F4_jp = 0x80A1F9F4; //
 
 // .rodata
@@ -14457,7 +14457,7 @@ aTHB_actor_draw = 0x80A1FF58; // type:func
 T_Hanabi_Profile = 0x80A20050; //
 aim = 0x80A20074; // type:f32
 process = 0x80A2007C; // allow_duplicated:true
-start_scale = 0x80A20090; // type:f32
+start_scale = 0x80A20090; // type:f32 allow_duplicated:true
 D_80A200A4_jp = 0x80A200A4; //
 
 // .rodata

@@ -39,9 +39,18 @@ void alSynSetFXMix(ALSynth *synth, ALVoice *v, u8 fxmix)
          */
         update->delta  = synth->paramSamples + v->pvoice->offset;
         update->type   = AL_FILTER_SET_FXAMT;
-	if (fxmix > 127)
+#if BUILD_VERSION >= VERSION_J
+        if (fxmix > 127) {
             fxmix = 127;
-	update->data.i = fxmix;
+        }
+	    update->data.i = fxmix;
+#else
+        if (fxmix < 0) { // Not possible
+            update->data.i = -fxmix;
+        } else {
+            update->data.i = fxmix;
+        }
+#endif
         update->next   = 0;
 
         f = v->pvoice->channelKnob;

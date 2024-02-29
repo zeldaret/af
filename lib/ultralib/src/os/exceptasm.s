@@ -6,7 +6,7 @@
 #include "PR/rdb.h"
 #include "exceptasm.h"
 #include "threadasm.h"
-
+#include "PR/os_version.h"
 #define KMC_CODE_ENTRY  0xBFF00014
 #define KMC_WPORT       0xBFF08000
 #define KMC_STAT        0xBFF08004
@@ -68,6 +68,7 @@ EXPORT(__osCauseTable_pt)
 
 .data
 
+#if BUILD_VERSION >= VERSION_J
 EXPORT(__osHwIntTable)
     .word 0, 0
     .word 0, 0
@@ -77,6 +78,14 @@ EXPORT(__osHwIntTable)
 
 EXPORT(__osPiIntTable)
     .word 0, 0
+#else
+EXPORT(__osHwIntTable)
+    .word 0
+    .word 0
+    .word 0
+    .word 0
+    .word 0
+#endif
 
 #ifndef _FINALROM
 __osRdb_DbgRead_Ct:
@@ -88,8 +97,10 @@ __osRdb_Mesg:
 __os_Kdebug_Pkt:
     .word 0
 
+#if BUILD_VERSION >= VERSION_K
 __osPreviousThread:
     .word 0
+#endif
 #endif  
 
 .text
@@ -381,7 +392,7 @@ skip_kmc_mode:
 savecontext:
     move    t0, k0
     lw      k0, __osRunningThread 
-#ifndef _FINALROM
+#if !defined(_FINALROM) && BUILD_VERSION >= VERSION_K
     sw      k0, __osPreviousThread
 #endif
     ld      t1, THREAD_GP1(t0)
@@ -548,6 +559,7 @@ STAY2(mtc0  t1, C0_COMPARE)
     b       next_interrupt
 
 cart:
+#if BUILD_VERSION >= VERSION_J
     and     s0, s0, ~CAUSE_IP4
     la      t1, __osHwIntTable
     add     t1, HWINTR_SIZE
@@ -565,6 +577,26 @@ cart:
     li      a0, MESG(OS_EVENT_CART)
     jal     send_mesg
     b       next_interrupt
+#else
+    li      a0, MESG(OS_EVENT_CART)
+    and     s0, s0, ~CAUSE_IP4
+    la      sp, leoDiskStack 
+    addiu   sp, 0x1000 - 0x10 # Stack size minus initial frame
+    li      t2, HWINTR_SIZE
+    lw      t2, __osHwIntTable(t2)
+
+    beqz    t2, 1f
+    
+    jalr    t2
+    li      a0, MESG(OS_EVENT_CART)
+    
+    beqz    v0, 1f
+    b       redispatch
+    
+1:
+    jal     send_mesg
+    b       next_interrupt
+#endif
 
 rcp:
     lw      s1, PHYS_TO_K1(MI_INTR_REG)
@@ -641,6 +673,7 @@ pi:
     li      t1, PI_STATUS_CLR_INTR
     sw      t1, PHYS_TO_K1(PI_STATUS_REG)
 
+#if BUILD_VERSION >= VERSION_J
     la      t1, __osPiIntTable
     lw      t2, (t1)
     beqz    t2, 1f
@@ -651,9 +684,12 @@ pi:
 
     bnez    v0, 2f
 1:
+#endif
     li      a0, MESG(OS_EVENT_PI)
     jal     send_mesg
+#if BUILD_VERSION >= VERSION_J
 2:
+#endif
     beqz    s1, NoMoreRcpInts
     
 dp:
@@ -816,7 +852,7 @@ END(handle_CpU)
 
 LEAF(__osEnqueueAndYield)
     lw      a1, __osRunningThread
-#ifndef _FINALROM
+#if !defined(_FINALROM) && BUILD_VERSION >= VERSION_K
     sw      a1, __osPreviousThread
 #endif
 STAY2(mfc0  t0, C0_SR)
@@ -905,11 +941,11 @@ LEAF(__osPopThread)
     sw      t9, 0(a0)
     jr      ra
 END(__osPopThread)
-
+#if BUILD_VERSION >= VERSION_K
 LEAF(__osNop)
     jr      ra
 END(__osNop)
-
+#endif
 LEAF(__osDispatchThread)
     la      a0, __osRunQueue
     jal     __osPopThread
@@ -918,7 +954,7 @@ LEAF(__osDispatchThread)
     sh      t0, THREAD_STATE(v0)
     move    k0, v0
 
-#ifndef _FINALROM
+#if !defined(_FINALROM) && BUILD_VERSION >= VERSION_K
     la      t0, __osThprofFunc
     lw      t0, (t0)
     beqz    t0, __osDispatchThreadSave
@@ -926,6 +962,11 @@ LEAF(__osDispatchThread)
     lw      a0, __osPreviousThread
     lw      sp, __osThprofStack
     jalr    t0
+#endif
+
+/* There's another 1: label somewhere around here in version J and below */
+#if BUILD_VERSION < VERSION_K
+1:
 #endif
 
 __osDispatchThreadSave:

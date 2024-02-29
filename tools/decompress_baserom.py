@@ -1,238 +1,242 @@
 #!/usr/bin/env python3
 
-import hashlib, io, struct, sys
-from pathlib import Path
+# SPDX-FileCopyrightText: © 2024 ZeldaRET
+# SPDX-License-Identifier: CC0-1.0
+
+from __future__ import annotations
+
 import argparse
+import hashlib
+import io
+from pathlib import Path
+import struct
+import sys
 
-from libyaz0 import decompress
+import crunch64
+import ipl3checksum
+import zlib
 
-FILE_TABLE_OFFSET = {
-    "jp": 0x19D40,
-    "cn": 0x21D80,
-}
-
-VERSIONS_MD5S = {
-    "jp": "d7ae64f2f47a9fa3f87686a3c5ce09af",
-    "cn": "af83e0cf36298e62e9eb2eb8c89aa710",
-}
-
-description = "Convert a rom that uses dmadata to an uncompressed one."
-
-parser = argparse.ArgumentParser(description=description, formatter_class=argparse.RawTextHelpFormatter)
-parser.add_argument("-v", "--version", help="Version of the game to extract.", default="jp")
-
-args = parser.parse_args()
-
-BASEROM_PATH = Path(f"baserom.{args.version}.z64")
-UNCOMPRESSED_PATH = Path(f"baserom_uncompressed.{args.version}.z64")
+import dmadata
 
 
-Version   = args.version
+def decompress_zlib(data: bytes) -> bytes:
+    decomp = zlib.decompressobj(-zlib.MAX_WBITS)
+    output = bytearray()
+    output.extend(decomp.decompress(data))
+    while decomp.unconsumed_tail:
+        output.extend(decomp.decompress(decomp.unconsumed_tail))
+    output.extend(decomp.flush())
+    return bytes(output)
 
-file_table_offset = FILE_TABLE_OFFSET[Version]
-correct_str_hash = VERSIONS_MD5S[Version]
+
+def decompress(data: bytes, is_zlib_compressed: bool) -> bytes:
+    if is_zlib_compressed:
+        return decompress_zlib(data)
+    return crunch64.yaz0.decompress(data)
 
 
-
-def round_up(n,shift):
+def round_up(n, shift):
     mod = 1 << shift
-    return (n + mod - 1) >> shift << shift 
+    return (n + mod - 1) >> shift << shift
 
-def as_word(b, off=0):
-    return struct.unpack(">I", b[off:off+4])[0]
 
-def as_word_list(b):
-    return [i[0] for i in struct.iter_unpack(">I",  b)]
-
-def calc_crc(rom_data, cic_type):
-    start = 0x1000
-    end = 0x101000
-
-    unsigned_long = lambda i: i & 0xFFFFFFFF
-    rol = lambda i, b: unsigned_long(i << b) | (i >> (-b & 0x1F))
-
-    if cic_type == 6101 or cic_type == 6102:
-        seed = 0xF8CA4DDC
-    elif cic_type == 6103:
-        seed = 0xA3886759
-    elif cic_type == 6105:
-        seed = 0xDF26F436
-    elif cic_type == 6106:
-        seed = 0x1FEA617A
-    else:
-        assert False, f"Unknown cic type: {cic_type}"
-
-    t1 = t2 = t3 = t4 = t5 = t6 = seed
-
-    for pos in range(start, end, 4):
-        d = as_word(rom_data, pos)
-        r = rol(d, d & 0x1F)
-
-        t6d = unsigned_long(t6 + d)
-        if t6d < t6:
-            t4 = unsigned_long(t4 + 1)
-        t6 = t6d
-        t3 ^= d
-        t5 = unsigned_long(t5 + r)
-
-        if t2 > d:
-            t2 ^= r
-        else:
-            t2 ^= t6 ^ d
-
-        if cic_type == 6105:
-            t1 = unsigned_long(t1 + (as_word(rom_data, 0x0750 + (pos & 0xFF)) ^ d))
-        else:
-            t1 = unsigned_long(t1 + (t5 ^ d))
-
-    chksum = [0,0]
-
-    if cic_type == 6103:
-        chksum[0] = unsigned_long((t6 ^ t4) + t3)
-        chksum[1] = unsigned_long((t5 ^ t2) + t1)
-    elif cic_type == 6106:
-        chksum[0] = unsigned_long((t6 * t4) + t3)
-        chksum[1] = unsigned_long((t5 * t2) + t1)
-    else:
-        chksum[0] = t6 ^ t4 ^ t3
-        chksum[1] = t5 ^ t2 ^ t1
-
-    return struct.pack(">II", chksum[0], chksum[1])
-
-def read_dmadata_entry(addr):
-    return as_word_list(fileContent[addr:addr+0x10])
-
-def read_dmadata(start):
-    dmadata = []
-    addr = start
-    entry = read_dmadata_entry(addr)
-    i = 0
-    while any([e != 0 for e in entry]):
-        # print(f"0x{addr:08X} " + str([f"{e:08X}" for e in entry]))
-        dmadata.append(entry)
-        addr += 0x10
-        i += 1
-        entry = read_dmadata_entry(addr)
-    # print(f"0x{addr:08X} " + str([f"{e:08X}" for e in entry]))
-    return dmadata
-
-def update_crc(decompressed):
+def update_crc(decompressed: io.BytesIO) -> io.BytesIO:
     print("Recalculating crc...")
-    new_crc = calc_crc(decompressed.getbuffer(), 6105)
+    calculated_checksum = ipl3checksum.CICKind.CIC_X105.calculateChecksum(
+        bytes(decompressed.getbuffer())
+    )
+    new_crc = struct.pack(f">II", calculated_checksum[0], calculated_checksum[1])
 
     decompressed.seek(0x10)
     decompressed.write(new_crc)
     return decompressed
 
-def decompress_rom(dmadata_addr, dmadata):
-    rom_segments = {} # vrom start : data s.t. len(data) == vrom_end - vrom_start
-    new_dmadata = bytearray() # new dmadata: {vrom start , vrom end , vrom start , 0}
+
+def decompress_rom(
+    file_content: bytearray,
+    dmadata_start: int,
+    dma_entries: list[dmadata.DmaEntry],
+    is_zlib_compressed: bool,
+) -> bytearray:
+    rom_segments = {}  # vrom start : data s.t. len(data) == vrom_end - vrom_start
+    new_dmadata = []  # new dmadata: list[dmadata.Entry]
 
     decompressed = io.BytesIO(b"")
 
-    for v_start, v_end, p_start, p_end in dmadata:
-        if p_start == 0xFFFFFFFF and p_end == 0xFFFFFFFF:
-            new_dmadata.extend(struct.pack(">IIII", v_start, v_end, p_start, p_end))
+    for dma_entry in dma_entries:
+        v_start = dma_entry.vrom_start
+        v_end = dma_entry.vrom_end
+        p_start = dma_entry.rom_start
+        p_end = dma_entry.rom_end
+        if dma_entry.is_syms():
+            new_dmadata.append(dma_entry)
             continue
-        if p_end == 0: # uncompressed
-            rom_segments.update({v_start : fileContent[p_start:p_start + v_end - v_start]})
-        else: # compressed
-            rom_segments.update({v_start : decompress(fileContent[p_start:p_end])})
-        new_dmadata.extend(struct.pack(">IIII", v_start, v_end, v_start, 0))
+        if dma_entry.is_compressed():
+            new_contents = decompress(file_content[p_start:p_end], is_zlib_compressed)
+            rom_segments[v_start] = new_contents
+        else:
+            rom_segments[v_start] = file_content[p_start : p_start + v_end - v_start]
+        new_dmadata.append(dmadata.DmaEntry(v_start, v_end, v_start, 0))
 
     # write rom segments to vaddrs
-    for vrom_st,data in rom_segments.items():
+    for vrom_st, data in rom_segments.items():
         decompressed.seek(vrom_st)
         decompressed.write(data)
     # write new dmadata
-    decompressed.seek(dmadata_addr)
-    decompressed.write(new_dmadata)
+    decompressed.seek(dmadata_start)
+    for dma_entry in new_dmadata:
+        entry_data = bytearray(dmadata.DmaEntry.SIZE_BYTES)
+        dma_entry.to_bin(entry_data)
+        decompressed.write(entry_data)
     # pad to size
-    padding_end = round_up(dmadata[-1][1], 14)
-    decompressed.seek(padding_end-1)
+    padding_end = round_up(dma_entries[-1].vrom_end, 14)
+    decompressed.seek(padding_end - 1)
     decompressed.write(bytearray([0]))
     # re-calculate crc
-    return update_crc(decompressed)
+    return bytearray(update_crc(decompressed).getbuffer())
 
 
 def get_str_hash(byte_array):
     return str(hashlib.md5(byte_array).hexdigest())
 
-# If the baserom exists and is correct, we don't need to change anything
-if UNCOMPRESSED_PATH.exists():
-    with UNCOMPRESSED_PATH.open(mode="rb") as file:
-        fileContent = bytearray(file.read())
-        if get_str_hash(fileContent) == correct_str_hash:
-            print("Found valid baserom - exiting early")
-            sys.exit(0)
 
-# Determine if we have a ROM file
-romFileName = BASEROM_PATH
-if BASEROM_PATH.with_suffix(".z64").exists():
-    romFileName = BASEROM_PATH.with_suffix(".z64")
-elif BASEROM_PATH.with_suffix(".n64").exists():
-    romFileName = BASEROM_PATH.with_suffix(".n64")
-elif BASEROM_PATH.with_suffix(".v64").exists():
-    romFileName = BASEROM_PATH.with_suffix(".v64")
-else:
-    print(f"Error: Could not find {BASEROM_PATH}/.n64/.v64")
-    sys.exit(1)
+def check_existing_rom(rom_path: Path, correct_str_hash: str):
+    # If the baserom exists and is correct, we don't need to change anything
+    if rom_path.exists():
+        if get_str_hash(rom_path.read_bytes()) == correct_str_hash:
+            return True
+    return False
 
-# Read in the original ROM
-print(f"File '{str(romFileName)}' found.")
-with romFileName.open(mode="rb") as file:
-    fileContent = bytearray(file.read())
 
-fileContentLen = len(fileContent)
-
-# Check if ROM needs to be byte/word swapped
-# Little-endian
-if fileContent[0] == 0x40:
-    # Word Swap ROM
-    print("ROM needs to be word swapped...")
-    words = str(int(fileContentLen/4))
+def word_swap(file_content: bytearray) -> bytearray:
+    words = str(int(len(file_content) / 4))
     little_byte_format = "<" + words + "I"
     big_byte_format = ">" + words + "I"
-    tmp = struct.unpack_from(little_byte_format, fileContent, 0)
-    struct.pack_into(big_byte_format, fileContent, 0, *tmp)
+    tmp = struct.unpack_from(little_byte_format, file_content, 0)
+    struct.pack_into(big_byte_format, file_content, 0, *tmp)
+    return file_content
 
-    print("Word swapping done.")
 
-# Byte-swapped
-elif fileContent[0] == 0x37:
-    # Byte Swap ROM
-    print("ROM needs to be byte swapped...")
-    halfwords = str(int(fileContentLen/2))
+def byte_swap(file_content: bytearray) -> bytearray:
+    halfwords = str(int(len(file_content) / 2))
     little_byte_format = "<" + halfwords + "H"
     big_byte_format = ">" + halfwords + "H"
-    tmp = struct.unpack_from(little_byte_format, fileContent, 0)
-    struct.pack_into(big_byte_format, fileContent, 0, *tmp)
+    tmp = struct.unpack_from(little_byte_format, file_content, 0)
+    struct.pack_into(big_byte_format, file_content, 0, *tmp)
+    return file_content
 
-    print("Byte swapping done.")
 
-dmadata = read_dmadata(file_table_offset)
-# Decompress
-if any([b != 0 for b in fileContent[file_table_offset + 0xAC:file_table_offset + 0xAC + 0x4]]):
-    print("Decompressing rom...")
-    fileContent = decompress_rom(file_table_offset, dmadata).getbuffer()
-    print(f"{len(fileContent):X}")
+def per_version_fixes(file_content: bytearray, version: str) -> bytearray:
+    return file_content
 
-padding_start = round_up(dmadata[-1][1], 12)
-padding_end = round_up(dmadata[-1][1], 14)
-print(f"Padding from {padding_start:X} to {padding_end:X}...")
-for i in range(padding_start,padding_end):
-    fileContent[i] = 0xFF
 
-# Check to see if the ROM is a "vanilla" ROM
-str_hash = get_str_hash(bytearray(fileContent))
-if str_hash != correct_str_hash:
-    print("Error: Expected a hash of " + correct_str_hash + " but got " + str_hash + ". " +
-          "The baserom has probably been tampered, find a new one")
-    sys.exit(1)
+def pad_rom(file_content: bytearray, dma_entries: list[dmadata.DmaEntry]) -> bytearray:
+    padding_start = round_up(dma_entries[-1].vrom_end, 12)
+    padding_end = round_up(dma_entries[-1].vrom_end, 14)
+    print(f"Padding from {padding_start:X} to {padding_end:X}...")
+    for i in range(padding_start, padding_end):
+        file_content[i] = 0xFF
+    return file_content
 
-# Write out our new ROM
-print(f"Writing new ROM {UNCOMPRESSED_PATH}.")
-with UNCOMPRESSED_PATH.open("wb") as file:
-    file.write(bytes(fileContent))
 
-print("Done!")
+# Determine if we have a ROM file
+ROM_FILE_EXTENSIONS = ["z64", "n64", "v64"]
+
+
+def find_baserom(version: str) -> Path | None:
+    for rom_file_ext_lower in ROM_FILE_EXTENSIONS:
+        for rom_file_ext in (rom_file_ext_lower, rom_file_ext_lower.upper()):
+            rom_file_name_candidate = Path(f"baseroms/{version}/baserom.{rom_file_ext}")
+            if rom_file_name_candidate.exists():
+                return rom_file_name_candidate
+    return None
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Convert a rom that uses dmadata to an uncompressed one."
+    )
+    parser.add_argument(
+        "version",
+        help="Version of the game to decompress.",
+    )
+
+    args = parser.parse_args()
+
+    version = args.version
+
+    baserom_dir = Path(f"baseroms/{version}")
+    if not baserom_dir.exists():
+        print(f"Error: Unknown version '{version}'.", file=sys.stderr)
+        exit(1)
+
+    uncompressed_path = baserom_dir / "baserom-decompressed.z64"
+
+    dmadata_start = int((baserom_dir / "dmadata_start.txt").read_text(), 16)
+    correct_str_hash = (baserom_dir / "checksum.md5").read_text().split()[0]
+
+    if check_existing_rom(uncompressed_path, correct_str_hash):
+        print("Found valid baserom - exiting early")
+        return
+
+    rom_file_name = find_baserom(version)
+
+    if rom_file_name is None:
+        path_list = [
+            f"baseroms/{version}/baserom.{rom_file_ext}"
+            for rom_file_ext in ROM_FILE_EXTENSIONS
+        ]
+        print(f"Error: Could not find {','.join(path_list)}.", file=sys.stderr)
+        exit(1)
+
+    # Read in the original ROM
+    print(f"File '{rom_file_name}' found.")
+
+    file_content = bytearray(rom_file_name.read_bytes())
+
+    # Check if ROM needs to be byte/word swapped
+    # Little-endian
+    if file_content[0] == 0x40:
+        # Word Swap ROM
+        print("ROM needs to be word swapped...")
+        file_content = word_swap(file_content)
+        print("Word swapping done.")
+
+    # Byte-swapped
+    elif file_content[0] == 0x37:
+        # Byte Swap ROM
+        print("ROM needs to be byte swapped...")
+        file_content = byte_swap(file_content)
+        print("Byte swapping done.")
+
+    file_content = per_version_fixes(file_content, version)
+
+    dma_entries = dmadata.read_dmadata(file_content, dmadata_start)
+    # Decompress
+    if any(dma_entry.is_compressed() for dma_entry in dma_entries):
+        print("Decompressing rom...")
+        is_zlib_compressed = version in {"cn"}
+        file_content = decompress_rom(
+            file_content, dmadata_start, dma_entries, is_zlib_compressed
+        )
+
+    file_content = pad_rom(file_content, dma_entries)
+
+    # Check to see if the ROM is a "vanilla" ROM
+    str_hash = get_str_hash(file_content)
+    if str_hash != correct_str_hash:
+        print(
+            f"Error: Expected a hash of {correct_str_hash} but got {str_hash}. The baserom has probably been tampered, find a new one",
+            file=sys.stderr,
+        )
+        exit(1)
+
+    # Write out our new ROM
+    print(f"Writing new ROM {uncompressed_path}...")
+    uncompressed_path.write_bytes(file_content)
+
+    print("Done!")
+
+
+if __name__ == "__main__":
+    main()

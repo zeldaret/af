@@ -291,25 +291,24 @@ ALMicroTime __seqpVoiceHandler(void *node)
 	      chan = seqp->nextEvent.msg.sppriority.chan;
 	      seqp->chanState[chan].priority = seqp->nextEvent.msg.sppriority.priority;
 	      break;
-
 	  case (AL_SEQP_SEQ_EVT):
-
-#ifdef _DEBUG
-	      assert(seqp->state != AL_PLAYING);	/* Must be done playing to change sequences. */
+#if BUILD_VERSION < VERSION_J // Adjust line numbers to match asserts
+#line 295
 #endif
+	      assert(seqp->state != AL_PLAYING);	/* Must be done playing to change sequences. */
+
     
 	      seqp->target = seqp->nextEvent.msg.spseq.seq;
 	      __setUsptFromTempo (seqp, 500000.0);
 	      if (seqp->bank)
 		  __initFromBank(seqp, seqp->bank);
 	      break;
-
 	  case (AL_SEQP_BANK_EVT):
-
-#ifdef _DEBUG
-	      assert(seqp->state == AL_STOPPED);	/* Must be fully stopped to change banks. */
+#if BUILD_VERSION < VERSION_J
+#line 304
 #endif
-    
+	      assert(seqp->state == AL_STOPPED);	/* Must be fully stopped to change banks. */
+
 	      seqp->bank = seqp->nextEvent.msg.spbank.bank;
 	      __initFromBank(seqp, seqp->bank);
 	      break;
@@ -318,10 +317,11 @@ ALMicroTime __seqpVoiceHandler(void *node)
 	  case (AL_SEQ_END_EVT):
 	  case (AL_TEMPO_EVT):
           case (AL_SEQ_MIDI_EVT):
-
-#ifdef _DEBUG
-	      assert(FALSE);	
+#if BUILD_VERSION < VERSION_J
+#line 314
 #endif
+	      assert(FALSE);	
+
 
               break;
         }
@@ -381,7 +381,6 @@ void __postNextSeqEvent(ALSeqPlayer *seqp)
     alEvtqPostEvent(&seqp->evtq, &evt, deltaTicks * seqp->uspt);
 }
 
-
 /*
   Call this routine to handle the next event in the sequence.
   Assumes that the next sequence event is scheduled to be processed
@@ -419,15 +418,15 @@ __handleNextSeqEvent(ALSeqPlayer *seqp)
 	break;
 
     default:
-
-#ifdef _DEBUG
-	assert(FALSE);	/* Sequence event type not supported. */
+#if BUILD_VERSION < VERSION_J
+#line 411
 #endif
-
+	assert(FALSE);	/* Sequence event type not supported. */
+#if BUILD_VERSION >= VERSION_J
 	break;
+#endif
     }
 }
-
 
 void __handleMIDIMsg(ALSeqPlayer *seqp, ALEvent *event)
 {
@@ -446,11 +445,12 @@ void __handleMIDIMsg(ALSeqPlayer *seqp, ALEvent *event)
     ALVoiceState        *vstate;
     ALPan   		    pan;
     ALFxRef		        fxref;
-
-#ifdef _DEBUG
+#if BUILD_VERSION < VERSION_J
+#line 434
+#endif
     /* sct 12/15/95 - Fixed assert to also allow seqp midi event types. */
     assert(event->type == AL_SEQ_MIDI_EVT || event->type == AL_SEQP_MIDI_EVT);
-#endif
+
     
     status = midi->status & AL_MIDI_StatusMask;
     chan = midi->status & AL_MIDI_ChannelMask;
@@ -722,16 +722,16 @@ void __handleMIDIMsg(ALSeqPlayer *seqp, ALEvent *event)
 	    case (AL_MIDI_FX3_CTRL):
 	    default:
 		break;
-
 	    }
             break;
 
         case (AL_MIDI_ProgramChange):
 	    /* sct 1/16/96 - We must have a valid bank in order to process the program change. */
-
-#ifdef _DEBUG
-	    assert(seqp->bank != NULL);
+#if BUILD_VERSION < VERSION_J
+#line 713
 #endif
+	    assert(seqp->bank != NULL);
+
 
             if (key < seqp->bank->instCount) {
                 ALInstrument *inst = seqp->bank->instArray[key];
@@ -873,7 +873,6 @@ ALVoiceState *__lookupVoice(ALSeqPlayer *seqp, u8 key, u8 channel)
     
     return 0;
 }
-
 #if 0
 ALSound *__lookupSound(ALSeqPlayer *seqp, u8 key, u8 vel, u8 chan)
 {
@@ -902,10 +901,11 @@ ALSound *__lookupSoundQuick(ALSeqPlayer *seqp, u8 key, u8 vel, u8 chan)
     s32 r = inst->soundCount;
     s32 i;
     ALKeyMap *keymap;
-
-#ifdef _DEBUG
-    assert(inst != NULL);       /* sct 10/31/95 - If inst is NULL, then the seqp probably wasn't setup correctly. */
+#if BUILD_VERSION < VERSION_J
+#line 885
 #endif
+    assert(inst != NULL);       /* sct 10/31/95 - If inst is NULL, then the seqp probably wasn't setup correctly. */
+
     
     while (r >= l) {
         i = (l+r)/2;

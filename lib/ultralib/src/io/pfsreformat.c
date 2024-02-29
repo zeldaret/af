@@ -23,7 +23,7 @@ s32 osPfsReFormat(OSPfs* pfs, OSMesgQueue* queue, int channel) {
     __osSiRelAccess();
     ERRCK(__osGetId(pfs));
 
-    SET_ACTIVEBANK_TO_ZERO;
+    SET_ACTIVEBANK_TO_ZERO();
 
     for (j = 0; j < ARRLEN(tmp_data); j++) {
         tmp_data[j] = 0;

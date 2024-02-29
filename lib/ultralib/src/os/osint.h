@@ -44,7 +44,7 @@ extern OSProf *__osProfileList;
 extern OSProf *__osProfileListEnd;
 extern u32 __osProfileOverflowBin;
 
-extern __OSEventState __osEventStateTab[OS_NUM_EVENTS];
+extern __OSEventState __osEventStateTab[];
 
 
 extern void __osTimerServicesInit(void);

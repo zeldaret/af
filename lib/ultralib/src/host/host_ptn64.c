@@ -1,8 +1,11 @@
 #include "PR/os_internal.h"
+#include "PR/os_version.h"
 #include "PR/rcp.h"
 #include "memory.h"
 
 #include "macros.h"
+
+#if BUILD_VERSION >= VERSION_J || !defined(_FINALROM)
 
 static volatile unsigned int* ptwtmode = (unsigned*)0xbff08014;
 static volatile unsigned int* ptstat = (unsigned*)0xbff08004;
@@ -202,3 +205,5 @@ osWriteHost_ret:
     __osPiRelAccess();
     return;
 }
+
+#endif

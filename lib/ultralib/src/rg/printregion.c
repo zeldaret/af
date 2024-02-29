@@ -1,4 +1,5 @@
-#ifndef _FINALROM
+#include "os_version.h"
+#if !defined(_FINALROM) || BUILD_VERSION < VERSION_J
 
 #include "../os/osint.h"
 #include "PR/rmon.h"

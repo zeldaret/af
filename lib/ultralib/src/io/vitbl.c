@@ -2,7 +2,7 @@
 #include "PR/rcp.h"
 #include "../io/viint.h"
 
-OSViMode osViModeTable[56] = {
+OSViMode osViModeTable[] = {
     { OS_VI_NTSC_LPN1, // type
       {
           // comRegs
@@ -1302,6 +1302,7 @@ OSViMode osViModeTable[56] = {
             BURST(4, 2, 14, 0), // vBurst
             VINTR(2),           // vIntr
         } } },
+#if BUILD_VERSION >= VERSION_J
     { OS_VI_FPAL_LPN1, // type
       {
           // comRegs
@@ -1735,4 +1736,5 @@ OSViMode osViModeTable[56] = {
             BURST(105, 2, 13, 0), // vBurst
             VINTR(2),             // vIntr
         } } }
+#endif
 };
