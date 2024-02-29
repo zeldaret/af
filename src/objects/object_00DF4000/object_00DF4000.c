@@ -6,7 +6,7 @@ u32 StructureObjectAddresses[] = {
     0x06023BB0, // obj_s_house1
     0x06026388, // obj_s_house2
     0x06028B18, // obj_s_house3
-    0x0602B208, //
+    0x0602B208, // obj_s_house4
     0x0602D838, //
     0x0603C710, //
     0x0603EEE0, //
