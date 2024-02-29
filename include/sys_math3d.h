@@ -111,9 +111,9 @@ s32 Math3D_pipeVsPipe_cl(Pipe* pipe1, Pipe* pipe2, f32* arg2);
 // void func_800DFCA4_jp();
 // void func_800DFD10_jp();
 // void func_800DFD7C_jp();
-// void sMath_RotateY();
-// void sMath_RotateX();
-// void sMath_RotateZ();
+void sMath_RotateY(xyz_t* pos, f32 rad);
+void sMath_RotateX(xyz_t* pos, f32 rad);
+void sMath_RotateZ(xyz_t* pos, f32 rad);
 
 extern xyz_t ZeroVec;
 

@@ -2,9 +2,14 @@
 #include "controller.h"
 #include "siint.h"
 
+#if BUILD_VERSION >= VERSION_J
 static s32 __osPfsCheckRamArea(OSPfs* pfs);
+#endif
 
 s32 osPfsInitPak(OSMesgQueue* queue, OSPfs* pfs, int channel) {
+#if BUILD_VERSION < VERSION_J
+    int k;
+#endif
     s32 ret = 0;
     u16 sum;
     u16 isum;
@@ -26,8 +31,10 @@ s32 osPfsInitPak(OSMesgQueue* queue, OSPfs* pfs, int channel) {
     pfs->channel = channel;
     pfs->status = 0;
 
+#if BUILD_VERSION >= VERSION_J
     ERRCK(__osPfsCheckRamArea(pfs));
-    ERRCK(__osPfsSelectBank(pfs, 0));
+#endif
+    ERRCK(SELECT_BANK(pfs, 0));
     ERRCK(__osContRamRead(pfs->queue, pfs->channel, PFS_ID_0AREA, temp));
 
     __osIdCheckSum((u16*)temp, &sum, &isum);
@@ -37,18 +44,29 @@ s32 osPfsInitPak(OSMesgQueue* queue, OSPfs* pfs, int channel) {
         ret = __osCheckPackId(pfs, id);
 
         if (ret != 0) {
+#if BUILD_VERSION >= VERSION_J
             pfs->status |= PFS_ID_BROKEN;
+#endif
             return ret;
         }
+        
+#if BUILD_VERSION < VERSION_J
+        // Duplicated check
+        else if (ret != 0) {
+            return ret;
+        }
+#endif
     }
 
     if (!(id->deviceid & 1)) {
         ret = __osRepairPackId(pfs, id, &newid);
 
         if (ret != 0) {
+#if BUILD_VERSION >= VERSION_J
             if (ret == PFS_ERR_ID_FATAL) {
                 pfs->status |= PFS_ID_BROKEN;
             }
+#endif
             return ret;
         }
 
@@ -59,7 +77,13 @@ s32 osPfsInitPak(OSMesgQueue* queue, OSPfs* pfs, int channel) {
         }
     }
 
+#if BUILD_VERSION >= VERSION_J
     bcopy(id, pfs->id, BLOCKSIZE);
+#else
+    for (k = 0; k < ARRLEN(pfs->id); k++) {
+        pfs->id[k] = ((u8 *)id)[k];
+    }
+#endif
 
     pfs->version = id->version;
     pfs->banks = id->banks;
@@ -77,6 +101,7 @@ s32 osPfsInitPak(OSMesgQueue* queue, OSPfs* pfs, int channel) {
     return ret;
 }
 
+#if BUILD_VERSION >= VERSION_J
 static s32 __osPfsCheckRamArea(OSPfs* pfs) {
     s32 i;
     s32 ret = 0;
@@ -84,7 +109,7 @@ static s32 __osPfsCheckRamArea(OSPfs* pfs) {
     u8 temp2[BLOCKSIZE];
     u8 save[BLOCKSIZE];
 
-    ERRCK(__osPfsSelectBank(pfs, PFS_ID_BANK_256K));
+    ERRCK(SELECT_BANK(pfs, PFS_ID_BANK_256K));
     ERRCK(__osContRamRead(pfs->queue, pfs->channel, 0, save));
 
     for (i = 0; i < BLOCKSIZE; i++) {
@@ -101,3 +126,4 @@ static s32 __osPfsCheckRamArea(OSPfs* pfs) {
     ret = __osContRamWrite(pfs->queue, pfs->channel, 0, save, FALSE);
     return ret;
 }
+#endif

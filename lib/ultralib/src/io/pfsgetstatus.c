@@ -2,7 +2,11 @@
 #include "controller.h"
 #include "siint.h"
 
+#if BUILD_VERSION >= VERSION_J
 void __osPfsRequestOneChannel(int channel, u8 cmd);
+#else
+void __osPfsRequestOneChannel(int channel);
+#endif
 void __osPfsGetOneChannelData(int channel, OSContStatus* data);
 
 s32 __osPfsGetStatus(OSMesgQueue* queue, int channel) {
@@ -10,9 +14,13 @@ s32 __osPfsGetStatus(OSMesgQueue* queue, int channel) {
     OSMesg dummy;
     OSContStatus data;
 
+#if BUILD_VERSION >= VERSION_J
     __osPfsInodeCacheBank = 250;
 
     __osPfsRequestOneChannel(channel, CONT_CMD_REQUEST_STATUS);
+#else
+    __osPfsRequestOneChannel(channel);
+#endif
 
     ret = __osSiRawStartDma(OS_WRITE, &__osPfsPifRam);
     osRecvMesg(queue, &dummy, OS_MESG_BLOCK);
@@ -33,19 +41,31 @@ s32 __osPfsGetStatus(OSMesgQueue* queue, int channel) {
     return ret;
 }
 
+#if BUILD_VERSION >= VERSION_J
 void __osPfsRequestOneChannel(int channel, u8 cmd) {
+#else
+void __osPfsRequestOneChannel(int channel) {
+#endif
     u8* ptr;
     __OSContRequesFormatShort requestformat;
     int i;
 
+#if BUILD_VERSION >= VERSION_J
     __osContLastCmd = CONT_CMD_END;
+#else
+    __osContLastCmd = CONT_CMD_REQUEST_STATUS;
+#endif
     __osPfsPifRam.pifstatus = CONT_CMD_READ_BUTTON;
 
     ptr = (u8*)&__osPfsPifRam;
 
     requestformat.txsize = CONT_CMD_REQUEST_STATUS_TX;
     requestformat.rxsize = CONT_CMD_REQUEST_STATUS_RX;
+#if BUILD_VERSION >= VERSION_J
     requestformat.cmd = cmd;
+#else
+    requestformat.cmd = CONT_CMD_REQUEST_STATUS;
+#endif
     requestformat.typeh = CONT_CMD_NOP;
     requestformat.typel = CONT_CMD_NOP;
     requestformat.status = CONT_CMD_NOP;

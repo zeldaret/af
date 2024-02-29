@@ -54,12 +54,12 @@ The build process has a few python packages required that are located in `requir
 To install them simply run in a terminal:
 
 ```bash
-python3 -m pip install -U -r requirements.txt
+make venv
 ```
 
 #### 3. Prepare a base ROM
 
-Copy your ROM to inside the root of this new project directory, and rename the file of the baserom to reflect the version of ROM you are using. ex: `baserom.jp.z64`
+Copy your ROM to inside `baseroms/` in the version folder corresponding to your ROM's version, and rename the file of the baserom to `baserom.z64`. ex: `baseroms/jp/baserom.z64`
 
 #### 4. Make and Build the ROM
 
@@ -68,8 +68,8 @@ To start the extraction/build process, run the following command:
 ```bash
 make setup
 make extract
-make lib
 make
+make compress
 ```
 
 ## Note about licensing
@@ -83,6 +83,5 @@ The licensing of this repository does not cover subrepos, namely:
 * `tools/asm-differ`
 * `tools/asm-processor`
 * `tools/fado`
-* `tools/splat`
 * `lib/ultralib`
 * `tools/z64compress`

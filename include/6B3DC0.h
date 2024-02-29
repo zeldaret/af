@@ -3,6 +3,8 @@
 
 #include "ultra64.h"
 
+struct GraphicsContext;
+
 // void func_80090120_jp();
 // void func_80090130_jp();
 // void func_80090140_jp();
@@ -29,7 +31,7 @@
 // void func_80090E98_jp();
 // void mFont_SetMatrix();
 // void mFont_UnSetMatrix();
-// void func_80091074_jp();
+void func_80091074_jp(struct GraphicsContext* gfxCtx);
 // void func_80091094_jp();
 // void func_80091104_jp();
 // void func_8009113C_jp();

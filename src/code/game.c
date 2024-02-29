@@ -74,7 +74,7 @@ void func_800D2E58_jp(u16 button, Gfx** gfxP) {
         if (button & (1 << i)) {
             j = i + 1;
             gDPSetFillColor(gfx++, (RO_80117CE0_jp[i] << 0x10) | RO_80117CE0_jp[i]);
-            gfx = func_800BE12C_jp(gfx, (i * 4) + 226, 220, (j * 4) + 226, 224);
+            gfx = gfx_gDPFillRectangleF(gfx, (i * 4) + 226, 220, (j * 4) + 226, 224);
 
             gDPPipeSync(gfx++);
         }
@@ -145,9 +145,9 @@ void game_draw_first(GraphicsContext* gfxCtx) {
     gSPSegment(UNK_2B0_DISP++, 0x0F, gfxCtx->unk_2E4);
     gSPSegment(UNK_2B0_DISP++, 0x0E, temp_v0);
 
-    gSPSegment(UNK_2C0_DISP++, 0x00, NULL);
-    gSPSegment(UNK_2C0_DISP++, 0x0F, gfxCtx->unk_2E4);
-    gSPSegment(UNK_2C0_DISP++, 0x0E, temp_v0);
+    gSPSegment(SHADOW_DISP++, 0x00, NULL);
+    gSPSegment(SHADOW_DISP++, 0x0F, gfxCtx->unk_2E4);
+    gSPSegment(SHADOW_DISP++, 0x0E, temp_v0);
 
     gSPSegment(LIGHT_DISP++, 0x00, NULL);
     gSPSegment(LIGHT_DISP++, 0x0F, gfxCtx->unk_2E4);

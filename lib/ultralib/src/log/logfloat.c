@@ -1,4 +1,6 @@
-#ifndef _FINALROM
+#include "os_version.h"
+
+#if !defined(_FINALROM) || BUILD_VERSION < VERSION_J
 
 #include "ultralog.h"
 

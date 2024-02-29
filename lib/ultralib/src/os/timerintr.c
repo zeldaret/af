@@ -102,9 +102,11 @@ void __osSetTimerIntr(OSTime tim) {
     OSTime NewTime;
     u32 savedMask;
 
+#if BUILD_VERSION >= VERSION_K
     if (tim < 468) {
         tim = 468;
     }
+#endif
 
     savedMask = __osDisableInt();
     __osTimerCounter = osGetCount();

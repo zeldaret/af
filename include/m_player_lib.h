@@ -5,7 +5,7 @@
 
 struct Player;
 struct Game_Play;
-
+struct PrivateInfo;
 
 // void func_800B1160_jp();
 // void func_800B11B0_jp();
@@ -50,7 +50,7 @@ struct Player* get_player_actor_withoutCheck(struct Game_Play* game_play);
 UNK_RET func_800B1D94_jp(void* segment, UNK_TYPE arg1);
 // void func_800B1DE8_jp();
 // void func_800B1E94_jp();
-// void func_800B1EB0_jp();
+void mPlib_change_player_cloth_info_lv2(struct PrivateInfo*, u16);
 // void func_800B1EDC_jp();
 // void func_800B1F74_jp();
 // void func_800B1F84_jp();

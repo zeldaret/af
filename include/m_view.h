@@ -8,12 +8,16 @@
 struct Game_Play;
 struct GraphicsContext;
 
+typedef struct Viewport {
+    /* 0x00 */ s32 topY;    // uly (upper left y)
+    /* 0x04 */ s32 bottomY; // lry (lower right y)
+    /* 0x08 */ s32 leftX;   // ulx (upper left x)
+    /* 0x0C */ s32 rightX;  // lrx (lower right x)
+} Viewport; // size = 0x10
+
 typedef struct Game_Play1938 {
     /* 0x000 */ UNK_TYPE1 unk_000[0x8];
-    /* 0x008 */ s32 unk_008;
-    /* 0x00C */ s32 unk_00C;
-    /* 0x010 */ s32 unk_010;
-    /* 0x018 */ s32 unk_014;
+    /* 0x008 */ Viewport viewport;
     /* 0x01C */ UNK_TYPE1 unk_018[0x10];
     /* 0x028 */ xyz_t unk_028;
     /* 0x034 */ UNK_TYPE1 unk_034[0x1C];
@@ -25,12 +29,17 @@ typedef struct Game_Play1938 {
     /* 0x124 */ UNK_TYPE1 unk_124[0x4];
 } Game_Play1938; // size = 0x128
 
-typedef struct ScissorViewArg1 {
-    /* 0x00 */ s32 unk_00;
-    /* 0x04 */ s32 unk_04;
-    /* 0x08 */ s32 unk_08;
-    /* 0x0C */ s32 unk_0C;
-} ScissorViewArg1; // size = 0x10
+
+#define SET_FULLSCREEN_VIEWPORT(view)      \
+    {                                      \
+        Viewport viewport;                 \
+        viewport.bottomY = SCREEN_HEIGHT;  \
+        viewport.rightX = SCREEN_WIDTH;    \
+        viewport.topY = 0;                 \
+        viewport.leftX = 0;                \
+        setScissorView(view, &viewport); \
+    }                                      \
+    (void)0
 
 // void set_viewport();
 void initView(Game_Play1938* arg0, struct GraphicsContext* gfxCtx);
@@ -40,14 +49,14 @@ void initView(Game_Play1938* arg0, struct GraphicsContext* gfxCtx);
 // void getScaleView();
 // void setPerspectiveView();
 // void getPerspectiveView();
-void setScissorView(Game_Play1938* arg0, ScissorViewArg1* arg1);
+void setScissorView(Game_Play1938* arg0, Viewport* arg1);
 // void getScissorView();
 // void setScissorX();
 // void setScissorOvl();
 // void setScissor();
 // void stretchViewInit();
 // void do_stretch_view();
-void showView(Game_Play1938* arg0, s32 arg1, struct Game_Play* game_play);
+void showView(Game_Play1938* arg0, s32 arg1);
 // void showPerspectiveView();
 // void showOrthoView();
 // void showOverLayView();

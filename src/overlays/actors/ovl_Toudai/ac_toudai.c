@@ -266,7 +266,7 @@ s32 aTOU_actor_draw_after(Game_Play* game_play, SkeletonInfoR* skeletonInfo UNUS
             type = common_data.time.season == 3;
             object = common_data.unk_10098->unk_AC(0x2D);
             palette = common_data.unk_10098->unk_450(0x5A);
-            func_800BD5C0_jp(gfxCtx);
+            _texture_z_light_fog_prim_light(gfxCtx);
             OPEN_DISPS(gfxCtx);
             OPEN_LIGHT_DISPS();
             gSPSegment(__light++, 8, palette);
@@ -305,7 +305,7 @@ void aTOU_actor_draw(Actor* thisx, Game_Play* game_play) {
         object = common_data.unk_10098->unk_AC(0x2D);
         palette = common_data.unk_10098->unk_450(0x5A);
 
-        func_800BD5E8_jp(gfxCtx);
+        _texture_z_light_fog_prim_npc(gfxCtx);
         OPEN_DISPS(gfxCtx);
         OPEN_POLY_OPA_DISPS();
         gSPSegment(__polyOpa++, 0x8, palette);

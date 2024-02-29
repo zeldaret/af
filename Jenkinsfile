@@ -21,13 +21,13 @@ pipeline {
         stage('Install Python dependencies') {
             steps {
                 echo 'Installing Python dependencies'
-                sh 'python3 -m pip install -r requirements.txt -U'
+                sh 'make venv'
             }
         }
         stage('Copy ROM') {
             steps {
                 echo 'Setting up ROM...'
-                sh 'cp /usr/local/etc/roms/af.jp.z64 baserom.jp.z64'
+                sh 'cp /usr/local/etc/roms/af.jp.z64 baseroms/jp/baserom.z64'
             }
         }
         stage('Setup') {
@@ -62,7 +62,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'bash -c "make WARNINGS_CHECK=1 -j uncompressed 2> >(tee tools/warnings_count/warnings_uncompressed_new.txt)"'
+                sh 'bash -c "make WARNINGS_CHECK=1 -j rom 2> >(tee tools/warnings_count/warnings_uncompressed_new.txt)"'
             }
         }
         stage('Check build uncompressed warnings') {
@@ -72,7 +72,7 @@ pipeline {
         }
         stage('Build compressed') {
             steps {
-                sh 'bash -c "make WARNINGS_CHECK=1 -j compressed 2> >(tee tools/warnings_count/warnings_compress_new.txt)"'
+                sh 'bash -c "make WARNINGS_CHECK=1 -j compress 2> >(tee tools/warnings_count/warnings_compress_new.txt)"'
             }
         }
         stage('Check compress warnings') {
@@ -85,7 +85,7 @@ pipeline {
                 branch 'main'
             }
             steps {
-                sh 'python3 ./tools/upload_frogress.py jp --apikey $FROGRESS_KEY'
+                sh '.venv/bin/python3 ./tools/upload_frogress.py jp --apikey $FROGRESS_KEY'
             }
         }
     }

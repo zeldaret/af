@@ -23,6 +23,7 @@ typedef enum FieldType {
 
 
 #define FI_TO_FIELD_ID(type, index) (((type) << 12) | (index))
+#define FI_GET_TYPE(id) ((id) & 0xF000)
 
 typedef enum FieldRoom {
   /* 0x6000 */ FI_FIELD_PLAYER0_ROOM = FI_TO_FIELD_ID(FI_FIELDTYPE_PLAYER_ROOM, 0),
@@ -207,7 +208,7 @@ void mFI_Wpos2DepositOFF(xyz_t);
 // void func_8008D268_jp();
 // void func_8008D3A4_jp();
 // void func_8008D574_jp();
-// void func_8008D6E0_jp();
+u16 mFI_GetOtherFruit(void);
 s32 func_8008D7B0_jp(u16);
 // void func_8008D884_jp();
 s32 mFI_GetWaveUtinBlock(s32* arg0, s32* arg1, s32 arg2, s32 arg3);

@@ -339,7 +339,7 @@ void Light_list_point_draw(Game_Play* game_play) {
     Gfx* gfx;
 
     OPEN_DISPS(game_play->state.gfxCtx);
-    gfx = func_800BD7C0_jp(POLY_XLU_DISP);
+    gfx = gfx_softsprite_prim_xlu(POLY_XLU_DISP);
 
     gDPSetAlphaDither(gfx++, G_AD_NOISE);
     gDPSetColorDither(gfx++, G_CD_MAGICSQ);

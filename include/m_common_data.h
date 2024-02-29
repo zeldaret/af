@@ -85,8 +85,8 @@ typedef struct CommonData_unk_1007C {
     /* 0x04 */ CommonData_unk_1007C_unk_04 unk_04;
 } CommonData_unk_1007C; // size >= 0x8
 
-typedef UNK_TYPE (*CommonData_unk_10080_unk_00)(UNK_TYPE);
-typedef UNK_TYPE (*CommonData_unk_10080_unk_04)(struct Game_Play*, struct ShadowData*, UNK_TYPE);
+typedef UNK_RET (*CommonData_unk_10080_unk_00)(UNK_TYPE);
+typedef void (*CommonData_unk_10080_unk_04)(struct Game_Play* game_play, struct ShadowData* shadowData, s16 unk2);
 
 typedef struct CommonData_unk_10080 {
     /* 0x00 */ CommonData_unk_10080_unk_00 unk_00;
@@ -173,7 +173,7 @@ typedef struct CommonData_unk_100E4 {
 
 typedef struct CommonData {
     /* 0x00000 */ u8 unk_00000[0x14];
-    /* 0x00014 */ s32 unk_00014;
+    /* 0x00014 */ s32 sceneNo;
     /* 0x00018 */ u8 nowNpcMax;
     /* 0x00019 */ u8 removeAnimalIdx;
     /* 0x0001A */ u8 unk_1A[0x20 - 0x1A];
@@ -196,7 +196,8 @@ typedef struct CommonData {
     /* 0x0F428 */ u64 melody;
     /* 0x0F430 */ UNK_TYPE1 unk_F430[0x8];
     /* 0x0F438 */ u8 stationType;
-    /* 0x0F439 */ u8 unk_F439[0x3];
+    /* 0x0F439 */ u8 saveWeather;
+    /* 0x0F440 */ u8 unk_F440[0x2];
     /* 0x0F43C */ u16 deposit[FG_BLOCK_X_NUM * FG_BLOCK_Z_NUM][UT_Z_NUM]; // flags for which items are buried around town
     /* 0x0F7FC */ lbRTC_time_c lastGrowTime;
     /* 0x0F804 */ PrivateMotherMail motherMailInfo[PLAYER_NUM];
@@ -248,23 +249,30 @@ typedef struct CommonData {
     /* 0x104AA */ u16 lastFieldId;
     /* 0x104AC */ UNK_TYPE1 unk_104AC[0x1];
     /* 0x104AD */ u8 unk_104AD;
-    /* 0x104AE */ u8 unk_104AE;
+    /* 0x104AE */ u8 sunlightFlag;
     /* 0x104AF */ UNK_TYPE1 unk_104AF[0x1];
-    /* 0x104B0 */ UNK_TYPE1 unk_104B0[0xE8];
+    /* 0x104B0 */ UNK_TYPE1 unk_104B0[0xBC];
+    /* 0x1056C */ s16 weather;
+    /* 0x1056E */ s16 weatherIntensity;
+    /* 0x10570 */ lbRTC_time_c weatherTime;
+    /* 0x10578 */ s_xyz wind;
+    /* 0x10580 */ f32 windSpeed;
+    /* 0x10584 */ UNK_TYPE1 unk10584[0x14];
     /* 0x10598 */ mQst_not_saved_c quest;
-    /* 0x105A0 */ u32 sceneFromTitleDemo;
+    /* 0x105A0 */ s32 sceneFromTitleDemo;
     /* 0x105A4 */ NpsSchedule npcSchedule[ANIMAL_NUM_MAX];
     /* 0x10694 */ NpcWalking npcWalk;
     /* 0x10710 */ NpcEvent npcEvent[5];
-    /* 0x1074C */ UNK_TYPE unk_1074C;
-    /* 0x10750 */ UNK_TYPE1 unk_10750[0x4];
-    /* 0x10754 */ UNK_TYPE unk_10754;
+    /* 0x1074C */ s32 unk_1074C;
+    /* 0x10750 */ s16 moneyPower;
+    /* 0x10752 */ s16 goodsPower;
+    /* 0x10754 */ s32 unk_10754;
     /* 0x10758 */ UNK_TYPE1 unk_10758[0x48];
     /* 0x107A0 */ UNK_TYPE unk_107A0;
     /* 0x107A4 */ UNK_TYPE1 unk_107A4[0x12];
     /* 0x107B6 */ s16 unk_107B6; // named "demo_profile" in AC GCN decomp (though it's an array of two s16s in that game)
     /* 0x107B8 */ UNK_TYPE1 unk_107B8[0x28];
-    /* 0x107E0 */ s8 player_decoy_flag;
+    /* 0x107E0 */ s8 playerDecoyFlag;
     /* 0x107E1 */ UNK_TYPE1 unk_107E1[0x3];
     /* 0x107E4 */ s16 unk_107E4;
     /* 0x107E6 */ UNK_TYPE1 unk107E6[0x252];

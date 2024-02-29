@@ -10,9 +10,11 @@ s32 osAiSetNextBuffer(void* bufPtr, u32 size) {
     static u8 hdwrBugFlag = FALSE;
     char* bptr;
 
+#if BUILD_VERSION >= VERSION_J
     if (__osAiDeviceBusy()) {
         return -1;
     }
+#endif
 
 #ifdef _DEBUG
     if ((u32)bufPtr & (8 - 1)) {
@@ -37,6 +39,12 @@ s32 osAiSetNextBuffer(void* bufPtr, u32 size) {
     } else {
         hdwrBugFlag = FALSE;
     }
+
+#if BUILD_VERSION < VERSION_J
+    if (__osAiDeviceBusy()) {
+        return -1;
+    }
+#endif
 
     IO_WRITE(AI_DRAM_ADDR_REG, osVirtualToPhysical(bptr));
     IO_WRITE(AI_LEN_REG, size);

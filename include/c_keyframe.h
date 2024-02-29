@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "z64math.h"
+#include "unk.h"
 
 struct Game_Play;
 
@@ -11,7 +12,7 @@ typedef enum AnimationMode {
     /* 1 */ ANIMATION_REPEAT
 } AnimationMode;
 
-typedef struct {
+typedef struct FrameControl {
     /* 0x00 */ f32 start;
     /* 0x04 */ f32 end;
     /* 0x08 */ f32 duration;
@@ -20,27 +21,27 @@ typedef struct {
     /* 0x14 */ AnimationMode mode;
 } FrameControl; // size = 0x18
 
-typedef struct {
+typedef struct JointElemR {
     /* 0x0 */ Gfx* shape;
     /* 0x4 */ u8 numberOfChildren;
     /* 0x5 */ u8 displayBufferFlag;
     /* 0x6 */ s_xyz translation;
 } JointElemR; // size = 0xC
 
-typedef struct {
+typedef struct BaseSkeletonR {
     /* 0x00 */ u8 numberOfJoints;
     /* 0x01 */ u8 unk01;
     /* 0x04 */ JointElemR* jointElemTable;
 } BaseSkeletonR; // size = 0x8
 
 // original name unknown
-typedef struct {
+typedef struct Keyframe {
     /* 0x00 */ s16 frame;
     /* 0x02 */ s16 value;
     /* 0x04 */ s16 velocity;
 } Keyframe; // size = 0x06
 
-typedef struct {
+typedef struct BaseAnimationR {
     /* 0x00 */ u8* constKeyCheckBitTable;
     /* 0x04 */ Keyframe* dataSource;
     /* 0x08 */ s16* keyframeNumber;
@@ -49,7 +50,7 @@ typedef struct {
     /* 0x12 */ s16 duration;
 } BaseAnimationR; // size = 0x14
 
-typedef struct {
+typedef struct AnimationMove {
     /* 0x00 */ s32 transformationFlag;
     /* 0x04 */ xyz_t baseWorldPosition;
     /* 0x10 */ s16 baseAngleY;
@@ -61,7 +62,7 @@ typedef struct {
     /* 0x3C */ s16 shapeAngleCorrection;
 } AnimationMove; // size = 0x40
 
-typedef struct {
+typedef struct SkeletonInfoR {
     /* 0x00 */ FrameControl frameControl;
     /* 0x18 */ BaseSkeletonR* skeleton;
     /* 0x1C */ BaseAnimationR* animation;
@@ -72,7 +73,7 @@ typedef struct {
     /* 0x30 */ AnimationMove animationMove;
 } SkeletonInfoR; // size = 0x70
 
-typedef struct {
+typedef struct SkeletonInfoRCombineWork {
     /* 0x00 */ SkeletonInfoR* skeletonInfo;
     /* 0x04 */ u8* constKeyCheckBitTable;
     /* 0x08 */ s16* constValueTable;

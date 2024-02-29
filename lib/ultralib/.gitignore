@@ -10,6 +10,7 @@ __pycache__/
 CMakeLists.txt
 cmake-build-debug
 venv/
+.venv
 
 # Project-specific ignores
 base_*/
@@ -24,3 +25,5 @@ tools/ido
 
 # Tool artifacts
 ctx.c
+
+libultra_collection/

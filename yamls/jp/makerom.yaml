@@ -2,6 +2,7 @@
     type: code
     start: 0x000000
     vram: 0x80024C00
+    section_order: [".data", ".text", ".rodata", ".bss"]
     subsegments:
       - [0x000000, header, makerom/header]
       - [0x000040, bin, makerom/ipl3]

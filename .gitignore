@@ -4,14 +4,11 @@ bin/
 assets/
 build/
 
-linker_scripts/jp/auto/
-linker_scripts/cn/auto/
-linker_scripts/jp/animalforest.ld
-linker_scripts/cn/animalforest.ld
+linker_scripts/*/auto/
+linker_scripts/*/animalforest.ld
 *_auto.ld
 animalforest.ld
-animalforest.jp.yaml
-animalforest.cn.yaml
+animalforest-*yaml
 
 __pycache__/
 .make_options
@@ -25,6 +22,7 @@ ctx.c.m2c
 *.v64
 *.plf
 *.sym
+.venv
 
 .vscode/*
 !.vscode/c_cpp_properties.json

@@ -8,7 +8,7 @@
 #include "6E30B0.h"
 #include "6E7AD0.h"
 #include "m_handbill.h"
-#include "z_std_dma.h"
+#include "m_std_dma.h"
 #include "6DA460.h"
 #include "m_house.h"
 #include "m_malloc.h"
@@ -408,7 +408,7 @@ void mNpc_SetAnimalLastTalk(Animal_c* animal) {
     Anmmem_c* memory = NULL;
     s32 memoryIdx;
 
-    if ((&common_data.privateInfo->playerId != NULL) && (animal != NULL)) {
+    if (((uintptr_t)&common_data.privateInfo->playerId != NULL) && (animal != NULL)) {
         priv = common_data.privateInfo;
         memoryIdx = mNpc_GetAnimalMemoryIdx(&priv->playerId, animal->memories, ANIMAL_MEMORY_NUM);
 

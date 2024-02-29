@@ -2,7 +2,7 @@ name: Doubutsunomori (Japanese)
 sha1: 3ee1f866eb08c0ce57a30e09f0c8b0a16a760c8f
 options:
   basename: animalforest
-  target_path: baserom_uncompressed.jp.z64
+  target_path: baseroms/jp/baserom-decompressed.z64
   ld_script_path: linker_scripts/jp/animalforest.ld
   base_path: .
   compiler: IDO
@@ -19,15 +19,17 @@ options:
     - linker_scripts/jp/symbol_addrs_code.txt
     - linker_scripts/jp/symbol_addrs_buffers.txt
     - linker_scripts/jp/symbol_addrs_overlays.txt
+    - linker_scripts/jp/symbol_addrs_assets.txt
     - linker_scripts/jp/ignored_addresses.txt
   reloc_addrs_path:
-    - relocs/reloc_addrs.jp.txt
+    - relocs/reloc_addrs-jp.txt
 
   asm_path: asm/jp
   src_path: src
-  asset_path: bin/jp
+  asset_path: assets/jp
 
   build_path: build
+  lib_path: build/lib
 
   extensions_path: tools/splat_ext
   mips_abi_float_regs: o32
@@ -51,5 +53,7 @@ options:
   hardware_regs: True
   asm_emit_size_directive: False
   segment_end_before_align: True
+  ld_align_section_vram_end: False
+  image_type_in_extension: true
 
 segments:

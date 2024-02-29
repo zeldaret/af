@@ -595,7 +595,7 @@ void none_proc2(Actor* actor UNUSED, Game_Play* play UNUSED) {
 
 void Cheap_gfx_display(Game_Play* play, Gfx* dl) {
     //! FAKE
-    if ((!(&play->state)) && (!(&play->state))) {}
+    if (1) {}
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -610,7 +610,7 @@ void Cheap_gfx_display(Game_Play* play, Gfx* dl) {
 
 void Cheap_gfx_display_xlu(Game_Play* play, Gfx* dl) {
     //! FAKE
-    if ((!(&play->state)) && (!(&play->state))) {}
+    if (1) {}
 
     OPEN_DISPS(play->state.gfxCtx);
 

@@ -31,3 +31,16 @@ D_E4D10 = 0xE4D10; // ignore:true
 D_13D9A0 = 0x13D9A0; // ignore:true
 D_675720 = 0x675720; // ignore:true
 D_73F4D0 = 0x73F4D0; // ignore:true
+
+__osBbIsBb = 0x80000388; // ignore:true
+
+D_6000000 = 0x06000000; // ignore:true
+D_6000040 = 0x06000040; // ignore:true
+D_6000060 = 0x06000060; // ignore:true
+D_60000C0 = 0x060000C0; // ignore:true
+D_60000D0 = 0x060000D0; // ignore:true
+D_6000140 = 0x06000140; // ignore:true
+D_6000180 = 0x06000180; // ignore:true
+D_6000220 = 0x06000220; // ignore:true
+D_60003E8 = 0x060003E8; // ignore:true
+D_6001B68 = 0x06001B68; // ignore:true

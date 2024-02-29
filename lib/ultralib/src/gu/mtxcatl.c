@@ -31,6 +31,7 @@
  */
 
 #include "guint.h"
+#include "os_version.h"
 
 void guMtxCatL(Mtx *m, Mtx *n, Mtx *res)
 {
@@ -43,3 +44,14 @@ void guMtxCatL(Mtx *m, Mtx *n, Mtx *res)
 
 	guMtxF2L(resf, res);
 }
+
+#if BUILD_VERSION < VERSION_K
+void guMtxXFML(Mtx *m, float x, float y, float z, float *ox, float *oy, float *oz)
+{
+	float	mf[4][4];
+
+	guMtxL2F(mf, m);
+
+	guMtxXFMF(mf, x, y, z, ox, oy, oz);
+}
+#endif

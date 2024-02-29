@@ -25,7 +25,7 @@ def uploadProgressMain():
     version: str = args.version
     category: str = "code"
     apikey: str = args.apikey
-    mapPath = Path("build") / f"animalforest.{args.version}.map"
+    mapPath = Path("build") / f"animalforest-{args.version}.map"
 
     totalStats, progressPerFolder = progress.getProgress(mapPath, version)
 

@@ -6,7 +6,7 @@
 #include "ovlmgr.h"
 #include "PreRender.h"
 #include "sys_matrix.h"
-#include "z_std_dma.h"
+#include "m_std_dma.h"
 #include "m_rcp.h"
 #include "macros.h"
 #include "segment_symbols.h"
@@ -606,7 +606,7 @@ void mSM_setup_view(Submenu* submenu, GraphicsContext* gfxCtx, s32 arg1) {
     Mtx* mtx;
     UNUSED s32 pad;
     Gfx* gfx;
-
+    Game_Play1938* view;
     if (arg1 != 0) {
         mtx = GRAPH_ALLOC(gfxCtx, sizeof(Mtx));
         guOrtho(mtx, SCREEN_WIDTH * -8, SCREEN_WIDTH * 8, SCREEN_HEIGHT * -8, SCREEN_HEIGHT * 8, 1.0f, 2000.0f, 1.0f);
@@ -619,17 +619,16 @@ void mSM_setup_view(Submenu* submenu, GraphicsContext* gfxCtx, s32 arg1) {
 
     gfx = POLY_OPA_DISP;
     if (arg1 == 0) {
-        Game_Play1938* var_a0;
-
         if (submenu->unk_00 != 4) {
-            var_a0 = &((Game_Play*)gamePT)->unk_1938;
+            view = &((Game_Play*)gamePT)->unk_1938;
         } else {
-            var_a0 = &((Game__00743CD0*)gamePT)->unk_00E0;
+            view = &((Game__00743CD0*)gamePT)->unk_00E0;
         }
 
         gDPPipeSync(gfx++);
-        gDPSetScissor(gfx++, G_SC_NON_INTERLACE, var_a0->unk_010, var_a0->unk_008, var_a0->unk_014, var_a0->unk_00C);
-        gSPViewport(gfx++, &var_a0->vp);
+        gDPSetScissor(gfx++, G_SC_NON_INTERLACE, view->viewport.leftX, view->viewport.topY, view->viewport.rightX,
+                      view->viewport.bottomY);
+        gSPViewport(gfx++, &view->vp);
         gDPSetColorImage(gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_2E4);
         gDPSetScissor(gfx++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     }
@@ -1107,7 +1106,7 @@ void mSM_draw_item(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 ar
         ar8 = (s32)((1.0f / arg3) * 1365.3334f);
         ar9 = (s32)((1.0f / arg3) * 1365.3334f);
 
-        gfx = func_800BE320_jp(gfx, ar1, ar2, ar3, ar4, ar5, ar6, ar7, ar8, ar9);
+        gfx = gfx_gSPScisTextureRectangle1(gfx, ar1, ar2, ar3, ar4, ar5, ar6, ar7, ar8, ar9);
     }
 
     gDPPipeSync(gfx++);

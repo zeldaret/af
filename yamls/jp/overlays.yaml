@@ -5,9 +5,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x73F4D0, asm, overlays/gamestates/ovl_select/m_select]
-      - [0x741030, data, overlays/gamestates/ovl_select/m_select]
-      - [0x741310, rodata, overlays/gamestates/ovl_select/m_select]
+      - [0x73F4D0, c, overlays/gamestates/ovl_select/m_select]
+      - [0x741030, .data, overlays/gamestates/ovl_select/m_select]
+      - [0x741310, .rodata, overlays/gamestates/ovl_select/m_select]
   - name: ovl_select_reloc
     type: code
     start: 0x741A40
@@ -1205,8 +1205,8 @@
     bss_size: 0x40
     subsegments:
       - [0x82B3C0, c, overlays/actors/ovl_Sample/ac_sample]
-      - [0x82BA80, data, overlays/actors/ovl_Sample/ac_sample]
-      - { start: 0x82BAE0, type: bss, vram: 0x80934660, name: overlays/actors/ovl_Sample/ac_sample }
+      - [0x82BA80, .data, overlays/actors/ovl_Sample/ac_sample]
+      - { start: 0x82BAE0, type: .bss, vram: 0x80934660, name: overlays/actors/ovl_Sample/ac_sample }
   - name: ovl_Sample_reloc
     type: code
     start: 0x82BAE0
@@ -1842,7 +1842,7 @@
     bss_size: 0x0
     subsegments:
       - [0x867620, c, overlays/actors/ovl_TrainDoor/ac_train_door]
-      - [0x867850, data, overlays/actors/ovl_TrainDoor/ac_train_door]
+      - [0x867850, .data, overlays/actors/ovl_TrainDoor/ac_train_door]
   - name: ovl_TrainDoor_reloc
     type: code
     start: 0x867880
@@ -3366,7 +3366,7 @@
     bss_size: 0x0
     subsegments:
       - [0x8E6FD0, c, overlays/actors/ovl_T_Keitai/ac_t_keitai]
-      - [0x8E7420, data, overlays/actors/ovl_T_Keitai/ac_t_keitai]
+      - [0x8E7420, .data, overlays/actors/ovl_T_Keitai/ac_t_keitai]
       - [0x8E74C0, .rodata, overlays/actors/ovl_T_Keitai/ac_t_keitai]
   - name: ovl_T_Keitai_reloc
     type: code
@@ -11275,6 +11275,7 @@
       - [0x920DE0, data, overlays/other_ovl/ovl__00920D90/ovl__00920D90_reloc]
 
   - name: ovl_Train_Window
+    dir: overlays/actors/ovl_Train_Window
     type: code
     start: 0x920E00
     vram: 0x80A59360
@@ -11282,9 +11283,17 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x920E00, c, overlays/actors/ovl_Train_Window/ac_train_window]
-      - [0x922020, data, overlays/actors/ovl_Train_Window/ac_train_window]
-      - [0x922260, .rodata, overlays/actors/ovl_Train_Window/ac_train_window]
+      - [0x920E00, c, ac_train_window]
+      - start: 0x922020
+        type: .data
+        name: ac_train_window
+        subsegments:
+          - [0x922020, pad]
+          - { start: 0x922028, type: af_palette2, name: aTrainWindow_tree_pal_table, data_only: true }
+          - [0x922208, evw_scroll, aTrainWindow_out_cloud]
+          - [0x92220C, evw_data, aTrainWindow_evw_anime_data]
+          - [0x922214, .data, ac_train_window]
+      - [0x922260, .rodata, ac_train_window]
   - name: ovl_Train_Window_reloc
     type: code
     start: 0x922270
@@ -15114,6 +15123,7 @@
       - [0x9536E0, data, overlays/actors/ovl_Tunahiki_Npc1/ac_tunahiki_npc1_reloc]
 
   - name: ovl_Koinobori
+    dir: overlays/actors/ovl_Koinobori
     type: code
     start: 0x9537E0
     vram: 0x80A93570
@@ -15121,8 +15131,15 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x9537E0, c, overlays/actors/ovl_Koinobori/ac_koinobori]
-      - [0x953CE0, data, overlays/actors/ovl_Koinobori/ac_koinobori]
+      - [0x9537E0, c, ac_koinobori]
+      - start: 0x953CE0
+        type: .data
+        name: ac_koinobori
+        subsegments:
+          - [0x953CE0, .data, ac_koinobori]
+          - [0x953D24, af_palette2, aKOI_obj_e_koinobori_a_pal]
+          - [0x953D44, af_palette2, obj_e_koinobori_b_pal]
+          - [0x953D64]
   - name: ovl_Koinobori_reloc
     type: code
     start: 0x953D70

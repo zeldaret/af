@@ -5,7 +5,7 @@
 #include "io/controller_voice.h"
 #include "io/siint.h"
 
-#define WRITE4FORMAT(p) ((__OSVoiceWrite4Format*)(ptr))
+#define WRITE4FORMAT(ptr) ((__OSVoiceWrite4Format*)(ptr))
 
 s32 __osVoiceContWrite4(OSMesgQueue* mq, int channel, u16 address, u8* buffer) {
     s32 ret = 0;
@@ -25,7 +25,7 @@ s32 __osVoiceContWrite4(OSMesgQueue* mq, int channel, u16 address, u8* buffer) {
             __osContLastCmd = CONT_CMD_WRITE4_VOICE;
             __osPfsLastChannel = channel;
 
-            for (i = 0; i < channel; i++) { *ptr++ = 0; }
+            for (i = 0; i < channel; i++) { *ptr++ = CONT_CMD_REQUEST_STATUS; }
 
             __osPfsPifRam.pifstatus = CONT_CMD_EXE;
 
@@ -43,15 +43,15 @@ s32 __osVoiceContWrite4(OSMesgQueue* mq, int channel, u16 address, u8* buffer) {
         WRITE4FORMAT(ptr)->addrh = address >> 3;
         WRITE4FORMAT(ptr)->addrl = (address << 5) | __osContAddressCrc(address);
 
-        bcopy(buffer, &WRITE4FORMAT(ptr)->data, 4);
+        bcopy(buffer, WRITE4FORMAT(ptr)->data, ARRLEN(WRITE4FORMAT(ptr)->data));
 
         ret = __osSiRawStartDma(OS_WRITE, &__osPfsPifRam);
-        crc = __osVoiceContDataCrc(buffer, 4);
+        crc = __osVoiceContDataCrc(buffer, ARRLEN(WRITE4FORMAT(ptr)->data));
         osRecvMesg(mq, NULL, OS_MESG_BLOCK);
         ret = __osSiRawStartDma(OS_READ, &__osPfsPifRam);
         osRecvMesg(mq, NULL, OS_MESG_BLOCK);
 
-        ret = (WRITE4FORMAT(ptr)->rxsize & 0xC0) >> 4;
+        ret = CHNL_ERR(*WRITE4FORMAT(ptr));
 
         if (ret == 0) {
             if (crc != WRITE4FORMAT(ptr)->datacrc) {

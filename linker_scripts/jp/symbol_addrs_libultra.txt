@@ -1,441 +1,437 @@
 // .text
 
-osSendMesg = 0x8002DB20; // type:func size:0x14C (sendmesg, true)
-osPfsFreeBlocks = 0x8002DC70; // type:func size:0x198 (pfsfreeblocks, true)
-osStopThread = 0x8002DE10; // type:func size:0xC0 (stopthread, true)
-osFlashReadId = 0x8002DED0; // type:func size:0xCC (flashreadid, true)
-osRecvMesg = 0x8002DFA0; // type:func size:0x138 (recvmesg, true)
-osSetIntMask = 0x8002E0E0; // type:func size:0xA0 (setintmask, true)
-osGetIntMask = 0x8002E180; // type:func size:0x60 (getintmask, true)
-guScale = 0x8002E1E0; // type:func size:0xA4 (scale, true)
-sinf = 0x8002E290; // type:func size:0x1C0 (sinf, true)
-sins = 0x8002E450; // type:func size:0x70 (sins, true)
+osSendMesg = 0x8002DB20; // defined:true type:func size:0x14C (sendmesg, true)
+osPfsFreeBlocks = 0x8002DC70; // defined:true type:func size:0x198 (pfsfreeblocks, true)
+osStopThread = 0x8002DE10; // defined:true type:func size:0xC0 (stopthread, true)
+osFlashReadId = 0x8002DED0; // defined:true type:func size:0xCC (flashreadid, true)
+osRecvMesg = 0x8002DFA0; // defined:true type:func size:0x138 (recvmesg, true)
+osSetIntMask = 0x8002E0E0; // defined:true type:func size:0xA0 (setintmask, true)
+osGetIntMask = 0x8002E180; // defined:true type:func size:0x60 (getintmask, true)
+guScale = 0x8002E1E0; // defined:true type:func size:0xA4 (scale, true)
+sinf = 0x8002E290; // defined:true type:func size:0x1C0 (sinf, true)
+sins = 0x8002E450; // defined:true type:func size:0x70 (sins, true)
 
-_VirtualToPhysicalTask = 0x8002E4C0; // type:func
+_VirtualToPhysicalTask = 0x8002E4C0; // defined:true type:func
 
-osSpTaskLoad = 0x8002E5CC; // type:func size:0x168 (sptask, true)
-osSpTaskStartGo = 0x8002E734; // type:func size:0x40 (sptask, true)
+osSpTaskLoad = 0x8002E5CC; // defined:true type:func size:0x168 (sptask, true)
+osSpTaskStartGo = 0x8002E734; // defined:true type:func size:0x40 (sptask, true)
 
-osDestroyThread = 0x8002E780; // type:func size:0x104 (destroythread, true)
+osDestroyThread = 0x8002E780; // defined:true type:func size:0x104 (destroythread, true)
 
-__ull_rshift = 0x8002E890; // type:func size:0x2C (ll, true)
-__ull_rem = 0x8002E8BC; // type:func size:0x3C (ll, true)
-__ull_div = 0x8002E8F8; // type:func size:0x3C (ll, true)
-__ll_lshift = 0x8002E934; // type:func size:0x2C (ll, true)
-__ll_rem = 0x8002E960; // type:func size:0x3C (ll, true)
-__ll_div = 0x8002E99C; // type:func size:0x5C (ll, true)
-__ll_mul = 0x8002E9F8; // type:func size:0x30 (ll, true)
-__ull_divremi = 0x8002EA28; // type:func size:0x60 (ll, true)
-__ll_mod = 0x8002EA88; // type:func size:0x9C (ll, true)
-__ll_rshift = 0x8002EB24; // type:func size:0x2C (ll, true)
+__ull_rshift = 0x8002E890; // defined:true type:func size:0x2C (ll, true)
+__ull_rem = 0x8002E8BC; // defined:true type:func size:0x3C (ll, true)
+__ull_div = 0x8002E8F8; // defined:true type:func size:0x3C (ll, true)
+__ll_lshift = 0x8002E934; // defined:true type:func size:0x2C (ll, true)
+__ll_rem = 0x8002E960; // defined:true type:func size:0x3C (ll, true)
+__ll_div = 0x8002E99C; // defined:true type:func size:0x5C (ll, true)
+__ll_mul = 0x8002E9F8; // defined:true type:func size:0x30 (ll, true)
+__ull_divremi = 0x8002EA28; // defined:true type:func size:0x60 (ll, true)
+__ll_mod = 0x8002EA88; // defined:true type:func size:0x9C (ll, true)
+__ll_rshift = 0x8002EB24; // defined:true type:func size:0x2C (ll, true)
 
-__osExceptionPreamble = 0x8002EB50; // type:func size:0x10 (exceptasm, true)
-__osException = 0x8002EB60; // type:func size:0x54C (exceptasm, true)
-send_mesg = 0x8002F0AC; // type:func size:0xB4 (exceptasm, true)
-handle_CpU = 0x8002F160; // type:func size:0x34 (exceptasm, true)
-__osEnqueueAndYield = 0x8002F194; // type:func size:0x100 (exceptasm, true)
-__osEnqueueThread = 0x8002F294; // type:func size:0x48 (exceptasm, true)
-__osPopThread = 0x8002F2DC; // type:func size:0x10 (exceptasm, true)
-__osNop = 0x8002F2EC; // type:func size:0x8 (exceptasm, true)
-__osDispatchThread = 0x8002F2F4; // type:func size:0x17C (exceptasm, true)
-__osCleanupThread = 0x8002F470; // type:func size:0x8 (exceptasm, true)
-__osDequeueThread = 0x8002F480; // type:func size:0x40 (thread, true)
+__osExceptionPreamble = 0x8002EB50; // defined:true type:func size:0x10 (exceptasm, true)
+__osException = 0x8002EB60; // defined:true type:func size:0x54C (exceptasm, true)
+send_mesg = 0x8002F0AC; // defined:true type:func size:0xB4 (exceptasm, true)
+handle_CpU = 0x8002F160; // defined:true type:func size:0x34 (exceptasm, true)
+__osEnqueueAndYield = 0x8002F194; // defined:true type:func size:0x100 (exceptasm, true)
+__osEnqueueThread = 0x8002F294; // defined:true type:func size:0x48 (exceptasm, true)
+__osPopThread = 0x8002F2DC; // defined:true type:func size:0x10 (exceptasm, true)
+__osNop = 0x8002F2EC; // defined:true type:func size:0x8 (exceptasm, true)
+__osDispatchThread = 0x8002F2F4; // defined:true type:func size:0x17C (exceptasm, true)
+__osCleanupThread = 0x8002F470; // defined:true type:func size:0x8 (exceptasm, true)
+__osDequeueThread = 0x8002F480; // defined:true type:func size:0x40 (thread, true)
 
-bzero = 0x8002F4C0; // type:func (bzero, true)
-osContInit = 0x8002F560; // type:func size:0x15C (controller, true)
+bzero = 0x8002F4C0; // defined:true type:func (bzero, true)
+osContInit = 0x8002F560; // defined:true type:func size:0x15C (controller, true)
 
-__osContGetInitData = 0x8002F6BC; // type:func size:0xAC (controller, true)
-__osPackRequestData = 0x8002F768; // type:func size:0xD4 (controller, true)
-__osSiCreateAccessQueue = 0x8002F840; // type:func (controller, false)
-__osSiGetAccess = 0x8002F890; // type:func (conteepread, false)
-__osSiRelAccess = 0x8002F8D4; // type:func (conteepread, false)
+__osContGetInitData = 0x8002F6BC; // defined:true type:func size:0xAC (controller, true)
+__osPackRequestData = 0x8002F768; // defined:true type:func size:0xD4 (controller, true)
+__osSiCreateAccessQueue = 0x8002F840; // defined:true type:func (controller, false)
+__osSiGetAccess = 0x8002F890; // defined:true type:func (conteepread, false)
+__osSiRelAccess = 0x8002F8D4; // defined:true type:func (conteepread, false)
 
-osFlashSectorErase = 0x8002F900; // type:func size:0x144 (flashsectorerase, true)
-osCreateThread = 0x8002FA50; // type:func size:0x144 (createthread, true)
-osContStartReadData = 0x8002FBA0; // type:func size:0x84 (contreaddata, true)
-osContGetReadData = 0x8002FC24; // type:func size:0x8C (contreaddata, true)
-__osPackReadData = 0x8002FCB0; // type:func
+osFlashSectorErase = 0x8002F900; // defined:true type:func size:0x144 (flashsectorerase, true)
+osCreateThread = 0x8002FA50; // defined:true type:func size:0x144 (createthread, true)
+osContStartReadData = 0x8002FBA0; // defined:true type:func size:0x84 (contreaddata, true)
+osContGetReadData = 0x8002FC24; // defined:true type:func size:0x8C (contreaddata, true)
+__osPackReadData = 0x8002FCB0; // defined:true type:func
 
-osVirtualToPhysical = 0x8002FD80; // type:func size:0x7C (virtualtophysical, true)
-osWritebackDCache = 0x8002FE00; // type:func size:0x74 (writebackdcache, true)
-__createSpeedParam = 0x8002FE80; // type:func size:0x9C (initialize, true)
-__osInitialize_common = 0x8002FF1C; // type:func size:0x2AC (initialize, true)
-__osInitialize_autodetect = 0x800301C8; // type:func size:0x8 (initialize, true)
+osVirtualToPhysical = 0x8002FD80; // defined:true type:func size:0x7C (virtualtophysical, true)
+osWritebackDCache = 0x8002FE00; // defined:true type:func size:0x74 (writebackdcache, true)
+__createSpeedParam = 0x8002FE80; // defined:true type:func size:0x9C (initialize, true)
+__osInitialize_common = 0x8002FF1C; // defined:true type:func size:0x2AC (initialize, true)
+__osInitialize_autodetect = 0x800301C8; // defined:true type:func size:0x8 (initialize, true)
 
-__osSetSR = 0x80030230; // type:func size:0x10 (setsr, true)
-__osGetSR = 0x80030240; // type:func size:0xC (getsr, true)
-osViGetNextFramebuffer = 0x80030250; // type:func size:0x3C (vigetnextframebuf, true)
+__osSetSR = 0x80030230; // defined:true type:func size:0x10 (setsr, true)
+__osGetSR = 0x80030240; // defined:true type:func size:0xC (getsr, true)
+osViGetNextFramebuffer = 0x80030250; // defined:true type:func size:0x3C (vigetnextframebuf, true)
 
-guPerspectiveF = 0x80030290; // type:func size:0x230 (perspective, true)
-guPerspective = 0x800304C0; // type:func size:0x58 (perspective, true)
+guPerspectiveF = 0x80030290; // defined:true type:func size:0x230 (perspective, true)
+guPerspective = 0x800304C0; // defined:true type:func size:0x58 (perspective, true)
 
-__osSpRawStartDma = 0x80030520; // type:func size:0x84 (sprawdma, true)
-__osSiRawStartDma = 0x800305B0; // type:func size:0xAC (sirawdma, true)
-osEPiLinkHandle = 0x80030660; // type:func size:0x44 (epilinkhandle, true)
-osViBlack = 0x800306B0; // type:func size:0x64 (viblack, true)
-__osSiRawReadIo = 0x80030720; // type:func (initialize, false)
-osGetThreadId = 0x80030770; // type:func size:0x18 (getthreadid, true)
-osSpTaskYield = 0x80030790; // type:func size:0x20 (sptaskyield, true)
+__osSpRawStartDma = 0x80030520; // defined:true type:func size:0x84 (sprawdma, true)
+__osSiRawStartDma = 0x800305B0; // defined:true type:func size:0xAC (sirawdma, true)
+osEPiLinkHandle = 0x80030660; // defined:true type:func size:0x44 (epilinkhandle, true)
+osViBlack = 0x800306B0; // defined:true type:func size:0x64 (viblack, true)
+__osSiRawReadIo = 0x80030720; // defined:true type:func (initialize, false)
+osGetThreadId = 0x80030770; // defined:true type:func size:0x18 (getthreadid, true)
+osSpTaskYield = 0x80030790; // defined:true type:func size:0x20 (sptaskyield, true)
 
-__osPfsGetNextPage = 0x800307B0; // type:func
+__osPfsGetNextPage = 0x800307B0; // defined:true type:func
 
-osPfsReadWriteFile = 0x80030884; // type:func size:0x378 (pfsreadwritefile, true)
-__osPfsGetStatus = 0x80030C00; // type:func size:0xD0 (pfsgetstatus, true)
-__osPfsRequestOneChannel = 0x80030CD0; // type:func size:0xC4 (pfsgetstatus, true)
-__osPfsGetOneChannelData = 0x80030D94; // type:func size:0x98 (pfsgetstatus, true)
+osPfsReadWriteFile = 0x80030884; // defined:true type:func size:0x378 (pfsreadwritefile, true)
+__osPfsGetStatus = 0x80030C00; // defined:true type:func size:0xD0 (pfsgetstatus, true)
+__osPfsRequestOneChannel = 0x80030CD0; // defined:true type:func size:0xC4 (pfsgetstatus, true)
+__osPfsGetOneChannelData = 0x80030D94; // defined:true type:func size:0x98 (pfsgetstatus, true)
 
-guMtxIdentF = 0x80030E40; // type:func size:0x48 (mtxidentf, true)
-osViSetMode = 0x80030E90; // type:func size:0x58 (visetmode, true)
-osFlashInit = 0x80030EF0; // type:func size:0xF0 (flashinit, true)
-guLookAtF = 0x80030FE0; // type:func size:0x2A4 (lookat, true)
-guLookAt = 0x80031284; // type:func size:0x74 (lookat, true)
-__osMotorAccess = 0x80031300; // type:func size:0x168 (motor, true)
+guMtxIdentF = 0x80030E40; // defined:true type:func size:0x48 (mtxidentf, true)
+osViSetMode = 0x80030E90; // defined:true type:func size:0x58 (visetmode, true)
+osFlashInit = 0x80030EF0; // defined:true type:func size:0xF0 (flashinit, true)
+guLookAtF = 0x80030FE0; // defined:true type:func size:0x2A4 (lookat, true)
+guLookAt = 0x80031284; // defined:true type:func size:0x74 (lookat, true)
+__osMotorAccess = 0x80031300; // defined:true type:func size:0x168 (motor, true)
 
-_MakeMotorData = 0x80031468; // type:func
+_MakeMotorData = 0x80031468; // defined:true type:func
 
-osMotorInit = 0x80031574; // type:func size:0x15C (motor, true)
-osPfsAllocateFile = 0x800316D0; // type:func size:0x334 (pfsallocatefile, true)
-__osPfsDeclearPage = 0x80031A04; // type:func size:0x140 (pfsallocatefile, true)
-osStopTimer = 0x80031B50; // type:func size:0xE8 (stoptimer, true)
-__osProbeTLB = 0x80031C40; // type:func size:0xB8 (probetlb, true)
-osCreatePiManager = 0x80031D00; // type:func size:0x170 (pimgr, true)
+osMotorInit = 0x80031574; // defined:true type:func size:0x15C (motor, true)
+osPfsAllocateFile = 0x800316D0; // defined:true type:func size:0x334 (pfsallocatefile, true)
+__osPfsDeclearPage = 0x80031A04; // defined:true type:func size:0x140 (pfsallocatefile, true)
+osStopTimer = 0x80031B50; // defined:true type:func size:0xE8 (stoptimer, true)
+__osProbeTLB = 0x80031C40; // defined:true type:func size:0xB8 (probetlb, true)
+osCreatePiManager = 0x80031D00; // defined:true type:func size:0x170 (pimgr, true)
 
-__osPiCreateAccessQueue = 0x80031E70; // type:func (pimgr, false)
-__osPiGetAccess = 0x80031EC0; // type:func (cartrominit, false)
-__osPiRelAccess = 0x80031F04; // type:func (cartrominit, false)
-__osDevMgrMain = 0x80031F40; // type:func size:0x410 (devmgr, true)
-__osPiRawStartDma = 0x80032350; // type:func size:0xC8 (pirawdma, true)
-__osSumcalc = 0x80032420; // type:func size:0x74 (contpfs, true)
+__osPiCreateAccessQueue = 0x80031E70; // defined:true type:func (pimgr, false)
+__osPiGetAccess = 0x80031EC0; // defined:true type:func (cartrominit, false)
+__osPiRelAccess = 0x80031F04; // defined:true type:func (cartrominit, false)
+__osDevMgrMain = 0x80031F40; // defined:true type:func size:0x410 (devmgr, true)
+__osPiRawStartDma = 0x80032350; // defined:true type:func size:0xC8 (pirawdma, true)
+__osSumcalc = 0x80032420; // defined:true type:func size:0x74 (contpfs, true)
 
-__osIdCheckSum = 0x80032494; // type:func size:0xFC (contpfs, true)
-__osRepairPackId = 0x80032590; // type:func size:0x350 (contpfs, true)
-__osCheckPackId = 0x800328E0; // type:func size:0x164 (contpfs, true)
-__osGetId = 0x80032A44; // type:func size:0x1AC (contpfs, true)
-__osCheckId = 0x80032BF0; // type:func size:0xD4 (contpfs, true)
-__osPfsRWInode = 0x80032CC4; // type:func size:0x2D4 (contpfs, true)
+__osIdCheckSum = 0x80032494; // defined:true type:func size:0xFC (contpfs, true)
+__osRepairPackId = 0x80032590; // defined:true type:func size:0x350 (contpfs, true)
+__osCheckPackId = 0x800328E0; // defined:true type:func size:0x164 (contpfs, true)
+__osGetId = 0x80032A44; // defined:true type:func size:0x1AC (contpfs, true)
+__osCheckId = 0x80032BF0; // defined:true type:func size:0xD4 (contpfs, true)
+__osPfsRWInode = 0x80032CC4; // defined:true type:func size:0x2D4 (contpfs, true)
 
-osGetCount = 0x80032FA0; // type:func size:0xC (getcount, true)
+osGetCount = 0x80032FA0; // defined:true type:func size:0xC (getcount, true)
 
-guMtxL2F = 0x80032FC0; // type:func size:0x68 (mtxl2f, true)
-osFlashReadStatus = 0x80033030; // type:func size:0x90 (flashreadstatus, true)
-osGetMemSize = 0x800330C0; // type:func size:0x114 (getmemsize, true)
-osPfsFindFile = 0x800331E0; // type:func size:0x1C4 (pfssearchfile, true)
-osSetEventMesg = 0x800333B0; // type:func size:0xB4 (seteventmesg, true)
+guMtxL2F = 0x80032FC0; // defined:true type:func size:0x68 (mtxl2f, true)
+osFlashReadStatus = 0x80033030; // defined:true type:func size:0x90 (flashreadstatus, true)
+osGetMemSize = 0x800330C0; // defined:true type:func size:0x114 (getmemsize, true)
+osPfsFindFile = 0x800331E0; // defined:true type:func size:0x1C4 (pfssearchfile, true)
+osSetEventMesg = 0x800333B0; // defined:true type:func size:0xB4 (seteventmesg, true)
 
-sqrtf = 0x80033470; // type:func size:0x8 (sqrtf, true)
+sqrtf = 0x80033470; // defined:true type:func size:0x8 (sqrtf, true)
 
-osAfterPreNMI = 0x80033480; // type:func size:0x20 (afterprenmi, true)
-osContStartQuery = 0x800334A0; // type:func size:0x7C (contquery, true)
-osContGetQuery = 0x8003351C; // type:func size:0x24 (contquery, true)
-guLookAtHiliteF = 0x80033540; // type:func size:0x7C0 (lookathil, true)
-guLookAtHilite = 0x80033D00; // type:func size:0xB8 (lookathil, true)
-_Printf = 0x80033DC0; // type:func size:0x648 (xprintf, true)
+osAfterPreNMI = 0x80033480; // defined:true type:func size:0x20 (afterprenmi, true)
+osContStartQuery = 0x800334A0; // defined:true type:func size:0x7C (contquery, true)
+osContGetQuery = 0x8003351C; // defined:true type:func size:0x24 (contquery, true)
+guLookAtHiliteF = 0x80033540; // defined:true type:func size:0x7C0 (lookathil, true)
+guLookAtHilite = 0x80033D00; // defined:true type:func size:0xB8 (lookathil, true)
+_Printf = 0x80033DC0; // defined:true type:func size:0x648 (xprintf, true)
 
-_Putfld = 0x80034408; // type:func
+_Putfld = 0x80034408; // defined:true type:func
 
-osUnmapTLBAll = 0x80034AA0; // type:func size:0x44 (unmaptlball, true)
-osEPiStartDma = 0x80034AF0; // type:func size:0x9C (epidma, true)
-strchr = 0x80034B90; // type:func size:0x40 (string, true)
-strlen = 0x80034BD0; // type:func size:0x28 (string, true)
-memcpy = 0x80034BF8; // type:func size:0x2C (string, true)
-osInvalDCache = 0x80034C30; // type:func size:0xAC (invaldcache, true)
-osInvalICache = 0x80034CE0; // type:func size:0x74 (invalicache, true)
-osCreateMesgQueue = 0x80034D60; // type:func size:0x2C (createmesgqueue, true)
-osPfsRepairId = 0x80034D90; // type:func size:0x58 (pfsrepairid, true)
+osUnmapTLBAll = 0x80034AA0; // defined:true type:func size:0x44 (unmaptlball, true)
+osEPiStartDma = 0x80034AF0; // defined:true type:func size:0x9C (epidma, true)
+strchr = 0x80034B90; // defined:true type:func size:0x40 (string, true)
+strlen = 0x80034BD0; // defined:true type:func size:0x28 (string, true)
+memcpy = 0x80034BF8; // defined:true type:func size:0x2C (string, true)
+osInvalDCache = 0x80034C30; // defined:true type:func size:0xAC (invaldcache, true)
+osInvalICache = 0x80034CE0; // defined:true type:func size:0x74 (invalicache, true)
+osCreateMesgQueue = 0x80034D60; // defined:true type:func size:0x2C (createmesgqueue, true)
+osPfsRepairId = 0x80034D90; // defined:true type:func size:0x58 (pfsrepairid, true)
 
-__osTimerServicesInit = 0x80034DF0; // type:func size:0x8C (timerintr, true)
-__osTimerInterrupt = 0x80034E7C; // type:func size:0x178 (timerintr, true)
-__osSetTimerIntr = 0x80034FF4; // type:func size:0xA0 (timerintr, true)
-__osInsertTimer = 0x80035094; // type:func size:0x188 (timerintr, true)
-__osSpDeviceBusy = 0x80035220; // type:func size:0x24 (sp, true)
-__osSiDeviceBusy = 0x80035250; // type:func size:0x24 (si, true)
+__osTimerServicesInit = 0x80034DF0; // defined:true type:func size:0x8C (timerintr, true)
+__osTimerInterrupt = 0x80034E7C; // defined:true type:func size:0x178 (timerintr, true)
+__osSetTimerIntr = 0x80034FF4; // defined:true type:func size:0xA0 (timerintr, true)
+__osInsertTimer = 0x80035094; // defined:true type:func size:0x188 (timerintr, true)
+__osSpDeviceBusy = 0x80035220; // defined:true type:func size:0x24 (sp, true)
+__osSiDeviceBusy = 0x80035250; // defined:true type:func size:0x24 (si, true)
 
-guMtxIdent = 0x80035280; // type:func size:0x4C (mtxident, true)
-osJamMesg = 0x800352D0; // type:func size:0x150 (jammesg, true)
-osSetThreadPri = 0x80035420; // type:func size:0xE0 (setthreadpri, true)
-osGetThreadPri = 0x80035500; // type:func size:0x18 (getthreadpri, true)
-__osEPiRawReadIo = 0x80035520; // type:func size:0x15C (epirawread, true)
-osViSwapBuffer = 0x80035680; // type:func size:0x4C (viswapbuf, true)
-guPositionF = 0x800356D0; // type:func size:0x1A8 (position, true)
-guPosition = 0x80035878; // type:func size:0x64 (position, true)
-__osEPiRawStartDma = 0x800358E0; // type:func size:0x1E0 (epirawdma, true)
-osSpTaskYielded = 0x80035AC0; // type:func size:0x60 (sptaskyielded, true)
+guMtxIdent = 0x80035280; // defined:true type:func size:0x4C (mtxident, true)
+osJamMesg = 0x800352D0; // defined:true type:func size:0x150 (jammesg, true)
+osSetThreadPri = 0x80035420; // defined:true type:func size:0xE0 (setthreadpri, true)
+osGetThreadPri = 0x80035500; // defined:true type:func size:0x18 (getthreadpri, true)
+__osEPiRawReadIo = 0x80035520; // defined:true type:func size:0x15C (epirawread, true)
+osViSwapBuffer = 0x80035680; // defined:true type:func size:0x4C (viswapbuf, true)
+guPositionF = 0x800356D0; // defined:true type:func size:0x1A8 (position, true)
+guPosition = 0x80035878; // defined:true type:func size:0x64 (position, true)
+__osEPiRawStartDma = 0x800358E0; // defined:true type:func size:0x1E0 (epirawdma, true)
+osSpTaskYielded = 0x80035AC0; // defined:true type:func size:0x60 (sptaskyielded, true)
 
-bcmp = 0x80035B20; // type:func (bcmp, true)
+bcmp = 0x80035B20; // defined:true type:func (bcmp, true)
 
-osGetTime = 0x80035C40; // type:func size:0x84 (gettime, true)
-guRotateF = 0x80035CD0; // type:func size:0x184 (rotate, true)
-guRotate = 0x80035E54; // type:func size:0x4C (rotate, true)
-__osSetGlobalIntMask = 0x80035EA0; // type:func size:0x4C (setglobalintmask, true)
-osAiSetFrequency = 0x80035EF0; // type:func size:0x144 (aisetfreq, true)
-__osGetActiveQueue = 0x80036040; // type:func
+osGetTime = 0x80035C40; // defined:true type:func size:0x84 (gettime, true)
+guRotateF = 0x80035CD0; // defined:true type:func size:0x184 (rotate, true)
+guRotate = 0x80035E54; // defined:true type:func size:0x4C (rotate, true)
+__osSetGlobalIntMask = 0x80035EA0; // defined:true type:func size:0x4C (setglobalintmask, true)
+osAiSetFrequency = 0x80035EF0; // defined:true type:func size:0x144 (aisetfreq, true)
+__osGetActiveQueue = 0x80036040; // defined:true type:func
 
-guNormalize = 0x80036060; // type:func size:0x54 (normalize, true)
-__osSetCompare = 0x800360C0; // type:func size:0xC (setcompare, true)
+guNormalize = 0x80036060; // defined:true type:func size:0x54 (normalize, true)
+__osSetCompare = 0x800360C0; // defined:true type:func size:0xC (setcompare, true)
 
-osAiGetStatus = 0x800360D0; // type:func size:0xC (aigetstat, true)
-bcopy = 0x800360E0; // type:func (bcopy, true)
-__osResetGlobalIntMask = 0x800363F0; // type:func size:0x58 (resetglobalintmask, true)
-osPfsDeleteFile = 0x80036450; // type:func size:0x1D8 (pfsdeletefile, true)
-__osPfsReleasePages = 0x80036628; // type:func size:0x90 (pfsdeletefile, true)
-guOrthoF = 0x800366C0; // type:func size:0x154 (ortho, true)
-guOrtho = 0x80036814; // type:func size:0x64 (ortho, true)
-osGbpakInit = 0x80036880; // type:func size:0x230 (gbpakinit, true)
+osAiGetStatus = 0x800360D0; // defined:true type:func size:0xC (aigetstat, true)
+bcopy = 0x800360E0; // defined:true type:func (bcopy, true)
+__osResetGlobalIntMask = 0x800363F0; // defined:true type:func size:0x58 (resetglobalintmask, true)
+osPfsDeleteFile = 0x80036450; // defined:true type:func size:0x1D8 (pfsdeletefile, true)
+__osPfsReleasePages = 0x80036628; // defined:true type:func size:0x90 (pfsdeletefile, true)
+guOrthoF = 0x800366C0; // defined:true type:func size:0x154 (ortho, true)
+guOrtho = 0x80036814; // defined:true type:func size:0x64 (ortho, true)
+osGbpakInit = 0x80036880; // defined:true type:func size:0x230 (gbpakinit, true)
 
-__osViInit = 0x80036AB0; // type:func size:0x114 (vi, true)
-__osViSwapContext = 0x80036BD0; // type:func size:0x2F8 (viswapcontext, true)
-__osDisableInt = 0x80036ED0; // type:func size:0x70 (interrupt, true)
-__osRestoreInt = 0x80036F40; // type:func size:0x1C (interrupt, true)
-osPiGetCmdQueue = 0x80036F60; // type:func size:0x28 (pigetcmdq, true)
-cosf = 0x80036F90; // type:func size:0x168 (cosf, true)
-osEPiReadIo = 0x80037100; // type:func (flashallerase, false)
-osViSetSpecialFeatures = 0x80037150; // type:func size:0x15C (visetspecial, true)
+__osViInit = 0x80036AB0; // defined:true type:func size:0x114 (vi, true)
+__osViSwapContext = 0x80036BD0; // defined:true type:func size:0x2F8 (viswapcontext, true)
+__osDisableInt = 0x80036ED0; // defined:true type:func size:0x70 (interrupt, true)
+__osRestoreInt = 0x80036F40; // defined:true type:func size:0x1C (interrupt, true)
+osPiGetCmdQueue = 0x80036F60; // defined:true type:func size:0x28 (pigetcmdq, true)
+cosf = 0x80036F90; // defined:true type:func size:0x168 (cosf, true)
+osEPiReadIo = 0x80037100; // defined:true type:func (flashallerase, false)
+osViSetSpecialFeatures = 0x80037150; // defined:true type:func size:0x15C (visetspecial, true)
 
-coss = 0x800372B0; // type:func size:0x30 (coss, true)
-osFlashWriteArray = 0x800372E0; // type:func size:0x15C (flashwritearray, true)
-osFlashAllErase = 0x80037440; // type:func size:0x13C (flashallerase, true)
-osFlashClearStatus = 0x80037580; // type:func size:0x4C (flashclearstatus, true)
-osViSetEvent = 0x800375D0; // type:func size:0x5C (visetevent, true)
-osPfsIsPlug = 0x80037630; // type:func size:0x18C (pfsisplug, true)
-__osPfsRequestData = 0x800377BC; // type:func size:0xB4 (pfsisplug, true)
-__osPfsGetInitData = 0x80037870; // type:func size:0xAC (pfsisplug, true)
-osFlashWriteBuffer = 0x80037920; // type:func size:0x88 (flashwritebuffer, true)
-osPfsNumFiles = 0x800379B0; // type:func size:0x128 (pfsnumfiles, true)
-osCartRomInit = 0x80037AE0; // type:func size:0x154 (cartrominit, true)
-guS2DInitBg = 0x80037C40; // type:func size:0x174 (us2dex, true)
-__osPfsSelectBank = 0x80037DC0; // type:func size:0x78 (pfsselectbank, true)
-osContSetCh = 0x80037E40; // type:func size:0x58 (contsetch, true)
-__osSetFpcCsr = 0x80037EA0; // type:func size:0x10 (setfpccsr, true)
-__osGetFpcCsr = 0x80037EB0; // type:func size:0xC (getfpccsr, true)
-osPfsFileState = 0x80037EC0; // type:func size:0x1DC (pfsfilestate, true)
-osPfsInitPak = 0x800380A0; // type:func size:0x208 (pfsinitpak, true)
+coss = 0x800372B0; // defined:true type:func size:0x30 (coss, true)
+osFlashWriteArray = 0x800372E0; // defined:true type:func size:0x15C (flashwritearray, true)
+osFlashAllErase = 0x80037440; // defined:true type:func size:0x13C (flashallerase, true)
+osFlashClearStatus = 0x80037580; // defined:true type:func size:0x4C (flashclearstatus, true)
+osViSetEvent = 0x800375D0; // defined:true type:func size:0x5C (visetevent, true)
+osPfsIsPlug = 0x80037630; // defined:true type:func size:0x18C (pfsisplug, true)
+__osPfsRequestData = 0x800377BC; // defined:true type:func size:0xB4 (pfsisplug, true)
+__osPfsGetInitData = 0x80037870; // defined:true type:func size:0xAC (pfsisplug, true)
+osFlashWriteBuffer = 0x80037920; // defined:true type:func size:0x88 (flashwritebuffer, true)
+osPfsNumFiles = 0x800379B0; // defined:true type:func size:0x128 (pfsnumfiles, true)
+osCartRomInit = 0x80037AE0; // defined:true type:func size:0x154 (cartrominit, true)
+guS2DInitBg = 0x80037C40; // defined:true type:func size:0x174 (us2dex, true)
+__osPfsSelectBank = 0x80037DC0; // defined:true type:func size:0x78 (pfsselectbank, true)
+osContSetCh = 0x80037E40; // defined:true type:func size:0x58 (contsetch, true)
+__osSetFpcCsr = 0x80037EA0; // defined:true type:func size:0x10 (setfpccsr, true)
+__osGetFpcCsr = 0x80037EB0; // defined:true type:func size:0xC (getfpccsr, true)
+osPfsFileState = 0x80037EC0; // defined:true type:func size:0x1DC (pfsfilestate, true)
+osPfsInitPak = 0x800380A0; // defined:true type:func size:0x208 (pfsinitpak, true)
 
-__osPfsCheckRamArea = 0x800382A8; // type:func
+__osPfsCheckRamArea = 0x800382A8; // defined:true type:func
 
-osPfsChecker = 0x800383B0; // type:func size:0x538 (pfschecker, true)
-corrupted_init = 0x800388E8; // type:func size:0x2D8 (pfschecker, true)
-corrupted = 0x80038BC0; // type:func size:0x19C (pfschecker, true)
-osAiGetLength = 0x80038D60; // type:func size:0xC (aigetlen, true)
-osEPiWriteIo = 0x80038D70; // type:func (flashallerase, false)
-osMapTLBRdb = 0x80038DC0; // type:func size:0x58 (maptlbrdb, true)
-osYieldThread = 0x80038E20; // type:func size:0x4C (yieldthread, true)
+osPfsChecker = 0x800383B0; // defined:true type:func size:0x538 (pfschecker, true)
+corrupted_init = 0x800388E8; // defined:true type:func size:0x2D8 (pfschecker, true)
+corrupted = 0x80038BC0; // defined:true type:func size:0x19C (pfschecker, true)
+osAiGetLength = 0x80038D60; // defined:true type:func size:0xC (aigetlen, true)
+osEPiWriteIo = 0x80038D70; // defined:true type:func (flashallerase, false)
+osMapTLBRdb = 0x80038DC0; // defined:true type:func size:0x58 (maptlbrdb, true)
+osYieldThread = 0x80038E20; // defined:true type:func size:0x4C (yieldthread, true)
 
-guTranslate = 0x80038E80; // type:func size:0xC8 (translate, true)
+guTranslate = 0x80038E80; // defined:true type:func size:0xC8 (translate, true)
 
-__osGetCause = 0x80038F50; // type:func size:0xC (getcause, true)
-__osContRamWrite = 0x80038F60; // type:func size:0x24C (contramwrite, true)
-__osContRamRead = 0x800391B0; // type:func size:0x224 (contramread, true)
-__osContAddressCrc = 0x800393E0; // type:func size:0xD0 (crc, true)
-__osContDataCrc = 0x800394B0; // type:func size:0x94 (crc, true)
-__osEPiRawWriteIo = 0x80039550; // type:func size:0x158 (epirawwrite, true)
-osSetTimer = 0x800396B0; // type:func size:0x188 (settimer, true)
-_Ldtob = 0x80039840; // type:func size:0x490 (xldtob, true)
+__osGetCause = 0x80038F50; // defined:true type:func size:0xC (getcause, true)
+__osContRamWrite = 0x80038F60; // defined:true type:func size:0x24C (contramwrite, true)
+__osContRamRead = 0x800391B0; // defined:true type:func size:0x224 (contramread, true)
+__osContAddressCrc = 0x800393E0; // defined:true type:func size:0xD0 (crc, true)
+__osContDataCrc = 0x800394B0; // defined:true type:func size:0x94 (crc, true)
+__osEPiRawWriteIo = 0x80039550; // defined:true type:func size:0x158 (epirawwrite, true)
+osSetTimer = 0x800396B0; // defined:true type:func size:0x188 (settimer, true)
+_Ldtob = 0x80039840; // defined:true type:func size:0x490 (xldtob, true)
 
-_Ldunscale = 0x80039CD0; // type:func
+_Ldunscale = 0x80039CD0; // defined:true type:func
 
-_Genld = 0x80039D88; // type:func
+_Genld = 0x80039D88; // defined:true type:func
 
-ldiv = 0x8003A350; // type:func size:0x84 (ldiv, true)
-lldiv = 0x8003A3D4; // type:func size:0x100 (ldiv, true)
-_Litob = 0x8003A4E0; // type:func size:0x298 (xlitob, true)
-__osSiRawWriteIo = 0x8003A780; // type:func (initialize, false)
-__osSpSetStatus = 0x8003A7D0; // type:func size:0xC (spsetstat, true)
-__osSpGetStatus = 0x8003A7E0; // type:func size:0xC (spgetstat, true)
+ldiv = 0x8003A350; // defined:true type:func size:0x84 (ldiv, true)
+lldiv = 0x8003A3D4; // defined:true type:func size:0x100 (ldiv, true)
+_Litob = 0x8003A4E0; // defined:true type:func size:0x298 (xlitob, true)
+__osSiRawWriteIo = 0x8003A780; // defined:true type:func (initialize, false)
+__osSpSetStatus = 0x8003A7D0; // defined:true type:func size:0xC (spsetstat, true)
+__osSpGetStatus = 0x8003A7E0; // defined:true type:func size:0xC (spgetstat, true)
 
-osCreateViManager = 0x8003A800; // type:func size:0x180 (vimgr, true)
-viMgrMain = 0x8003A980; // type:func
-__osViGetCurrentContext = 0x8003AB10; // type:func (vimgr, false)
-osWritebackDCacheAll = 0x8003AB20; // type:func size:0x28 (writebackdcacheall, true)
-__osGetCurrFaultedThread = 0x8003AB50; // type:func
-guMtxF2L = 0x8003AB60; // type:func size:0x64 (mtxf2l, true)
+osCreateViManager = 0x8003A800; // defined:true type:func size:0x180 (vimgr, true)
+viMgrMain = 0x8003A980; // defined:true type:func
+__osViGetCurrentContext = 0x8003AB10; // defined:true type:func (vimgr, false)
+osWritebackDCacheAll = 0x8003AB20; // defined:true type:func size:0x28 (writebackdcacheall, true)
+__osGetCurrFaultedThread = 0x8003AB50; // defined:true type:func
+guMtxF2L = 0x8003AB60; // defined:true type:func size:0x64 (mtxf2l, true)
 
-osStartThread = 0x8003ABD0; // type:func size:0x150 (startthread, true)
+osStartThread = 0x8003ABD0; // defined:true type:func size:0x150 (startthread, true)
 
-__d_to_ll = 0x8003AD20; // type:func size:0x1C (llcvt, true)
-__f_to_ll = 0x8003AD3C; // type:func size:0x1C (llcvt, true)
-__d_to_ull = 0x8003AD58; // type:func size:0xA0 (llcvt, true)
-__f_to_ull = 0x8003ADF8; // type:func size:0x9C (llcvt, true)
-__ll_to_d = 0x8003AE94; // type:func size:0x18 (llcvt, true)
-__ll_to_f = 0x8003AEAC; // type:func size:0x18 (llcvt, true)
-__ull_to_d = 0x8003AEC4; // type:func size:0x34 (llcvt, true)
-__ull_to_f = 0x8003AEF8; // type:func size:0x30 (llcvt, true)
+__d_to_ll = 0x8003AD20; // defined:true type:func size:0x1C (llcvt, true)
+__f_to_ll = 0x8003AD3C; // defined:true type:func size:0x1C (llcvt, true)
+__d_to_ull = 0x8003AD58; // defined:true type:func size:0xA0 (llcvt, true)
+__f_to_ull = 0x8003ADF8; // defined:true type:func size:0x9C (llcvt, true)
+__ll_to_d = 0x8003AE94; // defined:true type:func size:0x18 (llcvt, true)
+__ll_to_f = 0x8003AEAC; // defined:true type:func size:0x18 (llcvt, true)
+__ull_to_d = 0x8003AEC4; // defined:true type:func size:0x34 (llcvt, true)
+__ull_to_f = 0x8003AEF8; // defined:true type:func size:0x30 (llcvt, true)
 
-osViSetYScale = 0x8003AF30; // type:func size:0x4C (visetyscale, true)
-osViSetXScale = 0x8003AF80; // type:func size:0x10C (visetxscale, true)
-osEepromRead = 0x8003B090; // type:func size:0x1D0 (conteepread, true)
+osViSetYScale = 0x8003AF30; // defined:true type:func size:0x4C (visetyscale, true)
+osViSetXScale = 0x8003AF80; // defined:true type:func size:0x10C (visetxscale, true)
+osEepromRead = 0x8003B090; // defined:true type:func size:0x1D0 (conteepread, true)
 
-__osEepReadData = 0x8003B260; // type:func
+__osEepReadData = 0x8003B260; // defined:true type:func
 
-osEepromWrite = 0x8003B2F0; // type:func size:0x1C4 (conteepwrite, true)
+osEepromWrite = 0x8003B2F0; // defined:true type:func size:0x1C4 (conteepwrite, true)
 
-__osPackEepWriteData = 0x8003B4B4; // type:func
+__osPackEepWriteData = 0x8003B4B4; // defined:true type:func
 
-__osEepStatus = 0x8003B560; // type:func size:0x1A8 (conteepwrite, true)
-osViGetCurrentFramebuffer = 0x8003B710; // type:func size:0x3C (vigetcurrframebuf, true)
-__osSpSetPc = 0x8003B750; // type:func size:0x2C (spsetpc, true)
-osFlashReadArray = 0x8003B780; // type:func size:0x194 (flashreadarray, true)
-__osFlashGetAddr = 0x8003B920; // type:func size:0x24 (flashgetaddr, true)
-__osSetWatchLo = 0x8003B950; // type:func size:0x10 (setwatchlo, true)
+__osEepStatus = 0x8003B560; // defined:true type:func size:0x1A8 (conteepwrite, true)
+osViGetCurrentFramebuffer = 0x8003B710; // defined:true type:func size:0x3C (vigetcurrframebuf, true)
+__osSpSetPc = 0x8003B750; // defined:true type:func size:0x2C (spsetpc, true)
+osFlashReadArray = 0x8003B780; // defined:true type:func size:0x194 (flashreadarray, true)
+__osFlashGetAddr = 0x8003B920; // defined:true type:func size:0x24 (flashgetaddr, true)
+__osSetWatchLo = 0x8003B950; // defined:true type:func size:0x10 (setwatchlo, true)
 
 
 // .data
 
-osViModePalLan1 = 0x8003C5A0; // size:0x50 (vi, false)
+osViModePalLan1 = 0x8003C5A0; // defined:true size:0x50 (vi, false)
 
-sintable = 0x8003C5F0; // type:s16 size:0x800 (sins, false)
+sintable = 0x8003C5F0; // defined:true type:s16 size:0x800 (sins, false)
 
-__osHwIntTable = 0x8003CDF0; // size:0x28 (exceptasm, true)
-__osPiIntTable = 0x8003CE18; // size:0x8 (exceptasm, true)
-__osThreadTail = 0x8003CE20; // size:0x8 (createmesgqueue, false)
-__osRunQueue = 0x8003CE28; // size:0x4 (setthreadpri, false)
-__osActiveQueue = 0x8003CE2C; // size:0x4 (createthread, false)
-__osRunningThread = 0x8003CE30; // size:0x4 (destroythread, false)
-__osFaultedThread = 0x8003CE34; // (exceptasm, false)
-__osContinitialized = 0x8003CE40; // size:0x4 (controller, true)
-__osSiAccessQueueEnabled = 0x8003CE50; // size:0x4 (siacs, true)
+__osHwIntTable = 0x8003CDF0; // defined:true size:0x28 (exceptasm, true)
+__osPiIntTable = 0x8003CE18; // defined:true size:0x8 (exceptasm, true)
+__osThreadTail = 0x8003CE20; // defined:true size:0x8 (createmesgqueue, false)
+__osRunQueue = 0x8003CE28; // defined:true size:0x4 (setthreadpri, false)
+__osActiveQueue = 0x8003CE2C; // defined:true size:0x4 (createthread, false)
+__osRunningThread = 0x8003CE30; // defined:true size:0x4 (destroythread, false)
+__osFaultedThread = 0x8003CE34; // defined:true (exceptasm, false)
+__osContinitialized = 0x8003CE40; // defined:true size:0x4 (controller, true)
+__osSiAccessQueueEnabled = 0x8003CE50; // defined:true size:0x4 (siacs, true)
 
-osClockRate = 0x8003CE60; // size:0x8 (initialize, true)
-osViClock = 0x8003CE68; // size:0x4 (aisetfreq, false)
-__osShutdown = 0x8003CE6C; // size:0x4 (seteventmesg, false)
-__OSGlobalIntMask = 0x8003CE70; // size:0x4 (resetglobalintmask, false)
-__osPiDevMgr = 0x8003CE80; // size:0x1C (epidma, false)
-__osPiTable = 0x8003CE9C; // size:0x4 (cartrominit, false)
-__osCurrentHandle = 0x8003CEA0; // (epirawdma, false)
-__osPiAccessQueueEnabled = 0x8003CEB0; // size:0x4 (pimgr, false)
-osViModeNtscLpn1 = 0x8003CEC0; //
-__osPfsInodeCacheChannel = 0x8003CF10; // size:0x4 (contpfs, true)
-__osPfsInodeCacheBank = 0x8003CF14; // type:s8 size:0x1 (contpfs, true)
-__osPreNMI = 0x8003CF20; // size:0x4 (seteventmesg, true)
+osClockRate = 0x8003CE60; // defined:true size:0x8 (initialize, true)
+osViClock = 0x8003CE68; // defined:true size:0x4 (aisetfreq, false)
+__osShutdown = 0x8003CE6C; // defined:true size:0x4 (seteventmesg, false)
+__OSGlobalIntMask = 0x8003CE70; // defined:true size:0x4 (resetglobalintmask, false)
+__osPiDevMgr = 0x8003CE80; // defined:true size:0x1C (epidma, false)
+__osPiTable = 0x8003CE9C; // defined:true size:0x4 (cartrominit, false)
+__osCurrentHandle = 0x8003CEA0; // defined:true (epirawdma, false)
+__osPiAccessQueueEnabled = 0x8003CEB0; // defined:true size:0x4 (pimgr, false)
+osViModeNtscLpn1 = 0x8003CEC0; // defined:true
+__osPfsInodeCacheChannel = 0x8003CF10; // defined:true size:0x4 (contpfs, true)
+__osPfsInodeCacheBank = 0x8003CF14; // defined:true type:s8 size:0x1 (contpfs, true)
+__osPreNMI = 0x8003CF20; // defined:true size:0x4 (seteventmesg, true)
 
-spaces = 0x8003CF30; // (xprintf, false)
-zeros = 0x8003CF54; // (xprintf, false)
+spaces = 0x8003CF30; // defined:true (xprintf, false)
+zeros = 0x8003CF54; // defined:true (xprintf, false)
 
-__osTimerList = 0x8003CF80; // size:0x4 (settimer, false)
+__osTimerList = 0x8003CF80; // defined:true size:0x4 (settimer, false)
 
-D_FLT_8003CF90_jp = 0x8003CF90; // type:f32
-D_FLT_8003CFA0_jp = 0x8003CFA0; // type:f32
+D_FLT_8003CF90_jp = 0x8003CF90; // defined:true type:f32
+D_FLT_8003CFA0_jp = 0x8003CFA0; // defined:true type:f32
 
-osViModeNtscLan1 = 0x8003CFB0; // size:0x50 (vi, false)
-osViModeMpalLan1 = 0x8003D000; // size:0x50 (vi, false)
+osViModeNtscLan1 = 0x8003CFB0; // defined:true size:0x50 (vi, false)
+osViModeMpalLan1 = 0x8003D000; // defined:true size:0x50 (vi, false)
 
-vi = 0x8003D050; // size:0x70 (vi, false)
-__osViCurr = 0x8003D0B0; // size:0x4 (vi, true)
-__osViNext = 0x8003D0B4; // size:0x4 (vi, true)
+vi = 0x8003D050; // defined:true size:0x60 (vi, false)
+__osViCurr = 0x8003D0B0; // defined:true size:0x4 (vi, true)
+__osViNext = 0x8003D0B4; // defined:true size:0x4 (vi, true)
 
-first = 0x8003D0C0; // size:0x10 (cartrominit, false)
-osViModeFpalLan1 = 0x8003D0D0; //
+first = 0x8003D0C0; // defined:true size:0x10 (cartrominit, false)
+osViModeFpalLan1 = 0x8003D0D0; // defined:true
 
-__osPfsLastChannel = 0x8003D120; // size:0x4 (contramread, true)
+__osPfsLastChannel = 0x8003D120; // defined:true size:0x4 (contramread, true)
 
-ldigs = 0x8003D130; // size:0x14 (xlitob, false)
-udigs = 0x8003D144; // size:0x14 (xlitob, false)
+ldigs = 0x8003D130; // defined:true size:0x14 (xlitob, false)
+udigs = 0x8003D144; // defined:true size:0x14 (xlitob, false)
 
-__osViDevMgr = 0x8003D160; // size:0x5 (vimgr, true)
-__additional_scanline = 0x8003D17C; // size:0x4 (vimgr, true)
+__osViDevMgr = 0x8003D160; // defined:true size:0x5 (vimgr, true)
+__additional_scanline = 0x8003D17C; // defined:true size:0x4 (vimgr, true)
 
 
 // .rodata
 
-__osRcpImTable = 0x8003E5D0; // type:u16 size:0x80 (setintmask, true)
+__osRcpImTable = 0x8003E5D0; // defined:true type:u16 size:0x80 (setintmask, true)
 
-P = 0x8003E650; // type:f64 (sinf, false)
-rpi = 0x8003E678; // type:f64
-pihi = 0x8003E680; // type:f64
-pilo = 0x8003E688; // type:f64
-zero = 0x8003E690; // type:f32
+P = 0x8003E650; // defined:true type:f64 allow_duplicated:true (sinf, false)
+rpi = 0x8003E678; // defined:true type:f64 allow_duplicated:true
+pihi = 0x8003E680; // defined:true type:f64 allow_duplicated:true
+pilo = 0x8003E688; // defined:true type:f64 allow_duplicated:true
+zero = 0x8003E690; // defined:true type:f32 allow_duplicated:true
 
-__osIntOffTable = 0x8003E6A0; // type:u8 (exceptasm, false)
-jtbl_8003E6C0_jp = 0x8003E6C0; // type:jtbl
+__osIntOffTable = 0x8003E6A0; // defined:true type:u8 (exceptasm, false)
+jtbl_8003E6C0_jp = 0x8003E6C0; // defined:true type:jtbl
 
-RO_DBL_8003E6F0_jp = 0x8003E6F0; // type:f64 (perspective, false)
+RO_DBL_8003E6F0_jp = 0x8003E6F0; // defined:true type:f64 (perspective, false)
 
-jtbl_8003E700_jp = 0x8003E700; // type:jtbl (devmgr, false)
+jtbl_8003E700_jp = 0x8003E700; // defined:true type:jtbl (devmgr, false)
 
-RO_DBL_8003E720_jp = 0x8003E720; // type:f64 (lookathil, false)
-RO_DBL_8003E728_jp = 0x8003E728; // type:f64
+RO_DBL_8003E720_jp = 0x8003E720; // defined:true type:f64 (lookathil, false)
+RO_DBL_8003E728_jp = 0x8003E728; // defined:true type:f64
 
-RO_STR_8003E730_jp = 0x8003E730; // type:asciz (xprintf, false)
-RO_STR_8003E734_jp = 0x8003E734; // type:asciz
-RO_8003E73C_jp = 0x8003E73C; //
-jtbl_8003E754_jp = 0x8003E754; // type:jtbl
+RO_STR_8003E730_jp = 0x8003E730; // defined:true type:asciz (xprintf, false)
+RO_STR_8003E734_jp = 0x8003E734; // defined:true type:asciz
+RO_8003E73C_jp = 0x8003E73C; // defined:true
+jtbl_8003E754_jp = 0x8003E754; // defined:true type:jtbl
 
-P = 0x8003E830; // type:f64 (cosf, false)
-rpi = 0x8003E858; // type:f64
-pihi = 0x8003E860; // type:f64
-pilo = 0x8003E868; // type:f64
-zero = 0x8003E870; // type:f32
+P = 0x8003E830; // defined:true type:f64 allow_duplicated:true (cosf, false)
+rpi = 0x8003E858; // defined:true type:f64 allow_duplicated:true
+pihi = 0x8003E860; // defined:true type:f64 allow_duplicated:true
+pilo = 0x8003E868; // defined:true type:f64 allow_duplicated:true
+zero = 0x8003E870; // defined:true type:f32 allow_duplicated:true
 
-__libm_qnan_f = 0x8003E880; // type:f32 size:0x4 (cosf, false)
-
-// .rodata = 0x8003E890; // size:0x60 (xldtob, false)
-
-// .rodata = 0x8003E8F0; // size:0x10 (llcvt, false)
+__libm_qnan_f = 0x8003E880; // defined:true type:f32 size:0x4 (cosf, false)
 
 
 
 // .bss
 
-tmp_task = 0x80041A10; // size:0x40 (sptask, false)
+tmp_task = 0x80041A10; // defined:true size:0x40 (sptask, false)
 
-__osContPifRam = 0x80041A50; // size:0x40 (contquery, false)
-__osContLastCmd = 0x80041A90; // type:s8 size:0x1 size:0x1 (conteepread, false)
-__osMaxControllers = 0x80041A91; // type:s8 size:0x1 size:0x1 (contreaddata, false)
+__osContPifRam = 0x80041A50; // defined:true size:0x40 (contquery, false)
+__osContLastCmd = 0x80041A90; // defined:true type:s8 size:0x1 (conteepread, false)
+__osMaxControllers = 0x80041A91; // defined:true type:s8 size:0x1 (contreaddata, false)
 
-__osEepromTimer = 0x80041A92; //
-__osEepromTimerQ = 0x80041AB8; // size:0x18 (controller, true)
-__osEepromTimerMsg = 0x80041AD0; // size:0x4 (controller, true)
+__osEepromTimer = 0x80041A92; // defined:true
+__osEepromTimerQ = 0x80041AB8; // defined:true size:0x18 (controller, true)
+__osEepromTimerMsg = 0x80041AD0; // defined:true size:0x4 (controller, true)
 
-siAccessBuf = 0x80041AE0; //
-__osSiAccessQueue = 0x80041AE8; //
+siAccessBuf = 0x80041AE0; // defined:true
+__osSiAccessQueue = 0x80041AE8; // defined:true
 
-__osFinalrom = 0x80041B00; // size:0x4 (initialize, true)
+__osFinalrom = 0x80041B00; // defined:true size:0x4 (initialize, true)
 
-__osThreadSave = 0x80041B10; // (exceptasm, false)
+__osThreadSave = 0x80041B10; // defined:true (exceptasm, false)
 
-__osFlashID = 0x80041CC0; // size:0x10 (flashreadid, false)
-__osFlashMsg = 0x80041CD0; // size:0x18 (flashreadid, false)
-__osFlashMessageQ = 0x80041CE8; // size:0x18 (flashinit, true)
-__osFlashHandler = 0x80041D00; // size:0x74 (flashallerase, false)
-__osFlashMsgBuf = 0x80041D74; // size:0x4 (flashinit, true)
-__osFlashVersion = 0x80041D78; // size:0x4 (flashgetaddr, false)
+__osFlashID = 0x80041CC0; // defined:true size:0x10 (flashreadid, false)
+__osFlashMsg = 0x80041CD0; // defined:true size:0x18 (flashreadid, false)
+__osFlashMessageQ = 0x80041CE8; // defined:true size:0x18 (flashinit, true)
+__osFlashHandler = 0x80041D00; // defined:true size:0x74 (flashallerase, false)
+__osFlashMsgBuf = 0x80041D74; // defined:true size:0x4 (flashinit, true)
+__osFlashVersion = 0x80041D78; // defined:true size:0x4 (flashgetaddr, false)
 
-__MotorDataBuf = 0x80041D80; //
+__MotorDataBuf = 0x80041D80; // defined:true
 
-__Dom1SpeedParam = 0x80041E80; // type:s8 size:0x74 (initialize, false)
-__Dom2SpeedParam = 0x80041EF8; // type:s8 size:0x74 (initialize, false)
-piThread = 0x80041F70; //
-piThreadStack = 0x80042120;
-piEventQueue = 0x80043120; //
-piEventBuf = 0x80043138; //
+__Dom1SpeedParam = 0x80041E80; // defined:true type:s8 size:0x74 (initialize, false)
+__Dom2SpeedParam = 0x80041EF8; // defined:true type:s8 size:0x74 (initialize, false)
+piThread = 0x80041F70; // defined:true
+piThreadStack = 0x80042120; // defined:true
+piEventQueue = 0x80043120; // defined:true
+piEventBuf = 0x80043138; // defined:true
 
-piAccessBuf = 0x80043140; //
-__osPiAccessQueue = 0x80043148; // size:0x18 (pimgr, false)
+piAccessBuf = 0x80043140; // defined:true
+__osPiAccessQueue = 0x80043148; // defined:true size:0x18 (pimgr, false)
 
-__osPfsInodeCache = 0x80043160; // size:0x100 (contpfs, true)
+__osPfsInodeCache = 0x80043160; // defined:true size:0x100 (contpfs, true)
 
-__osEventStateTab = 0x80043260; // size:0x78 (seteventmesg, true)
+__osEventStateTab = 0x80043260; // defined:true size:0x78 (seteventmesg, true)
 
-__osBaseTimer = 0x800432E0; //
-__osCurrentTime = 0x80043300; // size:0x8 (gettime, false)
-__osBaseCounter = 0x80043308; // size:0x4 (gettime, false)
-__osViIntrCount = 0x8004330C; // size:0x4 (timerintr, true)
-__osTimerCounter = 0x80043310; // size:0x4 (settimer, false)
+__osBaseTimer = 0x800432E0; // defined:true
+__osCurrentTime = 0x80043300; // defined:true size:0x8 (gettime, false)
+__osBaseCounter = 0x80043308; // defined:true size:0x4 (gettime, false)
+__osViIntrCount = 0x8004330C; // defined:true size:0x4 (timerintr, true)
+__osTimerCounter = 0x80043310; // defined:true size:0x4 (settimer, false)
 
-__osGbpakTimer = 0x80043320; // size:0x20 (gbpakinit, true)
-__osGbpakTimerQ = 0x80043340; // size:0x18 (gbpakinit, true)
-__osGbpakTimerMsg = 0x80043358; // size:0x4 (gbpakinit, true)
+__osGbpakTimer = 0x80043320; // defined:true size:0x20 (gbpakinit, true)
+__osGbpakTimerQ = 0x80043340; // defined:true size:0x18 (gbpakinit, true)
+__osGbpakTimerMsg = 0x80043358; // defined:true size:0x4 (gbpakinit, true)
 
-__osPfsPifRam = 0x80043360; // type:u8 size:0x40 (contramread, false)
-__CartRomHandle = 0x800433A0; // size:0x74 (cartrominit, true)
+__osPfsPifRam = 0x80043360; // defined:true type:u8 size:0x40 (contramread, false)
+__CartRomHandle = 0x800433A0; // defined:true size:0x74 (cartrominit, true)
 
 
-viThread = 0x80043420; // size:0x1B0 (vimgr, false)
-viThreadStack = 0x800435D0; //
-viEventQueue = 0x800445D0; //
-viEventBuf = 0x800445E8; //
-viRetraceMsg = 0x80044600; //
-viCounterMsg = 0x80044618; //
-retrace = 0x80044630; //
+viThread = 0x80043420; // defined:true size:0x1B0 (vimgr, false)
+viThreadStack = 0x800435D0; // defined:true
+viEventQueue = 0x800445D0; // defined:true
+viEventBuf = 0x800445E8; // defined:true
+viRetraceMsg = 0x80044600; // defined:true
+viCounterMsg = 0x80044618; // defined:true
+retrace = 0x80044630; // defined:true
 
-__osEepPifRam = 0x80044640; // type:s8 size:0x40 (conteepread, true)
-__osEepromRead16K = 0x80044680; // size:0x4 (conteepread, true)
+__osEepPifRam = 0x80044640; // defined:true type:s8 size:0x40 (conteepread, true)
+__osEepromRead16K = 0x80044680; // defined:true size:0x4 (conteepread, true)

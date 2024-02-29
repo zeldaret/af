@@ -57,7 +57,7 @@ struct FaultMgr* sFaultInstance;
 u8 sFaultAwaitingInput;
 STACK(sFaultStack, 0x600);
 StackEntry sFaultThreadInfo;
-struct FaultMgr gFaultMgr;
+struct FaultMgr fault_class;
 
 #include "fault.h"
 
@@ -1276,7 +1276,7 @@ void fault_SetFrameBuffer(void* fb, u16 w, u16 h) {
 }
 
 void fault_Init(void) {
-    sFaultInstance = &gFaultMgr;
+    sFaultInstance = &fault_class;
     bzero(sFaultInstance, sizeof(FaultMgr));
     FaultDrawer_Init();
     FaultDrawer_SetInputCallback(fault_WaitForInput);
@@ -1287,7 +1287,7 @@ void fault_Init(void) {
     sFaultInstance->padCallback = fault_PadCallback;
     sFaultInstance->clients = NULL;
     sFaultInstance->autoScroll = false;
-    gFaultMgr.faultHandlerEnabled = true;
+    fault_class.faultHandlerEnabled = true;
     osCreateMesgQueue(&sFaultInstance->queue, sFaultInstance->msg, ARRAY_COUNT(sFaultInstance->msg));
     StackCheck_Init(&sFaultThreadInfo, sFaultStack, STACK_TOP(sFaultStack), 0, 0x100, "fault");
     osCreateThread(&sFaultInstance->thread, M_THREAD_ID_FAULT, fault_ThreadEntry, NULL, STACK_TOP(sFaultStack),

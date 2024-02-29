@@ -198,8 +198,8 @@ D_C000000 = 0x0C000000;
 
 // m_actor_shadow
 
-D_4005540 = 0x04005540;
-D_4005710 = 0x04005710;
+ef_shadow_in_modelT = 0x04005540;
+ef_shadow_out_modelT = 0x04005710;
 D_6000000 = 0x06000000;
 D_6000008 = 0x06000008;
 D_6001628 = 0x06001628;
@@ -1052,10 +1052,10 @@ D_C000000 = 0x0C000000;
 
 // ovl_Sample
 
-D_60018AC = 0x060018AC;
-D_60019B8 = 0x060019B8;
-D_60019D0 = 0x060019D0;
-D_60019F0 = 0x060019F0;
+cKF_bs_r_hnw = 0x060018AC;
+cKF_ba_r_hnw_move = 0x060019B8;
+hnw_face = 0x060019D0;
+hnw_tmem_txt = 0x060019F0;
 
 // ovl_My_Room
 
@@ -1166,8 +1166,8 @@ D_6000778 = 0x06000778;
 
 // ovl_TrainDoor
 
-D_60000B0 = 0x060000B0;
-D_600073C = 0x0600073C;
+cKF_ba_r_obj_romtrain_door = 0x060000B0;
+cKF_bs_r_obj_romtrain_door = 0x0600073C;
 
 // ovl_Npc
 
@@ -1248,55 +1248,6 @@ D_6001188 = 0x06001188;
 D_6001628 = 0x06001628;
 D_60030A0 = 0x060030A0;
 D_60036C0 = 0x060036C0;
-
-// ovl_T_Umbrella
-
-D_6000390 = 0x06000390;
-D_60003C0 = 0x060003C0;
-D_6000470 = 0x06000470;
-D_6000508 = 0x06000508;
-D_6000580 = 0x06000580;
-
-// ovl_T_Keitai
-
-D_6000A2C = 0x06000A2C;
-
-// ovl_T_Utiwa
-
-D_6000080 = 0x06000080;
-
-// ovl_T_Hanabi
-
-D_6000080 = 0x06000080;
-
-// ovl_T_Cracker
-
-D_60001C0 = 0x060001C0;
-
-// ovl_T_Pistol
-
-D_6000410 = 0x06000410;
-
-// ovl_T_Flag
-
-D_6000000 = 0x06000000;
-D_60000F0 = 0x060000F0;
-D_60001A0 = 0x060001A0;
-D_60003F0 = 0x060003F0;
-
-// ovl_T_Tumbler
-
-D_6000330 = 0x06000330;
-
-// ovl_T_NpcSao
-
-D_6000470 = 0x06000470;
-D_6000548 = 0x06000548;
-
-// ovl_T_Tama
-
-D_6000040 = 0x06000040;
-D_6000DD8 = 0x06000DD8;
 
 // ovl__008ED290
 
@@ -3763,9 +3714,9 @@ D_6000D28 = 0x06000D28;
 
 // ovl_Train_Window
 
-D_6000300 = 0x06000300;
-D_6000398 = 0x06000398;
-D_6000508 = 0x06000508;
+rom_train_out_bgcloud_modelT = 0x06000300;
+rom_train_out_shineglass_modelT = 0x06000398;
+rom_train_out_bgsky_model = 0x06000508;
 
 // ovl__00922380
 
@@ -5718,9 +5669,9 @@ cKF_ba_r_obj_w_toudai = 0x06080A74;
 obj_s_toudai_light_model = 0x0607E188;
 obj_w_toudai_light_model = 0x0607FD90;
 
-// ac_t_hanabi
-
-main_utiwa1_model = 0x06000080;
+// ac_koinobori
+obj_e_koinobori_shadow_v = 0x06001DC8; //
+obj_e_koinobori_shadowT_model = 0x06001E48; //
 
 // Buffers
 
