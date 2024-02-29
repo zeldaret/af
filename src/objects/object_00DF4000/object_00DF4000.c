@@ -1,12 +1,11 @@
 #include "unk.h"
-#include "objects/object_00D5E000/obj_yamishop/obj_yamishop.h"
 
 UNK_TYPE4 padDF4000[] = { 0x00000000, 0x00000000 };
 
 u32 StructureObjectAddresses[] = {
     0x06023BB0, // obj_s_house1
-    0x06026388, //
-    0x06028B18, //
+    0x06026388, // obj_s_house2
+    0x06028B18, // obj_s_house3
     0x0602B208, //
     0x0602D838, //
     0x0603C710, //
