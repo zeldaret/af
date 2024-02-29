@@ -1,6 +1,6 @@
 #include "unk.h"
 
-UNK_TYPE4 padD5D000[] = { 0x00000000, 0x00000000 };
+s32 padD5D000[] = { 0x00000000, 0x00000000 };
 
 u32 StructurePaletteAddresses[] = {
     0x06000008, // obj_s_house1_a_pal
