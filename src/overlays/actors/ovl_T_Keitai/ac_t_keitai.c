@@ -132,19 +132,6 @@ void aTKT_actor_move(Actor* thisx, Game_Play* game_play) {
     this->process(this);
 }
 
-#define AC_GCN_OPEN_DISP(gfxCtx)            \
-    {                                       \
-        GraphicsContext* __gfxCtx = gfxCtx; \
-        int __gfx_opened = 0;               \
-        do {                                \
-        } while (0)
-
-#define AC_GCN_CLOSE_DISP(gfxCtx) \
-    (void)__gfx_opened;           \
-    }                             \
-    do {                          \
-    } while (0)
-
 #define OPEN_POLY_OPA_DISPS()                 \
     {                                         \
         Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
@@ -183,17 +170,15 @@ void aTKT_actor_draw(Actor* thisx, Game_Play* game_play) {
 
         _texture_z_light_fog_prim_npc(gfxCtx);
 
-        if (1) {}
-        AC_GCN_OPEN_DISP(gfxCtx);
+        OPEN_DISPS(gfxCtx);
         OPEN_POLY_OPA_DISPS();
-        if (1) {}
 
         Matrix_scale(this->toolActor.actor.scale.x, this->toolActor.actor.scale.y, this->toolActor.actor.scale.z,
                      MTXMODE_APPLY);
         gSPMatrix(__polyOpa++, _Matrix_to_Mtx_new(gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 
         CLOSE_POLY_OPA_DISPS();
-        AC_GCN_CLOSE_DISP(gfxCtx);
+        CLOSE_DISPS(gfxCtx);
 
         cKF_Si3_draw_R_SV(game_play, skeletonInfo, mtx, NULL, NULL, NULL);
     }

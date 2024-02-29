@@ -300,7 +300,6 @@ void Train_Window_Actor_draw(Actor* thisx, Game_Play* play) {
     Train_Window* this = (Train_Window*)thisx;
     UNUSED s32 pad;
 
-    if (1) {}
     OPEN_DISPS(play->state.gfxCtx);
     Matrix_translate(0.0f, 0.0f, 0.0f, FALSE);
     Matrix_scale(0.05f, 0.05f, 0.05f, TRUE);

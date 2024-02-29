@@ -147,7 +147,6 @@ void aKOI_actor_draw(Actor* thisx, Game_Play* game_play) {
         gSPSegment(__polyOpa++, 0x06, object);
         CLOSE_POLY_OPA_DISPS();
         CLOSE_DISPS(gfxCtx);
-        if (1) {}
         cKF_Si3_draw_R_SV(game_play, &this->skeletonInfo, mtx, NULL, NULL, this);
         common_data.unk_10080->unk_04(game_play, &aKOI_shadow_data, 0x27);
     }
