@@ -241,9 +241,6 @@ s32 aTOU_actor_draw_before(Game_Play* game_play UNUSED, SkeletonInfoR* skeletonI
     }                            \
     while (0)
 
-// doesn't use ALIGN16
-#define GRAPH_ALLOC_2(gfxCtx, size) ((void*)((gfxCtx)->polyOpa.d = (Gfx*)((u8*)(gfxCtx)->polyOpa.d - size)))
-
 extern Gfx obj_s_toudai_light_model[];
 extern Gfx obj_w_toudai_light_model[];
 
@@ -288,18 +285,18 @@ s32 aTOU_actor_draw_after(Game_Play* game_play, SkeletonInfoR* skeletonInfo UNUS
 }
 
 void aTOU_actor_draw(Actor* thisx, Game_Play* game_play) {
-    s32 pad UNUSED;
+    UNUSED s32 pad;
     GraphicsContext* gfxCtx = game_play->state.gfxCtx;
-    s32 pad2[2] UNUSED;
+    UNUSED s32 pad2[2];
     Toudai* this = THIS;
     s32 object;
     s32 palette;
-    s32 pad3 UNUSED;
+    UNUSED s32 pad3;
     Mtx* mtx;
     xyz_t* worldPosition = &this->actor.world.pos;
     u8 numberOfDisplayLists = this->skeletonInfo.skeleton->unk01;
 
-    mtx = GRAPH_ALLOC_2(gfxCtx, numberOfDisplayLists * sizeof(Mtx));
+    mtx = GRAPH_ALLOC_NO_ALIGN(gfxCtx, numberOfDisplayLists * sizeof(Mtx));
 
     if (mtx != NULL) {
         object = common_data.unk_10098->unk_AC(0x2D);
