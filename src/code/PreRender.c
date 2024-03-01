@@ -192,25 +192,26 @@ void PreRender_TransBuffer(PreRender* this, Gfx** glistpp, void* arg2, void* arg
 void PreRender_TransBuffer1_env(PreRender* this, Gfx** glistpp, void* arg2, void* arg3, s32 envR, s32 envG, s32 envB,
                                 s32 envA) {
     Gfx* glistp = *glistpp;
-    u32 mode0;
-    u32 mode1;
 
     gDPPipeSync(glistp++);
 
-    //! FAKE:
-    if (envA && envA && envA) {}
+    {
+        u32 mode0;
+        u32 mode1;
 
-    if (envA == 255) {
-        mode0 = G_AD_DISABLE | G_CD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_POINT | G_TT_NONE | G_TL_TILE | G_TD_CLAMP |
-                G_TP_NONE | G_CYC_1CYCLE | G_PM_NPRIMITIVE;
-        mode1 = G_AC_NONE | G_ZS_PRIM | G_RM_OPA_SURF | G_RM_OPA_SURF2;
-    } else {
-        mode0 = G_AD_NOISE | G_CD_NOISE | G_CK_NONE | G_TC_FILT | G_TF_POINT | G_TT_NONE | G_TL_TILE | G_TD_CLAMP |
-                G_TP_NONE | G_CYC_1CYCLE | G_PM_NPRIMITIVE;
-        mode1 = G_AC_NONE | G_ZS_PRIM | G_RM_CLD_SURF | G_RM_CLD_SURF2;
+        if (envA == 255) {
+            mode0 = G_AD_DISABLE | G_CD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_POINT | G_TT_NONE | G_TL_TILE | G_TD_CLAMP |
+                    G_TP_NONE | G_CYC_1CYCLE | G_PM_NPRIMITIVE;
+            mode1 = G_AC_NONE | G_ZS_PRIM | G_RM_OPA_SURF | G_RM_OPA_SURF2;
+        } else {
+            mode0 = G_AD_NOISE | G_CD_NOISE | G_CK_NONE | G_TC_FILT | G_TF_POINT | G_TT_NONE | G_TL_TILE | G_TD_CLAMP |
+                    G_TP_NONE | G_CYC_1CYCLE | G_PM_NPRIMITIVE;
+            mode1 = G_AC_NONE | G_ZS_PRIM | G_RM_CLD_SURF | G_RM_CLD_SURF2;
+        }
+
+        gDPSetOtherMode(glistp++, mode0, mode1);
     }
 
-    gDPSetOtherMode(glistp++, mode0, mode1);
     gDPSetEnvColor(glistp++, envR, envG, envB, envA);
     gDPSetCombineLERP(glistp++, TEXEL0, 0, ENVIRONMENT, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, ENVIRONMENT, 0, 0, 0, 0,
                       ENVIRONMENT);
