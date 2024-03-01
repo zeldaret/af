@@ -458,8 +458,6 @@ Gfx* two_tex_scroll(GraphicsContext* gfxCtx, s32 tile1, u32 x1, u32 y1, s32 widt
 }
 
 void DisplayList_initialize(GraphicsContext* gfxCtx, u8 clearR, u8 clearG, u8 clearB, Game_Play* game_play) {
-    void* unk_008;
-
     OPEN_DISPS(gfxCtx);
 
     gSPDisplayList(POLY_OPA_DISP++, RSP_RDP_clear_data);
@@ -483,14 +481,16 @@ void DisplayList_initialize(GraphicsContext* gfxCtx, u8 clearR, u8 clearG, u8 cl
     gDPSetColorImage(SHADOW_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_2E4);
     gDPSetColorImage(LIGHT_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_2E4);
 
-    unk_008 = gfxCtx->unk_008;
+    {
+        void* unk_008 = gfxCtx->unk_008;
 
-    gDPSetDepthImage(POLY_OPA_DISP++, unk_008);
-    gDPSetDepthImage(POLY_XLU_DISP++, unk_008);
-    gDPSetDepthImage(OVERLAY_DISP++, unk_008);
-    gDPSetDepthImage(UNK_2B0_DISP++, unk_008);
-    gDPSetDepthImage(SHADOW_DISP++, unk_008);
-    gDPSetDepthImage(LIGHT_DISP++, unk_008);
+        gDPSetDepthImage(POLY_OPA_DISP++, unk_008);
+        gDPSetDepthImage(POLY_XLU_DISP++, unk_008);
+        gDPSetDepthImage(OVERLAY_DISP++, unk_008);
+        gDPSetDepthImage(UNK_2B0_DISP++, unk_008);
+        gDPSetDepthImage(SHADOW_DISP++, unk_008);
+        gDPSetDepthImage(LIGHT_DISP++, unk_008);
+    }
 
     if ((game_play == NULL) || ((game_play->submenu.unk_00 < 2) && (fbdemo_mode < 2))) {
         gDPSetColorImage(POLY_OPA_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_008);
@@ -507,9 +507,6 @@ void DisplayList_initialize(GraphicsContext* gfxCtx, u8 clearR, u8 clearG, u8 cl
         gDPFillRectangle(POLY_OPA_DISP++, 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1);
         gDPPipeSync(POLY_OPA_DISP++);
     }
-
-    //! FAKE:
-    if (gfxCtx && gfxCtx && gfxCtx) {}
 
     CLOSE_DISPS(gfxCtx);
 

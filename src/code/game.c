@@ -108,9 +108,6 @@ void game_debug_draw_last(Game* game, GraphicsContext* gfxCtx) {
         gfxclose(gfxHead, gfx);
         POLY_OPA_DISP = gfx;
 
-        do {
-        } while (0);
-
         CLOSE_DISPS(gfxCtx);
     }
 

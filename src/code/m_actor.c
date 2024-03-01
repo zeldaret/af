@@ -254,12 +254,6 @@ void Actor_draw(Game_Play* game_play, Actor* actor) {
 
     fault_AddClient(&faultClient, func_80056380_jp, actor, "Actor_draw");
 
-    //! FAKE
-    if (1) {}
-    if (1) {}
-    if (1) {}
-    if (1) {}
-
     OPEN_DISPS(game_play->state.gfxCtx);
 
     light = Global_light_read(&game_play->glight, game_play->state.gfxCtx);

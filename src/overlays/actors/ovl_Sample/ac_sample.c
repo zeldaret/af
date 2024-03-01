@@ -152,19 +152,6 @@ void Ac_Sample_Actor_ct(Actor* thisx, Game_Play* play) {
     this->segment = play->objectExchangeBank.status[thisx->unk_026].segment;
 }
 
-#define AC_GCN_OPEN_DISP(gfxCtx)            \
-    {                                       \
-        GraphicsContext* __gfxCtx = gfxCtx; \
-        int __gfx_opened = 0;               \
-        do {                                \
-        } while (0)
-
-#define AC_GCN_CLOSE_DISP(gfxCtx) \
-    (void)__gfx_opened;           \
-    }                             \
-    do {                          \
-    } while (0)
-
 #define OPEN_CUSTOM_POLY_OPA()                \
     {                                         \
         Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
@@ -188,7 +175,7 @@ void Ac_Sample_Actor_draw_normal(Sample* this, Game_Play* play) {
 
         _texture_z_light_fog_prim(play->state.gfxCtx);
 
-        AC_GCN_OPEN_DISP(play->state.gfxCtx);
+        OPEN_DISPS(play->state.gfxCtx);
         OPEN_CUSTOM_POLY_OPA();
         gDPLoadTextureBlockS(__polyOpa++, hnw_tmem_txt, G_IM_FMT_I, G_IM_SIZ_8b, 64, 64, 0, G_TX_MIRROR | G_TX_WRAP,
                              G_TX_MIRROR | G_TX_WRAP, 7, 7, G_TX_NOLOD, G_TX_NOLOD);
@@ -198,7 +185,7 @@ void Ac_Sample_Actor_draw_normal(Sample* this, Game_Play* play) {
 
         CLOSE_CUSTOM_POLY_OPA();
 
-        AC_GCN_CLOSE_DISP(play->state.gfxCtx);
+        CLOSE_DISPS(play->state.gfxCtx);
 
         cKF_Si3_draw_R_SV(play, info, mtx, NULL, NULL, NULL);
     }

@@ -602,11 +602,23 @@ s32 add_trigger_954[] = { R_CBUTTONS, U_CBUTTONS, L_CBUTTONS, D_CBUTTONS };
 
 f32 move_data_1027[2][4] = { { 2.0f, 0.0f, 300.0f, 1.0f }, { 0.5f, 120.0f, 0.0f, -1.0f } };
 
+#define OPEN_CUSTOM_POLY_OPA()                \
+    {                                         \
+        Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
+        int __opa_opened = 0;                 \
+        do {                                  \
+        } while (0)
+
+#define CLOSE_CUSTOM_POLY_OPA()      \
+    __gfxCtx->polyOpa.p = __polyOpa; \
+    (void)__opa_opened;              \
+    }                                \
+    do {                             \
+    } while (0)
+
 void mSM_setup_view(Submenu* submenu, GraphicsContext* gfxCtx, s32 arg1) {
     Mtx* mtx;
-    UNUSED s32 pad;
-    Gfx* gfx;
-    Game_Play1938* view;
+
     if (arg1 != 0) {
         mtx = GRAPH_ALLOC(gfxCtx, sizeof(Mtx));
         guOrtho(mtx, SCREEN_WIDTH * -8, SCREEN_WIDTH * 8, SCREEN_HEIGHT * -8, SCREEN_HEIGHT * 8, 1.0f, 2000.0f, 1.0f);
@@ -616,31 +628,31 @@ void mSM_setup_view(Submenu* submenu, GraphicsContext* gfxCtx, s32 arg1) {
     }
 
     OPEN_DISPS(gfxCtx);
+    OPEN_CUSTOM_POLY_OPA();
 
-    gfx = POLY_OPA_DISP;
     if (arg1 == 0) {
+        Game_Play1938* view;
+
         if (submenu->unk_00 != 4) {
             view = &((Game_Play*)gamePT)->unk_1938;
         } else {
             view = &((Game__00743CD0*)gamePT)->unk_00E0;
         }
 
-        gDPPipeSync(gfx++);
-        gDPSetScissor(gfx++, G_SC_NON_INTERLACE, view->viewport.leftX, view->viewport.topY, view->viewport.rightX,
+        gDPPipeSync(__polyOpa++);
+        gDPSetScissor(__polyOpa++, G_SC_NON_INTERLACE, view->viewport.leftX, view->viewport.topY, view->viewport.rightX,
                       view->viewport.bottomY);
-        gSPViewport(gfx++, &view->vp);
-        gDPSetColorImage(gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_2E4);
-        gDPSetScissor(gfx++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        gSPViewport(__polyOpa++, &view->vp);
+        gDPSetColorImage(__polyOpa++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_2E4);
+        gDPSetScissor(__polyOpa++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     }
 
     //! FAKE
     if (1) {}
-    if (1) {}
-    if (1) {}
 
-    gSPMatrix(gfx++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-    POLY_OPA_DISP = gfx;
+    gSPMatrix(__polyOpa++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
 
+    CLOSE_CUSTOM_POLY_OPA();
     CLOSE_DISPS(gfxCtx);
 }
 
@@ -1124,14 +1136,10 @@ void mSM_draw_item(GraphicsContext* gfxCtx, f32 arg1, f32 arg2, f32 arg3, u16 ar
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_draw_item.s")
 #endif
 
-#ifdef NON_MATCHING
-// stack issues
 void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_func_8085CE18_jp_arg4* arg4, s32 arg5,
                    s32 arg6) {
     struct_8085DCF8* temp_a1;
     s32 var_t0;
-    UNUSED s32 pad;
-    Gfx* gfx;
 
     if (mMl_check_send_mail(arg4) != 0) {
         var_t0 = 2;
@@ -1150,44 +1158,37 @@ void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_f
     Matrix_scale(arg3, arg3, 1.0f, MTXMODE_APPLY);
 
     OPEN_DISPS(arg0);
+    OPEN_CUSTOM_POLY_OPA();
 
-    gfx = POLY_OPA_DISP;
-
-    gDPPipeSync(gfx++);
-    gSPMatrix(gfx++, _Matrix_to_Mtx_new(arg0), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    gDPPipeSync(__polyOpa++);
+    gSPMatrix(__polyOpa++, _Matrix_to_Mtx_new(arg0), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 
     temp_a1 = &letter_tex_data_table_837[var_t0];
 
-    gSPSegment(gfx++, 0x09, Lib_SegmentedToVirtual(temp_a1->pal));
-    gSPSegment(gfx++, 0x0A, Lib_SegmentedToVirtual(temp_a1->tex));
-    gDPSetAlphaCompare(gfx++, G_AC_THRESHOLD);
-    gDPSetBlendColor(gfx++, 255, 255, 255, 40);
+    gSPSegment(__polyOpa++, 0x09, Lib_SegmentedToVirtual(temp_a1->pal));
+    gSPSegment(__polyOpa++, 0x0A, Lib_SegmentedToVirtual(temp_a1->tex));
+    gDPSetAlphaCompare(__polyOpa++, G_AC_THRESHOLD);
+    gDPSetBlendColor(__polyOpa++, 255, 255, 255, 40);
 
     if (arg5 != 0) {
-        gDPSetPrimColor(gfx++, 0, 0xFF, 255, 255, 255, 255);
+        gDPSetPrimColor(__polyOpa++, 0, 0xFF, 255, 255, 255, 255);
     } else {
-        gDPSetPrimColor(gfx++, 0, 0x82, 255, 110, 105, 255);
+        gDPSetPrimColor(__polyOpa++, 0, 0x82, 255, 110, 105, 255);
     }
 
     if (arg6 == 0) {
-        gDPSetCombineLERP(gfx++, TEXEL0, PRIMITIVE, PRIM_LOD_FRAC, PRIMITIVE, 0, 0, 0, TEXEL0, TEXEL0, PRIMITIVE,
+        gDPSetCombineLERP(__polyOpa++, TEXEL0, PRIMITIVE, PRIM_LOD_FRAC, PRIMITIVE, 0, 0, 0, TEXEL0, TEXEL0, PRIMITIVE,
                           PRIM_LOD_FRAC, PRIMITIVE, 0, 0, 0, TEXEL0);
     }
 
-    gSPDisplayList(gfx++, D_C012370);
-    gDPPipeSync(gfx++);
-    gDPSetAlphaCompare(gfx++, G_AC_NONE);
-    gDPSetBlendColor(gfx++, 255, 255, 255, 8);
+    gSPDisplayList(__polyOpa++, D_C012370);
+    gDPPipeSync(__polyOpa++);
+    gDPSetAlphaCompare(__polyOpa++, G_AC_NONE);
+    gDPSetBlendColor(__polyOpa++, 255, 255, 255, 8);
 
-    POLY_OPA_DISP = gfx;
-
+    CLOSE_CUSTOM_POLY_OPA();
     CLOSE_DISPS(arg0);
 }
-#else
-void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_func_8085CE18_jp_arg4* arg4, s32 arg5,
-                   s32 arg6);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/submenu/submenu_ovl/m_submenu_ovl/mSM_draw_mail.s")
-#endif
 
 void func_8085D094_jp(Submenu* submenu) {
     struct_8085E9B0_unk_10000* sp2C = &submenu->unk_2C->unk_10000;

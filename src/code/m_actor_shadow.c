@@ -192,19 +192,6 @@ void mActorShadow_GetLastAlphaScale(f32* scale, u8* alpha, Actor* actor, ShadowI
     *alpha = alphaCalc;
 }
 
-#define AC_GCN_OPEN_DISP(gfxCtx)            \
-    {                                       \
-        GraphicsContext* __gfxCtx = gfxCtx; \
-        int __gfx_opened = 0;               \
-        do {                                \
-        } while (0)
-
-#define AC_GCN_CLOSE_DISP(gfxCtx) \
-    (void)__gfx_opened;           \
-    }                             \
-    do {                          \
-    } while (0)
-
 void mActorShadow_DrawActorShadow(Actor* actor, ShadowInfo* shadow, Game* game, f32 rad, s32 id, xyz_t ofs) {
     Game_Play* play = (Game_Play*)game;
     u8 alpha;
@@ -217,7 +204,7 @@ void mActorShadow_DrawActorShadow(Actor* actor, ShadowInfo* shadow, Game* game, 
 
     mActorShadow_GetLastAlphaScale(&scale, &alpha, actor, shadow);
 
-    AC_GCN_OPEN_DISP(play->state.gfxCtx);
+    OPEN_DISPS(play->state.gfxCtx);
 
     _texture_z_light_fog_prim_shadow(play->state.gfxCtx);
 
@@ -287,7 +274,7 @@ void mActorShadow_DrawActorShadow(Actor* actor, ShadowInfo* shadow, Game* game, 
         gSPDisplayList(SHADOW_DISP++, ef_shadow_in_modelT);
     }
 
-    AC_GCN_CLOSE_DISP(play->state.gfxCtx);
+    CLOSE_DISPS(play->state.gfxCtx);
 }
 
 void mActorShadow_GetShadowPosition(Actor* actor, xyz_t* position) {
