@@ -170,19 +170,18 @@ s32 aTrainWindow_DrawGoneOutTunnel(Actor* thisx, Game* game) {
 
     if ((ssc == NULL) || (tsc == NULL)) {
         return 0;
-    } else {
-        OPEN_DISPS(*graph);
-        if (!this->paletteId) {}
-        gSPSegment(POLY_OPA_DISP++, 11, ssc);
-        gSPSegment(POLY_XLU_DISP++, 11, ssc);
-
-        gSPSegment(POLY_OPA_DISP++, 12, tsc);
-        gSPSegment(POLY_XLU_DISP++, 12, tsc);
-
-        CLOSE_DISPS(*graph);
-
-        return 1;
     }
+
+    OPEN_DISPS(*graph);
+
+    gSPSegment(POLY_OPA_DISP++, 11, ssc);
+    gSPSegment(POLY_XLU_DISP++, 11, ssc);
+    gSPSegment(POLY_OPA_DISP++, 12, tsc);
+    gSPSegment(POLY_XLU_DISP++, 12, tsc);
+
+    CLOSE_DISPS(*graph);
+
+    return 1;
 }
 
 s32 aTrainWindow_DrawGoingOutTunnel(Actor* thisx, Game* game) {
@@ -198,26 +197,24 @@ s32 aTrainWindow_DrawGoingOutTunnel(Actor* thisx, Game* game) {
 
     if ((ssc == NULL) || (tsc == NULL)) {
         return 0;
-    } else {
-        OPEN_DISPS(*graph);
-        if (!this->paletteId) {}
-        gSPSegment(POLY_OPA_DISP++, 11, ssc);
-        gSPSegment(POLY_XLU_DISP++, 11, ssc);
-        gSPSegment(POLY_OPA_DISP++, 12, tsc);
-        if (1) {
-            gSPSegment(POLY_XLU_DISP++, 12, tsc);
-
-            CLOSE_DISPS(*graph);
-
-            if (((s32)this->singleScrollX == 1000) && ((s32)this->twoScrollX1 == 1000)) {
-                this->drawType = aTrainWindow_DrawGoneOutTunnel;
-                this->paletteId = aTrainWindow_GetTreePalletIdx();
-                this->currentPalette = aTrainWindow_tree_pal_table[this->paletteId];
-            }
-
-            return 1;
-        }
     }
+
+    OPEN_DISPS(*graph);
+
+    gSPSegment(POLY_OPA_DISP++, 11, ssc);
+    gSPSegment(POLY_XLU_DISP++, 11, ssc);
+    gSPSegment(POLY_OPA_DISP++, 12, tsc);
+    gSPSegment(POLY_XLU_DISP++, 12, tsc);
+
+    CLOSE_DISPS(*graph);
+
+    if (((s32)this->singleScrollX == 1000) && ((s32)this->twoScrollX1 == 1000)) {
+        this->drawType = aTrainWindow_DrawGoneOutTunnel;
+        this->paletteId = aTrainWindow_GetTreePalletIdx();
+        this->currentPalette = aTrainWindow_tree_pal_table[this->paletteId];
+    }
+
+    return 1;
 }
 
 s32 aTrainWindow_NoDraw(Actor* thisx, UNUSED Game* game) {
@@ -238,24 +235,23 @@ s32 aTrainWindow_DrawInTunnel(Actor* thisx, Game* game) {
 
     if ((ssc == NULL) || (tsc == NULL)) {
         return 0;
-    } else {
-        OPEN_DISPS(game->gfxCtx);
-        if (!this->paletteId) {}
-        gSPSegment(POLY_OPA_DISP++, 11, ssc);
-        gSPSegment(POLY_XLU_DISP++, 11, ssc);
-
-        gSPSegment(POLY_OPA_DISP++, 12, tsc);
-        gSPSegment(POLY_XLU_DISP++, 12, tsc);
-
-        CLOSE_DISPS(game->gfxCtx);
-
-        if (common_data.sunlightFlag != 0) {
-            this->paletteId = aTrainWindow_GetTreePalletIdx();
-            this->currentPalette = aTrainWindow_tree_pal_table[this->paletteId];
-            this->drawType = aTrainWindow_DrawGoingOutTunnel;
-        }
-        return 1;
     }
+    OPEN_DISPS(game->gfxCtx);
+
+    gSPSegment(POLY_OPA_DISP++, 11, ssc);
+    gSPSegment(POLY_XLU_DISP++, 11, ssc);
+    gSPSegment(POLY_OPA_DISP++, 12, tsc);
+    gSPSegment(POLY_XLU_DISP++, 12, tsc);
+
+    CLOSE_DISPS(game->gfxCtx);
+
+    if (common_data.sunlightFlag != 0) {
+        this->paletteId = aTrainWindow_GetTreePalletIdx();
+        this->currentPalette = aTrainWindow_tree_pal_table[this->paletteId];
+        this->drawType = aTrainWindow_DrawGoingOutTunnel;
+    }
+
+    return 1;
 }
 
 void aTrainWindow_SetLightPrimColorDetail(Game* game, u8 l, u8 polyAlpha, u8 xluAlpha) {
@@ -310,10 +306,8 @@ void Train_Window_Actor_draw(Actor* thisx, Game_Play* play) {
     if (this->drawType(thisx, &play->state) != 0) {
         _texture_z_light_fog_prim(play->state.gfxCtx);
         _texture_z_light_fog_prim_xlu(play->state.gfxCtx);
-        if (1) {}
         aTrainWindow_SetLightPrimColorDetail(&play->state, 127, 255, this->xluAlpha);
         gSPSegment(POLY_XLU_DISP++, 10, this->currentPalette);
-        if (1) {}
         Evw_Anime_Set(&play->state, aTrainWindow_evw_anime_data);
 
         aTrainWindow_SetLightPrimColorDetail(&play->state, 255, 255, this->xluAlpha);
