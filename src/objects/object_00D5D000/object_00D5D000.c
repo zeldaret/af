@@ -8,26 +8,26 @@ u32 StructurePaletteAddresses[] = {
     0x06000048, // obj_s_house1_c_pal
     0x06000068, // obj_s_house1_d_pal
     0x06000088, // obj_s_house1_e_pal
-    0x06000128, //
-    0x06000108, //
-    0x060000E8, //
-    0x060000C8, //
-    0x060000A8, //
-    0x060001C8, //
-    0x060001A8, //
-    0x06000188, //
-    0x06000168, //
-    0x06000148, //
-    0x06000268, //
-    0x06000248, //
-    0x06000228, //
-    0x06000208, //
-    0x060001E8, //
-    0x06000308, //
-    0x060002E8, //
-    0x060002C8, //
-    0x060002A8, //
-    0x06000288, //
+    0x06000128, // obj_s_house2_a_pal
+    0x06000108, // obj_s_house2_b_pal
+    0x060000E8, // obj_s_house2_c_pal
+    0x060000C8, // obj_s_house2_d_pal
+    0x060000A8, // obj_s_house2_e_pal
+    0x060001C8, // obj_s_house3_a_pal
+    0x060001A8, // obj_s_house3_b_pal
+    0x06000188, // obj_s_house3_c_pal
+    0x06000168, // obj_s_house3_d_pal
+    0x06000148, // obj_s_house3_e_pal
+    0x06000268, // obj_s_house4_a_pal
+    0x06000248, // obj_s_house4_b_pal
+    0x06000228, // obj_s_house4_c_pal
+    0x06000208, // obj_s_house4_d_pal
+    0x060001E8, // obj_s_house4_e_pal
+    0x06000308, // obj_s_house5_a_pal
+    0x060002E8, // obj_s_house5_b_pal
+    0x060002C8, // obj_s_house5_c_pal
+    0x060002A8, // obj_s_house5_d_pal
+    0x06000288, // obj_s_house5_e_pal
     0x06000648, //
     0x06000668, //
     0x060006A8, //
@@ -94,16 +94,16 @@ u32 StructurePaletteAddresses[] = {
     0x06001348, // obj_e_mikanbox_pal
     0x06001368, // obj_s_douzou_dai_pal
     0x060013A8, //
-    0x06000328, //
-    0x06000348, //
-    0x06000368, //
-    0x06000388, //
-    0x060003A8, //
-    0x06000448, //
-    0x06000428, //
-    0x06000408, //
-    0x060003E8, //
-    0x060003C8, //
+    0x06000328, // obj_w_house1_a_pal
+    0x06000348, // obj_w_house1_b_pal
+    0x06000368, // obj_w_house1_c_pal
+    0x06000388, // obj_w_house1_d_pal
+    0x060003A8, // obj_w_house1_e_pal
+    0x06000448, // obj_w_house2_a_pal
+    0x06000428, // obj_w_house2_b_pal
+    0x06000408, // obj_w_house2_c_pal
+    0x060003E8, // obj_w_house2_d_pal
+    0x060003C8, // obj_w_house2_e_pal
     0x060004E8, //
     0x060004C8, //
     0x060004A8, //

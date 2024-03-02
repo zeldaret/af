@@ -587,7 +587,17 @@
           - { start: 0xD5B2C8, type: af_palette, name: obj_s_house5_c_pal, global_id: obj_s_house5_c_pal }
           - { start: 0xD5B2E8, type: af_palette, name: obj_s_house5_b_pal, global_id: obj_s_house5_b_pal }
           - { start: 0xD5B308, type: af_palette, name: obj_s_house5_a_pal, global_id: obj_s_house5_a_pal }
-          - [0xD5B328]
+          - { start: 0xD5B328, type: af_palette, name: obj_w_house1_a_pal, global_id: obj_w_house1_a_pal }
+          - { start: 0xD5B348, type: af_palette, name: obj_w_house1_b_pal, global_id: obj_w_house1_b_pal }
+          - { start: 0xD5B368, type: af_palette, name: obj_w_house1_c_pal, global_id: obj_w_house1_c_pal }
+          - { start: 0xD5B388, type: af_palette, name: obj_w_house1_d_pal, global_id: obj_w_house1_d_pal }
+          - { start: 0xD5B3A8, type: af_palette, name: obj_w_house1_e_pal, global_id: obj_w_house1_e_pal }
+          - { start: 0xD5B3C8, type: af_palette, name: obj_w_house2_e_pal, global_id: obj_w_house2_e_pal }
+          - { start: 0xD5B3E8, type: af_palette, name: obj_w_house2_d_pal, global_id: obj_w_house2_d_pal }
+          - { start: 0xD5B408, type: af_palette, name: obj_w_house2_c_pal, global_id: obj_w_house2_c_pal }
+          - { start: 0xD5B428, type: af_palette, name: obj_w_house2_b_pal, global_id: obj_w_house2_b_pal }
+          - { start: 0xD5B448, type: af_palette, name: obj_w_house2_a_pal, global_id: obj_w_house2_a_pal }
+          - [0xD5B468]
           - { start: 0xD5BA48, type: af_palette, name: obj_s_yamishop_pal, global_id: obj_s_yamishop_pal }
           - { start: 0xD5BA68, type: af_palette, name: obj_w_yamishop_pal, global_id: obj_w_yamishop_pal }
           - [0xD5BA88]
@@ -1332,7 +1342,90 @@
           - [0xD8E11E, pad]
           - [0xD8E120, ckf_ba, obj_s_house5/cKF_ba_r_obj_s_house5_out]
           - [0xD8E134]
-      - [0xD8E140, bin, 0D5E000_unextracted]
+      - [auto, c, obj_w_house1/obj_w_house1]
+      - start: 0xD8E140
+        type: .data
+        name: obj_w_house1/obj_w_house1
+        subsegments:
+          - [0xD8E140, pad]
+          - [0xD8E148, vtx, obj_w_house1/obj_w_house1_v]
+          - [0xD8E878, af_gfx, obj_w_house1/obj_w_house1_window_model]
+          - [0xD8E908, af_gfx, obj_w_house1/obj_w_house1_light_model]
+          - [0xD8E9D8, af_gfx, obj_w_house1/obj_w_house1_t4_model]
+          - [0xD8EA60, af_gfx, obj_w_house1/obj_w_house1_t3_model]
+          - [0xD8EB00, af_gfx, obj_w_house1/obj_w_house1_t2_model]
+          - [0xD8EBD8, af_gfx, obj_w_house1/obj_w_house1_t1_model]
+          - [0xD8ECA8, af_gfx, obj_w_house1/obj_w_house1_door_model]
+          - [0xD8ED60, ci4, obj_w_house1/obj_w_house1_t1_tex_txt, 128, 32, obj_w_house1_a_pal]
+          - [0xD8F560, i4, obj_w_house1/obj_w_house1_window_txt, 16, 16]
+          - start: 0xD8F5E0
+            type: ci4
+            name: obj_w_house1/obj_w_house1_t3_tex_txt
+            width: 128
+            height: 32
+            palettes: [obj_w_house1_a_pal, obj_w_house1_b_pal, obj_w_house1_c_pal, obj_w_house1_d_pal, obj_w_house1_e_pal]
+          - start: 0xD8FDE0
+            type: ci4
+            name: obj_w_house1/obj_w_house1_t2_tex_txt
+            width: 128
+            height: 32
+            palettes: [obj_w_house1_a_pal, obj_w_house1_b_pal, obj_w_house1_c_pal, obj_w_house1_d_pal, obj_w_house1_e_pal]
+          - [0xD905E0, ci4, obj_w_house1/obj_w_house1_t4_tex_txt, 32, 24, obj_w_house1_a_pal]
+          - [0xD90760, ckf_je, obj_w_house1/cKF_je_r_obj_w_house1_tbl]
+          - [0xD907C0, ckf_bs, obj_w_house1/cKF_bs_r_obj_w_house1]
+          - [0xD907C8, ckf_ckcb, obj_w_house1/cKF_ckcb_r_obj_w_house1_tbl]
+          - [0xD907D0, ckf_kn, obj_w_house1/cKF_kn_obj_w_house1_tbl]
+          - [0xD907D4, ckf_c, obj_w_house1/cKF_c_obj_w_house1_tbl]
+          - [0xD90808, ckf_ds, obj_w_house1/cKF_ds_obj_w_house1_tbl]
+          - [0xD9084A, pad]
+          - [0xD9084C, ckf_ba, obj_w_house1/cKF_ba_r_obj_w_house1]
+          - [0xD90860, ckf_ckcb, obj_w_house1/cKF_ckcb_r_obj_w_house1_out_tbl]
+          - [0xD90868, ckf_kn, obj_w_house1/cKF_kn_obj_w_house1_out_tbl]
+          - [0xD9086C, ckf_c, obj_w_house1/cKF_c_obj_w_house1_out_tbl]
+          - [0xD908A0, ckf_ds, obj_w_house1/cKF_ds_obj_w_house1_out_tbl]
+          - [0xD908EE, pad]
+          - [0xD908F0, ckf_ba, obj_w_house1/cKF_ba_r_obj_w_house1_out]
+          - [0xD90904]
+      - [auto, c, obj_w_house2/obj_w_house2]
+      - start: 0xD90910
+        type: .data
+        name: obj_w_house2/obj_w_house2
+        subsegments:
+          - [0xD90910, pad]
+          - [0xD90918, vtx, obj_w_house2/obj_w_house2_v]
+          - [0xD90FE8, af_gfx, obj_w_house2/obj_w_house2_window_model]
+          - [0xD91080, af_gfx, obj_w_house2/obj_w_house2_t3_model]
+          - [0xD91160, af_gfx, obj_w_house2/obj_w_house2_t2_model]
+          - [0xD91218, af_gfx, obj_w_house2/obj_w_house2_t1_model]
+          - [0xD912D0, af_gfx, obj_w_house2/obj_w_house2_name_model]
+          - [0xD91358, af_gfx, obj_w_house2/obj_w_house2_light_model]
+          - [0xD913B0, af_gfx, obj_w_house2/obj_w_house2_door_model]
+          - [0xD91470, ci4, obj_w_house2/obj_w_house2_t3_tex_txt, 128, 32, obj_w_house2_a_pal]
+          - [0xD91C70, i4, obj_w_house2/obj_w_house2_window_tex_txt, 16, 16]
+          - start: 0xD91CF0
+            type: ci4
+            name: obj_w_house2/obj_w_house2_t2_tex_txt
+            width: 128
+            height: 32
+            palettes: [obj_w_house2_a_pal, obj_w_house2_b_pal, obj_w_house2_c_pal, obj_w_house2_d_pal, obj_w_house2_e_pal]
+          - [0xD924F0, ci4, obj_w_house2/obj_w_house2_t1_tex_txt, 128, 32, obj_w_house2_a_pal]
+          - [0xD92CF0, ci4, obj_w_house2/obj_w_house2_name_tex_txt, 32, 32, obj_w_house2_a_pal]
+          - [0xD92EF0, ckf_je, obj_w_house2/cKF_je_r_obj_w_house2_tbl]
+          - [0xD92F50, ckf_bs, obj_w_house2/cKF_bs_r_obj_w_house2]
+          - [0xD92F58, ckf_ckcb, obj_w_house2/cKF_ckcb_r_obj_w_house2_tbl]
+          - [0xD92F60, ckf_kn, obj_w_house2/cKF_kn_obj_w_house2_tbl]
+          - [0xD92F64, ckf_c, obj_w_house2/cKF_c_obj_w_house2_tbl]
+          - [0xD92F98, ckf_ds, obj_w_house2/cKF_ds_obj_w_house2_tbl]
+          - [0xD92FDA, pad]
+          - [0xD92FDC, ckf_ba, obj_w_house2/cKF_ba_r_obj_w_house2]
+          - [0xD92FF0, ckf_ckcb, obj_w_house2/cKF_ckcb_r_obj_w_house2_out_tbl]
+          - [0xD92FF8, ckf_kn, obj_w_house2/cKF_kn_obj_w_house2_out_tbl]
+          - [0xD92FFC, ckf_c, obj_w_house2/cKF_c_obj_w_house2_out_tbl]
+          - [0xD93030, ckf_ds, obj_w_house2/cKF_ds_obj_w_house2_out_tbl]
+          - [0xD9307E, pad]
+          - [0xD93080, ckf_ba, obj_w_house2/cKF_ba_r_obj_w_house2_out]
+          - [0xD93094]
+      - [0xD930A0, bin, 0D5E000_unextracted]
   - [0xDF3480]
 
   - name: object_00DF4000

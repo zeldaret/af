@@ -8,8 +8,8 @@ u32 StructureObjectAddresses[] = {
     0x06028B18, // obj_s_house3
     0x0602B208, // obj_s_house4
     0x0602D838, // obj_s_house5
-    0x0603C710, //
-    0x0603EEE0, //
+    0x0603C710, // obj_w_house1
+    0x0603EEE0, // obj_w_house2
     0x060417D0, //
     0x060583F0, //
     0x0605C470, //
