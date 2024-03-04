@@ -104,11 +104,11 @@ u32 StructurePaletteAddresses[] = {
     0x06000408, // obj_w_house2_c_pal
     0x060003E8, // obj_w_house2_d_pal
     0x060003C8, // obj_w_house2_e_pal
-    0x060004E8, //
-    0x060004C8, //
-    0x060004A8, //
-    0x06000488, //
-    0x06000468, //
+    0x060004E8, // obj_w_house3_a_pal
+    0x060004C8, // obj_w_house3_b_pal
+    0x060004A8, // obj_w_house3_c_pal
+    0x06000488, // obj_w_house3_d_pal
+    0x06000468, // obj_w_house3_e_pal
     0x06000588, //
     0x06000568, //
     0x06000548, //
