@@ -22,6 +22,7 @@ typedef struct FurnitureActor {
     /* 0x134 */ SkeletonInfoR skeletonInfo;
     /* 0x1A4 */ s_xyz jointTable[9];
     /* 0x1DA */ s_xyz morphTable[9];
+    /* 0x210 */ Mtx matrix[2][12];
 } FurnitureActor; // size >= 0x210
 
 #endif
