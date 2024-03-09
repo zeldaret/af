@@ -594,9 +594,6 @@ void none_proc2(Actor* actor UNUSED, Game_Play* play UNUSED) {
 }
 
 void Cheap_gfx_display(Game_Play* play, Gfx* dl) {
-    //! FAKE
-    if (1) {}
-
     OPEN_DISPS(play->state.gfxCtx);
 
     _texture_z_light_fog_prim(play->state.gfxCtx);
@@ -609,9 +606,6 @@ void Cheap_gfx_display(Game_Play* play, Gfx* dl) {
 }
 
 void Cheap_gfx_display_xlu(Game_Play* play, Gfx* dl) {
-    //! FAKE
-    if (1) {}
-
     OPEN_DISPS(play->state.gfxCtx);
 
     _texture_z_light_fog_prim_xlu(play->state.gfxCtx);

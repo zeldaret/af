@@ -895,13 +895,6 @@ void select_draw(Game_Select* select) {
 
     DisplayList_initialize(graph, 0, 0, 0, NULL);
 
-    // FAKE !!
-    if (1) {}
-    if (1) {}
-    if (1) {}
-    if (1) {}
-    if (1) {}
-    if (1) {}
     CLOSE_DISPS(graph);
 
     SET_FULLSCREEN_VIEWPORT(&select->view);
