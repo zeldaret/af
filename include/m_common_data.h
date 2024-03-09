@@ -25,6 +25,7 @@ struct Game_Play;
 struct struct_809AEFA4;
 struct ToolClip;
 struct ShadowData;
+struct FurnitureActor;
 
 typedef UNK_RET (*CommonData_unk_1004C_unk_04)(struct ActorOverlay*, const struct struct_801161E8_jp*, size_t, s32);
 typedef UNK_RET (*CommonData_unk_1004C_unk_08)(void);
@@ -84,6 +85,13 @@ typedef struct CommonData_unk_10080 {
     /* 0x00 */ CommonData_unk_10080_unk_00 unk_00;
     /* 0x04 */ CommonData_unk_10080_unk_04 unk_04;
 } CommonData_unk_10080; // size >= 0x8
+
+typedef UNK_RET (*CommonData_unk_1008C_unk_34)(struct FurnitureActor* furnitureActor, struct Actor* myHouseActor, struct Game_Play* game_play, f32 arg0, f32 arg1);
+
+typedef struct CommonData_unk_1008C {
+    /* 0x00 */ UNK_TYPE1 unk_00[0x34];
+    /* 0x34 */ CommonData_unk_1008C_unk_34 unk_34; // open close proc
+} CommonData_unk_1008C; // size >= 0x8
 
 typedef UNK_RET (*CommonData_unk_10098_unk_4)(struct ActorOverlay*, size_t);
 typedef UNK_RET (*CommonData_unk_10098_unk_8)(void);
@@ -217,7 +225,9 @@ typedef struct CommonData {
     /* 0x10078 */ CommonData_unk_10078* unk_10078;
     /* 0x1007C */ UNK_TYPE1 unk_1007C[0x4];
     /* 0x10080 */ CommonData_unk_10080* unk_10080;
-    /* 0x10084 */ UNK_TYPE1 unk_10084[0x14];
+    /* 0x10084 */ UNK_TYPE1 unk_10084[0x8];
+    /* 0x1008C */ CommonData_unk_1008C* unk_1008C;
+    /* 0x10090 */ UNK_TYPE1 unk_10090[0x8];
     /* 0x10098 */ CommonData_unk_10098* unk_10098;
     /* 0x1009C */ UNK_TYPE1 unk_1009C[0x4];
     /* 0x100A0 */ struct ToolClip* toolClip;

@@ -12819,7 +12819,7 @@
     subsegments:
       - [0x92FE50, data, overlays/other_ovl/ovl__0092FAF0/ovl__0092FAF0_reloc]
 
-  - name: ovl__0092FE80
+  - name: ovl_sum_hal_chest02
     type: code
     start: 0x92FE80
     vram: 0x80A6FBE0
@@ -12827,22 +12827,22 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x92FE80, asm, overlays/other_ovl/ovl__0092FE80/ovl__0092FE80]
-      - [0x930180, data, overlays/other_ovl/ovl__0092FE80/ovl__0092FE80]
-  - name: ovl__0092FE80_reloc
+      - [0x92FE80, c, overlays/furniture/ovl_sum_hal_chest02/ac_sum_hal_chest02]
+      - [0x930180, data, overlays/furniture/ovl_sum_hal_chest02/ac_sum_hal_chest02]
+  - name: ovl_sum_hal_chest02_reloc
     type: code
     start: 0x9301E0
     vram: 0x80A6FF40
-    follows_vram: ovl__0092FE80
+    follows_vram: ovl_sum_hal_chest02
     compress: True
     subsegments:
-      - [0x9301E0, data, overlays/other_ovl/ovl__0092FE80/ovl__0092FE80_reloc]
+      - [0x9301E0, data, overlays/furniture/ovl_sum_hal_chest02/ovl_sum_hal_chest02_reloc]
 
   - name: ovl__00930210
     type: code
     start: 0x930210
     vram: 0x80A6FF70
-    follows_vram: ovl__0092FE80_reloc
+    follows_vram: ovl_sum_hal_chest02_reloc
     compress: True
     bss_size: 0x0
     subsegments:
