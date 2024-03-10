@@ -2,10 +2,10 @@
 #include "c_keyframe.h"
 #include "src/overlays/actors/ovl_My_Room/ac_my_room.h"
 
-void aSumHalChest02_ct(FurnitureActor* this, u8 data);
+void aSumHalChest02_ct(FurnitureActor* this, u8* data);
 void aSumHalChest02_mv(FurnitureActor* this, Actor* myRoomActor, Game_Play* game_play, u8* data);
 void aSumHalChest03_dw(FurnitureActor* this, Actor* myRoomActor, Game_Play* game_play, u8* data);
-void aSumHalChest03_dt(FurnitureActor* this, u8 data);
+void aSumHalChest03_dt(FurnitureActor* this, u8* data);
 
 FurnitureActorFunctions aSumHalChest02_func = {
     /* */ aSumHalChest02_ct,
@@ -38,7 +38,7 @@ FurnitureActorUnkStruct iam_sum_hal_chest02 = {
 extern BaseSkeletonR cKF_bs_r_int_sum_hal_chest02;
 extern BaseAnimationR cKF_ba_r_int_sum_hal_chest02;
 
-void aSumHalChest02_ct(FurnitureActor* this, u8 data UNUSED) {
+void aSumHalChest02_ct(FurnitureActor* this, u8* data UNUSED) {
     UNUSED s32 pad[2];
     SkeletonInfoR* skeletonInfo = &this->skeletonInfo;
 
@@ -61,7 +61,7 @@ extern UNK_PTR D_6000000;
 void aSumHalChest03_dw(FurnitureActor* this, Actor* myRoomActor UNUSED, Game_Play* game_play, u8* data UNUSED) {
     UNUSED s32 pad;
     s32 temp = game_play->state.unk_A0 & 1;
-    Mtx* mtx = &this->matrix[temp];
+    Mtx* mtx = &this->matrix[temp][0];
 
     OPEN_DISPS(game_play->state.gfxCtx);
     if (1) {}
@@ -89,5 +89,5 @@ void aSumHalChest03_dw(FurnitureActor* this, Actor* myRoomActor UNUSED, Game_Pla
     cKF_Si3_draw_R_SV(game_play, &this->skeletonInfo, mtx, NULL, NULL, NULL);
 }
 
-void aSumHalChest03_dt(FurnitureActor* this UNUSED, u8 data UNUSED) {
+void aSumHalChest03_dt(FurnitureActor* this UNUSED, u8* data UNUSED) {
 }

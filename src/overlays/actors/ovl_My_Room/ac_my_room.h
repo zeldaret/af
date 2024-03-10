@@ -57,8 +57,7 @@ typedef struct FurnitureActorUnkStruct {
     /* 0x34 */ UNK_TYPE4 unk34;
     /* 0x38 */ UNK_TYPE4 unk38;
     /* 0x3C */ UNK_TYPE4 unk3C;
-    /* 0x40 */ UNK_TYPE4 unk40;
-    /* 0x44 */ FurnitureActorFunctions* furnitureActorFunctions;
-} FurnitureActorUnkStruct; // size = 0x48
+    /* 0x40 */ FurnitureActorFunctions* furnitureActorFunctions;
+} FurnitureActorUnkStruct; // size = 0x44
 
 #endif
