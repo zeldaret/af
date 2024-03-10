@@ -12828,7 +12828,7 @@
     bss_size: 0x0
     subsegments:
       - [0x92FE80, c, overlays/furniture/ovl_sum_hal_chest02/ac_sum_hal_chest02]
-      - [0x930180, data, overlays/furniture/ovl_sum_hal_chest02/ac_sum_hal_chest02]
+      - [0x930180, .data, overlays/furniture/ovl_sum_hal_chest02/ac_sum_hal_chest02]
   - name: ovl_sum_hal_chest02_reloc
     type: code
     start: 0x9301E0
