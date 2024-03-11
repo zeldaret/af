@@ -33,9 +33,9 @@ struct_809AEFA4 aNEG_ct_data = {
 void aNEG_actor_ct(Actor* thisx, Game_Play* game_play) {
     Npc_Engineer* this = (Npc_Engineer*)thisx;
 
-    if (common_data.clip.unk_1004C->unk_BC(thisx, game_play) == 1) {
+    if (common_data.clip.unk_040->unk_BC(thisx, game_play) == 1) {
         this->unk7C0 = none_proc1;
-        common_data.clip.unk_1004C->unk_C0(thisx, game_play, &aNEG_ct_data);
+        common_data.clip.unk_040->unk_C0(thisx, game_play, &aNEG_ct_data);
         this->unk80C = -1;
         this->unk7FD = 0;
         this->unk8AC = -1;
@@ -50,21 +50,21 @@ void aNEG_actor_ct(Actor* thisx, Game_Play* game_play) {
 }
 
 void aNEG_actor_save(Actor* thisx, Game_Play* game_play) {
-    common_data.clip.unk_1004C->unk_C8(thisx, game_play);
+    common_data.clip.unk_040->unk_C8(thisx, game_play);
 }
 
 void aNEG_actor_dt(Actor* thisx, Game_Play* game_play) {
-    common_data.clip.unk_1004C->unk_C4(thisx, game_play);
+    common_data.clip.unk_040->unk_C4(thisx, game_play);
 }
 
 void aNEG_actor_init(Actor* thisx, Game_Play* game_play) {
-    common_data.clip.unk_1004C->unk_CC(thisx, game_play);
+    common_data.clip.unk_040->unk_CC(thisx, game_play);
 }
 
 void aNEG_actor_move(void) {
-    common_data.clip.unk_1004C->unk_D0();
+    common_data.clip.unk_040->unk_D0();
 }
 
 void aNEG_actor_draw(void) {
-    common_data.clip.unk_1004C->unk_E4();
+    common_data.clip.unk_040->unk_E4();
 }

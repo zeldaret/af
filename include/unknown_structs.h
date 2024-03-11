@@ -18,11 +18,11 @@ typedef struct struct_801161E8_jp {
     /* 0x0 */ UNK_TYPE1 unk_0[0x8];
 } struct_801161E8_jp; // size <= 0x8
 
-typedef struct Clip_unk_1004C_unk_14_arg0 {
+typedef struct Clip_unk_040_unk_14_arg0 {
     /* 0x00 */ s16 unk_00;
     /* 0x00 */ s16 unk_02;
     /* 0x04 */ UNK_TYPE1 unk_04[0x60];
-} Clip_unk_1004C_unk_14_arg0; // size >= 0x64, maybe less, guessed from stack usage
+} Clip_unk_040_unk_14_arg0; // size >= 0x64, maybe less, guessed from stack usage
 
 typedef struct ShadowData {
     /* 0x00 */ u32 numberOfVertices;

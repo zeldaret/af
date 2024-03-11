@@ -50,8 +50,8 @@ void aSumHalChest02_ct(FurnitureActor* this, u8* data UNUSED) {
 }
 
 void aSumHalChest02_mv(FurnitureActor* this, Actor* myRoomActor, Game_Play* game_play, u8* data UNUSED) {
-    if (common_data.clip.unk_1008C != NULL) {
-        common_data.clip.unk_1008C->unk_34(this, myRoomActor, game_play, 1.0f, 16.0f);
+    if (common_data.clip.unk_080 != NULL) {
+        common_data.clip.unk_080->unk_34(this, myRoomActor, game_play, 1.0f, 16.0f);
     }
 }
 
