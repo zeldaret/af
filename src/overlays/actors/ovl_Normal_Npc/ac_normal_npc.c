@@ -30,27 +30,27 @@ struct_809AEFA4 aNOR_ct_data = {
 };
 
 void aNOR_actor_ct(Actor* thisx, Game_Play* game_play) {
-    if (common_data.unk_1004C->unk_BC(thisx, game_play) == 1) {
-        common_data.unk_1004C->unk_C0(thisx, game_play, &aNOR_ct_data);
+    if (common_data.clip.unk_1004C->unk_BC(thisx, game_play) == 1) {
+        common_data.clip.unk_1004C->unk_C0(thisx, game_play, &aNOR_ct_data);
     }
 }
 
 void aNOR_actor_dt(Actor* thisx, Game_Play* game_play) {
-    common_data.unk_1004C->unk_C4(thisx, game_play);
+    common_data.clip.unk_1004C->unk_C4(thisx, game_play);
 }
 
 void aNOR_actor_save(Actor* thisx, Game_Play* game_play) {
-    common_data.unk_1004C->unk_C8(thisx, game_play);
+    common_data.clip.unk_1004C->unk_C8(thisx, game_play);
 }
 
 void aNOR_actor_init(Actor* thisx, Game_Play* game_play) {
-    common_data.unk_1004C->unk_CC(thisx, game_play);
+    common_data.clip.unk_1004C->unk_CC(thisx, game_play);
 }
 
 void aNOR_actor_move(void) {
-    common_data.unk_1004C->unk_D0();
+    common_data.clip.unk_1004C->unk_D0();
 }
 
 void aNOR_actor_draw(void) {
-    common_data.unk_1004C->unk_E4();
+    common_data.clip.unk_1004C->unk_E4();
 }

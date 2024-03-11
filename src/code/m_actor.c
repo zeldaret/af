@@ -102,7 +102,7 @@ s32 Actor_data_bank_dma_end_check(Actor* actor, Game_Play* game_play) {
     switch (ACTOR_FGNAME_GET_F000(actor->fgName)) {
         case FGNAME_F000_D:
         case FGNAME_F000_E:
-            var_v1 = common_data.unk_1004C->unk_F4(game_play->objectExchangeBank.status, actor);
+            var_v1 = common_data.clip.unk_1004C->unk_F4(game_play->objectExchangeBank.status, actor);
             break;
 
         default:
@@ -148,7 +148,7 @@ void Actor_ct(Actor* actor, Game_Play* game_play) {
     s32 pad[2] UNUSED;
     ObjectStatus* temp;
     Npc* npc;
-    CommonData_unk_1004C_unk_14_arg0 sp34;
+    Clip_unk_1004C_unk_14_arg0 sp34;
     ObjectExchangeBank* temp_a0;
 
     temp_a0 = &game_play->objectExchangeBank;
@@ -160,7 +160,7 @@ void Actor_ct(Actor* actor, Game_Play* game_play) {
     if (actor->part == ACTOR_PART_NPC) {
         npc = (Npc*)actor;
 
-        common_data.unk_1004C->unk_14(&sp34, npc->actor.fgName);
+        common_data.clip.unk_1004C->unk_14(&sp34, npc->actor.fgName);
         npc->unk_708 = mSc_bank_regist_check(temp_a0, sp34.unk_02);
         temp_a0->status[npc->unk_708].unk50++;
     }
@@ -227,7 +227,7 @@ void Actor_dt(Actor* actor, Game_Play* game_play) {
     switch ((actor->fgName & 0xF000) >> 0xC) {
         case 0xD:
         case 0xE:
-            common_data.unk_1004C->unk_F0(temp_v0_6, actor);
+            common_data.clip.unk_1004C->unk_F0(temp_v0_6, actor);
             break;
 
         default:
@@ -599,11 +599,11 @@ void actor_free_check(ActorOverlay* overlayEntry, u16 fgName) {
         switch (ACTOR_FGNAME_GET_F000(fgName)) {
             case FGNAME_F000_D:
             case FGNAME_F000_E:
-                common_data.unk_1004C->unk_08();
+                common_data.clip.unk_1004C->unk_08();
                 break;
 
             case FGNAME_F000_5:
-                common_data.unk_10098->unk_08();
+                common_data.clip.unk_10098->unk_08();
                 break;
 
             default:
@@ -630,16 +630,16 @@ s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const 
             switch (ACTOR_FGNAME_GET_F000(fgName)) {
                 case FGNAME_F000_D:
                 case FGNAME_F000_E:
-                    if (common_data.unk_1004C != NULL) {
-                        common_data.unk_1004C->unk_04(overlayEntry, arg2, overlaySize, fgName);
+                    if (common_data.clip.unk_1004C != NULL) {
+                        common_data.clip.unk_1004C->unk_04(overlayEntry, arg2, overlaySize, fgName);
                     } else {
                         overlayEntry->loadedRamAddr = NULL;
                     }
                     break;
 
                 case FGNAME_F000_5:
-                    if (common_data.unk_10098 != NULL) {
-                        common_data.unk_10098->unk_4(overlayEntry, overlaySize);
+                    if (common_data.clip.unk_10098 != NULL) {
+                        common_data.clip.unk_10098->unk_4(overlayEntry, overlaySize);
                     }
                     break;
 
@@ -679,9 +679,9 @@ s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile UNUSED, ActorOverlay* over
     ret = 1;
 
     {
-        CommonData_unk_1004C_unk_14_arg0 sp24;
+        Clip_unk_1004C_unk_14_arg0 sp24;
 
-        common_data.unk_1004C->unk_14(&sp24, fgName);
+        common_data.clip.unk_1004C->unk_14(&sp24, fgName);
 
         sp92 = sp24.unk_00;
         sp90 = sp24.unk_02;
@@ -697,7 +697,7 @@ s32 func_80057A8C_jp(s32* arg0, ActorProfile* profile UNUSED, ActorOverlay* over
         if (temp_v0 >= 0) {
             sp90 = 0;
         }
-        common_data.unk_1004C->unk_EC(game_play->objectExchangeBank.status, sp92, sp90);
+        common_data.clip.unk_1004C->unk_EC(game_play->objectExchangeBank.status, sp92, sp90);
         actor_free_check(overlayEntry, fgName);
         ret = 0;
     }
@@ -735,21 +735,21 @@ s32 Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, ActorOverlay*
 
 s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay* overlayEntry,
                              const struct_801161E8_jp* arg3, u16 fgName) {
-    CommonData_unk_1004C_unk_14_arg0 sp24;
+    Clip_unk_1004C_unk_14_arg0 sp24;
 
     switch (ACTOR_FGNAME_GET_F000(fgName)) {
         case FGNAME_F000_D:
         case FGNAME_F000_E:
-            *actorP = common_data.unk_1004C->unk_0C(profile->instanceSize, arg3, 1);
+            *actorP = common_data.clip.unk_1004C->unk_0C(profile->instanceSize, arg3, 1);
 
             //! FAKE
             if ((profile != NULL) && (profile != NULL) && (profile != NULL)) {}
 
-            common_data.unk_1004C->unk_14(&sp24, fgName);
+            common_data.clip.unk_1004C->unk_14(&sp24, fgName);
             break;
 
         case FGNAME_F000_5:
-            *actorP = common_data.unk_10098->unk_0C();
+            *actorP = common_data.clip.unk_10098->unk_0C();
             break;
 
         default:
@@ -956,11 +956,11 @@ Actor* Actor_info_delete(ActorInfo* actorInfo, Actor* actor, Game_Play* game_pla
     switch (ACTOR_FGNAME_GET_F000(fgName)) {
         case FGNAME_F000_D:
         case FGNAME_F000_E:
-            common_data.unk_1004C->unk_10(actor);
+            common_data.clip.unk_1004C->unk_10(actor);
             break;
 
         case FGNAME_F000_5:
-            common_data.unk_10098->unk_10(actor);
+            common_data.clip.unk_10098->unk_10(actor);
             break;
 
         default:

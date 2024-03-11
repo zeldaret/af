@@ -33,46 +33,46 @@ struct_809AEFA4 aKM0_ct_data = {
 };
 
 void aKM0_actor_ct(Actor* thisx, Game_Play* game_play) {
-    if (common_data.unk_1004C->unk_BC(thisx, game_play) == 1) {
-        common_data.unk_1004C->unk_C0(thisx, game_play, &aKM0_ct_data);
-        common_data.unk_1004C->unk_118(thisx);
+    if (common_data.clip.unk_1004C->unk_BC(thisx, game_play) == 1) {
+        common_data.clip.unk_1004C->unk_C0(thisx, game_play, &aKM0_ct_data);
+        common_data.clip.unk_1004C->unk_118(thisx);
     }
 }
 
 void aKM0_actor_save(Actor* thisx, Game_Play* game_play) {
-    common_data.unk_1004C->unk_C8(thisx, game_play);
+    common_data.clip.unk_1004C->unk_C8(thisx, game_play);
 }
 
 void aKM0_actor_dt(Actor* thisx, Game_Play* game_play) {
-    common_data.unk_1004C->unk_C4(thisx, game_play);
+    common_data.clip.unk_1004C->unk_C4(thisx, game_play);
 }
 
 void aKM0_actor_init(Actor* thisx, Game_Play* game_play) {
-    common_data.unk_1004C->unk_CC(thisx, game_play);
+    common_data.clip.unk_1004C->unk_CC(thisx, game_play);
 }
 
 void aKM0_talk_request(UNK_TYPE arg0, UNK_TYPE arg1 UNUSED) {
-    common_data.unk_10078->unk_00(arg0);
+    common_data.clip.unk_10078->unk_00(arg0);
 }
 
 void aKM0_talk_init(UNK_TYPE arg0, UNK_TYPE arg1 UNUSED) {
-    common_data.unk_10078->unk_04(arg0);
+    common_data.clip.unk_10078->unk_04(arg0);
 }
 
 s32 aKM0_talk_end_chk(UNK_TYPE arg0, UNK_TYPE arg1 UNUSED) {
     s32 var_v1;
 
     var_v1 = false;
-    if (common_data.unk_10078->unk_08(arg0) == 1) {
+    if (common_data.clip.unk_10078->unk_08(arg0) == 1) {
         var_v1 = true;
     }
     return var_v1;
 }
 
 void aKM0_actor_move(void) {
-    common_data.unk_1004C->unk_D0();
+    common_data.clip.unk_1004C->unk_D0();
 }
 
 void aKM0_actor_draw(void) {
-    common_data.unk_1004C->unk_E4();
+    common_data.clip.unk_1004C->unk_E4();
 }

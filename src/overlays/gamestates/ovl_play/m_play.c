@@ -271,9 +271,9 @@ void Game_play_fbdemo_wipe_move(Game_Play* game_play) {
                     break;
 
                 case 8:
-                    if (common_data.unk_100E4 != NULL) {
-                        if (common_data.unk_100E4->unk_00 != NULL) {
-                            common_data.unk_100E4->unk_00(game_play);
+                    if (common_data.clip.unk_100E4 != NULL) {
+                        if (common_data.clip.unk_100E4->unk_00 != NULL) {
+                            common_data.clip.unk_100E4->unk_00(game_play);
                             Game_play_change_scene_move_end(game_play);
                         }
                     }
