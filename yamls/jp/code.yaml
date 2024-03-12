@@ -16,7 +16,7 @@
       - [0x67E840, asm, code/67E840]
       - [0x683030, asm, code/683030]
       - [0x688CE0, asm, code/m_choice_main]
-      - [0x68AAF0, asm, code/68AAF0]
+      - [0x68AAF0, c, code/m_clip]
       - [0x68AB30, c, code/m_cockroach]
       - [0x68B0D0, asm, code/m_collision_bg]
       - [0x69A7E0, c, code/m_collision_obj]

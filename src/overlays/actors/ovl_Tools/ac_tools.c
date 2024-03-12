@@ -45,8 +45,8 @@ s32 aTOL_check_data_bank(ObjectExchangeBank* objectExchangeBank, ToolName toolNa
     s32 ret = -1;
 
     if ((toolActor->actor.part == ACTOR_PART_PLAYER) && (toolName <= TOOL_UMBRELLA32) &&
-        (common_data.toolClip->umbrellaObjectIndex != -1)) {
-        ObjectStatus* objectStatus = &objectExchangeBank->status[common_data.toolClip->umbrellaObjectIndex];
+        (common_data.clip.toolClip->umbrellaObjectIndex != -1)) {
+        ObjectStatus* objectStatus = &objectExchangeBank->status[common_data.clip.toolClip->umbrellaObjectIndex];
         Actor* temp_a0;
 
         if (ABS(objectStatus->id) != objectIndex) {
@@ -55,7 +55,7 @@ s32 aTOL_check_data_bank(ObjectExchangeBank* objectExchangeBank, ToolName toolNa
             if (objectSize <= 0xC00) {
                 temp_a0 = toolActor->actor.child;
 
-                if ((temp_a0 != NULL) && (temp_a0->unk_026 == common_data.toolClip->umbrellaObjectIndex)) {
+                if ((temp_a0 != NULL) && (temp_a0->unk_026 == common_data.clip.toolClip->umbrellaObjectIndex)) {
                     Actor_delete(temp_a0);
                 }
 
@@ -67,7 +67,7 @@ s32 aTOL_check_data_bank(ObjectExchangeBank* objectExchangeBank, ToolName toolNa
                 objectStatus->unk14 = 0;
             }
         } else {
-            ret = common_data.toolClip->umbrellaObjectIndex;
+            ret = common_data.clip.toolClip->umbrellaObjectIndex;
         }
     } else {
         s32 temp_v0_2 = mSc_bank_regist_check(objectExchangeBank, objectIndex);
@@ -142,24 +142,24 @@ void aTOL_secure_pl_umbrella_bank_area(Game_Play* game_play) {
     s32 sp18 = game_play->objectExchangeBank.num;
 
     if (mSc_secure_exchange_keep_bank(&game_play->objectExchangeBank, 0, 0xC00)) {
-        common_data.toolClip->umbrellaObjectIndex = sp18;
+        common_data.clip.toolClip->umbrellaObjectIndex = sp18;
 
     } else {
-        common_data.toolClip->umbrellaObjectIndex = -1;
+        common_data.clip.toolClip->umbrellaObjectIndex = -1;
     }
 }
 
 void aTOL_init_clip_area(Game_Play* game_play) {
-    if (common_data.toolClip == NULL) {
-        common_data.toolClip = &aTOL_clip;
-        common_data.toolClip->aTOL_birth_proc = &aTOL_birth_proc;
-        common_data.toolClip->aTOL_chg_request_mode_proc = &aTOL_chg_request_mode_proc;
+    if (common_data.clip.toolClip == NULL) {
+        common_data.clip.toolClip = &aTOL_clip;
+        common_data.clip.toolClip->aTOL_birth_proc = &aTOL_birth_proc;
+        common_data.clip.toolClip->aTOL_chg_request_mode_proc = &aTOL_chg_request_mode_proc;
         aTOL_secure_pl_umbrella_bank_area(game_play);
     }
 }
 
 void aTOL_free_clip_area(void) {
-    if (common_data.toolClip) {
-        common_data.toolClip = NULL;
+    if (common_data.clip.toolClip) {
+        common_data.clip.toolClip = NULL;
     }
 }
