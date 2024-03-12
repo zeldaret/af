@@ -128,7 +128,7 @@ typedef struct Clip {
     /* 0x098 */ UNK_TYPE1 unk_098[0x40];
     /* 0x0D8 */ Clip_unk_0D8* unk_0D8;
     /* 0x0DC */ u8 unk_0DC[0x24];
-}Clip; // size = 0x100
+} Clip; // size = 0x100
 
 void clip_clear(void);
 
