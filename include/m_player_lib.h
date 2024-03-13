@@ -116,7 +116,7 @@ void mPlib_change_player_cloth_info_lv2(struct PrivateInfo*, u16);
 // void func_800B33AC_jp();
 s32 mPlib_able_submenu_type1(struct Game_Play* game_play);
 // void func_800B34B8_jp();
-// void func_800B34F4_jp();
+s32 mPlib_check_player_open_umbrella(struct Game_Play* game_play);
 // void func_800B3534_jp();
 // void func_800B3588_jp();
 // void func_800B35E4_jp();

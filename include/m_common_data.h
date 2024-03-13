@@ -170,7 +170,9 @@ typedef struct CommonData {
     /* 0x10A82 */ s16 unk_10A82;
     /* 0x10A84 */ UNK_TYPE1 unk_10A84[0x2C];
     /* 0x10AB0 */ u8 unk_10AB0; // named "pad_connected" in AC GCN decomp
-    /* 0x10AB1 */ UNK_TYPE1 unk_10AB1[0x7];
+    /* 0x10AB1 */ UNK_TYPE1 unk_10AB1;
+    /* 0x10AB2 */ s16 currentSoundEffect;
+    /* 0x10AB4 */ UNK_TYPE1 unk_10AB4[0x4];
 } CommonData; // size = 0x10AB8
 
 void common_data_reinit(void);

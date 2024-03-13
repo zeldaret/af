@@ -14,6 +14,7 @@ struct struct_809AEFA4;
 struct ToolClip;
 struct ShadowData;
 struct FurnitureActor;
+struct WeatherClip;
 
 typedef UNK_RET (*Clip_unk_040_unk_04)(struct ActorOverlay*, const struct struct_801161E8_jp*, size_t, s32);
 typedef UNK_RET (*Clip_unk_040_unk_08)(void);
@@ -121,7 +122,8 @@ typedef struct Clip {
     /* 0x074 */ Clip_unk_074* unk_074;
     /* 0x078 */ UNK_TYPE1 unk_078[0x8];
     /* 0x080 */ Clip_unk_080* unk_080;
-    /* 0x084 */ UNK_TYPE1 unk_084[0x8];
+    /* 0x084 */ struct WeatherClip* weatherClip;
+    /* 0x088 */ UNK_TYPE1 unk_088[0x4];
     /* 0x08C */ Clip_unk_08C* unk_08C;
     /* 0x090 */ UNK_TYPE1 unk_090[0x4];
     /* 0x094 */ struct ToolClip* toolClip;

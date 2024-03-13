@@ -7,6 +7,7 @@
 struct Actor;
 struct Global_light;
 struct Lights;
+struct s_xyz;
 
 typedef void (*Kankyo_unk_C0)(struct Actor*);
 
@@ -57,9 +58,9 @@ void Global_kankyo_ct(struct Game_Play* game_play, struct Kankyo* kankyo);
 // void func_8009836C_jp();
 // void func_800983F0_jp();
 void Global_kankyo_set(struct Game_Play* game_play, struct Kankyo* kankyo, struct Global_light* arg2);
-// void func_80098558_jp();
+void mEnv_DecideWindDirect(struct s_xyz*, s16,s16);
 // void func_8009867C_jp();
-// void func_80098794_jp();
+void mEnv_RandomWeather(s16*, s16*);
 // void func_8009895C_jp();
 // void func_80098980_jp();
 // void func_80098990_jp();
