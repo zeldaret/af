@@ -71,10 +71,10 @@ ActorProfile Weather_Profile = {
     /* */ NULL,
 };
 
-void func_80A21DFC_jp(Actor* thisx, s16 /*id*/);
+void func_80A21DFC_jp(Actor* thisx, s16 id);
 void aWeather_ChangingWeather(void);
 s32 aWeather_CountWeatherPrivate(Weather* this);
-void aWeather_AbolishPrivate(Actor* thisx, s32 /*num*/);
+void aWeather_AbolishPrivate(Actor* thisx, s32 num);
 void aWeather_SetNowProfile(Actor* thisx, s16 id);
 
 void aWeather_SysLevCall_MoveEnd(Weather* this) {

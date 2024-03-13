@@ -83,7 +83,7 @@ typedef struct WeatherDmaInfo {
 
 typedef void (*WeatherActionFunc)(struct Weather*, struct Game_Play*);
 
-struct Weather{
+struct Weather {
     /* 0x000 */ Actor actor;
     /* 0x174 */ WeatherProfile* currentProfile; 
     /* 0x178 */ s16 currentStatus;
