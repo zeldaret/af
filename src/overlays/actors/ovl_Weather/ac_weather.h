@@ -73,6 +73,13 @@ typedef struct WeatherDmaInfo {
     /* 0x04 */ RomOffset vromEnd;
 } WeatherDmaInfo;
 
+#define WEATHER_OVERLAY_NONE(name,profile)\
+    { SEGMENT_ROM_START(name), SEGMENT_ROM_END(name), profile, SEGMENT_VRAM_END(name),  profile, }
+#define WEATHER_OVERLAY(name,proc,profile) \
+    { SEGMENT_ROM_START(name), SEGMENT_ROM_END(name), proc, SEGMENT_VRAM_END(name),  profile, }
+
+#define WEATHER_SEGMENT_DMA(name)\
+    SEGMENT_ROM_START(name), SEGMENT_ROM_END(name)
 
 typedef void (*WeatherActionFunc)(struct Weather*, struct Game_Play*);
 
@@ -103,7 +110,6 @@ struct Weather{
     /* 0x1DE */ s16 soundFlag;
     /* 0x1E0 */ s16 startSoundEffect;
     /* 0x1E2 */ s16 stopSoundEffect;
-    /* 0x1E4 */ s16 basementEvent;
 };  // size = 0x1E4
 
 #endif

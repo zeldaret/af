@@ -6,19 +6,57 @@
 #include "m_common_data.h"
 #include "m_scene_table.h"
 #include "m_player_lib.h"
-#include "ovlmgr.h"
+#include "ovlmgr.h" 
 #include "m_malloc.h"
 #include "m_field_info.h"
-#include "m_rcp.h"
+#include "m_rcp.h" 
 #include "code_variables.h"
 #include "m_kankyo.h"
-#include "m_time.h"
+#include "6EDD10.h"
+#include "m_event.h"
+#include "6792F0.h"
+#include "683030.h" 
+#include "segment_symbols.h"
+
+#include "overlays/weather/ac_weather_fine/ac_weather_fine.h"
+#include "overlays/weather/ac_weather_rain/ac_weather_rain.h"
+#include "overlays/weather/ac_weather_snow/ac_weather_snow.h"
+#include "overlays/weather/ac_weather_sakura/ac_weather_sakura.h"
+#include "overlays/weather/ac_weather_leaf/ac_weather_leaf.h"
 
 void Weather_Actor_ct(Actor* thisx, Game_Play* game_play);
 void Weather_Actor_dt(Actor* thisx, Game_Play* game_play);
 void Weather_Actor_move(Actor* thisx, Game_Play* game_play);
 void Weather_Actor_draw(Actor* thisx, Game_Play* game_play);
 
+
+WeatherOvlInfo profile_tbl[] = {
+    WEATHER_OVERLAY_NONE(ac_weather_fine,&iam_weather_fine),
+    WEATHER_OVERLAY(ac_weather_rain,func_80A3C130_jp,&iam_weather_rain),
+    WEATHER_OVERLAY(ac_weather_snow,func_80A3C890_jp,&iam_weather_snow),
+    WEATHER_OVERLAY(ac_weather_sakura,func_80A3D010_jp,&iam_weather_sakura),
+    WEATHER_OVERLAY(ac_weather_leaf,func_80A3D7E0_jp,&iam_weather_leaf),
+};
+
+WeatherDmaInfo WeatherRainDmaInfo = {
+    WEATHER_SEGMENT_DMA(segment_01408000),
+};
+
+WeatherDmaInfo WeatherSnowDmaInfo = {
+    WEATHER_SEGMENT_DMA(segment_01409000),
+};
+
+WeatherDmaInfo WeatherSakuraDmaInfo = {
+    WEATHER_SEGMENT_DMA(segment_0140A000),
+};
+
+WeatherDmaInfo WeatherLeafDmaInfo = {
+    WEATHER_SEGMENT_DMA(segment_0140B000),
+};
+
+WeatherDmaInfo* weatherDmaTable[] = {
+    NULL,&WeatherRainDmaInfo,&WeatherSnowDmaInfo,&WeatherSakuraDmaInfo,&WeatherLeafDmaInfo,
+};
 
 ActorProfile Weather_Profile = {
     /* */ ACTOR_WEATHER,
@@ -33,10 +71,6 @@ ActorProfile Weather_Profile = {
     /* */ Weather_Actor_draw,
     /* */ NULL,
 };
-
-WeatherOvlInfo weatherOvlTable[4];
-
-WeatherDmaInfo* weatherDmaTable[5];
 
 void func_80A21DFC_jp(Actor* thisx, s16);
 void aWeather_ChangingWeather(void);
@@ -304,13 +338,13 @@ void aWeather_SetNowProfile(Actor* thisx, s16 id) {
 
     this->currentProfile = NULL;
     if (this->allocatedSize != NULL) {
-        uintptr_t size = (uintptr_t)weatherOvlTable[id].vramEnd - (uintptr_t)weatherOvlTable[id].vramStart;
+        uintptr_t size = (uintptr_t)profile_tbl[id].vramEnd - (uintptr_t)profile_tbl[id].vramStart;
         if (size <= 0xC00) {
-            ovlmgr_Load(weatherOvlTable[id].vromStart, weatherOvlTable[id].vromEnd, weatherOvlTable[id].vramStart,
-                        weatherOvlTable[id].vramEnd, this->allocatedSize);
+            ovlmgr_Load(profile_tbl[id].vromStart, profile_tbl[id].vromEnd, profile_tbl[id].vramStart,
+                        profile_tbl[id].vramEnd, this->allocatedSize);
             this->currentProfile =
-                (WeatherProfile*)(((uintptr_t)this->allocatedSize + (uintptr_t)weatherOvlTable[id].ovlTypeEnd) -
-                                  (uintptr_t)weatherOvlTable[id].vramStart);
+                (WeatherProfile*)(((uintptr_t)this->allocatedSize + (uintptr_t)profile_tbl[id].ovlTypeEnd) -
+                                  (uintptr_t)profile_tbl[id].vramStart);
         }
     }
 }
@@ -525,9 +559,7 @@ void aWeather_MoveWeatherPrv(Weather* this, Game_Play* play) {
                 }
             }
             //FAKE!!
-            if (i == i++) {
-                i++, i--;
-            }
+            {i++, i--,i++;}
         }
     }
 }
@@ -572,7 +604,7 @@ void aWeather_ChangeWeather(Weather* this, Game_Play* play) {
 
 void aWeather_CheckWeatherTimer(UNUSED Weather* this) {
     s_xyz dir;
-
+ 
     mEnv_DecideWindDirect(&dir, 0x3000, 0x3000);
 }
 
@@ -620,7 +652,7 @@ void aWeather_ChangeWeatherTime0(Weather* this) {
             saveWeather = ENV_SAVE_GET_WEATHER_TYPE(common_data.saveWeather);
             if (rndWeather == 0 || rndWeather == 3) {
                 if (saveWeather == 2 || saveWeather == 1) {
-                    mEnv_PreRainNowFine_Init();
+                    mAGrw_OrderSetHaniwa();
                 }
             }
             saveRnd = rndIntensity | ((rndWeather ^ 0) * 16);
@@ -645,10 +677,10 @@ void aWeather_MakeKaminari(Actor* thisx) {
             if (this->currentLevel == 3) {
                 s16 timer = ptr[0] % 1000;
                 if (((timer == this->lightningTimer2) || (timer == (this->lightningTimer2 + 20))) &&
-                    (common_data.unk1009C != NULL)) {
+                    (common_data.clip.unk_090 != NULL)) {
                     Color_RGBA8 color = {70, 70, 160, 255};
 
-                    common_data.unk1009C->unk30Proc(color, 2, 0x23, 0);
+                    common_data.clip.unk_090->unk_30(color, 2, 0x23, 0);
                 }
                 if (timer == (this->lightningTimer2 + 65)) {
                     sAdo_SysTrgStart(0x424);

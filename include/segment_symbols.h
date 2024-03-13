@@ -97,6 +97,12 @@ DECLARE_SEGMENT(catalog_ovl);
 DECLARE_SEGMENT(ac_set_ovl_insect);
 DECLARE_SEGMENT(ac_set_ovl_gyoei);
 
+DECLARE_SEGMENT(ac_weather_fine);
+DECLARE_SEGMENT(ac_weather_rain);
+DECLARE_SEGMENT(ac_weather_snow);
+DECLARE_SEGMENT(ac_weather_sakura);
+DECLARE_SEGMENT(ac_weather_leaf);
+
 DECLARE_SEGMENT(locerrmsg);
 
 DECLARE_SEGMENT(segment_00A58000);
@@ -105,6 +111,10 @@ DECLARE_SEGMENT(segment_00E02000);
 DECLARE_SEGMENT(segment_00E03000);
 DECLARE_SEGMENT(segment_00E04000);
 DECLARE_SEGMENT(segment_00E0D000);
-
+ 
+DECLARE_SEGMENT(segment_01408000);
+DECLARE_SEGMENT(segment_01409000);
+DECLARE_SEGMENT(segment_0140A000);
+DECLARE_SEGMENT(segment_0140B000);
 
 #endif

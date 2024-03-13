@@ -2,9 +2,16 @@
 #define C_683030_H
 
 #include "ultra64.h"
+#include "unk.h"
+#include "z64math.h"
 
 struct Game_Play;
-struct xyz_t;
+
+typedef struct Camera2{
+    /* 0x000 */ xyz_t unk0;
+    /* 0x00C */ xyz_t unk4; 
+    /* 0x018 */ UNK_TYPE1 unk18[0x120];
+} Camera2; //size = 0x138
 
 // void func_8005F390_jp();
 // void func_8005F3DC_jp();
@@ -37,7 +44,7 @@ struct xyz_t;
 // void func_80060574_jp();
 // void func_8006058C_jp();
 // void func_800608C8_jp();
-// void func_800608DC_jp();
+xyz_t* Camera2_getCenterPos_p(void);
 // void func_800608F0_jp();
 // void func_80060904_jp();
 // void func_80060918_jp();
@@ -47,7 +54,7 @@ struct xyz_t;
 void Camera2_ClearActorTalking_Cull(struct Game_Play* game_play);
 // void func_80060D1C_jp();
 // void func_80060D58_jp();
-struct xyz_t* Camera2_getMicPos_p(struct Game_Play* game_play);
+xyz_t* Camera2_getMicPos_p(struct Game_Play* game_play);
 // void func_80060D78_jp();
 // void func_80060DA8_jp();
 // void func_80060FDC_jp();
