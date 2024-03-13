@@ -1,6 +1,5 @@
 #include "global.h"
 
-
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/weather/ac_weather_sakura/ac_weather_sakura/func_80A3D010_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/weather/ac_weather_sakura/ac_weather_sakura/func_80A3D064_jp.s")
