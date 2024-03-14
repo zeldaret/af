@@ -12,7 +12,7 @@ typedef struct {
     /* 0x2 */ u8 b;
 } Color_RGB8; // size = 0x3
 
-typedef struct {
+typedef struct Color_RGBA8 {
     /* 0x0 */ u8 r;
     /* 0x1 */ u8 g;
     /* 0x2 */ u8 b;

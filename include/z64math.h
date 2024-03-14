@@ -30,7 +30,7 @@ typedef struct {
     /* 0x4 */ u16 z;
 } Vec3us; // size = 0x6
 
-typedef struct {
+typedef struct s_xyz {
     /* 0x0 */ s16 x;
     /* 0x2 */ s16 y;
     /* 0x4 */ s16 z;

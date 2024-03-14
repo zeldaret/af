@@ -21,6 +21,7 @@
 #include "m_pause.h"
 #include "6A8180.h"
 #include "m_scene.h"
+#include "683030.h"
 
 struct Actor;
 struct ActorEntry;
@@ -68,7 +69,7 @@ typedef struct Game_Play {
     /* 0x010C */ void* unk_010C;
     /* 0x0110 */ ObjectExchangeBank objectExchangeBank;
     /* 0x1938 */ Game_Play1938 unk_1938;
-    /* 0x1A60 */ UNK_TYPE1 unk_1A60[0x138];
+    /* 0x1A60 */ Camera2 camera;
     /* 0x1B98 */ Kankyo kankyo;
     /* 0x1C60 */ Global_light glight;
     /* 0x1C70 */ Pause pause;

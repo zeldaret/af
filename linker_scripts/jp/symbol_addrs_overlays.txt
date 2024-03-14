@@ -16117,7 +16117,7 @@ RO_FLT_80A3C094_jp = 0x80A3C094; // type:f32
 
 // .data
 
-D_80A3C0F0_jp = 0x80A3C0F0; //
+iam_weather_fine = 0x80A3C0F0; //
 
 // .text
 
@@ -16133,7 +16133,7 @@ func_80A3C5F0_jp = 0x80A3C5F0; // type:func
 // .data
 
 D_80A3C7C0_jp = 0x80A3C7C0; //
-D_80A3C7D0_jp = 0x80A3C7D0; //
+iam_weather_rain = 0x80A3C7D0; //
 D_80A3C7E4_jp = 0x80A3C7E4; //
 D_80A3C7F0_jp = 0x80A3C7F0; //
 D_80A3C7F4_jp = 0x80A3C7F4; //
@@ -16156,7 +16156,7 @@ func_80A3CD84_jp = 0x80A3CD84; // type:func
 
 // .data
 
-D_80A3CF80_jp = 0x80A3CF80; //
+iam_weather_snow = 0x80A3CF80; //
 D_80A3CF94_jp = 0x80A3CF94; //
 
 // .rodata
@@ -16179,7 +16179,7 @@ func_80A3D55C_jp = 0x80A3D55C; // type:func
 
 // .data
 
-D_80A3D700_jp = 0x80A3D700; //
+iam_weather_sakura = 0x80A3D700; //
 D_80A3D714_jp = 0x80A3D714; //
 D_80A3D720_jp = 0x80A3D720; //
 
@@ -16209,7 +16209,7 @@ func_80A3DD20_jp = 0x80A3DD20; // type:func
 // .data
 
 D_80A3DEB0_jp = 0x80A3DEB0; //
-D_80A3DEBC_jp = 0x80A3DEBC; //
+iam_weather_leaf = 0x80A3DEBC; //
 D_80A3DED0_jp = 0x80A3DED0; //
 
 // .rodata

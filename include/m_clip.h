@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "unk.h"
+#include "color.h"
 
 struct Actor;
 struct ActorOverlay;
@@ -14,6 +15,7 @@ struct struct_809AEFA4;
 struct ToolClip;
 struct ShadowData;
 struct FurnitureActor;
+struct WeatherClip;
 
 typedef UNK_RET (*Clip_unk_040_unk_04)(struct ActorOverlay*, const struct struct_801161E8_jp*, size_t, s32);
 typedef UNK_RET (*Clip_unk_040_unk_08)(void);
@@ -106,10 +108,16 @@ typedef struct Clip_unk_08C {
     /* 0x86C */ UNK_TYPE unk_86C;
 } Clip_unk_08C; // size >= 0x870
 
+typedef void (*Clip_unk_090_unk_30)(Color_RGBA8, s16,s16,s32);
+typedef struct Clip_unk_090 {
+    /* 0x00 */ UNK_TYPE1 unk_00[0x30];
+    /* 0x30 */ Clip_unk_090_unk_30 unk_30;
+} Clip_unk_090; // size >= 0x34
+
 typedef void (*Clip_unk_0D8_unk_00)(struct Game_Play* game_play);
 typedef struct Clip_unk_0D8 {
-               Clip_unk_0D8_unk_00 unk_00;
-} Clip_unk_0D8;
+    /* 0x00 */ Clip_unk_0D8_unk_00 unk_00;
+} Clip_unk_0D8; // size >= 0x4
 
 
 typedef struct Clip {
@@ -119,11 +127,12 @@ typedef struct Clip {
     /* 0x06C */ Clip_unk_06C* unk_06C;
     /* 0x070 */ UNK_TYPE1 unk_070[0x4];
     /* 0x074 */ Clip_unk_074* unk_074;
-    /* 0x078 */ UNK_TYPE1 unk_078[0x8];
+    /* 0x078 */ struct WeatherClip* weatherClip;
+    /* 0x07C */ UNK_TYPE1 unk_07C[0x4];
     /* 0x080 */ Clip_unk_080* unk_080;
     /* 0x084 */ UNK_TYPE1 unk_084[0x8];
     /* 0x08C */ Clip_unk_08C* unk_08C;
-    /* 0x090 */ UNK_TYPE1 unk_090[0x4];
+    /* 0x090 */ Clip_unk_090* unk_090;
     /* 0x094 */ struct ToolClip* toolClip;
     /* 0x098 */ UNK_TYPE1 unk_098[0x40];
     /* 0x0D8 */ Clip_unk_0D8* unk_0D8;

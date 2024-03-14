@@ -3546,7 +3546,7 @@
     bss_size: 0x0
     subsegments:
       - [0x8E9130, c, overlays/actors/ovl_Weather/ac_weather]
-      - [0x8EA700, data, overlays/actors/ovl_Weather/ac_weather]
+      - [0x8EA700, .data, overlays/actors/ovl_Weather/ac_weather]
       - [0x8EA7E0, .rodata, overlays/actors/ovl_Weather/ac_weather]
   - name: ovl_Weather_reloc
     type: code
@@ -5084,7 +5084,7 @@
     subsegments:
       - [0x903B40, data, overlays/other_ovl/ovl__00903460/ovl__00903460_reloc]
 
-  - name: ovl__00903B90
+  - name: ac_weather_fine
     type: code
     start: 0x903B90
     vram: 0x80A3C0F0
@@ -5092,100 +5092,100 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x903B90, data, overlays/other_ovl/ovl__00903B90/ovl__00903B90]
-  - name: ovl__00903B90_reloc
+      - [0x903B90, data, overlays/weather/ac_weather_fine/ac_weather_fine]
+  - name: ac_weather_fine_reloc
     type: code
     start: 0x903BB0
     vram: 0x80A3C110
-    follows_vram: ovl__00903B90
+    follows_vram: ac_weather_fine
     compress: True
     subsegments:
-      - [0x903BB0, data, overlays/other_ovl/ovl__00903B90/ovl__00903B90_reloc]
+      - [0x903BB0, data, overlays/weather/ac_weather_fine/ac_weather_fine_reloc]
 
-  - name: ovl__00903BD0
+  - name: ac_weather_rain
     type: code
     start: 0x903BD0
     vram: 0x80A3C130
-    follows_vram: ovl__00903B90_reloc
+    follows_vram: ac_weather_fine_reloc
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x903BD0, asm, overlays/other_ovl/ovl__00903BD0/ovl__00903BD0]
-      - [0x904260, data, overlays/other_ovl/ovl__00903BD0/ovl__00903BD0]
-  - name: ovl__00903BD0_reloc
+      - [0x903BD0, c, overlays/weather/ac_weather_rain/ac_weather_rain]
+      - [0x904260, data, overlays/weather/ac_weather_rain/ac_weather_rain]
+  - name: ac_weather_rain_reloc
     type: code
     start: 0x9042B0
     vram: 0x80A3C810
-    follows_vram: ovl__00903BD0
+    follows_vram: ac_weather_rain
     compress: True
     subsegments:
-      - [0x9042B0, data, overlays/other_ovl/ovl__00903BD0/ovl__00903BD0_reloc]
+      - [0x9042B0, data, overlays/weather/ac_weather_rain/ac_weather_rain_reloc]
 
-  - name: ovl__00904330
+  - name: ac_weather_snow
     type: code
     start: 0x904330
     vram: 0x80A3C890
-    follows_vram: ovl__00903BD0_reloc
+    follows_vram: ac_weather_rain_reloc
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x904330, asm, overlays/other_ovl/ovl__00904330/ovl__00904330]
-      - [0x904A20, data, overlays/other_ovl/ovl__00904330/ovl__00904330]
-      - [0x904A40, rodata, overlays/other_ovl/ovl__00904330/ovl__00904330]
-  - name: ovl__00904330_reloc
+      - [0x904330, c, overlays/weather/ac_weather_snow/ac_weather_snow]
+      - [0x904A20, data, overlays/weather/ac_weather_snow/ac_weather_snow]
+      - [0x904A40, .rodata, overlays/weather/ac_weather_snow/ac_weather_snow]
+  - name: ac_weather_snow_reloc
     type: code
     start: 0x904A50
     vram: 0x80A3CFB0
-    follows_vram: ovl__00904330
+    follows_vram: ac_weather_snow
     compress: True
     subsegments:
-      - [0x904A50, data, overlays/other_ovl/ovl__00904330/ovl__00904330_reloc]
+      - [0x904A50, data, overlays/weather/ac_weather_snow/ac_weather_snow_reloc]
 
-  - name: ovl__00904AB0
+  - name: ac_weather_sakura
     type: code
     start: 0x904AB0
     vram: 0x80A3D010
-    follows_vram: ovl__00904330_reloc
+    follows_vram: ac_weather_snow_reloc
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x904AB0, asm, overlays/other_ovl/ovl__00904AB0/ovl__00904AB0]
-      - [0x9051A0, data, overlays/other_ovl/ovl__00904AB0/ovl__00904AB0]
-      - [0x9051D0, rodata, overlays/other_ovl/ovl__00904AB0/ovl__00904AB0]
-  - name: ovl__00904AB0_reloc
+      - [0x904AB0, c, overlays/weather/ac_weather_sakura/ac_weather_sakura]
+      - [0x9051A0, data, overlays/weather/ac_weather_sakura/ac_weather_sakura]
+      - [0x9051D0, .rodata, overlays/weather/ac_weather_sakura/ac_weather_sakura]
+  - name: ac_weather_sakura_reloc
     type: code
     start: 0x9051F0
     vram: 0x80A3D750
-    follows_vram: ovl__00904AB0
+    follows_vram: ac_weather_sakura
     compress: True
     subsegments:
-      - [0x9051F0, data, overlays/other_ovl/ovl__00904AB0/ovl__00904AB0_reloc]
+      - [0x9051F0, data, overlays/weather/ac_weather_sakura/ac_weather_sakura_reloc]
 
-  - name: ovl__00905280
+  - name: ac_weather_leaf
     type: code
     start: 0x905280
     vram: 0x80A3D7E0
-    follows_vram: ovl__00904AB0_reloc
+    follows_vram: ac_weather_sakura_reloc
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x905280, asm, overlays/other_ovl/ovl__00905280/ovl__00905280]
-      - [0x905950, data, overlays/other_ovl/ovl__00905280/ovl__00905280]
-      - [0x905980, rodata, overlays/other_ovl/ovl__00905280/ovl__00905280]
-  - name: ovl__00905280_reloc
+      - [0x905280, c, overlays/weather/ac_weather_leaf/ac_weather_leaf]
+      - [0x905950, data, overlays/weather/ac_weather_leaf/ac_weather_leaf]
+      - [0x905980, .rodata, overlays/weather/ac_weather_leaf/ac_weather_leaf]
+  - name: ac_weather_leaf_reloc
     type: code
     start: 0x9059A0
     vram: 0x80A3DF00
-    follows_vram: ovl__00905280
+    follows_vram: ac_weather_leaf
     compress: True
     subsegments:
-      - [0x9059A0, data, overlays/other_ovl/ovl__00905280/ovl__00905280_reloc]
+      - [0x9059A0, data, overlays/weather/ac_weather_leaf/ac_weather_leaf_reloc]
 
   - name: ovl__00905A30
     type: code
     start: 0x905A30
     vram: 0x80A3DF90
-    follows_vram: ovl__00905280_reloc
+    follows_vram: ac_weather_leaf_reloc
     compress: True
     bss_size: 0x0
     subsegments:

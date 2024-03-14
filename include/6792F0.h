@@ -12,7 +12,7 @@
 // void func_80055B84_jp();
 // void mAGrw_PrintFossilHaniwa_debug();
 // void func_80055D94_jp();
-// void func_80055E20_jp();
+void mAGrw_OrderSetHaniwa(void);
 // void func_80055E34_jp();
 // void func_80055E5C_jp();
 // void func_80055EF8_jp();
