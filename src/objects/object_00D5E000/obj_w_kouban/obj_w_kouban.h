@@ -3,6 +3,11 @@
 
 #include "gbi.h"
 
+/**
+ * @file obj_w_kouban
+ * 交番 Police Station (winter)
+ */
+
 extern Vtx obj_w_kouban_v[];
 extern Gfx obj_w_kouban_window_model[];
 extern Gfx obj_w_kouban_t3_model[];

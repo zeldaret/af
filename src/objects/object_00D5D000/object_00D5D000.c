@@ -1,4 +1,4 @@
-#include "unk.h"
+#include "ultratypes.h"
 
 s32 padD5D000[] = { 0x00000000, 0x00000000 };
 
