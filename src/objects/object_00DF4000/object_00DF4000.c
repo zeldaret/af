@@ -1,4 +1,4 @@
-#include "unk.h"
+#include "ultratypes.h"
 
 s32 padDF4000[] = { 0x00000000, 0x00000000 };
 
@@ -8,9 +8,9 @@ u32 StructureObjectAddresses[] = {
     0x06028B18, // obj_s_house3
     0x0602B208, // obj_s_house4
     0x0602D838, // obj_s_house5
-    0x0603C710, // obj_w_house1
-    0x0603EEE0, // obj_w_house2
-    0x060417D0, //
+    0x0603C710, // obj_s_myhome1
+    0x0603EEE0, // obj_s_myhome2
+    0x060417D0, // obj_s_myhome3
     0x060583F0, //
     0x0605C470, //
     0x06060E38, //
@@ -95,11 +95,11 @@ u32 StructureObjectAddresses[] = {
     0x06021ED8, //
     0x0600D178, //
     0x0607EE80, //
-    0x06030140, //
-    0x06032910, //
-    0x060350A0, //
-    0x06037790, //
-    0x06039E00, //
+    0x06030140, // obj_w_house1
+    0x06032910, // obj_w_house2
+    0x060350A0, // obj_w_house3
+    0x06037790, // obj_w_house4
+    0x06039E00, // obj_w_house5
     0x060441E8, //
     0x060469B8, //
     0x06049268, //

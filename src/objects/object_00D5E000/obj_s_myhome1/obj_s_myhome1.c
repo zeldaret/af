@@ -18,10 +18,10 @@ u8 obj_s_myhome1_window_txt[] = {
 #include "assets/jp/objects/object_00D5E000/obj_s_myhome1/obj_s_myhome1_window_txt.i4.inc.c"
 };
 u8 obj_s_myhome1_t2_tex_txt[] = {
-#include "assets/jp/objects/object_00D5E000/obj_s_myhome1/obj_s_myhome1_t2_tex_txt.ci4.inc.c"
+#include "assets/jp/objects/object_00D5E000/obj_s_myhome1/obj_s_myhome1_t2_tex_txt_obj_s_myhome_a_pal.ci4.inc.c"
 };
 u8 obj_s_myhome1_t1_tex_txt[] = {
-#include "assets/jp/objects/object_00D5E000/obj_s_myhome1/obj_s_myhome1_t1_tex_txt.ci4.inc.c"
+#include "assets/jp/objects/object_00D5E000/obj_s_myhome1/obj_s_myhome1_t1_tex_txt_obj_s_myhome_a_pal.ci4.inc.c"
 };
 #include "assets/jp/objects/object_00D5E000/obj_s_myhome1/cKF_je_r_obj_s_myhome1_tbl.inc.c"
 #include "assets/jp/objects/object_00D5E000/obj_s_myhome1/cKF_bs_r_obj_s_myhome1.inc.c"
