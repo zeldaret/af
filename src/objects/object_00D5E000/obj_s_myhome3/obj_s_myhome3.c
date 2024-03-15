@@ -35,3 +35,4 @@ u8 obj_s_myhome3_t1_tex_txt[] = {
 #include "assets/jp/objects/object_00D5E000/obj_s_myhome3/cKF_c_obj_s_myhome3_out_tbl.inc.c"
 #include "assets/jp/objects/object_00D5E000/obj_s_myhome3/cKF_ds_obj_s_myhome3_out_tbl.inc.c"
 #include "assets/jp/objects/object_00D5E000/obj_s_myhome3/cKF_ba_r_obj_s_myhome3_out.inc.c"
+s32 padDA21DC[] = { 0x00000000, 0x00000000 };

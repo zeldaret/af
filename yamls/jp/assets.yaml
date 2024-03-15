@@ -624,8 +624,7 @@
           - { start: 0xD5B768, type: af_palette, name: obj_s_myhome_j_pal, global_id: obj_s_myhome_j_pal }
           - { start: 0xD5B788, type: af_palette, name: obj_s_myhome_k_pal, global_id: obj_s_myhome_k_pal }
           - { start: 0xD5B7A8, type: af_palette, name: obj_s_myhome_l_pal, global_id: obj_s_myhome_l_pal }
-          - [0xD5B7C8]
-          # - { start: 0xD5B7C8, type: af_palette, name: obj_w_myhome_a_pal, global_id: obj_w_myhome_a_pal }
+          - { start: 0xD5B7C8, type: af_palette, name: obj_w_myhome_a_pal, global_id: obj_w_myhome_a_pal }
           - [0xD5B7E8]
           - { start: 0xD5BA48, type: af_palette, name: obj_s_yamishop_pal, global_id: obj_s_yamishop_pal }
           - { start: 0xD5BA68, type: af_palette, name: obj_w_yamishop_pal, global_id: obj_w_yamishop_pal }
@@ -1733,7 +1732,42 @@
           - [0xDA21C6, pad]
           - [0xDA21C8, ckf_ba, obj_s_myhome3/cKF_ba_r_obj_s_myhome3_out]
           - [0xDA21DC]
-      - [0xDA21E0, bin, 0D5E000_unextracted]
+      - [auto, c, obj_w_myhome1/obj_w_myhome1]
+      - start: 0xDA21E8
+        type: .data
+        name: obj_w_myhome1/obj_w_myhome1
+        subsegments:
+          - [0xDA21E8, pad]
+          - [0xDA21F0, vtx, obj_w_myhome1/obj_w_myhome1_v]
+          - [0xDA2890, af_gfx, obj_w_myhome1/obj_w_myhome1_window_model]
+          - [0xDA2920, af_gfx, obj_w_myhome1/obj_w_myhome1_light_model]
+          - [0xDA29E8, af_gfx, obj_w_myhome1/obj_w_myhome1_t3_model]
+          - [0xDA2AB8, af_gfx, obj_w_myhome1/obj_w_myhome1_t2_model]
+          - [0xDA2B60, af_gfx, obj_w_myhome1/obj_w_myhome1_t1_model]
+          - [0xDA2C20, af_gfx, obj_w_myhome1/obj_w_myhome1_fuda_model]
+          - [0xDA2CD8, af_gfx, obj_w_myhome1/obj_w_myhome1_door_model]
+          - [0xDA2D90, af_gfx, obj_w_myhome1/obj_w_myhome1_kazamiB_model]
+          - [0xDA2E60, af_gfx, obj_w_myhome1/obj_w_myhome1_kazamiA_model]
+          - [0xDA2F20, ci4, obj_w_myhome1/obj_w_myhome1_t3_tex_txt, 128, 32, obj_w_myhome_a_pal]
+          - [0xDA3720, i4, obj_w_myhome1/obj_w_myhome1_window_txt, 16, 16]
+          - [0xDA37A0, ci4, obj_w_myhome1/obj_w_myhome1_t2_tex_txt, 128, 32, obj_w_myhome_a_pal]
+          - [0xDA3FA0, ci4, obj_w_myhome1/obj_w_myhome1_t1_tex_txt, 128, 32, obj_w_myhome_a_pal]
+          - [0xDA47A0, ckf_je, obj_w_myhome1/cKF_je_r_obj_w_myhome1_tbl]
+          - [0xDA4830, ckf_bs, obj_w_myhome1/cKF_bs_r_obj_w_myhome1]
+          - [0xDA4838, ckf_ckcb, obj_w_myhome1/cKF_ckcb_r_obj_w_myhome1_tbl]
+          - [0xDA4844, ckf_kn, obj_w_myhome1/cKF_kn_obj_w_myhome1_tbl]
+          - [0xDA4848, ckf_c, obj_w_myhome1/cKF_c_obj_w_myhome1_tbl]
+          - [0xDA4894, ckf_ds, obj_w_myhome1/cKF_ds_obj_w_myhome1_tbl]
+          - [0xDA48D6, pad]
+          - [0xDA48D8, ckf_ba, obj_w_myhome1/cKF_ba_r_obj_w_myhome1]
+          - [0xDA48EC, ckf_ckcb, obj_w_myhome1/cKF_ckcb_r_obj_w_myhome1_out_tbl]
+          - [0xDA48F8, ckf_kn, obj_w_myhome1/cKF_kn_obj_w_myhome1_out_tbl]
+          - [0xDA48FC, ckf_c, obj_w_myhome1/cKF_c_obj_w_myhome1_out_tbl]
+          - [0xDA4948, ckf_ds, obj_w_myhome1/cKF_ds_obj_w_myhome1_out_tbl]
+          - [0xDA4996, pad]
+          - [0xDA4998, ckf_ba, obj_w_myhome1/cKF_ba_r_obj_w_myhome1_out]
+          - [0xDA49AC]
+      - [0xDA49B0, bin, 0D5E000_unextracted]
   - [0xDF3480]
 
   - name: object_00DF4000
