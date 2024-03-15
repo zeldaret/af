@@ -28,18 +28,18 @@ u32 StructurePaletteAddresses[] = {
     0x060002C8, // obj_s_house5_c_pal
     0x060002A8, // obj_s_house5_d_pal
     0x06000288, // obj_s_house5_e_pal
-    0x06000648, //
-    0x06000668, //
-    0x060006A8, //
-    0x06000688, //
-    0x060006C8, //
-    0x060006E8, //
-    0x06000708, //
-    0x06000728, //
-    0x06000748, //
-    0x06000768, //
-    0x06000788, //
-    0x060007A8, //
+    0x06000648, // obj_s_myhome_a_pal
+    0x06000668, // obj_s_myhome_b_pal
+    0x060006A8, // obj_s_myhome_c_pal
+    0x06000688, // obj_s_myhome_d_pal
+    0x060006C8, // obj_s_myhome_e_pal
+    0x060006E8, // obj_s_myhome_f_pal
+    0x06000708, // obj_s_myhome_g_pal
+    0x06000728, // obj_s_myhome_h_pal
+    0x06000748, // obj_s_myhome_i_pal
+    0x06000768, // obj_s_myhome_j_pal
+    0x06000788, // obj_s_myhome_k_pal
+    0x060007A8, // obj_s_myhome_l_pal
     0x06000948, //
     0x06000988, //
     0x060009C8, //
@@ -114,23 +114,23 @@ u32 StructurePaletteAddresses[] = {
     0x06000548, // obj_w_house4_c_pal
     0x06000528, // obj_w_house4_d_pal
     0x06000508, // obj_w_house4_e_pal
-    0x06000628, //
-    0x06000608, //
-    0x060005E8, //
-    0x060005C8, //
-    0x060005A8, //
-    0x060007C8, //
-    0x060007E8, //
-    0x06000828, //
-    0x06000808, //
-    0x06000848, //
-    0x06000868, //
-    0x06000888, //
-    0x060008A8, //
-    0x060008C8, //
-    0x060008E8, //
-    0x06000908, //
-    0x06000928, //
+    0x06000628, // obj_w_house5_a_pal
+    0x06000608, // obj_w_house5_b_pal
+    0x060005E8, // obj_w_house5_c_pal
+    0x060005C8, // obj_w_house5_d_pal
+    0x060005A8, // obj_w_house5_e_pal
+    0x060007C8, // obj_w_myhome_a_pal
+    0x060007E8, // obj_w_myhome_b_pal
+    0x06000828, // obj_w_myhome_c_pal
+    0x06000808, // obj_w_myhome_d_pal
+    0x06000848, // obj_w_myhome_e_pal
+    0x06000868, // obj_w_myhome_f_pal
+    0x06000888, // obj_w_myhome_g_pal
+    0x060008A8, // obj_w_myhome_h_pal
+    0x060008C8, // obj_w_myhome_i_pal
+    0x060008E8, // obj_w_myhome_j_pal
+    0x06000908, // obj_w_myhome_k_pal
+    0x06000928, // obj_w_myhome_l_pal
     0x06000968, //
     0x060009A8, //
     0x060009E8, //
