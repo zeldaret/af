@@ -21,7 +21,7 @@ u32 StructureObjectAddresses[] = {
     0x06078D48, //
     0x06080A90, //
     0x060834C0, //
-    0x0604BC80, //
+    0x0604BC80, // obj_s_kouban
     0x06012AD0, //
     0x06013A60, //
     0x060556A0, //
@@ -100,9 +100,9 @@ u32 StructureObjectAddresses[] = {
     0x060350A0, // obj_w_house3
     0x06037790, // obj_w_house4
     0x06039E00, // obj_w_house5
-    0x060441E8, //
-    0x060469B8, //
-    0x06049268, //
+    0x060441E8, // obj_w_myhome1
+    0x060469B8, // obj_w_myhome2
+    0x06049268, // obj_w_myhome3
     0x0605A430, //
     0x0605E958, //
     0x060633E8, //
@@ -113,7 +113,7 @@ u32 StructureObjectAddresses[] = {
     0x0607AFB8, //
     0x06080A90, //
     0x060834C0, //
-    0x0604DD80, //
+    0x0604DD80, // obj_w_kouban
     0x06012AD0, //
     0x06013A60, //
     0x06055C10, //

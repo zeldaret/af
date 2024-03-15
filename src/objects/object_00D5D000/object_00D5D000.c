@@ -62,7 +62,7 @@ u32 StructurePaletteAddresses[] = {
     0x06000DC8, //
     0x06000E88, //
     0x06000EC8, //
-    0x06000F08, //
+    0x06000F08, // obj_police_box_pal
     0x06000008, //
     0x06000008, //
     0x06000F48, //
@@ -153,7 +153,7 @@ u32 StructurePaletteAddresses[] = {
     0x06000E68, //
     0x06000EA8, //
     0x06000EE8, //
-    0x06000F28, //
+    0x06000F28, // obj_police_box_winter_pal
     0x06000008, //
     0x06000008, //
     0x06000F68, //

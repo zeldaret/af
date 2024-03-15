@@ -641,6 +641,9 @@
           - { start: 0xD5BA48, type: af_palette, name: obj_s_yamishop_pal, global_id: obj_s_yamishop_pal }
           - { start: 0xD5BA68, type: af_palette, name: obj_w_yamishop_pal, global_id: obj_w_yamishop_pal }
           - [0xD5BA88]
+          - { start: 0xD5BF08, type: af_palette, name: obj_police_box_pal, global_id: obj_police_box_pal }
+          - { start: 0xD5BF28, type: af_palette, name: obj_police_box_winter_pal, global_id: obj_police_box_winter_pal }
+          - [0xD5BF48]
           - { start: 0xD5BF88, type: af_palette, name: obj_buggy_pal, global_id: obj_buggy_pal }
           - { start: 0xD5BFA8, type: af_palette, name: obj_buggy_winter_pal, global_id: obj_buggy_winter_pal }
           - [0xD5BFC8]
@@ -1891,7 +1894,45 @@
           - [0xDA9C5E, pad]
           - [0xDA9C60, ckf_ba, obj_w_myhome3/cKF_ba_r_obj_w_myhome3_out]
           - [0xDA9C74]
-      - [0xDA9C80, bin, 0D5E000_unextracted]
+      - [auto, c, obj_s_kouban/obj_s_kouban]
+      - start: 0xDA9C80
+        type: .data
+        name: obj_s_kouban/obj_s_kouban
+        subsegments:
+          - [0xDA9C80, pad]
+          - [0xDA9C88, vtx, obj_s_kouban/obj_s_kouban_v]
+          - [0xDAA138, af_gfx, obj_s_kouban/obj_s_kouban_window_model]
+          - [0xDAA1C0, af_gfx, obj_s_kouban/obj_s_kouban_t3_model]
+          - [0xDAA258, af_gfx, obj_s_kouban/obj_s_kouban_t2_model]
+          - [0xDAA310, af_gfx, obj_s_kouban/obj_s_kouban_t1_model]
+          - [0xDAA3C8, af_gfx, obj_s_kouban/obj_s_kouban_neon_model]
+          - [0xDAA488, af_gfx, obj_s_kouban/obj_s_kouban_light_model]
+          - [0xDAA4C8, af_gfx, obj_s_kouban/obj_s_kouban_model]
+          - [0xDAA4F8, ci4, obj_s_kouban/obj_s_kouban_t3_tex_txt, 128, 32, obj_police_box_pal]
+          - [0xDAACF8, ci4, obj_s_kouban/obj_s_kouban_t1_tex_txt, 128, 32, obj_police_box_pal]
+          - [0xDAB4F8, i4, obj_s_kouban/obj_s_kouban_window_tex_txt, 16, 16]
+          - [0xDAB578, ci4, obj_s_kouban/obj_s_kouban_t2_tex_txt, 128, 32, obj_police_box_pal]
+          - [0xDABD78]
+      - [auto, c, obj_w_kouban/obj_w_kouban]
+      - start: 0xDABD80
+        type: .data
+        name: obj_w_kouban/obj_w_kouban
+        subsegments:
+          - [0xDABD80, pad]
+          - [0xDABD88, vtx, obj_w_kouban/obj_w_kouban_v]
+          - [0xDAC208, af_gfx, obj_w_kouban/obj_w_kouban_window_model]
+          - [0xDAC290, af_gfx, obj_w_kouban/obj_w_kouban_t3_model]
+          - [0xDAC328, af_gfx, obj_w_kouban/obj_w_kouban_t2_model]
+          - [0xDAC3E0, af_gfx, obj_w_kouban/obj_w_kouban_t1_model]
+          - [0xDAC498, af_gfx, obj_w_kouban/obj_w_kouban_neon_model]
+          - [0xDAC558, af_gfx, obj_w_kouban/obj_w_kouban_light_model]
+          - [0xDAC598, af_gfx, obj_w_kouban/obj_w_kouban_model]
+          - [0xDAC5C8, ci4, obj_w_kouban/obj_w_kouban_t3_tex_txt, 128, 32, obj_police_box_winter_pal]
+          - [0xDACDC8, ci4, obj_w_kouban/obj_w_kouban_t1_tex_txt, 128, 32, obj_police_box_winter_pal]
+          - [0xDAD5C8, i4, obj_w_kouban/obj_w_kouban_window_tex_txt, 16, 16]
+          - [0xDAD648, ci4, obj_w_kouban/obj_w_kouban_t2_tex_txt, 128, 32, obj_police_box_winter_pal]
+          - [0xDADE48]
+      - [0xDADE50, bin, 0D5E000_unextracted]
   - [0xDF3480]
 
   - name: object_00DF4000

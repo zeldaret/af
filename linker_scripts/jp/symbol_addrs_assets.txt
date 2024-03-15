@@ -770,6 +770,32 @@ cKF_c_obj_w_myhome3_out_tbl = 0x604BBC4; // segment:object_00D5E000 rom:0xDA9BC4
 cKF_ds_obj_w_myhome3_out_tbl = 0x604BC10; // segment:object_00D5E000 rom:0xDA9C10
 cKF_ba_r_obj_w_myhome3_out = 0x604BC60; // segment:object_00D5E000 rom:0xDA9C60
 
+obj_s_kouban_v = 0x604BC88; // segment:object_00D5E000 rom:0xDA9C88 size:0x4B0
+obj_s_kouban_window_model = 0x604C138; // segment:object_00D5E000 rom:0xDAA138
+obj_s_kouban_t3_model = 0x604C1C0; // segment:object_00D5E000 rom:0xDAA1C0
+obj_s_kouban_t2_model = 0x604C258; // segment:object_00D5E000 rom:0xDAA258
+obj_s_kouban_t1_model = 0x604C310; // segment:object_00D5E000 rom:0xDAA310
+obj_s_kouban_neon_model = 0x604C3C8; // segment:object_00D5E000 rom:0xDAA3C8
+obj_s_kouban_light_model = 0x604C488; // segment:object_00D5E000 rom:0xDAA488
+obj_s_kouban_model = 0x604C4C8; // segment:object_00D5E000 rom:0xDAA4C8
+obj_s_kouban_t3_tex_txt = 0x604C4F8; // segment:object_00D5E000 rom:0xDAA4F8
+obj_s_kouban_t1_tex_txt = 0x604CCF8; // segment:object_00D5E000 rom:0xDAACF8
+obj_s_kouban_window_tex_txt = 0x604D4F8; // segment:object_00D5E000 rom:0xDAB4F8
+obj_s_kouban_t2_tex_txt = 0x604D578; // segment:object_00D5E000 rom:0xDAB578
+
+obj_w_kouban_v = 0x604DD88; // segment:object_00D5E000 rom:0xDABD88 size:0x480
+obj_w_kouban_window_model = 0x604E208; // segment:object_00D5E000 rom:0xDAC208
+obj_w_kouban_t3_model = 0x604E290; // segment:object_00D5E000 rom:0xDAC290
+obj_w_kouban_t2_model = 0x604E328; // segment:object_00D5E000 rom:0xDAC328
+obj_w_kouban_t1_model = 0x604E3E0; // segment:object_00D5E000 rom:0xDAC3E0
+obj_w_kouban_neon_model = 0x604E498; // segment:object_00D5E000 rom:0xDAC498
+obj_w_kouban_light_model = 0x604E558; // segment:object_00D5E000 rom:0xDAC558
+obj_w_kouban_model = 0x604E598; // segment:object_00D5E000 rom:0xDAC598
+obj_w_kouban_t3_tex_txt = 0x604E5C8; // segment:object_00D5E000 rom:0xDAC5C8
+obj_w_kouban_t1_tex_txt = 0x604EDC8; // segment:object_00D5E000 rom:0xDACDC8
+obj_w_kouban_window_tex_txt = 0x604F5C8; // segment:object_00D5E000 rom:0xDAD5C8
+obj_w_kouban_t2_tex_txt = 0x604F648; // segment:object_00D5E000 rom:0xDAD648
+
 obj_s_toudai_v = 0x0607D248; // segment:object_00D5E000 rom:0xDDB248 size:0x990
 obj_s_toudai_mirror_model = 0x0607DBD8; // segment:object_00D5E000 rom:0xDDBBD8
 obj_s_toudai_glass_model = 0x0607DCA0; // segment:object_00D5E000 rom:0xDDBCA0
