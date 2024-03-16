@@ -1,6 +1,6 @@
-#include "unk.h"
+#include "ultratypes.h"
 
-UNK_TYPE4 padD5D000[] = { 0x00000000, 0x00000000 };
+s32 padD5D000[] = { 0x00000000, 0x00000000 };
 
 u32 StructurePaletteAddresses[] = {
     0x06000008, // obj_s_house1_a_pal
@@ -8,38 +8,38 @@ u32 StructurePaletteAddresses[] = {
     0x06000048, // obj_s_house1_c_pal
     0x06000068, // obj_s_house1_d_pal
     0x06000088, // obj_s_house1_e_pal
-    0x06000128, //
-    0x06000108, //
-    0x060000E8, //
-    0x060000C8, //
-    0x060000A8, //
-    0x060001C8, //
-    0x060001A8, //
-    0x06000188, //
-    0x06000168, //
-    0x06000148, //
-    0x06000268, //
-    0x06000248, //
-    0x06000228, //
-    0x06000208, //
-    0x060001E8, //
-    0x06000308, //
-    0x060002E8, //
-    0x060002C8, //
-    0x060002A8, //
-    0x06000288, //
-    0x06000648, //
-    0x06000668, //
-    0x060006A8, //
-    0x06000688, //
-    0x060006C8, //
-    0x060006E8, //
-    0x06000708, //
-    0x06000728, //
-    0x06000748, //
-    0x06000768, //
-    0x06000788, //
-    0x060007A8, //
+    0x06000128, // obj_s_house2_a_pal
+    0x06000108, // obj_s_house2_b_pal
+    0x060000E8, // obj_s_house2_c_pal
+    0x060000C8, // obj_s_house2_d_pal
+    0x060000A8, // obj_s_house2_e_pal
+    0x060001C8, // obj_s_house3_a_pal
+    0x060001A8, // obj_s_house3_b_pal
+    0x06000188, // obj_s_house3_c_pal
+    0x06000168, // obj_s_house3_d_pal
+    0x06000148, // obj_s_house3_e_pal
+    0x06000268, // obj_s_house4_a_pal
+    0x06000248, // obj_s_house4_b_pal
+    0x06000228, // obj_s_house4_c_pal
+    0x06000208, // obj_s_house4_d_pal
+    0x060001E8, // obj_s_house4_e_pal
+    0x06000308, // obj_s_house5_a_pal
+    0x060002E8, // obj_s_house5_b_pal
+    0x060002C8, // obj_s_house5_c_pal
+    0x060002A8, // obj_s_house5_d_pal
+    0x06000288, // obj_s_house5_e_pal
+    0x06000648, // obj_s_myhome_a_pal
+    0x06000668, // obj_s_myhome_b_pal
+    0x060006A8, // obj_s_myhome_c_pal
+    0x06000688, // obj_s_myhome_d_pal
+    0x060006C8, // obj_s_myhome_e_pal
+    0x060006E8, // obj_s_myhome_f_pal
+    0x06000708, // obj_s_myhome_g_pal
+    0x06000728, // obj_s_myhome_h_pal
+    0x06000748, // obj_s_myhome_i_pal
+    0x06000768, // obj_s_myhome_j_pal
+    0x06000788, // obj_s_myhome_k_pal
+    0x060007A8, // obj_s_myhome_l_pal
     0x06000948, //
     0x06000988, //
     0x060009C8, //
@@ -62,7 +62,7 @@ u32 StructurePaletteAddresses[] = {
     0x06000DC8, //
     0x06000E88, //
     0x06000EC8, //
-    0x06000F08, //
+    0x06000F08, // obj_police_box_pal
     0x06000008, //
     0x06000008, //
     0x06000F48, //
@@ -94,43 +94,43 @@ u32 StructurePaletteAddresses[] = {
     0x06001348, // obj_e_mikanbox_pal
     0x06001368, // obj_s_douzou_dai_pal
     0x060013A8, //
-    0x06000328, //
-    0x06000348, //
-    0x06000368, //
-    0x06000388, //
-    0x060003A8, //
-    0x06000448, //
-    0x06000428, //
-    0x06000408, //
-    0x060003E8, //
-    0x060003C8, //
-    0x060004E8, //
-    0x060004C8, //
-    0x060004A8, //
-    0x06000488, //
-    0x06000468, //
-    0x06000588, //
-    0x06000568, //
-    0x06000548, //
-    0x06000528, //
-    0x06000508, //
-    0x06000628, //
-    0x06000608, //
-    0x060005E8, //
-    0x060005C8, //
-    0x060005A8, //
-    0x060007C8, //
-    0x060007E8, //
-    0x06000828, //
-    0x06000808, //
-    0x06000848, //
-    0x06000868, //
-    0x06000888, //
-    0x060008A8, //
-    0x060008C8, //
-    0x060008E8, //
-    0x06000908, //
-    0x06000928, //
+    0x06000328, // obj_w_house1_a_pal
+    0x06000348, // obj_w_house1_b_pal
+    0x06000368, // obj_w_house1_c_pal
+    0x06000388, // obj_w_house1_d_pal
+    0x060003A8, // obj_w_house1_e_pal
+    0x06000448, // obj_w_house2_a_pal
+    0x06000428, // obj_w_house2_b_pal
+    0x06000408, // obj_w_house2_c_pal
+    0x060003E8, // obj_w_house2_d_pal
+    0x060003C8, // obj_w_house2_e_pal
+    0x060004E8, // obj_w_house3_a_pal
+    0x060004C8, // obj_w_house3_b_pal
+    0x060004A8, // obj_w_house3_c_pal
+    0x06000488, // obj_w_house3_d_pal
+    0x06000468, // obj_w_house3_e_pal
+    0x06000588, // obj_w_house4_a_pal
+    0x06000568, // obj_w_house4_b_pal
+    0x06000548, // obj_w_house4_c_pal
+    0x06000528, // obj_w_house4_d_pal
+    0x06000508, // obj_w_house4_e_pal
+    0x06000628, // obj_w_house5_a_pal
+    0x06000608, // obj_w_house5_b_pal
+    0x060005E8, // obj_w_house5_c_pal
+    0x060005C8, // obj_w_house5_d_pal
+    0x060005A8, // obj_w_house5_e_pal
+    0x060007C8, // obj_w_myhome_a_pal
+    0x060007E8, // obj_w_myhome_b_pal
+    0x06000828, // obj_w_myhome_c_pal
+    0x06000808, // obj_w_myhome_d_pal
+    0x06000848, // obj_w_myhome_e_pal
+    0x06000868, // obj_w_myhome_f_pal
+    0x06000888, // obj_w_myhome_g_pal
+    0x060008A8, // obj_w_myhome_h_pal
+    0x060008C8, // obj_w_myhome_i_pal
+    0x060008E8, // obj_w_myhome_j_pal
+    0x06000908, // obj_w_myhome_k_pal
+    0x06000928, // obj_w_myhome_l_pal
     0x06000968, //
     0x060009A8, //
     0x060009E8, //
@@ -153,7 +153,7 @@ u32 StructurePaletteAddresses[] = {
     0x06000E68, //
     0x06000EA8, //
     0x06000EE8, //
-    0x06000F28, //
+    0x06000F28, // obj_police_box_winter_pal
     0x06000008, //
     0x06000008, //
     0x06000F68, //
