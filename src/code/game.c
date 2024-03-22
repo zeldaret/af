@@ -208,7 +208,7 @@ void game_main(Game* game) {
     gfxCtx->unk_2F0 = 0xA;
     func_800D2E00_jp(game);
 
-    game->unk_A0++;
+    game->frameCounter++;
 }
 
 void game_init_hyral(Game* game, size_t size) {
@@ -263,7 +263,7 @@ void game_ct(Game* game, GameStateFunc init, GraphicsContext* gfxCtx) {
 
     mCon_ct(game);
 
-    game->unk_A0 = 0;
+    game->frameCounter = 0;
     game->main = NULL;
     game->destroy = NULL;
     game->running = true;

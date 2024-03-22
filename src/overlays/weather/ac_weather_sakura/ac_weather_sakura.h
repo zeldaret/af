@@ -4,7 +4,9 @@
 #include "ultra64.h"
 #include "overlays/actors/ovl_Weather/ac_weather.h"
 
+struct Game_Play;
+
 extern WeatherProfile iam_weather_sakura;
-extern void func_80A3D010_jp(void);
+extern s32 aWeatherSakura_DecideMakeSakuraCount(Actor* thisx, struct Game_Play* play);
 
 #endif

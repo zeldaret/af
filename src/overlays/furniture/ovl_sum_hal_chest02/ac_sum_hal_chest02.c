@@ -60,7 +60,7 @@ extern UNK_PTR D_6000000;
 
 void aSumHalChest03_dw(FurnitureActor* this, Actor* myRoomActor UNUSED, Game_Play* game_play, u8* data UNUSED) {
     UNUSED s32 pad;
-    s32 temp = game_play->state.unk_A0 & 1;
+    s32 temp = game_play->state.frameCounter & 1;
     Mtx* mtx = &this->matrix[temp][0];
 
     OPEN_DISPS(game_play->state.gfxCtx);

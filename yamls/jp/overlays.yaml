@@ -5150,7 +5150,7 @@
     bss_size: 0x0
     subsegments:
       - [0x904AB0, c, overlays/weather/ac_weather_sakura/ac_weather_sakura]
-      - [0x9051A0, data, overlays/weather/ac_weather_sakura/ac_weather_sakura]
+      - [0x9051A0, .data, overlays/weather/ac_weather_sakura/ac_weather_sakura]
       - [0x9051D0, .rodata, overlays/weather/ac_weather_sakura/ac_weather_sakura]
   - name: ac_weather_sakura_reloc
     type: code
