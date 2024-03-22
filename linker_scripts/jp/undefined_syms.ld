@@ -1487,8 +1487,8 @@ D_60000D0 = 0x060000D0;
 
 // ac_weather_sakura
 
-D_6000040 = 0x06000040;
-D_60000C0 = 0x060000C0;
+ef_hanabira01_00_setmode = 0x06000040;
+ef_hanabira01_00_modelT = 0x060000C0;
 
 // ac_weather_leaf
 

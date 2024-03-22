@@ -16167,15 +16167,15 @@ RO_FLT_80A3CFA8_jp = 0x80A3CFA8; // type:f32
 
 // .text
 
-func_80A3D010_jp = 0x80A3D010; // type:func
-func_80A3D064_jp = 0x80A3D064; // type:func
-func_80A3D238_jp = 0x80A3D238; // type:func
+aWeatherSakura_DecideMakeSakuraCount = 0x80A3D010; // type:func
+aWeatherSakura_make = 0x80A3D064; // type:func
+aWeatherSakura_ct = 0x80A3D238; // type:func
 func_80A3D2BC_jp = 0x80A3D2BC; // type:func
 func_80A3D38C_jp = 0x80A3D38C; // type:func
 func_80A3D484_jp = 0x80A3D484; // type:func
-func_80A3D4A0_jp = 0x80A3D4A0; // type:func
-func_80A3D530_jp = 0x80A3D530; // type:func
-func_80A3D55C_jp = 0x80A3D55C; // type:func
+aWeatherSakura_move = 0x80A3D4A0; // type:func
+aWeatherSakura_set = 0x80A3D530; // type:func
+aWeatherSakura_draw = 0x80A3D55C; // type:func
 
 // .data
 

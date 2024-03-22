@@ -33,7 +33,7 @@ WeatherOvlInfo profile_tbl[] = {
     WEATHER_OVERLAY_NONE(ac_weather_fine, &iam_weather_fine),
     WEATHER_OVERLAY(ac_weather_rain, func_80A3C130_jp, &iam_weather_rain),
     WEATHER_OVERLAY(ac_weather_snow, func_80A3C890_jp, &iam_weather_snow),
-    WEATHER_OVERLAY(ac_weather_sakura, func_80A3D010_jp, &iam_weather_sakura),
+    WEATHER_OVERLAY(ac_weather_sakura, aWeatherSakura_DecideMakeSakuraCount, &iam_weather_sakura),
     WEATHER_OVERLAY(ac_weather_leaf, func_80A3D7E0_jp, &iam_weather_leaf),
 };
 
