@@ -30,7 +30,10 @@ class N64SegCkf_je(CommonSegCodeSubsegment):
             if shape == 0:
                 shape_symbol = "NULL"
             else:
-                shape_symbol = self.get_symbol(addr=shape).name
+                symbol = self.get_symbol(addr=shape)
+                if symbol == None:
+                    log.error(f"Error: Symbol for segment address 0x{shape:08X} in {self.name} doesn't exist.")
+                shape_symbol = symbol.name
 
             lines.append(f"    {{ {shape_symbol}, {numberOfChildren}, {displayBufferFlag}, {{{x}, {y}, {z}}} }},")
 
