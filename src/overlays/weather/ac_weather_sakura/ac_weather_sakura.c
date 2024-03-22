@@ -54,7 +54,7 @@ void aWeatherSakura_make(Actor* thisx, Game_Play* play){
     xyz_t modPos;
 
     if(aWeatherSakura_DecideMakeSakuraCount(thisx, play) != 0){
-        base.y = -0.8f + (RANDOM_F(-0.0999999642372f));
+        base.y = -1.6f + (RANDOM_F(-0.19999993f));
         if(count != -1){
             x = -100.0f + (RANDOM_F(200.0f));
             z = -200.0f + (RANDOM_F(380.0f));
@@ -69,7 +69,7 @@ void aWeatherSakura_make(Actor* thisx, Game_Play* play){
             if(priv != NULL){
                 aWeatherSakura_ct(priv, play);
                 priv->work[3]= 0;
-                priv->work[4] = 156.5f + (RANDOM_F(260.5));
+                priv->work[4] = 313.0f + (RANDOM_F(521.0f));
                 priv->currentY = y;
             }
         }
@@ -146,7 +146,7 @@ void aWeatherSakura_CheckSakuraScroll(WeatherPrv* priv){
 
 void aWeatherSakura_SetWind2Sakura(WeatherPrv* priv){
 
-    priv->pos.x += 0.45f;
+    priv->pos.x += 0.9f;
 }
 
 void aWeatherSakura_move(WeatherPrv* priv, UNUSED Game_Play* play){
