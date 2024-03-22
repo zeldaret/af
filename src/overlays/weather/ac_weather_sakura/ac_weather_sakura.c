@@ -5,11 +5,11 @@
 extern Gfx ef_hanabira01_00_setmode[];
 extern Gfx ef_hanabira01_00_modelT[];
 
-void aWeatherSakura_make(Actor* /*thisx*/, Game_Play* /*play*/);
+void aWeatherSakura_make(Actor* thisx, Game_Play* play);
 void aWeatherSakura_ct(WeatherPrv* priv, Game_Play* play);
-void aWeatherSakura_move(WeatherPrv* /*priv*/, Game_Play* /*play*/);
-void aWeatherSakura_set(Game_Play* /*play*/);
-void aWeatherSakura_draw(WeatherPrv* /*priv*/, Game_Play* /*play*/);
+void aWeatherSakura_move(WeatherPrv* priv, Game_Play* play);
+void aWeatherSakura_set(Game_Play* play);
+void aWeatherSakura_draw(WeatherPrv* priv, Game_Play* play);
 
 WeatherProfile iam_weather_sakura = {
     aWeatherSakura_make, aWeatherSakura_ct, aWeatherSakura_move, aWeatherSakura_set, aWeatherSakura_draw,
