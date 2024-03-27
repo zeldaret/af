@@ -4,11 +4,6 @@
 #include "ultra64.h"
 #include "unk.h"
 
-typedef struct ListAlloc {
-    /* 0x0 */ struct ListAlloc* prev;
-    /* 0x4 */ struct ListAlloc* next;
-} ListAlloc; // size = 0x8
-
 typedef struct PreRender {
     /* 0x00 */ u16 unk_00;
     /* 0x02 */ u16 unk_02;
