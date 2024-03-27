@@ -3,9 +3,14 @@
 
 #include "ultra64.h"
 
-// void func_800D6390_jp();
-// void func_800D63A4_jp();
-// void func_800D6410_jp();
-// void func_800D6490_jp();
+typedef struct ListAlloc {
+    /* 0x0 */ struct ListAlloc* prev;
+    /* 0x4 */ struct ListAlloc* next;
+} ListAlloc; // size = 0x8
+
+ListAlloc* ListAlloc_Init(ListAlloc* this);
+void* ListAlloc_Alloc(ListAlloc* this, size_t size);
+void ListAlloc_Free(ListAlloc* this, void* data);
+void ListAlloc_FreeAll(ListAlloc* this);
 
 #endif

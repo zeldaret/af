@@ -98,7 +98,7 @@
       - [0x6F83B0, c, code/irqmgr]
       - [0x6F8A60, c, code/lb_rtc]
       - [0x6F9B10, c, code/lb_reki]
-      - [0x6FA030, asm, code/listalloc]
+      - [0x6FA030, c, code/listalloc]
       - [0x6FA180, c, code/main]
       - [0x6FA6B0, asm, code/padmgr]
       - [0x6FB340, asm, code/6FB340]
