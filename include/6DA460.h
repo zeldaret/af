@@ -10,7 +10,7 @@ struct Game_Play;
 // void func_800B6838_jp();
 s32 mPO_get_keep_mail_sum(void);
 // void func_800B690C_jp();
-s32 mPO_receipt_proc(Mail_c*, s32);
+s32 mPO_receipt_proc(struct Mail_c*, s32);
 // void func_800B6AC8_jp();
 // void func_800B6B94_jp();
 // void func_800B6C14_jp();

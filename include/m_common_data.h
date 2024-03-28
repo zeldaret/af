@@ -82,7 +82,9 @@ typedef struct CommonData {
     /* 0x0EDA4 */ EventSaveInfo eventSaveInfo;
     /* 0x0EE40 */ u8 unk_0EE40[0x118];
     /* 0x0EF58 */ u16 fruit;
-    /* 0x0EF5A */ UNK_TYPE1 unk_0EF5A[0x12];
+    /* 0x0EF5A */ UNK_TYPE1 unk_0EF5A[2];
+    /* 0x0EF5C */ lbRTC_time_c allGrowRenewTime;
+    /* 0x0EF60 */ UNK_TYPE1 unk_0EF64[8];
     /* 0x0EF6C */ Mail_c unk_0EF6C[5];
     /* 0x0F2A0 */ UNK_TYPE1 unk_0F2A0[0x17C];
     /* 0x0F41C */ SnowmanData snowmanData[SNOWMAN_SAVE_COUNT];
@@ -106,7 +108,8 @@ typedef struct CommonData {
     /* 0x0F8AE */ u8 snowmanMonth; // Month last snowman was built.
     /* 0x0F8AF */ u8 snowmanDay;   // Day last snowman was built.
     /* 0x0F8B0 */ u8 snowmanHour;  // Hour last snowman was built.
-    /* 0x0F8B1 */ UNK_TYPE1 unk_0F8B1[0x74F];
+    /* 0X0F8B1 */ u8 haniwaScheduled;
+    /* 0x0F8B2 */ UNK_TYPE1 unk_0F8B2[0x74E];
     /* 0x10000 */ u8 unk_10000; // named "game_started" in AC GCN decomp
     /* 0x10001 */ u8 unk_10001;
     /* 0x10002 */ u8 unk_10002[0x1];

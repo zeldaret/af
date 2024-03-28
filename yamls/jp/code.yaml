@@ -9,6 +9,7 @@
       - [0x675720, c, code/c_keyframe]
       - [0x678660, asm, code/evw_anime]
       - [0x6792F0, asm, code/6792F0]
+      - [0x679550, c, code/m_all_grow]
       - [0x67A020, c, code/m_actor]
       - [0x67C6B0, c, code/m_actor_dlftbls]
       - [0x67C890, c, code/m_actor_shadow]
@@ -137,7 +138,8 @@
 
       - [0x723010, data, code/rsp/723010]
 
-      - [0x7248D0, data, code/7248D0]
+      - [0x7248D0, data, code/evw_anime]
+      - [0x7248F0, .data, code/m_all_grow]
       - [0x724910, .data, code/m_actor]
       - [0x724930, .data, code/m_actor_dlftbls]
       - [0x726260, .data, code/m_actor_shadow]
@@ -184,7 +186,7 @@
       - [0x733A10, data, code/733A10]
 
       - [0x739DB0, .rodata, code/c_keyframe]
-      - [0x739E00, rodata, code/739E00]
+      - [0x739E00, .rodata, code/m_all_grow]
       - [0x739E50, .rodata, code/m_actor]
       - [0x739EA0, .rodata, code/m_actor_dlftbls]
       - [0x739EF0, .rodata, code/m_actor_shadow]
@@ -266,7 +268,7 @@
       - [0x73C7C0, rodata, code/73C7C0] # rodata of code/71A140 starts here
       - [0x73CEE0, rodata, code/73CEE0]
 
-      - { start: 0x73F4D0, type: bss, vram: 0x8011B830, name: code/8011B830 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x8011B830, name: code/m_all_grow }
       - { start: 0x73F4D0, type: .bss, vram: 0x8011B850, name: code/m_actor }
       - { start: 0x73F4D0, type: .bss, vram: 0x8011B890, name: code/m_actor_dlftbls }
       - { start: 0x73F4D0, type: bss, vram: 0x8011B8B0, name: code/8011B8B0 }

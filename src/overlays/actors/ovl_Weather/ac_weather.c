@@ -14,7 +14,7 @@
 #include "m_kankyo.h"
 #include "6EDD10.h"
 #include "m_event.h"
-#include "6792F0.h"
+#include "m_all_grow.h"
 #include "683030.h"
 #include "segment_symbols.h"
 

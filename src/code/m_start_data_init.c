@@ -1,43 +1,42 @@
 #include "m_start_data_init.h"
-#include "6792F0.h"
-#include "m_cockroach.h"
 #include "69CB30.h"
 #include "6A83A0.h"
 #include "6B81C0.h"
-#include "m_land.h"
 #include "6BA500.h"
 #include "6C0690.h"
 #include "6C97F0.h"
-#include "m_npc_schedule.h"
 #include "6D9D80.h"
 #include "6DA460.h"
-#include "m_quest.h"
 #include "6E30B0.h"
 #include "6E7AD0.h"
 #include "6ECD90.h"
 #include "6EDD10.h"
-#include "lb_rtc.h"
 #include "global.h"
+#include "lb_rtc.h"
 #include "libc64/qrand.h"
 #include "m_all_grow.h"
+#include "m_cockroach.h"
 #include "m_common_data.h"
 #include "m_event.h"
 #include "m_field_info.h"
 #include "m_field_make.h"
+#include "m_flashrom.h"
 #include "m_handbill.h"
 #include "m_home.h"
 #include "m_house.h"
 #include "m_kankyo.h"
+#include "m_land.h"
 #include "m_lib.h"
 #include "m_msg_main.h"
 #include "m_name_table.h"
 #include "m_npc.h"
+#include "m_npc_schedule.h"
+#include "m_quest.h"
 #include "m_scene_table.h"
 #include "m_snowman.h"
 #include "m_time.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "sys_math.h"
-#include "m_flashrom.h"
 
 void famicom_emu_initial_common_data(void) {
     FamicomEmuCommonData* famicom = &common_data.famicomEmuCommonData;
@@ -63,7 +62,7 @@ void famicom_emu_initial_common_data(void) {
 }
 
 void decide_fruit(u16* fruit) {
-    u16 n = mAGrw_FRUIT_NUM;
+    u16 n = AGrw_FRUIT_NUM;
 
     *fruit = ITM_FOOD_START | (u16)RANDOM_F(n);
 }

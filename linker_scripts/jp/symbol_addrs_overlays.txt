@@ -21846,7 +21846,7 @@ func_80AB4988_jp = 0x80AB4988; // type:func
 func_80AB4B90_jp = 0x80AB4B90; // type:func
 func_80AB4DE4_jp = 0x80AB4DE4; // type:func
 func_80AB4E9C_jp = 0x80AB4E9C; // type:func
-func_80AB4F1C_jp = 0x80AB4F1C; // type:func
+mAGrw_RenewalFgItem_ovl = 0x80AB4F1C; // type:func
 
 // .data
 

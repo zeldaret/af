@@ -2,6 +2,7 @@
 #define M_FIELD_MAKE_H
 
 #include "ultra64.h"
+#include "unk.h"
 
 struct Game;
 
