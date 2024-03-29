@@ -17340,7 +17340,7 @@
     subsegments:
       - [0x9708F0, data, overlays/actors/ovl_Dummy/ac_dummy_reloc]
 
-  - name: ovl__00970920
+  - name: m_all_grow_ovl
     type: code
     start: 0x970920
     vram: 0x80AB07C0
@@ -17348,14 +17348,14 @@
     compress: True
     bss_size: 0x420
     subsegments:
-      - [0x970920, asm, overlays/other_ovl/ovl__00970920/ovl__00970920]
-      - [0x975330, data, overlays/other_ovl/ovl__00970920/ovl__00970920]
-      - { start: 0x9754A0, type: bss, vram: 0x80AB5340, name: overlays/other_ovl/ovl__00970920/ovl__00970920 }
-  - name: ovl__00970920_reloc
+      - [0x970920, asm, overlays/other_ovl/m_all_grow_ovl/m_all_grow_ovl]
+      - [0x975330, data, overlays/other_ovl/m_all_grow_ovl/m_all_grow_ovl]
+      - { start: 0x9754A0, type: bss, vram: 0x80AB5340, name: overlays/other_ovl/m_all_grow_ovl/m_all_grow_ovl }
+  - name: m_all_grow_ovl_reloc
     type: code
     start: 0x9754A0
     vram: 0x80AB5760
-    follows_vram: ovl__00970920
+    follows_vram: m_all_grow_ovl
     compress: True
     subsegments:
-      - [0x9754A0, data, overlays/other_ovl/ovl__00970920/ovl__00970920_reloc]
+      - [0x9754A0, data, overlays/other_ovl/m_all_grow_ovl/m_all_grow_ovl_reloc]

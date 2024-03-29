@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "z64math.h"
+#include "unknown_structs.h"
 
 typedef enum SceneTable {
     /* 00 */ SCENE_TEST1,
