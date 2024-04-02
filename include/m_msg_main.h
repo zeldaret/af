@@ -76,7 +76,7 @@ void mMsg_Set_mail_str(UNK_PTR arg0, s32 arg1, char* str, s32 size);
 // void func_8009E6C4_jp();
 // void func_8009E6D4_jp();
 // void func_8009E6F8_jp();
-// void func_8009E8D0_jp();
+size_t mMsg_Get_Length_String(char*, s32);
 // void func_8009E908_jp();
 // void func_8009E94C_jp();
 // void func_8009E970_jp();

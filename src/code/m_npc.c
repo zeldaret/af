@@ -6,7 +6,7 @@
 #include "m_field_info.h"
 #include "m_mail_check.h"
 #include "6E30B0.h"
-#include "6E7AD0.h"
+#include "m_string.h"
 #include "m_handbill.h"
 #include "m_std_dma.h"
 #include "6DA460.h"
