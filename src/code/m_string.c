@@ -127,7 +127,7 @@ s32 mString_Load_HourStringFromRom(char* dst, lbRTC_hour_t hour) {
     s32 specifier;
     s32 len;
 
-    if (hour > 23) {
+    if (hour >= lbRTC_HOURS_PER_DAY) {
         hour = 0;
     }
 
@@ -144,7 +144,7 @@ s32 mString_Load_HourStringFromRom(char* dst, lbRTC_hour_t hour) {
 s32 mString_Load_MinStringFromRom(char* dst, lbRTC_min_t min) {
     s32 idx;
 
-    if (min > 59) {
+    if (min >= lbRTC_MINUTES_PER_HOUR) {
         min = 0;
     }
 
@@ -156,7 +156,7 @@ s32 mString_Load_MinStringFromRom(char* dst, lbRTC_min_t min) {
 s32 mString_Load_SecStringFromRom(char* dst, lbRTC_sec_t sec) {
     s32 idx;
 
-    if (sec > 59) {
+    if (sec >= lbRTC_MINUTES_PER_HOUR) {
         sec = 0;
     }
 
