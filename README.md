@@ -38,13 +38,14 @@ The build process has the following package requirements:
 * clang
 * binutils-mips-linux-gnu
 * python3
-* pip3
+* python3-pip
+* python3-venv
 
 Under Debian / Ubuntu (which we recommend using), you can install them with the following commands:
 
 ```bash
 sudo apt update
-sudo apt install make git build-essential clang binutils-mips-linux-gnu python3 python3-pip
+sudo apt install make git build-essential clang binutils-mips-linux-gnu python3 python3-pip python3-venv
 ```
 
 #### 2. Install python dependencies
