@@ -58,8 +58,8 @@ typedef struct View {
     (void)0
 void set_viewport(Vp* vp, Viewport* viewport);
 void initView(View* view, struct GraphicsContext* graph);
-void setLookAtView(View* view, xyz_t* eye, xyz_t* center, xyz_t* up);
-void getLookAtView(View* view, xyz_t* eye, xyz_t* center, xyz_t* up);
+void setLookAtView(View* view, xyz_t* eye, xyz_t* at, xyz_t* up);
+void getLookAtView(View* view, xyz_t* eye, xyz_t* at, xyz_t* up);
 void setScaleView(View* view, f32 scale);
 void getScaleView(View* view, f32* scale);
 void setPerspectiveView(View* view, f32 fovY, f32 near, f32 far);

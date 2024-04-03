@@ -8,7 +8,7 @@ s32 D_8010EF00_jp = 1;
 
 void set_viewport(Vp* vp, Viewport* viewport) {
     s32 width = viewport->rightX - viewport->leftX;
-    s32 height = viewport->bottomY - viewport->topY; 
+    s32 height = viewport->bottomY - viewport->topY;
 
     vp->vp.vscale[0] = width * 2;
     vp->vp.vscale[1] = height * 2;
@@ -22,8 +22,7 @@ void set_viewport(Vp* vp, Viewport* viewport) {
 }
 
 void initView(View* view, GraphicsContext* graph) {
-    if (D_8010EF00_jp) {
-    }
+    if (D_8010EF00_jp) {}
 
     view->gfxCtx = graph;
 
@@ -80,8 +79,8 @@ void setScaleView(View* view, f32 scale) {
     view->flag |= 4;
 }
 
-void getScaleView(View* view, f32* scale) { 
-    *scale = view->scale; 
+void getScaleView(View* view, f32* scale) {
+    *scale = view->scale;
 }
 
 void setPerspectiveView(View* view, f32 fovY, f32 near, f32 far) {
@@ -104,8 +103,8 @@ void setScissorView(View* view, Viewport* viewport) {
     view->flag |= 2;
 }
 
-void getScissorView(View* view, Viewport* viewport) { 
-    *viewport = view->viewport; 
+void getScissorView(View* view, Viewport* viewport) {
+    *viewport = view->viewport;
 }
 
 void setScissorX(Gfx** gfxP, s32 leftX, s32 topY, s32 rightX, s32 bottomY) {
@@ -204,7 +203,6 @@ s32 do_stretch_view(View* view, Mtx* mtx) {
         Matrix_RotateY(rot.y, 1);
         Matrix_RotateZ(rot.z, 1);
 
-
         Matrix_scale(view->stretch.scale.x, view->stretch.scale.y, view->stretch.scale.z, TRUE);
 
         Matrix_RotateZ(-rot.z, 1);
@@ -281,8 +279,8 @@ s32 showPerspectiveView(View* view) {
         view->eye.y += 1.0f;
         view->eye.z += 1.0f;
     }
-    guLookAt(mtx, view->eye.x, view->eye.y, view->eye.z, view->at.x, view->at.y, view->at.z, view->up.x,
-             view->up.y, view->up.z);
+    guLookAt(mtx, view->eye.x, view->eye.y, view->eye.z, view->at.x, view->at.y, view->at.z, view->up.x, view->up.y,
+             view->up.z);
 
     view->viewingMtx = *mtx;
 
@@ -421,8 +419,8 @@ s32 showPerspectiveOverLayView(View* view) {
         view->eye.y += 1.0f;
         view->eye.z += 1.0f;
     }
-    guLookAt(mtx, view->eye.x, view->eye.y, view->eye.z, view->at.x, view->at.y, view->at.z, view->up.x,
-             view->up.y, view->up.z);
+    guLookAt(mtx, view->eye.x, view->eye.y, view->eye.z, view->at.x, view->at.y, view->at.z, view->up.x, view->up.y,
+             view->up.z);
 
     view->viewingMtx = *mtx;
 
@@ -521,8 +519,8 @@ s32 showView1(View* view, s32 flagMask, Gfx** gfxPtr) {
         viewMtx = GRAPH_ALLOC(graph, sizeof(Mtx));
 
         view->viewingMtxPtr = viewMtx;
-        guLookAt(viewMtx, view->eye.x, view->eye.y, view->eye.z, view->at.x, view->at.y, view->at.z,
-                 view->up.x, view->up.y, view->up.z);
+        guLookAt(viewMtx, view->eye.x, view->eye.y, view->eye.z, view->at.x, view->at.y, view->at.z, view->up.x,
+                 view->up.y, view->up.z);
 
         view->viewingMtx = *viewMtx;
         gSPMatrix(gfx++, viewMtx, G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
