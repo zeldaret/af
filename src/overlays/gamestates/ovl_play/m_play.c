@@ -389,7 +389,7 @@ void play_init(Game* game) {
     mSM_submenu_ovlptr_init(game_play);
     func_8007CFD8_jp(game_play);
     mEv_init(&game_play->event);
-    initView(&game_play->unk_1938, gfxCtx);
+    initView(&game_play->view, gfxCtx);
     func_80064F48_jp(game_play);
     CollisionCheck_ct(game_play, &game_play->unk_2138);
     func_8006BB64_jp();
@@ -579,13 +579,13 @@ void setupFog(Game_Play* game_play, GraphicsContext* gfxCtx) {
 }
 
 void setupViewer(Game_Play* game_play) {
-    showView(&game_play->unk_1938, 0xF);
+    showView(&game_play->view, 0xF);
 }
 
 void setupViewMatrix(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsContext* gfxCtx2) {
     // TODO: A way to fit OPEN_DISPS/CLOSE_DISPS on the stack
-    Matrix_MtxtoMtxF(&game_play->unk_1938.unk_0A0, &game_play->billboardMtxF);
-    Matrix_MtxtoMtxF(&game_play->unk_1938.unk_060, &game_play->viewProjectionMtxF);
+    Matrix_MtxtoMtxF(&game_play->view.viewingMtx, &game_play->billboardMtxF);
+    Matrix_MtxtoMtxF(&game_play->view.projectionMtx, &game_play->viewProjectionMtxF);
     Skin_Matrix_MulMatrix(&game_play->viewProjectionMtxF, &game_play->billboardMtxF, &game_play->viewProjectionMtxF);
 
     game_play->billboardMtxF.mf[0][3] = 0.0f;
@@ -613,16 +613,16 @@ s32 makeBumpTexture(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsCon
         gSPDisplayList(OVERLAY_DISP++, sp194);
 
         if (game_play->unk_1EE3 == 3) {
-            Game_Play1938 sp60;
+            View view;
 
-            initView(&sp60, gfxCtx2);
+            initView(&view, gfxCtx2);
             {
-                sp60.unk_120 = 10;
+                view.flag = 10;
             //! FAKE
             label2:;
             }
-            SET_FULLSCREEN_VIEWPORT(&sp60);
-            showView1(&sp60, 0xF, &sp194);
+            SET_FULLSCREEN_VIEWPORT(&view);
+            showView1(&view, 0xF, &sp194);
             game_play->unk_1EE8.unk_21C.unk_0C(&game_play->unk_1EE8, &sp194);
         }
 

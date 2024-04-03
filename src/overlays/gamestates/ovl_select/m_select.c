@@ -939,7 +939,7 @@ void select_init(Game* game) {
     select->selectedScene = 0;
 
     initView(&select->view, game->gfxCtx);
-    select->view.unk_120 = 10;
+    select->view.flag = 10;
 
     select->unk_234 = 0;
     select->unk_238 = 0;
