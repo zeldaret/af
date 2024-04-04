@@ -9,7 +9,7 @@
 
 typedef struct Game__00743CD0 {
     /* 0x0000 */ Game state;
-    /* 0x00E0 */ Game_Play1938 unk_00E0;
+    /* 0x00E0 */ View view;
     /* 0x0208 */ UNK_TYPE1 unk_0208[0x2FC-0x208];
     /* 0x02FC */ ObjectExchangeBank unk_02FC;
 } Game__00743CD0; // size = 0x1B20

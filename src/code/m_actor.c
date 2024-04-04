@@ -1117,7 +1117,7 @@ Hilite* Setpos_HiliteReflect_init(xyz_t* object, Game_Play* game_play) {
     sp24.x = game_play->kankyo.unk_02;
     sp24.y = game_play->kankyo.unk_03;
     sp24.z = game_play->kankyo.unk_04;
-    return HiliteReflect_init(object, &game_play->unk_1938.unk_028, &sp24, game_play->state.gfxCtx);
+    return HiliteReflect_init(object, &game_play->view.eye, &sp24, game_play->state.gfxCtx);
 }
 
 Hilite* Setpos_HiliteReflect_xlu_init(xyz_t* object, Game_Play* game_play) {
@@ -1126,7 +1126,7 @@ Hilite* Setpos_HiliteReflect_xlu_init(xyz_t* object, Game_Play* game_play) {
     sp24.x = game_play->kankyo.unk_02;
     sp24.y = game_play->kankyo.unk_03;
     sp24.z = game_play->kankyo.unk_04;
-    return HiliteReflect_xlu_init(object, &game_play->unk_1938.unk_028, &sp24, game_play->state.gfxCtx);
+    return HiliteReflect_xlu_init(object, &game_play->view.eye, &sp24, game_play->state.gfxCtx);
 }
 
 Hilite* Setpos_HiliteReflect_light_init(xyz_t* object, Game_Play* game_play) {
@@ -1135,5 +1135,5 @@ Hilite* Setpos_HiliteReflect_light_init(xyz_t* object, Game_Play* game_play) {
     sp24.x = game_play->kankyo.unk_02;
     sp24.y = game_play->kankyo.unk_03;
     sp24.z = game_play->kankyo.unk_04;
-    return HiliteReflect_xlu_init(object, &game_play->unk_1938.unk_028, &sp24, game_play->state.gfxCtx);
+    return HiliteReflect_xlu_init(object, &game_play->view.eye, &sp24, game_play->state.gfxCtx);
 }

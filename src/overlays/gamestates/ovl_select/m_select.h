@@ -26,7 +26,7 @@ struct gfxprint;
 
 typedef struct Game_Select {
     /* 0x000 */ Game state;
-    /* 0x0E0 */ Game_Play1938 view;
+    /* 0x0E0 */ View view;
     /* 0x208 */ s32 status; 
     /* 0x20C */ s32 cursorX;
     /* 0x210 */ s32 cursorY;

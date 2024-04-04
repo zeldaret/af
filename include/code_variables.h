@@ -775,8 +775,6 @@ extern vs32 D_8010EFB0_jp; // TODO: Determine where this goes
 // extern UNK_TYPE D_8010EFE0_jp;
 // extern UNK_TYPE D_8010EFFC_jp;
 // extern UNK_TYPE D_8010F3DC_jp;
-// extern UNK_TYPE D_8010F3E0_jp;
-// extern UNK_TYPE D_8010F3E4_jp;
 extern u8 D_8010F3E8_jp;
 // extern UNK_TYPE D_8010F3F0_jp;
 // extern UNK_TYPE D_8010F3F4_jp;

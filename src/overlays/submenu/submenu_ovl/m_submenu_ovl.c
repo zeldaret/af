@@ -631,12 +631,12 @@ void mSM_setup_view(Submenu* submenu, GraphicsContext* gfxCtx, s32 arg1) {
     OPEN_CUSTOM_POLY_OPA();
 
     if (arg1 == 0) {
-        Game_Play1938* view;
+        View* view;
 
         if (submenu->unk_00 != 4) {
-            view = &((Game_Play*)gamePT)->unk_1938;
+            view = &((Game_Play*)gamePT)->view;
         } else {
-            view = &((Game__00743CD0*)gamePT)->unk_00E0;
+            view = &((Game__00743CD0*)gamePT)->view;
         }
 
         gDPPipeSync(__polyOpa++);
