@@ -6,13 +6,13 @@
 
 void Skin_Matrix_PrjMulVector(MtxF* mf, xyz_t* src, xyz_t* xyzDest, f32* wDest);
 // void Skin_Matrix_MulVector();
-void Skin_Matrix_MulMatrix(MtxF* mfB, MtxF* mfA, MtxF* dest);
+void Skin_Matrix_MulMatrix(MtxF* mfA, MtxF* mfB, MtxF* dest);
 // void Skin_Matrix_getUnitMatrixPointer();
 // void Skin_Matrix_SetUnitMatrix();
 // void Skin_Matrix_Copy();
 // void Skin_Matrix_InverseMatrix();
 void Skin_Matrix_SetScale(MtxF* mf, f32 x, f32 y, f32 z);
-void Skin_Matrix_SetRotateXyz_s(MtxF* mf, s16 roll, s16 pitch, s16 yaw);
+void Skin_Matrix_SetRotateXyz_s(MtxF* mf, s16 x, s16 y, s16 z);
 // void Skin_Matrix_SetRotateZxy_s();
 void Skin_Matrix_SetTranslate(MtxF* mf, f32 x, f32 y, f32 z);
 // void Skin_Matrix_SetSrtMatrix();
