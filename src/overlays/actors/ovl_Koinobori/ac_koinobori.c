@@ -145,7 +145,7 @@ void aKOI_actor_draw(Actor* thisx, Game_Play* game_play) {
         gSPSegment(__polyOpa++, 0x0A, Lib_SegmentedToVirtual(&aKOI_obj_e_koinobori_a_pal));
         gSegments[6] = OS_K0_TO_PHYSICAL(object);
         gSPSegment(__polyOpa++, 0x06, object);
-        CLOSE_POLY_OPA_DISPS();
+        CLOSE_POLY_OPA_DISPS()
         CLOSE_DISPS(gfxCtx);
         cKF_Si3_draw_R_SV(game_play, &this->skeletonInfo, mtx, NULL, NULL, this);
         common_data.clip.unk_074->unk_04(game_play, &aKOI_shadow_data, 0x27);
