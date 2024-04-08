@@ -42,6 +42,20 @@ typedef struct {
     /* 0x8 */ s32 z;
 } Vec3i; // size = 0xC
 
+typedef struct {
+    /* 0x0 */ f32 r; // radius
+    /* 0x4 */ s16 pitch; // depends on coordinate system. See below.
+    /* 0x6 */ s16 yaw; // azimuthal angle
+} VecSphGeo; // size = 0x8
+
+// Defines a point in the spherical coordinate system.
+// Pitch is 0 along the positive y-axis (up)
+typedef VecSphGeo VecSph;
+
+// Defines a point in the geographic coordinate system.
+// Pitch is 0 along the xz-plane (horizon)
+typedef VecSphGeo VecGeo;
+
 typedef float MtxF_t[4][4];
 typedef union {
     MtxF_t mf;
@@ -85,5 +99,11 @@ typedef union {
 #define BINANG_ROT180(angle) ((s16)(angle + 0x8000))
 #define BINANG_SUB(a, b) ((s16)(a - b))
 #define BINANG_ADD(a, b) ((s16)(a + b))
+
+// Vector macros
+#define SQXZ(vec) ((vec.x) * (vec.x) + (vec.z) * (vec.z))
+#define DOTXZ(vec1, vec2) ((vec1.x) * (vec2.x) + (vec1.z) * (vec2.z))
+#define SQXYZ(vec) ((vec.x) * (vec.x) + (vec.y) * (vec.y) + (vec.z) * (vec.z))
+#define DOTXYZ(vec1, vec2) ((vec1.x) * (vec2.x) + (vec1.y) * (vec2.y) + (vec1.z) * (vec2.z))
 
 #endif

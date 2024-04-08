@@ -2,6 +2,9 @@
 #define M_OLIB_H
 
 #include "ultra64.h"
+#include "m_lib.h"
+#include "libc64/math64.h"
+#include "z64camera.h"
 
 // void distance_between();
 // void distance_between2();
