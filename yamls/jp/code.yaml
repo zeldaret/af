@@ -165,7 +165,7 @@
       - [0x730B60, data, code/730B60]
       - [0x731940, .data, code/m_start_data_init]
       - [0x731980, .data, code/m_submenu]
-      - [0x731A20, data, code/731A20]
+      - [0x731A20, .data, code/m_scene]
       - [0x731A70, .data, code/m_object] # made-up name
       - [0x732740, data, code/732740]
       - [0x732A00, .data, code/m_skin_matrix]
