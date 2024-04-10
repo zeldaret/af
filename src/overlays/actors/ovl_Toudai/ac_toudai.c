@@ -206,40 +206,58 @@ s32 aTOU_actor_draw_before(Game_Play* game_play UNUSED, SkeletonInfoR* skeletonI
 }
 
 #define OPEN_POLY_OPA_DISPS()                 \
+    do {                                      \
+    } while (0);                              \
     {                                         \
         Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
         int __opa_opened = 0;                 \
-        while (0)
+        do {                                  \
+        } while (0)
 
 #define CLOSE_POLY_OPA_DISPS()       \
+    do {                             \
+    } while (0);                     \
     __gfxCtx->polyOpa.p = __polyOpa; \
     (void)__opa_opened;              \
     }                                \
-    while (0)
+    do {                             \
+    } while (0)
 
 #define OPEN_POLY_XLU_DISPS()                 \
+    do {                                      \
+    } while (0);                              \
     {                                         \
         Gfx* __polyXlu = __gfxCtx->polyXlu.p; \
         int __xlu_opened = 0;                 \
-        while (0)
+        do {                                  \
+        } while (0)
 
 #define CLOSE_POLY_XLU_DISPS()       \
+    do {                             \
+    } while (0);                     \
     __gfxCtx->polyXlu.p = __polyXlu; \
     (void)__xlu_opened;              \
     }                                \
-    while (0)
+    do {                             \
+    } while (0);
 
 #define OPEN_LIGHT_DISPS()                \
+    do {                                  \
+    } while (0);                          \
     {                                     \
         Gfx* __light = __gfxCtx->light.p; \
         int __light_opened = 0;           \
-        while (0)
+        do {                              \
+        } while (0)
 
 #define CLOSE_LIGHT_DISPS()      \
+    do {                         \
+    } while (0);                 \
     __gfxCtx->light.p = __light; \
     (void)__light_opened;        \
     }                            \
-    while (0)
+    do {                         \
+    } while (0)
 
 extern Gfx obj_s_toudai_light_model[];
 extern Gfx obj_w_toudai_light_model[];
@@ -265,7 +283,7 @@ s32 aTOU_actor_draw_after(Game_Play* game_play, SkeletonInfoR* skeletonInfo UNUS
             palette = common_data.clip.unk_08C->unk_450(0x5A);
             _texture_z_light_fog_prim_light(gfxCtx);
             OPEN_DISPS(gfxCtx);
-            OPEN_LIGHT_DISPS()
+            OPEN_LIGHT_DISPS();
             gSPSegment(__light++, 8, palette);
             gSPSegment(__light++, 6, object);
             prmcol.b = this->unk2C8;
@@ -277,7 +295,7 @@ s32 aTOU_actor_draw_after(Game_Play* game_play, SkeletonInfoR* skeletonInfo UNUS
             gDPSetPrimColor(__light++, 0, (u8)this->unk2D0, prmcol.r, prmcol.g, prmcol.b, prmcol.a);
             gSPMatrix(__light++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             gSPDisplayList(__light++, mdl[type]);
-            CLOSE_LIGHT_DISPS()
+            CLOSE_LIGHT_DISPS();
             CLOSE_DISPS(gfxCtx);
         }
     }
@@ -308,13 +326,13 @@ void aTOU_actor_draw(Actor* thisx, Game_Play* game_play) {
         gSPSegment(__polyOpa++, 0x8, palette);
         gSegments[6] = OS_K0_TO_PHYSICAL(object);
         gSPSegment(__polyOpa++, 0x6, object);
-        CLOSE_POLY_OPA_DISPS()
+        CLOSE_POLY_OPA_DISPS();
 
         _texture_z_light_fog_prim_xlu(gfxCtx);
         OPEN_POLY_XLU_DISPS();
         gSPSegment(__polyXlu++, 0x8, palette);
         gSPSegment(__polyXlu++, 0x6, object);
-        CLOSE_POLY_XLU_DISPS()
+        CLOSE_POLY_XLU_DISPS();
         CLOSE_DISPS(gfxCtx);
 
         Setpos_HiliteReflect_init(worldPosition, game_play);

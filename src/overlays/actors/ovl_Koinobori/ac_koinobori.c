@@ -109,16 +109,22 @@ void aKOI_actor_init(Actor* thisx, Game_Play* game_play) {
 }
 
 #define OPEN_POLY_OPA_DISPS()                 \
+    do {                                      \
+    } while (0);                              \
     {                                         \
         Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
         int __opa_opened = 0;                 \
-        while (0)
+        do {                                  \
+        } while (0)
 
 #define CLOSE_POLY_OPA_DISPS()       \
+    do {                             \
+    } while (0);                     \
     __gfxCtx->polyOpa.p = __polyOpa; \
     (void)__opa_opened;              \
     }                                \
-    while (0)
+    do {                             \
+    } while (0)
 
 extern u16 aKOI_obj_e_koinobori_a_pal[];
 extern u16 obj_e_koinobori_b_pal[];
@@ -145,7 +151,7 @@ void aKOI_actor_draw(Actor* thisx, Game_Play* game_play) {
         gSPSegment(__polyOpa++, 0x0A, Lib_SegmentedToVirtual(&aKOI_obj_e_koinobori_a_pal));
         gSegments[6] = OS_K0_TO_PHYSICAL(object);
         gSPSegment(__polyOpa++, 0x06, object);
-        CLOSE_POLY_OPA_DISPS()
+        CLOSE_POLY_OPA_DISPS();
         CLOSE_DISPS(gfxCtx);
         cKF_Si3_draw_R_SV(game_play, &this->skeletonInfo, mtx, NULL, NULL, this);
         common_data.clip.unk_074->unk_04(game_play, &aKOI_shadow_data, 0x27);
