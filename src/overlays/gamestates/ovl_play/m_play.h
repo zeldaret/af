@@ -26,6 +26,7 @@
 struct Actor;
 struct ActorEntry;
 struct Game_Play;
+struct SceneDmaStatus;
 
 typedef void (*Game_Play_unk_1C58)(struct Actor*);
 typedef UNK_RET (*Game_Play_unk_2208)(struct Actor*, struct Game_Play*);
@@ -79,8 +80,7 @@ typedef struct Game_Play {
     /* 0x1DAD */ UNK_TYPE1 unk_1DAD[0x3];
     /* 0x1DB0 */ UNK_TYPE1 unk_1DB0[0x10];
     /* 0x1DC0 */ PreRender unk_1DC0;
-    /* 0x1E10 */ s8 unk_1E10;
-    /* 0x1E14 */ UNK_PTR unk_1E14;
+    /* 0x1E10 */ DoorInfo sceneDoorInfo;
     /* 0x1E18 */ s32 unk_1E18;
     /* 0x1E1C */ MtxF viewProjectionMtxF;
     /* 0x1E5C */ MtxF billboardMtxF;
@@ -107,7 +107,7 @@ typedef struct Game_Play {
     /* 0x2138 */ CollisionCheck unk_2138;
     /* 0x2208 */ Game_Play_unk_2208 unk_2208;
     /* 0x220C */ s32 unk_220C;
-    /* 0x2210 */ Struct_8010EAA0* unk_2210;
+    /* 0x2210 */ struct SceneDmaStatus* unk_2210;
     /* 0x2214 */ UNK_TYPE1 unk_2214[0x1FC];
 } Game_Play; // size = 0x2410
 

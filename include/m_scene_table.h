@@ -3,7 +3,13 @@
 
 #include "ultra64.h"
 #include "z64math.h"
-#include "unknown_structs.h"
+
+typedef struct SceneDmaStatus {
+    /* 0x00 */ RomOffset vromStart;
+    /* 0x04 */ RomOffset vromEnd;
+    /* 0x08 */ char unk08[0xB];
+    /* 0x13 */ u8 unk_13;
+} SceneDmaStatus;
 
 typedef enum SceneTable {
     /* 00 */ SCENE_TEST1,
@@ -43,6 +49,7 @@ typedef enum SceneTable {
     /* 34 */ SCENE_PLAYERSELECT_SAVE,
     /* 35 */ SCENE_NUM
 } SceneTable;
-extern Struct_8010EAA0 scene_data_status[];
+
+extern SceneDmaStatus scene_data_status[];
 
 #endif

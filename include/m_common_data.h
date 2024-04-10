@@ -16,6 +16,7 @@
 #include "unk.h"
 #include "m_snowman.h"
 #include "m_clip.h"
+#include "m_scene.h"
 
 typedef enum Season {
     /* 0 */ SPRING,
@@ -112,7 +113,7 @@ typedef struct CommonData {
     /* 0x0F8B2 */ UNK_TYPE1 unk_0F8B2[0x74E];
     /* 0x10000 */ u8 unk_10000; // named "game_started" in AC GCN decomp
     /* 0x10001 */ u8 unk_10001;
-    /* 0x10002 */ u8 unk_10002[0x1];
+    /* 0x10002 */ u8 unk_10002;
     /* 0x10003 */ u8 playerNumber;
     /* 0x10004 */ s32 unk_10004; // named "last_scene_no" in AC GCN decomp
     /* 0x10008 */ s32 unk_10008;
@@ -126,13 +127,13 @@ typedef struct CommonData {
     /* 0x10149 */ u8 unk_10149;
     /* 0x1014A */ u8 unk_1014A;
     /* 0x1014B */ u8 unk_1014B; // named "wipeType" in AC GCN decomp
-    /* 0x1014C */ UNK_TYPE1 unk_1014C[0x2];
+    /* 0x1014C */ s16 unk_1014C;
     /* 0x1014E */ s16 unk_1014E;
     /* 0x10150 */ UNK_TYPE1 unk_10150[0x10];
     /* 0x10160 */ NpcList npclist[ANIMAL_NUM_MAX];
     /* 0x104A8 */ u16 houseOwnerName;
     /* 0x104AA */ u16 lastFieldId;
-    /* 0x104AC */ UNK_TYPE1 unk_104AC[0x1];
+    /* 0x104AC */ u8 unk_104AC;
     /* 0x104AD */ u8 unk_104AD;
     /* 0x104AE */ u8 sunlightFlag;
     /* 0x104AF */ UNK_TYPE1 unk_104AF[0x1];
@@ -151,16 +152,18 @@ typedef struct CommonData {
     /* 0x1074C */ s32 unk_1074C;
     /* 0x10750 */ s16 moneyPower;
     /* 0x10752 */ s16 goodsPower;
-    /* 0x10754 */ s32 unk_10754;
-    /* 0x10758 */ UNK_TYPE1 unk_10758[0x48];
-    /* 0x107A0 */ UNK_TYPE unk_107A0;
-    /* 0x107A4 */ UNK_TYPE1 unk_107A4[0x12];
+    /* 0x10754 */ DoorData doorData;
+    /* 0x10768 */ s8 unk_10768[0x38];
+    /* 0x107A0 */ DoorData famicomEmuDoorData;
+    /* 0x107B4 */ s16 unk_107B4;
     /* 0x107B6 */ s16 unk_107B6; // named "demo_profile" in AC GCN decomp (though it's an array of two s16s in that game)
     /* 0x107B8 */ UNK_TYPE1 unk_107B8[0x28];
     /* 0x107E0 */ s8 playerDecoyFlag;
     /* 0x107E1 */ UNK_TYPE1 unk_107E1[0x3];
-    /* 0x107E4 */ s16 unk_107E4;
-    /* 0x107E6 */ UNK_TYPE1 unk107E6[0x252];
+    /* 0x107E4 */ s16 unk_107E4; 
+    /* 0x107E6 */ UNK_TYPE1 unk107E6[0x212];
+    /* 0x109F8 */ u8 unk109F8;
+    /* 0x109FC */ s8 unk109F9[0x3F];
     /* 0x10A38 */ s8 beeStingFlag;
     /* 0x10A39 */ UNK_TYPE1 unk_10A39[0x1];
     /* 0x10A3A */ u8 gokiShockedFlag;

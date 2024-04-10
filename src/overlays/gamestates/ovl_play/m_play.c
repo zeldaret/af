@@ -806,15 +806,15 @@ void play_main(Game* game) {
     game_play->state.unk_9D = 0xBE;
 }
 
-void* func_80804138_jp(Game_Play* game_play, Struct_8010EAA0* arg1) {
-    u32 sp24 = arg1->unk_04 - arg1->unk_00;
-    void* sp20 = THA_alloc16(&game_play->state.heap, sp24);
+void* func_80804138_jp(Game_Play* game_play, SceneDmaStatus* arg1) {
+    u32 sceneDataSize = arg1->vromEnd - arg1->vromStart;
+    void* sp20 = THA_alloc16(&game_play->state.heap, sceneDataSize);
 
-    DmaMgr_RequestSyncDebug(sp20, arg1->unk_00, sp24, "../m_play.c", 2302);
+    DmaMgr_RequestSyncDebug(sp20, arg1->vromStart, sceneDataSize, "../m_play.c", 2302);
     return sp20;
 }
 
-void func_808041A4_jp(Game_Play* game_play) {
+void VR_Box_ct(Game_Play* game_play) {
     Global_kankyo_ct(game_play, &game_play->kankyo);
 }
 
@@ -826,11 +826,11 @@ void Gameplay_Scene_Init(Game_Play* game_play) {
     game_play->unk_1EB8 = 0;
     mSc_data_bank_ct(game_play, &game_play->objectExchangeBank);
     Global_light_ct(&game_play->glight);
-    Door_info_ct(&game_play->unk_1E10);
+    Door_info_ct(&game_play->sceneDoorInfo);
     common_data_clear();
     Scene_ct(game_play, game_play->unk_010C);
     mSc_decide_exchange_bank(&game_play->objectExchangeBank);
-    func_808041A4_jp(game_play);
+    VR_Box_ct(game_play);
 }
 
 s32 mPl_SceneNo2SoundRoomType(s32 arg0) {
@@ -858,7 +858,7 @@ s32 mPl_SceneNo2SoundRoomType(s32 arg0) {
 }
 
 void Gameplay_Scene_Read(Game_Play* game_play, s16 arg1) {
-    Struct_8010EAA0* sp1C = &scene_data_status[arg1];
+    SceneDmaStatus* sp1C = &scene_data_status[arg1];
 
     sp1C->unk_13 = 0;
     game_play->unk_2210 = sp1C;

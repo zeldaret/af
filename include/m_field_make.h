@@ -78,7 +78,7 @@ typedef struct FieldMakeBlockInfo {
 // void func_80086E30_jp();
 // void func_80086F08_jp();
 // void func_80086FA8_jp();
-// void func_80086FEC_jp();
+void mFM_SetFieldInitData(s32,s32);
 void func_80087004_jp(void);
 void func_80087280_jp(void);
 // void func_80087380_jp();
