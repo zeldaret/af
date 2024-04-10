@@ -67,25 +67,23 @@ void mSM_load_player_anime(Game_Play* play) {
         s32 i;
 
         for (i = 0; i < 2; i++, status++) {
-            void* segment = status->segment;
-            s32 v0;
+            u8* segment = status->segment;
             if (i == 0) {
                 func_800B1D94_jp(segment, player->unk_0DAC);
+
             } else {
                 func_800B1D94_jp(segment, player->unk_0DB0);
-                if (segment)
-                    ;
             }
 
-            v0 = player->unk_0DBC[i];
+            segment = player->unk_0DBC[i];
             playerTemp = player;
             if (player->unk_0DDC[i] >= 0) {
-                func_800B167C_jp(v0, playerTemp->unk_0DDC[i]);
-                v0 += func_800B131C_jp(playerTemp->unk_0DDC[i]);
+                func_800B167C_jp(segment, playerTemp->unk_0DDC[i]);
+                segment += func_800B131C_jp(playerTemp->unk_0DDC[i]);
             }
 
             if (playerTemp->unk_0DE4[i] >= 0) {
-                func_800B167C_jp(v0, playerTemp->unk_0DE4[i]);
+                func_800B167C_jp(segment, playerTemp->unk_0DE4[i]);
             }
         }
     }

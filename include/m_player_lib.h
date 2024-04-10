@@ -23,7 +23,7 @@ UNK_RET func_800B131C_jp(UNK_TYPE arg0);
 // void func_800B1590_jp();
 // void func_800B1614_jp();
 // void func_800B1650_jp();
-void func_800B167C_jp(s32 arg0, UNK_RET arg1);
+void func_800B167C_jp(u8* arg0, UNK_RET arg1);
 // void func_800B16D0_jp();
 // void func_800B16F8_jp();
 void func_800B1784_jp(struct Game_Play*);
