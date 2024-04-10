@@ -1,5 +1,5 @@
-#ifndef Z64CAMERA_H
-#define Z64CAMERA_H
+#ifndef M_CAMERA_H
+#define M_CAMERA_H
 
 // these two angle conversion macros are slightly inaccurate
 #define CAM_DEG_TO_BINANG(degrees) (s16)((degrees) * ((f32)0xFFFF / 360) + .5f)

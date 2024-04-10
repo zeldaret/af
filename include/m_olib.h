@@ -4,7 +4,7 @@
 #include "ultra64.h"
 #include "m_lib.h"
 #include "libc64/math64.h"
-#include "z64camera.h"
+#include "m_camera2.h"
 
 f32 distance_between(xyz_t* a, xyz_t* b);
 f32 distance_between2(xyz_t* a, xyz_t* b, xyz_t* dest);
