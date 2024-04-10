@@ -64,7 +64,7 @@ s32 aTOL_check_data_bank(ObjectExchangeBank* objectExchangeBank, ToolName toolNa
                 objectStatus->size = objectSize;
                 objectStatus->unk50 = 0;
                 objectStatus->unk53 = 1;
-                objectStatus->unk14 = 0;
+                objectStatus->unk14.vrom = 0;
             }
         } else {
             ret = common_data.clip.toolClip->umbrellaObjectIndex;

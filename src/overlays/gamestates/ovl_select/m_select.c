@@ -54,7 +54,7 @@ void game_next_play(Game* game, s32 scene) {
     STOP_GAMESTATE(game);
     SET_NEXT_GAMESTATE(game, play_init, sizeof(Game_Play));
     mHm_SetNowHome();
-    common_data.unk_10754 = 0;
+    common_data.doorData.nextSceneId = 0;
     func_800968C0_jp();
     common_data.unk_10140 = 1;
 }

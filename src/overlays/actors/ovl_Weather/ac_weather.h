@@ -26,7 +26,7 @@ typedef struct WeatherPrv {
     /* 0x2E */ u8 status;
 } WeatherPrv; // size = 0x30
 
-typedef void (*ChangingWeatherProc)();
+typedef void (*ChangingWeatherProc)(void);
 typedef void (*ChangeWeatherProc)(Actor* thisx, s16 status, s16 level);
 typedef s32 (*GetWeatherPrvvNumProc)(Actor* thisx);
 typedef void (*RemoveWeatherPrvProc)(Actor* thisx, s32 id);

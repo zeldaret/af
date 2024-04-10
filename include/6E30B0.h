@@ -4,12 +4,13 @@
 #include "ultra64.h"
 
 struct Game;
+struct Game_Play;
 
 // void func_800BF410_jp();
 // void func_800BF480_jp();
-// void func_800BF4F4_jp();
+void mScn_ObtainCarpetBank(struct Game_Play*);
 // void func_800BF56C_jp();
-// void func_800BF580_jp();
+void mScn_ObtainMyRoomBank(struct Game_Play*);
 // void func_800BF5A0_jp();
 // void func_800BF5F4_jp();
 // void func_800BF770_jp();
