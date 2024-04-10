@@ -78,7 +78,8 @@ typedef struct Game_Play {
     /* 0x1CBC */ Submenu submenu;
     /* 0x1DAC */ s8 unk_1DAC;
     /* 0x1DAD */ UNK_TYPE1 unk_1DAD[0x3];
-    /* 0x1DB0 */ UNK_TYPE1 unk_1DB0[0x10];
+    /* 0x1DB0 */ u8* groundTexPtrs[2];
+    /* 0x1DB8 */ u8* groundPalPtrs[2];
     /* 0x1DC0 */ PreRender unk_1DC0;
     /* 0x1E10 */ DoorInfo sceneDoorInfo;
     /* 0x1E18 */ s32 unk_1E18;

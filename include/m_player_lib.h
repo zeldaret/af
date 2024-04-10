@@ -51,7 +51,7 @@ UNK_RET func_800B1D94_jp(void* segment, UNK_TYPE arg1);
 // void func_800B1DE8_jp();
 // void func_800B1E94_jp();
 void mPlib_change_player_cloth_info_lv2(struct PrivateInfo*, u16);
-// void func_800B1EDC_jp();
+void mPlib_Load_PlayerTexAndPallet(u8*, u8*, s32);
 // void func_800B1F74_jp();
 // void func_800B1F84_jp();
 // void func_800B1FAC_jp();

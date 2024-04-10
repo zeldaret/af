@@ -57,50 +57,39 @@ s32 SubmenuArea_IsPlayer(void) {
 
     return SubmenuArea_visit == playerActorOvl;
 }
+void mSM_load_player_anime(Game_Play* play) {
+    Player* player = get_player_actor_withoutCheck(play);
+    Player* playerTemp;
 
-#ifdef NON_MATCHING
-// regalloc
-void mSM_load_player_anime(Game_Play* game_play) {
-    ObjectStatus* var_s4;
-    s32 var_s0;
-    s32 var_s3;
-    Player* temp_v0;
-    void* segment;
+    if (player != NULL) {
+        ObjectExchangeBank* exchange = &play->objectExchangeBank;
+        ObjectStatus* status = &exchange->status[mSc_bank_regist_check(exchange, 9)];
+        s32 i;
 
-    temp_v0 = get_player_actor_withoutCheck(game_play);
-    if (temp_v0 == NULL) {
-        return;
-    }
+        for (i = 0; i < 2; i++, status++) {
+            void* segment = status->segment;
+            s32 v0;
+            if (i == 0) {
+                func_800B1D94_jp(segment, player->unk_0DAC);
+            } else {
+                func_800B1D94_jp(segment, player->unk_0DB0);
+                if (segment)
+                    ;
+            }
 
-    var_s4 = game_play->objectExchangeBank.status;
-    var_s4 += mSc_bank_regist_check(&game_play->objectExchangeBank, 9);
+            v0 = player->unk_0DBC[i];
+            playerTemp = player;
+            if (player->unk_0DDC[i] >= 0) {
+                func_800B167C_jp(v0, playerTemp->unk_0DDC[i]);
+                v0 += func_800B131C_jp(playerTemp->unk_0DDC[i]);
+            }
 
-    for (var_s3 = 0; var_s3 < 2; var_s3++, var_s4++) {
-        segment = var_s4->segment;
-
-        if (var_s3 == 0) {
-            func_800B1D94_jp(segment, temp_v0->unk_0DAC);
-        } else {
-            func_800B1D94_jp(segment, temp_v0->unk_0DB0);
-            //! FAKE
-            if (segment && segment) {}
-        }
-
-        var_s0 = temp_v0->unk_0DBC[var_s3];
-        if (temp_v0->unk_0DDC[var_s3] >= 0) {
-            func_800B167C_jp(var_s0, temp_v0->unk_0DDC[var_s3]);
-            var_s0 += func_800B131C_jp(temp_v0->unk_0DDC[var_s3]);
-        }
-
-        if (temp_v0->unk_0DE4[var_s3] >= 0) {
-            func_800B167C_jp(var_s0, temp_v0->unk_0DE4[var_s3]);
+            if (playerTemp->unk_0DE4[i] >= 0) {
+                func_800B167C_jp(v0, playerTemp->unk_0DE4[i]);
+            }
         }
     }
 }
-#else
-void mSM_load_player_anime(Game_Play* game_play);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_load_player_anime.s")
-#endif
 
 void SubmenuArea_DoLink(SubmenuArea* area, Submenu* submenu, SubmenuAreaIndex index) {
     area->allocatedRamAddr = D_8010DCE0_jp;
@@ -483,16 +472,10 @@ void mSM_move_LINKWait(Submenu* submenu) {
 void mSM_move_Play(Submenu* submenu) {
     submenu->move(submenu);
 }
-
-#ifdef NON_MATCHING
-// likely branch instead of normal branch
 void mSM_move_End(Submenu* submenu) {
-    UNUSED s32 pad;
-    Game_Play* sp28;
-    UNK_PTR sp24;
-    UNUSED s32 sp20[1];
-
-    sp28 = (Game_Play*)gamePT;
+    SubmenuArea* area = &SubmenuArea_dlftbl[0];
+    Game_Play* play = (Game_Play*)gamePT;
+    UNK_PTR window;
     submenu->move(submenu);
     submenu->moveProcIndex = MSM_MOVE_PROC_WAIT;
     submenu->programId = SUBMENU_PROGRAM_0;
@@ -501,32 +484,28 @@ void mSM_move_End(Submenu* submenu) {
 
     SetGameFrame(2);
 
-    if (submenu->unk_00 == 4) {
-        return;
-    }
+    if (submenu->unk_00 != 4) {
+        window = mMsg_Get_base_window_p();
 
-    sp24 = mMsg_Get_base_window_p();
-    submenu->unk_00 = 0;
-    mSc_dmacopy_all_exchange_bank(&sp28->objectExchangeBank);
-    SubmenuArea_DoUnlink(SubmenuArea_dlftbl, submenu);
-    load_player(submenu);
-    mSM_load_player_anime(sp28);
-    submenu->unk_E3 = 1;
-    sp20[0] = 0;
+        submenu->unk_00 = 0;
+        mSc_dmacopy_all_exchange_bank(&play->objectExchangeBank);
+        SubmenuArea_DoUnlink(area, submenu);
+        load_player(submenu);
+        mSM_load_player_anime(play);
+        submenu->unk_E3 = 1;
 
-    if (mMsg_Check_main_hide(sp24) != 0) {
-        return;
-    }
-    if (mMsg_Check_not_series_main_wait(sp24) == 0) {
-        return;
-    }
+        {
+            UNUSED s32 scoped[1];
+            scoped[0] = 0;
+        }
 
-    mMsg_sound_spec_change_voice(sp24);
+        if (mMsg_Check_main_hide(window) == FALSE && mMsg_Check_not_series_main_wait(window)) {
+            mMsg_sound_spec_change_voice(window);
+        }
+
+        if (submenu) {};
+    }
 }
-#else
-void mSM_move_End(Submenu* submenu);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_move_End.s")
-#endif
 
 typedef void (*MoveProcFunc)(Submenu*);
 
@@ -704,12 +683,55 @@ u32 mSM_check_open_inventory_itemlist(InventoryItemList itemlist, s32 arg1) {
     return ret;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_Object_Exchange_keep_new.s")
+void* mSM_Object_Exchange_keep_new(Game_Play* play, s16 bankId, u32 size) {
+    ObjectExchangeBank* exchange = &play->objectExchangeBank;
+    ObjectStatus* status = &exchange->status[play->objectExchangeBank.num];
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_Object_Exchange_keep_new_MenuTexAndPallet.s")
+    status->id = bankId;
+    status->vram = (void*)play->objectExchangeBank.unk1800;
+    status->segment = (void*)play->objectExchangeBank.unk1800;
+    status->size = size;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_Object_Exchange_keep_new_Menu.s")
+    if (exchange->num < OBJECT_EXCHANGE_BANK_MAX - 1) {
+        exchange->unk1800 = ALIGN16(exchange->unk1800 + size);
+        exchange->num++;
+    }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_Get_ground_tex_p.s")
+    return status->vram;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_submenu/mSM_Get_ground_pallet_p.s")
+void mSM_Object_Exchange_keep_new_MenuTexAndPallet(Game_Play* play, s32 idx) {
+    u8* texPtr = mSM_Object_Exchange_keep_new(play, 14, (32 * 32) / 2);
+    u8* palPtr = mSM_Object_Exchange_keep_new(play, 15, 16 * sizeof(u16));
+
+    play->groundTexPtrs[idx] = texPtr;
+    play->groundPalPtrs[idx] = palPtr;
+
+    mPlib_Load_PlayerTexAndPallet(texPtr, palPtr, common_data.privateInfo->backgroundTextureId - 0x2400);
+}
+
+void mSM_Object_Exchange_keep_new_Menu(Game_Play* play) {
+    play->unk_1DAC = 0;
+    mSM_Object_Exchange_keep_new_MenuTexAndPallet(play, 0);
+    mSM_Object_Exchange_keep_new_MenuTexAndPallet(play, 1);
+}
+
+u8* mSM_Get_ground_tex_p(Game_Play* play) {
+    s32 idx = play->unk_1DAC;
+
+    if (idx < 0) {
+        return NULL;
+    }
+
+    return play->groundTexPtrs[idx];
+}
+
+u8* mSM_Get_ground_pallet_p(Game_Play* play) {
+    s32 idx = play->unk_1DAC;
+
+    if (idx < 0) {
+        return NULL;
+    }
+
+    return play->groundPalPtrs[idx];
+}
