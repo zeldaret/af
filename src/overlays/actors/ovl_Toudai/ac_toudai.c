@@ -209,37 +209,43 @@ s32 aTOU_actor_draw_before(Game_Play* game_play UNUSED, SkeletonInfoR* skeletonI
     {                                         \
         Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
         int __opa_opened = 0;                 \
-        while (0)
+        do {                                  \
+        } while (0)
 
 #define CLOSE_POLY_OPA_DISPS()       \
     __gfxCtx->polyOpa.p = __polyOpa; \
     (void)__opa_opened;              \
     }                                \
-    while (0)
+    do {                             \
+    } while (0)
 
 #define OPEN_POLY_XLU_DISPS()                 \
     {                                         \
         Gfx* __polyXlu = __gfxCtx->polyXlu.p; \
         int __xlu_opened = 0;                 \
-        while (0)
+        do {                                  \
+        } while (0)
 
 #define CLOSE_POLY_XLU_DISPS()       \
     __gfxCtx->polyXlu.p = __polyXlu; \
     (void)__xlu_opened;              \
     }                                \
-    while (0)
+    do {                             \
+    } while (0);
 
 #define OPEN_LIGHT_DISPS()                \
     {                                     \
         Gfx* __light = __gfxCtx->light.p; \
         int __light_opened = 0;           \
-        while (0)
+        do {                              \
+        } while (0)
 
 #define CLOSE_LIGHT_DISPS()      \
     __gfxCtx->light.p = __light; \
     (void)__light_opened;        \
     }                            \
-    while (0)
+    do {                         \
+    } while (0)
 
 extern Gfx obj_s_toudai_light_model[];
 extern Gfx obj_w_toudai_light_model[];
