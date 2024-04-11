@@ -144,7 +144,7 @@ u32 mSc_secure_exchange_keep_bank(ObjectExchangeBank* objectExchangeBank, s16 id
 
         } else {
             objectStatus->id = id;
-            objectStatus->segment = (void*)objectExchangeBank->unk1800;
+            objectStatus->segment = (u8*)objectExchangeBank->unk1800;
             objectStatus->vram = (void*)objectExchangeBank->unk1800;
             objectStatus->vrom = 0;
             objectStatus->size = size;
