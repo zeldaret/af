@@ -206,8 +206,6 @@ s32 aTOU_actor_draw_before(Game_Play* game_play UNUSED, SkeletonInfoR* skeletonI
 }
 
 #define OPEN_POLY_OPA_DISPS()                 \
-    do {                                      \
-    } while (0);                              \
     {                                         \
         Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
         int __opa_opened = 0;                 \
@@ -215,8 +213,6 @@ s32 aTOU_actor_draw_before(Game_Play* game_play UNUSED, SkeletonInfoR* skeletonI
         } while (0)
 
 #define CLOSE_POLY_OPA_DISPS()       \
-    do {                             \
-    } while (0);                     \
     __gfxCtx->polyOpa.p = __polyOpa; \
     (void)__opa_opened;              \
     }                                \
@@ -224,8 +220,6 @@ s32 aTOU_actor_draw_before(Game_Play* game_play UNUSED, SkeletonInfoR* skeletonI
     } while (0)
 
 #define OPEN_POLY_XLU_DISPS()                 \
-    do {                                      \
-    } while (0);                              \
     {                                         \
         Gfx* __polyXlu = __gfxCtx->polyXlu.p; \
         int __xlu_opened = 0;                 \
@@ -233,8 +227,6 @@ s32 aTOU_actor_draw_before(Game_Play* game_play UNUSED, SkeletonInfoR* skeletonI
         } while (0)
 
 #define CLOSE_POLY_XLU_DISPS()       \
-    do {                             \
-    } while (0);                     \
     __gfxCtx->polyXlu.p = __polyXlu; \
     (void)__xlu_opened;              \
     }                                \
@@ -242,8 +234,6 @@ s32 aTOU_actor_draw_before(Game_Play* game_play UNUSED, SkeletonInfoR* skeletonI
     } while (0);
 
 #define OPEN_LIGHT_DISPS()                \
-    do {                                  \
-    } while (0);                          \
     {                                     \
         Gfx* __light = __gfxCtx->light.p; \
         int __light_opened = 0;           \
@@ -251,8 +241,6 @@ s32 aTOU_actor_draw_before(Game_Play* game_play UNUSED, SkeletonInfoR* skeletonI
         } while (0)
 
 #define CLOSE_LIGHT_DISPS()      \
-    do {                         \
-    } while (0);                 \
     __gfxCtx->light.p = __light; \
     (void)__light_opened;        \
     }                            \

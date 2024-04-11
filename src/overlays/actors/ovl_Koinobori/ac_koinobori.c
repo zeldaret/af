@@ -109,8 +109,6 @@ void aKOI_actor_init(Actor* thisx, Game_Play* game_play) {
 }
 
 #define OPEN_POLY_OPA_DISPS()                 \
-    do {                                      \
-    } while (0);                              \
     {                                         \
         Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
         int __opa_opened = 0;                 \
@@ -118,8 +116,6 @@ void aKOI_actor_init(Actor* thisx, Game_Play* game_play) {
         } while (0)
 
 #define CLOSE_POLY_OPA_DISPS()       \
-    do {                             \
-    } while (0);                     \
     __gfxCtx->polyOpa.p = __polyOpa; \
     (void)__opa_opened;              \
     }                                \
