@@ -10,7 +10,6 @@ typedef struct {
 
 typedef void (*DebugDispObject_DrawFunc)(DebugDispObject*, void*, Game_Play*);
 
-
 DebugDispObject_DrawFunc debug_display_output_proc[] = {
     debug_display_output_sprite_16x16_I8,
     debug_display_output_polygon,
