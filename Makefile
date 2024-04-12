@@ -17,11 +17,13 @@ else
   ifeq ($(UNAME_S),Linux)
     DETECTED_OS = linux
     MAKE = make
+    AR = ar
     VENV_BIN_DIR = bin
   endif
   ifeq ($(UNAME_S),Darwin)
     DETECTED_OS = macos
     MAKE = gmake
+    AR = gar
     VENV_BIN_DIR = bin
   endif
 endif
@@ -121,7 +123,6 @@ OBJCOPY         := $(MIPS_BINUTILS_PREFIX)objcopy
 OBJDUMP         := $(MIPS_BINUTILS_PREFIX)objdump
 NM              := $(MIPS_BINUTILS_PREFIX)nm
 
-AR              := ar
 CPP             := cpp
 ICONV           := iconv
 CAT             := cat
@@ -347,7 +348,7 @@ $(LIBULTRA_LIB): $(ULTRALIB_LIB)
 	$(LIBDUMP_CMD)
 
 $(ULTRALIB_LIB):
-	$(MAKE) -C lib/ultralib VERSION=$(ULTRALIB_VERSION) TARGET=$(ULTRALIB_TARGET) FIXUPS=1 CROSS=$(MIPS_BINUTILS_PREFIX) CC=../../$(CC_OLD)
+	$(MAKE) -C lib/ultralib VERSION=$(ULTRALIB_VERSION) TARGET=$(ULTRALIB_TARGET) FIXUPS=1 CROSS=$(MIPS_BINUTILS_PREFIX) CC=../../$(CC_OLD) AR=$(AR)
 
 $(BUILD_DIR)/%.o: %.bin
 	$(OBJCOPY) -I binary -O elf32-big $< $@
