@@ -18,9 +18,10 @@ typedef struct DebugDispObject {
 } DebugDispObject; // size = 0x30
 
 void Debug_Display_init(void);
-// void Debug_Display_new();
+DebugDispObject* Debug_Display_new(f32 posX, f32 posY, f32 posZ, s16 rotX, s16 rotY, s16 rotZ, f32 scaleX, f32 scaleY,
+                                   f32 scaleZ, u8 red, u8 green, u8 blue, u8 alpha, s16 type, GraphicsContext* gfxCtx);
 void Debug_Display_output(Game_Play* game_play);
 void debug_display_output_sprite_16x16_I8(DebugDispObject* dispObj, void* texture, Game_Play* game_play);
-// void debug_display_output_polygon();
+void debug_display_output_polygon(DebugDispObject* dispObj, void* dList, Game_Play* game_play);
 
 #endif

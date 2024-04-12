@@ -10,7 +10,6 @@ typedef struct {
 
 typedef void (*DebugDispObject_DrawFunc)(DebugDispObject*, void*, Game_Play*);
 
-void debug_display_output_polygon(DebugDispObject* dispObj, void* dList, Game_Play* game_play);
 
 DebugDispObject_DrawFunc debug_display_output_proc[] = {
     debug_display_output_sprite_16x16_I8,
@@ -25,8 +24,7 @@ extern Gfx D_4003A40[];
 extern Gfx D_4003CE0[];
 
 DebugDispObjectInfo debug_display_shape_data[] = {
-    { 0, D_4003640 }, { 0, D_4003940 }, { 0, D_4003740 },
-    { 0, D_4003840 }, { 1, D_4003A40 }, { 1, D_4003CE0 },
+    { 0, D_4003640 }, { 0, D_4003940 }, { 0, D_4003740 }, { 0, D_4003840 }, { 1, D_4003A40 }, { 1, D_4003CE0 },
 };
 
 Lights1 material = gdSPDefLights1(128, 128, 128, 255, 255, 255, 73, 73, 73);
