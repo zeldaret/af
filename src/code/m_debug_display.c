@@ -10,10 +10,30 @@ typedef struct {
 
 typedef void (*DebugDispObject_DrawFunc)(DebugDispObject*, void*, Game_Play*);
 
-extern DebugDispObject_DrawFunc D_801047C0_jp[2];
-extern DebugDispObjectInfo D_801047C8_jp[6];
+void debug_display_output_polygon(DebugDispObject* dispObj, void* dList, Game_Play* game_play);
 
-extern DebugDispObject* debug_display;
+DebugDispObject_DrawFunc debug_display_output_proc[] = {
+    debug_display_output_sprite_16x16_I8,
+    debug_display_output_polygon,
+};
+
+extern Gfx D_4003640[];
+extern Gfx D_4003940[];
+extern Gfx D_4003740[];
+extern Gfx D_4003840[];
+extern Gfx D_4003A40[];
+extern Gfx D_4003CE0[];
+
+DebugDispObjectInfo debug_display_shape_data[] = {
+    { 0, D_4003640 }, { 0, D_4003940 }, { 0, D_4003740 },
+    { 0, D_4003840 }, { 1, D_4003A40 }, { 1, D_4003CE0 },
+};
+
+Lights1 material = gdSPDefLights1(128, 128, 128, 255, 255, 255, 73, 73, 73);
+
+DebugDispObject* debug_display;
+
+extern Gfx D_40042E8[];
 
 void Debug_Display_init(void) {
     debug_display = NULL;
@@ -47,13 +67,11 @@ void Debug_Display_output(Game_Play* game_play) {
     DebugDispObjectInfo* objInfo;
 
     while (dispObj != NULL) {
-        objInfo = &D_801047C8_jp[dispObj->type];
-        D_801047C0_jp[objInfo->drawType](dispObj, objInfo->drawArg, game_play);
+        objInfo = &debug_display_shape_data[dispObj->type];
+        debug_display_output_proc[objInfo->drawType](dispObj, objInfo->drawArg, game_play);
         dispObj = dispObj->next;
     }
 }
-
-extern Gfx D_40042E8[];
 
 void debug_display_output_sprite_16x16_I8(DebugDispObject* dispObj, void* texture, Game_Play* game_play) {
     OPEN_DISPS(game_play->state.gfxCtx);
@@ -77,8 +95,6 @@ void debug_display_output_sprite_16x16_I8(DebugDispObject* dispObj, void* textur
     CLOSE_DISPS(play->state.gfxCtx);
 }
 
-extern Lights1 D_801047F8_jp;
-
 void debug_display_output_polygon(DebugDispObject* dispObj, void* dList, Game_Play* game_play) {
     OPEN_DISPS(game_play->state.gfxCtx);
 
@@ -86,7 +102,7 @@ void debug_display_output_polygon(DebugDispObject* dispObj, void* dList, Game_Pl
 
     gDPSetPrimColor(POLY_XLU_DISP++, 0, 0, dispObj->color.r, dispObj->color.g, dispObj->color.b, dispObj->color.a);
 
-    gSPSetLights1(POLY_XLU_DISP++, D_801047F8_jp);
+    gSPSetLights1(POLY_XLU_DISP++, material);
 
     Matrix_softcv3_load(dispObj->pos.x, dispObj->pos.y, dispObj->pos.z, &dispObj->rot);
     Matrix_scale(dispObj->scale.x, dispObj->scale.y, dispObj->scale.z, MTXMODE_APPLY);
