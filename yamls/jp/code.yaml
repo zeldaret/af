@@ -25,7 +25,7 @@
       - [0x69C770, c, code/m_controller]
       - [0x69CB30, asm, code/69CB30]
       - [0x69DD60, c, code/m_debug]
-      - [0x69DDF0, asm, code/m_debug_display]
+      - [0x69DDF0, c, code/m_debug_display]
       - [0x69E2C0, asm, code/69E2C0]
       - [0x6A0DE0, asm, code/6A0DE0]
       - [0x6A5B00, asm, code/6A5B00]
@@ -146,7 +146,9 @@
       - [0x7262C0, data, code/7262C0]
       - [0x7279F0, data, code/7279F0]
       - [0x728340, .data, code/m_collision_obj]
-      - [0x728430, data, code/728430]
+      - [0x728430, data, code/69CB30]
+      - [0x728460, .data, code/m_debug_display]
+      - [0x7284B0, data, code/69E2C0]
       - [0x72AAC0, .data, code/m_game_dlftbls]
       - [0x72ACB0, data, code/72ACB0]
       - [0x72B7A0, .data, code/m_lib]
@@ -279,7 +281,8 @@
       - { start: 0x74AB40, type: .bss, vram: 0x80126EA0, name: code/m_common_data }
       - { start: 0x75B600, type: bss, vram: 0x80137960, name: code/80137960 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80138E50, name: code/m_debug}
-      - { start: 0x73F4D0, type: bss, vram: 0x80138E60, name: code/m_debug_display}
+      - { start: 0x73F4D0, type: .bss, vram: 0x80138E60, name: code/m_debug_display}
+      - { start: 0x73F4E0, type: bss, vram: 0x80138E70, name: code/80138E70 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80141E10, name: code/m_lights }
       - { start: 0x75B600, type: .bss, vram: 0x80141FA0, name: code/m_malloc }
       - { start: 0x75B600, type: bss, vram: 0x80141FE0, name: code/80141FE0 }

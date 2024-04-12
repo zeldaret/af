@@ -206,7 +206,13 @@ D_6001628 = 0x06001628;
 
 // m_debug_display
 
-D_40042E8 = 0x040042E8;
+RCP_debug_texture_16x16_8 = 0x040042E8;
+no_txt = 0x04003640; 
+nx_txt = 0x04003940;
+np_txt = 0x04003740;
+nt_txt = 0x04003840; 
+darrow_model = 0x04003A40;
+camera_model = 0x04003CE0;
 
 // m_field_make
 
