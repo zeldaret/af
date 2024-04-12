@@ -112,13 +112,15 @@ void aKOI_actor_init(Actor* thisx, Game_Play* game_play) {
     {                                         \
         Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
         int __opa_opened = 0;                 \
-        while (0)
+        do {                                  \
+        } while (0)
 
 #define CLOSE_POLY_OPA_DISPS()       \
     __gfxCtx->polyOpa.p = __polyOpa; \
     (void)__opa_opened;              \
     }                                \
-    while (0)
+    do {                             \
+    } while (0)
 
 extern u16 aKOI_obj_e_koinobori_a_pal[];
 extern u16 obj_e_koinobori_b_pal[];

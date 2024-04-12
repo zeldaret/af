@@ -55,7 +55,7 @@ typedef struct PrivateInfo {
     /* 0x3EC */ UNK_TYPE1 unk_3EC[0x2];
     /* 0x3EE */ MailHeaderCommon savedMailHeader;
     /* 0x40A */ Mail_c mail[mPr_INVENTORY_MAIL_COUNT];
-    /* 0xA72 */ s16 backgroundTextureId;
+    /* 0xA72 */ u16 backgroundTextureId;
     /* 0xA74 */ u8 exists;
     /* 0xA75 */ u8 hintCount;
     /* 0xA76 */ PrivateCloth cloth;
