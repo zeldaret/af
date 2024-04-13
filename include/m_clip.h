@@ -7,7 +7,6 @@
 
 struct Actor;
 struct ActorOverlay;
-struct struct_801161E8_jp;
 struct ObjectStatus;
 struct Clip_unk_040_unk_14_arg0;
 struct Game_Play;
@@ -18,9 +17,9 @@ struct FurnitureActor;
 struct WeatherClip;
 struct ObjectExchangeBank;
 
-typedef UNK_RET (*Clip_unk_040_unk_04)(struct ActorOverlay*, const struct struct_801161E8_jp*, size_t, s32);
+typedef UNK_RET (*Clip_unk_040_unk_04)(struct ActorOverlay*, const u8*, size_t, s32);
 typedef UNK_RET (*Clip_unk_040_unk_08)(void);
-typedef UNK_PTR (*Clip_unk_040_unk_0C)(size_t, const struct struct_801161E8_jp*, s32);
+typedef UNK_PTR (*Clip_unk_040_unk_0C)(size_t, const u8*, s32);
 typedef UNK_RET (*Clip_unk_040_unk_10)(struct Actor*);
 typedef UNK_RET (*Clip_unk_040_unk_14)(struct Clip_unk_040_unk_14_arg0*, u16);
 typedef UNK_RET (*Clip_unk_040_unk_BC)(struct Actor*, struct Game_Play*);
