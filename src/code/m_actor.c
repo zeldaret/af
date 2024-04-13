@@ -198,10 +198,11 @@ void Actor_ct(Actor* actor, Game_Play* game_play) {
     }
 }
 
-#ifdef NON_MATCHING
 void Actor_dt(Actor* actor, Game_Play* game_play) {
-    ObjectStatus* temp_v0_6;
-    s32 new_var;
+    Actor* child;
+    Actor* parent;
+    ObjectExchangeBank* objBank;
+    ObjectStatus* objStatus;
 
     if (actor->save != NULL) {
         actor->save(actor, game_play);
@@ -213,40 +214,35 @@ void Actor_dt(Actor* actor, Game_Play* game_play) {
         actor->dt = NULL;
     }
 
-    if ((actor->child != NULL) && (actor == actor->child->parent)) {
-        actor->child->parent = NULL;
+    child = actor->child;
+    if ((child != NULL) && (actor == child->parent)) {
+        child->parent = NULL;
     }
 
-    if ((actor->parent != NULL) && (actor == actor->parent->child)) {
-        actor->parent->child = NULL;
+    parent = actor->parent;
+    if ((parent != NULL) && (actor == parent->child)) {
+        parent->child = NULL;
     }
 
-    temp_v0_6 = game_play->objectExchangeBank.status;
-    if (0) {}
-
+    objBank = &game_play->objectExchangeBank;
     switch ((actor->fgName & 0xF000) >> 0xC) {
         case 0xD:
         case 0xE:
-            common_data.clip.unk_040->unk_F0(temp_v0_6, actor);
+            common_data.clip.unk_040->unk_F0(game_play->objectExchangeBank.status, actor);
             break;
-
         default:
-            new_var = game_play->objectExchangeBank.num;
-
-            if (actor->unk_026 >= new_var) {
-                temp_v0_6 = &temp_v0_6[(void)0, actor->unk_026];
-                if (temp_v0_6->unk50 > 0) {
+            objStatus = objBank->status;
+            if (actor->unk_026 >= objBank->unk17FC) {
+                objStatus = &objBank->status[actor->unk_026];
+                if (objStatus->unk50 > 0) {
                     actor->unk_026 = -1;
-                    temp_v0_6->unk50--;
+                    objStatus->unk50--;
                 }
             }
+
             break;
     }
 }
-#else
-void Actor_dt(Actor* actor, struct Game_Play* game_play);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_dt.s")
-#endif
 
 void Actor_draw(Game_Play* game_play, Actor* actor) {
     FaultClient faultClient;
