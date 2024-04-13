@@ -8,7 +8,7 @@
     subsegments:
       - [0x675720, c, code/c_keyframe]
       - [0x678660, asm, code/evw_anime]
-      - [0x6792F0, asm, code/6792F0]
+      - [0x6792F0, c, code/m_DLF]
       - [0x679550, c, code/m_all_grow]
       - [0x67A020, c, code/m_actor]
       - [0x67C6B0, c, code/m_actor_dlftbls]
