@@ -1,5 +1,7 @@
 #include "m_DLF.h"
 
+// Function names taken from Zelda64 Decompilation
+
 void Overlay_LoadGameState(GameStateOverlay* overlayEntry) {
     void* vramStart;
 
