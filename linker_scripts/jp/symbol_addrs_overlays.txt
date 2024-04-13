@@ -13316,15 +13316,15 @@ func_809E8C80_jp = 0x809E8C80; // type:func
 func_809E8CD4_jp = 0x809E8CD4; // type:func
 func_809E8D44_jp = 0x809E8D44; // type:func
 func_809E8DB4_jp = 0x809E8DB4; // type:func
-func_809E8E24_jp = 0x809E8E24; // type:func
-func_809E9160_jp = 0x809E9160; // type:func
-func_809E91A4_jp = 0x809E91A4; // type:func
-func_809E920C_jp = 0x809E920C; // type:func
-func_809E92C0_jp = 0x809E92C0; // type:func
-func_809E931C_jp = 0x809E931C; // type:func
-func_809E93C8_jp = 0x809E93C8; // type:func
-func_809E96E8_jp = 0x809E96E8; // type:func
-func_809E9764_jp = 0x809E9764; // type:func
+aSTR_setupActor_proc = 0x809E8E24; // type:func
+aSTR_get_overlay_free_area_idx = 0x809E9160; // type:func
+aSTR_get_overlay_area_proc = 0x809E91A4; // type:func
+aSTR_free_overlay_area_proc = 0x809E920C; // type:func
+aSTR_get_actor_area_proc = 0x809E92C0; // type:func
+aSTR_free_actor_area_proc = 0x809E931C; // type:func
+aSTR_init_clip_area = 0x809E93C8; // type:func
+aSTR_free_clip_area = 0x809E96E8; // type:func
+aSTR_check_door_data = 0x809E9764; // type:func
 aSTR_actor_move = 0x809E97F8; // type:func
 
 // .data

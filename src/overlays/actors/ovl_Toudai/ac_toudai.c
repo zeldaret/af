@@ -51,7 +51,7 @@ void aTOU_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
     static BaseSkeletonR* skl[] = { &cKF_bs_r_obj_s_toudai, &cKF_bs_r_obj_w_toudai };
     s32 type = (common_data.time.season == WINTER);
 
-    gSegments[6] = OS_K0_TO_PHYSICAL(common_data.clip.unk_08C->unk_AC(45));
+    gSegments[6] = OS_K0_TO_PHYSICAL(common_data.clip.structureClip->unk_AC(45));
     cKF_SkeletonInfo_R_ct(&this->skeletonInfo, skl[type], NULL, this->jointTable, this->morphTable);
     aTOU_set_bgOffset(this, 1);
     aTOU_setup_action(this, 0);
@@ -63,9 +63,9 @@ void aTOU_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
 void aTOU_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
     Toudai* this = THIS;
 
-    common_data.clip.unk_08C->unk_A8(&common_data.clip.unk_08C->unk_B0, 8, 45, thisx);
-    common_data.clip.unk_08C->unk_A8(&common_data.clip.unk_08C->unk_454, 9, 90, thisx);
-    common_data.clip.unk_08C->unk_A8(&common_data.clip.unk_08C->unk_86C, 8, 45, thisx);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_B0, 8, 45, thisx);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_454, 9, 90, thisx);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_86C, 8, 45, thisx);
     cKF_SkeletonInfo_R_dt(&this->skeletonInfo);
     thisx->world.pos.x += 20.0f;
     thisx->world.pos.z += 20.0f;
@@ -180,7 +180,7 @@ void aTOU_setup_action(Toudai* this, s32 processIndex) {
 void aTOU_actor_move(Actor* thisx, Game_Play* game_play) {
     Toudai* this = THIS;
 
-    gSegments[6] = OS_K0_TO_PHYSICAL(common_data.clip.unk_08C->unk_AC(45));
+    gSegments[6] = OS_K0_TO_PHYSICAL(common_data.clip.structureClip->unk_AC(45));
     this->unk174 = cKF_SkeletonInfo_R_play(&this->skeletonInfo);
     this->unk1E8 = this->skeletonInfo.frameControl.currentFrame;
     this->unk2A0(this, game_play);
@@ -267,8 +267,8 @@ s32 aTOU_actor_draw_after(Game_Play* game_play, SkeletonInfoR* skeletonInfo UNUS
         mtx = _Matrix_to_Mtx_new(gfxCtx);
         if (mtx != NULL) {
             type = common_data.time.season == 3;
-            object = common_data.clip.unk_08C->unk_AC(0x2D);
-            palette = common_data.clip.unk_08C->unk_450(0x5A);
+            object = common_data.clip.structureClip->unk_AC(0x2D);
+            palette = common_data.clip.structureClip->unk_450(0x5A);
             _texture_z_light_fog_prim_light(gfxCtx);
             OPEN_DISPS(gfxCtx);
             OPEN_LIGHT_DISPS();
@@ -305,8 +305,8 @@ void aTOU_actor_draw(Actor* thisx, Game_Play* game_play) {
     mtx = GRAPH_ALLOC_NO_ALIGN(gfxCtx, numberOfDisplayLists * sizeof(Mtx));
 
     if (mtx != NULL) {
-        object = common_data.clip.unk_08C->unk_AC(0x2D);
-        palette = common_data.clip.unk_08C->unk_450(0x5A);
+        object = common_data.clip.structureClip->unk_AC(0x2D);
+        palette = common_data.clip.structureClip->unk_450(0x5A);
 
         _texture_z_light_fog_prim_npc(gfxCtx);
         OPEN_DISPS(gfxCtx);
