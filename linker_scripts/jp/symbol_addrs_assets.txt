@@ -1189,3 +1189,23 @@ tol_hata_01_evw_anime_1_anime_ptn = 0x60003D4; // segment:tol_hata_01 rom:0x1130
 tol_hata_01_evw_anime_1 = 0x60003D8; // segment:tol_hata_01 rom:0x11303D8
 tol_hata_01_evw_anime_2 = 0x60003E8; // segment:tol_hata_01 rom:0x11303E8
 tol_hata_01_evw_anime = 0x60003F0; // segment:tol_hata_01 rom:0x11303F0
+
+act_ball_b_v = 0x6000000; // segment:act_ball_b rom:0x1100000 size:0x1A0
+act_ball_b_modelT = 0x60001A0; // segment:act_ball_b rom:0x11001A0
+act_ball_b_model = 0x60001A8; // segment:act_ball_b rom:0x11001A8
+act_ball_b_pal = 0x6000318; // segment:act_ball_b rom:0x1100318
+act_ball_b_1_tex = 0x6000338; // segment:act_ball_b rom:0x1100338
+
+act_ball_d_v = 0x6000000; // segment:act_ball_d rom:0x1101000 size:0x360
+act_ball_d_modelT = 0x6000360; // segment:act_ball_d rom:0x1101360
+act_ball_d_model = 0x6000368; // segment:act_ball_d rom:0x1101368
+act_ball_d_pal = 0x60005C8; // segment:act_ball_d rom:0x11015C8
+act_ball_d_1_tex = 0x60005E8; // segment:act_ball_d rom:0x11015E8
+act_ball_d_2_tex = 0x6000668; // segment:act_ball_d rom:0x1101668
+act_ball_d_3_tex = 0x60006E8; // segment:act_ball_d rom:0x11016E8
+
+act_ball_s_v = 0x6000000; // segment:act_ball_s rom:0x1102000 size:0x700
+act_ball_s_modelT = 0x6000700; // segment:act_ball_s rom:0x1102700
+act_ball_s_model = 0x6000708; // segment:act_ball_s rom:0x1102708
+act_ball_s_pal = 0x60008B8; // segment:act_ball_s rom:0x11028B8
+act_ball_s_5_tex = 0x60008D8; // segment:act_ball_s rom:0x11028D8

@@ -27,7 +27,7 @@ typedef struct Pipe {
     /* 0x6 */ s_xyz pos;
 } Pipe; // size = 0xC
 
-// void Math3d_normalizeXyz_t();
+f32 Math3d_normalizeXyz_t(xyz_t*);
 // void func_800DA028_jp();
 // void func_800DA148_jp();
 // void Math3D_lineVsPosSuisenCross();

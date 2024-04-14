@@ -5418,28 +5418,72 @@
     align: 0x1000
   - [0x10FF1A0]
 
-  - name: segment_01100000
-    type: bin
+  - name: act_ball_b
+    dir: objects/act_ball_b
+    type: code
     start: 0x1100000
-    # vram:
+    vram: 0x06000000
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, act_ball_b]
+      - start: 0x1100000
+        type: .data
+        name: act_ball_b
+        subsegments:
+          - [0x1100000, vtx, act_ball_b_v]
+          - [0x11001A0, af_gfx, act_ball_b_modelT]
+          - [0x11001A8, af_gfx, act_ball_b_model]
+          - [0x1100318, af_palette, act_ball_b_pal]
+          - [0x1100338, ci4, act_ball_b_1_tex, 16, 16, act_ball_b_pal]
   - [0x11003C0]
 
-  - name: segment_01101000
-    type: bin
+  - name: act_ball_d
+    dir: objects/act_ball_d
+    type: code
     start: 0x1101000
-    # vram:
+    vram: 0x06000000
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, act_ball_d]
+      - start: 0x1101000
+        type: .data
+        name: act_ball_d
+        subsegments:
+          - [0x1101000, vtx, act_ball_d_v]
+          - [0x1101360, af_gfx, act_ball_d_modelT]
+          - [0x1101368, af_gfx, act_ball_d_model]
+          - [0x11015C8, af_palette, act_ball_d_pal]
+          - [0x11015E8, ci4, act_ball_d_1_tex, 16, 16, act_ball_d_pal]
+          - [0x1101668, ci4, act_ball_d_2_tex, 16, 16, act_ball_d_pal]
+          - [0x11016E8, ci4, act_ball_d_3_tex, 16, 16, act_ball_d_pal]
   - [0x1101770]
 
-  - name: segment_01102000
-    type: bin
+  - name: act_ball_s
+    dir: objects/act_ball_s
+    type: code
     start: 0x1102000
-    # vram:
+    vram: 0x06000000
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, act_ball_s]
+      - start: 0x1102000
+        type: .data
+        name: act_ball_s
+        subsegments:
+          - [0x1102000, vtx, act_ball_s_v]
+          - [0x1102700, af_gfx, act_ball_s_modelT]
+          - [0x1102708, af_gfx, act_ball_s_model]
+          - [0x11028B8, af_palette, act_ball_s_pal]
+          - [0x11028D8, ci4, act_ball_s_5_tex, 16, 32, act_ball_s_pal]
   - [0x11029E0]
 
   - name: object_01103000
