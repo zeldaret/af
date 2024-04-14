@@ -5,6 +5,7 @@
 #include "m_malloc.h"
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
+#include "segment_symbols.h"
 
 #define THIS ((Structure*)thisx)
 
@@ -56,7 +57,44 @@ void func_809E7F34_jp(Game_Play* game_play) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Structure/ac_structure/func_809E7F94_jp.s")
+// .bss
+extern void* B_809FD530_jp[];
+extern void* B_809FD818_jp[];
+extern void* B_809FDB00_jp[];
+extern void* B_809FE0B8_jp[];
+extern void* B_809FE3A0_jp[];
+
+// .data
+extern void* D_809E9864_jp[];
+extern void* D_809E986C_jp[];
+extern void* D_809E9874_jp[];
+
+extern u8 test[]; // 0x06000008
+extern u8 test2[]; // 0x060000C0
+
+// TODO: Fix warnings, use "real" symbols
+void func_809E7F94_jp(void) {
+    s32 temp_t1 = (common_data.time.season == 3);
+
+    DmaMgr_RequestSyncDebug(&B_809FD530_jp,
+                            ((uintptr_t)D_809E9864_jp[temp_t1] + SEGMENT_ROM_START(object_00DF4000)) -
+                                (uintptr_t)SEGMENT_VRAM_START(object_00DF4000),
+                            184, "../ac_structure_clip.c_inc", 129);
+    DmaMgr_RequestSyncDebug(&B_809FD818_jp,
+                            ((uintptr_t)D_809E986C_jp[temp_t1] + SEGMENT_ROM_START(object_00DF4000)) -
+                                (uintptr_t)SEGMENT_VRAM_START(object_00DF4000),
+                            184, "../ac_structure_clip.c_inc", 132);
+    DmaMgr_RequestSyncDebug(&B_809FDB00_jp,
+                            ((uintptr_t)D_809E9874_jp[temp_t1] + SEGMENT_ROM_START(object_00D5D000)) -
+                                (uintptr_t)SEGMENT_VRAM_START(object_00D5D000),
+                            364, "../ac_structure_clip.c_inc", 135);
+    DmaMgr_RequestSyncDebug(
+        &B_809FE0B8_jp, (test + SEGMENT_ROM_START(object_00E00000)) - (uintptr_t)SEGMENT_VRAM_START(object_00E00000),
+        184, "../ac_structure_clip.c_inc", 138);
+    DmaMgr_RequestSyncDebug(
+        &B_809FE3A0_jp, (test2 + SEGMENT_ROM_START(object_00E00000)) - (uintptr_t)SEGMENT_VRAM_START(object_00E00000),
+        184, "../ac_structure_clip.c_inc", 141);
+}
 
 void func_809E8118_jp(ObjectExchangeBank* arg0);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Structure/ac_structure/func_809E8118_jp.s")
