@@ -56,13 +56,15 @@ ActorProfile Ball_Profile = {
     /* */ NULL,
 };
 
-ClObjPipe_Init aBALL_CoInfoData = { 
+ClObjPipe_Init aBALL_CoInfoData = {
     { OC1_1 | OC1_TYPE_8 | OC1_TYPE_10 | OC1_TYPE_20, OC2_TYPE_20, COLSHAPE_PIPE },
     { ELEM_FLAG_1 },
     { { 0xD, 0x1E, -0xA, { 0, 0, 0 } } },
 };
 
-CollisionCheck_Status_Init aBALL_StatusData = { 0, 0xD, 0x1E, -0xA, 100, };
+CollisionCheck_Status_Init aBALL_StatusData = {
+    0, 0xD, 0x1E, -0xA, 100,
+};
 
 // Original name unknown.
 s32 aBALL_secure_bank_area(Ball* this, Game_Play* game_play, s32 type) {
@@ -84,7 +86,7 @@ s32 aBALL_secure_bank_area(Ball* this, Game_Play* game_play, s32 type) {
             romSize = SEGMENT_ROM_SIZE(act_ball_b);
             break;
     }
-    
+
     if (mSc_secure_exchange_keep_bank(&game_play->objectExchangeBank, 0, romSize)) {
         this->segment = game_play->objectExchangeBank.status[bank].segment;
         return true;
@@ -209,7 +211,8 @@ void aBALL_actor_ct(Actor* thisx, Game_Play* game_play) {
 void aBALL_actor_dt(Actor* thisx, Game_Play* game_play) {
     Ball* this = THIS;
 
-    if ((this->unk_208 & BALL_208_FLAG_1) || (this->unk_208 & BALL_208_FLAG_2) || !mRlib_Set_Position_Check(&this->actor)) {
+    if ((this->unk_208 & BALL_208_FLAG_1) || (this->unk_208 & BALL_208_FLAG_2) ||
+        !mRlib_Set_Position_Check(&this->actor)) {
         common_data.unk_10A6C = ZeroVec;
     } else {
         common_data.unk_10A6C = this->actor.world.pos;
@@ -253,7 +256,8 @@ void aBALL_BGcheck(Ball* this) {
 
     yVelocity = this->actor.velocity.y;
 
-    if ((this->process == aBALL_process_air_water) || (this->process == aBALL_process_ground_water) || (this->actor.colResult.unk5 == 0xB)) {
+    if ((this->process == aBALL_process_air_water) || (this->process == aBALL_process_ground_water) ||
+        (this->actor.colResult.unk5 == 0xB)) {
         mCoBG_BgCheckControll(&this->bgPos, &this->actor, 12.0f, -12.0f, 0, 1, 0);
         this->actor.world.pos.x += this->bgPos.x;
         this->actor.world.pos.z += this->bgPos.z;
@@ -262,7 +266,8 @@ void aBALL_BGcheck(Ball* this) {
         mRlib_Station_step_modify_to_wall(&this->actor);
     }
 
-    if (((this->process == aBALL_process_air) || (this->process == aBALL_process_air_water)) && this->actor.colResult.onGround) {
+    if (((this->process == aBALL_process_air) || (this->process == aBALL_process_air_water)) &&
+        this->actor.colResult.onGround) {
         if (this->bounceTimer < 3) {
             do {
                 this->bounceTimer++;
@@ -291,8 +296,10 @@ void aBALL_BGcheck(Ball* this) {
             if (speed > 1.0f) {
                 sAdo_OngenTrgStartSpeed(0x26, &this->actor.world.pos, speed);
             }
-            this->actor.velocity.z = ((1.0f - (adjustedSpeed * cos * cos)) * velocity.z) - (velocity.x * adjustedSpeed * sinCos);
-            this->actor.velocity.x = (-velocity.z * adjustedSpeed * sinCos) + (velocity.x * (1.0f - (adjustedSpeed * sin * sin)));
+            this->actor.velocity.z =
+                ((1.0f - (adjustedSpeed * cos * cos)) * velocity.z) - (velocity.x * adjustedSpeed * sinCos);
+            this->actor.velocity.x =
+                (-velocity.z * adjustedSpeed * sinCos) + (velocity.x * (1.0f - (adjustedSpeed * sin * sin)));
             mRlib_spdXZ_to_spdF_Angle(&this->actor.velocity, &this->actor.speed, &this->actor.world.rot.y);
         }
     }
@@ -309,7 +316,7 @@ void aBALL_OBJcheck(Ball* this) {
     f32 cos;
     UNK_TYPE1 pad[0x4];
     f32 sin;
-    
+
     playerWade = mFI_GetPlayerWade();
 
     if (this->collider.base.prop.ocFlags1 & OC1_2) {
@@ -319,7 +326,7 @@ void aBALL_OBJcheck(Ball* this) {
         f32 newXVelocity;
         f32 newZVelocity;
         UNK_TYPE1 pad2[0x4];
-        
+
         this->collider.base.prop.ocFlags1 &= ~OC1_2;
 
         colliderActor = this->collider.base.oc;
@@ -328,31 +335,33 @@ void aBALL_OBJcheck(Ball* this) {
             mQst_NextSoccer(this->colliderActor);
             this->actor.speed = 0.0f;
             this->actor.velocity = ZeroVec;
-        } else if ((colliderActor != NULL) && (!(this->unk_208 & BALL_208_FLAG_2)) && ((playerWade != 1) && (playerWade != 2))) {
+        } else if ((colliderActor != NULL) && (!(this->unk_208 & BALL_208_FLAG_2)) &&
+                   ((playerWade != 1) && (playerWade != 2))) {
 
             if (colliderActor != this->colliderActor) {
 
                 colliderVelocity = colliderActor->velocity;
                 this->colliderActor = colliderActor;
-                collidingAngle = atans_table(this->actor.world.pos.z - colliderActor->world.pos.z, this->actor.world.pos.x - colliderActor->world.pos.x);
+                collidingAngle = atans_table(this->actor.world.pos.z - colliderActor->world.pos.z,
+                                             this->actor.world.pos.x - colliderActor->world.pos.x);
                 sin = sin_s(collidingAngle);
                 cos = cos_s(collidingAngle);
                 ballSpeed = (this->actor.velocity.x * sin) + (cos * this->actor.velocity.z);
 
                 colliderSpeed = sqrtf(SQ(colliderVelocity.x) + SQ(colliderVelocity.z));
-                
-                xyz_t_mult_v(&colliderVelocity, (24.0f/180.0f) * colliderSpeed * 0.9f + 0.1f);
-                
+
+                xyz_t_mult_v(&colliderVelocity, (24.0f / 180.0f) * colliderSpeed * 0.9f + 0.1f);
+
                 colliderMomentum = (sin * colliderVelocity.x) + (cos * colliderVelocity.z);
                 totalMomentum = ABS_F(ballSpeed + colliderMomentum);
-                
+
                 xVelocityDiff = sin_s(collidingAngle) * totalMomentum;
                 zVelocityDiff = cos_s(collidingAngle) * totalMomentum;
                 newXVelocity = this->actor.velocity.x + xVelocityDiff;
                 newZVelocity = this->actor.velocity.z + zVelocityDiff;
                 ballSpeed = sqrtf(SQ(newXVelocity) + SQ(newZVelocity));
                 ballSpeed = CLAMP_MAX(ballSpeed, 11.0f);
-                
+
                 if (this->actor.colResult.onGround) {
                     f32 speedFactor;
                     s16 verticalAngle;
@@ -360,7 +369,8 @@ void aBALL_OBJcheck(Ball* this) {
                     if (this->actor.speed == 0.0f) {
 
                         speedFactor = ballSpeed / 11.0f;
-                        verticalAngle = DEG_TO_BINANG_ALT3(((fqrand2() * (35.0f * speedFactor)) + (90.0f * speedFactor)));
+                        verticalAngle =
+                            DEG_TO_BINANG_ALT3(((fqrand2() * (35.0f * speedFactor)) + (90.0f * speedFactor)));
 
                         this->actor.speed = cos_s(verticalAngle) * ballSpeed;
                         this->actor.velocity.y = sin_s(verticalAngle) * ballSpeed;
@@ -374,7 +384,7 @@ void aBALL_OBJcheck(Ball* this) {
                 this->actor.world.rot.y = atans_table(newZVelocity, newXVelocity);
                 this->actor.speed *= 0.9f;
                 sAdo_OngenTrgStartSpeed(0x25, &this->actor.world.pos, this->actor.speed);
-                
+
             } else {
                 xyz_t newVelocity;
                 xyz_t displacement;
@@ -382,10 +392,10 @@ void aBALL_OBJcheck(Ball* this) {
                 displacement = this->actor.colStatus.displacement;
                 xyz_t_add(&this->actor.velocity, &displacement, &newVelocity);
                 if ((playerWade != 1) && (playerWade != 2)) {
-    
+
                     this->actor.speed = sqrtf(SQ(newVelocity.x) + SQ(newVelocity.z));
                     this->actor.speed = CLAMP_MAX(this->actor.speed, 11.0f);
-                    
+
                     this->actor.world.rot.y = atans_table(newVelocity.z, newVelocity.x);
                 }
             }
@@ -522,14 +532,15 @@ void aBALL_process_ground(Ball* this, Game_Play* game_play) {
 
     if (!(game_play->state.frameCounter & 7) && this->actor.colResult.unk5 == 9) {
         if (this->actor.speed > 1.0f) {
-            
+
             if (this->actor.speed > 4.0f) {
                 var_v0 = 1;
             } else {
                 var_v0 = 0;
             }
 
-            common_data.clip.unk_090->unk_00(0x33, this->actor.world.pos, 1, this->actor.world.rot.y, game_play, this->actor.fgName, 0, var_v0);
+            common_data.clip.unk_090->unk_00(0x33, this->actor.world.pos, 1, this->actor.world.rot.y, game_play,
+                                             this->actor.fgName, 0, var_v0);
         }
     }
 }
@@ -556,7 +567,7 @@ void aBALL_set_spd_relations_in_water(Ball* this, Game_Play* game_play) {
     add_calc0(&this->height, 0.5f, 100.0f);
     mCoBG_GetWaterFlow(&flowPos, this->actor.colResult.unk5);
     yRot = atans_table(flowPos.z, flowPos.x);
-    yDiffAngle = ABS((s16) (this->actor.world.rot.y - yRot));
+    yDiffAngle = ABS((s16)(this->actor.world.rot.y - yRot));
 
     chase_angle(&this->actor.world.rot.y, yRot, angl_add_table[((yDiffAngle > 0x4000))]);
     if (this->actor.world.pos.y < waterHeight) {
@@ -566,8 +577,10 @@ void aBALL_set_spd_relations_in_water(Ball* this, Game_Play* game_play) {
     }
 
     if (this->waterTimer < 0x20) {
-        if ((!(game_play->state.frameCounter & 3) && (this->waterTimer < 0x10)) || !(game_play->state.frameCounter & 7)) {
-            common_data.clip.unk_090->unk_00(0x45, this->actor.world.pos, 1, this->actor.world.rot.y, game_play, this->actor.fgName, 1, 0);
+        if ((!(game_play->state.frameCounter & 3) && (this->waterTimer < 0x10)) ||
+            !(game_play->state.frameCounter & 7)) {
+            common_data.clip.unk_090->unk_00(0x45, this->actor.world.pos, 1, this->actor.world.rot.y, game_play,
+                                             this->actor.fgName, 1, 0);
         }
         this->waterTimer++;
     }
@@ -582,10 +595,10 @@ void aBALL_process_air_water_init(Ball* this, Game_Play* game_play) {
 }
 
 void aBALL_process_air_water(Ball* this, Game_Play* game_play) {
-    
+
     aBALL_set_spd_relations_in_water(this, game_play);
     add_calc0(&this->height, 0.5f, 100.0f);
-    
+
     // Perhaps a macro?
     {
         f32 speed = this->speed;
@@ -597,7 +610,7 @@ void aBALL_process_air_water(Ball* this, Game_Play* game_play) {
     if (common_data.clip.unk_0A8 != NULL) {
         common_data.clip.unk_0A8->unk_0C(&this->actor.world.pos, 20.0f, 1);
     }
-    
+
     if (this->actor.colResult.onGround) {
         if (this->actor.colResult.inWater) {
             aBALL_process_ground_water_init(this, game_play);
@@ -637,7 +650,7 @@ void aBALL_process_ground_water(Ball* this, Game_Play* game_play) {
     } else {
         aBALL_process_air_water_init(this, game_play);
     }
-    
+
     if ((unitAttribute == 0xB) || (unitAttribute == 0x16)) {
         bgPos = &this->bgPos;
         this->actor.world.pos.y += (0.5f * bgPos->y);
@@ -667,11 +680,11 @@ void aBALL_calc_axis(Ball* this) {
 s32 aBALL_player_angle_distance_check(Ball* this, Player* player) {
     f32 distance;
     s16 yRot;
-    
+
     distance = search_position_distance(&this->actor.world.pos, &player->actor.world.pos);
     yRot = player->actor.shape.rot.y - search_position_angleY(&player->actor.world.pos, &this->actor.world.pos);
     if (distance < 60.0f) {
-        
+
         if (ABS(yRot) < 0x2000) {
             return 1;
         }
@@ -721,7 +734,8 @@ void aBALL_status_check(Ball* this, Game_Play* game_play) {
             common_data.clip.unk_090->unk_00(0x3A, this->actor.world.pos, 1, 0, game_play, this->actor.fgName, 1, 0);
 
             for (i = 2; i < 6; i++) {
-                common_data.clip.unk_090->unk_00(0x3B, this->actor.world.pos, 1, this->actor.world.rot.y, game_play, this->actor.fgName, 0, i | 0x3000);
+                common_data.clip.unk_090->unk_00(0x3B, this->actor.world.pos, 1, this->actor.world.rot.y, game_play,
+                                                 this->actor.fgName, 0, i | 0x3000);
             }
         }
     }
@@ -737,10 +751,10 @@ void aBALL_actor_move(Actor* thisx, Game_Play* game_play) {
             Actor_delete(&this->actor);
         }
         if (this->actor.speed == 0.0f) {
-            return; 
+            return;
         }
     }
-    
+
     common_data.unk_10A6C = this->actor.world.pos;
     aBALL_position_move(this);
     this->process(this, game_play);
@@ -757,18 +771,20 @@ void aBALL_actor_move(Actor* thisx, Game_Play* game_play) {
     {                                         \
         Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
         int __opa_opened = 0;                 \
-        do {} while (0)
+        do {                                  \
+        } while (0)
 
-#define CLOSE_CUSTOM_POLY_OPA()          \
-        __gfxCtx->polyOpa.p = __polyOpa; \
-        (void)__opa_opened;              \
-    }                                    \
-    do {} while (0)
+#define CLOSE_CUSTOM_POLY_OPA()      \
+    __gfxCtx->polyOpa.p = __polyOpa; \
+    (void)__opa_opened;              \
+    }                                \
+    do {                             \
+    } while (0)
 
 void aBALL_actor_draw(Actor* thisx, Game_Play* game_play) {
     GraphicsContext* gfxCtx = game_play->state.gfxCtx;
     Ball* this = THIS;
-    
+
     OPEN_DISPS(gfxCtx);
     OPEN_CUSTOM_POLY_OPA();
     gSPSegment(__polyOpa++, 0x06, this->segment);
