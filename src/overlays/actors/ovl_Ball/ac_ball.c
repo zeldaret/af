@@ -171,7 +171,7 @@ s32 aBALL_Random_pos_set(xyz_t* pos) {
 
 void aBALL_actor_ct(Actor* thisx, Game_Play* game_play) {
     Ball* this = THIS;
-    UNK_TYPE1 pad[0x4];
+    UNUSED UNK_TYPE1 pad[0x4];
 
     Global_Actor_p = this;
     if ((common_data.unk_10A6C.x == 0.0f) && (common_data.unk_10A6C.y == 0.0f) && (common_data.unk_10A6C.z == 0.0f)) {
@@ -222,7 +222,8 @@ void aBALL_actor_dt(Actor* thisx, Game_Play* game_play) {
 }
 
 void aBALL_position_move(Ball* this) {
-    xyz_t slopeAngle;
+    UNUSED UNK_TYPE1 pad[0x4];
+    s_xyz slopeAngle;
 
     mCoBG_GetBgY_AngleS_FromWpos(&slopeAngle, this->actor.world.pos, 0.0f);
 
@@ -241,7 +242,7 @@ void aBALL_position_move(Ball* this) {
 }
 
 void aBALL_BGcheck(Ball* this) {
-    UNK_TYPE1 pad[0x4];
+    UNUSED UNK_TYPE1 pad[0x4];
     f32 yVelocity;
     s32 hitWall;
     s16 wallAngle;
@@ -314,7 +315,7 @@ void aBALL_OBJcheck(Ball* this) {
     f32 colliderSpeed;
     f32 colliderMomentum;
     f32 cos;
-    UNK_TYPE1 pad[0x4];
+    UNUSED UNK_TYPE1 pad[0x4];
     f32 sin;
 
     playerWade = mFI_GetPlayerWade();
@@ -325,7 +326,7 @@ void aBALL_OBJcheck(Ball* this) {
         f32 zVelocityDiff;
         f32 newXVelocity;
         f32 newZVelocity;
-        UNK_TYPE1 pad2[0x4];
+        UNUSED UNK_TYPE1 pad2[0x4];
 
         this->collider.base.prop.ocFlags1 &= ~OC1_2;
 
@@ -414,7 +415,7 @@ void aBALL_House_Tree_Rev_Check(Ball* this) {
     }
 }
 
-void aBALL_process_air_init(Ball* this, Game_Play* game_play) {
+void aBALL_process_air_init(Ball* this, UNUSED Game_Play* game_play) {
     xyz_t* pos;
     f32 slopeAngle;
 
@@ -445,7 +446,7 @@ void aBALL_process_air(Ball* this, Game_Play* game_play) {
     }
 }
 
-void aBALL_process_ground_init(Ball* this, Game_Play* game_play) {
+void aBALL_process_ground_init(Ball* this, UNUSED Game_Play* game_play) {
     this->actor.shape.drawShadow = 1;
     if (this->actor.velocity.y > 0.0f) {
         this->process = aBALL_process_air;
@@ -455,7 +456,7 @@ void aBALL_process_ground_init(Ball* this, Game_Play* game_play) {
 }
 
 void aBALL_process_ground(Ball* this, Game_Play* game_play) {
-    s8 pad[0x4];
+    UNUSED UNK_TYPE1 pad[0x4];
     xyz_t bgNorm;
     f32 distance;
     s16 angleRate;
@@ -557,7 +558,7 @@ s16 angl_add_table[2] = {
 };
 
 void aBALL_set_spd_relations_in_water(Ball* this, Game_Play* game_play) {
-    UNK_TYPE1 pad[0x4];
+    UNUSED UNK_TYPE1 pad[0x4];
     xyz_t flowPos;
     s16 yRot;
     f32 waterHeight;
@@ -589,7 +590,7 @@ void aBALL_set_spd_relations_in_water(Ball* this, Game_Play* game_play) {
     this->maxSpeed = 1.0f;
 }
 
-void aBALL_process_air_water_init(Ball* this, Game_Play* game_play) {
+void aBALL_process_air_water_init(Ball* this, UNUSED Game_Play* game_play) {
     this->actor.shape.drawShadow = 0;
     this->process = aBALL_process_air_water;
 }
@@ -622,7 +623,7 @@ void aBALL_process_air_water(Ball* this, Game_Play* game_play) {
     }
 }
 
-void aBALL_process_ground_water_init(Ball* this, Game_Play* game_play) {
+void aBALL_process_ground_water_init(Ball* this, UNUSED Game_Play* game_play) {
     this->actor.shape.drawShadow = 0;
     this->waterTimer = 0;
     this->process = aBALL_process_ground_water;
@@ -742,7 +743,7 @@ void aBALL_status_check(Ball* this, Game_Play* game_play) {
 }
 
 void aBALL_actor_move(Actor* thisx, Game_Play* game_play) {
-    UNK_TYPE1 pad[0x4];
+    UNUSED UNK_TYPE1 pad[0x4];
     Ball* this = THIS;
 
     aBALL_House_Tree_Rev_Check(this);

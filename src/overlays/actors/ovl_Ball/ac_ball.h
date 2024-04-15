@@ -19,7 +19,7 @@ typedef enum BallType {
     BALL_TYPE_B,
     BALL_TYPE_D,
     BALL_TYPE_S,
-};
+} BallType;
 
 typedef void (*BallActionFunc)(struct Ball*, struct Game_Play*);
 

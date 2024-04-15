@@ -5,7 +5,7 @@
 
 void mRlib_spdXZ_to_spdF_Angle(xyz_t*, f32*, s16*);
 void mRlib_spdF_Angle_to_spdXZ(xyz_t*, f32*, s16*);
-void mRlib_position_move_for_sloop(struct Actor*, xyz_t*);
+void mRlib_position_move_for_sloop(struct Actor*, s_xyz*);
 void mRlib_Get_norm_Clif(struct Actor*, xyz_t*);
 void mRlib_Roll_Matrix_to_s_xyz(struct Actor*, void*, s16);
 s16 mRlib_Get_HitWallAngleY(struct Actor*);

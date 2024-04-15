@@ -16,6 +16,7 @@ struct ShadowData;
 struct FurnitureActor;
 struct WeatherClip;
 struct ObjectExchangeBank;
+struct xyz_t;
 
 typedef UNK_RET (*Clip_unk_040_unk_04)(struct ActorOverlay*, const u8*, size_t, s32);
 typedef UNK_RET (*Clip_unk_040_unk_08)(void);
