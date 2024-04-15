@@ -8673,38 +8673,38 @@ jtbl_80968840_jp = 0x80968840; // type:jtbl
 
 // .text
 
-func_80968A10_jp = 0x80968A10; // type:func
+aBALL_secure_bank_area = 0x80968A10; // type:func
 func_80968AF4_jp = 0x80968AF4; // type:func
-func_80968B9C_jp = 0x80968B9C; // type:func
+aBALL_Random_pos_set = 0x80968B9C; // type:func
 aBALL_actor_ct = 0x80968D08; // type:func
 aBALL_actor_dt = 0x80968F98; // type:func
-func_80969040_jp = 0x80969040; // type:func
-func_80969114_jp = 0x80969114; // type:func
-func_809693EC_jp = 0x809693EC; // type:func size:0x414
-func_80969800_jp = 0x80969800; // type:func
-func_8096983C_jp = 0x8096983C; // type:func
-func_809698E8_jp = 0x809698E8; // type:func
-func_80969998_jp = 0x80969998; // type:func
-func_809699D8_jp = 0x809699D8; // type:func
-func_80969DE8_jp = 0x80969DE8; // type:func
-func_80969FBC_jp = 0x80969FBC; // type:func
-func_80969FD8_jp = 0x80969FD8; // type:func
-func_8096A0CC_jp = 0x8096A0CC; // type:func
-func_8096A0EC_jp = 0x8096A0EC; // type:func
-func_8096A23C_jp = 0x8096A23C; // type:func
-func_8096A334_jp = 0x8096A334; // type:func
-func_8096A3D8_jp = 0x8096A3D8; // type:func
+aBALL_position_move = 0x80969040; // type:func
+aBALL_BGcheck = 0x80969114; // type:func
+aBALL_OBJcheck = 0x809693EC; // type:func size:0x414
+aBALL_House_Tree_Rev_Check = 0x80969800; // type:func
+aBALL_process_air_init = 0x8096983C; // type:func
+aBALL_process_air = 0x809698E8; // type:func
+aBALL_process_ground_init = 0x80969998; // type:func
+aBALL_process_ground = 0x809699D8; // type:func
+aBALL_set_spd_relations_in_water = 0x80969DE8; // type:func
+aBALL_process_air_water_init = 0x80969FBC; // type:func
+aBALL_process_air_water = 0x80969FD8; // type:func
+aBALL_process_ground_water_init = 0x8096A0CC; // type:func
+aBALL_process_ground_water = 0x8096A0EC; // type:func
+aBALL_calc_axis = 0x8096A23C; // type:func
+aBALL_player_angle_distance_check = 0x8096A334; // type:func
+aBALL_status_check = 0x8096A3D8; // type:func
 aBALL_actor_move = 0x8096A678; // type:func
 aBALL_actor_draw = 0x8096A77C; // type:func
 func_8096A86C_jp = 0x8096A86C; // type:func
 
 // .data
 
-D_8096A8B0_jp = 0x8096A8B0; //
+ball_model_tbl = 0x8096A8B0; //
 Ball_Profile = 0x8096A8BC; //
 aBALL_CoInfoData = 0x8096A8E0; //
 aBALL_StatusData = 0x8096A8F0; //
-D_8096A8FC_jp = 0x8096A8FC; // type:s16
+angl_add_table = 0x8096A8FC; // type:s16
 
 // .rodata
 

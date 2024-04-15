@@ -1723,9 +1723,9 @@
     bss_size: 0x10
     subsegments:
       - [0x85D660, c, overlays/actors/ovl_Ball/ac_ball]
-      - [0x85F500, data, overlays/actors/ovl_Ball/ac_ball]
+      - [0x85F500, .data, overlays/actors/ovl_Ball/ac_ball]
       - [0x85F550, .rodata, overlays/actors/ovl_Ball/ac_ball]
-      - { start: 0x85F5D0, type: bss, vram: 0x8096A980, name: overlays/actors/ovl_Ball/ac_ball }
+      - { start: 0x85F5D0, type: .bss, vram: 0x8096A980, name: overlays/actors/ovl_Ball/ac_ball }
   - name: ovl_Ball_reloc
     type: code
     start: 0x85F5D0

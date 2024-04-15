@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "m_collision_obj.h"
+#include "m_collision_bg.h"
 #include "z64math.h"
 #include "unk.h"
 #include "m_collision_bg.h"

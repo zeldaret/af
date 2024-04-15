@@ -399,8 +399,8 @@ void mSc_dmacopy_all_exchange_bank(ObjectExchangeBank* exchange) {
         }
     }
     if (common_data.clip.unk_0A8 != NULL) {
-        if (common_data.clip.unk_0A8->unk_4 != NULL) {
-            common_data.clip.unk_0A8->unk_4(exchange);
+        if (common_data.clip.unk_0A8->unk_04 != NULL) {
+            common_data.clip.unk_0A8->unk_04(exchange);
         }
     }
 
