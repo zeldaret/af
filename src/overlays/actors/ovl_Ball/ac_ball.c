@@ -564,7 +564,7 @@ void aBALL_set_spd_relations_in_water(Ball* this, Game_Play* game_play) {
     f32 waterHeight;
     s32 yDiffAngle;
 
-    waterHeight = mCoBG_GetWaterHeight_File(this->actor.world.pos, "../ac_ball.c", 0x3B5);
+    waterHeight = mCoBG_GetWaterHeight_File(this->actor.world.pos, "../ac_ball.c", 949);
     add_calc0(&this->height, 0.5f, 100.0f);
     mCoBG_GetWaterFlow(&flowPos, this->actor.colResult.unk5);
     yRot = atans_table(flowPos.z, flowPos.x);
