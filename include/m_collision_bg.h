@@ -35,6 +35,24 @@ typedef union mCoBG_unkStructUnion {
     u32 raw;
 } mCoBG_unkStructUnion;
 
+// collision bg result data
+typedef struct mCoBG_CheckResult {
+  u32 onGround:1; // [31] on_ground
+  u32 unk1:5; // [30:25] hit_attribute_wall
+  u32 hitWall:5; // [25:20] hit_wall
+  u32 unk3:3; // [20:17] hit_wall_count
+  u32 unk4:1; // [17:16] unk_flag0
+  u32 unk5:6; // [16:10] unit_attribute
+  u32 unk6:1; // [10] is_on_move_bg_obj
+  u32 inWater:1; // [9] is_in_water
+  u32 unk8:1; // [8] unk_flag1
+  u32 unk9:1; // [7] unk_flag2
+  u32 unk10:1; // [6] unk_flag3
+  u32 unk11:1; // [5] unk_flag4
+  u32 unk12:1; // [4] unk_flag5
+  u32 unk13:4; // [3:0] unk_flag6
+} mCoBG_CheckResult;
+
 // void func_80067430_jp();
 // void func_800674B0_jp();
 // void func_800674D8_jp();
@@ -230,7 +248,7 @@ s32 func_8007244C_jp(u32);
 // void func_80072C60_jp();
 s32 mCoBG_SearchWaterLimitDistN(UNK_TYPE* arg0, xyz_t arg1, s16 arg4, f32 arg5, s32 arg6);
 // void func_80072E70_jp();
-// void func_80072F9C_jp();
+f32 mCoBG_GetBalloonGroundY(xyz_t*);
 // void func_800730C8_jp();
 // void func_800731A8_jp();
 // void func_800732DC_jp();
@@ -281,7 +299,7 @@ s32 func_80076358_jp(u32 attribute);
 // void func_800763FC_jp();
 // void func_8007648C_jp();
 // void func_800764CC_jp();
-// void func_800765AC_jp();
+void mCoBG_BgCheckControll(s32, struct Actor*, f32, f32, s32, s32, s32);
 // void func_80076778_jp();
 // void func_800768C8_jp();
 // void func_80076A04_jp();

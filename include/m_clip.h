@@ -85,10 +85,15 @@ typedef struct Clip_unk_070 {
 
 typedef UNK_RET (*Clip_unk_074_unk_00)(UNK_TYPE);
 typedef void (*Clip_unk_074_unk_04)(struct Game_Play* game_play, struct ShadowData* shadowData, s16 unk2);
+typedef void (*Clip_unk_074_unk_30)(UNK_TYPE, UNK_TYPE, UNK_TYPE, UNK_TYPE);
 
 typedef struct Clip_unk_074 {
     /* 0x00 */ Clip_unk_074_unk_00 unk_00;
     /* 0x04 */ Clip_unk_074_unk_04 unk_04;
+    /* 0x08 */ UNK_TYPE1 unk_08[0x28];
+    /* 0x30 */ Clip_unk_074_unk_30 unk_30;
+    /* 0x34 */ UNK_TYPE1 unk_34[0x4];
+    /* 0x38 */ s32 unk_38;
 } Clip_unk_074; // size >= 0x8
 
 typedef void (*Clip_unk_07C_unk_4)(struct ObjectExchangeBank*);

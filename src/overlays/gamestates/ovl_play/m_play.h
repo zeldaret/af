@@ -86,7 +86,7 @@ typedef struct Game_Play {
     /* 0x1E1C */ MtxF viewProjectionMtxF;
     /* 0x1E5C */ MtxF billboardMtxF;
     /* 0x1E9C */ Mtx* unk_1E9C;
-    /* 0x1EA0 */ s32 unk_1EA0;
+    /* 0x1EA0 */ u32 unk_1EA0;
     /* 0x1EA4 */ UNK_TYPE1 unk_1EA4[0x1];
     /* 0x1EA5 */ u8 unk_1EA5;
     /* 0x1EA6 */ u8 unk_1EA6;
