@@ -25,24 +25,24 @@ typedef enum FuusenRand {
 } FuusenRand;
 
 typedef struct Fuusen {
-    Actor actor;
-    FuusenActionFunc process;
-    void* segment;
-    s32 processNum;
-    u32 colorIndex;
-    s32 escapeTimer;
-    s32 birthTimer;
-    s32 unk_18C;
-    s32 shouldLookUp;
-    s32 dataIndex;
-    s16 heightAmplitudeCounter;
-    f32 windPower;
-    f32 heightOffset;
-    u8 unk_1A4;
-    SkeletonInfoR skeletonInfo; // 0x1A8
-    s_xyz jointTable[0x4]; // 0x218
-    s_xyz morphTable[0x4]; // 0x230
-    Mtx mtx[2][4];
+    /* 0x000 */ Actor actor;
+    /* 0x174 */ FuusenActionFunc process;
+    /* 0x178 */ void* segment;
+    /* 0x17C */ s32 processNum;
+    /* 0x180 */ u32 colorIndex;
+    /* 0x184 */ s32 escapeTimer;
+    /* 0x188 */ s32 birthTimer;
+    /* 0x18C */ s32 unk_18C;
+    /* 0x190 */ s32 shouldLookUp;
+    /* 0x194 */ s32 dataIndex;
+    /* 0x198 */ s16 heightAmplitudeCounter;
+    /* 0x19C */ f32 windPower;
+    /* 0x1A0 */ f32 heightOffset;
+    /* 0x1A4 */ u8 unk_1A4;
+    /* 0x1A8 */ SkeletonInfoR skeletonInfo;
+    /* 0x218 */ s_xyz jointTable[0x4];
+    /* 0x230 */ s_xyz morphTable[0x4];
+    /* 0x248 */ Mtx mtx[2][4];
 } Fuusen; // size = 0x448
 
 #endif
