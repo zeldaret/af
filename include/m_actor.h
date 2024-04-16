@@ -6,6 +6,7 @@
 #include "m_collision_bg.h"
 #include "z64math.h"
 #include "unk.h"
+#include "m_collision_bg.h"
 
 struct Actor;
 struct Game_Play;

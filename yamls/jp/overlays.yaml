@@ -17067,7 +17067,7 @@
     bss_size: 0x0
     subsegments:
       - [0x96D250, c, overlays/actors/ovl_Fuusen/ac_fuusen]
-      - [0x96E620, data, overlays/actors/ovl_Fuusen/ac_fuusen]
+      - [0x96E620, .data, overlays/actors/ovl_Fuusen/ac_fuusen]
       - [0x96E7B0, .rodata, overlays/actors/ovl_Fuusen/ac_fuusen]
   - name: ovl_Fuusen_reloc
     type: code

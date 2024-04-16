@@ -5556,10 +5556,10 @@ D_6000D50 = 0x06000D50;
 
 // ovl_Fuusen
 
-D_4009580 = 0x04009580;
-D_4009620 = 0x04009620;
-D_6000F44 = 0x06000F44;
-D_6000F88 = 0x06000F88;
+present_DL_mode = 0x04009580;
+present_DL_vtx = 0x04009620;
+cKF_ba_r_act_balloon = 0x06000F44;
+cKF_bs_r_act_balloon = 0x06000F88;
 
 // ovl__0096E8E0
 

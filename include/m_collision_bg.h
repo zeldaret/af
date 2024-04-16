@@ -248,7 +248,7 @@ s32 func_8007244C_jp(u32);
 // void func_80072C60_jp();
 s32 mCoBG_SearchWaterLimitDistN(UNK_TYPE* arg0, xyz_t arg1, s16 arg4, f32 arg5, s32 arg6);
 // void func_80072E70_jp();
-// void func_80072F9C_jp();
+f32 mCoBG_GetBalloonGroundY(xyz_t*);
 // void func_800730C8_jp();
 // void func_800731A8_jp();
 // void func_800732DC_jp();

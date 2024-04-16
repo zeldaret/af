@@ -61,8 +61,8 @@ void Global_kankyo_set(struct Game_Play* game_play, struct Kankyo* kankyo, struc
 void mEnv_DecideWindDirect(struct s_xyz*, s16,s16);
 // void func_8009867C_jp();
 void mEnv_RandomWeather(s16*, s16*);
-// void func_8009895C_jp();
-// void func_80098980_jp();
+s16 mEnv_GetWindAngleS(void);
+f32 mEnv_GetWindPowerF(void);
 // void func_80098990_jp();
 // void func_80098A90_jp();
 void mEnv_WindMove(void);
