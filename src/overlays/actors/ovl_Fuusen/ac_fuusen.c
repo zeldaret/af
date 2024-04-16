@@ -14,6 +14,7 @@
 #include "683030.h"
 #include "audio.h"
 #include "code_variables.h"
+#include "m_name_table.h"
 
 #include "objects/act_balloon/act_balloon.h"
 
@@ -221,11 +222,14 @@ void aFSN_moving(Actor* thisx, Game_Play* game_play) {
             }
         }
         unitFG = mFI_GetUnitFG(this->actor.world.pos);
-        if ((unitFG != NULL) &&
-            ((*unitFG == 0x804) || (*unitFG == 0x809) || (*unitFG == 0x811) || (*unitFG == 0x819) ||
-             (*unitFG == 0x821) || (*unitFG == 0x829) || (*unitFG == 0x80A) || (*unitFG == 0x812) ||
-             (*unitFG == 0x81A) || (*unitFG == 0x822) || (*unitFG == 0x82A) || (*unitFG == 0x80B) ||
-             (*unitFG == 0x813) || (*unitFG == 0x81B) || (*unitFG == 0x823) || (*unitFG == 0x82B))) {
+        if ((unitFG != NULL) && ((*unitFG == TREE) || (*unitFG == TREE_APPLE_NOFRUIT_0) ||
+                                 (*unitFG == TREE_ORANGE_NOFRUIT_0) || (*unitFG == TREE_PEACH_NOFRUIT_0) ||
+                                 (*unitFG == TREE_PEAR_NOFRUIT_0) || (*unitFG == TREE_CHERRY_NOFRUIT_0) ||
+                                 (*unitFG == TREE_APPLE_NOFRUIT_1) || (*unitFG == TREE_ORANGE_NOFRUIT_1) ||
+                                 (*unitFG == TREE_PEACH_NOFRUIT_1) || (*unitFG == TREE_PEAR_NOFRUIT_1) ||
+                                 (*unitFG == TREE_CHERRY_NOFRUIT_1) || (*unitFG == TREE_APPLE_NOFRUIT_2) ||
+                                 (*unitFG == TREE_ORANGE_NOFRUIT_2) || (*unitFG == TREE_PEACH_NOFRUIT_2) ||
+                                 (*unitFG == TREE_PEAR_NOFRUIT_2) || (*unitFG == TREE_CHERRY_NOFRUIT_2))) {
             mFI_Wpos2UtCenterWpos(&screenPos, this->actor.world.pos);
             screenPos.x -= 2.5f;
             screenPos.y = mCoBG_GetBgY_OnlyCenter_FromWpos2(this->actor.world.pos, 0.0f) + 97.5f;
@@ -246,11 +250,14 @@ void aFSN_moving(Actor* thisx, Game_Play* game_play) {
                     screenPos.x += sin_s(yRot) * 80.0f;
                     screenPos.z += cos_s(yRot) * 80.0f;
                     unitFG = mFI_GetUnitFG(screenPos);
-                    if ((unitFG != NULL) &&
-                        ((*unitFG == 0x804) || (*unitFG == 0x809) || (*unitFG == 0x811) || (*unitFG == 0x819) ||
-                         (*unitFG == 0x821) || (*unitFG == 0x829) || (*unitFG == 0x80A) || (*unitFG == 0x812) ||
-                         (*unitFG == 0x81A) || (*unitFG == 0x822) || (*unitFG == 0x82A) || (*unitFG == 0x80B) ||
-                         (*unitFG == 0x813) || (*unitFG == 0x81B) || (*unitFG == 0x823) || (*unitFG == 0x82B))) {
+                    if ((unitFG != NULL) && ((*unitFG == TREE) || (*unitFG == TREE_APPLE_NOFRUIT_0) ||
+                                             (*unitFG == TREE_ORANGE_NOFRUIT_0) || (*unitFG == TREE_PEACH_NOFRUIT_0) ||
+                                             (*unitFG == TREE_PEAR_NOFRUIT_0) || (*unitFG == TREE_CHERRY_NOFRUIT_0) ||
+                                             (*unitFG == TREE_APPLE_NOFRUIT_1) || (*unitFG == TREE_ORANGE_NOFRUIT_1) ||
+                                             (*unitFG == TREE_PEACH_NOFRUIT_1) || (*unitFG == TREE_PEAR_NOFRUIT_1) ||
+                                             (*unitFG == TREE_CHERRY_NOFRUIT_1) || (*unitFG == TREE_APPLE_NOFRUIT_2) ||
+                                             (*unitFG == TREE_ORANGE_NOFRUIT_2) || (*unitFG == TREE_PEACH_NOFRUIT_2) ||
+                                             (*unitFG == TREE_PEAR_NOFRUIT_2) || (*unitFG == TREE_CHERRY_NOFRUIT_2))) {
                         this->actor.world.rot.y = yRot;
                         this->unk_1A4 = true;
                         break;
