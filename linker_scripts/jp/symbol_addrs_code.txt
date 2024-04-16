@@ -4639,7 +4639,7 @@ D_80106D64_jp = 0x80106D64; //
 D_80106D78_jp = 0x80106D78; //
 D_80106D8C_jp = 0x80106D8C; //
 D_80106DA0_jp = 0x80106DA0; //
-D_80106E10_jp = 0x80106E10; //
+fuusen_DEBUG_mode_flag = 0x80106E10; //
 
 game_dlftbls = 0x80106E20; // type:GameStateOverlay size:0x1E0
 game_dlftbls_num = 0x80107000; // size:0x4

@@ -37,36 +37,11 @@ ActorProfile Fuusen_Profile = {
     /* */ NULL,
 };
 
-xyz_t Init_Size = { 0.01f, 0.01f, 0.01f };
-
-s32 data_index_data[16] = {
-    0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 0,
-};
-
-xyz_t birth_pos_data[8] = {
-    { 1600.0f, 100.0f, 500.0f },  { 500.0f, 100.0f, 500.0f },   { 500.0f, 100.0f, 1600.0f },
-    { 500.0f, 100.0f, 4620.0f },  { 1600.0f, 100.0f, 4620.0f }, { 3980.0f, 100.0f, 4620.0f },
-    { 3980.0f, 100.0f, 1600.0f }, { 3980.0f, 100.0f, 500.0f },
-};
-
-xyz_t birth_pos_random_data[8] = {
-    { 1280.0f, 100.0f, 0.0f }, { 960.0f, 100.0f, 960.0f },   { 0.0f, 100.0f, 1920.0f }, { 960.0f, 100.0f, -960.0f },
-    { 1280.0f, 100.0f, 0.0f }, { -960.0f, 100.0f, -960.0f }, { 0.0f, 100.0f, 1920.0f }, { -960.0f, 100.0f, 960.0f },
-};
-
-Color_RGBA8 balloon_prim_data[5] = {
-    { 255, 210, 200, 255 }, { 200, 230, 200, 255 }, { 255, 250, 200, 255 },
-    { 220, 255, 200, 255 }, { 240, 210, 255, 255 },
-};
-
-Color_RGBA8 balloon_env_data[5] = {
-    { 255, 40, 0, 255 }, { 0, 180, 255, 255 }, { 255, 200, 0, 255 }, { 100, 255, 0, 255 }, { 200, 30, 255, 255 },
-};
-
 extern BaseAnimationR cKF_ba_r_act_balloon;
 extern BaseSkeletonR cKF_bs_r_act_balloon;
 
 void aFSN_actor_ct(Actor* thisx, Game_Play* game_play) {
+    static xyz_t Init_Size = { 0.01f, 0.01f, 0.01f };
     Fuusen* this = THIS;
     SkeletonInfoR* skeletonInfo = &this->skeletonInfo;
     xyz_t size = Init_Size;
@@ -93,12 +68,24 @@ void aFSN_actor_dt(Actor* thisx, UNUSED Game_Play* game_play) {
 
     if (this->shouldLookUp) {
         Balloon_look_up();
-        return;
+    } else {
+        Balloon_kill();
     }
-    Balloon_kill();
 }
 
 void aFSN_birth_init(Fuusen* this, Game_Play* game_play) {
+    static s32 data_index_data[16] = {
+        0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 0,
+    };
+    static xyz_t birth_pos_data[8] = {
+        { 1600.0f, 100.0f, 500.0f },  { 500.0f, 100.0f, 500.0f },   { 500.0f, 100.0f, 1600.0f },
+        { 500.0f, 100.0f, 4620.0f },  { 1600.0f, 100.0f, 4620.0f }, { 3980.0f, 100.0f, 4620.0f },
+        { 3980.0f, 100.0f, 1600.0f }, { 3980.0f, 100.0f, 500.0f },
+    };
+    static xyz_t birth_pos_random_data[8] = {
+        { 1280.0f, 100.0f, 0.0f }, { 960.0f, 100.0f, 960.0f },   { 0.0f, 100.0f, 1920.0f }, { 960.0f, 100.0f, -960.0f },
+        { 1280.0f, 100.0f, 0.0f }, { -960.0f, 100.0f, -960.0f }, { 0.0f, 100.0f, 1920.0f }, { -960.0f, 100.0f, 960.0f },
+    };
     s16 rotVar;
     f32 rand;
     s32 randXOrZ;
@@ -170,18 +157,26 @@ void aFSN_escape_init(Fuusen* this, Game_Play* game_play) {
     }
 }
 
+Color_RGBA8 balloon_prim_data[5] = {
+    { 255, 210, 200, 255 }, { 200, 230, 200, 255 }, { 255, 250, 200, 255 },
+    { 220, 255, 200, 255 }, { 240, 210, 255, 255 },
+};
+
+Color_RGBA8 balloon_env_data[5] = {
+    { 255, 40, 0, 255 }, { 0, 180, 255, 255 }, { 255, 200, 0, 255 }, { 100, 255, 0, 255 }, { 200, 30, 255, 255 },
+};
+
 void aFSN_birth(Actor* thisx, Game_Play* game_play) {
     Fuusen* this = THIS;
     aFSN_setupAction(this, FSN_PROCESS_MOVING, game_play);
 }
 
-Vec2s senkou_check_data[3] = {
-    { -1, -2500 },
-    { 0, 0 },
-    { 0, 2500 },
-};
-
 void aFSN_moving(Actor* thisx, Game_Play* game_play) {
+    static Vec2s senkou_check_data[3] = {
+        { -1, -2500 },
+        { 0, 0 },
+        { 0, 2500 },
+    };
     Fuusen* this = THIS;
     f32 balloonGroundY = mCoBG_GetBalloonGroundY(&this->actor.world.pos) + this->heightOffset;
     UNUSED UNK_TYPE1 pad[0x4];
@@ -333,21 +328,20 @@ void aFSN_escape(Actor* thisx, UNUSED Game_Play* game_play) {
     }
 }
 
-FuusenInitFunc init_proc[4] = {
-    aFSN_birth_init,
-    aFSN_moving_init,
-    aFSN_wood_stop_init,
-    aFSN_escape_init,
-};
-
-FuusenActionFunc act_proc[4] = {
-    aFSN_birth,
-    aFSN_moving,
-    aFSN_wood_stop,
-    aFSN_escape,
-};
-
 void aFSN_setupAction(Fuusen* this, s32 processIndex, Game_Play* game_play) {
+    static FuusenInitFunc init_proc[4] = {
+        aFSN_birth_init,
+        aFSN_moving_init,
+        aFSN_wood_stop_init,
+        aFSN_escape_init,
+    };
+
+    static FuusenActionFunc act_proc[4] = {
+        aFSN_birth,
+        aFSN_moving,
+        aFSN_wood_stop,
+        aFSN_escape,
+    };
 
     this->processNum = processIndex;
     this->process = act_proc[processIndex];
@@ -378,7 +372,7 @@ void aFSN_actor_move(Actor* thisx, Game_Play* game_play) {
     } else if (this->birthTimer > 0) {
         this->birthTimer--;
     }
-    if (D_80106E10_jp != 0) {
+    if (fuusen_DEBUG_mode_flag != 0) {
         Player* player = get_player_actor_withoutCheck(game_play);
         Debug_Display_new((sin_s(this->actor.yawTowardsPlayer + 0x8000) * 30.0f) + player->actor.world.pos.x,
                           player->actor.world.pos.y + 60.0f,
@@ -388,7 +382,7 @@ void aFSN_actor_move(Actor* thisx, Game_Play* game_play) {
     }
     cKF_SkeletonInfo_R_play(&this->skeletonInfo);
     this->process(&this->actor, game_play);
-    D_80106E10_jp = 0;
+    fuusen_DEBUG_mode_flag = 0;
 }
 
 // Original name unknown.
@@ -407,8 +401,6 @@ Gfx* func_80AAE10C_jp(u8 red, u8 blue, u8 green, u8 alpha, Game_Play* game_play)
 extern Gfx present_DL_mode[];
 extern Vtx present_DL_vtx[];
 
-xyz_t offset0 = { 0.0f, 0.0f, 0.0f };
-
 #define OPEN_CUSTOM_POLY_OPA()                \
     {                                         \
         Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
@@ -423,6 +415,7 @@ xyz_t offset0 = { 0.0f, 0.0f, 0.0f };
     while (0)
 
 void aFSN_actor_draw(Actor* thisx, Game_Play* game_play) {
+    static xyz_t offset0 = { 0.0f, 0.0f, 0.0f };
     Fuusen* this = THIS;
     s32 mtxIndex = game_play->state.frameCounter & 1;
     UNUSED UNK_TYPE1 pad[0x8];
