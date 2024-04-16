@@ -15,6 +15,8 @@
 #include "audio.h"
 #include "code_variables.h"
 
+#include "objects/act_balloon/act_balloon.h"
+
 #define THIS ((Fuusen*)thisx)
 
 void aFSN_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -36,9 +38,6 @@ ActorProfile Fuusen_Profile = {
     /* */ aFSN_actor_draw,
     /* */ NULL,
 };
-
-extern BaseAnimationR cKF_ba_r_act_balloon;
-extern BaseSkeletonR cKF_bs_r_act_balloon;
 
 void aFSN_actor_ct(Actor* thisx, Game_Play* game_play) {
     static xyz_t Init_Size = { 0.01f, 0.01f, 0.01f };
