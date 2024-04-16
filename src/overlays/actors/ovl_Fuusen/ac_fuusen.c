@@ -28,7 +28,7 @@ ActorProfile Fuusen_Profile = {
     /* */ ACTOR_PART_7,
     /* */ ACTOR_FLAG_10,
     /* */ 0x0000,
-    /* */ OBJECT_400,
+    /* */ OBJECT_ACT_BALLOON,
     /* */ sizeof(Fuusen),
     /* */ aFSN_actor_ct,
     /* */ aFSN_actor_dt,
