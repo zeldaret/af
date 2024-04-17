@@ -1137,10 +1137,6 @@ D_60000C0 = 0x060000C0;
 
 D_60000B0 = 0x060000B0;
 
-// ovl_Ball
-
-D_6000708 = 0x06000708;
-
 // ovl_Haniwa
 
 D_60018AC = 0x060018AC;
@@ -4933,11 +4929,6 @@ D_6000020 = 0x06000020;
 D_6000CF0 = 0x06000CF0;
 D_6000E50 = 0x06000E50;
 
-// ovl_Bee
-
-cKF_ba_r_act_bee = 0x060008E4;
-cKF_bs_r_act_bee = 0x06000928;
-
 // ovl__00954D30
 
 D_6000000 = 0x06000000;
@@ -5558,8 +5549,6 @@ D_6000D50 = 0x06000D50;
 
 present_DL_mode = 0x04009580;
 present_DL_vtx = 0x04009620;
-cKF_ba_r_act_balloon = 0x06000F44;
-cKF_bs_r_act_balloon = 0x06000F88;
 
 // ovl__0096E8E0
 
