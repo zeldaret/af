@@ -1210,6 +1210,19 @@ tol_hata_01_evw_anime_1 = 0x60003D8; // segment:tol_hata_01 rom:0x11303D8
 tol_hata_01_evw_anime_2 = 0x60003E8; // segment:tol_hata_01 rom:0x11303E8
 tol_hata_01_evw_anime = 0x60003F0; // segment:tol_hata_01 rom:0x11303F0
 
+act_bee_v = 0x6000000; // segment:act_bee rom:0x11F4000 size:0x3A0
+act_bee_C_model = 0x60003A0; // segment:act_bee rom:0x11F43A0
+act_bee_B_model = 0x60004B8; // segment:act_bee rom:0x11F44B8
+act_bee_A_model = 0x60005B0; // segment:act_bee rom:0x11F45B0
+act_bee_tex_txt = 0x60006A8; // segment:act_bee rom:0x11F46A8
+cKF_ckcb_r_act_bee_tbl = 0x60008A8; // segment:act_bee rom:0x11F48A8
+cKF_kn_act_bee_tbl = 0x60008AC; // segment:act_bee rom:0x11F48AC
+cKF_c_act_bee_tbl = 0x60008B0; // segment:act_bee rom:0x11F48B0
+cKF_ds_act_bee_tbl = 0x60008CC; // segment:act_bee rom:0x11F48CC
+cKF_ba_r_act_bee = 0x60008E4; // segment:act_bee rom:0x11F48E4
+cKF_je_r_act_bee_tbl = 0x60008F8; // segment:act_bee rom:0x11F48F8
+cKF_bs_r_act_bee = 0x6000928; // segment:act_bee rom:0x11F4928
+
 act_balloon_v = 0x6000000; // segment:act_balloon rom:0x11F5000 size:0x340
 act_balloon_head_model = 0x6000340; // segment:act_balloon rom:0x11F5340
 act_balloon_wireB_model = 0x6000450; // segment:act_balloon rom:0x11F5450

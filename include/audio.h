@@ -32,7 +32,7 @@ void sAdo_MessageSpeed(u8 speed);
 u8 sAdo_MessageSpeedGet(void);
 void sAdo_SysLevStart(u8 id);
 void sAdo_SysLevStop(u8 id);
-void sAdo_OngenPos(s32 arg0, u8 arg1, struct xyz_t* pos);
+void sAdo_OngenPos(uintptr_t arg0, u8 arg1, struct xyz_t* pos);
 void sAdo_OngenTrgStart(u16 id, struct xyz_t* pos);
 void sAdo_SetOutMode(u8 mode);
 void sAdo_SetVoiceMode(u8 mode);

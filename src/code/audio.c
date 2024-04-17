@@ -140,7 +140,7 @@ void sAdo_SysLevStop(u8 id) {
     Na_SysLevStop(id);
 }
 
-void sAdo_OngenPos(s32 arg0, u8 arg1, xyz_t* pos) {
+void sAdo_OngenPos(uintptr_t arg0, u8 arg1, xyz_t* pos) {
     f32 distanceVal;
     u16 angleVal;
 

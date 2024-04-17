@@ -6750,15 +6750,33 @@
     align: 0x1000
   - [0x11F3050]
 
-  - name: object_011F4000
-    type: bin # code
+  - name: act_bee
+    dir: objects/act_bee
+    type: code
     start: 0x11F4000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x11F4000, data, assets/objects/object_011F4000/object_011F4000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, act_bee]
+      - start: 0x11F4000
+        type: .data
+        name: act_bee
+        subsegments:
+          - [0x11F4000, vtx, act_bee_v]
+          - [0x11F43A0, af_gfx, act_bee_C_model]
+          - [0x11F44B8, af_gfx, act_bee_B_model]
+          - [0x11F45B0, af_gfx, act_bee_A_model]
+          - [0x11F46A8, i4, act_bee_tex_txt, 32, 32]
+          - [0x11F48A8, ckf_ckcb, cKF_ckcb_r_act_bee_tbl]
+          - [0x11F48AC, ckf_kn, cKF_kn_act_bee_tbl]
+          - [0x11F48B0, ckf_c, cKF_c_act_bee_tbl]
+          - [0x11F48CC, ckf_ds, cKF_ds_act_bee_tbl]
+          - [0x11F48E4, ckf_ba, cKF_ba_r_act_bee]
+          - [0x11F48F8, ckf_je, cKF_je_r_act_bee_tbl]
+          - [0x11F4928, ckf_bs, cKF_bs_r_act_bee]
   - [0x11F4930]
 
   - name: act_balloon

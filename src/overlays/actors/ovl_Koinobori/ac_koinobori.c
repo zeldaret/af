@@ -97,7 +97,7 @@ void aKOI_actor_move(Actor* thisx, Game_Play* game_play) {
     gSegments[6] = OS_K0_TO_PHYSICAL(common_data.clip.unk_08C->unk_AC(0x27));
     cKF_SkeletonInfo_R_play(&this->skeletonInfo);
     this->unk2A0(this, game_play);
-    sAdo_OngenPos((u32)this, 0x35, &this->actor.world.pos);
+    sAdo_OngenPos((uintptr_t)this, 0x35, &this->actor.world.pos);
 }
 
 void aKOI_actor_init(Actor* thisx, Game_Play* game_play) {
