@@ -20294,13 +20294,13 @@ obj_e_koinobori_b_pal = 0x80A93AD4; //
 
 aBEE_actor_ct = 0x80A93CC0; // type:func
 func_80A93DD0_jp = 0x80A93DD0; // type:func
-func_80A93DE0_jp = 0x80A93DE0; // type:func
+aBEE_appear_init = 0x80A93DE0; // type:func
 func_80A93E38_jp = 0x80A93E38; // type:func
-func_80A93E48_jp = 0x80A93E48; // type:func
-func_80A93E6C_jp = 0x80A93E6C; // type:func
+aBEE_disappear_init = 0x80A93E48; // type:func
+aBEE_appear = 0x80A93E6C; // type:func
 func_80A93EFC_jp = 0x80A93EFC; // type:func
-func_80A94408_jp = 0x80A94408; // type:func
-func_80A94450_jp = 0x80A94450; // type:func
+aBEE_disappear = 0x80A94408; // type:func
+aBEE_setupAction = 0x80A94450; // type:func
 func_80A9449C_jp = 0x80A9449C; // type:func
 aBEE_actor_move = 0x80A94528; // type:func
 aBEE_actor_draw = 0x80A94788; // type:func
@@ -20308,12 +20308,10 @@ aBEE_actor_draw = 0x80A94788; // type:func
 // .data
 
 Bee_Profile = 0x80A94950; //
-D_80A94974_jp = 0x80A94974; //
-D_80A94980_jp = 0x80A94980; //
-D_80A9498C_jp = 0x80A9498C; //
-D_80A94998_jp = 0x80A94998; //
-D_80A949A4_jp = 0x80A949A4; //
-D_80A949B0_jp = 0x80A949B0; //
+InitSize = 0x80A94974; //
+Size_data = 0x80A94980; //
+SizeFraction = 0x80A949A4; //
+SizeStep = 0x80A949B0; //
 
 // .rodata
 
@@ -21601,8 +21599,6 @@ birth_pos_random_data = 0x80AAE580; // type:f32
 balloon_prim_data = 0x80AAE5E0; // type:u8
 balloon_env_data = 0x80AAE5F4; // type:u8
 senkou_check_data = 0x80AAE608; // type:s16
-init_proc = 0x80AAE614; //
-act_proc = 0x80AAE624; //
 offset0 = 0x80AAE634; //
 
 // .rodata

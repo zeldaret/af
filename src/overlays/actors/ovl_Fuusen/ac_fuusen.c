@@ -41,10 +41,9 @@ ActorProfile Fuusen_Profile = {
 };
 
 void aFSN_actor_ct(Actor* thisx, Game_Play* game_play) {
-    static xyz_t Init_Size = { 0.01f, 0.01f, 0.01f };
     Fuusen* this = THIS;
     SkeletonInfoR* skeletonInfo = &this->skeletonInfo;
-    xyz_t size = Init_Size;
+    xyz_t Init_Size = { 0.01f, 0.01f, 0.01f };
     f32 balloonGroundY = mCoBG_GetBalloonGroundY(&this->actor.world.pos);
 
     this->escapeTimer = 1000;
@@ -55,7 +54,7 @@ void aFSN_actor_ct(Actor* thisx, Game_Play* game_play) {
     this->actor.shape.drawShadow = 0;
     cKF_SkeletonInfo_R_play(skeletonInfo);
     skeletonInfo->frameControl.speed = 1.0f;
-    xyz_t_move(&this->actor.scale, &size);
+    xyz_t_move(&this->actor.scale, &Init_Size);
     this->actor.world.pos.y = balloonGroundY + 200.0f;
     this->heightOffset = 110.0f;
     this->segment = game_play->objectExchangeBank.status[this->actor.unk_026].segment;

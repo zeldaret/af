@@ -17,6 +17,7 @@ struct FurnitureActor;
 struct WeatherClip;
 struct ObjectExchangeBank;
 struct xyz_t;
+struct Clip_unk_07C_unk_0_arg0;
 
 typedef UNK_RET (*Clip_unk_040_unk_04)(struct ActorOverlay*, const u8*, size_t, s32);
 typedef UNK_RET (*Clip_unk_040_unk_08)(void);
@@ -97,9 +98,10 @@ typedef struct Clip_unk_074 {
     /* 0x38 */ s32 unk_38;
 } Clip_unk_074; // size >= 0x8
 
+typedef UNK_RET (*Clip_unk_07C_unk_0)(struct Clip_unk_07C_unk_0_arg0*, UNK_TYPE);
 typedef void (*Clip_unk_07C_unk_4)(struct ObjectExchangeBank*);
 typedef struct Clip_unk_07C {
-    /* 0x00 */ s8 unk_0[0x4];
+    /* 0x00 */ Clip_unk_07C_unk_0 unk_0;
     /* 0x04 */ Clip_unk_07C_unk_4 unk_4;
 } Clip_unk_07C; // size >= 0x8
 typedef void (*Clip_unk_080_unk_24)(void);

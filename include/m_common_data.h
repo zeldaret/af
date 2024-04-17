@@ -165,7 +165,7 @@ typedef struct CommonData {
     /* 0x109F8 */ u8 unk109F8;
     /* 0x109FC */ s8 unk109F9[0x3F];
     /* 0x10A38 */ s8 beeStingFlag;
-    /* 0x10A39 */ UNK_TYPE1 unk_10A39[0x1];
+    /* 0x10A39 */ s8 unk_10A39;
     /* 0x10A3A */ u8 gokiShockedFlag;
     /* 0x10A3B */ UNK_TYPE1 unk_10A3B[0x1];
     /* 0x10A3C */ UNK_TYPE1 unk_10A3C[0x2C];

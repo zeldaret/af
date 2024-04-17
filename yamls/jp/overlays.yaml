@@ -15212,7 +15212,7 @@
     bss_size: 0x0
     subsegments:
       - [0x953F30, c, overlays/actors/ovl_Bee/ac_bee]
-      - [0x954BC0, data, overlays/actors/ovl_Bee/ac_bee]
+      - [0x954BC0, .data, overlays/actors/ovl_Bee/ac_bee]
       - [0x954C30, .rodata, overlays/actors/ovl_Bee/ac_bee]
   - name: ovl_Bee_reloc
     type: code
