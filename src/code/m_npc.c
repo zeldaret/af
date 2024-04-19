@@ -5,7 +5,7 @@
 #include "m_time.h"
 #include "m_field_info.h"
 #include "m_mail_check.h"
-#include "6E30B0.h"
+#include "6E3240.h"
 #include "m_string.h"
 #include "m_handbill.h"
 #include "m_std_dma.h"
