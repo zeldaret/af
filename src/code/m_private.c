@@ -6,7 +6,7 @@
 #include "m_player_lib.h"
 #include "6E2300.h"
 #include "m_field_info.h"
-#include "6E30B0.h"
+#include "6E3240.h"
 #include "69CB30.h"
 #include "m_handbill.h"
 #include "m_house.h"

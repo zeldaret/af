@@ -13,7 +13,7 @@
 #include "m_player_lib.h"
 #include "m_std_dma.h"
 #include "m_scene_table.h"
-#include "6E30B0.h"
+#include "m_scene_ftr.h"
 #include "m_player_lib.h"
 #include "overlays/actors/player_actor/m_player.h"
 
