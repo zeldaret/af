@@ -183,7 +183,7 @@ void aAp_StartFlyMove(Airplane* this, Game_Play* game_play) {
         this->xRot = this->speed * -(60.0f / 7.0f) + 30.0f;
         this->zRot = 0.0f;
         this->ySpeed = 0.0f;
-        func_800B2414_jp(game_play);
+        mPlib_request_main_wait_type3(game_play);
     }
 }
 
@@ -304,11 +304,11 @@ void aAp_CommonHandle(Actor* actor, Airplane* this, Game_Play* game_play) {
 void aAp_ZbuttonChangeStatus(Airplane* this, Game_Play* game_play) {
     if (chkButton(Z_TRIG)) {
         if (this->state == Ap_STATE_PLAYER_CATCH) {
-            func_800B23DC_jp(game_play);
+            mPlib_request_main_refuse_type1(game_play);
             this->state = Ap_STATE_START_FLY_MOVE;
         }
     } else if (this->state == Ap_STATE_START_FLY_MOVE) {
-        func_800B2414_jp(game_play);
+        mPlib_request_main_wait_type3(game_play);
         this->state = Ap_STATE_PLAYER_CATCH;
     }
 }
