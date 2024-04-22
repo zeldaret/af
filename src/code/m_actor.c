@@ -198,10 +198,11 @@ void Actor_ct(Actor* actor, Game_Play* game_play) {
     }
 }
 
-#ifdef NON_MATCHING
 void Actor_dt(Actor* actor, Game_Play* game_play) {
-    ObjectStatus* temp_v0_6;
-    s32 new_var;
+    Actor* child;
+    Actor* parent;
+    ObjectExchangeBank* objBank;
+    ObjectStatus* objStatus;
 
     if (actor->save != NULL) {
         actor->save(actor, game_play);
@@ -213,40 +214,35 @@ void Actor_dt(Actor* actor, Game_Play* game_play) {
         actor->dt = NULL;
     }
 
-    if ((actor->child != NULL) && (actor == actor->child->parent)) {
-        actor->child->parent = NULL;
+    child = actor->child;
+    if ((child != NULL) && (actor == child->parent)) {
+        child->parent = NULL;
     }
 
-    if ((actor->parent != NULL) && (actor == actor->parent->child)) {
-        actor->parent->child = NULL;
+    parent = actor->parent;
+    if ((parent != NULL) && (actor == parent->child)) {
+        parent->child = NULL;
     }
 
-    temp_v0_6 = game_play->objectExchangeBank.status;
-    if (0) {}
-
+    objBank = &game_play->objectExchangeBank;
     switch ((actor->fgName & 0xF000) >> 0xC) {
         case 0xD:
         case 0xE:
-            common_data.clip.unk_040->unk_F0(temp_v0_6, actor);
+            common_data.clip.unk_040->unk_F0(game_play->objectExchangeBank.status, actor);
             break;
-
         default:
-            new_var = game_play->objectExchangeBank.num;
-
-            if (actor->unk_026 >= new_var) {
-                temp_v0_6 = &temp_v0_6[(void)0, actor->unk_026];
-                if (temp_v0_6->unk50 > 0) {
+            objStatus = objBank->status;
+            if (actor->unk_026 >= objBank->unk17FC) {
+                objStatus = &objBank->status[actor->unk_026];
+                if (objStatus->unk50 > 0) {
                     actor->unk_026 = -1;
-                    temp_v0_6->unk50--;
+                    objStatus->unk50--;
                 }
             }
+
             break;
     }
 }
-#else
-void Actor_dt(Actor* actor, struct Game_Play* game_play);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/Actor_dt.s")
-#endif
 
 void Actor_draw(Game_Play* game_play, Actor* actor) {
     FaultClient faultClient;
@@ -613,7 +609,7 @@ void actor_free_check(ActorOverlay* overlayEntry, u16 fgName) {
     }
 }
 
-void Actor_get_overlay_area(ActorOverlay* overlayEntry, const struct_801161E8_jp* arg1 UNUSED, size_t overlaySize) {
+void Actor_get_overlay_area(ActorOverlay* overlayEntry, const u8* arg1 UNUSED, size_t overlaySize) {
     if (overlayEntry->allocType & ALLOCTYPE_PERMANENT) {
         overlayEntry->loadedRamAddr = zelda_malloc_r(overlaySize);
     } else {
@@ -621,8 +617,8 @@ void Actor_get_overlay_area(ActorOverlay* overlayEntry, const struct_801161E8_jp
     }
 }
 
-s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const struct_801161E8_jp* arg2,
-                     size_t overlaySize, u16 fgName) {
+s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const u8* arg2, size_t overlaySize,
+                     u16 fgName) {
     if (overlayEntry->vramStart == NULL) {
         *profileP = overlayEntry->profile;
     } else {
@@ -733,8 +729,8 @@ s32 Actor_data_bank_regist_check(s32* arg0, ActorProfile* profile, ActorOverlay*
     return var_v1;
 }
 
-s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay* overlayEntry,
-                             const struct_801161E8_jp* arg3, u16 fgName) {
+s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay* overlayEntry, const u8* arg3,
+                             u16 fgName) {
     Clip_unk_040_unk_14_arg0 sp24;
 
     switch (ACTOR_FGNAME_GET_F000(fgName)) {
@@ -799,8 +795,7 @@ void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* o
     actor->fgName = fgName;
 }
 
-extern const struct_801161E8_jp RO_801161E8_jp;
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_actor/RO_801161E8_jp.s")
+const u8 RO_801161E8_jp[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
 
 Actor* Actor_info_make_actor(ActorInfo* actorInfo, Game_Play* game_play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX,
                              s16 rotY, s16 rotZ, s8 arg9, s8 argA, s16 argB, u16 fgName, s16 params, s8 argE,
@@ -815,13 +810,15 @@ Actor* Actor_info_make_actor(ActorInfo* actorInfo, Game_Play* game_play, s16 act
         return NULL;
     }
 
-    if (func_80057940_jp(&profile, temp_s0, &RO_801161E8_jp, size, *new_var) == 0) {
+    if (func_80057940_jp(&profile, temp_s0, RO_801161E8_jp, size, *new_var) == 0) {
         return NULL;
     }
+
     if (Actor_data_bank_regist_check(&argF, profile, temp_s0, game_play, fgName) == 0) {
         return NULL;
     }
-    if (Actor_malloc_actor_class(&sp68, profile, temp_s0, &RO_801161E8_jp, fgName) == 0) {
+
+    if (Actor_malloc_actor_class(&sp68, profile, temp_s0, RO_801161E8_jp, fgName) == 0) {
         return NULL;
     }
 

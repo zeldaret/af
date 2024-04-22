@@ -3,14 +3,15 @@
 
 #include "ultra64.h"
 #include "m_collision_obj.h"
+#include "m_collision_bg.h"
 #include "z64math.h"
 #include "unk.h"
+#include "m_collision_bg.h"
 
 struct Actor;
 struct Game_Play;
 struct ActorEntry;
 struct ActorOverlay;
-struct struct_801161E8_jp;
 struct LightsN;
 struct GraphicsContext;
 
@@ -111,8 +112,9 @@ typedef struct Actor {
     /* 0x074 */ f32 speed;
     /* 0x078 */ f32 gravity;
     /* 0x07C */ f32 terminalVelocity;
-    /* 0x080 */ UNK_TYPE1 unk_080[0x34];
-    /* 0x0B4 */ UNK_TYPE1 unk_0B4[0x1];
+    /* 0x080 */ UNK_TYPE1 unk_080[0x18];
+    /* 0x098 */ mCoBG_CheckResult colResult;
+    /* 0x09C */ UNK_TYPE1 unk_09C[0x19];
     /* 0x0B5 */ u8 isDrawn;
     /* 0x0B6 */ s16 yawTowardsPlayer;
     /* 0x0B8 */ f32 xyzDistToPlayerSq;
@@ -249,7 +251,7 @@ void Actor_info_dt(ActorInfo* actorInfo, struct Game_Play* game_play);
 void Actor_info_call_actor(struct Game_Play* game_play, ActorInfo* actorInfo);
 void Actor_info_draw_actor(struct Game_Play* game_play, ActorInfo* actorInfo);
 void Actor_free_overlay_area(struct ActorOverlay* overlayEntry);
-void Actor_get_overlay_area(struct ActorOverlay* overlayEntry, const struct struct_801161E8_jp* arg1, size_t overlaySize);
+void Actor_get_overlay_area(struct ActorOverlay* overlayEntry, const u8*, size_t overlaySize);
 void Actor_init_actor_class(Actor* actor, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct Game_Play* game_play, s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 argB, s8 argC, s16 argD, u16 fgName, s16 params);
 Actor* Actor_info_make_actor(ActorInfo* actorInfo, struct Game_Play* game_play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 arg9, s8 argA, s16 argB, u16 fgName, s16 params, s8 argE, s32 argF);
 Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, struct Game_Play* game_play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s16 argA, u16 fgName, s16 params, s32 argD);

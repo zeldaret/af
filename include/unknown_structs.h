@@ -7,10 +7,6 @@
 #include "unk.h"
 #include "other_types.h"
 
-typedef struct struct_801161E8_jp {
-    /* 0x0 */ UNK_TYPE1 unk_0[0x8];
-} struct_801161E8_jp; // size <= 0x8
-
 typedef struct Clip_unk_040_unk_14_arg0 {
     /* 0x00 */ s16 unk_00;
     /* 0x00 */ s16 unk_02;

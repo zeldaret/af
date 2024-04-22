@@ -5,6 +5,7 @@
 #include "lb_rtc.h"
 #include "m_private_internals.h"
 #include "m_npc_base.h"
+#include "m_actor.h"
 
 typedef struct QuestBase {
     /* 0x00 */ u32 questType:2; /* type, 0 = delivery, 1 = errand, 2 = contest, 3 = none */
@@ -114,8 +115,8 @@ QuestErrand* mQst_GetFirstJobData(void);
 // void func_800BC394_jp();
 s32 mQst_GetRandom(s32);
 // void func_800BC454_jp();
-// void func_800BC528_jp();
-// void func_800BC5D4_jp();
+s32 mQst_CheckSoccerTarget(Actor*);
+void mQst_NextSoccer(Actor*);
 // void func_800BC6B0_jp();
 // void func_800BC724_jp();
 // void func_800BC830_jp();

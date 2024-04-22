@@ -5418,28 +5418,72 @@
     align: 0x1000
   - [0x10FF1A0]
 
-  - name: segment_01100000
-    type: bin
+  - name: act_ball_b
+    dir: objects/act_ball_b
+    type: code
     start: 0x1100000
-    # vram:
+    vram: 0x06000000
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, act_ball_b]
+      - start: 0x1100000
+        type: .data
+        name: act_ball_b
+        subsegments:
+          - [0x1100000, vtx, act_ball_b_v]
+          - [0x11001A0, af_gfx, act_ball_b_modelT]
+          - [0x11001A8, af_gfx, act_ball_b_model]
+          - [0x1100318, af_palette, act_ball_b_pal]
+          - [0x1100338, ci4, act_ball_b_1_tex, 16, 16, act_ball_b_pal]
   - [0x11003C0]
 
-  - name: segment_01101000
-    type: bin
+  - name: act_ball_d
+    dir: objects/act_ball_d
+    type: code
     start: 0x1101000
-    # vram:
+    vram: 0x06000000
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, act_ball_d]
+      - start: 0x1101000
+        type: .data
+        name: act_ball_d
+        subsegments:
+          - [0x1101000, vtx, act_ball_d_v]
+          - [0x1101360, af_gfx, act_ball_d_modelT]
+          - [0x1101368, af_gfx, act_ball_d_model]
+          - [0x11015C8, af_palette, act_ball_d_pal]
+          - [0x11015E8, ci4, act_ball_d_1_tex, 16, 16, act_ball_d_pal]
+          - [0x1101668, ci4, act_ball_d_2_tex, 16, 16, act_ball_d_pal]
+          - [0x11016E8, ci4, act_ball_d_3_tex, 16, 16, act_ball_d_pal]
   - [0x1101770]
 
-  - name: segment_01102000
-    type: bin
+  - name: act_ball_s
+    dir: objects/act_ball_s
+    type: code
     start: 0x1102000
-    # vram:
+    vram: 0x06000000
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, act_ball_s]
+      - start: 0x1102000
+        type: .data
+        name: act_ball_s
+        subsegments:
+          - [0x1102000, vtx, act_ball_s_v]
+          - [0x1102700, af_gfx, act_ball_s_modelT]
+          - [0x1102708, af_gfx, act_ball_s_model]
+          - [0x11028B8, af_palette, act_ball_s_pal]
+          - [0x11028D8, ci4, act_ball_s_5_tex, 16, 32, act_ball_s_pal]
   - [0x11029E0]
 
   - name: object_01103000
@@ -6706,26 +6750,63 @@
     align: 0x1000
   - [0x11F3050]
 
-  - name: object_011F4000
-    type: bin # code
+  - name: act_bee
+    dir: objects/act_bee
+    type: code
     start: 0x11F4000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x11F4000, data, assets/objects/object_011F4000/object_011F4000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, act_bee]
+      - start: 0x11F4000
+        type: .data
+        name: act_bee
+        subsegments:
+          - [0x11F4000, vtx, act_bee_v]
+          - [0x11F43A0, af_gfx, act_bee_C_model]
+          - [0x11F44B8, af_gfx, act_bee_B_model]
+          - [0x11F45B0, af_gfx, act_bee_A_model]
+          - [0x11F46A8, i4, act_bee_tex_txt, 32, 32]
+          - [0x11F48A8, ckf_ckcb, cKF_ckcb_r_act_bee_tbl]
+          - [0x11F48AC, ckf_kn, cKF_kn_act_bee_tbl]
+          - [0x11F48B0, ckf_c, cKF_c_act_bee_tbl]
+          - [0x11F48CC, ckf_ds, cKF_ds_act_bee_tbl]
+          - [0x11F48E4, ckf_ba, cKF_ba_r_act_bee]
+          - [0x11F48F8, ckf_je, cKF_je_r_act_bee_tbl]
+          - [0x11F4928, ckf_bs, cKF_bs_r_act_bee]
   - [0x11F4930]
 
-  - name: object_011F5000
-    type: bin # code
+  - name: act_balloon
+    dir: objects/act_balloon
+    type: code
     start: 0x11F5000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x11F5000, data, assets/objects/object_011F5000/object_011F5000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, act_balloon]
+      - start: 0x11F5000
+        type: .data
+        name: act_balloon
+        subsegments:
+          - [0x11F5000, vtx, act_balloon_v]
+          - [0x11F5340, af_gfx, act_balloon_head_model]
+          - [0x11F5450, af_gfx, act_balloon_wireB_model]
+          - [0x11F5560, af_gfx, act_balloon_wireA_model]
+          - [0x11F55F8, i4, act_balloon_wire_tex_txt, 16, 16]
+          - [0x11F5678, ia16, act_balloon_head_tex_rgb_ia16, 32, 32]
+          - [0x11F5E78, ckf_ckcb, cKF_ckcb_r_act_balloon_tbl]
+          - [0x11F5E7C, ckf_kn, cKF_kn_act_balloon_tbl]
+          - [0x11F5E88, ckf_c, cKF_c_act_balloon_tbl]
+          - [0x11F5E9C, ckf_ds, cKF_ds_act_balloon_tbl]
+          - [0x11F5F44, ckf_ba, cKF_ba_r_act_balloon]
+          - [0x11F5F58, ckf_je, cKF_je_r_act_balloon_tbl]
+          - [0x11F5F88, ckf_bs, cKF_bs_r_act_balloon]
   - [0x11F5F90]
 
   - name: segment_011F6000

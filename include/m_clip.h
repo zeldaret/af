@@ -8,6 +8,7 @@
 struct Actor;
 struct ActorOverlay;
 struct Clip_unk_040_unk_14_arg0;
+struct Clip_unk_07C_unk_0_arg0;
 struct FurnitureActor;
 struct Game_Play;
 struct ObjectExchangeBank;
@@ -19,10 +20,11 @@ struct StructureActor;
 struct StructureClip;
 struct ToolClip;
 struct WeatherClip;
+struct xyz_t;
 
-typedef UNK_RET (*Clip_unk_040_unk_04)(struct ActorOverlay*, const struct struct_801161E8_jp*, size_t, s32);
+typedef UNK_RET (*Clip_unk_040_unk_04)(struct ActorOverlay*, const u8*, size_t, s32);
 typedef UNK_RET (*Clip_unk_040_unk_08)(void);
-typedef UNK_PTR (*Clip_unk_040_unk_0C)(size_t, const struct struct_801161E8_jp*, s32);
+typedef UNK_PTR (*Clip_unk_040_unk_0C)(size_t, const u8*, s32);
 typedef UNK_RET (*Clip_unk_040_unk_10)(struct Actor*);
 typedef UNK_RET (*Clip_unk_040_unk_14)(struct Clip_unk_040_unk_14_arg0*, u16);
 typedef UNK_RET (*Clip_unk_040_unk_BC)(struct Actor*, struct Game_Play*);
@@ -88,15 +90,21 @@ typedef struct Clip_unk_070 {
 
 typedef UNK_RET (*Clip_unk_074_unk_00)(UNK_TYPE);
 typedef void (*Clip_unk_074_unk_04)(struct Game_Play* game_play, struct ShadowData* shadowData, s16 unk2);
+typedef void (*Clip_unk_074_unk_30)(UNK_TYPE, UNK_TYPE, UNK_TYPE, UNK_TYPE);
 
 typedef struct Clip_unk_074 {
     /* 0x00 */ Clip_unk_074_unk_00 unk_00;
     /* 0x04 */ Clip_unk_074_unk_04 unk_04;
+    /* 0x08 */ UNK_TYPE1 unk_08[0x28];
+    /* 0x30 */ Clip_unk_074_unk_30 unk_30;
+    /* 0x34 */ UNK_TYPE1 unk_34[0x4];
+    /* 0x38 */ s32 unk_38;
 } Clip_unk_074; // size >= 0x8
 
+typedef UNK_RET (*Clip_unk_07C_unk_0)(struct Clip_unk_07C_unk_0_arg0*, UNK_TYPE);
 typedef void (*Clip_unk_07C_unk_4)(struct ObjectExchangeBank*);
 typedef struct Clip_unk_07C {
-    /* 0x00 */ s8 unk_0[0x4];
+    /* 0x00 */ Clip_unk_07C_unk_0 unk_0;
     /* 0x04 */ Clip_unk_07C_unk_4 unk_4;
 } Clip_unk_07C; // size >= 0x8
 typedef void (*Clip_unk_080_unk_24)(void);
@@ -162,9 +170,11 @@ typedef struct StructureClip {
     /* 0xC10 */ s32 unk_C10;
 } StructureClip; // size = 0xC14
 
+typedef void (*Clip_unk_090_unk_00)(s8, struct xyz_t, s32, s32, struct Game_Play*, s32, s32, s32);
 typedef void (*Clip_unk_090_unk_30)(Color_RGBA8, s16,s16,s32);
 typedef struct Clip_unk_090 {
-    /* 0x00 */ UNK_TYPE1 unk_00[0x30];
+    /* 0x00 */ Clip_unk_090_unk_00 unk_00;
+    /* 0x04 */ UNK_TYPE1 unk_04[0x2C];
     /* 0x30 */ Clip_unk_090_unk_30 unk_30;
 } Clip_unk_090; // size >= 0x34
 
@@ -182,9 +192,12 @@ typedef struct Clip_unk_0A4 {
 } Clip_unk_0A4;
 
 typedef UNK_RET (*Clip_unk_0A8_unk_4)(void*);
+typedef void (*Clip_unk_0A8_unk_C)(struct xyz_t*, f32, UNK_TYPE);
 typedef struct Clip_unk_0A8 {
     /* 0x00 */ UNK_TYPE1 unk_00[0x04];
-    /* 0x04 */ Clip_unk_0A8_unk_4 unk_4;
+    /* 0x04 */ Clip_unk_0A8_unk_4 unk_04;
+    /* 0x08 */ UNK_TYPE1 unk_08[0x04];
+    /* 0x0C */ Clip_unk_0A8_unk_C unk_0C;
 } Clip_unk_0A8; // size >= 0x8
 
 typedef void (*Clip_unk_0B4_unk_4)(void);

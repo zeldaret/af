@@ -1723,9 +1723,9 @@
     bss_size: 0x10
     subsegments:
       - [0x85D660, c, overlays/actors/ovl_Ball/ac_ball]
-      - [0x85F500, data, overlays/actors/ovl_Ball/ac_ball]
+      - [0x85F500, .data, overlays/actors/ovl_Ball/ac_ball]
       - [0x85F550, .rodata, overlays/actors/ovl_Ball/ac_ball]
-      - { start: 0x85F5D0, type: bss, vram: 0x8096A980, name: overlays/actors/ovl_Ball/ac_ball }
+      - { start: 0x85F5D0, type: .bss, vram: 0x8096A980, name: overlays/actors/ovl_Ball/ac_ball }
   - name: ovl_Ball_reloc
     type: code
     start: 0x85F5D0
@@ -15212,7 +15212,7 @@
     bss_size: 0x0
     subsegments:
       - [0x953F30, c, overlays/actors/ovl_Bee/ac_bee]
-      - [0x954BC0, data, overlays/actors/ovl_Bee/ac_bee]
+      - [0x954BC0, .data, overlays/actors/ovl_Bee/ac_bee]
       - [0x954C30, .rodata, overlays/actors/ovl_Bee/ac_bee]
   - name: ovl_Bee_reloc
     type: code
@@ -17067,7 +17067,7 @@
     bss_size: 0x0
     subsegments:
       - [0x96D250, c, overlays/actors/ovl_Fuusen/ac_fuusen]
-      - [0x96E620, data, overlays/actors/ovl_Fuusen/ac_fuusen]
+      - [0x96E620, .data, overlays/actors/ovl_Fuusen/ac_fuusen]
       - [0x96E7B0, .rodata, overlays/actors/ovl_Fuusen/ac_fuusen]
   - name: ovl_Fuusen_reloc
     type: code

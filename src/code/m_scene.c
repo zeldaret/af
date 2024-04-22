@@ -13,7 +13,7 @@
 #include "m_player_lib.h"
 #include "m_std_dma.h"
 #include "m_scene_table.h"
-#include "6E30B0.h"
+#include "m_scene_ftr.h"
 #include "m_player_lib.h"
 #include "overlays/actors/player_actor/m_player.h"
 
@@ -399,8 +399,8 @@ void mSc_dmacopy_all_exchange_bank(ObjectExchangeBank* exchange) {
         }
     }
     if (common_data.clip.unk_0A8 != NULL) {
-        if (common_data.clip.unk_0A8->unk_4 != NULL) {
-            common_data.clip.unk_0A8->unk_4(exchange);
+        if (common_data.clip.unk_0A8->unk_04 != NULL) {
+            common_data.clip.unk_0A8->unk_04(exchange);
         }
     }
 
