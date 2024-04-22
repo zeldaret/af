@@ -8,6 +8,8 @@
 #include "macros.h"
 #include "m_rcp.h"
 
+#include "objects/glider/glider.h"
+
 #define THIS ((Airplane*)thisx)
 
 void Airplane_Actor_ct(Actor* thisx, Game_Play* game_play);
@@ -54,8 +56,6 @@ void Airplane_Actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
 void Airplane_Actor_dt(Actor* thisx, UNUSED Game_Play* game_play) {
     UNUSED Airplane* this = THIS;
 }
-
-extern Gfx glider_model[];
 
 void Airplane_Actor_draw(Actor* thisx, Game_Play* game_play) {
     Airplane* this = THIS;
