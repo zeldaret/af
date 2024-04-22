@@ -86,7 +86,7 @@ typedef struct Clip_unk_070 {
 } Clip_unk_070; // size >= 0x10
 
 typedef UNK_RET (*Clip_unk_074_unk_00)(UNK_TYPE);
-typedef void (*Clip_unk_074_unk_04)(struct Game_Play* game_play, struct ShadowData* shadowData, s16 unk2);
+typedef void (*Clip_unk_074_unk_04)(struct Game_Play* game_play, struct ShadowData* shadowData, s32 unk2);
 typedef void (*Clip_unk_074_unk_30)(UNK_TYPE, UNK_TYPE, UNK_TYPE, UNK_TYPE);
 
 typedef struct Clip_unk_074 {
@@ -119,9 +119,9 @@ typedef UNK_RET (*Clip_unk_08C_unk_8)(void);
 typedef UNK_PTR (*Clip_unk_08C_unk_0C)(void);
 typedef UNK_RET (*Clip_unk_08C_unk_10)(struct Actor*);
 typedef void (*Clip_unk_08C_unk_A4)(struct ObjectExchangeBank*);
-typedef UNK_RET (*Clip_unk_08C_unk_A8)(UNK_PTR, UNK_TYPE, u16 name, struct Actor* actor);
-typedef UNK_RET (*Clip_unk_08C_unk_AC)(u16);
-typedef UNK_RET (*Clip_unk_08C_unk_450)(u16);
+typedef UNK_RET (*Clip_unk_08C_unk_A8)(UNK_PTR, UNK_TYPE, s16 name, struct Actor* actor);
+typedef UNK_RET (*Clip_unk_08C_unk_AC)(s16);
+typedef u16* (*Clip_unk_08C_unk_450)(s16);
 
 typedef struct Clip_unk_08C {
     /* 0x00 */ UNK_TYPE1 unk_00[0x4];

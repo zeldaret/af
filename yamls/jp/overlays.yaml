@@ -14917,7 +14917,7 @@
     bss_size: 0x0
     subsegments:
       - [0x94F570, c, overlays/actors/ovl_Kago/ac_kago]
-      - [0x94F960, data, overlays/actors/ovl_Kago/ac_kago]
+      - [0x94F960, .data, overlays/actors/ovl_Kago/ac_kago]
   - name: ovl_Kago_reloc
     type: code
     start: 0x94F9C0
