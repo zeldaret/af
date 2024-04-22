@@ -1703,7 +1703,7 @@
     bss_size: 0x0
     subsegments:
       - [0x85C570, c, overlays/actors/ovl_Airplane/ac_airplane]
-      - [0x85D360, data, overlays/actors/ovl_Airplane/ac_airplane]
+      - [0x85D360, .data, overlays/actors/ovl_Airplane/ac_airplane]
       - [0x85D440, .rodata, overlays/actors/ovl_Airplane/ac_airplane]
   - name: ovl_Airplane_reloc
     type: code
