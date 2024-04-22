@@ -4864,8 +4864,6 @@ D_6001284 = 0x06001284;
 
 obj_e_kago_shadow_v = 0x06001628;
 obj_e_kago_shadow_model = 0x060016F8;
-kago_r_DL_model = 0x06016EA8;
-kago_w_DL_model = 0x06018EA0;
 
 // ovl__0094FA20
 

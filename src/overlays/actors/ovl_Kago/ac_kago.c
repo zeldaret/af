@@ -9,6 +9,9 @@
 #include "m_rcp.h"
 #include "code_variables.h"
 
+#include "objects/object_00D5E000/obj_e_kago_r/obj_e_kago_r.h"
+#include "objects/object_00D5E000/obj_e_kago_w/obj_e_kago_w.h"
+
 #define THIS ((Kago*)thisx)
 
 void aKAG_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -37,8 +40,8 @@ void aKAG_actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
     Kago* this = THIS;
 
     this->type = this->actor.fgName - 0x5835;
-    this->objectType = this->type + 0x23;
-    this->paletteType = this->type + 0x4C;
+    this->structureType = this->type + 0x23;
+    this->structurePalette = this->type + 0x4C;
     aKAG_setup_action(this, 0);
     aKAG_set_bgOffset(this, 1);
 }
@@ -46,9 +49,9 @@ void aKAG_actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
 void aKAG_actor_dt(Actor* thisx, UNUSED Game_Play* game_play) {
     Kago* this = THIS;
 
-    common_data.clip.unk_08C->unk_A8(&common_data.clip.unk_08C->unk_B0, 8, this->objectType, &this->actor);
-    common_data.clip.unk_08C->unk_A8(&common_data.clip.unk_08C->unk_454, 9, this->paletteType, &this->actor);
-    common_data.clip.unk_08C->unk_A8(&common_data.clip.unk_08C->unk_86C, 8, this->objectType, &this->actor);
+    common_data.clip.unk_08C->unk_A8(&common_data.clip.unk_08C->unk_B0, 8, this->structureType, &this->actor);
+    common_data.clip.unk_08C->unk_A8(&common_data.clip.unk_08C->unk_454, 9, this->structurePalette, &this->actor);
+    common_data.clip.unk_08C->unk_A8(&common_data.clip.unk_08C->unk_86C, 8, this->structureType, &this->actor);
 }
 
 void aKAG_set_bgOffset(Kago* this, s32 id) {
@@ -115,15 +118,12 @@ void aKAG_actor_init(Actor* thisx, Game_Play* game_play) {
     do {                             \
     } while (0)
 
-extern Gfx kago_r_DL_model[];
-extern Gfx kago_w_DL_model[];
-
 void aKAG_actor_draw(Actor* thisx, Game_Play* game_play) {
     static Gfx* model[] = { kago_r_DL_model, kago_w_DL_model };
     GraphicsContext* gfxCtx = game_play->state.gfxCtx;
     Kago* this = THIS;
-    u32 object = common_data.clip.unk_08C->unk_AC(this->objectType);
-    u16* palette = common_data.clip.unk_08C->unk_450(this->paletteType);
+    u32 object = common_data.clip.unk_08C->unk_AC(this->structureType);
+    u16* palette = common_data.clip.unk_08C->unk_450(this->structurePalette);
     Mtx* mtx;
 
     OPEN_DISPS(gfxCtx);
@@ -137,7 +137,7 @@ void aKAG_actor_draw(Actor* thisx, Game_Play* game_play) {
         gSPMatrix(__polyOpa++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
         gSPDisplayList(__polyOpa++, model[this->type]);
         CLOSE_CUSTOM_POLY_OPA();
-        common_data.clip.unk_074->unk_04(game_play, &aKAG_shadow_data, this->objectType);
+        common_data.clip.unk_074->unk_04(game_play, &aKAG_shadow_data, this->structureType);
     }
     CLOSE_DISPS(gfxCtx);
 }

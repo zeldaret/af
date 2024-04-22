@@ -14,8 +14,8 @@ typedef struct Kago {
     /* 0x174 */ UNK_TYPE1 unk_174[0x12C];
     /* 0x2A0 */ KagoActionFunc process;
     /* 0x2A4 */ UNK_TYPE1 unk_2A4[0x4];
-    /* 0x2A8 */ s32 objectType;
-    /* 0x2AC */ s32 paletteType;
+    /* 0x2A8 */ s32 structureType;
+    /* 0x2AC */ s32 structurePalette;
     /* 0x2B0 */ UNK_TYPE1 unk_2B0[0x4];
     /* 0x2B4 */ s32 type;
     /* 0x2B8 */ s32 processNum;
