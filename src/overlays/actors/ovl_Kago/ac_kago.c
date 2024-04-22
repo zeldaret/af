@@ -122,8 +122,8 @@ void aKAG_actor_draw(Actor* thisx, Game_Play* game_play) {
     static Gfx* model[] = { kago_r_DL_model, kago_w_DL_model };
     GraphicsContext* gfxCtx = game_play->state.gfxCtx;
     Kago* this = THIS;
-    s32 object = common_data.clip.unk_08C->unk_AC(this->objectType);
-    s32 palette = common_data.clip.unk_08C->unk_450(this->paletteType);
+    u32 object = common_data.clip.unk_08C->unk_AC(this->objectType);
+    u16* palette = common_data.clip.unk_08C->unk_450(this->paletteType);
     Mtx* mtx;
 
     OPEN_DISPS(gfxCtx);

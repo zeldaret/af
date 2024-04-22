@@ -259,7 +259,7 @@ s32 aTOU_actor_draw_after(Game_Play* game_play, SkeletonInfoR* skeletonInfo UNUS
     Toudai* this = (Toudai*)thisx;
     s32 type;
     s32 object;
-    s32 palette;
+    u16* palette;
     Mtx* mtx;
 
     // LIGHTHOUSE_JOINT_LIGHT
@@ -296,7 +296,7 @@ void aTOU_actor_draw(Actor* thisx, Game_Play* game_play) {
     UNUSED s32 pad2[2];
     Toudai* this = THIS;
     s32 object;
-    s32 palette;
+    u16* palette;
     UNUSED s32 pad3;
     Mtx* mtx;
     xyz_t* worldPosition = &this->actor.world.pos;

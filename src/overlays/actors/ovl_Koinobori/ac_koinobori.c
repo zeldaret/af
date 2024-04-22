@@ -133,7 +133,7 @@ void aKOI_actor_draw(Actor* thisx, Game_Play* game_play) {
     Mtx* mtx;
     UNUSED s32 pad;
     s32 object;
-    s32 palette;
+    u16* palette;
 
     mtx = GRAPH_ALLOC_NO_ALIGN(gfxCtx, this->skeletonInfo.skeleton->unk01 * sizeof(Mtx));
     if (mtx != NULL) {

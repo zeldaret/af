@@ -121,7 +121,7 @@ typedef UNK_RET (*Clip_unk_08C_unk_10)(struct Actor*);
 typedef void (*Clip_unk_08C_unk_A4)(struct ObjectExchangeBank*);
 typedef UNK_RET (*Clip_unk_08C_unk_A8)(UNK_PTR, UNK_TYPE, s16 name, struct Actor* actor);
 typedef UNK_RET (*Clip_unk_08C_unk_AC)(s16);
-typedef UNK_RET (*Clip_unk_08C_unk_450)(s16);
+typedef u16* (*Clip_unk_08C_unk_450)(s16);
 
 typedef struct Clip_unk_08C {
     /* 0x00 */ UNK_TYPE1 unk_00[0x4];
