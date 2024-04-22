@@ -261,7 +261,7 @@ f32 mCoBG_GetBalloonGroundY(xyz_t*);
 // void func_80073800_jp();
 // void func_800738A4_jp();
 // void func_80073970_jp();
-// void func_800739FC_jp();
+void mCoBG_SetPlussOffset(xyz_t, s32, s32);
 // void func_80073C38_jp();
 // void func_80073CC0_jp();
 void mCoBG_SetPluss5PointOffset_file(xyz_t pos, mCoBG_unkStruct2 arg1, char* file, s32 line);

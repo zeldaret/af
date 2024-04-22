@@ -20010,21 +20010,19 @@ D_80A8F298_jp = 0x80A8F298; //
 // .text
 
 aKAG_actor_ct = 0x80A8F2F0; // type:func
-func_80A8F340_jp = 0x80A8F340; // type:func
-func_80A8F3CC_jp = 0x80A8F3CC; // type:func
-func_80A8F418_jp = 0x80A8F418; // type:func
-func_80A8F428_jp = 0x80A8F428; // type:func
-func_80A8F448_jp = 0x80A8F448; // type:func
+aKAG_actor_dt = 0x80A8F340; // type:func
+aKAG_set_bgOffset = 0x80A8F3CC; // type:func
+aKAG_wait = 0x80A8F418; // type:func
+aKAG_setup_action = 0x80A8F428; // type:func
+aKAG_actor_move = 0x80A8F448; // type:func
 aKAG_actor_init = 0x80A8F530; // type:func
 aKAG_actor_draw = 0x80A8F598; // type:func
 
 // .data
 
 Kago_Profile = 0x80A8F6E0; //
-D_80A8F704_jp = 0x80A8F704; //
-D_80A8F714_jp = 0x80A8F714; //
-D_80A8F728_jp = 0x80A8F728; //
-D_80A8F72C_jp = 0x80A8F72C; //
+aKAG_shadow_vtx_fix_flg_table = 0x80A8F704; //
+aKAG_shadow_data = 0x80A8F714; //
 
 // .text
 
