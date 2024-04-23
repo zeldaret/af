@@ -88,12 +88,14 @@ void func_809E7F94_jp(void) {
                             ((uintptr_t)D_809E9874_jp[temp_t1] + SEGMENT_ROM_START(object_00D5D000)) -
                                 (uintptr_t)SEGMENT_VRAM_START(object_00D5D000),
                             364, "../ac_structure_clip.c_inc", 135);
-    DmaMgr_RequestSyncDebug(
-        &B_809FE0B8_jp, ((uintptr_t)test + (uintptr_t)SEGMENT_ROM_START(object_00E00000)) - (uintptr_t)SEGMENT_VRAM_START(object_00E00000),
-        184, "../ac_structure_clip.c_inc", 138);
-    DmaMgr_RequestSyncDebug(
-        &B_809FE3A0_jp, ((uintptr_t)test2 + (uintptr_t)SEGMENT_ROM_START(object_00E00000)) - (uintptr_t)SEGMENT_VRAM_START(object_00E00000),
-        184, "../ac_structure_clip.c_inc", 141);
+    DmaMgr_RequestSyncDebug(&B_809FE0B8_jp,
+                            ((uintptr_t)test + (uintptr_t)SEGMENT_ROM_START(object_00E00000)) -
+                                (uintptr_t)SEGMENT_VRAM_START(object_00E00000),
+                            184, "../ac_structure_clip.c_inc", 138);
+    DmaMgr_RequestSyncDebug(&B_809FE3A0_jp,
+                            ((uintptr_t)test2 + (uintptr_t)SEGMENT_ROM_START(object_00E00000)) -
+                                (uintptr_t)SEGMENT_VRAM_START(object_00E00000),
+                            184, "../ac_structure_clip.c_inc", 141);
 }
 
 void func_809E8118_jp(ObjectExchangeBank* arg0) {
@@ -104,7 +106,7 @@ void func_809E8118_jp(ObjectExchangeBank* arg0) {
     RomOffset vrom;
     size_t size;
     s32 i;
-    
+
     for (i = 0; i < 8; i++, var_s1 += 0x2E00, ptr++) {
         if (ptr->unk_03 == 1) {
             temp_t0 = ptr->unk_00;
@@ -129,15 +131,35 @@ void func_809E823C_jp(ObjectExchangeBank* arg0) {
         if (ptr->unk_03 == 1) {
             test = B_809FDB00_jp[ptr->unk_00];
             temp = (uintptr_t)test - (uintptr_t)SEGMENT_VRAM_START(object_00D5D000);
-            DmaMgr_RequestSyncDebug(var_s1, temp + (uintptr_t)SEGMENT_ROM_START(object_00D5B000), 32, "../ac_structure_clip.c_inc", 256);
+            DmaMgr_RequestSyncDebug(var_s1, temp + (uintptr_t)SEGMENT_ROM_START(object_00D5B000), 32,
+                                    "../ac_structure_clip.c_inc", 256);
             ptr->unk_70 = (s32)var_s1;
             ptr->unk_03 = 0;
         }
     }
 }
 
-void func_809E8350_jp(ObjectExchangeBank* arg0);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Structure/ac_structure/func_809E8350_jp.s")
+void func_809E8350_jp(ObjectExchangeBank* arg0) {
+    StructureClip_unkstruct* ptr = &common_data.clip.structureClip->unk_86C[0];
+    u8* var_s1 = arg0->status[common_data.clip.structureClip->unk_C0C].segment + (0x2E00 * 8) + (0x20 * 9);
+    s16 temp_t0;
+    s32 temp_s3;
+    RomOffset vrom;
+    size_t size;
+    s32 i;
+
+    for (i = 0; i < 8; i++, var_s1 += 0x800, ptr++) {
+        if (ptr->unk_03 == 1) {
+            temp_t0 = ptr->unk_00;
+            temp_s3 = (uintptr_t)B_809FE0B8_jp[temp_t0] - (uintptr_t)SEGMENT_VRAM_START(object_00E00000) + 8;
+            vrom = temp_s3 + (uintptr_t)SEGMENT_ROM_START(object_00DF5000);
+            size = (((uintptr_t)B_809FE3A0_jp[temp_t0] - (uintptr_t)B_809FE0B8_jp[temp_t0]) + 7) & ~0xF;
+            DmaMgr_RequestSyncDebug(var_s1, vrom, size, "../ac_structure_clip.c_inc", 321);
+            ptr->unk_70 = (s32)var_s1 - temp_s3;
+            ptr->unk_03 = 0;
+        }
+    }
+}
 
 void func_809E8480_jp(ObjectExchangeBank* arg0) {
     if ((common_data.clip.structureClip->unk_C0C != -1) && (common_data.clip.structureClip->unk_C10 != 0)) {
