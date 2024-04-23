@@ -7,6 +7,11 @@
 
 struct Game_Play;
 struct Kago;
+
+typedef enum KagoProcess {
+    KAG_PROCESS_WAIT,
+} KagoProcess;
+
 typedef void (*KagoActionFunc)(struct Kago*, struct Game_Play*);
 
 typedef struct Kago {

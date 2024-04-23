@@ -19994,18 +19994,16 @@ jtbl_80A8ECE0_jp = 0x80A8ECE0; // type:jtbl
 // .text
 
 aTAM_actor_ct = 0x80A8EEF0; // type:func
-func_80A8EF30_jp = 0x80A8EF30; // type:func
-func_80A8EFBC_jp = 0x80A8EFBC; // type:func
-func_80A8EFCC_jp = 0x80A8EFCC; // type:func
-func_80A8EFEC_jp = 0x80A8EFEC; // type:func
+aTAM_actor_dt = 0x80A8EF30; // type:func
+aTAM_wait = 0x80A8EFBC; // type:func
+aTAM_setup_action = 0x80A8EFCC; // type:func
+aTAM_actor_move = 0x80A8EFEC; // type:func
 aTAM_actor_init = 0x80A8F0D4; // type:func
 aTAM_actor_draw = 0x80A8F13C; // type:func
 
 // .data
 
 Tama_Profile = 0x80A8F270; //
-D_80A8F294_jp = 0x80A8F294; //
-D_80A8F298_jp = 0x80A8F298; //
 
 // .text
 
