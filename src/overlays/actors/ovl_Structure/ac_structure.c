@@ -118,11 +118,6 @@ void func_809E8118_jp(ObjectExchangeBank* arg0) {
     }
 }
 
-void func_809E823C_jp(ObjectExchangeBank* arg0);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Structure/ac_structure/func_809E823C_jp.s")
-
-// TODO: Matches, but can't use object_00D5B000 right now
-/**
 void func_809E823C_jp(ObjectExchangeBank* arg0) {
     StructureClip_unkstruct* ptr = &common_data.clip.structureClip->unk_454[0];
     u8* var_s1 = arg0->status[common_data.clip.structureClip->unk_C0C].segment + (0x2E00 * 8);
@@ -140,7 +135,6 @@ void func_809E823C_jp(ObjectExchangeBank* arg0) {
         }
     }
 }
-*/
 
 void func_809E8350_jp(ObjectExchangeBank* arg0);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Structure/ac_structure/func_809E8350_jp.s")
