@@ -112,7 +112,7 @@ void func_809E8118_jp(ObjectExchangeBank* arg0) {
             temp_t0 = ptr->unk_00;
             temp_s3 = (uintptr_t)B_809FD530_jp[temp_t0] - (uintptr_t)SEGMENT_VRAM_START(object_00DF4000) + 8;
             vrom = temp_s3 + SEGMENT_ROM_START(object_00D5E000);
-            size = (((uintptr_t)B_809FD818_jp[temp_t0] - (uintptr_t)B_809FD530_jp[temp_t0]) + 7) & ~0xF;
+            size = ALIGN16(((uintptr_t)B_809FD818_jp[temp_t0] - (uintptr_t)B_809FD530_jp[temp_t0]) - 8);
             DmaMgr_RequestSyncDebug(var_s1, vrom, size, "../ac_structure_clip.c_inc", 198);
             ptr->unk_70 = (s32)var_s1 - temp_s3;
             ptr->unk_03 = 0;
@@ -153,7 +153,7 @@ void func_809E8350_jp(ObjectExchangeBank* arg0) {
             temp_t0 = ptr->unk_00;
             temp_s3 = (uintptr_t)B_809FE0B8_jp[temp_t0] - (uintptr_t)SEGMENT_VRAM_START(object_00E00000) + 8;
             vrom = temp_s3 + (uintptr_t)SEGMENT_ROM_START(object_00DF5000);
-            size = (((uintptr_t)B_809FE3A0_jp[temp_t0] - (uintptr_t)B_809FE0B8_jp[temp_t0]) + 7) & ~0xF;
+            size = ALIGN16(((uintptr_t)B_809FE3A0_jp[temp_t0] - (uintptr_t)B_809FE0B8_jp[temp_t0]) - 8);
             DmaMgr_RequestSyncDebug(var_s1, vrom, size, "../ac_structure_clip.c_inc", 321);
             ptr->unk_70 = (s32)var_s1 - temp_s3;
             ptr->unk_03 = 0;
