@@ -229,19 +229,19 @@ void aAp_LeanAirplane(Airplane* this) {
     }
 }
 
-static xyz_t wind1 = { 2.0f, 1.0f, 4.0f };
-static xyz_t wind2 = { -3.0f, -4.0f, -7.0f };
-static xyz_t wind3 = { 4.0f, -3.0f, 1.0f };
-static xyz_t wind4 = { -1.0f, 3.0f, -4.0f };
+xyz_t wind1 = { 2.0f, 1.0f, 4.0f };
+xyz_t wind2 = { -3.0f, -4.0f, -7.0f };
+xyz_t wind3 = { 4.0f, -3.0f, 1.0f };
+xyz_t wind4 = { -1.0f, 3.0f, -4.0f };
 
-static xyz_t* wind_table[4] = {
+xyz_t* wind_table[4] = {
     &wind1,
     &wind2,
     &wind3,
     &wind4,
 };
 
-static s32 wind_change_frame_table[10] = {
+s32 wind_change_frame_table[10] = {
     300, 20, 500, 1000, 100, 700, 20, 200, 80, 70,
 };
 
