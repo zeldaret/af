@@ -77,9 +77,9 @@ void aTAM_actor_move(Actor* thisx, Game_Play* game_play) {
     if ((mDemo_Check(1, &player->actor) == 0) && (mDemo_Check(5, &player->actor) == 0) &&
         ((xBlock != playerXBlock) || (yBlock != playerYBlock))) {
         Actor_delete(&this->actor);
-        return;
+    } else {
+        this->process(this, game_play);
     }
-    this->process(this, game_play);
 }
 
 void aTAM_actor_init(Actor* thisx, Game_Play* game_play) {
