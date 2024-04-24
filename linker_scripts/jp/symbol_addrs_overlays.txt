@@ -20458,23 +20458,20 @@ D_80A96910_jp = 0x80A96910; //
 
 aDUM_actor_ct = 0x80A96980; // type:func
 aDUM_actor_dt = 0x80A969CC; // type:func
-func_80A96A70_jp = 0x80A96A70; // type:func
-func_80A96B28_jp = 0x80A96B28; // type:func
-func_80A96BE4_jp = 0x80A96BE4; // type:func
-func_80A96C50_jp = 0x80A96C50; // type:func
-func_80A96D04_jp = 0x80A96D04; // type:func
-func_80A96D24_jp = 0x80A96D24; // type:func
+aDUM_set_bgOffset_sub = 0x80A96A70; // type:func
+aDUM_set_bgOffset = 0x80A96B28; // type:func
+aDUM_set_talk_info = 0x80A96BE4; // type:func
+aDUM_wait = 0x80A96C50; // type:func
+aDUM_setup_action = 0x80A96D04; // type:func
+aDUM_actor_move = 0x80A96D24; // type:func
 aDUM_actor_init = 0x80A96E0C; // type:func
 aDUM_actor_draw = 0x80A96E74; // type:func
 
 // .data
 
 Dump_Profile = 0x80A96FF0; //
-D_80A97014_jp = 0x80A97014; //
-D_80A97044_jp = 0x80A97044; //
-D_80A97058_jp = 0x80A97058; //
-D_80A970E8_jp = 0x80A970E8; //
-D_80A970EC_jp = 0x80A970EC; //
+aDUM_shadow_vtx_fix_flg_table = 0x80A97014; //
+aDUM_shadow_data = 0x80A97044; //
 
 // .rodata
 

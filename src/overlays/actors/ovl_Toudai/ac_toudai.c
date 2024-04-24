@@ -266,7 +266,7 @@ s32 aTOU_actor_draw_after(Game_Play* game_play, SkeletonInfoR* skeletonInfo UNUS
     if ((jointIndex == 4) && ((s32)this->unk2CC)) {
         mtx = _Matrix_to_Mtx_new(gfxCtx);
         if (mtx != NULL) {
-            type = common_data.time.season == 3;
+            type = common_data.time.season == WINTER;
             object = common_data.clip.unk_08C->unk_AC(0x2D);
             palette = common_data.clip.unk_08C->unk_450(0x5A);
             _texture_z_light_fog_prim_light(gfxCtx);

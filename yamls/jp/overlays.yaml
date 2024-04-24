@@ -15415,7 +15415,7 @@
     bss_size: 0x0
     subsegments:
       - [0x956BF0, c, overlays/actors/ovl_Dump/ac_dump]
-      - [0x957260, data, overlays/actors/ovl_Dump/ac_dump]
+      - [0x957260, .data, overlays/actors/ovl_Dump/ac_dump]
       - [0x957370, .rodata, overlays/actors/ovl_Dump/ac_dump]
   - name: ovl_Dump_reloc
     type: code
