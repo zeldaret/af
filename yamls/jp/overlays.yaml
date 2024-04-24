@@ -14898,7 +14898,7 @@
     bss_size: 0x0
     subsegments:
       - [0x94F170, c, overlays/actors/ovl_Tama/ac_tama]
-      - [0x94F4F0, data, overlays/actors/ovl_Tama/ac_tama]
+      - [0x94F4F0, .data, overlays/actors/ovl_Tama/ac_tama]
   - name: ovl_Tama_reloc
     type: code
     start: 0x94F520
