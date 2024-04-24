@@ -8615,37 +8615,37 @@ D_809678AC_jp = 0x809678AC; //
 Airplane_Actor_ct = 0x80967920; // type:func
 Airplane_Actor_dt = 0x80967A10; // type:func
 Airplane_Actor_draw = 0x80967A20; // type:func
-func_80967B50_jp = 0x80967B50; // type:func
-func_80967B78_jp = 0x80967B78; // type:func
-func_80967B9C_jp = 0x80967B9C; // type:func
-func_80967C8C_jp = 0x80967C8C; // type:func
-func_80967D04_jp = 0x80967D04; // type:func
-func_80967E1C_jp = 0x80967E1C; // type:func
-func_80967E98_jp = 0x80967E98; // type:func
-func_80968058_jp = 0x80968058; // type:func
-func_80968068_jp = 0x80968068; // type:func
-func_809680C8_jp = 0x809680C8; // type:func
-func_809681A4_jp = 0x809681A4; // type:func
-func_80968280_jp = 0x80968280; // type:func
-func_80968304_jp = 0x80968304; // type:func
-func_80968464_jp = 0x80968464; // type:func
-func_809685B8_jp = 0x809685B8; // type:func
-func_80968638_jp = 0x80968638; // type:func
+aAp_RubberMove = 0x80967B50; // type:func
+aAp_FallByWall = 0x80967B78; // type:func
+aAp_GroundFriction = 0x80967B9C; // type:func
+aAp_FreeFlyMove = 0x80967C8C; // type:func
+aAp_SomerFlyMove = 0x80967D04; // type:func
+aAp_SelectFly = 0x80967E1C; // type:func
+aAp_StartFlyMove = 0x80967E98; // type:func
+aAp_PlayerCatch = 0x80968058; // type:func
+aAp_StopFlyMove = 0x80968068; // type:func
+aAp_FallFlyMove = 0x809680C8; // type:func
+aAp_FallFlyMove2 = 0x809681A4; // type:func
+aAp_LeanAirplane = 0x80968280; // type:func
+aAp_WindSystem = 0x80968304; // type:func
+aAp_CommonHandle = 0x80968464; // type:func
+aAp_ZbuttonChangeStatus = 0x809685B8; // type:func
+aAp_GetBgCheckOffsetY = 0x80968638; // type:func
 Airplane_Actor_move = 0x80968674; // type:func
 
 // .data
 
 Airplane_Profile = 0x80968710; //
-D_80968734_jp = 0x80968734; // type:s16
-D_80968744_jp = 0x80968744; // type:s16
-D_80968754_jp = 0x80968754; //
-D_80968760_jp = 0x80968760; //
-D_8096876C_jp = 0x8096876C; //
-D_80968778_jp = 0x80968778; //
-D_80968784_jp = 0x80968784; //
-D_80968794_jp = 0x80968794; //
+goal_angle_random = 0x80968734; // type:s16
+goal_angle_random2 = 0x80968744; // type:s16
+wind1 = 0x80968754; //
+wind2 = 0x80968760; //
+wind3 = 0x8096876C; //
+wind4 = 0x80968778; //
+wind_table = 0x80968784; //
+wind_change_frame_table = 0x80968794; //
 D_809687BC_jp = 0x809687BC; //
-D_809687C8_jp = 0x809687C8; //
+AirplaneMove = 0x809687C8; //
 
 // .rodata
 
