@@ -50,7 +50,7 @@ ShadowData aDUM_shadow_data = {
 void aDUM_set_bgOffset(Dump*, s32);
 void aDUM_setup_action(Dump*, s32);
 
-void aDUM_actor_ct(Actor* thisx, Game_Play* game_play) {
+void aDUM_actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
     Dump* this = THIS;
 
     aDUM_set_bgOffset(this, 1);
@@ -58,7 +58,7 @@ void aDUM_actor_ct(Actor* thisx, Game_Play* game_play) {
     this->actor.world.pos.x -= 40.0f;
 }
 
-void aDUM_actor_dt(Actor* thisx, Game_Play* game_play) {
+void aDUM_actor_dt(Actor* thisx, UNUSED Game_Play* game_play) {
     Dump* this = THIS;
 
     common_data.clip.unk_08C->unk_A8(&common_data.clip.unk_08C->unk_B0, 8, 0x28, &this->actor);

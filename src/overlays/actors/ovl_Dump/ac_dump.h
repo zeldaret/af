@@ -10,7 +10,7 @@ struct Dump;
 
 typedef enum DumpProcess {
     DUM_PROCESS_WAIT,
-};
+} DumpProcess;
 
 typedef void (*DumpActionFunc)(struct Dump*, struct Game_Play*);
 
