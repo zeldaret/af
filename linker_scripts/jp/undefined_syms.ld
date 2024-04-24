@@ -4982,7 +4982,8 @@ D_6000DF0 = 0x06000DF0;
 
 // ovl_Dump
 
-D_6000ED8 = 0x06000ED8;
+obj_dump_shadow_v = 0x06000BD8;
+obj_dump_shadowT_model = 0x06000ED8;
 
 // ovl__00957410
 
