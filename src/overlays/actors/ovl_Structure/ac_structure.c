@@ -50,7 +50,7 @@ void func_809E7F34_jp(Game_Play* game_play) {
     UNUSED s32 pad;
     s32 num = game_play->objectExchangeBank.num;
 
-    if (mSc_secure_exchange_keep_bank(&game_play->objectExchangeBank, 0, 0x1B120)) {
+    if (mSc_secure_exchange_keep_bank(&game_play->objectExchangeBank, 0, (0x2E00 * 8) + (0x20 * 9) + (0x800 * 8))) {
         common_data.clip.structureClip->unk_C0C = num;
     } else {
         common_data.clip.structureClip->unk_C0C = -1;
