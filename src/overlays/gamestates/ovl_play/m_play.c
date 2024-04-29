@@ -548,21 +548,21 @@ void func_80803810_jp(Game_Play* game_play, GraphicsContext* gfxCtx) {
     gSPSegment(POLY_OPA_DISP++, 0x00, NULL);
     gSPSegment(POLY_XLU_DISP++, 0x00, NULL);
     gSPSegment(OVERLAY_DISP++, 0x00, NULL);
-    gSPSegment(UNK_2B0_DISP++, 0x00, NULL);
+    gSPSegment(FONT_DISP++, 0x00, NULL);
     gSPSegment(SHADOW_DISP++, 0x00, NULL);
     gSPSegment(LIGHT_DISP++, 0x00, NULL);
 
     gSPSegment(POLY_OPA_DISP++, 0x04, temp_v0);
     gSPSegment(POLY_XLU_DISP++, 0x04, temp_v0);
     gSPSegment(OVERLAY_DISP++, 0x04, temp_v0);
-    gSPSegment(UNK_2B0_DISP++, 0x04, temp_v0);
+    gSPSegment(FONT_DISP++, 0x04, temp_v0);
     gSPSegment(SHADOW_DISP++, 0x04, temp_v0);
     gSPSegment(LIGHT_DISP++, 0x04, temp_v0);
 
     gSPSegment(POLY_OPA_DISP++, 0x02, game_play->unk_010C);
     gSPSegment(POLY_XLU_DISP++, 0x02, game_play->unk_010C);
     gSPSegment(OVERLAY_DISP++, 0x02, game_play->unk_010C);
-    gSPSegment(UNK_2B0_DISP++, 0x02, game_play->unk_010C);
+    gSPSegment(FONT_DISP++, 0x02, game_play->unk_010C);
     gSPSegment(SHADOW_DISP++, 0x02, game_play->unk_010C);
     gSPSegment(LIGHT_DISP++, 0x02, game_play->unk_010C);
 

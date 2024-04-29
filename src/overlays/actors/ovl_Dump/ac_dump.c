@@ -162,20 +162,6 @@ void aDUM_actor_init(Actor* thisx, Game_Play* game_play) {
     this->actor.update = aDUM_actor_move;
 }
 
-#define OPEN_CUSTOM_POLY_OPA()                \
-    {                                         \
-        Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
-        int __opa_opened = 0;                 \
-        do {                                  \
-        } while (0)
-
-#define CLOSE_CUSTOM_POLY_OPA()      \
-    __gfxCtx->polyOpa.p = __polyOpa; \
-    (void)__opa_opened;              \
-    }                                \
-    do {                             \
-    } while (0)
-
 void aDUM_actor_draw(UNUSED Actor* thisx, Game_Play* game_play) {
     static Gfx* model[2] = {
         dump_s_DL_model,
@@ -188,11 +174,11 @@ void aDUM_actor_draw(UNUSED Actor* thisx, Game_Play* game_play) {
     s32 type = (common_data.time.season == WINTER) ? 1 : 0;
     Mtx* mtx;
 
-    OPEN_DISPS(gfxCtx);
     object = common_data.clip.unk_08C->unk_AC(0x28);
     palette = common_data.clip.unk_08C->unk_450(0x51);
     _texture_z_light_fog_prim_npc(gfxCtx);
-    OPEN_CUSTOM_POLY_OPA();
+
+    OPEN_POLY_OPA_DISP(gfxCtx);
     gSPSegment(__polyOpa++, 0x08, palette);
     gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(object);
     gSPSegment(__polyOpa++, 0x06, object);
@@ -202,8 +188,7 @@ void aDUM_actor_draw(UNUSED Actor* thisx, Game_Play* game_play) {
     if (mtx != NULL) {
         gSPMatrix(__polyOpa++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
         gSPDisplayList(__polyOpa++, model[type]);
-        CLOSE_CUSTOM_POLY_OPA();
+        CLOSE_POLY_OPA_DISP(gfxCtx);
     }
     common_data.clip.unk_074->unk_04(game_play, &aDUM_shadow_data, 40);
-    CLOSE_DISPS(gfxCtx);
 }

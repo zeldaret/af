@@ -83,18 +83,6 @@ void aTHB_actor_move(Actor* thisx, Game_Play* game_play UNUSED) {
     this->process(this);
 }
 
-#define OPEN_POLY_OPA_DISPS()                 \
-    {                                         \
-        Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
-        int __opa_opened = 0;                 \
-        while (0)
-
-#define CLOSE_POLY_OPA_DISPS()       \
-    __gfxCtx->polyOpa.p = __polyOpa; \
-    (void)__opa_opened;              \
-    }                                \
-    while (0)
-
 void aTHB_actor_draw(Actor* thisx, Game_Play* game_play) {
     static xyz_t D_80A200A4_jp = { 0.0f, 0.0f, 0.0f };
     T_Hanabi* this = THIS;
@@ -112,10 +100,8 @@ void aTHB_actor_draw(Actor* thisx, Game_Play* game_play) {
 
     Matrix_scale(thisx->scale.x, thisx->scale.y, thisx->scale.z, MTXMODE_APPLY);
     _texture_z_light_fog_prim_npc(gfxCtx);
-    OPEN_DISPS(gfxCtx);
-    OPEN_POLY_OPA_DISPS();
+    OPEN_POLY_OPA_DISP(gfxCtx);
     gSPMatrix(__polyOpa++, _Matrix_to_Mtx_new(gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     gSPDisplayList(__polyOpa++, &main_utiwa1_model);
-    CLOSE_POLY_OPA_DISPS();
-    CLOSE_DISPS(gfxCtx);
+    CLOSE_POLY_OPA_DISP(gfxCtx);
 }
