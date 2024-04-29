@@ -142,7 +142,7 @@ void aTKT_actor_draw(Actor* thisx, Game_Play* game_play) {
     func_80A1F58C_jp(this, game_play);
 
     mtx = GRAPH_ALLOC_NO_ALIGN(gfxCtx, sizeof(Mtx) * skeletonInfo->skeleton->unk01);
-    
+
     if (1) {} /* FAKE */
 
     if (mtx != NULL) {
