@@ -104,20 +104,6 @@ void aKAG_actor_init(Actor* thisx, Game_Play* game_play) {
     this->actor.update = aKAG_actor_move;
 }
 
-#define OPEN_CUSTOM_POLY_OPA()                \
-    {                                         \
-        Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
-        int __opa_opened = 0;                 \
-        do {                                  \
-        } while (0)
-
-#define CLOSE_CUSTOM_POLY_OPA()      \
-    __gfxCtx->polyOpa.p = __polyOpa; \
-    (void)__opa_opened;              \
-    }                                \
-    do {                             \
-    } while (0)
-
 void aKAG_actor_draw(Actor* thisx, Game_Play* game_play) {
     static Gfx* model[] = { kago_r_DL_model, kago_w_DL_model };
     GraphicsContext* gfxCtx = game_play->state.gfxCtx;
@@ -126,18 +112,16 @@ void aKAG_actor_draw(Actor* thisx, Game_Play* game_play) {
     u16* palette = common_data.clip.unk_08C->unk_450(this->structurePalette);
     Mtx* mtx;
 
-    OPEN_DISPS(gfxCtx);
     mtx = _Matrix_to_Mtx_new(gfxCtx);
     if (mtx != NULL) {
         _texture_z_light_fog_prim(gfxCtx);
-        OPEN_CUSTOM_POLY_OPA();
+        OPEN_POLY_OPA_DISP(gfxCtx);
         gSPSegment(__polyOpa++, 0x08, palette);
         gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(object);
         gSPSegment(__polyOpa++, 0x06, object);
         gSPMatrix(__polyOpa++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
         gSPDisplayList(__polyOpa++, model[this->type]);
-        CLOSE_CUSTOM_POLY_OPA();
+        CLOSE_POLY_OPA_DISP(gfxCtx);
         common_data.clip.unk_074->unk_04(game_play, &aKAG_shadow_data, this->structureType);
     }
-    CLOSE_DISPS(gfxCtx);
 }

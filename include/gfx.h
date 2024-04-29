@@ -19,7 +19,7 @@ typedef struct GraphicsContext {
     /* 0x280 */ TwoHeadGfxArena overlay;
     /* 0x290 */ TwoHeadGfxArena polyOpa;
     /* 0x2A0 */ TwoHeadGfxArena polyXlu;
-    /* 0x2B0 */ TwoHeadGfxArena unk_2B0;
+    /* 0x2B0 */ TwoHeadGfxArena font;
     /* 0x2C0 */ TwoHeadGfxArena shadow;
     /* 0x2D0 */ TwoHeadGfxArena light;
     /* 0x2E0 */ UNK_TYPE1 unk_2E0[0x4];
@@ -39,7 +39,7 @@ typedef struct GraphicsContext {
 #define OVERLAY_DISP __gfxCtx->overlay.p
 #define POLY_OPA_DISP __gfxCtx->polyOpa.p
 #define POLY_XLU_DISP __gfxCtx->polyXlu.p
-#define UNK_2B0_DISP __gfxCtx->unk_2B0.p
+#define FONT_DISP __gfxCtx->font.p
 #define SHADOW_DISP __gfxCtx->shadow.p
 #define LIGHT_DISP __gfxCtx->light.p
 
@@ -49,13 +49,77 @@ typedef struct GraphicsContext {
     do {} while (0);                        \
     {                                       \
         GraphicsContext* __gfxCtx = gfxCtx; \
-        s32 __dispPad UNUSED;               \
+        s32 __dispPad = 0;                  \
         do {} while (0)
 
 #define CLOSE_DISPS(gfxCtx) \
         do {} while (0);    \
-        (void)0;            \
+        (void)__dispPad;    \
     }                       \
+    do {} while (0)
+
+#define OPEN_POLY_OPA_DISP(g)                     \
+    do {} while (0);                              \
+    OPEN_DISPS(g);                                \
+    {                                             \
+        Gfx* __polyOpa = __gfxCtx->polyOpa.p;     \
+        s32 __poly_opa_gfx = 0;                   \
+    do {} while (0)
+
+#define CLOSE_POLY_OPA_DISP(g)                     \
+    do {} while (0);                               \
+        (void)__poly_opa_gfx;                      \
+        __gfxCtx->polyOpa.p = __polyOpa;           \
+    }                                              \
+    CLOSE_DISPS(g);                                \
+    do {} while (0)
+
+#define OPEN_POLY_XLU_DISP(g)                     \
+    do {} while (0);                              \
+    OPEN_DISPS(g);                                \
+    {                                             \
+        Gfx* __polyXlu = __gfxCtx->polyXlu.p;     \
+        s32 __poly_xlu_gfx = 0;                   \
+    do {} while (0)
+
+#define CLOSE_POLY_XLU_DISP(g)                     \
+    do {} while (0);                               \
+        (void)__poly_xlu_gfx;                      \
+        __gfxCtx->polyXlu.p = __polyXlu;           \
+    }                                              \
+    CLOSE_DISPS(g);                                \
+    do {} while (0)
+
+#define OPEN_LIGHT_DISP(g)                    \
+    do {} while (0);                          \
+    OPEN_DISPS(g);                            \
+    {                                         \
+        Gfx* __light = __gfxCtx->light.p;     \
+        s32 __light_gfx = 0;                  \
+        do {} while (0)
+
+#define CLOSE_LIGHT_DISP(g)              \
+       do {} while (0);                  \
+        __gfxCtx->light.p = __light;     \
+        (void)__light_gfx;               \
+    }                                    \
+    CLOSE_DISPS(g);                      \
+    do {} while (0)
+
+#define OPEN_SHADOW_DISP(g)                     \
+    do {} while (0);                            \
+    OPEN_DISPS(g);                              \
+    {                                           \
+        Gfx* __shadow_gfx = __gfxCtx->shadow.p; \
+        s32 __shadow_opened = 0;                \
+        do {} while (0)
+
+#define CLOSE_SHADOW_DISP(g)                \
+       do {} while (0);                     \
+        (void)__shadow_opened;              \
+        __gfxCtx->shadow.p = __shadow_gfx;  \
+    }                                       \
+    CLOSE_DISPS(g);                         \
     do {} while (0)
 
 #define qs1616(e) ((s32)((e)*0x00010000))

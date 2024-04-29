@@ -602,20 +602,6 @@ s32 add_trigger_954[] = { R_CBUTTONS, U_CBUTTONS, L_CBUTTONS, D_CBUTTONS };
 
 f32 move_data_1027[2][4] = { { 2.0f, 0.0f, 300.0f, 1.0f }, { 0.5f, 120.0f, 0.0f, -1.0f } };
 
-#define OPEN_CUSTOM_POLY_OPA()                \
-    {                                         \
-        Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
-        int __opa_opened = 0;                 \
-        do {                                  \
-        } while (0)
-
-#define CLOSE_CUSTOM_POLY_OPA()      \
-    __gfxCtx->polyOpa.p = __polyOpa; \
-    (void)__opa_opened;              \
-    }                                \
-    do {                             \
-    } while (0)
-
 void mSM_setup_view(Submenu* submenu, GraphicsContext* gfxCtx, s32 arg1) {
     Mtx* mtx;
 
@@ -627,8 +613,7 @@ void mSM_setup_view(Submenu* submenu, GraphicsContext* gfxCtx, s32 arg1) {
         mtx = submenu->unk_2C->unk_1072C;
     }
 
-    OPEN_DISPS(gfxCtx);
-    OPEN_CUSTOM_POLY_OPA();
+    OPEN_POLY_OPA_DISP(gfxCtx);
 
     if (arg1 == 0) {
         View* view;
@@ -647,25 +632,15 @@ void mSM_setup_view(Submenu* submenu, GraphicsContext* gfxCtx, s32 arg1) {
         gDPSetScissor(__polyOpa++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     }
 
-    //! FAKE
-    if (1) {}
-
     gSPMatrix(__polyOpa++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
 
-    CLOSE_CUSTOM_POLY_OPA();
-    CLOSE_DISPS(gfxCtx);
+    CLOSE_POLY_OPA_DISP(gfxCtx);
 }
 
 void mSM_set_char_matrix(GraphicsContext* gfxCtx) {
-    Gfx* gfx;
-
-    OPEN_DISPS(gfxCtx);
-
-    gfx = POLY_OPA_DISP;
-    gSPMatrix(gfx++, &Mtx_clear, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    POLY_OPA_DISP = gfx;
-
-    CLOSE_DISPS(gfxCtx);
+    OPEN_POLY_OPA_DISP(gfxCtx);
+    gSPMatrix(__polyOpa++, &Mtx_clear, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    CLOSE_POLY_OPA_DISP(gfxCtx);
 }
 
 #ifdef NON_EQUIVALENT
@@ -1157,8 +1132,7 @@ void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_f
     Matrix_translate(arg1, arg2, 140.0f, MTXMODE_APPLY);
     Matrix_scale(arg3, arg3, 1.0f, MTXMODE_APPLY);
 
-    OPEN_DISPS(arg0);
-    OPEN_CUSTOM_POLY_OPA();
+    OPEN_POLY_OPA_DISP(arg0);
 
     gDPPipeSync(__polyOpa++);
     gSPMatrix(__polyOpa++, _Matrix_to_Mtx_new(arg0), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
@@ -1186,8 +1160,7 @@ void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_f
     gDPSetAlphaCompare(__polyOpa++, G_AC_NONE);
     gDPSetBlendColor(__polyOpa++, 255, 255, 255, 8);
 
-    CLOSE_CUSTOM_POLY_OPA();
-    CLOSE_DISPS(arg0);
+    CLOSE_POLY_OPA_DISP(arg0);
 }
 
 void func_8085D094_jp(Submenu* submenu) {

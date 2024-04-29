@@ -132,20 +132,6 @@ void aTKT_actor_move(Actor* thisx, Game_Play* game_play) {
     this->process(this);
 }
 
-#define OPEN_POLY_OPA_DISPS()                 \
-    {                                         \
-        Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
-        int __opa_opened = 0;                 \
-        do {                                  \
-        } while (0)
-
-#define CLOSE_POLY_OPA_DISPS()       \
-    __gfxCtx->polyOpa.p = __polyOpa; \
-    (void)__opa_opened;              \
-    }                                \
-    do {                             \
-    } while (0)
-
 void aTKT_actor_draw(Actor* thisx, Game_Play* game_play) {
     static xyz_t D_80A1F9F4_jp = { 0.0f, 0.0f, 0.0f };
     T_Keitai* this = THIS;
@@ -156,6 +142,8 @@ void aTKT_actor_draw(Actor* thisx, Game_Play* game_play) {
     func_80A1F58C_jp(this, game_play);
 
     mtx = GRAPH_ALLOC_NO_ALIGN(gfxCtx, sizeof(Mtx) * skeletonInfo->skeleton->unk01);
+    
+    if (1) {} /* FAKE */
 
     if (mtx != NULL) {
         if (this->toolActor.unk1B8 == 1) {
@@ -170,15 +158,12 @@ void aTKT_actor_draw(Actor* thisx, Game_Play* game_play) {
 
         _texture_z_light_fog_prim_npc(gfxCtx);
 
-        OPEN_DISPS(gfxCtx);
-        OPEN_POLY_OPA_DISPS();
-
+        OPEN_POLY_OPA_DISP(gfxCtx);
         Matrix_scale(this->toolActor.actor.scale.x, this->toolActor.actor.scale.y, this->toolActor.actor.scale.z,
                      MTXMODE_APPLY);
         gSPMatrix(__polyOpa++, _Matrix_to_Mtx_new(gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 
-        CLOSE_POLY_OPA_DISPS();
-        CLOSE_DISPS(gfxCtx);
+        CLOSE_POLY_OPA_DISP(gfxCtx);
 
         cKF_Si3_draw_R_SV(game_play, skeletonInfo, mtx, NULL, NULL, NULL);
     }

@@ -406,19 +406,6 @@ Gfx* func_80AAE10C_jp(u8 red, u8 blue, u8 green, u8 alpha, Game_Play* game_play)
 extern Gfx present_DL_mode[];
 extern Vtx present_DL_vtx[];
 
-#define OPEN_CUSTOM_POLY_OPA()                \
-    {                                         \
-        Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
-        int __opa_opened = 0;                 \
-        do {                                  \
-        } while (0)
-
-#define CLOSE_CUSTOM_POLY_OPA()      \
-    __gfxCtx->polyOpa.p = __polyOpa; \
-    (void)__opa_opened;              \
-    }                                \
-    while (0)
-
 void aFSN_actor_draw(Actor* thisx, Game_Play* game_play) {
     static xyz_t offset0 = { 0.0f, 0.0f, 0.0f };
     Fuusen* this = THIS;
@@ -441,8 +428,7 @@ void aFSN_actor_draw(Actor* thisx, Game_Play* game_play) {
         if ((this->processNum != FSN_PROCESS_ESCAPE) || (this->escapeTimer == 777) ||
             ((this->processNum == FSN_PROCESS_ESCAPE) && (this->unk_18C == 0))) {
             _texture_z_light_fog_prim(game_play->state.gfxCtx);
-            OPEN_DISPS(game_play->state.gfxCtx);
-            OPEN_CUSTOM_POLY_OPA();
+            OPEN_POLY_OPA_DISP(game_play->state.gfxCtx);
             Matrix_translate(this->actor.world.pos.x, this->actor.world.pos.y, this->actor.world.pos.z, 0);
             Matrix_scale(0.01f, 0.01f, 0.01f, 1);
             Matrix_RotateX(this->actor.shape.rot.x, MTXMODE_APPLY);
@@ -452,8 +438,7 @@ void aFSN_actor_draw(Actor* thisx, Game_Play* game_play) {
                       G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             gSPDisplayList(__polyOpa++, present_DL_mode);
             gSPDisplayList(__polyOpa++, present_DL_vtx);
-            CLOSE_CUSTOM_POLY_OPA();
-            CLOSE_DISPS(game_play->state.gfxCtx);
+            CLOSE_POLY_OPA_DISP(game_play->state.gfxCtx);
         }
         OPEN_DISPS(game_play->state.gfxCtx);
         gSPSegment(POLY_OPA_DISP++, 0x06, segment);
