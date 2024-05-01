@@ -49,9 +49,9 @@ void aTAM_actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
 void aTAM_actor_dt(Actor* thisx, UNUSED Game_Play* game_play) {
     Tama* this = THIS;
 
-    common_data.clip.unk_08C->unk_A8(&common_data.clip.unk_08C->unk_B0, 8, this->structureType, &this->actor);
-    common_data.clip.unk_08C->unk_A8(&common_data.clip.unk_08C->unk_454, 9, this->structurePalette, &this->actor);
-    common_data.clip.unk_08C->unk_A8(&common_data.clip.unk_08C->unk_86C, 8, this->structureType, &this->actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_B0, 8, this->structureType, &this->actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_454, 9, this->structurePalette, &this->actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_86C, 8, this->structureType, &this->actor);
 }
 
 void aTAM_wait(UNUSED Tama* this, UNUSED Game_Play* game_play) {
@@ -94,8 +94,8 @@ void aTAM_actor_draw(Actor* thisx, Game_Play* game_play) {
     static Gfx* model[2] = { kago_r_ball_DL_model, kago_w_ball_DL_model };
     GraphicsContext* gfxCtx = game_play->state.gfxCtx;
     Tama* this = THIS;
-    u32 object = common_data.clip.unk_08C->unk_AC(this->structureType);
-    u16* palette = common_data.clip.unk_08C->unk_450(this->structurePalette);
+    u32 object = common_data.clip.structureClip->unk_AC(this->structureType);
+    u16* palette = common_data.clip.structureClip->unk_450(this->structurePalette);
     Mtx* mtx;
 
     _texture_z_light_fog_prim(gfxCtx);

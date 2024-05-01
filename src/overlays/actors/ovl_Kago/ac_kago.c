@@ -49,9 +49,9 @@ void aKAG_actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
 void aKAG_actor_dt(Actor* thisx, UNUSED Game_Play* game_play) {
     Kago* this = THIS;
 
-    common_data.clip.unk_08C->unk_A8(&common_data.clip.unk_08C->unk_B0, 8, this->structureType, &this->actor);
-    common_data.clip.unk_08C->unk_A8(&common_data.clip.unk_08C->unk_454, 9, this->structurePalette, &this->actor);
-    common_data.clip.unk_08C->unk_A8(&common_data.clip.unk_08C->unk_86C, 8, this->structureType, &this->actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_B0, 8, this->structureType, &this->actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_454, 9, this->structurePalette, &this->actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_86C, 8, this->structureType, &this->actor);
 }
 
 void aKAG_set_bgOffset(Kago* this, s32 id) {
@@ -108,8 +108,8 @@ void aKAG_actor_draw(Actor* thisx, Game_Play* game_play) {
     static Gfx* model[] = { kago_r_DL_model, kago_w_DL_model };
     GraphicsContext* gfxCtx = game_play->state.gfxCtx;
     Kago* this = THIS;
-    u32 object = common_data.clip.unk_08C->unk_AC(this->structureType);
-    u16* palette = common_data.clip.unk_08C->unk_450(this->structurePalette);
+    u32 object = common_data.clip.structureClip->unk_AC(this->structureType);
+    u16* palette = common_data.clip.structureClip->unk_450(this->structurePalette);
     Mtx* mtx;
 
     mtx = _Matrix_to_Mtx_new(gfxCtx);

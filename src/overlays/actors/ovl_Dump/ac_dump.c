@@ -61,9 +61,9 @@ void aDUM_actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
 void aDUM_actor_dt(Actor* thisx, UNUSED Game_Play* game_play) {
     Dump* this = THIS;
 
-    common_data.clip.unk_08C->unk_A8(&common_data.clip.unk_08C->unk_B0, 8, 0x28, &this->actor);
-    common_data.clip.unk_08C->unk_A8(&common_data.clip.unk_08C->unk_454, 9, 0x51, &this->actor);
-    common_data.clip.unk_08C->unk_A8(&common_data.clip.unk_08C->unk_86C, 8, 0x28, &this->actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_B0, 8, 0x28, &this->actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_454, 9, 0x51, &this->actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_86C, 8, 0x28, &this->actor);
     this->actor.world.pos.x += 40.0f;
 }
 
@@ -174,8 +174,8 @@ void aDUM_actor_draw(UNUSED Actor* thisx, Game_Play* game_play) {
     s32 type = (common_data.time.season == WINTER) ? 1 : 0;
     Mtx* mtx;
 
-    object = common_data.clip.unk_08C->unk_AC(0x28);
-    palette = common_data.clip.unk_08C->unk_450(0x51);
+    object = common_data.clip.structureClip->unk_AC(0x28);
+    palette = common_data.clip.structureClip->unk_450(0x51);
     _texture_z_light_fog_prim_npc(gfxCtx);
 
     OPEN_POLY_OPA_DISP(gfxCtx);
