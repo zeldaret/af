@@ -49,9 +49,12 @@ void aKAG_actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
 void aKAG_actor_dt(Actor* thisx, UNUSED Game_Play* game_play) {
     Kago* this = THIS;
 
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_B0, 8, this->structureType, &this->actor);
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_454, 9, this->structurePalette, &this->actor);
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_86C, 8, this->structureType, &this->actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_B0, 8, this->structureType,
+                                           &this->actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_454, 9, this->structurePalette,
+                                           &this->actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_86C, 8, this->structureType,
+                                           &this->actor);
 }
 
 void aKAG_set_bgOffset(Kago* this, s32 id) {

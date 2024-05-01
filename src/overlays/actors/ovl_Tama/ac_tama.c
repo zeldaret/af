@@ -49,9 +49,12 @@ void aTAM_actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
 void aTAM_actor_dt(Actor* thisx, UNUSED Game_Play* game_play) {
     Tama* this = THIS;
 
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_B0, 8, this->structureType, &this->actor);
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_454, 9, this->structurePalette, &this->actor);
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_86C, 8, this->structureType, &this->actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_B0, 8, this->structureType,
+                                           &this->actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_454, 9, this->structurePalette,
+                                           &this->actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_86C, 8, this->structureType,
+                                           &this->actor);
 }
 
 void aTAM_wait(UNUSED Tama* this, UNUSED Game_Play* game_play) {

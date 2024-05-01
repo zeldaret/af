@@ -390,7 +390,71 @@ s32 func_809E8DB4_jp(s16 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Structure/ac_structure/aSTR_setupActor_proc.s")
+// Stolen from GC
+typedef struct structure_setup_info_s {
+    s16 profile;
+    s16 structure_type; // aSTR_TYPE_*
+    s16 pal_no;         // aSTR_PAL_*
+    s16 pad;
+} aSTR_setup_info;
+
+extern aSTR_setup_info D_809E987C_jp[];
+
+Actor* aSTR_setupActor_proc(Game_Play* game_play, u16 structureName, f32 x, f32 z, s16 params) {
+    Actor* sp84 = NULL;
+    s16 profile;
+    s16 structure_type;
+    s16 pal_no;
+
+    if (structureName < 0x50DA) {
+        s32 index = mNpc_SearchAnimalinfo(common_data.animals, structureName + 0x9000, 0xF);
+
+        profile = ACTOR_HOUSE;
+        structure_type = common_data.npclist[index].houseData.type;
+        pal_no = common_data.npclist[index].houseData.palette;
+        pal_no = pal_no + (structure_type * 5);
+    } else if ((structureName >= 0x5800) && (structureName < 0x5804)) {
+        s32 index = structureName - 0x5800;
+        aSTR_setup_info* info = &D_809E987C_jp[index];
+
+        profile = info->profile;
+        structure_type = ((common_data.homes[index].unk_022.unk_22_0) + 5);
+        pal_no = (common_data.homes[index].unk_024 + 0x19);
+    } else if ((structureName >= 0x5809) && (structureName < 0x580A)) {
+        s32 stationType = common_data.stationType;
+
+        profile = ACTOR_STATION;
+        structure_type = ((stationType / 5) + 0xD);
+        pal_no = stationType + 0x2A;
+    } else {
+        aSTR_setup_info* info = &D_809E987C_jp[structureName - 0x5800];
+
+        profile = info->profile;
+        structure_type = info->structure_type;
+        pal_no = info->pal_no;
+    }
+
+    func_809E889C_jp(common_data.clip.structureClip->unk_B0, 8, structure_type, structureName, x, z);
+    func_809E889C_jp(common_data.clip.structureClip->unk_454, 9, pal_no, structureName, x, z);
+    func_809E889C_jp(common_data.clip.structureClip->unk_86C, 8, structure_type, structureName, x, z);
+
+    if (func_809E8CD4_jp(structure_type) && func_809E8D44_jp(pal_no) && func_809E8DB4_jp(structure_type)) {
+        s32 pad;
+        xyz_t pos;
+
+        pos.x = x;
+        pos.z = z;
+        pos.y = mCoBG_GetBgY_OnlyCenter_FromWpos2(pos, 0.0f);
+        sp84 = Actor_info_make_actor(&game_play->actorInfo, game_play, profile, pos.x, pos.y, pos.z, 0, 0, 0,
+                                     game_play->unk_00E4, game_play->unk_00E5, -1, structureName, params, -1, -1);
+
+        if (sp84 != NULL) {
+            mFI_SetFG_common(0xFFFF, pos, 0);
+        }
+    }
+
+    return sp84;
+}
 
 s32 aSTR_get_overlay_free_area_idx(void) {
     StructureOverlayInfo* structureOverlay = common_data.clip.structureClip->overlayArea;
