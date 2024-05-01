@@ -768,34 +768,18 @@ void aBALL_actor_move(Actor* thisx, Game_Play* game_play) {
     aBALL_status_check(this, game_play);
 }
 
-#define OPEN_CUSTOM_POLY_OPA()                \
-    {                                         \
-        Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
-        int __opa_opened = 0;                 \
-        do {                                  \
-        } while (0)
-
-#define CLOSE_CUSTOM_POLY_OPA()      \
-    __gfxCtx->polyOpa.p = __polyOpa; \
-    (void)__opa_opened;              \
-    }                                \
-    do {                             \
-    } while (0)
-
 void aBALL_actor_draw(Actor* thisx, Game_Play* game_play) {
     GraphicsContext* gfxCtx = game_play->state.gfxCtx;
     Ball* this = THIS;
 
-    OPEN_DISPS(gfxCtx);
-    OPEN_CUSTOM_POLY_OPA();
+    OPEN_POLY_OPA_DISP(gfxCtx);
     gSPSegment(__polyOpa++, 0x06, this->segment);
     Matrix_translate(0.0f, this->height, 0.0f, 1);
     Matrix_rotateXYZ(this->ballRot.x, this->ballRot.y, this->ballRot.z, MTXMODE_APPLY);
     gDPPipeSync(__polyOpa++);
     gSPMatrix(__polyOpa++, _Matrix_to_Mtx_new(gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     gSPDisplayList(__polyOpa++, ball_model_tbl[this->type]);
-    CLOSE_CUSTOM_POLY_OPA();
-    CLOSE_DISPS(gfxCtx);
+    CLOSE_POLY_OPA_DISP(gfxCtx);
 }
 
 // Original name unknown.

@@ -8615,37 +8615,37 @@ D_809678AC_jp = 0x809678AC; //
 Airplane_Actor_ct = 0x80967920; // type:func
 Airplane_Actor_dt = 0x80967A10; // type:func
 Airplane_Actor_draw = 0x80967A20; // type:func
-func_80967B50_jp = 0x80967B50; // type:func
-func_80967B78_jp = 0x80967B78; // type:func
-func_80967B9C_jp = 0x80967B9C; // type:func
-func_80967C8C_jp = 0x80967C8C; // type:func
-func_80967D04_jp = 0x80967D04; // type:func
-func_80967E1C_jp = 0x80967E1C; // type:func
-func_80967E98_jp = 0x80967E98; // type:func
-func_80968058_jp = 0x80968058; // type:func
-func_80968068_jp = 0x80968068; // type:func
-func_809680C8_jp = 0x809680C8; // type:func
-func_809681A4_jp = 0x809681A4; // type:func
-func_80968280_jp = 0x80968280; // type:func
-func_80968304_jp = 0x80968304; // type:func
-func_80968464_jp = 0x80968464; // type:func
-func_809685B8_jp = 0x809685B8; // type:func
-func_80968638_jp = 0x80968638; // type:func
+aAp_RubberMove = 0x80967B50; // type:func
+aAp_FallByWall = 0x80967B78; // type:func
+aAp_GroundFriction = 0x80967B9C; // type:func
+aAp_FreeFlyMove = 0x80967C8C; // type:func
+aAp_SomerFlyMove = 0x80967D04; // type:func
+aAp_SelectFly = 0x80967E1C; // type:func
+aAp_StartFlyMove = 0x80967E98; // type:func
+aAp_PlayerCatch = 0x80968058; // type:func
+aAp_StopFlyMove = 0x80968068; // type:func
+aAp_FallFlyMove = 0x809680C8; // type:func
+aAp_FallFlyMove2 = 0x809681A4; // type:func
+aAp_LeanAirplane = 0x80968280; // type:func
+aAp_WindSystem = 0x80968304; // type:func
+aAp_CommonHandle = 0x80968464; // type:func
+aAp_ZbuttonChangeStatus = 0x809685B8; // type:func
+aAp_GetBgCheckOffsetY = 0x80968638; // type:func
 Airplane_Actor_move = 0x80968674; // type:func
 
 // .data
 
 Airplane_Profile = 0x80968710; //
-D_80968734_jp = 0x80968734; // type:s16
-D_80968744_jp = 0x80968744; // type:s16
-D_80968754_jp = 0x80968754; //
-D_80968760_jp = 0x80968760; //
-D_8096876C_jp = 0x8096876C; //
-D_80968778_jp = 0x80968778; //
-D_80968784_jp = 0x80968784; //
-D_80968794_jp = 0x80968794; //
+goal_angle_random = 0x80968734; // type:s16
+goal_angle_random2 = 0x80968744; // type:s16
+wind1 = 0x80968754; //
+wind2 = 0x80968760; //
+wind3 = 0x8096876C; //
+wind4 = 0x80968778; //
+wind_table = 0x80968784; //
+wind_change_frame_table = 0x80968794; //
 D_809687BC_jp = 0x809687BC; //
-D_809687C8_jp = 0x809687C8; //
+AirplaneMove = 0x809687C8; //
 
 // .rodata
 
@@ -19994,37 +19994,33 @@ jtbl_80A8ECE0_jp = 0x80A8ECE0; // type:jtbl
 // .text
 
 aTAM_actor_ct = 0x80A8EEF0; // type:func
-func_80A8EF30_jp = 0x80A8EF30; // type:func
-func_80A8EFBC_jp = 0x80A8EFBC; // type:func
-func_80A8EFCC_jp = 0x80A8EFCC; // type:func
-func_80A8EFEC_jp = 0x80A8EFEC; // type:func
+aTAM_actor_dt = 0x80A8EF30; // type:func
+aTAM_wait = 0x80A8EFBC; // type:func
+aTAM_setup_action = 0x80A8EFCC; // type:func
+aTAM_actor_move = 0x80A8EFEC; // type:func
 aTAM_actor_init = 0x80A8F0D4; // type:func
 aTAM_actor_draw = 0x80A8F13C; // type:func
 
 // .data
 
 Tama_Profile = 0x80A8F270; //
-D_80A8F294_jp = 0x80A8F294; //
-D_80A8F298_jp = 0x80A8F298; //
 
 // .text
 
 aKAG_actor_ct = 0x80A8F2F0; // type:func
-func_80A8F340_jp = 0x80A8F340; // type:func
-func_80A8F3CC_jp = 0x80A8F3CC; // type:func
-func_80A8F418_jp = 0x80A8F418; // type:func
-func_80A8F428_jp = 0x80A8F428; // type:func
-func_80A8F448_jp = 0x80A8F448; // type:func
+aKAG_actor_dt = 0x80A8F340; // type:func
+aKAG_set_bgOffset = 0x80A8F3CC; // type:func
+aKAG_wait = 0x80A8F418; // type:func
+aKAG_setup_action = 0x80A8F428; // type:func
+aKAG_actor_move = 0x80A8F448; // type:func
 aKAG_actor_init = 0x80A8F530; // type:func
 aKAG_actor_draw = 0x80A8F598; // type:func
 
 // .data
 
 Kago_Profile = 0x80A8F6E0; //
-D_80A8F704_jp = 0x80A8F704; //
-D_80A8F714_jp = 0x80A8F714; //
-D_80A8F728_jp = 0x80A8F728; //
-D_80A8F72C_jp = 0x80A8F72C; //
+aKAG_shadow_vtx_fix_flg_table = 0x80A8F704; //
+aKAG_shadow_data = 0x80A8F714; //
 
 // .text
 
@@ -20462,23 +20458,20 @@ D_80A96910_jp = 0x80A96910; //
 
 aDUM_actor_ct = 0x80A96980; // type:func
 aDUM_actor_dt = 0x80A969CC; // type:func
-func_80A96A70_jp = 0x80A96A70; // type:func
-func_80A96B28_jp = 0x80A96B28; // type:func
-func_80A96BE4_jp = 0x80A96BE4; // type:func
-func_80A96C50_jp = 0x80A96C50; // type:func
-func_80A96D04_jp = 0x80A96D04; // type:func
-func_80A96D24_jp = 0x80A96D24; // type:func
+aDUM_set_bgOffset_sub = 0x80A96A70; // type:func
+aDUM_set_bgOffset = 0x80A96B28; // type:func
+aDUM_set_talk_info = 0x80A96BE4; // type:func
+aDUM_wait = 0x80A96C50; // type:func
+aDUM_setup_action = 0x80A96D04; // type:func
+aDUM_actor_move = 0x80A96D24; // type:func
 aDUM_actor_init = 0x80A96E0C; // type:func
 aDUM_actor_draw = 0x80A96E74; // type:func
 
 // .data
 
 Dump_Profile = 0x80A96FF0; //
-D_80A97014_jp = 0x80A97014; //
-D_80A97044_jp = 0x80A97044; //
-D_80A97058_jp = 0x80A97058; //
-D_80A970E8_jp = 0x80A970E8; //
-D_80A970EC_jp = 0x80A970EC; //
+aDUM_shadow_vtx_fix_flg_table = 0x80A97014; //
+aDUM_shadow_data = 0x80A97044; //
 
 // .rodata
 

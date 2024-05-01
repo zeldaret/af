@@ -205,48 +205,6 @@ s32 aTOU_actor_draw_before(Game_Play* game_play UNUSED, SkeletonInfoR* skeletonI
     return 1;
 }
 
-#define OPEN_POLY_OPA_DISPS()                 \
-    {                                         \
-        Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
-        int __opa_opened = 0;                 \
-        do {                                  \
-        } while (0)
-
-#define CLOSE_POLY_OPA_DISPS()       \
-    __gfxCtx->polyOpa.p = __polyOpa; \
-    (void)__opa_opened;              \
-    }                                \
-    do {                             \
-    } while (0)
-
-#define OPEN_POLY_XLU_DISPS()                 \
-    {                                         \
-        Gfx* __polyXlu = __gfxCtx->polyXlu.p; \
-        int __xlu_opened = 0;                 \
-        do {                                  \
-        } while (0)
-
-#define CLOSE_POLY_XLU_DISPS()       \
-    __gfxCtx->polyXlu.p = __polyXlu; \
-    (void)__xlu_opened;              \
-    }                                \
-    do {                             \
-    } while (0);
-
-#define OPEN_LIGHT_DISPS()                \
-    {                                     \
-        Gfx* __light = __gfxCtx->light.p; \
-        int __light_opened = 0;           \
-        do {                              \
-        } while (0)
-
-#define CLOSE_LIGHT_DISPS()      \
-    __gfxCtx->light.p = __light; \
-    (void)__light_opened;        \
-    }                            \
-    do {                         \
-    } while (0)
-
 extern Gfx obj_s_toudai_light_model[];
 extern Gfx obj_w_toudai_light_model[];
 
@@ -259,19 +217,18 @@ s32 aTOU_actor_draw_after(Game_Play* game_play, SkeletonInfoR* skeletonInfo UNUS
     Toudai* this = (Toudai*)thisx;
     s32 type;
     s32 object;
-    s32 palette;
+    u16* palette;
     Mtx* mtx;
 
     // LIGHTHOUSE_JOINT_LIGHT
     if ((jointIndex == 4) && ((s32)this->unk2CC)) {
         mtx = _Matrix_to_Mtx_new(gfxCtx);
         if (mtx != NULL) {
-            type = common_data.time.season == 3;
+            type = common_data.time.season == WINTER;
             object = common_data.clip.structureClip->unk_AC(0x2D);
             palette = common_data.clip.structureClip->unk_450(0x5A);
             _texture_z_light_fog_prim_light(gfxCtx);
-            OPEN_DISPS(gfxCtx);
-            OPEN_LIGHT_DISPS();
+            OPEN_LIGHT_DISP(gfxCtx);
             gSPSegment(__light++, 8, palette);
             gSPSegment(__light++, 6, object);
             prmcol.b = this->unk2C8;
@@ -283,8 +240,7 @@ s32 aTOU_actor_draw_after(Game_Play* game_play, SkeletonInfoR* skeletonInfo UNUS
             gDPSetPrimColor(__light++, 0, (u8)this->unk2D0, prmcol.r, prmcol.g, prmcol.b, prmcol.a);
             gSPMatrix(__light++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             gSPDisplayList(__light++, mdl[type]);
-            CLOSE_LIGHT_DISPS();
-            CLOSE_DISPS(gfxCtx);
+            CLOSE_LIGHT_DISP(gfxCtx);
         }
     }
     return 1;
@@ -293,14 +249,13 @@ s32 aTOU_actor_draw_after(Game_Play* game_play, SkeletonInfoR* skeletonInfo UNUS
 void aTOU_actor_draw(Actor* thisx, Game_Play* game_play) {
     UNUSED s32 pad;
     GraphicsContext* gfxCtx = game_play->state.gfxCtx;
-    UNUSED s32 pad2[2];
     Toudai* this = THIS;
-    s32 object;
-    s32 palette;
-    UNUSED s32 pad3;
+    SkeletonInfoR* skeletonInfo = &this->skeletonInfo;
     Mtx* mtx;
+    s32 object;
+    u16* palette;
+    u8 numberOfDisplayLists = skeletonInfo->skeleton->unk01;
     xyz_t* worldPosition = &this->actor.world.pos;
-    u8 numberOfDisplayLists = this->skeletonInfo.skeleton->unk01;
 
     mtx = GRAPH_ALLOC_NO_ALIGN(gfxCtx, numberOfDisplayLists * sizeof(Mtx));
 
@@ -309,23 +264,21 @@ void aTOU_actor_draw(Actor* thisx, Game_Play* game_play) {
         palette = common_data.clip.structureClip->unk_450(0x5A);
 
         _texture_z_light_fog_prim_npc(gfxCtx);
-        OPEN_DISPS(gfxCtx);
-        OPEN_POLY_OPA_DISPS();
+        OPEN_POLY_OPA_DISP(gfxCtx);
         gSPSegment(__polyOpa++, 0x8, palette);
         gSegments[6] = OS_K0_TO_PHYSICAL(object);
         gSPSegment(__polyOpa++, 0x6, object);
-        CLOSE_POLY_OPA_DISPS();
+        CLOSE_POLY_OPA_DISP(gfxCtx);
 
         _texture_z_light_fog_prim_xlu(gfxCtx);
-        OPEN_POLY_XLU_DISPS();
+        OPEN_POLY_XLU_DISP(gfxCtx);
         gSPSegment(__polyXlu++, 0x8, palette);
         gSPSegment(__polyXlu++, 0x6, object);
-        CLOSE_POLY_XLU_DISPS();
-        CLOSE_DISPS(gfxCtx);
+        CLOSE_POLY_XLU_DISP(gfxCtx);
 
         Setpos_HiliteReflect_init(worldPosition, game_play);
         Setpos_HiliteReflect_xlu_init(worldPosition, game_play);
-        cKF_Si3_draw_R_SV(game_play, &this->skeletonInfo, mtx, aTOU_actor_draw_before, aTOU_actor_draw_after, this);
+        cKF_Si3_draw_R_SV(game_play, skeletonInfo, mtx, aTOU_actor_draw_before, aTOU_actor_draw_after, this);
         common_data.clip.unk_074->unk_04(game_play, &aTOU_shadow_data, 0x2D);
     }
 }

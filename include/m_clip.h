@@ -89,7 +89,7 @@ typedef struct Clip_unk_070 {
 } Clip_unk_070; // size >= 0x10
 
 typedef UNK_RET (*Clip_unk_074_unk_00)(UNK_TYPE);
-typedef void (*Clip_unk_074_unk_04)(struct Game_Play* game_play, struct ShadowData* shadowData, s16 unk2);
+typedef void (*Clip_unk_074_unk_04)(struct Game_Play* game_play, struct ShadowData* shadowData, s32 unk2);
 typedef void (*Clip_unk_074_unk_30)(UNK_TYPE, UNK_TYPE, UNK_TYPE, UNK_TYPE);
 
 typedef struct Clip_unk_074 {

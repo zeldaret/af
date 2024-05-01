@@ -152,20 +152,6 @@ void Ac_Sample_Actor_ct(Actor* thisx, Game_Play* play) {
     this->segment = play->objectExchangeBank.status[thisx->unk_026].segment;
 }
 
-#define OPEN_CUSTOM_POLY_OPA()                \
-    {                                         \
-        Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
-        int __opa_opened = 0;                 \
-        do {                                  \
-        } while (0)
-
-#define CLOSE_CUSTOM_POLY_OPA()      \
-    __gfxCtx->polyOpa.p = __polyOpa; \
-    (void)__opa_opened;              \
-    }                                \
-    do {                             \
-    } while (0)
-
 void Ac_Sample_Actor_draw_normal(Sample* this, Game_Play* play) {
     UNUSED s32 pad;
     SkeletonInfoR* info = &this->skeletonInfo;
@@ -175,17 +161,13 @@ void Ac_Sample_Actor_draw_normal(Sample* this, Game_Play* play) {
 
         _texture_z_light_fog_prim(play->state.gfxCtx);
 
-        OPEN_DISPS(play->state.gfxCtx);
-        OPEN_CUSTOM_POLY_OPA();
+        OPEN_POLY_OPA_DISP(play->state.gfxCtx);
         gDPLoadTextureBlockS(__polyOpa++, hnw_tmem_txt, G_IM_FMT_I, G_IM_SIZ_8b, 64, 64, 0, G_TX_MIRROR | G_TX_WRAP,
                              G_TX_MIRROR | G_TX_WRAP, 7, 7, G_TX_NOLOD, G_TX_NOLOD);
 
         gDPLoadTLUT_pal16(__polyOpa++, 15, hnw_face);
         gDPSetTextureLUT(__polyOpa++, G_TT_RGBA16);
-
-        CLOSE_CUSTOM_POLY_OPA();
-
-        CLOSE_DISPS(play->state.gfxCtx);
+        CLOSE_POLY_OPA_DISP(play->state.gfxCtx);
 
         cKF_Si3_draw_R_SV(play, info, mtx, NULL, NULL, NULL);
     }

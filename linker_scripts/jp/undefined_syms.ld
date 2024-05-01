@@ -1133,10 +1133,6 @@ D_60000F0 = 0x060000F0;
 
 D_60000C0 = 0x060000C0;
 
-// ovl_Airplane
-
-D_60000B0 = 0x060000B0;
-
 // ovl_Haniwa
 
 D_60018AC = 0x060018AC;
@@ -4862,7 +4858,8 @@ D_6001284 = 0x06001284;
 
 // ovl_Kago
 
-D_6001628 = 0x06001628;
+obj_e_kago_shadow_v = 0x06001628;
+obj_e_kago_shadow_model = 0x060016F8;
 
 // ovl__0094FA20
 
@@ -4985,7 +4982,8 @@ D_6000DF0 = 0x06000DF0;
 
 // ovl_Dump
 
-D_6000ED8 = 0x06000ED8;
+obj_dump_shadow_v = 0x06000BD8;
+obj_dump_shadowT_model = 0x06000ED8;
 
 // ovl__00957410
 

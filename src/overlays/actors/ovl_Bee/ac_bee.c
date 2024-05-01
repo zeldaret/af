@@ -301,20 +301,6 @@ void aBEE_actor_move(Actor* thisx, Game_Play* game_play) {
     }
 }
 
-#define OPEN_CUSTOM_POLY_XLU()                \
-    {                                         \
-        Gfx* __polyXlu = __gfxCtx->polyXlu.p; \
-        int __xlu_opened = 0;                 \
-        do {                                  \
-        } while (0)
-
-#define CLOSE_CUSTOM_POLY_XLU()      \
-    __gfxCtx->polyXlu.p = __polyXlu; \
-    (void)__xlu_opened;              \
-    }                                \
-    do {                             \
-    } while (0)
-
 void aBEE_actor_draw(Actor* thisx, Game_Play* game_play) {
     Bee* this = THIS;
     s32 mtxIndex = game_play->state.frameCounter & 1;
@@ -332,12 +318,10 @@ void aBEE_actor_draw(Actor* thisx, Game_Play* game_play) {
             _texture_z_light_fog_prim_xlu(game_play->state.gfxCtx);
             Setpos_HiliteReflect_xlu_init(&this->actor.world.pos, game_play);
 
-            OPEN_DISPS(game_play->state.gfxCtx);
-            OPEN_CUSTOM_POLY_XLU();
+            OPEN_POLY_XLU_DISP(game_play->state.gfxCtx);
             gDPSetPrimColor(__polyXlu++, 0, 255, 0, 0, 0, this->alpha);
             gSPSegment(__polyXlu++, 0x08, texScroll);
-            CLOSE_CUSTOM_POLY_XLU();
-            CLOSE_DISPS(game_play->state.gfxCtx);
+            CLOSE_POLY_XLU_DISP(game_play->state.gfxCtx);
             cKF_Si3_draw_R_SV(game_play, &this->skeletonInfo, this->mtx[mtxIndex], NULL, NULL, this);
             Matrix_pull();
         }

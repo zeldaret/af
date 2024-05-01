@@ -1703,7 +1703,7 @@
     bss_size: 0x0
     subsegments:
       - [0x85C570, c, overlays/actors/ovl_Airplane/ac_airplane]
-      - [0x85D360, data, overlays/actors/ovl_Airplane/ac_airplane]
+      - [0x85D360, .data, overlays/actors/ovl_Airplane/ac_airplane]
       - [0x85D440, .rodata, overlays/actors/ovl_Airplane/ac_airplane]
   - name: ovl_Airplane_reloc
     type: code
@@ -14898,7 +14898,7 @@
     bss_size: 0x0
     subsegments:
       - [0x94F170, c, overlays/actors/ovl_Tama/ac_tama]
-      - [0x94F4F0, data, overlays/actors/ovl_Tama/ac_tama]
+      - [0x94F4F0, .data, overlays/actors/ovl_Tama/ac_tama]
   - name: ovl_Tama_reloc
     type: code
     start: 0x94F520
@@ -14917,7 +14917,7 @@
     bss_size: 0x0
     subsegments:
       - [0x94F570, c, overlays/actors/ovl_Kago/ac_kago]
-      - [0x94F960, data, overlays/actors/ovl_Kago/ac_kago]
+      - [0x94F960, .data, overlays/actors/ovl_Kago/ac_kago]
   - name: ovl_Kago_reloc
     type: code
     start: 0x94F9C0
@@ -15415,7 +15415,7 @@
     bss_size: 0x0
     subsegments:
       - [0x956BF0, c, overlays/actors/ovl_Dump/ac_dump]
-      - [0x957260, data, overlays/actors/ovl_Dump/ac_dump]
+      - [0x957260, .data, overlays/actors/ovl_Dump/ac_dump]
       - [0x957370, .rodata, overlays/actors/ovl_Dump/ac_dump]
   - name: ovl_Dump_reloc
     type: code
