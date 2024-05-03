@@ -439,7 +439,7 @@ Actor* aSTR_setupActor_proc(Game_Play* game_play, u16 structureName, f32 x, f32 
     func_809E889C_jp(common_data.clip.structureClip->unk_86C, 8, structure_type, structureName, x, z);
 
     if (func_809E8CD4_jp(structure_type) && func_809E8D44_jp(pal_no) && func_809E8DB4_jp(structure_type)) {
-        s32 pad;
+        UNUSED s32 pad;
         xyz_t pos;
 
         pos.x = x;
@@ -526,7 +526,81 @@ void aSTR_free_actor_area_proc(Actor* actor) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Structure/ac_structure/aSTR_init_clip_area.s")
+extern StructureActor B_809E9B90_jp[];
+extern s8 B_809EB528_jp[][8192];
+
+void aSTR_init_clip_area(Game_Play* game_play) {
+    if (common_data.clip.structureClip == NULL) {
+        common_data.clip.structureClip = (StructureClip*)zelda_malloc(sizeof(StructureClip));
+        common_data.clip.structureClip->setupActorProc = aSTR_setupActor_proc;
+        common_data.clip.structureClip->getOverlayAreaProc = aSTR_get_overlay_area_proc;
+        common_data.clip.structureClip->freeOverlayAreaProc = aSTR_free_overlay_area_proc;
+        common_data.clip.structureClip->getActorAreaProc = aSTR_get_actor_area_proc;
+        common_data.clip.structureClip->freeActorAreaProc = aSTR_free_actor_area_proc;
+        common_data.clip.structureClip->unk_A4 = func_809E84E4_jp;
+        common_data.clip.structureClip->unk_A8 = func_809E8C14_jp;
+        common_data.clip.structureClip->unk_AC = func_809E8CD4_jp;
+        common_data.clip.structureClip->unk_450 = func_809E8D44_jp;
+        common_data.clip.structureClip->unk_868 = func_809E8DB4_jp;
+        common_data.clip.structureClip->unk_C10 = 0;
+
+        {
+            StructureActor** actorTableIter = common_data.clip.structureClip->structureActorTable;
+            s32* isUsed = common_data.clip.structureClip->structureActorUsedTable;
+            StructureOverlayInfo* structureOverlay = common_data.clip.structureClip->overlayArea;
+            s32 i;
+
+            for (i = 0; i < 9; i++, actorTableIter++, isUsed++, structureOverlay++) {
+                *actorTableIter = &B_809E9B90_jp[i];
+                *isUsed = 0;
+                structureOverlay->overlayPointer = B_809EB528_jp[i];
+                structureOverlay->used = 0;
+            }
+        }
+
+        {
+            StructureClip_unkstruct* ptr;
+            s32 i;
+            s32 j;
+
+            ptr = common_data.clip.structureClip->unk_B0;
+            for (i = 0; i < 8; i++, ptr++) {
+                ptr->unk_00 = -1;
+                ptr->unk_02 = 0;
+                ptr->unk_03 = 0;
+                for (j = 0; j < 9; j++) {
+                    ptr->unk_04[j].unk_08 = 0;
+                    ptr->unk_04[j].unk_0A = 0;
+                }
+            }
+
+            ptr = common_data.clip.structureClip->unk_454;
+            for (i = 0; i < 9; i++, ptr++) {
+                ptr->unk_00 = -1;
+                ptr->unk_02 = 0;
+                ptr->unk_03 = 0;
+                for (j = 0; j < 9; j++) {
+                    ptr->unk_04[j].unk_08 = 0;
+                    ptr->unk_04[j].unk_0A = 0;
+                }
+            }
+
+            ptr = common_data.clip.structureClip->unk_86C;
+            for (i = 0; i < 8; i++, ptr++) {
+                ptr->unk_00 = -1;
+                ptr->unk_02 = 0;
+                ptr->unk_03 = 0;
+                for (j = 0; j < 9; j++) {
+                    ptr->unk_04[j].unk_08 = 0;
+                    ptr->unk_04[j].unk_0A = 0;
+                }
+            }
+        }
+
+        func_809E7F34_jp(game_play);
+        func_809E7F94_jp();
+    }
+}
 
 void aSTR_free_clip_area(void) {
     if (common_data.clip.structureClip != NULL) {
