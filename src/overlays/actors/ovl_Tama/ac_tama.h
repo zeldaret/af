@@ -5,6 +5,7 @@
 #include "m_actor.h"
 #include "unk.h"
 #include "c_keyframe.h"
+#include "overlays/actors/ovl_Structure/ac_structure.h"
 
 struct Game_Play;
 struct Tama;

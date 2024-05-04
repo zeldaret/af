@@ -123,8 +123,8 @@ void aKOI_actor_draw(Actor* thisx, Game_Play* game_play) {
 
     mtx = GRAPH_ALLOC_NO_ALIGN(gfxCtx, this->skeletonInfo.skeleton->unk01 * sizeof(Mtx));
     if (mtx != NULL) {
-        object = common_data.clip.structureClip->unk_AC(0x27);
-        palette = common_data.clip.structureClip->unk_450(0x50);
+        object = common_data.clip.structureClip->unk_AC(STRUCTURE_TYPE_KOINOBORI);
+        palette = common_data.clip.structureClip->unk_450(STRUCTURE_PALETTE_KOINOBORI);
         _texture_z_light_fog_prim_npc(gfxCtx);
         OPEN_POLY_OPA_DISP(gfxCtx);
         gSPSegment(__polyOpa++, 0x08, palette);

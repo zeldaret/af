@@ -130,7 +130,7 @@ typedef struct StructureClip_unkstruct_unk_04 {
 } StructureClip_unkstruct_unk_04; // size = 0xC
 
 typedef struct StructureClip_unkstruct {
-    /* 0x00 */ s16 unk_00;
+    /* 0x00 */ s16 type;
     /* 0x02 */ u8 unk_02;
     /* 0x03 */ u8 unk_03;
     /* 0x04 */ StructureClip_unkstruct_unk_04 unk_04[9];

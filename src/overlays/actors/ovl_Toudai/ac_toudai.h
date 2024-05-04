@@ -6,6 +6,7 @@
 #include "unk.h"
 #include "z64math.h"
 #include "c_keyframe.h"
+#include "overlays/actors/ovl_Structure/ac_structure.h"
 
 struct Toudai;
 struct Game_Play;

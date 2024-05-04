@@ -41,8 +41,8 @@ void aTAM_actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
     Tama* this = THIS;
 
     this->type = this->actor.fgName - 0x5833;
-    this->structureType = this->type + 0x23;
-    this->structurePalette = this->type + 0x4C;
+    this->structureType = this->type + STRUCTURE_TYPE_SPORTSFAIR_A;
+    this->structurePalette = this->type + STRUCTURE_PALETTE_SPORTSFAIR_A;
     aTAM_setup_action(this, TAM_PROCESS_WAIT);
 }
 

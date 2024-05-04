@@ -40,8 +40,8 @@ void aKAG_actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
     Kago* this = THIS;
 
     this->type = this->actor.fgName - 0x5835;
-    this->structureType = this->type + 0x23;
-    this->structurePalette = this->type + 0x4C;
+    this->structureType = this->type + STRUCTURE_TYPE_SPORTSFAIR_A;
+    this->structurePalette = this->type + STRUCTURE_PALETTE_SPORTSFAIR_A;
     aKAG_setup_action(this, KAG_PROCESS_WAIT);
     aKAG_set_bgOffset(this, 1);
 }
