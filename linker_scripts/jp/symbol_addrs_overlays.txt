@@ -13333,7 +13333,7 @@ Structure_Profile = 0x809E9840; //
 D_809E9864_jp = 0x809E9864; //
 D_809E986C_jp = 0x809E986C; //
 D_809E9874_jp = 0x809E9874; //
-D_809E987C_jp = 0x809E987C; //
+setupInfo_table = 0x809E987C; //
 D_809E9A9C_jp = 0x809E9A9C; //
 
 // .rodata
