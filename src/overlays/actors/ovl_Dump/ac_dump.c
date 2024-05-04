@@ -178,7 +178,7 @@ void aDUM_actor_draw(UNUSED Actor* thisx, Game_Play* game_play) {
     Mtx* mtx;
 
     object = common_data.clip.structureClip->unk_AC(STRUCTURE_TYPE_DUMP);
-    palette = common_data.clip.structureClip->unk_450(STRUCTURE_PALETTE_DUMP);
+    palette = common_data.clip.structureClip->getPalSegment(STRUCTURE_PALETTE_DUMP);
     _texture_z_light_fog_prim_npc(gfxCtx);
 
     OPEN_POLY_OPA_DISP(gfxCtx);

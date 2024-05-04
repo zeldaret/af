@@ -98,7 +98,7 @@ void aTAM_actor_draw(Actor* thisx, Game_Play* game_play) {
     GraphicsContext* gfxCtx = game_play->state.gfxCtx;
     Tama* this = THIS;
     u32 object = common_data.clip.structureClip->unk_AC(this->structureActor.structureType);
-    u16* palette = common_data.clip.structureClip->unk_450(this->structureActor.structurePalette);
+    u16* palette = common_data.clip.structureClip->getPalSegment(this->structureActor.structurePalette);
     Mtx* mtx;
 
     _texture_z_light_fog_prim(gfxCtx);

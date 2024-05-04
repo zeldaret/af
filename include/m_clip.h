@@ -134,7 +134,7 @@ typedef struct StructureClip_unkstruct {
     /* 0x02 */ u8 unk_02;
     /* 0x03 */ u8 unk_03;
     /* 0x04 */ StructureClip_unkstruct_unk_04 unk_04[9];
-    /* 0x70 */ s32 unk_70;
+    /* 0x70 */ s32 segment;
 } StructureClip_unkstruct; // size = 0x74
 
 typedef struct Actor* (*StructureClipSetupActorProc)(struct Game_Play*, u16, f32, f32, s16);
@@ -146,7 +146,7 @@ typedef void (*StructureClip_unk_A4)(struct ObjectExchangeBank*);
 typedef void (*StructureClip_unk_A8)(StructureClip_unkstruct*, s32, s16, struct Actor*);
 // TODO: What should these *really* return?
 typedef s32 (*StructureClip_unk_AC)(s16);
-typedef s32 (*StructureClip_unk_450)(s16);
+typedef u16* (*StructureClipGetPalSegment)(s16);
 typedef s32 (*StructureClip_unk_868)(s16);
 
 typedef struct StructureClip {
@@ -162,7 +162,7 @@ typedef struct StructureClip {
     /* 0x0A8 */ StructureClip_unk_A8 unk_A8; // unload object
     /* 0x0AC */ StructureClip_unk_AC unk_AC; // load object
     /* 0x0B0 */ StructureClip_unkstruct unk_B0[8];
-    /* 0x450 */ StructureClip_unk_450 unk_450; // load palette
+    /* 0x450 */ StructureClipGetPalSegment getPalSegment; // load palette
     /* 0x454 */ StructureClip_unkstruct unk_454[9];
     /* 0x868 */ StructureClip_unk_868 unk_868;
     /* 0x86C */ StructureClip_unkstruct unk_86C[8];

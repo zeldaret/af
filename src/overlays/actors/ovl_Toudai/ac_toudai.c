@@ -227,7 +227,7 @@ s32 aTOU_actor_draw_after(Game_Play* game_play, SkeletonInfoR* skeletonInfo UNUS
         if (mtx != NULL) {
             type = common_data.time.season == WINTER;
             object = common_data.clip.structureClip->unk_AC(STRUCTURE_TYPE_TOUDAI);
-            palette = common_data.clip.structureClip->unk_450(STRUCTURE_PALETTE_TOUDAI);
+            palette = common_data.clip.structureClip->getPalSegment(STRUCTURE_PALETTE_TOUDAI);
             _texture_z_light_fog_prim_light(gfxCtx);
             OPEN_LIGHT_DISP(gfxCtx);
             gSPSegment(__light++, 8, palette);
@@ -262,7 +262,7 @@ void aTOU_actor_draw(Actor* thisx, Game_Play* game_play) {
 
     if (mtx != NULL) {
         object = common_data.clip.structureClip->unk_AC(STRUCTURE_TYPE_TOUDAI);
-        palette = common_data.clip.structureClip->unk_450(STRUCTURE_PALETTE_TOUDAI);
+        palette = common_data.clip.structureClip->getPalSegment(STRUCTURE_PALETTE_TOUDAI);
 
         _texture_z_light_fog_prim_npc(gfxCtx);
         OPEN_POLY_OPA_DISP(gfxCtx);
