@@ -123,10 +123,10 @@ typedef struct StructureOverlayInfo {
 } StructureOverlayInfo; // size = 0x8
 
 typedef struct StructureClip_unkstruct_unk_04 {
-    /* 0x0 */ f32 unk_00;
-    /* 0x4 */ f32 unk_04;
+    /* 0x0 */ f32 posX;
+    /* 0x4 */ f32 posZ;
     /* 0x8 */ s16 unk_08;
-    /* 0xA */ u16 unk_0A;
+    /* 0xA */ u16 fgName;
 } StructureClip_unkstruct_unk_04; // size = 0xC
 
 typedef struct StructureClip_unkstruct {

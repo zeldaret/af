@@ -214,13 +214,13 @@ void func_809E84E4_jp(ObjectExchangeBank* arg0) {
     func_809E8480_jp(arg0);
 }
 
-s32 func_809E85FC_jp(StructureClip_unkstruct* arg0, u16 arg1, f32 arg2, f32 arg3) {
+s32 func_809E85FC_jp(StructureClip_unkstruct* arg0, u16 arg1, f32 posX, f32 posZ) {
     StructureClip_unkstruct_unk_04* ptr = arg0->unk_04;
     s32 i;
     s32 ret = false;
 
     for (i = 0; i < 9; i++, ptr++) {
-        if ((ptr->unk_0A == arg1) && (ptr->unk_00 == arg2) && (ptr->unk_04 == arg3)) {
+        if ((ptr->fgName == arg1) && (ptr->posX == posX) && (ptr->posZ == posZ)) {
             ret = true;
             break;
         }
@@ -229,15 +229,15 @@ s32 func_809E85FC_jp(StructureClip_unkstruct* arg0, u16 arg1, f32 arg2, f32 arg3
     return ret;
 }
 
-s32 func_809E8674_jp(StructureClip_unkstruct* arg0, u16 arg1, f32 arg2, f32 arg3) {
+s32 func_809E8674_jp(StructureClip_unkstruct* arg0, u16 arg1, f32 posX, f32 posZ) {
     StructureClip_unkstruct_unk_04* ptr = arg0->unk_04;
     s32 i;
 
     for (i = 0; i < 9; i++, ptr++) {
-        if (ptr->unk_0A == 0) {
-            ptr->unk_0A = arg1;
-            ptr->unk_00 = arg2;
-            ptr->unk_04 = arg3;
+        if (ptr->fgName == 0) {
+            ptr->fgName = arg1;
+            ptr->posX = posX;
+            ptr->posZ = posZ;
             ptr->unk_08 = 0;
             return true;
         }
@@ -246,14 +246,14 @@ s32 func_809E8674_jp(StructureClip_unkstruct* arg0, u16 arg1, f32 arg2, f32 arg3
     return false;
 }
 
-void func_809E8768_jp(StructureClip_unkstruct* arg0, u16 arg1, f32 arg2, f32 arg3) {
-    if ((func_809E85FC_jp(arg0, arg1, arg2, arg3) == false) && (func_809E8674_jp(arg0, arg1, arg2, arg3) == true)) {
+void func_809E8768_jp(StructureClip_unkstruct* arg0, u16 arg1, f32 posX, f32 posZ) {
+    if ((func_809E85FC_jp(arg0, arg1, posX, posZ) == false) && (func_809E8674_jp(arg0, arg1, posX, posZ) == true)) {
         arg0->unk_02++;
     }
 }
 
-void func_809E87D4_jp(StructureClip_unkstruct* arg0, s16 arg1, u16 arg2, f32 arg3, f32 arg4) {
-    if (func_809E8674_jp(arg0, arg2, arg3, arg4) == true) {
+void func_809E87D4_jp(StructureClip_unkstruct* arg0, s16 arg1, u16 arg2, f32 posX, f32 posZ) {
+    if (func_809E8674_jp(arg0, arg2, posX, posZ) == true) {
         arg0->unk_00 = arg1;
         arg0->unk_02 = 1;
         arg0->unk_03 = 1;
@@ -261,8 +261,8 @@ void func_809E87D4_jp(StructureClip_unkstruct* arg0, s16 arg1, u16 arg2, f32 arg
     }
 }
 
-void func_809E8838_jp(StructureClip_unkstruct* arg0, s16 arg1, u16 arg2, f32 arg3, f32 arg4) {
-    if (func_809E8674_jp(arg0, arg2, arg3, arg4) == true) {
+void func_809E8838_jp(StructureClip_unkstruct* arg0, s16 arg1, u16 arg2, f32 posX, f32 posZ) {
+    if (func_809E8674_jp(arg0, arg2, posX, posZ) == true) {
         arg0->unk_00 = arg1;
         arg0->unk_02 = 1;
         arg0->unk_03 = 1;
@@ -270,14 +270,14 @@ void func_809E8838_jp(StructureClip_unkstruct* arg0, s16 arg1, u16 arg2, f32 arg
     }
 }
 
-void func_809E889C_jp(StructureClip_unkstruct* arg0, s32 arg1, s16 arg2, u16 arg3, f32 arg4, f32 arg5) {
+void func_809E889C_jp(StructureClip_unkstruct* arg0, s32 arg1, s16 arg2, u16 arg3, f32 posX, f32 posZ) {
     StructureClip_unkstruct* ptr;
     s32 i;
 
     ptr = arg0;
     for (i = 0; i < arg1; i++, ptr++) {
         if (arg2 == ptr->unk_00) {
-            func_809E8768_jp(ptr, arg3, arg4, arg5);
+            func_809E8768_jp(ptr, arg3, posX, posZ);
             return;
         }
     }
@@ -285,7 +285,7 @@ void func_809E889C_jp(StructureClip_unkstruct* arg0, s32 arg1, s16 arg2, u16 arg
     ptr = arg0;
     for (i = 0; i < arg1; i++, ptr++) {
         if (ptr->unk_00 == -1) {
-            func_809E87D4_jp(ptr, arg2, arg3, arg4, arg5);
+            func_809E87D4_jp(ptr, arg2, arg3, posX, posZ);
             return;
         }
     }
@@ -293,7 +293,7 @@ void func_809E889C_jp(StructureClip_unkstruct* arg0, s32 arg1, s16 arg2, u16 arg
     ptr = arg0;
     for (i = 0; i < arg1; i++, ptr++) {
         if (ptr->unk_02 == 0) {
-            func_809E8838_jp(ptr, arg2, arg3, arg4, arg5);
+            func_809E8838_jp(ptr, arg2, arg3, posX, posZ);
             return;
         }
     }
@@ -304,11 +304,10 @@ s32 func_809E89AC_jp(StructureClip_unkstruct* arg0, Actor* actor) {
     s32 i;
 
     for (i = 0; i < 9; i++, ptr++) {
-        if ((ptr->unk_0A == actor->fgName) && (ptr->unk_00 == actor->home.pos.x) &&
-            (ptr->unk_04 == actor->home.pos.z)) {
-            ptr->unk_00 = 0.0f;
-            ptr->unk_04 = 0.0f;
-            ptr->unk_0A = 0;
+        if ((ptr->fgName == actor->fgName) && (ptr->posX == actor->home.pos.x) && (ptr->posZ == actor->home.pos.z)) {
+            ptr->posX = 0.0f;
+            ptr->posZ = 0.0f;
+            ptr->fgName = 0;
             ptr->unk_08 = 0;
             arg0->unk_02--;
             return true;
@@ -402,32 +401,77 @@ typedef struct structure_setup_info_s {
 } aSTR_setup_info;
 
 static aSTR_setup_info D_809E987C_jp[] = {
-    { 0x002B, 0x0005, 0x0019, 0 }, { 0x002B, 0x0005, 0x001A, 0 }, { 0x002B, 0x0005, 0x001B, 0 },
-    { 0x002B, 0x0005, 0x001C, 0 }, { 0x002A, 0x0008, 0x0025, 0 }, { 0x005F, 0x0009, 0x0026, 0 },
-    { 0x0060, 0x000A, 0x0027, 0 }, { 0x0061, 0x000B, 0x0028, 0 }, { 0x0038, 0x000C, 0x0029, 0 },
-    { 0x003C, 0x000D, 0x002A, 0 }, { 0x0048, 0x0010, 0x0039, 0 }, { 0x0049, 0x0011, 0x003A, 0 },
-    { 0x004D, 0x0012, 0x003B, 0 }, { 0x0053, 0x0013, 0x003C, 0 }, { 0x0054, 0x0014, 0x003D, 0 },
-    { 0x0054, 0x0014, 0x003D, 0 }, { 0x003F, 0x0015, 0x003E, 0 }, { 0x003F, 0x0015, 0x003E, 0 },
-    { 0x003F, 0x0015, 0x003E, 0 }, { 0x003F, 0x0015, 0x003E, 0 }, { 0x003F, 0x0015, 0x003E, 0 },
-    { 0x003F, 0x0015, 0x003E, 0 }, { 0x003F, 0x0015, 0x003E, 0 }, { 0x003F, 0x0015, 0x003E, 0 },
-    { 0x003F, 0x0015, 0x003E, 0 }, { 0x003F, 0x0015, 0x003E, 0 }, { 0x003F, 0x0015, 0x003E, 0 },
-    { 0x003F, 0x0015, 0x003E, 0 }, { 0x003F, 0x0015, 0x003E, 0 }, { 0x003F, 0x0015, 0x003E, 0 },
-    { 0x003F, 0x0015, 0x003E, 0 }, { 0x003F, 0x0015, 0x003E, 0 }, { 0x003F, 0x0015, 0x003E, 0 },
-    { 0x003F, 0x0015, 0x003E, 0 }, { 0x003F, 0x0015, 0x003E, 0 }, { 0x003F, 0x0015, 0x003E, 0 },
-    { 0x003F, 0x0015, 0x003E, 0 }, { 0x005C, 0x0016, 0x003F, 0 }, { 0x0036, 0x0017, 0x0040, 0 },
-    { 0x005D, 0x0018, 0x0041, 0 }, { 0x0063, 0x0019, 0x0042, 0 }, { 0x006A, 0x001A, 0x0043, 0 },
-    { 0x007C, 0x001B, 0x0044, 0 }, { 0x007D, 0x001C, 0x0045, 0 }, { 0x007E, 0x001D, 0x0046, 0 },
-    { 0x007E, 0x001D, 0x0046, 0 }, { 0x0082, 0x001E, 0x0047, 0 }, { 0x0082, 0x001F, 0x0048, 0 },
-    { 0x0086, 0x0020, 0x0049, 0 }, { 0x0094, 0x0021, 0x004A, 0 }, { 0x009A, 0x0022, 0x004B, 0 },
-    { 0x009C, 0x0023, 0x004C, 0 }, { 0x009C, 0x0024, 0x004D, 0 }, { 0x009D, 0x0023, 0x004C, 0 },
-    { 0x009D, 0x0024, 0x004D, 0 }, { 0x009E, 0x0025, 0x004E, 0 }, { 0x009E, 0x0026, 0x004F, 0 },
-    { 0x00A3, 0x0027, 0x0050, 0 }, { 0x00A6, 0x0028, 0x0051, 0 }, { 0x00A9, 0x0029, 0x0052, 0 },
-    { 0x00A9, 0x0029, 0x0053, 0 }, { 0x00A9, 0x0029, 0x0054, 0 }, { 0x00A9, 0x0029, 0x0055, 0 },
-    { 0x00A9, 0x0029, 0x0056, 0 }, { 0x00AA, 0x002A, 0x0057, 0 }, { 0x00AC, 0x002B, 0x0058, 0 },
-    { 0x00AD, 0x002C, 0x0059, 0 }, { 0x00AF, 0x002D, 0x005A, 0 },
+    { ACTOR_MY_HOUSE, STRUCTURE_TYPE_MY_HOUSE_1, STRUCTURE_PALETTE_MY_HOUSE_1, 0 },
+    { ACTOR_MY_HOUSE, STRUCTURE_TYPE_MY_HOUSE_1, STRUCTURE_PALETTE_MY_HOUSE_2, 0 },
+    { ACTOR_MY_HOUSE, STRUCTURE_TYPE_MY_HOUSE_1, STRUCTURE_PALETTE_MY_HOUSE_3, 0 },
+    { ACTOR_MY_HOUSE, STRUCTURE_TYPE_MY_HOUSE_1, STRUCTURE_PALETTE_MY_HOUSE_4, 0 },
+    { ACTOR_SHOP, STRUCTURE_TYPE_SHOP, STRUCTURE_PALETTE_SHOP, 0 },
+    { ACTOR_CONVENI, STRUCTURE_TYPE_CONVENI, STRUCTURE_PALETTE_CONVENI, 0 },
+    { ACTOR_SUPER, STRUCTURE_TYPE_SUPER, STRUCTURE_PALETTE_SUPER, 0 },
+    { ACTOR_DEPART, STRUCTURE_TYPE_DEPART, STRUCTURE_PALETTE_DEPART, 0 },
+    { ACTOR_POST_OFFICE, STRUCTURE_TYPE_POST_OFFICE, STRUCTURE_PALETTE_POST_OFFICE, 0 },
+    { ACTOR_STATION, STRUCTURE_TYPE_STATION_1, STRUCTURE_PALETTE_STATION_1_1, 0 },
+    { ACTOR_TRAIN0, STRUCTURE_TYPE_TRAIN0, STRUCTURE_PALETTE_TRAIN0, 0 },
+    { ACTOR_TRAIN1, STRUCTURE_TYPE_TRAIN1, STRUCTURE_PALETTE_TRAIN1, 0 },
+    { ACTOR_POLICE_BOX, STRUCTURE_TYPE_POLICE_BOX, STRUCTURE_PALETTE_POLICE_BOX, 0 },
+    { ACTOR_FALL_S, STRUCTURE_TYPE_FALL_S, STRUCTURE_PALETTE_FALL_S, 0 },
+    { ACTOR_FALL_SESW, STRUCTURE_TYPE_FALL_SESW, STRUCTURE_PALETTE_FALL_SESW, 0 },
+    { ACTOR_FALL_SESW, STRUCTURE_TYPE_FALL_SESW, STRUCTURE_PALETTE_FALL_SESW, 0 },
+    { ACTOR_RESERVE, STRUCTURE_TYPE_RESERVE, STRUCTURE_PALETTE_RESERVE, 0 },
+    { ACTOR_RESERVE, STRUCTURE_TYPE_RESERVE, STRUCTURE_PALETTE_RESERVE, 0 },
+    { ACTOR_RESERVE, STRUCTURE_TYPE_RESERVE, STRUCTURE_PALETTE_RESERVE, 0 },
+    { ACTOR_RESERVE, STRUCTURE_TYPE_RESERVE, STRUCTURE_PALETTE_RESERVE, 0 },
+    { ACTOR_RESERVE, STRUCTURE_TYPE_RESERVE, STRUCTURE_PALETTE_RESERVE, 0 },
+    { ACTOR_RESERVE, STRUCTURE_TYPE_RESERVE, STRUCTURE_PALETTE_RESERVE, 0 },
+    { ACTOR_RESERVE, STRUCTURE_TYPE_RESERVE, STRUCTURE_PALETTE_RESERVE, 0 },
+    { ACTOR_RESERVE, STRUCTURE_TYPE_RESERVE, STRUCTURE_PALETTE_RESERVE, 0 },
+    { ACTOR_RESERVE, STRUCTURE_TYPE_RESERVE, STRUCTURE_PALETTE_RESERVE, 0 },
+    { ACTOR_RESERVE, STRUCTURE_TYPE_RESERVE, STRUCTURE_PALETTE_RESERVE, 0 },
+    { ACTOR_RESERVE, STRUCTURE_TYPE_RESERVE, STRUCTURE_PALETTE_RESERVE, 0 },
+    { ACTOR_RESERVE, STRUCTURE_TYPE_RESERVE, STRUCTURE_PALETTE_RESERVE, 0 },
+    { ACTOR_RESERVE, STRUCTURE_TYPE_RESERVE, STRUCTURE_PALETTE_RESERVE, 0 },
+    { ACTOR_RESERVE, STRUCTURE_TYPE_RESERVE, STRUCTURE_PALETTE_RESERVE, 0 },
+    { ACTOR_RESERVE, STRUCTURE_TYPE_RESERVE, STRUCTURE_PALETTE_RESERVE, 0 },
+    { ACTOR_RESERVE, STRUCTURE_TYPE_RESERVE, STRUCTURE_PALETTE_RESERVE, 0 },
+    { ACTOR_RESERVE, STRUCTURE_TYPE_RESERVE, STRUCTURE_PALETTE_RESERVE, 0 },
+    { ACTOR_RESERVE, STRUCTURE_TYPE_RESERVE, STRUCTURE_PALETTE_RESERVE, 0 },
+    { ACTOR_RESERVE, STRUCTURE_TYPE_RESERVE, STRUCTURE_PALETTE_RESERVE, 0 },
+    { ACTOR_RESERVE, STRUCTURE_TYPE_RESERVE, STRUCTURE_PALETTE_RESERVE, 0 },
+    { ACTOR_RESERVE, STRUCTURE_TYPE_RESERVE, STRUCTURE_PALETTE_RESERVE, 0 },
+    { ACTOR_SHRINE, STRUCTURE_TYPE_SHRINE, STRUCTURE_PALETTE_SHRINE, 0 },
+    { ACTOR_BR_SHOP, STRUCTURE_TYPE_BR_SHOP, STRUCTURE_PALETTE_BR_SHOP, 0 },
+    { ACTOR_BUGGY, STRUCTURE_TYPE_BUGGY, STRUCTURE_PALETTE_BUGGY, 0 },
+    { ACTOR_S_CAR, STRUCTURE_TYPE_S_CAR, STRUCTURE_PALETTE_S_CAR, 0 },
+    { ACTOR_KAMAKURA, STRUCTURE_TYPE_KAMAKURA, STRUCTURE_PALETTE_KAMAKURA, 0 },
+    { ACTOR_GOZA, STRUCTURE_TYPE_GOZA, STRUCTURE_PALETTE_GOZA, 0 },
+    { ACTOR_RADIO, STRUCTURE_TYPE_RADIO, STRUCTURE_PALETTE_RADIO, 0 },
+    { ACTOR_YATAI, STRUCTURE_TYPE_YATAI, STRUCTURE_PALETTE_YATAI, 0 },
+    { ACTOR_YATAI, STRUCTURE_TYPE_YATAI, STRUCTURE_PALETTE_YATAI, 0 },
+    { ACTOR_TUKIMI, STRUCTURE_TYPE_TUKIMI_1, STRUCTURE_PALETTE_TUKIMI_1, 0 },
+    { ACTOR_TUKIMI, STRUCTURE_TYPE_TUKIMI_2, STRUCTURE_PALETTE_TUKIMI_2, 0 },
+    { ACTOR_MIKUJI, STRUCTURE_TYPE_MIKUJI, STRUCTURE_PALETTE_MIKUJI, 0 },
+    { ACTOR_COUNT, STRUCTURE_TYPE_COUNT, STRUCTURE_PALETTE_COUNT, 0 },
+    { ACTOR_COUNT02, STRUCTURE_TYPE_COUNT02, STRUCTURE_PALETTE_COUNT02, 0 },
+    { ACTOR_TAMA, STRUCTURE_TYPE_SPORTSFAIR_A, STRUCTURE_PALETTE_SPORTSFAIR_A, 0 },
+    { ACTOR_TAMA, STRUCTURE_TYPE_SPORTSFAIR_B, STRUCTURE_PALETTE_SPORTSFAIR_B, 0 },
+    { ACTOR_KAGO, STRUCTURE_TYPE_SPORTSFAIR_A, STRUCTURE_PALETTE_SPORTSFAIR_A, 0 },
+    { ACTOR_KAGO, STRUCTURE_TYPE_SPORTSFAIR_B, STRUCTURE_PALETTE_SPORTSFAIR_B, 0 },
+    { ACTOR_TURI, STRUCTURE_TYPE_TURI_1, STRUCTURE_PALETTE_TURI_1, 0 },
+    { ACTOR_TURI, STRUCTURE_TYPE_TURI_2, STRUCTURE_PALETTE_TURI_2, 0 },
+    { ACTOR_KOINOBORI, STRUCTURE_TYPE_KOINOBORI, STRUCTURE_PALETTE_KOINOBORI, 0 },
+    { ACTOR_DUMP, STRUCTURE_TYPE_DUMP, STRUCTURE_PALETTE_DUMP, 0 },
+    { ACTOR_WINDMILL, STRUCTURE_TYPE_WINDMILL, STRUCTURE_PALETTE_WINDMILL_1, 0 },
+    { ACTOR_WINDMILL, STRUCTURE_TYPE_WINDMILL, STRUCTURE_PALETTE_WINDMILL_2, 0 },
+    { ACTOR_WINDMILL, STRUCTURE_TYPE_WINDMILL, STRUCTURE_PALETTE_WINDMILL_3, 0 },
+    { ACTOR_WINDMILL, STRUCTURE_TYPE_WINDMILL, STRUCTURE_PALETTE_WINDMILL_4, 0 },
+    { ACTOR_WINDMILL, STRUCTURE_TYPE_WINDMILL, STRUCTURE_PALETTE_WINDMILL_5, 0 },
+    { ACTOR_LOTUS, STRUCTURE_TYPE_LOTUS, STRUCTURE_PALETTE_LOTUS, 0 },
+    { ACTOR_MIKANBOX, STRUCTURE_TYPE_MIKANBOX, STRUCTURE_PALETTE_MIKANBOX, 0 },
+    { ACTOR_DOUZOU, STRUCTURE_TYPE_DOUZOU, STRUCTURE_PALETTE_DOUZOU, 0 },
+    { ACTOR_TOUDAI, STRUCTURE_TYPE_TOUDAI, STRUCTURE_PALETTE_TOUDAI, 0 },
 };
 
-Actor* aSTR_setupActor_proc(Game_Play* game_play, u16 structureName, f32 x, f32 z, s16 params) {
+Actor* aSTR_setupActor_proc(Game_Play* game_play, u16 structureName, f32 posX, f32 posZ, s16 params) {
     Actor* sp84 = NULL;
     s16 profile;
     s16 structure_type;
@@ -439,20 +483,20 @@ Actor* aSTR_setupActor_proc(Game_Play* game_play, u16 structureName, f32 x, f32 
         profile = ACTOR_HOUSE;
         structure_type = common_data.npclist[index].houseData.type;
         pal_no = common_data.npclist[index].houseData.palette;
-        pal_no = pal_no + (structure_type * 5);
+        pal_no += structure_type * 5;
     } else if ((structureName >= 0x5800) && (structureName < 0x5804)) {
         s32 index = structureName - 0x5800;
         aSTR_setup_info* info = &D_809E987C_jp[index];
 
         profile = info->profile;
-        structure_type = ((common_data.homes[index].unk_022.unk_22_0) + 5);
-        pal_no = (common_data.homes[index].unk_024 + 0x19);
+        structure_type = common_data.homes[index].unk_022.unk_22_0 + STRUCTURE_TYPE_MY_HOUSE_1;
+        pal_no = common_data.homes[index].unk_024 + STRUCTURE_PALETTE_MY_HOUSE_1;
     } else if ((structureName >= 0x5809) && (structureName < 0x580A)) {
         s32 stationType = common_data.stationType;
 
         profile = ACTOR_STATION;
-        structure_type = ((stationType / 5) + 0xD);
-        pal_no = stationType + 0x2A;
+        structure_type = (stationType / 5) + STRUCTURE_TYPE_STATION_1;
+        pal_no = stationType + STRUCTURE_PALETTE_STATION_1_1;
     } else {
         aSTR_setup_info* info = &D_809E987C_jp[structureName - 0x5800];
 
@@ -461,16 +505,16 @@ Actor* aSTR_setupActor_proc(Game_Play* game_play, u16 structureName, f32 x, f32 
         pal_no = info->pal_no;
     }
 
-    func_809E889C_jp(common_data.clip.structureClip->unk_B0, 8, structure_type, structureName, x, z);
-    func_809E889C_jp(common_data.clip.structureClip->unk_454, 9, pal_no, structureName, x, z);
-    func_809E889C_jp(common_data.clip.structureClip->unk_86C, 8, structure_type, structureName, x, z);
+    func_809E889C_jp(common_data.clip.structureClip->unk_B0, 8, structure_type, structureName, posX, posZ);
+    func_809E889C_jp(common_data.clip.structureClip->unk_454, 9, pal_no, structureName, posX, posZ);
+    func_809E889C_jp(common_data.clip.structureClip->unk_86C, 8, structure_type, structureName, posX, posZ);
 
     if (func_809E8CD4_jp(structure_type) && func_809E8D44_jp(pal_no) && func_809E8DB4_jp(structure_type)) {
         UNUSED s32 pad;
         xyz_t pos;
 
-        pos.x = x;
-        pos.z = z;
+        pos.x = posX;
+        pos.z = posZ;
         pos.y = mCoBG_GetBgY_OnlyCenter_FromWpos2(pos, 0.0f);
         sp84 = Actor_info_make_actor(&game_play->actorInfo, game_play, profile, pos.x, pos.y, pos.z, 0, 0, 0,
                                      game_play->unk_00E4, game_play->unk_00E5, -1, structureName, params, -1, -1);
@@ -597,7 +641,7 @@ void aSTR_init_clip_area(Game_Play* game_play) {
                 ptr->unk_03 = 0;
                 for (j = 0; j < 9; j++) {
                     ptr->unk_04[j].unk_08 = 0;
-                    ptr->unk_04[j].unk_0A = 0;
+                    ptr->unk_04[j].fgName = 0;
                 }
             }
 
@@ -608,7 +652,7 @@ void aSTR_init_clip_area(Game_Play* game_play) {
                 ptr->unk_03 = 0;
                 for (j = 0; j < 9; j++) {
                     ptr->unk_04[j].unk_08 = 0;
-                    ptr->unk_04[j].unk_0A = 0;
+                    ptr->unk_04[j].fgName = 0;
                 }
             }
 
@@ -619,7 +663,7 @@ void aSTR_init_clip_area(Game_Play* game_play) {
                 ptr->unk_03 = 0;
                 for (j = 0; j < 9; j++) {
                     ptr->unk_04[j].unk_08 = 0;
-                    ptr->unk_04[j].unk_0A = 0;
+                    ptr->unk_04[j].fgName = 0;
                 }
             }
         }
