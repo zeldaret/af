@@ -16,6 +16,15 @@ void aSTR_actor_move(Actor* thisx, Game_Play* game_play);
 void aSTR_init_clip_area(Game_Play* game_play);
 void aSTR_free_clip_area(void);
 
+StructureActor aSTR_actor_cl[9];
+s8 aSTR_overlay[9][8192];
+s8 acStructureBssPadding[8];
+void* B_809FD530_jp[186];
+void* B_809FD818_jp[186];
+void* B_809FDB00_jp[186];
+void* B_809FE0B8_jp[186];
+void* B_809FE3A0_jp[184];
+
 ActorProfile Structure_Profile = {
     /* */ ACTOR_STRUCTURE,
     /* */ ACTOR_PART_7,
@@ -53,13 +62,8 @@ void func_809E7F34_jp(Game_Play* game_play) {
     }
 }
 
-// .bss
-extern void* B_809FD530_jp[];
-extern void* B_809FD818_jp[];
-extern void* B_809FDB00_jp[];
-extern void* B_809FE0B8_jp[];
-extern void* B_809FE3A0_jp[];
-
+extern u8 test[];           // 0x06000008
+extern u8 test2[];          // 0x060000C0
 extern void* fake_symbol_1; // 0x06000008
 extern void* fake_symbol_2; // 0x06000178
 extern void* fake_symbol_3; // 0x060000C0
@@ -67,13 +71,9 @@ extern void* fake_symbol_4; // 0x06000230
 extern void* fake_symbol_5; // 0x06000008
 extern void* fake_symbol_6; // 0x06000174
 
-// .data
 static void* D_809E9864_jp[] = { &fake_symbol_1, &fake_symbol_2 };
 static void* D_809E986C_jp[] = { &fake_symbol_3, &fake_symbol_4 };
 static void* D_809E9874_jp[] = { &fake_symbol_5, &fake_symbol_6 };
-
-extern u8 test[];  // 0x06000008
-extern u8 test2[]; // 0x060000C0
 
 // TODO: use "real" symbols
 void func_809E7F94_jp(void) {
@@ -595,9 +595,6 @@ void aSTR_free_actor_area_proc(Actor* actor) {
         }
     }
 }
-
-extern StructureActor aSTR_actor_cl[];
-extern s8 aSTR_overlay[][8192];
 
 void aSTR_init_clip_area(Game_Play* game_play) {
     if (common_data.clip.structureClip == NULL) {
