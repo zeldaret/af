@@ -374,7 +374,7 @@ u16* aSTR_get_pal_segment(s16 paletteType) {
     if (index != -1) {
         StructureClip_unkstruct* temp = &common_data.clip.structureClip->unk_454[index];
 
-        return temp->segment;
+        return (u16*)temp->segment;
     }
 
     return NULL;
@@ -596,8 +596,8 @@ void aSTR_free_actor_area_proc(Actor* actor) {
     }
 }
 
-extern StructureActor B_809E9B90_jp[];
-extern s8 B_809EB528_jp[][8192];
+extern StructureActor aSTR_actor_cl[];
+extern s8 aSTR_overlay[][8192];
 
 void aSTR_init_clip_area(Game_Play* game_play) {
     if (common_data.clip.structureClip == NULL) {
@@ -621,9 +621,9 @@ void aSTR_init_clip_area(Game_Play* game_play) {
             s32 i;
 
             for (i = 0; i < 9; i++, actorTableIter++, isUsed++, structureOverlay++) {
-                *actorTableIter = &B_809E9B90_jp[i];
+                *actorTableIter = &aSTR_actor_cl[i];
                 *isUsed = 0;
-                structureOverlay->overlayPointer = B_809EB528_jp[i];
+                structureOverlay->overlayPointer = aSTR_overlay[i];
                 structureOverlay->used = 0;
             }
         }
@@ -695,15 +695,15 @@ void aSTR_free_clip_area(void) {
     }
 }
 
-static s32 D_809E9A9C_jp[] = { 4, 5 };
-
 void aSTR_check_door_data(Structure* this, Game_Play* game_play) {
+    static s32 request[] = { 4, 5 };
+
     if (((this->unk_178 & 0xF000) >> 0xC) == 5) {
         StructureActor* structureActor =
             (StructureActor*)Actor_info_fgName_search(&game_play->actorInfo, this->unk_178, ACTOR_PART_0);
 
         if ((structureActor != NULL) && (structureActor->unk_2B0 == 0)) {
-            structureActor->unk_2B0 = D_809E9A9C_jp[(this->unk_17A == 1)];
+            structureActor->unk_2B0 = request[(this->unk_17A == 1)];
             this->unk_178 = 0;
         }
     } else {

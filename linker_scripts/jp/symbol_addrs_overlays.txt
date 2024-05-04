@@ -13334,7 +13334,7 @@ D_809E9864_jp = 0x809E9864; //
 D_809E986C_jp = 0x809E986C; //
 D_809E9874_jp = 0x809E9874; //
 setupInfo_table = 0x809E987C; //
-D_809E9A9C_jp = 0x809E9A9C; //
+request = 0x809E9A9C; //
 
 // .rodata
 
@@ -13349,8 +13349,8 @@ RO_STR_809E9B74_jp = 0x809E9B74; // type:asciz
 
 // .bss
 
-B_809E9B90_jp = 0x809E9B90; //
-B_809EB528_jp = 0x809EB528; //
+aSTR_actor_cl = 0x809E9B90; //
+aSTR_overlay = 0x809EB528; //
 B_809FD530_jp = 0x809FD530; //
 B_809FD818_jp = 0x809FD818; //
 B_809FDB00_jp = 0x809FDB00; //
