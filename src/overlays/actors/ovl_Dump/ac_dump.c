@@ -55,16 +55,19 @@ void aDUM_actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
 
     aDUM_set_bgOffset(this, 1);
     aDUM_setup_action(this, DUM_PROCESS_WAIT);
-    this->actor.world.pos.x -= 40.0f;
+    this->structureActor.actor.world.pos.x -= 40.0f;
 }
 
 void aDUM_actor_dt(Actor* thisx, UNUSED Game_Play* game_play) {
     Dump* this = THIS;
 
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_B0, 8, 0x28, &this->actor);
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_454, 9, 0x51, &this->actor);
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_86C, 8, 0x28, &this->actor);
-    this->actor.world.pos.x += 40.0f;
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_B0, 8, 0x28,
+                                           &this->structureActor.actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_454, 9, 0x51,
+                                           &this->structureActor.actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_86C, 8, 0x28,
+                                           &this->structureActor.actor);
+    this->structureActor.actor.world.pos.x += 40.0f;
 }
 
 void aDUM_set_bgOffset_sub(Dump* this, s32 x, s32 z, s16 mode) {
@@ -74,9 +77,9 @@ void aDUM_set_bgOffset_sub(Dump* this, s32 x, s32 z, s16 mode) {
     };
     xyz_t pos;
 
-    pos.x = this->actor.home.pos.x - x * 40;
-    pos.y = this->actor.home.pos.y;
-    pos.z = this->actor.home.pos.z - z * 40;
+    pos.x = this->structureActor.actor.home.pos.x - x * 40;
+    pos.y = this->structureActor.actor.home.pos.y;
+    pos.z = this->structureActor.actor.home.pos.z - z * 40;
 
     if (flag_tbl[z][x]) {
         mCoBG_SetPlussOffset(pos, mode, 100);
@@ -117,13 +120,13 @@ void aDUM_wait(Dump* this, Game_Play* game_play) {
     xyz_t actorPos;
     s32 yaw;
 
-    xyz_t_move(&actorPos, &this->actor.world.pos);
-    if ((mDemo_Check(7, &this->actor) != 1) && (player != NULL) && (mDemo_Get_talk_actor() == NULL) &&
+    xyz_t_move(&actorPos, &this->structureActor.actor.world.pos);
+    if ((mDemo_Check(7, &this->structureActor.actor) != 1) && (player != NULL) && (mDemo_Get_talk_actor() == NULL) &&
         (actorPos.z <= player->actor.world.pos.z)) {
-        yaw = ABS(this->actor.yawTowardsPlayer);
+        yaw = ABS(this->structureActor.actor.yawTowardsPlayer);
 
         if (yaw < 0x2000) {
-            mDemo_Request(7, &this->actor, aDUM_set_talk_info);
+            mDemo_Request(7, &this->structureActor.actor, aDUM_set_talk_info);
         }
     }
 }
@@ -131,8 +134,8 @@ void aDUM_wait(Dump* this, Game_Play* game_play) {
 void aDUM_setup_action(Dump* this, s32 processIndex) {
     static DumpActionFunc process[] = { aDUM_wait };
 
-    this->process = process[processIndex];
-    this->processNum = processIndex;
+    this->structureActor.process = process[processIndex];
+    this->structureActor.unk_2B4 = processIndex;
 }
 
 void aDUM_actor_move(Actor* thisx, Game_Play* game_play) {
@@ -144,22 +147,22 @@ void aDUM_actor_move(Actor* thisx, Game_Play* game_play) {
     s32 playerXBlock;
     s32 playerYBlock;
 
-    mFI_Wpos2BlockNum(&xBlock, &yBlock, this->actor.world.pos);
+    mFI_Wpos2BlockNum(&xBlock, &yBlock, this->structureActor.actor.world.pos);
     mFI_Wpos2BlockNum(&playerXBlock, &playerYBlock, player->actor.world.pos);
     if ((mDemo_Check(1, &player->actor) == 0) && (mDemo_Check(5, &player->actor) == 0) &&
         ((xBlock != playerXBlock) || (yBlock != playerYBlock))) {
-        Actor_delete(&this->actor);
+        Actor_delete(&this->structureActor.actor);
     } else {
-        this->process(this, game_play);
+        this->structureActor.process(this, game_play);
     }
 }
 
 void aDUM_actor_init(Actor* thisx, Game_Play* game_play) {
     Dump* this = THIS;
 
-    mFI_SetFG_common(0xF101, this->actor.home.pos, 0);
-    aDUM_actor_move(&this->actor, game_play);
-    this->actor.update = aDUM_actor_move;
+    mFI_SetFG_common(0xF101, this->structureActor.actor.home.pos, 0);
+    aDUM_actor_move(&this->structureActor.actor, game_play);
+    this->structureActor.actor.update = aDUM_actor_move;
 }
 
 void aDUM_actor_draw(UNUSED Actor* thisx, Game_Play* game_play) {

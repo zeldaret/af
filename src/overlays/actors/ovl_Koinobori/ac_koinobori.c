@@ -44,20 +44,24 @@ ShadowData aKOI_shadow_data = { 8, aKOI_shadow_vtx_fix_flg_table, 60.0f, obj_e_k
 void aKOI_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
     Koinobori* this = THIS;
 
-    gSegments[6] = OS_K0_TO_PHYSICAL(common_data.clip.structureClip->unk_AC(0x27));
-    cKF_SkeletonInfo_R_ct(&this->skeletonInfo, &cKF_bs_r_obj_e_koinobori, 0, this->jointTable, this->morphTable);
+    gSegments[6] = OS_K0_TO_PHYSICAL(common_data.clip.structureClip->unk_AC(STRUCTURE_TYPE_KOINOBORI));
+    cKF_SkeletonInfo_R_ct(&this->structureActor.skeletonInfo, &cKF_bs_r_obj_e_koinobori, 0,
+                          this->structureActor.jointTable, this->structureActor.morphTable);
     aKOI_set_bgOffset(this, 1);
     aKOI_setup_action(this, 0);
-    cKF_SkeletonInfo_R_play(&this->skeletonInfo);
+    cKF_SkeletonInfo_R_play(&this->structureActor.skeletonInfo);
 }
 
 void aKOI_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
     Koinobori* this = THIS;
 
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_B0, 8, 0x27, &this->actor);
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_454, 9, 0x50, &this->actor);
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_86C, 8, 0x27, &this->actor);
-    cKF_SkeletonInfo_R_dt(&this->skeletonInfo);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_B0, 8, 0x27,
+                                           &this->structureActor.actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_454, 9, 0x50,
+                                           &this->structureActor.actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_86C, 8, 0x27,
+                                           &this->structureActor.actor);
+    cKF_SkeletonInfo_R_dt(&this->structureActor.skeletonInfo);
 }
 
 void aKOI_set_bgOffset(Koinobori* this UNUSED, s32 processIndex UNUSED) {
@@ -69,10 +73,10 @@ void aKOI_wait(Koinobori* this UNUSED, Game_Play* game_play UNUSED) {
 void aKOI_setup_action(Koinobori* this, s32 processIndex) {
     static KoinoboriActionFunc process[] = { aKOI_wait };
 
-    cKF_SkeletonInfo_R_init(&this->skeletonInfo, this->skeletonInfo.skeleton, &cKF_ba_r_obj_e_koinobori, 1.0f, 1.0f,
-                            1.0f, 1.0f, 0.0f, ANIMATION_REPEAT, NULL);
-    this->unk2A0 = process[processIndex];
-    this->unk2B4 = processIndex;
+    cKF_SkeletonInfo_R_init(&this->structureActor.skeletonInfo, this->structureActor.skeletonInfo.skeleton,
+                            &cKF_ba_r_obj_e_koinobori, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, ANIMATION_REPEAT, NULL);
+    this->structureActor.process = process[processIndex];
+    this->structureActor.unk_2B4 = processIndex;
 }
 
 void aKOI_actor_move(Actor* thisx, Game_Play* game_play) {
@@ -85,27 +89,27 @@ void aKOI_actor_move(Actor* thisx, Game_Play* game_play) {
     s32 playerBlockY;
     UNUSED s32 pad2;
 
-    mFI_Wpos2BlockNum(&blockX, &blockY, this->actor.world.pos);
+    mFI_Wpos2BlockNum(&blockX, &blockY, this->structureActor.actor.world.pos);
     mFI_Wpos2BlockNum(&playerBlockX, &playerBlockY, player->actor.world.pos);
 
     if ((mDemo_Check(1, &player->actor) == 0) && (mDemo_Check(5, &player->actor) == 0) &&
         ((blockX != playerBlockX) || (blockY != playerBlockY))) {
-        Actor_delete(&this->actor);
+        Actor_delete(&this->structureActor.actor);
         return;
     }
 
-    gSegments[6] = OS_K0_TO_PHYSICAL(common_data.clip.structureClip->unk_AC(0x27));
-    cKF_SkeletonInfo_R_play(&this->skeletonInfo);
-    this->unk2A0(this, game_play);
-    sAdo_OngenPos((uintptr_t)this, 0x35, &this->actor.world.pos);
+    gSegments[6] = OS_K0_TO_PHYSICAL(common_data.clip.structureClip->unk_AC(STRUCTURE_TYPE_KOINOBORI));
+    cKF_SkeletonInfo_R_play(&this->structureActor.skeletonInfo);
+    this->structureActor.process(this, game_play);
+    sAdo_OngenPos((uintptr_t)this, 0x35, &this->structureActor.actor.world.pos);
 }
 
 void aKOI_actor_init(Actor* thisx, Game_Play* game_play) {
     Koinobori* this = THIS;
 
-    mFI_SetFG_common(0xF100, this->actor.home.pos, 0);
-    aKOI_actor_move(&this->actor, game_play);
-    this->actor.update = aKOI_actor_move;
+    mFI_SetFG_common(0xF100, this->structureActor.actor.home.pos, 0);
+    aKOI_actor_move(&this->structureActor.actor, game_play);
+    this->structureActor.actor.update = aKOI_actor_move;
 }
 
 extern u16 aKOI_obj_e_koinobori_a_pal[];
@@ -121,7 +125,7 @@ void aKOI_actor_draw(Actor* thisx, Game_Play* game_play) {
     s32 object;
     u16* palette;
 
-    mtx = GRAPH_ALLOC_NO_ALIGN(gfxCtx, this->skeletonInfo.skeleton->unk01 * sizeof(Mtx));
+    mtx = GRAPH_ALLOC_NO_ALIGN(gfxCtx, this->structureActor.skeletonInfo.skeleton->unk01 * sizeof(Mtx));
     if (mtx != NULL) {
         object = common_data.clip.structureClip->unk_AC(STRUCTURE_TYPE_KOINOBORI);
         palette = common_data.clip.structureClip->unk_450(STRUCTURE_PALETTE_KOINOBORI);
@@ -133,7 +137,7 @@ void aKOI_actor_draw(Actor* thisx, Game_Play* game_play) {
         gSegments[6] = OS_K0_TO_PHYSICAL(object);
         gSPSegment(__polyOpa++, 0x06, object);
         CLOSE_POLY_OPA_DISP(gfxCtx);
-        cKF_Si3_draw_R_SV(game_play, &this->skeletonInfo, mtx, NULL, NULL, this);
+        cKF_Si3_draw_R_SV(game_play, &this->structureActor.skeletonInfo, mtx, NULL, NULL, this);
         common_data.clip.unk_074->unk_04(game_play, &aKOI_shadow_data, 0x27);
     }
 }

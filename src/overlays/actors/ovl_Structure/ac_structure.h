@@ -4,11 +4,14 @@
 #include "ultra64.h"
 #include "m_actor.h"
 #include "unk.h"
+#include "c_keyframe.h"
 
 struct Game_Play;
 struct Structure;
+struct StructureActor;
 
 typedef void (*StructureActionFunc)(struct Structure*, struct Game_Play*);
+typedef void (*StructureActorProcess)(struct StructureActor*, struct Game_Play*);
 
 typedef enum StructureType {
     /* 0x00 */ STRUCTURE_TYPE_HOUSE_1,
@@ -155,9 +158,24 @@ typedef enum StructurePalette {
 
 typedef struct StructureActor {
     /* 0x000 */ Actor actor;
-    /* 0x174 */ UNK_TYPE1 unk_174[0x13C];
+    /* 0x174 */ s32 unk_174;
+    /* 0x178 */ SkeletonInfoR skeletonInfo;
+    /* 0x1E8 */ s32 unk_1E8;
+    /* 0x1EC */ s_xyz jointTable[15];
+    /* 0x246 */ s_xyz morphTable[15];
+    /* 0x2A0 */ StructureActorProcess process;
+    /* 0x2A4 */ UNK_TYPE1 unk_2A4[0x4];
+    /* 0x2A8 */ s32 structureType;
+    /* 0x2AC */ s32 structurePalette;
     /* 0x2B0 */ s32 unk_2B0;
-    /* 0x2B4 */ UNK_TYPE1 unk_2B4[0x24];
+    /* 0x2B4 */ s32 unk_2B4;
+    /* 0x2B8 */ s32 unk_2B8;
+    /* 0x2BC */ s32 unk_2BC;
+    /* 0x2C0 */ UNK_TYPE1 unk_2C0[0x8];
+    /* 0x2C8 */ f32 unk_2C8;
+    /* 0x2CC */ f32 unk_2CC;
+    /* 0x2D0 */ f32 unk_2D0;
+    /* 0x2D4 */ UNK_TYPE1 unk_2D4[0x4];
 } StructureActor; // size = 0x2D8
 
 typedef struct Structure {

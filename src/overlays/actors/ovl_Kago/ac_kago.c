@@ -39,9 +39,9 @@ ActorProfile Kago_Profile = {
 void aKAG_actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
     Kago* this = THIS;
 
-    this->type = this->actor.fgName - 0x5835;
-    this->structureType = this->type + STRUCTURE_TYPE_SPORTSFAIR_A;
-    this->structurePalette = this->type + STRUCTURE_PALETTE_SPORTSFAIR_A;
+    this->structureActor.unk_2B4 = this->structureActor.actor.fgName - 0x5835;
+    this->structureActor.structureType = this->structureActor.unk_2B4 + STRUCTURE_TYPE_SPORTSFAIR_A;
+    this->structureActor.structurePalette = this->structureActor.unk_2B4 + STRUCTURE_PALETTE_SPORTSFAIR_A;
     aKAG_setup_action(this, KAG_PROCESS_WAIT);
     aKAG_set_bgOffset(this, 1);
 }
@@ -49,17 +49,17 @@ void aKAG_actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
 void aKAG_actor_dt(Actor* thisx, UNUSED Game_Play* game_play) {
     Kago* this = THIS;
 
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_B0, 8, this->structureType,
-                                           &this->actor);
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_454, 9, this->structurePalette,
-                                           &this->actor);
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_86C, 8, this->structureType,
-                                           &this->actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_B0, 8,
+                                           this->structureActor.structureType, &this->structureActor.actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_454, 9,
+                                           this->structureActor.structurePalette, &this->structureActor.actor);
+    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_86C, 8,
+                                           this->structureActor.structureType, &this->structureActor.actor);
 }
 
 void aKAG_set_bgOffset(Kago* this, s32 id) {
     id = id == 0 ? 10 : 10;
-    mCoBG_SetPlussOffset(this->actor.home.pos, id, 100);
+    mCoBG_SetPlussOffset(this->structureActor.actor.home.pos, id, 100);
 }
 
 void aKAG_wait(UNUSED Kago* this, UNUSED Game_Play* game_play) {
@@ -76,8 +76,8 @@ ShadowData aKAG_shadow_data = { 13, aKAG_shadow_vtx_fix_flg_table, 60.0f, obj_e_
 void aKAG_setup_action(Kago* this, s32 processIndex) {
     static KagoActionFunc process[] = { &aKAG_wait };
 
-    this->process = process[processIndex];
-    this->processNum = processIndex;
+    this->structureActor.process = process[processIndex];
+    this->structureActor.unk_2B8 = processIndex;
 }
 
 void aKAG_actor_move(Actor* thisx, Game_Play* game_play) {
@@ -89,30 +89,30 @@ void aKAG_actor_move(Actor* thisx, Game_Play* game_play) {
     s32 playerXBlock;
     s32 playerYBlock;
 
-    mFI_Wpos2BlockNum(&xBlock, &yBlock, this->actor.world.pos);
+    mFI_Wpos2BlockNum(&xBlock, &yBlock, this->structureActor.actor.world.pos);
     mFI_Wpos2BlockNum(&playerXBlock, &playerYBlock, player->actor.world.pos);
     if ((mDemo_Check(1, &player->actor) == 0) && (mDemo_Check(5, &player->actor) == 0) &&
         ((xBlock != playerXBlock) || (yBlock != playerYBlock))) {
-        Actor_delete(&this->actor);
+        Actor_delete(&this->structureActor.actor);
     } else {
-        this->process(this, game_play);
+        this->structureActor.process(this, game_play);
     }
 }
 
 void aKAG_actor_init(Actor* thisx, Game_Play* game_play) {
     Kago* this = THIS;
 
-    mFI_SetFG_common(0xF0FD, this->actor.home.pos, 0);
-    aKAG_actor_move(&this->actor, game_play);
-    this->actor.update = aKAG_actor_move;
+    mFI_SetFG_common(0xF0FD, this->structureActor.actor.home.pos, 0);
+    aKAG_actor_move(&this->structureActor.actor, game_play);
+    this->structureActor.actor.update = aKAG_actor_move;
 }
 
 void aKAG_actor_draw(Actor* thisx, Game_Play* game_play) {
     static Gfx* model[] = { kago_r_DL_model, kago_w_DL_model };
     GraphicsContext* gfxCtx = game_play->state.gfxCtx;
     Kago* this = THIS;
-    u32 object = common_data.clip.structureClip->unk_AC(this->structureType);
-    u16* palette = common_data.clip.structureClip->unk_450(this->structurePalette);
+    u32 object = common_data.clip.structureClip->unk_AC(this->structureActor.structureType);
+    u16* palette = common_data.clip.structureClip->unk_450(this->structureActor.structurePalette);
     Mtx* mtx;
 
     mtx = _Matrix_to_Mtx_new(gfxCtx);
@@ -123,8 +123,8 @@ void aKAG_actor_draw(Actor* thisx, Game_Play* game_play) {
         gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(object);
         gSPSegment(__polyOpa++, 0x06, object);
         gSPMatrix(__polyOpa++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-        gSPDisplayList(__polyOpa++, model[this->type]);
+        gSPDisplayList(__polyOpa++, model[this->structureActor.unk_2B4]);
         CLOSE_POLY_OPA_DISP(gfxCtx);
-        common_data.clip.unk_074->unk_04(game_play, &aKAG_shadow_data, this->structureType);
+        common_data.clip.unk_074->unk_04(game_play, &aKAG_shadow_data, this->structureActor.structureType);
     }
 }
