@@ -5676,3 +5676,9 @@ D_801948E0_jp = 0x801948E0; //
 // REMOVE THIS!!!!
 test = 0x06000008;
 test2 = 0x060000C0;
+fake_symbol_1 = 0x06000008;
+fake_symbol_2 = 0x06000178;
+fake_symbol_3 = 0x060000C0;
+fake_symbol_4 = 0x06000230;
+fake_symbol_5 = 0x06000008;
+fake_symbol_6 = 0x06000174;

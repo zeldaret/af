@@ -2883,7 +2883,7 @@
     bss_size: 0x14AF0
     subsegments:
       - [0x8CB690, c, overlays/actors/ovl_Structure/ac_structure]
-      - [0x8CD000, data, overlays/actors/ovl_Structure/ac_structure]
+      - [0x8CD000, .data, overlays/actors/ovl_Structure/ac_structure]
       - [0x8CD270, .rodata, overlays/actors/ovl_Structure/ac_structure]
       - { start: 0x8CD350, type: bss, vram: 0x809E9B90, name: overlays/actors/ovl_Structure/ac_structure }
   - name: ovl_Structure_reloc
