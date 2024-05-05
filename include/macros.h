@@ -30,4 +30,6 @@
 
 #define DECR(x) ((x) == 0 ? 0 : --(x))
 
+#define ARRAY_COUNT(arr) (s32)(sizeof(arr) / sizeof(arr[0]))
+
 #endif

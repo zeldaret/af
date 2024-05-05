@@ -1,5 +1,6 @@
 #include "prevent_bss_reordering.h"
 #include "ac_structure.h"
+#include "macros.h"
 #include "m_actor_dlftbls.h"
 #include "m_field_info.h"
 #include "m_lib.h"
@@ -82,28 +83,28 @@ static void* D_809E9874_jp[] = { &fake_symbol_5, &fake_symbol_6 };
 
 // TODO: use "real" symbols
 void func_809E7F94_jp(void) {
-    s32 temp_t1 = (common_data.time.season == 3);
+    s32 index = (common_data.time.season == WINTER);
 
     DmaMgr_RequestSyncDebug(&B_809FD530_jp,
-                            ((uintptr_t)D_809E9864_jp[temp_t1] + SEGMENT_ROM_START(object_00DF4000)) -
+                            ((uintptr_t)D_809E9864_jp[index] + SEGMENT_ROM_START(object_00DF4000)) -
                                 (uintptr_t)SEGMENT_VRAM_START(object_00DF4000),
-                            184, "../ac_structure_clip.c_inc", 129);
+                            ARRAY_COUNT(B_809FD530_jp), "../ac_structure_clip.c_inc", 129);
     DmaMgr_RequestSyncDebug(&B_809FD818_jp,
-                            ((uintptr_t)D_809E986C_jp[temp_t1] + SEGMENT_ROM_START(object_00DF4000)) -
+                            ((uintptr_t)D_809E986C_jp[index] + SEGMENT_ROM_START(object_00DF4000)) -
                                 (uintptr_t)SEGMENT_VRAM_START(object_00DF4000),
-                            184, "../ac_structure_clip.c_inc", 132);
+                            ARRAY_COUNT(B_809FD818_jp), "../ac_structure_clip.c_inc", 132);
     DmaMgr_RequestSyncDebug(&B_809FDB00_jp,
-                            ((uintptr_t)D_809E9874_jp[temp_t1] + SEGMENT_ROM_START(object_00D5D000)) -
+                            ((uintptr_t)D_809E9874_jp[index] + SEGMENT_ROM_START(object_00D5D000)) -
                                 (uintptr_t)SEGMENT_VRAM_START(object_00D5D000),
-                            364, "../ac_structure_clip.c_inc", 135);
+                            ARRAY_COUNT(B_809FDB00_jp), "../ac_structure_clip.c_inc", 135);
     DmaMgr_RequestSyncDebug(&B_809FE0B8_jp,
                             ((uintptr_t)test + (uintptr_t)SEGMENT_ROM_START(object_00E00000)) -
                                 (uintptr_t)SEGMENT_VRAM_START(object_00E00000),
-                            184, "../ac_structure_clip.c_inc", 138);
+                            ARRAY_COUNT(B_809FE0B8_jp), "../ac_structure_clip.c_inc", 138);
     DmaMgr_RequestSyncDebug(&B_809FE3A0_jp,
                             ((uintptr_t)test2 + (uintptr_t)SEGMENT_ROM_START(object_00E00000)) -
                                 (uintptr_t)SEGMENT_VRAM_START(object_00E00000),
-                            184, "../ac_structure_clip.c_inc", 141);
+                            ARRAY_COUNT(B_809FE3A0_jp), "../ac_structure_clip.c_inc", 141);
 }
 
 void func_809E8118_jp(ObjectExchangeBank* arg0) {
