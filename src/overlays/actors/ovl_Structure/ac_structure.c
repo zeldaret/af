@@ -1,3 +1,4 @@
+#include "prevent_bss_reordering.h"
 #include "ac_structure.h"
 #include "m_actor_dlftbls.h"
 #include "m_field_info.h"
@@ -21,7 +22,7 @@ s8 aSTR_overlay[9][8192];
 s8 acStructureBssPadding[8];
 void* B_809FD530_jp[186];
 void* B_809FD818_jp[186];
-void* B_809FDB00_jp[186];
+void* B_809FDB00_jp[366];
 void* B_809FE0B8_jp[186];
 void* B_809FE3A0_jp[184];
 
