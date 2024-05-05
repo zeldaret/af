@@ -19,11 +19,15 @@ void aSTR_free_clip_area(void);
 
 StructureActor aSTR_actor_cl[9];
 s8 aSTR_overlay[9][8192];
-s8 acStructureBssPadding[8];
-void* B_809FD530_jp[186];
-void* B_809FD818_jp[186];
-void* B_809FDB00_jp[366];
-void* B_809FE0B8_jp[186];
+s8 acStructureBssPadding1[8];
+void* B_809FD530_jp[184];
+s8 acStructureBssPadding2[8];
+void* B_809FD818_jp[184];
+s8 acStructureBssPadding3[8];
+void* B_809FDB00_jp[364];
+s8 acStructureBssPadding4[8];
+void* B_809FE0B8_jp[184];
+s8 acStructureBssPadding5[8];
 void* B_809FE3A0_jp[184];
 
 ActorProfile Structure_Profile = {
