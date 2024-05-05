@@ -168,7 +168,7 @@ typedef struct StructureClip {
     /* 0x454 */ StructureClip_unkstruct unk_454[9];
     /* 0x868 */ StructureClip_unk_868 unk_868;
     /* 0x86C */ StructureClip_unkstruct unk_86C[8];
-    /* 0xC0C */ s32 unk_C0C;
+    /* 0xC0C */ s32 objectExchangeBankNum;
     /* 0xC10 */ s32 unk_C10;
 } StructureClip; // size = 0xC14
 
