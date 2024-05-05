@@ -149,15 +149,17 @@ typedef s32 (*StructureClip_unk_AC)(s16);
 typedef u16* (*StructureClipGetPalSegment)(s16);
 typedef s32 (*StructureClip_unk_868)(s16);
 
+#define STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT 9
+
 typedef struct StructureClip {
     /* 0x000 */ StructureClipSetupActorProc setupActorProc;
     /* 0x004 */ StructureClipGetOverlayAreaProc getOverlayAreaProc;
     /* 0x008 */ StructureClipFreeOverlayAreaProc freeOverlayAreaProc;
     /* 0x00C */ StructureClipGetActorAreaProc getActorAreaProc;
     /* 0x010 */ StructureClipFreeActorAreaProc freeActorAreaProc;
-    /* 0x014 */ struct StructureActor* structureActorTable[9];
-    /* 0x038 */ s32 structureActorUsedTable[9];
-    /* 0x05C */ StructureOverlayInfo overlayArea[9];
+    /* 0x014 */ struct StructureActor* structureActorTable[STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT];
+    /* 0x038 */ s32 structureActorUsedTable[STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT];
+    /* 0x05C */ StructureOverlayInfo overlayArea[STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT];
     /* 0x0A4 */ StructureClip_unk_A4 unk_A4;
     /* 0x0A8 */ StructureClip_unk_A8 unk_A8; // unload object
     /* 0x0AC */ StructureClip_unk_AC unk_AC; // load object

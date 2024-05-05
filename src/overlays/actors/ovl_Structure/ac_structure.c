@@ -116,7 +116,7 @@ void func_809E8118_jp(ObjectExchangeBank* arg0) {
     size_t size;
     s32 i;
 
-    for (i = 0; i < 8; i++, var_s1 += 0x2E00, ptr++) {
+    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_B0); i++, var_s1 += 0x2E00, ptr++) {
         if (ptr->unk_03 == 1) {
             temp_t0 = ptr->type;
             temp_s3 = (uintptr_t)B_809FD530_jp[temp_t0] - (uintptr_t)SEGMENT_VRAM_START(object_00DF4000) + 8;
@@ -136,7 +136,7 @@ void func_809E823C_jp(ObjectExchangeBank* arg0) {
     s32 temp;
     s32 i;
 
-    for (i = 0; i < 9; i++, var_s1 += 0x20, ptr++) {
+    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_454); i++, var_s1 += 0x20, ptr++) {
         if (ptr->unk_03 == 1) {
             test = B_809FDB00_jp[ptr->type];
             temp = (uintptr_t)test - (uintptr_t)SEGMENT_VRAM_START(object_00D5D000);
@@ -157,7 +157,7 @@ void func_809E8350_jp(ObjectExchangeBank* arg0) {
     size_t size;
     s32 i;
 
-    for (i = 0; i < 8; i++, var_s1 += 0x800, ptr++) {
+    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_86C); i++, var_s1 += 0x800, ptr++) {
         if (ptr->unk_03 == 1) {
             temp_t0 = ptr->type;
             temp_s3 = (uintptr_t)B_809FE0B8_jp[temp_t0] - (uintptr_t)SEGMENT_VRAM_START(object_00E00000) + 8;
@@ -184,7 +184,7 @@ void func_809E84E4_jp(ObjectExchangeBank* arg0) {
     s32 i;
 
     ptr = common_data.clip.structureClip->unk_B0;
-    for (i = 0; i < 8; i++, ptr++) {
+    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_B0); i++, ptr++) {
         if ((ptr->type == -1) || (ptr->unk_02 == 0)) {
             ptr->type = -1;
             ptr->unk_02 = 0;
@@ -195,7 +195,7 @@ void func_809E84E4_jp(ObjectExchangeBank* arg0) {
     }
 
     ptr = common_data.clip.structureClip->unk_454;
-    for (i = 0; i < 9; i++, ptr++) {
+    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_454); i++, ptr++) {
         if ((ptr->type == -1) || (ptr->unk_02 == 0)) {
             ptr->type = -1;
             ptr->unk_02 = 0;
@@ -206,7 +206,7 @@ void func_809E84E4_jp(ObjectExchangeBank* arg0) {
     }
 
     ptr = common_data.clip.structureClip->unk_86C;
-    for (i = 0; i < 8; i++, ptr++) {
+    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_86C); i++, ptr++) {
         if ((ptr->type == -1) || (ptr->unk_02 == 0)) {
             ptr->type = -1;
             ptr->unk_02 = 0;
@@ -225,7 +225,7 @@ s32 func_809E85FC_jp(StructureClip_unkstruct* arg0, u16 arg1, f32 posX, f32 posZ
     s32 i;
     s32 ret = false;
 
-    for (i = 0; i < 9; i++, ptr++) {
+    for (i = 0; i < ARRAY_COUNT(arg0->unk_04); i++, ptr++) {
         if ((ptr->fgName == arg1) && (ptr->posX == posX) && (ptr->posZ == posZ)) {
             ret = true;
             break;
@@ -239,7 +239,7 @@ s32 func_809E8674_jp(StructureClip_unkstruct* arg0, u16 arg1, f32 posX, f32 posZ
     StructureClip_unkstruct_unk_04* ptr = arg0->unk_04;
     s32 i;
 
-    for (i = 0; i < 9; i++, ptr++) {
+    for (i = 0; i < ARRAY_COUNT(arg0->unk_04); i++, ptr++) {
         if (ptr->fgName == 0) {
             ptr->fgName = arg1;
             ptr->posX = posX;
@@ -309,7 +309,7 @@ s32 func_809E89AC_jp(StructureClip_unkstruct* arg0, Actor* actor) {
     StructureClip_unkstruct_unk_04* ptr = arg0->unk_04;
     s32 i;
 
-    for (i = 0; i < 9; i++, ptr++) {
+    for (i = 0; i < ARRAY_COUNT(arg0->unk_04); i++, ptr++) {
         if ((ptr->fgName == actor->fgName) && (ptr->posX == actor->home.pos.x) && (ptr->posZ == actor->home.pos.z)) {
             ptr->posX = 0.0f;
             ptr->posZ = 0.0f;
@@ -510,9 +510,12 @@ Actor* aSTR_setupActor_proc(Game_Play* game_play, u16 structureName, f32 posX, f
         pal_no = info->pal_no;
     }
 
-    func_809E889C_jp(common_data.clip.structureClip->unk_B0, 8, structure_type, structureName, posX, posZ);
-    func_809E889C_jp(common_data.clip.structureClip->unk_454, 9, pal_no, structureName, posX, posZ);
-    func_809E889C_jp(common_data.clip.structureClip->unk_86C, 8, structure_type, structureName, posX, posZ);
+    func_809E889C_jp(common_data.clip.structureClip->unk_B0, ARRAY_COUNT(common_data.clip.structureClip->unk_B0),
+                     structure_type, structureName, posX, posZ);
+    func_809E889C_jp(common_data.clip.structureClip->unk_454, ARRAY_COUNT(common_data.clip.structureClip->unk_454),
+                     pal_no, structureName, posX, posZ);
+    func_809E889C_jp(common_data.clip.structureClip->unk_86C, ARRAY_COUNT(common_data.clip.structureClip->unk_86C),
+                     structure_type, structureName, posX, posZ);
 
     if (func_809E8CD4_jp(structure_type) && aSTR_get_pal_segment(pal_no) && func_809E8DB4_jp(structure_type)) {
         UNUSED s32 pad;
@@ -537,7 +540,7 @@ s32 aSTR_get_overlay_free_area_idx(void) {
     s32 i;
     s32 ret = -1;
 
-    for (i = 0; i < 9; i++, structureOverlay++) {
+    for (i = 0; i < STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT; i++, structureOverlay++) {
         if (!structureOverlay->used) {
             ret = i;
             break;
@@ -562,7 +565,7 @@ void aSTR_free_overlay_area_proc(ActorOverlay* overlayEntry) {
     StructureOverlayInfo* structureOverlay = common_data.clip.structureClip->overlayArea;
     s32 i;
 
-    for (i = 0; i < 9; i++, structureOverlay++) {
+    for (i = 0; i < STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT; i++, structureOverlay++) {
         if (structureOverlay->overlayPointer == overlayEntry->loadedRamAddr) {
             structureOverlay->used = false;
             overlayEntry->loadedRamAddr = NULL;
@@ -577,7 +580,7 @@ Actor* aSTR_get_actor_area_proc(void) {
     s32 i;
     StructureActor* ret = NULL;
 
-    for (i = 0; i < 9; i++, actorTableIter++, isUsed++) {
+    for (i = 0; i < STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT; i++, actorTableIter++, isUsed++) {
         if ((*actorTableIter != NULL) && (*isUsed == false)) {
             *isUsed = true;
             ret = *actorTableIter;
@@ -594,7 +597,7 @@ void aSTR_free_actor_area_proc(Actor* actor) {
     s32* isUsed = common_data.clip.structureClip->structureActorUsedTable;
     s32 i;
 
-    for (i = 0; i < 9; i++, actorTableIter++, isUsed++) {
+    for (i = 0; i < STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT; i++, actorTableIter++, isUsed++) {
         if (structureActor == *actorTableIter) {
             *isUsed = false;
             return;
@@ -623,7 +626,7 @@ void aSTR_init_clip_area(Game_Play* game_play) {
             StructureOverlayInfo* structureOverlay = common_data.clip.structureClip->overlayArea;
             s32 i;
 
-            for (i = 0; i < 9; i++, actorTableIter++, isUsed++, structureOverlay++) {
+            for (i = 0; i < STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT; i++, actorTableIter++, isUsed++, structureOverlay++) {
                 *actorTableIter = &aSTR_actor_cl[i];
                 *isUsed = 0;
                 structureOverlay->overlayPointer = aSTR_overlay[i];
@@ -637,33 +640,33 @@ void aSTR_init_clip_area(Game_Play* game_play) {
             s32 j;
 
             ptr = common_data.clip.structureClip->unk_B0;
-            for (i = 0; i < 8; i++, ptr++) {
+            for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_B0); i++, ptr++) {
                 ptr->type = -1;
                 ptr->unk_02 = 0;
                 ptr->unk_03 = 0;
-                for (j = 0; j < 9; j++) {
+                for (j = 0; j < ARRAY_COUNT(ptr->unk_04); j++) {
                     ptr->unk_04[j].unk_08 = 0;
                     ptr->unk_04[j].fgName = 0;
                 }
             }
 
             ptr = common_data.clip.structureClip->unk_454;
-            for (i = 0; i < 9; i++, ptr++) {
+            for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_454); i++, ptr++) {
                 ptr->type = -1;
                 ptr->unk_02 = 0;
                 ptr->unk_03 = 0;
-                for (j = 0; j < 9; j++) {
+                for (j = 0; j < ARRAY_COUNT(ptr->unk_04); j++) {
                     ptr->unk_04[j].unk_08 = 0;
                     ptr->unk_04[j].fgName = 0;
                 }
             }
 
             ptr = common_data.clip.structureClip->unk_86C;
-            for (i = 0; i < 8; i++, ptr++) {
+            for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_86C); i++, ptr++) {
                 ptr->type = -1;
                 ptr->unk_02 = 0;
                 ptr->unk_03 = 0;
-                for (j = 0; j < 9; j++) {
+                for (j = 0; j < ARRAY_COUNT(ptr->unk_04); j++) {
                     ptr->unk_04[j].unk_08 = 0;
                     ptr->unk_04[j].fgName = 0;
                 }
@@ -682,7 +685,7 @@ void aSTR_free_clip_area(void) {
             StructureOverlayInfo* structureOverlay = common_data.clip.structureClip->overlayArea;
             s32 i;
 
-            for (i = 0; i < 9; i++, actorTableIter++, structureOverlay++) {
+            for (i = 0; i < STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT; i++, actorTableIter++, structureOverlay++) {
                 if (*actorTableIter != NULL) {
                     *actorTableIter = NULL;
                 }
