@@ -13313,9 +13313,9 @@ aSTR_remove_instance_from_segment_info_unchecked = 0x809E89AC; // type:func
 aSTR_remove_instance_from_segment_info = 0x809E8BDC; // type:func
 aSTR_remove_instance_proc = 0x809E8C14; // type:func
 aSTR_get_index_of_type_in_segment_table = 0x809E8C80; // type:func
-func_809E8CD4_jp = 0x809E8CD4; // type:func
+aSTR_get_object_segment = 0x809E8CD4; // type:func
 aSTR_get_pal_segment = 0x809E8D44; // type:func
-func_809E8DB4_jp = 0x809E8DB4; // type:func
+aSTR_get_shadow_segment = 0x809E8DB4; // type:func
 aSTR_setupActor_proc = 0x809E8E24; // type:func
 aSTR_get_overlay_free_area_idx = 0x809E9160; // type:func
 aSTR_get_overlay_area_proc = 0x809E91A4; // type:func
@@ -13351,16 +13351,16 @@ RO_STR_809E9B74_jp = 0x809E9B74; // type:asciz
 
 aSTR_actor_cl = 0x809E9B90; //
 aSTR_overlay = 0x809EB528; //
-acStructureBssPadding1 = 0x809FD528; //
-B_809FD530_jp = 0x809FD530; //
-acStructureBssPadding2 = 0x809FD810; //
-B_809FD818_jp = 0x809FD818; //
-acStructureBssPadding3 = 0x809FDAF8; //
-B_809FDB00_jp = 0x809FDB00; //
-acStructureBssPadding4 = 0x809FE0B0; //
-B_809FE0B8_jp = 0x809FE0B8; //
-acStructureBssPadding5 = 0x809FE398; //
-B_809FE3A0_jp = 0x809FE3A0; //
+aSTR_bss_padding_1 = 0x809FD528; //
+aSTR_object_start_addresses = 0x809FD530; //
+aSTR_bss_padding_2 = 0x809FD810; //
+aSTR_object_end_addresses = 0x809FD818; //
+aSTR_bss_padding_3 = 0x809FDAF8; //
+aSTR_palette_addresses = 0x809FDB00; //
+aSTR_bss_padding_4 = 0x809FE0B0; //
+aSTR_shadow_start_addresses = 0x809FE0B8; //
+aSTR_bss_padding_5 = 0x809FE398; //
+aSTR_shadow_end_addresses = 0x809FE3A0; //
 
 // .text
 

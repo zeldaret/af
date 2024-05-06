@@ -50,15 +50,15 @@ void aKAG_actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
 void aKAG_actor_dt(Actor* thisx, UNUSED Game_Play* game_play) {
     Kago* this = THIS;
 
-    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->unk_B0,
-                                                       ARRAY_COUNT(common_data.clip.structureClip->unk_B0),
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->objectSegmentTable,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->objectSegmentTable),
                                                        this->structureActor.structureType, &this->structureActor.actor);
     common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->paletteSegmentTable,
                                                        ARRAY_COUNT(common_data.clip.structureClip->paletteSegmentTable),
                                                        this->structureActor.structurePalette,
                                                        &this->structureActor.actor);
-    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->unk_86C,
-                                                       ARRAY_COUNT(common_data.clip.structureClip->unk_86C),
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->shadowSegmentTable,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->shadowSegmentTable),
                                                        this->structureActor.structureType, &this->structureActor.actor);
 }
 
@@ -116,7 +116,7 @@ void aKAG_actor_draw(Actor* thisx, Game_Play* game_play) {
     static Gfx* model[] = { kago_r_DL_model, kago_w_DL_model };
     GraphicsContext* gfxCtx = game_play->state.gfxCtx;
     Kago* this = THIS;
-    u32 object = common_data.clip.structureClip->unk_AC(this->structureActor.structureType);
+    u32 object = common_data.clip.structureClip->getObjectSegment(this->structureActor.structureType);
     u16* palette = common_data.clip.structureClip->getPalSegment(this->structureActor.structurePalette);
     Mtx* mtx;
 

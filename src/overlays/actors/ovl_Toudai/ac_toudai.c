@@ -51,7 +51,7 @@ void aTOU_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
     static BaseSkeletonR* skl[] = { &cKF_bs_r_obj_s_toudai, &cKF_bs_r_obj_w_toudai };
     s32 type = (common_data.time.season == WINTER);
 
-    gSegments[6] = OS_K0_TO_PHYSICAL(common_data.clip.structureClip->unk_AC(STRUCTURE_TYPE_TOUDAI));
+    gSegments[6] = OS_K0_TO_PHYSICAL(common_data.clip.structureClip->getObjectSegment(STRUCTURE_TYPE_TOUDAI));
     cKF_SkeletonInfo_R_ct(&this->structureActor.skeletonInfo, skl[type], NULL, this->structureActor.jointTable,
                           this->structureActor.morphTable);
     aTOU_set_bgOffset(this, 1);
@@ -64,14 +64,14 @@ void aTOU_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
 void aTOU_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
     Toudai* this = THIS;
 
-    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->unk_B0,
-                                                       ARRAY_COUNT(common_data.clip.structureClip->unk_B0),
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->objectSegmentTable,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->objectSegmentTable),
                                                        STRUCTURE_TYPE_TOUDAI, thisx);
     common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->paletteSegmentTable,
                                                        ARRAY_COUNT(common_data.clip.structureClip->paletteSegmentTable),
                                                        STRUCTURE_PALETTE_TOUDAI, thisx);
-    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->unk_86C,
-                                                       ARRAY_COUNT(common_data.clip.structureClip->unk_86C),
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->shadowSegmentTable,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->shadowSegmentTable),
                                                        STRUCTURE_TYPE_TOUDAI, thisx);
     cKF_SkeletonInfo_R_dt(&this->structureActor.skeletonInfo);
     thisx->world.pos.x += 20.0f;
@@ -187,7 +187,7 @@ void aTOU_setup_action(Toudai* this, s32 processIndex) {
 void aTOU_actor_move(Actor* thisx, Game_Play* game_play) {
     Toudai* this = THIS;
 
-    gSegments[6] = OS_K0_TO_PHYSICAL(common_data.clip.structureClip->unk_AC(STRUCTURE_TYPE_TOUDAI));
+    gSegments[6] = OS_K0_TO_PHYSICAL(common_data.clip.structureClip->getObjectSegment(STRUCTURE_TYPE_TOUDAI));
     this->structureActor.unk_174 = cKF_SkeletonInfo_R_play(&this->structureActor.skeletonInfo);
     this->structureActor.unk_1E8 = this->structureActor.skeletonInfo.frameControl.currentFrame;
     ((ToudaiActionFunc)this->structureActor.process)(this, game_play);
@@ -232,7 +232,7 @@ s32 aTOU_actor_draw_after(Game_Play* game_play, SkeletonInfoR* skeletonInfo UNUS
         mtx = _Matrix_to_Mtx_new(gfxCtx);
         if (mtx != NULL) {
             type = common_data.time.season == WINTER;
-            object = common_data.clip.structureClip->unk_AC(STRUCTURE_TYPE_TOUDAI);
+            object = common_data.clip.structureClip->getObjectSegment(STRUCTURE_TYPE_TOUDAI);
             palette = common_data.clip.structureClip->getPalSegment(STRUCTURE_PALETTE_TOUDAI);
             _texture_z_light_fog_prim_light(gfxCtx);
             OPEN_LIGHT_DISP(gfxCtx);
@@ -267,7 +267,7 @@ void aTOU_actor_draw(Actor* thisx, Game_Play* game_play) {
     mtx = GRAPH_ALLOC_NO_ALIGN(gfxCtx, numberOfDisplayLists * sizeof(Mtx));
 
     if (mtx != NULL) {
-        object = common_data.clip.structureClip->unk_AC(STRUCTURE_TYPE_TOUDAI);
+        object = common_data.clip.structureClip->getObjectSegment(STRUCTURE_TYPE_TOUDAI);
         palette = common_data.clip.structureClip->getPalSegment(STRUCTURE_PALETTE_TOUDAI);
 
         _texture_z_light_fog_prim_npc(gfxCtx);

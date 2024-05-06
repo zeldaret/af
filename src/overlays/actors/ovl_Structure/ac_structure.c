@@ -20,16 +20,36 @@ void aSTR_free_clip_area(void);
 
 StructureActor aSTR_actor_cl[9];
 s8 aSTR_overlay[9][8192];
-s8 acStructureBssPadding1[8];
-void* B_809FD530_jp[184];
-s8 acStructureBssPadding2[8];
-void* B_809FD818_jp[184];
-s8 acStructureBssPadding3[8];
-void* B_809FDB00_jp[364];
-s8 acStructureBssPadding4[8];
-void* B_809FE0B8_jp[184];
-s8 acStructureBssPadding5[8];
-void* B_809FE3A0_jp[184];
+
+// Original name unknown. Unused
+s8 aSTR_bss_padding_1[8];
+
+// Original name unknown.
+void* aSTR_object_start_addresses[184];
+
+// Original name unknown. Unused
+s8 aSTR_bss_padding_2[8];
+
+// Original name unknown.
+void* aSTR_object_end_addresses[184];
+
+// Original name unknown. Unused
+s8 aSTR_bss_padding_3[8];
+
+// Original name unknown.
+void* aSTR_palette_addresses[364];
+
+// Original name unknown. Unused
+s8 aSTR_bss_padding_4[8];
+
+// Original name unknown.
+void* aSTR_shadow_start_addresses[184];
+
+// Original name unknown. Unused
+s8 aSTR_bss_padding_5[8];
+
+// Original name unknown.
+void* aSTR_shadow_end_addresses[184];
 
 ActorProfile Structure_Profile = {
     /* */ ACTOR_STRUCTURE,
@@ -69,14 +89,14 @@ void func_809E7F34_jp(Game_Play* game_play) {
 }
 
 // TODO: Replace these with the actual object symbols when the various structure objects are extracted
-extern void* structure_object_symbol_1; // 0x06000008
-extern void* structure_object_symbol_2; // 0x06000178
-extern void* structure_object_symbol_3; // 0x060000C0
-extern void* structure_object_symbol_4; // 0x06000230
-extern void* structure_object_symbol_5; // 0x06000008
-extern void* structure_object_symbol_6; // 0x06000174
-extern u8 structure_object_symbol_7[];  // 0x06000008
-extern u8 structure_object_symbol_8[];  // 0x060000C0
+extern void* structure_object_symbol_1; // 0x06000008 in object_00DF4000, pointer to obj_s_house1
+extern void* structure_object_symbol_2; // 0x06000178 in object_00DF4000, pointer to obj_w_house1
+extern void* structure_object_symbol_3; // 0x060000C0 in object_00DF4000, pointer to 0x06026380
+extern void* structure_object_symbol_4; // 0x06000230 in object_00DF4000, pointer to 0x06032908
+extern void* structure_object_symbol_5; // 0x06000008 in object_00D5D000, pointer to obj_s_house1_a_pal
+extern void* structure_object_symbol_6; // 0x06000174 in object_00D5D000, pointer to obj_w_house1_a_pal
+extern u8 structure_object_symbol_7[];  // 0x06000008 in object_00E00000
+extern u8 structure_object_symbol_8[];  // 0x060000C0 in object_00E00000
 
 static void* D_809E9864_jp[] = { &structure_object_symbol_1, &structure_object_symbol_2 };
 static void* D_809E986C_jp[] = { &structure_object_symbol_3, &structure_object_symbol_4 };
@@ -85,45 +105,47 @@ static void* D_809E9874_jp[] = { &structure_object_symbol_5, &structure_object_s
 void func_809E7F94_jp(void) {
     s32 index = (common_data.time.season == WINTER);
 
-    DmaMgr_RequestSyncDebug(&B_809FD530_jp,
+    DmaMgr_RequestSyncDebug(&aSTR_object_start_addresses,
                             ((uintptr_t)D_809E9864_jp[index] + SEGMENT_ROM_START(object_00DF4000)) -
                                 (uintptr_t)SEGMENT_VRAM_START(object_00DF4000),
-                            ARRAY_COUNT(B_809FD530_jp), "../ac_structure_clip.c_inc", 129);
-    DmaMgr_RequestSyncDebug(&B_809FD818_jp,
+                            ARRAY_COUNT(aSTR_object_start_addresses), "../ac_structure_clip.c_inc", 129);
+    DmaMgr_RequestSyncDebug(&aSTR_object_end_addresses,
                             ((uintptr_t)D_809E986C_jp[index] + SEGMENT_ROM_START(object_00DF4000)) -
                                 (uintptr_t)SEGMENT_VRAM_START(object_00DF4000),
-                            ARRAY_COUNT(B_809FD818_jp), "../ac_structure_clip.c_inc", 132);
-    DmaMgr_RequestSyncDebug(&B_809FDB00_jp,
+                            ARRAY_COUNT(aSTR_object_end_addresses), "../ac_structure_clip.c_inc", 132);
+    DmaMgr_RequestSyncDebug(&aSTR_palette_addresses,
                             ((uintptr_t)D_809E9874_jp[index] + SEGMENT_ROM_START(object_00D5D000)) -
                                 (uintptr_t)SEGMENT_VRAM_START(object_00D5D000),
-                            ARRAY_COUNT(B_809FDB00_jp), "../ac_structure_clip.c_inc", 135);
-    DmaMgr_RequestSyncDebug(&B_809FE0B8_jp,
+                            ARRAY_COUNT(aSTR_palette_addresses), "../ac_structure_clip.c_inc", 135);
+    DmaMgr_RequestSyncDebug(&aSTR_shadow_start_addresses,
                             ((uintptr_t)structure_object_symbol_7 + (uintptr_t)SEGMENT_ROM_START(object_00E00000)) -
                                 (uintptr_t)SEGMENT_VRAM_START(object_00E00000),
-                            ARRAY_COUNT(B_809FE0B8_jp), "../ac_structure_clip.c_inc", 138);
-    DmaMgr_RequestSyncDebug(&B_809FE3A0_jp,
+                            ARRAY_COUNT(aSTR_shadow_start_addresses), "../ac_structure_clip.c_inc", 138);
+    DmaMgr_RequestSyncDebug(&aSTR_shadow_end_addresses,
                             ((uintptr_t)structure_object_symbol_8 + (uintptr_t)SEGMENT_ROM_START(object_00E00000)) -
                                 (uintptr_t)SEGMENT_VRAM_START(object_00E00000),
-                            ARRAY_COUNT(B_809FE3A0_jp), "../ac_structure_clip.c_inc", 141);
+                            ARRAY_COUNT(aSTR_shadow_end_addresses), "../ac_structure_clip.c_inc", 141);
 }
 
 void func_809E8118_jp(ObjectExchangeBank* objectExchangeBank) {
-    StructureClipSegmentInfo* segmentInfo = &common_data.clip.structureClip->unk_B0[0];
-    u8* var_s1 = objectExchangeBank->status[common_data.clip.structureClip->objectExchangeBankNum].segment;
+    StructureClipSegmentInfo* segmentInfo = &common_data.clip.structureClip->objectSegmentTable[0];
+    u8* segment = objectExchangeBank->status[common_data.clip.structureClip->objectExchangeBankNum].segment;
     s16 type;
-    s32 temp_s3;
+    s32 offset;
     RomOffset vrom;
     size_t size;
     s32 i;
 
-    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_B0); i++, var_s1 += 0x2E00, segmentInfo++) {
+    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->objectSegmentTable);
+         i++, segment += 0x2E00, segmentInfo++) {
         if (segmentInfo->unk_03 == 1) {
             type = segmentInfo->type;
-            temp_s3 = (uintptr_t)B_809FD530_jp[type] - (uintptr_t)SEGMENT_VRAM_START(object_00DF4000) + 8;
-            vrom = temp_s3 + SEGMENT_ROM_START(object_00D5E000);
-            size = ALIGN16(((uintptr_t)B_809FD818_jp[type] - (uintptr_t)B_809FD530_jp[type]) - 8);
-            DmaMgr_RequestSyncDebug(var_s1, vrom, size, "../ac_structure_clip.c_inc", 198);
-            segmentInfo->segment = (s32)var_s1 - temp_s3;
+            offset = (uintptr_t)aSTR_object_start_addresses[type] - (uintptr_t)SEGMENT_VRAM_START(object_00DF4000) + 8;
+            vrom = offset + SEGMENT_ROM_START(object_00D5E000);
+            size = ALIGN16(((uintptr_t)aSTR_object_end_addresses[type] - (uintptr_t)aSTR_object_start_addresses[type]) -
+                           8);
+            DmaMgr_RequestSyncDebug(segment, vrom, size, "../ac_structure_clip.c_inc", 198);
+            segmentInfo->segment = (s32)segment - offset;
             segmentInfo->unk_03 = 0;
         }
     }
@@ -131,43 +153,45 @@ void func_809E8118_jp(ObjectExchangeBank* objectExchangeBank) {
 
 void func_809E823C_jp(ObjectExchangeBank* objectExchangeBank) {
     StructureClipSegmentInfo* segmentInfo = &common_data.clip.structureClip->paletteSegmentTable[0];
-    u8* var_s1 =
+    u8* segment =
         objectExchangeBank->status[common_data.clip.structureClip->objectExchangeBankNum].segment + (0x2E00 * 8);
-    void* test;
-    s32 temp;
+    void* paletteAddress;
+    s32 offset;
     s32 i;
 
     for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->paletteSegmentTable);
-         i++, var_s1 += 0x20, segmentInfo++) {
+         i++, segment += 0x20, segmentInfo++) {
         if (segmentInfo->unk_03 == 1) {
-            test = B_809FDB00_jp[segmentInfo->type];
-            temp = (uintptr_t)test - (uintptr_t)SEGMENT_VRAM_START(object_00D5D000);
-            DmaMgr_RequestSyncDebug(var_s1, temp + (uintptr_t)SEGMENT_ROM_START(object_00D5B000), 32,
+            paletteAddress = aSTR_palette_addresses[segmentInfo->type];
+            offset = (uintptr_t)paletteAddress - (uintptr_t)SEGMENT_VRAM_START(object_00D5D000);
+            DmaMgr_RequestSyncDebug(segment, offset + (uintptr_t)SEGMENT_ROM_START(object_00D5B000), 32,
                                     "../ac_structure_clip.c_inc", 256);
-            segmentInfo->segment = (s32)var_s1;
+            segmentInfo->segment = (s32)segment;
             segmentInfo->unk_03 = 0;
         }
     }
 }
 
 void func_809E8350_jp(ObjectExchangeBank* objectExchangeBank) {
-    StructureClipSegmentInfo* segmentInfo = &common_data.clip.structureClip->unk_86C[0];
-    u8* var_s1 = objectExchangeBank->status[common_data.clip.structureClip->objectExchangeBankNum].segment +
-                 (0x2E00 * 8) + (0x20 * 9);
+    StructureClipSegmentInfo* segmentInfo = &common_data.clip.structureClip->shadowSegmentTable[0];
+    u8* segment = objectExchangeBank->status[common_data.clip.structureClip->objectExchangeBankNum].segment +
+                  (0x2E00 * 8) + (0x20 * 9);
     s16 type;
-    s32 temp_s3;
+    s32 offset;
     RomOffset vrom;
     size_t size;
     s32 i;
 
-    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_86C); i++, var_s1 += 0x800, segmentInfo++) {
+    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->shadowSegmentTable);
+         i++, segment += 0x800, segmentInfo++) {
         if (segmentInfo->unk_03 == 1) {
             type = segmentInfo->type;
-            temp_s3 = (uintptr_t)B_809FE0B8_jp[type] - (uintptr_t)SEGMENT_VRAM_START(object_00E00000) + 8;
-            vrom = temp_s3 + (uintptr_t)SEGMENT_ROM_START(object_00DF5000);
-            size = ALIGN16(((uintptr_t)B_809FE3A0_jp[type] - (uintptr_t)B_809FE0B8_jp[type]) - 8);
-            DmaMgr_RequestSyncDebug(var_s1, vrom, size, "../ac_structure_clip.c_inc", 321);
-            segmentInfo->segment = (s32)var_s1 - temp_s3;
+            offset = (uintptr_t)aSTR_shadow_start_addresses[type] - (uintptr_t)SEGMENT_VRAM_START(object_00E00000) + 8;
+            vrom = offset + (uintptr_t)SEGMENT_ROM_START(object_00DF5000);
+            size = ALIGN16(((uintptr_t)aSTR_shadow_end_addresses[type] - (uintptr_t)aSTR_shadow_start_addresses[type]) -
+                           8);
+            DmaMgr_RequestSyncDebug(segment, vrom, size, "../ac_structure_clip.c_inc", 321);
+            segmentInfo->segment = (s32)segment - offset;
             segmentInfo->unk_03 = 0;
         }
     }
@@ -187,8 +211,8 @@ void func_809E84E4_jp(ObjectExchangeBank* objectExchangeBank) {
     StructureClipSegmentInfo* ptr;
     s32 i;
 
-    ptr = common_data.clip.structureClip->unk_B0;
-    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_B0); i++, ptr++) {
+    ptr = common_data.clip.structureClip->objectSegmentTable;
+    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->objectSegmentTable); i++, ptr++) {
         if ((ptr->type == -1) || (ptr->instanceCount == 0)) {
             ptr->type = -1;
             ptr->instanceCount = 0;
@@ -209,8 +233,8 @@ void func_809E84E4_jp(ObjectExchangeBank* objectExchangeBank) {
         }
     }
 
-    ptr = common_data.clip.structureClip->unk_86C;
-    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_86C); i++, ptr++) {
+    ptr = common_data.clip.structureClip->shadowSegmentTable;
+    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->shadowSegmentTable); i++, ptr++) {
         if ((ptr->type == -1) || (ptr->instanceCount == 0)) {
             ptr->type = -1;
             ptr->instanceCount = 0;
@@ -405,12 +429,14 @@ s32 aSTR_get_index_of_type_in_segment_table(StructureClipSegmentInfo* table, s32
     return ret;
 }
 
-s32 func_809E8CD4_jp(s16 structureType) {
-    s32 index = aSTR_get_index_of_type_in_segment_table(
-        common_data.clip.structureClip->unk_B0, ARRAY_COUNT(common_data.clip.structureClip->unk_B0), structureType);
+// Original name unknown. Named based on the below function
+s32 aSTR_get_object_segment(s16 structureType) {
+    s32 index = aSTR_get_index_of_type_in_segment_table(common_data.clip.structureClip->objectSegmentTable,
+                                                        ARRAY_COUNT(common_data.clip.structureClip->objectSegmentTable),
+                                                        structureType);
 
     if (index != -1) {
-        StructureClipSegmentInfo* segmentInfo = &common_data.clip.structureClip->unk_B0[index];
+        StructureClipSegmentInfo* segmentInfo = &common_data.clip.structureClip->objectSegmentTable[index];
 
         return segmentInfo->segment;
     }
@@ -432,12 +458,14 @@ u16* aSTR_get_pal_segment(s16 paletteType) {
     return NULL;
 }
 
-s32 func_809E8DB4_jp(s16 arg0) {
-    s32 index = aSTR_get_index_of_type_in_segment_table(common_data.clip.structureClip->unk_86C,
-                                                        ARRAY_COUNT(common_data.clip.structureClip->unk_86C), arg0);
+// Original name unknown. Named based on the above function
+s32 aSTR_get_shadow_segment(s16 arg0) {
+    s32 index =
+        aSTR_get_index_of_type_in_segment_table(common_data.clip.structureClip->shadowSegmentTable,
+                                                ARRAY_COUNT(common_data.clip.structureClip->shadowSegmentTable), arg0);
 
     if (index != -1) {
-        StructureClipSegmentInfo* segmentInfo = &common_data.clip.structureClip->unk_86C[index];
+        StructureClipSegmentInfo* segmentInfo = &common_data.clip.structureClip->shadowSegmentTable[index];
 
         return segmentInfo->segment;
     }
@@ -556,18 +584,18 @@ Actor* aSTR_setupActor_proc(Game_Play* game_play, u16 structureName, f32 posX, f
         paletteType = info->paletteType;
     }
 
-    aSTR_try_add_instance_to_segment_table(common_data.clip.structureClip->unk_B0,
-                                           ARRAY_COUNT(common_data.clip.structureClip->unk_B0), structureType,
-                                           structureName, posX, posZ);
+    aSTR_try_add_instance_to_segment_table(common_data.clip.structureClip->objectSegmentTable,
+                                           ARRAY_COUNT(common_data.clip.structureClip->objectSegmentTable),
+                                           structureType, structureName, posX, posZ);
     aSTR_try_add_instance_to_segment_table(common_data.clip.structureClip->paletteSegmentTable,
                                            ARRAY_COUNT(common_data.clip.structureClip->paletteSegmentTable),
                                            paletteType, structureName, posX, posZ);
-    aSTR_try_add_instance_to_segment_table(common_data.clip.structureClip->unk_86C,
-                                           ARRAY_COUNT(common_data.clip.structureClip->unk_86C), structureType,
-                                           structureName, posX, posZ);
+    aSTR_try_add_instance_to_segment_table(common_data.clip.structureClip->shadowSegmentTable,
+                                           ARRAY_COUNT(common_data.clip.structureClip->shadowSegmentTable),
+                                           structureType, structureName, posX, posZ);
 
-    if ((func_809E8CD4_jp(structureType) != NULL) && (aSTR_get_pal_segment(paletteType) != NULL) &&
-        (func_809E8DB4_jp(structureType) != NULL)) {
+    if ((aSTR_get_object_segment(structureType) != NULL) && (aSTR_get_pal_segment(paletteType) != NULL) &&
+        (aSTR_get_shadow_segment(structureType) != NULL)) {
         UNUSED s32 pad;
         xyz_t pos;
 
@@ -665,9 +693,9 @@ void aSTR_init_clip_area(Game_Play* game_play) {
         common_data.clip.structureClip->freeActorAreaProc = aSTR_free_actor_area_proc;
         common_data.clip.structureClip->unk_A4 = func_809E84E4_jp;
         common_data.clip.structureClip->removeInstanceProc = aSTR_remove_instance_proc;
-        common_data.clip.structureClip->unk_AC = func_809E8CD4_jp;
+        common_data.clip.structureClip->getObjectSegment = aSTR_get_object_segment;
         common_data.clip.structureClip->getPalSegment = aSTR_get_pal_segment;
-        common_data.clip.structureClip->unk_868 = func_809E8DB4_jp;
+        common_data.clip.structureClip->getShadowSegment = aSTR_get_shadow_segment;
         common_data.clip.structureClip->unk_C10 = 0;
 
         {
@@ -689,8 +717,8 @@ void aSTR_init_clip_area(Game_Play* game_play) {
             s32 i;
             s32 j;
 
-            ptr = common_data.clip.structureClip->unk_B0;
-            for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_B0); i++, ptr++) {
+            ptr = common_data.clip.structureClip->objectSegmentTable;
+            for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->objectSegmentTable); i++, ptr++) {
                 ptr->type = -1;
                 ptr->instanceCount = 0;
                 ptr->unk_03 = 0;
@@ -711,8 +739,8 @@ void aSTR_init_clip_area(Game_Play* game_play) {
                 }
             }
 
-            ptr = common_data.clip.structureClip->unk_86C;
-            for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_86C); i++, ptr++) {
+            ptr = common_data.clip.structureClip->shadowSegmentTable;
+            for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->shadowSegmentTable); i++, ptr++) {
                 ptr->type = -1;
                 ptr->instanceCount = 0;
                 ptr->unk_03 = 0;

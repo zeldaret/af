@@ -148,9 +148,9 @@ typedef void (*StructureClipFreeActorAreaProc)(struct Actor*);
 typedef void (*StructureClip_unk_A4)(struct ObjectExchangeBank*);
 typedef void (*StructureClipRemoveInstanceProc)(StructureClipSegmentInfo*, s32, s16, struct Actor*);
 // TODO: What should these *really* return?
-typedef s32 (*StructureClip_unk_AC)(s16);
+typedef s32 (*StructureClipGetObjectSegment)(s16);
 typedef u16* (*StructureClipGetPalSegment)(s16);
-typedef s32 (*StructureClip_unk_868)(s16);
+typedef s32 (*StructureClipGetShadowSegment)(s16);
 
 #define STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT 9
 
@@ -165,12 +165,12 @@ typedef struct StructureClip {
     /* 0x05C */ StructureClipOverlayInfo overlayArea[STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT];
     /* 0x0A4 */ StructureClip_unk_A4 unk_A4;
     /* 0x0A8 */ StructureClipRemoveInstanceProc removeInstanceProc;
-    /* 0x0AC */ StructureClip_unk_AC unk_AC; // load object
-    /* 0x0B0 */ StructureClipSegmentInfo unk_B0[8];
+    /* 0x0AC */ StructureClipGetObjectSegment getObjectSegment; // load object
+    /* 0x0B0 */ StructureClipSegmentInfo objectSegmentTable[8];
     /* 0x450 */ StructureClipGetPalSegment getPalSegment; // load palette
     /* 0x454 */ StructureClipSegmentInfo paletteSegmentTable[9];
-    /* 0x868 */ StructureClip_unk_868 unk_868;
-    /* 0x86C */ StructureClipSegmentInfo unk_86C[8];
+    /* 0x868 */ StructureClipGetShadowSegment getShadowSegment;
+    /* 0x86C */ StructureClipSegmentInfo shadowSegmentTable[8];
     /* 0xC0C */ s32 objectExchangeBankNum;
     /* 0xC10 */ s32 unk_C10;
 } StructureClip; // size = 0xC14

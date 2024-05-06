@@ -61,14 +61,14 @@ void aDUM_actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
 void aDUM_actor_dt(Actor* thisx, UNUSED Game_Play* game_play) {
     Dump* this = THIS;
 
-    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->unk_B0,
-                                                       ARRAY_COUNT(common_data.clip.structureClip->unk_B0),
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->objectSegmentTable,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->objectSegmentTable),
                                                        STRUCTURE_TYPE_DUMP, &this->structureActor.actor);
     common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->paletteSegmentTable,
                                                        ARRAY_COUNT(common_data.clip.structureClip->paletteSegmentTable),
                                                        STRUCTURE_PALETTE_DUMP, &this->structureActor.actor);
-    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->unk_86C,
-                                                       ARRAY_COUNT(common_data.clip.structureClip->unk_86C),
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->shadowSegmentTable,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->shadowSegmentTable),
                                                        STRUCTURE_TYPE_DUMP, &this->structureActor.actor);
     this->structureActor.actor.world.pos.x += 40.0f;
 }
@@ -180,7 +180,7 @@ void aDUM_actor_draw(UNUSED Actor* thisx, Game_Play* game_play) {
     s32 type = (common_data.time.season == WINTER) ? 1 : 0;
     Mtx* mtx;
 
-    object = common_data.clip.structureClip->unk_AC(STRUCTURE_TYPE_DUMP);
+    object = common_data.clip.structureClip->getObjectSegment(STRUCTURE_TYPE_DUMP);
     palette = common_data.clip.structureClip->getPalSegment(STRUCTURE_PALETTE_DUMP);
     _texture_z_light_fog_prim_npc(gfxCtx);
 
