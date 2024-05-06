@@ -14,10 +14,10 @@ typedef void (*StructureActionFunc)(struct Structure*, struct Game_Play*);
 
 typedef enum StructureType {
     /* 0x00 */ STRUCTURE_TYPE_HOUSE_1,
-    /* 0x00 */ STRUCTURE_TYPE_HOUSE_2,
-    /* 0x00 */ STRUCTURE_TYPE_HOUSE_3,
-    /* 0x00 */ STRUCTURE_TYPE_HOUSE_4,
-    /* 0x00 */ STRUCTURE_TYPE_HOUSE_5,
+    /* 0x01 */ STRUCTURE_TYPE_HOUSE_2,
+    /* 0x02 */ STRUCTURE_TYPE_HOUSE_3,
+    /* 0x03 */ STRUCTURE_TYPE_HOUSE_4,
+    /* 0x04 */ STRUCTURE_TYPE_HOUSE_5,
     /* 0x05 */ STRUCTURE_TYPE_MY_HOUSE_1,
     /* 0x06 */ STRUCTURE_TYPE_MY_HOUSE_2,
     /* 0x07 */ STRUCTURE_TYPE_MY_HOUSE_3,

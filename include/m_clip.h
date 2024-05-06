@@ -165,9 +165,9 @@ typedef struct StructureClip {
     /* 0x05C */ StructureClipOverlayInfo overlayArea[STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT];
     /* 0x0A4 */ StructureClip_unk_A4 unk_A4;
     /* 0x0A8 */ StructureClipRemoveInstanceProc removeInstanceProc;
-    /* 0x0AC */ StructureClipGetObjectSegment getObjectSegment; // load object
+    /* 0x0AC */ StructureClipGetObjectSegment getObjectSegment;
     /* 0x0B0 */ StructureClipSegmentInfo objectSegmentTable[8];
-    /* 0x450 */ StructureClipGetPalSegment getPalSegment; // load palette
+    /* 0x450 */ StructureClipGetPalSegment getPalSegment;
     /* 0x454 */ StructureClipSegmentInfo paletteSegmentTable[9];
     /* 0x868 */ StructureClipGetShadowSegment getShadowSegment;
     /* 0x86C */ StructureClipSegmentInfo shadowSegmentTable[8];
