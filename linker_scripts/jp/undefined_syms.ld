@@ -1056,6 +1056,17 @@ D_C000000 = 0x0C000000;
 
 D_C000000 = 0x0C000000;
 
+// ac_structure
+// TODO: Replace these with the actual object symbols when the various structure objects are extracted
+structure_object_symbol_1 = 0x06000008;
+structure_object_symbol_2 = 0x06000178;
+structure_object_symbol_3 = 0x060000C0;
+structure_object_symbol_4 = 0x06000230;
+structure_object_symbol_5 = 0x06000008;
+structure_object_symbol_6 = 0x06000174;
+structure_object_symbol_7 = 0x06000008;
+structure_object_symbol_8 = 0x060000C0;
+
 // ovl_Sample
 
 cKF_bs_r_hnw = 0x060018AC;
@@ -5672,13 +5683,3 @@ D_801530C0_jp = 0x801530C0; //
 D_80153CC0_jp = 0x80153CC0; //
 D_801540C0_jp = 0x801540C0; //
 D_801948E0_jp = 0x801948E0; //
-
-// REMOVE THIS!!!!
-test = 0x06000008;
-test2 = 0x060000C0;
-fake_symbol_1 = 0x06000008;
-fake_symbol_2 = 0x06000178;
-fake_symbol_3 = 0x060000C0;
-fake_symbol_4 = 0x06000230;
-fake_symbol_5 = 0x06000008;
-fake_symbol_6 = 0x06000174;

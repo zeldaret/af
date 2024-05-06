@@ -56,7 +56,6 @@ typedef struct mHm_goki_c {
   /* 0x05 */ u8 pad;
 } mHm_goki_c; // size = 0x6
 
-// TODO: Should we do more with this?
 typedef struct HomeBitfield {
     /* 0x00 */ u16 unk_22_0 : 2;
     /* 0x00 */ u16 unk_22_2 : 2;

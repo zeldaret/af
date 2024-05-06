@@ -156,7 +156,7 @@ void aDUM_actor_move(Actor* thisx, Game_Play* game_play) {
         ((xBlock != playerXBlock) || (yBlock != playerYBlock))) {
         Actor_delete(&this->structureActor.actor);
     } else {
-        this->structureActor.process(this, game_play);
+        ((DumpActionFunc)this->structureActor.process)(this, game_play);
     }
 }
 

@@ -103,7 +103,7 @@ void aKOI_actor_move(Actor* thisx, Game_Play* game_play) {
 
     gSegments[6] = OS_K0_TO_PHYSICAL(common_data.clip.structureClip->unk_AC(STRUCTURE_TYPE_KOINOBORI));
     cKF_SkeletonInfo_R_play(&this->structureActor.skeletonInfo);
-    this->structureActor.process(this, game_play);
+    ((KoinoboriActionFunc)this->structureActor.process)(this, game_play);
     sAdo_OngenPos((uintptr_t)this, 0x35, &this->structureActor.actor.world.pos);
 }
 

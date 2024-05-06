@@ -11,7 +11,6 @@ struct Structure;
 struct StructureActor;
 
 typedef void (*StructureActionFunc)(struct Structure*, struct Game_Play*);
-typedef void (*StructureActorProcess)(struct StructureActor*, struct Game_Play*);
 
 typedef enum StructureType {
     /* 0x00 */ STRUCTURE_TYPE_HOUSE_1,
@@ -163,7 +162,7 @@ typedef struct StructureActor {
     /* 0x1E8 */ s32 unk_1E8;
     /* 0x1EC */ s_xyz jointTable[15];
     /* 0x246 */ s_xyz morphTable[15];
-    /* 0x2A0 */ StructureActorProcess process;
+    /* 0x2A0 */ void* process;
     /* 0x2A4 */ UNK_TYPE1 unk_2A4[0x4];
     /* 0x2A8 */ s32 structureType;
     /* 0x2AC */ s32 structurePalette;

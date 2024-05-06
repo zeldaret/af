@@ -122,6 +122,9 @@ typedef struct StructureClipOverlayInfo {
     /* 0x04 */ s32 used;
 } StructureClipOverlayInfo; // size = 0x8
 
+// Multiple instances of the same actor (or instances of different actors that share the same object/palette) can use the
+// same `StructureClipSegmentInfo` to retrieve that object and palette. This struct represents a single instance of one
+// such actor; the `StructureClipSegmentInfo` has a list of all instances that share the same object and palette.
 typedef struct StructureClipInstanceInfo {
     /* 0x0 */ f32 posX;
     /* 0x4 */ f32 posZ;
@@ -130,7 +133,7 @@ typedef struct StructureClipInstanceInfo {
 } StructureClipInstanceInfo; // size = 0xC
 
 typedef struct StructureClipSegmentInfo {
-    /* 0x00 */ s16 type;
+    /* 0x00 */ s16 type; // see `StructureType` and `StructurePalette`
     /* 0x02 */ u8 instanceCount;
     /* 0x03 */ u8 unk_03;
     /* 0x04 */ StructureClipInstanceInfo instances[9];

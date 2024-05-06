@@ -68,20 +68,20 @@ void func_809E7F34_jp(Game_Play* game_play) {
     }
 }
 
-extern u8 test[];           // 0x06000008
-extern u8 test2[];          // 0x060000C0
-extern void* fake_symbol_1; // 0x06000008
-extern void* fake_symbol_2; // 0x06000178
-extern void* fake_symbol_3; // 0x060000C0
-extern void* fake_symbol_4; // 0x06000230
-extern void* fake_symbol_5; // 0x06000008
-extern void* fake_symbol_6; // 0x06000174
+// TODO: Replace these with the actual object symbols when the various structure objects are extracted
+extern void* structure_object_symbol_1; // 0x06000008
+extern void* structure_object_symbol_2; // 0x06000178
+extern void* structure_object_symbol_3; // 0x060000C0
+extern void* structure_object_symbol_4; // 0x06000230
+extern void* structure_object_symbol_5; // 0x06000008
+extern void* structure_object_symbol_6; // 0x06000174
+extern u8 structure_object_symbol_7[];  // 0x06000008
+extern u8 structure_object_symbol_8[];  // 0x060000C0
 
-static void* D_809E9864_jp[] = { &fake_symbol_1, &fake_symbol_2 };
-static void* D_809E986C_jp[] = { &fake_symbol_3, &fake_symbol_4 };
-static void* D_809E9874_jp[] = { &fake_symbol_5, &fake_symbol_6 };
+static void* D_809E9864_jp[] = { &structure_object_symbol_1, &structure_object_symbol_2 };
+static void* D_809E986C_jp[] = { &structure_object_symbol_3, &structure_object_symbol_4 };
+static void* D_809E9874_jp[] = { &structure_object_symbol_5, &structure_object_symbol_6 };
 
-// TODO: use "real" symbols
 void func_809E7F94_jp(void) {
     s32 index = (common_data.time.season == WINTER);
 
@@ -98,11 +98,11 @@ void func_809E7F94_jp(void) {
                                 (uintptr_t)SEGMENT_VRAM_START(object_00D5D000),
                             ARRAY_COUNT(B_809FDB00_jp), "../ac_structure_clip.c_inc", 135);
     DmaMgr_RequestSyncDebug(&B_809FE0B8_jp,
-                            ((uintptr_t)test + (uintptr_t)SEGMENT_ROM_START(object_00E00000)) -
+                            ((uintptr_t)structure_object_symbol_7 + (uintptr_t)SEGMENT_ROM_START(object_00E00000)) -
                                 (uintptr_t)SEGMENT_VRAM_START(object_00E00000),
                             ARRAY_COUNT(B_809FE0B8_jp), "../ac_structure_clip.c_inc", 138);
     DmaMgr_RequestSyncDebug(&B_809FE3A0_jp,
-                            ((uintptr_t)test2 + (uintptr_t)SEGMENT_ROM_START(object_00E00000)) -
+                            ((uintptr_t)structure_object_symbol_8 + (uintptr_t)SEGMENT_ROM_START(object_00E00000)) -
                                 (uintptr_t)SEGMENT_VRAM_START(object_00E00000),
                             ARRAY_COUNT(B_809FE3A0_jp), "../ac_structure_clip.c_inc", 141);
 }
@@ -225,6 +225,7 @@ void func_809E84E4_jp(ObjectExchangeBank* objectExchangeBank) {
 }
 
 // Original name unknown.
+// Returns true if there is an instance in the segment info with a matching position and `fgName`, false otherwise.
 s32 aSTR_is_instance_in_segment_info(StructureClipSegmentInfo* segmentInfo, u16 fgName, f32 posX, f32 posZ) {
     StructureClipInstanceInfo* instance = segmentInfo->instances;
     s32 i;
@@ -241,7 +242,10 @@ s32 aSTR_is_instance_in_segment_info(StructureClipSegmentInfo* segmentInfo, u16 
 }
 
 // Original name unknown.
-s32 aSTR_add_instance_to_segment_info(StructureClipSegmentInfo* segmentInfo, u16 fgName, f32 posX, f32 posZ) {
+// Attempts to add an instance to the segment info. If all instances in the instance table are currently in use, then
+// this function *won't* add anything to the table and will return false. Otherwise, it will put the instance in the
+// table and return true.
+s32 aSTR_try_add_instance_to_segment_info(StructureClipSegmentInfo* segmentInfo, u16 fgName, f32 posX, f32 posZ) {
     StructureClipInstanceInfo* instance = segmentInfo->instances;
     s32 i;
 
@@ -258,25 +262,20 @@ s32 aSTR_add_instance_to_segment_info(StructureClipSegmentInfo* segmentInfo, u16
     return false;
 }
 
-void func_809E8768_jp(StructureClipSegmentInfo* segmentInfo, u16 fgName, f32 posX, f32 posZ) {
+// Original name unknown.
+void aSTR_try_add_instance_to_segment_info_with_type(StructureClipSegmentInfo* segmentInfo, u16 fgName, f32 posX,
+                                                     f32 posZ) {
     if (!aSTR_is_instance_in_segment_info(segmentInfo, fgName, posX, posZ)) {
-        if (aSTR_add_instance_to_segment_info(segmentInfo, fgName, posX, posZ) == true) {
+        if (aSTR_try_add_instance_to_segment_info(segmentInfo, fgName, posX, posZ) == true) {
             segmentInfo->instanceCount++;
         }
     }
 }
 
-void func_809E87D4_jp(StructureClipSegmentInfo* segmentInfo, s16 type, u16 fgName, f32 posX, f32 posZ) {
-    if (aSTR_add_instance_to_segment_info(segmentInfo, fgName, posX, posZ) == true) {
-        segmentInfo->type = type;
-        segmentInfo->instanceCount = 1;
-        segmentInfo->unk_03 = 1;
-        common_data.clip.structureClip->unk_C10 = 1;
-    }
-}
-
-void func_809E8838_jp(StructureClipSegmentInfo* segmentInfo, s16 type, u16 fgName, f32 posX, f32 posZ) {
-    if (aSTR_add_instance_to_segment_info(segmentInfo, fgName, posX, posZ) == true) {
+// Original name unknown.
+void aSTR_try_add_instance_to_segment_info_with_uninitialized_type(StructureClipSegmentInfo* segmentInfo, s16 type,
+                                                                   u16 fgName, f32 posX, f32 posZ) {
+    if (aSTR_try_add_instance_to_segment_info(segmentInfo, fgName, posX, posZ) == true) {
         segmentInfo->type = type;
         segmentInfo->instanceCount = 1;
         segmentInfo->unk_03 = 1;
@@ -285,38 +284,61 @@ void func_809E8838_jp(StructureClipSegmentInfo* segmentInfo, s16 type, u16 fgNam
 }
 
 // Original name unknown.
-void aSTR_add_instance_to_segment_table(StructureClipSegmentInfo* table, s32 size, s16 type, u16 fgName, f32 posX,
-                                        f32 posZ) {
+void aSTR_try_add_instance_to_segment_info_with_no_instances(StructureClipSegmentInfo* segmentInfo, s16 type,
+                                                             u16 fgName, f32 posX, f32 posZ) {
+    if (aSTR_try_add_instance_to_segment_info(segmentInfo, fgName, posX, posZ) == true) {
+        segmentInfo->type = type;
+        segmentInfo->instanceCount = 1;
+        segmentInfo->unk_03 = 1;
+        common_data.clip.structureClip->unk_C10 = 1;
+    }
+}
+
+// Original name unknown.
+// This function looks through the elements of the segment table and attempts to add the instance to the appropriate
+// segment info within the table.
+void aSTR_try_add_instance_to_segment_table(StructureClipSegmentInfo* table, s32 size, s16 type, u16 fgName, f32 posX,
+                                            f32 posZ) {
     StructureClipSegmentInfo* segmentInfo;
     s32 i;
 
+    // Checks to see if one of the segment info within the table already has the same `type` as the instance we're
+    // trying to add. If so, add it to that segment info.
     segmentInfo = &table[0];
     for (i = 0; i < size; i++, segmentInfo++) {
         if (segmentInfo->type == type) {
-            func_809E8768_jp(segmentInfo, fgName, posX, posZ);
+            aSTR_try_add_instance_to_segment_info_with_type(segmentInfo, fgName, posX, posZ);
             return;
         }
     }
 
+    // Checks to see if one of the segment info within the table has an uninitialized `type`. If so, that info is not
+    // currently in use, so add the instance to that segment info.
     segmentInfo = &table[0];
     for (i = 0; i < size; i++, segmentInfo++) {
         if (segmentInfo->type == -1) {
-            func_809E87D4_jp(segmentInfo, type, fgName, posX, posZ);
+            aSTR_try_add_instance_to_segment_info_with_uninitialized_type(segmentInfo, type, fgName, posX, posZ);
             return;
         }
     }
 
+    // Checks to see if one of the segment info within the table has no instances associated with it. If so, that info
+    // is not currently in use, so add the instance to that segment info.
     segmentInfo = &table[0];
     for (i = 0; i < size; i++, segmentInfo++) {
         if (segmentInfo->instanceCount == 0) {
-            func_809E8838_jp(segmentInfo, type, fgName, posX, posZ);
+            aSTR_try_add_instance_to_segment_info_with_no_instances(segmentInfo, type, fgName, posX, posZ);
             return;
         }
     }
 }
 
 // Original name unknown.
-s32 aSTR_remove_instance_from_segment_info(StructureClipSegmentInfo* segmentInfo, Actor* actor) {
+// Looks through the segment info to see if it can find an instance that matches the supplied `actor`. If it finds it,
+// it will remove that instance from the segment info and return true, otherwise it will return false. Note that this
+// function does *not* check if the segment info has any instances in it at all, so calling this might be a waste of
+// time; `aSTR_remove_instance_from_segment_info` will check this for you.
+s32 aSTR_remove_instance_from_segment_info_unchecked(StructureClipSegmentInfo* segmentInfo, Actor* actor) {
     StructureClipInstanceInfo* instance = segmentInfo->instances;
     s32 i;
 
@@ -335,24 +357,29 @@ s32 aSTR_remove_instance_from_segment_info(StructureClipSegmentInfo* segmentInfo
     return false;
 }
 
-s32 func_809E8BDC_jp(StructureClipSegmentInfo* segmentInfo, Actor* actor) {
+// Original name unknown.
+// Returns false if it couldn't find an instance that matches the supplied actor in the segment info or if the segment
+// info has no instances in it. Otherwise, it will remove the instance matching the supplied `actor` and return true.
+s32 aSTR_remove_instance_from_segment_info(StructureClipSegmentInfo* segmentInfo, Actor* actor) {
     s32 ret = false;
 
     if (segmentInfo->instanceCount > 0) {
-        ret = aSTR_remove_instance_from_segment_info(segmentInfo, actor);
+        ret = aSTR_remove_instance_from_segment_info_unchecked(segmentInfo, actor);
     }
 
     return ret;
 }
 
 // Original name unknown.
+// This function looks through the elements of the segment table and attempts to remove the instance from the
+// appropriate segment info within the table.
 void aSTR_remove_instance_proc(StructureClipSegmentInfo* table, s32 tableSize, s16 type, Actor* actor) {
     StructureClipSegmentInfo* segmentInfo = &table[0];
     s32 i;
 
     for (i = 0; i < tableSize; i++, segmentInfo++) {
         if (segmentInfo->type == type) {
-            if (func_809E8BDC_jp(segmentInfo, actor) == true) {
+            if (aSTR_remove_instance_from_segment_info(segmentInfo, actor) == true) {
                 return;
             } else {
                 return;
@@ -362,6 +389,8 @@ void aSTR_remove_instance_proc(StructureClipSegmentInfo* table, s32 tableSize, s
 }
 
 // Original name unknown.
+// Returns the index of the segment info within the table whose type matches the supplied `type`. If no segment info
+// within the table has that `type`, then this function returns -1.
 s32 aSTR_get_index_of_type_in_segment_table(StructureClipSegmentInfo* table, s32 size, s16 type) {
     s32 i;
     s32 ret = -1;
@@ -386,7 +415,7 @@ s32 func_809E8CD4_jp(s16 structureType) {
         return segmentInfo->segment;
     }
 
-    return 0;
+    return NULL;
 }
 
 u16* aSTR_get_pal_segment(s16 paletteType) {
@@ -413,7 +442,7 @@ s32 func_809E8DB4_jp(s16 arg0) {
         return segmentInfo->segment;
     }
 
-    return 0;
+    return NULL;
 }
 
 typedef struct StructureSetupInfo {
@@ -527,17 +556,18 @@ Actor* aSTR_setupActor_proc(Game_Play* game_play, u16 structureName, f32 posX, f
         paletteType = info->paletteType;
     }
 
-    aSTR_add_instance_to_segment_table(common_data.clip.structureClip->unk_B0,
-                                       ARRAY_COUNT(common_data.clip.structureClip->unk_B0), structureType,
-                                       structureName, posX, posZ);
-    aSTR_add_instance_to_segment_table(common_data.clip.structureClip->paletteSegmentTable,
-                                       ARRAY_COUNT(common_data.clip.structureClip->paletteSegmentTable), paletteType,
-                                       structureName, posX, posZ);
-    aSTR_add_instance_to_segment_table(common_data.clip.structureClip->unk_86C,
-                                       ARRAY_COUNT(common_data.clip.structureClip->unk_86C), structureType,
-                                       structureName, posX, posZ);
+    aSTR_try_add_instance_to_segment_table(common_data.clip.structureClip->unk_B0,
+                                           ARRAY_COUNT(common_data.clip.structureClip->unk_B0), structureType,
+                                           structureName, posX, posZ);
+    aSTR_try_add_instance_to_segment_table(common_data.clip.structureClip->paletteSegmentTable,
+                                           ARRAY_COUNT(common_data.clip.structureClip->paletteSegmentTable),
+                                           paletteType, structureName, posX, posZ);
+    aSTR_try_add_instance_to_segment_table(common_data.clip.structureClip->unk_86C,
+                                           ARRAY_COUNT(common_data.clip.structureClip->unk_86C), structureType,
+                                           structureName, posX, posZ);
 
-    if (func_809E8CD4_jp(structureType) && aSTR_get_pal_segment(paletteType) && func_809E8DB4_jp(structureType)) {
+    if ((func_809E8CD4_jp(structureType) != NULL) && (aSTR_get_pal_segment(paletteType) != NULL) &&
+        (func_809E8DB4_jp(structureType) != NULL)) {
         UNUSED s32 pad;
         xyz_t pos;
 

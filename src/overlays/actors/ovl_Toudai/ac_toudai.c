@@ -190,7 +190,7 @@ void aTOU_actor_move(Actor* thisx, Game_Play* game_play) {
     gSegments[6] = OS_K0_TO_PHYSICAL(common_data.clip.structureClip->unk_AC(STRUCTURE_TYPE_TOUDAI));
     this->structureActor.unk_174 = cKF_SkeletonInfo_R_play(&this->structureActor.skeletonInfo);
     this->structureActor.unk_1E8 = this->structureActor.skeletonInfo.frameControl.currentFrame;
-    this->structureActor.process(this, game_play);
+    ((ToudaiActionFunc)this->structureActor.process)(this, game_play);
     aTOU_color_ctrl(this);
 }
 
