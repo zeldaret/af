@@ -13303,28 +13303,28 @@ func_809E823C_jp = 0x809E823C; // type:func
 func_809E8350_jp = 0x809E8350; // type:func
 func_809E8480_jp = 0x809E8480; // type:func
 func_809E84E4_jp = 0x809E84E4; // type:func
-func_809E85FC_jp = 0x809E85FC; // type:func
-func_809E8674_jp = 0x809E8674; // type:func
-func_809E8768_jp = 0x809E8768; // type:func
-func_809E87D4_jp = 0x809E87D4; // type:func
-func_809E8838_jp = 0x809E8838; // type:func
-func_809E889C_jp = 0x809E889C; // type:func
-func_809E89AC_jp = 0x809E89AC; // type:func
-func_809E8BDC_jp = 0x809E8BDC; // type:func
-func_809E8C14_jp = 0x809E8C14; // type:func
-func_809E8C80_jp = 0x809E8C80; // type:func
-func_809E8CD4_jp = 0x809E8CD4; // type:func
-func_809E8D44_jp = 0x809E8D44; // type:func
-func_809E8DB4_jp = 0x809E8DB4; // type:func
-func_809E8E24_jp = 0x809E8E24; // type:func
-func_809E9160_jp = 0x809E9160; // type:func
-func_809E91A4_jp = 0x809E91A4; // type:func
-func_809E920C_jp = 0x809E920C; // type:func
-func_809E92C0_jp = 0x809E92C0; // type:func
-func_809E931C_jp = 0x809E931C; // type:func
-func_809E93C8_jp = 0x809E93C8; // type:func
-func_809E96E8_jp = 0x809E96E8; // type:func
-func_809E9764_jp = 0x809E9764; // type:func
+aSTR_is_instance_in_segment_info = 0x809E85FC; // type:func
+aSTR_try_add_instance_to_segment_info = 0x809E8674; // type:func
+aSTR_try_add_instance_to_segment_info_with_type = 0x809E8768; // type:func
+aSTR_try_add_instance_to_segment_info_with_uninitialized_type = 0x809E87D4; // type:func
+aSTR_try_add_instance_to_segment_info_with_no_instances = 0x809E8838; // type:func
+aSTR_try_add_instance_to_segment_table = 0x809E889C; // type:func
+aSTR_remove_instance_from_segment_info_unchecked = 0x809E89AC; // type:func
+aSTR_remove_instance_from_segment_info = 0x809E8BDC; // type:func
+aSTR_remove_instance_proc = 0x809E8C14; // type:func
+aSTR_get_index_of_type_in_segment_table = 0x809E8C80; // type:func
+aSTR_get_object_segment = 0x809E8CD4; // type:func
+aSTR_get_pal_segment = 0x809E8D44; // type:func
+aSTR_get_shadow_segment = 0x809E8DB4; // type:func
+aSTR_setupActor_proc = 0x809E8E24; // type:func
+aSTR_get_overlay_free_area_idx = 0x809E9160; // type:func
+aSTR_get_overlay_area_proc = 0x809E91A4; // type:func
+aSTR_free_overlay_area_proc = 0x809E920C; // type:func
+aSTR_get_actor_area_proc = 0x809E92C0; // type:func
+aSTR_free_actor_area_proc = 0x809E931C; // type:func
+aSTR_init_clip_area = 0x809E93C8; // type:func
+aSTR_free_clip_area = 0x809E96E8; // type:func
+aSTR_check_door_data = 0x809E9764; // type:func
 aSTR_actor_move = 0x809E97F8; // type:func
 
 // .data
@@ -13333,8 +13333,8 @@ Structure_Profile = 0x809E9840; //
 D_809E9864_jp = 0x809E9864; //
 D_809E986C_jp = 0x809E986C; //
 D_809E9874_jp = 0x809E9874; //
-D_809E987C_jp = 0x809E987C; //
-D_809E9A9C_jp = 0x809E9A9C; //
+setupInfo_table = 0x809E987C; //
+request = 0x809E9A9C; //
 
 // .rodata
 
@@ -13349,21 +13349,18 @@ RO_STR_809E9B74_jp = 0x809E9B74; // type:asciz
 
 // .bss
 
-B_809E9B90_jp = 0x809E9B90; //
-B_809E9E68_jp = 0x809E9E68; //
-B_809EA140_jp = 0x809EA140; //
-B_809EA418_jp = 0x809EA418; //
-B_809EA6F0_jp = 0x809EA6F0; //
-B_809EB528_jp = 0x809EB528; //
-B_809ED528_jp = 0x809ED528; //
-B_809EF528_jp = 0x809EF528; //
-B_809F1528_jp = 0x809F1528; //
-B_809F3528_jp = 0x809F3528; //
-B_809FD530_jp = 0x809FD530; //
-B_809FD818_jp = 0x809FD818; //
-B_809FDB00_jp = 0x809FDB00; //
-B_809FE0B8_jp = 0x809FE0B8; //
-B_809FE3A0_jp = 0x809FE3A0; //
+aSTR_actor_cl = 0x809E9B90; //
+aSTR_overlay = 0x809EB528; //
+aSTR_bss_padding_1 = 0x809FD528; //
+aSTR_object_start_addresses = 0x809FD530; //
+aSTR_bss_padding_2 = 0x809FD810; //
+aSTR_object_end_addresses = 0x809FD818; //
+aSTR_bss_padding_3 = 0x809FDAF8; //
+aSTR_palette_addresses = 0x809FDB00; //
+aSTR_bss_padding_4 = 0x809FE0B0; //
+aSTR_shadow_start_addresses = 0x809FE0B8; //
+aSTR_bss_padding_5 = 0x809FE398; //
+aSTR_shadow_end_addresses = 0x809FE3A0; //
 
 // .text
 

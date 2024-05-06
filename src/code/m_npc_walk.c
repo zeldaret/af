@@ -1,3 +1,4 @@
+#include "prevent_bss_reordering.h"
 #include "m_npc_walk.h"
 #include "m_common_data.h"
 #include "m_npc.h"

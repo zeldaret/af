@@ -599,7 +599,7 @@ void actor_free_check(ActorOverlay* overlayEntry, u16 fgName) {
                 break;
 
             case FGNAME_F000_5:
-                common_data.clip.unk_08C->unk_08();
+                common_data.clip.structureClip->freeOverlayAreaProc(overlayEntry);
                 break;
 
             default:
@@ -634,8 +634,8 @@ s32 func_80057940_jp(ActorProfile** profileP, ActorOverlay* overlayEntry, const 
                     break;
 
                 case FGNAME_F000_5:
-                    if (common_data.clip.unk_08C != NULL) {
-                        common_data.clip.unk_08C->unk_4(overlayEntry, overlaySize);
+                    if (common_data.clip.structureClip != NULL) {
+                        common_data.clip.structureClip->getOverlayAreaProc(overlayEntry, overlaySize);
                     }
                     break;
 
@@ -745,7 +745,7 @@ s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay
             break;
 
         case FGNAME_F000_5:
-            *actorP = common_data.clip.unk_08C->unk_0C();
+            *actorP = common_data.clip.structureClip->getActorAreaProc();
             break;
 
         default:
@@ -957,7 +957,7 @@ Actor* Actor_info_delete(ActorInfo* actorInfo, Actor* actor, Game_Play* game_pla
             break;
 
         case FGNAME_F000_5:
-            common_data.clip.unk_08C->unk_10(actor);
+            common_data.clip.structureClip->freeActorAreaProc(actor);
             break;
 
         default:

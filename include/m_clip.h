@@ -7,17 +7,20 @@
 
 struct Actor;
 struct ActorOverlay;
-struct ObjectStatus;
 struct Clip_unk_040_unk_14_arg0;
-struct Game_Play;
-struct struct_809AEFA4;
-struct ToolClip;
-struct ShadowData;
-struct FurnitureActor;
-struct WeatherClip;
-struct ObjectExchangeBank;
-struct xyz_t;
 struct Clip_unk_07C_unk_0_arg0;
+struct FurnitureActor;
+struct Game_Play;
+struct ObjectExchangeBank;
+struct ObjectStatus;
+struct ShadowData;
+struct struct_801161E8_jp;
+struct struct_809AEFA4;
+struct StructureActor;
+struct StructureClip;
+struct ToolClip;
+struct WeatherClip;
+struct xyz_t;
 
 typedef UNK_RET (*Clip_unk_040_unk_04)(struct ActorOverlay*, const u8*, size_t, s32);
 typedef UNK_RET (*Clip_unk_040_unk_08)(void);
@@ -114,32 +117,63 @@ typedef struct Clip_unk_080 {
     /* 0x34 */ Clip_unk_080_unk_34 unk_34; // open close proc
 } Clip_unk_080; // size >= 0x8
 
-typedef UNK_RET (*Clip_unk_08C_unk_4)(struct ActorOverlay*, size_t);
-typedef UNK_RET (*Clip_unk_08C_unk_8)(void);
-typedef UNK_PTR (*Clip_unk_08C_unk_0C)(void);
-typedef UNK_RET (*Clip_unk_08C_unk_10)(struct Actor*);
-typedef void (*Clip_unk_08C_unk_A4)(struct ObjectExchangeBank*);
-typedef UNK_RET (*Clip_unk_08C_unk_A8)(UNK_PTR, UNK_TYPE, s16 name, struct Actor* actor);
-typedef UNK_RET (*Clip_unk_08C_unk_AC)(s16);
-typedef u16* (*Clip_unk_08C_unk_450)(s16);
+typedef struct StructureClipOverlayInfo {
+    /* 0x00 */ s8* overlayPointer;
+    /* 0x04 */ s32 used;
+} StructureClipOverlayInfo; // size = 0x8
 
-typedef struct Clip_unk_08C {
-    /* 0x00 */ UNK_TYPE1 unk_00[0x4];
-    /* 0x04 */ Clip_unk_08C_unk_4 unk_4;
-    /* 0x08 */ Clip_unk_08C_unk_8 unk_08;
-    /* 0x0C */ Clip_unk_08C_unk_0C unk_0C;
-    /* 0x10 */ Clip_unk_08C_unk_10 unk_10;
-    /* 0x014 */ UNK_TYPE1 unk_14[0x90];
-    /* 0x0A4 */ Clip_unk_08C_unk_A4 unk_A4;
-    /* 0x0A8 */ Clip_unk_08C_unk_A8 unk_A8; // unload object
-    /* 0x0AC */ Clip_unk_08C_unk_AC unk_AC; // load object
-    /* 0x0B0 */ UNK_TYPE unk_B0;
-    /* 0x0B4 */ UNK_TYPE1 pad[0x450 - 0xb4];
-    /* 0x450 */ Clip_unk_08C_unk_450 unk_450; // load palette
-    /* 0x454 */ UNK_TYPE unk_454;
-    /* 0x458 */ UNK_TYPE1 pad2[0x86C - 0x458];
-    /* 0x86C */ UNK_TYPE unk_86C;
-} Clip_unk_08C; // size >= 0x870
+// Multiple instances of the same actor (or instances of different actors that share the same object/palette) can use the
+// same `StructureClipSegmentInfo` to retrieve that object and palette. This struct represents a single instance of one
+// such actor; the `StructureClipSegmentInfo` has a list of all instances that share the same object and palette.
+typedef struct StructureClipInstanceInfo {
+    /* 0x0 */ f32 posX;
+    /* 0x4 */ f32 posZ;
+    /* 0x8 */ s16 unk_08;
+    /* 0xA */ u16 fgName;
+} StructureClipInstanceInfo; // size = 0xC
+
+typedef struct StructureClipSegmentInfo {
+    /* 0x00 */ s16 type; // see `StructureType` and `StructurePalette`
+    /* 0x02 */ u8 instanceCount;
+    /* 0x03 */ u8 unk_03;
+    /* 0x04 */ StructureClipInstanceInfo instances[9];
+    /* 0x70 */ s32 segment;
+} StructureClipSegmentInfo; // size = 0x74
+
+typedef struct Actor* (*StructureClipSetupActorProc)(struct Game_Play*, u16, f32, f32, s16);
+typedef void (*StructureClipGetOverlayAreaProc)(struct ActorOverlay*, size_t);
+typedef void (*StructureClipFreeOverlayAreaProc)(struct ActorOverlay*);
+typedef struct Actor* (*StructureClipGetActorAreaProc)(void);
+typedef void (*StructureClipFreeActorAreaProc)(struct Actor*);
+typedef void (*StructureClip_unk_A4)(struct ObjectExchangeBank*);
+typedef void (*StructureClipRemoveInstanceProc)(StructureClipSegmentInfo*, s32, s16, struct Actor*);
+// TODO: What should these *really* return?
+typedef s32 (*StructureClipGetObjectSegment)(s16);
+typedef u16* (*StructureClipGetPalSegment)(s16);
+typedef s32 (*StructureClipGetShadowSegment)(s16);
+
+#define STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT 9
+
+typedef struct StructureClip {
+    /* 0x000 */ StructureClipSetupActorProc setupActorProc;
+    /* 0x004 */ StructureClipGetOverlayAreaProc getOverlayAreaProc;
+    /* 0x008 */ StructureClipFreeOverlayAreaProc freeOverlayAreaProc;
+    /* 0x00C */ StructureClipGetActorAreaProc getActorAreaProc;
+    /* 0x010 */ StructureClipFreeActorAreaProc freeActorAreaProc;
+    /* 0x014 */ struct StructureActor* structureActorTable[STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT];
+    /* 0x038 */ s32 structureActorUsedTable[STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT];
+    /* 0x05C */ StructureClipOverlayInfo overlayArea[STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT];
+    /* 0x0A4 */ StructureClip_unk_A4 unk_A4;
+    /* 0x0A8 */ StructureClipRemoveInstanceProc removeInstanceProc;
+    /* 0x0AC */ StructureClipGetObjectSegment getObjectSegment;
+    /* 0x0B0 */ StructureClipSegmentInfo objectSegmentTable[8];
+    /* 0x450 */ StructureClipGetPalSegment getPalSegment;
+    /* 0x454 */ StructureClipSegmentInfo paletteSegmentTable[9];
+    /* 0x868 */ StructureClipGetShadowSegment getShadowSegment;
+    /* 0x86C */ StructureClipSegmentInfo shadowSegmentTable[8];
+    /* 0xC0C */ s32 objectExchangeBankNum;
+    /* 0xC10 */ s32 unk_C10;
+} StructureClip; // size = 0xC14
 
 typedef void (*Clip_unk_090_unk_00)(s8, struct xyz_t, s32, s32, struct Game_Play*, s32, s32, s32);
 typedef void (*Clip_unk_090_unk_30)(Color_RGBA8, s16,s16,s32);
@@ -207,7 +241,7 @@ typedef struct Clip {
     /* 0x07C */ Clip_unk_07C* unk_07C; 
     /* 0x080 */ Clip_unk_080* unk_080;
     /* 0x084 */ s8 unk_084[0x8];
-    /* 0x08C */ Clip_unk_08C* unk_08C; 
+    /* 0x08C */ struct StructureClip* structureClip; 
     /* 0x090 */ Clip_unk_090* unk_090;
     /* 0x094 */ struct ToolClip* toolClip;
     /* 0x098 */ s8 unk_098[0x4];

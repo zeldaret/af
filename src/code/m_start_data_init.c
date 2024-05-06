@@ -240,9 +240,9 @@ s32 mSDI_StartInitNew(Game* game2, s32 playerNumber, s32 mallocFlag) {
     lbRTC_TimeCopy(&common_data.unk_0F8A4, &mTM_rtcTime_clear_code);
 
     for (i = 0; i < PLAYER_NUM; i++) {
-        common_data.homes[i].unk_022 &= (u16)~0xC0;
-        common_data.homes[i].unk_022 &= 0xCF;
-        common_data.homes[i].unk_022 &= 0xF7;
+        common_data.homes[i].unk_022.unk_22_0 = 0;
+        common_data.homes[i].unk_022.unk_22_2 = 0;
+        common_data.homes[i].unk_022.unk_22_4 = 0;
         common_data.homes[i].unk_024 = i;
     }
 
