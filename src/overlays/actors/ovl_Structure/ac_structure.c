@@ -24,32 +24,32 @@ s8 aSTR_overlay[9][8192];
 // Original name unknown. Unused
 s8 aSTR_bss_padding_1[8];
 
-// Original name unknown.
-void* aSTR_object_start_addresses[184];
+// Original name unknown. This array is 4x larger than it needs to be.
+void* aSTR_object_start_addresses[STRUCTURE_TYPE_MAX * 4];
 
 // Original name unknown. Unused
 s8 aSTR_bss_padding_2[8];
 
-// Original name unknown.
-void* aSTR_object_end_addresses[184];
+// Original name unknown. This array is 4x larger than it needs to be.
+void* aSTR_object_end_addresses[STRUCTURE_TYPE_MAX * 4];
 
 // Original name unknown. Unused
 s8 aSTR_bss_padding_3[8];
 
-// Original name unknown.
-void* aSTR_palette_addresses[364];
+// Original name unknown. This array is 4x larger than it needs to be.
+void* aSTR_palette_addresses[STRUCTURE_PALETTE_MAX * 4];
 
 // Original name unknown. Unused
 s8 aSTR_bss_padding_4[8];
 
-// Original name unknown.
-void* aSTR_shadow_start_addresses[184];
+// Original name unknown. This array is 4x larger than it needs to be.
+void* aSTR_shadow_start_addresses[STRUCTURE_TYPE_MAX * 4];
 
 // Original name unknown. Unused
 s8 aSTR_bss_padding_5[8];
 
-// Original name unknown.
-void* aSTR_shadow_end_addresses[184];
+// Original name unknown. This array is 4x larger than it needs to be.
+void* aSTR_shadow_end_addresses[STRUCTURE_TYPE_MAX * 4];
 
 ActorProfile Structure_Profile = {
     /* */ ACTOR_STRUCTURE,

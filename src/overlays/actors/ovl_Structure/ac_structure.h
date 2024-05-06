@@ -58,7 +58,8 @@ typedef enum StructureType {
     /* 0x2A */ STRUCTURE_TYPE_LOTUS,
     /* 0x2B */ STRUCTURE_TYPE_MIKANBOX,
     /* 0x2C */ STRUCTURE_TYPE_DOUZOU,
-    /* 0x2D */ STRUCTURE_TYPE_TOUDAI
+    /* 0x2D */ STRUCTURE_TYPE_TOUDAI,
+    /* 0x2E */ STRUCTURE_TYPE_MAX
 } StructureType;
 
 typedef enum StructurePalette {
@@ -152,7 +153,8 @@ typedef enum StructurePalette {
     /* 0x57 */ STRUCTURE_PALETTE_LOTUS,
     /* 0x58 */ STRUCTURE_PALETTE_MIKANBOX,
     /* 0x59 */ STRUCTURE_PALETTE_DOUZOU,
-    /* 0x5A */ STRUCTURE_PALETTE_TOUDAI
+    /* 0x5A */ STRUCTURE_PALETTE_TOUDAI,
+    /* 0x5B */ STRUCTURE_PALETTE_MAX
 } StructurePalette;
 
 typedef struct StructureActor {
