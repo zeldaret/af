@@ -64,9 +64,15 @@ void aTOU_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
 void aTOU_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
     Toudai* this = THIS;
 
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_B0, 8, 45, thisx);
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_454, 9, 90, thisx);
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_86C, 8, 45, thisx);
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->unk_B0,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->unk_B0),
+                                                       STRUCTURE_TYPE_TOUDAI, thisx);
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->paletteSegmentTable,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->paletteSegmentTable),
+                                                       STRUCTURE_PALETTE_TOUDAI, thisx);
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->unk_86C,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->unk_86C),
+                                                       STRUCTURE_TYPE_TOUDAI, thisx);
     cKF_SkeletonInfo_R_dt(&this->structureActor.skeletonInfo);
     thisx->world.pos.x += 20.0f;
     thisx->world.pos.z += 20.0f;

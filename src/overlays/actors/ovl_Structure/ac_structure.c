@@ -49,8 +49,8 @@ void aSTR_actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
     Structure* this = THIS;
 
     aSTR_init_clip_area(game_play);
-    this->unk_178 = common_data.doorData.fgName;
-    this->unk_17A = common_data.doorData.exitType;
+    this->doorFgName = common_data.doorData.fgName;
+    this->doorExitType = common_data.doorData.exitType;
 }
 
 void aSTR_actor_dt(UNUSED Actor* thisx, UNUSED Game_Play* game_play) {
@@ -108,7 +108,7 @@ void func_809E7F94_jp(void) {
 }
 
 void func_809E8118_jp(ObjectExchangeBank* objectExchangeBank) {
-    StructureClip_unkstruct* ptr = &common_data.clip.structureClip->unk_B0[0];
+    StructureClipSegmentInfo* segmentInfo = &common_data.clip.structureClip->unk_B0[0];
     u8* var_s1 = objectExchangeBank->status[common_data.clip.structureClip->objectExchangeBankNum].segment;
     s16 type;
     s32 temp_s3;
@@ -116,41 +116,42 @@ void func_809E8118_jp(ObjectExchangeBank* objectExchangeBank) {
     size_t size;
     s32 i;
 
-    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_B0); i++, var_s1 += 0x2E00, ptr++) {
-        if (ptr->unk_03 == 1) {
-            type = ptr->type;
+    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_B0); i++, var_s1 += 0x2E00, segmentInfo++) {
+        if (segmentInfo->unk_03 == 1) {
+            type = segmentInfo->type;
             temp_s3 = (uintptr_t)B_809FD530_jp[type] - (uintptr_t)SEGMENT_VRAM_START(object_00DF4000) + 8;
             vrom = temp_s3 + SEGMENT_ROM_START(object_00D5E000);
             size = ALIGN16(((uintptr_t)B_809FD818_jp[type] - (uintptr_t)B_809FD530_jp[type]) - 8);
             DmaMgr_RequestSyncDebug(var_s1, vrom, size, "../ac_structure_clip.c_inc", 198);
-            ptr->segment = (s32)var_s1 - temp_s3;
-            ptr->unk_03 = 0;
+            segmentInfo->segment = (s32)var_s1 - temp_s3;
+            segmentInfo->unk_03 = 0;
         }
     }
 }
 
 void func_809E823C_jp(ObjectExchangeBank* objectExchangeBank) {
-    StructureClip_unkstruct* ptr = &common_data.clip.structureClip->unk_454[0];
+    StructureClipSegmentInfo* segmentInfo = &common_data.clip.structureClip->paletteSegmentTable[0];
     u8* var_s1 =
         objectExchangeBank->status[common_data.clip.structureClip->objectExchangeBankNum].segment + (0x2E00 * 8);
     void* test;
     s32 temp;
     s32 i;
 
-    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_454); i++, var_s1 += 0x20, ptr++) {
-        if (ptr->unk_03 == 1) {
-            test = B_809FDB00_jp[ptr->type];
+    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->paletteSegmentTable);
+         i++, var_s1 += 0x20, segmentInfo++) {
+        if (segmentInfo->unk_03 == 1) {
+            test = B_809FDB00_jp[segmentInfo->type];
             temp = (uintptr_t)test - (uintptr_t)SEGMENT_VRAM_START(object_00D5D000);
             DmaMgr_RequestSyncDebug(var_s1, temp + (uintptr_t)SEGMENT_ROM_START(object_00D5B000), 32,
                                     "../ac_structure_clip.c_inc", 256);
-            ptr->segment = (s32)var_s1;
-            ptr->unk_03 = 0;
+            segmentInfo->segment = (s32)var_s1;
+            segmentInfo->unk_03 = 0;
         }
     }
 }
 
 void func_809E8350_jp(ObjectExchangeBank* objectExchangeBank) {
-    StructureClip_unkstruct* ptr = &common_data.clip.structureClip->unk_86C[0];
+    StructureClipSegmentInfo* segmentInfo = &common_data.clip.structureClip->unk_86C[0];
     u8* var_s1 = objectExchangeBank->status[common_data.clip.structureClip->objectExchangeBankNum].segment +
                  (0x2E00 * 8) + (0x20 * 9);
     s16 type;
@@ -159,15 +160,15 @@ void func_809E8350_jp(ObjectExchangeBank* objectExchangeBank) {
     size_t size;
     s32 i;
 
-    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_86C); i++, var_s1 += 0x800, ptr++) {
-        if (ptr->unk_03 == 1) {
-            type = ptr->type;
+    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_86C); i++, var_s1 += 0x800, segmentInfo++) {
+        if (segmentInfo->unk_03 == 1) {
+            type = segmentInfo->type;
             temp_s3 = (uintptr_t)B_809FE0B8_jp[type] - (uintptr_t)SEGMENT_VRAM_START(object_00E00000) + 8;
             vrom = temp_s3 + (uintptr_t)SEGMENT_ROM_START(object_00DF5000);
             size = ALIGN16(((uintptr_t)B_809FE3A0_jp[type] - (uintptr_t)B_809FE0B8_jp[type]) - 8);
             DmaMgr_RequestSyncDebug(var_s1, vrom, size, "../ac_structure_clip.c_inc", 321);
-            ptr->segment = (s32)var_s1 - temp_s3;
-            ptr->unk_03 = 0;
+            segmentInfo->segment = (s32)var_s1 - temp_s3;
+            segmentInfo->unk_03 = 0;
         }
     }
 }
@@ -183,25 +184,25 @@ void func_809E8480_jp(ObjectExchangeBank* objectExchangeBank) {
 }
 
 void func_809E84E4_jp(ObjectExchangeBank* objectExchangeBank) {
-    StructureClip_unkstruct* ptr;
+    StructureClipSegmentInfo* ptr;
     s32 i;
 
     ptr = common_data.clip.structureClip->unk_B0;
     for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_B0); i++, ptr++) {
-        if ((ptr->type == -1) || (ptr->unk_02 == 0)) {
+        if ((ptr->type == -1) || (ptr->instanceCount == 0)) {
             ptr->type = -1;
-            ptr->unk_02 = 0;
+            ptr->instanceCount = 0;
             ptr->unk_03 = 0;
         } else {
             ptr->unk_03 = 1;
         }
     }
 
-    ptr = common_data.clip.structureClip->unk_454;
-    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_454); i++, ptr++) {
-        if ((ptr->type == -1) || (ptr->unk_02 == 0)) {
+    ptr = common_data.clip.structureClip->paletteSegmentTable;
+    for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->paletteSegmentTable); i++, ptr++) {
+        if ((ptr->type == -1) || (ptr->instanceCount == 0)) {
             ptr->type = -1;
-            ptr->unk_02 = 0;
+            ptr->instanceCount = 0;
             ptr->unk_03 = 0;
         } else {
             ptr->unk_03 = 1;
@@ -210,9 +211,9 @@ void func_809E84E4_jp(ObjectExchangeBank* objectExchangeBank) {
 
     ptr = common_data.clip.structureClip->unk_86C;
     for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_86C); i++, ptr++) {
-        if ((ptr->type == -1) || (ptr->unk_02 == 0)) {
+        if ((ptr->type == -1) || (ptr->instanceCount == 0)) {
             ptr->type = -1;
-            ptr->unk_02 = 0;
+            ptr->instanceCount = 0;
             ptr->unk_03 = 0;
         } else {
             ptr->unk_03 = 1;
@@ -223,13 +224,14 @@ void func_809E84E4_jp(ObjectExchangeBank* objectExchangeBank) {
     func_809E8480_jp(objectExchangeBank);
 }
 
-s32 func_809E85FC_jp(StructureClip_unkstruct* arg0, u16 arg1, f32 posX, f32 posZ) {
-    StructureClip_unkstruct_unk_04* ptr = arg0->unk_04;
+// Original name unknown.
+s32 aSTR_is_instance_in_segment_info(StructureClipSegmentInfo* segmentInfo, u16 fgName, f32 posX, f32 posZ) {
+    StructureClipInstanceInfo* instance = segmentInfo->instances;
     s32 i;
     s32 ret = false;
 
-    for (i = 0; i < ARRAY_COUNT(arg0->unk_04); i++, ptr++) {
-        if ((ptr->fgName == arg1) && (ptr->posX == posX) && (ptr->posZ == posZ)) {
+    for (i = 0; i < ARRAY_COUNT(segmentInfo->instances); i++, instance++) {
+        if ((instance->fgName == fgName) && (instance->posX == posX) && (instance->posZ == posZ)) {
             ret = true;
             break;
         }
@@ -238,16 +240,17 @@ s32 func_809E85FC_jp(StructureClip_unkstruct* arg0, u16 arg1, f32 posX, f32 posZ
     return ret;
 }
 
-s32 func_809E8674_jp(StructureClip_unkstruct* arg0, u16 arg1, f32 posX, f32 posZ) {
-    StructureClip_unkstruct_unk_04* ptr = arg0->unk_04;
+// Original name unknown.
+s32 aSTR_add_instance_to_segment_info(StructureClipSegmentInfo* segmentInfo, u16 fgName, f32 posX, f32 posZ) {
+    StructureClipInstanceInfo* instance = segmentInfo->instances;
     s32 i;
 
-    for (i = 0; i < ARRAY_COUNT(arg0->unk_04); i++, ptr++) {
-        if (ptr->fgName == 0) {
-            ptr->fgName = arg1;
-            ptr->posX = posX;
-            ptr->posZ = posZ;
-            ptr->unk_08 = 0;
+    for (i = 0; i < ARRAY_COUNT(segmentInfo->instances); i++, instance++) {
+        if (instance->fgName == 0) {
+            instance->fgName = fgName;
+            instance->posX = posX;
+            instance->posZ = posZ;
+            instance->unk_08 = 0;
             return true;
         }
     }
@@ -255,70 +258,76 @@ s32 func_809E8674_jp(StructureClip_unkstruct* arg0, u16 arg1, f32 posX, f32 posZ
     return false;
 }
 
-void func_809E8768_jp(StructureClip_unkstruct* arg0, u16 arg1, f32 posX, f32 posZ) {
-    if ((func_809E85FC_jp(arg0, arg1, posX, posZ) == false) && (func_809E8674_jp(arg0, arg1, posX, posZ) == true)) {
-        arg0->unk_02++;
+void func_809E8768_jp(StructureClipSegmentInfo* segmentInfo, u16 fgName, f32 posX, f32 posZ) {
+    if (!aSTR_is_instance_in_segment_info(segmentInfo, fgName, posX, posZ)) {
+        if (aSTR_add_instance_to_segment_info(segmentInfo, fgName, posX, posZ) == true) {
+            segmentInfo->instanceCount++;
+        }
     }
 }
 
-void func_809E87D4_jp(StructureClip_unkstruct* arg0, s16 arg1, u16 arg2, f32 posX, f32 posZ) {
-    if (func_809E8674_jp(arg0, arg2, posX, posZ) == true) {
-        arg0->type = arg1;
-        arg0->unk_02 = 1;
-        arg0->unk_03 = 1;
+void func_809E87D4_jp(StructureClipSegmentInfo* segmentInfo, s16 type, u16 fgName, f32 posX, f32 posZ) {
+    if (aSTR_add_instance_to_segment_info(segmentInfo, fgName, posX, posZ) == true) {
+        segmentInfo->type = type;
+        segmentInfo->instanceCount = 1;
+        segmentInfo->unk_03 = 1;
         common_data.clip.structureClip->unk_C10 = 1;
     }
 }
 
-void func_809E8838_jp(StructureClip_unkstruct* arg0, s16 arg1, u16 arg2, f32 posX, f32 posZ) {
-    if (func_809E8674_jp(arg0, arg2, posX, posZ) == true) {
-        arg0->type = arg1;
-        arg0->unk_02 = 1;
-        arg0->unk_03 = 1;
+void func_809E8838_jp(StructureClipSegmentInfo* segmentInfo, s16 type, u16 fgName, f32 posX, f32 posZ) {
+    if (aSTR_add_instance_to_segment_info(segmentInfo, fgName, posX, posZ) == true) {
+        segmentInfo->type = type;
+        segmentInfo->instanceCount = 1;
+        segmentInfo->unk_03 = 1;
         common_data.clip.structureClip->unk_C10 = 1;
     }
 }
 
-void func_809E889C_jp(StructureClip_unkstruct* arg0, s32 arg1, s16 arg2, u16 arg3, f32 posX, f32 posZ) {
-    StructureClip_unkstruct* ptr;
+// Original name unknown.
+void aSTR_add_instance_to_segment_table(StructureClipSegmentInfo* table, s32 size, s16 type, u16 fgName, f32 posX,
+                                        f32 posZ) {
+    StructureClipSegmentInfo* segmentInfo;
     s32 i;
 
-    ptr = arg0;
-    for (i = 0; i < arg1; i++, ptr++) {
-        if (arg2 == ptr->type) {
-            func_809E8768_jp(ptr, arg3, posX, posZ);
+    segmentInfo = &table[0];
+    for (i = 0; i < size; i++, segmentInfo++) {
+        if (segmentInfo->type == type) {
+            func_809E8768_jp(segmentInfo, fgName, posX, posZ);
             return;
         }
     }
 
-    ptr = arg0;
-    for (i = 0; i < arg1; i++, ptr++) {
-        if (ptr->type == -1) {
-            func_809E87D4_jp(ptr, arg2, arg3, posX, posZ);
+    segmentInfo = &table[0];
+    for (i = 0; i < size; i++, segmentInfo++) {
+        if (segmentInfo->type == -1) {
+            func_809E87D4_jp(segmentInfo, type, fgName, posX, posZ);
             return;
         }
     }
 
-    ptr = arg0;
-    for (i = 0; i < arg1; i++, ptr++) {
-        if (ptr->unk_02 == 0) {
-            func_809E8838_jp(ptr, arg2, arg3, posX, posZ);
+    segmentInfo = &table[0];
+    for (i = 0; i < size; i++, segmentInfo++) {
+        if (segmentInfo->instanceCount == 0) {
+            func_809E8838_jp(segmentInfo, type, fgName, posX, posZ);
             return;
         }
     }
 }
 
-s32 func_809E89AC_jp(StructureClip_unkstruct* arg0, Actor* actor) {
-    StructureClip_unkstruct_unk_04* ptr = arg0->unk_04;
+// Original name unknown.
+s32 aSTR_remove_instance_from_segment_info(StructureClipSegmentInfo* segmentInfo, Actor* actor) {
+    StructureClipInstanceInfo* instance = segmentInfo->instances;
     s32 i;
 
-    for (i = 0; i < ARRAY_COUNT(arg0->unk_04); i++, ptr++) {
-        if ((ptr->fgName == actor->fgName) && (ptr->posX == actor->home.pos.x) && (ptr->posZ == actor->home.pos.z)) {
-            ptr->posX = 0.0f;
-            ptr->posZ = 0.0f;
-            ptr->fgName = 0;
-            ptr->unk_08 = 0;
-            arg0->unk_02--;
+    for (i = 0; i < ARRAY_COUNT(segmentInfo->instances); i++, instance++) {
+        if ((instance->fgName == actor->fgName) && (instance->posX == actor->home.pos.x) &&
+            (instance->posZ == actor->home.pos.z)) {
+            instance->posX = 0.0f;
+            instance->posZ = 0.0f;
+            instance->fgName = 0;
+            instance->unk_08 = 0;
+            segmentInfo->instanceCount--;
             return true;
         }
     }
@@ -326,23 +335,24 @@ s32 func_809E89AC_jp(StructureClip_unkstruct* arg0, Actor* actor) {
     return false;
 }
 
-s32 func_809E8BDC_jp(StructureClip_unkstruct* arg0, Actor* actor) {
+s32 func_809E8BDC_jp(StructureClipSegmentInfo* segmentInfo, Actor* actor) {
     s32 ret = false;
 
-    if (arg0->unk_02 > 0) {
-        ret = func_809E89AC_jp(arg0, actor);
+    if (segmentInfo->instanceCount > 0) {
+        ret = aSTR_remove_instance_from_segment_info(segmentInfo, actor);
     }
 
     return ret;
 }
 
-void func_809E8C14_jp(StructureClip_unkstruct* arg0, s32 size, s16 arg2, Actor* arg3) {
-    StructureClip_unkstruct* ptr = arg0;
+// Original name unknown.
+void aSTR_remove_instance_proc(StructureClipSegmentInfo* table, s32 tableSize, s16 type, Actor* actor) {
+    StructureClipSegmentInfo* segmentInfo = &table[0];
     s32 i;
 
-    for (i = 0; i < size; i++, ptr++) {
-        if (ptr->type == arg2) {
-            if (func_809E8BDC_jp(ptr, arg3) == true) {
+    for (i = 0; i < tableSize; i++, segmentInfo++) {
+        if (segmentInfo->type == type) {
+            if (func_809E8BDC_jp(segmentInfo, actor) == true) {
                 return;
             } else {
                 return;
@@ -351,12 +361,13 @@ void func_809E8C14_jp(StructureClip_unkstruct* arg0, s32 size, s16 arg2, Actor* 
     }
 }
 
-s32 func_809E8C80_jp(StructureClip_unkstruct* arg0, s32 size, s16 type) {
+// Original name unknown.
+s32 aSTR_get_index_of_type_in_segment_table(StructureClipSegmentInfo* table, s32 size, s16 type) {
     s32 i;
     s32 ret = -1;
 
-    for (i = 0; i < size; i++, arg0++) {
-        if ((arg0->type == type) && (arg0->unk_03 != 1)) {
+    for (i = 0; i < size; i++, table++) {
+        if ((table->type == type) && (table->unk_03 != 1)) {
             ret = i;
             break;
         }
@@ -366,54 +377,54 @@ s32 func_809E8C80_jp(StructureClip_unkstruct* arg0, s32 size, s16 type) {
 }
 
 s32 func_809E8CD4_jp(s16 structureType) {
-    s32 index = func_809E8C80_jp(common_data.clip.structureClip->unk_B0,
-                                 ARRAY_COUNT(common_data.clip.structureClip->unk_B0), structureType);
+    s32 index = aSTR_get_index_of_type_in_segment_table(
+        common_data.clip.structureClip->unk_B0, ARRAY_COUNT(common_data.clip.structureClip->unk_B0), structureType);
 
     if (index != -1) {
-        StructureClip_unkstruct* temp = &common_data.clip.structureClip->unk_B0[index];
+        StructureClipSegmentInfo* segmentInfo = &common_data.clip.structureClip->unk_B0[index];
 
-        return temp->segment;
+        return segmentInfo->segment;
     }
 
     return 0;
 }
 
 u16* aSTR_get_pal_segment(s16 paletteType) {
-    s32 index = func_809E8C80_jp(common_data.clip.structureClip->unk_454,
-                                 ARRAY_COUNT(common_data.clip.structureClip->unk_454), paletteType);
+    s32 index = aSTR_get_index_of_type_in_segment_table(
+        common_data.clip.structureClip->paletteSegmentTable,
+        ARRAY_COUNT(common_data.clip.structureClip->paletteSegmentTable), paletteType);
 
     if (index != -1) {
-        StructureClip_unkstruct* temp = &common_data.clip.structureClip->unk_454[index];
+        StructureClipSegmentInfo* segmentInfo = &common_data.clip.structureClip->paletteSegmentTable[index];
 
-        return (u16*)temp->segment;
+        return (u16*)segmentInfo->segment;
     }
 
     return NULL;
 }
 
 s32 func_809E8DB4_jp(s16 arg0) {
-    s32 index = func_809E8C80_jp(common_data.clip.structureClip->unk_86C,
-                                 ARRAY_COUNT(common_data.clip.structureClip->unk_86C), arg0);
+    s32 index = aSTR_get_index_of_type_in_segment_table(common_data.clip.structureClip->unk_86C,
+                                                        ARRAY_COUNT(common_data.clip.structureClip->unk_86C), arg0);
 
     if (index != -1) {
-        StructureClip_unkstruct* temp = &common_data.clip.structureClip->unk_86C[index];
+        StructureClipSegmentInfo* segmentInfo = &common_data.clip.structureClip->unk_86C[index];
 
-        return temp->segment;
+        return segmentInfo->segment;
     }
 
     return 0;
 }
 
-// Stolen from GC
-typedef struct structure_setup_info_s {
+typedef struct StructureSetupInfo {
     s16 profile;
-    s16 structure_type; // aSTR_TYPE_*
-    s16 pal_no;         // aSTR_PAL_*
+    s16 structureType; // see `StructureType`
+    s16 paletteType;   // see `StructurePalette`
     s16 pad;
-} aSTR_setup_info;
+} StructureSetupInfo;
 
 Actor* aSTR_setupActor_proc(Game_Play* game_play, u16 structureName, f32 posX, f32 posZ, s16 params) {
-    static aSTR_setup_info setupInfo_table[] = {
+    static StructureSetupInfo setupInfo_table[] = {
         { ACTOR_MY_HOUSE, STRUCTURE_TYPE_MY_HOUSE_1, STRUCTURE_PALETTE_MY_HOUSE_1, 0 },
         { ACTOR_MY_HOUSE, STRUCTURE_TYPE_MY_HOUSE_1, STRUCTURE_PALETTE_MY_HOUSE_2, 0 },
         { ACTOR_MY_HOUSE, STRUCTURE_TYPE_MY_HOUSE_1, STRUCTURE_PALETTE_MY_HOUSE_3, 0 },
@@ -483,71 +494,74 @@ Actor* aSTR_setupActor_proc(Game_Play* game_play, u16 structureName, f32 posX, f
         { ACTOR_DOUZOU, STRUCTURE_TYPE_DOUZOU, STRUCTURE_PALETTE_DOUZOU, 0 },
         { ACTOR_TOUDAI, STRUCTURE_TYPE_TOUDAI, STRUCTURE_PALETTE_TOUDAI, 0 },
     };
-    Actor* sp84 = NULL;
+    Actor* ret = NULL;
     s16 profile;
-    s16 structure_type;
-    s16 pal_no;
+    s16 structureType;
+    s16 paletteType;
 
     if (structureName < 0x50DA) {
         s32 index = mNpc_SearchAnimalinfo(common_data.animals, structureName + 0x9000, 0xF);
 
         profile = ACTOR_HOUSE;
-        structure_type = common_data.npclist[index].houseData.type;
-        pal_no = common_data.npclist[index].houseData.palette;
-        pal_no += structure_type * 5;
+        structureType = common_data.npclist[index].houseData.type;
+        paletteType = common_data.npclist[index].houseData.palette;
+        paletteType += structureType * 5;
     } else if ((structureName >= 0x5800) && (structureName < 0x5804)) {
         s32 index = structureName - 0x5800;
-        aSTR_setup_info* info = &setupInfo_table[index];
+        StructureSetupInfo* info = &setupInfo_table[index];
 
         profile = info->profile;
-        structure_type = common_data.homes[index].unk_022.unk_22_0 + STRUCTURE_TYPE_MY_HOUSE_1;
-        pal_no = common_data.homes[index].unk_024 + STRUCTURE_PALETTE_MY_HOUSE_1;
+        structureType = common_data.homes[index].unk_022.unk_22_0 + STRUCTURE_TYPE_MY_HOUSE_1;
+        paletteType = common_data.homes[index].unk_024 + STRUCTURE_PALETTE_MY_HOUSE_1;
     } else if ((structureName >= 0x5809) && (structureName < 0x580A)) {
         s32 stationType = common_data.stationType;
 
         profile = ACTOR_STATION;
-        structure_type = (stationType / 5) + STRUCTURE_TYPE_STATION_1;
-        pal_no = stationType + STRUCTURE_PALETTE_STATION_1_1;
+        structureType = (stationType / 5) + STRUCTURE_TYPE_STATION_1;
+        paletteType = stationType + STRUCTURE_PALETTE_STATION_1_1;
     } else {
-        aSTR_setup_info* info = &setupInfo_table[structureName - 0x5800];
+        StructureSetupInfo* info = &setupInfo_table[structureName - 0x5800];
 
         profile = info->profile;
-        structure_type = info->structure_type;
-        pal_no = info->pal_no;
+        structureType = info->structureType;
+        paletteType = info->paletteType;
     }
 
-    func_809E889C_jp(common_data.clip.structureClip->unk_B0, ARRAY_COUNT(common_data.clip.structureClip->unk_B0),
-                     structure_type, structureName, posX, posZ);
-    func_809E889C_jp(common_data.clip.structureClip->unk_454, ARRAY_COUNT(common_data.clip.structureClip->unk_454),
-                     pal_no, structureName, posX, posZ);
-    func_809E889C_jp(common_data.clip.structureClip->unk_86C, ARRAY_COUNT(common_data.clip.structureClip->unk_86C),
-                     structure_type, structureName, posX, posZ);
+    aSTR_add_instance_to_segment_table(common_data.clip.structureClip->unk_B0,
+                                       ARRAY_COUNT(common_data.clip.structureClip->unk_B0), structureType,
+                                       structureName, posX, posZ);
+    aSTR_add_instance_to_segment_table(common_data.clip.structureClip->paletteSegmentTable,
+                                       ARRAY_COUNT(common_data.clip.structureClip->paletteSegmentTable), paletteType,
+                                       structureName, posX, posZ);
+    aSTR_add_instance_to_segment_table(common_data.clip.structureClip->unk_86C,
+                                       ARRAY_COUNT(common_data.clip.structureClip->unk_86C), structureType,
+                                       structureName, posX, posZ);
 
-    if (func_809E8CD4_jp(structure_type) && aSTR_get_pal_segment(pal_no) && func_809E8DB4_jp(structure_type)) {
+    if (func_809E8CD4_jp(structureType) && aSTR_get_pal_segment(paletteType) && func_809E8DB4_jp(structureType)) {
         UNUSED s32 pad;
         xyz_t pos;
 
         pos.x = posX;
         pos.z = posZ;
         pos.y = mCoBG_GetBgY_OnlyCenter_FromWpos2(pos, 0.0f);
-        sp84 = Actor_info_make_actor(&game_play->actorInfo, game_play, profile, pos.x, pos.y, pos.z, 0, 0, 0,
-                                     game_play->unk_00E4, game_play->unk_00E5, -1, structureName, params, -1, -1);
+        ret = Actor_info_make_actor(&game_play->actorInfo, game_play, profile, pos.x, pos.y, pos.z, 0, 0, 0,
+                                    game_play->unk_00E4, game_play->unk_00E5, -1, structureName, params, -1, -1);
 
-        if (sp84 != NULL) {
+        if (ret != NULL) {
             mFI_SetFG_common(0xFFFF, pos, 0);
         }
     }
 
-    return sp84;
+    return ret;
 }
 
 s32 aSTR_get_overlay_free_area_idx(void) {
-    StructureOverlayInfo* structureOverlay = common_data.clip.structureClip->overlayArea;
+    StructureClipOverlayInfo* overlayIter = common_data.clip.structureClip->overlayArea;
     s32 i;
     s32 ret = -1;
 
-    for (i = 0; i < STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT; i++, structureOverlay++) {
-        if (!structureOverlay->used) {
+    for (i = 0; i < STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT; i++, overlayIter++) {
+        if (!overlayIter->used) {
             ret = i;
             break;
         }
@@ -568,12 +582,12 @@ void aSTR_get_overlay_area_proc(ActorOverlay* overlayEntry, UNUSED size_t overla
 }
 
 void aSTR_free_overlay_area_proc(ActorOverlay* overlayEntry) {
-    StructureOverlayInfo* structureOverlay = common_data.clip.structureClip->overlayArea;
+    StructureClipOverlayInfo* overlayIter = common_data.clip.structureClip->overlayArea;
     s32 i;
 
-    for (i = 0; i < STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT; i++, structureOverlay++) {
-        if (structureOverlay->overlayPointer == overlayEntry->loadedRamAddr) {
-            structureOverlay->used = false;
+    for (i = 0; i < STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT; i++, overlayIter++) {
+        if (overlayIter->overlayPointer == overlayEntry->loadedRamAddr) {
+            overlayIter->used = false;
             overlayEntry->loadedRamAddr = NULL;
             return;
         }
@@ -620,7 +634,7 @@ void aSTR_init_clip_area(Game_Play* game_play) {
         common_data.clip.structureClip->getActorAreaProc = aSTR_get_actor_area_proc;
         common_data.clip.structureClip->freeActorAreaProc = aSTR_free_actor_area_proc;
         common_data.clip.structureClip->unk_A4 = func_809E84E4_jp;
-        common_data.clip.structureClip->unk_A8 = func_809E8C14_jp;
+        common_data.clip.structureClip->removeInstanceProc = aSTR_remove_instance_proc;
         common_data.clip.structureClip->unk_AC = func_809E8CD4_jp;
         common_data.clip.structureClip->getPalSegment = aSTR_get_pal_segment;
         common_data.clip.structureClip->unk_868 = func_809E8DB4_jp;
@@ -629,52 +643,52 @@ void aSTR_init_clip_area(Game_Play* game_play) {
         {
             StructureActor** actorTableIter = common_data.clip.structureClip->structureActorTable;
             s32* isUsed = common_data.clip.structureClip->structureActorUsedTable;
-            StructureOverlayInfo* structureOverlay = common_data.clip.structureClip->overlayArea;
+            StructureClipOverlayInfo* overlayIter = common_data.clip.structureClip->overlayArea;
             s32 i;
 
-            for (i = 0; i < STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT; i++, actorTableIter++, isUsed++, structureOverlay++) {
+            for (i = 0; i < STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT; i++, actorTableIter++, isUsed++, overlayIter++) {
                 *actorTableIter = &aSTR_actor_cl[i];
                 *isUsed = 0;
-                structureOverlay->overlayPointer = aSTR_overlay[i];
-                structureOverlay->used = 0;
+                overlayIter->overlayPointer = aSTR_overlay[i];
+                overlayIter->used = 0;
             }
         }
 
         {
-            StructureClip_unkstruct* ptr;
+            StructureClipSegmentInfo* ptr;
             s32 i;
             s32 j;
 
             ptr = common_data.clip.structureClip->unk_B0;
             for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_B0); i++, ptr++) {
                 ptr->type = -1;
-                ptr->unk_02 = 0;
+                ptr->instanceCount = 0;
                 ptr->unk_03 = 0;
-                for (j = 0; j < ARRAY_COUNT(ptr->unk_04); j++) {
-                    ptr->unk_04[j].unk_08 = 0;
-                    ptr->unk_04[j].fgName = 0;
+                for (j = 0; j < ARRAY_COUNT(ptr->instances); j++) {
+                    ptr->instances[j].unk_08 = 0;
+                    ptr->instances[j].fgName = 0;
                 }
             }
 
-            ptr = common_data.clip.structureClip->unk_454;
-            for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_454); i++, ptr++) {
+            ptr = common_data.clip.structureClip->paletteSegmentTable;
+            for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->paletteSegmentTable); i++, ptr++) {
                 ptr->type = -1;
-                ptr->unk_02 = 0;
+                ptr->instanceCount = 0;
                 ptr->unk_03 = 0;
-                for (j = 0; j < ARRAY_COUNT(ptr->unk_04); j++) {
-                    ptr->unk_04[j].unk_08 = 0;
-                    ptr->unk_04[j].fgName = 0;
+                for (j = 0; j < ARRAY_COUNT(ptr->instances); j++) {
+                    ptr->instances[j].unk_08 = 0;
+                    ptr->instances[j].fgName = 0;
                 }
             }
 
             ptr = common_data.clip.structureClip->unk_86C;
             for (i = 0; i < ARRAY_COUNT(common_data.clip.structureClip->unk_86C); i++, ptr++) {
                 ptr->type = -1;
-                ptr->unk_02 = 0;
+                ptr->instanceCount = 0;
                 ptr->unk_03 = 0;
-                for (j = 0; j < ARRAY_COUNT(ptr->unk_04); j++) {
-                    ptr->unk_04[j].unk_08 = 0;
-                    ptr->unk_04[j].fgName = 0;
+                for (j = 0; j < ARRAY_COUNT(ptr->instances); j++) {
+                    ptr->instances[j].unk_08 = 0;
+                    ptr->instances[j].fgName = 0;
                 }
             }
         }
@@ -688,16 +702,16 @@ void aSTR_free_clip_area(void) {
     if (common_data.clip.structureClip != NULL) {
         {
             StructureActor** actorTableIter = common_data.clip.structureClip->structureActorTable;
-            StructureOverlayInfo* structureOverlay = common_data.clip.structureClip->overlayArea;
+            StructureClipOverlayInfo* overlayIter = common_data.clip.structureClip->overlayArea;
             s32 i;
 
-            for (i = 0; i < STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT; i++, actorTableIter++, structureOverlay++) {
+            for (i = 0; i < STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT; i++, actorTableIter++, overlayIter++) {
                 if (*actorTableIter != NULL) {
                     *actorTableIter = NULL;
                 }
 
-                if (structureOverlay->overlayPointer != NULL) {
-                    structureOverlay->overlayPointer = NULL;
+                if (overlayIter->overlayPointer != NULL) {
+                    overlayIter->overlayPointer = NULL;
                 }
             }
         }
@@ -710,16 +724,16 @@ void aSTR_free_clip_area(void) {
 void aSTR_check_door_data(Structure* this, Game_Play* game_play) {
     static s32 request[] = { 4, 5 };
 
-    if (((this->unk_178 & 0xF000) >> 0xC) == 5) {
+    if (((this->doorFgName & 0xF000) >> 0xC) == 5) {
         StructureActor* structureActor =
-            (StructureActor*)Actor_info_fgName_search(&game_play->actorInfo, this->unk_178, ACTOR_PART_0);
+            (StructureActor*)Actor_info_fgName_search(&game_play->actorInfo, this->doorFgName, ACTOR_PART_0);
 
         if ((structureActor != NULL) && (structureActor->unk_2B0 == 0)) {
-            structureActor->unk_2B0 = request[(this->unk_17A == 1)];
-            this->unk_178 = 0;
+            structureActor->unk_2B0 = request[(this->doorExitType == 1)];
+            this->doorFgName = 0;
         }
     } else {
-        this->unk_178 = 0;
+        this->doorFgName = 0;
     }
 }
 

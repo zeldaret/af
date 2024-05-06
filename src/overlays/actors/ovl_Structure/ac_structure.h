@@ -181,8 +181,8 @@ typedef struct StructureActor {
 typedef struct Structure {
     /* 0x000 */ Actor actor;
     /* 0x174 */ UNK_TYPE1 unk_174[0x4];
-    /* 0x178 */ u16 unk_178;
-    /* 0x17A */ u8 unk_17A;
+    /* 0x178 */ u16 doorFgName;
+    /* 0x17A */ u8 doorExitType;
     /* 0x17B */ UNK_TYPE1 unk_17B;
 } Structure; // size = 0x17C
 

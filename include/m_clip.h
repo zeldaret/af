@@ -117,25 +117,25 @@ typedef struct Clip_unk_080 {
     /* 0x34 */ Clip_unk_080_unk_34 unk_34; // open close proc
 } Clip_unk_080; // size >= 0x8
 
-typedef struct StructureOverlayInfo {
+typedef struct StructureClipOverlayInfo {
     /* 0x00 */ s8* overlayPointer;
     /* 0x04 */ s32 used;
-} StructureOverlayInfo; // size = 0x8
+} StructureClipOverlayInfo; // size = 0x8
 
-typedef struct StructureClip_unkstruct_unk_04 {
+typedef struct StructureClipInstanceInfo {
     /* 0x0 */ f32 posX;
     /* 0x4 */ f32 posZ;
     /* 0x8 */ s16 unk_08;
     /* 0xA */ u16 fgName;
-} StructureClip_unkstruct_unk_04; // size = 0xC
+} StructureClipInstanceInfo; // size = 0xC
 
-typedef struct StructureClip_unkstruct {
+typedef struct StructureClipSegmentInfo {
     /* 0x00 */ s16 type;
-    /* 0x02 */ u8 unk_02;
+    /* 0x02 */ u8 instanceCount;
     /* 0x03 */ u8 unk_03;
-    /* 0x04 */ StructureClip_unkstruct_unk_04 unk_04[9];
+    /* 0x04 */ StructureClipInstanceInfo instances[9];
     /* 0x70 */ s32 segment;
-} StructureClip_unkstruct; // size = 0x74
+} StructureClipSegmentInfo; // size = 0x74
 
 typedef struct Actor* (*StructureClipSetupActorProc)(struct Game_Play*, u16, f32, f32, s16);
 typedef void (*StructureClipGetOverlayAreaProc)(struct ActorOverlay*, size_t);
@@ -143,7 +143,7 @@ typedef void (*StructureClipFreeOverlayAreaProc)(struct ActorOverlay*);
 typedef struct Actor* (*StructureClipGetActorAreaProc)(void);
 typedef void (*StructureClipFreeActorAreaProc)(struct Actor*);
 typedef void (*StructureClip_unk_A4)(struct ObjectExchangeBank*);
-typedef void (*StructureClip_unk_A8)(StructureClip_unkstruct*, s32, s16, struct Actor*);
+typedef void (*StructureClipRemoveInstanceProc)(StructureClipSegmentInfo*, s32, s16, struct Actor*);
 // TODO: What should these *really* return?
 typedef s32 (*StructureClip_unk_AC)(s16);
 typedef u16* (*StructureClipGetPalSegment)(s16);
@@ -159,15 +159,15 @@ typedef struct StructureClip {
     /* 0x010 */ StructureClipFreeActorAreaProc freeActorAreaProc;
     /* 0x014 */ struct StructureActor* structureActorTable[STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT];
     /* 0x038 */ s32 structureActorUsedTable[STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT];
-    /* 0x05C */ StructureOverlayInfo overlayArea[STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT];
+    /* 0x05C */ StructureClipOverlayInfo overlayArea[STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT];
     /* 0x0A4 */ StructureClip_unk_A4 unk_A4;
-    /* 0x0A8 */ StructureClip_unk_A8 unk_A8; // unload object
+    /* 0x0A8 */ StructureClipRemoveInstanceProc removeInstanceProc;
     /* 0x0AC */ StructureClip_unk_AC unk_AC; // load object
-    /* 0x0B0 */ StructureClip_unkstruct unk_B0[8];
+    /* 0x0B0 */ StructureClipSegmentInfo unk_B0[8];
     /* 0x450 */ StructureClipGetPalSegment getPalSegment; // load palette
-    /* 0x454 */ StructureClip_unkstruct unk_454[9];
+    /* 0x454 */ StructureClipSegmentInfo paletteSegmentTable[9];
     /* 0x868 */ StructureClip_unk_868 unk_868;
-    /* 0x86C */ StructureClip_unkstruct unk_86C[8];
+    /* 0x86C */ StructureClipSegmentInfo unk_86C[8];
     /* 0xC0C */ s32 objectExchangeBankNum;
     /* 0xC10 */ s32 unk_C10;
 } StructureClip; // size = 0xC14

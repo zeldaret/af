@@ -7,6 +7,7 @@
 #include "m_field_info.h"
 #include "m_player_lib.h"
 #include "m_rcp.h"
+#include "macros.h"
 #include "code_variables.h"
 
 #include "objects/object_00D5E000/obj_e_kago_r/obj_e_kago_r.h"
@@ -49,12 +50,16 @@ void aKAG_actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
 void aKAG_actor_dt(Actor* thisx, UNUSED Game_Play* game_play) {
     Kago* this = THIS;
 
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_B0, 8,
-                                           this->structureActor.structureType, &this->structureActor.actor);
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_454, 9,
-                                           this->structureActor.structurePalette, &this->structureActor.actor);
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_86C, 8,
-                                           this->structureActor.structureType, &this->structureActor.actor);
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->unk_B0,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->unk_B0),
+                                                       this->structureActor.structureType, &this->structureActor.actor);
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->paletteSegmentTable,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->paletteSegmentTable),
+                                                       this->structureActor.structurePalette,
+                                                       &this->structureActor.actor);
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->unk_86C,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->unk_86C),
+                                                       this->structureActor.structureType, &this->structureActor.actor);
 }
 
 void aKAG_set_bgOffset(Kago* this, s32 id) {

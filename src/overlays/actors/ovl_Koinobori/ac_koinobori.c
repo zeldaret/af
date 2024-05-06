@@ -55,12 +55,15 @@ void aKOI_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
 void aKOI_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
     Koinobori* this = THIS;
 
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_B0, 8, 0x27,
-                                           &this->structureActor.actor);
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_454, 9, 0x50,
-                                           &this->structureActor.actor);
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_86C, 8, 0x27,
-                                           &this->structureActor.actor);
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->unk_B0,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->unk_B0),
+                                                       STRUCTURE_TYPE_KOINOBORI, &this->structureActor.actor);
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->paletteSegmentTable,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->paletteSegmentTable),
+                                                       STRUCTURE_PALETTE_KOINOBORI, &this->structureActor.actor);
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->unk_86C,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->unk_86C),
+                                                       STRUCTURE_TYPE_KOINOBORI, &this->structureActor.actor);
     cKF_SkeletonInfo_R_dt(&this->structureActor.skeletonInfo);
 }
 

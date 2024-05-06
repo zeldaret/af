@@ -61,12 +61,15 @@ void aDUM_actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
 void aDUM_actor_dt(Actor* thisx, UNUSED Game_Play* game_play) {
     Dump* this = THIS;
 
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_B0, 8, 0x28,
-                                           &this->structureActor.actor);
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_454, 9, 0x51,
-                                           &this->structureActor.actor);
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_86C, 8, 0x28,
-                                           &this->structureActor.actor);
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->unk_B0,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->unk_B0),
+                                                       STRUCTURE_TYPE_DUMP, &this->structureActor.actor);
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->paletteSegmentTable,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->paletteSegmentTable),
+                                                       STRUCTURE_PALETTE_DUMP, &this->structureActor.actor);
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->unk_86C,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->unk_86C),
+                                                       STRUCTURE_TYPE_DUMP, &this->structureActor.actor);
     this->structureActor.actor.world.pos.x += 40.0f;
 }
 

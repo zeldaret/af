@@ -10,6 +10,7 @@
 #include "m_field_info.h"
 #include "code_variables.h"
 #include "m_rcp.h"
+#include "macros.h"
 
 #include "objects/object_00D5E000/obj_e_kago_r/obj_e_kago_r.h"
 #include "objects/object_00D5E000/obj_e_kago_w/obj_e_kago_w.h"
@@ -49,12 +50,16 @@ void aTAM_actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
 void aTAM_actor_dt(Actor* thisx, UNUSED Game_Play* game_play) {
     Tama* this = THIS;
 
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_B0, 8,
-                                           this->structureActor.structureType, &this->structureActor.actor);
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_454, 9,
-                                           this->structureActor.structurePalette, &this->structureActor.actor);
-    common_data.clip.structureClip->unk_A8(common_data.clip.structureClip->unk_86C, 8,
-                                           this->structureActor.structureType, &this->structureActor.actor);
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->unk_B0,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->unk_B0),
+                                                       this->structureActor.structureType, &this->structureActor.actor);
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->paletteSegmentTable,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->paletteSegmentTable),
+                                                       this->structureActor.structurePalette,
+                                                       &this->structureActor.actor);
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->unk_86C,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->unk_86C),
+                                                       this->structureActor.structureType, &this->structureActor.actor);
 }
 
 void aTAM_wait(UNUSED Tama* this, UNUSED Game_Play* game_play) {
