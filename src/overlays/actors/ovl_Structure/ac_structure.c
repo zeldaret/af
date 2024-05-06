@@ -678,9 +678,9 @@ void aSTR_init_clip_area(Game_Play* game_play) {
 
             for (i = 0; i < STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT; i++, actorTableIter++, isUsed++, overlayIter++) {
                 *actorTableIter = &aSTR_actor_cl[i];
-                *isUsed = 0;
+                *isUsed = false;
                 overlayIter->overlayPointer = aSTR_overlay[i];
-                overlayIter->used = 0;
+                overlayIter->used = false;
             }
         }
 
