@@ -363,7 +363,7 @@ s32 mSDI_StartInitPak(Game* game2, s32 playerNumber, s32 mallocFlag) {
 
     if (mFRm_CheckSaveData() == TRUE) {
         sp1C = mCPk_get_pkinfo();
-        if ((func_80078E90_jp(sp1C, 0) == TRUE) && (mPr_LoadPak_and_SetPrivateInfo2(playerNumber, sp1C) == TRUE)) {
+        if ((mCPk_PakOpen(sp1C, 0) == TRUE) && (mPr_LoadPak_and_SetPrivateInfo2(playerNumber, sp1C) == TRUE)) {
             mFM_SetBlockKindLoadCombi(game);
             mEv_init_force(&game_play->event);
             mHsRm_GetHuusuiRoom(game, playerNumber);
