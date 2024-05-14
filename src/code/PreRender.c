@@ -200,8 +200,8 @@ void PreRender_TransBuffer1_env(PreRender* this, Gfx** glistpp, void* arg2, void
         u32 mode1;
 
         if (envA == 255) {
-            mode0 = G_AD_DISABLE | G_CD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_POINT | G_TT_NONE | G_TL_TILE | G_TD_CLAMP |
-                    G_TP_NONE | G_CYC_1CYCLE | G_PM_NPRIMITIVE;
+            mode0 = G_AD_DISABLE | G_CD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_POINT | G_TT_NONE | G_TL_TILE |
+                    G_TD_CLAMP | G_TP_NONE | G_CYC_1CYCLE | G_PM_NPRIMITIVE;
             mode1 = G_AC_NONE | G_ZS_PRIM | G_RM_OPA_SURF | G_RM_OPA_SURF2;
         } else {
             mode0 = G_AD_NOISE | G_CD_NOISE | G_CK_NONE | G_TC_FILT | G_TF_POINT | G_TT_NONE | G_TL_TILE | G_TD_CLAMP |
@@ -334,7 +334,110 @@ void PreRender_ShowCoveredge(Gfx** glistpp, s32 ulx, s32 uly, s32 lrx, s32 lry) 
     *glistpp = glistp;
 }
 
+#ifdef NON_MATCHING
+void PreRender_CopyRGBC(PreRender* this, Gfx** gfxp, s32 width, s32 height) {
+    Gfx* gfx = *gfxp;
+
+    u32 remain;
+    u32 term;
+
+    u32 uls;
+    u32 ult;
+    u32 lrs;
+    u32 lrt;
+
+    u32 w;
+    u32 h;
+    u32 lrs_max;
+    u32 lrt_max;
+
+    if ((this->width_save + width) <= 0 || (this->height_save + height) <= 0) {
+        return;
+    }
+
+    gDPPipeSync(gfx++);
+
+    gfx = gfx_SetUpCFB(gfx, this->fbuf, this->width, this->height);
+
+    gDPSetOtherMode(gfx++,
+                    G_AD_DISABLE | G_CD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_POINT | G_TT_NONE | G_TL_TILE |
+                        G_TD_CLAMP | G_TP_NONE | G_CYC_1CYCLE | G_PM_NPRIMITIVE,
+                    G_AC_NONE | G_ZS_PRIM | G_RM_OPA_SURF | G_RM_OPA_SURF2);
+    gDPSetCombineLERP(gfx++, 0, 0, 0, TEXEL0, 0, 0, 0, 1, 0, 0, 0, TEXEL0, 0, 0, 0, 1);
+
+    wallpaper_draw(&gfx, this->fbuf_save, 0, this->width_save, this->height_save, 0, 2, 0, 0, width, height, 1.0f, 1.0f,
+                   11);
+
+    gfx = gfx_SetUpCFB(gfx, this->fbuf_save, this->width_save, this->height_save);
+
+    PreRender_ShowCoveredge(&gfx, 0, 0, this->width_save, this->height_save);
+
+    gfx = gfx_SetUpCFB(gfx, this->fbuf, this->width, this->height);
+
+    gDPSetOtherMode(gfx++,
+                    G_AD_DISABLE | G_CD_DISABLE | G_CK_NONE | G_TC_FILT | G_TF_POINT | G_TT_NONE | G_TL_TILE |
+                        G_TD_CLAMP | G_TP_NONE | G_CYC_2CYCLE | G_PM_NPRIMITIVE,
+                    G_AC_NONE | G_ZS_PRIM | AA_EN | IM_RD | CVG_DST_WRAP | ZMODE_OPA | CVG_X_ALPHA | ALPHA_CVG_SEL |
+                        FORCE_BL | G_RM_PASS | GBL_c2(G_BL_CLR_IN, G_BL_0, G_BL_CLR_MEM, G_BL_1));
+
+    gDPSetCombineLERP(gfx++, 0, 0, 0, 0, 1, 0, TEXEL0, ENVIRONMENT, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
+
+    gDPSetEnvColor(gfx++, 255, 255, 255, 32);
+
+    remain = (1 << 12) / (u32)(this->width_save * 2);
+
+    if (width < 0) {
+        uls = -width;
+        lrs = 0;
+    } else {
+        uls = 0;
+        lrs = width;
+    }
+
+    if (height < 0) {
+        ult = -height;
+        lrt = 0;
+        term = this->height_save + height;
+    } else {
+        term = this->height_save;
+        lrt = height;
+        ult = 0;
+    }
+
+    w = (this->width_save + width);
+    lrs_max = this->width_save;
+
+    while (term > 0) {
+        if (remain > term) {
+            remain = term;
+        }
+
+        lrt_max = ult + remain;
+        if (lrt_max > this->width_save) {
+            lrt_max = this->width_save;
+            remain = this->width_save - ult;
+        }
+
+        if ((lrt_max && lrt_max) && lrt_max) {}
+        h = lrt + remain;
+
+        gDPLoadTextureTile(gfx++, this->fbuf_save, G_IM_FMT_I, G_IM_SIZ_8b, this->width_save * 2, this->height_save * 2,
+                           uls * 2, ult, lrs_max * 2 - 1, lrt_max - 1, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK,
+                           G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);
+
+        gSPTextureRectangle(gfx++, lrs * 4, lrt * 4, w * 4, h * 4, G_TX_RENDERTILE, (uls * 2) << 5, ult << 5, 2 << 10,
+                            1 << 10);
+
+        term -= remain;
+        ult += remain;
+        lrt += remain;
+    }
+    gDPPipeSync(gfx++);
+    *gfxp = gfx;
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/PreRender/PreRender_CopyRGBC.s")
+#endif
 
 void PreRender_saveZBuffer(PreRender* this, Gfx** glistpp) {
     if ((this->zbuf_save != NULL) && (this->zbuf != NULL)) {
@@ -409,9 +512,9 @@ void PreRender_loadFrameBuffer(PreRender* this, Gfx** glistpp) {
                              G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
 
             // Load the coverage line
-            gDPLoadMultiTile(glistp++, this->cvg_save, 0x0160, rtile, G_IM_FMT_I, G_IM_SIZ_8b, this->width, this->height,
-                             uls, ult, lrs, lrt, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK,
-                             G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+            gDPLoadMultiTile(glistp++, this->cvg_save, 0x0160, rtile, G_IM_FMT_I, G_IM_SIZ_8b, this->width,
+                             this->height, uls, ult, lrs, lrt, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
+                             G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
 
             // Draw a texture for which the rgb channels come from the framebuffer and the alpha channel comes from
             // coverage, modulated by env color
