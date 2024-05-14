@@ -399,7 +399,7 @@ void play_init(Game* game) {
     mSM_submenu_ct(&game_play->submenu);
     game_play->submenu.unk_00 = 0;
     PreRender_init(&game_play->unk_1DC0);
-    PreRender_setup_savebuf(&game_play->unk_1DC0, 0x140, 0xF0, 0, 0, 0);
+    PreRender_setup_savebuf(&game_play->unk_1DC0, 0x140, 0xF0, NULL, NULL, NULL);
     PreRender_setup_renderbuf(&game_play->unk_1DC0, 0x140, 0xF0, NULL, NULL);
 
     //! FAKE
@@ -681,12 +681,12 @@ s32 makeBumpTexture(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsCon
 
         gSPDisplayList(OVERLAY_DISP++, sp3C);
 
-        game_play->unk_1DC0.unk_10 = gfxCtx2->unk_2E4;
-        game_play->unk_1DC0.unk_14 = gfxCtx2->unk_008;
+        game_play->unk_1DC0.fbuf = gfxCtx2->unk_2E4;
+        game_play->unk_1DC0.fbuf_save = gfxCtx2->unk_008;
         PreRender_saveFrameBuffer(&game_play->unk_1DC0, &sp3C);
 
         if (game_play->submenu.unk_00 == 1) {
-            game_play->unk_1DC0.unk_18 = gfxCtx2->unk_2E4;
+            game_play->unk_1DC0.cvg_save = gfxCtx2->unk_2E4;
             PreRender_saveCVG(&game_play->unk_1DC0, &sp3C);
             game_play->submenu.unk_00 = 2;
         } else {
