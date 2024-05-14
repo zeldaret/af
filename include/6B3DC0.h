@@ -4,6 +4,7 @@
 #include "ultra64.h"
 
 struct GraphicsContext;
+struct Game;
 
 // void func_80090120_jp();
 // void func_80090130_jp();
@@ -27,10 +28,10 @@ struct GraphicsContext;
 // void func_80090848_jp();
 // void func_8009087C_jp();
 // void func_80090CC0_jp();
-// void mFont_SetLineStrings_AndSpace();
+f32 mFont_SetLineStrings_AndSpace(struct Game*, char*, s32, f32 x, f32 y, s32 , s32 , s32 , s32 , s32, s32, s32, f32, f32, s32);
 // void func_80090E98_jp();
-// void mFont_SetMatrix();
-// void mFont_UnSetMatrix();
+void mFont_SetMatrix(struct GraphicsContext* gfxCtx, s32 type);
+void mFont_UnSetMatrix(struct GraphicsContext* gfxCtx, s32 type);
 void func_80091074_jp(struct GraphicsContext* gfxCtx);
 // void func_80091094_jp();
 // void func_80091104_jp();

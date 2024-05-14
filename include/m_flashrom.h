@@ -30,7 +30,7 @@ void mFRm_ClearSaveCheckData(struct CommonData* common_data);
 // void func_8008F5FC_jp();
 // void func_8008F648_jp();
 // void func_8008F768_jp();
-// void func_8008F7C8_jp();
+s32 func_8008F7C8_jp(void);
 // void func_8008F8A0_jp();
 // void func_8008F938_jp();
 // void func_8008F968_jp();
