@@ -13348,8 +13348,8 @@ RO_STR_809E9B74_jp = 0x809E9B74; // type:asciz
 
 // .bss
 
-aSTR_actor_cl = 0x809E9B90; //
-aSTR_overlay = 0x809EB528; //
+aSTR_actor_cl = 0x809E9B90; // size:0x1998
+aSTR_overlay = 0x809EB528; // size:0x12000
 aSTR_bss_padding_1 = 0x809FD528; //
 aSTR_object_start_addresses = 0x809FD530; //
 aSTR_bss_padding_2 = 0x809FD810; //
@@ -13559,8 +13559,7 @@ FallS_Profile = 0x80A03440; //
 // .text
 
 func_80A034A0_jp = 0x80A034A0; // type:func
-func_80A034B0_jp = 0x80A034B0; // type:func
-D_80A03528_jp = 0x80A03528; //
+func_80A034B0_jp = 0x80A034B0; // type:func size:0x8C
 aFLEW_actor_move = 0x80A0353C; // type:func
 aFLEW_actor_draw = 0x80A03590; // type:func
 

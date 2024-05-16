@@ -85,3 +85,8 @@ rom:0x8B137C symbol:Npc_Shop_Master_Profile reloc:MIPS_LO16 addend:-0xB560
 // Use the first data symbol of this overlay in the meanwhile
 rom:0x88C8E0 symbol:Npc_Conv_Master_Profile reloc:MIPS_HI16 addend:-0xB490
 rom:0x88C8F0 symbol:Npc_Conv_Master_Profile reloc:MIPS_LO16 addend:-0xB490
+
+// ovl_Structure uses an OoB reference to check if a pointer itererator
+// has reached the end of the loop.
+rom:0x8CCCA4 symbol:aSTR_overlay reloc:MIPS_HI16 addend:0x18000
+rom:0x8CCCA8 symbol:aSTR_overlay reloc:MIPS_LO16 addend:0x18000

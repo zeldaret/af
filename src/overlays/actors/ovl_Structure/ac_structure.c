@@ -18,8 +18,8 @@ void aSTR_actor_move(Actor* thisx, Game_Play* game_play);
 void aSTR_init_clip_area(Game_Play* game_play);
 void aSTR_free_clip_area(void);
 
-StructureActor aSTR_actor_cl[9];
-s8 aSTR_overlay[9][8192];
+StructureActor aSTR_actor_cl[STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT];
+s8 aSTR_overlay[STRUCTURE_CLIP_STRUCTURE_ACTOR_COUNT][8192];
 
 // Original name unknown. Unused
 s8 aSTR_bss_padding_1[8];
