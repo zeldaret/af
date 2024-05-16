@@ -53,7 +53,8 @@ do
     f)  full="true"
         run="make distclean
     make setup
-    make disasm
+    make extract
+    make lib
     make rom
     make compress"
         ;;
@@ -103,7 +104,8 @@ make_warnings () {
 if [[ $full ]]; then
     make distclean
     make_warnings setup setup
-    make_warnings disasm disasm
+    make_warnings extract extract
+    make_warnings lib lib
     make_warnings rom build
     make_warnings compress compress
 else
