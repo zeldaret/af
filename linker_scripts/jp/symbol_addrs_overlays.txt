@@ -11358,11 +11358,8 @@ func_809C1A48_jp = 0x809C1A48; // type:func
 func_809C1B4C_jp = 0x809C1B4C; // type:func
 func_809C1C00_jp = 0x809C1C00; // type:func
 func_809C1C6C_jp = 0x809C1C6C; // type:func
-func_809C1D28_jp = 0x809C1D28; // type:func
-D_809C1D2C_jp = 0x809C1D2C; //
-D_809C1D44_jp = 0x809C1D44; //
-func_809C1D48_jp = 0x809C1D48; // type:func
-D_809C1D5C_jp = 0x809C1D5C; //
+func_809C1D28_jp = 0x809C1D28; // type:func size:0x20
+func_809C1D48_jp = 0x809C1D48; // type:func size:0x2C
 func_809C1D74_jp = 0x809C1D74; // type:func
 
 // .data

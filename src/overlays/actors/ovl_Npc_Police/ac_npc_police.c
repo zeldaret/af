@@ -73,8 +73,6 @@ ActorProfile Npc_Police_Profile = {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Police/ac_npc_police/func_809C1D28_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Police/ac_npc_police/D_809C1D44_jp.s")
-
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Police/ac_npc_police/D_809C1D5C_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Police/ac_npc_police/func_809C1D48_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Police/ac_npc_police/func_809C1D74_jp.s")
