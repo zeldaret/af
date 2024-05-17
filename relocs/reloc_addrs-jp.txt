@@ -81,6 +81,13 @@ rom:0x875088 symbol:D_80981940_jp reloc:MIPS_LO16 addend:-0x182B0
 rom:0x88C8E0 symbol:Npc_Conv_Master_Profile reloc:MIPS_HI16 addend:-0xB490
 rom:0x88C8F0 symbol:Npc_Conv_Master_Profile reloc:MIPS_LO16 addend:-0xB490
 
+// ovl_Npc_Conv_Master tries to load a from an address in the middle of a
+// function of another overlay
+// It is suspected to be a negative addend to an unknown symbol.
+// Use the first data symbol of this overlay in the meanwhile
+rom:0x89D358 symbol:D_809BA130_jp reloc:MIPS_HI16 addend:-0x8B64
+rom:0x89D368 symbol:D_809BA130_jp reloc:MIPS_LO16 addend:-0x8B64
+
 // ovl_Npc_Shop_Master tries to load a branch target from another overlay.
 // It is suspected to be a negative addend to an unknown symbol.
 // Use the first data symbol of this overlay in the meanwhile
