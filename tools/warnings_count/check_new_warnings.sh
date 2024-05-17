@@ -96,7 +96,7 @@ remove_ansi_codes () {
 
 
 make_warnings () {
-    make $1 -j$jobs 2> >(tee tools/warnings_count/warnings_temp.txt) \
+    make WERROR=0 WARNINGS_CHECK=1 $1 -j$jobs 2> >(tee tools/warnings_count/warnings_temp.txt) \
     && remove_ansi_codes tools/warnings_count/warnings_temp.txt > tools/warnings_count/warnings_$2_new.txt \
     && rm tools/warnings_count/warnings_temp.txt
 }
@@ -116,7 +116,9 @@ fi
 
 if [[ $full ]]; then
     $COMPARE_WARNINGS setup
-    $COMPARE_WARNINGS disasm
+    $COMPARE_WARNINGS extract
+    $COMPARE_WARNINGS lib
+    $COMPARE_WARNINGS compress
 fi
 $COMPARE_WARNINGS build
 
