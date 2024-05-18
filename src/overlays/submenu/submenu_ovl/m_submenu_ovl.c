@@ -13,7 +13,7 @@
 
 // gamestates
 #include "overlays/gamestates/ovl_play/m_play.h"
-#include "overlays/gamestates/ovl__00743CD0/_00743CD0.h"
+#include "overlays/gamestates/ovl_cpedit/m_cpedit.h"
 
 // submenus
 #include "overlays/submenu/inventory_ovl/m_inventory_ovl.h"
@@ -621,7 +621,7 @@ void mSM_setup_view(Submenu* submenu, GraphicsContext* gfxCtx, s32 arg1) {
         if (submenu->unk_00 != 4) {
             view = &((Game_Play*)gamePT)->view;
         } else {
-            view = &((Game__00743CD0*)gamePT)->view;
+            view = &((Game_CPEdit*)gamePT)->view;
         }
 
         gDPPipeSync(__polyOpa++);
@@ -1514,7 +1514,7 @@ label:
     if (submenu->unk_00 != 4) {
         var_v1 = &((Game_Play*)gamePT)->objectExchangeBank;
     } else {
-        var_v1 = &((Game__00743CD0*)gamePT)->unk_02FC;
+        var_v1 = &((Game_CPEdit*)gamePT)->unk_02FC;
     }
 
     ovl_base.unk_10000.unk_00 = var_v1->unk1818;
