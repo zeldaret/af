@@ -37,8 +37,6 @@ ActorProfile Npc_Guide2_Profile = {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Guide2/ac_npc_guide2/func_809B141C_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Guide2/ac_npc_guide2/D_809B15CC_jp.s")
-
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Guide2/ac_npc_guide2/func_809B17C4_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc_Guide2/ac_npc_guide2/func_809B1808_jp.s")
