@@ -400,7 +400,7 @@ void mSDI_StartInitAfter(Game* game, s32 renewalReserveFlag, s32 mallocFlag) {
     func_80084DA4_jp();
     mEv_2nd_init(&game_play->event);
     mNpc_Grow();
-    func_80096B64_jp();
+    Kabu_manager();
     mNpc_InitNpcData();
     mNpc_InitNpcList();
     mNpc_SetNpcList(common_data.npclist, common_data.animals, ANIMAL_NUM_MAX, mallocFlag);

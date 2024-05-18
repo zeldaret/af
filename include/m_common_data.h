@@ -90,7 +90,8 @@ typedef struct CommonData {
     /* 0x0F2A0 */ UNK_TYPE1 unk_0F2A0[0x17C];
     /* 0x0F41C */ SnowmanData snowmanData[SNOWMAN_SAVE_COUNT];
     /* 0x0F428 */ u64 melody;
-    /* 0x0F430 */ UNK_TYPE1 unk_F430[0x8];
+    /* 0x0F430 */ UNK_TYPE1 unk_F430[0x4];
+    /* 0x0F434 */ lbRTC_ymd_t renewTime; 
     /* 0x0F438 */ u8 stationType;
     /* 0x0F439 */ u8 saveWeather;
     /* 0x0F440 */ u8 unk_F440[0x2];
