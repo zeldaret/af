@@ -83,7 +83,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x743CD0, c, overlays/gamestates/ovl_cpedit/ovl_cpedit]
+      - [0x743CD0, c, overlays/gamestates/ovl_cpedit/m_cpedit]
   - name: ovl_cpedit_reloc
     type: code
     start: 0x743FE0
