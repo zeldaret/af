@@ -66,7 +66,7 @@ void func_80091074_jp(struct GraphicsContext* gfxCtx);
 // void func_800921D0_jp();
 // void func_80092440_jp();
 // void func_80092468_jp();
-// void func_800924CC_jp();
+void func_800924CC_jp(void*,void*,void*);
 // void func_80092538_jp();
 s32 mFont_UnintToString(char*, u32, s32, s32, s32); 
 

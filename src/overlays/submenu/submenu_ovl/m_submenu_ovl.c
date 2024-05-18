@@ -1514,7 +1514,7 @@ label:
     if (submenu->unk_00 != 4) {
         var_v1 = &((Game_Play*)gamePT)->objectExchangeBank;
     } else {
-        var_v1 = &((Game_CPEdit*)gamePT)->unk_02FC;
+        var_v1 = &((Game_CPEdit*)gamePT)->bank;
     }
 
     ovl_base.unk_10000.unk_00 = var_v1->unk1818;

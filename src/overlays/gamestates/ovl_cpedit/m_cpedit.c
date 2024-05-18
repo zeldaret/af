@@ -3,6 +3,9 @@
 #include "overlays/gamestates/ovl_trademark/m_trademark.h"
 #include "code_variables.h"
 #include "macros.h"
+#include "sys_matrix.h"
+#include "6B3DC0.h"
+#include "m_rcp.h"
 
 // madeup name
 void cpedit_main(Game* game) {
@@ -72,9 +75,9 @@ void func_80804ADC_jp(Game_CPEdit* edit) {
 void cpedit_cleanup(Game* game) {
     Game_CPEdit* edit = (Game_CPEdit*)game;
     edit->submenu.unk_00 = 0;
- 
-    mSM_submenu_dt( &edit->submenu);
-    mSM_submenu_ovlptr_cleanup( &edit->submenu);
+
+    mSM_submenu_dt(&edit->submenu);
+    mSM_submenu_ovlptr_cleanup(&edit->submenu);
 }
 // madeup name
 void cpedit_init(Game* game) {
@@ -86,10 +89,9 @@ void cpedit_init(Game* game) {
     edit->view.flag = 8;
     edit->unk208 = func_80804ADC_jp;
     SetGameFrame(1);
-    mSM_submenu_ovlptr_init((struct Game_Play* ) edit);
-    mSc_data_bank_ct((struct Game_Play* ) edit,  &edit->bank);
+    mSM_submenu_ovlptr_init((struct Game_Play*)edit);
+    mSc_data_bank_ct((struct Game_Play*)edit, &edit->bank);
     mSc_decide_exchange_bank(&edit->bank);
     mSM_submenu_ct(&edit->submenu);
     new_Matrix(&edit->state);
 }
-
