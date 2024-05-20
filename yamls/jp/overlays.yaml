@@ -65,7 +65,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x743B70, asm, overlays/gamestates/ovl_second_game/second_game]
+      - [0x743B70, c, overlays/gamestates/ovl_second_game/second_game]
   - name: ovl_second_game_reloc
     type: code
     start: 0x743CA0

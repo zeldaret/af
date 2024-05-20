@@ -56,7 +56,7 @@ typedef struct Game {
     /* 0x88 */ GameAlloc alloc;
     /* 0x9C */ u8 unk_9C;
     /* 0x9D */ u8 unk_9D;
-    /* 0x9E */ UNK_TYPE1 unk9E[0x1];
+    /* 0x9E */ s8 unk9E;
     /* 0x9F */ u8 running;
     /* 0xA0 */ s32 frameCounter;
     /* 0xA4 */ UNK_TYPE1 unk_A4[0x4];

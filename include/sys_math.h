@@ -13,7 +13,7 @@
 #define RANDOM2(n) ((s32)RANDOM_F2(n))
 
 // void reverse_u32();
-// void init_rnd();
+void init_rnd(void);
 // void ffact();
 // void ifact();
 // void powi();
