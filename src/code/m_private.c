@@ -663,7 +663,7 @@ s32 mPr_CheckMuseumInfoMail(PrivateInfo* priv) {
     return res;
 }
 
-s32 mPr_LoadPak_and_SetPrivateInfo2(u8 player, void* pak) {
+s32 mPr_LoadPak_and_SetPrivateInfo2(u8 player, PakInfo* pak) {
     PrivateInfo* priv;
     s32 res = FALSE;
     s32 save = func_8007942C_jp(&g_foreigner_private, mNpc_GetInAnimalP(), pak);

@@ -52,7 +52,7 @@ void padmgr_ClearPadData(Input inputs[4]);
 // void padmgr_Init();
 // void func_800D763C_jp();
 // void func_800D765C_jp();
-// void func_800D7678_jp();
+s32 padmgr_isConnectedAnyPak(s32 arg0);
 
 extern Padmgr padmgr_class;
 
