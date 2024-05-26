@@ -2,6 +2,87 @@
 #define M_CHOICE_MAIN_H
 
 #include "ultra64.h"
+#include "color.h"
+
+#define Choice_CHOICE_STRING_LEN 10
+
+typedef enum Choice_CHOICE {
+    Choice_CHOICE0,
+    Choice_CHOICE1,
+    Choice_CHOICE2,
+    Choice_CHOICE3,
+    Choice_CHOICE_MAX,
+};
+
+typedef enum Choice_AUTOMOVETYPE {
+    Choice_AUTOMOVE_STOPPED,
+    Choice_AUTOMOVE_INCREMENT_WAIT,
+    Choice_AUTOMOVE_INCREMENT,
+    Choice_AUTOMOVE_DECREMENT_WAIT,
+    Choice_AUTOMOVE_DECREMENT,
+    Choice_AUTOMOVE_MAX
+};
+
+typedef struct ChoiceData {
+    /* 0x00 */ char strings[Choice_CHOICE_MAX][Choice_CHOICE_STRING_LEN];
+    /* 0x28 */ s32 stringLens[Choice_CHOICE_MAX];
+    /* 0x38 */ char determinationString[Choice_CHOICE_STRING_LEN];
+    /* 0x44 */ s32 determinationLenght;
+    /* 0x48 */ s32 choiceNum;
+    /* 0x4C */ s32 selectedChoiceIdx;
+} ChoiceData; // size = 0x50
+
+typedef struct Choice {
+    /* 0x00 */f32 centerX;
+    /* 0x04 */f32 centerY;
+
+    /* Initial XY position */
+    /* 0x08 */ f32 centerXBegin;
+    /* 0x0C */ f32 centerYBegin;
+
+    /* Target XY position */
+    /* 0x10 */ f32 centerXTarget;
+    /* 0x14 */ f32 centerYTarget;
+
+    /* Text settings */
+    /* 0x18 */ Color_RGBA8 textColor;
+    /* 0x1C */ f32 textScaleX;
+    /* 0x20 */ f32 textScaleY;
+    /* 0x24 */ f32 textX;
+    /* 0x28 */ f32 textY;
+
+    /* Window scaling XY */
+    /* 0x2C */ f32 scaleX;
+    /* 0x30 */ f32 scaleY;
+
+    /* Text related data */
+    /* 0x34 */ ChoiceData data;
+
+    /* 0x84 */ s32 selectedChoiceIdx;
+    /* 0x88 */ Color_RGBA8 selectedChoiceTextColor;
+
+    /* 0x8C */ Color_RGBA8 backgroundColor;
+
+    /* 0x90 */ f32 unk_D4;
+    /* 0x94 */ f32 unk_D8;
+
+    /* 0x98 */ f32 scale;  // total choice window scaling percentage
+
+    /* 0x9C */ s32 mainIdx;
+    /* 0xA0 */ s32 requestedMainIdx;
+
+    /* 0xA4 */ s32 isWindowVisible;
+    /* 0xA8 */ s32 isFontVisible;
+
+    /* 0xAC */ s32 choiceAutomoveType;
+    /* 0xB0 */ f32 choiceAutomoveTimer;
+
+    /* 0xB4 */ f32 timer;
+
+    /* 0xB8 */ u8 noBFlag;      // can't press B to select last option
+    /* 0xB9 */ u8 noCloseFlag;  // pressing B won't auto-cancel the choice selection?
+} Choice; // size = 0xBC
+
 
 // void func_80065040_jp();
 // void func_80065064_jp();

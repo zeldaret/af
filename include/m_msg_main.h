@@ -3,10 +3,16 @@
 
 #include "ultra64.h"
 #include "unk.h"
+#include "m_choice_main.h"
 
 struct Game_Play;
 
-UNK_PTR mMsg_Get_base_window_p(void);
+typedef struct MessageWindow {
+    /* 0x000 */ UNK_TYPE1 unk_000[0x1B0];
+    /* 0x1B0 */ Choice choiceWindow;
+} MessageWindow; // size >= 0x26C
+
+MessageWindow* mMsg_Get_base_window_p(void);
 // void func_8009D200_jp();
 // void func_8009D210_jp();
 // void func_8009D260_jp();
