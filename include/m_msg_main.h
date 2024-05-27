@@ -6,6 +6,7 @@
 #include "m_choice_main.h"
 
 struct Game_Play;
+struct Actor;
 
 typedef struct MessageWindow {
     /* 0x000 */ UNK_TYPE1 unk_000[0x1B0];
@@ -99,22 +100,22 @@ size_t mMsg_Get_Length_String(char*, s32);
 // void func_8009EA2C_jp();
 // void func_8009EB44_jp();
 // void func_8009EBB0_jp();
-// void func_8009EC88_jp();
-// void func_8009ED14_jp();
-// void func_8009EDBC_jp();
-// void func_8009EE78_jp();
-// void func_8009EF00_jp();
-// void func_8009EF88_jp();
-// void func_8009F010_jp();
-// void func_8009F098_jp();
-// void func_8009F120_jp();
-// void func_8009F1A8_jp();
-// void func_8009F230_jp();
+s32 mMsg_CopyPlayerName(char*, s32, s32);
+s32 mMsg_CopyTalkName(struct Actor*, char*, s32, s32);
+s32 mMsg_CopyTail(struct Actor*, char*, s32, s32);
+s32 mMsg_CopyYear(char*, s32, s32);
+s32 mMsg_CopyMonth(char*, s32, s32);
+s32 mMsg_CopyWeek(char*, s32, s32);
+s32 mMsg_CopyDay(char*, s32, s32);
+s32 mMsg_CopyHour(char*, s32, s32);
+s32 mMsg_CopyMin(char*, s32, s32);
+s32 mMsg_CopySec(char*, s32, s32);
+s32 mMsg_CopyFree(MessageWindow*, s32, char*, s32, s32);
 // void func_8009F2EC_jp();
-// void func_8009F3A8_jp();
-// void func_8009F428_jp();
-// void func_8009F50C_jp();
-// void func_8009F5B4_jp();
+s32 mMsg_CopyDetermination(MessageWindow*, char*, s32, s32);
+s32 mMsg_CopyCountryName(char*,s32,s32);
+s32 mMsg_CopyRamdomNumber2(char*,s32,s32);
+s32 mMsg_CopyItem(MessageWindow*, s32, char*, s32, s32);
 // void func_8009F670_jp();
 // void func_8009F730_jp();
 // void func_8009F75C_jp();

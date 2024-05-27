@@ -3,23 +3,20 @@
 #include "game.h"
 #include "m_actor.h"
 #include "gfx.h"
+#include "m_std_dma.h"
+#include "audio.h"
+#include "m_lib.h"
+#include "sys_matrix.h"
+#include "6B3DC0.h"
 
 extern u32 D_D06000[];
 extern u32 D_D05000[];
-
-static u8 con_waku_swaku3_tex[];
-
-static Vtx con_sentaku2_v[];
-
-static Gfx con_sentaku2_modelT[];
-
-static Gfx mChoice_init_disp[];
 
 Choice* mChoice_Get_base_window_p() {
     return &mMsg_Get_base_window_p()->choiceWindow;
 }
 
-void mChoice_init(Choice* choice, Game* game) {
+void mChoice_init(Choice* choice, UNUSED Game* game) {
     choice->centerX = 191.0f;
     choice->centerY = 83.0f;
 
@@ -194,7 +191,7 @@ void mChoice_Clear_ChoseNum(Choice* choice) {
     choice->data.selectedChoiceIdx = -1;
 }
 
-void mChoice_check_ct(Choice* choice, Game* game) {
+void mChoice_check_ct(UNUSED Choice* choice, UNUSED Game* game) {
 }
 void mChoice_Get_StringDataAddressAndSize(s32 idx, u32** addr, u32* size) {
     s32 sizeCalc;
@@ -207,23 +204,23 @@ void mChoice_Get_StringDataAddressAndSize(s32 idx, u32** addr, u32* size) {
         if (idx & 1) {
             temp0 = idx - 1;
 
-            DmaMgr_RequestSyncDebug(vram, &D_D06000[temp0], 8, "../m_choice_main.c", 454);
+            DmaMgr_RequestSyncDebug(vram, (uintptr_t)&D_D06000[temp0], 8, "../m_choice_main.c", 454);
             vrom = vram[0];
             sizeCalc = vram[1] - vrom;
         } else if (idx == 0) {
-            DmaMgr_RequestSyncDebug(vram, &D_D06000[0], 8, "../m_choice_main.c", 461);
+            DmaMgr_RequestSyncDebug(vram, (uintptr_t)&D_D06000[0], 8, "../m_choice_main.c", 461);
             vrom = 0;
             sizeCalc = vram[0];
         } else {
             temp1 = idx - 2;
 
-            DmaMgr_RequestSyncDebug(vram, &D_D06000[temp1], 16, "../m_choice_main.c", 467);
+            DmaMgr_RequestSyncDebug(vram, (uintptr_t)&D_D06000[temp1], 16, "../m_choice_main.c", 467);
             vrom = vram[1];
             sizeCalc = vram[2] - vrom;
         }
 
         if (sizeCalc < 11) {
-            *addr = (uintptr_t)vrom + (u32)&D_D05000;
+            *addr = (u32*)((uintptr_t)vrom + (uintptr_t)&D_D05000);
             *size = sizeCalc;
         } else {
             *addr = NULL;
@@ -235,7 +232,7 @@ void mChoice_Get_StringDataAddressAndSize(s32 idx, u32** addr, u32* size) {
     }
 }
 
-s32 mChoice_Put_String_PLAYER_NAME(char* data, s32 idx, s32 maxSize, Actor* actor) {
+s32 mChoice_Put_String_PLAYER_NAME(char* data, s32 idx, s32 maxSize, UNUSED Actor* actor) {
     return mMsg_CopyPlayerName(data, idx, maxSize);
 }
 
@@ -247,36 +244,36 @@ s32 mChoice_Put_String_TAIL(char* data, s32 idx, s32 maxSize, Actor* actor) {
     return mMsg_CopyTail(actor, data, idx, maxSize);
 }
 
-s32 mChoice_Put_String_YEAR(char* data, s32 idx, s32 maxSize, Actor* actor) {
+s32 mChoice_Put_String_YEAR(char* data, s32 idx, s32 maxSize, UNUSED Actor* actor) {
     return mMsg_CopyYear(data, idx, maxSize);
 }
 
-s32 mChoice_Put_String_MONTH(char* data, s32 idx, s32 maxSize, Actor* actor) {
+s32 mChoice_Put_String_MONTH(char* data, s32 idx, s32 maxSize, UNUSED Actor* actor) {
     return mMsg_CopyMonth(data, idx, maxSize);
 }
 
-s32 mChoice_Put_String_WEEK(char* data, s32 idx, s32 maxSize, Actor* actor) {
+s32 mChoice_Put_String_WEEK(char* data, s32 idx, s32 maxSize, UNUSED Actor* actor) {
     return mMsg_CopyWeek(data, idx, maxSize);
 }
 
-s32 mChoice_Put_String_DAY(char* data, s32 idx, s32 maxSize, Actor* actor) {
+s32 mChoice_Put_String_DAY(char* data, s32 idx, s32 maxSize, UNUSED Actor* actor) {
     return mMsg_CopyDay(data, idx, maxSize);
 }
 
-s32 mChoice_Put_String_HOUR(char* data, s32 idx, s32 maxSize, Actor* actor) {
+s32 mChoice_Put_String_HOUR(char* data, s32 idx, s32 maxSize, UNUSED Actor* actor) {
     return mMsg_CopyHour(data, idx, maxSize);
 }
 
-s32 mChoice_Put_String_MIN(char* data, s32 idx, s32 maxSize, Actor* actor) {
+s32 mChoice_Put_String_MIN(char* data, s32 idx, s32 maxSize, UNUSED Actor* actor) {
     return mMsg_CopyMin(data, idx, maxSize);
 }
 
-s32 mChoice_Put_String_SEC(char* data, s32 idx, s32 maxSize, Actor* actor) {
+s32 mChoice_Put_String_SEC(char* data, s32 idx, s32 maxSize, UNUSED Actor* actor) {
     return mMsg_CopySec(data, idx, maxSize);
 }
 
-s32 mChoice_Put_String_FREE(char* data, s32 idx, s32 maxSize, Actor* actor, s32 freeIDx) {
-    return mMsg_CopyFree(mMsg_Get_base_window_p(), freeIDx, data, idx, maxSize);
+s32 mChoice_Put_String_FREE(char* data, s32 idx, s32 maxSize, UNUSED Actor* actor, s32 freeIdx) {
+    return mMsg_CopyFree(mMsg_Get_base_window_p(), freeIdx, data, idx, maxSize);
 }
 
 s32 mChoice_Put_String_FREE0(char* data, s32 idx, s32 maxSize, Actor* actor) {
@@ -359,19 +356,19 @@ s32 mChoice_Put_String_FREE19(char* data, s32 idx, s32 maxSize, Actor* actor) {
     return mChoice_Put_String_FREE(data, idx, maxSize, actor, 19);
 }
 
-s32 mChoice_Put_String_DETERMINATION(char* data, s32 idx, s32 maxSize, Actor* actor) {
+s32 mChoice_Put_String_DETERMINATION(char* data, s32 idx, s32 maxSize, UNUSED Actor* actor) {
     return mMsg_CopyDetermination(mMsg_Get_base_window_p(), data, idx, maxSize);
 }
 
-s32 mChoice_Put_String_COUNTRY_NAME(char* data, s32 idx, s32 maxSize, Actor* actor) {
-    return mMsg_CopyCountryName(data, idx, maxSize, FALSE);
+s32 mChoice_Put_String_COUNTRY_NAME(char* data, s32 idx, s32 maxSize, UNUSED Actor* actor) {
+    return mMsg_CopyCountryName(data, idx, maxSize);
 }
 
-s32 mChoice_Put_String_RAMDOM_NUMBER2(char* data, s32 idx, s32 maxSize, Actor* actor) {
+s32 mChoice_Put_String_RAMDOM_NUMBER2(char* data, s32 idx, s32 maxSize, UNUSED Actor* actor) {
     return mMsg_CopyRamdomNumber2(data, idx, maxSize);
 }
 
-s32 mChoice_Put_String_ITEM(char* data, s32 idx, s32 maxSize, Actor* actor, s32 itemIdx) {
+s32 mChoice_Put_String_ITEM(char* data, s32 idx, s32 maxSize, UNUSED Actor* actor, s32 itemIdx) {
     return mMsg_CopyItem(mMsg_Get_base_window_p(), itemIdx, data, idx, maxSize);
 }
 
@@ -398,7 +395,7 @@ s32 mChoice_Put_String_ITEM4(char* data, s32 idx, s32 maxSize, Actor* actor) {
 typedef s32 (*ChoicePutStringProc)(char*, s32, s32, Actor*);
 
 s32 mChoice_Put_String(char* data, s32 idx, s32 maxSize, Actor* actor) {
-    static const ChoicePutStringProc proc[] = {
+    static ChoicePutStringProc proc[] = {
         NULL,
         NULL,
         NULL,
@@ -495,6 +492,7 @@ s32 mChoice_Put_String(char* data, s32 idx, s32 maxSize, Actor* actor) {
         NULL,
         NULL,
         NULL,
+        NULL,
     };
 
     s32 type = data[idx + 1];
@@ -527,7 +525,7 @@ void mChoice_Change_ControlCode(char* data, s32 maxSize, Actor* actor) {
     };
 }
 
-void mChoice_Load_ChoseStringFromRom(s32 unused, char* str, s32 idx, Actor* actor) {
+void mChoice_Load_ChoseStringFromRom(UNUSED s32 unused, char* str, s32 idx, Actor* actor) {
     if (idx >= 0 && idx < 460) {
         u32* addr;
         u32 size;
@@ -535,7 +533,7 @@ void mChoice_Load_ChoseStringFromRom(s32 unused, char* str, s32 idx, Actor* acto
         mChoice_Get_StringDataAddressAndSize(idx, &addr, &size);
 
         if (size == 0) {
-            mem_clear(str, Choice_CHOICE_STRING_LEN, ' ');
+            mem_clear((u8*)str, Choice_CHOICE_STRING_LEN, ' ');
         } else if (addr != NULL) {
             char vram[29];
             s32 alignedSize = ((u32)addr & ~7);
@@ -595,8 +593,8 @@ void mChoice_MainSetup_Hide(Choice* choice, Game* game) {
     mChoice_init(choice, game);
 }
 
-s32 mChoice_Main_Appear_SetScale(Choice* choice, Game* game) {
-    f32 max = 5.2f;
+s32 mChoice_Main_Appear_SetScale(Choice* choice, UNUSED Game* game) {
+    f32 max = 5.1f;
 
     if (choice->timer < max) {
         f32 scale;
@@ -616,7 +614,7 @@ s32 mChoice_Main_Appear_SetScale(Choice* choice, Game* game) {
     }
 }
 
-void mChoice_request_main_index_fromAppear(Choice* choice, Game* game, s32 flag) {
+void mChoice_request_main_index_fromAppear(Choice* choice, UNUSED Game* game, s32 flag) {
     if (flag) {
         mChoice_Change_request_main_index(choice, 2);
     }
@@ -629,7 +627,7 @@ void mChoice_Main_Appear(Choice* choice, Game* game) {
     mChoice_MainSetup(choice, game);
 }
 
-void mChoice_MainSetup_Appear(Choice* choice, Game* game) {
+void mChoice_MainSetup_Appear(Choice* choice, UNUSED Game* game) {
     choice->scale = 0.0f;
     choice->mainIdx = 1;
     choice->requestedMainIdx = -1;
@@ -649,7 +647,7 @@ void mChoice_determimation_set(Choice* choice) {
     choiceData->selectedChoiceIdx = idx;
 }
 
-s32 mChoice_Main_Normal_SetChoice(Choice* choice, Game* game) {
+s32 mChoice_Main_Normal_SetChoice(Choice* choice, UNUSED Game* game) {
     s32 res = FALSE;
 
     if (chkTrigger(A_BUTTON)) {
@@ -673,7 +671,7 @@ s32 mChoice_Main_Normal_SetChoice(Choice* choice, Game* game) {
 
                     if (*choiceAutomoveTimer >= 9.0f) {
                         *choiceAutomoveTimer = 0.0f;
-                        *choiceAutomove = Choice_AUTOMOVE_INCREMENT_WAIT;
+                        *choiceAutomove = Choice_AUTOMOVE_INCREMENT;
                         (*selectedIdx)++;
                         sfx = TRUE;
                     }
@@ -768,7 +766,7 @@ s32 mChoice_Main_Normal_SetChoice(Choice* choice, Game* game) {
     return res;
 }
 
-void mChoice_request_main_index_fromNormal(Choice* choice, Game* game, s32 flag) {
+void mChoice_request_main_index_fromNormal(Choice* choice, UNUSED Game* game, s32 flag) {
     if (flag) {
         mChoice_Change_request_main_index(choice, 3);
     }
@@ -781,7 +779,7 @@ void mChoice_Main_Normal(Choice* choice, Game* game) {
     mChoice_MainSetup(choice, game);
 }
 
-void mChoice_MainSetup_Normal(Choice* choice, Game* game) {
+void mChoice_MainSetup_Normal(Choice* choice, UNUSED Game* game) {
     choice->scale = 1.0f;
     choice->timer = 0.0f;
     choice->requestedMainIdx = -1;
@@ -789,8 +787,8 @@ void mChoice_MainSetup_Normal(Choice* choice, Game* game) {
     choice->isFontVisible = TRUE;
 }
 
-s32 mChoice_Main_Disappear_SetScale(Choice* choice, Game* game) {
-    f32 max = 5.2f;
+s32 mChoice_Main_Disappear_SetScale(Choice* choice, UNUSED Game* game) {
+    f32 max = 5.1f;
 
     if (choice->timer < max) {
         f32 scale;
@@ -810,7 +808,7 @@ s32 mChoice_Main_Disappear_SetScale(Choice* choice, Game* game) {
     }
 }
 
-void mChoice_request_main_index_fromDisappear(Choice* choice, Game* game, s32 flag) {
+void mChoice_request_main_index_fromDisappear(Choice* choice, UNUSED Game* game, s32 flag) {
     if (flag) {
         mChoice_Change_request_main_index(choice, 0);
     }
@@ -818,11 +816,11 @@ void mChoice_request_main_index_fromDisappear(Choice* choice, Game* game, s32 fl
 void mChoice_Main_Disappear(Choice* choice, Game* game) {
     s32 flag = mChoice_Main_Disappear_SetScale(choice, game);
 
-    mChoice_request_main_index_fromAppear(choice, game, flag);
+    mChoice_request_main_index_fromDisappear(choice, game, flag);
     mChoice_MainSetup(choice, game);
 }
 
-void mChoice_MainSetup_Disappear(Choice* choice, Game* game) {
+void mChoice_MainSetup_Disappear(Choice* choice, UNUSED Game* game) {
     mChoice_sound_SENTAKU_KETTEI();
     choice->mainIdx = 3;
     choice->requestedMainIdx = -1;
@@ -930,7 +928,44 @@ void mChoice_UnSetMatrixDisplay(Game* game, s32 type) {
     CLOSE_DISPS(graph);
 }
 
-void mChoice_DrawWindowBody(Choice* choice, Game* game, s32 type) {
+extern Vtx con_sentaku2_v[];
+#include "assets/jp/code/m_choice_main/con_sentaku2_v.vtx.inc.c"
+
+u8 con_waku_swaku3_tex[] = {
+#include "assets/jp/code/m_choice_main/con_waku_swaku3_tex.i4.inc.c"
+};
+
+Gfx con_sentaku2_modelT[] = {
+    gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
+    gsDPPipeSync(),
+    gsDPSetPrimColor(0, 255, 255, 255, 155, 255),
+    gsDPPipeSync(),
+    gsDPSetTextureLUT(G_TT_NONE),
+    gsDPLoadTextureBlock_4b(con_waku_swaku3_tex, G_IM_FMT_I, 128, 64, 15, G_TX_MIRROR | G_TX_WRAP,
+                            G_TX_MIRROR | G_TX_WRAP, 7, 6, G_TX_NOLOD, G_TX_NOLOD),
+    gsSPVertex(con_sentaku2_v, 4, 0),
+    gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
+    gsSPEndDisplayList(),
+};
+
+Gfx mChoice_init_disp[] = {
+    gsDPPipeSync(),
+    gsSPClearGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN |
+                          G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH),
+    gsDPSetTextureLOD(G_TL_TILE),
+    gsDPSetTextureConvert(G_TC_FILT),
+    gsDPSetTextureFilter(G_TF_BILERP),
+    gsDPSetCycleType(G_CYC_1CYCLE),
+    gsDPSetTexturePersp(G_TP_PERSP),
+    gsDPSetAlphaDither(G_AD_DISABLE),
+    gsDPSetColorDither(G_CD_DISABLE),
+    gsDPSetCombineKey(G_CK_NONE),
+    gsDPSetCombineLERP(0, 0, 0, PRIMITIVE, 0, 0, 0, TEXEL0, 0, 0, 0, PRIMITIVE, 0, 0, 0, TEXEL0),
+    gsDPSetRenderMode(G_RM_XLU_SURF, G_RM_XLU_SURF2),
+    gsSPEndDisplayList(),
+};
+
+void mChoice_DrawWindowBody(UNUSED Choice* choice, Game* game, s32 type) {
     GraphicsContext* graph = game->gfxCtx;
 
     OPEN_DISPS(graph);
@@ -999,5 +1034,5 @@ void mChoice_ct(Choice* choice, Game* game) {
     mChoice_init(choice, game);
 }
 
-void mChoice_dt(Choice* choice, Game* game) {
+void mChoice_dt(UNUSED Choice* choice, UNUSED Game* game) {
 }
