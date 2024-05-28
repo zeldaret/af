@@ -16,7 +16,7 @@
       - [0x67D890, asm, code/67D890]
       - [0x67E840, asm, code/67E840]
       - [0x683030, asm, code/683030]
-      - [0x688CE0, asm, code/m_choice_main]
+      - [0x688CE0, c, code/m_choice_main]
       - [0x68AAF0, c, code/m_clip]
       - [0x68AB30, c, code/m_cockroach]
       - [0x68B0D0, asm, code/m_collision_bg]
@@ -145,6 +145,14 @@
       - [0x724930, .data, code/m_actor_dlftbls]
       - [0x726260, .data, code/m_actor_shadow]
       - [0x7262C0, data, code/7262C0]
+      - start: 0x726720
+        type: .data
+        name: code/m_choice_main
+        subsegments:
+          - [0x726720]
+          - [0x7268C8, vtx, code/m_choice_main/con_sentaku2_v]
+          - [0x726908, i4, code/m_choice_main/con_waku_swaku3_tex, 128, 64]
+          - [0x727908]
       - [0x7279F0, data, code/7279F0]
       - [0x728340, .data, code/m_collision_obj]
       - [0x728430, data, code/69CB30]
@@ -199,7 +207,7 @@
       - [0x739F20, rodata, code/739F20]
       - [0x739F70, rodata, code/739F70]
       - [0x739FA0, rodata, code/739FA0]
-      - [0x73A080, rodata, code/73A080]
+      - [0x73A080, .rodata, code/m_choice_main]
       - [0x73A0F0, rodata, code/73A0F0]
       - [0x73A480, .rodata, code/m_collision_obj]
       - [0x73A490, .rodata, code/m_controller]
