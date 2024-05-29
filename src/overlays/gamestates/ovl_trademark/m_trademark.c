@@ -205,10 +205,7 @@ void func_80804F78_jp(Game_Trademark* this) {
         this->unk_25A6F = 1;
     }
 
-    //! FAKE
-    if ((!this->unk_25A6C) && (!this->unk_25A6C)) {}
-
-    if (((temp_a2 < 0) && (temp_a1 >= 0)) || ((temp_a2 < -0x8000) && (temp_a1 >= -0x8000))) {
+    if (((temp_a2 < 0) && (temp_a1 >= 0)) || (((s32)temp_a2 < -0x8000) && ((s32)temp_a1 >= -0x8000))) {
         this->unk_00214 *= 0.3f;
         this->unk_25A6C += 0xC00;
     }
