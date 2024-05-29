@@ -97,7 +97,7 @@ struct_80805CB4 tradeday_table[] = {
 
 void mTM_demotime_set(s32 arg0) {
     common_data.time.rtcEnabled = 0;
-    common_data.time.rtcTime.year = 2001;
+    common_data.time.rtcTime.year = mTM_MIN_YEAR;
     common_data.time.rtcTime.min = 0;
 
     if (arg0 != 0) {
