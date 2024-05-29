@@ -19,11 +19,11 @@ s32 mCkRh_GokiFamilyCount2Good(s32 count) {
 }
 
 s32 mCkRh_InitGokiSaveData_1Room(s32 player) {
-    common_data.homes[player & 3].goki.num = 0;
-    common_data.homes[player & 3].goki.pad = 0;
-    common_data.homes[player & 3].goki.time.year = common_data.time.rtcTime.year;
-    common_data.homes[player & 3].goki.time.month = common_data.time.rtcTime.month;
-    common_data.homes[player & 3].goki.time.day = common_data.time.rtcTime.day;
+    common_data.save.homes[player & 3].goki.num = 0;
+    common_data.save.homes[player & 3].goki.pad = 0;
+    common_data.save.homes[player & 3].goki.time.year = common_data.time.rtcTime.year;
+    common_data.save.homes[player & 3].goki.time.month = common_data.time.rtcTime.month;
+    common_data.save.homes[player & 3].goki.time.day = common_data.time.rtcTime.day;
 }
 
 void mCkRh_InitGokiSaveData_1Room_ByHomeData(mHm_hs_c* home) {
@@ -47,9 +47,9 @@ void mCkRh_SavePlayTime(s32 player) {
 
     if (player < PLAYER_NUM) {
         home = mHS_get_arrange_idx(player) & 3;
-        common_data.homes[home].goki.time.year = common_data.time.rtcTime.year;
-        common_data.homes[home].goki.time.month = common_data.time.rtcTime.month;
-        common_data.homes[home].goki.time.day = common_data.time.rtcTime.day;
+        common_data.save.homes[home].goki.time.year = common_data.time.rtcTime.year;
+        common_data.save.homes[home].goki.time.month = common_data.time.rtcTime.month;
+        common_data.save.homes[home].goki.time.day = common_data.time.rtcTime.day;
     }
 }
 
@@ -61,9 +61,9 @@ s32 mCkRh_DaysGapCompareWithSaveTime(s32 player) {
         lbRTC_time_c gokiTime;
 
         home = mHS_get_arrange_idx(player) & 3;
-        gokiTime.year = common_data.homes[home].goki.time.year;
-        gokiTime.month = common_data.homes[home].goki.time.month;
-        gokiTime.day = common_data.homes[home].goki.time.day;
+        gokiTime.year = common_data.save.homes[home].goki.time.year;
+        gokiTime.month = common_data.save.homes[home].goki.time.month;
+        gokiTime.day = common_data.save.homes[home].goki.time.day;
 
         gokiTime.weekday = lbRTC_Week(gokiTime.year, gokiTime.month, gokiTime.day);
         gokiTime.hour = 1;
@@ -86,9 +86,9 @@ void mCkRh_DecideNowGokiFamilyCount(s32 player) {
         if (dayGap > 6) {
             s32 gokiNum;
             s32 count;
-            gokiNum = common_data.homes[home].goki.num;
+            gokiNum = common_data.save.homes[home].goki.num;
             count = gokiNum > 0 ? dayGap : dayGap - 6;
-            common_data.homes[home].goki.num = mCkRh_GokiFamilyCount2Good(count + gokiNum);
+            common_data.save.homes[home].goki.num = mCkRh_GokiFamilyCount2Good(count + gokiNum);
         }
     }
 }
@@ -106,9 +106,9 @@ s32 mCkRh_PlussGokiN_NowRoom(s32 count) {
         housefieldId = FI_GET_PLAYER_ROOM_NO(fieldId);
         homeId = mHS_get_arrange_idx(player) & 3;
         if ((player < PLAYER_NUM) && (housefieldId == homeId)) {
-            num = common_data.homes[homeId].goki.num;
+            num = common_data.save.homes[homeId].goki.num;
 
-            common_data.homes[homeId].goki.num = mCkRh_GokiFamilyCount2Good(count + num);
+            common_data.save.homes[homeId].goki.num = mCkRh_GokiFamilyCount2Good(count + num);
             return TRUE;
         }
     }
@@ -128,8 +128,8 @@ s32 mCkRh_MinusGokiN_NowRoom(s32 count) {
         housefieldId = FI_GET_PLAYER_ROOM_NO(fieldId);
         homeId = mHS_get_arrange_idx(player) & 3;
         if ((player < PLAYER_NUM) && (housefieldId == homeId)) {
-            num = common_data.homes[homeId].goki.num;
-            common_data.homes[homeId].goki.num = mCkRh_GokiFamilyCount2Good(num - count);
+            num = common_data.save.homes[homeId].goki.num;
+            common_data.save.homes[homeId].goki.num = mCkRh_GokiFamilyCount2Good(num - count);
             return TRUE;
         }
     }
@@ -140,7 +140,7 @@ s32 mCkRh_NowSceneGokiFamilyCount() {
     u16 fieldid = mFI_GetFieldId();
 
     if (FI_IS_PLAYER_ROOM(fieldid)) {
-        return common_data.homes[FI_GET_PLAYER_ROOM_NO(fieldid)].goki.num;
+        return common_data.save.homes[FI_GET_PLAYER_ROOM_NO(fieldid)].goki.num;
     } else {
         return 0;
     }

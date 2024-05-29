@@ -41,8 +41,6 @@ DoorData* l_demo_door_data_table[] = {
 };
 
 
-// bss
-
 u8 B_80808560_jp[0x10000];
 u8 B_80818560_jp[0x10000];
 u8 B_80828560_jp[0xC0];
@@ -87,8 +85,8 @@ DemoNpc demo_npc_list[] = {
 s32 demo_npc_num = ARRAY_COUNT(demo_npc_list);
 
 s32 set_npc_4_title_demo(Game_Trademark* this) {
-    mNpc_SetAnimalTitleDemo(demo_npc_list, common_data.animals, &this->state);
-    mNpc_SetNpcList(common_data.npclist, common_data.animals, demo_npc_num, 0);
+    mNpc_SetAnimalTitleDemo(demo_npc_list, common_data.save.animals, &this->state);
+    mNpc_SetNpcList(common_data.npclist, common_data.save.animals, demo_npc_num, 0);
 
     return demo_npc_num;
 }
@@ -128,23 +126,23 @@ void trademark_goto_demo_scene(Game_Trademark* this) {
     s32 temp_v0;
 
     mCPk_InitPak(0);
-    common_data.privateInfo = &common_data.saveFilePrivateInfo[0];
+    common_data.privateInfo = &common_data.save.saveFilePrivateInfo[0];
 
     if (mFRm_CheckSaveData() == 0) {
         PrivateInfo* privateInfo;
         s32 i;
 
         // TODO: make a substruct
-        bzero(&common_data, 0x10000);
+        bzero(&common_data.save, sizeof(Save));
         mFRm_ClearSaveCheckData(&common_data);
 
-        privateInfo = &common_data.saveFilePrivateInfo[0];
-        for (i = 0; i < ARRAY_COUNT(common_data.saveFilePrivateInfo); i++) {
+        privateInfo = &common_data.save.saveFilePrivateInfo[0];
+        for (i = 0; i < ARRAY_COUNT(common_data.save.saveFilePrivateInfo); i++) {
             mPr_ClearPrivateInfo(privateInfo);
             privateInfo++;
         }
 
-        common_data.landInfo.exists = true;
+        common_data.save.landInfo.exists = true;
         common_data.houseOwnerName = 0xFFFF;
         common_data.lastFieldId = 0xFFFF;
     }
@@ -163,7 +161,7 @@ void trademark_goto_demo_scene(Game_Trademark* this) {
         common_data.unk_1014B = 3;
     }
 
-    common_data.sceneNo = SCENE_TITLE_DEMO;
+    common_data.save.sceneNo = SCENE_TITLE_DEMO;
     mTM_set_season();
     common_data.unk_104AD = 1;
 
@@ -530,10 +528,10 @@ void trademark_main(Game* thisx) {
 }
 
 void trademark_cleanup(UNUSED Game* thisx) {
-    mHm_hs_c* homes = common_data.homes;
+    mHm_hs_c* homes = common_data.save.homes;
     s32 i;
 
-    for (i = 0; i != ARRAY_COUNT(common_data.homes); i++, homes++) {
+    for (i = 0; i != ARRAY_COUNT(common_data.save.homes); i++, homes++) {
         homes->unk_024 = i;
         mMl_clear_mail_box(homes->mailbox, ARRAY_COUNT(homes->mailbox));
     }

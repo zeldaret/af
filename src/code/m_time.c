@@ -99,7 +99,7 @@ void mTM_set_renew_time(lbRTC_ymd_t* renewTime, lbRTC_time_c* time) {
 }
 
 void mTM_renewal_renew_time() {
-    lbRTC_ymd_t* renewTime = &common_data.renewTime;
+    lbRTC_ymd_t* renewTime = &common_data.save.renewTime;
     lbRTC_time_c* rtcTime = &common_data.time.rtcTime;
 
     if ((renewTime->year != rtcTime->year) || (renewTime->month != rtcTime->month) ||

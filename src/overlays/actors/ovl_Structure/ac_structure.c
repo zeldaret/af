@@ -557,7 +557,7 @@ Actor* aSTR_setupActor_proc(Game_Play* game_play, u16 structureName, f32 posX, f
     s16 paletteType;
 
     if (structureName < 0x50DA) {
-        s32 index = mNpc_SearchAnimalinfo(common_data.animals, structureName + 0x9000, 0xF);
+        s32 index = mNpc_SearchAnimalinfo(common_data.save.animals, structureName + 0x9000, 0xF);
 
         profile = ACTOR_HOUSE;
         structureType = common_data.npclist[index].houseData.type;
@@ -568,10 +568,10 @@ Actor* aSTR_setupActor_proc(Game_Play* game_play, u16 structureName, f32 posX, f
         StructureSetupInfo* info = &setupInfo_table[index];
 
         profile = info->profile;
-        structureType = common_data.homes[index].unk_022.unk_22_0 + STRUCTURE_TYPE_MY_HOUSE_1;
-        paletteType = common_data.homes[index].unk_024 + STRUCTURE_PALETTE_MY_HOUSE_1;
+        structureType = common_data.save.homes[index].unk_022.unk_22_0 + STRUCTURE_TYPE_MY_HOUSE_1;
+        paletteType = common_data.save.homes[index].unk_024 + STRUCTURE_PALETTE_MY_HOUSE_1;
     } else if ((structureName >= 0x5809) && (structureName < 0x580A)) {
-        s32 stationType = common_data.stationType;
+        s32 stationType = common_data.save.stationType;
 
         profile = ACTOR_STATION;
         structureType = (stationType / 5) + STRUCTURE_TYPE_STATION_1;

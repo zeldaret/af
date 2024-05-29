@@ -197,8 +197,8 @@ s32 aWeather_StartSysLevSE() {
     Weather* this = common_data.clip.weatherClip->actor;
 
     if (this->soundFlag == 1) {
-        if (ENV_SAVE_GET_WEATHER_TYPE(common_data.saveWeather) == 1) {
-            switch (ENV_SAVE_GET_WEATHER_INTENSITY(common_data.saveWeather)) {
+        if (ENV_SAVE_GET_WEATHER_TYPE(common_data.save.saveWeather) == 1) {
+            switch (ENV_SAVE_GET_WEATHER_INTENSITY(common_data.save.saveWeather)) {
                 case 1:
                     aWeather_SysLevStart(7);
                     this->currentSoundEffect = 7;
@@ -252,7 +252,7 @@ void aWeather_ChangeEnvSE(Weather* this, Game_Play* play, s16 status, s16 level)
     }
 
     if (mEv_CheckTitleDemo() <= 0) {
-        if (common_data.sceneNo == SCENE_START_DEMO || common_data.sceneNo == SCENE_START_DEMO2) {
+        if (common_data.save.sceneNo == SCENE_START_DEMO || common_data.save.sceneNo == SCENE_START_DEMO2) {
             return;
         }
         if ((status == 1) && (this->currentSoundEffect == -1000)) {
@@ -632,7 +632,7 @@ void aWeather_ChangeWeatherTime0(Weather* this) {
     s16 saveRnd;
 
     if ((mEv_CheckTitleDemo() <= 0)) {
-        if ((common_data.sceneNo == 15) || (common_data.sceneNo == 16)) {
+        if ((common_data.save.sceneNo == 15) || (common_data.save.sceneNo == 16)) {
             return;
         }
         if ((mTM_check_renew_time(0) != 0)) {
@@ -648,14 +648,14 @@ void aWeather_ChangeWeatherTime0(Weather* this) {
             }
             mTM_off_renew_time(0);
 
-            saveWeather = ENV_SAVE_GET_WEATHER_TYPE(common_data.saveWeather);
+            saveWeather = ENV_SAVE_GET_WEATHER_TYPE(common_data.save.saveWeather);
             if (rndWeather == 0 || rndWeather == 3) {
                 if (saveWeather == 2 || saveWeather == 1) {
                     mAGrw_OrderSetHaniwa();
                 }
             }
             saveRnd = rndIntensity | ((rndWeather ^ 0) * 16);
-            common_data.saveWeather = saveRnd;
+            common_data.save.saveWeather = saveRnd;
 
             if (((mEv_CheckTitleDemo() != -9) || (this->soundFlag != 1))) {
                 aWeather_RequestChangeWeather(&this->actor, rndWeather, rndIntensity);
@@ -670,7 +670,7 @@ void aWeather_MakeKaminari(Actor* thisx) {
     lbRTC_time_c time = common_data.time.rtcTime;
     u8 month = time.month;
 
-    if ((common_data.sceneNo != 15) && (common_data.sceneNo != 16)) {
+    if ((common_data.save.sceneNo != 15) && (common_data.save.sceneNo != 16)) {
         if ((month >= lbRTC_JUNE) && (month <= lbRTC_AUGUST) && (this->currentStatus == 1)) {
             s16* ptr = &this->lightningTimer;
             if (this->currentLevel == 3) {
