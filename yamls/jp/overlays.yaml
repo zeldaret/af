@@ -102,7 +102,6 @@
     bss_size: 0x20170
     subsegments:
       - [0x744020, c, overlays/gamestates/ovl_trademark/m_trademark]
-      - [0x744F00, data, overlays/gamestates/ovl_trademark/m_trademark]
       - start: 0x744F00
         type: .data
         name: overlays/gamestates/ovl_trademark/m_trademark

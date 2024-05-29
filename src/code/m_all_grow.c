@@ -257,7 +257,7 @@ void mAGrw_RenewalFgItem(lbRTC_time_c* time) {
             ovlmgr_Load(SEGMENT_ROM_START(m_all_grow_ovl), SEGMENT_ROM_END(m_all_grow_ovl),
                         SEGMENT_VRAM_START(m_all_grow_ovl), SEGMENT_VRAM_END(m_all_grow_ovl), D_80100C5C_jp);
             func = (allGrowOvlUnkFunc)SEGMENT_VRAM_RESOLVE_ADDR(m_all_grow_ovl, D_80100C5C_jp, mAGrw_RenewalFgItem_ovl);
-            (*func)(time, &schedHaniwa);
+            func(time, &schedHaniwa);
             common_data.save.haniwaScheduled = schedHaniwa;
             zelda_free(D_80100C5C_jp);
         }
