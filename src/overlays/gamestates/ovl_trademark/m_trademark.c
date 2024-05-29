@@ -26,42 +26,172 @@
 
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-extern DoorData D_80805B20_jp;
-extern DoorData D_80805B34_jp;
-extern DoorData D_80805B48_jp;
-extern DoorData D_80805B5C_jp;
-extern DoorData D_80805B70_jp;
+DoorData D_80805B20_jp = { 0x21, 4, 0, 0, { 0x884, 0xC8, 0x338 }, 0, 3, { 0, 0, 0 } };
+DoorData D_80805B34_jp = { 0x21, 4, 0, 0, { 0xC92, 0x28, 0xC02 }, 0, 3, { 0, 0, 0 } };
+DoorData D_80805B48_jp = { 0x21, 4, 0, 0, { 0x845, 0xA0, 0x5D0 }, 0, 3, { 0, 0, 0 } };
+DoorData D_80805B5C_jp = { 0x21, 4, 0, 0, { 0xB53, 0xA0, 0x44D }, 0, 3, { 0, 0, 0 } };
+DoorData D_80805B70_jp = { 0x21, 4, 0, 0, { 0x62A, 0x28, 0x9A8 }, 0, 3, { 0, 0, 0 } };
 
-extern DoorData* l_demo_door_data_table[];
+DoorData* l_demo_door_data_table[] = {
+    &D_80805B20_jp,
+    &D_80805B34_jp,
+    &D_80805B48_jp,
+    &D_80805B5C_jp,
+    &D_80805B70_jp,
+};
 
-extern DemoNpc demo_npc_list;
-extern s32 demo_npc_num;
+DemoNpc demo_npc_list[] = {
+    { 0xE000, 1, 2, 3, 7 },
+    { 0xE04C, 1, 2, 8, 0xB },
+    { 0xE0AD, 1, 4, 0xC, 0xB },
+    { 0xE048, 2, 3, 5, 6 },
+    { 0xE0B9, 2, 3, 4, 0xC },
+    { 0xE06F, 3, 5, 0xB, 5 },
+    { 0xE0AA, 4, 3, 3, 0xC },
+    { 0xE08C, 4, 4, 3, 4 },
+    { 0xE09B, 4, 4, 0xC, 0xD },
+    { 0xE0C2, 4, 6, 5, 6 },
+    { 0xE07D, 5, 2, 0xC, 4 },
+    { 0xE061, 5, 2, 9, 0xB },
+    { 0xE0B6, 5, 4, 0xB, 4 },
+    { 0xE093, 5, 5, 5, 0xB },
+};
+s32 demo_npc_num = ARRAY_COUNT(demo_npc_list);
 
 typedef struct struct_80805CB4 {
     /* 0x0 */ u8 month;
     /* 0x1 */ u8 day;
     /* 0x2 */ u8 hour;
-    /* 0x4 */ s16 unk_4;
+    /* 0x4 */ s16 weather;
 } struct_80805CB4; // size = 0x6
 
-extern struct_80805CB4 tradeday_table[];
+struct_80805CB4 tradeday_table[] = {
+    { 4, 6, 0xD, 3 },
+    { 6, 0x10, 0xD, 1 },
+    { 8, 1, 6, 0 },
+    { 0xB, 1, 0x10, 0 },
+    { 2, 1, 2, 2 },
+    { 0, 0, 0, 0 },
+};
 
-extern Vtx D_80805CD8_jp[];
-extern Vtx D_80805ED8_jp[];
-extern Vtx D_808060D8_jp[];
-extern Vtx D_80806158_jp[];
-extern Vtx D_80806338_jp[];
-extern Vtx D_80806458_jp[];
+Vtx D_80805CD8_jp[] = {
+#include "assets/jp/overlays/gamestates/ovl_trademark/m_trademark/D_80805CD8_jp.vtx.inc.c"
+};
+Vtx D_80805ED8_jp[] = {
+#include "assets/jp/overlays/gamestates/ovl_trademark/m_trademark/D_80805ED8_jp.vtx.inc.c"
+};
+Vtx D_808060D8_jp[] = {
+#include "assets/jp/overlays/gamestates/ovl_trademark/m_trademark/D_808060D8_jp.vtx.inc.c"
+};
+Vtx D_80806158_jp[] = {
+#include "assets/jp/overlays/gamestates/ovl_trademark/m_trademark/D_80806158_jp.vtx.inc.c"
+};
+Vtx D_80806338_jp[] = {
+#include "assets/jp/overlays/gamestates/ovl_trademark/m_trademark/D_80806338_jp.vtx.inc.c"
+};
+Vtx D_80806458_jp[] = {
+#include "assets/jp/overlays/gamestates/ovl_trademark/m_trademark/D_80806458_jp.vtx.inc.c"
+};
 
-extern u8 D_808065D8_jp[];
+u8 D_808065D8_jp[] = {
+#include "assets/jp/overlays/gamestates/ovl_trademark/m_trademark/D_808065D8_jp.i8.inc.c"
+};
 
-extern Gfx D_808075D8_jp[];
+Gfx D_808075D8_jp[] = {
+    gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
+    gsDPPipeSync(),
+    gsDPSetCombineLERP(PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, 0, 0, 0, 0, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
+    gsDPSetPrimColor(0, 0xFF, 255, 220, 90, 255),
+    gsDPSetEnvColor(230, 180, 0, 255),
+    gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
+    gsDPPipeSync(),
+    gsDPSetTextureLUT(G_TT_NONE),
+    gsDPLoadTextureBlock(D_808065D8_jp, G_IM_FMT_I, G_IM_SIZ_8b, 64, 64, 0, G_TX_MIRROR | G_TX_CLAMP, G_TX_MIRROR | G_TX_CLAMP, 6, 6, G_TX_NOLOD, G_TX_NOLOD),
+    gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_FOG | G_LIGHTING | G_SHADING_SMOOTH),
+    gsSPVertex(0x80805CD8, 32, 0),
+    gsSP2Triangles(0, 1, 2, 0, 1, 3, 2, 0),
+    gsSP2Triangles(4, 5, 6, 0, 5, 7, 6, 0),
+    gsSP2Triangles(8, 9, 10, 0, 8, 10, 11, 0),
+    gsSP2Triangles(12, 13, 14, 0, 12, 14, 15, 0),
+    gsSP2Triangles(16, 17, 18, 0, 16, 19, 17, 0),
+    gsSP2Triangles(20, 21, 22, 0, 21, 23, 22, 0),
+    gsSP2Triangles(24, 25, 26, 0, 24, 27, 25, 0),
+    gsSP2Triangles(28, 29, 30, 0, 29, 31, 30, 0),
+    gsDPPipeSync(),
+    gsDPSetPrimColor(0, 0xFF, 60, 90, 220, 255),
+    gsDPSetEnvColor(0, 0, 160, 255),
+    gsDPPipeSync(),
+    gsDPLoadTextureBlock(D_808065D8_jp, G_IM_FMT_I, G_IM_SIZ_8b, 64, 64, 0, G_TX_MIRROR | G_TX_CLAMP, G_TX_MIRROR | G_TX_CLAMP, 6, 6, G_TX_NOLOD, G_TX_NOLOD),
+    gsSPVertex(0x80805ED8, 32, 0),
+    gsSP2Triangles(0, 1, 2, 0, 3, 4, 5, 0),
+    gsSP2Triangles(6, 3, 5, 0, 2, 5, 7, 0),
+    gsSP2Triangles(0, 2, 7, 0, 8, 9, 10, 0),
+    gsSP2Triangles(8, 10, 11, 0, 12, 13, 14, 0),
+    gsSP2Triangles(12, 14, 15, 0, 11, 16, 8, 0),
+    gsSP2Triangles(15, 17, 12, 0, 18, 8, 16, 0),
+    gsSP2Triangles(19, 12, 17, 0, 16, 20, 21, 0),
+    gsSP2Triangles(16, 21, 18, 0, 17, 22, 23, 0),
+    gsSP2Triangles(17, 23, 19, 0, 24, 25, 26, 0),
+    gsSP2Triangles(25, 27, 26, 0, 28, 29, 27, 0),
+    gsSP2Triangles(1, 30, 2, 0, 5, 2, 31, 0),
+    gsSP1Triangle(6, 5, 31, 0),
+    gsSPVertex(0x808060D8, 8, 0),
+    gsSP2Triangles(0, 1, 2, 0, 1, 3, 2, 0),
+    gsSP2Triangles(4, 5, 3, 0, 5, 6, 3, 0),
+    gsSP1Triangle(0, 7, 1, 0),
+    gsDPPipeSync(),
+    gsDPSetPrimColor(0, 0xFF, 30, 210, 90, 255),
+    gsDPSetEnvColor(0, 160, 0, 255),
+    gsDPPipeSync(),
+    gsDPLoadTextureBlock(D_808065D8_jp, G_IM_FMT_I, G_IM_SIZ_8b, 64, 64, 0, G_TX_MIRROR | G_TX_CLAMP, G_TX_MIRROR | G_TX_CLAMP, 6, 6, G_TX_NOLOD, G_TX_NOLOD),
+    gsSPVertex(0x80806158, 32, 0),
+    gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
+    gsSP2Triangles(4, 5, 6, 0, 4, 6, 7, 0),
+    gsSP2Triangles(4, 8, 5, 0, 0, 9, 1, 0),
+    gsSP2Triangles(10, 1, 9, 0, 11, 5, 8, 0),
+    gsSP2Triangles(12, 13, 14, 0, 12, 14, 15, 0),
+    gsSP2Triangles(16, 17, 18, 0, 16, 18, 19, 0),
+    gsSP2Triangles(11, 8, 20, 0, 11, 20, 21, 0),
+    gsSP2Triangles(10, 9, 22, 0, 10, 22, 23, 0),
+    gsSP2Triangles(24, 25, 26, 0, 27, 26, 28, 0),
+    gsSP1Triangle(29, 27, 28, 0),
+    gsSPVertex(0x80806338, 18, 0),
+    gsSP2Triangles(0, 1, 2, 0, 1, 3, 2, 0),
+    gsSP2Triangles(4, 5, 3, 0, 6, 4, 3, 0),
+    gsSP2Triangles(7, 8, 1, 0, 0, 7, 1, 0),
+    gsSP2Triangles(3, 1, 9, 0, 6, 3, 9, 0),
+    gsSP2Triangles(10, 11, 12, 0, 11, 13, 12, 0),
+    gsSP2Triangles(14, 15, 13, 0, 15, 16, 13, 0),
+    gsSP1Triangle(10, 17, 11, 0),
+    gsDPPipeSync(),
+    gsDPSetPrimColor(0, 0xFF, 255, 100, 80, 255),
+    gsDPSetEnvColor(180, 0, 0, 255),
+    gsDPPipeSync(),
+    gsDPLoadTextureBlock(D_808065D8_jp, G_IM_FMT_I, G_IM_SIZ_8b, 64, 64, 0, G_TX_MIRROR | G_TX_CLAMP, G_TX_MIRROR | G_TX_CLAMP, 6, 6, G_TX_NOLOD, G_TX_NOLOD),
+    gsSPVertex(0x80806458, 24, 0),
+    gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
+    gsSP2Triangles(4, 5, 6, 0, 4, 6, 7, 0),
+    gsSP2Triangles(8, 9, 10, 0, 8, 10, 11, 0),
+    gsSP2Triangles(12, 13, 14, 0, 12, 14, 15, 0),
+    gsSP2Triangles(16, 17, 18, 0, 16, 18, 19, 0),
+    gsSP2Triangles(20, 21, 22, 0, 20, 22, 23, 0),
+    gsSPEndDisplayList(),
+};
 
-extern u8 D_80807908_jp[];
+u8 D_80807908_jp[] = {
+#include "assets/jp/overlays/gamestates/ovl_trademark/m_trademark/D_80807908_jp.i8.inc.c"
+};
 
-extern Lightsn D_80808508_jp;
+Lights1 D_80808508_jp = {
+    { { { 0x64, 0x64, 0x64 }, 0, { 0x64, 0x64, 0x64 }, 0 } },
+    {
+        {
+            { { 0xFF, 0xFF, 0xFF }, 0, { 0xFF, 0xFF, 0xFF }, 0, { 0x45, 0x45, 0x45 }, 0 },
+        },
+    },
+};
 
-extern u8 s_titlebgm[];
+u8 s_titlebgm[] = { 0x53, 0x54, 0x55, 0x56, 0x57, };
 
 
 // bss
@@ -92,7 +222,7 @@ s32 func_80804C40_jp(void) {
 }
 
 s32 set_npc_4_title_demo(Game_Trademark* this) {
-    mNpc_SetAnimalTitleDemo(&demo_npc_list, common_data.animals, &this->state);
+    mNpc_SetAnimalTitleDemo(demo_npc_list, common_data.animals, &this->state);
     mNpc_SetNpcList(common_data.npclist, common_data.animals, demo_npc_num, 0);
 
     return demo_npc_num;
@@ -109,7 +239,7 @@ void mTM_demotime_set(s32 arg0) {
         common_data.time.rtcTime.month = temp_v0->month;
         common_data.time.rtcTime.day = temp_v0->day;
         common_data.time.rtcTime.hour = temp_v0->hour;
-        common_data.weather = temp_v0->unk_4;
+        common_data.weather = temp_v0->weather;
     }
 }
 
@@ -305,7 +435,7 @@ void nintendo_logo_draw(Game_Trademark* this) {
     gDPSetCombineLERP(POLY_OPA_DISP++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT);
     gDPSetTexturePersp(POLY_OPA_DISP++, G_TP_NONE);
     gDPSetTextureLUT(POLY_OPA_DISP++, G_TT_NONE);
-    gDPSetTextureImage(POLY_OPA_DISP++, G_IM_FMT_I, G_IM_SIZ_8b, 128, &D_80807908_jp);
+    gDPSetTextureImage(POLY_OPA_DISP++, G_IM_FMT_I, G_IM_SIZ_8b, 128, D_80807908_jp);
     gDPSetTile(POLY_OPA_DISP++, G_IM_FMT_I, G_IM_SIZ_8b, 16, 0x0000, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);
     gDPLoadSync(POLY_OPA_DISP++);
     gDPLoadTile(POLY_OPA_DISP++, G_TX_LOADTILE, 0, 0, 0x01FC, 0x0060);

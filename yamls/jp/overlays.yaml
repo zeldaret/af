@@ -103,6 +103,21 @@
     subsegments:
       - [0x744020, c, overlays/gamestates/ovl_trademark/m_trademark]
       - [0x744F00, data, overlays/gamestates/ovl_trademark/m_trademark]
+      - start: 0x744F00
+        type: .data
+        name: overlays/gamestates/ovl_trademark/m_trademark
+        subsegments:
+          - [0x744F00]
+          - { start: 0x7450B8, type: vtx, name: overlays/gamestates/ovl_trademark/m_trademark/D_80805CD8_jp, data_only: True }
+          - { start: 0x7452B8, type: vtx, name: overlays/gamestates/ovl_trademark/m_trademark/D_80805ED8_jp, data_only: True }
+          - { start: 0x7454B8, type: vtx, name: overlays/gamestates/ovl_trademark/m_trademark/D_808060D8_jp, data_only: True }
+          - { start: 0x745538, type: vtx, name: overlays/gamestates/ovl_trademark/m_trademark/D_80806158_jp, data_only: True }
+          - { start: 0x745718, type: vtx, name: overlays/gamestates/ovl_trademark/m_trademark/D_80806338_jp, data_only: True }
+          - { start: 0x745838, type: vtx, name: overlays/gamestates/ovl_trademark/m_trademark/D_80806458_jp, data_only: True }
+          - [0x7459B8, i8, overlays/gamestates/ovl_trademark/m_trademark/D_808065D8_jp, 64, 64]
+          - [0x7469B8]
+          - [0x746CE8, i8, overlays/gamestates/ovl_trademark/m_trademark/D_80807908_jp, 128, 24]
+          - [0x7478E8]
       - [0x747910, .rodata, overlays/gamestates/ovl_trademark/m_trademark]
       - { start: 0x747940, type: bss, vram: 0x80808560, name: overlays/gamestates/ovl_trademark/m_trademark }
   - name: ovl_trademark_reloc
