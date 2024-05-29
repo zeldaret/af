@@ -56,7 +56,7 @@ void mEv_SetGateway(void);
 // void func_8007D880_jp();
 void mEv_UnSetGateway(void);
 s32 mEv_CheckTitleDemo(void);
-void func_8007D91C_jp(UNK_TYPE arg0);
+void mEv_SetTitleDemo(UNK_TYPE arg0);
 // void func_8007D930_jp();
 // void func_8007D9C8_jp();
 // void func_8007DA64_jp();

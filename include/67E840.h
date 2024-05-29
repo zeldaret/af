@@ -160,7 +160,7 @@ void mBGMPsComp_make_ps_wipe(s32 arg0, struct Game_Play* game_play);
 // void func_8005EA24_jp();
 // void func_8005EA38_jp();
 // void func_8005EA4C_jp();
-void func_8005EAA0_jp(s32 arg0);
+void mBGMPsComp_scene_mode(s32 arg0);
 // void func_8005EAC8_jp();
 // void func_8005EAE4_jp();
 // void func_8005EAFC_jp();

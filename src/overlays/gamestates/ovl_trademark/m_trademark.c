@@ -40,6 +40,34 @@ DoorData* l_demo_door_data_table[] = {
     &D_80805B70_jp,
 };
 
+
+// bss
+
+u8 B_80808560_jp[0x10000];
+u8 B_80818560_jp[0x10000];
+u8 B_80828560_jp[0xC0];
+OSMesgQueue B_80828620_jp[6];
+u8 B_808286B0_jp[0x20];
+
+
+s32 func_80804C40_jp(void) {
+    OSMesgQueue* var_s1 = B_80828620_jp;
+    s32 var_s0;
+
+    if (func_80090120_jp() != 0) {
+        return 1;
+    }
+
+    for (var_s0 = 0; var_s0 < ARRAY_COUNT(B_80828620_jp); var_s0++, var_s1++) {
+        if (osRecvMesg(var_s1, NULL, OS_MESG_NOBLOCK) == 0) {
+            return 0;
+        }
+    }
+
+    func_80090130_jp(1);
+    return 1;
+}
+
 DemoNpc demo_npc_list[] = {
     { 0xE000, 1, 2, 3, 7 },
     { 0xE04C, 1, 2, 8, 0xB },
@@ -58,6 +86,13 @@ DemoNpc demo_npc_list[] = {
 };
 s32 demo_npc_num = ARRAY_COUNT(demo_npc_list);
 
+s32 set_npc_4_title_demo(Game_Trademark* this) {
+    mNpc_SetAnimalTitleDemo(demo_npc_list, common_data.animals, &this->state);
+    mNpc_SetNpcList(common_data.npclist, common_data.animals, demo_npc_num, 0);
+
+    return demo_npc_num;
+}
+
 typedef struct struct_80805CB4 {
     /* 0x0 */ u8 month;
     /* 0x1 */ u8 day;
@@ -73,6 +108,133 @@ struct_80805CB4 tradeday_table[] = {
     { 2, 1, 2, 2 },
     { 0, 0, 0, 0 },
 };
+
+void mTM_demotime_set(s32 arg0) {
+    common_data.time.rtcEnabled = 0;
+    common_data.time.rtcTime.year = 2001;
+    common_data.time.rtcTime.min = 0;
+
+    if (arg0 != 0) {
+        struct_80805CB4* temp_v0 = &tradeday_table[arg0-1];
+
+        common_data.time.rtcTime.month = temp_v0->month;
+        common_data.time.rtcTime.day = temp_v0->day;
+        common_data.time.rtcTime.hour = temp_v0->hour;
+        common_data.weather = temp_v0->weather;
+    }
+}
+
+void trademark_goto_demo_scene(Game_Trademark* this) {
+    s32 temp_v0;
+
+    mCPk_InitPak(0);
+    common_data.privateInfo = &common_data.saveFilePrivateInfo[0];
+
+    if (mFRm_CheckSaveData() == 0) {
+        PrivateInfo* privateInfo;
+        s32 i;
+
+        // TODO: make a substruct
+        bzero(&common_data, 0x10000);
+        mFRm_ClearSaveCheckData(&common_data);
+
+        privateInfo = &common_data.saveFilePrivateInfo[0];
+        for (i = 0; i < ARRAY_COUNT(common_data.saveFilePrivateInfo); i++) {
+            mPr_ClearPrivateInfo(privateInfo);
+            privateInfo++;
+        }
+
+        common_data.landInfo.exists = true;
+        common_data.houseOwnerName = 0xFFFF;
+        common_data.lastFieldId = 0xFFFF;
+    }
+
+    mEv_ClearEventInfo();
+    temp_v0 = mEv_CheckTitleDemo();
+    if (temp_v0 > 0) {
+        DoorData* doorData = l_demo_door_data_table[temp_v0-1];
+
+        common_data.doorData = *doorData;
+        common_data.doorData.nextSceneId = doorData->nextSceneId + 1;
+
+        mTM_demotime_set(temp_v0);
+        mPr_RandomSetPlayerData_title_demo();
+        set_npc_4_title_demo(this);
+        common_data.unk_1014B = 3;
+    }
+
+    common_data.sceneNo = SCENE_TITLE_DEMO;
+    mTM_set_season();
+    common_data.unk_104AD = 1;
+
+    STOP_GAMESTATE(&this->state);
+    SET_NEXT_GAMESTATE(&this->state, play_init, sizeof(Game_Play));
+}
+
+void func_80804EE0_jp(Game_Trademark* this, f32 arg1, f32 arg2, f32 arg3) {
+    xyz_t sp34;
+    xyz_t sp28;
+    xyz_t sp1C;
+
+    sp34.x = arg1;
+    sp34.y = arg2;
+    sp34.z = arg3;
+    sp1C.z = 0.0f;
+    sp1C.y = 1.0f;
+    sp1C.x = 0.0f;
+    sp28.z = 0.0f;
+    sp28.y = 0.0f;
+    sp28.x = 0.0f;
+    setPerspectiveView(&this->view, 15.0f, 10.0f, 12800.0f);
+    setLookAtView(&this->view, &sp34, &sp28, &sp1C);
+    showView(&this->view, 0xF);
+}
+
+void func_80804F78_jp(Game_Trademark* this) {
+    f32 temp_fv1;
+    f32 var_fa0;
+    f32 var_fv0;
+    s16 temp_a2;
+    s16 temp_a1;
+
+    temp_a2 = this->unk_25A6A;
+    this->unk_25A6A = temp_a2 + this->unk_25A6C;
+    temp_a1 = this->unk_25A6A;
+
+    temp_fv1 = sinf_table(temp_a1 * (f32)(M_PI / 0x8000)) * this->unk_00214;
+
+    if (this->unk_25A6F == 0) {
+        var_fa0 = temp_fv1 * 3.0f;
+        var_fv0 = temp_fv1;
+    } else {
+        var_fv0 = 1.0f - temp_fv1;
+        var_fa0 = 1.0f + temp_fv1;
+    }
+
+    this->unk_00208 = var_fv0;
+    this->unk_0020C = var_fa0;
+    this->unk_00210 = var_fv0;
+
+    if ((this->unk_25A6F == 0) && (temp_a1 >= 0x4000)) {
+        this->unk_25A6F = 1;
+    }
+
+    if ((!this->unk_25A6C) && (!this->unk_25A6C)) {}
+
+    if (((temp_a2 < 0) && (temp_a1 >= 0)) || ((temp_a2 < -0x8000) && (temp_a1 >= -0x8000))) {
+        this->unk_00214 *= 0.3f;
+        this->unk_25A6C = this->unk_25A6C + 0xC00;
+    }
+
+    if (ABS(this->unk_00214) < 0.02f) {
+        if (this->unk_25A6E == 1) {
+            this->unk_25A6E = 2;
+        }
+        this->unk_00208 = 1.0f;
+        this->unk_0020C = 1.0f;
+        this->unk_00210 = 1.0f;
+    }
+}
 
 Vtx D_80805CD8_jp[] = {
 #include "assets/jp/overlays/gamestates/ovl_trademark/m_trademark/D_80805CD8_jp.vtx.inc.c"
@@ -191,170 +353,6 @@ Lights1 D_80808508_jp = {
     },
 };
 
-u8 s_titlebgm[] = { 0x53, 0x54, 0x55, 0x56, 0x57, };
-
-
-// bss
-
-u8 B_80808560_jp[0x10000];
-u8 B_80818560_jp[0x10000];
-u8 B_80828560_jp[0xC0];
-OSMesgQueue B_80828620_jp[6];
-u8 B_808286B0_jp[0x20];
-
-
-s32 func_80804C40_jp(void) {
-    OSMesgQueue* var_s1 = B_80828620_jp;
-    s32 var_s0;
-
-    if (func_80090120_jp() != 0) {
-        return 1;
-    }
-
-    for (var_s0 = 0; var_s0 < ARRAY_COUNT(B_80828620_jp); var_s0++, var_s1++) {
-        if (osRecvMesg(var_s1, NULL, OS_MESG_NOBLOCK) == 0) {
-            return 0;
-        }
-    }
-
-    func_80090130_jp(1);
-    return 1;
-}
-
-s32 set_npc_4_title_demo(Game_Trademark* this) {
-    mNpc_SetAnimalTitleDemo(demo_npc_list, common_data.animals, &this->state);
-    mNpc_SetNpcList(common_data.npclist, common_data.animals, demo_npc_num, 0);
-
-    return demo_npc_num;
-}
-
-void mTM_demotime_set(s32 arg0) {
-    common_data.time.rtcEnabled = 0;
-    common_data.time.rtcTime.year = 2001;
-    common_data.time.rtcTime.min = 0;
-
-    if (arg0 != 0) {
-        struct_80805CB4* temp_v0 = &tradeday_table[arg0-1];
-
-        common_data.time.rtcTime.month = temp_v0->month;
-        common_data.time.rtcTime.day = temp_v0->day;
-        common_data.time.rtcTime.hour = temp_v0->hour;
-        common_data.weather = temp_v0->weather;
-    }
-}
-
-void trademark_goto_demo_scene(Game_Trademark* this) {
-    s32 temp_v0;
-
-    mCPk_InitPak(0);
-    common_data.privateInfo = &common_data.saveFilePrivateInfo[0];
-
-    if (mFRm_CheckSaveData() == 0) {
-        PrivateInfo* var_s0;
-        s32 i;
-
-        // TODO: make a substruct
-        bzero(&common_data, 0x10000);
-        mFRm_ClearSaveCheckData(&common_data);
-
-        var_s0 = &common_data.saveFilePrivateInfo[0];
-        for (i = 0; i < ARRAY_COUNT(common_data.saveFilePrivateInfo); i++) {
-            mPr_ClearPrivateInfo(var_s0);
-            var_s0++;
-        }
-
-        common_data.landInfo.exists = true;
-        common_data.houseOwnerName = 0xFFFF;
-        common_data.lastFieldId = 0xFFFF;
-    }
-
-    mEv_ClearEventInfo();
-    temp_v0 = mEv_CheckTitleDemo();
-    if (temp_v0 > 0) {
-        DoorData* doorData = l_demo_door_data_table[temp_v0-1];
-
-        common_data.doorData = *doorData;
-        common_data.doorData.nextSceneId = doorData->nextSceneId + 1;
-
-        mTM_demotime_set(temp_v0);
-        mPr_RandomSetPlayerData_title_demo();
-        set_npc_4_title_demo(this);
-        common_data.unk_1014B = 3;
-    }
-
-    common_data.sceneNo = SCENE_TITLE_DEMO;
-    mTM_set_season();
-    common_data.unk_104AD = 1;
-
-    STOP_GAMESTATE(&this->state);
-    SET_NEXT_GAMESTATE(&this->state, play_init, sizeof(Game_Play));
-}
-
-void func_80804EE0_jp(Game_Trademark* this, f32 arg1, f32 arg2, f32 arg3) {
-    xyz_t sp34;
-    xyz_t sp28;
-    xyz_t sp1C;
-
-    sp34.x = arg1;
-    sp34.y = arg2;
-    sp34.z = arg3;
-    sp1C.z = 0.0f;
-    sp1C.y = 1.0f;
-    sp1C.x = 0.0f;
-    sp28.z = 0.0f;
-    sp28.y = 0.0f;
-    sp28.x = 0.0f;
-    setPerspectiveView(&this->view, 15.0f, 10.0f, 12800.0f);
-    setLookAtView(&this->view, &sp34, &sp28, &sp1C);
-    showView(&this->view, 0xF);
-}
-
-void func_80804F78_jp(Game_Trademark* this) {
-    f32 temp_fv1;
-    f32 var_fa0;
-    f32 var_fv0;
-    s16 temp_a2;
-    s16 temp_a1;
-
-    temp_a2 = this->unk_25A6A;
-    this->unk_25A6A = temp_a2 + this->unk_25A6C;
-    temp_a1 = this->unk_25A6A;
-
-    temp_fv1 = sinf_table(temp_a1 * (f32)(M_PI / 0x8000)) * this->unk_00214;
-
-    if (this->unk_25A6F == 0) {
-        var_fa0 = temp_fv1 * 3.0f;
-        var_fv0 = temp_fv1;
-    } else {
-        var_fv0 = 1.0f - temp_fv1;
-        var_fa0 = 1.0f + temp_fv1;
-    }
-
-    this->unk_00208 = var_fv0;
-    this->unk_0020C = var_fa0;
-    this->unk_00210 = var_fv0;
-
-    if ((this->unk_25A6F == 0) && (temp_a1 >= 0x4000)) {
-        this->unk_25A6F = 1;
-    }
-
-    if ((!this->unk_25A6C) && (!this->unk_25A6C)) {}
-
-    if (((temp_a2 < 0) && (temp_a1 >= 0)) || ((temp_a2 < -0x8000) && (temp_a1 >= -0x8000))) {
-        this->unk_00214 *= 0.3f;
-        this->unk_25A6C = this->unk_25A6C + 0xC00;
-    }
-
-    if (ABS(this->unk_00214) < 0.02f) {
-        if (this->unk_25A6E == 1) {
-            this->unk_25A6E = 2;
-        }
-        this->unk_00208 = 1.0f;
-        this->unk_0020C = 1.0f;
-        this->unk_00210 = 1.0f;
-    }
-}
-
 void func_80805104_jp(Game_Trademark* this) {
     UNUSED s32 pad[2];
     xyz_t sp64;
@@ -404,9 +402,9 @@ void func_80805104_jp(Game_Trademark* this) {
 
 void nintendo_logo_move(Game_Trademark* this) {
     if (this->unk_25A6E == 2) {
-        this->unk_25A66 += 0x10;
-        if (this->unk_25A66 >= 0xFF) {
-            this->unk_25A66 = 0xFF;
+        this->alpha += 16;
+        if (this->alpha >= 255) {
+            this->alpha = 255;
             this->unk_25A6E = 4;
         }
     } else if (this->unk_25A6E == 4) {
@@ -425,7 +423,7 @@ void nintendo_logo_draw(Game_Trademark* this) {
     nintendo_logo_move(this);
 
     gDPPipeSync(POLY_OPA_DISP++);
-    gDPSetPrimColor(POLY_OPA_DISP++, 0, 0xFF, 255, 255, 255, this->unk_25A66);
+    gDPSetPrimColor(POLY_OPA_DISP++, 0, 0xFF, 255, 255, 255, this->alpha);
     gDPSetEnvColor(POLY_OPA_DISP++, 0, 0, 0, 0);
     gDPSetRenderMode(POLY_OPA_DISP++, G_RM_XLU_SURF, G_RM_XLU_SURF2);
     gDPSetAlphaCompare(POLY_OPA_DISP++, G_AC_THRESHOLD);
@@ -435,13 +433,8 @@ void nintendo_logo_draw(Game_Trademark* this) {
     gDPSetCombineLERP(POLY_OPA_DISP++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT);
     gDPSetTexturePersp(POLY_OPA_DISP++, G_TP_NONE);
     gDPSetTextureLUT(POLY_OPA_DISP++, G_TT_NONE);
-    gDPSetTextureImage(POLY_OPA_DISP++, G_IM_FMT_I, G_IM_SIZ_8b, 128, D_80807908_jp);
-    gDPSetTile(POLY_OPA_DISP++, G_IM_FMT_I, G_IM_SIZ_8b, 16, 0x0000, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);
-    gDPLoadSync(POLY_OPA_DISP++);
-    gDPLoadTile(POLY_OPA_DISP++, G_TX_LOADTILE, 0, 0, 0x01FC, 0x0060);
-    gDPPipeSync(POLY_OPA_DISP++);
-    gDPSetTile(POLY_OPA_DISP++, G_IM_FMT_I, G_IM_SIZ_8b, 16, 0x0000, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);
-    gDPSetTileSize(POLY_OPA_DISP++, G_TX_RENDERTILE, 0, 0, 0x01FC, 0x0060);
+
+    gDPLoadTextureTile(POLY_OPA_DISP++, D_80807908_jp, G_IM_FMT_I, G_IM_SIZ_8b, 128, 24, 0, 0, 0x7F, 0x18, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
 
     POLY_OPA_DISP = gfx_gSPTextureRectangle1(POLY_OPA_DISP, 0x19C, 0x288, 0x398, 0x2E8, 0, 0, 0, 0x400, 0x400);
 
@@ -458,19 +451,21 @@ void trademark_cancel(Game_Trademark* this) {
     }
 }
 
+u8 s_titlebgm[] = { 0x53, 0x54, 0x55, 0x56, 0x57, };
+
 void trademark_move(Game_Trademark* this) {
     if (this->unk_25A6E == 0) {
         if (DECR(this->unk_25A68) == 0) {
             mBGMPsComp_make_ps_lost_fanfare(s_titlebgm[mTD_get_titledemo_no()], 0x168);
             sAdo_SysTrgStart(0x105);
-            this->unk_25A60 = 0;
+            this->fadeColor = 0;
             this->unk_25A6E = 1;
         }
     }
 
     if ((func_80804C40_jp() != 0) && ((this->unk_25A6E == 3) || (this->unk_25A70 != 0))) {
-        if (this->unk_25A60 < 0xFF) {
-            this->unk_25A60 += 8;
+        if (this->fadeColor < 255) {
+            this->fadeColor += 8;
         }
 
         if (this->unk_25A71 != 1) {
@@ -479,8 +474,8 @@ void trademark_move(Game_Trademark* this) {
             }
         }
 
-        if ((this->unk_25A60 >= 0xFF) && (this->unk_25A71 == 1)) {
-            this->unk_25A60 = 0xFF;
+        if ((this->fadeColor >= 255) && (this->unk_25A71 == 1)) {
+            this->fadeColor = 255;
             this->unk_25A6E = 5;
         }
     }
@@ -507,11 +502,11 @@ void trademark_draw(Game_Trademark* this) {
     {
         Gfx* gfx = POLY_XLU_DISP;
 
-        fade_black_draw(&gfx, this->unk_25A60);
+        fade_black_draw(&gfx, this->fadeColor);
         POLY_XLU_DISP = gfx;
     }
 
-    CLOSE_DISPS(this->state.gfxCtx);
+    CLOSE_DISPS(gfxCtx);
 }
 
 void trademark_main(Game* thisx) {
@@ -557,8 +552,8 @@ void trademark_init(Game* thisx) {
     initView(&this->view, gfxCtx);
     new_Matrix(&this->state);
 
-    this->unk_25A60 = 0xFF;
-    this->unk_25A66 = 0;
+    this->fadeColor = 0xFF;
+    this->alpha = 0;
     this->unk_25A64 = 0x3C;
     this->unk_25A68 = 0;
     this->unk_0025C = 0;
@@ -588,6 +583,6 @@ void trademark_init(Game* thisx) {
     DmaMgr_RequestSyncDebug(&this->unk_00260, SEGMENT_ROM_START(segment_01136000), SEGMENT_ROM_SIZE(segment_01136000), "../m_trademark.c", 1081);
     func_800924CC_jp(&B_80828560_jp, B_80828620_jp, &B_808286B0_jp);
 
-    func_8005EAA0_jp(0);
-    func_8007D91C_jp(func_800C8E08_jp());
+    mBGMPsComp_scene_mode(0);
+    mEv_SetTitleDemo(mTD_demono_get());
 }

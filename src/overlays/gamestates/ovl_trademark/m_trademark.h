@@ -17,9 +17,9 @@ typedef struct Game_Trademark {
     /* 0x0021C */ UNK_TYPE1 unk_0021C[0x40];
     /* 0x0025C */ UNK_TYPE unk_0025C;
     /* 0x00260 */ UNK_TYPE1 unk_00260[0x25800];
-    /* 0x25A60 */ u32 unk_25A60;
+    /* 0x25A60 */ u32 fadeColor;
     /* 0x25A64 */ UNK_TYPE2 unk_25A64;
-    /* 0x25A66 */ UNK_TYPE2 unk_25A66;
+    /* 0x25A66 */ s16 alpha;
     /* 0x25A68 */ UNK_TYPE2 unk_25A68;
     /* 0x25A6A */ UNK_TYPE2 unk_25A6A;
     /* 0x25A6C */ UNK_TYPE2 unk_25A6C;

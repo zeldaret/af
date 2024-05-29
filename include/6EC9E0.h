@@ -7,7 +7,7 @@ struct Game_Play;
 
 // void func_800C8D40_jp();
 // void func_800C8D98_jp();
-UNK_RET func_800C8E08_jp(void);
+UNK_RET mTD_demono_get(void);
 void mTD_player_keydata_init(struct Game_Play* game_play);
 // void func_800C8ECC_jp();
 // void func_800C8F5C_jp();
