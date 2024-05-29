@@ -33,20 +33,14 @@ DoorData D_80805B5C_jp = { 0x21, 4, 0, 0, { 0xB53, 0xA0, 0x44D }, 0, 3, { 0, 0, 
 DoorData D_80805B70_jp = { 0x21, 4, 0, 0, { 0x62A, 0x28, 0x9A8 }, 0, 3, { 0, 0, 0 } };
 
 DoorData* l_demo_door_data_table[] = {
-    &D_80805B20_jp,
-    &D_80805B34_jp,
-    &D_80805B48_jp,
-    &D_80805B5C_jp,
-    &D_80805B70_jp,
+    &D_80805B20_jp, &D_80805B34_jp, &D_80805B48_jp, &D_80805B5C_jp, &D_80805B70_jp,
 };
-
 
 u8 B_80808560_jp[0x10000];
 u8 B_80818560_jp[0x10000];
 u8 B_80828560_jp[0xC0];
 OSMesgQueue B_80828620_jp[6];
 u8 B_808286B0_jp[0x20];
-
 
 s32 func_80804C40_jp(void) {
     OSMesgQueue* var_s1 = B_80828620_jp;
@@ -67,20 +61,10 @@ s32 func_80804C40_jp(void) {
 }
 
 DemoNpc demo_npc_list[] = {
-    { 0xE000, 1, 2, 3, 7 },
-    { 0xE04C, 1, 2, 8, 0xB },
-    { 0xE0AD, 1, 4, 0xC, 0xB },
-    { 0xE048, 2, 3, 5, 6 },
-    { 0xE0B9, 2, 3, 4, 0xC },
-    { 0xE06F, 3, 5, 0xB, 5 },
-    { 0xE0AA, 4, 3, 3, 0xC },
-    { 0xE08C, 4, 4, 3, 4 },
-    { 0xE09B, 4, 4, 0xC, 0xD },
-    { 0xE0C2, 4, 6, 5, 6 },
-    { 0xE07D, 5, 2, 0xC, 4 },
-    { 0xE061, 5, 2, 9, 0xB },
-    { 0xE0B6, 5, 4, 0xB, 4 },
-    { 0xE093, 5, 5, 5, 0xB },
+    { 0xE000, 1, 2, 3, 7 },     { 0xE04C, 1, 2, 8, 0xB }, { 0xE0AD, 1, 4, 0xC, 0xB }, { 0xE048, 2, 3, 5, 6 },
+    { 0xE0B9, 2, 3, 4, 0xC },   { 0xE06F, 3, 5, 0xB, 5 }, { 0xE0AA, 4, 3, 3, 0xC },   { 0xE08C, 4, 4, 3, 4 },
+    { 0xE09B, 4, 4, 0xC, 0xD }, { 0xE0C2, 4, 6, 5, 6 },   { 0xE07D, 5, 2, 0xC, 4 },   { 0xE061, 5, 2, 9, 0xB },
+    { 0xE0B6, 5, 4, 0xB, 4 },   { 0xE093, 5, 5, 5, 0xB },
 };
 s32 demo_npc_num = ARRAY_COUNT(demo_npc_list);
 
@@ -99,12 +83,7 @@ typedef struct struct_80805CB4 {
 } struct_80805CB4; // size = 0x6
 
 struct_80805CB4 tradeday_table[] = {
-    { 4, 6, 0xD, 3 },
-    { 6, 0x10, 0xD, 1 },
-    { 8, 1, 6, 0 },
-    { 0xB, 1, 0x10, 0 },
-    { 2, 1, 2, 2 },
-    { 0, 0, 0, 0 },
+    { 4, 6, 0xD, 3 }, { 6, 0x10, 0xD, 1 }, { 8, 1, 6, 0 }, { 0xB, 1, 0x10, 0 }, { 2, 1, 2, 2 }, { 0, 0, 0, 0 },
 };
 
 void mTM_demotime_set(s32 arg0) {
@@ -113,7 +92,7 @@ void mTM_demotime_set(s32 arg0) {
     common_data.time.rtcTime.min = 0;
 
     if (arg0 != 0) {
-        struct_80805CB4* temp_v0 = &tradeday_table[arg0-1];
+        struct_80805CB4* temp_v0 = &tradeday_table[arg0 - 1];
 
         common_data.time.rtcTime.month = temp_v0->month;
         common_data.time.rtcTime.day = temp_v0->day;
@@ -150,7 +129,7 @@ void trademark_goto_demo_scene(Game_Trademark* this) {
     mEv_ClearEventInfo();
     temp_v0 = mEv_CheckTitleDemo();
     if (temp_v0 > 0) {
-        DoorData* doorData = l_demo_door_data_table[temp_v0-1];
+        DoorData* doorData = l_demo_door_data_table[temp_v0 - 1];
 
         common_data.doorData = *doorData;
         common_data.doorData.nextSceneId = doorData->nextSceneId + 1;
@@ -266,7 +245,8 @@ Gfx D_808075D8_jp[] = {
     gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_NONE),
-    gsDPLoadTextureBlock(D_808065D8_jp, G_IM_FMT_I, G_IM_SIZ_8b, 64, 64, 0, G_TX_MIRROR | G_TX_CLAMP, G_TX_MIRROR | G_TX_CLAMP, 6, 6, G_TX_NOLOD, G_TX_NOLOD),
+    gsDPLoadTextureBlock(D_808065D8_jp, G_IM_FMT_I, G_IM_SIZ_8b, 64, 64, 0, G_TX_MIRROR | G_TX_CLAMP,
+                         G_TX_MIRROR | G_TX_CLAMP, 6, 6, G_TX_NOLOD, G_TX_NOLOD),
     gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_FOG | G_LIGHTING | G_SHADING_SMOOTH),
     gsSPVertex(D_80805CD8_jp, 32, 0),
     gsSP2Triangles(0, 1, 2, 0, 1, 3, 2, 0),
@@ -281,7 +261,8 @@ Gfx D_808075D8_jp[] = {
     gsDPSetPrimColor(0, 0xFF, 60, 90, 220, 255),
     gsDPSetEnvColor(0, 0, 160, 255),
     gsDPPipeSync(),
-    gsDPLoadTextureBlock(D_808065D8_jp, G_IM_FMT_I, G_IM_SIZ_8b, 64, 64, 0, G_TX_MIRROR | G_TX_CLAMP, G_TX_MIRROR | G_TX_CLAMP, 6, 6, G_TX_NOLOD, G_TX_NOLOD),
+    gsDPLoadTextureBlock(D_808065D8_jp, G_IM_FMT_I, G_IM_SIZ_8b, 64, 64, 0, G_TX_MIRROR | G_TX_CLAMP,
+                         G_TX_MIRROR | G_TX_CLAMP, 6, 6, G_TX_NOLOD, G_TX_NOLOD),
     gsSPVertex(D_80805ED8_jp, 32, 0),
     gsSP2Triangles(0, 1, 2, 0, 3, 4, 5, 0),
     gsSP2Triangles(6, 3, 5, 0, 2, 5, 7, 0),
@@ -303,7 +284,8 @@ Gfx D_808075D8_jp[] = {
     gsDPSetPrimColor(0, 0xFF, 30, 210, 90, 255),
     gsDPSetEnvColor(0, 160, 0, 255),
     gsDPPipeSync(),
-    gsDPLoadTextureBlock(D_808065D8_jp, G_IM_FMT_I, G_IM_SIZ_8b, 64, 64, 0, G_TX_MIRROR | G_TX_CLAMP, G_TX_MIRROR | G_TX_CLAMP, 6, 6, G_TX_NOLOD, G_TX_NOLOD),
+    gsDPLoadTextureBlock(D_808065D8_jp, G_IM_FMT_I, G_IM_SIZ_8b, 64, 64, 0, G_TX_MIRROR | G_TX_CLAMP,
+                         G_TX_MIRROR | G_TX_CLAMP, 6, 6, G_TX_NOLOD, G_TX_NOLOD),
     gsSPVertex(D_80806158_jp, 32, 0),
     gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
     gsSP2Triangles(4, 5, 6, 0, 4, 6, 7, 0),
@@ -327,7 +309,8 @@ Gfx D_808075D8_jp[] = {
     gsDPSetPrimColor(0, 0xFF, 255, 100, 80, 255),
     gsDPSetEnvColor(180, 0, 0, 255),
     gsDPPipeSync(),
-    gsDPLoadTextureBlock(D_808065D8_jp, G_IM_FMT_I, G_IM_SIZ_8b, 64, 64, 0, G_TX_MIRROR | G_TX_CLAMP, G_TX_MIRROR | G_TX_CLAMP, 6, 6, G_TX_NOLOD, G_TX_NOLOD),
+    gsDPLoadTextureBlock(D_808065D8_jp, G_IM_FMT_I, G_IM_SIZ_8b, 64, 64, 0, G_TX_MIRROR | G_TX_CLAMP,
+                         G_TX_MIRROR | G_TX_CLAMP, 6, 6, G_TX_NOLOD, G_TX_NOLOD),
     gsSPVertex(D_80806458_jp, 24, 0),
     gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
     gsSP2Triangles(4, 5, 6, 0, 4, 6, 7, 0),
@@ -427,12 +410,17 @@ void nintendo_logo_draw(Game_Trademark* this) {
     gDPSetAlphaCompare(POLY_OPA_DISP++, G_AC_THRESHOLD);
     gDPSetTextureFilter(POLY_OPA_DISP++, G_TF_POINT);
     gDPSetCycleType(POLY_OPA_DISP++, G_CYC_1CYCLE);
-    gSPClearGeometryMode(POLY_OPA_DISP++, G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
-    gDPSetCombineLERP(POLY_OPA_DISP++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT);
+    gSPClearGeometryMode(POLY_OPA_DISP++, G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN |
+                                              G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
+    gDPSetCombineLERP(POLY_OPA_DISP++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, PRIMITIVE, ENVIRONMENT, TEXEL0,
+                      ENVIRONMENT, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, PRIMITIVE, ENVIRONMENT, TEXEL0,
+                      ENVIRONMENT);
     gDPSetTexturePersp(POLY_OPA_DISP++, G_TP_NONE);
     gDPSetTextureLUT(POLY_OPA_DISP++, G_TT_NONE);
 
-    gDPLoadTextureTile(POLY_OPA_DISP++, D_80807908_jp, G_IM_FMT_I, G_IM_SIZ_8b, 128, 24, 0, 0, 0x7F, 0x18, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+    gDPLoadTextureTile(POLY_OPA_DISP++, D_80807908_jp, G_IM_FMT_I, G_IM_SIZ_8b, 128, 24, 0, 0, 0x7F, 0x18, 0,
+                       G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
+                       G_TX_NOLOD);
 
     POLY_OPA_DISP = gfx_gSPTextureRectangle1(POLY_OPA_DISP, 0x19C, 0x288, 0x398, 0x2E8, 0, 0, 0, 0x400, 0x400);
 
@@ -449,7 +437,9 @@ void trademark_cancel(Game_Trademark* this) {
     }
 }
 
-u8 s_titlebgm[] = { 0x53, 0x54, 0x55, 0x56, 0x57, };
+u8 s_titlebgm[] = {
+    0x53, 0x54, 0x55, 0x56, 0x57,
+};
 
 void trademark_move(Game_Trademark* this) {
     if (this->unk_25A6E == 0) {
@@ -578,7 +568,8 @@ void trademark_init(Game* thisx) {
     func_8008FA50_jp();
     func_8008F210_jp();
 
-    DmaMgr_RequestSyncDebug(&this->unk_00260, SEGMENT_ROM_START(segment_01136000), SEGMENT_ROM_SIZE(segment_01136000), "../m_trademark.c", 1081);
+    DmaMgr_RequestSyncDebug(&this->unk_00260, SEGMENT_ROM_START(segment_01136000), SEGMENT_ROM_SIZE(segment_01136000),
+                            "../m_trademark.c", 1081);
     func_800924CC_jp(&B_80828560_jp, B_80828620_jp, &B_808286B0_jp);
 
     mBGMPsComp_scene_mode(0);

@@ -3386,7 +3386,8 @@ s32 mNpc_GrowLooksNpcIdx(u8 looks) {
         for (i = 0; i < ARRAY_COUNT(candidate_table); i++) {
             for (j = 0; j < 8; j++) {
                 if (looks == *looks_table) {
-                    if ((mNpc_SearchAnimalinfo(common_data.save.animals, ((i * 8) + j) | 0xE000, ANIMAL_NUM_MAX) == -1) &&
+                    if ((mNpc_SearchAnimalinfo(common_data.save.animals, ((i * 8) + j) | 0xE000, ANIMAL_NUM_MAX) ==
+                         -1) &&
                         (mNpc_GetHaveAppeared_idx(npc_idx) == FALSE)) {
                         candidates++;
                         candidate_table[i] |= 1 << j;
