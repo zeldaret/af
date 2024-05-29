@@ -26,6 +26,15 @@
 
 #include "overlays/gamestates/ovl_play/m_play.h"
 
+typedef enum TrademarkState {
+    /* 0 */ TRADEMARK_STATE_0,
+    /* 1 */ TRADEMARK_STATE_1,
+    /* 2 */ TRADEMARK_STATE_2,
+    /* 3 */ TRADEMARK_STATE_3,
+    /* 4 */ TRADEMARK_STATE_4,
+    /* 5 */ TRADEMARK_STATE_5,
+} TrademarkState;
+
 DoorData D_80805B20_jp = { 0x21, 4, 0, 0, { 0x884, 0xC8, 0x338 }, 0, 3, { 0, 0, 0 } };
 DoorData D_80805B34_jp = { 0x21, 4, 0, 0, { 0xC92, 0x28, 0xC02 }, 0, 3, { 0, 0, 0 } };
 DoorData D_80805B48_jp = { 0x21, 4, 0, 0, { 0x845, 0xA0, 0x5D0 }, 0, 3, { 0, 0, 0 } };
@@ -43,21 +52,21 @@ OSMesgQueue B_80828620_jp[6];
 u8 B_808286B0_jp[0x20];
 
 s32 func_80804C40_jp(void) {
-    OSMesgQueue* var_s1 = B_80828620_jp;
-    s32 var_s0;
+    OSMesgQueue* mq = B_80828620_jp;
+    s32 i;
 
     if (func_80090120_jp() != 0) {
-        return 1;
+        return true;
     }
 
-    for (var_s0 = 0; var_s0 < ARRAY_COUNT(B_80828620_jp); var_s0++, var_s1++) {
-        if (osRecvMesg(var_s1, NULL, OS_MESG_NOBLOCK) == 0) {
-            return 0;
+    for (i = 0; i < ARRAY_COUNT(B_80828620_jp); i++, mq++) {
+        if (osRecvMesg(mq, NULL, OS_MESG_NOBLOCK) == 0) {
+            return false;
         }
     }
 
     func_80090130_jp(1);
-    return 1;
+    return true;
 }
 
 DemoNpc demo_npc_list[] = {
@@ -175,7 +184,7 @@ void func_80804F78_jp(Game_Trademark* this) {
     s16 temp_a1;
 
     temp_a2 = this->unk_25A6A;
-    this->unk_25A6A = temp_a2 + this->unk_25A6C;
+    this->unk_25A6A += this->unk_25A6C;
     temp_a1 = this->unk_25A6A;
 
     temp_fv1 = sinf_table(temp_a1 * (f32)(M_PI / 0x8000)) * this->unk_00214;
@@ -196,16 +205,17 @@ void func_80804F78_jp(Game_Trademark* this) {
         this->unk_25A6F = 1;
     }
 
+    //! FAKE
     if ((!this->unk_25A6C) && (!this->unk_25A6C)) {}
 
     if (((temp_a2 < 0) && (temp_a1 >= 0)) || ((temp_a2 < -0x8000) && (temp_a1 >= -0x8000))) {
         this->unk_00214 *= 0.3f;
-        this->unk_25A6C = this->unk_25A6C + 0xC00;
+        this->unk_25A6C += 0xC00;
     }
 
     if (ABS(this->unk_00214) < 0.02f) {
-        if (this->unk_25A6E == 1) {
-            this->unk_25A6E = 2;
+        if (this->curState == TRADEMARK_STATE_1) {
+            this->curState = TRADEMARK_STATE_2;
         }
         this->unk_00208 = 1.0f;
         this->unk_0020C = 1.0f;
@@ -336,61 +346,61 @@ Lights1 D_80808508_jp = {
 
 void func_80805104_jp(Game_Trademark* this) {
     UNUSED s32 pad[2];
-    xyz_t sp64;
-    xyz_t sp58;
-    xyz_t sp4C;
-    GraphicsContext* temp_s0;
-    f32 sp44;
-    f32 sp40;
+    xyz_t lightDir;
+    xyz_t object;
+    xyz_t eye;
+    GraphicsContext* gfxCtx;
+    f32 y;
+    f32 xz;
 
-    temp_s0 = this->state.gfxCtx;
-    OPEN_DISPS(temp_s0);
+    gfxCtx = this->state.gfxCtx;
+    OPEN_DISPS(gfxCtx);
 
     func_80804F78_jp(this);
 
-    sp64.x = 69.0f;
-    sp64.y = 69.0f;
-    sp64.z = 69.0f;
+    lightDir.x = 69.0f;
+    lightDir.y = 69.0f;
+    lightDir.z = 69.0f;
 
-    sp4C.x = -4949.148f;
-    sp4C.y = 4002.5417f;
-    sp4C.z = 1119.0837f;
+    eye.x = -4949.148f;
+    eye.y = 4002.5417f;
+    eye.z = 1119.0837f;
 
-    sp58.x = 0.0f;
-    sp58.y = 0.0f;
-    sp58.z = 0.0f;
-    HiliteReflect_init(&sp58, &sp4C, &sp64, temp_s0);
+    object.x = 0.0f;
+    object.y = 0.0f;
+    object.z = 0.0f;
+    HiliteReflect_init(&object, &eye, &lightDir, gfxCtx);
 
     gSPSetLights1(POLY_OPA_DISP++, D_80808508_jp);
 
     func_80804EE0_jp(this, 0.0f, 500.0f, 1000.0f);
-    _texture_z_light_fog_prim(temp_s0);
+    _texture_z_light_fog_prim(gfxCtx);
 
     do {
-        sp40 = this->unk_00208 * 0.006f;
-        sp44 = this->unk_0020C * 0.006f;
+        xz = this->unk_00208 * 0.006f;
+        y = this->unk_0020C * 0.006f;
         Matrix_translate(0.0f, -15.0f, 0.0f, MTXMODE_NEW);
 
-        Matrix_scale(sp40, sp44, sp40, 1);
+        Matrix_scale(xz, y, xz, MTXMODE_APPLY);
         Matrix_RotateY(0x2000, MTXMODE_APPLY);
     } while (0);
 
-    gSPMatrix(POLY_OPA_DISP++, _Matrix_to_Mtx_new(temp_s0), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    gSPMatrix(POLY_OPA_DISP++, _Matrix_to_Mtx_new(gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     gSPDisplayList(POLY_OPA_DISP++, D_808075D8_jp);
 
-    CLOSE_DISPS(temp_s0);
+    CLOSE_DISPS(gfxCtx);
 }
 
 void nintendo_logo_move(Game_Trademark* this) {
-    if (this->unk_25A6E == 2) {
+    if (this->curState == TRADEMARK_STATE_2) {
         this->alpha += 16;
         if (this->alpha >= 255) {
             this->alpha = 255;
-            this->unk_25A6E = 4;
+            this->curState = TRADEMARK_STATE_4;
         }
-    } else if (this->unk_25A6E == 4) {
+    } else if (this->curState == TRADEMARK_STATE_4) {
         if (DECR(this->unk_25A64) == 0) {
-            this->unk_25A6E = 3;
+            this->curState = TRADEMARK_STATE_3;
         }
     }
 }
@@ -428,10 +438,10 @@ void nintendo_logo_draw(Game_Trademark* this) {
 }
 
 void trademark_cancel(Game_Trademark* this) {
-    if ((this->unk_25A70 == 0) && (this->unk_25A6E == 4)) {
+    if (!this->unk_25A70 && (this->curState == TRADEMARK_STATE_4)) {
         if (common_data.unk_10AB0 != 0) {
             if (CHECK_FLAG_ALL(CONTROLLER1(gamePT)->press.button, START_BUTTON)) {
-                this->unk_25A70 = 1;
+                this->unk_25A70 = true;
             }
         }
     }
@@ -442,16 +452,16 @@ u8 s_titlebgm[] = {
 };
 
 void trademark_move(Game_Trademark* this) {
-    if (this->unk_25A6E == 0) {
+    if (this->curState == TRADEMARK_STATE_0) {
         if (DECR(this->unk_25A68) == 0) {
             mBGMPsComp_make_ps_lost_fanfare(s_titlebgm[mTD_get_titledemo_no()], 0x168);
             sAdo_SysTrgStart(0x105);
             this->fadeColor = 0;
-            this->unk_25A6E = 1;
+            this->curState = TRADEMARK_STATE_1;
         }
     }
 
-    if ((func_80804C40_jp() != 0) && ((this->unk_25A6E == 3) || (this->unk_25A70 != 0))) {
+    if (func_80804C40_jp() && ((this->curState == TRADEMARK_STATE_3) || this->unk_25A70)) {
         if (this->fadeColor < 255) {
             this->fadeColor += 8;
         }
@@ -464,7 +474,7 @@ void trademark_move(Game_Trademark* this) {
 
         if ((this->fadeColor >= 255) && (this->unk_25A71 == 1)) {
             this->fadeColor = 255;
-            this->unk_25A6E = 5;
+            this->curState = TRADEMARK_STATE_5;
         }
     }
 }
@@ -479,11 +489,11 @@ void trademark_draw(Game_Trademark* this) {
 
     DisplayList_initialize(gfxCtx, 0, 0, 0, NULL);
 
-    if (this->unk_25A6E > 0) {
+    if (this->curState >= TRADEMARK_STATE_1) {
         func_80805104_jp(this);
     }
 
-    if (this->unk_25A6E >= 2) {
+    if (this->curState >= TRADEMARK_STATE_2) {
         nintendo_logo_draw(this);
     }
 
@@ -511,8 +521,8 @@ void trademark_main(Game* thisx) {
     game_debug_draw_last(&this->state, gfxCtx);
     game_draw_last(gfxCtx);
 
-    if (this->unk_25A6E == 5) {
-        this->unk_25A6E = 0;
+    if (this->curState == TRADEMARK_STATE_5) {
+        this->curState = TRADEMARK_STATE_0;
         trademark_goto_demo_scene(this);
     }
 }
@@ -540,13 +550,13 @@ void trademark_init(Game* thisx) {
     initView(&this->view, gfxCtx);
     new_Matrix(&this->state);
 
-    this->fadeColor = 0xFF;
+    this->fadeColor = 255;
     this->alpha = 0;
-    this->unk_25A64 = 0x3C;
+    this->unk_25A64 = 60;
     this->unk_25A68 = 0;
     this->unk_0025C = 0;
     this->unk_00218 = 0;
-    this->unk_25A6E = 0;
+    this->curState = TRADEMARK_STATE_0;
     this->unk_00208 = 0.0f;
     this->unk_0020C = 0.0f;
     this->unk_00210 = 0.0f;
@@ -554,7 +564,7 @@ void trademark_init(Game* thisx) {
     this->unk_25A6A = 0;
     this->unk_25A6C = 0x13D0;
     this->unk_25A6F = 0;
-    this->unk_25A70 = 0;
+    this->unk_25A70 = false;
     this->unk_25A71 = 0;
 
     SetGameFrame(1);
