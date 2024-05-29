@@ -119,7 +119,7 @@
           - [0x746CE8, i8, overlays/gamestates/ovl_trademark/m_trademark/D_80807908_jp, 128, 24]
           - [0x7478E8]
       - [0x747910, .rodata, overlays/gamestates/ovl_trademark/m_trademark]
-      - { start: 0x747940, type: bss, vram: 0x80808560, name: overlays/gamestates/ovl_trademark/m_trademark }
+      - { start: 0x747940, type: .bss, vram: 0x80808560, name: overlays/gamestates/ovl_trademark/m_trademark }
   - name: ovl_trademark_reloc
     type: code
     start: 0x747940

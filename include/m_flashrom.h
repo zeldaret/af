@@ -30,7 +30,7 @@ void func_8008F210_jp(void);
 // void func_8008F530_jp();
 // void func_8008F5FC_jp();
 // void func_8008F648_jp();
-s32 func_8008F768_jp(UNK_TYPE* arg0, UNK_TYPE* arg1);
+s32 func_8008F768_jp(UNK_PTR arg0, UNK_PTR arg1);
 s32 func_8008F7C8_jp(void);
 // void func_8008F8A0_jp();
 // void func_8008F938_jp();

@@ -108,7 +108,7 @@ Gfx D_808075D8_jp[] = {
     gsDPSetTextureLUT(G_TT_NONE),
     gsDPLoadTextureBlock(D_808065D8_jp, G_IM_FMT_I, G_IM_SIZ_8b, 64, 64, 0, G_TX_MIRROR | G_TX_CLAMP, G_TX_MIRROR | G_TX_CLAMP, 6, 6, G_TX_NOLOD, G_TX_NOLOD),
     gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_FOG | G_LIGHTING | G_SHADING_SMOOTH),
-    gsSPVertex(0x80805CD8, 32, 0),
+    gsSPVertex(D_80805CD8_jp, 32, 0),
     gsSP2Triangles(0, 1, 2, 0, 1, 3, 2, 0),
     gsSP2Triangles(4, 5, 6, 0, 5, 7, 6, 0),
     gsSP2Triangles(8, 9, 10, 0, 8, 10, 11, 0),
@@ -122,7 +122,7 @@ Gfx D_808075D8_jp[] = {
     gsDPSetEnvColor(0, 0, 160, 255),
     gsDPPipeSync(),
     gsDPLoadTextureBlock(D_808065D8_jp, G_IM_FMT_I, G_IM_SIZ_8b, 64, 64, 0, G_TX_MIRROR | G_TX_CLAMP, G_TX_MIRROR | G_TX_CLAMP, 6, 6, G_TX_NOLOD, G_TX_NOLOD),
-    gsSPVertex(0x80805ED8, 32, 0),
+    gsSPVertex(D_80805ED8_jp, 32, 0),
     gsSP2Triangles(0, 1, 2, 0, 3, 4, 5, 0),
     gsSP2Triangles(6, 3, 5, 0, 2, 5, 7, 0),
     gsSP2Triangles(0, 2, 7, 0, 8, 9, 10, 0),
@@ -135,7 +135,7 @@ Gfx D_808075D8_jp[] = {
     gsSP2Triangles(25, 27, 26, 0, 28, 29, 27, 0),
     gsSP2Triangles(1, 30, 2, 0, 5, 2, 31, 0),
     gsSP1Triangle(6, 5, 31, 0),
-    gsSPVertex(0x808060D8, 8, 0),
+    gsSPVertex(D_808060D8_jp, 8, 0),
     gsSP2Triangles(0, 1, 2, 0, 1, 3, 2, 0),
     gsSP2Triangles(4, 5, 3, 0, 5, 6, 3, 0),
     gsSP1Triangle(0, 7, 1, 0),
@@ -144,7 +144,7 @@ Gfx D_808075D8_jp[] = {
     gsDPSetEnvColor(0, 160, 0, 255),
     gsDPPipeSync(),
     gsDPLoadTextureBlock(D_808065D8_jp, G_IM_FMT_I, G_IM_SIZ_8b, 64, 64, 0, G_TX_MIRROR | G_TX_CLAMP, G_TX_MIRROR | G_TX_CLAMP, 6, 6, G_TX_NOLOD, G_TX_NOLOD),
-    gsSPVertex(0x80806158, 32, 0),
+    gsSPVertex(D_80806158_jp, 32, 0),
     gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
     gsSP2Triangles(4, 5, 6, 0, 4, 6, 7, 0),
     gsSP2Triangles(4, 8, 5, 0, 0, 9, 1, 0),
@@ -155,7 +155,7 @@ Gfx D_808075D8_jp[] = {
     gsSP2Triangles(10, 9, 22, 0, 10, 22, 23, 0),
     gsSP2Triangles(24, 25, 26, 0, 27, 26, 28, 0),
     gsSP1Triangle(29, 27, 28, 0),
-    gsSPVertex(0x80806338, 18, 0),
+    gsSPVertex(D_80806338_jp, 18, 0),
     gsSP2Triangles(0, 1, 2, 0, 1, 3, 2, 0),
     gsSP2Triangles(4, 5, 3, 0, 6, 4, 3, 0),
     gsSP2Triangles(7, 8, 1, 0, 0, 7, 1, 0),
@@ -168,7 +168,7 @@ Gfx D_808075D8_jp[] = {
     gsDPSetEnvColor(180, 0, 0, 255),
     gsDPPipeSync(),
     gsDPLoadTextureBlock(D_808065D8_jp, G_IM_FMT_I, G_IM_SIZ_8b, 64, 64, 0, G_TX_MIRROR | G_TX_CLAMP, G_TX_MIRROR | G_TX_CLAMP, 6, 6, G_TX_NOLOD, G_TX_NOLOD),
-    gsSPVertex(0x80806458, 24, 0),
+    gsSPVertex(D_80806458_jp, 24, 0),
     gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
     gsSP2Triangles(4, 5, 6, 0, 4, 6, 7, 0),
     gsSP2Triangles(8, 9, 10, 0, 8, 10, 11, 0),
@@ -196,11 +196,11 @@ u8 s_titlebgm[] = { 0x53, 0x54, 0x55, 0x56, 0x57, };
 
 // bss
 
-extern UNK_TYPE B_80808560_jp;
-extern UNK_TYPE B_80818560_jp;
-extern UNK_TYPE B_80828560_jp;
-extern OSMesgQueue B_80828620_jp[6];
-extern UNK_TYPE B_808286B0_jp;
+u8 B_80808560_jp[0x10000];
+u8 B_80818560_jp[0x10000];
+u8 B_80828560_jp[0xC0];
+OSMesgQueue B_80828620_jp[6];
+u8 B_808286B0_jp[0x20];
 
 
 s32 func_80804C40_jp(void) {
