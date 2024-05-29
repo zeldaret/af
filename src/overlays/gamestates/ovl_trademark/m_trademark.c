@@ -84,16 +84,12 @@ s32 set_npc_4_title_demo(Game_Trademark* this) {
     return demo_npc_num;
 }
 
-typedef struct struct_80805CB4 {
+typedef struct TradeDayEntry {
     /* 0x0 */ u8 month;
     /* 0x1 */ u8 day;
     /* 0x2 */ u8 hour;
     /* 0x4 */ s16 weather;
-} struct_80805CB4; // size = 0x6
-
-struct_80805CB4 tradeday_table[] = {
-    { 4, 6, 0xD, 3 }, { 6, 0x10, 0xD, 1 }, { 8, 1, 6, 0 }, { 0xB, 1, 0x10, 0 }, { 2, 1, 2, 2 }, { 0, 0, 0, 0 },
-};
+} TradeDayEntry; // size = 0x6
 
 void mTM_demotime_set(s32 arg0) {
     common_data.time.rtcEnabled = 0;
@@ -101,7 +97,12 @@ void mTM_demotime_set(s32 arg0) {
     common_data.time.rtcTime.min = 0;
 
     if (arg0 != 0) {
-        struct_80805CB4* temp_v0 = &tradeday_table[arg0 - 1];
+        static TradeDayEntry tradeday_table[] = {
+            { lbRTC_APRIL, 6, 13, 3 },    { lbRTC_JUNE, 16, 13, 1 },   { lbRTC_AUGUST, 1, 6, 0 },
+            { lbRTC_NOVEMBER, 1, 16, 0 }, { lbRTC_FEBRUARY, 1, 2, 2 }, { 0, 0, 0, 0 },
+        };
+
+        TradeDayEntry* temp_v0 = &tradeday_table[arg0 - 1];
 
         common_data.time.rtcTime.month = temp_v0->month;
         common_data.time.rtcTime.day = temp_v0->day;

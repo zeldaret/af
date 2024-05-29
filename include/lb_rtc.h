@@ -73,16 +73,16 @@ typedef enum RTC_EQUALITY {
 } RTC_EQUALITY;
 
 typedef enum RTC_EQUALITY_FLAGS {
-    /* 0x00 */lbRTC_CHECK_NONE = 0,
+    /* 0x00 */ lbRTC_CHECK_NONE = 0,
 
-    /* 0x01 */lbRTC_CHECK_SECONDS = 1 << 0,   
-    /* 0x02 */lbRTC_CHECK_MINUTES = 1 << 1,   
-    /* 0x04 */lbRTC_CHECK_HOURS = 1 << 2,     
-    /* 0x08 */lbRTC_CHECK_WEEKDAYS = 1 << 3,  
-    /* 0x10 */lbRTC_CHECK_DAYS = 1 << 4,      
-    /* 0x20 */lbRTC_CHECK_MONTHS = 1 << 5,    
-    /* 0x40 */lbRTC_CHECK_YEARS = 1 << 6,     
-    
+    /* 0x01 */ lbRTC_CHECK_SECONDS = 1 << 0,
+    /* 0x02 */ lbRTC_CHECK_MINUTES = 1 << 1,
+    /* 0x04 */ lbRTC_CHECK_HOURS = 1 << 2,
+    /* 0x08 */ lbRTC_CHECK_WEEKDAYS = 1 << 3,
+    /* 0x10 */ lbRTC_CHECK_DAYS = 1 << 4,
+    /* 0x20 */ lbRTC_CHECK_MONTHS = 1 << 5,
+    /* 0x40 */ lbRTC_CHECK_YEARS = 1 << 6,
+
     /* 0x7F */
     lbRTC_CHECK_ALL = lbRTC_CHECK_SECONDS |
                       lbRTC_CHECK_MINUTES |
