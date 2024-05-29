@@ -274,7 +274,7 @@ D_808065D8_jp = 0x808065D8; //
 D_808075D8_jp = 0x808075D8; //
 D_80807908_jp = 0x80807908; //
 D_80808000_jp = 0x80808000; // ignore:True
-D_80808508_jp = 0x80808508; // type:Lights1 size:0x24
+D_80808508_jp = 0x80808508; // type:Lights1 size:0x18
 s_titlebgm = 0x80808520; // type:u8
 
 // .rodata
