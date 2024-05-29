@@ -10,7 +10,7 @@
 #include "m_player_lib.h"
 #include "audio.h"
 #include "6EC9E0.h"
-#include "6EDD10.h"
+#include "m_time.h"
 #include "69E2C0.h"
 #include "683030.h"
 #include "6E3240.h"

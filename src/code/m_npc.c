@@ -1,3 +1,5 @@
+#include "prevent_bss_reordering.h"
+
 #include "m_npc.h"
 #include "macros.h"
 #include "m_lib.h"

@@ -10,7 +10,7 @@
 #include "6E3240.h"
 #include "m_string.h"
 #include "6ECD90.h"
-#include "6EDD10.h"
+#include "m_time.h"
 #include "global.h"
 #include "lb_rtc.h"
 #include "libc64/qrand.h"

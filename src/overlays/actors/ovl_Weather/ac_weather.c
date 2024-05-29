@@ -12,7 +12,7 @@
 #include "m_rcp.h"
 #include "code_variables.h"
 #include "m_kankyo.h"
-#include "6EDD10.h"
+#include "m_time.h"
 #include "m_event.h"
 #include "m_all_grow.h"
 #include "683030.h"

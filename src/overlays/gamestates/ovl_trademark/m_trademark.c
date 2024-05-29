@@ -1,4 +1,6 @@
 #include "m_trademark.h"
+
+#include "audio.h"
 #include "m_actor.h"
 #include "m_common_data.h"
 #include "m_event.h"
@@ -6,35 +8,33 @@
 #include "m_flashrom.h"
 #include "m_mail.h"
 #include "m_npc.h"
+#include "m_scene_table.h"
+#include "m_time.h"
 #include "m_rcp.h"
 #include "m_view.h"
 #include "sys_math.h"
 #include "sys_matrix.h"
 #include "libc64/qrand.h"
-#include "z_std_dma.h"
+#include "m_std_dma.h"
 #include "67E840.h"
 #include "69CB30.h"
 #include "6B3DC0.h"
 #include "6B8F20.h"
-#include "6DE300.h"
-#include "6DB420.h"
 #include "6EC9E0.h"
-#include "6EDD10.h"
-#include "6F5550.h"
 #include "segment_symbols.h"
 #include "macros.h"
 
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-extern demo_door_data D_80805B20_jp;
-extern demo_door_data D_80805B34_jp;
-extern demo_door_data D_80805B48_jp;
-extern demo_door_data D_80805B5C_jp;
-extern demo_door_data D_80805B70_jp;
+extern DoorData D_80805B20_jp;
+extern DoorData D_80805B34_jp;
+extern DoorData D_80805B48_jp;
+extern DoorData D_80805B5C_jp;
+extern DoorData D_80805B70_jp;
 
-extern demo_door_data* l_demo_door_data_table[];
+extern DoorData* l_demo_door_data_table[];
 
-extern s32 demo_npc_list;
+extern DemoNpc demo_npc_list;
 extern s32 demo_npc_num;
 
 typedef struct struct_80805CB4 {
@@ -92,7 +92,7 @@ s32 func_80804C40_jp(void) {
 }
 
 s32 set_npc_4_title_demo(Game_Trademark* this) {
-    mNpc_SetAnimalTitleDemo(&demo_npc_list, common_data.animals, this);
+    mNpc_SetAnimalTitleDemo(&demo_npc_list, common_data.animals, &this->state);
     mNpc_SetNpcList(common_data.npclist, common_data.animals, demo_npc_num, 0);
 
     return demo_npc_num;
@@ -109,7 +109,7 @@ void mTM_demotime_set(s32 arg0) {
         common_data.time.rtcTime.month = temp_v0->month;
         common_data.time.rtcTime.day = temp_v0->day;
         common_data.time.rtcTime.hour = temp_v0->hour;
-        common_data.unk_1056C = temp_v0->unk_4;
+        common_data.weather = temp_v0->unk_4;
     }
 }
 
@@ -117,34 +117,34 @@ void trademark_goto_demo_scene(Game_Trademark* this) {
     s32 temp_v0;
 
     mCPk_InitPak(0);
-    common_data.now_private = common_data.private;
+    common_data.privateInfo = &common_data.saveFilePrivateInfo[0];
 
     if (mFRm_CheckSaveData() == 0) {
-        Private_c* var_s0;
+        PrivateInfo* var_s0;
         s32 i;
 
         // TODO: make a substruct
         bzero(&common_data, 0x10000);
         mFRm_ClearSaveCheckData(&common_data);
 
-        var_s0 = common_data.private;
-        for (i = 0; i < ARRAY_COUNT(common_data.private); i++) {
+        var_s0 = &common_data.saveFilePrivateInfo[0];
+        for (i = 0; i < ARRAY_COUNT(common_data.saveFilePrivateInfo); i++) {
             mPr_ClearPrivateInfo(var_s0);
             var_s0++;
         }
 
-        common_data.land_info.unk_6 = 1;
-        common_data.house_owner_name = 0xFFFF;
-        common_data.last_field_id = 0xFFFF;
+        common_data.landInfo.exists = true;
+        common_data.houseOwnerName = 0xFFFF;
+        common_data.lastFieldId = 0xFFFF;
     }
 
     mEv_ClearEventInfo();
     temp_v0 = mEv_CheckTitleDemo();
     if (temp_v0 > 0) {
-        demo_door_data* doorData = l_demo_door_data_table[temp_v0-1];
+        DoorData* doorData = l_demo_door_data_table[temp_v0-1];
 
-        common_data.unk_10754 = *doorData;
-        common_data.unk_10754.unk_00 = doorData->unk_00 + 1;
+        common_data.doorData = *doorData;
+        common_data.doorData.nextSceneId = doorData->nextSceneId + 1;
 
         mTM_demotime_set(temp_v0);
         mPr_RandomSetPlayerData_title_demo();
@@ -152,7 +152,7 @@ void trademark_goto_demo_scene(Game_Trademark* this) {
         common_data.unk_1014B = 3;
     }
 
-    common_data.unk_00014 = 0x21;
+    common_data.sceneNo = SCENE_TITLE_DEMO;
     mTM_set_season();
     common_data.unk_104AD = 1;
 
@@ -161,9 +161,9 @@ void trademark_goto_demo_scene(Game_Trademark* this) {
 }
 
 void func_80804EE0_jp(Game_Trademark* this, f32 arg1, f32 arg2, f32 arg3) {
-    Vec3f sp34;
-    Vec3f sp28;
-    Vec3f sp1C;
+    xyz_t sp34;
+    xyz_t sp28;
+    xyz_t sp1C;
 
     sp34.x = arg1;
     sp34.y = arg2;
@@ -227,9 +227,9 @@ void func_80804F78_jp(Game_Trademark* this) {
 
 void func_80805104_jp(Game_Trademark* this) {
     UNUSED s32 pad[2];
-    Vec3f sp64;
-    Vec3f sp58;
-    Vec3f sp4C;
+    xyz_t sp64;
+    xyz_t sp58;
+    xyz_t sp4C;
     GraphicsContext* temp_s0;
     f32 sp44;
     f32 sp40;
@@ -332,7 +332,7 @@ void trademark_move(Game_Trademark* this) {
     if (this->unk_25A6E == 0) {
         if (DECR(this->unk_25A68) == 0) {
             mBGMPsComp_make_ps_lost_fanfare(s_titlebgm[mTD_get_titledemo_no()], 0x168);
-            func_800D1A9C_jp(0x105);
+            sAdo_SysTrgStart(0x105);
             this->unk_25A60 = 0;
             this->unk_25A6E = 1;
         }
@@ -405,12 +405,12 @@ void trademark_main(Game* thisx) {
 }
 
 void trademark_cleanup(UNUSED Game* thisx) {
-    mHm_hs_c* var_s0 = common_data.homes;
+    mHm_hs_c* homes = common_data.homes;
     s32 i;
 
-    for (i = 0; i != ARRAY_COUNT(common_data.homes); i++, var_s0++) {
-        var_s0->unk_024 = i;
-        mMl_clear_mail_box(var_s0->unk_478, ARRAY_COUNT(var_s0->unk_478));
+    for (i = 0; i != ARRAY_COUNT(common_data.homes); i++, homes++) {
+        homes->unk_024 = i;
+        mMl_clear_mail_box(homes->mailbox, ARRAY_COUNT(homes->mailbox));
     }
 }
 
@@ -445,9 +445,9 @@ void trademark_init(Game* thisx) {
     this->unk_25A71 = 0;
 
     SetGameFrame(1);
-    common_data.player_no = 0;
+    common_data.playerNumber = 0;
     common_data.unk_10008 = 0;
-    common_data.scene_from_title_demo = -1;
+    common_data.sceneFromTitleDemo = -1;
     func_80095414_jp();
     mNpc_ClearInAnimal();
     mNpc_FirstClearGoodbyMail();
