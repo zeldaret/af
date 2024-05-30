@@ -28,8 +28,7 @@ typedef enum SaveMenuSaveMode {
     /* 2 */ SAVE_MODE_MAX
 }SaveMenuSaveMode;
 
-
-void save_menu_init(Game *thisx);
+void save_menu_init(Game* game);
 void save_menu_cleanup(Game *thisx);
 
 #endif

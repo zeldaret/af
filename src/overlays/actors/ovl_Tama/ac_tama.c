@@ -36,7 +36,7 @@ ActorProfile Tama_Profile = {
     /* */ NULL,
 };
 
-void aTAM_setup_action(Tama*, s32);
+void aTAM_setup_action(Tama* this, s32 processIndex);
 
 void aTAM_actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
     Tama* this = THIS;

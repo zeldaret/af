@@ -11,7 +11,6 @@
 #include "m_handbill.h"
 #include "m_house.h"
 #include "6DA460.h"
-#include "m_time.h"
 
 PrivateInfo g_foreigner_private;
 Mail_c l_mpr_mail;

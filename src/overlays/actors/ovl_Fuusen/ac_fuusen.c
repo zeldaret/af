@@ -24,7 +24,7 @@ void aFSN_actor_ct(Actor* thisx, Game_Play* game_play);
 void aFSN_actor_dt(Actor* thisx, Game_Play* game_play);
 void aFSN_actor_move(Actor* thisx, Game_Play* game_play);
 void aFSN_actor_draw(Actor* thisx, Game_Play* game_play);
-void aFSN_setupAction(Fuusen*, s32, Game_Play*);
+void aFSN_setupAction(Fuusen* this, s32 processIndex, Game_Play* game_play);
 
 ActorProfile Fuusen_Profile = {
     /* */ ACTOR_FUUSEN,

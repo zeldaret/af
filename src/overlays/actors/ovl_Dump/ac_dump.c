@@ -47,8 +47,8 @@ ShadowData aDUM_shadow_data = {
     48, aDUM_shadow_vtx_fix_flg_table, 60.0f, obj_dump_shadow_v, obj_dump_shadowT_model,
 };
 
-void aDUM_set_bgOffset(Dump*, s32);
-void aDUM_setup_action(Dump*, s32);
+void aDUM_set_bgOffset(Dump* this, s32 arg1);
+void aDUM_setup_action(Dump* this, s32 processIndex);
 
 void aDUM_actor_ct(Actor* thisx, UNUSED Game_Play* game_play) {
     Dump* this = THIS;

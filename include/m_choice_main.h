@@ -145,7 +145,7 @@ s32 mChoice_Put_String_ITEM3(char* data, s32 idx, s32 maxSize, struct Actor* act
 s32 mChoice_Put_String_ITEM4(char* data, s32 idx, s32 maxSize, struct Actor* actor);
 s32 mChoice_Put_String(char* data, s32 idx, s32 maxSize, struct Actor* actor);
 void mChoice_Change_ControlCode(char* data, s32 maxSize, struct Actor* actor);
-void mChoice_Load_ChoseStringFromRom(s32 , char* str, s32 idx, struct Actor* actor);
+void mChoice_Load_ChoseStringFromRom(s32 unused, char* str, s32 idx, struct Actor* actor);
 void mChoice_no_b_set(Choice* choice);
 void mChoice_sound_SENTAKU_KETTEI(void);
 void mChoice_sound_SENTAKU_OPEN(void);

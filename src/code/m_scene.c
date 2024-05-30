@@ -14,7 +14,6 @@
 #include "m_std_dma.h"
 #include "m_scene_table.h"
 #include "m_scene_ftr.h"
-#include "m_player_lib.h"
 #include "overlays/actors/player_actor/m_player.h"
 
 s32 func_800C59B0_jp(ObjectExchangeBank* objectExchangeBank) {
@@ -523,31 +522,24 @@ void Scene_player_select(s32 sceneNo, s32 npcActor) {
     mNpc_RegistEventNpc(npcActor, npcId, npcId, common_data.save.animals[found].cloth);
 }
 
-void Scene_Proc_Player_Ptr(Game_Play* play, SceneData* data);
-void Scene_Proc_Ctrl_Actor_Ptr(Game_Play* play, SceneData* data);
-void Scene_Proc_Actor_Ptr(Game_Play* play, SceneData* data);
-void Scene_Proc_Object_Exchange_Bank_Ptr(Game_Play* play, SceneData* data);
-void Scene_Proc_Door_Data_Ptr(Game_Play* play, SceneData* data);
-void Scene_Proc_Field_ct(Game_Play* play, SceneData* data);
+void Scene_Proc_Ctrl_Actor_Ptr(Game_Play* play, SceneData* scene_data);
+
 void Scene_Proc_MyRoom_ct(Game_Play* play, SceneData* data);
-void Scene_Proc_ArrangeRoom_ct(Game_Play* play, SceneData* data);
-void Scene_Proc_ArrangeFurniture_ct(Game_Play* play, SceneData* data);
-void Scene_Proc_Sound(Game_Play* play, SceneData* data);
 
 typedef void (*SceneDataProc)(Game_Play*, SceneData*);
 
 void Scene_ct(Game_Play* play, SceneData* sceneData) {
     static SceneDataProc Scene_Proc[] = {
-        &Scene_Proc_Player_Ptr,
-        &Scene_Proc_Ctrl_Actor_Ptr,
-        &Scene_Proc_Actor_Ptr,
-        &Scene_Proc_Object_Exchange_Bank_Ptr,
-        &Scene_Proc_Door_Data_Ptr,
-        &Scene_Proc_Field_ct,
-        &Scene_Proc_MyRoom_ct,
-        &Scene_Proc_ArrangeRoom_ct,
-        &Scene_Proc_ArrangeFurniture_ct,
-        &Scene_Proc_Sound,
+        Scene_Proc_Player_Ptr,
+        Scene_Proc_Ctrl_Actor_Ptr,
+        Scene_Proc_Actor_Ptr,
+        Scene_Proc_Object_Exchange_Bank_Ptr,
+        Scene_Proc_Door_Data_Ptr,
+        Scene_Proc_Field_ct,
+        Scene_Proc_MyRoom_ct,
+        Scene_Proc_ArrangeRoom_ct,
+        Scene_Proc_ArrangeFurniture_ct,
+        Scene_Proc_Sound,
         NULL,
     };
 
