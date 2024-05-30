@@ -121,7 +121,6 @@ void trademark_goto_demo_scene(Game_Trademark* this) {
         PrivateInfo* privateInfo;
         s32 i;
 
-        // TODO: make a substruct
         bzero(&common_data.save, sizeof(Save));
         mFRm_ClearSaveCheckData(&common_data);
 
