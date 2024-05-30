@@ -187,7 +187,7 @@ void func_80804F78_jp(Game_Trademark* this) {
     this->unk_25A6A += this->unk_25A6C;
     temp_a1 = this->unk_25A6A;
 
-    temp_fv1 = sinf_table(temp_a1 * (f32)(M_PI / 0x8000)) * this->unk_00214;
+    temp_fv1 = sinf_table(BINANG_TO_RAD(temp_a1)) * this->unk_00214;
 
     if (this->unk_25A6F == 0) {
         var_fa0 = temp_fv1 * 3.0f;
