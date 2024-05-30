@@ -33,7 +33,7 @@ ActorProfile Bee_Profile = {
     /* */ NULL,
 };
 
-void aBEE_setupAction(Bee*, s32, Game_Play*);
+void aBEE_setupAction(Bee* this, s32 processIndex, Game_Play* game_play);
 
 void aBEE_actor_ct(Actor* thisx, Game_Play* game_play) {
     Bee* this = THIS;

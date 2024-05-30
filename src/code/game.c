@@ -7,7 +7,7 @@
 #include "graph.h"
 #include "libu64/debug.h"
 #include "libc64/malloc.h"
-#include "6EDD10.h"
+#include "m_time.h"
 #include "padmgr.h"
 #include "69E2C0.h"
 #include "gfxalloc.h"

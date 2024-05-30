@@ -193,8 +193,8 @@ s32 mMl_hunt_for_send_address(Mail_c* mail) {
         return -1;
     }
 
-    for (i = 0; i < ARRAY_COUNT(common_data.homes); i++) {
-        if (mPr_CheckCmpPersonalID(&common_data.homes[i].ownerID, &mail->header.recipient.personalID) == 1) {
+    for (i = 0; i < ARRAY_COUNT(common_data.save.homes); i++) {
+        if (mPr_CheckCmpPersonalID(&common_data.save.homes[i].ownerID, &mail->header.recipient.personalID) == 1) {
             return i;
         }
     }

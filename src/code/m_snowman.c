@@ -40,7 +40,7 @@ s32 mSN_check_life(u16* name, s32 daysElapsed) {
 }
 
 void mSN_ClearSnowmanData(u16* name, s32 snowmanIndex) {
-    bzero(&common_data.snowmanData[snowmanIndex], sizeof(SnowmanData));
+    bzero(&common_data.save.snowmanData[snowmanIndex], sizeof(SnowmanData));
     *name = 0;
 }
 
@@ -70,17 +70,17 @@ s32 mSN_MeltSnowman(u16* name, s32 daysElapsed) {
 
         if (daysElapsed < 0) {
             daysElapsed = 1;
-            common_data.snowmanYear = 0;
-            common_data.snowmanMonth = 0;
-            common_data.snowmanDay = 0;
-            common_data.snowmanHour = 0;
+            common_data.save.snowmanYear = 0;
+            common_data.save.snowmanMonth = 0;
+            common_data.save.snowmanDay = 0;
+            common_data.save.snowmanHour = 0;
         }
 
         if (!mSN_check_life(name, daysElapsed)) {
             mSN_ClearSnowmanData(name, snowmanIndex);
 
         } else {
-            SnowmanData* snowmanData = &common_data.snowmanData[snowmanIndex];
+            SnowmanData* snowmanData = &common_data.save.snowmanData[snowmanIndex];
 
             *name += daysElapsed;
 
@@ -103,7 +103,7 @@ s32 mSN_MeltSnowman(u16* name, s32 daysElapsed) {
  * @return the index of the first empty slot. If there are no empty slots, return -1.
  */
 s32 mSN_get_free_space(void) {
-    SnowmanData* snowmanData = common_data.snowmanData;
+    SnowmanData* snowmanData = common_data.save.snowmanData;
     s32 snowmanIndex;
 
     for (snowmanIndex = 0; snowmanIndex < SNOWMAN_SAVE_COUNT; snowmanIndex++) {
@@ -121,7 +121,7 @@ void mSN_regist_snowman_society(SnowmanInfo* snowmanInfo) {
     u16 name;
 
     if (snowmanIndex != -1) {
-        mem_copy((u8*)&common_data.snowmanData[snowmanIndex], (u8*)snowmanInfo, sizeof(SnowmanData));
+        mem_copy((u8*)&common_data.save.snowmanData[snowmanIndex], (u8*)snowmanInfo, sizeof(SnowmanData));
 
         if (sp2E) {
             mPB_keep_item(sp2E);
@@ -138,6 +138,6 @@ void mSN_decide_msg(void) {
 }
 
 void mSN_snowman_init(void) {
-    bzero(common_data.snowmanData, sizeof(SnowmanData[SNOWMAN_SAVE_COUNT]));
+    bzero(common_data.save.snowmanData, sizeof(SnowmanData[SNOWMAN_SAVE_COUNT]));
     mSN_decide_msg();
 }

@@ -20,8 +20,8 @@ void aKAG_actor_dt(Actor* thisx, Game_Play* game_play);
 void aKAG_actor_init(Actor* thisx, Game_Play* game_play);
 void aKAG_actor_draw(Actor* thisx, Game_Play* game_play);
 
-void aKAG_set_bgOffset(Kago*, s32);
-void aKAG_setup_action(Kago*, s32);
+void aKAG_set_bgOffset(Kago* this, s32 id);
+void aKAG_setup_action(Kago* this, s32 processIndex);
 
 ActorProfile Kago_Profile = {
     /* */ ACTOR_KAGO,

@@ -65,7 +65,7 @@ typedef struct FamicomEmuCommonData {
     /* 0x24 */ s16 unk24;
 } FamicomEmuCommonData; // size >= 0x26
 
-typedef struct CommonData {
+typedef struct Save {
     /* 0x00000 */ u8 unk_00000[0x14];
     /* 0x00014 */ s32 sceneNo;
     /* 0x00018 */ u8 nowNpcMax;
@@ -85,13 +85,11 @@ typedef struct CommonData {
     /* 0x0EF58 */ u16 fruit;
     /* 0x0EF5A */ UNK_TYPE1 unk_0EF5A[2];
     /* 0x0EF5C */ lbRTC_time_c allGrowRenewTime;
-    /* 0x0EF60 */ UNK_TYPE1 unk_0EF64[8];
-    /* 0x0EF6C */ Mail_c unk_0EF6C[5];
-    /* 0x0F2A0 */ UNK_TYPE1 unk_0F2A0[0x17C];
+    /* 0x0EF64 */ UNK_TYPE1 unk_0EF64[0x4B8];
     /* 0x0F41C */ SnowmanData snowmanData[SNOWMAN_SAVE_COUNT];
     /* 0x0F428 */ u64 melody;
     /* 0x0F430 */ UNK_TYPE1 unk_F430[0x4];
-    /* 0x0F434 */ lbRTC_ymd_t renewTime; 
+    /* 0x0F434 */ lbRTC_ymd_t renewTime;
     /* 0x0F438 */ u8 stationType;
     /* 0x0F439 */ u8 saveWeather;
     /* 0x0F440 */ u8 unk_F440[0x2];
@@ -112,6 +110,10 @@ typedef struct CommonData {
     /* 0x0F8B0 */ u8 snowmanHour;  // Hour last snowman was built.
     /* 0X0F8B1 */ u8 haniwaScheduled;
     /* 0x0F8B2 */ UNK_TYPE1 unk_0F8B2[0x74E];
+} Save; // size = 0x10000
+
+typedef struct CommonData {
+    /* 0x00000 */ Save save;
     /* 0x10000 */ u8 unk_10000; // named "game_started" in AC GCN decomp
     /* 0x10001 */ u8 unk_10001;
     /* 0x10002 */ u8 unk_10002;

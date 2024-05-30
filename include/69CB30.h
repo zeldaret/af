@@ -2,6 +2,7 @@
 #define C_69CB30_H
 
 #include "ultra64.h"
+#include "unk.h"
 
 struct Animal_c;
 struct PrivateInfo;
@@ -19,7 +20,7 @@ s32 mCPk_PakOpen(PakInfo* info, s32 arg1);
 // void func_80078FE8_jp();
 // void func_80079030_jp();
 // void func_80079080_jp();
-// void mCPk_InitPak();
+UNK_RET mCPk_InitPak(UNK_TYPE arg0);
 // void func_8007919C_jp();
 // void func_8007920C_jp();
 // void func_800792FC_jp();

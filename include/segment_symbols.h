@@ -67,6 +67,7 @@ DECLARE_SEGMENT(code);
 
 // TODO: the rest of segments
 
+DECLARE_SEGMENT(segment_01136000);
 
 DECLARE_SEGMENT(submenu_ovl);
 DECLARE_SEGMENT(player_actor);

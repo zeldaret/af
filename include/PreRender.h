@@ -37,15 +37,15 @@ typedef struct PreRender {
 #define WALLPAPER_FLAGS_LOAD_S2DEX2 (1 << 3)
 #define WALLPAPER_FLAGS_COPY (1 << 4)
 
-void PreRender_setup_savebuf(PreRender* this, s32 width, s32 height, void* arg3, void* arg4, void* arg5);
+void PreRender_setup_savebuf(PreRender* this, s32 width, s32 height, void* fbuf, void* zbuf, void* cvg);
 void PreRender_init(PreRender* this);
-void PreRender_setup_renderbuf(PreRender* this, s32 width, s32 height, void* arg3, void* arg4);
+void PreRender_setup_renderbuf(PreRender* this, s32 width, s32 height, void* fbuf, void* zbuf);
 void PreRender_cleanup(PreRender* this);
 void PreRender_TransBufferCopy(PreRender* this, Gfx** glistpp, void* arg2, void* arg3, u32 useThresholdAlphaCompare);
 void PreRender_TransBuffer(PreRender* this, Gfx** glistpp, void* arg2, void* arg3);
 void PreRender_TransBuffer1(PreRender* this, Gfx** glistpp, void* arg2, void* arg3);
 void PreRender_TransBuffer2(PreRender* this, Gfx** glistpp, void* arg2, void* arg3);
-void PreRender_CopyRGBC(PreRender* this, Gfx** gfxP, s32 arg2, s32 arg3);
+void PreRender_CopyRGBC(PreRender* this, Gfx** gfxp, s32 width, s32 height);
 void PreRender_saveZBuffer(PreRender* this, Gfx** glistpp);
 void PreRender_saveFrameBuffer(PreRender* this, Gfx** glistpp);
 void PreRender_saveCVG(PreRender* this, Gfx** glistpp);

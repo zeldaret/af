@@ -23,7 +23,7 @@ typedef struct Stretch {
     /* 0x28 */ xyz_t scale;
 } Stretch; // size = 0x34
 
-typedef struct View {   
+typedef struct View {
     /* 0x000 */ s32 unk_000;
     /* 0x004 */ struct GraphicsContext* gfxCtx;
     /* 0x008 */ Viewport viewport;
@@ -43,7 +43,7 @@ typedef struct View {
     /* 0x11C */ u16 normal;
     /* 0x120 */ s32 flag;
     /* 0x124 */ s8 unk_124[0x4];
-} View;
+} View; // size = 0x128
 
 
 #define SET_FULLSCREEN_VIEWPORT(view)      \
@@ -53,9 +53,10 @@ typedef struct View {
         viewport.rightX = SCREEN_WIDTH;    \
         viewport.topY = 0;                 \
         viewport.leftX = 0;                \
-        setScissorView(view, &viewport); \
+        setScissorView(view, &viewport);   \
     }                                      \
     (void)0
+
 void set_viewport(Vp* vp, Viewport* viewport);
 void initView(View* view, struct GraphicsContext* graph);
 void setLookAtView(View* view, xyz_t* eye, xyz_t* at, xyz_t* up);
@@ -78,6 +79,5 @@ s32 showOverLayView(View* view);
 s32 showPerspectiveOverLayView(View* view);
 s32 showOrthoView1(View* view, Gfx** gfxPtr);
 s32 showView1(View* view, s32 flagMask, Gfx** gfxPtr);
-
 
 #endif

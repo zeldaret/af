@@ -18,7 +18,7 @@ struct Game_CPEdit {
     /* 0x2FC */ ObjectExchangeBank bank;
 }; // size = 0x1B20
 
-void cpedit_init(Game *thisx);
-void cpedit_cleanup(Game *thisx);
+void cpedit_init(Game* game);
+void cpedit_cleanup(Game* game);
 
 #endif

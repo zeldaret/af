@@ -4,6 +4,7 @@
 #include "ultra64.h"
 #include "z64math.h"
 #include "m_collision_bg.h"
+#include "unk.h"
 
 struct Actor;
 struct Game_Play;

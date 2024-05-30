@@ -1,3 +1,5 @@
+#include "prevent_bss_reordering.h"
+
 #include "m_npc.h"
 #include "macros.h"
 #include "m_lib.h"
@@ -144,7 +146,7 @@ s32 mNpc_CheckCmpAnimalPersonalID(AnmPersonalID_c* id0, AnmPersonalID_c* id1) {
 }
 
 s32 mNpc_GetAnimalNum() {
-    Animal_c* animal = common_data.animals;
+    Animal_c* animal = common_data.save.animals;
     s32 num = 0;
     s32 i;
 
@@ -189,7 +191,7 @@ void mNpc_SetParentName(Animal_c* animal, PersonalID_c* parentId) {
 }
 
 void mNpc_SetParentNameAllAnimal() {
-    Animal_c* animal = common_data.animals;
+    Animal_c* animal = common_data.save.animals;
     PrivateInfo* priv = common_data.privateInfo;
     s32 i;
 
@@ -266,7 +268,7 @@ s32 mNpc_CheckFreeAnimalMemory(Anmmem_c* memory) {
 
 void mNpc_RenewalAnimalMemory() {
     PrivateInfo* priv;
-    Animal_c* animal = common_data.animals;
+    Animal_c* animal = common_data.save.animals;
     Anmmem_c* memory;
     s32 i;
     s32 j;
@@ -278,7 +280,7 @@ void mNpc_RenewalAnimalMemory() {
         for (j = 0; j < ANIMAL_MEMORY_NUM; j++) {
             if (mNpc_CheckFreeAnimalMemory(memory) == FALSE &&
                 mLd_CheckThisLand(memory->memoryPlayerId.landName, memory->memoryPlayerId.landId) == TRUE) {
-                priv = common_data.saveFilePrivateInfo;
+                priv = common_data.save.saveFilePrivateInfo;
 
                 for (k = 0; k < PLAYER_NUM; k++) {
                     if (mPr_NullCheckPersonalID(&priv->playerId) == FALSE &&
@@ -425,9 +427,9 @@ void mNpc_SetAnimalLastTalk(Animal_c* animal) {
 
         if (memory != NULL) {
             lbRTC_TimeCopy(&memory->lastSpeakTime, &common_data.time.rtcTime);
-            mLd_CopyLandName(memory->land.name, common_data.landInfo.name);
-            memory->land.id = common_data.landInfo.id;
-            memory->savedTownTune = common_data.melody;
+            mLd_CopyLandName(memory->land.name, common_data.save.landInfo.name);
+            memory->land.id = common_data.save.landInfo.id;
+            memory->savedTownTune = common_data.save.melody;
         }
     }
 }
@@ -441,7 +443,7 @@ void mNpc_SetAnimalPersonalID2Memory(AnmPersonalID_c* anmId) {
         id = mNpc_SearchAnimalPersonalID(anmId);
 
         if (id != -1) {
-            animal = &common_data.animals[id];
+            animal = &common_data.save.animals[id];
             id = mNpc_GetAnimalMemoryIdx(&priv->playerId, animal->memories, ANIMAL_MEMORY_NUM);
 
             if (id == -1) {
@@ -539,7 +541,7 @@ s32 mNpc_GetAnimalMemoryFriend_Land_Sex(Anmmem_c* memory, s32 num, s32 sex) {
         if (mNpc_CheckFreeAnimalMemory(memory) == FALSE) {
             id = mPr_GetPrivateIdx(&memory->memoryPlayerId);
 
-            if (id != -1 && common_data.saveFilePrivateInfo[id].gender == sex &&
+            if (id != -1 && common_data.save.saveFilePrivateInfo[id].gender == sex &&
                 mNpc_SelectBestFriend(&bestFriend, memory, &bestFriendship) == TRUE) {
                 res = i;
             }
@@ -702,17 +704,17 @@ s32 mNpc_SearchAnimalinfo(Animal_c* animal, u16 npcName, s32 count) {
 Animal_c* mNpc_GetAnimalInfoP(u16 id) {
     UNUSED s32 pad;
     Animal_c* animal = NULL;
-    s32 idx = mNpc_SearchAnimalinfo(common_data.animals, id, ANIMAL_NUM_MAX);
+    s32 idx = mNpc_SearchAnimalinfo(common_data.save.animals, id, ANIMAL_NUM_MAX);
 
     if (idx != -1) {
-        animal = common_data.animals + idx;
+        animal = common_data.save.animals + idx;
     }
 
     return animal;
 }
 
 s32 mNpc_SearchAnimalPersonalID(AnmPersonalID_c* id) {
-    Animal_c* animal = common_data.animals;
+    Animal_c* animal = common_data.save.animals;
     s32 res = -1;
     s32 i;
 
@@ -741,14 +743,14 @@ AnmPersonalID_c* mNpc_GetOtherAnimalPersonalIDOtherBlock(AnmPersonalID_c* pids, 
     s32 i;
     UNUSED s32 pad2[2];
     s32 valid;
-    Animal_c* animal = common_data.animals;
+    Animal_c* animal = common_data.save.animals;
     s32 tempHome;
     s32 homesInBlock;
 
     otherId = NULL;
     homesInBlock = 0;
     ids = count;
-    npcMax = common_data.nowNpcMax;
+    npcMax = common_data.save.nowNpcMax;
     bitfield = 0xFFFF;
 
     if ((blockX == 0xFF) || (blockY == 0xFF)) {
@@ -786,7 +788,7 @@ AnmPersonalID_c* mNpc_GetOtherAnimalPersonalIDOtherBlock(AnmPersonalID_c* pids, 
         }
     }
     if (((ids + homesInBlock) < npcMax) && (count < ANIMAL_NUM_MAX)) {
-        animal = common_data.animals;
+        animal = common_data.save.animals;
         tempHome = fqrand() * ((npcMax - ids) - homesInBlock);
 
         for (j = 0; j < ANIMAL_NUM_MAX; j++) {
@@ -832,7 +834,7 @@ AnmPersonalID_c* mNpc_GetOtherAnimalPersonalID(AnmPersonalID_c* pids, s32 count)
 }
 
 void mNpc_SetAnimalThisLand(Animal_c* animal, s32 count) {
-    LandInfo* landInfo = &common_data.landInfo;
+    LandInfo* landInfo = &common_data.save.landInfo;
 
     for (; count != 0; count--) {
         if (!mNpc_CheckFreeAnimalPersonalID(&animal->id)) {
@@ -845,7 +847,7 @@ void mNpc_SetAnimalThisLand(Animal_c* animal, s32 count) {
 }
 
 s32 mNpc_GetSameLooksNum(u8 looks) {
-    Animal_c* animal = common_data.animals;
+    Animal_c* animal = common_data.save.animals;
     s32 i;
     s32 num = 0;
 
@@ -1055,7 +1057,7 @@ s32 mNpc_SendMailtoNpc(Mail_c* mail) {
     Animal_c* anm;
 
     if (mMl_get_npcinfo_from_mail_name(&anmId, &mail->header.recipient) == TRUE) {
-        anm = common_data.animals;
+        anm = common_data.save.animals;
         anmIdx = mNpc_SearchAnimalPersonalID(&anmId);
 
         if (anmIdx != -1) {
@@ -1307,7 +1309,7 @@ s32 mNpc_CheckLetterTime(lbRTC_ymd_t* letterDate, lbRTC_time_c* rtcTime) {
 }
 
 void mNpc_Remail() {
-    Animal_c* animal = common_data.animals;
+    Animal_c* animal = common_data.save.animals;
     Anmremail* remail;
     PrivateInfo* priv = common_data.privateInfo;
     Anmmem_c* memory;
@@ -1411,7 +1413,7 @@ s32 mNpc_SendEventPresentMail(PersonalID_c* pid, s32 playerNo, AnmPersonalID_c* 
     looks = anmId->looks;
     res = FALSE;
 
-    home = &common_data.homes[mHS_get_arrange_idx(playerNo)];
+    home = &common_data.save.homes[mHS_get_arrange_idx(playerNo)];
 
     if (mPr_CheckCmpPersonalID(pid, &home->ownerID) == TRUE) {
 
@@ -1451,7 +1453,7 @@ void mNpc_SendEventPresentMailSex(s32* selected, u8* type, Animal_c* animal, Npc
 s32 mNpc_SendEventPresentMail_common(NpcSex sexType) {
     static NpcSex sex[] = { NPC_SEX_FEMALE, NPC_SEX_MALE };
 
-    Animal_c* animal = common_data.animals;
+    Animal_c* animal = common_data.save.animals;
     PersonalID_c* pid;
     s32 otherSexBestFriends[ANIMAL_NUM_MAX];
     u8 types[ANIMAL_NUM_MAX];
@@ -1474,7 +1476,7 @@ s32 mNpc_SendEventPresentMail_common(NpcSex sexType) {
     }
 
     for (i = 0; i < 3; i++) {
-        animal = common_data.animals;
+        animal = common_data.save.animals;
 
         for (j = 0; j < ANIMAL_NUM_MAX; j++) {
             if (otherSexBestFriends[j] >= 0 && types[j] == i) {
@@ -1534,7 +1536,7 @@ s32 mNpc_SendBirthdayCard(PersonalID_c* pid, s32 playerNo, AnmPersonalID_c* anm_
     s32 freeIdx;
     s32 res = FALSE;
 
-    home = &common_data.homes[mHS_get_arrange_idx(playerNo)];
+    home = &common_data.save.homes[mHS_get_arrange_idx(playerNo)];
 
     if (mPr_NullCheckPersonalID(pid) == FALSE && mPr_CheckCmpPersonalID(pid, &home->ownerID) == TRUE) {
         freeIdx = mMl_chk_mail_free_space(home->mailbox, 10);
@@ -1557,7 +1559,7 @@ s32 mNpc_SendEventBirthdayCard(UNUSED PersonalID_c* pid) {
 }
 
 s32 mNpc_SendEventBirthdayCard2(PersonalID_c* pid, s32 playerNo) {
-    Animal_c* animal = common_data.animals;
+    Animal_c* animal = common_data.save.animals;
     s32 res = FALSE;
     s32 idx;
     s32 i;
@@ -1602,7 +1604,7 @@ s32 mNpc_SendEventXmasCard(PersonalID_c* pid, s32 playerNo) {
     s32 res = FALSE;
 
     if (mPr_NullCheckPersonalID(pid) == FALSE) {
-        home = &common_data.homes[mHS_get_arrange_idx(playerNo)];
+        home = &common_data.save.homes[mHS_get_arrange_idx(playerNo)];
 
         if (mPr_CheckCmpPersonalID(pid, &home->ownerID) == TRUE) {
             freeSpace = mMl_chk_mail_free_space(home->mailbox, 10);
@@ -1749,8 +1751,8 @@ void mNpc_SetDefAnimalInfo(Animal_c* animal, u16 npcId, u8 looks, NpcDefaultData
         animal->id.looks = looks;
         animal->cloth = defaultData->cloth;
         mString_Load_StringFromRom(animal->catchphrase, ANIMAL_CATCHPHRASE_LEN, defaultData->catchphraseIdx);
-        animal->id.landId = common_data.landInfo.id;
-        mLd_CopyLandName(animal->id.landName, common_data.landInfo.name);
+        animal->id.landId = common_data.save.landInfo.id;
+        mLd_CopyLandName(animal->id.landName, common_data.save.landInfo.name);
     }
 }
 
@@ -1763,13 +1765,13 @@ void mNpc_SetDefAnimal(Animal_c* animal, u16 npcId, NpcDefaultData* defaultData)
 }
 
 void mNpc_SetHaveAppeared(u16 npcId) {
-    u8* usedTable = common_data.npcUsedTable;
+    u8* usedTable = common_data.save.npcUsedTable;
 
     if (ACTOR_FGNAME_GET_F000(npcId) == FGNAME_F000_E) {
         s32 idx = npcId & 0xFFF;
         s32 i = idx / 8;
 
-        if (i < ARRAY_COUNT(common_data.npcUsedTable)) {
+        if (i < ARRAY_COUNT(common_data.save.npcUsedTable)) {
             usedTable += i;
             idx &= 7;
             *usedTable |= 1 << idx;
@@ -1779,10 +1781,10 @@ void mNpc_SetHaveAppeared(u16 npcId) {
 
 s32 mNpc_GetHaveAppeared_idx(s32 idx) {
     s32 res = TRUE;
-    u8* usedTable = common_data.npcUsedTable;
+    u8* usedTable = common_data.save.npcUsedTable;
     s32 i = idx / 8;
 
-    if (i < ARRAY_COUNT(common_data.npcUsedTable)) {
+    if (i < ARRAY_COUNT(common_data.save.npcUsedTable)) {
         usedTable += i;
         res = (*usedTable >> (idx & 7)) & 1;
     }
@@ -1808,7 +1810,7 @@ s32 mNpc_GetLooks2NotHaveAppearedNum(u8 id) {
 void mNpc_ResetHaveAppeared_common(u8* npcUsedTable, Animal_c* animal) {
     s32 i;
 
-    bzero(npcUsedTable, sizeof(common_data.npcUsedTable));
+    bzero(npcUsedTable, sizeof(common_data.save.npcUsedTable));
     for (i = 0; i < ANIMAL_NUM_MAX; i++) {
         if (mNpc_CheckFreeAnimalInfo(animal) == FALSE) {
             mNpc_SetHaveAppeared(animal->id.npcId);
@@ -1828,7 +1830,7 @@ void mNpc_ResetHaveAppeared() {
     }
 
     if (i == NPC_NUM) {
-        mNpc_ResetHaveAppeared_common(common_data.npcUsedTable, common_data.animals);
+        mNpc_ResetHaveAppeared_common(common_data.save.npcUsedTable, common_data.save.animals);
     }
 }
 
@@ -1989,7 +1991,7 @@ s32 mNpc_BlockNum2ReservedUtNum(s32* utX, s32* utZ, s32 bx, s32 bz) {
 }
 
 void mNpc_MakeReservedListBeforeFieldct(Anmhome_c* reserved, s32 reservedNum, u8* reservedCount) {
-    Foreground* fg = &common_data.foreground[0][0];
+    Foreground* fg = &common_data.save.foreground[0][0];
     Anmhome_c* reservedp = reserved;
     u16* item;
     u8 num = 0;
@@ -2104,7 +2106,7 @@ void mNpc_BuildHouseBeforeFieldct(u16 npcId, s32 bx, s32 bz, s32 utX, s32 utZ) {
     if (bx >= 0 && bx < FG_BLOCK_X_NUM && bz >= 0 && bz < FG_BLOCK_Z_NUM && utX > 0 && utX < (UT_X_NUM - 1) &&
         utZ > 0 && utZ < (UT_Z_NUM - 1)) {
         set_fg[0] = house;
-        fg = &common_data.foreground[bz][bx];
+        fg = &common_data.save.foreground[bz][bx];
 
         deposit = mFI_GetDepositP(bx + 1, bz + 1);
 
@@ -2132,15 +2134,15 @@ void mNpc_DestroyHouse(Anmhome_c* home) {
         utZ < (UT_Z_NUM - 1)) {
         u16 reserveNo = mFM_GetReseveName(home->blockX, home->blockZ);
 
-        common_data.foreground[bz][bx].items[utZ][utX] = reserveNo;
-        common_data.foreground[bz][bx].items[utZ + 1][utX - 1] = 0;
-        common_data.foreground[bz][bx].items[utZ + 1][utX] = 0;
-        common_data.foreground[bz][bx].items[utZ + 1][utX + 1] = 0;
-        common_data.foreground[bz][bx].items[utZ][utX - 1] = 0;
-        common_data.foreground[bz][bx].items[utZ][utX + 1] = 0;
-        common_data.foreground[bz][bx].items[utZ - 1][utX - 1] = 0;
-        common_data.foreground[bz][bx].items[utZ - 1][utX] = 0;
-        common_data.foreground[bz][bx].items[utZ - 1][utX + 1] = 0;
+        common_data.save.foreground[bz][bx].items[utZ][utX] = reserveNo;
+        common_data.save.foreground[bz][bx].items[utZ + 1][utX - 1] = 0;
+        common_data.save.foreground[bz][bx].items[utZ + 1][utX] = 0;
+        common_data.save.foreground[bz][bx].items[utZ + 1][utX + 1] = 0;
+        common_data.save.foreground[bz][bx].items[utZ][utX - 1] = 0;
+        common_data.save.foreground[bz][bx].items[utZ][utX + 1] = 0;
+        common_data.save.foreground[bz][bx].items[utZ - 1][utX - 1] = 0;
+        common_data.save.foreground[bz][bx].items[utZ - 1][utX] = 0;
+        common_data.save.foreground[bz][bx].items[utZ - 1][utX + 1] = 0;
     }
 }
 
@@ -2182,7 +2184,7 @@ void mNpc_InitNpcData() {
     u8 reservedNum = 0;
 
     mNpc_MakeReservedListBeforeFieldct(reserved, ARRAY_COUNT(reserved), &reservedNum);
-    mNpc_SetNpcHome(common_data.animals, reserved, reservedNum);
+    mNpc_SetNpcHome(common_data.save.animals, reserved, reservedNum);
 }
 
 void mNpc_InitNpcList() {
@@ -2282,12 +2284,12 @@ void mNpc_SetNpcinfo(Actor* actor, s8 npcInfoIdx) {
             NpcEvent* eventNpc = mNpc_GetSameEventNpc(npcId);
 
             if (eventNpc != NULL) {
-                npcInfoIdx = mNpc_SearchAnimalinfo(common_data.animals, eventNpc->npcId, ANIMAL_NUM_MAX);
+                npcInfoIdx = mNpc_SearchAnimalinfo(common_data.save.animals, eventNpc->npcId, ANIMAL_NUM_MAX);
             }
         }
 
         if (npcInfoIdx >= 0 && npcInfoIdx < ANIMAL_NUM_MAX) {
-            npc->npcInfo.animal = &common_data.animals[npcInfoIdx];
+            npc->npcInfo.animal = &common_data.save.animals[npcInfoIdx];
             npc->npcInfo.list = &common_data.npclist[npcInfoIdx];
         } else {
             npc->npcInfo.animal = NULL;
@@ -2315,7 +2317,7 @@ void mNpc_AddNpc_inNpcRoom(FieldMakeMoveActor* moveActor, u8 bx, u8 bz) {
                 houseOwnerId = common_data.houseOwnerName;
                 if ((idx < ANIMAL_NUM_MAX) && (houseOwnerId != 0xFFFF) && (houseOwnerId != 0)) {
                     if (mEvNM_CheckJointEvent(houseOwnerId) != 1) {
-                        animalId = mNpc_SearchAnimalinfo(common_data.animals, houseOwnerId, ANIMAL_NUM_MAX);
+                        animalId = mNpc_SearchAnimalinfo(common_data.save.animals, houseOwnerId, ANIMAL_NUM_MAX);
                         if (animalId != -1) {
                             moveActor->nameId = houseOwnerId;
                             moveActor->utX = 4;
@@ -2330,7 +2332,7 @@ void mNpc_AddNpc_inNpcRoom(FieldMakeMoveActor* moveActor, u8 bx, u8 bz) {
                 animalIdInField = func_8008033C_jp(0xE, 0xF);
                 if (animalIdInField != NULL) {
                     npcId = *animalIdInField;
-                    currentNpc = common_data.animals[npcId].id.npcId;
+                    currentNpc = common_data.save.animals[npcId].id.npcId;
                     func_80082BD8_jp(&currentNpc, 0xE, npcId, 0);
                     moveActor->nameId = currentNpc;
                     moveActor->utX = 4;
@@ -2353,7 +2355,7 @@ void mNpc_RenewalNpcRoom(s16* wallFloor) {
 
     if ((fieldId & 0xF000) == 0x4000) {
         if ((ownerName != 0) && (ownerName != 0xFFFF)) {
-            npcIdx = mNpc_SearchAnimalinfo(common_data.animals, ownerName, ANIMAL_NUM_MAX);
+            npcIdx = mNpc_SearchAnimalinfo(common_data.save.animals, ownerName, ANIMAL_NUM_MAX);
             wallId = common_data.npclist[npcIdx].houseData.wallId;
             floorId = common_data.npclist[npcIdx].houseData.floorId;
             *wallFloor = floorId | (wallId << 8);
@@ -2381,7 +2383,7 @@ void mNpc_RenewalSetNpc(Actor* actor) {
 }
 
 s32 mNpc_GetFriendAnimalNum(PersonalID_c* pid) {
-    Animal_c* animal = common_data.animals;
+    Animal_c* animal = common_data.save.animals;
     s32 num = 0;
     s32 i;
 
@@ -2400,7 +2402,7 @@ s32 mNpc_GetFriendAnimalNum(PersonalID_c* pid) {
 }
 
 s32 mNpc_CheckFriendAllAnimal(PersonalID_c* pid) {
-    s32 nowNpcMax = common_data.nowNpcMax;
+    s32 nowNpcMax = common_data.save.nowNpcMax;
     s32 friendNum = mNpc_GetFriendAnimalNum(pid);
 
     if (nowNpcMax <= friendNum) {
@@ -2469,7 +2471,7 @@ u16 mNpc_DecideNpcFurniture(FieldMakeFGData** data, NpcList* npcList, s32 count)
 
 void mNpc_SetNpcFurnitureRandom(FieldMakeFGData** data, s32 base) {
     NpcList* npclist = common_data.npclist;
-    Animal_c* animal = common_data.animals;
+    Animal_c* animal = common_data.save.animals;
     s32 i;
 
     for (i = 0; i < ANIMAL_NUM_MAX; i++) {
@@ -2501,7 +2503,7 @@ Animal_c* mNpc_GetInAnimalP() {
 }
 
 s32 mNpc_DecideRemoveAnimalNo_Friend(Animal_c* animal, s32 metFlag) {
-    PrivateInfo* priv = common_data.saveFilePrivateInfo;
+    PrivateInfo* priv = common_data.save.saveFilePrivateInfo;
     s32 res = -1;
     s32 playerNumber = 0;
     s32 possibleNum = 0;
@@ -2520,7 +2522,7 @@ s32 mNpc_DecideRemoveAnimalNo_Friend(Animal_c* animal, s32 metFlag) {
     if (playerNumber > 0) {
         for (i = 0; i < ANIMAL_NUM_MAX; i++) {
             if (mNpc_CheckFreeAnimalInfo(animal) == FALSE) {
-                priv = common_data.saveFilePrivateInfo;
+                priv = common_data.save.saveFilePrivateInfo;
                 met = 0;
 
                 for (j = 0; j < PLAYER_NUM; j++) {
@@ -2588,8 +2590,8 @@ u8 mNpc_DecideRemoveAnimalNo(Animal_c* animal, s32 max) {
 }
 
 void mNpc_SetRemoveAnimalNo(Animal_c* animal) {
-    u8* removalIdx = &common_data.removeAnimalIdx;
-    u8 nowMax = common_data.nowNpcMax;
+    u8* removalIdx = &common_data.save.removeAnimalIdx;
+    u8 nowMax = common_data.save.nowNpcMax;
 
     if ((nowMax >= 6) && (*removalIdx == 0xFF)) {
         s32 removeNo = mNpc_DecideRemoveAnimalNo_Friend(animal, TRUE);
@@ -2649,7 +2651,7 @@ s32 mNpc_CheckGoodbyAnimalMemoryNum(Animal_c* a0, Animal_c* a1) {
 
 s32 mNpc_GetGoodbyAnimalIdx() {
     UNUSED s32 pad;
-    Animal_c* animal = common_data.animals;
+    Animal_c* animal = common_data.save.animals;
     Animal_c* otherAnimal = NULL;
     s32 res0;
     s32 res1;
@@ -2659,7 +2661,7 @@ s32 mNpc_GetGoodbyAnimalIdx() {
     s32 i;
 
     for (i = 0; i < ANIMAL_NUM_MAX; i++, animal++) {
-        if ((i != (u32)&common_data.removeAnimalIdx) && (mNpc_CheckFreeAnimalInfo(animal) == FALSE)) {
+        if ((i != (u32)&common_data.save.removeAnimalIdx) && (mNpc_CheckFreeAnimalInfo(animal) == FALSE)) {
             if (otherAnimal != NULL) {
                 if (mNpc_CheckRemoveExp(animal) == 0) {
                     if (mNpc_CheckRemoveExp(otherAnimal) != 0) {
@@ -2742,7 +2744,7 @@ void mNpc_FirstClearGoodbyMail() {
 }
 
 void mNpc_SetGoodbyAnimalMail(AnmGoodbyeMail* mail, Animal_c* animal) {
-    PrivateInfo* priv = common_data.saveFilePrivateInfo;
+    PrivateInfo* priv = common_data.save.saveFilePrivateInfo;
     s32 i;
 
     if ((animal != NULL) && (mNpc_CheckFreeAnimalPersonalID(&animal->id) == FALSE)) {
@@ -2767,7 +2769,7 @@ s32 mNpc_SetGoodbyMailData(Mail_c* mail, PersonalID_c* pid, AnmPersonalID_c* anm
         mNpc_GetNpcWorldNameAnm(Goodby_animal_name, anm_id);
         mHandbill_Set_free_str(0, pid->playerName, PLAYER_NAME_LEN);
         mHandbill_Set_free_str(1, Goodby_animal_name, ANIMAL_NAME_LEN);
-        mHandbill_Set_free_str(3, common_data.landInfo.name, LAND_NAME_SIZE);
+        mHandbill_Set_free_str(3, common_data.save.landInfo.name, LAND_NAME_SIZE);
         mNpc_LoadMailDataCommon2(mail, pid, anm_id, 0, mNpc_GetPaperType(), mailNo);
         res = TRUE;
     }
@@ -2780,7 +2782,7 @@ s32 mNpc_SendGoodbyAnimalMailOne(Mail_c* mail, PrivateInfo* priv, s32 playerNo, 
     UNUSED s32 pad;
     s32 res = FALSE;
 
-    home = &common_data.homes[mHS_get_arrange_idx(playerNo)];
+    home = &common_data.save.homes[mHS_get_arrange_idx(playerNo)];
 
     if ((mPr_NullCheckPersonalID(&priv->playerId) == FALSE) &&
         (mPr_CheckCmpPersonalID(&priv->playerId, &home->ownerID) == TRUE)) {
@@ -2798,7 +2800,7 @@ s32 mNpc_SendGoodbyAnimalMailOne(Mail_c* mail, PrivateInfo* priv, s32 playerNo, 
 }
 
 void mNpc_SendGoodbyAnimalMail(AnmGoodbyeMail* mail) {
-    PrivateInfo* priv = common_data.saveFilePrivateInfo;
+    PrivateInfo* priv = common_data.save.saveFilePrivateInfo;
     s32 i;
 
     if (mNpc_CheckFreeAnimalPersonalID(&mail->id) == FALSE) {
@@ -2826,17 +2828,17 @@ void mNpc_GetRemoveAnimal(Animal_c* transferAnimal, s32 movingOut) {
     s32 newAnimal;
     Animal_c* animal;
     s32 freeAnimalIdx;
-    u8* removeAnimalIdx = &common_data.removeAnimalIdx;
-    u8* nowMax = &common_data.nowNpcMax;
+    u8* removeAnimalIdx = &common_data.save.removeAnimalIdx;
+    u8* nowMax = &common_data.save.nowNpcMax;
     s32 i;
 
-    animal = common_data.animals;
+    animal = common_data.save.animals;
     newAnimal = TRUE;
     priv = common_data.privateInfo;
     if (mLd_PlayerManKindCheck() == 0) {
         if (movingOut == 1) {
             if (*removeAnimalIdx != 0xFF) {
-                animal = &common_data.animals[*removeAnimalIdx];
+                animal = &common_data.save.animals[*removeAnimalIdx];
                 animal->isMoving = FALSE;
                 mNpc_CopyAnimalInfo(transferAnimal, animal);
                 mNpc_DestroyHouse(&animal->homeInfo);
@@ -2855,7 +2857,7 @@ void mNpc_GetRemoveAnimal(Animal_c* transferAnimal, s32 movingOut) {
                 animal++;
             }
 
-            if (transferAnimal->id.npcId == common_data.lastRemovedAnimalId.npcId) {
+            if (transferAnimal->id.npcId == common_data.save.lastRemovedAnimalId.npcId) {
                 newAnimal = FALSE;
             }
         } else {
@@ -2863,8 +2865,8 @@ void mNpc_GetRemoveAnimal(Animal_c* transferAnimal, s32 movingOut) {
         }
 
         if (newAnimal == TRUE) {
-            animal = common_data.animals;
-            freeAnimalIdx = mNpc_GetFreeAnimalInfo(common_data.animals, ANIMAL_NUM_MAX);
+            animal = common_data.save.animals;
+            freeAnimalIdx = mNpc_GetFreeAnimalInfo(common_data.save.animals, ANIMAL_NUM_MAX);
             if (freeAnimalIdx == -1) {
                 animal += mNpc_GetGoodbyAnimalIdx();
                 mNpc_DestroyHouse(&animal->homeInfo);
@@ -2872,7 +2874,7 @@ void mNpc_GetRemoveAnimal(Animal_c* transferAnimal, s32 movingOut) {
                 mNpc_SendRegisteredGoodbyMail();
             } else {
                 animal += freeAnimalIdx;
-                mNpc_AddNowNpcMax(&common_data.nowNpcMax);
+                mNpc_AddNowNpcMax(&common_data.save.nowNpcMax);
             }
             mNpc_ClearAnimalInfo(animal);
             mNpc_CopyAnimalInfo(animal, transferAnimal);
@@ -2895,7 +2897,7 @@ s32 mNpc_CheckBuildHouse(s32 blockX, s32 blockZ, u8 utX, u8 utZ) {
     s32 res = FALSE;
 
     if ((blockX >= 0) && (blockX < 5) && (blockZ >= 0) && (blockZ < 6) && (utX < 0x10) && (utZ < 0x10)) {
-        u16 item = common_data.foreground[blockZ][blockX].items[utZ][utX];
+        u16 item = common_data.save.foreground[blockZ][blockX].items[utZ][utX];
 
         if ((item >= 0x5810) && (item < 0x5825)) {
             res = TRUE;
@@ -2907,20 +2909,20 @@ s32 mNpc_CheckBuildHouse(s32 blockX, s32 blockZ, u8 utX, u8 utZ) {
 void mNpc_SetReturnAnimal(Animal_c* returnAnimal) {
     Anmhome_c* homeInfo;
     Animal_c* foundAnimal = NULL;
-    u8* nowMax = &common_data.nowNpcMax;
+    u8* nowMax = &common_data.save.nowNpcMax;
     Animal_c* animal;
     s32 foundAnimalIdx;
 
     if (mLd_PlayerManKindCheck() == FALSE && mNpc_CheckFreeAnimalInfo(returnAnimal) == FALSE) {
         if (returnAnimal->isMoving == 0) {
-            animal = common_data.animals;
+            animal = common_data.save.animals;
             foundAnimalIdx = mNpc_SearchAnimalinfo(animal, returnAnimal->id.npcId, ANIMAL_NUM_MAX);
             if (foundAnimalIdx != -1) {
                 foundAnimal = &animal[foundAnimalIdx];
                 mNpc_DestroyHouse(&foundAnimal->homeInfo);
                 (*nowMax)--;
-                if (common_data.removeAnimalIdx == foundAnimalIdx) {
-                    common_data.removeAnimalIdx = 0xFF;
+                if (common_data.save.removeAnimalIdx == foundAnimalIdx) {
+                    common_data.save.removeAnimalIdx = 0xFF;
                 }
             } else if ((*nowMax) >= ANIMAL_NUM_MAX) {
                 foundAnimalIdx = mNpc_GetGoodbyAnimalIdx();
@@ -2928,8 +2930,8 @@ void mNpc_SetReturnAnimal(Animal_c* returnAnimal) {
                 mNpc_SetGoodbyAnimalMail(&l_mnpc_goodby_mail, foundAnimal);
                 mNpc_DestroyHouse(&foundAnimal->homeInfo);
                 (*nowMax)--;
-                if (foundAnimalIdx == common_data.removeAnimalIdx) {
-                    common_data.removeAnimalIdx = 0xFF;
+                if (foundAnimalIdx == common_data.save.removeAnimalIdx) {
+                    common_data.save.removeAnimalIdx = 0xFF;
                 }
             } else {
                 foundAnimalIdx = mNpc_GetFreeAnimalInfo(animal, ANIMAL_NUM_MAX);
@@ -2958,7 +2960,7 @@ void mNpc_SetReturnAnimal(Animal_c* returnAnimal) {
                 }
             }
         } else {
-            mNpc_CopyAnimalPersonalID(&common_data.lastRemovedAnimalId, &returnAnimal->id);
+            mNpc_CopyAnimalPersonalID(&common_data.save.lastRemovedAnimalId, &returnAnimal->id);
         }
         mNpc_ClearAnimalInfo(returnAnimal);
     }
@@ -3056,7 +3058,7 @@ void mNpc_GetNpcWorldName(char* name, Npc* npc) {
 }
 
 void mNpc_GetRandomAnimalName(char* dst) {
-    Animal_c* animal = common_data.animals;
+    Animal_c* animal = common_data.save.animals;
     u16 bitfield = 0;
     s32 num = 0;
     s32 select;
@@ -3073,7 +3075,7 @@ void mNpc_GetRandomAnimalName(char* dst) {
         }
 
         if (num > 0) {
-            animal = common_data.animals;
+            animal = common_data.save.animals;
             select = RANDOM(num);
 
             for (i = 0; i < ANIMAL_NUM_MAX; i++) {
@@ -3093,7 +3095,7 @@ void mNpc_GetRandomAnimalName(char* dst) {
 
 void mNpc_GetAnimalPlateName(char* dst, xyz_t wpos) {
     UNUSED s32 pad;
-    Animal_c* animal = common_data.animals;
+    Animal_c* animal = common_data.save.animals;
     s32 bx;
     s32 bz;
     s32 utX;
@@ -3237,12 +3239,12 @@ void mNpc_GetMsg(UNUSED s32 arg) {
 }
 
 void mNpc_InitNpcAllInfo(s32 mallocFlag) {
-    common_data.nowNpcMax = NPC_LOOKS_NUM;
-    common_data.removeAnimalIdx = 0xFF;
-    mNpc_ClearAnimalPersonalID(&common_data.lastRemovedAnimalId);
-    mNpc_ClearAnyAnimalInfo(common_data.animals, ANIMAL_NUM_MAX);
-    mNpc_DecideLivingNpcMax(common_data.animals, NPC_LOOKS_NUM, mallocFlag);
-    mNpc_SetNpcNameID(common_data.animals, ANIMAL_NUM_MAX);
+    common_data.save.nowNpcMax = NPC_LOOKS_NUM;
+    common_data.save.removeAnimalIdx = 0xFF;
+    mNpc_ClearAnimalPersonalID(&common_data.save.lastRemovedAnimalId);
+    mNpc_ClearAnyAnimalInfo(common_data.save.animals, ANIMAL_NUM_MAX);
+    mNpc_DecideLivingNpcMax(common_data.save.animals, NPC_LOOKS_NUM, mallocFlag);
+    mNpc_SetNpcNameID(common_data.save.animals, ANIMAL_NUM_MAX);
 }
 
 s32 mNpc_CheckGrowFieldRank() {
@@ -3264,10 +3266,10 @@ s32 mNpc_CheckGrowFieldRank() {
 s32 mNpc_CheckGrow() {
     UNUSED s32 pad;
     lbRTC_time_c* rtcTime = &common_data.time.rtcTime;
-    lbRTC_time_c* lastGrowTime = &common_data.lastGrowTime;
+    lbRTC_time_c* lastGrowTime = &common_data.save.lastGrowTime;
     s32 res = FALSE;
 
-    if (common_data.nowNpcMax < ANIMAL_NUM_MAX) {
+    if (common_data.save.nowNpcMax < ANIMAL_NUM_MAX) {
         if (lbRTC_IsEqualTime(&mTM_rtcTime_clear_code, lastGrowTime, lbRTC_CHECK_ALL) == TRUE) {
             lbRTC_TimeCopy(lastGrowTime, rtcTime);
         } else if (mNpc_CheckGrowFieldRank() == TRUE) {
@@ -3317,7 +3319,7 @@ u8 mNpc_GetMinLooks(u8* bitfield, s32* minLooksNum) {
     }
 
     if (bitfield[0] == 0 && minLooksNum[0] == 0) {
-        mNpc_ResetHaveAppeared_common(common_data.npcUsedTable, common_data.animals);
+        mNpc_ResetHaveAppeared_common(common_data.save.npcUsedTable, common_data.save.animals);
 
         for (i = 0; i < NPC_LOOKS_NUM; i++) {
             bitfield[0] |= (1 << i);
@@ -3333,7 +3335,7 @@ u8 mNpc_GetMinLooks(u8* bitfield, s32* minLooksNum) {
 }
 
 NpcSex mNpc_GetMinSex() {
-    Animal_c* animal = common_data.animals;
+    Animal_c* animal = common_data.save.animals;
     s32 males = 0;
     s32 females = 0;
     NpcSex res;
@@ -3384,7 +3386,8 @@ s32 mNpc_GrowLooksNpcIdx(u8 looks) {
         for (i = 0; i < ARRAY_COUNT(candidate_table); i++) {
             for (j = 0; j < 8; j++) {
                 if (looks == *looks_table) {
-                    if ((mNpc_SearchAnimalinfo(common_data.animals, ((i * 8) + j) | 0xE000, ANIMAL_NUM_MAX) == -1) &&
+                    if ((mNpc_SearchAnimalinfo(common_data.save.animals, ((i * 8) + j) | 0xE000, ANIMAL_NUM_MAX) ==
+                         -1) &&
                         (mNpc_GetHaveAppeared_idx(npc_idx) == FALSE)) {
                         candidates++;
                         candidate_table[i] |= 1 << j;
@@ -3451,7 +3454,7 @@ void mNpc_SetAnimalInfoNpcIdx(Animal_c* animal, s32 idx) {
 }
 
 s32 mNpc_SetGrowNpc(u8 looks) {
-    Animal_c* animal = common_data.animals;
+    Animal_c* animal = common_data.save.animals;
     UNUSED s32 pad;
     s32 idx;
     s32 npcIdx;
@@ -3485,7 +3488,7 @@ void mNpc_Grow() {
 
     if (mNpc_CheckGrow() == TRUE) {
         mNpc_ResetHaveAppeared();
-        lbRTC_TimeCopy(&common_data.lastGrowTime, &common_data.time.rtcTime);
+        lbRTC_TimeCopy(&common_data.save.lastGrowTime, &common_data.time.rtcTime);
 
         minLooks = mNpc_GetMinLooks(&minLooksBitfield, &minLooksNum);
 
@@ -3528,8 +3531,8 @@ void mNpc_Grow() {
         growIdx = mNpc_SetGrowNpc(minLooks);
 
         if (growIdx >= 0 && growIdx < ANIMAL_NUM_MAX) {
-            mNpc_SetNpcNameID(&common_data.animals[growIdx], 1);
-            mNpc_AddNowNpcMax(&common_data.nowNpcMax);
+            mNpc_SetNpcNameID(&common_data.save.animals[growIdx], 1);
+            mNpc_AddNowNpcMax(&common_data.save.nowNpcMax);
         }
     }
 }
@@ -3835,7 +3838,7 @@ s32 mNpc_GetNpcFloorNo() {
     s32 floor_no = -1;
 
     if (((field_id & 0xF000) == 0x4000) && (owner_name != 0) && (owner_name != 0xFFFF)) {
-        s32 idx = mNpc_SearchAnimalinfo(common_data.animals, owner_name, ANIMAL_NUM_MAX);
+        s32 idx = mNpc_SearchAnimalinfo(common_data.save.animals, owner_name, ANIMAL_NUM_MAX);
 
         floor_no = common_data.npclist[idx].houseData.floorId;
     }
@@ -3845,7 +3848,7 @@ s32 mNpc_GetNpcFloorNo() {
 
 void mNpc_SetTalkBee() {
     if (common_data.beeStingFlag != TRUE) {
-        Animal_c* animal = common_data.animals;
+        Animal_c* animal = common_data.save.animals;
         NpcList* npclist = common_data.npclist;
         s32 i;
 
@@ -3893,7 +3896,7 @@ void mNpc_SetInsectCompleteTalk(NpcList* npclist) {
 }
 
 void mNpc_SetNpcHomeYpos() {
-    Animal_c* animal = common_data.animals;
+    Animal_c* animal = common_data.save.animals;
     NpcList* npclist = common_data.npclist;
     s32 i;
 
@@ -3910,13 +3913,13 @@ void mNpc_SetNpcHomeYpos() {
 void mNpc_PrintRemoveInfo(gfxprint* gfxprint) {
     Animal_c* remove_anm = NULL;
     Animal_c* in_anm = mNpc_GetInAnimalP();
-    u8 removeAnimalIdx = common_data.removeAnimalIdx;
+    u8 removeAnimalIdx = common_data.save.removeAnimalIdx;
 
     gfxprint_color(gfxprint, 200, 150, 50, 255);
     gfxprint_locate8x8(gfxprint, 3, 10);
 
     if (removeAnimalIdx < ANIMAL_NUM_MAX) {
-        remove_anm = &common_data.animals[removeAnimalIdx];
+        remove_anm = &common_data.save.animals[removeAnimalIdx];
     }
 
     if (remove_anm != NULL) {
@@ -3948,7 +3951,7 @@ void mNpc_PrintFriendship_fdebug(gfxprint* gfxprint) {
     int i;
 
     if (l_mnpc_animal_idx >= 0 && l_mnpc_animal_idx < ANIMAL_NUM_MAX) {
-        memory = common_data.animals[l_mnpc_animal_idx].memories;
+        memory = common_data.save.animals[l_mnpc_animal_idx].memories;
 
         if (memory != NULL) {
             gfxprint_color(gfxprint, 250, 100, 170, 255);

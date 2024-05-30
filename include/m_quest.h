@@ -78,7 +78,7 @@ void mQst_ClearNotSaveQuest(mQst_not_saved_c* quest);
 // void func_800BAE78_jp();
 UNK_RET mQst_CheckLimitbyPossessionIdx(s32 arg0);
 // void func_800BB0A8_jp();
-// void func_800BB0E8_jp();
+void func_800BB0E8_jp(void);
 // void func_800BB10C_jp();
 // void func_800BB270_jp();
 // void func_800BB3A4_jp();

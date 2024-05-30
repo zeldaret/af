@@ -30,4 +30,6 @@
 
 #define DECR(x) ((x) == 0 ? 0 : --(x))
 
+#define CHECK_FLAG_ALL(flags, mask) (((flags) & (mask)) == (mask))
+
 #endif
