@@ -35,14 +35,14 @@ typedef enum TrademarkState {
     /* 5 */ TRADEMARK_STATE_5,
 } TrademarkState;
 
-DoorData D_80805B20_jp = { 0x21, 4, 0, 0, { 0x884, 0xC8, 0x338 }, 0, 3, { 0, 0, 0 } };
-DoorData D_80805B34_jp = { 0x21, 4, 0, 0, { 0xC92, 0x28, 0xC02 }, 0, 3, { 0, 0, 0 } };
-DoorData D_80805B48_jp = { 0x21, 4, 0, 0, { 0x845, 0xA0, 0x5D0 }, 0, 3, { 0, 0, 0 } };
-DoorData D_80805B5C_jp = { 0x21, 4, 0, 0, { 0xB53, 0xA0, 0x44D }, 0, 3, { 0, 0, 0 } };
-DoorData D_80805B70_jp = { 0x21, 4, 0, 0, { 0x62A, 0x28, 0x9A8 }, 0, 3, { 0, 0, 0 } };
+DoorData demo_1_door_data = { SCENE_TITLE_DEMO, 4, 0, 0, { 0x884, 0xC8, 0x338 }, 0, 3, { 0, 0, 0 } };
+DoorData demo_2_door_data = { SCENE_TITLE_DEMO, 4, 0, 0, { 0xC92, 0x28, 0xC02 }, 0, 3, { 0, 0, 0 } };
+DoorData demo_3_door_data = { SCENE_TITLE_DEMO, 4, 0, 0, { 0x845, 0xA0, 0x5D0 }, 0, 3, { 0, 0, 0 } };
+DoorData demo_4_door_data = { SCENE_TITLE_DEMO, 4, 0, 0, { 0xB53, 0xA0, 0x44D }, 0, 3, { 0, 0, 0 } };
+DoorData demo_5_door_data = { SCENE_TITLE_DEMO, 4, 0, 0, { 0x62A, 0x28, 0x9A8 }, 0, 3, { 0, 0, 0 } };
 
 DoorData* l_demo_door_data_table[] = {
-    &D_80805B20_jp, &D_80805B34_jp, &D_80805B48_jp, &D_80805B5C_jp, &D_80805B70_jp,
+    &demo_1_door_data, &demo_2_door_data, &demo_3_door_data, &demo_4_door_data, &demo_5_door_data,
 };
 
 u8 B_80808560_jp[0x10000];
@@ -157,22 +157,22 @@ void trademark_goto_demo_scene(Game_Trademark* this) {
     SET_NEXT_GAMESTATE(&this->state, play_init, sizeof(Game_Play));
 }
 
-void func_80804EE0_jp(Game_Trademark* this, f32 arg1, f32 arg2, f32 arg3) {
-    xyz_t sp34;
-    xyz_t sp28;
-    xyz_t sp1C;
+void func_80804EE0_jp(Game_Trademark* this, f32 eyeX, f32 eyeY, f32 eyeZ) {
+    xyz_t eye;
+    xyz_t at;
+    xyz_t up;
 
-    sp34.x = arg1;
-    sp34.y = arg2;
-    sp34.z = arg3;
-    sp1C.z = 0.0f;
-    sp1C.y = 1.0f;
-    sp1C.x = 0.0f;
-    sp28.z = 0.0f;
-    sp28.y = 0.0f;
-    sp28.x = 0.0f;
+    eye.x = eyeX;
+    eye.y = eyeY;
+    eye.z = eyeZ;
+    up.z = 0.0f;
+    up.y = 1.0f;
+    up.x = 0.0f;
+    at.z = 0.0f;
+    at.y = 0.0f;
+    at.x = 0.0f;
     setPerspectiveView(&this->view, 15.0f, 10.0f, 12800.0f);
-    setLookAtView(&this->view, &sp34, &sp28, &sp1C);
+    setLookAtView(&this->view, &eye, &at, &up);
     showView(&this->view, 0xF);
 }
 

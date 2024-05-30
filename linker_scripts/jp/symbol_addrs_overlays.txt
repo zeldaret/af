@@ -255,11 +255,11 @@ trademark_init = 0x80805968; // type:func
 
 // .data
 
-D_80805B20_jp = 0x80805B20; // size:0x14
-D_80805B34_jp = 0x80805B34; // size:0x14
-D_80805B48_jp = 0x80805B48; // size:0x14
-D_80805B5C_jp = 0x80805B5C; // size:0x14
-D_80805B70_jp = 0x80805B70; // size:0x14
+demo_1_door_data = 0x80805B20; // size:0x14
+demo_2_door_data = 0x80805B34; // size:0x14
+demo_3_door_data = 0x80805B48; // size:0x14
+demo_4_door_data = 0x80805B5C; // size:0x14
+demo_5_door_data = 0x80805B70; // size:0x14
 l_demo_door_data_table = 0x80805B84; // size:0x14
 demo_npc_list = 0x80805B98; //
 demo_npc_num = 0x80805CB0; //
