@@ -1,5 +1,6 @@
 #include "m_trademark.h"
 
+#include "prevent_bss_reordering.h"
 #include "audio.h"
 #include "m_actor.h"
 #include "m_common_data.h"

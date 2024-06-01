@@ -4,7 +4,7 @@
 #include "m_name_table.h"
 #include "m_time.h"
 #include "m_player_lib.h"
-#include "6E2300.h"
+#include "m_room_type.h"
 #include "m_field_info.h"
 #include "6E3240.h"
 #include "69CB30.h"

@@ -36,6 +36,7 @@
 #include "m_snowman.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "sys_math.h"
+#include "m_melody.h"
 
 void famicom_emu_initial_common_data(void) {
     FamicomEmuCommonData* famicom = &common_data.save.famicomEmuCommonData;

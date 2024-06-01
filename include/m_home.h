@@ -66,7 +66,9 @@ typedef struct HomeBitfield {
 // Original name, taken from m_flashrom
 typedef struct mHm_hs_c {
     /* 0x000 */ PersonalID_c ownerID;
-    /* 0x010 */ UNK_TYPE1 unk_010[0x12];
+    /* 0x010 */ UNK_TYPE1 unk_010[0x4];
+    /* 0x014 */ u8 roomId;
+    /* 0x014 */ UNK_TYPE1 unk_015[0xD];
     /* 0x022 */ HomeBitfield unk_022;
     /* 0x024 */ u8 unk_024;
     /* 0x025 */ UNK_TYPE1 unk_025[0x3];

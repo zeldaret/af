@@ -107,13 +107,20 @@ typedef struct Clip_unk_07C {
     /* 0x00 */ Clip_unk_07C_unk_0 unk_0;
     /* 0x04 */ Clip_unk_07C_unk_4 unk_4;
 } Clip_unk_07C; // size >= 0x8
+typedef s32 (*Clip_unk_080_unk_04)(struct Game* game, u16 ftr, s32* utX, s32* utZ, u16* rotation,
+                                            s32* squareOffs, s32* layer);
 typedef void (*Clip_unk_080_unk_24)(void);
+typedef s32 (*Clip_unk_080_unk_28)(struct Game* game, u16 ftr, s32 res,s32 utX, s32 utZ, u16 rotation,
+                                            s32 squareOffs, s32 layer);
 typedef UNK_RET (*Clip_unk_080_unk_34)(struct FurnitureActor* furnitureActor, struct Actor* myHouseActor, struct Game_Play* game_play, f32 arg0, f32 arg1);
 
 typedef struct Clip_unk_080 {
-    /* 0x00 */ UNK_TYPE1 unk_00[0x24];
+    /* 0x00 */ UNK_TYPE1 unk_00[0x4];
+    /* 0x04 */ Clip_unk_080_unk_04 unk_04;
+    /* 0x08 */ UNK_TYPE1 unk_08[0x1C];
     /* 0x24 */ Clip_unk_080_unk_24 unk_24;
-    /* 0x28 */ UNK_TYPE1 unk_28[0xC]; 
+    /* 0x28 */ Clip_unk_080_unk_28 unk_28;
+    /* 0x2C */ UNK_TYPE1 unk_2C[0x8]; 
     /* 0x34 */ Clip_unk_080_unk_34 unk_34; // open close proc
 } Clip_unk_080; // size >= 0x8
 
