@@ -10,68 +10,67 @@ struct Game;
 #define FTR_NUM 947
 
 typedef enum mRmTp_FurnitureSize {
-    mRmTp_FTRSIZE_1x1,
-    mRmTp_FTRSIZE_1x2,
-    mRmTp_FTRSIZE_2x2,
-    mRmTp_FTRSIZE_MAX
+    /* 0 */ mRmTp_FTRSIZE_1x1,
+    /* 1 */ mRmTp_FTRSIZE_1x2,
+    /* 2 */ mRmTp_FTRSIZE_2x2,
+    /* 3 */ mRmTp_FTRSIZE_MAX
 } mRmTp_FurnitureSize;
 
 typedef enum mRmTp_Direction {
-    mRmTp_DIRECT_SOUTH,
-    mRmTp_DIRECT_EAST,
-    mRmTp_DIRECT_NORTH,
-    mRmTp_DIRECT_WEST,
-    mRmTp_DIRECT_MAX
+    /* 0 */ mRmTp_DIRECT_SOUTH,
+    /* 1 */ mRmTp_DIRECT_EAST,
+    /* 2 */ mRmTp_DIRECT_NORTH,
+    /* 3 */ mRmTp_DIRECT_WEST,
+    /* 4 */ mRmTp_DIRECT_MAX
 } mRmTp_Direction;
 
 typedef enum mRmTp_SEType {
-    mRmTp_FTR_SE_NONE,
-    mRmTp_FTR_SE_SOFT_CHAIR,
-    mRmTp_FTR_SE_HARD_CHAIR,
-    mRmTp_FTR_SE_BUBU_CHAIR,
-    mRmTp_FTR_SE_TOILET_CHAIR,
-    mRmTp_FTR_SE_MAX
+    /* 0 */ mRmTp_FTR_SE_NONE,
+    /* 1 */ mRmTp_FTR_SE_SOFT_CHAIR,
+    /* 2 */ mRmTp_FTR_SE_HARD_CHAIR,
+    /* 3 */ mRmTp_FTR_SE_BUBU_CHAIR,
+    /* 4 */ mRmTp_FTR_SE_TOILET_CHAIR,
+    /* 5 */ mRmTp_FTR_SE_MAX
 } mRmTp_SEType;
 
 typedef enum mRmTp_Action {
-    mRmTp_CHAIR_ACTION_SIT,
-    mRmTp_CHAIR_ACTION_STAND,
-
-    mRmTp_CHAIR_ACTION_MAX
+    /* 0 */    mRmTp_CHAIR_ACTION_SIT,
+    /* 1 */    mRmTp_CHAIR_ACTION_STAND,
+    /* 2 */    mRmTp_CHAIR_ACTION_MAX
 } mRmTp_Action;
 
 typedef enum mRmTp_BirthType {
-    mRmTp_BIRTH_TYPE_GRP_A,
-    mRmTp_BIRTH_TYPE_GRP_B,
-    mRmTp_BIRTH_TYPE_GRP_C,
-    mRmTp_BIRTH_TYPE_EVENT,
-    mRmTp_BIRTH_TYPE_BIRTHDAY,
-    mRmTp_BIRTH_TYPE_HALLOWEEN,
-    mRmTp_BIRTH_TYPE_HANIWA,
-    mRmTp_BIRTH_TYPE_LOTTERY,
-    mRmTp_BIRTH_TYPE_FTR_CLOTH,
-    mRmTp_BIRTH_TYPE_FTR_UMBRELLA,
-    mRmTp_BIRTH_TYPE_FTR_INSECT,
-    mRmTp_BIRTH_TYPE_FTR_FISH,
-    mRmTp_BIRTH_TYPE_SINGLE_FOSSIL,
-    mRmTp_BIRTH_TYPE_MULTI_FOSSIL,
-    mRmTp_BIRTH_TYPE_XMAS,
-    mRmTp_BIRTH_TYPE_SANTA,
-    mRmTp_BIRTH_TYPE_UNOBTAINABLE,
-    mRmTp_BIRTH_TYPE_SNOWMAN,
+    /* 00 */ mRmTp_BIRTH_TYPE_GRP_A,
+    /* 01 */ mRmTp_BIRTH_TYPE_GRP_B,
+    /* 02 */ mRmTp_BIRTH_TYPE_GRP_C,
+    /* 03 */ mRmTp_BIRTH_TYPE_EVENT,
+    /* 04 */ mRmTp_BIRTH_TYPE_BIRTHDAY,
+    /* 05 */ mRmTp_BIRTH_TYPE_HALLOWEEN,
+    /* 06 */ mRmTp_BIRTH_TYPE_HANIWA,
+    /* 07 */ mRmTp_BIRTH_TYPE_LOTTERY,
+    /* 08 */ mRmTp_BIRTH_TYPE_FTR_CLOTH,
+    /* 09 */ mRmTp_BIRTH_TYPE_FTR_UMBRELLA,
+    /* 10 */ mRmTp_BIRTH_TYPE_FTR_INSECT,
+    /* 11 */ mRmTp_BIRTH_TYPE_FTR_FISH,
+    /* 12 */ mRmTp_BIRTH_TYPE_SINGLE_FOSSIL,
+    /* 13 */ mRmTp_BIRTH_TYPE_MULTI_FOSSIL,
+    /* 14 */ mRmTp_BIRTH_TYPE_XMAS,
+    /* 15 */ mRmTp_BIRTH_TYPE_SANTA,
+    /* 16 */ mRmTp_BIRTH_TYPE_UNOBTAINABLE,
+    /* 17 */ mRmTp_BIRTH_TYPE_SNOWMAN,
 } mRmTp_BirthType;
 
 typedef struct mRmTp_FtrPlaceInfo {
-    s32 exists;
-    s32 utX;
-    s32 utZ;
-} mRmTp_FtrPlaceInfo;
+    /* 0x0 */ s32 exists;
+    /* 0x4 */ s32 utX;
+    /* 0x8 */ s32 utZ;
+} mRmTp_FtrPlaceInfo; // size = 0xC
 
 typedef struct mRmTp_FtrPlaceData {
-    u8 exist;
-    s16 ofsX;
-    s16 ofsZ;
-} mRmTp_FtrPlaceData;
+    /* 0x0 */ u8 exist;
+    /* 0x2 */ s16 ofsX;
+    /* 0x4 */ s16 ofsZ;
+} mRmTp_FtrPlaceData; // size = 0x8
 
 void mRmTp_InitFtrPlaceInfo(mRmTp_FtrPlaceInfo* info);
 s32 mRmTp_ItemNo2FtrSize(u16 name);
