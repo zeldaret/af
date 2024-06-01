@@ -11,6 +11,7 @@ struct Clip_unk_040_unk_14_arg0;
 struct Clip_unk_07C_unk_0_arg0;
 struct FurnitureActor;
 struct Game_Play;
+struct Game;
 struct ObjectExchangeBank;
 struct ObjectStatus;
 struct ShadowData;
