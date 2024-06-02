@@ -71,7 +71,7 @@
       - [0x6DE300, asm, code/6DE300]
       - [0x6E08E0, asm, code/m_random_field]
       - [0x6E0F50, c, code/m_rcp]
-      - [0x6E2300, asm, code/6E2300]
+      - [0x6E2300, c, code/m_room_type]
       - [0x6E30B0, c, code/m_scene_ftr]
       - [0x6E3240, asm, code/6E3240]
       - [0x6E6C90, c, code/m_start_data_init]
@@ -173,7 +173,8 @@
       - [0x7302C0, .data, code/m_private]
       - [0x730320, data, code/730320]
       - [0x7307D0, .data, code/m_rcp]
-      - [0x730B60, data, code/730B60]
+      - [0x730B60, .data, code/m_room_type]
+      - [0x731740, data, code/731740]
       - [0x731940, .data, code/m_start_data_init]
       - [0x731980, .data, code/m_submenu]
       - [0x731A20, .data, code/m_scene]
@@ -240,7 +241,7 @@
       - [0x73B130, .rodata, code/m_private]
       - [0x73B210, rodata, code/73B210]
       - [0x73B250, rodata, code/73B250]
-      - [0x73B360, rodata, code/73B360]
+      - [0x73B360, .rodata, code/m_room_type]
       - [0x73B3E0, .rodata, code/m_scene_ftr]
       - [0x73B400, rodata, code/m_shop]
       - [0x73B580, .rodata, code/m_string]
@@ -302,7 +303,7 @@
       - { start: 0x73F4D0, type: .bss, vram: 0x801439A0, name: code/m_private }
       - { start: 0x73F4D0, type: bss, vram: 0x80144620, name: code/80144620 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80144650, name: code/m_rcp }
-      - { start: 0x73F4D0, type: bss, vram: 0x80144660, name: code/80144660 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x80144660, name: code/m_room_type }
       - { start: 0x73F4D0, type: .bss, vram: 0x80144670, name: code/m_submenu }
       - { start: 0x73F4D0, type: bss, vram: 0x80144690, name: code/80144690 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80144D20, name: code/audioMgr }
