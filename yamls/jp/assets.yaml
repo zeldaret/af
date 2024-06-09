@@ -63,11 +63,21 @@
   - [0xA20010]
 
   - name: locerrmsg
-    type: bin
+    dir: locerrmsg
+    type: code
     start: 0xA21000
     vram: 0x01000000
+    exclusive_ram_id: segment_01
     compress: True
     align: 0x1000
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, locerrmsg]
+      - start: 0xA21000
+        type: .data
+        name: locerrmsg
+        subsegments:
+          - [0xA21000, i4, not_designed_for_system_error, 208, 16]
   - [0xA21680]
 
   - name: gameplay_keep
