@@ -33,3 +33,4 @@ u8 obj_s_yubinkyoku_t2_txt[] = {
 #include "assets/jp/objects/object_00D5E000/obj_s_yubinkyoku/cKF_c_obj_s_yubinkyoku_out_tbl.inc.c"
 #include "assets/jp/objects/object_00D5E000/obj_s_yubinkyoku/cKF_ds_obj_s_yubinkyoku_out_tbl.inc.c"
 #include "assets/jp/objects/object_00D5E000/obj_s_yubinkyoku/cKF_ba_r_obj_s_yubinkyoku_out.inc.c"
+s32 padDB006C[] = { 0x00000000, 0x00000000 };

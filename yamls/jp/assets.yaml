@@ -641,7 +641,8 @@
           - { start: 0xD5BA48, type: af_palette, name: obj_s_yamishop_pal, global_id: obj_s_yamishop_pal }
           - { start: 0xD5BA68, type: af_palette, name: obj_w_yamishop_pal, global_id: obj_w_yamishop_pal }
           - { start: 0xD5BA88, type: af_palette, name: obj_s_post_office_pal, global_id: obj_s_post_office_pal }
-          - [0xD5BAA8]
+          - { start: 0xD5BAA8, type: af_palette, name: obj_s_post_office_winter_pal, global_id: obj_s_post_office_winter_pal }
+          - [0xD5BAC8]
           - { start: 0xD5BF08, type: af_palette, name: obj_police_box_pal, global_id: obj_police_box_pal }
           - { start: 0xD5BF28, type: af_palette, name: obj_police_box_winter_pal, global_id: obj_police_box_winter_pal }
           - [0xD5BF48]
@@ -1966,7 +1967,40 @@
           - [0xDB0056, pad]
           - [0xDB0058, ckf_ba, obj_s_yubinkyoku/cKF_ba_r_obj_s_yubinkyoku_out]
           - [0xDB006C]
-      - [0xDB0070, bin, 0D5E000_unextracted]
+      - [auto, c, obj_w_yubinkyoku/obj_w_yubinkyoku]
+      - start: 0xDB0078
+        type: .data
+        name: obj_w_yubinkyoku/obj_w_yubinkyoku
+        subsegments:
+          - [0xDB0078, pad]
+          - [0xDB0080, vtx, obj_w_yubinkyoku/obj_w_yubinkyoku_v]
+          - [0xDB03C0, af_gfx, obj_w_yubinkyoku/obj_w_yubinkyoku_window_model]
+          - [0xDB0450, af_gfx, obj_w_yubinkyoku/obj_w_yubinkyoku_t3_model]
+          - [0xDB0518, af_gfx, obj_w_yubinkyoku/obj_w_yubinkyoku_t2_model]
+          - [0xDB05E8, af_gfx, obj_w_yubinkyoku/obj_w_yubinkyoku_t1_model]
+          - [0xDB06C0, af_gfx, obj_w_yubinkyoku/obj_w_yubinkyoku_neon_model]
+          - [0xDB0798, af_gfx, obj_w_yubinkyoku/obj_w_yubinkyoku_light_model]
+          - [0xDB07E0, af_gfx, obj_w_yubinkyoku/obj_w_yubinkyoku_door_model]
+          - [0xDB08A0, ci4, obj_w_yubinkyoku/obj_w_yubinkyoku_t3_txt, 128, 32, obj_s_post_office_winter_pal]
+          - [0xDB10A0, ci4, obj_w_yubinkyoku/obj_w_yubinkyoku_t1_txt, 128, 32, obj_s_post_office_winter_pal]
+          - [0xDB18A0, i4, obj_w_yubinkyoku/obj_w_yubinkyoku_window_tex_txt, 16, 16]
+          - [0xDB1920, ci4, obj_w_yubinkyoku/obj_w_yubinkyoku_t2_txt, 128, 32, obj_s_post_office_winter_pal]
+          - [0xDB2120, ckf_je, obj_w_yubinkyoku/cKF_je_r_obj_w_yubinkyoku_tbl]
+          - [0xDB2180, ckf_bs, obj_w_yubinkyoku/cKF_bs_r_obj_w_yubinkyoku]
+          - [0xDB2188, ckf_ckcb, obj_w_yubinkyoku/cKF_ckcb_r_obj_w_yubinkyoku_tbl]
+          - [0xDB2190, ckf_kn, obj_w_yubinkyoku/cKF_kn_obj_w_yubinkyoku_tbl]
+          - [0xDB2194, ckf_c, obj_w_yubinkyoku/cKF_c_obj_w_yubinkyoku_tbl]
+          - [0xDB21C8, ckf_ds, obj_w_yubinkyoku/cKF_ds_obj_w_yubinkyoku_tbl]
+          - [0xDB220A, pad]
+          - [0xDB220C, ckf_ba, obj_w_yubinkyoku/cKF_ba_r_obj_w_yubinkyoku]
+          - [0xDB2220, ckf_ckcb, obj_w_yubinkyoku/cKF_ckcb_r_obj_w_yubinkyoku_out_tbl]
+          - [0xDB2228, ckf_kn, obj_w_yubinkyoku/cKF_kn_obj_w_yubinkyoku_out_tbl]
+          - [0xDB222C, ckf_c, obj_w_yubinkyoku/cKF_c_obj_w_yubinkyoku_out_tbl]
+          - [0xDB2260, ckf_ds, obj_w_yubinkyoku/cKF_ds_obj_w_yubinkyoku_out_tbl]
+          - [0xDB22AE, pad]
+          - [0xDB22B0, ckf_ba, obj_w_yubinkyoku/cKF_ba_r_obj_w_yubinkyoku_out]
+          - [0xDB22C4]
+      - [0xDB22D0, bin, 0D5E000_unextracted]
   - [0xDF3480]
 
   - name: object_00DF4000
