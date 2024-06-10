@@ -41,7 +41,13 @@ def getProgressFromMapFile(mapFile: mapfile_parser.MapFile, asmPath: Path, nonma
                 extensionlessFilePath = extensionlessFilePath.with_suffix("")
 
             fullAsmFile = asmPath / extensionlessFilePath.with_suffix(".s")
-            wholeFileIsUndecomped = fullAsmFile.exists()
+
+            handwrittenAsmFiles = [Path("boot/libc64/fp.o"), Path("makerom/entry.o")]
+            
+            if originalFilePath in handwrittenAsmFiles:
+                wholeFileIsUndecomped = False
+            else:
+                wholeFileIsUndecomped = fullAsmFile.exists()
 
 
             for func in file:
