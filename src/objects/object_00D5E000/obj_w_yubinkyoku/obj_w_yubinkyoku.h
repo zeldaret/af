@@ -4,6 +4,11 @@
 #include "gbi.h"
 #include "c_keyframe.h"
 
+/**
+ * @file obj_w_yubinkyouku
+ * 郵便局 Post Office (winter)
+ */
+
 extern Vtx obj_w_yubinkyoku_v[];
 extern Gfx obj_w_yubinkyoku_window_model[];
 extern Gfx obj_w_yubinkyoku_t3_model[];
