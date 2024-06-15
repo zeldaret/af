@@ -62,12 +62,12 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'bash -c "make WARNINGS_CHECK=1 -j rom 2> >(tee tools/warnings_count/warnings_uncompressed_new.txt)"'
+                sh 'bash -c "make WARNINGS_CHECK=1 -j rom 2> >(tee tools/warnings_count/warnings_build_new.txt)"'
             }
         }
         stage('Check build uncompressed warnings') {
             steps {
-                sh 'bash -c "./tools/warnings_count/compare_warnings.sh uncompressed"'
+                sh 'bash -c "./tools/warnings_count/compare_warnings.sh build"'
             }
         }
         stage('Build compressed') {

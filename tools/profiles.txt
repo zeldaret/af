@@ -92,7 +92,7 @@ asm/jp/data/overlays/actors/ovl_Tama/ac_tama.data.s-/* 94F4F4 80A8F274 */ .word 
 asm/jp/data/overlays/actors/ovl_Tama/ac_tama.data.s-/* 94F4F8 80A8F278 */ .word 0x58330003
 asm/jp/data/overlays/actors/ovl_Tama/ac_tama.data.s-/* 94F4FC 80A8F27C */ .word 0x000002D8
 asm/jp/data/overlays/actors/ovl_Tama/ac_tama.data.s-/* 94F500 80A8F280 */ .word aTAM_actor_ct
-asm/jp/data/overlays/actors/ovl_Tama/ac_tama.data.s-/* 94F504 80A8F284 */ .word func_80A8EF30_jp
+asm/jp/data/overlays/actors/ovl_Tama/ac_tama.data.s-/* 94F504 80A8F284 */ .word aTAM_actor_dt
 asm/jp/data/overlays/actors/ovl_Tama/ac_tama.data.s-/* 94F508 80A8F288 */ .word aTAM_actor_init
 asm/jp/data/overlays/actors/ovl_Tama/ac_tama.data.s-/* 94F50C 80A8F28C */ .word aTAM_actor_draw
 asm/jp/data/overlays/actors/ovl_Tama/ac_tama.data.s-/* 94F510 80A8F290 */ .word 0x00000000
@@ -235,7 +235,7 @@ asm/jp/data/overlays/actors/ovl_Kago/ac_kago.data.s-/* 94F964 80A8F6E4 */ .word 
 asm/jp/data/overlays/actors/ovl_Kago/ac_kago.data.s-/* 94F968 80A8F6E8 */ .word 0x58350003
 asm/jp/data/overlays/actors/ovl_Kago/ac_kago.data.s-/* 94F96C 80A8F6EC */ .word 0x000002D8
 asm/jp/data/overlays/actors/ovl_Kago/ac_kago.data.s-/* 94F970 80A8F6F0 */ .word aKAG_actor_ct
-asm/jp/data/overlays/actors/ovl_Kago/ac_kago.data.s-/* 94F974 80A8F6F4 */ .word func_80A8F340_jp
+asm/jp/data/overlays/actors/ovl_Kago/ac_kago.data.s-/* 94F974 80A8F6F4 */ .word aKAG_actor_dt
 asm/jp/data/overlays/actors/ovl_Kago/ac_kago.data.s-/* 94F978 80A8F6F8 */ .word aKAG_actor_init
 asm/jp/data/overlays/actors/ovl_Kago/ac_kago.data.s-/* 94F97C 80A8F6FC */ .word aKAG_actor_draw
 asm/jp/data/overlays/actors/ovl_Kago/ac_kago.data.s-/* 94F980 80A8F700 */ .word 0x00000000

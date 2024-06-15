@@ -18,7 +18,7 @@ void Debug_mode_input(struct Input *input);
 // void Debug_mode_output_sub();
 // void Debug_mode_zelda_malloc_info_output();
 void Debug_mode_output(struct GraphicsContext* gfxCtx);
-// void func_8007B410_jp();
+struct Actor* mDemo_Get_talk_actor(void);
 // void func_8007B44C_jp();
 // void func_8007B49C_jp();
 // void func_8007B4EC_jp();

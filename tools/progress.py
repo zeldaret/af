@@ -41,7 +41,13 @@ def getProgressFromMapFile(mapFile: mapfile_parser.MapFile, asmPath: Path, nonma
                 extensionlessFilePath = extensionlessFilePath.with_suffix("")
 
             fullAsmFile = asmPath / extensionlessFilePath.with_suffix(".s")
-            wholeFileIsUndecomped = fullAsmFile.exists()
+
+            handwrittenAsmFiles = [Path("boot/libc64/fp.o"), Path("makerom/entry.o")]
+            
+            if originalFilePath in handwrittenAsmFiles:
+                wholeFileIsUndecomped = False
+            else:
+                wholeFileIsUndecomped = fullAsmFile.exists()
 
 
             for func in file:
@@ -82,6 +88,34 @@ def getProgress(mapPath: Path, version: str) -> tuple[mapfile_parser.ProgressSta
 
     return getProgressFromMapFile(mapFile.filterBySectionType(".text"), ASMPATH / version, nonMatchingsPath, aliases={"ultralib": "libultra"})
 
+def getAssetProgress(mapPath: Path, version: str):
+    totalStats = mapfile_parser.ProgressStats()
+    progressPerFolder: dict[str, mapfile_parser.ProgressStats] = dict()
+    progressPerFolder["objects"] = mapfile_parser.ProgressStats()
+    progressPerFolder["unidentified"] = mapfile_parser.ProgressStats()
+
+    mapFile = mapfile_parser.MapFile()
+    mapFile.readMapFile(mapPath)
+    mapFile = mapFile.filterBySectionType(".data")
+
+    for segment in mapFile:
+        for file in segment:
+
+            if len(file) == 0:
+                continue
+
+            if str(file.filepath).startswith("build/src/objects"):
+                totalStats.decompedSize += file.size
+                progressPerFolder["objects"].decompedSize += file.size
+            elif str(file.filepath).startswith("build/assets/" + version + "/objects"):
+                totalStats.undecompedSize += file.size
+                progressPerFolder["objects"].undecompedSize += file.size
+            elif str(file.filepath).startswith("build/assets/" + version):
+                progressPerFolder["unidentified"].undecompedSize += file.size
+                totalStats.undecompedSize += file.size
+    
+    return totalStats, progressPerFolder
+
 def progressMain():
     parser = argparse.ArgumentParser()
     parser.add_argument("-v", "--version", help="version to process", default="jp")
@@ -90,9 +124,12 @@ def progressMain():
 
     mapPath = Path("build") / f"animalforest-{args.version}.map"
 
-    totalStats, progressPerFolder = getProgress(mapPath, args.version)
-
-    mapfile_parser.progress_stats.printStats(totalStats, progressPerFolder)
+    codeTotalStats, codeProgressPerFolder = getProgress(mapPath, args.version)
+    assetTotalStats, assetProgressPerFolder = getAssetProgress(mapPath, args.version)
+    print("code:")
+    mapfile_parser.progress_stats.printStats(codeTotalStats, codeProgressPerFolder)
+    print("\n\nassets:")
+    mapfile_parser.progress_stats.printStats(assetTotalStats, assetProgressPerFolder)
 
 if __name__ == "__main__":
     progressMain()

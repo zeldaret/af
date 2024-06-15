@@ -1,3 +1,4 @@
+#include "prevent_bss_reordering.h"
 #include "m_npc_walk.h"
 #include "m_common_data.h"
 #include "m_npc.h"
@@ -277,7 +278,7 @@ s32 mNpcW_ChangeNpcWalk(NpcWalking* walk, NpcWalkInfo* info) {
         NpcWalkInfo* free_info = &walk->info[free_idx];
 
         mNpcW_ClearNpcWalkInfo(free_info, 1);
-        idx = mNpcW_DecideNpc(common_data.animals, walk->idxUse);
+        idx = mNpcW_DecideNpc(common_data.save.animals, walk->idxUse);
 
         if (idx == -1) {
             walk->idxUse = 0;
@@ -287,10 +288,10 @@ s32 mNpcW_ChangeNpcWalk(NpcWalking* walk, NpcWalkInfo* info) {
                 }
             }
 
-            idx = mNpcW_DecideNpc(common_data.animals, walk->idxUse);
+            idx = mNpcW_DecideNpc(common_data.save.animals, walk->idxUse);
         }
 
-        mNpcW_SetNpcWalkInfo(free_info, &common_data.animals[idx], idx);
+        mNpcW_SetNpcWalkInfo(free_info, &common_data.save.animals[idx], idx);
         walk->idxUse |= (1 << idx);
         mNpcW_SetGoalBlock(free_info);
     }
@@ -299,7 +300,7 @@ s32 mNpcW_ChangeNpcWalk(NpcWalking* walk, NpcWalkInfo* info) {
 }
 
 s32 mNpcW_GetAloneBlock(u8* goalBlockX, u8* goalBlockZ) {
-    Animal_c* animal = common_data.animals;
+    Animal_c* animal = common_data.save.animals;
     NpcList* npcList = common_data.npclist;
     u8 block_field[FG_BLOCK_Z_NUM + 2];
     u8 count = 0;
@@ -414,7 +415,7 @@ s32 mNpcW_CheckDiffBlockWalkNpcHome(s32 blockX, s32 blockZ, NpcWalkInfo* info) {
     for (i = 0; i < NPCW_MAX; i++) {
         idx = info->idx;
         if (idx != -1) {
-            home = &common_data.animals[idx].homeInfo;
+            home = &common_data.save.animals[idx].homeInfo;
 
             if (home->blockX == blockX && home->blockZ == blockZ) {
                 break;
@@ -514,8 +515,8 @@ void mNpcW_SetGoalBlock(NpcWalkInfo* info) {
         case NPCW_GOAL_MY_HOME:
             idx = info->idx;
 
-            info->goalX = common_data.animals[idx].homeInfo.blockX;
-            info->goalZ = common_data.animals[idx].homeInfo.blockZ;
+            info->goalX = common_data.save.animals[idx].homeInfo.blockX;
+            info->goalZ = common_data.save.animals[idx].homeInfo.blockZ;
             break;
 
         default:
@@ -535,13 +536,13 @@ void mNpcW_InitNpcWalk(NpcWalking* walk) {
     bzero(l_goal_block, sizeof(l_goal_block));
     bzero(l_arrive_stay_count, sizeof(l_arrive_stay_count));
 
-    animals = common_data.animals;
-    walk->infoMax = NPCW_GET_WALK_NUM(common_data.nowNpcMax);
+    animals = common_data.save.animals;
+    walk->infoMax = NPCW_GET_WALK_NUM(common_data.save.nowNpcMax);
 
     for (i = 0; i < walk->infoMax; i++) {
         idx = mNpcW_DecideNpc(animals, walk->idxUse);
 
-        mNpcW_SetNpcWalkInfo(info, &common_data.animals[idx], idx);
+        mNpcW_SetNpcWalkInfo(info, &common_data.save.animals[idx], idx);
         walk->idxUse |= (1 << idx);
         info++;
     }
@@ -587,7 +588,7 @@ s32 mNpcW_GetWalkInfoStatusGoalAnimalIdx(s32* status, s32* goal, s32 idx) {
 
     if (idx >= 0 && idx < ANIMAL_NUM_MAX) {
         NpcWalking* walk = &common_data.npcWalk;
-        s32 info_idx = mNpcW_GetNpcWalkInfoIdx(walk->info, NPCW_MAX, &common_data.animals[idx].id);
+        s32 info_idx = mNpcW_GetNpcWalkInfoIdx(walk->info, NPCW_MAX, &common_data.save.animals[idx].id);
 
         if (info_idx >= 0) {
             res = TRUE;

@@ -13,7 +13,7 @@
 
 // gamestates
 #include "overlays/gamestates/ovl_play/m_play.h"
-#include "overlays/gamestates/ovl__00743CD0/_00743CD0.h"
+#include "overlays/gamestates/ovl_cpedit/m_cpedit.h"
 
 // submenus
 #include "overlays/submenu/inventory_ovl/m_inventory_ovl.h"
@@ -602,20 +602,6 @@ s32 add_trigger_954[] = { R_CBUTTONS, U_CBUTTONS, L_CBUTTONS, D_CBUTTONS };
 
 f32 move_data_1027[2][4] = { { 2.0f, 0.0f, 300.0f, 1.0f }, { 0.5f, 120.0f, 0.0f, -1.0f } };
 
-#define OPEN_CUSTOM_POLY_OPA()                \
-    {                                         \
-        Gfx* __polyOpa = __gfxCtx->polyOpa.p; \
-        int __opa_opened = 0;                 \
-        do {                                  \
-        } while (0)
-
-#define CLOSE_CUSTOM_POLY_OPA()      \
-    __gfxCtx->polyOpa.p = __polyOpa; \
-    (void)__opa_opened;              \
-    }                                \
-    do {                             \
-    } while (0)
-
 void mSM_setup_view(Submenu* submenu, GraphicsContext* gfxCtx, s32 arg1) {
     Mtx* mtx;
 
@@ -627,16 +613,15 @@ void mSM_setup_view(Submenu* submenu, GraphicsContext* gfxCtx, s32 arg1) {
         mtx = submenu->unk_2C->unk_1072C;
     }
 
-    OPEN_DISPS(gfxCtx);
-    OPEN_CUSTOM_POLY_OPA();
+    OPEN_POLY_OPA_DISP(gfxCtx);
 
     if (arg1 == 0) {
-        Game_Play1938* view;
+        View* view;
 
         if (submenu->unk_00 != 4) {
-            view = &((Game_Play*)gamePT)->unk_1938;
+            view = &((Game_Play*)gamePT)->view;
         } else {
-            view = &((Game__00743CD0*)gamePT)->unk_00E0;
+            view = &((Game_CPEdit*)gamePT)->view;
         }
 
         gDPPipeSync(__polyOpa++);
@@ -647,25 +632,15 @@ void mSM_setup_view(Submenu* submenu, GraphicsContext* gfxCtx, s32 arg1) {
         gDPSetScissor(__polyOpa++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     }
 
-    //! FAKE
-    if (1) {}
-
     gSPMatrix(__polyOpa++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
 
-    CLOSE_CUSTOM_POLY_OPA();
-    CLOSE_DISPS(gfxCtx);
+    CLOSE_POLY_OPA_DISP(gfxCtx);
 }
 
 void mSM_set_char_matrix(GraphicsContext* gfxCtx) {
-    Gfx* gfx;
-
-    OPEN_DISPS(gfxCtx);
-
-    gfx = POLY_OPA_DISP;
-    gSPMatrix(gfx++, &Mtx_clear, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    POLY_OPA_DISP = gfx;
-
-    CLOSE_DISPS(gfxCtx);
+    OPEN_POLY_OPA_DISP(gfxCtx);
+    gSPMatrix(__polyOpa++, &Mtx_clear, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    CLOSE_POLY_OPA_DISP(gfxCtx);
 }
 
 #ifdef NON_EQUIVALENT
@@ -704,12 +679,12 @@ void mSM_cbuf_copy(GraphicsContext* gfxCtx, PreRender* render, s32 arg2, s32 arg
         return;
     }
 
-    temp_v0 = render->unk_04;
+    temp_v0 = render->width_save;
     if (-(s32)temp_v0 >= arg2) {
         return;
     }
 
-    temp_a0 = render->unk_06;
+    temp_a0 = render->height_save;
     if (1) {}
     if (1) {}
     if (1) {}
@@ -760,13 +735,13 @@ void mSM_cbuf_copy(GraphicsContext* gfxCtx, PreRender* render, s32 arg2, s32 arg
         var_t1 = arg3;
         var_t2 = var_v1;
         var_a2 = var_t3;
-        sp98 = render->unk_14;
+        sp98 = render->fbuf_save;
     } else {
         spCC = (s32)temp_v0;
         var_ra = 0xF0;
         var_a1 = var_t3;
         var_t1 = var_v1;
-        sp9C = render->unk_14;
+        sp9C = render->fbuf_save;
         var_t2 = arg3;
         var_a2 = arg2;
         sp98 = gfxCtx->unk_2E4;
@@ -775,9 +750,9 @@ void mSM_cbuf_copy(GraphicsContext* gfxCtx, PreRender* render, s32 arg2, s32 arg
     var_a3 = 0x1000 / (s32)(((var_t5 + 3) & ~3) * 2);
     if (arg4 != 0) {
         sp8C = POLY_OPA_DISP;
-        render->unk_00 = 0x140;
-        render->unk_02 = 0xF0;
-        render->unk_10 = gfxCtx->unk_2E4;
+        render->width = 0x140;
+        render->height = 0xF0;
+        render->fbuf = gfxCtx->unk_2E4;
         PreRender_CopyRGBC(render, &sp8C, arg2 - var_t3, arg3 - var_v1);
         POLY_OPA_DISP = sp8C;
     } else {
@@ -1157,8 +1132,7 @@ void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_f
     Matrix_translate(arg1, arg2, 140.0f, MTXMODE_APPLY);
     Matrix_scale(arg3, arg3, 1.0f, MTXMODE_APPLY);
 
-    OPEN_DISPS(arg0);
-    OPEN_CUSTOM_POLY_OPA();
+    OPEN_POLY_OPA_DISP(arg0);
 
     gDPPipeSync(__polyOpa++);
     gSPMatrix(__polyOpa++, _Matrix_to_Mtx_new(arg0), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
@@ -1186,8 +1160,7 @@ void mSM_draw_mail(GraphicsContext* arg0, f32 arg1, f32 arg2, f32 arg3, struct_f
     gDPSetAlphaCompare(__polyOpa++, G_AC_NONE);
     gDPSetBlendColor(__polyOpa++, 255, 255, 255, 8);
 
-    CLOSE_CUSTOM_POLY_OPA();
-    CLOSE_DISPS(arg0);
+    CLOSE_POLY_OPA_DISP(arg0);
 }
 
 void func_8085D094_jp(Submenu* submenu) {
@@ -1541,7 +1514,7 @@ label:
     if (submenu->unk_00 != 4) {
         var_v1 = &((Game_Play*)gamePT)->objectExchangeBank;
     } else {
-        var_v1 = &((Game__00743CD0*)gamePT)->unk_02FC;
+        var_v1 = &((Game_CPEdit*)gamePT)->bank;
     }
 
     ovl_base.unk_10000.unk_00 = var_v1->unk1818;

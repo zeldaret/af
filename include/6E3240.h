@@ -1,15 +1,11 @@
-#ifndef C_6E30B0_H
-#define C_6E30B0_H
+#ifndef C_6E3240_H
+#define C_6E3240_H
 
 #include "ultra64.h"
 
 struct Game;
+struct Game_Play;
 
-// void func_800BF410_jp();
-// void func_800BF480_jp();
-// void func_800BF4F4_jp();
-// void func_800BF56C_jp();
-// void func_800BF580_jp();
 // void func_800BF5A0_jp();
 // void func_800BF5F4_jp();
 // void func_800BF770_jp();

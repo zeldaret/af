@@ -13,12 +13,12 @@
 #define RANDOM2(n) ((s32)RANDOM_F2(n))
 
 // void reverse_u32();
-// void init_rnd();
+void init_rnd(void);
 // void ffact();
 // void ifact();
 // void powi();
 f32 sinf_table(f32);
-// void cosf_table();
+f32 cosf_table(f32);
 // void tanf_table();
 
 #endif

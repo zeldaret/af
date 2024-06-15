@@ -3,17 +3,17 @@
 
 #include "ultra64.h"
 
-// void func_800CE4B0_jp();
-// void func_800CE4F4_jp();
-// void func_800CE554_jp();
-// void func_800CE694_jp();
-// void func_800CE7E4_jp();
-// void func_800CE874_jp();
-// void func_800CE8F0_jp();
-// void func_800CE9C4_jp();
-// void func_800CEB1C_jp();
+void mRlib_spdXZ_to_spdF_Angle(xyz_t*, f32*, s16*);
+void mRlib_spdF_Angle_to_spdXZ(xyz_t*, f32*, s16*);
+void mRlib_position_move_for_sloop(struct Actor*, s_xyz*);
+void mRlib_Get_norm_Clif(struct Actor*, xyz_t*);
+void mRlib_Roll_Matrix_to_s_xyz(struct Actor*, void*, s16);
+s16 mRlib_Get_HitWallAngleY(struct Actor*);
+void mRlib_Station_step_modify_to_wall(struct Actor*);
+s32 mRlib_Set_Position_Check(struct Actor*);
+s32 mRlib_HeightGapCheck_And_ReversePos(void);
 // void func_800CEC30_jp();
-// void func_800CEC98_jp();
+s32 mRlib_Get_ground_norm_inHole(struct Actor*, xyz_t*, f32*, s16*, s16*, f32);
 // void func_800CEE24_jp();
 // void func_800CEED4_jp();
 // void func_800CF05C_jp();

@@ -63,7 +63,7 @@
   - [0xA20010]
 
   - name: locerrmsg
-    dir: locerrmsg
+    dir: misc/locerrmsg
     type: code
     start: 0xA21000
     vram: 0x01000000
@@ -81,6 +81,7 @@
   - [0xA21680]
 
   - name: gameplay_keep
+    dir: objects
     type: bin # code
     start: 0xA22000
     vram: 0x04000000
@@ -284,6 +285,7 @@
   - [0xB35930]
 
   - name: object_00B36000
+    dir: objects
     type: bin # code
     start: 0xB36000
     vram: 0x06000000
@@ -295,6 +297,7 @@
   - [0xB67E20]
 
   - name: object_00B68000
+    dir: objects
     type: bin # code
     start: 0xB68000
     vram: 0x06000000
@@ -306,6 +309,7 @@
   - [0xB88000]
 
   - name: object_00B88000
+    dir: objects
     type: bin # code
     start: 0xB88000
     vram: 0x06000000
@@ -325,6 +329,7 @@
   - [0xB8A070]
 
   - name: object_00B8B000
+    dir: objects
     type: bin # code
     start: 0xB8B000
     vram: 0x06000000
@@ -336,6 +341,7 @@
   - [0xB8ECE0]
 
   - name: object_00B8F000
+    dir: objects
     type: bin # code
     start: 0xB8F000
     vram: 0x06000000
@@ -467,6 +473,7 @@
   - [0xD24970]
 
   - name: object_00D25000
+    dir: objects
     type: bin # code
     start: 0xD25000
     vram: 0x06000000
@@ -478,6 +485,7 @@
   - [0xD28540]
 
   - name: object_00D29000
+    dir: objects
     type: bin # code
     start: 0xD29000
     vram: 0x06000000
@@ -489,6 +497,7 @@
   - [0xD2C0A0]
 
   - name: object_00D2D000
+    dir: objects
     type: bin # code
     start: 0xD2D000
     vram: 0x06000000
@@ -500,6 +509,7 @@
   - [0xD37440]
 
   - name: object_00D38000
+    dir: objects
     type: bin # code
     start: 0xD38000
     vram: 0x06000000
@@ -511,6 +521,7 @@
   - [0xD42440]
 
   - name: object_00D43000
+    dir: objects
     type: bin # code
     start: 0xD43000
     vram: 0x06000000
@@ -522,6 +533,7 @@
   - [0xD4CE90]
 
   - name: object_00D4D000
+    dir: objects
     type: bin # code
     start: 0xD4D000
     vram: 0x06000000
@@ -2028,6 +2040,7 @@
   - [0xDF42F0]
 
   - name: object_00DF5000
+    dir: objects
     type: bin # code
     start: 0xDF5000
     vram: 0x06000000
@@ -2039,6 +2052,7 @@
   - [0xDFF0D0]
 
   - name: object_00E00000
+    dir: objects
     type: bin # code
     start: 0xE00000
     vram: 0x06000000
@@ -2050,6 +2064,7 @@
   - [0xE00180]
 
   - name: object_00E01000
+    dir: objects
     type: bin # code
     start: 0xE01000
     vram: 0x06000000
@@ -2085,6 +2100,7 @@
   - [0xE04530]
 
   - name: object_00E05000
+    dir: objects
     type: bin # code
     start: 0xE05000
     vram: 0x06000000
@@ -2104,6 +2120,7 @@
   - [0xE0D0E0]
 
   - name: object_00E0E000
+    dir: objects
     type: bin # code
     start: 0xE0E000
     vram: 0x06000000
@@ -2115,6 +2132,7 @@
   - [0xE60390]
 
   - name: object_00E61000
+    dir: objects
     type: bin # code
     start: 0xE61000
     vram: 0x06000000
@@ -2126,6 +2144,7 @@
   - [0xE63350]
 
   - name: object_00E64000
+    dir: objects
     type: bin # code
     start: 0xE64000
     vram: 0x06000000
@@ -2137,6 +2156,7 @@
   - [0xE65020]
 
   - name: object_00E66000
+    dir: objects
     type: bin # code
     start: 0xE66000
     vram: 0x06000000
@@ -2148,6 +2168,7 @@
   - [0xE68140]
 
   - name: object_00E69000
+    dir: objects
     type: bin # code
     start: 0xE69000
     vram: 0x06000000
@@ -2159,6 +2180,7 @@
   - [0xE6A020]
 
   - name: object_00E6B000
+    dir: objects
     type: bin # code
     start: 0xE6B000
     vram: 0x06000000
@@ -2170,6 +2192,7 @@
   - [0xE6C020]
 
   - name: object_00E6D000
+    dir: objects
     type: bin # code
     start: 0xE6D000
     vram: 0x06000000
@@ -2181,6 +2204,7 @@
   - [0xE6E020]
 
   - name: object_00E6F000
+    dir: objects
     type: bin # code
     start: 0xE6F000
     vram: 0x06000000
@@ -2192,6 +2216,7 @@
   - [0xE70020]
 
   - name: object_00E71000
+    dir: objects
     type: bin # code
     start: 0xE71000
     vram: 0x06000000
@@ -2203,6 +2228,7 @@
   - [0xE72020]
 
   - name: object_00E73000
+    dir: objects
     type: bin # code
     start: 0xE73000
     vram: 0x06000000
@@ -2214,6 +2240,7 @@
   - [0xE755D0]
 
   - name: object_00E76000
+    dir: objects
     type: bin # code
     start: 0xE76000
     vram: 0x06000000
@@ -2225,6 +2252,7 @@
   - [0xE77020]
 
   - name: object_00E78000
+    dir: objects
     type: bin # code
     start: 0xE78000
     vram: 0x06000000
@@ -2236,6 +2264,7 @@
   - [0xE79FE0]
 
   - name: object_00E7A000
+    dir: objects
     type: bin # code
     start: 0xE7A000
     vram: 0x06000000
@@ -2247,6 +2276,7 @@
   - [0xE7B620]
 
   - name: object_00E7C000
+    dir: objects
     type: bin # code
     start: 0xE7C000
     vram: 0x06000000
@@ -2258,6 +2288,7 @@
   - [0xE7D620]
 
   - name: object_00E7E000
+    dir: objects
     type: bin # code
     start: 0xE7E000
     vram: 0x06000000
@@ -2269,6 +2300,7 @@
   - [0xE7F620]
 
   - name: object_00E80000
+    dir: objects
     type: bin # code
     start: 0xE80000
     vram: 0x06000000
@@ -2280,6 +2312,7 @@
   - [0xE81620]
 
   - name: object_00E82000
+    dir: objects
     type: bin # code
     start: 0xE82000
     vram: 0x06000000
@@ -2291,6 +2324,7 @@
   - [0xE83620]
 
   - name: object_00E84000
+    dir: objects
     type: bin # code
     start: 0xE84000
     vram: 0x06000000
@@ -2302,6 +2336,7 @@
   - [0xE85620]
 
   - name: object_00E86000
+    dir: objects
     type: bin # code
     start: 0xE86000
     vram: 0x06000000
@@ -2313,6 +2348,7 @@
   - [0xE87620]
 
   - name: object_00E88000
+    dir: objects
     type: bin # code
     start: 0xE88000
     vram: 0x06000000
@@ -2324,6 +2360,7 @@
   - [0xE89620]
 
   - name: object_00E8A000
+    dir: objects
     type: bin # code
     start: 0xE8A000
     vram: 0x06000000
@@ -2335,6 +2372,7 @@
   - [0xE8B620]
 
   - name: object_00E8C000
+    dir: objects
     type: bin # code
     start: 0xE8C000
     vram: 0x06000000
@@ -2346,6 +2384,7 @@
   - [0xE8E1F0]
 
   - name: object_00E8F000
+    dir: objects
     type: bin # code
     start: 0xE8F000
     vram: 0x06000000
@@ -2357,6 +2396,7 @@
   - [0xE90020]
 
   - name: object_00E91000
+    dir: objects
     type: bin # code
     start: 0xE91000
     vram: 0x06000000
@@ -2368,6 +2408,7 @@
   - [0xE92020]
 
   - name: object_00E93000
+    dir: objects
     type: bin # code
     start: 0xE93000
     vram: 0x06000000
@@ -2379,6 +2420,7 @@
   - [0xE94020]
 
   - name: object_00E95000
+    dir: objects
     type: bin # code
     start: 0xE95000
     vram: 0x06000000
@@ -2390,6 +2432,7 @@
   - [0xE96020]
 
   - name: object_00E97000
+    dir: objects
     type: bin # code
     start: 0xE97000
     vram: 0x06000000
@@ -2401,6 +2444,7 @@
   - [0xE98020]
 
   - name: object_00E99000
+    dir: objects
     type: bin # code
     start: 0xE99000
     vram: 0x06000000
@@ -2412,6 +2456,7 @@
   - [0xE9B020]
 
   - name: object_00E9C000
+    dir: objects
     type: bin # code
     start: 0xE9C000
     vram: 0x06000000
@@ -2423,6 +2468,7 @@
   - [0xE9D020]
 
   - name: object_00E9E000
+    dir: objects
     type: bin # code
     start: 0xE9E000
     vram: 0x06000000
@@ -2434,6 +2480,7 @@
   - [0xE9F020]
 
   - name: object_00EA0000
+    dir: objects
     type: bin # code
     start: 0xEA0000
     vram: 0x06000000
@@ -2445,6 +2492,7 @@
   - [0xEA1020]
 
   - name: object_00EA2000
+    dir: objects
     type: bin # code
     start: 0xEA2000
     vram: 0x06000000
@@ -2456,6 +2504,7 @@
   - [0xEA3020]
 
   - name: object_00EA4000
+    dir: objects
     type: bin # code
     start: 0xEA4000
     vram: 0x06000000
@@ -2467,6 +2516,7 @@
   - [0xEA5020]
 
   - name: object_00EA6000
+    dir: objects
     type: bin # code
     start: 0xEA6000
     vram: 0x06000000
@@ -2478,6 +2528,7 @@
   - [0xEA7020]
 
   - name: object_00EA8000
+    dir: objects
     type: bin # code
     start: 0xEA8000
     vram: 0x06000000
@@ -2489,6 +2540,7 @@
   - [0xEA9020]
 
   - name: object_00EAA000
+    dir: objects
     type: bin # code
     start: 0xEAA000
     vram: 0x06000000
@@ -2500,6 +2552,7 @@
   - [0xEAB020]
 
   - name: object_00EAC000
+    dir: objects
     type: bin # code
     start: 0xEAC000
     vram: 0x06000000
@@ -2511,6 +2564,7 @@
   - [0xEAD020]
 
   - name: object_00EAE000
+    dir: objects
     type: bin # code
     start: 0xEAE000
     vram: 0x06000000
@@ -2522,6 +2576,7 @@
   - [0xEAF020]
 
   - name: object_00EB0000
+    dir: objects
     type: bin # code
     start: 0xEB0000
     vram: 0x06000000
@@ -2533,6 +2588,7 @@
   - [0xEB2100]
 
   - name: object_00EB3000
+    dir: objects
     type: bin # code
     start: 0xEB3000
     vram: 0x06000000
@@ -2544,6 +2600,7 @@
   - [0xEB4020]
 
   - name: object_00EB5000
+    dir: objects
     type: bin # code
     start: 0xEB5000
     vram: 0x06000000
@@ -2555,6 +2612,7 @@
   - [0xEB7060]
 
   - name: object_00EB8000
+    dir: objects
     type: bin # code
     start: 0xEB8000
     vram: 0x06000000
@@ -2566,6 +2624,7 @@
   - [0xEB9620]
 
   - name: object_00EBA000
+    dir: objects
     type: bin # code
     start: 0xEBA000
     vram: 0x06000000
@@ -2577,6 +2636,7 @@
   - [0xEBB620]
 
   - name: object_00EBC000
+    dir: objects
     type: bin # code
     start: 0xEBC000
     vram: 0x06000000
@@ -2588,6 +2648,7 @@
   - [0xEBD620]
 
   - name: object_00EBE000
+    dir: objects
     type: bin # code
     start: 0xEBE000
     vram: 0x06000000
@@ -2599,6 +2660,7 @@
   - [0xEBF620]
 
   - name: object_00EC0000
+    dir: objects
     type: bin # code
     start: 0xEC0000
     vram: 0x06000000
@@ -2610,6 +2672,7 @@
   - [0xEC27D0]
 
   - name: object_00EC3000
+    dir: objects
     type: bin # code
     start: 0xEC3000
     vram: 0x06000000
@@ -2621,6 +2684,7 @@
   - [0xEC4020]
 
   - name: object_00EC5000
+    dir: objects
     type: bin # code
     start: 0xEC5000
     vram: 0x06000000
@@ -2632,6 +2696,7 @@
   - [0xEC6CF0]
 
   - name: object_00EC7000
+    dir: objects
     type: bin # code
     start: 0xEC7000
     vram: 0x06000000
@@ -2643,6 +2708,7 @@
   - [0xEC8620]
 
   - name: object_00EC9000
+    dir: objects
     type: bin # code
     start: 0xEC9000
     vram: 0x06000000
@@ -2654,6 +2720,7 @@
   - [0xECA620]
 
   - name: object_00ECB000
+    dir: objects
     type: bin # code
     start: 0xECB000
     vram: 0x06000000
@@ -2665,6 +2732,7 @@
   - [0xECC620]
 
   - name: object_00ECD000
+    dir: objects
     type: bin # code
     start: 0xECD000
     vram: 0x06000000
@@ -2676,6 +2744,7 @@
   - [0xECE620]
 
   - name: object_00ECF000
+    dir: objects
     type: bin # code
     start: 0xECF000
     vram: 0x06000000
@@ -2687,6 +2756,7 @@
   - [0xED0620]
 
   - name: object_00ED1000
+    dir: objects
     type: bin # code
     start: 0xED1000
     vram: 0x06000000
@@ -2698,6 +2768,7 @@
   - [0xED2620]
 
   - name: object_00ED3000
+    dir: objects
     type: bin # code
     start: 0xED3000
     vram: 0x06000000
@@ -2709,6 +2780,7 @@
   - [0xED4620]
 
   - name: object_00ED5000
+    dir: objects
     type: bin # code
     start: 0xED5000
     vram: 0x06000000
@@ -2720,6 +2792,7 @@
   - [0xED6620]
 
   - name: object_00ED7000
+    dir: objects
     type: bin # code
     start: 0xED7000
     vram: 0x06000000
@@ -2731,6 +2804,7 @@
   - [0xED8620]
 
   - name: object_00ED9000
+    dir: objects
     type: bin # code
     start: 0xED9000
     vram: 0x06000000
@@ -2742,6 +2816,7 @@
   - [0xEDA620]
 
   - name: object_00EDB000
+    dir: objects
     type: bin # code
     start: 0xEDB000
     vram: 0x06000000
@@ -2753,6 +2828,7 @@
   - [0xEDC620]
 
   - name: object_00EDD000
+    dir: objects
     type: bin # code
     start: 0xEDD000
     vram: 0x06000000
@@ -2764,6 +2840,7 @@
   - [0xEDE620]
 
   - name: object_00EDF000
+    dir: objects
     type: bin # code
     start: 0xEDF000
     vram: 0x06000000
@@ -2783,6 +2860,7 @@
   - [0xEE2620]
 
   - name: object_00EE3000
+    dir: objects
     type: bin # code
     start: 0xEE3000
     vram: 0x06000000
@@ -2794,6 +2872,7 @@
   - [0xEE57F0]
 
   - name: object_00EE6000
+    dir: objects
     type: bin # code
     start: 0xEE6000
     vram: 0x06000000
@@ -2805,6 +2884,7 @@
   - [0xEE7020]
 
   - name: object_00EE8000
+    dir: objects
     type: bin # code
     start: 0xEE8000
     vram: 0x06000000
@@ -2816,6 +2896,7 @@
   - [0xEE9020]
 
   - name: object_00EEA000
+    dir: objects
     type: bin # code
     start: 0xEEA000
     vram: 0x06000000
@@ -2827,6 +2908,7 @@
   - [0xEEB020]
 
   - name: object_00EEC000
+    dir: objects
     type: bin # code
     start: 0xEEC000
     vram: 0x06000000
@@ -2838,6 +2920,7 @@
   - [0xEED020]
 
   - name: object_00EEE000
+    dir: objects
     type: bin # code
     start: 0xEEE000
     vram: 0x06000000
@@ -2849,6 +2932,7 @@
   - [0xEEF020]
 
   - name: object_00EF0000
+    dir: objects
     type: bin # code
     start: 0xEF0000
     vram: 0x06000000
@@ -2860,6 +2944,7 @@
   - [0xEF1020]
 
   - name: object_00EF2000
+    dir: objects
     type: bin # code
     start: 0xEF2000
     vram: 0x06000000
@@ -2871,6 +2956,7 @@
   - [0xEF3020]
 
   - name: object_00EF4000
+    dir: objects
     type: bin # code
     start: 0xEF4000
     vram: 0x06000000
@@ -2882,6 +2968,7 @@
   - [0xEF5020]
 
   - name: object_00EF6000
+    dir: objects
     type: bin # code
     start: 0xEF6000
     vram: 0x06000000
@@ -2893,6 +2980,7 @@
   - [0xEF7EF0]
 
   - name: object_00EF8000
+    dir: objects
     type: bin # code
     start: 0xEF8000
     vram: 0x06000000
@@ -2904,6 +2992,7 @@
   - [0xEF9620]
 
   - name: object_00EFA000
+    dir: objects
     type: bin # code
     start: 0xEFA000
     vram: 0x06000000
@@ -2915,6 +3004,7 @@
   - [0xEFB620]
 
   - name: object_00EFC000
+    dir: objects
     type: bin # code
     start: 0xEFC000
     vram: 0x06000000
@@ -2926,6 +3016,7 @@
   - [0xEFD620]
 
   - name: object_00EFE000
+    dir: objects
     type: bin # code
     start: 0xEFE000
     vram: 0x06000000
@@ -2937,6 +3028,7 @@
   - [0xEFF620]
 
   - name: object_00F00000
+    dir: objects
     type: bin # code
     start: 0xF00000
     vram: 0x06000000
@@ -2948,6 +3040,7 @@
   - [0xF01620]
 
   - name: object_00F02000
+    dir: objects
     type: bin # code
     start: 0xF02000
     vram: 0x06000000
@@ -2959,6 +3052,7 @@
   - [0xF03620]
 
   - name: object_00F04000
+    dir: objects
     type: bin # code
     start: 0xF04000
     vram: 0x06000000
@@ -2970,6 +3064,7 @@
   - [0xF05620]
 
   - name: object_00F06000
+    dir: objects
     type: bin # code
     start: 0xF06000
     vram: 0x06000000
@@ -2981,6 +3076,7 @@
   - [0xF07620]
 
   - name: object_00F08000
+    dir: objects
     type: bin # code
     start: 0xF08000
     vram: 0x06000000
@@ -2992,6 +3088,7 @@
   - [0xF09620]
 
   - name: object_00F0A000
+    dir: objects
     type: bin # code
     start: 0xF0A000
     vram: 0x06000000
@@ -3003,6 +3100,7 @@
   - [0xF0C150]
 
   - name: object_00F0D000
+    dir: objects
     type: bin # code
     start: 0xF0D000
     vram: 0x06000000
@@ -3014,6 +3112,7 @@
   - [0xF0E020]
 
   - name: object_00F0F000
+    dir: objects
     type: bin # code
     start: 0xF0F000
     vram: 0x06000000
@@ -3025,6 +3124,7 @@
   - [0xF11020]
 
   - name: object_00F12000
+    dir: objects
     type: bin # code
     start: 0xF12000
     vram: 0x06000000
@@ -3036,6 +3136,7 @@
   - [0xF13620]
 
   - name: object_00F14000
+    dir: objects
     type: bin # code
     start: 0xF14000
     vram: 0x06000000
@@ -3047,6 +3148,7 @@
   - [0xF15620]
 
   - name: object_00F16000
+    dir: objects
     type: bin # code
     start: 0xF16000
     vram: 0x06000000
@@ -3058,6 +3160,7 @@
   - [0xF17620]
 
   - name: object_00F18000
+    dir: objects
     type: bin # code
     start: 0xF18000
     vram: 0x06000000
@@ -3069,6 +3172,7 @@
   - [0xF19620]
 
   - name: object_00F1A000
+    dir: objects
     type: bin # code
     start: 0xF1A000
     vram: 0x06000000
@@ -3080,6 +3184,7 @@
   - [0xF1C1D0]
 
   - name: object_00F1D000
+    dir: objects
     type: bin # code
     start: 0xF1D000
     vram: 0x06000000
@@ -3091,6 +3196,7 @@
   - [0xF1E020]
 
   - name: object_00F1F000
+    dir: objects
     type: bin # code
     start: 0xF1F000
     vram: 0x06000000
@@ -3102,6 +3208,7 @@
   - [0xF20020]
 
   - name: object_00F21000
+    dir: objects
     type: bin # code
     start: 0xF21000
     vram: 0x06000000
@@ -3113,6 +3220,7 @@
   - [0xF22020]
 
   - name: object_00F23000
+    dir: objects
     type: bin # code
     start: 0xF23000
     vram: 0x06000000
@@ -3124,6 +3232,7 @@
   - [0xF24020]
 
   - name: object_00F25000
+    dir: objects
     type: bin # code
     start: 0xF25000
     vram: 0x06000000
@@ -3135,6 +3244,7 @@
   - [0xF26FB0]
 
   - name: object_00F27000
+    dir: objects
     type: bin # code
     start: 0xF27000
     vram: 0x06000000
@@ -3146,6 +3256,7 @@
   - [0xF28020]
 
   - name: object_00F29000
+    dir: objects
     type: bin # code
     start: 0xF29000
     vram: 0x06000000
@@ -3157,6 +3268,7 @@
   - [0xF2B630]
 
   - name: object_00F2C000
+    dir: objects
     type: bin # code
     start: 0xF2C000
     vram: 0x06000000
@@ -3168,6 +3280,7 @@
   - [0xF2D020]
 
   - name: object_00F2E000
+    dir: objects
     type: bin # code
     start: 0xF2E000
     vram: 0x06000000
@@ -3179,6 +3292,7 @@
   - [0xF30030]
 
   - name: object_00F31000
+    dir: objects
     type: bin # code
     start: 0xF31000
     vram: 0x06000000
@@ -3190,6 +3304,7 @@
   - [0xF32620]
 
   - name: object_00F33000
+    dir: objects
     type: bin # code
     start: 0xF33000
     vram: 0x06000000
@@ -3201,6 +3316,7 @@
   - [0xF34620]
 
   - name: object_00F35000
+    dir: objects
     type: bin # code
     start: 0xF35000
     vram: 0x06000000
@@ -3212,6 +3328,7 @@
   - [0xF36620]
 
   - name: object_00F37000
+    dir: objects
     type: bin # code
     start: 0xF37000
     vram: 0x06000000
@@ -3223,6 +3340,7 @@
   - [0xF38620]
 
   - name: object_00F39000
+    dir: objects
     type: bin # code
     start: 0xF39000
     vram: 0x06000000
@@ -3234,6 +3352,7 @@
   - [0xF3A620]
 
   - name: object_00F3B000
+    dir: objects
     type: bin # code
     start: 0xF3B000
     vram: 0x06000000
@@ -3245,6 +3364,7 @@
   - [0xF3C620]
 
   - name: object_00F3D000
+    dir: objects
     type: bin # code
     start: 0xF3D000
     vram: 0x06000000
@@ -3256,6 +3376,7 @@
   - [0xF3E620]
 
   - name: object_00F3F000
+    dir: objects
     type: bin # code
     start: 0xF3F000
     vram: 0x06000000
@@ -3267,6 +3388,7 @@
   - [0xF40620]
 
   - name: object_00F41000
+    dir: objects
     type: bin # code
     start: 0xF41000
     vram: 0x06000000
@@ -3278,6 +3400,7 @@
   - [0xF42620]
 
   - name: object_00F43000
+    dir: objects
     type: bin # code
     start: 0xF43000
     vram: 0x06000000
@@ -3289,6 +3412,7 @@
   - [0xF44620]
 
   - name: object_00F45000
+    dir: objects
     type: bin # code
     start: 0xF45000
     vram: 0x06000000
@@ -3300,6 +3424,7 @@
   - [0xF473D0]
 
   - name: object_00F48000
+    dir: objects
     type: bin # code
     start: 0xF48000
     vram: 0x06000000
@@ -3311,6 +3436,7 @@
   - [0xF49020]
 
   - name: object_00F4A000
+    dir: objects
     type: bin # code
     start: 0xF4A000
     vram: 0x06000000
@@ -3322,6 +3448,7 @@
   - [0xF4BEE0]
 
   - name: object_00F4C000
+    dir: objects
     type: bin # code
     start: 0xF4C000
     vram: 0x06000000
@@ -3333,6 +3460,7 @@
   - [0xF4D620]
 
   - name: object_00F4E000
+    dir: objects
     type: bin # code
     start: 0xF4E000
     vram: 0x06000000
@@ -3344,6 +3472,7 @@
   - [0xF4F620]
 
   - name: object_00F50000
+    dir: objects
     type: bin # code
     start: 0xF50000
     vram: 0x06000000
@@ -3355,6 +3484,7 @@
   - [0xF51620]
 
   - name: object_00F52000
+    dir: objects
     type: bin # code
     start: 0xF52000
     vram: 0x06000000
@@ -3366,6 +3496,7 @@
   - [0xF53620]
 
   - name: object_00F54000
+    dir: objects
     type: bin # code
     start: 0xF54000
     vram: 0x06000000
@@ -3377,6 +3508,7 @@
   - [0xF55620]
 
   - name: object_00F56000
+    dir: objects
     type: bin # code
     start: 0xF56000
     vram: 0x06000000
@@ -3388,6 +3520,7 @@
   - [0xF57620]
 
   - name: object_00F58000
+    dir: objects
     type: bin # code
     start: 0xF58000
     vram: 0x06000000
@@ -3399,6 +3532,7 @@
   - [0xF59620]
 
   - name: object_00F5A000
+    dir: objects
     type: bin # code
     start: 0xF5A000
     vram: 0x06000000
@@ -3410,6 +3544,7 @@
   - [0xF5B620]
 
   - name: object_00F5C000
+    dir: objects
     type: bin # code
     start: 0xF5C000
     vram: 0x06000000
@@ -3421,6 +3556,7 @@
   - [0xF5D620]
 
   - name: object_00F5E000
+    dir: objects
     type: bin # code
     start: 0xF5E000
     vram: 0x06000000
@@ -3432,6 +3568,7 @@
   - [0xF5F620]
 
   - name: object_00F60000
+    dir: objects
     type: bin # code
     start: 0xF60000
     vram: 0x06000000
@@ -3443,6 +3580,7 @@
   - [0xF62140]
 
   - name: object_00F63000
+    dir: objects
     type: bin # code
     start: 0xF63000
     vram: 0x06000000
@@ -3454,6 +3592,7 @@
   - [0xF64620]
 
   - name: object_00F65000
+    dir: objects
     type: bin # code
     start: 0xF65000
     vram: 0x06000000
@@ -3465,6 +3604,7 @@
   - [0xF66620]
 
   - name: object_00F67000
+    dir: objects
     type: bin # code
     start: 0xF67000
     vram: 0x06000000
@@ -3476,6 +3616,7 @@
   - [0xF68620]
 
   - name: object_00F69000
+    dir: objects
     type: bin # code
     start: 0xF69000
     vram: 0x06000000
@@ -3487,6 +3628,7 @@
   - [0xF6A620]
 
   - name: object_00F6B000
+    dir: objects
     type: bin # code
     start: 0xF6B000
     vram: 0x06000000
@@ -3498,6 +3640,7 @@
   - [0xF6C620]
 
   - name: object_00F6D000
+    dir: objects
     type: bin # code
     start: 0xF6D000
     vram: 0x06000000
@@ -3509,6 +3652,7 @@
   - [0xF6E620]
 
   - name: object_00F6F000
+    dir: objects
     type: bin # code
     start: 0xF6F000
     vram: 0x06000000
@@ -3520,6 +3664,7 @@
   - [0xF70A80]
 
   - name: object_00F71000
+    dir: objects
     type: bin # code
     start: 0xF71000
     vram: 0x06000000
@@ -3531,6 +3676,7 @@
   - [0xF72620]
 
   - name: object_00F73000
+    dir: objects
     type: bin # code
     start: 0xF73000
     vram: 0x06000000
@@ -3542,6 +3688,7 @@
   - [0xF74620]
 
   - name: object_00F75000
+    dir: objects
     type: bin # code
     start: 0xF75000
     vram: 0x06000000
@@ -3553,6 +3700,7 @@
   - [0xF76620]
 
   - name: object_00F77000
+    dir: objects
     type: bin # code
     start: 0xF77000
     vram: 0x06000000
@@ -3564,6 +3712,7 @@
   - [0xF78620]
 
   - name: object_00F79000
+    dir: objects
     type: bin # code
     start: 0xF79000
     vram: 0x06000000
@@ -3575,6 +3724,7 @@
   - [0xF7A620]
 
   - name: object_00F7B000
+    dir: objects
     type: bin # code
     start: 0xF7B000
     vram: 0x06000000
@@ -3586,6 +3736,7 @@
   - [0xF7C620]
 
   - name: object_00F7D000
+    dir: objects
     type: bin # code
     start: 0xF7D000
     vram: 0x06000000
@@ -3597,6 +3748,7 @@
   - [0xF7E620]
 
   - name: object_00F7F000
+    dir: objects
     type: bin # code
     start: 0xF7F000
     vram: 0x06000000
@@ -3608,6 +3760,7 @@
   - [0xF80620]
 
   - name: object_00F81000
+    dir: objects
     type: bin # code
     start: 0xF81000
     vram: 0x06000000
@@ -3619,6 +3772,7 @@
   - [0xF82620]
 
   - name: object_00F83000
+    dir: objects
     type: bin # code
     start: 0xF83000
     vram: 0x06000000
@@ -3630,6 +3784,7 @@
   - [0xF84620]
 
   - name: object_00F85000
+    dir: objects
     type: bin # code
     start: 0xF85000
     vram: 0x06000000
@@ -3641,6 +3796,7 @@
   - [0xF86620]
 
   - name: object_00F87000
+    dir: objects
     type: bin # code
     start: 0xF87000
     vram: 0x06000000
@@ -3652,6 +3808,7 @@
   - [0xF88620]
 
   - name: object_00F89000
+    dir: objects
     type: bin # code
     start: 0xF89000
     vram: 0x06000000
@@ -3663,6 +3820,7 @@
   - [0xF8B760]
 
   - name: object_00F8C000
+    dir: objects
     type: bin # code
     start: 0xF8C000
     vram: 0x06000000
@@ -3674,6 +3832,7 @@
   - [0xF8D020]
 
   - name: object_00F8E000
+    dir: objects
     type: bin # code
     start: 0xF8E000
     vram: 0x06000000
@@ -3685,6 +3844,7 @@
   - [0xF90020]
 
   - name: object_00F91000
+    dir: objects
     type: bin # code
     start: 0xF91000
     vram: 0x06000000
@@ -3696,6 +3856,7 @@
   - [0xF92620]
 
   - name: object_00F93000
+    dir: objects
     type: bin # code
     start: 0xF93000
     vram: 0x06000000
@@ -3707,6 +3868,7 @@
   - [0xF94620]
 
   - name: object_00F95000
+    dir: objects
     type: bin # code
     start: 0xF95000
     vram: 0x06000000
@@ -3718,6 +3880,7 @@
   - [0xF96620]
 
   - name: object_00F97000
+    dir: objects
     type: bin # code
     start: 0xF97000
     vram: 0x06000000
@@ -3729,6 +3892,7 @@
   - [0xF98620]
 
   - name: object_00F99000
+    dir: objects
     type: bin # code
     start: 0xF99000
     vram: 0x06000000
@@ -3740,6 +3904,7 @@
   - [0xF9A620]
 
   - name: object_00F9B000
+    dir: objects
     type: bin # code
     start: 0xF9B000
     vram: 0x06000000
@@ -3751,6 +3916,7 @@
   - [0xF9C620]
 
   - name: object_00F9D000
+    dir: objects
     type: bin # code
     start: 0xF9D000
     vram: 0x06000000
@@ -3762,6 +3928,7 @@
   - [0xF9F620]
 
   - name: object_00FA0000
+    dir: objects
     type: bin # code
     start: 0xFA0000
     vram: 0x06000000
@@ -3773,6 +3940,7 @@
   - [0xFA1620]
 
   - name: object_00FA2000
+    dir: objects
     type: bin # code
     start: 0xFA2000
     vram: 0x06000000
@@ -3784,6 +3952,7 @@
   - [0xFA3620]
 
   - name: object_00FA4000
+    dir: objects
     type: bin # code
     start: 0xFA4000
     vram: 0x06000000
@@ -3795,6 +3964,7 @@
   - [0xFA5620]
 
   - name: object_00FA6000
+    dir: objects
     type: bin # code
     start: 0xFA6000
     vram: 0x06000000
@@ -3806,6 +3976,7 @@
   - [0xFA7620]
 
   - name: object_00FA8000
+    dir: objects
     type: bin # code
     start: 0xFA8000
     vram: 0x06000000
@@ -3817,6 +3988,7 @@
   - [0xFA9BF0]
 
   - name: object_00FAA000
+    dir: objects
     type: bin # code
     start: 0xFAA000
     vram: 0x06000000
@@ -3828,6 +4000,7 @@
   - [0xFAB620]
 
   - name: object_00FAC000
+    dir: objects
     type: bin # code
     start: 0xFAC000
     vram: 0x06000000
@@ -3839,6 +4012,7 @@
   - [0xFAE200]
 
   - name: object_00FAF000
+    dir: objects
     type: bin # code
     start: 0xFAF000
     vram: 0x06000000
@@ -3850,6 +4024,7 @@
   - [0xFB0020]
 
   - name: object_00FB1000
+    dir: objects
     type: bin # code
     start: 0xFB1000
     vram: 0x06000000
@@ -3861,6 +4036,7 @@
   - [0xFB2A90]
 
   - name: object_00FB3000
+    dir: objects
     type: bin # code
     start: 0xFB3000
     vram: 0x06000000
@@ -3872,6 +4048,7 @@
   - [0xFB3820]
 
   - name: object_00FB4000
+    dir: objects
     type: bin # code
     start: 0xFB4000
     vram: 0x06000000
@@ -3883,6 +4060,7 @@
   - [0xFB6780]
 
   - name: object_00FB7000
+    dir: objects
     type: bin # code
     start: 0xFB7000
     vram: 0x06000000
@@ -3894,6 +4072,7 @@
   - [0xFB8020]
 
   - name: object_00FB9000
+    dir: objects
     type: bin # code
     start: 0xFB9000
     vram: 0x06000000
@@ -3905,6 +4084,7 @@
   - [0xFBA020]
 
   - name: object_00FBB000
+    dir: objects
     type: bin # code
     start: 0xFBB000
     vram: 0x06000000
@@ -3916,6 +4096,7 @@
   - [0xFBC020]
 
   - name: object_00FBD000
+    dir: objects
     type: bin # code
     start: 0xFBD000
     vram: 0x06000000
@@ -3927,6 +4108,7 @@
   - [0xFBE020]
 
   - name: object_00FBF000
+    dir: objects
     type: bin # code
     start: 0xFBF000
     vram: 0x06000000
@@ -3938,6 +4120,7 @@
   - [0xFC0020]
 
   - name: object_00FC1000
+    dir: objects
     type: bin # code
     start: 0xFC1000
     vram: 0x06000000
@@ -3949,6 +4132,7 @@
   - [0xFC2020]
 
   - name: object_00FC3000
+    dir: objects
     type: bin # code
     start: 0xFC3000
     vram: 0x06000000
@@ -3960,6 +4144,7 @@
   - [0xFC4020]
 
   - name: object_00FC5000
+    dir: objects
     type: bin # code
     start: 0xFC5000
     vram: 0x06000000
@@ -3971,6 +4156,7 @@
   - [0xFC73F0]
 
   - name: object_00FC8000
+    dir: objects
     type: bin # code
     start: 0xFC8000
     vram: 0x06000000
@@ -3982,6 +4168,7 @@
   - [0xFC9020]
 
   - name: object_00FCA000
+    dir: objects
     type: bin # code
     start: 0xFCA000
     vram: 0x06000000
@@ -3993,6 +4180,7 @@
   - [0xFCB020]
 
   - name: object_00FCC000
+    dir: objects
     type: bin # code
     start: 0xFCC000
     vram: 0x06000000
@@ -4004,6 +4192,7 @@
   - [0xFCD020]
 
   - name: object_00FCE000
+    dir: objects
     type: bin # code
     start: 0xFCE000
     vram: 0x06000000
@@ -4015,6 +4204,7 @@
   - [0xFCF020]
 
   - name: object_00FD0000
+    dir: objects
     type: bin # code
     start: 0xFD0000
     vram: 0x06000000
@@ -4026,6 +4216,7 @@
   - [0xFD1020]
 
   - name: object_00FD2000
+    dir: objects
     type: bin # code
     start: 0xFD2000
     vram: 0x06000000
@@ -4037,6 +4228,7 @@
   - [0xFD3020]
 
   - name: object_00FD4000
+    dir: objects
     type: bin # code
     start: 0xFD4000
     vram: 0x06000000
@@ -4048,6 +4240,7 @@
   - [0xFD5020]
 
   - name: object_00FD6000
+    dir: objects
     type: bin # code
     start: 0xFD6000
     vram: 0x06000000
@@ -4059,6 +4252,7 @@
   - [0xFD8030]
 
   - name: object_00FD9000
+    dir: objects
     type: bin # code
     start: 0xFD9000
     vram: 0x06000000
@@ -4070,6 +4264,7 @@
   - [0xFDA620]
 
   - name: object_00FDB000
+    dir: objects
     type: bin # code
     start: 0xFDB000
     vram: 0x06000000
@@ -4081,6 +4276,7 @@
   - [0xFDD7F0]
 
   - name: object_00FDE000
+    dir: objects
     type: bin # code
     start: 0xFDE000
     vram: 0x06000000
@@ -4092,6 +4288,7 @@
   - [0xFDF020]
 
   - name: object_00FE0000
+    dir: objects
     type: bin # code
     start: 0xFE0000
     vram: 0x06000000
@@ -4103,6 +4300,7 @@
   - [0xFE26C0]
 
   - name: object_00FE3000
+    dir: objects
     type: bin # code
     start: 0xFE3000
     vram: 0x06000000
@@ -4114,6 +4312,7 @@
   - [0xFE4020]
 
   - name: object_00FE5000
+    dir: objects
     type: bin # code
     start: 0xFE5000
     vram: 0x06000000
@@ -4125,6 +4324,7 @@
   - [0xFE6020]
 
   - name: object_00FE7000
+    dir: objects
     type: bin # code
     start: 0xFE7000
     vram: 0x06000000
@@ -4136,6 +4336,7 @@
   - [0xFE8020]
 
   - name: object_00FE9000
+    dir: objects
     type: bin # code
     start: 0xFE9000
     vram: 0x06000000
@@ -4147,6 +4348,7 @@
   - [0xFEA020]
 
   - name: object_00FEB000
+    dir: objects
     type: bin # code
     start: 0xFEB000
     vram: 0x06000000
@@ -4158,6 +4360,7 @@
   - [0xFEC020]
 
   - name: object_00FED000
+    dir: objects
     type: bin # code
     start: 0xFED000
     vram: 0x06000000
@@ -4169,6 +4372,7 @@
   - [0xFEE020]
 
   - name: object_00FEF000
+    dir: objects
     type: bin # code
     start: 0xFEF000
     vram: 0x06000000
@@ -4180,6 +4384,7 @@
   - [0xFF1670]
 
   - name: object_00FF2000
+    dir: objects
     type: bin # code
     start: 0xFF2000
     vram: 0x06000000
@@ -4191,6 +4396,7 @@
   - [0xFF3020]
 
   - name: object_00FF4000
+    dir: objects
     type: bin # code
     start: 0xFF4000
     vram: 0x06000000
@@ -4202,6 +4408,7 @@
   - [0xFF5F80]
 
   - name: object_00FF6000
+    dir: objects
     type: bin # code
     start: 0xFF6000
     vram: 0x06000000
@@ -4213,6 +4420,7 @@
   - [0xFF7620]
 
   - name: object_00FF8000
+    dir: objects
     type: bin # code
     start: 0xFF8000
     vram: 0x06000000
@@ -4224,6 +4432,7 @@
   - [0xFF9620]
 
   - name: object_00FFA000
+    dir: objects
     type: bin # code
     start: 0xFFA000
     vram: 0x06000000
@@ -4235,6 +4444,7 @@
   - [0xFFB620]
 
   - name: object_00FFC000
+    dir: objects
     type: bin # code
     start: 0xFFC000
     vram: 0x06000000
@@ -4246,6 +4456,7 @@
   - [0xFFD620]
 
   - name: object_00FFE000
+    dir: objects
     type: bin # code
     start: 0xFFE000
     vram: 0x06000000
@@ -4257,6 +4468,7 @@
   - [0xFFF620]
 
   - name: object_01000000
+    dir: objects
     type: bin # code
     start: 0x1000000
     vram: 0x06000000
@@ -4268,6 +4480,7 @@
   - [0x1002620]
 
   - name: object_01003000
+    dir: objects
     type: bin # code
     start: 0x1003000
     vram: 0x06000000
@@ -4279,6 +4492,7 @@
   - [0x1004620]
 
   - name: object_01005000
+    dir: objects
     type: bin # code
     start: 0x1005000
     vram: 0x06000000
@@ -4290,6 +4504,7 @@
   - [0x1006620]
 
   - name: object_01007000
+    dir: objects
     type: bin # code
     start: 0x1007000
     vram: 0x06000000
@@ -4301,6 +4516,7 @@
   - [0x1008620]
 
   - name: object_01009000
+    dir: objects
     type: bin # code
     start: 0x1009000
     vram: 0x06000000
@@ -4312,6 +4528,7 @@
   - [0x100ACB0]
 
   - name: object_0100B000
+    dir: objects
     type: bin # code
     start: 0x100B000
     vram: 0x06000000
@@ -4323,6 +4540,7 @@
   - [0x100C620]
 
   - name: object_0100D000
+    dir: objects
     type: bin # code
     start: 0x100D000
     vram: 0x06000000
@@ -4334,6 +4552,7 @@
   - [0x100EF80]
 
   - name: object_0100F000
+    dir: objects
     type: bin # code
     start: 0x100F000
     vram: 0x06000000
@@ -4345,6 +4564,7 @@
   - [0x1010020]
 
   - name: object_01011000
+    dir: objects
     type: bin # code
     start: 0x1011000
     vram: 0x06000000
@@ -4356,6 +4576,7 @@
   - [0x1013270]
 
   - name: object_01014000
+    dir: objects
     type: bin # code
     start: 0x1014000
     vram: 0x06000000
@@ -4367,6 +4588,7 @@
   - [0x1015020]
 
   - name: object_01016000
+    dir: objects
     type: bin # code
     start: 0x1016000
     vram: 0x06000000
@@ -4378,6 +4600,7 @@
   - [0x1018220]
 
   - name: object_01019000
+    dir: objects
     type: bin # code
     start: 0x1019000
     vram: 0x06000000
@@ -4389,6 +4612,7 @@
   - [0x101A620]
 
   - name: object_0101B000
+    dir: objects
     type: bin # code
     start: 0x101B000
     vram: 0x06000000
@@ -4400,6 +4624,7 @@
   - [0x101C620]
 
   - name: object_0101D000
+    dir: objects
     type: bin # code
     start: 0x101D000
     vram: 0x06000000
@@ -4411,6 +4636,7 @@
   - [0x101E620]
 
   - name: object_0101F000
+    dir: objects
     type: bin # code
     start: 0x101F000
     vram: 0x06000000
@@ -4422,6 +4648,7 @@
   - [0x1020620]
 
   - name: object_01021000
+    dir: objects
     type: bin # code
     start: 0x1021000
     vram: 0x06000000
@@ -4433,6 +4660,7 @@
   - [0x1022620]
 
   - name: object_01023000
+    dir: objects
     type: bin # code
     start: 0x1023000
     vram: 0x06000000
@@ -4444,6 +4672,7 @@
   - [0x1024620]
 
   - name: object_01025000
+    dir: objects
     type: bin # code
     start: 0x1025000
     vram: 0x06000000
@@ -4455,6 +4684,7 @@
   - [0x1026620]
 
   - name: object_01027000
+    dir: objects
     type: bin # code
     start: 0x1027000
     vram: 0x06000000
@@ -4466,6 +4696,7 @@
   - [0x1028620]
 
   - name: object_01029000
+    dir: objects
     type: bin # code
     start: 0x1029000
     vram: 0x06000000
@@ -4477,6 +4708,7 @@
   - [0x102A620]
 
   - name: object_0102B000
+    dir: objects
     type: bin # code
     start: 0x102B000
     vram: 0x06000000
@@ -4488,6 +4720,7 @@
   - [0x102D800]
 
   - name: object_0102E000
+    dir: objects
     type: bin # code
     start: 0x102E000
     vram: 0x06000000
@@ -4499,6 +4732,7 @@
   - [0x102F020]
 
   - name: object_01030000
+    dir: objects
     type: bin # code
     start: 0x1030000
     vram: 0x06000000
@@ -4510,6 +4744,7 @@
   - [0x1032280]
 
   - name: object_01033000
+    dir: objects
     type: bin # code
     start: 0x1033000
     vram: 0x06000000
@@ -4521,6 +4756,7 @@
   - [0x1034020]
 
   - name: object_01035000
+    dir: objects
     type: bin # code
     start: 0x1035000
     vram: 0x06000000
@@ -4532,6 +4768,7 @@
   - [0x1036020]
 
   - name: object_01037000
+    dir: objects
     type: bin # code
     start: 0x1037000
     vram: 0x06000000
@@ -4543,6 +4780,7 @@
   - [0x1038020]
 
   - name: object_01039000
+    dir: objects
     type: bin # code
     start: 0x1039000
     vram: 0x06000000
@@ -4554,6 +4792,7 @@
   - [0x103A020]
 
   - name: object_0103B000
+    dir: objects
     type: bin # code
     start: 0x103B000
     vram: 0x06000000
@@ -4565,6 +4804,7 @@
   - [0x103D210]
 
   - name: object_0103E000
+    dir: objects
     type: bin # code
     start: 0x103E000
     vram: 0x06000000
@@ -4576,6 +4816,7 @@
   - [0x103F020]
 
   - name: object_01040000
+    dir: objects
     type: bin # code
     start: 0x1040000
     vram: 0x06000000
@@ -4587,6 +4828,7 @@
   - [0x1041020]
 
   - name: object_01042000
+    dir: objects
     type: bin # code
     start: 0x1042000
     vram: 0x06000000
@@ -4598,6 +4840,7 @@
   - [0x1043020]
 
   - name: object_01044000
+    dir: objects
     type: bin # code
     start: 0x1044000
     vram: 0x06000000
@@ -4609,6 +4852,7 @@
   - [0x1045020]
 
   - name: object_01046000
+    dir: objects
     type: bin # code
     start: 0x1046000
     vram: 0x06000000
@@ -4620,6 +4864,7 @@
   - [0x1047020]
 
   - name: object_01048000
+    dir: objects
     type: bin # code
     start: 0x1048000
     vram: 0x06000000
@@ -4631,6 +4876,7 @@
   - [0x1049020]
 
   - name: object_0104A000
+    dir: objects
     type: bin # code
     start: 0x104A000
     vram: 0x06000000
@@ -4642,6 +4888,7 @@
   - [0x104B020]
 
   - name: object_0104C000
+    dir: objects
     type: bin # code
     start: 0x104C000
     vram: 0x06000000
@@ -4653,6 +4900,7 @@
   - [0x104DCC0]
 
   - name: object_0104E000
+    dir: objects
     type: bin # code
     start: 0x104E000
     vram: 0x06000000
@@ -4664,6 +4912,7 @@
   - [0x104F620]
 
   - name: object_01050000
+    dir: objects
     type: bin # code
     start: 0x1050000
     vram: 0x06000000
@@ -4675,6 +4924,7 @@
   - [0x1051620]
 
   - name: object_01052000
+    dir: objects
     type: bin # code
     start: 0x1052000
     vram: 0x06000000
@@ -4686,6 +4936,7 @@
   - [0x1053620]
 
   - name: object_01054000
+    dir: objects
     type: bin # code
     start: 0x1054000
     vram: 0x06000000
@@ -4697,6 +4948,7 @@
   - [0x1055620]
 
   - name: object_01056000
+    dir: objects
     type: bin # code
     start: 0x1056000
     vram: 0x06000000
@@ -4708,6 +4960,7 @@
   - [0x1057620]
 
   - name: object_01058000
+    dir: objects
     type: bin # code
     start: 0x1058000
     vram: 0x06000000
@@ -4719,6 +4972,7 @@
   - [0x1059620]
 
   - name: object_0105A000
+    dir: objects
     type: bin # code
     start: 0x105A000
     vram: 0x06000000
@@ -4730,6 +4984,7 @@
   - [0x105B620]
 
   - name: object_0105C000
+    dir: objects
     type: bin # code
     start: 0x105C000
     vram: 0x06000000
@@ -4741,6 +4996,7 @@
   - [0x105D620]
 
   - name: object_0105E000
+    dir: objects
     type: bin # code
     start: 0x105E000
     vram: 0x06000000
@@ -4752,6 +5008,7 @@
   - [0x105F620]
 
   - name: object_01060000
+    dir: objects
     type: bin # code
     start: 0x1060000
     vram: 0x06000000
@@ -4763,6 +5020,7 @@
   - [0x1061620]
 
   - name: object_01062000
+    dir: objects
     type: bin # code
     start: 0x1062000
     vram: 0x06000000
@@ -4774,6 +5032,7 @@
   - [0x1064170]
 
   - name: object_01065000
+    dir: objects
     type: bin # code
     start: 0x1065000
     vram: 0x06000000
@@ -4785,6 +5044,7 @@
   - [0x1066620]
 
   - name: object_01067000
+    dir: objects
     type: bin # code
     start: 0x1067000
     vram: 0x06000000
@@ -4796,6 +5056,7 @@
   - [0x1069770]
 
   - name: object_0106A000
+    dir: objects
     type: bin # code
     start: 0x106A000
     vram: 0x06000000
@@ -4807,6 +5068,7 @@
   - [0x106B620]
 
   - name: object_0106C000
+    dir: objects
     type: bin # code
     start: 0x106C000
     vram: 0x06000000
@@ -4818,6 +5080,7 @@
   - [0x106E590]
 
   - name: object_0106F000
+    dir: objects
     type: bin # code
     start: 0x106F000
     vram: 0x06000000
@@ -4829,6 +5092,7 @@
   - [0x1070020]
 
   - name: object_01071000
+    dir: objects
     type: bin # code
     start: 0x1071000
     vram: 0x06000000
@@ -4840,6 +5104,7 @@
   - [0x10734D0]
 
   - name: object_01074000
+    dir: objects
     type: bin # code
     start: 0x1074000
     vram: 0x06000000
@@ -4851,6 +5116,7 @@
   - [0x1075020]
 
   - name: object_01076000
+    dir: objects
     type: bin # code
     start: 0x1076000
     vram: 0x06000000
@@ -4862,6 +5128,7 @@
   - [0x1078680]
 
   - name: object_01079000
+    dir: objects
     type: bin # code
     start: 0x1079000
     vram: 0x06000000
@@ -4873,6 +5140,7 @@
   - [0x107A020]
 
   - name: object_0107B000
+    dir: objects
     type: bin # code
     start: 0x107B000
     vram: 0x06000000
@@ -4884,6 +5152,7 @@
   - [0x107CEF0]
 
   - name: object_0107D000
+    dir: objects
     type: bin # code
     start: 0x107D000
     vram: 0x06000000
@@ -4895,6 +5164,7 @@
   - [0x107E620]
 
   - name: object_0107F000
+    dir: objects
     type: bin # code
     start: 0x107F000
     vram: 0x06000000
@@ -4906,6 +5176,7 @@
   - [0x1080620]
 
   - name: object_01081000
+    dir: objects
     type: bin # code
     start: 0x1081000
     vram: 0x06000000
@@ -4917,6 +5188,7 @@
   - [0x1082620]
 
   - name: object_01083000
+    dir: objects
     type: bin # code
     start: 0x1083000
     vram: 0x06000000
@@ -4928,6 +5200,7 @@
   - [0x1084620]
 
   - name: object_01085000
+    dir: objects
     type: bin # code
     start: 0x1085000
     vram: 0x06000000
@@ -4939,6 +5212,7 @@
   - [0x1086620]
 
   - name: object_01087000
+    dir: objects
     type: bin # code
     start: 0x1087000
     vram: 0x06000000
@@ -4950,6 +5224,7 @@
   - [0x1088620]
 
   - name: object_01089000
+    dir: objects
     type: bin # code
     start: 0x1089000
     vram: 0x06000000
@@ -4961,6 +5236,7 @@
   - [0x108A620]
 
   - name: object_0108B000
+    dir: objects
     type: bin # code
     start: 0x108B000
     vram: 0x06000000
@@ -4972,6 +5248,7 @@
   - [0x108C620]
 
   - name: object_0108D000
+    dir: objects
     type: bin # code
     start: 0x108D000
     vram: 0x06000000
@@ -4983,6 +5260,7 @@
   - [0x108E620]
 
   - name: object_0108F000
+    dir: objects
     type: bin # code
     start: 0x108F000
     vram: 0x06000000
@@ -4994,6 +5272,7 @@
   - [0x1090620]
 
   - name: object_01091000
+    dir: objects
     type: bin # code
     start: 0x1091000
     vram: 0x06000000
@@ -5005,6 +5284,7 @@
   - [0x1093800]
 
   - name: object_01094000
+    dir: objects
     type: bin # code
     start: 0x1094000
     vram: 0x06000000
@@ -5016,6 +5296,7 @@
   - [0x1095620]
 
   - name: object_01096000
+    dir: objects
     type: bin # code
     start: 0x1096000
     vram: 0x06000000
@@ -5027,6 +5308,7 @@
   - [0x1097620]
 
   - name: object_01098000
+    dir: objects
     type: bin # code
     start: 0x1098000
     vram: 0x06000000
@@ -5038,6 +5320,7 @@
   - [0x1099620]
 
   - name: object_0109A000
+    dir: objects
     type: bin # code
     start: 0x109A000
     vram: 0x06000000
@@ -5049,6 +5332,7 @@
   - [0x109B620]
 
   - name: object_0109C000
+    dir: objects
     type: bin # code
     start: 0x109C000
     vram: 0x06000000
@@ -5060,6 +5344,7 @@
   - [0x109DD60]
 
   - name: object_0109E000
+    dir: objects
     type: bin # code
     start: 0x109E000
     vram: 0x06000000
@@ -5071,6 +5356,7 @@
   - [0x109F620]
 
   - name: object_010A0000
+    dir: objects
     type: bin # code
     start: 0x10A0000
     vram: 0x06000000
@@ -5082,6 +5368,7 @@
   - [0x10A1C70]
 
   - name: object_010A2000
+    dir: objects
     type: bin # code
     start: 0x10A2000
     vram: 0x06000000
@@ -5093,6 +5380,7 @@
   - [0x10A3620]
 
   - name: object_010A4000
+    dir: objects
     type: bin # code
     start: 0x10A4000
     vram: 0x06000000
@@ -5104,6 +5392,7 @@
   - [0x10A5620]
 
   - name: object_010A6000
+    dir: objects
     type: bin # code
     start: 0x10A6000
     vram: 0x06000000
@@ -5115,6 +5404,7 @@
   - [0x10A7620]
 
   - name: object_010A8000
+    dir: objects
     type: bin # code
     start: 0x10A8000
     vram: 0x06000000
@@ -5126,6 +5416,7 @@
   - [0x10A9620]
 
   - name: object_010AA000
+    dir: objects
     type: bin # code
     start: 0x10AA000
     vram: 0x06000000
@@ -5137,6 +5428,7 @@
   - [0x10AB620]
 
   - name: object_010AC000
+    dir: objects
     type: bin # code
     start: 0x10AC000
     vram: 0x06000000
@@ -5148,6 +5440,7 @@
   - [0x10AD620]
 
   - name: object_010AE000
+    dir: objects
     type: bin # code
     start: 0x10AE000
     vram: 0x06000000
@@ -5159,6 +5452,7 @@
   - [0x10B0060]
 
   - name: object_010B1000
+    dir: objects
     type: bin # code
     start: 0x10B1000
     vram: 0x06000000
@@ -5170,6 +5464,7 @@
   - [0x10B2020]
 
   - name: object_010B3000
+    dir: objects
     type: bin # code
     start: 0x10B3000
     vram: 0x06000000
@@ -5181,6 +5476,7 @@
   - [0x10B5270]
 
   - name: object_010B6000
+    dir: objects
     type: bin # code
     start: 0x10B6000
     vram: 0x06000000
@@ -5192,6 +5488,7 @@
   - [0x10B7020]
 
   - name: object_010B8000
+    dir: objects
     type: bin # code
     start: 0x10B8000
     vram: 0x06000000
@@ -5203,6 +5500,7 @@
   - [0x10BA100]
 
   - name: object_010BB000
+    dir: objects
     type: bin # code
     start: 0x10BB000
     vram: 0x06000000
@@ -5214,6 +5512,7 @@
   - [0x10BC620]
 
   - name: object_010BD000
+    dir: objects
     type: bin # code
     start: 0x10BD000
     vram: 0x06000000
@@ -5225,6 +5524,7 @@
   - [0x10BE620]
 
   - name: object_010BF000
+    dir: objects
     type: bin # code
     start: 0x10BF000
     vram: 0x06000000
@@ -5236,6 +5536,7 @@
   - [0x10C0620]
 
   - name: object_010C1000
+    dir: objects
     type: bin # code
     start: 0x10C1000
     vram: 0x06000000
@@ -5247,6 +5548,7 @@
   - [0x10C2620]
 
   - name: object_010C3000
+    dir: objects
     type: bin # code
     start: 0x10C3000
     vram: 0x06000000
@@ -5258,6 +5560,7 @@
   - [0x10C4620]
 
   - name: object_010C5000
+    dir: objects
     type: bin # code
     start: 0x10C5000
     vram: 0x06000000
@@ -5269,6 +5572,7 @@
   - [0x10C6620]
 
   - name: object_010C7000
+    dir: objects
     type: bin # code
     start: 0x10C7000
     vram: 0x06000000
@@ -5280,6 +5584,7 @@
   - [0x10C8620]
 
   - name: object_010C9000
+    dir: objects
     type: bin # code
     start: 0x10C9000
     vram: 0x06000000
@@ -5291,6 +5596,7 @@
   - [0x10CA620]
 
   - name: object_010CB000
+    dir: objects
     type: bin # code
     start: 0x10CB000
     vram: 0x06000000
@@ -5302,6 +5608,7 @@
   - [0x10CC620]
 
   - name: object_010CD000
+    dir: objects
     type: bin # code
     start: 0x10CD000
     vram: 0x06000000
@@ -5313,6 +5620,7 @@
   - [0x10CE620]
 
   - name: object_010CF000
+    dir: objects
     type: bin # code
     start: 0x10CF000
     vram: 0x06000000
@@ -5324,6 +5632,7 @@
   - [0x10D1300]
 
   - name: object_010D2000
+    dir: objects
     type: bin # code
     start: 0x10D2000
     vram: 0x06000000
@@ -5335,6 +5644,7 @@
   - [0x10D3620]
 
   - name: object_010D4000
+    dir: objects
     type: bin # code
     start: 0x10D4000
     vram: 0x06000000
@@ -5346,6 +5656,7 @@
   - [0x10D60B0]
 
   - name: object_010D7000
+    dir: objects
     type: bin # code
     start: 0x10D7000
     vram: 0x06000000
@@ -5357,6 +5668,7 @@
   - [0x10D8020]
 
   - name: object_010D9000
+    dir: objects
     type: bin # code
     start: 0x10D9000
     vram: 0x06000000
@@ -5368,6 +5680,7 @@
   - [0x10DB500]
 
   - name: object_010DC000
+    dir: objects
     type: bin # code
     start: 0x10DC000
     vram: 0x06000000
@@ -5379,6 +5692,7 @@
   - [0x10DD020]
 
   - name: object_010DE000
+    dir: objects
     type: bin # code
     start: 0x10DE000
     vram: 0x06000000
@@ -5390,6 +5704,7 @@
   - [0x10DF020]
 
   - name: object_010E0000
+    dir: objects
     type: bin # code
     start: 0x10E0000
     vram: 0x06000000
@@ -5401,6 +5716,7 @@
   - [0x10E1020]
 
   - name: object_010E2000
+    dir: objects
     type: bin # code
     start: 0x10E2000
     vram: 0x06000000
@@ -5412,6 +5728,7 @@
   - [0x10E4710]
 
   - name: object_010E5000
+    dir: objects
     type: bin # code
     start: 0x10E5000
     vram: 0x06000000
@@ -5423,6 +5740,7 @@
   - [0x10E6620]
 
   - name: object_010E7000
+    dir: objects
     type: bin # code
     start: 0x10E7000
     vram: 0x06000000
@@ -5434,6 +5752,7 @@
   - [0x10E90D0]
 
   - name: object_010EA000
+    dir: objects
     type: bin # code
     start: 0x10EA000
     vram: 0x06000000
@@ -5445,6 +5764,7 @@
   - [0x10EB020]
 
   - name: object_010EC000
+    dir: objects
     type: bin # code
     start: 0x10EC000
     vram: 0x06000000
@@ -5456,6 +5776,7 @@
   - [0x10ED020]
 
   - name: object_010EE000
+    dir: objects
     type: bin # code
     start: 0x10EE000
     vram: 0x06000000
@@ -5467,6 +5788,7 @@
   - [0x10EF020]
 
   - name: object_010F0000
+    dir: objects
     type: bin # code
     start: 0x10F0000
     vram: 0x06000000
@@ -5478,6 +5800,7 @@
   - [0x10F1020]
 
   - name: object_010F2000
+    dir: objects
     type: bin # code
     start: 0x10F2000
     vram: 0x06000000
@@ -5496,31 +5819,76 @@
     align: 0x1000
   - [0x10FF1A0]
 
-  - name: segment_01100000
-    type: bin
+  - name: act_ball_b
+    dir: objects/act_ball_b
+    type: code
     start: 0x1100000
-    # vram:
+    vram: 0x06000000
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, act_ball_b]
+      - start: 0x1100000
+        type: .data
+        name: act_ball_b
+        subsegments:
+          - [0x1100000, vtx, act_ball_b_v]
+          - [0x11001A0, af_gfx, act_ball_b_modelT]
+          - [0x11001A8, af_gfx, act_ball_b_model]
+          - [0x1100318, af_palette, act_ball_b_pal]
+          - [0x1100338, ci4, act_ball_b_1_tex, 16, 16, act_ball_b_pal]
   - [0x11003C0]
 
-  - name: segment_01101000
-    type: bin
+  - name: act_ball_d
+    dir: objects/act_ball_d
+    type: code
     start: 0x1101000
-    # vram:
+    vram: 0x06000000
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, act_ball_d]
+      - start: 0x1101000
+        type: .data
+        name: act_ball_d
+        subsegments:
+          - [0x1101000, vtx, act_ball_d_v]
+          - [0x1101360, af_gfx, act_ball_d_modelT]
+          - [0x1101368, af_gfx, act_ball_d_model]
+          - [0x11015C8, af_palette, act_ball_d_pal]
+          - [0x11015E8, ci4, act_ball_d_1_tex, 16, 16, act_ball_d_pal]
+          - [0x1101668, ci4, act_ball_d_2_tex, 16, 16, act_ball_d_pal]
+          - [0x11016E8, ci4, act_ball_d_3_tex, 16, 16, act_ball_d_pal]
   - [0x1101770]
 
-  - name: segment_01102000
-    type: bin
+  - name: act_ball_s
+    dir: objects/act_ball_s
+    type: code
     start: 0x1102000
-    # vram:
+    vram: 0x06000000
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, act_ball_s]
+      - start: 0x1102000
+        type: .data
+        name: act_ball_s
+        subsegments:
+          - [0x1102000, vtx, act_ball_s_v]
+          - [0x1102700, af_gfx, act_ball_s_modelT]
+          - [0x1102708, af_gfx, act_ball_s_model]
+          - [0x11028B8, af_palette, act_ball_s_pal]
+          - [0x11028D8, ci4, act_ball_s_5_tex, 16, 32, act_ball_s_pal]
   - [0x11029E0]
 
   - name: object_01103000
+    dir: objects
     type: bin # code
     start: 0x1103000
     vram: 0x06000000
@@ -5532,6 +5900,7 @@
   - [0x11054F0]
 
   - name: object_01106000
+    dir: objects
     type: bin # code
     start: 0x1106000
     vram: 0x06000000
@@ -6369,6 +6738,7 @@
   - [0x11285B0]
 
   - name: object_01129000
+    dir: objects
     type: bin # code
     start: 0x1129000
     vram: 0x06000000
@@ -6535,6 +6905,7 @@
   - [0x1130400]
 
   - name: object_01131000
+    dir: objects
     type: bin # code
     start: 0x1131000
     vram: 0x06000000
@@ -6546,6 +6917,7 @@
   - [0x11331F0]
 
   - name: object_01134000
+    dir: objects
     type: bin # code
     start: 0x1134000
     vram: 0x06000000
@@ -6557,6 +6929,7 @@
   - [0x1134AD0]
 
   - name: object_01135000
+    dir: objects
     type: bin # code
     start: 0x1135000
     vram: 0x06000000
@@ -6575,18 +6948,27 @@
     align: 0x1000
   - [0x113BCD0]
 
-  - name: object_0113C000
-    type: bin # code
+  - name: glider
+    dir: objects/glider
+    type: code
     start: 0x113C000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x113C000, data, assets/objects/object_0113C000/object_0113C000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, glider]
+      - start: 0x113C000
+        type: .data
+        name: glider
+        subsegments:
+          - [0x113C000, vtx, glider_v]
+          - [0x113C0B0, af_gfx, glider_model]
   - [0x113C100]
 
   - name: object_0113D000
+    dir: objects
     type: bin # code
     start: 0x113D000
     vram: 0x06000000
@@ -6598,6 +6980,7 @@
   - [0x1146950]
 
   - name: object_01147000
+    dir: objects
     type: bin # code
     start: 0x1147000
     vram: 0x06000000
@@ -6784,26 +7167,63 @@
     align: 0x1000
   - [0x11F3050]
 
-  - name: object_011F4000
-    type: bin # code
+  - name: act_bee
+    dir: objects/act_bee
+    type: code
     start: 0x11F4000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x11F4000, data, assets/objects/object_011F4000/object_011F4000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, act_bee]
+      - start: 0x11F4000
+        type: .data
+        name: act_bee
+        subsegments:
+          - [0x11F4000, vtx, act_bee_v]
+          - [0x11F43A0, af_gfx, act_bee_C_model]
+          - [0x11F44B8, af_gfx, act_bee_B_model]
+          - [0x11F45B0, af_gfx, act_bee_A_model]
+          - [0x11F46A8, i4, act_bee_tex_txt, 32, 32]
+          - [0x11F48A8, ckf_ckcb, cKF_ckcb_r_act_bee_tbl]
+          - [0x11F48AC, ckf_kn, cKF_kn_act_bee_tbl]
+          - [0x11F48B0, ckf_c, cKF_c_act_bee_tbl]
+          - [0x11F48CC, ckf_ds, cKF_ds_act_bee_tbl]
+          - [0x11F48E4, ckf_ba, cKF_ba_r_act_bee]
+          - [0x11F48F8, ckf_je, cKF_je_r_act_bee_tbl]
+          - [0x11F4928, ckf_bs, cKF_bs_r_act_bee]
   - [0x11F4930]
 
-  - name: object_011F5000
-    type: bin # code
+  - name: act_balloon
+    dir: objects/act_balloon
+    type: code
     start: 0x11F5000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x11F5000, data, assets/objects/object_011F5000/object_011F5000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, act_balloon]
+      - start: 0x11F5000
+        type: .data
+        name: act_balloon
+        subsegments:
+          - [0x11F5000, vtx, act_balloon_v]
+          - [0x11F5340, af_gfx, act_balloon_head_model]
+          - [0x11F5450, af_gfx, act_balloon_wireB_model]
+          - [0x11F5560, af_gfx, act_balloon_wireA_model]
+          - [0x11F55F8, i4, act_balloon_wire_tex_txt, 16, 16]
+          - [0x11F5678, ia16, act_balloon_head_tex_rgb_ia16, 32, 32]
+          - [0x11F5E78, ckf_ckcb, cKF_ckcb_r_act_balloon_tbl]
+          - [0x11F5E7C, ckf_kn, cKF_kn_act_balloon_tbl]
+          - [0x11F5E88, ckf_c, cKF_c_act_balloon_tbl]
+          - [0x11F5E9C, ckf_ds, cKF_ds_act_balloon_tbl]
+          - [0x11F5F44, ckf_ba, cKF_ba_r_act_balloon]
+          - [0x11F5F58, ckf_je, cKF_je_r_act_balloon_tbl]
+          - [0x11F5F88, ckf_bs, cKF_bs_r_act_balloon]
   - [0x11F5F90]
 
   - name: segment_011F6000
@@ -8431,6 +8851,7 @@
   - [0x13895F0]
 
   - name: object_0138A000
+    dir: objects
     type: bin # code
     start: 0x138A000
     vram: 0x06000000
@@ -8522,6 +8943,7 @@
   - [0x13A35D0]
 
   - name: object_013A4000
+    dir: objects
     type: bin # code
     start: 0x13A4000
     vram: 0x06000000
@@ -8533,6 +8955,7 @@
   - [0x13A42C0]
 
   - name: object_013A5000
+    dir: objects
     type: bin # code
     start: 0x13A5000
     vram: 0x06000000
@@ -8544,6 +8967,7 @@
   - [0x13A5470]
 
   - name: object_013A6000
+    dir: objects
     type: bin # code
     start: 0x13A6000
     vram: 0x06000000
@@ -8579,6 +9003,7 @@
   - [0x13AAC90]
 
   - name: object_013AB000
+    dir: objects
     type: bin # code
     start: 0x13AB000
     vram: 0x06000000
@@ -8670,6 +9095,7 @@
   - [0x13E2B40]
 
   - name: object_013E3000
+    dir: objects
     type: bin # code
     start: 0x13E3000
     vram: 0x06000000
@@ -8705,6 +9131,7 @@
   - [0x13EA760]
 
   - name: object_013EB000
+    dir: objects
     type: bin # code
     start: 0x13EB000
     vram: 0x06000000
@@ -8772,6 +9199,7 @@
   - [0x140B430]
 
   - name: object_0140C000
+    dir: objects
     type: bin # code
     start: 0x140C000
     vram: 0x06000000
@@ -14319,6 +14747,7 @@
   - [0x179D040]
 
   - name: object_0179E000
+    dir: objects
     type: bin # code
     start: 0x179E000
     vram: 0x06000000
@@ -14330,6 +14759,7 @@
   - [0x179E2C0]
 
   - name: object_0179F000
+    dir: objects
     type: bin # code
     start: 0x179F000
     vram: 0x06000000
@@ -14341,6 +14771,7 @@
   - [0x17A0590]
 
   - name: object_017A1000
+    dir: objects
     type: bin # code
     start: 0x17A1000
     vram: 0x06000000
@@ -14352,6 +14783,7 @@
   - [0x1829880]
 
   - name: object_0182A000
+    dir: objects
     type: bin # code
     start: 0x182A000
     vram: 0x06000000
@@ -14371,6 +14803,7 @@
   - [0x1870860]
 
   - name: object_01871000
+    dir: objects
     type: bin # code
     start: 0x1871000
     vram: 0x06000000
@@ -14382,6 +14815,7 @@
   - [0x187FFA0]
 
   - name: object_01880000
+    dir: objects
     type: bin # code
     start: 0x1880000
     vram: 0x06000000
@@ -14393,6 +14827,7 @@
   - [0x18830A0]
 
   - name: object_01884000
+    dir: objects
     type: bin # code
     start: 0x1884000
     vram: 0x06000000
@@ -14404,6 +14839,7 @@
   - [0x18876C0]
 
   - name: object_01888000
+    dir: objects
     type: bin # code
     start: 0x1888000
     vram: 0x06000000

@@ -87,8 +87,8 @@ void mAGrw_SetDebugDataBlock(u16* fgItems, u16* deposit, AllGrowBlock* fossilBlo
 }
 
 void mAGrw_SetDebugData() {
-    Foreground* fgItems = common_data.foreground[0];
-    u16* deposit = common_data.deposit[0];
+    Foreground* fgItems = common_data.save.foreground[0];
+    u16* deposit = common_data.save.deposit[0];
     s32 blockZ;
 
     mAGrw_ClearDebugData();
@@ -122,7 +122,7 @@ void mAGrw_PrintFossilHaniwa_debug(gfxprint* gfxprint) {
 
 s32 mAGrw_CheckKabuPeddler() {
     lbRTC_time_c* rtcTime = &common_data.time.rtcTime;
-    lbRTC_time_c* renewTime = &common_data.allGrowRenewTime;
+    lbRTC_time_c* renewTime = &common_data.save.allGrowRenewTime;
     lbRTC_time_c peddlerSpawnTime;
     s32 res = FALSE;
 
@@ -142,7 +142,7 @@ s32 mAGrw_CheckKabuPeddler() {
 }
 
 void mAGrw_OrderSetHaniwa() {
-    common_data.haniwaScheduled = TRUE;
+    common_data.save.haniwaScheduled = TRUE;
 }
 
 u8 func_80055E34_jp(u16* items) {
@@ -229,7 +229,7 @@ typedef void (*xmasProcFunc)(u16*);
 void mAGrw_XmasTreeField(s32 type) {
     static xmasProcFunc xmas_proc[] = { &mAGrw_ClearXmasTreeBlock, &mAGrw_SetXmasTreeBlock };
 
-    Foreground* block = common_data.foreground[0];
+    Foreground* block = common_data.save.foreground[0];
     s32 i;
 
     for (i = 0; i < FG_BLOCK_TOTAL_NUM; i++) {
@@ -239,7 +239,7 @@ void mAGrw_XmasTreeField(s32 type) {
 }
 
 void mAGrw_SetXmasTree() {
-    if (common_data.sceneNo == SCENE_FG) {
+    if (common_data.save.sceneNo == SCENE_FG) {
         s32 type = mAGrw_CheckPutXmasTree(&common_data.time.rtcTime);
         mAGrw_XmasTreeField(type);
     }
@@ -249,16 +249,16 @@ void mAGrw_RenewalFgItem(lbRTC_time_c* time) {
     u32 ovlSize = SEGMENT_VRAM_SIZE(m_all_grow_ovl);
     allGrowOvlUnkFunc func;
 
-    if (common_data.sceneNo == SCENE_FG) {
-        s32 schedHaniwa = common_data.haniwaScheduled;
+    if (common_data.save.sceneNo == SCENE_FG) {
+        s32 schedHaniwa = common_data.save.haniwaScheduled;
         D_80100C5C_jp = zelda_malloc(ovlSize);
 
         if (D_80100C5C_jp != NULL) {
             ovlmgr_Load(SEGMENT_ROM_START(m_all_grow_ovl), SEGMENT_ROM_END(m_all_grow_ovl),
                         SEGMENT_VRAM_START(m_all_grow_ovl), SEGMENT_VRAM_END(m_all_grow_ovl), D_80100C5C_jp);
             func = (allGrowOvlUnkFunc)SEGMENT_VRAM_RESOLVE_ADDR(m_all_grow_ovl, D_80100C5C_jp, mAGrw_RenewalFgItem_ovl);
-            (*func)(time, &schedHaniwa);
-            common_data.haniwaScheduled = schedHaniwa;
+            func(time, &schedHaniwa);
+            common_data.save.haniwaScheduled = schedHaniwa;
             zelda_free(D_80100C5C_jp);
         }
 
@@ -290,12 +290,12 @@ void mAGrw_ChangeTree2FruitTreeLine(Foreground* fg, u16 fruitTree) {
 }
 
 void mAGrw_ChangeTree2FruitTree() {
-    s32 fruit = common_data.fruit - 0x2800;
+    s32 fruit = common_data.save.fruit - 0x2800;
     u16 fruitTree;
     s32 blockZ;
 
     fruitTree = l_tree_max_table[fruit];
     for (blockZ = 0; blockZ < FG_BLOCK_Z_NUM; blockZ++) {
-        mAGrw_ChangeTree2FruitTreeLine(common_data.foreground[blockZ], fruitTree);
+        mAGrw_ChangeTree2FruitTreeLine(common_data.save.foreground[blockZ], fruitTree);
     }
 }

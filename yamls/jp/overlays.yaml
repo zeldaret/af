@@ -65,7 +65,7 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x743B70, asm, overlays/gamestates/ovl_second_game/second_game]
+      - [0x743B70, c, overlays/gamestates/ovl_second_game/second_game]
   - name: ovl_second_game_reloc
     type: code
     start: 0x743CA0
@@ -75,7 +75,7 @@
     subsegments:
       - [0x743CA0, data, overlays/gamestates/ovl_second_game/ovl_second_game_reloc]
 
-  - name: ovl__00743CD0
+  - name: ovl_cpedit
     type: code
     start: 0x743CD0
     vram: 0x808048F0
@@ -83,28 +83,42 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x743CD0, asm, overlays/gamestates/ovl__00743CD0/ovl__00743CD0]
-  - name: ovl__00743CD0_reloc
+      - [0x743CD0, c, overlays/gamestates/ovl_cpedit/m_cpedit]
+  - name: ovl_cpedit_reloc
     type: code
     start: 0x743FE0
     vram: 0x80804C00
-    follows_vram: ovl__00743CD0
+    follows_vram: 
     compress: True
     subsegments:
-      - [0x743FE0, data, overlays/gamestates/ovl__00743CD0/ovl__00743CD0_reloc]
+      - [0x743FE0, data, overlays/gamestates/ovl_cpedit/ovl_cpedit_reloc]
 
   - name: ovl_trademark
     type: code
     start: 0x744020
     vram: 0x80804C40
-    follows_vram: ovl__00743CD0_reloc
+    follows_vram: ovl_cpedit_reloc
     compress: True
     bss_size: 0x20170
     subsegments:
-      - [0x744020, asm, overlays/gamestates/ovl_trademark/m_trademark]
-      - [0x744F00, data, overlays/gamestates/ovl_trademark/m_trademark]
-      - [0x747910, rodata, overlays/gamestates/ovl_trademark/m_trademark]
-      - { start: 0x747940, type: bss, vram: 0x80808560, name: overlays/gamestates/ovl_trademark/m_trademark }
+      - [0x744020, c, overlays/gamestates/ovl_trademark/m_trademark]
+      - start: 0x744F00
+        type: .data
+        name: overlays/gamestates/ovl_trademark/m_trademark
+        subsegments:
+          - [0x744F00]
+          - { start: 0x7450B8, type: vtx, name: overlays/gamestates/ovl_trademark/m_trademark/D_80805CD8_jp, data_only: True }
+          - { start: 0x7452B8, type: vtx, name: overlays/gamestates/ovl_trademark/m_trademark/D_80805ED8_jp, data_only: True }
+          - { start: 0x7454B8, type: vtx, name: overlays/gamestates/ovl_trademark/m_trademark/D_808060D8_jp, data_only: True }
+          - { start: 0x745538, type: vtx, name: overlays/gamestates/ovl_trademark/m_trademark/D_80806158_jp, data_only: True }
+          - { start: 0x745718, type: vtx, name: overlays/gamestates/ovl_trademark/m_trademark/D_80806338_jp, data_only: True }
+          - { start: 0x745838, type: vtx, name: overlays/gamestates/ovl_trademark/m_trademark/D_80806458_jp, data_only: True }
+          - [0x7459B8, i8, overlays/gamestates/ovl_trademark/m_trademark/D_808065D8_jp, 64, 64]
+          - [0x7469B8]
+          - [0x746CE8, i8, overlays/gamestates/ovl_trademark/m_trademark/D_80807908_jp, 128, 24]
+          - [0x7478E8]
+      - [0x747910, .rodata, overlays/gamestates/ovl_trademark/m_trademark]
+      - { start: 0x747940, type: .bss, vram: 0x80808560, name: overlays/gamestates/ovl_trademark/m_trademark }
   - name: ovl_trademark_reloc
     type: code
     start: 0x747940
@@ -142,9 +156,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x7486E0, asm, overlays/gamestates/ovl_save_menu/save_menu]
-      - [0x7490E0, data, overlays/gamestates/ovl_save_menu/save_menu]
-      - [0x7491E0, rodata, overlays/gamestates/ovl_save_menu/save_menu]
+      - [0x7486E0, c, overlays/gamestates/ovl_save_menu/save_menu]
+      - [0x7490E0, .data, overlays/gamestates/ovl_save_menu/save_menu]
+      - [0x7491E0, .rodata, overlays/gamestates/ovl_save_menu/save_menu]
   - name: ovl_save_menu_reloc
     type: code
     start: 0x749200
@@ -1703,7 +1717,7 @@
     bss_size: 0x0
     subsegments:
       - [0x85C570, c, overlays/actors/ovl_Airplane/ac_airplane]
-      - [0x85D360, data, overlays/actors/ovl_Airplane/ac_airplane]
+      - [0x85D360, .data, overlays/actors/ovl_Airplane/ac_airplane]
       - [0x85D440, .rodata, overlays/actors/ovl_Airplane/ac_airplane]
   - name: ovl_Airplane_reloc
     type: code
@@ -1723,9 +1737,9 @@
     bss_size: 0x10
     subsegments:
       - [0x85D660, c, overlays/actors/ovl_Ball/ac_ball]
-      - [0x85F500, data, overlays/actors/ovl_Ball/ac_ball]
+      - [0x85F500, .data, overlays/actors/ovl_Ball/ac_ball]
       - [0x85F550, .rodata, overlays/actors/ovl_Ball/ac_ball]
-      - { start: 0x85F5D0, type: bss, vram: 0x8096A980, name: overlays/actors/ovl_Ball/ac_ball }
+      - { start: 0x85F5D0, type: .bss, vram: 0x8096A980, name: overlays/actors/ovl_Ball/ac_ball }
   - name: ovl_Ball_reloc
     type: code
     start: 0x85F5D0
@@ -2883,9 +2897,9 @@
     bss_size: 0x14AF0
     subsegments:
       - [0x8CB690, c, overlays/actors/ovl_Structure/ac_structure]
-      - [0x8CD000, data, overlays/actors/ovl_Structure/ac_structure]
+      - [0x8CD000, .data, overlays/actors/ovl_Structure/ac_structure]
       - [0x8CD270, .rodata, overlays/actors/ovl_Structure/ac_structure]
-      - { start: 0x8CD350, type: bss, vram: 0x809E9B90, name: overlays/actors/ovl_Structure/ac_structure }
+      - { start: 0x8CD350, type: .bss, vram: 0x809E9B90, name: overlays/actors/ovl_Structure/ac_structure }
   - name: ovl_Structure_reloc
     type: code
     start: 0x8CD350
@@ -14898,7 +14912,7 @@
     bss_size: 0x0
     subsegments:
       - [0x94F170, c, overlays/actors/ovl_Tama/ac_tama]
-      - [0x94F4F0, data, overlays/actors/ovl_Tama/ac_tama]
+      - [0x94F4F0, .data, overlays/actors/ovl_Tama/ac_tama]
   - name: ovl_Tama_reloc
     type: code
     start: 0x94F520
@@ -14917,7 +14931,7 @@
     bss_size: 0x0
     subsegments:
       - [0x94F570, c, overlays/actors/ovl_Kago/ac_kago]
-      - [0x94F960, data, overlays/actors/ovl_Kago/ac_kago]
+      - [0x94F960, .data, overlays/actors/ovl_Kago/ac_kago]
   - name: ovl_Kago_reloc
     type: code
     start: 0x94F9C0
@@ -15212,7 +15226,7 @@
     bss_size: 0x0
     subsegments:
       - [0x953F30, c, overlays/actors/ovl_Bee/ac_bee]
-      - [0x954BC0, data, overlays/actors/ovl_Bee/ac_bee]
+      - [0x954BC0, .data, overlays/actors/ovl_Bee/ac_bee]
       - [0x954C30, .rodata, overlays/actors/ovl_Bee/ac_bee]
   - name: ovl_Bee_reloc
     type: code
@@ -15415,7 +15429,7 @@
     bss_size: 0x0
     subsegments:
       - [0x956BF0, c, overlays/actors/ovl_Dump/ac_dump]
-      - [0x957260, data, overlays/actors/ovl_Dump/ac_dump]
+      - [0x957260, .data, overlays/actors/ovl_Dump/ac_dump]
       - [0x957370, .rodata, overlays/actors/ovl_Dump/ac_dump]
   - name: ovl_Dump_reloc
     type: code
@@ -17067,7 +17081,7 @@
     bss_size: 0x0
     subsegments:
       - [0x96D250, c, overlays/actors/ovl_Fuusen/ac_fuusen]
-      - [0x96E620, data, overlays/actors/ovl_Fuusen/ac_fuusen]
+      - [0x96E620, .data, overlays/actors/ovl_Fuusen/ac_fuusen]
       - [0x96E7B0, .rodata, overlays/actors/ovl_Fuusen/ac_fuusen]
   - name: ovl_Fuusen_reloc
     type: code

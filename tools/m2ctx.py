@@ -15,6 +15,7 @@ CPP_FLAGS = [
     "-Iinclude",
     "-Isrc",
     "-Ibin",
+    "-Ibuild",
     "-Ilib/ultralib/include",
     "-Ilib/ultralib/include/PR",
     "-Ilib/ultralib/include/ido",

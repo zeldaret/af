@@ -463,21 +463,21 @@ void DisplayList_initialize(GraphicsContext* gfxCtx, u8 clearR, u8 clearG, u8 cl
     gSPDisplayList(POLY_OPA_DISP++, RSP_RDP_clear_data);
     gSPDisplayList(POLY_XLU_DISP++, RSP_RDP_clear_data);
     gSPDisplayList(OVERLAY_DISP++, RSP_RDP_clear_data);
-    gSPDisplayList(UNK_2B0_DISP++, RSP_RDP_clear_data);
+    gSPDisplayList(FONT_DISP++, RSP_RDP_clear_data);
     gSPDisplayList(SHADOW_DISP++, z_gsCPModeSet_Data[2]);
     gSPDisplayList(LIGHT_DISP++, z_gsCPModeSet_Data[2]);
 
     gDPSetScissor(POLY_OPA_DISP++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     gDPSetScissor(POLY_XLU_DISP++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     gDPSetScissor(OVERLAY_DISP++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    gDPSetScissor(UNK_2B0_DISP++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    gDPSetScissor(FONT_DISP++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     gDPSetScissor(SHADOW_DISP++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     gDPSetScissor(LIGHT_DISP++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
     gDPSetColorImage(POLY_OPA_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_2E4);
     gDPSetColorImage(POLY_XLU_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_2E4);
     gDPSetColorImage(OVERLAY_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_2E4);
-    gDPSetColorImage(UNK_2B0_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_2E4);
+    gDPSetColorImage(FONT_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_2E4);
     gDPSetColorImage(SHADOW_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_2E4);
     gDPSetColorImage(LIGHT_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gfxCtx->unk_2E4);
 
@@ -487,7 +487,7 @@ void DisplayList_initialize(GraphicsContext* gfxCtx, u8 clearR, u8 clearG, u8 cl
         gDPSetDepthImage(POLY_OPA_DISP++, unk_008);
         gDPSetDepthImage(POLY_XLU_DISP++, unk_008);
         gDPSetDepthImage(OVERLAY_DISP++, unk_008);
-        gDPSetDepthImage(UNK_2B0_DISP++, unk_008);
+        gDPSetDepthImage(FONT_DISP++, unk_008);
         gDPSetDepthImage(SHADOW_DISP++, unk_008);
         gDPSetDepthImage(LIGHT_DISP++, unk_008);
     }

@@ -469,8 +469,6 @@ CollisionCheck_Status_Init aNPC_StatusData = { 0, 0x14, 0x1E, 0, 50 };
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc2/ac_npc2/func_8099E020_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc2/ac_npc2/D_8099E1F0_jp.s")
-
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc2/ac_npc2/func_8099E3E0_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Npc2/ac_npc2/func_8099E410_jp.s")

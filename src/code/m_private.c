@@ -4,14 +4,13 @@
 #include "m_name_table.h"
 #include "m_time.h"
 #include "m_player_lib.h"
-#include "6E2300.h"
+#include "m_room_type.h"
 #include "m_field_info.h"
-#include "6E30B0.h"
+#include "6E3240.h"
 #include "69CB30.h"
 #include "m_handbill.h"
 #include "m_house.h"
 #include "6DA460.h"
-#include "6EDD10.h"
 
 PrivateInfo g_foreigner_private;
 Mail_c l_mpr_mail;
@@ -57,8 +56,8 @@ s32 mPr_GetPlayerName(char* buf, s32 playerNumber) {
     s32 res = FALSE;
 
     if (mLd_PlayerManKindCheckNo(playerNumber) == FALSE) {
-        if (mPr_NullCheckPersonalID(&common_data.saveFilePrivateInfo[playerNumber].playerId) == FALSE) {
-            mPr_CopyPlayerName(buf, common_data.saveFilePrivateInfo[playerNumber].playerId.playerName);
+        if (mPr_NullCheckPersonalID(&common_data.save.saveFilePrivateInfo[playerNumber].playerId) == FALSE) {
+            mPr_CopyPlayerName(buf, common_data.save.saveFilePrivateInfo[playerNumber].playerId.playerName);
             res = TRUE;
         }
     } else if (mLd_PlayerManKindCheckNo(common_data.playerNumber) == TRUE) {
@@ -146,7 +145,7 @@ s32 mPr_GetRandomFace() {
 }
 
 s32 mPr_GetRandomOriginalFace() {
-    PrivateInfo* priv = common_data.saveFilePrivateInfo;
+    PrivateInfo* priv = common_data.save.saveFilePrivateInfo;
     PrivateInfo* pr2;
     s32 j;
     PrivateInfo* pr = priv;
@@ -225,11 +224,11 @@ void mPr_InitPrivateInfo(PrivateInfo* priv) {
     exists = FALSE;
     face = mPr_GetRandomOriginalFace();
 
-    priv->playerId.landId = common_data.landInfo.id;
-    mLd_CopyLandName(priv->playerId.landName, common_data.landInfo.name);
+    priv->playerId.landId = common_data.save.landInfo.id;
+    mLd_CopyLandName(priv->playerId.landName, common_data.save.landInfo.name);
 
     pid = RANDOM_F(253);
-    ogPriv = common_data.saveFilePrivateInfo;
+    ogPriv = common_data.save.saveFilePrivateInfo;
 
     for (i = 0; i < PLAYER_NUM - 1; i++, exists = FALSE) {
         s32 j;
@@ -287,7 +286,7 @@ s32 mPr_CheckCmpPrivate(PrivateInfo* priv0, PrivateInfo* priv1) {
 }
 
 s32 mPr_GetPrivateIdx(PersonalID_c* pid) {
-    PrivateInfo* priv = common_data.saveFilePrivateInfo;
+    PrivateInfo* priv = common_data.save.saveFilePrivateInfo;
     s32 res = -1;
     s32 i;
 
@@ -663,14 +662,14 @@ s32 mPr_CheckMuseumInfoMail(PrivateInfo* priv) {
     return res;
 }
 
-s32 mPr_LoadPak_and_SetPrivateInfo2(u8 player, void* pak) {
+s32 mPr_LoadPak_and_SetPrivateInfo2(u8 player, PakInfo* pak) {
     PrivateInfo* priv;
     s32 res = FALSE;
     s32 save = func_8007942C_jp(&g_foreigner_private, mNpc_GetInAnimalP(), pak);
 
     if (save == TRUE) {
         if (player < 4) {
-            priv = &common_data.saveFilePrivateInfo[player];
+            priv = &common_data.save.saveFilePrivateInfo[player];
             if (mPr_CheckCmpPrivate(priv, &g_foreigner_private) == TRUE) {
                 mPr_CopyPrivateInfo(priv, &g_foreigner_private);
                 common_data.privateInfo = priv;
@@ -680,7 +679,7 @@ s32 mPr_LoadPak_and_SetPrivateInfo2(u8 player, void* pak) {
         } else {
             s32 i;
             s32 exists;
-            priv = common_data.saveFilePrivateInfo;
+            priv = common_data.save.saveFilePrivateInfo;
 
             for (i = 0; i < PLAYER_NUM; i++, priv++) {
                 exists = mPr_CheckCmpPrivate(priv, &g_foreigner_private);
@@ -753,7 +752,7 @@ s32 mPr_SendMotherMailPost(PersonalID_c* pid, s32 playerNumber, u16 present, s32
     UNUSED s32 pad;
 
     mail = &l_mpr_mail;
-    home = &common_data.homes[mHS_get_arrange_idx(playerNumber)];
+    home = &common_data.save.homes[mHS_get_arrange_idx(playerNumber)];
 
     if (mPr_CheckCmpPersonalID(pid, &home->ownerID) == TRUE) {
         mailboxIdx = mMl_chk_mail_free_space(home->mailbox, HOME_MAILBOX_SIZE);
@@ -1095,12 +1094,12 @@ void mPr_SendMailFromMother() {
 
     if (mLd_PlayerManKindCheckNo(playerNumber) == FALSE && priv != NULL &&
         mPr_NullCheckPersonalID(&priv->playerId) == FALSE) {
-        mailDate = &common_data.motherMailInfo[playerNumber].date;
+        mailDate = &common_data.save.motherMailInfo[playerNumber].date;
 
         if (mailDate->year != mTM_rtcTime_ymd_clear_code.year && mailDate->month != mTM_rtcTime_ymd_clear_code.month &&
             mailDate->day != mTM_rtcTime_ymd_clear_code.day) {
             if (mailDate->year != rtcTime->year || mailDate->month != rtcTime->month || mailDate->day != rtcTime->day) {
-                mPr_SendMotherMail(&common_data.motherMailInfo[playerNumber], rtcTime);
+                mPr_SendMotherMail(&common_data.save.motherMailInfo[playerNumber], rtcTime);
             }
         } else {
             mTM_set_renew_time(mailDate, rtcTime);
@@ -1192,7 +1191,7 @@ s32 mPr_CheckFishCompleteTalk(u8 playerNumber) {
     s32 res = FALSE;
 
     if (playerNumber < PLAYER_NUM &&
-        mPr_GetCompleteTalk(common_data.saveFilePrivateInfo[playerNumber].completeFishInsectFlags, 0) == TRUE) {
+        mPr_GetCompleteTalk(common_data.save.saveFilePrivateInfo[playerNumber].completeFishInsectFlags, 0) == TRUE) {
         res = TRUE;
     }
 
@@ -1207,7 +1206,7 @@ s32 mPr_CheckInsectCompleteTalk(u8 playerNumber) {
     s32 res = FALSE;
 
     if (playerNumber < PLAYER_NUM &&
-        mPr_GetCompleteTalk(common_data.saveFilePrivateInfo[playerNumber].completeFishInsectFlags, 1) == TRUE) {
+        mPr_GetCompleteTalk(common_data.save.saveFilePrivateInfo[playerNumber].completeFishInsectFlags, 1) == TRUE) {
         res = TRUE;
     }
 
@@ -1260,8 +1259,8 @@ void mPr_CopyMapInfo(mPr_map_info_c* dst, mPr_map_info_c* src) {
 
 void mPr_SetMapThisLand(mPr_map_info_c* mapInfo) {
     if (mapInfo != NULL) {
-        mLd_CopyLandName(mapInfo->landName, common_data.landInfo.name);
-        mapInfo->landId = common_data.landInfo.id;
+        mLd_CopyLandName(mapInfo->landName, common_data.save.landInfo.name);
+        mapInfo->landId = common_data.save.landInfo.id;
     }
 }
 
@@ -1301,7 +1300,7 @@ s32 mPr_GetLandMapIdx(mPr_map_info_c* mapInfo, s32 max, LandInfo* landInfo) {
 }
 
 s32 mPr_GetThisLandMapIdx(mPr_map_info_c* map_info, s32 max) {
-    return mPr_GetLandMapIdx(map_info, max, &common_data.landInfo);
+    return mPr_GetLandMapIdx(map_info, max, &common_data.save.landInfo);
 }
 
 void mPr_PushMapInfo(mPr_map_info_c* map_info, s32 max) {
@@ -1375,7 +1374,7 @@ void mPr_PrintMapInfo_debug(gfxprint* gfxprint) {
         mapInfo = priv->maps;
         gfxprint_color(gfxprint, 30, 100, 100, 255);
         gfxprint_locate8x8(gfxprint, 3, 21);
-        gfxprint_printf(gfxprint, "%04x ", common_data.landInfo.id);
+        gfxprint_printf(gfxprint, "%04x ", common_data.save.landInfo.id);
 
         gfxprint_locate8x8(gfxprint, 3, 22);
         gfxprint_color(gfxprint, 30, 200, 70, 255);

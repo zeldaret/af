@@ -10,10 +10,10 @@
 #include "m_player_lib.h"
 #include "audio.h"
 #include "6EC9E0.h"
-#include "6EDD10.h"
+#include "m_time.h"
 #include "69E2C0.h"
 #include "683030.h"
-#include "6E30B0.h"
+#include "6E3240.h"
 #include "6C97F0.h"
 #include "6EFC20.h"
 #include "67D890.h"
@@ -211,8 +211,8 @@ void Game_play_fbdemo_fade_out_game_end_move_end(Game_Play* game_play) {
 
 void Game_play_change_scene_move_end(Game_Play* game_play) {
     game_goto_next_game_play(&game_play->state);
-    common_data.unk_10004 = common_data.sceneNo;
-    common_data.sceneNo = game_play->unk_1E18;
+    common_data.unk_10004 = common_data.save.sceneNo;
+    common_data.save.sceneNo = game_play->unk_1E18;
 }
 
 void Game_play_fbdemo_wipe_move(Game_Play* game_play) {
@@ -389,17 +389,17 @@ void play_init(Game* game) {
     mSM_submenu_ovlptr_init(game_play);
     func_8007CFD8_jp(game_play);
     mEv_init(&game_play->event);
-    initView(&game_play->unk_1938, gfxCtx);
+    initView(&game_play->view, gfxCtx);
     func_80064F48_jp(game_play);
     CollisionCheck_ct(game_play, &game_play->unk_2138);
     func_8006BB64_jp();
     func_8006C8D0_jp();
     game_play->unk_1DAC = -1;
-    Gameplay_Scene_Read(game_play, common_data.sceneNo);
+    Gameplay_Scene_Read(game_play, common_data.save.sceneNo);
     mSM_submenu_ct(&game_play->submenu);
     game_play->submenu.unk_00 = 0;
     PreRender_init(&game_play->unk_1DC0);
-    PreRender_setup_savebuf(&game_play->unk_1DC0, 0x140, 0xF0, 0, 0, 0);
+    PreRender_setup_savebuf(&game_play->unk_1DC0, 0x140, 0xF0, NULL, NULL, NULL);
     PreRender_setup_renderbuf(&game_play->unk_1DC0, 0x140, 0xF0, NULL, NULL);
 
     //! FAKE
@@ -548,21 +548,21 @@ void func_80803810_jp(Game_Play* game_play, GraphicsContext* gfxCtx) {
     gSPSegment(POLY_OPA_DISP++, 0x00, NULL);
     gSPSegment(POLY_XLU_DISP++, 0x00, NULL);
     gSPSegment(OVERLAY_DISP++, 0x00, NULL);
-    gSPSegment(UNK_2B0_DISP++, 0x00, NULL);
+    gSPSegment(FONT_DISP++, 0x00, NULL);
     gSPSegment(SHADOW_DISP++, 0x00, NULL);
     gSPSegment(LIGHT_DISP++, 0x00, NULL);
 
     gSPSegment(POLY_OPA_DISP++, 0x04, temp_v0);
     gSPSegment(POLY_XLU_DISP++, 0x04, temp_v0);
     gSPSegment(OVERLAY_DISP++, 0x04, temp_v0);
-    gSPSegment(UNK_2B0_DISP++, 0x04, temp_v0);
+    gSPSegment(FONT_DISP++, 0x04, temp_v0);
     gSPSegment(SHADOW_DISP++, 0x04, temp_v0);
     gSPSegment(LIGHT_DISP++, 0x04, temp_v0);
 
     gSPSegment(POLY_OPA_DISP++, 0x02, game_play->unk_010C);
     gSPSegment(POLY_XLU_DISP++, 0x02, game_play->unk_010C);
     gSPSegment(OVERLAY_DISP++, 0x02, game_play->unk_010C);
-    gSPSegment(UNK_2B0_DISP++, 0x02, game_play->unk_010C);
+    gSPSegment(FONT_DISP++, 0x02, game_play->unk_010C);
     gSPSegment(SHADOW_DISP++, 0x02, game_play->unk_010C);
     gSPSegment(LIGHT_DISP++, 0x02, game_play->unk_010C);
 
@@ -579,13 +579,13 @@ void setupFog(Game_Play* game_play, GraphicsContext* gfxCtx) {
 }
 
 void setupViewer(Game_Play* game_play) {
-    showView(&game_play->unk_1938, 0xF);
+    showView(&game_play->view, 0xF);
 }
 
 void setupViewMatrix(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsContext* gfxCtx2) {
     // TODO: A way to fit OPEN_DISPS/CLOSE_DISPS on the stack
-    Matrix_MtxtoMtxF(&game_play->unk_1938.unk_0A0, &game_play->billboardMtxF);
-    Matrix_MtxtoMtxF(&game_play->unk_1938.unk_060, &game_play->viewProjectionMtxF);
+    Matrix_MtxtoMtxF(&game_play->view.viewingMtx, &game_play->billboardMtxF);
+    Matrix_MtxtoMtxF(&game_play->view.projectionMtx, &game_play->viewProjectionMtxF);
     Skin_Matrix_MulMatrix(&game_play->viewProjectionMtxF, &game_play->billboardMtxF, &game_play->viewProjectionMtxF);
 
     game_play->billboardMtxF.mf[0][3] = 0.0f;
@@ -613,16 +613,16 @@ s32 makeBumpTexture(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsCon
         gSPDisplayList(OVERLAY_DISP++, sp194);
 
         if (game_play->unk_1EE3 == 3) {
-            Game_Play1938 sp60;
+            View view;
 
-            initView(&sp60, gfxCtx2);
+            initView(&view, gfxCtx2);
             {
-                sp60.unk_120 = 10;
+                view.flag = 10;
             //! FAKE
             label2:;
             }
-            SET_FULLSCREEN_VIEWPORT(&sp60);
-            showView1(&sp60, 0xF, &sp194);
+            SET_FULLSCREEN_VIEWPORT(&view);
+            showView1(&view, 0xF, &sp194);
             game_play->unk_1EE8.unk_21C.unk_0C(&game_play->unk_1EE8, &sp194);
         }
 
@@ -681,12 +681,12 @@ s32 makeBumpTexture(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsCon
 
         gSPDisplayList(OVERLAY_DISP++, sp3C);
 
-        game_play->unk_1DC0.unk_10 = gfxCtx2->unk_2E4;
-        game_play->unk_1DC0.unk_14 = gfxCtx2->unk_008;
+        game_play->unk_1DC0.fbuf = gfxCtx2->unk_2E4;
+        game_play->unk_1DC0.fbuf_save = gfxCtx2->unk_008;
         PreRender_saveFrameBuffer(&game_play->unk_1DC0, &sp3C);
 
         if (game_play->submenu.unk_00 == 1) {
-            game_play->unk_1DC0.unk_18 = gfxCtx2->unk_2E4;
+            game_play->unk_1DC0.cvg_save = gfxCtx2->unk_2E4;
             PreRender_saveCVG(&game_play->unk_1DC0, &sp3C);
             game_play->submenu.unk_00 = 2;
         } else {
@@ -806,15 +806,15 @@ void play_main(Game* game) {
     game_play->state.unk_9D = 0xBE;
 }
 
-void* func_80804138_jp(Game_Play* game_play, Struct_8010EAA0* arg1) {
-    u32 sp24 = arg1->unk_04 - arg1->unk_00;
-    void* sp20 = THA_alloc16(&game_play->state.heap, sp24);
+void* func_80804138_jp(Game_Play* game_play, SceneDmaStatus* arg1) {
+    u32 sceneDataSize = arg1->vromEnd - arg1->vromStart;
+    void* sp20 = THA_alloc16(&game_play->state.heap, sceneDataSize);
 
-    DmaMgr_RequestSyncDebug(sp20, arg1->unk_00, sp24, "../m_play.c", 2302);
+    DmaMgr_RequestSyncDebug(sp20, arg1->vromStart, sceneDataSize, "../m_play.c", 2302);
     return sp20;
 }
 
-void func_808041A4_jp(Game_Play* game_play) {
+void VR_Box_ct(Game_Play* game_play) {
     Global_kankyo_ct(game_play, &game_play->kankyo);
 }
 
@@ -826,11 +826,11 @@ void Gameplay_Scene_Init(Game_Play* game_play) {
     game_play->unk_1EB8 = 0;
     mSc_data_bank_ct(game_play, &game_play->objectExchangeBank);
     Global_light_ct(&game_play->glight);
-    Door_info_ct(&game_play->unk_1E10);
+    Door_info_ct(&game_play->sceneDoorInfo);
     common_data_clear();
     Scene_ct(game_play, game_play->unk_010C);
     mSc_decide_exchange_bank(&game_play->objectExchangeBank);
-    func_808041A4_jp(game_play);
+    VR_Box_ct(game_play);
 }
 
 s32 mPl_SceneNo2SoundRoomType(s32 arg0) {
@@ -858,7 +858,7 @@ s32 mPl_SceneNo2SoundRoomType(s32 arg0) {
 }
 
 void Gameplay_Scene_Read(Game_Play* game_play, s16 arg1) {
-    Struct_8010EAA0* sp1C = &scene_data_status[arg1];
+    SceneDmaStatus* sp1C = &scene_data_status[arg1];
 
     sp1C->unk_13 = 0;
     game_play->unk_2210 = sp1C;
@@ -867,5 +867,5 @@ void Gameplay_Scene_Read(Game_Play* game_play, s16 arg1) {
     sp1C->unk_13 = 0;
     gSegments[2] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_010C);
     Gameplay_Scene_Init(game_play);
-    sAdo_RoomType(mPl_SceneNo2SoundRoomType(common_data.sceneNo));
+    sAdo_RoomType(mPl_SceneNo2SoundRoomType(common_data.save.sceneNo));
 }

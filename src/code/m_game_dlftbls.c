@@ -4,7 +4,7 @@
 #include "overlays/gamestates/ovl_first_game/first_game.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "overlays/gamestates/ovl_second_game/second_game.h"
-#include "overlays/gamestates/ovl__00743CD0/_00743CD0.h"
+#include "overlays/gamestates/ovl_cpedit/m_cpedit.h"
 #include "overlays/gamestates/ovl_trademark/m_trademark.h"
 #include "overlays/gamestates/ovl_player_select/player_select.h"
 #include "overlays/gamestates/ovl_save_menu/save_menu.h"

@@ -4,15 +4,20 @@
 #include "ultra64.h"
 #include "m_actor.h"
 #include "unk.h"
+#include "c_keyframe.h"
+#include "overlays/actors/ovl_Structure/ac_structure.h"
 
 struct Game_Play;
 struct Tama;
 
+typedef enum TamaProcess {
+    TAM_PROCESS_WAIT,
+} TamaProcess;
+
 typedef void (*TamaActionFunc)(struct Tama*, struct Game_Play*);
 
 typedef struct Tama {
-    /* 0x000 */ Actor actor;
-    /* 0x174 */ UNK_TYPE1 unk_174[0x164];
+    /* 0x000 */ StructureActor structureActor;
 } Tama; // size = 0x2D8
 
 #endif

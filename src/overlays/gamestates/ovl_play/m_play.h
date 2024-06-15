@@ -26,6 +26,7 @@
 struct Actor;
 struct ActorEntry;
 struct Game_Play;
+struct SceneDmaStatus;
 
 typedef void (*Game_Play_unk_1C58)(struct Actor*);
 typedef UNK_RET (*Game_Play_unk_2208)(struct Actor*, struct Game_Play*);
@@ -68,7 +69,7 @@ typedef struct Game_Play {
     /* 0x00E8 */ UNK_TYPE1 unk_00E8[0x24];
     /* 0x010C */ void* unk_010C;
     /* 0x0110 */ ObjectExchangeBank objectExchangeBank;
-    /* 0x1938 */ Game_Play1938 unk_1938;
+    /* 0x1938 */ View view;
     /* 0x1A60 */ Camera2 camera;
     /* 0x1B98 */ Kankyo kankyo;
     /* 0x1C60 */ Global_light glight;
@@ -77,15 +78,15 @@ typedef struct Game_Play {
     /* 0x1CBC */ Submenu submenu;
     /* 0x1DAC */ s8 unk_1DAC;
     /* 0x1DAD */ UNK_TYPE1 unk_1DAD[0x3];
-    /* 0x1DB0 */ UNK_TYPE1 unk_1DB0[0x10];
+    /* 0x1DB0 */ u8* groundTexPtrs[2];
+    /* 0x1DB8 */ u8* groundPalPtrs[2];
     /* 0x1DC0 */ PreRender unk_1DC0;
-    /* 0x1E10 */ s8 unk_1E10;
-    /* 0x1E14 */ UNK_PTR unk_1E14;
+    /* 0x1E10 */ DoorInfo sceneDoorInfo;
     /* 0x1E18 */ s32 unk_1E18;
     /* 0x1E1C */ MtxF viewProjectionMtxF;
     /* 0x1E5C */ MtxF billboardMtxF;
     /* 0x1E9C */ Mtx* unk_1E9C;
-    /* 0x1EA0 */ s32 unk_1EA0;
+    /* 0x1EA0 */ u32 unk_1EA0;
     /* 0x1EA4 */ UNK_TYPE1 unk_1EA4[0x1];
     /* 0x1EA5 */ u8 unk_1EA5;
     /* 0x1EA6 */ u8 unk_1EA6;
@@ -107,7 +108,7 @@ typedef struct Game_Play {
     /* 0x2138 */ CollisionCheck unk_2138;
     /* 0x2208 */ Game_Play_unk_2208 unk_2208;
     /* 0x220C */ s32 unk_220C;
-    /* 0x2210 */ Struct_8010EAA0* unk_2210;
+    /* 0x2210 */ struct SceneDmaStatus* unk_2210;
     /* 0x2214 */ UNK_TYPE1 unk_2214[0x1FC];
 } Game_Play; // size = 0x2410
 

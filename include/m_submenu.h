@@ -118,7 +118,7 @@ u32 mSM_check_open_inventory_itemlist(InventoryItemList itemlist, s32 arg1) ;
 
 // void mSM_Object_Exchange_keep_new();
 // void mSM_Object_Exchange_keep_new_MenuTexAndPallet();
-// void mSM_Object_Exchange_keep_new_Menu();
+void mSM_Object_Exchange_keep_new_Menu(struct Game_Play* play);
 // void mSM_Get_ground_tex_p();
 // void mSM_Get_ground_pallet_p();
 

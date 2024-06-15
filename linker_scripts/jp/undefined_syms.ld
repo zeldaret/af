@@ -206,7 +206,13 @@ D_6001628 = 0x06001628;
 
 // m_debug_display
 
-D_40042E8 = 0x040042E8;
+RCP_debug_texture_16x16_8 = 0x040042E8;
+no_txt = 0x04003640; 
+nx_txt = 0x04003940;
+np_txt = 0x04003740;
+nt_txt = 0x04003840; 
+darrow_model = 0x04003A40;
+camera_model = 0x04003CE0;
 
 // m_field_make
 
@@ -1050,6 +1056,17 @@ D_C000000 = 0x0C000000;
 
 D_C000000 = 0x0C000000;
 
+// ac_structure
+// TODO: Replace these with the actual object symbols when the various structure objects are extracted
+structure_object_symbol_1 = 0x06000008;
+structure_object_symbol_2 = 0x06000178;
+structure_object_symbol_3 = 0x060000C0;
+structure_object_symbol_4 = 0x06000230;
+structure_object_symbol_5 = 0x06000008;
+structure_object_symbol_6 = 0x06000174;
+structure_object_symbol_7 = 0x06000008;
+structure_object_symbol_8 = 0x060000C0;
+
 // ovl_Sample
 
 cKF_bs_r_hnw = 0x060018AC;
@@ -1126,14 +1143,6 @@ D_60000F0 = 0x060000F0;
 // ovl_Room_Sunshine_Police
 
 D_60000C0 = 0x060000C0;
-
-// ovl_Airplane
-
-D_60000B0 = 0x060000B0;
-
-// ovl_Ball
-
-D_6000708 = 0x06000708;
 
 // ovl_Haniwa
 
@@ -4860,7 +4869,8 @@ D_6001284 = 0x06001284;
 
 // ovl_Kago
 
-D_6001628 = 0x06001628;
+obj_e_kago_shadow_v = 0x06001628;
+obj_e_kago_shadow_model = 0x060016F8;
 
 // ovl__0094FA20
 
@@ -4927,11 +4937,6 @@ D_6000020 = 0x06000020;
 D_6000CF0 = 0x06000CF0;
 D_6000E50 = 0x06000E50;
 
-// ovl_Bee
-
-D_60008E4 = 0x060008E4;
-D_6000928 = 0x06000928;
-
 // ovl__00954D30
 
 D_6000000 = 0x06000000;
@@ -4988,7 +4993,8 @@ D_6000DF0 = 0x06000DF0;
 
 // ovl_Dump
 
-D_6000ED8 = 0x06000ED8;
+obj_dump_shadow_v = 0x06000BD8;
+obj_dump_shadowT_model = 0x06000ED8;
 
 // ovl__00957410
 
@@ -5550,10 +5556,8 @@ D_6000D50 = 0x06000D50;
 
 // ovl_Fuusen
 
-D_4009580 = 0x04009580;
-D_4009620 = 0x04009620;
-D_6000F44 = 0x06000F44;
-D_6000F88 = 0x06000F88;
+present_DL_mode = 0x04009580;
+present_DL_vtx = 0x04009620;
 
 // ovl__0096E8E0
 

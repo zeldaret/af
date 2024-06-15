@@ -23,16 +23,18 @@ def uploadProgressMain():
     args = parser.parse_args()
 
     version: str = args.version
-    category: str = "code"
     apikey: str = args.apikey
     mapPath = Path("build") / f"animalforest-{args.version}.map"
 
-    totalStats, progressPerFolder = progress.getProgress(mapPath, version)
+    codeTotalStats, codeProgressPerFolder = progress.getProgress(mapPath, version)
+    codeEntries: dict[str, int] = mapfile_parser.frontends.upload_frogress.getFrogressEntriesFromStats(codeTotalStats, codeProgressPerFolder, verbose=True)
 
-    entries: dict[str, int] = mapfile_parser.frontends.upload_frogress.getFrogressEntriesFromStats(totalStats, progressPerFolder, verbose=True)
+    assetTotalStats, assetProgressPerFolder = progress.getAssetProgress(mapPath, version)
+    assetEntries: dict[str, int] = mapfile_parser.frontends.upload_frogress.getFrogressEntriesFromStats(assetTotalStats, assetProgressPerFolder, verbose=True)
 
     url = mapfile_parser.utils.generateFrogressEndpointUrl(BASE_URL, PROJECT, version)
-    exit(mapfile_parser.frontends.upload_frogress.uploadEntriesToFrogress(entries, category, url, apikey=apikey, verbose=True))
+    mapfile_parser.frontends.upload_frogress.uploadEntriesToFrogress(codeEntries, "code", url, apikey=apikey, verbose=True)
+    mapfile_parser.frontends.upload_frogress.uploadEntriesToFrogress(assetEntries, "assets", url, apikey=apikey, verbose=True)
 
 if __name__ == '__main__':
     uploadProgressMain()

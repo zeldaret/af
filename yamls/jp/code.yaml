@@ -8,7 +8,7 @@
     subsegments:
       - [0x675720, c, code/c_keyframe]
       - [0x678660, asm, code/evw_anime]
-      - [0x6792F0, asm, code/6792F0]
+      - [0x6792F0, c, code/m_DLF]
       - [0x679550, c, code/m_all_grow]
       - [0x67A020, c, code/m_actor]
       - [0x67C6B0, c, code/m_actor_dlftbls]
@@ -16,7 +16,7 @@
       - [0x67D890, asm, code/67D890]
       - [0x67E840, asm, code/67E840]
       - [0x683030, asm, code/683030]
-      - [0x688CE0, asm, code/m_choice_main]
+      - [0x688CE0, c, code/m_choice_main]
       - [0x68AAF0, c, code/m_clip]
       - [0x68AB30, c, code/m_cockroach]
       - [0x68B0D0, asm, code/m_collision_bg]
@@ -25,7 +25,7 @@
       - [0x69C770, c, code/m_controller]
       - [0x69CB30, asm, code/69CB30]
       - [0x69DD60, c, code/m_debug]
-      - [0x69DDF0, asm, code/m_debug_display]
+      - [0x69DDF0, c, code/m_debug_display]
       - [0x69E2C0, asm, code/69E2C0]
       - [0x6A0DE0, asm, code/6A0DE0]
       - [0x6A5B00, asm, code/6A5B00]
@@ -60,7 +60,7 @@
       - [0x6D2720, c, code/m_npc_schedule]
       - [0x6D2A70, c, code/m_npc_walk]
       - [0x6D3CB0, asm, code/800B0010]
-      - [0x6D3D20, asm, code/m_olib]
+      - [0x6D3D20, c, code/m_olib]
       - [0x6D4440, c, code/m_pause]
       - [0x6D44F0, asm, code/6D44F0]
       - [0x6D4C60, c, code/m_player_call]
@@ -71,22 +71,23 @@
       - [0x6DE300, asm, code/6DE300]
       - [0x6E08E0, asm, code/m_random_field]
       - [0x6E0F50, c, code/m_rcp]
-      - [0x6E2300, asm, code/6E2300]
-      - [0x6E30B0, asm, code/6E30B0]
+      - [0x6E2300, c, code/m_room_type]
+      - [0x6E30B0, c, code/m_scene_ftr]
+      - [0x6E3240, asm, code/6E3240]
       - [0x6E6C90, c, code/m_start_data_init]
       - [0x6E7AD0, c, code/m_string]
       - [0x6E80C0, c, code/m_submenu]
       - [0x6E9650, c, code/m_scene]
-      - [0x6EAB20, asm, code/m_skin_matrix]
+      - [0x6EAB20, c, code/m_skin_matrix]
       - [0x6EC430, c, code/m_snowman]
       - [0x6EC9E0, asm, code/6EC9E0]
       - [0x6ECD90, asm, code/6ECD90]
-      - [0x6EDD10, asm, code/m_time]
-      - [0x6EE540, asm, code/m_view]
+      - [0x6EDD10, c, code/m_time]
+      - [0x6EE540, c, code/m_view]
       - [0x6EFC20, asm, code/6EFC20]
       - [0x6F12E0, asm, code/6F12E0]
       - [0x6F2150, asm, code/6F2150]
-      - [0x6F2EE0, asm, code/PreRender]
+      - [0x6F2EE0, c, code/PreRender]
       - [0x6F5180, c, code/THA_GA]
       - [0x6F5390, c, code/TwoHeadArena]
       - [0x6F5550, c, code/audio]
@@ -144,9 +145,19 @@
       - [0x724930, .data, code/m_actor_dlftbls]
       - [0x726260, .data, code/m_actor_shadow]
       - [0x7262C0, data, code/7262C0]
+      - start: 0x726720
+        type: .data
+        name: code/m_choice_main
+        subsegments:
+          - [0x726720]
+          - [0x7268C8, vtx, code/m_choice_main/con_sentaku2_v]
+          - [0x726908, i4, code/m_choice_main/con_waku_swaku3_tex, 128, 64]
+          - [0x727908]
       - [0x7279F0, data, code/7279F0]
       - [0x728340, .data, code/m_collision_obj]
-      - [0x728430, data, code/728430]
+      - [0x728430, data, code/69CB30]
+      - [0x728460, .data, code/m_debug_display]
+      - [0x7284B0, data, code/69E2C0]
       - [0x72AAC0, .data, code/m_game_dlftbls]
       - [0x72ACB0, data, code/72ACB0]
       - [0x72B7A0, .data, code/m_lib]
@@ -162,14 +173,18 @@
       - [0x7302C0, .data, code/m_private]
       - [0x730320, data, code/730320]
       - [0x7307D0, .data, code/m_rcp]
-      - [0x730B60, data, code/730B60]
+      - [0x730B60, .data, code/m_room_type]
+      - [0x731740, data, code/731740]
       - [0x731940, .data, code/m_start_data_init]
       - [0x731980, .data, code/m_submenu]
-      - [0x731A20, data, code/731A20]
+      - [0x731A20, .data, code/m_scene]
       - [0x731A70, .data, code/m_object] # made-up name
       - [0x732740, data, code/732740]
-      - [0x732AF0, data, code/m_time]
-      - [0x732BA0, data, code/m_view]
+      - [0x732A00, .data, code/m_skin_matrix]
+      - [0x732A40, data, code/732A40]
+      - [0x732AF0, .data, code/m_time]
+      - [0x732BA0, .data, code/m_view]
+      - [0x732BB0, data, code/732BB0]
       - [0x732C20, .data, code/audio]
       - [0x732C30, .data, code/game]
       - [0x732C40, data, code/732C40]
@@ -193,7 +208,7 @@
       - [0x739F20, rodata, code/739F20]
       - [0x739F70, rodata, code/739F70]
       - [0x739FA0, rodata, code/739FA0]
-      - [0x73A080, rodata, code/73A080]
+      - [0x73A080, .rodata, code/m_choice_main]
       - [0x73A0F0, rodata, code/73A0F0]
       - [0x73A480, .rodata, code/m_collision_obj]
       - [0x73A490, .rodata, code/m_controller]
@@ -220,24 +235,24 @@
       - [0x73AEF0, rodata, code/m_msg_main]
       - [0x73AF40, rodata, code/73AF40]
       - [0x73AF50, .rodata, code/m_npc]
-      - [0x73B000, rodata, code/m_olib]
+      - [0x73B000, .rodata, code/m_olib]
       - [0x73B020, rodata, code/m_player_lib]
       - [0x73B0F0, rodata, code/73B0F0]
       - [0x73B130, .rodata, code/m_private]
       - [0x73B210, rodata, code/73B210]
       - [0x73B250, rodata, code/73B250]
-      - [0x73B360, rodata, code/73B360]
-      - [0x73B3E0, rodata, code/m_scene_ftr]
+      - [0x73B360, .rodata, code/m_room_type]
+      - [0x73B3E0, .rodata, code/m_scene_ftr]
       - [0x73B400, rodata, code/m_shop]
       - [0x73B580, .rodata, code/m_string]
       - [0x73B5C0, .rodata, code/m_submenu]
       - [0x73B6D0, .rodata, code/m_scene]
-      - [0x73B700, rodata, code/73B700]
+      - [0x73B700, .rodata, code/m_skin_matrix]
       - [0x73B710, .rodata, code/m_snowman]
       - [0x73B720, rodata, code/m_titledemo]
       - [0x73B740, rodata, code/73B740]
-      - [0x73B780, rodata, code/m_time]
-      - [0x73B7D0, rodata, code/73B7D0]
+      - [0x73B780, .rodata, code/m_time]
+      - [0x73B7D0, .rodata, code/m_view]
       - [0x73B7E0, rodata, code/73B7E0]
       - [0x73B830, rodata, code/73B830]
       - [0x73B880, rodata, code/73B880]
@@ -276,7 +291,8 @@
       - { start: 0x74AB40, type: .bss, vram: 0x80126EA0, name: code/m_common_data }
       - { start: 0x75B600, type: bss, vram: 0x80137960, name: code/80137960 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80138E50, name: code/m_debug}
-      - { start: 0x73F4D0, type: bss, vram: 0x80138E60, name: code/m_debug_display}
+      - { start: 0x73F4D0, type: .bss, vram: 0x80138E60, name: code/m_debug_display}
+      - { start: 0x73F4E0, type: bss, vram: 0x80138E70, name: code/80138E70 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80141E10, name: code/m_lights }
       - { start: 0x75B600, type: .bss, vram: 0x80141FA0, name: code/m_malloc }
       - { start: 0x75B600, type: bss, vram: 0x80141FE0, name: code/80141FE0 }
@@ -287,7 +303,7 @@
       - { start: 0x73F4D0, type: .bss, vram: 0x801439A0, name: code/m_private }
       - { start: 0x73F4D0, type: bss, vram: 0x80144620, name: code/80144620 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80144650, name: code/m_rcp }
-      - { start: 0x73F4D0, type: bss, vram: 0x80144660, name: code/80144660 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x80144660, name: code/m_room_type }
       - { start: 0x73F4D0, type: .bss, vram: 0x80144670, name: code/m_submenu }
       - { start: 0x73F4D0, type: bss, vram: 0x80144690, name: code/80144690 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80144D20, name: code/audioMgr }

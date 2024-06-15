@@ -190,8 +190,8 @@ extern s32 CanLookGokiCount;
 // extern UNK_TYPE D_801047A8_jp;
 // extern UNK_TYPE D_801047B0_jp;
 // extern UNK_TYPE D_801047B8_jp;
-// extern UNK_TYPE D_801047C0_jp;
-// extern UNK_TYPE D_801047C8_jp;
+// extern UNK_TYPE debug_display_output_proc;
+// extern UNK_TYPE debug_display_shape_data;
 // extern UNK_TYPE D_801047F8_jp;
 // extern UNK_TYPE D_80104800_jp;
 // extern UNK_TYPE D_80104810_jp;
@@ -459,7 +459,7 @@ extern s32 CanLookGokiCount;
 // extern UNK_TYPE D_80106D78_jp;
 // extern UNK_TYPE D_80106D8C_jp;
 // extern UNK_TYPE D_80106DA0_jp;
-// extern UNK_TYPE D_80106E10_jp;
+extern s32 fuusen_DEBUG_mode_flag;
 
 // extern UNK_TYPE D_80107010_jp;
 // extern UNK_TYPE D_80107020_jp;
@@ -775,8 +775,6 @@ extern vs32 D_8010EFB0_jp; // TODO: Determine where this goes
 // extern UNK_TYPE D_8010EFE0_jp;
 // extern UNK_TYPE D_8010EFFC_jp;
 // extern UNK_TYPE D_8010F3DC_jp;
-// extern UNK_TYPE D_8010F3E0_jp;
-// extern UNK_TYPE D_8010F3E4_jp;
 extern u8 D_8010F3E8_jp;
 // extern UNK_TYPE D_8010F3F0_jp;
 // extern UNK_TYPE D_8010F3F4_jp;

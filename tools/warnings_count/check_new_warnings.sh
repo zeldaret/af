@@ -40,7 +40,7 @@ Optional arguments:
 jobs=1
 full=
 run="make clean
-    make uncompressed"
+    make rom"
 
 
 
@@ -53,8 +53,10 @@ do
     f)  full="true"
         run="make distclean
     make setup
-    make disasm
-    make all"
+    make extract
+    make lib
+    make rom
+    make compress"
         ;;
     j)  j_option_arg="$OPTARG"
         if [[ ! "${j_option_arg}" =~ ^[0-9]*$ ]]
@@ -94,7 +96,7 @@ remove_ansi_codes () {
 
 
 make_warnings () {
-    make $1 -j$jobs 2> >(tee tools/warnings_count/warnings_temp.txt) \
+    make WERROR=0 WARNINGS_CHECK=1 $1 -j$jobs 2> >(tee tools/warnings_count/warnings_temp.txt) \
     && remove_ansi_codes tools/warnings_count/warnings_temp.txt > tools/warnings_count/warnings_$2_new.txt \
     && rm tools/warnings_count/warnings_temp.txt
 }
@@ -102,17 +104,21 @@ make_warnings () {
 if [[ $full ]]; then
     make distclean
     make_warnings setup setup
-    make_warnings disasm disasm
-    make_warnings all build
+    make_warnings extract extract
+    make_warnings lib lib
+    make_warnings rom build
+    make_warnings compress compress
 else
     make clean
-    make_warnings uncompressed build
+    make_warnings rom build
 fi
 
 
 if [[ $full ]]; then
     $COMPARE_WARNINGS setup
-    $COMPARE_WARNINGS disasm
+    $COMPARE_WARNINGS extract
+    $COMPARE_WARNINGS lib
+    $COMPARE_WARNINGS compress
 fi
 $COMPARE_WARNINGS build
 

@@ -26,8 +26,8 @@ typedef struct HandbillzInfo {
 //TODO: move these out of the handbill header
 void Balloon_init(struct Game_Play* game_play);
 void Balloon_move(struct Game_Play* game_play);
-// void func_80092B7C_jp();
-// void func_80092B8C_jp();
+void Balloon_kill(void);
+void Balloon_look_up(void);
 // void func_80092BA0_jp();
 // void func_80092BE8_jp();
 void mHsRm_GetHuusuiRoom(struct Game* game_play, s32 player_no);

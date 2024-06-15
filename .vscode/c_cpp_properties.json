@@ -8,7 +8,8 @@
                 "src",
                 ".",
                 "lib/ultralib/include",
-                "lib/ultralib/include/PR"
+                "lib/ultralib/include/PR",
+                "build",
             ],
             "defines": [
                 "NON_EQUIVALENT",

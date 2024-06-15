@@ -2,6 +2,7 @@
 #define M_LAND_H_H
 
 #include "ultra64.h"
+#include "unk.h"
 
 #define mLd_CHECK_LAND_ID(id) (((id) & 0xFF00) == 0x3000)
 
@@ -10,9 +11,9 @@
 #define LAND_NAME_MURA_SIZE (LAND_NAME_SIZE + 2)
 
 typedef struct LandInfo {
-    /* 0x0 */char name[LAND_NAME_SIZE];
-    /* 0x6 */s8 exists;
-    /* 0x8 */u16 id;
+    /* 0x0 */ char name[LAND_NAME_SIZE];
+    /* 0x6 */ s8 exists;
+    /* 0x8 */ u16 id;
 } LandInfo; // size = 0xA
 
 s32 mLd_NullCheckLandName(char*);
@@ -31,6 +32,5 @@ s32 mLd_PlayerManKindCheck(void);
 s32 mLd_CheckThisLand(char* arg0, u16 arg1);
 // void func_80095218_jp();
 void mLd_LandDataInit(void);
-
 
 #endif

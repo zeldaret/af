@@ -9,6 +9,8 @@
 #include "m_museum.h"
 #include "unk.h"
 
+struct PakInfo;
+
 #define mPr_FOREIGN_MAP_COUNT 8
 #define mPr_INVENTORY_MAIL_COUNT 10
 #define PLAYER_NUM 4
@@ -55,7 +57,7 @@ typedef struct PrivateInfo {
     /* 0x3EC */ UNK_TYPE1 unk_3EC[0x2];
     /* 0x3EE */ MailHeaderCommon savedMailHeader;
     /* 0x40A */ Mail_c mail[mPr_INVENTORY_MAIL_COUNT];
-    /* 0xA72 */ s16 backgroundTextureId;
+    /* 0xA72 */ u16 backgroundTextureId;
     /* 0xA74 */ u8 exists;
     /* 0xA75 */ u8 hintCount;
     /* 0xA76 */ PrivateCloth cloth;
@@ -124,7 +126,7 @@ s16 mPr_GetMoneyPower(void);
 s16 mPr_GetGoodsPower(void);
 s32 mPr_CheckMuseumAddress(PrivateInfo* priv);
 s32 mPr_CheckMuseumInfoMail(PrivateInfo* priv);
-s32 mPr_LoadPak_and_SetPrivateInfo2(u8 player, void* pak);
+s32 mPr_LoadPak_and_SetPrivateInfo2(u8 player, struct PakInfo* pak);
 void mPr_ClearMotherMailInfo(PrivateMotherMail* motherMail);
 s32 mPr_GetMotherMailPaperType(s32 month, s32 day);
 void mPr_GetMotherMail(Mail_c* mail, PersonalID_c* pid, u16 present, s32 stationery, s32 mailNumber);
