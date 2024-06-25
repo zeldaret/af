@@ -183,7 +183,7 @@ OBJDUMP_FLAGS := --disassemble --reloc --disassemble-zeroes -Mreg-names=32 -Mno-
 ifneq ($(OBJDUMP_BUILD), 0)
   OBJDUMP_CMD = $(OBJDUMP) $(OBJDUMP_FLAGS) $@ > $(@:.o=.s)
   OBJCOPY_BIN = $(OBJCOPY) -O binary $@ $@.bin
-  LIBDUMP_CMD = $(AR) xo --output $(@:.a=) $@
+  LIBDUMP_CMD = $(AR) xo --output $(@D) $@
 else
   OBJDUMP_CMD = @:
   OBJCOPY_BIN = @:
@@ -206,12 +206,12 @@ $(shell mkdir -p asm/$(VERSION) assets/$(VERSION) linker_scripts/$(VERSION)/auto
 ULTRALIB_DIR  := lib/ultralib
 ULTRALIB_LIB  := $(ULTRALIB_DIR)/build/$(ULTRALIB_VERSION)/$(ULTRALIB_TARGET)/$(ULTRALIB_TARGET).a
 LIBULTRA_DIR  := lib/libultra
-LIBULTRA_LIB  := $(BUILD_DIR)/$(LIBULTRA_DIR).a
+LIBULTRA_LIB  := $(BUILD_DIR)/$(LIBULTRA_DIR)/libultra.a
 
 SRC_DIRS      := $(shell find src -type d)
 ASM_DIRS      := $(shell find asm/$(VERSION) -type d -not -path "asm/$(VERSION)/nonmatchings/*" -not -path "asm/$(VERSION)/lib/*")
 ASSET_DIRS    := $(shell find assets/$(VERSION) -type d)
-LIB_DIRS      := $(foreach f, $(LIBULTRA_DIR), $f)
+LIB_DIRS      := $(foreach f,$(LIBULTRA_DIR),$f)
 
 C_FILES       := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 S_FILES       := $(foreach dir,$(ASM_DIRS) $(SRC_DIRS),$(wildcard $(dir)/*.s))
