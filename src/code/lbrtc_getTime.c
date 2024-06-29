@@ -5,8 +5,8 @@ s32 lbrtc_getTime(OSMesgQueue* mq, OSRTCTime* time) {
     __OSRTCTime sp1F;
     u8 sp20;
     s32 ret;
- 
-    ret = func_800FE480_jp(mq, &sp20);    
+
+    ret = func_800FE480_jp(mq, &sp20);
     if (ret == 0) {
         ret = func_800FEE10_jp(mq, 2, (u8*)&sp1F);
         if (ret == 0) {

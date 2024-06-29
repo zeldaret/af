@@ -70,4 +70,3 @@ s32 func_800FE480_jp(OSMesgQueue* mq, u8* buf) {
     __osSiRelAccess();
     return ret;
 }
-   

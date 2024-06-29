@@ -1,7 +1,6 @@
 #include "lbrtc.h"
 #include "attributes.h"
 
-
 s32 D_801160C0_jp = 0;
 
 s32 lbrtc_init(OSMesgQueue* mq) {
@@ -23,12 +22,12 @@ s32 lbrtc_init(OSMesgQueue* mq) {
                 ret = func_800FE8D0_jp(mq, 0, (u8*)&rtc);
             }
         }
-        if (sp23 & 1) { 
+        if (sp23 & 1) {
             ret = (sp23 & 2) ? 0x13 : 0x11;
 
-        } else if (sp23 & 2) { 
+        } else if (sp23 & 2) {
             ret = 0x12;
         }
     }
-    return ret; 
+    return ret;
 }

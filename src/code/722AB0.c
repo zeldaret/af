@@ -72,7 +72,7 @@ void func_800FEF9C_jp(u8 v) {
 }
 
 s32 lbrtc_GetIntervalMinutes(OSRTCTime* t0, OSRTCTime* t1) {
-    u8 year_leap_period = (t1->year - t0->year) /4; 
+    u8 year_leap_period = (t1->year - t0->year) / 4;
     /* Total 'leap years' (missing extra not divisible by 100, except when divisible by 400 rule) */
 
     u8 extra_years = (t1->year - t0->year) % 4;             /* Non-leap year remainder */
@@ -81,7 +81,7 @@ s32 lbrtc_GetIntervalMinutes(OSRTCTime* t0, OSRTCTime* t1) {
     u8 leap_add = ((4 - (t0->year % 4)) % 4) < extra_years; /* Add leap day when leap day occurs during 'extra years' */
 
     s32 days;
-    s32 hour;   
+    s32 hour;
     s32 min;
     if (t0->year > t1->year) {
         return 0;

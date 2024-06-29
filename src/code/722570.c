@@ -13,7 +13,7 @@ s32 func_800FE8D0_jp(OSMesgQueue* mq, u8 v, u8* buf) {
     __lbrtc_struct_unk1 sp28;
 
     __osSiGetAccess();
-    func_800FEABC_jp(v, buf);  
+    func_800FEABC_jp(v, buf);
     ret = __osSiRawStartDma(OS_WRITE, &__osEepPifRam);
     __osContLastCmd = 8;
 
