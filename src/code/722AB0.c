@@ -75,9 +75,9 @@ s32 lbrtc_GetIntervalMinutes(OSRTCTime* t0, OSRTCTime* t1) {
     u8 yearLeapPeriod = (t1->year - t0->year) / 4;
     /* Total 'leap years' (missing extra not divisible by 100, except when divisible by 400 rule) */
 
-    u8 extraYears = (t1->year - t0->year) % 4;             /* Non-leap year remainder */
-    u8 lessLeap = (t0->year % 4) == 0;                     /* Is the lesser year a leap year? */
-    u8 overLeap = (t1->year % 4) == 0;                     /* Is the greater year a leap year? */
+    u8 extraYears = (t1->year - t0->year) % 4;            /* Non-leap year remainder */
+    u8 lessLeap = (t0->year % 4) == 0;                    /* Is the lesser year a leap year? */
+    u8 overLeap = (t1->year % 4) == 0;                    /* Is the greater year a leap year? */
     u8 leapAdd = ((4 - (t0->year % 4)) % 4) < extraYears; /* Add leap day when leap day occurs during 'extra years' */
 
     s32 days;
