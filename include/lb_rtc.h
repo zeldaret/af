@@ -3,6 +3,8 @@
 
 #include "ultra64.h"
 
+struct OSRTCTime;
+
 /* TODO: do these have a better header? */
 #define GAME_YEAR_MIN 2000 /* Minimum year supported by the game */
 #define GAME_YEAR_MAX 2032 /* Maximum year supported by the game */
@@ -101,11 +103,11 @@ typedef enum RTC_EQUALITY_FLAGS {
   (((year % 4) == 0 && ((year % 100) != 0)) || ((year % 400) == 0))
 
 s32 lbRTC_Initial(void);
-s32 lbRTC_IsOki(lbRTC_time_c* ptr);
+s32 lbRTC_IsOki(struct OSRTCTime* ptr);
 s32 lbRTC_IsAbnormal(void);
 void lbRTC_Sampling(void);
-void func_800D4F6C_jp(lbRTC_time_c* time);
-void func_800D4FB8_jp(lbRTC_time_c* time);
+void func_800D4F6C_jp(struct OSRTCTime* time);
+void func_800D4FB8_jp(struct OSRTCTime* time);
 void lbRTC_SetTime(lbRTC_time_c* time);
 void lbRTC_GetTime(lbRTC_time_c* time);
 lbRTC_day_t lbRTC_GetDaysByMonth(lbRTC_year_t year, lbRTC_month_t month);

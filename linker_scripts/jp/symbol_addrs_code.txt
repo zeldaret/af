@@ -4163,17 +4163,17 @@ func_800FD13C_jp = 0x800FD13C; // type:func
 Na_FurnitureInst = 0x800FD170; // type:func
 func_800FD280_jp = 0x800FD280; // type:func
 D_800FD2D0_jp = 0x800FD2D0; //
-func_800FE220_jp = 0x800FE220; // type:func
+lbrtc_getTime = 0x800FE220; // type:func
 func_800FE420_jp = 0x800FE420; // type:func
 func_800FE480_jp = 0x800FE480; // type:func
-func_800FE670_jp = 0x800FE670; // type:func
+lbrtc_setTime = 0x800FE670; // type:func
 func_800FE8D0_jp = 0x800FE8D0; // type:func
 func_800FEABC_jp = 0x800FEABC; // type:func
 func_800FEBE0_jp = 0x800FEBE0; // type:func
-func_800FECD0_jp = 0x800FECD0; // type:func
+lbrtc_init = 0x800FECD0; // type:func
 func_800FEE10_jp = 0x800FEE10; // type:func
 func_800FEF9C_jp = 0x800FEF9C; // type:func
-func_800FF060_jp = 0x800FF060; // type:func
+lbrtc_GetIntervalMinutes = 0x800FF060; // type:func
 gspS2DEX2_fifoTextStart = 0x800FF370; // type:u64 size:0x18C0 name_end:gspS2DEX2_fifoTextEnd
 
 // .data
@@ -5151,7 +5151,6 @@ D_80115020_jp = 0x80115020; //
 D_80115090_jp = 0x80115090; // type:s16
 D_80115D80_jp = 0x80115D80; //
 D_801160C0_jp = 0x801160C0; //
-D_801160CE_jp = 0x801160CE; // type:u16
 
 // .rodata
 

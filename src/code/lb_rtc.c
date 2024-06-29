@@ -1,12 +1,7 @@
 #include "lb_rtc.h"
+#include "lbrtc.h"
 #include "m_common_data.h"
 #include "padmgr.h"
-#include "722970.h"
-#include "721EC0.h"
-#include "7220C0.h"
-#include "722310.h"
-#include "722AB0.h"
-#include "722880.h"
 #include "macros.h"
 #include "attributes.h"
 
@@ -22,13 +17,13 @@ s32 lbRTC_Initial() {
     if (l_lbRTC_isInitial == 1) {
         mq = padmgr_LockSerialMesgQ();
         l_lbRTC_isInitial = 0;
-        B_80145620_jp = func_800FECD0_jp(mq);
+        B_80145620_jp = lbrtc_init(mq);
         padmgr_UnlockSerialMesgQ(mq);
     }
     return B_80145620_jp;
 }
 
-s32 lbRTC_IsOki(lbRTC_time_c* ptr) {
+s32 lbRTC_IsOki(OSRTCTime* ptr) {
     s32 isInitial;
     OSMesgQueue* mq;
 
@@ -36,7 +31,7 @@ s32 lbRTC_IsOki(lbRTC_time_c* ptr) {
 
     if (isInitial == 0) {
         mq = padmgr_LockSerialMesgQ();
-        isInitial = func_800FE220_jp(mq, ptr);
+        isInitial = lbrtc_getTime(mq, ptr);
         padmgr_UnlockSerialMesgQ(mq);
         if (isInitial == 0) {
             return isInitial;
@@ -47,7 +42,7 @@ s32 lbRTC_IsOki(lbRTC_time_c* ptr) {
 }
 
 s32 lbRTC_IsAbnormal() {
-    lbRTC_time_c time;
+    OSRTCTime time;
     s32 temp UNUSED;
     s32 res = lbRTC_IsOki(&time);
 
@@ -62,7 +57,7 @@ s32 lbRTC_IsAbnormal() {
 }
 
 void lbRTC_Sampling() {
-    lbRTC_time_c time;
+    OSRTCTime time;
 
     if ((lbRTC_IsOki(&time) == 0) && (!l_lbRTC_IsSampled)) {
         l_lbRTC_Time.sec = time.sec;
@@ -71,7 +66,7 @@ void lbRTC_Sampling() {
     }
 }
 
-void func_800D4F6C_jp(lbRTC_time_c* time) {
+void func_800D4F6C_jp(OSRTCTime* time) {
     OSMesgQueue* mq;
 
     if (lbRTC_Initial() == 0) {
@@ -81,7 +76,7 @@ void func_800D4F6C_jp(lbRTC_time_c* time) {
     }
 }
 
-void func_800D4FB8_jp(lbRTC_time_c* time) {
+void func_800D4FB8_jp(OSRTCTime* time) {
     OSMesgQueue* mq;
 
     if (lbRTC_Initial() == 0) {
@@ -97,7 +92,7 @@ void lbRTC_SetTime(lbRTC_time_c* time) {
     if (common_data.time.rtcEnabled == 1 && !common_data.time.rtcCrashed) {
         time->weekday = lbRTC_Week(time->year, time->month, time->day);
         mq = padmgr_LockSerialMesgQ();
-        func_800FE670_jp(mq, time);
+        lbrtc_setTime(mq, (OSRTCTime*)time);
         padmgr_UnlockSerialMesgQ(mq);
     } else {
         lbRTC_TimeCopy(&common_data.time.rtcTime, time);
@@ -109,7 +104,7 @@ void lbRTC_GetTime(lbRTC_time_c* time) {
 
     if (common_data.time.rtcEnabled == 1 && !common_data.time.rtcCrashed) {
         mq = padmgr_LockSerialMesgQ();
-        func_800FE220_jp(mq, time);
+        lbrtc_getTime(mq, (OSRTCTime*)time);
         padmgr_UnlockSerialMesgQ(mq);
     } else {
         lbRTC_TimeCopy(time, &common_data.time.rtcTime);
@@ -285,13 +280,13 @@ s32 lbRTC_IsOverWeekRTC(const lbRTC_time_c* t0, lbRTC_weekday_t week) {
 
 s32 lbRTC_IntervalTime(lbRTC_time_c* t0, lbRTC_time_c* t1) {
 
-    lbRTC_time_c t2;
-    lbRTC_time_c t3;
+    OSRTCTime t2;
+    OSRTCTime t3;
 
-    t2 = *t0;
-    t3 = *t1;
+    t2 = *(OSRTCTime*)t0;
+    t3 = *(OSRTCTime*)t1;
 
-    func_800FF060_jp(&t3, &t2);
+    lbrtc_GetIntervalMinutes(&t3, &t2);
 }
 
 const int total_days[2][lbRTC_MONTHS_MAX + 1] = {
