@@ -4,7 +4,7 @@
 s32 lbrtc_setTime(OSMesgQueue* mq, OSRTCTime* time) {
     __OSRTCTime rtc[1];
     UNUSED s32 pad;
-    __lbrtc_struct_unk3 unk[1];
+    __lbrtcStructUnk3 unk[1];
     s8 sp1F;
     s32 ret;
 

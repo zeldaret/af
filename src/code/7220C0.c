@@ -19,7 +19,7 @@ s32 func_800FE480_jp(OSMesgQueue* mq, u8* buf) {
     s32 ret = 0;
     s32 i;
     u8* ptr;
-    __lbrtc_struct_unk2 sp1C;
+    __lbrtcStructUnk2 sp1C;
 
     __osSiGetAccess();
 
@@ -35,7 +35,7 @@ s32 func_800FE480_jp(OSMesgQueue* mq, u8* buf) {
     sp1C.unk1 = 3;
     sp1C.unk2 = 6;
 
-    *(__lbrtc_struct_unk2*)ptr = sp1C;
+    *(__lbrtcStructUnk2*)ptr = sp1C;
 
     ptr += 6;
 
@@ -51,7 +51,7 @@ s32 func_800FE480_jp(OSMesgQueue* mq, u8* buf) {
 
     ptr = (u8*)&__osEepPifRam.ramarray[1];
 
-    sp1C = *(__lbrtc_struct_unk2*)ptr;
+    sp1C = *(__lbrtcStructUnk2*)ptr;
 
     ret = 0xFF & (sp1C.unk1 & 0xC0);
 

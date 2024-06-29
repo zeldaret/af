@@ -10,7 +10,7 @@ OSMesg B_801524B8_jp;
 s32 func_800FE8D0_jp(OSMesgQueue* mq, u8 v, u8* buf) {
     s32 ret;
     u8* ptr;
-    __lbrtc_struct_unk1 sp28;
+    __lbrtcStructUnk1 sp28;
 
     __osSiGetAccess();
     func_800FEABC_jp(v, buf);
@@ -22,7 +22,7 @@ s32 func_800FE8D0_jp(OSMesgQueue* mq, u8 v, u8* buf) {
     ptr = (u8*)(&__osEepPifRam.ramarray[1]);
     osRecvMesg(mq, NULL, OS_MESG_BLOCK);
 
-    sp28 = *((__lbrtc_struct_unk1*)ptr);
+    sp28 = *((__lbrtcStructUnk1*)ptr);
     ret = ((sp28.unk1) & 0xC0) >> 4;
 
     __osSiRelAccess();
@@ -30,7 +30,7 @@ s32 func_800FE8D0_jp(OSMesgQueue* mq, u8 v, u8* buf) {
     osSetTimer(&B_80152480_jp, OS_USEC_TO_CYCLES(300), 0, &B_801524A0_jp, &B_801524B8_jp);
     osRecvMesg(&B_801524A0_jp, NULL, OS_MESG_BLOCK);
     if (ret == 0) {
-        bcopy(&sp28.unk4, buf, sizeof(__lbrtc_struct_unk));
+        bcopy(&sp28.unk4, buf, sizeof(__lbrtcStructUnk));
         if (sp28.unkC & 1) {
             ret = 0x11;
         } else if (sp28.unkC & 1) {
@@ -51,7 +51,7 @@ s32 func_800FE8D0_jp(OSMesgQueue* mq, u8 v, u8* buf) {
 s32 func_800FEABC_jp(u8 v, u8* buf) {
     s32 i;
     u8* ptr = (u8*)&__osEepPifRam;
-    __lbrtc_struct_unk1 sp0;
+    __lbrtcStructUnk1 sp0;
 
     for (i = 0; i < ARRLEN(__osEepPifRam.ramarray); i++) {
         __osEepPifRam.ramarray[i] = 0xFF;
@@ -71,7 +71,7 @@ s32 func_800FEABC_jp(u8 v, u8* buf) {
     for (i = 0; i < 4; i++) {
         *ptr++ = 0;
     }
-    *(__lbrtc_struct_unk1*)ptr = sp0;
+    *(__lbrtcStructUnk1*)ptr = sp0;
 
     ptr += 0xD;
     ptr[0] = 0xFE;

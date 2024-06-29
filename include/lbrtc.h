@@ -29,7 +29,7 @@ typedef struct __OSRTCTime { // assumed from m_flashrom
     /* 0x07 */ u8 status;
 } __OSRTCTime; // size = 0x8
 
-typedef struct __lbrtc_struct_unk {
+typedef struct __lbrtcStructUnk {
     /* 0x0 */ u8 unk0;
     /* 0x1 */ u8 unk1;
     /* 0x2 */ u8 unk2;
@@ -38,30 +38,30 @@ typedef struct __lbrtc_struct_unk {
     /* 0x5 */ u8 unk5;
     /* 0x6 */ u8 unk6;
     /* 0x7 */ u8 unk7;
-} __lbrtc_struct_unk; // size = 0x8
+} __lbrtcStructUnk; // size = 0x8
 
-typedef struct __lbrtc_struct_unk1 {
+typedef struct __lbrtcStructUnk1 {
     /* 0x0 */ u8 unk0;
     /* 0x1 */ u8 unk1;
     /* 0x2 */ u8 unk2;
     /* 0x3 */ u8 unk3;
-    /* 0x4 */ __lbrtc_struct_unk unk4;
+    /* 0x4 */ __lbrtcStructUnk unk4;
     /* 0xC */ u8 unkC;
-} __lbrtc_struct_unk1; // size = 0xD
+} __lbrtcStructUnk1; // size = 0xD
 
-typedef struct __lbrtc_struct_unk2 {
+typedef struct __lbrtcStructUnk2 {
     /* 0x0 */ u8 unk0;
     /* 0x1 */ u8 unk1;
     /* 0x2 */ u8 unk2;
     /* 0x3 */ u8 unk3;
     /* 0x4 */ u8 unk4;
     /* 0x5 */ u8 unk5;
-} __lbrtc_struct_unk2; // size = 0x6
+} __lbrtcStructUnk2; // size = 0x6
 
-typedef struct __lbrtc_struct_unk3 {
+typedef struct __lbrtcStructUnk3 {
     /* 0x0 */ u8 unk0;
     /* 0x1 */ u8 unk1;
-} __lbrtc_struct_unk3; // size = 0x2
+} __lbrtcStructUnk3; // size = 0x2
 
 extern OSTimer B_80152480_jp;
 extern OSMesgQueue B_801524A0_jp;

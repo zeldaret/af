@@ -7,7 +7,7 @@ s32 lbrtc_init(OSMesgQueue* mq) {
     s32 ret;
     u8 sp23;
     UNUSED s32 pad;
-    __lbrtc_struct_unk3 rtc[1];
+    __lbrtcStructUnk3 rtc[1];
 
     ret = func_800FE480_jp(mq, &sp23);
     if (ret == 0) {
