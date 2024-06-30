@@ -5,7 +5,7 @@
 
 struct Foreground;
 struct gfxprint;
-struct lbRTC_time_c;
+struct OSRTCTime;
 
 #define AGrw_DUMP_WIDTH 4
 #define AGrw_DUMP_HEIGHT 4
@@ -51,12 +51,12 @@ void mAGrw_OrderSetHaniwa(void);
 u8 func_80055E34_jp(u16* items);
 void mAGrw_ChangeItemBlock(u16* blockItems, u16 newItem, u16 targetItem, u8 possibleNum);
 void mAGrw_ChangeItemBlock2(u16* blockItems, u16 newItem, u8 possibleNum);
-s32 mAGrw_CheckPutXmasTree(struct lbRTC_time_c* time);
+s32 mAGrw_CheckPutXmasTree(struct OSRTCTime* time);
 void mAGrw_SetXmasTreeBlock(u16* blockItems);
 void mAGrw_ClearXmasTreeBlock(u16* blockItems);
 void mAGrw_XmasTreeField(s32 type);
 void mAGrw_SetXmasTree(void);
-void mAGrw_RenewalFgItem(struct lbRTC_time_c* time);
+void mAGrw_RenewalFgItem(struct OSRTCTime* time);
 void mAGrw_ChangeTree2OtherBlock(u16* items, u16 other);
 void mAGrw_ChangeTree2FruitTreeLine(struct Foreground* fg, u16 fruitTree);
 void mAGrw_ChangeTree2FruitTree(void);

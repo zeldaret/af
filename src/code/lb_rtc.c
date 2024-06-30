@@ -23,7 +23,7 @@ s32 lbRTC_Initial() {
     return B_80145620_jp;
 }
 
-s32 lbRTC_IsOki(OSRTCTime* ptr) {
+s32 lbRTC_IsOki(lbRTC_time_c* ptr) {
     s32 isInitial;
     OSMesgQueue* mq;
 
@@ -42,7 +42,7 @@ s32 lbRTC_IsOki(OSRTCTime* ptr) {
 }
 
 s32 lbRTC_IsAbnormal() {
-    OSRTCTime time;
+    lbRTC_time_c time;
     s32 temp UNUSED;
     s32 res = lbRTC_IsOki(&time);
 
@@ -57,7 +57,7 @@ s32 lbRTC_IsAbnormal() {
 }
 
 void lbRTC_Sampling() {
-    OSRTCTime time;
+    lbRTC_time_c time;
 
     if ((lbRTC_IsOki(&time) == 0) && (!l_lbRTC_IsSampled)) {
         l_lbRTC_Time.sec = time.sec;
@@ -66,7 +66,7 @@ void lbRTC_Sampling() {
     }
 }
 
-void func_800D4F6C_jp(OSRTCTime* time) {
+void func_800D4F6C_jp(lbRTC_time_c* time) {
     OSMesgQueue* mq;
 
     if (lbRTC_Initial() == 0) {
@@ -76,7 +76,7 @@ void func_800D4F6C_jp(OSRTCTime* time) {
     }
 }
 
-void func_800D4FB8_jp(OSRTCTime* time) {
+void func_800D4FB8_jp(lbRTC_time_c* time) {
     OSMesgQueue* mq;
 
     if (lbRTC_Initial() == 0) {
@@ -92,7 +92,7 @@ void lbRTC_SetTime(lbRTC_time_c* time) {
     if (common_data.time.rtcEnabled == 1 && !common_data.time.rtcCrashed) {
         time->weekday = lbRTC_Week(time->year, time->month, time->day);
         mq = padmgr_LockSerialMesgQ();
-        lbrtc_setTime(mq, (OSRTCTime*)time);
+        lbrtc_setTime(mq, time);
         padmgr_UnlockSerialMesgQ(mq);
     } else {
         lbRTC_TimeCopy(&common_data.time.rtcTime, time);
@@ -104,7 +104,7 @@ void lbRTC_GetTime(lbRTC_time_c* time) {
 
     if (common_data.time.rtcEnabled == 1 && !common_data.time.rtcCrashed) {
         mq = padmgr_LockSerialMesgQ();
-        lbrtc_getTime(mq, (OSRTCTime*)time);
+        lbrtc_getTime(mq, time);
         padmgr_UnlockSerialMesgQ(mq);
     } else {
         lbRTC_TimeCopy(time, &common_data.time.rtcTime);
@@ -280,11 +280,11 @@ s32 lbRTC_IsOverWeekRTC(const lbRTC_time_c* t0, lbRTC_weekday_t week) {
 
 s32 lbRTC_IntervalTime(lbRTC_time_c* t0, lbRTC_time_c* t1) {
 
-    OSRTCTime t2;
-    OSRTCTime t3;
+    lbRTC_time_c t2;
+    lbRTC_time_c t3;
 
-    t2 = *(OSRTCTime*)t0;
-    t3 = *(OSRTCTime*)t1;
+    t2 = *t0;
+    t3 = *t1;
 
     lbrtc_GetIntervalMinutes(&t3, &t2);
 }

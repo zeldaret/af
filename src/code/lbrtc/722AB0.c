@@ -10,14 +10,14 @@ u16 total_days_internal[2][lbRTC_MONTHS_MAX + 1] = {
     { 0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335, 366 }
 };
 
-s32 func_800FEE10_jp(OSMesgQueue* mq, u8 v, u8* buf) {
+s32 func_800FEE10_jp(OSMesgQueue* mq, u8 blockType, u8* buf) {
     s32 ret;
-    __lbrtcStructUnk1* ptr;
-    __lbrtcStructUnk1 sp28;
+    __OSContRTCRWFormat* ptr;
+    __OSContRTCRWFormat format;
 
     __osSiGetAccess();
-    func_800FEF9C_jp(v);
-    __osContLastCmd = 7;
+    func_800FEF9C_jp(blockType);
+    __osContLastCmd = CONT_CMD_READ_RTC;
 
     ret = __osSiRawStartDma(OS_WRITE, &__osEepPifRam);
     osRecvMesg(mq, NULL, OS_MESG_BLOCK);
@@ -25,21 +25,22 @@ s32 func_800FEE10_jp(OSMesgQueue* mq, u8 v, u8* buf) {
     ret = __osSiRawStartDma(OS_READ, &__osEepPifRam);
     osRecvMesg(mq, NULL, OS_MESG_BLOCK);
 
-    ptr = (__lbrtcStructUnk1*)&__osEepPifRam.ramarray[1];
+    ptr = (__OSContRTCRWFormat*)&__osEepPifRam.ramarray[1];
 
-    sp28 = *ptr;
-    ret = sp28.unk1 & 0xc0;
+    format = *ptr;
+    ret = format.rxsize & CHNL_ERR_MASK;
 
     if (ret == 0) {
-        bcopy(&sp28.unk4, buf, 8);
-        if (sp28.unkC & 1) {
-            ret = 0x11;
-        } else if (sp28.unkC & 1) {
-            ret = 0x12;
-        } else if (sp28.unkC & 0x80) {
-            ret = 0x10;
+        bcopy(&format.data, buf, 8);
+        if (format.status & RTC_STATUS_BATTERY_FAILURE) {
+            ret = RTC_ERR_BATTERY;
+        //! @bug should have checked for RTC_STATUS_CRYSTAL_FAILURE
+        } else if (format.status & RTC_STATUS_BATTERY_FAILURE) {
+            ret = RTC_ERR_CRYSTAL;
+        } else if (format.status & RTC_STATUS_STOPPED) {
+            ret = RTC_STOPPED;
         }
-    } else if (ret & 0x80) {
+    } else if (ret & CHNL_ERR_NORESP) {
         ret = 1;
     } else {
         ret = 4;
@@ -49,26 +50,26 @@ s32 func_800FEE10_jp(OSMesgQueue* mq, u8 v, u8* buf) {
     return ret;
 }
 
-void func_800FEF9C_jp(u8 v) {
+void func_800FEF9C_jp(u8 blockType) {
     u8* ptr = (u8*)&__osEepPifRam.ramarray;
-    s32 i;
-    __lbrtcStructUnk1 sp0;
+    s32 i; 
+    __OSContRTCRWFormat format;
 
-    __osEepPifRam.pifstatus = 1;
+    __osEepPifRam.pifstatus = CONT_CMD_EXE;
 
-    sp0.unk0 = 2;
-    sp0.unk1 = 9;
-    sp0.unk2 = 7;
-    sp0.unk3 = v;
+    format.txsize = CONT_CMD_READ_RTC_TX;
+    format.rxsize = CONT_CMD_READ_RTC_RX;
+    format.cmd = CONT_CMD_READ_RTC;
+    format.blockType = blockType;
 
     for (i = 0; i < 4; i++) {
         *ptr++ = 0;
     }
 
-    *(__lbrtcStructUnk1*)ptr = sp0;
+    *(__OSContRTCRWFormat*)ptr = format;
 
-    ptr += 0xD;
-    ptr[0] = 0xFE;
+    ptr += sizeof(__OSContRTCRWFormat);
+    *ptr = CONT_CMD_END;
 }
 
 s32 lbrtc_GetIntervalMinutes(OSRTCTime* t0, OSRTCTime* t1) {
@@ -85,26 +86,18 @@ s32 lbrtc_GetIntervalMinutes(OSRTCTime* t0, OSRTCTime* t1) {
     s32 min;
     if (t0->year > t1->year) {
         return 0;
-    } else {
-        if (t0->year == t1->year) {
-            if (t0->month > t1->month) {
+    } else if (t0->year == t1->year) {
+        if (t0->month > t1->month) {
+            return 0;
+        } else if (t0->month == t1->month) {
+            if (t0->day > t1->day) {
                 return 0;
-            } else {
-                if (t0->month == t1->month) {
-                    if (t0->day > t1->day) {
+            } else if (t0->day == t1->day) {
+                if (t0->hour > t1->hour) {
+                    return 0;
+                } else if (t0->hour == t1->hour) {
+                    if (t0->min > t1->min) {
                         return 0;
-                    } else {
-                        if (t0->day == t1->day) {
-                            if (t0->hour > t1->hour) {
-                                return 0;
-                            } else {
-                                if (t0->hour == t1->hour) {
-                                    if (t0->min > t1->min) {
-                                        return 0;
-                                    }
-                                }
-                            }
-                        }
                     }
                 }
             }

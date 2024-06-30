@@ -2223,8 +2223,5 @@ extern UNK_TYPE B_80145FFC_jp;
 // extern UNK_TYPE B_80152460_jp;
 // extern UNK_TYPE B_80152464_jp;
 // extern UNK_TYPE B_80152468_jp;
-// extern UNK_TYPE B_80152480_jp;
-// extern UNK_TYPE B_801524A0_jp;
-// extern UNK_TYPE B_801524B8_jp;
 
 #endif

@@ -129,13 +129,13 @@
       - [0x7206E0, asm, code/7206E0]
       - [0x720B20, asm, code/720B20]
       - [0x720F70, asm, code/720F70]
-      - [0x721EC0, c, code/lbrtc_getTime] #made-up name
-      - [0x7220C0, c, code/7220C0]
-      - [0x722310, c, code/lbrtc_setTime] #made-up name
-      - [0x722570, c, code/722570]
-      - [0x722880, c, code/722880]
-      - [0x722970, c, code/lbrtc_init] #made-up name
-      - [0x722AB0, c, code/722AB0]
+      - [0x721EC0, c, code/lbrtc/lbrtc_getTime] #made-up name
+      - [0x7220C0, c, code/lbrtc/7220C0]
+      - [0x722310, c, code/lbrtc/lbrtc_setTime] #made-up name
+      - [0x722570, c, code/lbrtc/722570]
+      - [0x722880, c, code/lbrtc/722880]
+      - [0x722970, c, code/lbrtc/lbrtc_init] #made-up name
+      - [0x722AB0, c, code/lbrtc/722AB0]
 
       - [0x723010, data, code/rsp/723010]
 
@@ -199,7 +199,7 @@
       - [0x7339F0, .data, code/sys_ucode]
       - [0x733A00, .data, code/zurumode]
       - [0x733A10, data, code/733A10]
-      - [0x739D60, .data, code/lbrtc_init]
+      - [0x739D60, .data, code/lbrtc/lbrtc_init]
 
       - [0x739DB0, .rodata, code/c_keyframe]
       - [0x739E00, .rodata, code/m_all_grow]
@@ -318,4 +318,4 @@
       - { start: 0x73F4D0, type: bss, vram: 0x801462C0, name: code/801462C0 }
       - { start: 0x73F4D0, type: .bss, vram: 0x801492C0, name: code/zurumode }
       - { start: 0x73F4D0, type: bss, vram: 0x801492D0, name: code/801492D0 }
-      - { start: 0x73F4D0, type: .bss, vram: 0x80152480, name: code/722570}
+      - { start: 0x73F4D0, type: .bss, vram: 0x80152480, name: code/lbrtc/722570}

@@ -245,20 +245,8 @@ build/src/boot/libu64/%.o: OPTFLAGS := -O2
 build/src/boot/fault.o: CFLAGS += -trapuv
 build/src/boot/fault_drawer.o: CFLAGS += -trapuv
 
-build/src/code/lbrtc_getTime.o: CC = $(CC_OLD)
-build/src/code/lbrtc_getTime.o: OPTFLAGS = -O1 -g1
-build/src/code/lbrtc_setTime.o: CC = $(CC_OLD)
-build/src/code/lbrtc_setTime.o: OPTFLAGS = -O1 -g1
-build/src/code/lbrtc_init.o: CC = $(CC_OLD)
-build/src/code/lbrtc_init.o: OPTFLAGS = -O1 -g1
-build/src/code/7220C0.o: CC = $(CC_OLD)
-build/src/code/7220C0.o: OPTFLAGS = -O1 -g1
-build/src/code/722570.o: CC = $(CC_OLD)
-build/src/code/722570.o: OPTFLAGS = -O1 -g1
-build/src/code/722880.o: CC = $(CC_OLD)
-build/src/code/722880.o: OPTFLAGS = -O1 -g1
-build/src/code/722AB0.o: CC = $(CC_OLD)
-build/src/code/722AB0.o: OPTFLAGS = -O1 -g1
+build/src/code/lbrtc/%.o: CC = $(CC_OLD)
+build/src/code/lbrtc/%.o: OPTFLAGS = -O1 -g1
 
 
 # cc & asm-processor

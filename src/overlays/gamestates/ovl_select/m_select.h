@@ -21,7 +21,7 @@ typedef enum SelectCheck {
     /* 10 */ SELECT_CHECK_A_BUTTON_NUM
 } SelectCheck;
 
-struct lbRTC_time_c; 
+struct OSRTCTime; 
 struct gfxprint;
 
 typedef struct Game_Select {
@@ -86,7 +86,7 @@ void select_move(Game_Select* select);
 void select_print_wait(struct gfxprint* gfxprint);
 void select_print_course_name(Game_Select* select, struct gfxprint* gfxprint);
 void select_print_rtc(struct gfxprint* gfxprint, Game_Select* select);
-void select_print_time_sub(struct gfxprint* gfxprint, Game_Select* select, struct lbRTC_time_c* time);
+void select_print_time_sub(struct gfxprint* gfxprint, Game_Select* select, struct OSRTCTime* time);
 void select_print_time(struct gfxprint* gfxprint, Game_Select* select);
 void select_print_step_sub2(struct gfxprint* gfxprint);
 void select_print_step(struct gfxprint* gfxprint, Game_Select* select);
