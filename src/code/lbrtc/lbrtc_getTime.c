@@ -5,8 +5,8 @@ s32 lbrtc_getTime(OSMesgQueue* mq, OSRTCTime* time) {
     __OSContRTCData data;
     u8 status;
     s32 ret;
- 
-    ret = func_800FE480_jp(mq, &status); 
+
+    ret = func_800FE480_jp(mq, &status);
     if (ret == 0) {
         ret = func_800FEE10_jp(mq, RTC_TIME_BLOCK_TYPE, (u8*)&data);
         if (ret == 0) {

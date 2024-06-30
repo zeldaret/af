@@ -34,7 +34,7 @@ s32 func_800FEE10_jp(OSMesgQueue* mq, u8 blockType, u8* buf) {
         bcopy(&format.data, buf, 8);
         if (format.status & RTC_STATUS_BATTERY_FAILURE) {
             ret = RTC_ERR_BATTERY;
-        //! @bug should have checked for RTC_STATUS_CRYSTAL_FAILURE
+            //! @bug should have checked for RTC_STATUS_CRYSTAL_FAILURE
         } else if (format.status & RTC_STATUS_BATTERY_FAILURE) {
             ret = RTC_ERR_CRYSTAL;
         } else if (format.status & RTC_STATUS_STOPPED) {
@@ -52,7 +52,7 @@ s32 func_800FEE10_jp(OSMesgQueue* mq, u8 blockType, u8* buf) {
 
 void func_800FEF9C_jp(u8 blockType) {
     u8* ptr = (u8*)&__osEepPifRam.ramarray;
-    s32 i; 
+    s32 i;
     __OSContRTCRWFormat format;
 
     __osEepPifRam.pifstatus = CONT_CMD_EXE;

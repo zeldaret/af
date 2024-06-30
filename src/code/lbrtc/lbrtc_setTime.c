@@ -9,7 +9,7 @@ s32 lbrtc_setTime(OSMesgQueue* mq, OSRTCTime* time) {
     s32 ret;
 
     ret = func_800FE480_jp(mq, &status);
-    if (ret == 0) { 
+    if (ret == 0) {
         ret = func_800FEE10_jp(mq, RTC_CR_BLOCK_TYPE, (u8*)&cr);
         if (ret == 0) {
             cr[0].writeProtectBitfield &= ~RTC_WRITE_PROTECT_RTC_BIT;

@@ -8,7 +8,7 @@ OSMesg __contRTCMesg;
 
 s32 func_800FE8D0_jp(OSMesgQueue* mq, u8 blockType, u8* data) {
     s32 ret;
-    u8* ptr; 
+    u8* ptr;
     __OSContRTCRWFormat format;
 
     __osSiGetAccess();
@@ -32,7 +32,7 @@ s32 func_800FE8D0_jp(OSMesgQueue* mq, u8 blockType, u8* data) {
         bcopy(&format.data, data, sizeof(__OSContRTCData));
         if (format.status & RTC_STATUS_BATTERY_FAILURE) {
             ret = RTC_ERR_BATTERY;
-        //! @bug should have checked for RTC_STATUS_CRYSTAL_FAILURE
+            //! @bug should have checked for RTC_STATUS_CRYSTAL_FAILURE
         } else if (format.status & RTC_STATUS_BATTERY_FAILURE) {
             ret = RTC_ERR_CRYSTAL;
         } else if (format.status & RTC_STATUS_STOPPED) {

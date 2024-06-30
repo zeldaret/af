@@ -90,14 +90,14 @@ extern OSMesg __contRTCMesg;
 
 s32 lbrtc_getTime(OSMesgQueue* mq, OSRTCTime* time);
 s32 func_800FE420_jp(OSMesgQueue* mq, OSRTCTime* time);
-s32 func_800FE480_jp(OSMesgQueue* mq, u8* buf);
+s32 func_800FE480_jp(OSMesgQueue* mq, u8* status);
 s32 lbrtc_setTime(OSMesgQueue* mq, OSRTCTime* time);
-s32 func_800FE8D0_jp(OSMesgQueue* mq, u8 v, u8* buf);
-s32 func_800FEABC_jp(u8 v, u8* buf);
+s32 func_800FE8D0_jp(OSMesgQueue* mq, u8 blockType, u8* data);
+s32 func_800FEABC_jp(u8 blockType, u8* data);
 s32 func_800FEBE0_jp(OSMesgQueue* mq, OSRTCTime* time);
 s32 lbrtc_init(OSMesgQueue* mq);
-s32 func_800FEE10_jp(OSMesgQueue* mq, u8 v, u8* buf);
-void func_800FEF9C_jp(u8 v);
+s32 func_800FEE10_jp(OSMesgQueue* mq, u8 blockType, u8* buf);
+void func_800FEF9C_jp(u8 blockType);
 s32 lbrtc_GetIntervalMinutes(OSRTCTime* t0, OSRTCTime* t1);
 
 #endif

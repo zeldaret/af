@@ -11,9 +11,9 @@ s32 func_800FE420_jp(OSMesgQueue* mq, OSRTCTime* time) {
     if (ret == 0) {
         ret = func_800FEE10_jp(mq, RTC_SRAM_BLOCK_TYPE, (u8*)time);
     }
- 
+
     return ret;
-} 
+}
 
 s32 func_800FE480_jp(OSMesgQueue* mq, u8* status) {
     s32 ret = 0;

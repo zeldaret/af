@@ -6,7 +6,7 @@ s32 D_801160C0_jp = 0;
 s32 lbrtc_init(OSMesgQueue* mq) {
     s32 ret;
     u8 status;
-    UNUSED s32 pad; 
+    UNUSED s32 pad;
     __OSContRTCControlRegs rtc[1];
 
     ret = func_800FE480_jp(mq, &status);
