@@ -1,0 +1,9 @@
+body
+{
+    background: #14504a url(website_assets/bg_winter.webp);
+    background-attachment: fixed;
+    background-position-x: 50%;
+    background-position-y: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

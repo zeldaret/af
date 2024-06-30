@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width"/>
+    <title>Animal Forest Decompilation</title>
+    <link rel="stylesheet" href="dist/uPlot.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link id="season" rel="stylesheet" href="">
+    <link rel="icon" type="image/webp" href="website_assets/logo.webp"/>
+</head>
+<body>
+<script src="dist/uPlot.iife.js"></script>
+
+<ul class="navBar">
+    <li><a id="titleLink" href="index.html"><img id="logo" src="website_assets/logo.webp">Animal Forest Decompilation</a></li>
+    <li><a class="extraLink" href="https://github.com/zeldaret/af/">GitHub</a></li>
+    <li><a class="extraLink" href="https://zelda64.dev/">ZeldaRET</a></li>
+    <li><a class="extraLink" href="https://discord.com/invite/DqwyCBYKqf/">Discord</a></li>
+
+    <li><img src="website_assets/grass_winter.webp" class="seasonLink" onclick="changeSeason('winter.css')"></li>
+    <li><img src="website_assets/grass_autumn.webp" class="seasonLink" onclick="changeSeason('autumn.css')"></li>
+    <li><img src="website_assets/grass_summer.webp" class="seasonLink" onclick="changeSeason('summer.css')"></li>
+    <li><img src="website_assets/grass_spring.webp" class="seasonLink" onclick="changeSeason('spring.css')"></li>
+
+    <li><button id="hamburger" onclick="toggleHamburger()">Menu</button></li>
+</ul>
+
+<ul id="hamburgerContents" class="hamburgerClosed">
+    <li><a href="https://github.com/zeldaret/af/">GitHub</a></li>
+    <li><a href="https://zelda64.dev/">ZeldaRET</a></li>
+    <li><a href="https://discord.com/invite/DqwyCBYKqf/">Discord</a></li>
+    <li id="seasonsHamburger">
+        <img src="website_assets/grass_winter.webp" onclick="changeSeason('winter.css')">
+        <img src="website_assets/grass_autumn.webp" onclick="changeSeason('autumn.css')">
+        <img src="website_assets/grass_summer.webp" onclick="changeSeason('summer.css')">
+        <img src="website_assets/grass_spring.webp" onclick="changeSeason('spring.css')">
+    </li>
+</ul>
+
+<div id="wrapper">
+
+    <div id="codeGraph" class="progressGraph">
+    <h2>Decompilation Progress</h2>
+        <p class="progressTotalPercent" id="codeProgressTotal"></p>
+        <table class="progressTable">
+        <tr>
+            <td>Boot</td>
+            <td class="percent" id="codeProgressBoot"></td>
+        </tr>
+        <tr>
+            <td>Code</td>
+            <td class="percent" id="codeProgressCode"></td>
+        </tr>
+        <tr>
+            <td>Overlays</td>
+            <td class="percent" id="codeProgressOverlays"></td>
+        </tr>
+        </table>
+    </div>
+
+    <div id="assetGraph" class="progressGraph">
+        <h2>Asset Analysis Progress</h2>
+        <div class="progressStats">
+            <p class="progressTotalPercent" id="assetProgressTotal"></p>
+            <table class="progressTable">
+                <tr>
+                    <td>Objects</td>
+                    <td class="percent" id="assetProgressObjects"></td>
+                </tr>
+                <tr><td class="percentPlaceholder">&nbsp;</td></td>
+                <tr><td class="percentPlaceholder">&nbsp;</td></td>
+            </table>
+        </div>
+    </div>
+
+    <div id="letterTop"></div>
+    <div id="ribbon"></div>
+    <div class="description">
+        <p>Animal Forest is a reverse engineering project to decompile the Nintendo 64 game Doubutsu no Mori into C code. The project also extracts assets such as models, textures, and animations from the ROM. The C code and assets can then be recompiled to create a 1-to-1 ("matching") copy of the game.</p>
+        
+        <h2>Why?</h2>
+        <p>Doubutsu no Mori is the starting point of the incredibly successful Animal Crossing series and a historically significant game. By decompiling it, we can learn more about how it was engineered, and what limitations the original developers had to work with. Looking at the source code can help us understand exactly how a game mechanic works, or what causes a glitch to happen.</p>               
+        
+        <h2>Contribute</h2>
+        <p>Contributions are always welcome! See our <a href="https://github.com/zeldaret/af/blob/main/CONTRIBUTING.md">Contributing Guide</a> for how to get started.</p>
+    </div> 
+    <div id="letterBottom"></div>
+
+<script src="progress.js"></script>
+<script>
+function toggleHamburger()
+{
+    var menu = document.getElementById("hamburgerContents");
+    if (menu.className === "hamburgerClosed")
+    {
+        menu.className = "hamburgerOpen";
+    }
+    else
+    {
+        menu.className = "hamburgerClosed";
+    }
+}
+
+function changeSeason(stylesheet)
+{
+    var season = document.getElementById('season');
+    season.href = stylesheet;
+}
+
+let month = new Date().getMonth();
+switch(month)
+{
+    case 11:
+    case 0:
+    case 1:
+        changeSeason('winter.css');
+        break;
+    case 2:
+    case 3:
+    case 4:
+        changeSeason('spring.css');
+        break;
+    case 5:
+    case 6:
+    case 7:
+        changeSeason('summer.css');
+        break;
+    case 8:
+    case 9: 
+    case 10:
+        changeSeason('autumn.css');
+        break;
+    break;
+}
+</script>
+
+</body>
+</html>
