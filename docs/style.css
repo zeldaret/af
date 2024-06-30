@@ -1,0 +1,354 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@87.5,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    background: #14504a url(website_assets/bg_autumn.webp);
+    background-attachment: fixed;
+    background-position-x: 50%;
+    background-position-y: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.navBar
+{
+    width: auto;
+    height: 57px;
+    list-style-type: none;
+    background-color: #14504a;
+    box-shadow: 0 1px 10px #12214c;
+}
+
+.navBar a
+{
+    font-family: 'Arial';
+    font-size: 16px;
+    text-decoration: none;
+    color: white;
+    height:36px;
+    padding-top: 21px;
+    padding-left: 10px;
+    padding-right: 10px;
+    user-select: none;
+}
+
+#logo
+{
+    height: 48px;
+    float: left;
+    padding: 5px 9px 4px 5px;
+    margin-top: -15px;
+}
+
+#titleLink
+{
+    font-family: "Open Sans", sans-serif;
+    font-size: 20px;
+    height: 42px;
+    padding-top: 15px;
+    padding-left: 0px;
+    float: left;
+}
+
+/* hidden in mobile version */
+.extraLink
+{
+    display: none;
+    float: left;
+}
+
+/* hidden in mobile version */
+.seasonLink
+{
+    display: none;
+    float: right;
+    margin-top: 13px;
+    margin-right: 5px;
+}
+
+#hamburger
+{
+    color: transparent;
+    border: 0px;
+    background-color: transparent;
+    background-image: url(website_assets/hamburger.png);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    width: 57px;
+    height: 57px;
+    float: right;
+    cursor: pointer;
+}
+
+#hamburgerContents
+{
+    background-color: #14504a;
+    margin-left: auto;
+    width: 100%;
+    list-style: none;
+}
+
+.hamburgerOpen
+{
+    display: block;
+}
+
+.hamburgerClosed
+{
+    display: none;
+}
+
+#hamburgerContents a
+{
+    display: block;
+    font-family: 'arial';
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    text-align: right;
+    width: auto;
+    padding: 17px;
+}
+
+#hamburgerContents img
+{
+    margin-right: 5px;
+    float: right;
+}
+
+#seasonsHamburger
+{
+    margin-top: 13px;
+    height: 42px;
+}
+
+
+#hamburger:hover, .navBar a:hover, .themeList button:hover, #hamburgerContents a:hover
+{
+    background-color: #2c625c;
+}
+
+#wrapper
+{
+    width: auto;
+    padding: 1vw;
+}
+
+#letterTop
+{
+    width: auto;
+    height: 34px;
+    background-image: url(website_assets/letter_top.svg);
+}
+
+#letterBottom
+{
+    width: auto;
+    height: 34px;
+    background-image: url(website_assets/letter_bottom.svg);
+}
+
+#ribbon
+{
+    display: block;
+    background-image: url(website_assets/ribbon.webp);
+    width :69px;
+    height: 29px;
+    position: absolute;
+    left: 50%;
+    margin-left: -34px;
+    margin-top: -20px;
+}
+
+.progressGraph
+{
+    background-color: #e0fcff;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1vw;
+    border-style: solid;
+    border-color: #5292fc;
+    border-width: 1vw;
+    border-radius: 4vw;
+}
+
+.progressGraph h2
+{
+    font-family: "Open Sans", sans-serif;
+    font-size: 35px;
+    color: #335075;
+    text-align: center;
+}
+
+.progressTotalPercent
+{
+    font-family: "Open Sans", sans-serif;
+    font-size: 40px;
+    color: #335075;
+    text-align: center;
+    height: 50px;
+    margin-top: -10px;
+    margin-bottom: -5px;
+}
+
+.progressTable
+{
+    font-family: "Open Sans", sans-serif;
+    font-size: 17px;
+    color: #335075;
+    width: 130px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.percent
+{
+    text-align: right;
+}
+
+.percentPlaceholder
+{
+    visibility: hidden;
+}
+
+.uplot
+{
+    background-color: #e0fcff;
+    color: black;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 4vw;
+}
+
+.u-legend
+{
+    min-height: 95px;
+}
+
+.description
+{
+    font-family: "Roboto", sans-serif;
+    font-size: 17px;
+    color: #323c32;
+    background-color: white;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.description h2
+{
+    font-size: 20px;
+}
+
+.description p
+{
+    margin-bottom: 30px;
+}
+
+.description a
+{
+    text-decoration: underline dotted;
+    color: #323c32;
+}
+
+.description a:hover
+{
+    color: #e70029;
+}
+
+@media only screen and (min-width: 900px)
+{
+
+.navBar
+{
+    z-index: 10;
+    position: sticky;
+    top: 0px;
+    padding-right: 7px;
+}
+
+.extraLink, .seasonLink
+{
+    display: inline;
+}
+
+#hamburger
+{
+    display: none;
+}
+
+.hamburgerOpen
+{
+    display: none;
+}
+
+#wrapper
+{
+    padding-bottom: 24vh;
+}
+
+#letterTop, #letterBottom
+{
+    display: none;
+}
+
+#ribbon
+{
+    margin-top: 15px;
+}
+
+.progressGraph
+{
+    width: 860px;
+    height:678px;
+    border-style: none;
+    background-color: transparent;
+    background-image: url(website_assets/graph_window.svg);
+    padding-top: 25px;
+    margin-bottom: 20px;
+}
+
+.progressGraph h2
+{
+    font-size: 40px;
+}
+
+.uplot
+{
+    background-color: white;
+    border-style: solid;
+    border-color: #2c74fd;
+    border-width: 10px;
+    border-radius: 40px;
+    color: #335075;
+}
+
+.u-legend
+{
+    min-height: 0px;
+}
+
+.description
+{
+    background-color: transparent;
+    background-image: url(website_assets/letter.svg);
+    width: 560px;
+    height: 407px;
+    padding: 70px;
+    margin-bottom: 20px;
+}
+
+.description p:first-child
+{
+    margin-top: 20px;
+}
+
+}
