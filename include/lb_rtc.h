@@ -2,6 +2,7 @@
 #define LB_RTC_H
 
 #include "ultra64.h"
+#include "lbrtc.h"
 
 /* TODO: do these have a better header? */
 #define GAME_YEAR_MIN 2000 /* Minimum year supported by the game */
@@ -18,16 +19,7 @@ typedef u8 lbRTC_weekday_t;
 typedef u8 lbRTC_month_t;
 typedef u16 lbRTC_year_t;
 
-/* Name leaked in lbRTC_time_c_save_data_check */
-typedef struct lbRTC_time_c {
-  /* 0x00 */ lbRTC_sec_t sec;
-  /* 0x01 */ lbRTC_min_t min;
-  /* 0x02 */ lbRTC_hour_t hour;
-  /* 0x03 */ lbRTC_day_t day;
-  /* 0x04 */ lbRTC_weekday_t weekday;
-  /* 0x05 */ lbRTC_month_t month;
-  /* 0x06 */ lbRTC_year_t year;
-} lbRTC_time_c; // size = 0x8
+typedef OSRTCTime lbRTC_time_c;
 
 /* Name leaked in mTM_ymd_2_time */
 typedef struct lbRTC_ymd_t {

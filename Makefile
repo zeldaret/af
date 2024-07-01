@@ -245,6 +245,10 @@ build/src/boot/libu64/%.o: OPTFLAGS := -O2
 build/src/boot/fault.o: CFLAGS += -trapuv
 build/src/boot/fault_drawer.o: CFLAGS += -trapuv
 
+build/src/code/lbrtc/%.o: CC = $(CC_OLD)
+build/src/code/lbrtc/%.o: OPTFLAGS = -O1 -g1
+
+
 # cc & asm-processor
 build/src/%.o: CC := $(ASM_PROC) $(ASM_PROC_FLAGS) $(CC) -- $(AS) $(ASFLAGS) --
 
