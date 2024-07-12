@@ -84,6 +84,8 @@ typedef union {
 #define DEG_TO_BINANG_ALT(degrees) TRUNCF_BINANG(((degrees) / 180.0f) * 0x8000)
 #define DEG_TO_BINANG_ALT2(degrees) TRUNCF_BINANG(((degrees) * 0x10000) / 360.0f)
 #define DEG_TO_BINANG_ALT3(degrees) ((degrees) * (0x8000 / 180.0f))
+#define DEG_TO_BINANG_ALT4(degrees) (TRUNCF_BINANG((degrees) * (0x10000 / 360.0f)))
+
 
 #define RAD_TO_DEG(radians) ((radians) * (180.0f / (f32)M_PI))
 #define RAD_TO_BINANG(radians) TRUNCF_BINANG((radians) * (0x8000 / (f32)M_PI))

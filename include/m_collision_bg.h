@@ -35,6 +35,12 @@ typedef union mCoBG_unkStructUnion {
     u32 raw;
 } mCoBG_unkStructUnion;
 
+// collision bg wall info
+typedef struct mCoBG_WallInfo {
+    /* 0x0 */ s16 angleY;
+    /* 0x2 */ s16 type;
+} mCoBG_WallInfo; // size = 0x4
+
 // collision bg result data
 typedef struct mCoBG_CheckResult {
   u32 onGround:1; // [31] on_ground
@@ -52,6 +58,14 @@ typedef struct mCoBG_CheckResult {
   u32 unk12:1; // [4] unk_flag5
   u32 unk13:4; // [3:0] unk_flag6
 } mCoBG_CheckResult;
+
+typedef struct mCoBG_Check{
+    /* 0x00 */ u8 unk0[0x11];
+    /* 0x11 */ mCoBG_CheckResult colResult;
+    /* 0x14 */ u8 unk14[0xC];
+    /* 0x20 */ mCoBG_WallInfo wallInfo[2];
+    /* 0x2C */ s16 unk20;
+}mCoBG_Check; // size = 0x30
 
 // void func_80067430_jp();
 // void func_800674B0_jp();
@@ -249,11 +263,11 @@ s32 func_8007244C_jp(u32);
 s32 mCoBG_SearchWaterLimitDistN(UNK_TYPE* arg0, xyz_t arg1, s16 arg4, f32 arg5, s32 arg6);
 // void func_80072E70_jp();
 f32 mCoBG_GetBalloonGroundY(xyz_t*);
-// void func_800730C8_jp();
+s32 mCoBG_CheckAttribute_BallRolling(s16*, xyz_t*);
 // void func_800731A8_jp();
-// void func_800732DC_jp();
+f32 mCoBG_CheckBallRollingArea(s16, xyz_t*);
 // void func_800734BC_jp();
-// void func_8007352C_jp();
+s32 mCoBG_ExistHeightGap_KeepAndNow_Detail(xyz_t);
 // void func_80073680_jp();
 // void func_80073718_jp();
 // void func_80073784_jp();
