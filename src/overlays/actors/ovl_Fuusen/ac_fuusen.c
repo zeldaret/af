@@ -210,7 +210,7 @@ void aFSN_moving(Actor* thisx, Game_Play* game_play) {
     Game_play_Projection_Trans(game_play, &this->actor.world.pos, &screenPos);
     if (!(screenPos.x < -40.0f) && !(screenPos.x > 360.0f) && !(screenPos.y < -40.0f) && !(screenPos.y > 280.0f)) {
         mCoBG_BgCheckControll(NULL, &this->actor, 12.0f, 0, 0, 0, 0);
-        if (this->actor.colResult.hitWall & 1 || this->actor.colResult.unk1 & 1) {
+        if (this->actor.colCheck.colResult.hitWall & 1 || this->actor.colCheck.colResult.unk1 & 1) {
             this->heightOffset += 0.01f;
             if (this->heightOffset >= 300.0f) {
                 this->heightOffset = 300.0f;

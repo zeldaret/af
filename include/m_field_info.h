@@ -11,6 +11,13 @@ struct Game_Play;
 struct FieldMakeBlockInfo;
 struct FieldMakeMoveActor;
 
+#define FI_UT_WORLDSIZE_Z 40
+#define FI_UT_WORLDSIZE_Z_F (f32)FI_UT_WORLDSIZE_Z
+#define FI_UT_WORLDSIZE_X 40
+#define FI_UT_WORLDSIZE_X_F (f32)FI_UT_WORLDSIZE_Z
+#define FI_UT_BASE_SIZE 40
+#define FI_UT_BASE_SIZE_F ((f32)FI_UT_BASE_SIZE)
+
 typedef enum FieldType {
   /* 0 */ FI_FIELDTYPE_FG,
   /* 1 */ FI_FIELDTYPE_1,

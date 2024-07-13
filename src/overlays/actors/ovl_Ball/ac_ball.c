@@ -7,7 +7,7 @@
 #include "libc/math.h"
 #include "m_npc.h"
 #include "audio.h"
-#include "6F2150.h"
+#include "m_roll_lib.h"
 #include "m_field_info.h"
 #include "sys_math_atan.h"
 #include "m_player_lib.h"
@@ -227,7 +227,7 @@ void aBALL_position_move(Ball* this) {
 
     mCoBG_GetBgY_AngleS_FromWpos(&slopeAngle, this->actor.world.pos, 0.0f);
 
-    if (this->actor.colResult.onGround || this->actor.colResult.inWater) {
+    if (this->actor.colCheck.colResult.onGround || this->actor.colCheck.colResult.inWater) {
         chase_f(&this->actor.speed, this->maxSpeed, this->acceleration);
     }
 
@@ -258,7 +258,7 @@ void aBALL_BGcheck(Ball* this) {
     yVelocity = this->actor.velocity.y;
 
     if ((this->process == aBALL_process_air_water) || (this->process == aBALL_process_ground_water) ||
-        (this->actor.colResult.unk5 == 0xB)) {
+        (this->actor.colCheck.colResult.unk5 == 0xB)) {
         mCoBG_BgCheckControll(&this->bgPos, &this->actor, 12.0f, -12.0f, 0, 1, 0);
         this->actor.world.pos.x += this->bgPos.x;
         this->actor.world.pos.z += this->bgPos.z;
@@ -268,13 +268,13 @@ void aBALL_BGcheck(Ball* this) {
     }
 
     if (((this->process == aBALL_process_air) || (this->process == aBALL_process_air_water)) &&
-        this->actor.colResult.onGround) {
+        this->actor.colCheck.colResult.onGround) {
         if (this->bounceTimer < 3) {
             do {
                 this->bounceTimer++;
             } while (0);
 
-            if (this->actor.colResult.inWater) {
+            if (this->actor.colCheck.colResult.inWater) {
                 this->actor.velocity.y = 0.2f;
             } else {
                 this->actor.velocity.y = -yVelocity * 0.7f;
@@ -282,7 +282,7 @@ void aBALL_BGcheck(Ball* this) {
         }
     }
 
-    hitWall = this->actor.colResult.hitWall;
+    hitWall = this->actor.colCheck.colResult.hitWall;
     if (hitWall & 1) {
         wallAngle = mRlib_Get_HitWallAngleY(&this->actor);
         rot = this->actor.world.rot.y - wallAngle - 0x8000;
@@ -363,7 +363,7 @@ void aBALL_OBJcheck(Ball* this) {
                 ballSpeed = sqrtf(SQ(newXVelocity) + SQ(newZVelocity));
                 ballSpeed = CLAMP_MAX(ballSpeed, 11.0f);
 
-                if (this->actor.colResult.onGround) {
+                if (this->actor.colCheck.colResult.onGround) {
                     f32 speedFactor;
                     s16 verticalAngle;
 
@@ -409,7 +409,7 @@ void aBALL_OBJcheck(Ball* this) {
 }
 
 void aBALL_House_Tree_Rev_Check(Ball* this) {
-    if (mRlib_HeightGapCheck_And_ReversePos() != 1) {
+    if (mRlib_HeightGapCheck_And_ReversePos(&this->actor) != 1) {
         this->unk_208 |= BALL_208_FLAG_1;
         Actor_delete(&this->actor);
     }
@@ -435,13 +435,13 @@ void aBALL_process_air(Ball* this, Game_Play* game_play) {
     this->actor.terminalVelocity = -20.0f;
     this->actor.gravity = 0.6f;
     this->speed = this->actor.speed;
-    if (this->actor.colResult.onGround) {
-        if (this->actor.colResult.inWater) {
+    if (this->actor.colCheck.colResult.onGround) {
+        if (this->actor.colCheck.colResult.inWater) {
             aBALL_process_ground_water_init(this, game_play);
         } else {
             aBALL_process_ground_init(this, game_play);
         }
-    } else if (this->actor.colResult.inWater) {
+    } else if (this->actor.colCheck.colResult.inWater) {
         aBALL_process_air_water_init(this, game_play);
     }
 }
@@ -518,20 +518,20 @@ void aBALL_process_ground(Ball* this, Game_Play* game_play) {
     this->actor.terminalVelocity = -20.0f;
     this->actor.gravity = 0.6f;
     this->speed = this->actor.speed;
-    if (this->actor.colResult.inWater || this->actor.colResult.unk5 == 0xB) {
-        if (this->actor.colResult.onGround) {
+    if (this->actor.colCheck.colResult.inWater || this->actor.colCheck.colResult.unk5 == 0xB) {
+        if (this->actor.colCheck.colResult.onGround) {
             aBALL_process_ground_water_init(this, game_play);
         } else {
             this->bounceTimer = 0;
             aBALL_process_air_water_init(this, game_play);
         }
-    } else if (!this->actor.colResult.onGround) {
+    } else if (!this->actor.colCheck.colResult.onGround) {
         this->bounceTimer = 0;
         aBALL_process_air_init(this, game_play);
         return;
     }
 
-    if (!(game_play->state.frameCounter & 7) && this->actor.colResult.unk5 == 9) {
+    if (!(game_play->state.frameCounter & 7) && this->actor.colCheck.colResult.unk5 == 9) {
         if (this->actor.speed > 1.0f) {
 
             if (this->actor.speed > 4.0f) {
@@ -566,7 +566,7 @@ void aBALL_set_spd_relations_in_water(Ball* this, Game_Play* game_play) {
 
     waterHeight = mCoBG_GetWaterHeight_File(this->actor.world.pos, "../ac_ball.c", 949);
     add_calc0(&this->height, 0.5f, 100.0f);
-    mCoBG_GetWaterFlow(&flowPos, this->actor.colResult.unk5);
+    mCoBG_GetWaterFlow(&flowPos, this->actor.colCheck.colResult.unk5);
     yRot = atans_table(flowPos.z, flowPos.x);
     yDiffAngle = ABS((s16)(this->actor.world.rot.y - yRot));
 
@@ -612,13 +612,13 @@ void aBALL_process_air_water(Ball* this, Game_Play* game_play) {
         common_data.clip.unk_0A8->unk_0C(&this->actor.world.pos, 20.0f, 1);
     }
 
-    if (this->actor.colResult.onGround) {
-        if (this->actor.colResult.inWater) {
+    if (this->actor.colCheck.colResult.onGround) {
+        if (this->actor.colCheck.colResult.inWater) {
             aBALL_process_ground_water_init(this, game_play);
-        } else if (this->actor.colResult.unk5 != 0xB) {
+        } else if (this->actor.colCheck.colResult.unk5 != 0xB) {
             aBALL_process_ground_init(this, game_play);
         }
-    } else if (!this->actor.colResult.inWater) {
+    } else if (!this->actor.colCheck.colResult.inWater) {
         aBALL_process_air_init(this, game_play);
     }
 }
@@ -634,7 +634,7 @@ void aBALL_process_ground_water(Ball* this, Game_Play* game_play) {
     u32 unitAttribute;
     xyz_t* bgPos;
 
-    unitAttribute = this->actor.colResult.unk5;
+    unitAttribute = this->actor.colCheck.colResult.unk5;
 
     aBALL_set_spd_relations_in_water(this, game_play);
     this->speed = this->actor.speed;
@@ -642,11 +642,11 @@ void aBALL_process_ground_water(Ball* this, Game_Play* game_play) {
     if (common_data.clip.unk_0A8 != NULL) {
         common_data.clip.unk_0A8->unk_0C(&this->actor.world.pos, 20.0f, 1);
     }
-    if (this->actor.colResult.onGround) {
-        if (!this->actor.colResult.inWater && (unitAttribute != 0xB) && (unitAttribute != 0x16)) {
+    if (this->actor.colCheck.colResult.onGround) {
+        if (!this->actor.colCheck.colResult.inWater && (unitAttribute != 0xB) && (unitAttribute != 0x16)) {
             aBALL_process_ground_init(this, game_play);
         }
-    } else if (!this->actor.colResult.inWater) {
+    } else if (!this->actor.colCheck.colResult.inWater) {
         aBALL_process_air_init(this, game_play);
     } else {
         aBALL_process_air_water_init(this, game_play);
@@ -725,7 +725,7 @@ void aBALL_status_check(Ball* this, Game_Play* game_play) {
         }
     }
     if (!(this->unk_208 & BALL_208_FLAG_1)) {
-        if (this->actor.colResult.inWater) {
+        if (this->actor.colCheck.colResult.inWater) {
             sAdo_OngenTrgStart(0x27, &this->actor.world.pos);
             this->unk_208 |= BALL_208_FLAG_1;
             if (common_data.clip.unk_0A8 != NULL) {
@@ -748,7 +748,7 @@ void aBALL_actor_move(Actor* thisx, Game_Play* game_play) {
 
     aBALL_House_Tree_Rev_Check(this);
     if (!((this->actor.flags) & ACTOR_FLAG_40)) {
-        if ((this->actor.colResult.inWater) || (this->unk_208 & BALL_208_FLAG_2)) {
+        if ((this->actor.colCheck.colResult.inWater) || (this->unk_208 & BALL_208_FLAG_2)) {
             Actor_delete(&this->actor);
         }
         if (this->actor.speed == 0.0f) {

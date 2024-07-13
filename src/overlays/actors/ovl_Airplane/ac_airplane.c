@@ -78,14 +78,14 @@ void aAp_RubberMove(f32* pValue, f32 target, f32 step) {
 }
 
 void aAp_FallByWall(Airplane* this) {
-    if (this->actor.colResult.hitWall != 0) {
+    if (this->actor.colCheck.colResult.hitWall != 0) {
         this->state = Ap_STATE_FALL_FLY_MOVE;
     }
 }
 
 void aAp_GroundFriction(Airplane* this, Game_Play* game_play) {
 
-    if (this->actor.colResult.onGround) {
+    if (this->actor.colCheck.colResult.onGround) {
         aAp_RubberMove(&this->speed, 0.0f, 0.6f);
         if (this->speed < 1.0f) {
             this->state = Ap_STATE_STOP_FLY_MOVE;
@@ -201,7 +201,7 @@ void aAp_FallFlyMove(Airplane* this, Game_Play* game_play) {
     aAp_RubberMove(&this->xRot, 60.0f, 0.04f);
     aAp_RubberMove(&this->speed, 5.0f, 0.02f);
     this->actor.world.pos.y -= 0.15f;
-    if (this->actor.colResult.onGround) {
+    if (this->actor.colCheck.colResult.onGround) {
         common_data.clip.unk_090->unk_00(1, this->actor.world.pos, 1, this->actor.world.rot.y, game_play,
                                          this->actor.fgName, 0, 8);
         this->state = Ap_STATE_STOP_FLY_MOVE;
@@ -212,7 +212,7 @@ void aAp_FallFlyMove2(Airplane* this, Game_Play* game_play) {
     aAp_RubberMove(&this->xRot, 70.0f, 0.15f);
     aAp_RubberMove(&this->speed, 10.0f, 0.02f);
     this->actor.world.pos.y -= 0.15f;
-    if (this->actor.colResult.onGround) {
+    if (this->actor.colCheck.colResult.onGround) {
         common_data.clip.unk_090->unk_00(1, this->actor.world.pos, 1, this->actor.world.rot.y, game_play,
                                          this->actor.fgName, 0, 8);
         this->state = Ap_STATE_STOP_FLY_MOVE;
