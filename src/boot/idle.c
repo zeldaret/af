@@ -60,7 +60,7 @@ void Idle_ThreadEntry(void* arg) {
     osViBlack(true);
     osCreatePiManager(OS_PRIORITY_PIMGR, &sPiMgrCmdQueue, sPiMgrCmdBuff, ARRAY_COUNT(sPiMgrCmdBuff));
     StackCheck_Init(&sMainStackInfo, sMainStack, STACK_TOP(sMainStack), 0, 0x400, "main");
-    osCreateThread(&sMainThread, M_THREAD_ID_MAIN, Main_ThreadEntry, arg, &sMainStackInfo, M_PRIORITY_MAIN);
+    osCreateThread(&sMainThread, M_THREAD_ID_MAIN, Main_ThreadEntry, arg, STACK_TOP(sMainStack), M_PRIORITY_MAIN);
     osStartThread(&sMainThread);
     osSetThreadPri(NULL, OS_PRIORITY_IDLE);
 

@@ -15,15 +15,15 @@ STACK(sBootStack, 0x400);
 
 // original name unknown
 void bootclear(void) {
-    s32 size = (uintptr_t)bootclear - BOOT_ADDRESS_ULTRA;
+    s32 size = (uintptr_t)SEGMENT_VRAM_START(boot) - BOOT_ADDRESS_ULTRA;
 
     if (size > 0) {
         bzero((void*)BOOT_ADDRESS_ULTRA, size);
     }
 
-    size = osMemSize - OS_K0_TO_PHYSICAL(SEGMENT_VRAM_START(dmadata));
+    size = osMemSize - OS_K0_TO_PHYSICAL(SEGMENT_VRAM_END(boot));
     if (size > 0) {
-        bzero(SEGMENT_VRAM_START(dmadata), size);
+        bzero(SEGMENT_VRAM_END(boot), size);
     }
 }
 
