@@ -7,16 +7,6 @@
     padding: 0;
 }
 
-body
-{
-    background: #14504a url(website_assets/bg_autumn.webp);
-    background-attachment: fixed;
-    background-position-x: 50%;
-    background-position-y: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
 .navBar
 {
     width: auto;
@@ -139,6 +129,12 @@ body
 {
     width: auto;
     padding: 1vw;
+    background: #14504a url(website_assets/bg_autumn.webp);
+    background-attachment: fixed;
+    background-position-x: 50%;
+    background-position-y: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #letterTop
@@ -146,6 +142,7 @@ body
     width: auto;
     height: 34px;
     background-image: url(website_assets/letter_top.svg);
+    background-repeat: repeat-x;
 }
 
 #letterBottom
@@ -153,6 +150,7 @@ body
     width: auto;
     height: 34px;
     background-image: url(website_assets/letter_bottom.svg);
+    background-repeat: repeat-x;
 }
 
 #ribbon
@@ -312,6 +310,7 @@ body
     border-style: none;
     background-color: transparent;
     background-image: url(website_assets/graph_window.svg);
+    background-repeat: no-repeat;
     padding-top: 25px;
     margin-bottom: 20px;
 }
@@ -340,6 +339,7 @@ body
 {
     background-color: transparent;
     background-image: url(website_assets/letter.svg);
+    background-repeat: no-repeat;
     width: 560px;
     height: 407px;
     padding: 70px;
