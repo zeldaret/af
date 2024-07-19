@@ -165,12 +165,12 @@ CFLAGS          += -G 0 -non_shared -Xcpluscomm -nostdinc -Wab,-r4300_mul
 
 WARNINGS         := -fullwarn -verbose -woff 624,649,838,712,516,513,596,564,594
 ASFLAGS          := -march=vr4300 -32 -G0
-COMMON_DEFINES   := -D_MIPS_SZLONG=32
 GBI_DEFINES      := -DF3DEX_GBI_2
 RELEASE_DEFINES  := -DNDEBUG -D_FINALROM
-AS_DEFINES       := -DMIPSEB -D_LANGUAGE_ASSEMBLY -D_ULTRA64
-C_DEFINES        := -DLANGUAGE_C -D_LANGUAGE_C
 LIBULTRA_DEFINES := -DBUILD_VERSION=VERSION_$(ULTRALIB_VERSION)
+COMMON_DEFINES   := -D_MIPS_SZLONG=32 $(GBI_DEFINES) $(RELEASE_DEFINES) $(LIBULTRA_DEFINES)
+C_DEFINES        := -DLANGUAGE_C -D_LANGUAGE_C $(COMMON_DEFINES)
+AS_DEFINES       := -DMIPSEB -D_LANGUAGE_ASSEMBLY -D_ULTRA64 $(COMMON_DEFINES)
 ENDIAN           := -EB
 
 OPTFLAGS        := -O2 -g3
@@ -183,7 +183,7 @@ OBJDUMP_FLAGS := --disassemble --reloc --disassemble-zeroes -Mreg-names=32 -Mno-
 ifneq ($(OBJDUMP_BUILD), 0)
   OBJDUMP_CMD = $(OBJDUMP) $(OBJDUMP_FLAGS) $@ > $(@:.o=.s)
   OBJCOPY_BIN = $(OBJCOPY) -O binary $@ $@.bin
-  LIBDUMP_CMD = $(AR) xo --output $(@:.a=) $@
+  LIBDUMP_CMD = $(AR) xo --output $(@D) $@
 else
   OBJDUMP_CMD = @:
   OBJCOPY_BIN = @:
@@ -206,12 +206,12 @@ $(shell mkdir -p asm/$(VERSION) assets/$(VERSION) linker_scripts/$(VERSION)/auto
 ULTRALIB_DIR  := lib/ultralib
 ULTRALIB_LIB  := $(ULTRALIB_DIR)/build/$(ULTRALIB_VERSION)/$(ULTRALIB_TARGET)/$(ULTRALIB_TARGET).a
 LIBULTRA_DIR  := lib/libultra
-LIBULTRA_LIB  := $(BUILD_DIR)/$(LIBULTRA_DIR).a
+LIBULTRA_LIB  := $(BUILD_DIR)/$(LIBULTRA_DIR)/libultra.a
 
 SRC_DIRS      := $(shell find src -type d)
 ASM_DIRS      := $(shell find asm/$(VERSION) -type d -not -path "asm/$(VERSION)/nonmatchings/*" -not -path "asm/$(VERSION)/lib/*")
 ASSET_DIRS    := $(shell find assets/$(VERSION) -type d)
-LIB_DIRS      := $(foreach f, $(LIBULTRA_DIR), $f)
+LIB_DIRS      := $(foreach f,$(LIBULTRA_DIR),$f)
 
 C_FILES       := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 S_FILES       := $(foreach dir,$(ASM_DIRS) $(SRC_DIRS),$(wildcard $(dir)/*.s))
@@ -362,8 +362,8 @@ $(BUILD_DIR)/%.o: %.s
 	$(OBJDUMP_CMD)
 
 $(BUILD_DIR)/%.o: %.c
-	$(CC_CHECK) $(CC_CHECK_FLAGS) $(IINC) -I $(dir $*) $(CHECK_WARNINGS) $(BUILD_DEFINES) $(COMMON_DEFINES) $(RELEASE_DEFINES) $(GBI_DEFINES) $(LIBULTRA_DEFINES) $(C_DEFINES) $(MIPS_BUILTIN_DEFS) -o $@ $<
-	$(CC) -c $(CFLAGS) $(BUILD_DEFINES) $(IINC) $(WARNINGS) $(MIPS_VERSION) $(ENDIAN) $(COMMON_DEFINES) $(RELEASE_DEFINES) $(GBI_DEFINES) $(LIBULTRA_DEFINES) $(C_DEFINES) $(OPTFLAGS) -o $@ $<
+	$(CC_CHECK) $(CC_CHECK_FLAGS) $(BUILD_DEFINES) $(IINC) -I $(dir $*) $(CHECK_WARNINGS) $(C_DEFINES) $(MIPS_BUILTIN_DEFS) -o $@ $<
+	$(CC) -c $(CFLAGS) $(BUILD_DEFINES) $(IINC) $(WARNINGS) $(MIPS_VERSION) $(ENDIAN) $(C_DEFINES) $(OPTFLAGS) -o $@ $<
 	$(OBJDUMP_CMD)
 	$(RM_MDEBUG)
 
