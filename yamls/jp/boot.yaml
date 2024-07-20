@@ -290,7 +290,7 @@
       - [0x019C90, lib, libultra/libultra, xldtob, .rodata]
       - [0x019CF0, lib, libultra/libultra, llcvt, .rodata]
 
-      - [0x019D00, rodata, boot/version]
+      - [0x019D00, .rodata, boot/version]
 
       - [0x019D40]
       - {type: .bss, vram: 0x8003E940, name: boot/boot_main}
