@@ -15237,7 +15237,7 @@
     subsegments:
       - [0x954C50, data, overlays/actors/ovl_Bee/ac_bee_reloc]
 
-  - name: ovl__00954D30
+  - name: m_mail_check_ovl
     type: code
     start: 0x954D30
     vram: 0x80A94AC0
@@ -15245,23 +15245,23 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x954D30, asm, overlays/other_ovl/ovl__00954D30/ovl__00954D30]
-      - [0x9550B0, data, overlays/other_ovl/ovl__00954D30/ovl__00954D30]
-      - [0x956360, rodata, overlays/other_ovl/ovl__00954D30/ovl__00954D30]
-  - name: ovl__00954D30_reloc
+      - [0x954D30, asm, overlays/other_ovl/m_mail_check_ovl/m_mail_check_ovl]
+      - [0x9550B0, data, overlays/other_ovl/m_mail_check_ovl/m_mail_check_ovl]
+      - [0x956360, rodata, overlays/other_ovl/m_mail_check_ovl/m_mail_check_ovl]
+  - name: m_mail_check_ovl_reloc
     type: code
     start: 0x9563E0
     vram: 0x80A96170
-    follows_vram: ovl__00954D30
+    follows_vram: m_mail_check_ovl
     compress: True
     subsegments:
-      - [0x9563E0, data, overlays/other_ovl/ovl__00954D30/ovl__00954D30_reloc]
+      - [0x9563E0, data, overlays/other_ovl/m_mail_check_ovl/m_mail_check_ovl_reloc]
 
   - name: ovl_Nameplate
     type: code
     start: 0x956630
     vram: 0x80A963C0
-    follows_vram: ovl__00954D30_reloc
+    follows_vram: m_mail_check_ovl_reloc
     compress: True
     bss_size: 0x0
     subsegments:

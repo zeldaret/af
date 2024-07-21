@@ -51,7 +51,7 @@
       - [0x6BEE80, c, code/m_lights]
       - [0x6BFC60, c, code/m_malloc]
       - [0x6BFE60, c, code/m_mail]
-      - [0x6C05A0, asm, code/6C05A0]
+      - [0x6C05A0, c, code/m_mail_check]
       - [0x6C0690, asm, code/6C0690]
       - [0x6C0E90, asm, code/m_msg_main]
       - [0x6C92D0, c, code/m_name_table]

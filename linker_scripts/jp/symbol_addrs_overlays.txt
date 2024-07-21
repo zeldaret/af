@@ -20313,7 +20313,7 @@ func_80A94AFC_jp = 0x80A94AFC; // type:func
 func_80A94BA4_jp = 0x80A94BA4; // type:func
 func_80A94C24_jp = 0x80A94C24; // type:func
 func_80A94C30_jp = 0x80A94C30; // type:func
-func_80A94D0C_jp = 0x80A94D0C; // type:func
+mMck_check_key_hit = 0x80A94D0C; // type:func
 
 // .data
 
