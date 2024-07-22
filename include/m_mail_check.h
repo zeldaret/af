@@ -5,6 +5,6 @@
 
 struct Game;
 
-s32 mMC_get_mail_hit_rate(s32*, u8*, struct Game*);
+s32 mMC_get_mail_hit_rate(s32* len, u8* str, struct Game* game);
 
 #endif
