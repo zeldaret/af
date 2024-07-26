@@ -46,7 +46,7 @@ typedef enum FieldRoom {
   ((fieldId) == FI_FIELD_PLAYER0_ROOM || (fieldId) == FI_FIELD_PLAYER1_ROOM || \
    (fieldId) == FI_FIELD_PLAYER2_ROOM || (fieldId) == FI_FIELD_PLAYER3_ROOM)
 
-// void func_80087C30_jp();
+void mFI_ClearFieldData(void);
 // void func_80087C40_jp();
 struct FieldMakeBlockInfo* mFI_GetBlockTopP(void);
 u16 mFI_GetFieldId(void);

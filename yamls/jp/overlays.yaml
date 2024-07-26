@@ -136,9 +136,9 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x747AA0, asm, overlays/gamestates/ovl_player_select/player_select]
-      - [0x748570, data, overlays/gamestates/ovl_player_select/player_select]
-      - [0x7485E0, rodata, overlays/gamestates/ovl_player_select/player_select]
+      - [0x747AA0, c, overlays/gamestates/ovl_player_select/player_select]
+      - [0x748570, .data, overlays/gamestates/ovl_player_select/player_select]
+      - [0x7485E0, .rodata, overlays/gamestates/ovl_player_select/player_select]
   - name: ovl_player_select_reloc
     type: code
     start: 0x7485F0

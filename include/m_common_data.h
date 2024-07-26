@@ -119,7 +119,7 @@ typedef struct CommonData {
     /* 0x10002 */ u8 unk_10002;
     /* 0x10003 */ u8 playerNumber;
     /* 0x10004 */ s32 unk_10004; // named "last_scene_no" in AC GCN decomp
-    /* 0x10008 */ s32 unk_10008;
+    /* 0x10008 */ s32 playerDataMode;
     /* 0x1000C */ Clip clip;
     /* 0x1010C */ Time time;
     /* 0x10138 */ PrivateInfo* privateInfo;
