@@ -59,7 +59,7 @@ typedef struct Game {
     /* 0x9E */ s8 unk9E;
     /* 0x9F */ u8 running;
     /* 0xA0 */ s32 frameCounter;
-    /* 0xA4 */ UNK_TYPE1 unk_A4[0x4];
+    /* 0xA4 */ s32 unk_A4;
     /* 0xA8 */ Controller controller;
 } Game; // size = 0xE0
 

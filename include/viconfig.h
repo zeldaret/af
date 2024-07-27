@@ -6,7 +6,7 @@
 void ViConfig_UpdateVi(u32 black);
 void ViConfig_UpdateBlack(void);
 
-u8 gViConfigBlackNext;
-u8 gViConfigBlack;
+extern u8 gViConfigBlackNext;
+extern u8 gViConfigBlack;
 
 #endif

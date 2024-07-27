@@ -197,8 +197,8 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x7745B0, asm, overlays/gamestates/ovl_prenmi/m_prenmi]
-      - [0x774970, rodata, overlays/gamestates/ovl_prenmi/m_prenmi]
+      - [0x7745B0, c, overlays/gamestates/ovl_prenmi/m_prenmi]
+      - [0x774970, .rodata, overlays/gamestates/ovl_prenmi/m_prenmi]
   - name: ovl_prenmi_reloc
     type: code
     start: 0x774980
