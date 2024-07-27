@@ -3,7 +3,7 @@
 #include "m_collision_bg.h"
 #include "libc64/qrand.h"
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80087C30_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_ClearFieldData.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80087C40_jp.s")
 

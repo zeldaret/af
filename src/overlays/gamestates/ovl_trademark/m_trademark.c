@@ -567,7 +567,7 @@ void trademark_init(Game* thisx) {
 
     SetGameFrame(1);
     common_data.playerNumber = 0;
-    common_data.unk_10008 = 0;
+    common_data.playerDataMode = 0;
     common_data.sceneFromTitleDemo = -1;
     func_80095414_jp();
     mNpc_ClearInAnimal();
