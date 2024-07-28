@@ -132,7 +132,7 @@ void aMIK_actor_init(Actor* actor, Game_Play* play) {
 
 void aMIK_actor_draw(UNUSED Actor* actor, Game_Play* play) {
     GraphicsContext* graph = play->state.gfxCtx;
-    void* obj;
+    s32 obj;
     u16* pal;
     Mtx* cur;
 
