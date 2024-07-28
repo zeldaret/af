@@ -3,8 +3,8 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
-void func_805b3010(Actor* thisx, Game_Play* game_play);
-void aMIK_actor_dt(Actor* thisx, Game_Play* game_play);
+void func_80AA3BA0_jp(Actor* thisx, Game_Play* game_play);
+void func_80AA3C78_jp(Actor* thisx, Game_Play* game_play);
 void func_805b3e58(Actor* thisx, Game_Play* game_play);
 void func_805b4054(Actor* thisx, Game_Play* game_play);
 void aMIK_actor_save(Actor* thisx, Game_Play* game_play);
@@ -17,17 +17,17 @@ ActorProfile Mikanbox_Profile = {
     /* */ 0x5841,
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Mikanbox),
-    /* */ func_805b3010,
-    /* */ aMIK_actor_dt,
+    /* */ func_80AA3BA0_jp,
+    /* */ func_80AA3C78_jp,
     /* */ func_805b3e58,
     /* */ func_805b4054,
     /* */ aMIK_actor_save,
 };
 #endif
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Mikanbox/ac_mikanbox/func_805b3010.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Mikanbox/ac_mikanbox/func_80AA3BA0_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Mikanbox/ac_mikanbox/aMIK_actor_dt.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Mikanbox/ac_mikanbox/func_80AA3C78_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Mikanbox/ac_mikanbox/func_80AA3D08_jp.s")
 
