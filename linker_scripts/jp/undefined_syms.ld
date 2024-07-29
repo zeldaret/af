@@ -4604,7 +4604,8 @@ D_60066B8 = 0x060066B8;
 
 // ovl_Mikuji
 
-D_6022388 = 0x06022388;
+obj_e_mikuji_shadow_v = 0x060020E8;
+obj_e_mikuji_shadow_model = 0x06002168;
 
 // ovl__00942EE0
 

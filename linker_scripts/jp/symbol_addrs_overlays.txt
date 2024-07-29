@@ -19400,14 +19400,14 @@ RO_FLT_80A8252C_jp = 0x80A8252C; // type:f32
 
 // .text
 
-func_805b414c = 0x80A82600; // type:func
-func_80A82638_jp = 0x80A82638; // type:func
-func_80A826C4_jp = 0x80A826C4; // type:func
-func_80A82848_jp = 0x80A82848; // type:func
-func_80A82858_jp = 0x80A82858; // type:func
-func_80A82878_jp = 0x80A82878; // type:func
-func_805b437c = 0x80A82960; // type:func
-func_805b43f4 = 0x80A829C8; // type:func
+aMIK_actor_ct = 0x80A82600; // type:func
+aMIK_actor_dt = 0x80A82638; // type:func
+aMIK_set_bgOffset = 0x80A826C4; // type:func
+aMIK_wait = 0x80A82848; // type:func
+aMIK_setup_action = 0x80A82858; // type:func
+aMIK_actor_move = 0x80A82878; // type:func
+aMIK_actor_init = 0x80A82960; // type:func
+aMIK_actor_draw = 0x80A829C8; // type:func
 
 // .data
 
@@ -21064,8 +21064,8 @@ RO_FLT_80AA3B38_jp = 0x80AA3B38; // type:f32
 
 // .text
 
-func_805b3010 = 0x80AA3BA0; // type:func
-aMIK_actor_dt = 0x80AA3C78; // type:func
+func_80AA3BA0_jp = 0x80AA3BA0; // type:func
+func_80AA3C78_jp = 0x80AA3C78; // type:func
 func_80AA3D08_jp = 0x80AA3D08; // type:func
 func_80AA3D94_jp = 0x80AA3D94; // type:func
 func_80AA406C_jp = 0x80AA406C; // type:func

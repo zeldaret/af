@@ -14115,7 +14115,7 @@
     bss_size: 0x0
     subsegments:
       - [0x9428A0, c, overlays/actors/ovl_Mikuji/ac_mikuji]
-      - [0x942DA0, data, overlays/actors/ovl_Mikuji/ac_mikuji]
+      - [0x942DA0, .data, overlays/actors/ovl_Mikuji/ac_mikuji]
       - [0x942E20, .rodata, overlays/actors/ovl_Mikuji/ac_mikuji]
   - name: ovl_Mikuji_reloc
     type: code
