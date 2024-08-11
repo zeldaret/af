@@ -115,6 +115,14 @@ typedef union SceneData {
     SceneDataArrangeFtr arrangeFtr;
 } SceneData; // size = 0x8
 
+typedef enum SceneFieldDrawType {
+    /* 0 */ FIELD_DRAW_TYPE_OUTDOORS,
+    /* 1 */ FIELD_DRAW_TYPE_INDOORS,
+    /* 2 */ FIELD_DRAW_TYPE_TRAIN,
+    /* 3 */ FIELD_DRAW_TYPE_PLAYER_SELECT,
+    /* 4 */ FIELD_DRAW_TYPE_MAX
+} SceneFieldDrawType;
+
 s32 func_800C59B0_jp(ObjectExchangeBank* objectExchangeBank);
 s32 func_800C5A08_jp(ObjectExchangeBank* objectExchangeBank);
 s32 func_800C5A60_jp(ObjectExchangeBank* objectExchangeBank);

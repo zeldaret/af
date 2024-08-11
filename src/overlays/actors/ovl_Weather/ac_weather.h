@@ -10,10 +10,6 @@ struct Game_Play;
 
 typedef struct Weather Weather;
 
-//these might go better on kankyo
-#define ENV_SAVE_GET_WEATHER_TYPE(w) (((w) & 0xF0) >> 4) 
-#define ENV_SAVE_GET_WEATHER_INTENSITY(w) ((w) & 0xF)
-
 typedef struct WeatherPrv {
     /* 0x00 */ xyz_t pos;
     /* 0x0C */ xyz_t speed;

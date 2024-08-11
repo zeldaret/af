@@ -740,9 +740,9 @@ label:;
     func_80803810_jp(game_play, gfxCtx);
     if (common_data.unk_10001 == 0) {
         if (mEv_CheckTitleDemo() != -9) {
-            sp2B = game_play->kankyo.unk_AE;
-            sp2A = game_play->kankyo.unk_AF;
-            sp29 = game_play->kankyo.unk_B0;
+            sp2B = game_play->kankyo.baseLight.bgColor[0];
+            sp2A = game_play->kankyo.baseLight.bgColor[1];
+            sp29 = game_play->kankyo.baseLight.bgColor[2];
         }
     }
 

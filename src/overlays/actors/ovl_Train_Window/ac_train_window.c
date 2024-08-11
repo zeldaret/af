@@ -261,7 +261,7 @@ void aTrainWindow_SetLightPrimColorDetail(Game* game, u8 l, u8 polyAlpha, u8 xlu
     s32 current;
 
     for (i = 0; i < 3; i++) {
-        current = play->glight.ambientColor[i] + play->kankyo.sunColor[i];
+        current = play->glight.ambientColor[i] + play->kankyo.baseLight.sunColor[i];
         if (current < 0) {
             current = 0;
         } else if (current >= 256) {

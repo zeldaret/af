@@ -60,7 +60,7 @@ void Actor_position_move(Actor* actor) {
 
     speedRate = game_GameFrame_2F;
 
-    kankyo->unk_C0(actor);
+    kankyo->nature.proc(actor);
 
     actor->world.pos.x += actor->velocity.x * speedRate + actor->colStatus.displacement.x;
     actor->world.pos.y += actor->velocity.y * speedRate + actor->colStatus.displacement.y;
@@ -1111,26 +1111,26 @@ Hilite* HiliteReflect_light_init(xyz_t* object, xyz_t* eye, xyz_t* lightDir, Gra
 Hilite* Setpos_HiliteReflect_init(xyz_t* object, Game_Play* game_play) {
     xyz_t sp24;
 
-    sp24.x = game_play->kankyo.unk_02;
-    sp24.y = game_play->kankyo.unk_03;
-    sp24.z = game_play->kankyo.unk_04;
+    sp24.x = game_play->kankyo.sunLight.lights.diffuse.x;
+    sp24.y = game_play->kankyo.sunLight.lights.diffuse.y;
+    sp24.z = game_play->kankyo.sunLight.lights.diffuse.z;
     return HiliteReflect_init(object, &game_play->view.eye, &sp24, game_play->state.gfxCtx);
 }
 
 Hilite* Setpos_HiliteReflect_xlu_init(xyz_t* object, Game_Play* game_play) {
     xyz_t sp24;
 
-    sp24.x = game_play->kankyo.unk_02;
-    sp24.y = game_play->kankyo.unk_03;
-    sp24.z = game_play->kankyo.unk_04;
+    sp24.x = game_play->kankyo.sunLight.lights.diffuse.x;
+    sp24.y = game_play->kankyo.sunLight.lights.diffuse.y;
+    sp24.z = game_play->kankyo.sunLight.lights.diffuse.z;
     return HiliteReflect_xlu_init(object, &game_play->view.eye, &sp24, game_play->state.gfxCtx);
 }
 
 Hilite* Setpos_HiliteReflect_light_init(xyz_t* object, Game_Play* game_play) {
     xyz_t sp24;
 
-    sp24.x = game_play->kankyo.unk_02;
-    sp24.y = game_play->kankyo.unk_03;
-    sp24.z = game_play->kankyo.unk_04;
+    sp24.x = game_play->kankyo.sunLight.lights.diffuse.x;
+    sp24.y = game_play->kankyo.sunLight.lights.diffuse.y;
+    sp24.z = game_play->kankyo.sunLight.lights.diffuse.z;
     return HiliteReflect_xlu_init(object, &game_play->view.eye, &sp24, game_play->state.gfxCtx);
 }
