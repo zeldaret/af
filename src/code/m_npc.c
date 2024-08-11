@@ -2329,7 +2329,7 @@ void mNpc_AddNpc_inNpcRoom(FieldMakeMoveActor* moveActor, u8 bx, u8 bz) {
                     }
                 }
             } else if (fieldId == 0x300A) {
-                animalIdInField = func_8008033C_jp(0xE, 0xF);
+                animalIdInField = mEv_get_save_area(0xE, 0xF);
                 if (animalIdInField != NULL) {
                     npcId = *animalIdInField;
                     currentNpc = common_data.save.animals[npcId].id.npcId;

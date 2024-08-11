@@ -37,21 +37,14 @@ typedef enum mEnv_WeatherIntensity {
 } mEnv_WeatherIntensity;
 
 typedef struct mEnv_WindInfo {
-    lbRTC_time_c time;
-    f32 unk8;
-    f32 windAngleS;
-    f32 unk10;
-    f32 unk14;
-    f32 windPowerF;
-    f32 unk1C;
-    f32 unk20; 
-    f32 unk24;
-    s32 unk28;
-    s32 unk2c;
-    s16 unk2e;
-    f32 unk34;
-    f32 unk38;
-} mEnv_WindInfo;
+   /* 0x00 */ lbRTC_time_c time;
+   /* 0x08 */ f32 unk8;
+   /* 0x0C */ f32 windAngleS;
+   /* 0x10 */ f32 unk10;
+   /* 0x14 */ f32 unk14;
+   /* 0x18 */ f32 windPowerF;
+   /* 0x1C */ f32 unk1C;
+} mEnv_WindInfo; // size = 0x20
 
 typedef void (*NatureProc)(struct Actor*);
 
@@ -90,11 +83,11 @@ typedef struct Kankyo {
     /* 0x1C */ struct Lights* unk_1C;
     /* 0x20 */ Lights pointLight; 
     /* 0x2E */ s16 unk2E;
-    /* 0x30 */ s8 unk_30[0x40];
+    /* 0x30 */ UNK_TYPE1 unk_30[0x40];
     /* 0x70 */ AddLightInfo addLightsInfo;
-    /* 0x86 */  s8 unk_86[0x6];
+    /* 0x86 */ UNK_TYPE1 unk_86[0x6];
     /* 0x8C */ BaseLight baseLight; 
-    /* 0xB2 */ s8 unk_B2[0x6];
+    /* 0xB2 */ UNK_TYPE1 unk_B2[0x6];
     /* 0xB8 */ f32 shadowPos;
     /* 0xBC */ u8 shadowAlpha;
     /* 0xBD */ u8 countdownTimer;
@@ -105,19 +98,19 @@ typedef struct Kankyo {
 void mEnv_regist_nature(Kankyo* kankyo, NatureProc natureProc, void* arg);
 s32 mEnv_unregist_nature(Kankyo* kankyo, NatureProc natureProc);
 s32 func_80096CDC_jp(void);
-s32 mEnv_GetNowRoomPointLightInfo(struct Game_Play* play, struct s_xyz* pos, u8* color, s16* power, s16* is_flame);
+s32 mEnv_GetNowRoomPointLightInfo(struct Game_Play* play, struct s_xyz* pos, u8* color, s16* power, s16* isFlame);
 void mEnv_RoomTypePointLightSet(struct Game_Play* play);
 void mEnv_RoomTypediffuseLightSet(struct Game_Play* play, Kankyo* kankyo);
 void mEnv_RoomTypeLightSet(struct Game_Play* play, Kankyo* kankyo);
 void Global_kankyo_ct(struct Game_Play* play, Kankyo* kankyo);
 void mEnv_MakeShadowInfo(Kankyo* kankyo);
 void mEnv_set_time(Kankyo* kankyo);
-void mEnv_ChangeRGBLight(u8* dst, u8* srcW0, u8* srcW1, f32 f0);
+void mEnv_ChangeRGBLight(u8* dst, u8* light0, u8* light1, f32 f0);
 void mEnv_ChangeDiffuseVctlSet(BaseLight* baseLight);
-void mEnv_ChangeDiffuseLight(BaseLight* dst, BaseLight* srcW0, BaseLight* srcW1, f32 f0);
-void mEnv_ChangeFogLight(BaseLight* dst, BaseLight* srcW0, BaseLight* srcW1, f32 f0);
+void mEnv_ChangeDiffuseLight(BaseLight* dst, BaseLight* light0, BaseLight* light1, f32 f0);
+void mEnv_ChangeFogLight(BaseLight* dst, BaseLight* light0, BaseLight* light1, f32 f0);
 void mEnv_CalcSetLight_train(BaseLight* light);
-void mEnv_CalcSetLight(BaseLight* dst, BaseLight* srcW0, BaseLight* srcW1, f32 f0);
+void mEnv_CalcSetLight(BaseLight* dst, BaseLight* light0, BaseLight* light1, f32 f0);
 void mEnv_SetBaseLight(Kankyo* kankyo);
 u8 mEnv_LimitChkRGBColor(s32 c);
 void mEnv_AddAndSetRGBColor(u8* dst, u8* src0, s16* src1);
@@ -129,7 +122,7 @@ void mEnv_check_countdown_start(struct Game_Play* play);
 void mEnv_countdown_proc(struct Game_Play* play);
 void Global_kankyo_set(struct Game_Play* play, Kankyo* kankyo, Global_light* gLight);
 void mEnv_DecideWindDirect(s_xyz* dir, s16 x, s16 z);
-int mEnv_GetWeatherChangeStep(void);
+s32 mEnv_GetWeatherChangeStep(void);
 void mEnv_RandomWeather(s16* next_weather, s16* next_intensity);
 s16 mEnv_GetWindAngleS(void);
 f32 mEnv_GetWindPowerF(void);
