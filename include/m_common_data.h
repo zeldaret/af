@@ -116,7 +116,7 @@ typedef struct CommonData {
     /* 0x00000 */ Save save;
     /* 0x10000 */ u8 unk_10000; // named "game_started" in AC GCN decomp
     /* 0x10001 */ u8 unk_10001;
-    /* 0x10002 */ u8 unk_10002;
+    /* 0x10002 */ u8 fieldDrawType;
     /* 0x10003 */ u8 playerNumber;
     /* 0x10004 */ s32 unk_10004; // named "last_scene_no" in AC GCN decomp
     /* 0x10008 */ s32 playerDataMode;
@@ -126,7 +126,8 @@ typedef struct CommonData {
     /* 0x1013C */ u8 unk_1013C[0x4];
     /* 0x10140 */ u8 unk_10140;
     /* 0x10141 */ u8 fish_location;
-    /* 0x10142 */ u8 unk_10142[0x7];
+    /* 0x10142 */ u8 unk_10142[0x6];
+    /* 0x10148 */ u8 unk_10148;
     /* 0x10149 */ u8 unk_10149;
     /* 0x1014A */ u8 unk_1014A;
     /* 0x1014B */ u8 unk_1014B; // named "wipeType" in AC GCN decomp

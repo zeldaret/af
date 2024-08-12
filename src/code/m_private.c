@@ -11,6 +11,7 @@
 #include "m_handbill.h"
 #include "m_house.h"
 #include "6DA460.h"
+#include "prevent_bss_reordering.h"
 
 PrivateInfo g_foreigner_private;
 Mail_c l_mpr_mail;

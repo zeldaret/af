@@ -60,6 +60,8 @@ typedef enum mTM_RENEW_TIME{
 
 #define mTM_MINUTES_IN_HOUR 60
 
+#define mTM_TIME_TO_SEC(hour, min, sec) ((hour)*mTM_SECONDS_IN_HOUR + (min)*mTM_SECONDS_IN_MINUTE + (sec))
+
 typedef struct TimeCalendarTerm {
     /* 0x00 */ lbRTC_month_t month;
     /* 0x01 */ lbRTC_day_t day;

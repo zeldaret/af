@@ -261,7 +261,7 @@ void mActorShadow_DrawActorShadow(Actor* actor, ShadowInfo* shadow, Game* game, 
     }
 
     gSPMatrix(SHADOW_DISP++, _Matrix_to_Mtx_new(play->state.gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    mEnv_GetShadowPrimColor_Light(&r, &g, &b, &play->state);
+    mEnv_GetShadowPrimColor_Light(&r, &g, &b, play);
     gDPSetPrimColor(SHADOW_DISP++, 0, 0xFF, r, g, b, (u8)alpha);
 
     if ((shadow->kind == 0) && (id == 0)) {

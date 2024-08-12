@@ -46,7 +46,7 @@
       - [0x6B8F20, asm, code/6B8F20]
       - [0x6BA3B0, asm, code/m_item_name]
       - [0x6BA500, asm, code/6BA500]
-      - [0x6BA930, asm, code/m_kankyo]
+      - [0x6BA930, c, code/m_kankyo]
       - [0x6BD560, c, code/m_lib]
       - [0x6BEE80, c, code/m_lights]
       - [0x6BFC60, c, code/m_malloc]
@@ -160,6 +160,7 @@
       - [0x7284B0, data, code/69E2C0]
       - [0x72AAC0, .data, code/m_game_dlftbls]
       - [0x72ACB0, data, code/72ACB0]
+      - [0x72B400, .data, code/m_kankyo]
       - [0x72B7A0, .data, code/m_lib]
       - [0x72B7D0, .data, code/m_lights]
       - [0x72B7F0, data, code/72B7F0]
@@ -230,7 +231,7 @@
       - [0x73AD40, rodata, code/73AD40]
       - [0x73AD50, rodata, code/73AD50]
       - [0x73AD70, rodata, code/73AD70]
-      - [0x73AD90, rodata, code/m_kankyo]
+      - [0x73AD90, .rodata, code/m_kankyo]
       - [0x73AED0, .rodata, code/m_lib]
       - [0x73AEE0, .rodata, code/m_lights]
       - [0x73AEF0, rodata, code/m_msg_main]
@@ -294,6 +295,7 @@
       - { start: 0x73F4D0, type: .bss, vram: 0x80138E50, name: code/m_debug}
       - { start: 0x73F4D0, type: .bss, vram: 0x80138E60, name: code/m_debug_display}
       - { start: 0x73F4E0, type: bss, vram: 0x80138E70, name: code/80138E70 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x80141DE0, name: code/m_kankyo }
       - { start: 0x73F4D0, type: .bss, vram: 0x80141E10, name: code/m_lights }
       - { start: 0x75B600, type: .bss, vram: 0x80141FA0, name: code/m_malloc }
       - { start: 0x75B600, type: bss, vram: 0x80141FE0, name: code/80141FE0 }

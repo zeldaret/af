@@ -522,7 +522,7 @@ void Scene_player_select(s32 sceneNo, s32 npcActor) {
     mNpc_RegistEventNpc(npcActor, npcId, npcId, common_data.save.animals[found].cloth);
 }
 
-void Scene_Proc_Ctrl_Actor_Ptr(Game_Play* play, SceneData* scene_data);
+void Scene_Proc_Ctrl_Actor_Ptr(Game_Play* play, SceneData* sceneData);
 
 void Scene_Proc_MyRoom_ct(Game_Play* play, SceneData* data);
 
@@ -562,12 +562,12 @@ void Scene_ct(Game_Play* play, SceneData* sceneData) {
     Scene_player_select(SCENE_PLAYERSELECT_SAVE, 0xD06A); // save
 }
 
-void Scene_Proc_Player_Ptr(Game_Play* play, SceneData* scene_data) {
+void Scene_Proc_Player_Ptr(Game_Play* play, SceneData* sceneData) {
     static s16 angle_table[] = {
         0x0000, 0x2000, 0x4000, 0x6000, 0x8000, 0xA000, 0xC000, 0xE000,
     };
 
-    ActorEntry* data = Lib_SegmentedToVirtual(scene_data->actor.actorDataPtr);
+    ActorEntry* data = Lib_SegmentedToVirtual(sceneData->actor.actorDataPtr);
 
     play->unk_1EA8 = data;
 
@@ -581,30 +581,30 @@ void Scene_Proc_Player_Ptr(Game_Play* play, SceneData* scene_data) {
     mSM_Object_Exchange_keep_new_Menu(play);
 }
 
-void Scene_Proc_Ctrl_Actor_Ptr(Game_Play* play, SceneData* scene_data) {
-    s16* data = scene_data->controlActor.ctrlActorDataPtr;
+void Scene_Proc_Ctrl_Actor_Ptr(Game_Play* play, SceneData* sceneData) {
+    s16* data = sceneData->controlActor.ctrlActorDataPtr;
 
-    play->unk_1EA6 = scene_data->controlActor.numCtrlActors;
+    play->unk_1EA6 = sceneData->controlActor.numCtrlActors;
     play->unk_1EB0 = Lib_SegmentedToVirtual(data);
 }
 
-void Scene_Proc_Actor_Ptr(Game_Play* play, SceneData* scene_data) {
-    ActorEntry* data = scene_data->actor.actorDataPtr;
+void Scene_Proc_Actor_Ptr(Game_Play* play, SceneData* sceneData) {
+    ActorEntry* data = sceneData->actor.actorDataPtr;
 
-    play->unk_1EA5 = scene_data->actor.numActors;
+    play->unk_1EA5 = sceneData->actor.numActors;
     play->unk_1EAC = Lib_SegmentedToVirtual(data);
 }
 
-void Scene_Proc_Object_Exchange_Bank_Ptr(Game_Play* play, SceneData* scene_data) {
+void Scene_Proc_Object_Exchange_Bank_Ptr(Game_Play* play, SceneData* sceneData) {
 
-    play->unk_1EA7 = scene_data->objectBank.numBanks;
-    play->unk_1EB4 = Lib_SegmentedToVirtual(scene_data->objectBank.banksDataPtr);
+    play->unk_1EA7 = sceneData->objectBank.numBanks;
+    play->unk_1EB4 = Lib_SegmentedToVirtual(sceneData->objectBank.banksDataPtr);
 }
 
-void Scene_Proc_Door_Data_Ptr(Game_Play* play, SceneData* scene_data) {
-    DoorData* data = scene_data->doorData.doorDataPtr;
+void Scene_Proc_Door_Data_Ptr(Game_Play* play, SceneData* sceneData) {
+    DoorData* data = sceneData->doorData.doorDataPtr;
 
-    play->sceneDoorInfo.numDoors = scene_data->doorData.numDoors;
+    play->sceneDoorInfo.numDoors = sceneData->doorData.numDoors;
     play->sceneDoorInfo.doorDataPtr = Lib_SegmentedToVirtual(data);
 }
 
@@ -612,7 +612,7 @@ void Door_info_ct(DoorInfo* door_info) {
     door_info->numDoors = 0;
 }
 
-void Scene_Proc_Sound(UNUSED Game_Play* play, UNUSED SceneData* scene_data) {
+void Scene_Proc_Sound(UNUSED Game_Play* play, UNUSED SceneData* sceneData) {
 }
 
 void set_item_info(Game_Play* play, SceneDataField* field) {
@@ -636,10 +636,10 @@ void set_item_info(Game_Play* play, SceneDataField* field) {
     }
 }
 
-void Scene_Proc_Field_ct(Game_Play* play, SceneData* scene_data) {
-    mFM_SetFieldInitData(scene_data->field.bgNum, scene_data->field.bgDispSize);
-    set_item_info(play, &scene_data->field);
-    common_data.unk_10002 = scene_data->field.drawType;
+void Scene_Proc_Field_ct(Game_Play* play, SceneData* sceneData) {
+    mFM_SetFieldInitData(sceneData->field.bgNum, sceneData->field.bgDispSize);
+    set_item_info(play, &sceneData->field);
+    common_data.fieldDrawType = sceneData->field.drawType;
     common_data.unk_10000 = FALSE;
     common_data.unk_104AC = TRUE;
     common_data.sunlightFlag = TRUE;

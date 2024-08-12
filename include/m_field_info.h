@@ -102,7 +102,7 @@ u8 mFI_BkNum2BlockType(s32,s32);
 // void func_80089348_jp();
 // void func_800893C8_jp();
 s32 mFI_CheckBlockKind_OR(s32, s32, s32);
-void mFI_BlockKind2BkNum(s32*,s32*,s32);
+s32 mFI_BlockKind2BkNum(s32*,s32*,s32);
 // void func_800894D0_jp();
 mCoBG_unkStructUnion* mFI_GetBkNum2ColTop(s32 arg0, s32 arg1);
 // void func_800895B8_jp();

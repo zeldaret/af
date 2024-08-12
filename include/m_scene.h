@@ -115,6 +115,14 @@ typedef union SceneData {
     SceneDataArrangeFtr arrangeFtr;
 } SceneData; // size = 0x8
 
+typedef enum SceneFieldDrawType {
+    /* 0 */ FIELD_DRAW_TYPE_OUTDOORS,
+    /* 1 */ FIELD_DRAW_TYPE_INDOORS,
+    /* 2 */ FIELD_DRAW_TYPE_TRAIN,
+    /* 3 */ FIELD_DRAW_TYPE_PLAYER_SELECT,
+    /* 4 */ FIELD_DRAW_TYPE_MAX
+} SceneFieldDrawType;
+
 s32 func_800C59B0_jp(ObjectExchangeBank* objectExchangeBank);
 s32 func_800C5A08_jp(ObjectExchangeBank* objectExchangeBank);
 s32 func_800C5A60_jp(ObjectExchangeBank* objectExchangeBank);
@@ -138,15 +146,15 @@ void mSc_data_bank_ct(struct Game_Play* game_play, ObjectExchangeBank* objectExc
 void mSc_decide_exchange_bank(ObjectExchangeBank* objectExchangeBank);
 void Scene_player_select(s32 sceneNo, s32 npcActor);
 void Scene_ct(struct Game_Play* play, SceneData* sceneData);
-void Scene_Proc_Player_Ptr(struct Game_Play* play, SceneData* scene_data);
+void Scene_Proc_Player_Ptr(struct Game_Play* play, SceneData* sceneData);
 void Scene_Proc_CtrlActor_Ptr(struct Game_Play* play, SceneData* scene_data);
-void Scene_Proc_Actor_Ptr(struct Game_Play* play, SceneData* scene_data);
-void Scene_Proc_Object_Exchange_Bank_Ptr(struct Game_Play* play, SceneData* scene_data);
-void Scene_Proc_Door_Data_Ptr(struct Game_Play* play, SceneData* scene_data);
+void Scene_Proc_Actor_Ptr(struct Game_Play* play, SceneData* sceneData);
+void Scene_Proc_Object_Exchange_Bank_Ptr(struct Game_Play* play, SceneData* sceneData);
+void Scene_Proc_Door_Data_Ptr(struct Game_Play* play, SceneData* sceneData);
 void Door_info_ct(DoorInfo* door_info);
 void Scene_Proc_Sound(struct Game_Play* play, SceneData* scene_data);
 void set_item_info(struct Game_Play* play, SceneDataField* field);
-void Scene_Proc_Field_ct(struct Game_Play* play, SceneData* scene_data);
+void Scene_Proc_Field_ct(struct Game_Play* play, SceneData* sceneData);
 void Scene_Proc_ArrangeRoom_ct(struct Game_Play* play, SceneData* data);
 void Scene_Proc_ArrangeFurniture_ct(struct Game_Play* play, SceneData* data);
 s32 goto_other_scene(struct Game_Play* play, DoorData* door_data, s32 updatePlayer);
