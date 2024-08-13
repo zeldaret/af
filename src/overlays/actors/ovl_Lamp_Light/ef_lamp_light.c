@@ -4,6 +4,7 @@
 #include "m_object.h"
 #include "m_field_info.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
+#include "m_time.h"
 
 #define THIS ((Lamp_Light*)thisx)
 
@@ -57,7 +58,7 @@ s32 eLL_get_light_sw_other_room(void) {
 
     temp_v0 = common_data.time.nowSec;
     var_v1 = 0;
-    if ((temp_v0 < 0x5460) || (temp_v0 >= 0xFD20)) {
+    if ((temp_v0 < mTM_TIME_TO_SEC(6, 0, 0)) || (temp_v0 >= mTM_TIME_TO_SEC(18, 0, 0))) {
         var_v1 = 1;
     }
     return var_v1;
@@ -68,7 +69,7 @@ s32 eLL_get_light_sw_player_room(Lamp_Light* this UNUSED) {
     s32 temp_v0;
 
     temp_v0 = common_data.time.nowSec;
-    var_v1 = ((temp_v0 >= 0xFD20) && (temp_v0 < 0x14370)) ? 1 : 0;
+    var_v1 = ((temp_v0 >= mTM_TIME_TO_SEC(18, 0, 0)) && (temp_v0 < mTM_TIME_TO_SEC(23, 0, 0))) ? 1 : 0;
     return var_v1;
 }
 

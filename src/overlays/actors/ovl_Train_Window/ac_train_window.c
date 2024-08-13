@@ -3,6 +3,7 @@
 #include "m_object.h"
 #include "evw_anime.h"
 #include "m_rcp.h"
+#include "m_time.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 
 void Train_Window_Actor_ct(Actor* thisx, Game_Play* game_play);
@@ -103,18 +104,22 @@ void Train_Window_Actor_dt(UNUSED Actor* thisx, UNUSED Game_Play* play) {
 }
 
 u8 aTW_GetNowAlpha(void) {
-    if ((common_data.time.nowSec >= 14400) && (common_data.time.nowSec < 72000)) {
-        if (common_data.time.nowSec < 43200) {
+    if ((common_data.time.nowSec >= mTM_TIME_TO_SEC(4, 0, 0)) &&
+        (common_data.time.nowSec < mTM_TIME_TO_SEC(20, 0, 0))) {
+        if (common_data.time.nowSec < mTM_TIME_TO_SEC(12, 0, 0)) {
             UNUSED f32 scopedTemp;
-            return ((void)0, 255.0f) * ((f32)(common_data.time.nowSec - 14400) / 28800.0f);
+            return ((void)0, 255.0f) *
+                   ((f32)(common_data.time.nowSec - mTM_TIME_TO_SEC(4, 0, 0)) / (f32)mTM_TIME_TO_SEC(8, 0, 0));
         } else {
-            return 255.0f * (1.0f - ((f32)(common_data.time.nowSec - 43200) / 28800.0f));
+            return 255.0f * (1.0f - ((f32)(common_data.time.nowSec - mTM_TIME_TO_SEC(12, 0, 0)) /
+                                     (f32)mTM_TIME_TO_SEC(8, 0, 0)));
         }
-    } else if (common_data.time.nowSec < 14400) {
+    } else if (common_data.time.nowSec < mTM_TIME_TO_SEC(4, 0, 0)) {
         UNUSED f32 scopedTemp;
-        return (1.0f - (0.5f + ((f32)common_data.time.nowSec / 28800.0f))) * 200.0f;
+        return (1.0f - (0.5f + ((f32)common_data.time.nowSec / (f32)mTM_TIME_TO_SEC(8, 0, 0)))) * 200.0f;
     } else {
-        return ((f32)(common_data.time.nowSec - 72000) / 28800.0f) * ((void)0, 200.0f);
+        return ((f32)(common_data.time.nowSec - mTM_TIME_TO_SEC(20, 0, 0)) / (f32)mTM_TIME_TO_SEC(8, 0, 0)) *
+               ((void)0, 200.0f);
     }
 }
 
