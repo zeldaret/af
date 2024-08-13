@@ -4,6 +4,7 @@
 #include "macros.h"
 #include "sys_math3d.h"
 #include "m_field_info.h"
+#include "m_time.h"
 
 extern Gfx ef_shadow_out_modelT[];
 extern Gfx ef_shadow_in_modelT[];
@@ -50,19 +51,16 @@ void mActorShadow_GetTimeAngleY_TimeAlpha(ShadowInfo* shadow, Game_Play* play) {
     f32 angle;
     shadow->unk1C = play->kankyo.shadowAlpha;
 
-    // Between 4 a.m and 8 p.m
-    if ((timesec >= 14400) && (timesec < 72000)) {
+    if ((timesec >= mTM_TIME_TO_SEC(4, 0, 0)) && (timesec < mTM_TIME_TO_SEC(20, 0, 0))) {
         UNUSED f32 scopedTemp;
-        timef = (timesec - 14400) / 57600.0f;
+        timef = (timesec - mTM_TIME_TO_SEC(4, 0, 0)) / (f32)mTM_TIME_TO_SEC(16, 0, 0);
         angle = 16384;
-    } // Between 12 a.m and 4 a.m
-    else if (timesec < 14400) {
+    } else if (timesec < mTM_TIME_TO_SEC(4, 0, 0)) {
         UNUSED f32 scopedTemp;
-        timef = 0.5f + timesec / 28800.0f;
+        timef = 0.5f + timesec / (f32)mTM_TIME_TO_SEC(8, 0, 0);
         angle = 16384;
-    } // Between 8 p.m and 12 a.m
-    else {
-        timef = (timesec - 72000) / 28800.0f;
+    } else {
+        timef = (timesec - mTM_TIME_TO_SEC(20, 0, 0)) / (f32)mTM_TIME_TO_SEC(8, 0, 0);
         angle = 16384;
     }
 

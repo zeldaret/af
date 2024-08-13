@@ -9,6 +9,7 @@
 #include "libc/alloca.h"
 #include "m_rcp.h"
 #include "audio.h"
+#include "m_time.h"
 
 #define nf_str(s0, s1) (s0 GFXPRINT_KATAKANA_MODE s1)
 NameFunction nf_tbl[SCENE_NUM] = {
@@ -83,7 +84,7 @@ void select_pass(Game_Select* select) {
     NameFunction* nfPtr;
     s32 scene = common_data.sceneFromTitleDemo;
 
-    common_data.time.nowSec = rtc->hour * 3600 + rtc->min * 60 + rtc->sec;
+    common_data.time.nowSec = mTM_TIME_TO_SEC(rtc->hour, rtc->min, rtc->sec);
     nfPtr = &nf_tbl[scene];
     if (nfPtr->nextProc != NULL) {
         (*nfPtr->nextProc)((Game*)select, nfPtr->sceneNo);
@@ -97,7 +98,7 @@ s32 select_start_proc(Game_Select* select) {
     s32 i;
 
     common_data.time.nowSec =
-        common_data.time.rtcTime.hour * 3600 + common_data.time.rtcTime.min * 60 + common_data.time.rtcTime.sec;
+        mTM_TIME_TO_SEC(common_data.time.rtcTime.hour, common_data.time.rtcTime.min, common_data.time.rtcTime.sec);
     nfPtr = &nf_tbl[select->selectedScene];
     if (nfPtr->nextProc != NULL) {
         (*nfPtr->nextProc)((Game*)select, nfPtr->sceneNo);

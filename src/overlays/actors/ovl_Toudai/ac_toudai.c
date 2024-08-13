@@ -7,6 +7,7 @@
 #include "m_collision_bg.h"
 #include "m_rcp.h"
 #include "m_lib.h"
+#include "m_time.h"
 #include "macros.h"
 #include "code_variables.h"
 
@@ -145,7 +146,8 @@ void aTOU_init(Toudai* this, Game_Play* game_play UNUSED) {
 }
 
 void aTOU_wait(Toudai* this, Game_Play* game_play UNUSED) {
-    if ((common_data.time.nowSec >= 0xFD20) || (common_data.time.nowSec < 0x4650)) {
+    if ((common_data.time.nowSec >= mTM_TIME_TO_SEC(18, 0, 0)) ||
+        (common_data.time.nowSec < mTM_TIME_TO_SEC(5, 0, 0))) {
         this->structureActor.unk_2BC = 1;
         this->structureActor.skeletonInfo.frameControl.speed = 1.0f;
         aTOU_setup_action(this, 2);
@@ -153,7 +155,8 @@ void aTOU_wait(Toudai* this, Game_Play* game_play UNUSED) {
 }
 
 void aTOU_lighting(Toudai* this, Game_Play* game_play UNUSED) {
-    if ((common_data.time.nowSec < 64800) && (common_data.time.nowSec >= 18000)) {
+    if ((common_data.time.nowSec < mTM_TIME_TO_SEC(18, 0, 0)) &&
+        (common_data.time.nowSec >= mTM_TIME_TO_SEC(5, 0, 0))) {
         aTOU_setup_action(this, 3);
     }
 }
