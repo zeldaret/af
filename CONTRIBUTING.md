@@ -9,7 +9,7 @@ Thank you for your interest in the Animal Forest decompilation. This is a brief 
 - [MM decomp tutorial](https://github.com/zeldaret/mm/blob/master/docs/tutorial/contents.md) Detailed tutorial for learning in general how decomp works and how to decompile a small, simple file. Note that mm doesn't use splat, so some information doesn't apply.
 - [Introduction to OOT decomp](https://github.com/zeldaret/oot/blob/master/docs/tutorial/contents.md) - Covers slightly different topics.
 
-Most discussions happen in the `#af-decomp` channel on our [Discord Server](https://discord.zelda64.dev) where you are welcome to ask if you need help getting started.
+Most discussions happen in the `#af-decomp` channel on our [Discord Server](https://discord.zelda.deco.mp/) where you are welcome to ask if you need help getting started.
 
 ## Tips for Successful Pull Requests
 

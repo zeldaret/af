@@ -5,7 +5,7 @@
 
 [Code jp Progress]: https://img.shields.io/endpoint?label=Code%20jp&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fanimalforest%2Fjp%2Fcode%2F%3Fmode%3Dshield%26measure%3Dall
 
-[discord]: https://discord.zelda64.dev
+[discord]: https://discord.zelda.deco.mp/
 [discord-badge]: https://img.shields.io/discord/688807550715560050?color=%237289DA&logo=discord&logoColor=%23FFFFFF
 
 This is a work-in-progress decompilation project for the Nintendo 64 game *Animal Forest*, also known as どうぶつの森 (*Doubutsu no Mori*).
