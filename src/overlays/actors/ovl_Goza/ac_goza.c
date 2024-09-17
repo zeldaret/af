@@ -54,7 +54,15 @@ void aGOZ_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
 void aGOZ_wait(Goza* this UNUSED, Game_Play* game_play UNUSED) {
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Goza/ac_goza/func_80A764A4_jp.s")
+extern GozaActionFunc D_80A76820_jp[];
+
+void aGOZ_setup_action(Goza* this, s32 processIndex) {
+    // TODO: replace extern above with commented out code
+    // static GozaActionFunc process[] = { aGOZ_wait };
+
+    // this->structureActor.process = process[processIndex];
+    this->structureActor.process = D_80A76820_jp[processIndex];
+}
 
 void aGOZ_actor_move(Actor* thisx, Game_Play* game_play) {
     Goza* this = THIS;
