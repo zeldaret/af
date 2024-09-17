@@ -62,10 +62,11 @@ void aGOZ_actor_move(Actor* thisx, Game_Play* game_play) {
 
 void aGOZ_actor_init(Actor *thisx, Game_Play *game_play) {
     Goza* this = THIS;
+    StructureActor* goza = &this->structureActor;
     
-    mFI_SetFG_common(0xF0F4, this->structureActor.actor.home.pos, FALSE);
-    aGOZ_actor_move(&this->structureActor.actor, game_play);
-    this->structureActor.actor.update = aGOZ_actor_move;
+    mFI_SetFG_common(0xF0F4, goza->actor.home.pos, FALSE);
+    aGOZ_actor_move(&goza->actor, game_play);
+    goza->actor.update = aGOZ_actor_move;
 }
 /* Warning: struct struct_8085E9B0 is not defined (only forward-declared) */
 /* Warning: struct SceneDmaStatus is not defined (only forward-declared) */
