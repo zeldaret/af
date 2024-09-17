@@ -87,16 +87,16 @@ void aKOI_actor_move(Actor* thisx, Game_Play* game_play) {
     UNUSED s32 pad;
     Player* player = get_player_actor_withoutCheck(game_play);
     s32 blockX;
-    s32 blockY;
+    s32 blockZ;
     s32 playerBlockX;
-    s32 playerBlockY;
+    s32 playerBlockZ;
     UNUSED s32 pad2;
 
-    mFI_Wpos2BlockNum(&blockX, &blockY, this->structureActor.actor.world.pos);
-    mFI_Wpos2BlockNum(&playerBlockX, &playerBlockY, player->actor.world.pos);
+    mFI_Wpos2BlockNum(&blockX, &blockZ, this->structureActor.actor.world.pos);
+    mFI_Wpos2BlockNum(&playerBlockX, &playerBlockZ, player->actor.world.pos);
 
     if ((mDemo_Check(1, &player->actor) == 0) && (mDemo_Check(5, &player->actor) == 0) &&
-        ((blockX != playerBlockX) || (blockY != playerBlockY))) {
+        ((blockX != playerBlockX) || (blockZ != playerBlockZ))) {
         Actor_delete(&this->structureActor.actor);
         return;
     }

@@ -90,14 +90,14 @@ void aKAG_actor_move(Actor* thisx, Game_Play* game_play) {
     Kago* this = THIS;
     Player* player = get_player_actor_withoutCheck(game_play);
     s32 xBlock;
-    s32 yBlock;
+    s32 zBlock;
     s32 playerXBlock;
-    s32 playerYBlock;
+    s32 playerZBlock;
 
-    mFI_Wpos2BlockNum(&xBlock, &yBlock, this->structureActor.actor.world.pos);
-    mFI_Wpos2BlockNum(&playerXBlock, &playerYBlock, player->actor.world.pos);
+    mFI_Wpos2BlockNum(&xBlock, &zBlock, this->structureActor.actor.world.pos);
+    mFI_Wpos2BlockNum(&playerXBlock, &playerZBlock, player->actor.world.pos);
     if ((mDemo_Check(1, &player->actor) == 0) && (mDemo_Check(5, &player->actor) == 0) &&
-        ((xBlock != playerXBlock) || (yBlock != playerYBlock))) {
+        ((xBlock != playerXBlock) || (zBlock != playerZBlock))) {
         Actor_delete(&this->structureActor.actor);
     } else {
         ((KagoActionFunc)this->structureActor.process)(this, game_play);
