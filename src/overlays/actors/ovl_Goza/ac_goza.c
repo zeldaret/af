@@ -2,6 +2,12 @@
 #include "m_actor_dlftbls.h"
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
+#include "overlays/actors/player_actor/m_player.h"
+#include "m_player_lib.h"
+#include "m_field_info.h"
+#include "69E2C0.h"
+
+#define THIS ((Goza*)thisx)
 
 void aGOZ_actor_ct(Actor* thisx, Game_Play* game_play);
 void func_80A76208_jp(Actor* thisx, Game_Play* game_play);
@@ -34,7 +40,27 @@ ActorProfile Goza_Profile = {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Goza/ac_goza/func_80A764A4_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Goza/ac_goza/func_80A764C0_jp.s")
+void aGOZ_actor_move(Actor* thisx, Game_Play* game_play) {
+    Goza* this = THIS;
+    StructureActor* goza = &this->structureActor;
+    Player* player = get_player_actor_withoutCheck(game_play);
+    s32 gozaBlockX;
+    s32 gozaBlockZ;
+    s32 playerBlockX;
+    s32 playerBlockZ;
+    
+    mFI_Wpos2BlockNum(&gozaBlockX, &gozaBlockZ, goza->actor.world.pos);
+    mFI_Wpos2BlockNum(&playerBlockX, &playerBlockZ, player->actor.world.pos);
+    
+    if ((mDemo_Check(1, &player->actor) == 0) && (mDemo_Check(5, &player->actor) == 0) &&
+        ((gozaBlockX != playerBlockX) || (gozaBlockZ != playerBlockZ))) {
+        Actor_delete(&goza->actor);
+    } else {
+        ((GozaActionFunc)goza->process)(this, game_play);
+    }
+}
+/* Warning: struct struct_8085E9B0 is not defined (only forward-declared) */
+/* Warning: struct SceneDmaStatus is not defined (only forward-declared) */
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Goza/ac_goza/aGOZ_actor_init.s")
 

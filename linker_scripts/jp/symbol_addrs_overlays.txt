@@ -18787,7 +18787,7 @@ func_80A76208_jp = 0x80A76208; // type:func
 func_80A76294_jp = 0x80A76294; // type:func
 func_80A76494_jp = 0x80A76494; // type:func
 func_80A764A4_jp = 0x80A764A4; // type:func
-func_80A764C0_jp = 0x80A764C0; // type:func
+aGOZ_actor_move = 0x80A764C0; // type:func
 aGOZ_actor_init = 0x80A765A8; // type:func
 aGOZ_actor_draw = 0x80A76610; // type:func
 
