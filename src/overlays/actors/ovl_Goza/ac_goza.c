@@ -1,3 +1,4 @@
+#include "global.h"
 #include "ac_goza.h"
 #include "m_actor_dlftbls.h"
 #include "m_object.h"
@@ -10,7 +11,7 @@
 #define THIS ((Goza*)thisx)
 
 void aGOZ_actor_ct(Actor* thisx, Game_Play* game_play);
-void func_80A76208_jp(Actor* thisx, Game_Play* game_play);
+void aGOZ_actor_dt(Actor* thisx, Game_Play* game_play);
 void aGOZ_actor_init(Actor* thisx, Game_Play* game_play);
 void aGOZ_actor_draw(Actor* thisx, Game_Play* game_play);
 
@@ -23,7 +24,7 @@ ActorProfile Goza_Profile = {
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Goza),
     /* */ aGOZ_actor_ct,
-    /* */ func_80A76208_jp,
+    /* */ aGOZ_actor_dt,
     /* */ aGOZ_actor_init,
     /* */ aGOZ_actor_draw,
     /* */ NULL,
@@ -32,11 +33,26 @@ ActorProfile Goza_Profile = {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Goza/ac_goza/aGOZ_actor_ct.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Goza/ac_goza/func_80A76208_jp.s")
+void aGOZ_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
+    Goza* this = THIS;
+    
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->objectSegmentTable,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->objectSegmentTable),
+                                                       STRUCTURE_TYPE_GOZA, &this->structureActor.actor);
+    
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->paletteSegmentTable,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->paletteSegmentTable),
+                                                       STRUCTURE_PALETTE_GOZA, &this->structureActor.actor);
+    
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->shadowSegmentTable,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->shadowSegmentTable),
+                                                       STRUCTURE_TYPE_GOZA, &this->structureActor.actor);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Goza/ac_goza/func_80A76294_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Goza/ac_goza/func_80A76494_jp.s")
+void aGOZ_wait(Goza* this UNUSED, Game_Play* game_play UNUSED) {
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Goza/ac_goza/func_80A764A4_jp.s")
 
