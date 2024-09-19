@@ -14,6 +14,8 @@ void aGOZ_actor_ct(Actor* thisx, Game_Play* game_play);
 void aGOZ_actor_dt(Actor* thisx, Game_Play* game_play);
 void aGOZ_actor_init(Actor* thisx, Game_Play* game_play);
 void aGOZ_actor_draw(Actor* thisx, Game_Play* game_play);
+void aGOZ_set_bgOffset(Goza* this, s32 processIndex);
+void aGOZ_setup_action(Goza* this, s32 processIndex);
 
 #if 0
 ActorProfile Goza_Profile = {
@@ -31,7 +33,12 @@ ActorProfile Goza_Profile = {
 };
 #endif
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Goza/ac_goza/aGOZ_actor_ct.s")
+void aGOZ_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
+    Goza* this = THIS;
+    
+    aGOZ_setup_action(this, 0);
+    aGOZ_set_bgOffset(this, 1);
+}
 
 void aGOZ_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
     Goza* this = THIS;
@@ -49,7 +56,7 @@ void aGOZ_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
                                                        STRUCTURE_TYPE_GOZA, &this->structureActor.actor);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Goza/ac_goza/func_80A76294_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Goza/ac_goza/aGOZ_set_bgOffset.s")
 
 void aGOZ_wait(Goza* this UNUSED, Game_Play* game_play UNUSED) {
 }

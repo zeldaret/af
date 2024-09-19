@@ -18784,7 +18784,7 @@ RO_FLT_80A76064_jp = 0x80A76064; // type:f32
 
 aGOZ_actor_ct = 0x80A761D0; // type:func
 aGOZ_actor_dt = 0x80A76208; // type:func
-func_80A76294_jp = 0x80A76294; // type:func
+aGOZ_set_bgOffset = 0x80A76294; // type:func
 aGOZ_wait = 0x80A76494; // type:func
 aGOZ_setup_action = 0x80A764A4; // type:func
 aGOZ_actor_move = 0x80A764C0; // type:func
