@@ -12945,7 +12945,7 @@
     subsegments:
       - [0x930ED0, data, overlays/other_ovl/ovl__00930B70/ovl__00930B70_reloc]
 
-  - name: ovl__00930F00
+  - name: ovl_sum_clchest03
     type: code
     start: 0x930F00
     vram: 0x80A70C60
@@ -12953,22 +12953,22 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x930F00, asm, overlays/other_ovl/ovl__00930F00/ovl__00930F00]
-      - [0x931200, data, overlays/other_ovl/ovl__00930F00/ovl__00930F00]
-  - name: ovl__00930F00_reloc
+      - [0x930F00, c, overlays/furniture/ovl_sum_clchest03/ac_sum_clchest03]
+      - [0x931200, data, overlays/furniture/ovl_sum_clchest03/ac_sum_clchest03]
+  - name: ovl_sum_clchest03_reloc
     type: code
     start: 0x931260
     vram: 0x80A70FC0
-    follows_vram: ovl__00930F00
+    follows_vram: ovl_sum_clchest03
     compress: True
     subsegments:
-      - [0x931260, data, overlays/other_ovl/ovl__00930F00/ovl__00930F00_reloc]
+      - [0x931260, data, overlays/furniture/ovl_sum_clchest03/ovl_sum_clchest03_reloc]
 
   - name: ovl__00931290
     type: code
     start: 0x931290
     vram: 0x80A70FF0
-    follows_vram: ovl__00930F00_reloc
+    follows_vram: ovl_sum_clchest03_reloc
     compress: True
     bss_size: 0x0
     subsegments:
