@@ -1,6 +1,7 @@
 #include "m_lib.h"
 #include "c_keyframe.h"
 #include "src/overlays/actors/ovl_My_Room/ac_my_room.h"
+#include "segment_symbols.h"
 
 void aSumHalChest02_ct(FurnitureActor* this, u8* data);
 void aSumHalChest02_mv(FurnitureActor* this, Actor* myRoomActor, Game_Play* game_play, u8* data);
@@ -15,23 +16,27 @@ FurnitureActorFunctions aSumHalChest02_func = {
     /* */ NULL,
 };
 
-FurnitureActorUnkStruct iam_sum_hal_chest02 = {
-    /* */ 0x015C8000,
-    /* */ 0x015C9020,
-    /* */ 0x06000000,
-    /* */ 0x06001020,
-    /* */ 0x00000000,
-    /* */ 0x00000000,
-    /* */ 0x00000000,
-    /* */ 0x00000000,
-    /* */ 0x00000000,
-    /* */ 0x00000000,
-    /* */ 0x00000000,
-    /* */ 0x00000000,
-    /* */ 0x42200000,
-    /* */ 0x3C23D70A,
-    /* */ 0x04000000,
-    /* */ 0x00000004,
+FurnitureActorProfile iam_sum_hal_chest02 = {
+    /* */ SEGMENT_ROM_START(int_sum_hal_chest02),
+    /* */ SEGMENT_ROM_END(int_sum_hal_chest02),
+    /* */ SEGMENT_VRAM_START(int_sum_hal_chest02),
+    /* */ SEGMENT_VRAM_END(int_sum_hal_chest02),
+    /* */ NULL,
+    /* */ NULL,
+    /* */ NULL,
+    /* */ NULL,
+    /* */ NULL,
+    /* */ NULL,
+    /* */ NULL,
+    /* */ NULL,
+    /* */ 40.0f,
+    /* */ 0.01f,
+    /* */ 4,
+    /* */ 0,
+    /* */ 0,
+    /* */ 0,
+    /* */ 0,
+    /* */ 4,
     /* */ &aSumHalChest02_func,
 };
 

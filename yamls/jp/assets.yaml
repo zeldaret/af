@@ -12266,10 +12266,11 @@
     align: 0x1000
   - [0x15C71E0]
 
-  - name: segment_015C8000
+  - name: int_sum_hal_chest02
     type: bin
     start: 0x15C8000
-    # vram:
+    vram: 0x06000000
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
   - [0x15C9020]
@@ -12314,10 +12315,11 @@
     align: 0x1000
   - [0x15CFF50]
 
-  - name: segment_015D0000
+  - name: int_sum_clchest03
     type: bin
     start: 0x15D0000
-    # vram:
+    vram: 0x06000000
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
   - [0x15D0F70]

@@ -5,6 +5,7 @@
 #include "m_actor.h"
 #include "unk.h"
 #include "c_keyframe.h"
+#include "libc/stdint.h"
 
 struct Game_Play;
 struct Game;
@@ -41,24 +42,28 @@ typedef struct FurnitureActorFunctions {
     /* 0x10 */ FurnitureDma furnitureDma;
 } FurnitureActorFunctions; // size = 0x14
 
-typedef struct FurnitureActorUnkStruct {
-    /* 0x00 */ UNK_TYPE4 unk00;
-    /* 0x04 */ UNK_TYPE4 unk04;
-    /* 0x08 */ UNK_TYPE4 unk08;
-    /* 0x0C */ UNK_TYPE4 unk0C;
-    /* 0x10 */ UNK_TYPE4 unk10;
-    /* 0x14 */ UNK_TYPE4 unk14;
-    /* 0x18 */ UNK_TYPE4 unk18;
-    /* 0x1C */ UNK_TYPE4 unk1C;
-    /* 0x20 */ UNK_TYPE4 unk20;
-    /* 0x24 */ UNK_TYPE4 unk24;
-    /* 0x28 */ UNK_TYPE4 unk28;
-    /* 0x2C */ UNK_TYPE4 unk2C;
-    /* 0x30 */ UNK_TYPE4 unk30;
-    /* 0x34 */ UNK_TYPE4 unk34;
-    /* 0x38 */ UNK_TYPE4 unk38;
-    /* 0x3C */ UNK_TYPE4 unk3C;
+typedef struct FurnitureActorProfile {
+    /* 0x00 */ uintptr_t objectRomStart;
+    /* 0x04 */ uintptr_t objectRomEnd;
+    /* 0x08 */ void* objectSegmentStart;
+    /* 0x0C */ void* objectSegmentEnd;
+    /* 0x10 */ UNK_PTR unk10; // opaque0
+    /* 0x14 */ UNK_PTR unk14; // opaque1
+    /* 0x18 */ UNK_PTR unk18; // translucent0
+    /* 0x1C */ UNK_PTR unk1C; // translucent1
+    /* 0x20 */ UNK_PTR unk20; // texture
+    /* 0x24 */ UNK_PTR unk24; // palette
+    /* 0x28 */ UNK_PTR unk28; // rig
+    /* 0x2C */ UNK_PTR unk2C; // tex_anim
+    /* 0x30 */ f32 height;
+    /* 0x34 */ f32 scale;
+    /* 0x38 */ UNK_TYPE1 unk38; // shape
+    /* 0x39 */ UNK_TYPE1 unk39; // move_bg_type
+    /* 0x3A */ UNK_TYPE1 unk3A; // check_rotation
+    /* 0x3B */ UNK_TYPE1 unk3B; // kankyo_map
+    /* 0x3C */ UNK_TYPE1 unk3C; // contact_action
+    /* 0x3E */ UNK_TYPE2 unk3E; // interaction_type
     /* 0x40 */ FurnitureActorFunctions* furnitureActorFunctions;
-} FurnitureActorUnkStruct; // size = 0x44
+} FurnitureActorProfile; // size = 0x44
 
 #endif

@@ -1,13 +1,13 @@
 #include "m_lib.h"
 #include "c_keyframe.h"
 #include "src/overlays/actors/ovl_My_Room/ac_my_room.h"
+#include "segment_symbols.h"
 
 void aSumClChest03_ct(FurnitureActor* this, u8* data UNUSED);
-void aSumClChest03_mv(FurnitureActor *this, Actor *myroomactor, Game_Play *game_play, u8* data UNUSED);
+void aSumClChest03_mv(FurnitureActor* this, Actor* myroomactor, Game_Play* game_play, u8* data UNUSED);
 void aSumClChest03_dw(FurnitureActor* this, Actor* myRoomActor UNUSED, Game_Play* game_play, u8* data UNUSED);
 void aSumClChest03_dt(FurnitureActor* this UNUSED, u8* data UNUSED);
 
-// D_80A70F60_jp
 FurnitureActorFunctions aSumClChest03_func = {
     /* */ aSumClChest03_ct,
     /* */ aSumClChest03_mv,
@@ -16,57 +16,54 @@ FurnitureActorFunctions aSumClChest03_func = {
     /* */ NULL,
 };
 
-// D_80A70F74_jp
-FurnitureActorUnkStruct iam_sum_clchest03 = {
-    /* */ 0x015D0000,
-    /* */ 0x015D0F70,
-    /* */ 0x06000000,
-    /* */ 0x06000F70,
-    /* */ 0x00000000,
-    /* */ 0x00000000,
-    /* */ 0x00000000,
-    /* */ 0x00000000,
-    /* */ 0x00000000,
-    /* */ 0x00000000,
-    /* */ 0x00000000,
-    /* */ 0x00000000,
-    /* */ 0x41900000,
-    /* */ 0x3C23D70A,
-    /* */ 0x04000000,
-    /* */ 0x00000004,
+FurnitureActorProfile iam_sum_clchest03 = {
+    /* */ SEGMENT_ROM_START(int_sum_clchest03),
+    /* */ SEGMENT_ROM_END(int_sum_clchest03),
+    /* */ SEGMENT_VRAM_START(int_sum_clchest03),
+    /* */ SEGMENT_VRAM_END(int_sum_clchest03),
+    /* */ NULL,
+    /* */ NULL,
+    /* */ NULL,
+    /* */ NULL,
+    /* */ NULL,
+    /* */ NULL,
+    /* */ NULL,
+    /* */ NULL,
+    /* */ 18.0f,
+    /* */ 0.01f,
+    /* */ 4,
+    /* */ 0,
+    /* */ 0,
+    /* */ 0,
+    /* */ 0,
+    /* */ 4,
     /* */ &aSumClChest03_func,
 };
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/furniture/ovl_sum_clchest03/ac_sum_clchest03/func_80A70C60_jp.s")
 extern BaseSkeletonR D_6000898;
 extern BaseAnimationR D_6000F5C;
 
 void aSumClChest03_ct(FurnitureActor* this, u8* data UNUSED) {
-    s32 pad[2];
+    UNUSED s32 pad[2];
     SkeletonInfoR* skeletonInfo = &this->skeletonInfo;
 
     cKF_SkeletonInfo_R_ct(skeletonInfo, Lib_SegmentedToVirtual(&D_6000F5C), Lib_SegmentedToVirtual(&D_6000898),
-                          &this->jointTable, &this->morphTable);
+                          this->jointTable, this->morphTable);
     cKF_SkeletonInfo_R_init_standard_stop(skeletonInfo, Lib_SegmentedToVirtual(&D_6000898), NULL);
     skeletonInfo->frameControl.speed = 0.0f;
     cKF_SkeletonInfo_R_play(skeletonInfo);
 }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/furniture/ovl_sum_clchest03/ac_sum_clchest03/func_80A70CF4_jp.s")
-void aSumClChest03_mv(FurnitureActor *this, Actor *myroomactor, Game_Play *game_play, u8* data UNUSED)
-{
-    if (common_data.clip.myRoomClip != NULL)
-    {
+void aSumClChest03_mv(FurnitureActor* this, Actor* myroomactor, Game_Play* game_play, u8* data UNUSED) {
+    if (common_data.clip.myRoomClip != NULL) {
         common_data.clip.myRoomClip->unk_34(this, myroomactor, game_play, 1.0f, 16.0f);
     }
 }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/furniture/ovl_sum_clchest03/ac_sum_clchest03/func_80A70D3C_jp.s")
 extern UNK_PTR D_6000020;
 extern UNK_PTR D_6000000;
 
-void aSumClChest03_dw(FurnitureActor* this, Actor* myRoomActor UNUSED, Game_Play* game_play, u8* data UNUSED)
-{
+void aSumClChest03_dw(FurnitureActor* this, Actor* myRoomActor UNUSED, Game_Play* game_play, u8* data UNUSED) {
     UNUSED s32 pad;
     s32 temp = game_play->state.frameCounter & 1;
     Mtx* mtx = &this->matrix[temp][0];
@@ -97,8 +94,5 @@ void aSumClChest03_dw(FurnitureActor* this, Actor* myRoomActor UNUSED, Game_Play
     cKF_Si3_draw_R_SV(game_play, &this->skeletonInfo, mtx, NULL, NULL, NULL);
 }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/furniture/ovl_sum_clchest03/ac_sum_clchest03/func_80A70F50_jp.s")
-void aSumClChest03_dt(FurnitureActor* this UNUSED, u8* data UNUSED)
-{
-
+void aSumClChest03_dt(FurnitureActor* this UNUSED, u8* data UNUSED) {
 }
