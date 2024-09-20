@@ -47,7 +47,14 @@ void func_80A70C60_jp(FurnitureActor* this, u8* data UNUSED) {
     cKF_SkeletonInfo_R_play(skeletonInfo);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/furniture/ovl_sum_clchest03/ac_sum_clchest03/func_80A70CF4_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/furniture/ovl_sum_clchest03/ac_sum_clchest03/func_80A70CF4_jp.s")
+void func_80A70CF4_jp(FurnitureActor *this, Actor *myroomactor, Game_Play *game_play, u8* data UNUSED)
+{
+    if (common_data.clip.myRoomClip != NULL)
+    {
+        common_data.clip.myRoomClip->unk_34(this, myroomactor, game_play, 1.0f, 16.0f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/furniture/ovl_sum_clchest03/ac_sum_clchest03/func_80A70D3C_jp.s")
 

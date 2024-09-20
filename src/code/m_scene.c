@@ -415,8 +415,8 @@ void mSc_dmacopy_all_exchange_bank(ObjectExchangeBank* exchange) {
     if (common_data.clip.weatherClip != NULL) {
         common_data.clip.weatherClip->changingWeather();
     }
-    if (common_data.clip.unk_080 != NULL) {
-        common_data.clip.unk_080->unk_24();
+    if (common_data.clip.myRoomClip != NULL) {
+        common_data.clip.myRoomClip->unk_24();
     }
     if (common_data.clip.unk_09C != NULL) {
         common_data.clip.unk_09C->unk_C();

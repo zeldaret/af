@@ -7,6 +7,7 @@
 #include "c_keyframe.h"
 
 struct Game_Play;
+struct Game;
 struct My_Room;
 struct Actor;
 
