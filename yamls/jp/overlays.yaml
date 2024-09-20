@@ -12954,7 +12954,7 @@
     bss_size: 0x0
     subsegments:
       - [0x930F00, c, overlays/furniture/ovl_sum_clchest03/ac_sum_clchest03]
-      - [0x931200, data, overlays/furniture/ovl_sum_clchest03/ac_sum_clchest03]
+      - [0x931200, .data, overlays/furniture/ovl_sum_clchest03/ac_sum_clchest03]
   - name: ovl_sum_clchest03_reloc
     type: code
     start: 0x931260

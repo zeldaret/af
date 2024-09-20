@@ -18535,15 +18535,15 @@ D_80A70BE4_jp = 0x80A70BE4; //
 
 // .text
 
-func_80A70C60_jp = 0x80A70C60; // type:func
-func_80A70CF4_jp = 0x80A70CF4; // type:func
-func_80A70D3C_jp = 0x80A70D3C; // type:func
-func_80A70F50_jp = 0x80A70F50; // type:func
+aSumClChest03_ct = 0x80A70C60; // type:func
+aSumClChest03_mv = 0x80A70CF4; // type:func
+aSumClChest03_dw = 0x80A70D3C; // type:func
+aSumClChest03_dt = 0x80A70F50; // type:func
 
 // .data
 
-D_80A70F60_jp = 0x80A70F60; //
-D_80A70F74_jp = 0x80A70F74; //
+aSumClChest03_func = 0x80A70F60; //
+iam_sum_clchest03 = 0x80A70F74; //
 
 // .text
 
