@@ -42,7 +42,7 @@
       - [0x6B6560, asm, code/m_handbill]
       - [0x6B81C0, asm, code/m_home]
       - [0x6B8880, asm, code/m_house]
-      - [0x6B8A70, asm, code/m_land]
+      - [0x6B8A70, c, code/m_land]
       - [0x6B8F20, asm, code/6B8F20]
       - [0x6BA3B0, asm, code/m_item_name]
       - [0x6BA500, asm, code/6BA500]
