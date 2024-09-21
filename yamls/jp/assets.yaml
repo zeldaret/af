@@ -12344,12 +12344,42 @@
   - [0x15CFF50]
 
   - name: int_sum_clchest03
-    type: bin
+    dir: objects/furniture/int_sum_clchest03
+    type: code
     start: 0x15D0000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, int_sum_clchest03]
+      - start: 0x15D0000
+        type: .data
+        name: int_sum_clchest03
+        subsegments:
+          - [0x15D0000, af_palette, int_sum_clchest03_pal01_pal]
+          - [0x15D0020, ci4, int_sum_clchest03_hiki_txt, 16, 32, int_sum_clchest03_pal01_pal]
+          - [0x15D0120, ci4, int_sum_clchest03_hikiura_txt, 16, 32, int_sum_clchest03_pal01_pal]
+          - [0x15D0220, ci4, int_sum_clchest03_top_txt, 16, 32, int_sum_clchest03_pal01_pal]
+          - [0x15D0320, ci4, int_sum_clchest03_stand_txt, 16, 16, int_sum_clchest03_pal01_pal]
+          - [0x15D03A0, ci4, int_sum_clchest03_front_txt, 16, 48, int_sum_clchest03_pal01_pal]
+          - [0x15D0520, ci4, int_sum_clchest03_side_txt, 16, 48, int_sum_clchest03_pal01_pal]
+          - [0x15D06A0, ci4, int_sum_clchest03_hisasi_txt, 16, 16, int_sum_clchest03_pal01_pal]
+          - [0x15D0720, pad]
+          - [0x15D0820, ckf_ckcb, cKF_ckcb_r_int_sum_clchest03_tbl]
+          - [0x15D0824, ckf_kn, cKF_kn_int_sum_clchest03_tbl]
+          - [0x15D0830, ckf_c, cKF_c_int_sum_clchest03_tbl]
+          - [0x15D083C, ckf_ds, cKF_ds_int_sum_clchest03_tbl]
+          - [0x15D0896, pad]
+          - [0x15D0898, ckf_ba, cKF_ba_r_int_sum_clchest03]
+          - [0x15D08AC, pad]
+          - [0x15D08B0, vtx, int_sum_clchest03_v]
+          - [0x15D0D30, af_gfx, int_sum_clchest03_door_model]
+          - [0x15D0DF0, af_gfx, int_sum_clchest03_base_model]
+          - [0x15D0F38, ckf_je, cKF_je_r_int_sum_clchest03_tbl]
+          - [0x15D0F5C, ckf_bs, cKF_bs_r_int_sum_clchest03]
+          - [0x15D0F64]
   - [0x15D0F70]
 
   - name: segment_015D1000

@@ -2,6 +2,7 @@
 #include "c_keyframe.h"
 #include "src/overlays/actors/ovl_My_Room/ac_my_room.h"
 #include "segment_symbols.h"
+#include "objects/furniture/int_sum_clchest03/int_sum_clchest03.h"
 
 void aSumClChest03_ct(FurnitureActor* this, u8* data UNUSED);
 void aSumClChest03_mv(FurnitureActor* this, Actor* myroomactor, Game_Play* game_play, u8* data UNUSED);
@@ -40,16 +41,13 @@ FurnitureActorProfile iam_sum_clchest03 = {
     /* */ &aSumClChest03_func,
 };
 
-extern BaseSkeletonR D_6000898;
-extern BaseAnimationR D_6000F5C;
-
 void aSumClChest03_ct(FurnitureActor* this, u8* data UNUSED) {
     UNUSED s32 pad[2];
     SkeletonInfoR* skeletonInfo = &this->skeletonInfo;
 
-    cKF_SkeletonInfo_R_ct(skeletonInfo, Lib_SegmentedToVirtual(&D_6000F5C), Lib_SegmentedToVirtual(&D_6000898),
-                          this->jointTable, this->morphTable);
-    cKF_SkeletonInfo_R_init_standard_stop(skeletonInfo, Lib_SegmentedToVirtual(&D_6000898), NULL);
+    cKF_SkeletonInfo_R_ct(skeletonInfo, Lib_SegmentedToVirtual(&cKF_bs_r_int_sum_clchest03),
+                          Lib_SegmentedToVirtual(&cKF_ba_r_int_sum_clchest03), this->jointTable, this->morphTable);
+    cKF_SkeletonInfo_R_init_standard_stop(skeletonInfo, Lib_SegmentedToVirtual(&cKF_ba_r_int_sum_clchest03), NULL);
     skeletonInfo->frameControl.speed = 0.0f;
     cKF_SkeletonInfo_R_play(skeletonInfo);
 }
@@ -59,9 +57,6 @@ void aSumClChest03_mv(FurnitureActor* this, Actor* myroomactor, Game_Play* game_
         common_data.clip.myRoomClip->unk_34(this, myroomactor, game_play, 1.0f, 16.0f);
     }
 }
-
-extern UNK_PTR D_6000020;
-extern UNK_PTR D_6000000;
 
 void aSumClChest03_dw(FurnitureActor* this, Actor* myRoomActor UNUSED, Game_Play* game_play, u8* data UNUSED) {
     UNUSED s32 pad;
@@ -73,7 +68,7 @@ void aSumClChest03_dw(FurnitureActor* this, Actor* myRoomActor UNUSED, Game_Play
     if (1) {}
     gSPMatrix(POLY_OPA_DISP++, _Matrix_to_Mtx_new(game_play->state.gfxCtx),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    gDPSetTextureImage(POLY_OPA_DISP++, G_IM_FMT_I, G_IM_SIZ_16b, 1, &D_6000020);
+    gDPSetTextureImage(POLY_OPA_DISP++, G_IM_FMT_I, G_IM_SIZ_16b, 1, &int_sum_clchest03_hiki_txt);
     gDPSetTile(POLY_OPA_DISP++, G_IM_FMT_I, G_IM_SIZ_16b, 0, 0x0000, G_TX_LOADTILE, 0, G_TX_MIRROR | G_TX_WRAP, 7,
                G_TX_NOLOD, G_TX_MIRROR | G_TX_WRAP, 7, G_TX_NOLOD);
     gDPLoadSync(POLY_OPA_DISP++);
@@ -82,7 +77,7 @@ void aSumClChest03_dw(FurnitureActor* this, Actor* myRoomActor UNUSED, Game_Play
     gDPSetTile(POLY_OPA_DISP++, G_IM_FMT_I, G_IM_SIZ_8b, 8, 0x0000, G_TX_RENDERTILE, 0, G_TX_MIRROR | G_TX_WRAP, 7,
                G_TX_NOLOD, G_TX_MIRROR | G_TX_WRAP, 7, G_TX_NOLOD);
     gDPSetTileSize(POLY_OPA_DISP++, G_TX_RENDERTILE, 0, 0, 0x00FC, 0x00FC);
-    gDPSetTextureImage(POLY_OPA_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, &D_6000000);
+    gDPSetTextureImage(POLY_OPA_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, &int_sum_clchest03_pal01_pal);
     gDPTileSync(POLY_OPA_DISP++);
     gDPSetTile(POLY_OPA_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_4b, 0, 0x01F0, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP,
                G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);

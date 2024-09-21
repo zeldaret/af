@@ -25,7 +25,7 @@ typedef struct FurnitureActor {
     /* 0x134 */ SkeletonInfoR skeletonInfo;
     /* 0x1A4 */ s_xyz jointTable[9];
     /* 0x1DA */ s_xyz morphTable[9];
-    /* 0x210 */ Mtx matrix[2][10]; // not sure if the array dimensions are correct
+    /* 0x210 */ Mtx matrix[2][10];
 } FurnitureActor; // size >= 0xA10
 
 typedef void (*FurnitureCreate)(FurnitureActor* this, u8* data);
