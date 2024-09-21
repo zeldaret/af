@@ -4,7 +4,7 @@
 #include "ultra64.h"
 
 // void func_80094520_jp();
-// void func_80094690_jp();
+void mHm_ClearAllHomeInfo(void);
 void mHm_SetNowHome(void);
 // void func_80094744_jp();
 // void func_800947C0_jp();
