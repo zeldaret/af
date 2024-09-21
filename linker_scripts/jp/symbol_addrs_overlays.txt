@@ -18487,8 +18487,8 @@ D_80A6FB64_jp = 0x80A6FB64; //
 
 aSumHalChest02_ct = 0x80A6FBE0; // type:func
 aSumHalChest02_mv = 0x80A6FC74; // type:func
-aSumHalChest03_dw = 0x80A6FCBC; // type:func
-aSumHalChest03_dt = 0x80A6FED0; // type:func
+aSumHalChest02_dw = 0x80A6FCBC; // type:func
+aSumHalChest02_dt = 0x80A6FED0; // type:func
 
 // .data
 
