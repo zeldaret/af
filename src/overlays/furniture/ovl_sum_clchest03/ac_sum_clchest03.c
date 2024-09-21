@@ -72,7 +72,7 @@ void aSumClChest03_dw(FurnitureActor* this, Actor* myRoomActor UNUSED, Game_Play
     gDPSetTile(POLY_OPA_DISP++, G_IM_FMT_I, G_IM_SIZ_16b, 0, 0x0000, G_TX_LOADTILE, 0, G_TX_MIRROR | G_TX_WRAP, 7,
                G_TX_NOLOD, G_TX_MIRROR | G_TX_WRAP, 7, G_TX_NOLOD);
     gDPLoadSync(POLY_OPA_DISP++);
-    gDPLoadBlock(POLY_OPA_DISP++, G_TX_LOADTILE, 0, 0, 2047, 0);
+    gDPLoadBlock(POLY_OPA_DISP++, G_TX_LOADTILE, 0, 0, 0x7FF, 0);
     gDPPipeSync(POLY_OPA_DISP++);
     gDPSetTile(POLY_OPA_DISP++, G_IM_FMT_I, G_IM_SIZ_8b, 8, 0x0000, G_TX_RENDERTILE, 0, G_TX_MIRROR | G_TX_WRAP, 7,
                G_TX_NOLOD, G_TX_MIRROR | G_TX_WRAP, 7, G_TX_NOLOD);
