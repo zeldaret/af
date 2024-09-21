@@ -1152,14 +1152,14 @@ void mRmTp_MakeFamicom_Fdebug() {
 
     if ((gamePT->input[1].press.button & Z_TRIG) == Z_TRIG && game != NULL) {
 
-        if (common_data.clip.unk_080 != NULL) {
+        if (common_data.clip.myRoomClip != NULL) {
 
             ftr = mRmTp_famicom_idx + 0x34A;
 
-            res = common_data.clip.unk_080->unk_04(game, ftr, &utX, &utZ, &direct, &ofs, &layer);
+            res = common_data.clip.myRoomClip->unk_04(game, ftr, &utX, &utZ, &direct, &ofs, &layer);
 
             if (res >= 0) {
-                common_data.clip.unk_080->unk_28(game, ftr, res, utX, utZ, direct, ofs, layer);
+                common_data.clip.myRoomClip->unk_28(game, ftr, res, utX, utZ, direct, ofs, layer);
             }
         }
     }
