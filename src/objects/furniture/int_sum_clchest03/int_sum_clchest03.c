@@ -2,25 +2,25 @@
 
 #include "assets/jp/objects/furniture/int_sum_clchest03/int_sum_clchest03_pal01_pal.palette.inc.c"
 u8 int_sum_clchest03_hiki_txt[] = {
-#include "assets/jp/objects/furniture/int_sum_clchest03/int_sum_clchest03_hiki_txt.ci4.inc.c"
+#include "assets/jp/objects/furniture/int_sum_clchest03/int_sum_clchest03_hiki_txt.ci4swap.inc.c"
 };
 u8 int_sum_clchest03_hikiura_txt[] = {
-#include "assets/jp/objects/furniture/int_sum_clchest03/int_sum_clchest03_hikiura_txt.ci4.inc.c"
+#include "assets/jp/objects/furniture/int_sum_clchest03/int_sum_clchest03_hikiura_txt.ci4swap.inc.c"
 };
 u8 int_sum_clchest03_top_txt[] = {
-#include "assets/jp/objects/furniture/int_sum_clchest03/int_sum_clchest03_top_txt.ci4.inc.c"
+#include "assets/jp/objects/furniture/int_sum_clchest03/int_sum_clchest03_top_txt.ci4swap.inc.c"
 };
 u8 int_sum_clchest03_stand_txt[] = {
-#include "assets/jp/objects/furniture/int_sum_clchest03/int_sum_clchest03_stand_txt.ci4.inc.c"
+#include "assets/jp/objects/furniture/int_sum_clchest03/int_sum_clchest03_stand_txt.ci4swap.inc.c"
 };
 u8 int_sum_clchest03_front_txt[] = {
-#include "assets/jp/objects/furniture/int_sum_clchest03/int_sum_clchest03_front_txt.ci4.inc.c"
+#include "assets/jp/objects/furniture/int_sum_clchest03/int_sum_clchest03_front_txt.ci4swap.inc.c"
 };
 u8 int_sum_clchest03_side_txt[] = {
-#include "assets/jp/objects/furniture/int_sum_clchest03/int_sum_clchest03_side_txt.ci4.inc.c"
+#include "assets/jp/objects/furniture/int_sum_clchest03/int_sum_clchest03_side_txt.ci4swap.inc.c"
 };
 u8 int_sum_clchest03_hisasi_txt[] = {
-#include "assets/jp/objects/furniture/int_sum_clchest03/int_sum_clchest03_hisasi_txt.ci4.inc.c"
+#include "assets/jp/objects/furniture/int_sum_clchest03/int_sum_clchest03_hisasi_txt.ci4swap.inc.c"
 };
 s32 pad15D0720[] = {
     0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,

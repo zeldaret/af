@@ -2,22 +2,22 @@
 
 #include "assets/jp/objects/furniture/int_sum_hal_chest02/int_sum_hal_chest02_pal.palette.inc.c"
 u8 int_sum_hal_chest02_hiki_tex_txt[] = {
-#include "assets/jp/objects/furniture/int_sum_hal_chest02/int_sum_hal_chest02_hiki_tex_txt.ci4.inc.c"
+#include "assets/jp/objects/furniture/int_sum_hal_chest02/int_sum_hal_chest02_hiki_tex_txt.ci4swap.inc.c"
 };
 u8 int_sum_hal_chest02_hiite_tex_txt[] = {
-#include "assets/jp/objects/furniture/int_sum_hal_chest02/int_sum_hal_chest02_hiite_tex_txt.ci4.inc.c"
+#include "assets/jp/objects/furniture/int_sum_hal_chest02/int_sum_hal_chest02_hiite_tex_txt.ci4swap.inc.c"
 };
 u8 int_sum_hal_chest02_top_tex_txt[] = {
-#include "assets/jp/objects/furniture/int_sum_hal_chest02/int_sum_hal_chest02_top_tex_txt.ci4.inc.c"
+#include "assets/jp/objects/furniture/int_sum_hal_chest02/int_sum_hal_chest02_top_tex_txt.ci4swap.inc.c"
 };
 u8 int_sum_hal_chest02_front_tex_txt[] = {
-#include "assets/jp/objects/furniture/int_sum_hal_chest02/int_sum_hal_chest02_front_tex_txt.ci4.inc.c"
+#include "assets/jp/objects/furniture/int_sum_hal_chest02/int_sum_hal_chest02_front_tex_txt.ci4swap.inc.c"
 };
 u8 int_sum_hal_chest02_back_tex_txt[] = {
-#include "assets/jp/objects/furniture/int_sum_hal_chest02/int_sum_hal_chest02_back_tex_txt.ci4.inc.c"
+#include "assets/jp/objects/furniture/int_sum_hal_chest02/int_sum_hal_chest02_back_tex_txt.ci4swap.inc.c"
 };
 u8 int_sum_hal_chest02_kuki_tex_txt[] = {
-#include "assets/jp/objects/furniture/int_sum_hal_chest02/int_sum_hal_chest02_kuki_tex_txt.ci4.inc.c"
+#include "assets/jp/objects/furniture/int_sum_hal_chest02/int_sum_hal_chest02_kuki_tex_txt.ci4swap.inc.c"
 };
 #include "assets/jp/objects/furniture/int_sum_hal_chest02/cKF_ckcb_r_int_sum_hal_chest02_tbl.inc.c"
 #include "assets/jp/objects/furniture/int_sum_hal_chest02/cKF_kn_int_sum_hal_chest02_tbl.inc.c"
