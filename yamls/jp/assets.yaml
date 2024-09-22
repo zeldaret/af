@@ -12282,7 +12282,7 @@
         name: int_sum_hal_chest02
         subsegments:
           - [0x15C8000, af_palette, int_sum_hal_chest02_pal]
-          - [0x15C8020, ci4, int_sum_hal_chest02_hiki_tex_txt, 32, 32, int_sum_hal_chest02_pal]
+          - [0x15C8020, ci4swap, int_sum_hal_chest02_hiki_tex_txt, 32, 32, int_sum_hal_chest02_pal]
           - [0x15C8220, ci4, int_sum_hal_chest02_hiite_tex_txt, 16, 16, int_sum_hal_chest02_pal]
           - [0x15C82A0, ci4, int_sum_hal_chest02_top_tex_txt, 16, 16, int_sum_hal_chest02_pal]
           - [0x15C8320, ci4, int_sum_hal_chest02_front_tex_txt, 32, 48, int_sum_hal_chest02_pal]
