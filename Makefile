@@ -367,10 +367,10 @@ $(BUILD_DIR)/%.o: %.c
 	$(OBJDUMP_CMD)
 	$(RM_MDEBUG)
 
+# Build C files from assets
 $(BUILD_DIR)/%.ci4swap.inc.c: %.ci4swap.png
 	$(PYTHON) tools/png_handler.py $< $@
 
-# Build C files from assets
 $(BUILD_DIR)/%.inc.c: %.png
 # File names are formatted as <file name>.<image format>.png
 # The <image format> part is passed into pigment's format argument
