@@ -1638,7 +1638,7 @@
     bss_size: 0x0
     subsegments:
       - [0x85A8E0, c, overlays/actors/ovl_Room_Sunshine/ef_room_sunshine]
-      - [0x85B0B0, data, overlays/actors/ovl_Room_Sunshine/ef_room_sunshine]
+      - [0x85B0B0, .data, overlays/actors/ovl_Room_Sunshine/ef_room_sunshine]
       - [0x85B0E0, .rodata, overlays/actors/ovl_Room_Sunshine/ef_room_sunshine]
   - name: ovl_Room_Sunshine_reloc
     type: code

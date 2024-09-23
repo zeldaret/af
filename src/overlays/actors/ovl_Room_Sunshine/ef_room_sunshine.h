@@ -12,7 +12,7 @@ typedef void (*Room_SunshineActionFunc)(struct Room_Sunshine*, struct Game_Play*
 
 typedef struct Room_Sunshine {
     /* 0x000 */ Actor actor;
-    /* 0x174 */ UNK_TYPE1 unk_174[0x4];
+    /* 0x174 */ u8 unk_174;
 } Room_Sunshine; // size = 0x178
 
 #endif
