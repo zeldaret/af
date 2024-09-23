@@ -33,7 +33,7 @@ ActorProfile Room_Sunshine_Profile = {
 };
 
 void Ef_Room_Sunshine_actor_ct(Actor* actor, UNUSED Game_Play* play) {
-    Room_Sunshine* sunshine = (Room_Sunshine*)actor; 
+    Room_Sunshine* sunshine = (Room_Sunshine*)actor;
 
     sunshine->unk_174 = 0;
 
