@@ -32,8 +32,8 @@ ActorProfile Room_Sunshine_Profile = {
     /* */ NULL,
 };
 
-void Ef_Room_Sunshine_actor_ct(Actor* actor, Game_Play* play) {
-    Room_Sunshine* sunshine = (Room_Sunshine*)actor;
+void Ef_Room_Sunshine_actor_ct(Actor* actor, UNUSED Game_Play* play) {
+    Room_Sunshine* sunshine = (Room_Sunshine*)actor; 
 
     sunshine->unk_174 = 0;
 
@@ -75,7 +75,7 @@ f32 calc_scale_Ef_Room_Sunshine(s32 flag, s32 sec) {
     }
 }
 
-u8 calc_alpha_Ef_Room_Sunshine() {
+u8 calc_alpha_Ef_Room_Sunshine(void) {
     f32 ret;
     s32 sec;
 
@@ -100,9 +100,7 @@ u8 calc_alpha_Ef_Room_Sunshine() {
     return (s32)ret;
 }
 
-void Ef_Room_SunshineL_actor_move(Actor* actor, Game_Play* play) {
-    Room_Sunshine* sunshine = (Room_Sunshine*)actor;
-
+void Ef_Room_SunshineL_actor_move(Actor* actor, UNUSED Game_Play* play) {
     if (common_data.time.nowSec < mTM_TIME_TO_SEC(4, 0, 0)) {
         actor->scale.x = calc_scale_Ef_Room_Sunshine(1, common_data.time.nowSec);
     } else if (common_data.time.nowSec >= mTM_TIME_TO_SEC(12, 0, 0) &&
@@ -113,9 +111,7 @@ void Ef_Room_SunshineL_actor_move(Actor* actor, Game_Play* play) {
     }
 }
 
-void Ef_Room_SunshineR_actor_move(Actor* actor, Game_Play* play) {
-    Room_Sunshine* sunshine = (Room_Sunshine*)actor;
-
+void Ef_Room_SunshineR_actor_move(Actor* actor, UNUSED Game_Play* play) {
     if (common_data.time.nowSec >= mTM_TIME_TO_SEC(4, 0, 0) && common_data.time.nowSec < mTM_TIME_TO_SEC(12, 0, 0)) {
         actor->scale.x = calc_scale_Ef_Room_Sunshine(0, mTM_TIME_TO_SEC(12, 0, 0) - common_data.time.nowSec);
     } else if (common_data.time.nowSec >= mTM_TIME_TO_SEC(20, 0, 0)) {
