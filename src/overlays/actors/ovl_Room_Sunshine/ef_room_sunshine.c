@@ -5,11 +5,11 @@
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "m_time.h"
 
-void Ef_Room_Sunshine_actor_ct(Actor* thisx, Game_Play* game_play);
-void Ef_Room_SunshineR_actor_move(Actor* thisx, Game_Play* game_play);
-void Ef_Room_SunshineR_actor_draw(Actor* thisx, Game_Play* game_play);
-void Ef_Room_SunshineL_actor_move(Actor* thisx, Game_Play* game_play);
-void Ef_Room_SunshineL_actor_draw(Actor* thisx, Game_Play* game_play);
+void Ef_Room_Sunshine_actor_ct(Actor* actor, Game_Play* game_play);
+void Ef_Room_SunshineR_actor_move(Actor* actor, Game_Play* game_play);
+void Ef_Room_SunshineR_actor_draw(Actor* actor, Game_Play* play);
+void Ef_Room_SunshineL_actor_move(Actor* actor, Game_Play* game_play);
+void Ef_Room_SunshineL_actor_draw(Actor* actor, Game_Play* play);
 
 extern Gfx light_floor01_mode[];
 extern Vtx light_floorL01_vtx[];
@@ -38,7 +38,7 @@ void Ef_Room_Sunshine_actor_ct(Actor* actor, Game_Play* play) {
     sunshine->unk_174 = 0;
 
     if (actor->params == 0) {
-        actor->update = Ef_Room_SunshineL_actor_move; 
+        actor->update = Ef_Room_SunshineL_actor_move;
         actor->draw = Ef_Room_SunshineL_actor_draw;
     } else {
         actor->world.pos.x -= 1.0f;
@@ -46,21 +46,21 @@ void Ef_Room_Sunshine_actor_ct(Actor* actor, Game_Play* play) {
 
     actor->world.pos.y = mCoBG_GetBgY_OnlyCenter_FromWpos(actor->world.pos, 0.0f);
 
-    actor->scale.x = 1.0f; 
+    actor->scale.x = 1.0f;
     actor->scale.y = 1.0f;
-    actor->scale.z = 1.0f; 
+    actor->scale.z = 1.0f;
 
     switch (actor->params) {
         case 2:
             actor->update = Ef_Room_SunshineL_actor_move;
             actor->draw = Ef_Room_SunshineL_actor_draw;
             actor->world.pos.x += 5.0f;
-            actor->world.pos.y = 1.0f + mCoBG_GetBgY_OnlyCenter_FromWpos(actor->world.pos, 0.0f); 
+            actor->world.pos.y = 1.0f + mCoBG_GetBgY_OnlyCenter_FromWpos(actor->world.pos, 0.0f);
             actor->world.pos.x -= 6.0f;
             break;
         case 3:
             actor->world.pos.x -= 5.0f;
-            actor->world.pos.y = 1.0f + mCoBG_GetBgY_OnlyCenter_FromWpos(actor->world.pos, 0.0f); 
+            actor->world.pos.y = 1.0f + mCoBG_GetBgY_OnlyCenter_FromWpos(actor->world.pos, 0.0f);
             actor->world.pos.x += 6.0f;
             break;
     }
@@ -69,9 +69,9 @@ void Ef_Room_Sunshine_actor_ct(Actor* actor, Game_Play* play) {
 f32 calc_scale_Ef_Room_Sunshine(s32 flag, s32 sec) {
 
     if (flag == 0) {
-        return 1.5f * sin_s((sec << 14) / (f32)mTM_TIME_TO_SEC(8,0,0));
+        return 1.5f * sin_s((sec << 14) / (f32)mTM_TIME_TO_SEC(8, 0, 0));
     } else {
-        return 1.5f * sin_s((sec << 14) / (f32)mTM_TIME_TO_SEC(4,0,0));
+        return 1.5f * sin_s((sec << 14) / (f32)mTM_TIME_TO_SEC(4, 0, 0));
     }
 }
 
@@ -103,13 +103,12 @@ u8 calc_alpha_Ef_Room_Sunshine() {
 void Ef_Room_SunshineL_actor_move(Actor* actor, Game_Play* play) {
     Room_Sunshine* sunshine = (Room_Sunshine*)actor;
 
-    if(common_data.time.nowSec < mTM_TIME_TO_SEC(4, 0, 0)){
-        actor->scale.x = calc_scale_Ef_Room_Sunshine(1, common_data.time.nowSec); 
-    }
-    else if(common_data.time.nowSec >= mTM_TIME_TO_SEC(12,0,0) && common_data.time.nowSec < mTM_TIME_TO_SEC(20,0,0)){
-        actor->scale.x = calc_scale_Ef_Room_Sunshine(0, common_data.time.nowSec - mTM_TIME_TO_SEC(12,0,0)); 
-    }
-    else {
+    if (common_data.time.nowSec < mTM_TIME_TO_SEC(4, 0, 0)) {
+        actor->scale.x = calc_scale_Ef_Room_Sunshine(1, common_data.time.nowSec);
+    } else if (common_data.time.nowSec >= mTM_TIME_TO_SEC(12, 0, 0) &&
+               common_data.time.nowSec < mTM_TIME_TO_SEC(20, 0, 0)) {
+        actor->scale.x = calc_scale_Ef_Room_Sunshine(0, common_data.time.nowSec - mTM_TIME_TO_SEC(12, 0, 0));
+    } else {
         actor->scale.x = 0.0f;
     }
 }
@@ -117,13 +116,11 @@ void Ef_Room_SunshineL_actor_move(Actor* actor, Game_Play* play) {
 void Ef_Room_SunshineR_actor_move(Actor* actor, Game_Play* play) {
     Room_Sunshine* sunshine = (Room_Sunshine*)actor;
 
-    if(common_data.time.nowSec >= mTM_TIME_TO_SEC(4,0,0) && common_data.time.nowSec < mTM_TIME_TO_SEC(12,0,0)){
-        actor->scale.x = calc_scale_Ef_Room_Sunshine(0, mTM_TIME_TO_SEC(12,0,0) - common_data.time.nowSec); 
-    }
-    else if(common_data.time.nowSec >= mTM_TIME_TO_SEC(20, 0, 0)){
-        actor->scale.x = calc_scale_Ef_Room_Sunshine(1, mTM_TIME_TO_SEC(24, 0, 0) - common_data.time.nowSec); 
-    }
-    else {
+    if (common_data.time.nowSec >= mTM_TIME_TO_SEC(4, 0, 0) && common_data.time.nowSec < mTM_TIME_TO_SEC(12, 0, 0)) {
+        actor->scale.x = calc_scale_Ef_Room_Sunshine(0, mTM_TIME_TO_SEC(12, 0, 0) - common_data.time.nowSec);
+    } else if (common_data.time.nowSec >= mTM_TIME_TO_SEC(20, 0, 0)) {
+        actor->scale.x = calc_scale_Ef_Room_Sunshine(1, mTM_TIME_TO_SEC(24, 0, 0) - common_data.time.nowSec);
+    } else {
         actor->scale.x = 0.0f;
     }
 }
