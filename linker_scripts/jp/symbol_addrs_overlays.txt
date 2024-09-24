@@ -8521,12 +8521,12 @@ B_80965C20_jp = 0x80965C20; //
 // .text
 
 Ef_Room_Sunshine_actor_ct = 0x80965C90; // type:func
-func_80965E38_jp = 0x80965E38; // type:func
-func_80965EE0_jp = 0x80965EE0; // type:func
-func_80965FF0_jp = 0x80965FF0; // type:func
+calc_scale_Ef_Room_Sunshine = 0x80965E38; // type:func
+calc_alpha_Ef_Room_Sunshine = 0x80965EE0; // type:func
+Ef_Room_SunshineL_actor_move = 0x80965FF0; // type:func
 Ef_Room_SunshineR_actor_move = 0x80966088; // type:func
-func_80966120_jp = 0x80966120; // type:func
-func_8096628C_jp = 0x8096628C; // type:func
+setup_mode_Ef_Room_Sunshine = 0x80966120; // type:func
+Ef_Room_SunshineL_actor_draw = 0x8096628C; // type:func
 Ef_Room_SunshineR_actor_draw = 0x80966370; // type:func
 
 // .data

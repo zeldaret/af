@@ -1129,12 +1129,12 @@ D_600D878 = 0x0600D878;
 
 // ovl_Room_Sunshine
 
-D_6000140 = 0x06000140;
-D_6000160 = 0x06000160;
-D_6000180 = 0x06000180;
-D_60001A0 = 0x060001A0;
-D_6000208 = 0x06000208;
-D_6000220 = 0x06000220;
+light_shine01_mode = 0x06000140;
+light_shineL01_vtx = 0x06000160;
+light_shineR01_vtx = 0x06000180;
+light_floor01_mode = 0x060001A0;
+light_floorL01_vtx = 0x06000208;
+light_floorR01_vtx = 0x06000220;
 
 // ovl_Room_Sunshine_Posthouse
 
