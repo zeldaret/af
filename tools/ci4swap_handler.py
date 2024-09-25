@@ -3,7 +3,7 @@ import subprocess
 import png
 import struct
 
-parser=argparse.ArgumentParser(description="Converts extracted textures from png into inc.c files to be linked into the ROM.")
+parser=argparse.ArgumentParser(description="Converts extracted texture png files to the swapped data that Animal Forest expects.")
 parser.add_argument("input")
 parser.add_argument("output")
 args=parser.parse_args()

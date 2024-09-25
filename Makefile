@@ -369,7 +369,7 @@ $(BUILD_DIR)/%.o: %.c
 
 # Build C files from assets
 $(BUILD_DIR)/%.ci4swap.inc.c: %.ci4swap.png
-	$(PYTHON) tools/png_handler.py $< $@
+	$(PYTHON) tools/ci4swap_handler.py $< $@
 
 $(BUILD_DIR)/%.inc.c: %.png
 # File names are formatted as <file name>.<image format>.png
