@@ -1,4 +1,7 @@
 #include "m_player.h"
+#include "m_player_lib.h"
+#include "game.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
 
 extern ClObjPipe_Init Player_actor_OcInfoData_forStand;
 #if 0
@@ -21,38 +24,200 @@ ClObjTrisElem_Init Player_actor_pclobj_tris_base_forItem[] = {
 ClObjTris_Init Player_actor_pclobj_tris_data_forItem = { { OC1_TYPE_10 | OC1_TYPE_20, OC2_2, COLSHAPE_TRIS }, ARRAY_COUNT(Player_actor_pclobj_tris_base_forItem), Player_actor_pclobj_tris_base_forItem };
 #endif
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B2D50_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B2DE4_jp.s")
+s8 Player_actor_Get_ItemKind(Actor* actor, s32 kind);
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B2E4C_jp.s")
+// m_player_controller
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B2EB8_jp.s")
+s32 Player_actor_CheckController_forPickup(Game* game) {
+    if (mEv_CheckTitleDemo() > 0) {
+        PlayerControllerData* data = mPlib_Get_controller_data_for_title_demo_p();
+        Actor* actor = (Actor*)get_player_actor_withoutCheck((Game_Play*)game);
+        Player* player = (Player*)actor;
+        s8 kind = Player_actor_Get_ItemKind(actor, player->unk_0CF0);
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B2F24_jp.s")
+        return !Player_ITEM_IS_VALID(kind) && (data->triggerButtonA != 0) && (data->buttonB != 0);
+    }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B2F90_jp.s")
+    return chkTrigger(B_BUTTON);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B3010_jp.s")
+s32 Player_actor_CheckController_forAxe(Game* game) {
+    Actor* actor = (Actor*)get_player_actor_withoutCheck((Game_Play*)game);
+    Player* player = (Player*)actor;
+    s8 kind = Player_actor_Get_ItemKind(actor, player->unk_0CF0);
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B30B4_jp.s")
+    if (Player_ITEM_IS_AXE(kind)) {
+        if (mEv_CheckTitleDemo() > 0) {
+            return mPlib_Get_controller_data_for_title_demo_p()->triggerButtonA;
+        }
+        return chkTrigger(A_BUTTON);
+    }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B30EC_jp.s")
+    return FALSE;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B312C_jp.s")
+s32 Player_actor_CheckController_forNet(Game* game) {
+    Actor* actor = (Actor*)get_player_actor_withoutCheck((Game_Play*)game);
+    Player* player = (Player*)actor;
+    s8 kind = Player_actor_Get_ItemKind(actor, player->unk_0CF0);
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B3170_jp.s")
+    if (Player_ITEM_IS_NET(kind)) {
+        if (mEv_CheckTitleDemo() > 0) {
+            return mPlib_Get_controller_data_for_title_demo_p()->buttonA;
+        }
+        return chkButton(A_BUTTON);
+    }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B31B4_jp.s")
+    return FALSE;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B31F8_jp.s")
+s32 Player_actor_CheckController_forRod(Game* game) {
+    Actor* actor = (Actor*)get_player_actor_withoutCheck((Game_Play*)game);
+    Player* player = (Player*)actor;
+    s8 kind = Player_actor_Get_ItemKind(actor, player->unk_0CF0);
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B323C_jp.s")
+    if (Player_ITEM_IS_ROD(kind)) {
+        if (mEv_CheckTitleDemo() > 0) {
+            return mPlib_Get_controller_data_for_title_demo_p()->triggerButtonA;
+        }
+        return chkTrigger(A_BUTTON);
+    }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B3280_jp.s")
+    return FALSE;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B32C4_jp.s")
+s32 Player_actor_CheckController_forScoop(Game* game) {
+    Actor* actor = (Actor*)get_player_actor_withoutCheck((Game_Play*)game);
+    Player* player = (Player*)actor;
+    s8 kind = Player_actor_Get_ItemKind(actor, player->unk_0CF0);
 
+    if (Player_ITEM_IS_SCOOP(kind)) {
+        if (mEv_CheckTitleDemo() > 0) {
+            return mPlib_Get_controller_data_for_title_demo_p()->triggerButtonA;
+        }
+        return chkTrigger(A_BUTTON);
+    }
+
+    return FALSE;
+}
+
+s32 Player_actor_CheckController_forUmbrella(Game* game) {
+    Actor* actor = (Actor*)get_player_actor_withoutCheck((Game_Play*)game);
+    Player* player = (Player*)actor;
+    s8 kind = Player_actor_Get_ItemKind(actor, player->unk_0CF0);
+
+    if (Player_ITEM_IS_UMBRELLA(kind) != FALSE) {
+        if (mEv_CheckTitleDemo() > 0) {
+            return mPlib_Get_controller_data_for_title_demo_p()->triggerButtonA;
+        }
+        return chkTrigger(A_BUTTON);
+    }
+
+    return FALSE;
+}
+
+int Player_actor_CheckController_forShake_tree(Game* game) {
+    Actor* actor = (Actor*)get_player_actor_withoutCheck((Game_Play*)game);
+    Player* player = (Player*)actor;
+    s8 kind = Player_actor_Get_ItemKind(actor, player->unk_0CF0);
+
+    if (!Player_ITEM_KIND_CHECK(kind, 0, Player_ITEM_KIND_SCOOP) || Player_ITEM_IS_UMBRELLA(kind) != FALSE) {
+        if (mEv_CheckTitleDemo() > 0) {
+            PlayerControllerData* data = mPlib_Get_controller_data_for_title_demo_p();
+            return (data->triggerButtonA != 0) && (data->buttonB == 0);
+        } else {
+            return chkTrigger(A_BUTTON);
+        }
+    }
+    return FALSE;
+}
+
+f32 Player_actor_CheckController_forStruggle_pitfall() {
+    if (chkTrigger(A_BUTTON) != 0) {
+        return 1.0f;
+    } else {
+        return 0.0f;
+    }
+}
+
+s32 Player_actor_CheckController_forDush() {
+    if (mEv_CheckTitleDemo() > 0) {
+        return mPlib_Get_controller_data_for_title_demo_p()->buttonB;
+    } else {
+        return chkButton(Z_TRIG);
+    }
+}
+
+f32 Player_actor_GetController_move_percentX() {
+    if (mEv_CheckTitleDemo() > 0) {
+        PlayerControllerData* data = mPlib_Get_controller_data_for_title_demo_p();
+        return data->controller.moveX;
+    } else {
+        return gamePT->controller.moveX;
+    }
+}
+
+f32 Player_actor_GetController_move_percentY() {
+    if (mEv_CheckTitleDemo() > 0) {
+        PlayerControllerData* data = mPlib_Get_controller_data_for_title_demo_p();
+
+		return data->controller.moveY;
+    } else {
+        return gamePT->controller.moveY;
+    }
+}
+
+f32 Player_actor_GetController_move_percentR() {
+    if (mEv_CheckTitleDemo() > 0) {
+        PlayerControllerData* data = mPlib_Get_controller_data_for_title_demo_p();
+
+		return data->controller.moveR;
+    } else {
+        return gamePT->controller.moveR;
+    }
+}
+
+s16 Player_actor_GetController_move_angle() {
+    if (mEv_CheckTitleDemo() > 0) {
+        PlayerControllerData* data = mPlib_Get_controller_data_for_title_demo_p();
+
+		return data->controller.moveAngle;
+    } else {
+        return gamePT->controller.moveAngle;
+    }
+}
+
+s16 Player_actor_GetController_old_move_angle() {
+    if (mEv_CheckTitleDemo() > 0) {
+        PlayerControllerData* data = mPlib_Get_controller_data_for_title_demo_p();
+
+		return data->controller.lastMoveAngle;
+    } else {
+        return gamePT->controller.lastMoveAngle;
+    }
+}
+
+f32 Player_actor_GetController_recognize_percentR() {
+    if (mEv_CheckTitleDemo() > 0) {
+        PlayerControllerData* data = mPlib_Get_controller_data_for_title_demo_p();
+
+		return data->controller.adjustedR;
+    } else {
+        return gamePT->controller.adjustedR;
+    }
+}
+
+f32 Player_actor_GetController_old_recognize_percentR() {
+    if (mEv_CheckTitleDemo() > 0) {
+        PlayerControllerData* data = mPlib_Get_controller_data_for_title_demo_p();
+
+		return data->controller.lastAdjustedR;
+    } else {
+        return gamePT->controller.lastAdjustedR;
+    }
+}
+ 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B3308_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B3334_jp.s")
@@ -619,7 +784,7 @@ ClObjTris_Init Player_actor_pclobj_tris_data_forItem = { { OC1_TYPE_10 | OC1_TYP
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BD584_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BD5C4_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_Get_ItemKind.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BD668_jp.s")
 
