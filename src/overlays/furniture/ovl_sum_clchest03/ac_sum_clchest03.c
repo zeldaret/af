@@ -67,7 +67,8 @@ void aSumClChest03_dw(FurnitureActor* this, Actor* myRoomActor UNUSED, Game_Play
     if (1) {}
     gSPMatrix(POLY_OPA_DISP++, _Matrix_to_Mtx_new(game_play->state.gfxCtx),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    gDPLoadTextureBlockS(POLY_OPA_DISP++, int_sum_clchest03_hiki_txt, G_IM_FMT_I, G_IM_SIZ_8b, 64, 64, 0, G_TX_MIRROR | G_TX_WRAP, G_TX_MIRROR | G_TX_WRAP, 7, 7, G_TX_NOLOD, G_TX_NOLOD);
+    gDPLoadTextureBlockS(POLY_OPA_DISP++, int_sum_clchest03_hiki_txt, G_IM_FMT_I, G_IM_SIZ_8b, 64, 64, 0,
+                         G_TX_MIRROR | G_TX_WRAP, G_TX_MIRROR | G_TX_WRAP, 7, 7, G_TX_NOLOD, G_TX_NOLOD);
     gDPLoadTLUT_pal16(POLY_OPA_DISP++, 15, int_sum_clchest03_pal01_pal);
     CLOSE_DISPS(game_play->state.gfxCtx);
     cKF_Si3_draw_R_SV(game_play, &this->skeletonInfo, mtx, NULL, NULL, NULL);

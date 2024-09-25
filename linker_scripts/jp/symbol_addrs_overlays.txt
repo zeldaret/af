@@ -17043,9 +17043,6 @@ aSumBlueBureau01_dt = 0x80A4BEF0; // type:func
 
 aSumBlueBureau01_func = 0x80A4BF00; //
 iam_sum_blue_bureau01 = 0x80A4BF14; //
-D_80A4BF90_jp = 0x80A4BF90; //
-D_80A4C000_jp = 0x80A4C000; //
-D_80A4C070_jp = 0x80A4C070; //
 
 // .text
 

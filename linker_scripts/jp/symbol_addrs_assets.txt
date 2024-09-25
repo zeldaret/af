@@ -1290,6 +1290,23 @@ cKF_ba_r_act_balloon = 0x6000F44; // segment:act_balloon rom:0x11F5F44
 cKF_je_r_act_balloon_tbl = 0x6000F58; // segment:act_balloon rom:0x11F5F58
 cKF_bs_r_act_balloon = 0x6000F88; // segment:act_balloon rom:0x11F5F88
 
+int_sum_blue_bureau01_pal = 0x6000008; // segment:int_sum_blue_bureau01 rom:0x151B008
+int_sum_blue_bureau01_hiki_tex_txt = 0x6000028; // segment:int_sum_blue_bureau01 rom:0x151B028
+int_sum_blue_bureau01_top_tex_txt = 0x6000328; // segment:int_sum_blue_bureau01 rom:0x151B328
+int_sum_blue_bureau01_topin_tex_txt = 0x60003A8; // segment:int_sum_blue_bureau01 rom:0x151B3A8
+int_sum_blue_bureau01_side_tex_txt = 0x6000428; // segment:int_sum_blue_bureau01 rom:0x151B428
+int_sum_blue_bureau01_front_tex_txt = 0x6000628; // segment:int_sum_blue_bureau01 rom:0x151B628
+int_sum_blue_bureau01_v = 0x6000828; // segment:int_sum_blue_bureau01 rom:0x151B828 size:0x330
+sum_blue_bureau01_base_model = 0x6000B58; // segment:int_sum_blue_bureau01 rom:0x151BB58
+sum_blue_bureau01_door_model = 0x6000C60; // segment:int_sum_blue_bureau01 rom:0x151BC60
+cKF_ckcb_r_int_sum_blue_bureau01_tbl = 0x6000CF8; // segment:int_sum_blue_bureau01 rom:0x151BCF8
+cKF_kn_int_sum_blue_bureau01_tbl = 0x6000CFC; // segment:int_sum_blue_bureau01 rom:0x151BCFC
+cKF_c_int_sum_blue_bureau01_tbl = 0x6000D08; // segment:int_sum_blue_bureau01 rom:0x151BD08
+cKF_ds_int_sum_blue_bureau01_tbl = 0x6000D14; // segment:int_sum_blue_bureau01 rom:0x151BD14
+cKF_ba_r_int_sum_blue_bureau01 = 0x6000D70; // segment:int_sum_blue_bureau01 rom:0x151BD70
+cKF_je_r_int_sum_blue_bureau01_tbl = 0x6000D84; // segment:int_sum_blue_bureau01 rom:0x151BD84
+cKF_bs_r_int_sum_blue_bureau01 = 0x6000DA8; // segment:int_sum_blue_bureau01 rom:0x151BDA8
+
 int_sum_hal_chest02_pal = 0x6000000; // segment:int_sum_hal_chest02 rom:0x15C8000
 int_sum_hal_chest02_hiki_tex_txt = 0x6000020; // segment:int_sum_hal_chest02 rom:0x15C8020
 int_sum_hal_chest02_hiite_tex_txt = 0x6000220; // segment:int_sum_hal_chest02 rom:0x15C8220
