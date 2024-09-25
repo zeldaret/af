@@ -17034,10 +17034,10 @@ D_80A4BB90_jp = 0x80A4BB90; //
 
 // .text
 
-func_80A4BC00_jp = 0x80A4BC00; // type:func
-func_80A4BC94_jp = 0x80A4BC94; // type:func
-func_80A4BCDC_jp = 0x80A4BCDC; // type:func
-func_80A4BEF0_jp = 0x80A4BEF0; // type:func
+aSumBlueBureau01_ct = 0x80A4BC00; // type:func
+aSumBlueBureau01_mv = 0x80A4BC94; // type:func
+aSumBlueBureau01_dw = 0x80A4BCDC; // type:func
+aSumBlueBureau01_dt = 0x80A4BEF0; // type:func
 
 // .data
 
