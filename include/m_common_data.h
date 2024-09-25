@@ -157,7 +157,8 @@ typedef struct CommonData {
     /* 0x10750 */ s16 moneyPower;
     /* 0x10752 */ s16 goodsPower;
     /* 0x10754 */ DoorData doorData;
-    /* 0x10768 */ s8 unk_10768[0x38];
+    /* 0x10764 */ DoorData structureExitDoorData;
+    /* 0x1077C */ UNK_TYPE1 unk_1077C[0x24];
     /* 0x107A0 */ DoorData famicomEmuDoorData;
     /* 0x107B4 */ s16 unk_107B4;
     /* 0x107B6 */ s16 unk_107B6; // named "demo_profile" in AC GCN decomp (though it's an array of two s16s in that game)

@@ -42,6 +42,7 @@ typedef enum ActorFootIndex {
 typedef enum FgNameF000 {
     /* 0x0 */ FGNAME_F000_0 = 0x0,
     /* 0x0 */ FGNAME_F000_1 = 0x1,
+    /* 0x4 */ FGNAME_F000_4 = 0x4,
     /* 0x5 */ FGNAME_F000_5 = 0x5,
     /* 0x8 */ FGNAME_F000_8 = 0x8,
     /* 0xD */ FGNAME_F000_D = 0xD,
