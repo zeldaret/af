@@ -51,8 +51,6 @@ typedef enum Player_ItemKind {
     Player_ITEM_KIND_SCOOP
 } Player_ItemKind;
 
-
-
 #define Player_ITEM_KIND_CHECK(kind, min, max) (kind >= min && kind < max + 1)
 #define Player_ITEM_IS_AXE(kind) (kind == Player_ITEM_KIND_AXE)
 #define Player_ITEM_IS_NET(kind) (kind == Player_ITEM_KIND_NET)

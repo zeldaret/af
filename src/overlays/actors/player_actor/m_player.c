@@ -24,7 +24,6 @@ ClObjTrisElem_Init Player_actor_pclobj_tris_base_forItem[] = {
 ClObjTris_Init Player_actor_pclobj_tris_data_forItem = { { OC1_TYPE_10 | OC1_TYPE_20, OC2_2, COLSHAPE_TRIS }, ARRAY_COUNT(Player_actor_pclobj_tris_base_forItem), Player_actor_pclobj_tris_base_forItem };
 #endif
 
-
 s8 Player_actor_Get_ItemKind(Actor* actor, s32 kind);
 
 // m_player_controller
@@ -162,7 +161,7 @@ f32 Player_actor_GetController_move_percentY() {
     if (mEv_CheckTitleDemo() > 0) {
         PlayerControllerData* data = mPlib_Get_controller_data_for_title_demo_p();
 
-		return data->controller.moveY;
+        return data->controller.moveY;
     } else {
         return gamePT->controller.moveY;
     }
@@ -172,7 +171,7 @@ f32 Player_actor_GetController_move_percentR() {
     if (mEv_CheckTitleDemo() > 0) {
         PlayerControllerData* data = mPlib_Get_controller_data_for_title_demo_p();
 
-		return data->controller.moveR;
+        return data->controller.moveR;
     } else {
         return gamePT->controller.moveR;
     }
@@ -182,7 +181,7 @@ s16 Player_actor_GetController_move_angle() {
     if (mEv_CheckTitleDemo() > 0) {
         PlayerControllerData* data = mPlib_Get_controller_data_for_title_demo_p();
 
-		return data->controller.moveAngle;
+        return data->controller.moveAngle;
     } else {
         return gamePT->controller.moveAngle;
     }
@@ -192,7 +191,7 @@ s16 Player_actor_GetController_old_move_angle() {
     if (mEv_CheckTitleDemo() > 0) {
         PlayerControllerData* data = mPlib_Get_controller_data_for_title_demo_p();
 
-		return data->controller.lastMoveAngle;
+        return data->controller.lastMoveAngle;
     } else {
         return gamePT->controller.lastMoveAngle;
     }
@@ -202,7 +201,7 @@ f32 Player_actor_GetController_recognize_percentR() {
     if (mEv_CheckTitleDemo() > 0) {
         PlayerControllerData* data = mPlib_Get_controller_data_for_title_demo_p();
 
-		return data->controller.adjustedR;
+        return data->controller.adjustedR;
     } else {
         return gamePT->controller.adjustedR;
     }
@@ -212,12 +211,12 @@ f32 Player_actor_GetController_old_recognize_percentR() {
     if (mEv_CheckTitleDemo() > 0) {
         PlayerControllerData* data = mPlib_Get_controller_data_for_title_demo_p();
 
-		return data->controller.lastAdjustedR;
+        return data->controller.lastAdjustedR;
     } else {
         return gamePT->controller.lastAdjustedR;
     }
 }
- 
+
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B3308_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B3334_jp.s")
