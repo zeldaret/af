@@ -10986,10 +10986,11 @@
     align: 0x1000
   - [0x151AC10]
 
-  - name: segment_0151B000
+  - name: int_sum_blue_bureau01
     type: bin
     start: 0x151B000
-    # vram:
+    vram: 0x06000000
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
   - [0x151BDC0]

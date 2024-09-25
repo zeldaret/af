@@ -9274,7 +9274,7 @@
     bss_size: 0x0
     subsegments:
       - [0x9136A0, c, overlays/furniture/ovl_sum_blue_bureau01/ac_sum_blue_bureau01]
-      - [0x9139A0, data, overlays/furniture/ovl_sum_blue_bureau01/ac_sum_blue_bureau01]
+      - [0x9139A0, .data, overlays/furniture/ovl_sum_blue_bureau01/ac_sum_blue_bureau01]
   - name: ovl_sum_blue_bureau01_reloc
     type: code
     start: 0x913A00
