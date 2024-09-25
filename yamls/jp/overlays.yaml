@@ -9265,7 +9265,7 @@
     subsegments:
       - [0x913680, data, overlays/other_ovl/ovl__00913630/ovl__00913630_reloc]
 
-  - name: ovl__009136A0
+  - name: ovl_sum_blue_bureau01
     type: code
     start: 0x9136A0
     vram: 0x80A4BC00
@@ -9273,22 +9273,22 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x9136A0, asm, overlays/other_ovl/ovl__009136A0/ovl__009136A0]
-      - [0x9139A0, data, overlays/other_ovl/ovl__009136A0/ovl__009136A0]
-  - name: ovl__009136A0_reloc
+      - [0x9136A0, c, overlays/furniture/ovl_sum_blue_bureau01/ac_sum_blue_bureau01]
+      - [0x9139A0, data, overlays/furniture/ovl_sum_blue_bureau01/ac_sum_blue_bureau01]
+  - name: ovl_sum_blue_bureau01_reloc
     type: code
     start: 0x913A00
     vram: 0x80A4BF60
-    follows_vram: ovl__009136A0
+    follows_vram: ovl_sum_blue_bureau01
     compress: True
     subsegments:
-      - [0x913A00, data, overlays/other_ovl/ovl__009136A0/ovl__009136A0_reloc]
+      - [0x913A00, data, overlays/furniture/ovl_sum_blue_bureau01/ac_sum_blue_bureau01_reloc]
 
   - name: ovl__00913A30
     type: code
     start: 0x913A30
     vram: 0x80A4BF90
-    follows_vram: ovl__009136A0_reloc
+    follows_vram: ovl_sum_blue_bureau01_reloc
     compress: True
     bss_size: 0x0
     subsegments:
