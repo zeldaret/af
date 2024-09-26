@@ -4,7 +4,7 @@
 #include "objects/furniture/int_sum_blue_bureau01/int_sum_blue_bureau01.h"
 
 void aSumBlueBureau01_ct(FurnitureActor* this, u8* data UNUSED);
-void aSumBlueBureau01_mv(FurnitureActor* this, Actor* myroomactor, Game_Play* game_play, u8* data UNUSED);
+void aSumBlueBureau01_mv(FurnitureActor* this, Actor* myRoomActor, Game_Play* game_play, u8* data UNUSED);
 void aSumBlueBureau01_dw(FurnitureActor* this, Actor* myRoomActor UNUSED, Game_Play* game_play, u8* data UNUSED);
 void aSumBlueBureau01_dt(FurnitureActor* this UNUSED, u8* data UNUSED);
 
@@ -51,16 +51,16 @@ void aSumBlueBureau01_ct(FurnitureActor* this, u8* data UNUSED) {
     cKF_SkeletonInfo_R_play(skeletonInfo);
 }
 
-void aSumBlueBureau01_mv(FurnitureActor* this, Actor* myroomactor, Game_Play* game_play, u8* data UNUSED) {
+void aSumBlueBureau01_mv(FurnitureActor* this, Actor* myRoomActor, Game_Play* game_play, u8* data UNUSED) {
     if (common_data.clip.myRoomClip != NULL) {
-        common_data.clip.myRoomClip->unk_34(this, myroomactor, game_play, 1.0f, 16.0f);
+        common_data.clip.myRoomClip->unk_34(this, myRoomActor, game_play, 1.0f, 16.0f);
     }
 }
 
 void aSumBlueBureau01_dw(FurnitureActor* this, Actor* myRoomActor UNUSED, Game_Play* game_play, u8* data UNUSED) {
     UNUSED s32 pad;
-    s32 temp = game_play->state.frameCounter & 1;
-    Mtx* mtx = &this->matrix[temp][0];
+    s32 mtxIdx = game_play->state.frameCounter & 1;
+    Mtx* mtx = &this->matrix[mtxIdx][0];
 
     OPEN_DISPS(game_play->state.gfxCtx);
     if (1) {}

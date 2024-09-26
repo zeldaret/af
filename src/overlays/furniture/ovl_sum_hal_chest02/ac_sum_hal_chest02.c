@@ -60,8 +60,8 @@ void aSumHalChest02_mv(FurnitureActor* this, Actor* myRoomActor, Game_Play* game
 
 void aSumHalChest02_dw(FurnitureActor* this, Actor* myRoomActor UNUSED, Game_Play* game_play, u8* data UNUSED) {
     UNUSED s32 pad;
-    s32 temp = game_play->state.frameCounter & 1;
-    Mtx* mtx = &this->matrix[temp][0];
+    s32 mtxIdx = game_play->state.frameCounter & 1;
+    Mtx* mtx = &this->matrix[mtxIdx][0];
 
     OPEN_DISPS(game_play->state.gfxCtx);
     if (1) {}
