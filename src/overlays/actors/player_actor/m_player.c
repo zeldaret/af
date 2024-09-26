@@ -362,10 +362,9 @@ f32 Player_actor_GetController_old_recognize_percentR() {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B4EF4_jp.s")
 
-// #clang-format off
-#pragma GLOBAL_ASM( \
-    "asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_SetPosition_OBJtoLine_forItem.s")
-// #clang-format on
+// clang-format off
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_SetPosition_OBJtoLine_forItem.s")
+// clang-format on
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B5150_jp.s")
 
@@ -495,10 +494,9 @@ f32 Player_actor_GetController_old_recognize_percentR() {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B8204_jp.s")
 
-// #clang-format off
-#pragma GLOBAL_ASM( \
-    "asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_SetFootMark_for_settle_main.s")
-// #clang-format on
+// clang-format off
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_SetFootMark_for_settle_main.s")
+// clang-format on
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B83B4_jp.s")
 
@@ -520,10 +518,9 @@ f32 Player_actor_GetController_old_recognize_percentR() {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B8874_jp.s")
 
-// #clang-format off
-#pragma GLOBAL_ASM( \
-    "asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_cancel_request_change_proc_index.s")
-// #clang-format on
+// clang-format off
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_cancel_request_change_proc_index.s")
+// clang-format on
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B8928_jp.s")
 
@@ -531,10 +528,9 @@ f32 Player_actor_GetController_old_recognize_percentR() {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B89F8_jp.s")
 
-// #clang-format off
-#pragma GLOBAL_ASM( \
-    "asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_cancel_request_change_proc_index_by_A_btn.s")
-// #clang-format on
+// clang-format off
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_cancel_request_change_proc_index_by_A_btn.s")
+// clang-format on
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B8B54_jp.s")
 
@@ -550,25 +546,21 @@ f32 Player_actor_GetController_old_recognize_percentR() {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B8EA8_jp.s")
 
-// #clang-format off
-#pragma GLOBAL_ASM( \
-    "asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_request_camera2_main_simple_fishing.s")
-// #clang-format on
+// clang-format off
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_request_camera2_main_simple_fishing.s")
+// clang-format on
 
-// #clang-format off
-#pragma GLOBAL_ASM( \
-    "asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_request_camera2_main_simple_return.s")
-// #clang-format on
+// clang-format off
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_request_camera2_main_simple_return.s")
+// clang-format on
 
-// #clang-format off
-#pragma GLOBAL_ASM( \
-    "asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_request_camera2_main_normal.s")
-// #clang-format on
+// clang-format off
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_request_camera2_main_normal.s")
+// clang-format on
 
-// #clang-format off
-#pragma GLOBAL_ASM( \
-    "asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_request_camera2_change_priority.s")
-// #clang-format on
+// clang-format off
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_request_camera2_change_priority.s")
+// clang-format on
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B9028_jp.s")
 
@@ -3477,9 +3469,8 @@ void Player_actor_Item_main_other_func1(Actor* actor, Game* game) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_dt.s")
 
-// #clang-format off
-#pragma GLOBAL_ASM( \
-    "asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_request_main_change_from_submenu.s")
+// clang-format off
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_request_main_change_from_submenu.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_request_change_item.s")
 
