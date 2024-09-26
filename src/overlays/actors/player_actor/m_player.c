@@ -4,6 +4,13 @@
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "m_room_type.h"
 #include "audio.h"
+#include "m_actor_dlftbls.h"
+#include "m_field_info.h"
+#include "m_name_table.h"
+#include "m_scene_table.h"
+#include "m_debug.h"
+#include "69E2C0.h"
+#include "67E840.h"
 
 extern ClObjPipe_Init Player_actor_OcInfoData_forStand;
 #if 0
@@ -27,6 +34,32 @@ ClObjTris_Init Player_actor_pclobj_tris_data_forItem = { { OC1_TYPE_10 | OC1_TYP
 #endif
 
 s8 Player_actor_Get_ItemKind(Actor* actor, s32 kind);
+void Player_actor_request_camera2_main_simple_fishing(Actor* actor, Game* game);
+void Player_actor_request_camera2_main_simple_return(Actor* actor, Game* game);
+void Player_actor_request_camera2_main_normal(Game* game);
+void Player_actor_request_camera2_change_priority(Game* game);
+
+void Player_actor_cancel_request_change_proc_index_by_A_btn(Actor* actor);
+void Player_actor_request_main_change_from_submenu(Actor* actor, Game* game);
+void Player_actor_request_change_item(Game* game);
+void Player_actor_cancel_request_change_proc_index(Actor* actor);
+void Player_actor_change_proc_index(Actor* actor, Game* game);
+void Player_actor_Reset_excute_cancel_wade(Actor* actor);
+void Player_actor_Set_OldAngle(Actor* actor);
+void Player_actor_Culc_player_frame_counter(Actor* actor);
+
+void Player_actor_set_eye_PositionAndAngle(Actor* actor);
+void Player_actor_sound_SetStatus(Actor* actor);
+void Player_actor_Set_Indoor_Camera_Index(Actor* actor, Game* game);
+void Player_actor_check_forward(Actor* actor, Game* game);
+void Player_actor_check_little_shake_tree(Actor* actor, Game* game);
+void Player_actor_check_shake_tree_timer(Actor* actor);
+void Player_actor_check_pitfall(Actor* actor, Game* game);
+void Player_actor_set_ripple(Actor* actor, Game* game);
+
+void Player_actor_SetPosition_OBJtoLine_forItem(Actor* actor, Game* game);
+void Player_actor_SetFootMark_for_settle_main(Actor* actor, Game* game);
+s32 Player_actor_CheckScene_AbleOutItem(s32 sceneNo);
 
 // m_player_controller
 
@@ -219,7 +252,6 @@ f32 Player_actor_GetController_old_recognize_percentR() {
     }
 }
 
-
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B3308_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B3334_jp.s")
@@ -330,11 +362,14 @@ f32 Player_actor_GetController_old_recognize_percentR() {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B4EF4_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B4F04_jp.s")
+// #clang-format off
+#pragma GLOBAL_ASM( \
+    "asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_SetPosition_OBJtoLine_forItem.s")
+// #clang-format on
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B5150_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B525C_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_set_eye_PositionAndAngle.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B527C_jp.s")
 
@@ -388,7 +423,7 @@ f32 Player_actor_GetController_old_recognize_percentR() {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B5B38_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B5B60_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_Set_OldAngle.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B5C58_jp.s")
 
@@ -430,7 +465,7 @@ f32 Player_actor_GetController_old_recognize_percentR() {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B6360_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B638C_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_CheckScene_AbleOutItem.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B63B4_jp.s")
 
@@ -460,7 +495,10 @@ f32 Player_actor_GetController_old_recognize_percentR() {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B8204_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B828C_jp.s")
+// #clang-format off
+#pragma GLOBAL_ASM( \
+    "asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_SetFootMark_for_settle_main.s")
+// #clang-format on
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B83B4_jp.s")
 
@@ -482,7 +520,10 @@ f32 Player_actor_GetController_old_recognize_percentR() {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B8874_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B88D4_jp.s")
+// #clang-format off
+#pragma GLOBAL_ASM( \
+    "asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_cancel_request_change_proc_index.s")
+// #clang-format on
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B8928_jp.s")
 
@@ -490,7 +531,10 @@ f32 Player_actor_GetController_old_recognize_percentR() {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B89F8_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B8B00_jp.s")
+// #clang-format off
+#pragma GLOBAL_ASM( \
+    "asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_cancel_request_change_proc_index_by_A_btn.s")
+// #clang-format on
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B8B54_jp.s")
 
@@ -506,13 +550,25 @@ f32 Player_actor_GetController_old_recognize_percentR() {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B8EA8_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B8F34_jp.s")
+// #clang-format off
+#pragma GLOBAL_ASM( \
+    "asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_request_camera2_main_simple_fishing.s")
+// #clang-format on
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B8F90_jp.s")
+// #clang-format off
+#pragma GLOBAL_ASM( \
+    "asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_request_camera2_main_simple_return.s")
+// #clang-format on
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B8FD0_jp.s")
+// #clang-format off
+#pragma GLOBAL_ASM( \
+    "asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_request_camera2_main_normal.s")
+// #clang-format on
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B9008_jp.s")
+// #clang-format off
+#pragma GLOBAL_ASM( \
+    "asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_request_camera2_change_priority.s")
+// #clang-format on
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B9028_jp.s")
 
@@ -552,9 +608,9 @@ f32 Player_actor_GetController_old_recognize_percentR() {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BA1DC_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BA388_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_check_little_shake_tree.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BA75C_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_check_shake_tree_timer.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BA7BC_jp.s")
 
@@ -568,13 +624,13 @@ f32 Player_actor_GetController_old_recognize_percentR() {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BAB34_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BAC20_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_check_pitfall.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BADFC_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BAE38_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BAF40_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_set_ripple.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BB098_jp.s")
 
@@ -594,9 +650,9 @@ f32 Player_actor_GetController_old_recognize_percentR() {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BB650_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BB6A4_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_Culc_player_frame_counter.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BB6B8_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_Reset_excute_cancel_wade.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BB724_jp.s")
 
@@ -616,7 +672,7 @@ f32 Player_actor_GetController_old_recognize_percentR() {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BBDE8_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BBE50_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_Set_Indoor_Camera_Index.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BBF38_jp.s")
 
@@ -651,9 +707,9 @@ void Player_actor_sound_SetStatus(Actor* actor) {
             status = Player_WALK;
             break;
         case 9:
-            status = Player_RUN; 
+            status = Player_RUN;
             break;
-        case 10: 
+        case 10:
             status = Player_DASH;
             break;
         default:
@@ -918,57 +974,224 @@ void Player_actor_sound_axe_ball_hit(Actor* actor) {
     Player_actor_set_sound_common2(actor, 0x449);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCC48_jp.s")
+// m_player_other_func
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCCD8_jp.s")
+void Player_actor_ct_other_func1(UNUSED Actor* actor, Game* game) {
+    Game_Play* play = (Game_Play*)game;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCCEC_jp.s")
+    play->submenu.unk_E2 = TRUE;
+    actor->unk_0B4 = 1;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCD0C_jp.s")
+    Actor_info_make_actor(&play->actorInfo, play, ACTOR_FIELD_DRAW, actor->world.pos.x, actor->world.pos.y,
+                          actor->world.pos.z, 0, 0, 0, -1, -1, -1, 0, -1, -1, -1);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCD64_jp.s")
+void Player_actor_setup_main_Wade_other_func1(UNUSED Actor* actor, Game* game) {
+    Game_Play* play = (Game_Play*)game;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCD84_jp.s")
+    play->objectExchangeBank.unk1820 = 1;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCDDC_jp.s")
+void Player_actor_setup_main_Wade_snowball_other_func1(Actor* actor, Game* game) {
+    Player_actor_setup_main_Wade_other_func1(actor, game);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCDEC_jp.s")
+void Player_actor_setup_main_Wade_other_func2(Actor* actor, Game* game) {
+    Player* player = (Player*)actor;
+    Game_Play* play = (Game_Play*)game;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCE30_jp.s")
+    mFI_SetBearActor(play, player->mainIndexData.wade.endPos, TRUE);
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCE50_jp.s")
+    common_data.unk_104AC = FALSE;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCE70_jp.s")
+void Player_actor_setup_main_Wade_snowball_other_func2(Actor* actor, Game* game) {
+    Player_actor_setup_main_Wade_other_func2(actor, game);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCE90_jp.s")
+void Player_actor_setup_main_Demo_wade_other_func2(Actor* actor, Game* game) {
+    Player* player = (Player*)actor;
+    Game_Play* play = (Game_Play*)game;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCEB0_jp.s")
+    mFI_SetBearActor(play, player->mainIndexData.wade.endPos, TRUE);
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCED4_jp.s")
+    common_data.unk_104AC = FALSE;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCEF8_jp.s")
+void Player_actor_main_Wade_other_func1(UNUSED Actor* actor, UNUSED Game* game) {
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCF68_jp.s")
+void Player_actor_main_Sitdown_wait_other_func2(Actor* actor, UNUSED Game* game) {
+    if (common_data.clip.myRoomClip != NULL) {
+        common_data.clip.myRoomClip->unk_54(&actor->world.pos);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCFE4_jp.s")
+void Player_actor_main_Relax_rod_other_func2(Actor* actor, Game* game) {
+    Player_actor_request_camera2_main_simple_fishing(actor, game);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BD0B8_jp.s")
+void Player_actor_main_Vib_rod_other_func2(Actor* actor, Game* game) {
+    Player_actor_request_camera2_main_simple_fishing(actor, game);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BD1A8_jp.s")
+void Player_actor_main_Collect_rod_other_func2(Actor* actor, Game* game) {
+    Player_actor_request_camera2_main_simple_return(actor, game);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BD218_jp.s")
+void Player_actor_main_Fly_rod_other_func2(Actor* actor, Game* game) {
+    Player_actor_request_camera2_main_simple_return(actor, game);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BD320_jp.s")
+void Player_actor_settle_main_Collect_rod_other_func2(UNUSED Actor* actor, Game* game) {
+    Player_actor_request_camera2_main_normal(game);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BD340_jp.s")
+void Player_actor_settle_main_Fly_rod_other_func2(UNUSED Actor* actor, Game* game) {
+    Player_actor_request_camera2_change_priority(game);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BD350_jp.s")
+void Player_actor_set_nextgoto_info_type0(Actor* actor) {
+    Game_Play* play = (Game_Play*)gamePT;
+    Player* player = get_player_actor_withoutCheck(play);
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BD360_jp.s")
+    if (goto_other_scene(play, &common_data.structureExitDoorData, TRUE) != TRUE) {
+        mDemo_End(actor);
+    } else {
+        mBGMPsComp_make_ps_wipe(0x428A);
+    }
+    player->updateSceneBGMode = TRUE;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BD380_jp.s")
+void Player_actor_set_nextgoto_info_type1(Actor* actor) {
+    Game_Play* play = (Game_Play*)gamePT;
+    Player* player = (Player*)actor;
+    s32 item = player->itemInFront;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BD3D8_jp.s")
+    if (goto_next_scene(play, item - DOOR_START, TRUE) != TRUE) {
+        mDemo_End(actor);
+    } else {
+        if (common_data.doorData.nextSceneId - 1 == SCENE_DEPART_2) {
+            mBGMForce_room_nonstop_start();
+        } else {
+            mBGMPsComp_make_ps_wipe(0x28A);
+        }
+    }
+}
+
+void Player_actor_check_nextgoto(Actor* actor, Game* game) {
+    Game_Play* play = (Game_Play*)game;
+    Player* player = (Player*)actor;
+    s32 door;
+
+    s32 item = (u16)player->itemInFront;
+
+    if (ACTOR_FGNAME_GET_F000((u16)player->itemInFront) == FGNAME_F000_4) {
+        if (mEv_CheckTitleDemo() <= 0 && play->unk_1EE3 == 0) {
+            door = item;
+
+            if (door >= EXIT_DOOR && door < EXIT_DOOR1) {
+                mDemo_Request(2, actor, Player_actor_set_nextgoto_info_type0);
+
+                if (player->updateSceneBGMode != FALSE) {
+                    mBGMPsComp_scene_mode(0xE);
+                    player->updateSceneBGMode = FALSE;
+                }
+            } else if (door >= DOOR0 && door < EXIT_DOOR) {
+                mDemo_Request(2, actor, Player_actor_set_nextgoto_info_type1);
+            }
+        }
+    }
+}
+
+void Player_actor_check_forward(Actor* actor, Game* game) {
+    s16 rot = actor->shape.rot.y;
+    xyz_t pos;
+    Player* player = (Player*)actor;
+    u16* item;
+
+    pos.x = actor->world.pos.x + 0.00061037019f * sins(rot);
+    pos.z = actor->world.pos.z + 0.00061037019f * coss(rot);
+
+    item = mFI_GetUnitFG(pos);
+
+    player->forwardUtPos.x = pos.x;
+    player->forwardUtPos.z = pos.z;
+
+    if (item != NULL) {
+        player->itemInFront = *item;
+    } else {
+        player->itemInFront = 0;
+    }
+
+    Player_actor_check_nextgoto(actor, game);
+
+    if (chkTrigger(A_BUTTON)) {
+        player->pressedAButton = TRUE;
+    } else {
+        player->pressedAButton = FALSE;
+    }
+}
+
+void Player_actor_move_other_func1(Actor* actor, Game* game) {
+    Player_actor_cancel_request_change_proc_index_by_A_btn(actor);
+    Player_actor_request_main_change_from_submenu(actor, game);
+    Player_actor_request_change_item(game);
+    Player_actor_cancel_request_change_proc_index(actor);
+    Player_actor_change_proc_index(actor, game);
+    Player_actor_Reset_excute_cancel_wade(actor);
+    Player_actor_Set_OldAngle(actor);
+    Player_actor_Culc_player_frame_counter(actor);
+}
+
+void Player_actor_move_other_func2(Actor* actor, Game* game) {
+    Player* player = (Player*)actor;
+
+    Player_actor_set_eye_PositionAndAngle(actor);
+    Player_actor_sound_SetStatus(actor);
+    Player_actor_Set_Indoor_Camera_Index(actor, game);
+    Player_actor_check_forward(actor, game);
+    mFI_SetPlayerWade(game);
+    Player_actor_check_little_shake_tree(actor, game);
+    Player_actor_check_shake_tree_timer(actor);
+    Player_actor_check_pitfall(actor, game);
+    Player_actor_set_ripple(actor, game);
+
+    PLAYERREG(87) = player->nowMainIndex;
+    PLAYERREG(88) = player->unk_0D04;
+    PLAYERREG(89) = actor->world.rot.y;
+    PLAYERREG(90) = actor->shape.rot.y;
+    PLAYERREG(91) = actor->world.pos.x;
+    PLAYERREG(92) = actor->world.pos.y;
+    PLAYERREG(93) = actor->world.pos.z;
+}
+
+void Player_actor_draw_other_func2(Actor* actor, Game* game) {
+    Player_actor_SetPosition_OBJtoLine_forItem(actor, game);
+}
+
+void Player_actor_change_main_index_other_func1(UNUSED Actor* actor, UNUSED Game* game) {
+}
+
+void Player_actor_change_main_index_other_func2(UNUSED Actor* actor, UNUSED Game* game) {
+}
+
+void Player_actor_settle_main_other_func2(Actor* actor, Game* game) {
+    Player_actor_SetFootMark_for_settle_main(actor, game);
+}
+
+void Player_actor_SetActorUki(Actor* actor, Game* game) {
+    Player* player = (Player*)actor;
+    Game_Play* play = (Game_Play*)game;
+
+    if (Player_actor_CheckScene_AbleOutItem(common_data.save.sceneNo) != FALSE && player->fishingRodActor == NULL) {
+        player->fishingRodActor = Actor_info_name_search(&play->actorInfo, ACTOR_UKI, ACTOR_PART_4);
+    }
+}
+
+void Player_actor_Item_main_other_func1(Actor* actor, Game* game) {
+    Player_actor_SetActorUki(actor, game);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BD3F8_jp.s")
 
@@ -3254,15 +3477,17 @@ void Player_actor_sound_axe_ball_hit(Actor* actor) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_dt.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808DD874_jp.s")
+// #clang-format off
+#pragma GLOBAL_ASM( \
+    "asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_request_main_change_from_submenu.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808DD8F0_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_request_change_item.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808DD9B4_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808DDA18_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808DDB34_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_change_proc_index.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/Player_actor_move.s")
 

@@ -78,7 +78,7 @@ void mDemo_Request(s32 arg0, struct Actor* actor, void* arg2);
 s32 mDemo_Check(s32 arg0, struct Actor* actor);
 // void func_8007CF34_jp();
 // void func_8007CF44_jp();
-// void func_8007CF84_jp();
+void mDemo_End(struct Actor*);
 void mDemo_Main(struct Game_Play* game_play);
 void func_8007CFD8_jp(struct Game_Play* game_play);
 // void func_8007D030_jp();

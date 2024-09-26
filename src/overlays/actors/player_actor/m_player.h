@@ -165,11 +165,13 @@ typedef struct Player {
     /* 0x123C */ UNK_TYPE1 unk_123C[0x8];
     /* 0x1244 */ SetMgrGetEndPosProc getEndPos;
     /* 0x1248 */ UNK_TYPE1 unk_1248[0x70];
-    /* 0x12B8 */ UNK_TYPE unk_12B8;
+    /* 0x12B8 */ s32 pressedAButton;
     /* 0x12BC */ s32 unk_12BC;
-    /* 0x12C0 */ u16 unk_12C0;
+    /* 0x12C0 */ u16 itemInFront;
     /* 0x12C2 */ UNK_TYPE1 unk_12C2[0x2];
-    /* 0x12C4 */ UNK_TYPE1 unk_12C4[0x14];
+    /* 0x12C4 */ xyz_t forwardUtPos;
+    /* 0x12D0 */ s8 updateSceneBGMode;
+    /* 0x12D1 */ UNK_TYPE1 unk_12D4[0x7];
 } Player; // size = 0x12D8
 
 void Player_actor_ct(Actor* thisx, struct Game_Play* game_play);
