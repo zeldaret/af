@@ -6,6 +6,7 @@
 struct Player;
 struct Game_Play;
 struct PrivateInfo;
+struct PlayerControllerData;
 
 // void func_800B1160_jp();
 // void func_800B11B0_jp();
@@ -158,7 +159,7 @@ s32 func_800B5718_jp(void);
 // void func_800B5880_jp();
 // void func_800B58C4_jp();
 // void func_800B5910_jp();
-// void func_800B593C_jp();
+struct PlayerControllerData* mPlib_Get_controller_data_for_title_demo_p(void);
 void func_800B594C_jp(void);
 // void func_800B5980_jp();
 // void func_800B5AA0_jp();
