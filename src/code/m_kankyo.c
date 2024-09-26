@@ -8,6 +8,8 @@
 #include "m_event.h"
 #include "audio.h"
 #include "m_all_grow.h"
+#include "prevent_bss_reordering.h"
+#include "prevent_bss_reordering2.h"
 #include "overlays/actors/player_actor/m_player.h"
 #include "m_player_lib.h"
 

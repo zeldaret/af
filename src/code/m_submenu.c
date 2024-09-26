@@ -202,7 +202,7 @@ void func_800C47B4_jp(UNUSED void* arg0, UNUSED void* arg1) {
         if (temp_v0_3 != NULL) {
             FaultDrawer_Printf("\n");
             FaultDrawer_Printf("player infomation\n");
-            FaultDrawer_Printf("main_index         :%d %d\n", temp_v0_3->unk_0CF0, temp_v0_3->unk_0CF4);
+            FaultDrawer_Printf("main_index         :%d %d\n", temp_v0_3->nowMainIndex, temp_v0_3->unk_0CF4);
             FaultDrawer_Printf("request_main_index :%d %d %d\n", temp_v0_3->unk_0D00, temp_v0_3->unk_0D04,
                                temp_v0_3->unk_0D08);
             FaultDrawer_Printf("pos :%d %d %d\n", (s32)temp_v0_3->actor.world.pos.x, (s32)temp_v0_3->actor.world.pos.y,

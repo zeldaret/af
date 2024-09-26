@@ -43,7 +43,7 @@ void mPlib_Object_Exchange_keep_Player_dt(struct Game_Play* game_play);
 // void func_800B1BE8_jp();
 struct Player* get_player_actor_withoutCheck(struct Game_Play* game_play);
 // void func_800B1C90_jp();
-s32 func_800B1CBC_jp(struct Game_Play*);
+s32 mPlib_get_player_actor_main_index(struct Game_Play*);
 // void func_800B1CE0_jp();
 // void func_800B1D14_jp();
 // void func_800B1D40_jp();

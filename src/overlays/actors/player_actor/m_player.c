@@ -2,6 +2,8 @@
 #include "m_player_lib.h"
 #include "game.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
+#include "m_room_type.h"
+#include "audio.h"
 
 extern ClObjPipe_Init Player_actor_OcInfoData_forStand;
 #if 0
@@ -33,7 +35,7 @@ s32 Player_actor_CheckController_forPickup(Game* game) {
         PlayerControllerData* data = mPlib_Get_controller_data_for_title_demo_p();
         Actor* actor = (Actor*)get_player_actor_withoutCheck((Game_Play*)game);
         Player* player = (Player*)actor;
-        s8 kind = Player_actor_Get_ItemKind(actor, player->unk_0CF0);
+        s8 kind = Player_actor_Get_ItemKind(actor, player->nowMainIndex);
 
         return !Player_ITEM_IS_VALID(kind) && (data->triggerButtonA != 0) && (data->buttonB != 0);
     }
@@ -44,7 +46,7 @@ s32 Player_actor_CheckController_forPickup(Game* game) {
 s32 Player_actor_CheckController_forAxe(Game* game) {
     Actor* actor = (Actor*)get_player_actor_withoutCheck((Game_Play*)game);
     Player* player = (Player*)actor;
-    s8 kind = Player_actor_Get_ItemKind(actor, player->unk_0CF0);
+    s8 kind = Player_actor_Get_ItemKind(actor, player->nowMainIndex);
 
     if (Player_ITEM_IS_AXE(kind)) {
         if (mEv_CheckTitleDemo() > 0) {
@@ -59,7 +61,7 @@ s32 Player_actor_CheckController_forAxe(Game* game) {
 s32 Player_actor_CheckController_forNet(Game* game) {
     Actor* actor = (Actor*)get_player_actor_withoutCheck((Game_Play*)game);
     Player* player = (Player*)actor;
-    s8 kind = Player_actor_Get_ItemKind(actor, player->unk_0CF0);
+    s8 kind = Player_actor_Get_ItemKind(actor, player->nowMainIndex);
 
     if (Player_ITEM_IS_NET(kind)) {
         if (mEv_CheckTitleDemo() > 0) {
@@ -74,7 +76,7 @@ s32 Player_actor_CheckController_forNet(Game* game) {
 s32 Player_actor_CheckController_forRod(Game* game) {
     Actor* actor = (Actor*)get_player_actor_withoutCheck((Game_Play*)game);
     Player* player = (Player*)actor;
-    s8 kind = Player_actor_Get_ItemKind(actor, player->unk_0CF0);
+    s8 kind = Player_actor_Get_ItemKind(actor, player->nowMainIndex);
 
     if (Player_ITEM_IS_ROD(kind)) {
         if (mEv_CheckTitleDemo() > 0) {
@@ -89,7 +91,7 @@ s32 Player_actor_CheckController_forRod(Game* game) {
 s32 Player_actor_CheckController_forScoop(Game* game) {
     Actor* actor = (Actor*)get_player_actor_withoutCheck((Game_Play*)game);
     Player* player = (Player*)actor;
-    s8 kind = Player_actor_Get_ItemKind(actor, player->unk_0CF0);
+    s8 kind = Player_actor_Get_ItemKind(actor, player->nowMainIndex);
 
     if (Player_ITEM_IS_SCOOP(kind)) {
         if (mEv_CheckTitleDemo() > 0) {
@@ -104,7 +106,7 @@ s32 Player_actor_CheckController_forScoop(Game* game) {
 s32 Player_actor_CheckController_forUmbrella(Game* game) {
     Actor* actor = (Actor*)get_player_actor_withoutCheck((Game_Play*)game);
     Player* player = (Player*)actor;
-    s8 kind = Player_actor_Get_ItemKind(actor, player->unk_0CF0);
+    s8 kind = Player_actor_Get_ItemKind(actor, player->nowMainIndex);
 
     if (Player_ITEM_IS_UMBRELLA(kind) != FALSE) {
         if (mEv_CheckTitleDemo() > 0) {
@@ -119,9 +121,9 @@ s32 Player_actor_CheckController_forUmbrella(Game* game) {
 int Player_actor_CheckController_forShake_tree(Game* game) {
     Actor* actor = (Actor*)get_player_actor_withoutCheck((Game_Play*)game);
     Player* player = (Player*)actor;
-    s8 kind = Player_actor_Get_ItemKind(actor, player->unk_0CF0);
+    s8 kind = Player_actor_Get_ItemKind(actor, player->nowMainIndex);
 
-    if (!Player_ITEM_KIND_CHECK(kind, 0, Player_ITEM_KIND_SCOOP) || Player_ITEM_IS_UMBRELLA(kind) != FALSE) {
+    if (!Player_ITEM_IS_VALID(kind) || Player_ITEM_IS_UMBRELLA(kind) != FALSE) {
         if (mEv_CheckTitleDemo() > 0) {
             PlayerControllerData* data = mPlib_Get_controller_data_for_title_demo_p();
             return (data->triggerButtonA != 0) && (data->buttonB == 0);
@@ -216,6 +218,7 @@ f32 Player_actor_GetController_old_recognize_percentR() {
         return gamePT->controller.lastAdjustedR;
     }
 }
+
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808B3308_jp.s")
 
@@ -629,103 +632,291 @@ f32 Player_actor_GetController_old_recognize_percentR() {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC3A0_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC3D0_jp.s")
+// m_player_audio
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC494_jp.s")
+void Player_actor_sound_SetStatus(Actor* actor) {
+    Player* player = (Player*)actor;
+    u8 status;
+    f32 speed;
+    f32 frameControlSpeed;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC4C4_jp.s")
+    status = player->nowMainIndex;
+    frameControlSpeed = player->skeletonInfo0.frameControl.speed;
+    speed = frameControlSpeed / 1.1999999f;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC4F0_jp.s")
+    switch (player->nowMainIndex) {
+        case 42:
+        case 74:
+        case 8:
+            status = Player_WALK;
+            break;
+        case 9:
+            status = Player_RUN; 
+            break;
+        case 10: 
+            status = Player_DASH;
+            break;
+        default:
+            status = Player_WAIT;
+            break;
+    }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC520_jp.s")
+    if (speed > 1.0f) {
+        speed = 1.0f;
+    } else if (speed < 0.0f) {
+        speed = 0.0f;
+    }
+    sAdo_PlayerStatusLevel(status, speed);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC584_jp.s")
+void Player_actor_set_sound_common1(xyz_t* pos, u16 id) {
+    sAdo_OngenTrgStart(id, pos);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC5C0_jp.s")
+void Player_actor_set_sound_common2(Actor* actor, u16 id) {
+    Player_actor_set_sound_common1(&actor->world.pos, id);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC5E8_jp.s")
+void Player_actor_sound_FootStep1(Actor* actor, u16 id) {
+    sAdo_PlyWalkSe(id, &actor->world.pos);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC610_jp.s")
+void Player_actor_sound_FootStep2(Actor* actor) {
+    s32 floorId;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC638_jp.s")
+    floorId = common_data.floorIdx;
+    if (common_data.floorIdx >= 0) {
+        if (common_data.floorIdx < 0x49) {
+            sAdo_PlyWalkSeRoom(floorId, &actor->world.pos);
+        }
+    } else {
+        Player_actor_sound_FootStep1(actor, sAdo_Get_WalkLabel(actor->colCheck.colResult.unk5));
+    }
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC658_jp.s")
+void Player_actor_sound_Tumble(Actor* actor) {
+    Player_actor_set_sound_common2(actor, sAdo_Get_KokeruLabel(actor->colCheck.colResult.unk5));
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC678_jp.s")
+void Player_actor_sound_AMI_FURI(Actor* actor) {
+    Player* player = (Player*)actor;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC6E0_jp.s")
+    Player_actor_set_sound_common1(&player->netPos, 0x5A);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC748_jp.s")
+void Player_actor_sound_AMI_HIT(Actor* actor) {
+    Player* player = (Player*)actor;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC798_jp.s")
+    Player_actor_set_sound_common1(&player->netPos, 0x5C);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC7D4_jp.s")
+void Player_actor_sound_AMI_GET(Actor* actor) {
+    Player* player = (Player*)actor;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC7F4_jp.s")
+    Player_actor_set_sound_common1(&player->netPos, 0x5D);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC814_jp.s")
+void Player_actor_sound_GASAGOSO(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x69);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC834_jp.s")
+void Player_actor_sound_AXE_FURI(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x5A);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC854_jp.s")
+void Player_actor_sound_AXE_HIT(Actor* actor, Game* game) {
+    Player* player = (Player*)actor;
+    UNUSED s32 pad;
+    UNUSED s32 pad2;
+    xyz_t pos;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC874_jp.s")
+    if ((mPlib_get_player_actor_main_index((Game_Play*)game) == Player_INDEX_REFLECT_AXE) != FALSE) {
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC894_jp.s")
+        pos.x = player->mainIndexData.reflectAxe.axeCommon.target.x;
+        pos.z = player->mainIndexData.reflectAxe.axeCommon.target.z;
+        pos.y = actor->world.pos.y + 20.0f;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC8B4_jp.s")
+        Player_actor_set_sound_common1(&pos, 0x41D);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC8D4_jp.s")
+void Player_actor_sound_AXE_CUT(Actor* actor, Game* game) {
+    Player* player = (Player*)actor;
+    UNUSED s32 pad;
+    UNUSED s32 pad2;
+    xyz_t pos;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC8F4_jp.s")
+    if ((mPlib_get_player_actor_main_index((Game_Play*)game) == Player_INDEX_SWING_AXE) != FALSE) {
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC914_jp.s")
+        pos.x = player->mainIndexData.swingAxe.axeCommon.target.x;
+        pos.z = player->mainIndexData.swingAxe.axeCommon.target.z;
+        pos.y = actor->world.pos.y + 20.0f;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC934_jp.s")
+        Player_actor_set_sound_common1(&pos, 0x41E);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC954_jp.s")
+void Player_actor_sound_SIT(Actor* actor, Game* game) {
+    if ((mPlib_get_player_actor_main_index((Game_Play*)game) == Player_INDEX_SITDOWN) != FALSE) {
+        Player* player = (Player*)actor;
+        s32 id = mRmTp_GetFtrActionSE(player->mainIndexData.sitdown.ftrIdx, mRmTp_CHAIR_ACTION_SIT);
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC974_jp.s")
+        if (id >= 0) {
+            Player_actor_set_sound_common2(actor, id);
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC994_jp.s")
+void Player_actor_sound_STANDUP(Actor* actor, s32 ftrIdx) {
+    s32 id = mRmTp_GetFtrActionSE(ftrIdx, mRmTp_CHAIR_ACTION_STAND);
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC9B4_jp.s")
+    if (id >= 0) {
+        Player_actor_set_sound_common2(actor, id);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC9D8_jp.s")
+void Player_actor_sound_JUMP(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x42A);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BC9FC_jp.s")
+void Player_actor_sound_LANDING(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x42B);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCA1C_jp.s")
+void Player_actor_sound_ITEM_GET(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x40);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCA3C_jp.s")
+void Player_actor_sound_BED_IN(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x415);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCA5C_jp.s")
+void Player_actor_sound_BED_NEGAERI(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x416);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCA7C_jp.s")
+void Player_actor_sound_BED_OUT(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x417);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCABC_jp.s")
+void Player_actor_sound_ROD_STROKE(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x109);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCAE0_jp.s")
+void Player_actor_sound_ROD_STROKE_small(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x445);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCB00_jp.s")
+void Player_actor_sound_ROD_BACK(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x10A);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCB20_jp.s")
+void Player_actor_sound_scoop1(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x11E);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCB40_jp.s")
+void Player_actor_sound_scoop_umeru(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x120);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCB60_jp.s")
+void Player_actor_sound_scoop_hit(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x121);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCB88_jp.s")
+void Player_actor_sound_scoop_shigemi(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x401);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCBA8_jp.s")
+void Player_actor_sound_ITEM_HORIDASHI(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x57);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCBC8_jp.s")
+void Player_actor_sound_slip(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x129);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCBE8_jp.s")
+void Player_actor_sound_tree_touch(xyz_t* pos) {
+    sAdo_OngenTrgStart(0x134, pos);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCC08_jp.s")
+void Player_actor_sound_tree_yurasu(xyz_t* pos) {
+    sAdo_OngenTrgStart(0x135, pos);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCC28_jp.s")
+void Player_actor_sound_kirikabu_scoop(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x148);
+}
+
+void Player_actor_sound_kirikabu_out(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x149);
+}
+
+void Player_actor_sound_coin_gasagoso(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x14A);
+}
+
+void Player_actor_sound_knock(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x14E);
+}
+void Player_actor_sound_araiiki(Actor* actor) {
+    s8 gender = common_data.privateInfo->gender;
+    u16 id = (gender == 0) ? 0x158 : 0x15A;
+
+    Player_actor_set_sound_common2(actor, id);
+}
+
+void Player_actor_sound_zassou_nuku(xyz_t* pos) {
+    sAdo_OngenTrgStart(0x15F, pos);
+}
+
+void Player_actor_sound_hachi_sasareru(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x160);
+}
+
+void Player_actor_sound_wear(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x11C);
+}
+
+void Player_actor_sound_dai_ue_kakunou(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x430);
+}
+
+void Player_actor_sound_umbrella_rotate(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x432);
+}
+
+u8 Player_actor_sound_Get_bgm_num_forCompletePayment(void) {
+    switch (common_data.paymentType) {
+        case 1:
+            return 0x49;
+        default:
+            return 0x4A;
+    }
+}
+
+void Player_actor_sound_camera_move1(void) {
+    sAdo_SysTrgStart(0x40D);
+}
+
+void Player_actor_sound_camera_move2(void) {
+    sAdo_SysTrgStart(0x40E);
+}
+
+void Player_actor_sound_karaburi(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x43A);
+}
+
+void Player_actor_sound_scoop_tree_hit(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x448);
+}
+
+void Player_actor_sound_scoop_item_hit(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x449);
+}
+
+void Player_actor_sound_axe_ball_hit(Actor* actor) {
+    Player_actor_set_sound_common2(actor, 0x449);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/player_actor/m_player/func_808BCC48_jp.s")
 
