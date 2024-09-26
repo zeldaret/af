@@ -10986,12 +10986,40 @@
     align: 0x1000
   - [0x151AC10]
 
-  - name: segment_0151B000
-    type: bin
+  - name: int_sum_blue_bureau01
+    dir: objects/furniture/int_sum_blue_bureau01
+    type: code
     start: 0x151B000
-    # vram:
+    vram: 0x06000000
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, int_sum_blue_bureau01]
+      - start: 0x151B000
+        type: .data
+        name: int_sum_blue_bureau01
+        subsegments:
+          - [0x151B000, pad]
+          - [0x151B008, af_palette, int_sum_blue_bureau01_pal]
+          - [0x151B028, ci4swap, int_sum_blue_bureau01_hiki_tex_txt, 32, 48, int_sum_blue_bureau01_pal]
+          - [0x151B328, ci4swap, int_sum_blue_bureau01_top_tex_txt, 16, 16, int_sum_blue_bureau01_pal]
+          - [0x151B3A8, ci4swap, int_sum_blue_bureau01_topin_tex_txt, 16, 16, int_sum_blue_bureau01_pal]
+          - [0x151B428, ci4swap, int_sum_blue_bureau01_side_tex_txt, 16, 64, int_sum_blue_bureau01_pal]
+          - [0x151B628, ci4swap, int_sum_blue_bureau01_front_tex_txt, 16, 64, int_sum_blue_bureau01_pal]
+          - [0x151B828, vtx, int_sum_blue_bureau01_v]
+          - [0x151BB58, af_gfx, sum_blue_bureau01_base_model]
+          - [0x151BC60, af_gfx, sum_blue_bureau01_door_model]
+          - [0x151BCF8, ckf_ckcb, cKF_ckcb_r_int_sum_blue_bureau01_tbl]
+          - [0x151BCFC, ckf_kn, cKF_kn_int_sum_blue_bureau01_tbl]
+          - [0x151BD08, ckf_c, cKF_c_int_sum_blue_bureau01_tbl]
+          - [0x151BD14, ckf_ds, cKF_ds_int_sum_blue_bureau01_tbl]
+          - [0x151BD6E, pad]
+          - [0x151BD70, ckf_ba, cKF_ba_r_int_sum_blue_bureau01]
+          - [0x151BD84, ckf_je, cKF_je_r_int_sum_blue_bureau01_tbl]
+          - [0x151BDA8, ckf_bs, cKF_bs_r_int_sum_blue_bureau01]
+          - [0x151BDB0]
   - [0x151BDC0]
 
   - name: segment_0151C000

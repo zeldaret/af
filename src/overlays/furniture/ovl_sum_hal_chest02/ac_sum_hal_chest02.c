@@ -60,32 +60,17 @@ void aSumHalChest02_mv(FurnitureActor* this, Actor* myRoomActor, Game_Play* game
 
 void aSumHalChest02_dw(FurnitureActor* this, Actor* myRoomActor UNUSED, Game_Play* game_play, u8* data UNUSED) {
     UNUSED s32 pad;
-    s32 temp = game_play->state.frameCounter & 1;
-    Mtx* mtx = &this->matrix[temp][0];
+    s32 mtxIdx = game_play->state.frameCounter & 1;
+    Mtx* mtx = &this->matrix[mtxIdx][0];
 
     OPEN_DISPS(game_play->state.gfxCtx);
     if (1) {}
-    if (1) {}
     gSPMatrix(POLY_OPA_DISP++, _Matrix_to_Mtx_new(game_play->state.gfxCtx),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    gDPSetTextureImage(POLY_OPA_DISP++, G_IM_FMT_I, G_IM_SIZ_16b, 1, &int_sum_hal_chest02_hiki_tex_txt);
-    gDPSetTile(POLY_OPA_DISP++, G_IM_FMT_I, G_IM_SIZ_16b, 0, 0x0000, G_TX_LOADTILE, 0, G_TX_MIRROR | G_TX_WRAP, 7,
-               G_TX_NOLOD, G_TX_MIRROR | G_TX_WRAP, 7, G_TX_NOLOD);
-    gDPLoadSync(POLY_OPA_DISP++);
-    gDPLoadBlock(POLY_OPA_DISP++, G_TX_LOADTILE, 0, 0, 0x7FF, 0);
-    gDPPipeSync(POLY_OPA_DISP++);
-    gDPSetTile(POLY_OPA_DISP++, G_IM_FMT_I, G_IM_SIZ_8b, 8, 0x0000, G_TX_RENDERTILE, 0, G_TX_MIRROR | G_TX_WRAP, 7,
-               G_TX_NOLOD, G_TX_MIRROR | G_TX_WRAP, 7, G_TX_NOLOD);
-    gDPSetTileSize(POLY_OPA_DISP++, G_TX_RENDERTILE, 0, 0, 0x00FC, 0x00FC);
-    gDPSetTextureImage(POLY_OPA_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, &int_sum_hal_chest02_pal);
-    gDPTileSync(POLY_OPA_DISP++);
-    gDPSetTile(POLY_OPA_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_4b, 0, 0x01F0, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP,
-               G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);
-    gDPLoadSync(POLY_OPA_DISP++);
-    gDPLoadTLUTCmd(POLY_OPA_DISP++, G_TX_LOADTILE, 15);
-    gDPPipeSync(POLY_OPA_DISP++);
+    gDPLoadTextureBlockS(POLY_OPA_DISP++, int_sum_hal_chest02_hiki_tex_txt, G_IM_FMT_I, G_IM_SIZ_8b, 64, 64, 0,
+                         G_TX_MIRROR | G_TX_WRAP, G_TX_MIRROR | G_TX_WRAP, 7, 7, G_TX_NOLOD, G_TX_NOLOD);
+    gDPLoadTLUT_pal16(POLY_OPA_DISP++, 15, int_sum_hal_chest02_pal);
     CLOSE_DISPS(game_play->state.gfxCtx);
-
     cKF_Si3_draw_R_SV(game_play, &this->skeletonInfo, mtx, NULL, NULL, NULL);
 }
 
