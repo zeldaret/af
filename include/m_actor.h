@@ -114,7 +114,7 @@ typedef struct Actor {
     /* 0x07C */ f32 terminalVelocity;
     /* 0x080 */ UNK_TYPE1 unk_080[0x4];
     /* 0x084 */ mCoBG_Check colCheck;
-    /* 0x0B4 */ UNK_TYPE1 unk_0B4[0x1];
+    /* 0x0B4 */ u8 unk_0B4;
     /* 0x0B5 */ u8 isDrawn;
     /* 0x0B6 */ s16 yawTowardsPlayer;
     /* 0x0B8 */ f32 xyzDistToPlayerSq;

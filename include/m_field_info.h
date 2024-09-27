@@ -10,6 +10,7 @@ struct Actor;
 struct Game_Play;
 struct FieldMakeBlockInfo;
 struct FieldMakeMoveActor;
+struct Game;
 
 #define FI_UT_WORLDSIZE_Z 40
 #define FI_UT_WORLDSIZE_Z_F (f32)FI_UT_WORLDSIZE_Z
@@ -171,7 +172,7 @@ s32 func_8008BE00_jp(struct FieldMakeMoveActor*, s32);
 // void func_8008BE38_jp();
 // void func_8008BF34_jp();
 // void func_8008BFC4_jp();
-// void func_8008C058_jp();
+void mFI_SetPlayerWade(struct Game*);
 s32 mFI_CheckPlayerWade(s32);
 s32 mFI_GetPlayerWade(void);
 // void func_8008C130_jp();

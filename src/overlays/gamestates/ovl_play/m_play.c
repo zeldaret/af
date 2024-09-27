@@ -254,7 +254,7 @@ void Game_play_fbdemo_wipe_move(Game_Play* game_play) {
                 case 4:
                 case 6:
                     if (S_back_title_timer == 300) {
-                        mBGMPsComp_make_ps_wipe(0x168, game_play);
+                        mBGMPsComp_make_ps_wipe(0x168);
                     }
 
                 case 5:
