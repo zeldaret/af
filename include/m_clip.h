@@ -237,9 +237,14 @@ typedef struct Clip_unk_0D8 {
     /* 0x00 */ Clip_unk_0D8_unk_00 unk_00;
 } Clip_unk_0D8; // size >= 0x4
 
+typedef struct Clip_BoxTrickData {
+    /* 0x000 */ u8 blockX;
+    /* 0x001 */ u8 blockZ;
+    /* 0x004 */ void* data;
+} Clip_BoxTrickData; // size = 0x8
 
 typedef struct Clip {
-    /* 0x000 */ s8 unk000[0x20];
+    /* 0x000 */ Clip_BoxTrickData boxTrickData[4];
     /* 0x020 */ s32 unk_020;
     /* 0x024 */ s8 unk_024[0x1C];
     /* 0x040 */ Clip_unk_040* unk_040;
