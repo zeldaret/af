@@ -1933,7 +1933,7 @@
     bss_size: 0x0
     subsegments:
       - [0x867DA0, c, overlays/actors/ovl_BoxTrick01/ac_boxTrick01]
-      - [0x868040, data, overlays/actors/ovl_BoxTrick01/ac_boxTrick01]
+      - [0x868040, .data, overlays/actors/ovl_BoxTrick01/ac_boxTrick01]
   - name: ovl_BoxTrick01_reloc
     type: code
     start: 0x8681B0

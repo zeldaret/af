@@ -5,14 +5,10 @@
 #include "m_actor.h"
 #include "unk.h"
 
-struct Game_Play;
-struct BoxTrick01;
-
-typedef void (*BoxTrick01ActionFunc)(struct BoxTrick01*, struct Game_Play*);
-
 typedef struct BoxTrick01 {
     /* 0x000 */ Actor actor;
-    /* 0x174 */ UNK_TYPE1 unk_174[0x8];
+    /* 0x174 */ s32 blockX;
+    /* 0x178 */ s32 blockZ;
 } BoxTrick01; // size = 0x17C
 
 #endif
