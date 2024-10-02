@@ -1,4 +1,3 @@
-#include "prevent_bss_reordering.h"
 #include "ac_structure.h"
 #include "macros.h"
 #include "m_actor_dlftbls.h"
@@ -8,6 +7,8 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "segment_symbols.h"
+#include "prevent_bss_reordering2.h"
+#include "prevent_bss_reordering.h"
 
 #define THIS ((Structure*)thisx)
 

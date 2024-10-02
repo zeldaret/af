@@ -1319,7 +1319,7 @@
     bss_size: 0x0
     subsegments:
       - [0x845C40, c, overlays/actors/ovl_Arrange_Room/ac_arrange_room]
-      - [0x846300, data, overlays/actors/ovl_Arrange_Room/ac_arrange_room]
+      - [0x846300, .data, overlays/actors/ovl_Arrange_Room/ac_arrange_room]
       - [0x846330, .rodata, overlays/actors/ovl_Arrange_Room/ac_arrange_room]
   - name: ovl_Arrange_Room_reloc
     type: code

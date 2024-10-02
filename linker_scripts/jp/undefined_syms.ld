@@ -1087,9 +1087,9 @@ D_6000580 = 0x06000580;
 
 // ovl_Arrange_Room
 
-D_60005B8 = 0x060005B8;
-D_6000E60 = 0x06000E60;
-D_6000F18 = 0x06000F18;
+rom_myhome2_floor_model = 0x060005B8;
+rom_myhome2_wall_model = 0x06000E60;
+rom_myhome2_wall_modelT = 0x06000F18;
 
 // ovl_My_Indoor
 
