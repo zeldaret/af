@@ -7,6 +7,11 @@
 #include "m_player_lib.h"
 #include "m_field_info.h"
 #include "69E2C0.h"
+#include "m_rcp.h"
+#include "macros.h"
+#include "gfx.h"
+
+#include "objects/object_00D5E000/obj_e_goza/obj_e_goza.h"
 
 #define THIS ((Goza*)thisx)
 
@@ -102,4 +107,45 @@ void aGOZ_actor_init(Actor *thisx, Game_Play *game_play) {
 /* Warning: struct struct_8085E9B0 is not defined (only forward-declared) */
 /* Warning: struct SceneDmaStatus is not defined (only forward-declared) */
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Goza/ac_goza/aGOZ_actor_draw.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Goza/ac_goza/aGOZ_actor_draw.s")
+
+extern Vtx D_60011D8;
+// TODO: change extern to static
+// static u8 D_80A76794_jp[0x18] = { 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1 };
+// static ShadowData D_80A767AC_jp = { 0x18, D_80A76794_jp, 60.0f, &D_60011D8, (Gfx *)0x06001358 };
+extern u8 D_80A76794_jp;
+extern ShadowData D_80A767AC_jp;
+
+
+void aGOZ_actor_draw(Actor *thisx, Game_Play *game_play) {
+    GraphicsContext* gfxCtx = game_play->state.gfxCtx;
+    u32 object = common_data.clip.structureClip->getObjectSegment(STRUCTURE_TYPE_GOZA);
+    u16* palette = common_data.clip.structureClip->getPalSegment(STRUCTURE_PALETTE_GOZA);
+    Mtx *mtx =_Matrix_to_Mtx_new(gfxCtx);
+
+    _texture_z_light_fog_prim_shadow(gfxCtx);
+    
+    OPEN_SHADOW_DISP(gfxCtx);
+    gSPSegment(__shadow_gfx++, 0x08, palette);
+    gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(object);
+    gSPSegment(__shadow_gfx++, 0x06, object);
+    gDPSetPrimColor(__shadow_gfx++, 0, 0x80, 0xff, 0xff, 0xff, 0xff);
+
+    mtx = _Matrix_to_Mtx_new(gfxCtx);
+    if (mtx != NULL) {
+        gSPMatrix(__shadow_gfx++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+        gSPDisplayList(__shadow_gfx++, goza_DL_model);
+    }
+    
+    CLOSE_SHADOW_DISP(gfxCtx);
+    
+    if (mtx != NULL) {
+        common_data.clip.unk_074->unk_04(game_play, &D_80A767AC_jp, 0x1B);
+    }
+}
+/* Warning: struct struct_8085E9B0 is not defined (only forward-declared) */
+/* Warning: struct SceneDmaStatus is not defined (only forward-declared) */
+/* Warning: struct WeatherClip is not defined (only forward-declared) */
+/* Warning: struct Clip_unk_07C_unk_0_arg0 is not defined (only forward-declared) */
+/* Warning: struct FurnitureActor is not defined (only forward-declared) */
+/* Warning: struct ToolClip is not defined (only forward-declared) */
