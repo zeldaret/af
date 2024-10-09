@@ -66,14 +66,13 @@ void aGOZ_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
 void aGOZ_wait(Goza* this UNUSED, Game_Play* game_play UNUSED) {
 }
 
-extern GozaActionFunc D_80A76820_jp[];
+extern GozaActionFunc process[];
 
 void aGOZ_setup_action(Goza* this, s32 processIndex) {
-    // TODO: replace extern above with commented out code
+    // TODO: replace extern with static
     // static GozaActionFunc process[] = { aGOZ_wait };
 
-    // this->structureActor.process = process[processIndex];
-    this->structureActor.process = D_80A76820_jp[processIndex];
+    this->structureActor.process = process[processIndex];
 }
 
 void aGOZ_actor_move(Actor* thisx, Game_Play* game_play) {
@@ -107,14 +106,15 @@ void aGOZ_actor_init(Actor *thisx, Game_Play *game_play) {
 /* Warning: struct struct_8085E9B0 is not defined (only forward-declared) */
 /* Warning: struct SceneDmaStatus is not defined (only forward-declared) */
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Goza/ac_goza/aGOZ_actor_draw.s")
-
-extern Vtx D_60011D8;
-// TODO: change extern to static
-// static u8 D_80A76794_jp[0x18] = { 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1 };
-// static ShadowData D_80A767AC_jp = { 0x18, D_80A76794_jp, 60.0f, &D_60011D8, (Gfx *)0x06001358 };
-extern u8 D_80A76794_jp;
-extern ShadowData D_80A767AC_jp;
+extern Vtx obj_e_goza_shadow_v;
+// TODO: change extern below to static
+// static u8 aGOZ_shadow_vtx_fix_flg_table[0x18] = { 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1 };
+// static ShadowData aGOZ_shadow_data = { 0x18, aGOZ_shadow_vtx_fix_flg_table, 60.0f, &obj_e_goza_shadow_v, (Gfx *)0x06001358 };
+// 
+// TODO: give 0x06001358 symbol obj_e_goza_shadow_model in undefined_syms.ld
+// (possible complication: address in undefined_syms.ld is different)
+extern u8 aGOZ_shadow_vtx_fix_flg_table;
+extern ShadowData aGOZ_shadow_data;
 
 
 void aGOZ_actor_draw(Actor *thisx, Game_Play *game_play) {
@@ -126,9 +126,9 @@ void aGOZ_actor_draw(Actor *thisx, Game_Play *game_play) {
     _texture_z_light_fog_prim_shadow(gfxCtx);
     
     OPEN_SHADOW_DISP(gfxCtx);
-    gSPSegment(__shadow_gfx++, 0x08, palette);
+    gSPSegment(__shadow_gfx++, G_MWO_SEGMENT_8, palette);
     gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(object);
-    gSPSegment(__shadow_gfx++, 0x06, object);
+    gSPSegment(__shadow_gfx++, G_MWO_SEGMENT_6, object);
     gDPSetPrimColor(__shadow_gfx++, 0, 0x80, 0xff, 0xff, 0xff, 0xff);
 
     mtx = _Matrix_to_Mtx_new(gfxCtx);
@@ -140,7 +140,7 @@ void aGOZ_actor_draw(Actor *thisx, Game_Play *game_play) {
     CLOSE_SHADOW_DISP(gfxCtx);
     
     if (mtx != NULL) {
-        common_data.clip.unk_074->unk_04(game_play, &D_80A767AC_jp, 0x1B);
+        common_data.clip.unk_074->unk_04(game_play, &aGOZ_shadow_data, STRUCTURE_TYPE_GOZA);
     }
 }
 /* Warning: struct struct_8085E9B0 is not defined (only forward-declared) */

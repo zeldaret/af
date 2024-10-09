@@ -18794,13 +18794,13 @@ aGOZ_actor_draw = 0x80A76610; // type:func
 // .data
 
 Goza_Profile = 0x80A76770; //
-D_80A76794_jp = 0x80A76794; //
-D_80A767AC_jp = 0x80A767AC; //
+aGOZ_shadow_vtx_fix_flg_table = 0x80A76794; //
+aGOZ_shadow_data = 0x80A767AC; //
 D_80A767C0_jp = 0x80A767C0; //
 D_80A76800_jp = 0x80A76800; //
 D_FLT_80A76808_jp = 0x80A76808; // type:f32
 D_FLT_80A76814_jp = 0x80A76814; // type:f32
-D_80A76820_jp = 0x80A76820; //
+process = 0x80A76820; //allow_duplicated:true
 
 // .rodata
 

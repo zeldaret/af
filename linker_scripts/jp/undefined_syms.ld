@@ -4299,7 +4299,7 @@ D_6015F38 = 0x06015F38;
 
 // ovl_Goza
 
-D_60011D8 = 0x060011D8;
+obj_e_goza_shadow_v = 0x060011D8;
 D_6015218 = 0x06015218;
 
 // ovl_Radio
