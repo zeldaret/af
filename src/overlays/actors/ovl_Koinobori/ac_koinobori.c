@@ -5,7 +5,7 @@
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "c_keyframe.h"
 #include "m_player_lib.h"
-#include "69E2C0.h"
+#include "m_demo.h"
 #include "m_field_info.h"
 #include "audio.h"
 #include "overlays/actors/player_actor/m_player.h"

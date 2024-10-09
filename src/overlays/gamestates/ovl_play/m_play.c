@@ -11,7 +11,7 @@
 #include "audio.h"
 #include "6EC9E0.h"
 #include "m_time.h"
-#include "69E2C0.h"
+#include "m_demo.h"
 #include "683030.h"
 #include "6E3240.h"
 #include "6C97F0.h"
@@ -387,7 +387,7 @@ void play_init(Game* game) {
     mTM_set_season();
     func_800B594C_jp();
     mSM_submenu_ovlptr_init(game_play);
-    func_8007CFD8_jp(game_play);
+    mDemo_Init(game_play);
     mEv_init(&game_play->event);
     initView(&game_play->view, gfxCtx);
     func_80064F48_jp(game_play);

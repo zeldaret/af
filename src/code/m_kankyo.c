@@ -8,8 +8,6 @@
 #include "m_event.h"
 #include "audio.h"
 #include "m_all_grow.h"
-#include "prevent_bss_reordering.h"
-#include "prevent_bss_reordering2.h"
 #include "overlays/actors/player_actor/m_player.h"
 #include "m_player_lib.h"
 
@@ -1468,6 +1466,8 @@ s32 mEnv_CheckNpcRoomPointLightNiceStatus() {
 
     return ret;
 }
+
+#include "prevent_bss_reordering2.h"
 
 void mEnv_TaimatuPointLightWaveMoveProc(Game_Play* play) {
     static s16 point_light_wave_counter;

@@ -17,6 +17,7 @@
 #include "m_snowman.h"
 #include "m_clip.h"
 #include "m_scene.h"
+#include "m_demo.h"
 
 typedef enum Season {
     /* 0 */ SPRING,
@@ -158,7 +159,8 @@ typedef struct CommonData {
     /* 0x10752 */ s16 goodsPower;
     /* 0x10754 */ DoorData doorData;
     /* 0x10764 */ DoorData structureExitDoorData;
-    /* 0x1077C */ UNK_TYPE1 unk_1077C[0x24];
+    /* 0x1077C */ DemoRequest startDemoRequest;
+    /* 0x1078C */ DoorData eventDoorData;
     /* 0x107A0 */ DoorData famicomEmuDoorData;
     /* 0x107B4 */ s8 unk_107B4;
     /* 0x107B5 */ s8 floorIdx;
@@ -166,7 +168,8 @@ typedef struct CommonData {
     /* 0x107B8 */ UNK_TYPE1 unk_107B8[0x27];
     /* 0x107FF*/  s8 paymentType;
     /* 0x107E0 */ s8 playerDecoyFlag;
-    /* 0x107E1 */ UNK_TYPE1 unk_107E1[0x3];
+    /* 0x107E1 */ s8 unk_107E1;
+    /* 0x107E2 */ s16 unk_107E2;
     /* 0x107E4 */ s16 unk_107E4; 
     /* 0x107E6 */ UNK_TYPE1 unk107E6[0x212];
     /* 0x109F8 */ u8 unk109F8;

@@ -7,7 +7,7 @@
 #include "m_player_lib.h"
 #include "sys_math_atan.h"
 #include "m_collision_bg.h"
-#include "69E2C0.h"
+#include "m_demo.h"
 #include "macros.h"
 
 void mRlib_spdXZ_to_spdF_Angle(xyz_t* speed, f32* speedf, s16* angle) {

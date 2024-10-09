@@ -7,6 +7,7 @@
 
 struct Game_Play;
 struct Actor;
+struct Color_RGBA8;
 
 typedef struct MessageWindow {
     /* 0x000 */ UNK_TYPE1 unk_000[0x1B0];
@@ -16,13 +17,14 @@ typedef struct MessageWindow {
 MessageWindow* mMsg_Get_base_window_p(void);
 // void func_8009D200_jp();
 // void func_8009D210_jp();
-// void func_8009D260_jp();
+s32 mMsg_Check_main_index(MessageWindow*, s32);
 // void func_8009D274_jp();
 UNK_RET mMsg_Check_not_series_main_wait(UNK_PTR arg0);
 UNK_RET mMsg_Check_main_hide(UNK_PTR arg0);
 // void func_8009D308_jp();
 // void func_8009D3B4_jp();
-// void func_8009D3E4_jp();
+s32 mMsg_request_main_appear(MessageWindow*, struct Actor*, s32 , struct Color_RGBA8*,
+                                    s32, s32);
 // void func_8009D458_jp();
 // void func_8009D4A0_jp();
 // void func_8009D4F0_jp();

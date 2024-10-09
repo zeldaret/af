@@ -9,7 +9,7 @@
 #include "m_name_table.h"
 #include "m_scene_table.h"
 #include "m_debug.h"
-#include "69E2C0.h"
+#include "m_demo.h"
 #include "67E840.h"
 
 extern ClObjPipe_Init Player_actor_OcInfoData_forStand;
