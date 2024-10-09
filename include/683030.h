@@ -6,6 +6,7 @@
 #include "z64math.h"
 
 struct Game_Play;
+struct Actor;
 
 typedef struct Camera2{
     /* 0x000 */ xyz_t unk0;
