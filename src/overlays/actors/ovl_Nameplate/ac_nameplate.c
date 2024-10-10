@@ -6,7 +6,7 @@
 #include "m_player_lib.h"
 #include "m_npc.h"
 #include "m_msg_main.h"
-#include "69E2C0.h"
+#include "m_demo.h"
 #include "overlays/actors/player_actor/m_player.h"
 #include "color.h"
 

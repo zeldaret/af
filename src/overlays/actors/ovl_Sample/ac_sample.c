@@ -2,7 +2,7 @@
 #include "m_actor_dlftbls.h"
 #include "m_object.h"
 #include "m_rcp.h"
-#include "69E2C0.h"
+#include "m_demo.h"
 #include "m_msg_main.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 

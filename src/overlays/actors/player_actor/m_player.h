@@ -123,6 +123,7 @@ typedef union Player_MainIndexData {
     u8 forceAlignment[72];
 } Player_MainIndexData;
 
+typedef void* (*PlayerUnk122CFunc)(struct Game_Play*);
 typedef void (*PlayerUnk1230Func)(struct Player*, struct Game_Play*, Actor*, s32, xyz_t*, f32);
 typedef f32 (*PlayerUnk1234Func)(struct Player*, struct Game_Play*);
 typedef void (*PlayerUnk1238Func)(struct Player*, struct Game_Play*, Actor*, s32);
@@ -158,7 +159,8 @@ typedef struct Player {
     /* 0x0FA4 */ ClObjTris colliderTris2;
     /* 0x0FB8 */ UNK_TYPE1 unk_0FB8[0x50];
     /* 0x1008 */ ClObjPipe colliderPipe;
-    /* 0x1024 */ UNK_TYPE1 unk_1024[0x20C];
+    /* 0x1024 */ UNK_TYPE1 unk_1024[0x208];
+    /* 0x122C */ PlayerUnk122CFunc unk_122C;
     /* 0x1230 */ PlayerUnk1230Func unk_1230;
     /* 0x1234 */ PlayerUnk1234Func unk_1234;
     /* 0x1238 */ PlayerUnk1238Func unk_1238;
