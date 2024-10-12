@@ -180,7 +180,8 @@ typedef struct CommonData {
     /* 0x10A3B */ UNK_TYPE1 unk_10A3B[0x1];
     /* 0x10A3C */ UNK_TYPE1 unk_10A3C[0x2C];
     /* 0x10A68 */ u8 unk_10A68;
-    /* 0x10A69 */ UNK_TYPE1 unk_10A69[0x3];
+    /* 0x10A69 */ UNK_TYPE1 unk_10A69[0x2];
+    /* 0x10A6B */ u8 unk10A6B;
     /* 0x10A6C */ xyz_t unk_10A6C;
     /* 0x10A78 */ u8 unk_10A78;
     /* 0x10A79 */ UNK_TYPE1 unk_10A79[0x7];

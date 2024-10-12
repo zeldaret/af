@@ -10,7 +10,7 @@
 #include "m_scene_table.h"
 #include "m_debug.h"
 #include "m_demo.h"
-#include "67E840.h"
+#include "m_bgm.h"
 
 extern ClObjPipe_Init Player_actor_OcInfoData_forStand;
 #if 0

@@ -110,7 +110,7 @@ s32 mEv_set_status(s32,s32);
 void mEv_clear_status(s32, s16);
 // void func_8007FEBC_jp();
 s32 mEv_check_status(s32, s16);
-// void func_8007FF8C_jp();
+s32 mEv_check_status_edge(s32);
 // void func_8007FFC4_jp();
 // void func_80080000_jp();
 // void func_80080040_jp();
