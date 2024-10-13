@@ -2,6 +2,7 @@
 #define C_6E3240_H
 
 #include "ultra64.h"
+#include "lb_rtc.h"
 
 struct Game;
 struct Game_Play;
@@ -61,7 +62,7 @@ void mSP_ExchangeLineUp_InGame(struct Game* game);
 // void func_800C2070_jp();
 // void func_800C22F8_jp();
 // void func_800C2354_jp();
-// void func_800C2380_jp();
+lbRTC_hour_t mSP_GetShopCloseTime_Bgm(void);
 // void func_800C23EC_jp();
 // void func_800C2480_jp();
 // void func_800C2578_jp();

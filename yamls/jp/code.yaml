@@ -14,7 +14,8 @@
       - [0x67C6B0, c, code/m_actor_dlftbls]
       - [0x67C890, c, code/m_actor_shadow]
       - [0x67D890, asm, code/67D890]
-      - [0x67E840, asm, code/67E840]
+      - [0x67E840, c, code/m_bgm]
+      - [0x683020, pad] #extra alignment
       - [0x683030, asm, code/683030]
       - [0x688CE0, c, code/m_choice_main]
       - [0x68AAF0, c, code/m_clip]
@@ -145,7 +146,8 @@
       - [0x724910, .data, code/m_actor]
       - [0x724930, .data, code/m_actor_dlftbls]
       - [0x726260, .data, code/m_actor_shadow]
-      - [0x7262C0, data, code/7262C0]
+      - [0x7262C0, .data, code/m_bgm]
+      - [0x726410, data, code/726410]
       - start: 0x726720
         type: .data
         name: code/m_choice_main
@@ -211,7 +213,7 @@
       - [0x739EA0, .rodata, code/m_actor_dlftbls]
       - [0x739EF0, .rodata, code/m_actor_shadow]
       - [0x739F20, rodata, code/739F20]
-      - [0x739F70, rodata, code/739F70]
+      - [0x739F70, .rodata, code/m_bgm]
       - [0x739FA0, rodata, code/739FA0]
       - [0x73A080, .rodata, code/m_choice_main]
       - [0x73A0F0, rodata, code/73A0F0]
@@ -292,6 +294,8 @@
       - { start: 0x73F4D0, type: .bss, vram: 0x8011B850, name: code/m_actor }
       - { start: 0x73F4D0, type: .bss, vram: 0x8011B890, name: code/m_actor_dlftbls }
       - { start: 0x73F4D0, type: bss, vram: 0x8011B8B0, name: code/8011B8B0 }
+      - { start: 0x74AB40, type: .bss, vram: 0x80123CD0, name: code/m_bgm}
+      - { start: 0x74AB40, type: bss, vram: 0x80123F80, name: code/80123F80}
       - { start: 0x73F4D0, type: .bss, vram: 0x80126E70, name: code/m_collision_obj }
       - { start: 0x74AB40, type: .bss, vram: 0x80126EA0, name: code/m_common_data }
       - { start: 0x75B600, type: bss, vram: 0x80137960, name: code/80137960 }

@@ -7,7 +7,7 @@
 #include "libc/math.h"
 #include "m_field_info.h"
 #include "audio.h"
-#include "67E840.h"
+#include "m_bgm.h"
 
 f32 direct_vector[DEMO_DIRECT_MAX][2] = { { -1.0f, 0.0f },      { -M_SQRT2, M_SQRT2 }, { 0.0f, 1.0f },
                                           { M_SQRT2, M_SQRT2 }, { 1.0f, 0.0f },        { M_SQRT2, -M_SQRT2 },
