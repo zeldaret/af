@@ -61,7 +61,30 @@ void aGOZ_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
                                                        STRUCTURE_TYPE_GOZA, &this->structureActor.actor);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Goza/ac_goza/aGOZ_set_bgOffset.s")
+extern mCoBG_unkStruct2 D_80A767C0_jp[];
+extern mCoBG_unkStruct2* D_80A76800_jp[];
+extern f32 D_FLT_80A76808_jp[3];
+extern f32 D_FLT_80A76814_jp[3];
+
+void aGOZ_set_bgOffset(Goza* this, s32 processIndex) {
+    s32 i;
+    xyz_t pos;
+    mCoBG_unkStruct2* offsetTable = D_80A76800_jp[processIndex];
+    
+    for (i = 0; i < 3; i++) {
+        pos.z = D_FLT_80A76814_jp[i] + this->structureActor.actor.home.pos.z;
+        
+        pos.x = D_FLT_80A76808_jp[0] + this->structureActor.actor.home.pos.x;
+        mCoBG_SetPluss5PointOffset_file(pos, *offsetTable, "../ac_goza_move.c_inc", 0x5D);
+        offsetTable++;
+        pos.x = D_FLT_80A76808_jp[1] + this->structureActor.actor.home.pos.x;
+        mCoBG_SetPluss5PointOffset_file(pos, *offsetTable, "../ac_goza_move.c_inc", 0x61);
+        offsetTable++;
+        pos.x = D_FLT_80A76808_jp[2] + this->structureActor.actor.home.pos.x;
+        mCoBG_SetPluss5PointOffset_file(pos, *offsetTable, "../ac_goza_move.c_inc", 0x65);
+        offsetTable++;
+    }
+}
 
 void aGOZ_wait(Goza* this UNUSED, Game_Play* game_play UNUSED) {
 }
@@ -107,11 +130,11 @@ void aGOZ_actor_init(Actor *thisx, Game_Play *game_play) {
 /* Warning: struct SceneDmaStatus is not defined (only forward-declared) */
 
 extern Vtx obj_e_goza_shadow_v;
-// TODO: change extern below to static
-// static u8 aGOZ_shadow_vtx_fix_flg_table[0x18] = { 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1 };
-// static ShadowData aGOZ_shadow_data = { 0x18, aGOZ_shadow_vtx_fix_flg_table, 60.0f, &obj_e_goza_shadow_v, (Gfx *)0x06001358 };
+// TODO: change extern below to explicit (not static)
+// u8 aGOZ_shadow_vtx_fix_flg_table[0x18] = { 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1 };
+// ShadowData aGOZ_shadow_data = { 0x18, aGOZ_shadow_vtx_fix_flg_table, 60.0f, &obj_e_goza_shadow_v, (Gfx *)0x06001358 };
 // 
-// TODO: give 0x06001358 symbol obj_e_goza_shadow_model in undefined_syms.ld
+// TODO: give 0x06001358 symbol obj_e_goza_shadowT_model in undefined_syms.ld
 // (possible complication: address in undefined_syms.ld is different)
 extern u8 aGOZ_shadow_vtx_fix_flg_table;
 extern ShadowData aGOZ_shadow_data;
