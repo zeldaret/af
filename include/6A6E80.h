@@ -5,19 +5,6 @@
 
 struct Game_Play;
 
-typedef struct Play80804480 {
-    /* 0x00 */ char unk00[0xDC];
-} Play80804480; // size = 0xDC
-
-// void func_800831E0_jp();
-// void func_800835AC_jp();
-void fbdemo_cleanup(Play80804480* arg0);
-s32 fbdemo_init(Play80804480* arg0, s32 arg1, s32 arg2, struct Game_Play* game_play);
-// void func_80083870_jp();
-void fbdemo_draw(Play80804480* arg0, Gfx** gfx);
-// void func_80083AB0_jp();
-void fbdemo_move(Play80804480* arg0);
-// void func_80083BF0_jp();
 void fbdemo_triforce_startup(void*);
 void fbdemo_triforce_init(void*);
 // void func_80083CE8_jp();

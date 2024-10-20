@@ -1,6 +1,7 @@
 #include "global.h"
 #include "m_play.h"
 #include "6A6E80.h"
+#include "m_fbdemo.h"
 #include "m_npc.h"
 #include "m_handbill.h"
 #include "m_field_make.h"
@@ -96,8 +97,7 @@ Game_PlayUnkFunc D_808043A8_jp[] = {
     Game_play_fbdemo_wipe_move,
 };
 
-static Play80804480 fbdemo;
-static void* B_8080455C_jp;
+static fbDemo fbdemo;
 static u16 S_back_title_timer;
 static u16 S_se_endcheck_timeout;
 
@@ -323,10 +323,10 @@ void Game_play_fbdemo_proc(Game_Play* game_play) {
 
     switch (game_play->unk_1EE2) {
         case 2:
-            if (fbdemo_init(&fbdemo, 10, 7, game_play) == 0) {
+            if (fbdemo_init(&fbdemo, 10, 7) == 0) {
                 game_play->unk_1EE2 = 0;
             } else {
-                B_8080455C_jp = gfxCtx->unk_008;
+                fbdemo.zBuffer = gfxCtx->unk_008;
                 game_play->unk_1EE2 = 3;
                 SetGameFrame(1);
             }

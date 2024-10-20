@@ -13,10 +13,10 @@ typedef struct {
     /* 0x2 */ s16 z;
 } Vec2s; // size = 0x4
 
-typedef struct {
+typedef struct xy_t {
     /* 0x0 */ f32 x;
-    /* 0x4 */ f32 z;
-} Vec2f; // size = 0x8
+    /* 0x4 */ f32 y;
+} xy_t; // size = 0x8
 
 typedef struct xyz_t {
     /* 0x0 */ f32 x;
