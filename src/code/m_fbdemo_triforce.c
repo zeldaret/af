@@ -76,7 +76,7 @@ void fbdemo_triforce_draw(fbDemoTriforce* this, Gfx** gfxP) {
         gSPMatrix(gfx++, mtxBuf, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     }
 
-    switch (this->textureNo) { 
+    switch (this->textureNo) {
         case 0:
             gSPDisplayList(gfx++, ef_wipe1_modelT);
             break;
