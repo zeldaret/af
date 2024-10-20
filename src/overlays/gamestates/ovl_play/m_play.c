@@ -1,6 +1,5 @@
 #include "global.h"
 #include "m_play.h"
-#include "6A6E80.h"
 #include "m_fbdemo.h"
 #include "m_npc.h"
 #include "m_handbill.h"
@@ -38,7 +37,6 @@
 #include "m_bgm.h"
 #include "overlays/gamestates/ovl_famicom_emu/famicom_emu.h"
 #include "overlays/gamestates/ovl_trademark/m_trademark.h"
-#include "m_fbdemo_wipe1.h"
 #include "m_scene_table.h"
 #include "zurumode.h"
 #include "prevent_bss_reordering.h"
@@ -48,54 +46,6 @@ void Gameplay_Scene_Read(Game_Play* game_play, s16 arg1);
 void Game_play_fbdemo_wipe_create(Game_Play* game_play);
 void Game_play_fbdemo_wipe_init(Game_Play* game_play);
 void Game_play_fbdemo_wipe_move(Game_Play* game_play);
-
-Game_PlayUnkFuncsStruct D_80804320_jp = {
-    fbdemo_wipe1_init,
-    (void*)none_proc1,
-    fbdemo_wipe1_move,
-    fbdemo_wipe1_draw,
-    fbdemo_wipe1_startup,
-    fbdemo_wipe1_settype,
-    fbdemo_wipe1_setcolor_rgba8888,
-    NULL,
-    fbdemo_wipe1_is_finish,
-};
-
-Game_PlayUnkFuncsStruct D_80804344_jp = {
-    fbdemo_triforce_init,
-    (void*)none_proc1,
-    fbdemo_triforce_move,
-    fbdemo_triforce_draw,
-    fbdemo_triforce_startup,
-    fbdemo_triforce_settype,
-    fbdemo_triforce_setcolor_rgba8888,
-    NULL,
-    fbdemo_triforce_is_finish,
-};
-
-Game_PlayUnkFuncsStruct D_80804368_jp = {
-    fbdemo_fade_init,
-    (void*)none_proc1,
-    fbdemo_fade_move,
-    fbdemo_fade_draw,
-    fbdemo_fade_startup,
-    fbdemo_fade_settype,
-    fbdemo_fade_setcolor_rgba8888,
-    NULL,
-    fbdemo_fade_is_finish,
-};
-
-Game_PlayUnkFuncsStruct* D_8080438C_jp[] = {
-    &D_80804320_jp, &D_80804344_jp, &D_80804368_jp, &D_80804368_jp, &D_80804344_jp, &D_80804344_jp, &D_80804368_jp,
-};
-
-typedef void (*Game_PlayUnkFunc)(Game_Play* game_play);
-Game_PlayUnkFunc D_808043A8_jp[] = {
-    (void*)none_proc1,
-    Game_play_fbdemo_wipe_create,
-    Game_play_fbdemo_wipe_init,
-    Game_play_fbdemo_wipe_move,
-};
 
 static fbDemo fbdemo;
 static u16 S_back_title_timer;
@@ -131,31 +81,70 @@ void Game_play_camera_proc(Game_Play* game_play) {
 }
 
 void Game_play_fbdemo_wipe_destroy(Game_Play* game_play) {
-    game_play->unk_1EE8.unk_21C.unk_04(&game_play->unk_1EE8, game_play);
+    game_play->unk_1EE8.fbdemoInfo.destroy(&game_play->unk_1EE8, game_play);
     game_play->unk_1EE3 = 0;
-    game_play->unk_1EE8.unk_218 = -1;
+    game_play->unk_1EE8.wipeType = -1;
 }
 
 void Game_play_fbdemo_wipe_create_sub(Game_Play* game_play) {
-    s32 sp1C = game_play->unk_1EE1;
+    static void* wipe_normal_proc[] = {
+        fbdemo_wipe1_init,
+        none_proc1,
+        fbdemo_wipe1_move,
+        fbdemo_wipe1_draw,
+        fbdemo_wipe1_startup,
+        fbdemo_wipe1_settype,
+        fbdemo_wipe1_setcolor_rgba8888,
+        NULL,
+        fbdemo_wipe1_is_finish,
+    };
+    static void* wipe_triforce_proc[] = {
+        fbdemo_triforce_init,
+        none_proc1,
+        fbdemo_triforce_move,
+        fbdemo_triforce_draw,
+        fbdemo_triforce_startup,
+        fbdemo_triforce_settype,
+        fbdemo_triforce_setcolor_rgba8888,
+        NULL,
+        fbdemo_triforce_is_finish,
+    };
+    static void* wipe_fade_proc[] = {
+        fbdemo_fade_init,
+        none_proc1,
+        fbdemo_fade_move,
+        fbdemo_fade_draw,
+        fbdemo_fade_startup,
+        fbdemo_fade_settype,
+        fbdemo_fade_setcolor_rgba8888,
+        NULL,
+        fbdemo_fade_is_finish,
+    };
+
+    static void* wipe_proc[] = {
+        wipe_normal_proc,   wipe_triforce_proc, wipe_fade_proc, wipe_fade_proc,
+        wipe_triforce_proc, wipe_triforce_proc, wipe_fade_proc,
+    };
+
+    s32 type = game_play->unk_1EE1;
 
     bzero(&game_play->unk_1EE8, sizeof(Game_Play_Unk_1EE8));
-    if (sp1C >= 7) {
-        sp1C = 1;
+    if (type >= 7) {
+        type = 1;
     }
-    game_play->unk_1EE8.unk_218 = sp1C;
+    game_play->unk_1EE8.wipeType = type;
 
     {
-        Game_PlayUnkFuncsStruct* temp_v0 = D_8080438C_jp[sp1C];
+        Game_PlayfbDemoInfo* info = (Game_PlayfbDemoInfo*)wipe_proc[type];
 
-        game_play->unk_1EE8.unk_21C.unk_00 = temp_v0->unk_00;
-        game_play->unk_1EE8.unk_21C.unk_04 = temp_v0->unk_04;
-        game_play->unk_1EE8.unk_21C.unk_08 = temp_v0->unk_08;
-        game_play->unk_1EE8.unk_21C.unk_0C = temp_v0->unk_0C;
-        game_play->unk_1EE8.unk_21C.unk_10 = temp_v0->unk_10;
-        game_play->unk_1EE8.unk_21C.unk_14 = temp_v0->unk_14;
-        game_play->unk_1EE8.unk_21C.unk_18 = temp_v0->unk_18;
-        game_play->unk_1EE8.unk_21C.unk_20 = temp_v0->unk_20;
+        game_play->unk_1EE8.fbdemoInfo.init = info->init;
+        game_play->unk_1EE8.fbdemoInfo.destroy = info->destroy;
+        game_play->unk_1EE8.fbdemoInfo.move = info->move;
+        game_play->unk_1EE8.fbdemoInfo.draw = info->draw;
+        game_play->unk_1EE8.fbdemoInfo.startUp = info->startUp;
+        game_play->unk_1EE8.fbdemoInfo.setType = info->setType;
+        game_play->unk_1EE8.fbdemoInfo.setColor = info->setColor;
+        game_play->unk_1EE8.fbdemoInfo.isFinish = info->isFinish;
     }
 }
 
@@ -168,22 +157,22 @@ void Game_play_fbdemo_wipe_init(Game_Play* game_play) {
     Game_Play_Unk_1EE8* temp_s0 = &game_play->unk_1EE8;
     u8 var_v0;
 
-    game_play->unk_1EE8.unk_21C.unk_00(temp_s0);
+    game_play->unk_1EE8.fbdemoInfo.init(temp_s0);
 
-    common_data.wipeRate = 14;
+    common_data.wipeRate = 14; 
     common_data.fadeRate = 30;
 
-    temp_s0->unk_21C.unk_18(temp_s0, 0);
+    temp_s0->fbdemoInfo.setColor(temp_s0, 0);
 
     var_v0 = game_play->unk_1EE0;
-    if (temp_s0->unk_218 == 4) {
+    if (temp_s0->wipeType == 4) {
         var_v0 |= 0x80;
-    } else if (temp_s0->unk_218 == 5) {
+    } else if (temp_s0->wipeType == 5) {
         var_v0 |= 0x40;
     }
 
-    temp_s0->unk_21C.unk_14(temp_s0, var_v0);
-    temp_s0->unk_21C.unk_10(temp_s0);
+    temp_s0->fbdemoInfo.setType(temp_s0, var_v0);
+    temp_s0->fbdemoInfo.startUp(temp_s0);
 
     game_play->unk_1EE3 = 3;
     S_back_title_timer = 300;
@@ -221,7 +210,7 @@ void Game_play_fbdemo_wipe_move(Game_Play* game_play) {
     s32 sp20 = 1;
     Game_Play_Unk_1EE8* sp18 = &game_play->unk_1EE8;
 
-    if (game_play->unk_1EE8.unk_21C.unk_20(sp18, game_play) != 0) {
+    if (game_play->unk_1EE8.fbdemoInfo.isFinish(sp18) != 0) {
         if ((game_play->unk_1EE0 != 1) && (game_play->unk_1EE0 != 11)) {
             if (S_se_endcheck_timeout != 0) {
                 S_se_endcheck_timeout--;
@@ -301,15 +290,22 @@ void Game_play_fbdemo_wipe_move(Game_Play* game_play) {
             }
         }
     } else {
-        sp18->unk_21C.unk_08(sp18, game_GameFrame);
+        sp18->fbdemoInfo.move(sp18, game_GameFrame);
     }
 }
+    typedef void (*PlayWipeProc)(Game_Play* game_play);
 
 void Game_play_fbdemo_wipe_proc(Game_Play* game_play) {
+    static PlayWipeProc wipe_proc[] = {
+    (void*)none_proc1,
+    Game_play_fbdemo_wipe_create,
+    Game_play_fbdemo_wipe_init,
+    Game_play_fbdemo_wipe_move,
+};
     if ((game_play->unk_1EE3 == 0) && (game_play->unk_1EE0 != 0)) {
         game_play->unk_1EE3 = 1;
     }
-    D_808043A8_jp[game_play->unk_1EE3](game_play);
+    wipe_proc[game_play->unk_1EE3](game_play);
 }
 
 Gfx* game_play_set_fog(Game_Play* game_play, Gfx* gfx) {
@@ -623,7 +619,7 @@ s32 makeBumpTexture(Game_Play* game_play, GraphicsContext* __gfxCtx, GraphicsCon
             }
             SET_FULLSCREEN_VIEWPORT(&view);
             showView1(&view, 0xF, &sp194);
-            game_play->unk_1EE8.unk_21C.unk_0C(&game_play->unk_1EE8, &sp194);
+            game_play->unk_1EE8.fbdemoInfo.draw(&game_play->unk_1EE8.fbdemo, &sp194);
         }
 
         fbdemo_fade_draw(&game_play->unk_2128, &sp194);
