@@ -38,7 +38,7 @@
 #include "m_bgm.h"
 #include "overlays/gamestates/ovl_famicom_emu/famicom_emu.h"
 #include "overlays/gamestates/ovl_trademark/m_trademark.h"
-#include "6A7D20.h"
+#include "m_fbdemo_wipe1.h"
 #include "m_scene_table.h"
 #include "zurumode.h"
 #include "prevent_bss_reordering.h"
@@ -170,8 +170,8 @@ void Game_play_fbdemo_wipe_init(Game_Play* game_play) {
 
     game_play->unk_1EE8.unk_21C.unk_00(temp_s0);
 
-    common_data.unk_1014A = 14;
-    common_data.unk_10149 = 30;
+    common_data.wipeRate = 14;
+    common_data.fadeRate = 30;
 
     temp_s0->unk_21C.unk_18(temp_s0, 0);
 
