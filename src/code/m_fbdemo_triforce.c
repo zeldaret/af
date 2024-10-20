@@ -1,6 +1,5 @@
 #include "global.h"
 
-
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_fbdemo_triforce/fbdemo_triforce_startup.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_fbdemo_triforce/fbdemo_triforce_init.s")

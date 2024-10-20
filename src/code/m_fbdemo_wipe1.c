@@ -29,7 +29,7 @@ void fbdemo_wipe1_draw(fbDemoWipe1* this, Gfx** gfxP) {
     Gfx* gfx = *gfxP;
     Mtx* modelView;
     UNUSED s32 pad[5];
-    
+
     Gfx* texScroll;
 
     modelView = this->modelView[this->frame];
@@ -71,7 +71,6 @@ void fbdemo_wipe1_startup(fbDemoWipe1* this) {
     guLookAt(&this->lookAt, 0.0f, 0.0f, 400.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 }
 
-
 void fbdemo_wipe1_settype(fbDemoWipe1* this, s32 type) {
     if (type == 1) {
         this->direction = 1;
@@ -82,14 +81,14 @@ void fbdemo_wipe1_settype(fbDemoWipe1* this, s32 type) {
     this->texY = 0x264;
 }
 
-void fbdemo_wipe1_setcolor_rgba8888(fbDemoWipe1* this, u32 color) { 
-    this->color.rgba = color; 
+void fbdemo_wipe1_setcolor_rgba8888(fbDemoWipe1* this, u32 color) {
+    this->color.rgba = color;
 }
 
-void fbdemo_wipe1_setaltcolor_rgba8888(fbDemoWipe1* this, u32 color) { 
-    this->altColor.rgba = color; 
+void fbdemo_wipe1_setaltcolor_rgba8888(fbDemoWipe1* this, u32 color) {
+    this->altColor.rgba = color;
 }
 
-u8 fbdemo_wipe1_is_finish(fbDemoWipe1* this) { 
-    return this->finished; 
+u8 fbdemo_wipe1_is_finish(fbDemoWipe1* this) {
+    return this->finished;
 }

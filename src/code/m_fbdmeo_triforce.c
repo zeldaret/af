@@ -26,19 +26,19 @@ fbDemoTriforce* fbdemo_triforce_init(fbDemoTriforce* this) {
     return this;
 }
 
-void fbdemo_triforce_setrate(s32* rate, f32 scale){
-    *rate =  548.0f * scale;
+void fbdemo_triforce_setrate(s32* rate, f32 scale) {
+    *rate = 548.0f * scale;
 }
 
 void fbdemo_triforce_move(fbDemoTriforce* this, s32 rate) {
     s32 moveRate;
     UNUSED s32 txt = this->txt;
     f32 temp = (1.0f - (this->txt / 548.0f));
-    
-    moveRate =  this->frame + (s32)(12.0f * temp);
+
+    moveRate = this->frame + (s32)(12.0f * temp);
 
     if (this->direction != 0) {
-        
+
         this->txt += (moveRate << 1) / rate;
         if (this->txt >= 548) {
             this->txt = 548;
@@ -66,17 +66,16 @@ void fbdemo_triforce_draw(fbDemoTriforce* this, Gfx** gfxP) {
     gSPMatrix(gfx++, &this->lookAtMtx, G_MTX_MUL | G_MTX_PROJECTION);
 
     scale = 0.019f;
-    
-    if(1.0f != scale){
-        Mtx* mtxBuf; 
-        
+
+    if (1.0f != scale) {
+        Mtx* mtxBuf;
+
         mtxBuf = gfxalloc(&gfx, sizeof(Mtx));
-        
+
         guScale(mtxBuf, 0.019f, 0.019f, 1.0f);
         gSPMatrix(gfx++, mtxBuf, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-        
     }
-    
+
     switch (this->textureNo) {
         case 0:
             gSPDisplayList(gfx++, ef_wipe1_modelT);
@@ -92,22 +91,19 @@ void fbdemo_triforce_draw(fbDemoTriforce* this, Gfx** gfxP) {
     *gfxP = gfx;
 }
 
-
-u8 fbdemo_triforce_is_finish(fbDemoTriforce* this) { 
-    return this->finished; 
+u8 fbdemo_triforce_is_finish(fbDemoTriforce* this) {
+    return this->finished;
 }
 
 void fbdemo_triforce_settype(fbDemoTriforce* this, s32 type) {
-  this->textureNo = ((type & 0x80) != 0) ? 1 : ((type & 0x40) != 0 ? 2 : 0);
+    this->textureNo = ((type & 0x80) != 0) ? 1 : ((type & 0x40) != 0 ? 2 : 0);
 
-    if((type & 0xF) == 1){
+    if ((type & 0xF) == 1) {
         this->direction = 0;
-    }
-    else{
-        this->direction = 1;   
+    } else {
+        this->direction = 1;
     }
 }
 
 void fbdemo_triforce_setcolor_rgba8888(UNUSED fbDemoTriforce* this, UNUSED u32* rgba) {
-    
 }

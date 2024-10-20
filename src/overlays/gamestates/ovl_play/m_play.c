@@ -159,7 +159,7 @@ void Game_play_fbdemo_wipe_init(Game_Play* game_play) {
 
     game_play->unk_1EE8.fbdemoInfo.init(temp_s0);
 
-    common_data.wipeRate = 14; 
+    common_data.wipeRate = 14;
     common_data.fadeRate = 30;
 
     temp_s0->fbdemoInfo.setColor(temp_s0, 0);
@@ -293,15 +293,15 @@ void Game_play_fbdemo_wipe_move(Game_Play* game_play) {
         sp18->fbdemoInfo.move(sp18, game_GameFrame);
     }
 }
-    typedef void (*PlayWipeProc)(Game_Play* game_play);
+typedef void (*PlayWipeProc)(Game_Play* game_play);
 
 void Game_play_fbdemo_wipe_proc(Game_Play* game_play) {
     static PlayWipeProc wipe_proc[] = {
-    (void*)none_proc1,
-    Game_play_fbdemo_wipe_create,
-    Game_play_fbdemo_wipe_init,
-    Game_play_fbdemo_wipe_move,
-};
+        (void*)none_proc1,
+        Game_play_fbdemo_wipe_create,
+        Game_play_fbdemo_wipe_init,
+        Game_play_fbdemo_wipe_move,
+    };
     if ((game_play->unk_1EE3 == 0) && (game_play->unk_1EE0 != 0)) {
         game_play->unk_1EE3 = 1;
     }
