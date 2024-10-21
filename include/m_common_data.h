@@ -129,8 +129,8 @@ typedef struct CommonData {
     /* 0x10141 */ u8 fish_location;
     /* 0x10142 */ u8 unk_10142[0x6];
     /* 0x10148 */ u8 unk_10148;
-    /* 0x10149 */ u8 unk_10149;
-    /* 0x1014A */ u8 unk_1014A;
+    /* 0x10149 */ u8 fadeRate;
+    /* 0x1014A */ u8 wipeRate;
     /* 0x1014B */ u8 unk_1014B; // named "wipeType" in AC GCN decomp
     /* 0x1014C */ s16 unk_1014C;
     /* 0x1014E */ s16 unk_1014E;

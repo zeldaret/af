@@ -19,7 +19,9 @@
 #include "m_lights.h"
 #include "m_collision_bg.h"
 #include "m_pause.h"
-#include "6A8180.h"
+#include "m_fbdemo_fade.h"
+#include "m_fbdemo_wipe1.h"
+#include "m_fbdemo_triforce.h"
 #include "m_scene.h"
 #include "683030.h"
 
@@ -31,32 +33,38 @@ struct SceneDmaStatus;
 typedef void (*Game_Play_unk_1C58)(struct Actor*);
 typedef UNK_RET (*Game_Play_unk_2208)(struct Actor*, struct Game_Play*);
 
-typedef void (*Game_PlayUnkFunc_00)(void*);
-typedef void (*Game_PlayUnkFunc_04)(void*, struct Game_Play*);
-typedef void (*Game_PlayUnkFunc_08)(void*, u8);
-typedef void (*Game_PlayUnkFunc_0C)(void*, Gfx**);
-typedef void (*Game_PlayUnkFunc_10)(void*);
-typedef void (*Game_PlayUnkFunc_14)(void*, s32);
-typedef void (*Game_PlayUnkFunc_18)(void*, s32);
-typedef void (*Game_PlayUnkFunc_1C)(void);
-typedef s32 (*Game_PlayUnkFunc_20)(void*, struct Game_Play*);
+typedef void (*FBDemoInitProc)(void*);
+typedef void (*FBDemoDestroyProc)(void*, struct Game_Play*);
+typedef void (*FBDemoMoveProc)(void*, u8);
+typedef void (*FBDemoDrawProc)(void*, Gfx**);
+typedef void (*FBDemoStartUpProc)(void*);
+typedef void (*FBDemoSetTypeProc)(void*, s32);
+typedef void (*FBDemoSetColorProc)(void*, u32);
+typedef void (*FBDemoUnkProc)(void);
+typedef s32 (*FBDemoIsFinishProc)(void*);
 
-typedef struct Game_PlayUnkFuncsStruct {
-    /* 0x00 */ Game_PlayUnkFunc_00 unk_00;
-    /* 0x04 */ Game_PlayUnkFunc_04 unk_04;
-    /* 0x08 */ Game_PlayUnkFunc_08 unk_08;
-    /* 0x0C */ Game_PlayUnkFunc_0C unk_0C;
-    /* 0x10 */ Game_PlayUnkFunc_10 unk_10;
-    /* 0x14 */ Game_PlayUnkFunc_14 unk_14;
-    /* 0x18 */ Game_PlayUnkFunc_18 unk_18;
-    /* 0x1C */ Game_PlayUnkFunc_1C unk_1C;
-    /* 0x20 */ Game_PlayUnkFunc_20 unk_20;
-} Game_PlayUnkFuncsStruct; // size = 0x24
+typedef struct Game_PlayfbDemoInfo {
+    /* 0x00 */ FBDemoInitProc init;
+    /* 0x04 */ FBDemoDestroyProc destroy;
+    /* 0x08 */ FBDemoMoveProc move;
+    /* 0x0C */ FBDemoDrawProc draw;
+    /* 0x10 */ FBDemoStartUpProc startUp;
+    /* 0x14 */ FBDemoSetTypeProc setType;
+    /* 0x18 */ FBDemoSetColorProc setColor;
+    /* 0x1C */ FBDemoUnkProc unk_1C;
+    /* 0x20 */ FBDemoIsFinishProc isFinish;
+} Game_PlayfbDemoInfo; // size = 0x24
+
+typedef union Game_Play_FBDemo {
+    fbDemoWipe1 wipe1;
+    fbDemoTriforce triforce;
+    fbDemoFade fade;
+} Game_Play_FBDemo; // size = 0x218
 
 typedef struct Game_Play_Unk_1EE8 {
-    /* 0x000 */ char unk000[0x218];
-    /* 0x218 */ s32 unk_218;
-    /* 0x21C */ Game_PlayUnkFuncsStruct unk_21C;
+    /* 0x000 */ Game_Play_FBDemo fbdemo;
+    /* 0x218 */ s32 wipeType;
+    /* 0x21C */ Game_PlayfbDemoInfo fbdemoInfo;
 } Game_Play_Unk_1EE8; // size = 0x240
 
 typedef struct Game_Play {
@@ -104,7 +112,7 @@ typedef struct Game_Play {
     /* 0x1EE3 */ u8 unk_1EE3;
     /* 0x1EE4 */ UNK_TYPE1 unk_1EE4[0x4];
     /* 0x1EE8 */ Game_Play_Unk_1EE8 unk_1EE8;
-    /* 0x2128 */ Game_Play2128 unk_2128;
+    /* 0x2128 */ fbDemoFade unk_2128;
     /* 0x2138 */ CollisionCheck unk_2138;
     /* 0x2208 */ Game_Play_unk_2208 unk_2208;
     /* 0x220C */ s32 unk_220C;
