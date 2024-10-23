@@ -22,7 +22,6 @@ void aGOZ_actor_draw(Actor* thisx, Game_Play* game_play);
 void aGOZ_set_bgOffset(Goza* this, s32 processIndex);
 void aGOZ_setup_action(Goza* this, s32 processIndex);
 
-#if 0
 ActorProfile Goza_Profile = {
     /* */ ACTOR_GOZA,
     /* */ ACTOR_PART_0,
@@ -36,7 +35,13 @@ ActorProfile Goza_Profile = {
     /* */ aGOZ_actor_draw,
     /* */ NULL,
 };
-#endif
+
+extern Vtx obj_e_goza_shadow_v;
+u8 aGOZ_shadow_vtx_fix_flg_table[] = { 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1,
+                                       1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1 };
+ShadowData aGOZ_shadow_data = { 24, aGOZ_shadow_vtx_fix_flg_table, 60.0f, &obj_e_goza_shadow_v, (Gfx *)0x06001358 };
+// TODO: give 0x06001358 symbol obj_e_goza_shadowT_model in undefined_syms.ld
+// (possible complication: address in undefined_syms.ld is different)
 
 void aGOZ_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
     Goza* this = THIS;
@@ -61,26 +66,36 @@ void aGOZ_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
                                                        STRUCTURE_TYPE_GOZA, &this->structureActor.actor);
 }
 
-extern mCoBG_unkStruct2 D_80A767C0_jp[];
-extern mCoBG_unkStruct2* D_80A76800_jp[];
-extern f32 D_FLT_80A76808_jp[3];
-extern f32 D_FLT_80A76814_jp[3];
-
 void aGOZ_set_bgOffset(Goza* this, s32 processIndex) {
+    static mCoBG_unkStruct2 height_table_ct[] = {
+        { 0x64, 0, 0, 0, 0, 0, 0},
+        { 0x64, 0, 0, 0, 0, 0, 0},
+        { 0x64, 0, 0, 0, 0, 0, 0},
+        { 0x64, 2, 2, 2, 2, 2, 0},
+        { 0x64, 2, 2, 2, 2, 2, 0},
+        { 0x64, 2, 2, 2, 2, 2, 0},
+        { 0x64, 0, 0, 0, 0, 0, 0},
+        { 0x64, 0, 0, 0, 0, 0, 0},
+        { 0x64, 0, 0, 0, 0, 0, 0}
+    };
+    static mCoBG_unkStruct2* height_table[] = { height_table_ct, height_table_ct };
+    static f32 addX[3] = { -40.0f, 0.0f, 40.0f };
+    static f32 addZ[3] = { -40.0f, 0.0f, 40.0f };
+
     s32 i;
     xyz_t pos;
-    mCoBG_unkStruct2* offsetTable = D_80A76800_jp[processIndex];
+    mCoBG_unkStruct2* offsetTable = height_table[processIndex];
     
     for (i = 0; i < 3; i++) {
-        pos.z = D_FLT_80A76814_jp[i] + this->structureActor.actor.home.pos.z;
-        
-        pos.x = D_FLT_80A76808_jp[0] + this->structureActor.actor.home.pos.x;
+        pos.z = addZ[i] + this->structureActor.actor.home.pos.z;
+
+        pos.x = addX[0] + this->structureActor.actor.home.pos.x;
         mCoBG_SetPluss5PointOffset_file(pos, *offsetTable, "../ac_goza_move.c_inc", 0x5D);
         offsetTable++;
-        pos.x = D_FLT_80A76808_jp[1] + this->structureActor.actor.home.pos.x;
+        pos.x = addX[1] + this->structureActor.actor.home.pos.x;
         mCoBG_SetPluss5PointOffset_file(pos, *offsetTable, "../ac_goza_move.c_inc", 0x61);
         offsetTable++;
-        pos.x = D_FLT_80A76808_jp[2] + this->structureActor.actor.home.pos.x;
+        pos.x = addX[2] + this->structureActor.actor.home.pos.x;
         mCoBG_SetPluss5PointOffset_file(pos, *offsetTable, "../ac_goza_move.c_inc", 0x65);
         offsetTable++;
     }
@@ -89,11 +104,8 @@ void aGOZ_set_bgOffset(Goza* this, s32 processIndex) {
 void aGOZ_wait(Goza* this UNUSED, Game_Play* game_play UNUSED) {
 }
 
-extern GozaActionFunc process[];
-
 void aGOZ_setup_action(Goza* this, s32 processIndex) {
-    // TODO: replace extern with static
-    // static GozaActionFunc process[] = { aGOZ_wait };
+    static GozaActionFunc process[] = { aGOZ_wait };
 
     this->structureActor.process = process[processIndex];
 }
@@ -126,19 +138,6 @@ void aGOZ_actor_init(Actor *thisx, Game_Play *game_play) {
     aGOZ_actor_move(&goza->actor, game_play);
     goza->actor.update = aGOZ_actor_move;
 }
-/* Warning: struct struct_8085E9B0 is not defined (only forward-declared) */
-/* Warning: struct SceneDmaStatus is not defined (only forward-declared) */
-
-extern Vtx obj_e_goza_shadow_v;
-// TODO: change extern below to explicit (not static)
-// u8 aGOZ_shadow_vtx_fix_flg_table[0x18] = { 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1 };
-// ShadowData aGOZ_shadow_data = { 0x18, aGOZ_shadow_vtx_fix_flg_table, 60.0f, &obj_e_goza_shadow_v, (Gfx *)0x06001358 };
-// 
-// TODO: give 0x06001358 symbol obj_e_goza_shadowT_model in undefined_syms.ld
-// (possible complication: address in undefined_syms.ld is different)
-extern u8 aGOZ_shadow_vtx_fix_flg_table;
-extern ShadowData aGOZ_shadow_data;
-
 
 void aGOZ_actor_draw(Actor *thisx, Game_Play *game_play) {
     GraphicsContext* gfxCtx = game_play->state.gfxCtx;
@@ -166,9 +165,3 @@ void aGOZ_actor_draw(Actor *thisx, Game_Play *game_play) {
         common_data.clip.unk_074->unk_04(game_play, &aGOZ_shadow_data, STRUCTURE_TYPE_GOZA);
     }
 }
-/* Warning: struct struct_8085E9B0 is not defined (only forward-declared) */
-/* Warning: struct SceneDmaStatus is not defined (only forward-declared) */
-/* Warning: struct WeatherClip is not defined (only forward-declared) */
-/* Warning: struct Clip_unk_07C_unk_0_arg0 is not defined (only forward-declared) */
-/* Warning: struct FurnitureActor is not defined (only forward-declared) */
-/* Warning: struct ToolClip is not defined (only forward-declared) */

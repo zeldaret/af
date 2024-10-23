@@ -18796,11 +18796,11 @@ aGOZ_actor_draw = 0x80A76610; // type:func
 Goza_Profile = 0x80A76770; //
 aGOZ_shadow_vtx_fix_flg_table = 0x80A76794; //
 aGOZ_shadow_data = 0x80A767AC; //
-D_80A767C0_jp = 0x80A767C0; //
-D_80A76800_jp = 0x80A76800; //
-D_FLT_80A76808_jp = 0x80A76808; // type:f32
-D_FLT_80A76814_jp = 0x80A76814; // type:f32
-process = 0x80A76820; //allow_duplicated:true
+height_table_ct = 0x80A767C0; // allow_duplicated:true
+height_table = 0x80A76800; // allow_duplicated:true
+addX = 0x80A76808; // type:f32 allow_duplicated:true
+addZ = 0x80A76814; // type:f32 allow_duplicated:true
+process = 0x80A76820; // allow_duplicated:true
 
 // .rodata
 
