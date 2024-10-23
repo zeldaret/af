@@ -79,8 +79,8 @@ void aGOZ_set_bgOffset(Goza* this, s32 processIndex) {
         { 0x64, 0, 0, 0, 0, 0, 0}
     };
     static mCoBG_unkStruct2* height_table[] = { height_table_ct, height_table_ct };
-    static f32 addX[3] = { -40.0f, 0.0f, 40.0f };
-    static f32 addZ[3] = { -40.0f, 0.0f, 40.0f };
+    static f32 addX[] = { -40.0f, 0.0f, 40.0f };
+    static f32 addZ[] = { -40.0f, 0.0f, 40.0f };
 
     s32 i;
     xyz_t pos;
@@ -90,13 +90,13 @@ void aGOZ_set_bgOffset(Goza* this, s32 processIndex) {
         pos.z = addZ[i] + this->structureActor.actor.home.pos.z;
 
         pos.x = addX[0] + this->structureActor.actor.home.pos.x;
-        mCoBG_SetPluss5PointOffset_file(pos, *offsetTable, "../ac_goza_move.c_inc", 0x5D);
+        mCoBG_SetPluss5PointOffset_file(pos, *offsetTable, "../ac_goza_move.c_inc", 93);
         offsetTable++;
         pos.x = addX[1] + this->structureActor.actor.home.pos.x;
-        mCoBG_SetPluss5PointOffset_file(pos, *offsetTable, "../ac_goza_move.c_inc", 0x61);
+        mCoBG_SetPluss5PointOffset_file(pos, *offsetTable, "../ac_goza_move.c_inc", 97);
         offsetTable++;
         pos.x = addX[2] + this->structureActor.actor.home.pos.x;
-        mCoBG_SetPluss5PointOffset_file(pos, *offsetTable, "../ac_goza_move.c_inc", 0x65);
+        mCoBG_SetPluss5PointOffset_file(pos, *offsetTable, "../ac_goza_move.c_inc", 101);
         offsetTable++;
     }
 }
@@ -151,7 +151,7 @@ void aGOZ_actor_draw(Actor *thisx, Game_Play *game_play) {
     gSPSegment(__shadow_gfx++, G_MWO_SEGMENT_8, palette);
     gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(object);
     gSPSegment(__shadow_gfx++, G_MWO_SEGMENT_6, object);
-    gDPSetPrimColor(__shadow_gfx++, 0, 0x80, 0xff, 0xff, 0xff, 0xff);
+    gDPSetPrimColor(__shadow_gfx++, 0, 0x80, 255, 255, 255, 255);
 
     mtx = _Matrix_to_Mtx_new(gfxCtx);
     if (mtx != NULL) {
