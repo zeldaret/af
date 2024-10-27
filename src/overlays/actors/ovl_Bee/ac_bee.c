@@ -165,7 +165,7 @@ void func_80A93EFC_jp(Bee* this, Game_Play* game_play) {
                     return;
                 }
             }
-        } else if ((func_800B1CBC_jp((Game_Play*)gamePT) == 0x5E) != 0) {
+        } else if ((mPlib_get_player_actor_main_index((Game_Play*)gamePT) == 0x5E) != 0) {
             if (func_800B5718_jp() != 0) {
                 aBEE_setupAction(this, BEE_PROCESS_DISAPPEAR, game_play);
                 return;

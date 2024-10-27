@@ -42,6 +42,7 @@ typedef enum ActorFootIndex {
 typedef enum FgNameF000 {
     /* 0x0 */ FGNAME_F000_0 = 0x0,
     /* 0x0 */ FGNAME_F000_1 = 0x1,
+    /* 0x4 */ FGNAME_F000_4 = 0x4,
     /* 0x5 */ FGNAME_F000_5 = 0x5,
     /* 0x8 */ FGNAME_F000_8 = 0x8,
     /* 0xD */ FGNAME_F000_D = 0xD,
@@ -113,7 +114,7 @@ typedef struct Actor {
     /* 0x07C */ f32 terminalVelocity;
     /* 0x080 */ UNK_TYPE1 unk_080[0x4];
     /* 0x084 */ mCoBG_Check colCheck;
-    /* 0x0B4 */ UNK_TYPE1 unk_0B4[0x1];
+    /* 0x0B4 */ u8 unk_0B4;
     /* 0x0B5 */ u8 isDrawn;
     /* 0x0B6 */ s16 yawTowardsPlayer;
     /* 0x0B8 */ f32 xyzDistToPlayerSq;

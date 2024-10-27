@@ -17,7 +17,7 @@
 #include "sys_matrix.h"
 #include "libc64/qrand.h"
 #include "m_std_dma.h"
-#include "67E840.h"
+#include "m_bgm.h"
 #include "69CB30.h"
 #include "6B3DC0.h"
 #include "6B8F20.h"

@@ -368,6 +368,9 @@ $(BUILD_DIR)/%.o: %.c
 	$(RM_MDEBUG)
 
 # Build C files from assets
+$(BUILD_DIR)/%.ci4swap.inc.c: %.ci4swap.png
+	$(PYTHON) tools/ci4swap_handler.py $< $@
+
 $(BUILD_DIR)/%.inc.c: %.png
 # File names are formatted as <file name>.<image format>.png
 # The <image format> part is passed into pigment's format argument

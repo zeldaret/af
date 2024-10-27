@@ -1,6 +1,6 @@
 #include "first_game.h"
 #include "m_common_data.h"
-#include "67E840.h"
+#include "m_bgm.h"
 #include "attributes.h"
 #include "overlays/gamestates/ovl_second_game/second_game.h"
 

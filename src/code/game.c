@@ -2,7 +2,7 @@
 #include "gfx.h"
 #include "m_controller.h"
 #include "m_debug.h"
-#include "67E840.h"
+#include "m_bgm.h"
 #include "speed_meter.h"
 #include "graph.h"
 #include "libu64/debug.h"
@@ -284,7 +284,7 @@ void game_ct(Game* game, GameStateFunc init, GraphicsContext* gfxCtx) {
 
     init(game);
 
-    func_8005F020_jp();
+    mBGM_init();
     func_800D88B0_jp(&B_80145020_jp);
     func_800D3E14_jp(game->gfxCtx);
 }

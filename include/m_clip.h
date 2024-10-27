@@ -22,6 +22,7 @@ struct StructureClip;
 struct ToolClip;
 struct WeatherClip;
 struct xyz_t;
+struct Arrange_Room;
 
 typedef UNK_RET (*Clip_unk_040_unk_04)(struct ActorOverlay*, const u8*, size_t, s32);
 typedef UNK_RET (*Clip_unk_040_unk_08)(void);
@@ -114,8 +115,8 @@ typedef void (*Clip_unk_080_unk_24)(void);
 typedef s32 (*Clip_unk_080_unk_28)(struct Game* game, u16 ftr, s32 res,s32 utX, s32 utZ, u16 rotation,
                                             s32 squareOffs, s32 layer);
 typedef UNK_RET (*Clip_unk_080_unk_34)(struct FurnitureActor* furnitureActor, struct Actor* myHouseActor, struct Game_Play* game_play, f32 arg0, f32 arg1);
-
-typedef struct Clip_unk_080 {
+typedef s32 (*Clip_unk_080_unk_54)(struct xyz_t* pos);
+typedef struct MyRoomClip {
     /* 0x00 */ UNK_TYPE1 unk_00[0x4];
     /* 0x04 */ Clip_unk_080_unk_04 unk_04;
     /* 0x08 */ UNK_TYPE1 unk_08[0x1C];
@@ -123,7 +124,9 @@ typedef struct Clip_unk_080 {
     /* 0x28 */ Clip_unk_080_unk_28 unk_28;
     /* 0x2C */ UNK_TYPE1 unk_2C[0x8]; 
     /* 0x34 */ Clip_unk_080_unk_34 unk_34; // open close proc
-} Clip_unk_080; // size >= 0x8
+    /* 0x38 */ s8 unk_38[0x24];
+    /* 0x54 */ Clip_unk_080_unk_54 unk_54;
+} MyRoomClip; // size >= 0x54
 
 typedef struct StructureClipOverlayInfo {
     /* 0x00 */ s8* overlayPointer;
@@ -219,14 +222,15 @@ typedef struct Clip_unk_0A8 {
 typedef void (*Clip_unk_0B4_unk_4)(void);
 typedef struct Clip_unk_0B4 {
     /* 0x00 */ UNK_TYPE1 unk_00[0x04];
-    /* 0x04 */ Clip_unk_0B4_unk_4 unk_4;
+    /* 0x04 */ Clip_unk_0B4_unk_4 unk_4; 
 } Clip_unk_0B4; // size >= 0x8
 
-typedef void (*Clip_unk_0B8_unk_4)(void);
-typedef struct Clip_unk_0B8 {
-    /* 0x00 */ UNK_TYPE1 unk_00[0x04];
-    /* 0x04 */ Clip_unk_0B8_unk_4 unk_4; 
-} Clip_unk_0B8; // size >= 0x8
+typedef void (*RedmaProc)(void);
+
+typedef struct Arrange_RoomClip{
+    /* 0x0 */ struct Arrange_Room* arrangeRoomActor;
+    /* 0x4 */ RedmaProc proc;
+} Arrange_RoomClip; // size = 0x8
 
 typedef void (*Clip_unk_0D0)(void);
 
@@ -235,9 +239,14 @@ typedef struct Clip_unk_0D8 {
     /* 0x00 */ Clip_unk_0D8_unk_00 unk_00;
 } Clip_unk_0D8; // size >= 0x4
 
+typedef struct Clip_BoxTrickData {
+    /* 0x000 */ u8 blockX;
+    /* 0x001 */ u8 blockZ;
+    /* 0x004 */ void* data;
+} Clip_BoxTrickData; // size = 0x8
 
 typedef struct Clip {
-    /* 0x000 */ s8 unk000[0x20];
+    /* 0x000 */ Clip_BoxTrickData boxTrickData[4];
     /* 0x020 */ s32 unk_020;
     /* 0x024 */ s8 unk_024[0x1C];
     /* 0x040 */ Clip_unk_040* unk_040;
@@ -250,7 +259,7 @@ typedef struct Clip {
     /* 0x074 */ Clip_unk_074* unk_074;
     /* 0x078 */ struct WeatherClip* weatherClip;
     /* 0x07C */ Clip_unk_07C* unk_07C; 
-    /* 0x080 */ Clip_unk_080* unk_080;
+    /* 0x080 */ MyRoomClip* myRoomClip;
     /* 0x084 */ s8 unk_084[0x8];
     /* 0x08C */ struct StructureClip* structureClip; 
     /* 0x090 */ Clip_unk_090* unk_090;
@@ -262,7 +271,7 @@ typedef struct Clip {
     /* 0x0A8 */ Clip_unk_0A8* unk_0A8;
     /* 0x0AC */ s8 unk_0AC[0x8];
     /* 0x0B4 */ Clip_unk_0B4* unk_0B4;
-    /* 0x0B8 */ Clip_unk_0B8* unk_0B8;
+    /* 0x0B8 */ Arrange_RoomClip* arrangeRoomClip;
     /* 0x0BC */ s8 unk_0BC[0x14];
     /* 0x0D0 */ Clip_unk_0D0 unk_0D0; 
     /* 0x0D4 */ s8 unk_0D4[0x4];

@@ -1319,7 +1319,7 @@
     bss_size: 0x0
     subsegments:
       - [0x845C40, c, overlays/actors/ovl_Arrange_Room/ac_arrange_room]
-      - [0x846300, data, overlays/actors/ovl_Arrange_Room/ac_arrange_room]
+      - [0x846300, .data, overlays/actors/ovl_Arrange_Room/ac_arrange_room]
       - [0x846330, .rodata, overlays/actors/ovl_Arrange_Room/ac_arrange_room]
   - name: ovl_Arrange_Room_reloc
     type: code
@@ -1638,7 +1638,7 @@
     bss_size: 0x0
     subsegments:
       - [0x85A8E0, c, overlays/actors/ovl_Room_Sunshine/ef_room_sunshine]
-      - [0x85B0B0, data, overlays/actors/ovl_Room_Sunshine/ef_room_sunshine]
+      - [0x85B0B0, .data, overlays/actors/ovl_Room_Sunshine/ef_room_sunshine]
       - [0x85B0E0, .rodata, overlays/actors/ovl_Room_Sunshine/ef_room_sunshine]
   - name: ovl_Room_Sunshine_reloc
     type: code
@@ -1933,7 +1933,7 @@
     bss_size: 0x0
     subsegments:
       - [0x867DA0, c, overlays/actors/ovl_BoxTrick01/ac_boxTrick01]
-      - [0x868040, data, overlays/actors/ovl_BoxTrick01/ac_boxTrick01]
+      - [0x868040, .data, overlays/actors/ovl_BoxTrick01/ac_boxTrick01]
   - name: ovl_BoxTrick01_reloc
     type: code
     start: 0x8681B0
@@ -9265,7 +9265,7 @@
     subsegments:
       - [0x913680, data, overlays/other_ovl/ovl__00913630/ovl__00913630_reloc]
 
-  - name: ovl__009136A0
+  - name: ovl_sum_blue_bureau01
     type: code
     start: 0x9136A0
     vram: 0x80A4BC00
@@ -9273,22 +9273,22 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x9136A0, asm, overlays/other_ovl/ovl__009136A0/ovl__009136A0]
-      - [0x9139A0, data, overlays/other_ovl/ovl__009136A0/ovl__009136A0]
-  - name: ovl__009136A0_reloc
+      - [0x9136A0, c, overlays/furniture/ovl_sum_blue_bureau01/ac_sum_blue_bureau01]
+      - [0x9139A0, .data, overlays/furniture/ovl_sum_blue_bureau01/ac_sum_blue_bureau01]
+  - name: ovl_sum_blue_bureau01_reloc
     type: code
     start: 0x913A00
     vram: 0x80A4BF60
-    follows_vram: ovl__009136A0
+    follows_vram: ovl_sum_blue_bureau01
     compress: True
     subsegments:
-      - [0x913A00, data, overlays/other_ovl/ovl__009136A0/ovl__009136A0_reloc]
+      - [0x913A00, data, overlays/furniture/ovl_sum_blue_bureau01/ac_sum_blue_bureau01_reloc]
 
   - name: ovl__00913A30
     type: code
     start: 0x913A30
     vram: 0x80A4BF90
-    follows_vram: ovl__009136A0_reloc
+    follows_vram: ovl_sum_blue_bureau01_reloc
     compress: True
     bss_size: 0x0
     subsegments:
@@ -12945,7 +12945,7 @@
     subsegments:
       - [0x930ED0, data, overlays/other_ovl/ovl__00930B70/ovl__00930B70_reloc]
 
-  - name: ovl__00930F00
+  - name: ovl_sum_clchest03
     type: code
     start: 0x930F00
     vram: 0x80A70C60
@@ -12953,22 +12953,22 @@
     compress: True
     bss_size: 0x0
     subsegments:
-      - [0x930F00, asm, overlays/other_ovl/ovl__00930F00/ovl__00930F00]
-      - [0x931200, data, overlays/other_ovl/ovl__00930F00/ovl__00930F00]
-  - name: ovl__00930F00_reloc
+      - [0x930F00, c, overlays/furniture/ovl_sum_clchest03/ac_sum_clchest03]
+      - [0x931200, .data, overlays/furniture/ovl_sum_clchest03/ac_sum_clchest03]
+  - name: ovl_sum_clchest03_reloc
     type: code
     start: 0x931260
     vram: 0x80A70FC0
-    follows_vram: ovl__00930F00
+    follows_vram: ovl_sum_clchest03
     compress: True
     subsegments:
-      - [0x931260, data, overlays/other_ovl/ovl__00930F00/ovl__00930F00_reloc]
+      - [0x931260, data, overlays/furniture/ovl_sum_clchest03/ovl_sum_clchest03_reloc]
 
   - name: ovl__00931290
     type: code
     start: 0x931290
     vram: 0x80A70FF0
-    follows_vram: ovl__00930F00_reloc
+    follows_vram: ovl_sum_clchest03_reloc
     compress: True
     bss_size: 0x0
     subsegments:

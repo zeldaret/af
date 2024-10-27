@@ -5,6 +5,7 @@
 #include "unk.h"
 
 #define mLd_CHECK_LAND_ID(id) (((id) & 0xFF00) == 0x3000)
+#define mLd_CHECK_ID(id) ((id & 0x3000) == 0x3000)
 
 // Town name character count
 #define LAND_NAME_SIZE 6
@@ -16,21 +17,22 @@ typedef struct LandInfo {
     /* 0x8 */ u16 id;
 } LandInfo; // size = 0xA
 
-s32 mLd_NullCheckLandName(char*);
-s32 mLd_CheckId(u16);
-s32 mLd_CheckCmpLandName(char* name1, char* name2);
-s32 mLd_CheckCmpLand(char* name1, u16 id1, char* name2, u16 id2);
+s32 mLd_NullCheckLandName(char* landName);
+s32 mLd_CheckId(u16 landId);
+s32 mLd_CheckCmpLandName(char* nameA, char* nameB);
+s32 mLd_CheckCmpLand(char* nameA, u16 idA, char* nameB, u16 idB);
 void mLd_ClearLandName(char* name);
-void mLd_CopyLandName(char* arg0, char* arg1);
-// void func_80094F24_jp();
-// void func_80094F84_jp();
-// void func_8009504C_jp();
+void mLd_CopyLandName(char* nameA, char* nameB);
+size_t mLd_AddMuraString(char* name, size_t len);
+size_t mLd_GetLandNameStringAddMura(char* buf);
+void mLd_SetFreeStrLandMuraName(char* name, s32 freeStr);
 char* mLd_GetLandName(void);
-// void func_800950E8_jp();
-s32 mLd_PlayerManKindCheckNo(u8 playerNumber);
+u16 mLd_MakeLandId(void);
+s32 mLd_PlayerManKindCheckNo(u8 playerNo);
 s32 mLd_PlayerManKindCheck(void);
-s32 mLd_CheckThisLand(char* arg0, u16 arg1);
-// void func_80095218_jp();
+s32 mLd_CheckThisLand(char* otherName, u16 otherId);
+void mLd_LandInfoInit(void);
 void mLd_LandDataInit(void);
+
 
 #endif

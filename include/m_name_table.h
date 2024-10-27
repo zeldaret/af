@@ -45,6 +45,15 @@ NameTableOffsetTable* obj_hight_table_item0_nogrow(u16 item);
 #define ITM_FOOD_COCONUT (ITM_FOOD_CANDY + 1)
 #define ITM_FOOD_END 0x2808
 
+
+#define DOOR_START 0x4000
+#define DOOR0 DOOR_START  /* 0x4000 */
+#define DOOR1 (DOOR0 + 1) /* 0x4001 */
+
+#define EXIT_DOOR 0x4080
+#define EXIT_DOOR1 (EXIT_DOOR + 1) /* 0x4081 */
+
+
 /* begin environmental/nature objects */
 #define ENV_START 0x0800
 /* tree */

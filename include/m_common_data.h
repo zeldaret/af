@@ -17,6 +17,7 @@
 #include "m_snowman.h"
 #include "m_clip.h"
 #include "m_scene.h"
+#include "m_demo.h"
 
 typedef enum Season {
     /* 0 */ SPRING,
@@ -128,8 +129,8 @@ typedef struct CommonData {
     /* 0x10141 */ u8 fish_location;
     /* 0x10142 */ u8 unk_10142[0x6];
     /* 0x10148 */ u8 unk_10148;
-    /* 0x10149 */ u8 unk_10149;
-    /* 0x1014A */ u8 unk_1014A;
+    /* 0x10149 */ u8 fadeRate;
+    /* 0x1014A */ u8 wipeRate;
     /* 0x1014B */ u8 unk_1014B; // named "wipeType" in AC GCN decomp
     /* 0x1014C */ s16 unk_1014C;
     /* 0x1014E */ s16 unk_1014E;
@@ -157,13 +158,18 @@ typedef struct CommonData {
     /* 0x10750 */ s16 moneyPower;
     /* 0x10752 */ s16 goodsPower;
     /* 0x10754 */ DoorData doorData;
-    /* 0x10768 */ s8 unk_10768[0x38];
+    /* 0x10764 */ DoorData structureExitDoorData;
+    /* 0x1077C */ DemoRequest startDemoRequest;
+    /* 0x1078C */ DoorData eventDoorData;
     /* 0x107A0 */ DoorData famicomEmuDoorData;
-    /* 0x107B4 */ s16 unk_107B4;
+    /* 0x107B4 */ s8 unk_107B4;
+    /* 0x107B5 */ s8 floorIdx;
     /* 0x107B6 */ s16 unk_107B6; // named "demo_profile" in AC GCN decomp (though it's an array of two s16s in that game)
-    /* 0x107B8 */ UNK_TYPE1 unk_107B8[0x28];
+    /* 0x107B8 */ UNK_TYPE1 unk_107B8[0x27];
+    /* 0x107FF*/  s8 paymentType;
     /* 0x107E0 */ s8 playerDecoyFlag;
-    /* 0x107E1 */ UNK_TYPE1 unk_107E1[0x3];
+    /* 0x107E1 */ s8 unk_107E1;
+    /* 0x107E2 */ s16 unk_107E2;
     /* 0x107E4 */ s16 unk_107E4; 
     /* 0x107E6 */ UNK_TYPE1 unk107E6[0x212];
     /* 0x109F8 */ u8 unk109F8;
@@ -174,7 +180,8 @@ typedef struct CommonData {
     /* 0x10A3B */ UNK_TYPE1 unk_10A3B[0x1];
     /* 0x10A3C */ UNK_TYPE1 unk_10A3C[0x2C];
     /* 0x10A68 */ u8 unk_10A68;
-    /* 0x10A69 */ UNK_TYPE1 unk_10A69[0x3];
+    /* 0x10A69 */ UNK_TYPE1 unk_10A69[0x2];
+    /* 0x10A6B */ u8 unk10A6B;
     /* 0x10A6C */ xyz_t unk_10A6C;
     /* 0x10A78 */ u8 unk_10A78;
     /* 0x10A79 */ UNK_TYPE1 unk_10A79[0x7];

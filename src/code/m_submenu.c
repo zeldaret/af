@@ -202,7 +202,7 @@ void func_800C47B4_jp(UNUSED void* arg0, UNUSED void* arg1) {
         if (temp_v0_3 != NULL) {
             FaultDrawer_Printf("\n");
             FaultDrawer_Printf("player infomation\n");
-            FaultDrawer_Printf("main_index         :%d %d\n", temp_v0_3->unk_0CF0, temp_v0_3->unk_0CF4);
+            FaultDrawer_Printf("main_index         :%d %d\n", temp_v0_3->nowMainIndex, temp_v0_3->unk_0CF4);
             FaultDrawer_Printf("request_main_index :%d %d %d\n", temp_v0_3->unk_0D00, temp_v0_3->unk_0D04,
                                temp_v0_3->unk_0D08);
             FaultDrawer_Printf("pos :%d %d %d\n", (s32)temp_v0_3->actor.world.pos.x, (s32)temp_v0_3->actor.world.pos.y,
@@ -347,7 +347,7 @@ void mSM_Reset_player_btn_type1(Game_Play* game_play) {
     Player* player = get_player_actor_withoutCheck(game_play);
 
     if (player != NULL) {
-        player->unk_12B8 = 0;
+        player->pressedAButton = 0;
         player->unk_12BC = 1;
     }
 }
@@ -382,11 +382,11 @@ void mSM_submenu_ctrl(Game_Play* game_play) {
         Player* player = get_player_actor_withoutCheck(game_play);
         UNUSED s32 pad;
 
-        if ((player != NULL) && (player->unk_12B8 == 1) && (common_data.unk_10A68 == 0) && (submenu->unk_E2 == 0) &&
-            (submenu->unk_E3 <= 0)) {
+        if ((player != NULL) && (player->pressedAButton == TRUE) && (common_data.unk_10A68 == 0) &&
+            (submenu->unk_E2 == 0) && (submenu->unk_E3 <= 0)) {
             if (mPlib_able_submenu_type1(game_play) != 0) {
                 if (ABS(BINANG_ROT180(player->actor.shape.rot.y)) < 0x2000) {
-                    switch (player->unk_12C0) {
+                    switch (player->itemInFront) {
                         case 0x7:
                         case 0xB:
                             mSM_open_submenu(submenu, 6, 0, 0);

@@ -76,7 +76,7 @@ void sAdo_SysTrgStart(u16 id) {
     Na_SysTrgStart(id);
 }
 
-void sAdo_PlyWalkSe(s32 arg0, xyz_t* pos) {
+void sAdo_PlyWalkSe(u16 arg0, xyz_t* pos) {
     f32 distanceVal;
     u16 angleVal;
 
@@ -84,7 +84,7 @@ void sAdo_PlyWalkSe(s32 arg0, xyz_t* pos) {
     Na_PlyWalkSe(arg0, angleVal, distanceVal);
 }
 
-void sAdo_PlyWalkSeRoom(s32 arg0, xyz_t* pos) {
+void sAdo_PlyWalkSeRoom(u8 arg0, xyz_t* pos) {
     f32 distanceVal;
     u16 angleVal;
 

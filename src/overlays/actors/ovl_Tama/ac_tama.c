@@ -6,7 +6,7 @@
 #include "overlays/actors/player_actor/m_player.h"
 #include "m_player_lib.h"
 #include "libc/math.h"
-#include "69E2C0.h"
+#include "m_demo.h"
 #include "m_field_info.h"
 #include "code_variables.h"
 #include "m_rcp.h"
@@ -76,14 +76,14 @@ void aTAM_actor_move(Actor* thisx, Game_Play* game_play) {
     Tama* this = THIS;
     Player* player = get_player_actor_withoutCheck(game_play);
     s32 xBlock;
-    s32 yBlock;
+    s32 zBlock;
     s32 playerXBlock;
-    s32 playerYBlock;
+    s32 playerZBlock;
 
-    mFI_Wpos2BlockNum(&xBlock, &yBlock, this->structureActor.actor.world.pos);
-    mFI_Wpos2BlockNum(&playerXBlock, &playerYBlock, player->actor.world.pos);
+    mFI_Wpos2BlockNum(&xBlock, &zBlock, this->structureActor.actor.world.pos);
+    mFI_Wpos2BlockNum(&playerXBlock, &playerZBlock, player->actor.world.pos);
     if ((mDemo_Check(1, &player->actor) == 0) && (mDemo_Check(5, &player->actor) == 0) &&
-        ((xBlock != playerXBlock) || (yBlock != playerYBlock))) {
+        ((xBlock != playerXBlock) || (zBlock != playerZBlock))) {
         Actor_delete(&this->structureActor.actor);
     } else {
         ((TamaActionFunc)this->structureActor.process)(this, game_play);

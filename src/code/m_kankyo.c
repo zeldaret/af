@@ -1467,6 +1467,8 @@ s32 mEnv_CheckNpcRoomPointLightNiceStatus() {
     return ret;
 }
 
+#include "prevent_bss_reordering2.h"
+
 void mEnv_TaimatuPointLightWaveMoveProc(Game_Play* play) {
     static s16 point_light_wave_counter;
 

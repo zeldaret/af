@@ -10,6 +10,7 @@ struct Actor;
 struct Game_Play;
 struct FieldMakeBlockInfo;
 struct FieldMakeMoveActor;
+struct Game;
 
 #define FI_UT_WORLDSIZE_Z 40
 #define FI_UT_WORLDSIZE_Z_F (f32)FI_UT_WORLDSIZE_Z
@@ -47,7 +48,7 @@ typedef enum FieldRoom {
    (fieldId) == FI_FIELD_PLAYER2_ROOM || (fieldId) == FI_FIELD_PLAYER3_ROOM)
 
 void mFI_ClearFieldData(void);
-// void func_80087C40_jp();
+s32 mFI_CheckFieldData(void);
 struct FieldMakeBlockInfo* mFI_GetBlockTopP(void);
 u16 mFI_GetFieldId(void);
 // void func_80087C9C_jp();
@@ -171,10 +172,10 @@ s32 func_8008BE00_jp(struct FieldMakeMoveActor*, s32);
 // void func_8008BE38_jp();
 // void func_8008BF34_jp();
 // void func_8008BFC4_jp();
-// void func_8008C058_jp();
+void mFI_SetPlayerWade(struct Game*);
 s32 mFI_CheckPlayerWade(s32);
 s32 mFI_GetPlayerWade(void);
-// void func_8008C130_jp();
+s32 mFI_GetNextBlockNum(s32*, s32*);
 u16* mFI_GetDepositP(s32,s32);
 // void func_8008C344_jp();
 // void func_8008C390_jp();
