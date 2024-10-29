@@ -36,12 +36,12 @@ ActorProfile Goza_Profile = {
     /* */ NULL,
 };
 
-extern Vtx obj_e_goza_shadow_v;
+extern Vtx obj_e_goza_shadow_v[];
+extern Gfx obj_e_goza_shadowT_model[];
 u8 aGOZ_shadow_vtx_fix_flg_table[] = { 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1,
                                        1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1 };
-ShadowData aGOZ_shadow_data = { 24, aGOZ_shadow_vtx_fix_flg_table, 60.0f, &obj_e_goza_shadow_v, (Gfx *)0x06001358 };
-// TODO: give 0x06001358 symbol obj_e_goza_shadowT_model in undefined_syms.ld
-// (possible complication: address in undefined_syms.ld is different)
+ShadowData aGOZ_shadow_data = { 24, aGOZ_shadow_vtx_fix_flg_table, 60.0f, &obj_e_goza_shadow_v, obj_e_goza_shadowT_model};
+
 
 void aGOZ_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
     Goza* this = THIS;
@@ -86,7 +86,7 @@ void aGOZ_set_bgOffset(Goza* this, s32 processIndex) {
     xyz_t pos;
     mCoBG_unkStruct2* offsetTable = height_table[processIndex];
     
-    for (i = 0; i < 3; i++) {
+    for (i = 0; i < ARRAY_COUNT(addZ); i++) {
         pos.z = addZ[i] + this->structureActor.actor.home.pos.z;
 
         pos.x = addX[0] + this->structureActor.actor.home.pos.x;
