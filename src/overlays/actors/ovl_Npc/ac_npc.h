@@ -25,7 +25,7 @@ typedef struct Npc {
     /* 0x8F0 */ ClObjPipe collider;
     /* 0x90C */ UNK_TYPE1 unk_90C[0x24];
     /* 0x930 */ s32 unk_930;
-    /* 0x93 */ UNK_TYPE1 unk_934[0x8];
+    /* 0x934 */ UNK_TYPE1 unk_934[0x8];
 } Npc; // size = 0x93C
 
 #endif
