@@ -55,6 +55,7 @@
       - [0x6BFE60, c, code/m_mail]
       - [0x6C05A0, c, code/m_mail_check]
       - [0x6C0690, asm, code/6C0690]
+      - [0x6C0C50, c, code/m_melody]
       - [0x6C0E90, asm, code/m_msg_main]
       - [0x6C92D0, c, code/m_name_table]
       - [0x6C97F0, asm, code/6C97F0]
@@ -173,6 +174,8 @@
       - [0x72B7A0, .data, code/m_lib]
       - [0x72B7D0, .data, code/m_lights]
       - [0x72B7F0, data, code/72B7F0]
+      - [0x72B800, .data, code/m_melody]
+      - [0x72B810, data, code/72B810]
       - [0x72EBA0, .data, code/m_name_table]
       - [0x72F140, data, code/72F140]
       - [0x72F1B0, .data, code/m_npc]
@@ -311,7 +314,8 @@
       - { start: 0x73F4D0, type: .bss, vram: 0x80141DE0, name: code/m_kankyo }
       - { start: 0x73F4D0, type: .bss, vram: 0x80141E10, name: code/m_lights }
       - { start: 0x75B600, type: .bss, vram: 0x80141FA0, name: code/m_malloc }
-      - { start: 0x75B600, type: bss, vram: 0x80141FE0, name: code/80141FE0 }
+      - { start: 0x75B600, type: .bss, vram: 0x80141FE0, name: code/m_melody }
+      - { start: 0x75B600, type: bss, vram: 0x80141FF0, name: code/80141FF0 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80142C00, name: code/m_npc }
       - { start: 0x73F4D0, type: .bss, vram: 0x801438B0, name: code/m_npc_walk }
       - { start: 0x73F4D0, type: .bss, vram: 0x80143900, name: code/m_player_call }
