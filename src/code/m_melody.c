@@ -3,7 +3,7 @@
 #include "audio.h"
 
 void mMld_SetDefaultMelody() {
-    static u8 melody[] = {0x7, 0xC, 0xF, 0x7, 0x6, 0xB, 0xF, 0x9, 0xA, 0xE, 0xD, 0xE, 0x3, 0xF, 0xE, 0xE};
+    static u8 melody[] = { 0x7, 0xC, 0xF, 0x7, 0x6, 0xB, 0xF, 0x9, 0xA, 0xE, 0xD, 0xE, 0x3, 0xF, 0xE, 0xE };
 
     mMld_SetSaveMelody(melody);
 }
@@ -32,8 +32,8 @@ void mMld_GetMelody(u8* dst) {
     mMld_TransformMelodyData_u64_2_u8(dst, melody);
 }
 
-void mMld_SetSaveMelody(u8* melody) { 
-    mMld_TransformMelodyData_u8_2_u64(&common_data.save.melody, melody); 
+void mMld_SetSaveMelody(u8* melody) {
+    mMld_TransformMelodyData_u8_2_u64(&common_data.save.melody, melody);
 }
 
 void mMld_MakeMelody(u8 inst) {
