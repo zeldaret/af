@@ -12712,7 +12712,7 @@ aHM0_actor_save = 0x809DE3B0; // type:func
 aHM0_actor_dt = 0x809DE3DC; // type:func
 aHM0_actor_init = 0x809DE408; // type:func
 func_809DE434_jp = 0x809DE434; // type:func
-func_809DE474_jp = 0x809DE474; // type:func
+aHM0_actor_move = 0x809DE474; // type:func
 func_809DE4A0_jp = 0x809DE4A0; // type:func
 func_809DE4C0_jp = 0x809DE4C0; // type:func
 func_809DE538_jp = 0x809DE538; // type:func
@@ -12730,15 +12730,15 @@ func_809DE830_jp = 0x809DE830; // type:func
 func_809DE8D0_jp = 0x809DE8D0; // type:func
 func_809DE948_jp = 0x809DE948; // type:func
 func_809DE978_jp = 0x809DE978; // type:func
-func_809DE9EC_jp = 0x809DE9EC; // type:func
+aHM0_talk_request = 0x809DE9EC; // type:func
 func_809DEA20_jp = 0x809DEA20; // type:func
-func_809DEA4C_jp = 0x809DEA4C; // type:func
-func_809DEA8C_jp = 0x809DEA8C; // type:func
+aHM0_talk_end_chk = 0x809DEA4C; // type:func
+aHM0_actor_draw = 0x809DEA8C; // type:func
 
 // .data
 
 Hanami_Npc0_Profile = 0x809DEAC0; //
-D_809DEAE4_jp = 0x809DEAE4; //
+aHM0_ct_data = 0x809DEAE4; //
 D_809DEB00_jp = 0x809DEB00; //
 D_809DEB0C_jp = 0x809DEB0C; //
 D_809DEB18_jp = 0x809DEB18; //
