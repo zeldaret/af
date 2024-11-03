@@ -18780,24 +18780,24 @@ RO_FLT_80A76064_jp = 0x80A76064; // type:f32
 // .text
 
 aGOZ_actor_ct = 0x80A761D0; // type:func
-func_80A76208_jp = 0x80A76208; // type:func
-func_80A76294_jp = 0x80A76294; // type:func
-func_80A76494_jp = 0x80A76494; // type:func
-func_80A764A4_jp = 0x80A764A4; // type:func
-func_80A764C0_jp = 0x80A764C0; // type:func
+aGOZ_actor_dt = 0x80A76208; // type:func
+aGOZ_set_bgOffset = 0x80A76294; // type:func
+aGOZ_wait = 0x80A76494; // type:func
+aGOZ_setup_action = 0x80A764A4; // type:func
+aGOZ_actor_move = 0x80A764C0; // type:func
 aGOZ_actor_init = 0x80A765A8; // type:func
 aGOZ_actor_draw = 0x80A76610; // type:func
 
 // .data
 
 Goza_Profile = 0x80A76770; //
-D_80A76794_jp = 0x80A76794; //
-D_80A767AC_jp = 0x80A767AC; //
-D_80A767C0_jp = 0x80A767C0; //
-D_80A76800_jp = 0x80A76800; //
-D_FLT_80A76808_jp = 0x80A76808; // type:f32
-D_FLT_80A76814_jp = 0x80A76814; // type:f32
-D_80A76820_jp = 0x80A76820; //
+aGOZ_shadow_vtx_fix_flg_table = 0x80A76794; //
+aGOZ_shadow_data = 0x80A767AC; //
+height_table_ct = 0x80A767C0; // allow_duplicated:true
+height_table = 0x80A76800; // allow_duplicated:true
+addX = 0x80A76808; // type:f32 allow_duplicated:true
+addZ = 0x80A76814; // type:f32 allow_duplicated:true
+process = 0x80A76820; // allow_duplicated:true
 
 // .rodata
 

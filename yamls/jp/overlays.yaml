@@ -13147,7 +13147,7 @@
     bss_size: 0x0
     subsegments:
       - [0x936470, c, overlays/actors/ovl_Goza/ac_goza]
-      - [0x936A10, data, overlays/actors/ovl_Goza/ac_goza]
+      - [0x936A10, .data, overlays/actors/ovl_Goza/ac_goza]
       - [0x936AD0, .rodata, overlays/actors/ovl_Goza/ac_goza]
   - name: ovl_Goza_reloc
     type: code
