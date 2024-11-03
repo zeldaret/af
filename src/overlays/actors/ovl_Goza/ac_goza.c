@@ -111,7 +111,7 @@ void aGOZ_setup_action(Goza* this, s32 processIndex) {
     this->structureActor.process = process[processIndex];
 }
 
-void aGOZ_actor_move(Actor* thisx, Game_Play* game_play) {
+void aGOZ_actor_move(UNUSED Actor* thisx, Game_Play* game_play) {
     Goza* this = THIS;
     StructureActor* goza = &this->structureActor;
     Player* player = get_player_actor_withoutCheck(game_play);
