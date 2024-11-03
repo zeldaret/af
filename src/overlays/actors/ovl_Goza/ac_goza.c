@@ -111,7 +111,7 @@ void aGOZ_setup_action(Goza* this, s32 processIndex) {
     this->structureActor.process = process[processIndex];
 }
 
-void aGOZ_actor_move(UNUSED Actor* thisx, Game_Play* game_play) {
+void aGOZ_actor_move(Actor* thisx, Game_Play* game_play) {
     Goza* this = THIS;
     StructureActor* goza = &this->structureActor;
     Player* player = get_player_actor_withoutCheck(game_play);
@@ -140,7 +140,7 @@ void aGOZ_actor_init(Actor* thisx, Game_Play* game_play) {
     goza->actor.update = aGOZ_actor_move;
 }
 
-void aGOZ_actor_draw(Actor* thisx, Game_Play* game_play) {
+void aGOZ_actor_draw(Actor* thisx UNUSED, Game_Play* game_play) {
     GraphicsContext* gfxCtx = game_play->state.gfxCtx;
     u32 object = common_data.clip.structureClip->getObjectSegment(STRUCTURE_TYPE_GOZA);
     u16* palette = common_data.clip.structureClip->getPalSegment(STRUCTURE_PALETTE_GOZA);
