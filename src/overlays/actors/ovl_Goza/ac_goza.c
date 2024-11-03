@@ -155,7 +155,7 @@ void aGOZ_actor_draw(Actor* thisx, Game_Play* game_play) {
     gDPSetPrimColor(__shadow_gfx++, 0, 0x80, 255, 255, 255, 255);
 
     mtx = _Matrix_to_Mtx_new(gfxCtx);
-    
+
     if (mtx != NULL) {
         gSPMatrix(__shadow_gfx++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
         gSPDisplayList(__shadow_gfx++, goza_DL_model);
