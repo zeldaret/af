@@ -14,6 +14,7 @@ void aHM0_actor_init(Actor* thisx, Game_Play* game_play);
 void aHM0_actor_save(Actor* thisx, Game_Play* game_play);
 void func_809DE978_jp(Actor* thisx);
 void func_809DE948_jp(UNK_TYPE arg0);
+void func_809DE830_jp(Actor* thisx);
 
 #if 0
 ActorProfile Hanami_Npc0_Profile = {
@@ -47,7 +48,7 @@ void aHM0_actor_ct(Actor* thisx, Game_Play* game_play) {
     Hanami_Npc0* this = THIS;
     
     if (common_data.clip.unk_040->unk_BC(thisx, game_play) == 1) {
-        this->unk7C0 = &func_809DE948_jp;
+        this->unk_7C0 = &func_809DE948_jp;
         common_data.clip.unk_040->unk_C0(thisx, game_play, &aHM0_ct_data);
     }
 }
