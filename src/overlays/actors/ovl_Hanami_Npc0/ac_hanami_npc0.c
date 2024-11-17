@@ -6,6 +6,7 @@
 #include "m_demo.h"
 #include "macros.h"
 #include "overlays/actors/ovl_Tools/ac_tools.h"
+#include "audio.h"
 
 #define THIS ((Hanami_Npc0*)thisx)
 
@@ -114,7 +115,21 @@ void func_809DE538_jp(Actor* thisx) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE56C_jp.s")
+void func_809DE56C_jp(Actor* thisx) {
+    Hanami_Npc0* this = THIS;
+
+    if (this->unk_188 == 2) {
+        if (this->unk_72B == 0) {
+            this->unk_7C6 = 0xFF;
+        } else {
+            this->unk_72B--;
+        }
+    }
+
+    // TODO: resolve warning by either casting &this->actor to (s32) or by changing signatures of both
+    // sAdo_OngenPos and Na_OngenPos
+    sAdo_OngenPos(&this->actor, this->unk_944, &this->actor.world.pos);
+}
 
 void func_809DE5BC_jp(Actor* thisx) {
     Hanami_Npc0* this = THIS;
