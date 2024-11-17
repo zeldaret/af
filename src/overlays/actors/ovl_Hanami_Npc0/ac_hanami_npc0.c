@@ -13,8 +13,9 @@ void aHM0_actor_dt(Actor* thisx, Game_Play* game_play);
 void aHM0_actor_init(Actor* thisx, Game_Play* game_play);
 void aHM0_actor_save(Actor* thisx, Game_Play* game_play);
 void func_809DE978_jp(Actor* thisx);
-void func_809DE948_jp(UNK_TYPE arg0);
-void func_809DE830_jp(Actor* thisx);
+void func_809DE948_jp(UNK_TYPE4 arg0);
+void func_809DE830_jp(Actor* thisx, UNK_TYPE4 arg1);
+void func_809DE800_jp(UNK_TYPE4 arg2);
 
 #if 0
 ActorProfile Hanami_Npc0_Profile = {
@@ -97,7 +98,31 @@ void aHM0_actor_move(void) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE800_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE830_jp.s")
+extern s16 D_809DEB54_jp[4];
+void func_809DE830_jp(Actor* thisx, UNK_TYPE4 arg1) {
+    // TODO: import data
+    // static s16 D_809DEB54_jp[4] = { 0x2000, 0xC000, -0x2000, 0x4000 };
+    Hanami_Npc0* this = THIS;
+    s32 index = this->actor.fgName + 0xFFFF2FCE;
+
+    this->unk_7A4 = &func_809DE800_jp;
+    this->unk_7FD = 0;
+    this->unk_8AC = -1;
+    this->unk_92B = 1;
+    this->unk_92C = 0x48;
+    this->unk_940 = index;
+    this->unk_80C = 0x137;
+    this->unk_911 = 1;
+    this->actor.colStatus.mass = MASS_HEAVY;
+    {
+        s16 temp_v0 = D_809DEB54_jp[index];
+
+        this->actor.shape.rot.y = temp_v0;
+        this->actor.world.rot.y = temp_v0;
+        this->unk_8DC = temp_v0;
+    }
+    common_data.clip.unk_040->unk_110(thisx, arg1, 8, 0);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE8D0_jp.s")
 
