@@ -102,7 +102,17 @@ void func_809DE4C0_jp(Actor* thisx, Game_Play* game_play) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE538_jp.s")
+void func_809DE538_jp(Actor* thisx) {
+    Hanami_Npc0* this = THIS;
+
+    if (this->unk_188 == 2) {
+        if (this->unk_72B == 0) {
+            this->unk_7C6 = 0xFF;
+            return;
+        }
+        this->unk_72B--;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE56C_jp.s")
 
