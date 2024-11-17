@@ -156,7 +156,13 @@ void func_809DE714_jp(Actor* thisx, UNK_TYPE arg1, s32 processIndex) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE744_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE7D0_jp.s")
+void func_809DE7D0_jp(Actor* thisx, UNK_TYPE arg1 UNUSED) {
+    Hanami_Npc0* this = THIS;
+
+    this->unk_7A8 = 0;
+    this->unk_7D0 = func_809DE714_jp;
+    func_809DE4A0_jp(thisx);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE800_jp.s")
 
