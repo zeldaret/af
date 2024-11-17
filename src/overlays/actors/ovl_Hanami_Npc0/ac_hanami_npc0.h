@@ -4,6 +4,7 @@
 #include "ultra64.h"
 #include "m_actor.h"
 #include "unk.h"
+#include "overlays/actors/ovl_Tools/ac_tools.h"
 
 struct Game_Play;
 struct Hanami_Npc0;
@@ -12,7 +13,7 @@ typedef void (*Hanami_Npc0ActionFunc)(struct Hanami_Npc0*, struct Game_Play*);
 typedef UNK_RET (*Hanami_Npc0_unk_93C)(void); // Could take up to two args
 
 typedef struct Hanami_Npc0 {
-    /* 0x000 */ Actor actor;
+    /* 0x000 */ Actor actor; // TODO: determine whether this should be a ToolActor
     /* 0x174 */ UNK_TYPE1 unk_174[0x14];
     /* 0x188 */ UNK_TYPE unk_188;
     /* 0x18C */ UNK_TYPE1 unk_18C[0x59E];
@@ -41,7 +42,7 @@ typedef struct Hanami_Npc0 {
     /* 0x7FE */ UNK_TYPE1 unk_7FE[0xE]; // unreferenced in actor file
     /* 0x80C */ UNK_TYPE unk_80C;
     /* 0x810 */ UNK_TYPE1 unk_810[0x50]; // unreferenced in actor file
-    /* 0x860 */ UNK_TYPE unk_860;
+    /* 0x860 */ ToolActor* unk_860;
     /* 0x864 */ UNK_TYPE1 unk_864[0x48]; // unreferenced in actor file
     /* 0x8AC */ UNK_TYPE unk_8AC;
     /* 0x8B0 */ UNK_TYPE1 unk_8B0[0x2C]; // unreferenced in actor file

@@ -88,7 +88,19 @@ void func_809DE4A0_jp(Actor* thisx) {
     this->unk_7D6 = 2;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE4C0_jp.s")
+// TODO: if confirmed, rename to aHM0_make_tumbler
+void func_809DE4C0_jp(Actor* thisx, Game_Play* game_play) {
+    Hanami_Npc0* this = THIS;
+    ToolActor* tool;
+
+    if (((this->unk_940 & 1) == 1) && (this->unk_860 == 0)) {
+        // TODO: resolve warning, possibly by having Hanami_Npc0 struct start with ToolActor
+        tool = common_data.clip.toolClip->aTOL_birth_proc(TOOL_TUMBLER, 3, this, game_play, -1, 0);
+        if (tool != 0) {
+            this->unk_860 = tool;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE538_jp.s")
 
