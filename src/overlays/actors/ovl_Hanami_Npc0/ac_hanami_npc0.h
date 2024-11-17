@@ -9,6 +9,7 @@ struct Game_Play;
 struct Hanami_Npc0;
 
 typedef void (*Hanami_Npc0ActionFunc)(struct Hanami_Npc0*, struct Game_Play*);
+typedef UNK_RET (*Hanami_Npc0_unk_93C)(void); // Could take up to two args
 
 typedef struct Hanami_Npc0 {
     /* 0x000 */ Actor actor;
@@ -53,7 +54,7 @@ typedef struct Hanami_Npc0 {
     /* 0x92C */ UNK_TYPE2 unk_92C;
     /* 0x92E */ UNK_TYPE1 unk_92E[0xA];
     /* 0x938 */ UNK_TYPE unk_938;
-    /* 0x93C */ UNK_TYPE unk_93C;
+    /* 0x93C */ Hanami_Npc0_unk_93C unk_93C;
     /* 0x940 */ UNK_TYPE unk_940;
     /* 0x944 */ u8 unk_944; // unsigned
 } Hanami_Npc0; // size = 0x948

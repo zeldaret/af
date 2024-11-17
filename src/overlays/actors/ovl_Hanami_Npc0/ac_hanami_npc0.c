@@ -5,6 +5,7 @@
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "m_demo.h"
 #include "macros.h"
+#include "overlays/actors/ovl_Tools/ac_tools.h"
 
 #define THIS ((Hanami_Npc0*)thisx)
 
@@ -13,9 +14,10 @@ void aHM0_actor_dt(Actor* thisx, Game_Play* game_play);
 void aHM0_actor_init(Actor* thisx, Game_Play* game_play);
 void aHM0_actor_save(Actor* thisx, Game_Play* game_play);
 void func_809DE978_jp(Actor* thisx);
-void func_809DE948_jp(UNK_TYPE4 arg0);
-void func_809DE830_jp(Actor* thisx, UNK_TYPE4 arg1);
-void func_809DE800_jp(UNK_TYPE4 arg2);
+void func_809DE948_jp(UNK_TYPE arg0);
+void func_809DE830_jp(Actor* thisx, UNK_TYPE arg1);
+void func_809DE800_jp(UNK_TYPE arg2);
+void func_809DE5DC_jp(Actor* thisx, s32 arg1);
 
 #if 0
 ActorProfile Hanami_Npc0_Profile = {
@@ -66,13 +68,25 @@ void aHM0_actor_init(Actor* thisx, Game_Play* game_play) {
     common_data.clip.unk_040->unk_CC(thisx, game_play);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE434_jp.s")
+extern s32 D_809DEB00_jp[];
+
+void func_809DE434_jp(Actor* thisx, s32 index) {
+    // TODO: import data
+    // static s32 D_809DEB00_jp[] = { 0x00000048, 0x0000004A, 0x00000049 };
+    common_data.clip.unk_040->unk_104(thisx, D_809DEB00_jp[index], 0, index);
+}
 
 void aHM0_actor_move(void) {
     common_data.clip.unk_040->unk_D0();
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE4A0_jp.s")
+void func_809DE4A0_jp(Actor* thisx) {
+    Hanami_Npc0* this = THIS;
+    
+    this->unk_7D4 = 4;
+    this->unk_7D5 = 0x12;
+    this->unk_7D6 = 2;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE4C0_jp.s")
 
@@ -80,15 +94,33 @@ void aHM0_actor_move(void) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE56C_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE5BC_jp.s")
+void func_809DE5BC_jp(Actor* thisx) {
+    Hanami_Npc0* this = THIS;
+    
+    if (this->unk_188 == 1) {
+        this->unk_7C6 = 0xFF;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE5DC_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE6B4_jp.s")
+void func_809DE6B4_jp(Actor* thisx, UNK_TYPE arg1 UNUSED) {
+    Hanami_Npc0* this = THIS;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE6C8_jp.s")
+    this->unk_7C9 = 1;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE6EC_jp.s")
+void func_809DE6C8_jp(Actor* thisx, UNK_TYPE arg1 UNUSED) {
+    func_809DE5DC_jp(thisx, 0);
+}
+
+void func_809DE6EC_jp(Actor* thisx, UNK_TYPE arg1 UNUSED) {
+    Hanami_Npc0* this = THIS;
+
+    // TODO: Figure out if this takes arguments (could be up to two based on assembly, which would fit with signature)    
+    this->unk_93C();
+}
+
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE714_jp.s")
 
@@ -99,7 +131,7 @@ void aHM0_actor_move(void) {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE800_jp.s")
 
 extern s16 D_809DEB54_jp[4];
-void func_809DE830_jp(Actor* thisx, UNK_TYPE4 arg1) {
+void func_809DE830_jp(Actor* thisx, UNK_TYPE arg1) {
     // TODO: import data
     // static s16 D_809DEB54_jp[4] = { 0x2000, 0xC000, -0x2000, 0x4000 };
     Hanami_Npc0* this = THIS;
