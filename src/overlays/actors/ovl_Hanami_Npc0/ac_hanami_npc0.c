@@ -143,8 +143,16 @@ void func_809DE6EC_jp(Actor* thisx, UNK_TYPE arg1 UNUSED) {
     this->unk_93C();
 }
 
+extern void* D_809DEB34_jp[];
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE714_jp.s")
+void func_809DE714_jp(Actor* thisx, UNK_TYPE arg1, s32 processIndex) {
+    // TODO: import data
+    // static void* D_809DEB34_jp[] = { func_809DE6C8_jp, func_809DE6B4_jp, func_809DE6EC_jp };
+    Hanami_Npc0* this = THIS;
+    // TODO: confirm whether this is appropriate function type, and update the three signatures
+    // of the above function is so.
+    ((Hanami_Npc0ActionFunc)D_809DEB34_jp[processIndex])(this, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE744_jp.s")
 
