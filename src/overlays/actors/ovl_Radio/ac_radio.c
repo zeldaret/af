@@ -9,6 +9,8 @@ void aRAD_actor_init(Actor* thisx, Game_Play* game_play);
 void aRAD_actor_draw(Actor* thisx, Game_Play* game_play);
 
 void func_80A76A30_jp(Radio* this, Game_Play* game_play);
+void func_80A76B2C_jp(Radio* this, s32 arg1);
+void func_80A769E4_jp(Radio* this, s32 arg1);
 
 /* original `.data` order:
  * - Radio_Profile
@@ -44,7 +46,13 @@ extern Gfx aRAD_model[];
 static xyz_t aRAD_clip_offset = { 2.0f, 0.0f, -10.0f };
 static RadioActionFunc aRAD_processes[] = { func_80A76A30_jp };
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/aRAD_actor_ct.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/aRAD_actor_ct.s")
+void aRAD_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
+    Radio* this = (Radio*)thisx;
+    func_80A76B2C_jp(this, 0);
+    this->unk_2B8 = 0;
+    func_80A769E4_jp(this, 1);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A76958_jp.s")
 
