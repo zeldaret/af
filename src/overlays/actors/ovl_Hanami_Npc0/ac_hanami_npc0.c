@@ -14,11 +14,11 @@ void aHM0_actor_ct(Actor* thisx, Game_Play* game_play);
 void aHM0_actor_dt(Actor* thisx, Game_Play* game_play);
 void aHM0_actor_init(Actor* thisx, Game_Play* game_play);
 void aHM0_actor_save(Actor* thisx, Game_Play* game_play);
+void func_809DE5DC_jp(Actor* thisx, s32 index);
+void func_809DE830_jp(Hanami_Npc0* this, Game_Play* game_play);
+void func_809DE800_jp(Actor* thisx, Game_Play* game_play, s32 index);
+void func_809DE948_jp(Hanami_Npc0* this, Game_Play* game_play, s32 index);
 void func_809DE978_jp(Actor* thisx);
-void func_809DE948_jp(UNK_TYPE arg0);
-void func_809DE830_jp(Actor* thisx, Game_Play* arg1);
-void func_809DE800_jp(Actor* thisx, Game_Play* arg1, s32 arg2);
-void func_809DE5DC_jp(Actor* thisx, s32 arg1);
 
 #if 0
 ActorProfile Hanami_Npc0_Profile = {
@@ -191,10 +191,9 @@ void func_809DE800_jp(Actor* thisx, Game_Play* game_play, s32 index) {
 
 extern s16 D_809DEB54_jp[4];
 
-void func_809DE830_jp(Actor* thisx, Game_Play* game_play) {
+void func_809DE830_jp(Hanami_Npc0* this, Game_Play* game_play) {
     // TODO: import data
     // static s16 D_809DEB54_jp[4] = { 0x2000, 0xC000, -0x2000, 0x4000 };
-    Hanami_Npc0* this = THIS;
     s32 index = this->actor.fgName + 0xFFFF2FCE;
 
     this->unk_7A4 = &func_809DE800_jp;
@@ -213,18 +212,25 @@ void func_809DE830_jp(Actor* thisx, Game_Play* game_play) {
         this->actor.world.rot.y = temp_v0;
         this->unk_8DC = temp_v0;
     }
-    common_data.clip.unk_040->unk_110(thisx, game_play, 8, 0);
+    common_data.clip.unk_040->unk_110(&this->actor, game_play, 8, 0);
 }
 
-void func_809DE8D0_jp(Actor* thisx, Game_Play* game_play) {
-    if (common_data.clip.unk_040->unk_110(thisx, game_play, -1, 1) == 0) {
-        common_data.clip.unk_040->unk_110(thisx, game_play, -1, 2);
+void func_809DE8D0_jp(Hanami_Npc0* this, Game_Play* game_play) {
+    if (common_data.clip.unk_040->unk_110(&this->actor, game_play, -1, 1) == 0) {
+        common_data.clip.unk_040->unk_110(&this->actor, game_play, -1, 2);
     }
 
-    func_809DE4C0_jp(thisx, game_play);
+    func_809DE4C0_jp(&this->actor, game_play);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE948_jp.s")
+extern Hanami_Npc0ActionFunc D_809DEB5C_jp[];
+
+void func_809DE948_jp(Hanami_Npc0* this, Game_Play* game_play, s32 index) {
+    // TODO: import data
+    // static Hanami_Npc0ActionFunc D_809DEB5C_jp[] = { func_809DE830_jp, func_809DE8D0_jp };
+
+    (*D_809DEB5C_jp[index])(this, game_play);
+}
 
 extern u32 D_809DEB64_jp[];
 
