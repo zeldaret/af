@@ -169,7 +169,23 @@ void func_809DE714_jp(Actor* thisx, UNK_TYPE arg1, s32 processIndex) {
     ((Hanami_Npc0ActionFunc)D_809DEB34_jp[processIndex])(this, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE744_jp.s")
+extern UNK_TYPE D_809DEB40_jp[];
+
+void func_809DE744_jp(Hanami_Npc0* this, Game_Play* game_play UNUSED) {
+    // TODO: import data
+    // static UNK_TYPE D_809DEB40_jp[] = { 0x00000000, 0x00000001, 0x00000002 };
+
+    if (this->unk_7C6 == 0xFF) {
+        if (this->unk_7C5 == 0x12) {
+            s32 index = ((s32) (2.0f * fqrand())) << (this->unk_940 & 1);
+
+            func_809DE5DC_jp(&this->actor, D_809DEB40_jp[index]);
+        }
+        this->unk_80C = 0x137;
+        this->unk_911 = 1;
+        func_809DE4A0_jp(&this->actor);
+    }
+}
 
 void func_809DE7D0_jp(Actor* thisx, UNK_TYPE arg1 UNUSED) {
     Hanami_Npc0* this = THIS;
