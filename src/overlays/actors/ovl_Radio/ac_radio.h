@@ -12,7 +12,7 @@ typedef void (*RadioActionFunc)(struct Radio*, struct Game_Play*);
 
 typedef struct Radio {
     /* 0x000 */ Actor actor;
-    /* 0x174 */ UNK_TYPE1 unk_174[0x164];
+    /* 0x174 */ UNK_TYPE1 unk_174[0x2D8 - 0x174];
 } Radio; // size = 0x2D8
 
 #endif
