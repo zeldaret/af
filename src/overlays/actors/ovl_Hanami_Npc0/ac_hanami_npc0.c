@@ -17,7 +17,7 @@ void aHM0_actor_save(Actor* thisx, Game_Play* game_play);
 void func_809DE978_jp(Actor* thisx);
 void func_809DE948_jp(UNK_TYPE arg0);
 void func_809DE830_jp(Actor* thisx, Game_Play* arg1);
-void func_809DE800_jp(UNK_TYPE arg2);
+void func_809DE800_jp(Actor* thisx, Game_Play* arg1, s32 arg2);
 void func_809DE5DC_jp(Actor* thisx, s32 arg1);
 
 #if 0
@@ -179,9 +179,18 @@ void func_809DE7D0_jp(Actor* thisx, UNK_TYPE arg1 UNUSED) {
     func_809DE4A0_jp(thisx);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE800_jp.s")
+extern Hanami_Npc0ActionFunc D_809DEB4C_jp[];
+// TODO: verify signatures of this and of functions in array
+void func_809DE800_jp(Actor* thisx, Game_Play* game_play, s32 index) {
+    //TODO: import data
+    // static Hanami_Npc0ActionFunc D_809DEB4C_jp = { func_809DE7D0_jp, func_809DE744_jp }
+    Hanami_Npc0* this = THIS;
+    
+    (*D_809DEB4C_jp[index])(this, game_play);
+}
 
 extern s16 D_809DEB54_jp[4];
+
 void func_809DE830_jp(Actor* thisx, Game_Play* game_play) {
     // TODO: import data
     // static s16 D_809DEB54_jp[4] = { 0x2000, 0xC000, -0x2000, 0x4000 };
