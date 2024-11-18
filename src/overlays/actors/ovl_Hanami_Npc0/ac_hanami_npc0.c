@@ -226,7 +226,17 @@ void func_809DE8D0_jp(Actor* thisx, Game_Play* game_play) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE948_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE978_jp.s")
+extern u32 D_809DEB64_jp[];
+
+void func_809DE978_jp(Actor* thisx) {
+    // TODO: import data
+    // last entry may just be padding
+    // static u32 D_809DEB64_jp[] = { 0x0000192D, 0x0000193C, 0x0000191E, 0x0000194B, 0x0000195A, 0x00001969, 0x00000000 };
+    Hanami_Npc0* this = THIS;
+    enum NpcLooks looks = mNpc_GetNpcLooks(thisx);
+
+    mDemo_Set_msg_num(D_809DEB64_jp[looks] + ((s32) (fqrand() * 3.0f)) + (this->unk_940 * 3));
+}
 
 void aHM0_talk_request(Actor* thisx, UNK_TYPE arg1 UNUSED) {
     mDemo_Request(7, thisx, func_809DE978_jp);
