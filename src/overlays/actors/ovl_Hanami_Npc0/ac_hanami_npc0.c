@@ -139,7 +139,49 @@ void func_809DE5BC_jp(Actor* thisx) {
     }
 }
 
+#ifdef NON_MATCHING
+extern void* D_809DEB0C_jp[];
+extern UNK_TYPE D_809DEB18_jp[];
+extern UNK_TYPE D_809DEB1C_jp[];
+extern u8 D_809DEB30_jp[];
+extern f32 D_FLT_809DEB24_jp[];
+
+void func_809DE5DC_jp(Actor* thisx, s32 index) {
+    // TODO: import data
+    // (perhaps Hanami_Npc0ActionFunc ?)
+    // /void D_809DEB0C_jp[] = { func_809DE538_jp, func_809DE56C_jp, func_809DE5BC_jp }
+    // TODO: remove fake symbol D_809DEB1C_jp
+    Hanami_Npc0* this = THIS;
+
+    this->unk_7C6 = 0;
+    this->unk_938 = index;
+    this->unk_93C = D_809DEB0C_jp[index];
+    this->unk_72B = (u8) (D_809DEB18_jp[index] + ((s32) (fqrand() * D_FLT_809DEB24_jp[index])));
+    func_809DE434_jp(thisx, index);
+
+
+    // D_809DEB18_jp[] and D_809DEB1C_jp are right next to each other in memory and look like this:
+    //
+    // dlabel D_809DEB18_jp
+    // 8C2308 809DEB18 00000001 */ .word 0x00000001
+    //
+    // dlabel D_809DEB1C_jp
+    // 8C230C 809DEB1C 00000002 */ .word 0x00000002
+    // 8C2310 809DEB20 00000001 */ .word 0x00000001
+    //
+    // (the surrounding data is clearly different--function pointers above, and floats below)
+    //
+    // so it seems plausible it's a single array. Seems strange that this comparison
+    // would be done with fully-specified pointers rather than a simple index
+    // comparison, though (I assume this is why the data got parsed that way in the first place).
+    if (((void *) D_809DEB1C_jp) == (&D_809DEB18_jp[index]))
+    {
+        this->unk_944 = (u8) D_809DEB30_jp[(s32) (fqrand() * 4.0f)];
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE5DC_jp.s")
+#endif
 
 void func_809DE6B4_jp(Actor* thisx, UNK_TYPE arg1 UNUSED) {
     Hanami_Npc0* this = THIS;
