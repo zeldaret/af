@@ -44,7 +44,6 @@ static ShadowData aRAD_shadow_data = { 0x00000008, aRAD_shadow_vtx_fix_flg_table
 extern Gfx aRAD_model[];
 
 static xyz_t aRAD_clip_offset = { 2.0f, 0.0f, -10.0f };
-static RadioActionFunc aRAD_processes[] = { func_80A76A30_jp };
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/aRAD_actor_ct.s")
 void aRAD_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
@@ -60,7 +59,12 @@ void aRAD_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A76A30_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A76B2C_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A76B2C_jp.s")
+void func_80A76B2C_jp(Radio* this, s32 arg1) {
+    static RadioActionFunc aRAD_processes[] = { func_80A76A30_jp };
+    this->unk_2A0 = aRAD_processes[arg1];
+    this->unk_2B4 = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A76B4C_jp.s")
 
