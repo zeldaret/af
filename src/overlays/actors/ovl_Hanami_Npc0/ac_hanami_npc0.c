@@ -142,7 +142,6 @@ void func_809DE5BC_jp(Actor* thisx) {
 #ifdef NON_MATCHING
 extern void* D_809DEB0C_jp[];
 extern UNK_TYPE D_809DEB18_jp[];
-extern UNK_TYPE D_809DEB1C_jp[];
 extern u8 D_809DEB30_jp[];
 extern f32 D_FLT_809DEB24_jp[];
 
@@ -174,7 +173,7 @@ void func_809DE5DC_jp(Actor* thisx, s32 index) {
     // so it seems plausible it's a single array. Seems strange that this comparison
     // would be done with fully-specified pointers rather than a simple index
     // comparison, though (I assume this is why the data got parsed that way in the first place).
-    if (((void *) D_809DEB1C_jp) == (&D_809DEB18_jp[index]))
+    if (&D_809DEB18_jp[index] == &D_809DEB18_jp[1])
     {
         this->unk_944 = (u8) D_809DEB30_jp[(s32) (fqrand() * 4.0f)];
     }
