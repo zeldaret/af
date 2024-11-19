@@ -49,7 +49,6 @@ static u8 aRAD_shadow_vtx_fix_flg_table[] = { 1, 0, 0, 1, 0, 1, 1, 0 };
 static ShadowData aRAD_shadow_data = { 0x00000008, aRAD_shadow_vtx_fix_flg_table, 60.0f, aRAD_shadow_vertices,
                                        aRAD_shadow_model };
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/aRAD_actor_ct.s")
 void aRAD_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
     Radio* this = (Radio*)thisx;
     func_80A76B2C_jp(this, 0);
@@ -57,7 +56,6 @@ void aRAD_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
     func_80A769E4_jp(this, 1);
 }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A76958_jp.s")
 void aRAD_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
     // TODO: macro these calls as `*_REMOVE_*(type, actor)`
     common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->objectSegmentTable,
@@ -71,14 +69,12 @@ void aRAD_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
                                                        STRUCTURE_TYPE_RADIO, thisx);
 }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A769E4_jp.s")
 void func_80A769E4_jp(Radio* this, s32 arg1) {
     // @note: dropping arg1 gets this function matching by itself too, but would break `aRAD_actor_ct`
     if (arg1) {} //! FAKE; just like in `aKAG_set_bgOffset`
     mCoBG_SetPlussOffset(this->actor.home.pos, 3, 100);
 }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A76A30_jp.s")
 void func_80A76A30_jp(Radio* this, Game_Play* game_play) {
     static xyz_t aRAD_clip_offset = { 2.0f, 0.0f, -10.0f };
     xyz_t sp4C = aRAD_clip_offset;
@@ -94,14 +90,12 @@ void func_80A76A30_jp(Radio* this, Game_Play* game_play) {
     this->unk_2B8 += 1;
 }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A76B2C_jp.s")
 void func_80A76B2C_jp(Radio* this, s32 arg1) {
     static RadioActionFunc aRAD_processes[] = { func_80A76A30_jp };
     this->unk_2A0 = aRAD_processes[arg1];
     this->unk_2B4 = arg1;
 }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A76B4C_jp.s")
 void func_80A76B4C_jp(Actor* thisx, Game_Play* game_play) {
     Radio* this = (Radio*)thisx;
     UNUSED s32 pad;
@@ -122,14 +116,12 @@ void func_80A76B4C_jp(Actor* thisx, Game_Play* game_play) {
     this->unk_2A0(this, game_play);
 }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/aRAD_actor_init.s")
 void aRAD_actor_init(Actor* thisx, Game_Play* game_play) {
     mFI_SetFG_common(0xF0F5, thisx->home.pos, 0);
     func_80A76B4C_jp(thisx, game_play);
     thisx->update = func_80A76B4C_jp;
 }
 
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/aRAD_actor_draw.s")
 void aRAD_actor_draw(UNUSED Actor* thisx, Game_Play* game_play) {
     extern Gfx aRAD_model[];
     GraphicsContext* gfxCtx = game_play->state.gfxCtx;
