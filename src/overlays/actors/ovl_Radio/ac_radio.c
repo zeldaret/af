@@ -8,7 +8,16 @@ void func_80A76958_jp(Actor* thisx, Game_Play* game_play);
 void aRAD_actor_init(Actor* thisx, Game_Play* game_play);
 void aRAD_actor_draw(Actor* thisx, Game_Play* game_play);
 
-#if 0
+void func_80A76A30_jp(Radio* this, Game_Play* game_play);
+
+/* original `.data` order:
+ * - Radio_Profile
+ * - aRAD_shadow_vtx_fix_flg_table
+ * - aRAD_shadow_data
+ * - aRAD_clip_offset
+ * - aRAD_processes
+ */
+
 ActorProfile Radio_Profile = {
     /* */ ACTOR_RADIO,
     /* */ ACTOR_PART_0,
@@ -22,7 +31,18 @@ ActorProfile Radio_Profile = {
     /* */ aRAD_actor_draw,
     /* */ NULL,
 };
-#endif
+
+extern Vtx aRAD_shadow_vertices[];
+extern Gfx aRAD_shadow_model[];
+
+static u8 aRAD_shadow_vtx_fix_flg_table[] = { 1, 0, 0, 1, 0, 1, 1, 0 };
+static ShadowData aRAD_shadow_data = { 0x00000008, aRAD_shadow_vtx_fix_flg_table, 60.0f, aRAD_shadow_vertices,
+                                       aRAD_shadow_model };
+
+extern Gfx aRAD_model[];
+
+static xyz_t aRAD_clip_offset = { 2.0f, 0.0f, -10.0f };
+static RadioActionFunc aRAD_processes[] = { func_80A76A30_jp };
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/aRAD_actor_ct.s")
 

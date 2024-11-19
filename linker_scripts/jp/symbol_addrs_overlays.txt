@@ -18819,10 +18819,10 @@ aRAD_actor_draw = 0x80A76C9C; // type:func
 // .data
 
 Radio_Profile = 0x80A76DD0; //
-D_80A76DF4_jp = 0x80A76DF4; //
-D_80A76DFC_jp = 0x80A76DFC; //
-D_80A76E10_jp = 0x80A76E10; //
-D_80A76E1C_jp = 0x80A76E1C; //
+aRAD_shadow_vtx_fix_flg_table = 0x80A76DF4; //
+aRAD_shadow_data = 0x80A76DFC; //
+aRAD_clip_offset = 0x80A76E10; //
+aRAD_processes = 0x80A76E1C; //
 
 // .text
 
