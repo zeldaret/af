@@ -4,6 +4,8 @@
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "macros.h"
 #include "m_field_info.h"
+#include "src/overlays/actors/player_actor/m_player.h"
+#include "m_player_lib.h"
 
 void aRAD_actor_ct(Actor* thisx, Game_Play* game_play);
 void aRAD_actor_dt(Actor* thisx, Game_Play* game_play);
@@ -98,7 +100,26 @@ void func_80A76B2C_jp(Radio* this, s32 arg1) {
     this->unk_2B4 = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A76B4C_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A76B4C_jp.s")
+void func_80A76B4C_jp(Actor* thisx, Game_Play* game_play) {
+    Radio* this = (Radio*)thisx;
+    UNUSED s32 pad;
+    Player* player = get_player_actor_withoutCheck(game_play);
+
+    s32 thisBlockX;
+    s32 thisBlockZ;
+    s32 playerBlockX;
+    s32 playerBlockZ;
+
+    mFI_Wpos2BlockNum(&thisBlockX, &thisBlockZ, thisx->world.pos);
+    mFI_Wpos2BlockNum(&playerBlockX, &playerBlockZ, player->actor.world.pos);
+    if ((mDemo_Check(1, &player->actor) == 0) && (mDemo_Check(5, &player->actor) == 0) &&
+        ((thisBlockX != playerBlockX) || (thisBlockZ != playerBlockZ))) {
+        Actor_delete(thisx);
+        return;
+    }
+    this->unk_2A0(this, game_play);
+}
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/aRAD_actor_init.s")
 void aRAD_actor_init(Actor* thisx, Game_Play* game_play) {
