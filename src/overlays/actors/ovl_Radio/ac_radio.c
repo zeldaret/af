@@ -6,6 +6,9 @@
 #include "m_field_info.h"
 #include "src/overlays/actors/player_actor/m_player.h"
 #include "m_player_lib.h"
+#include "overlays/actors/ovl_Structure/ac_structure.h"
+#include "gfx.h"
+#include "m_rcp.h"
 
 void aRAD_actor_ct(Actor* thisx, Game_Play* game_play);
 void aRAD_actor_dt(Actor* thisx, Game_Play* game_play);
@@ -45,8 +48,6 @@ extern Gfx aRAD_shadow_model[];
 static u8 aRAD_shadow_vtx_fix_flg_table[] = { 1, 0, 0, 1, 0, 1, 1, 0 };
 static ShadowData aRAD_shadow_data = { 0x00000008, aRAD_shadow_vtx_fix_flg_table, 60.0f, aRAD_shadow_vertices,
                                        aRAD_shadow_model };
-
-extern Gfx aRAD_model[];
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/aRAD_actor_ct.s")
 void aRAD_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
@@ -128,4 +129,23 @@ void aRAD_actor_init(Actor* thisx, Game_Play* game_play) {
     thisx->update = func_80A76B4C_jp;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/aRAD_actor_draw.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/aRAD_actor_draw.s")
+void aRAD_actor_draw(UNUSED Actor* thisx, Game_Play* game_play) {
+    extern Gfx aRAD_model[];
+    GraphicsContext* gfxCtx = game_play->state.gfxCtx;
+    s32 object = common_data.clip.structureClip->getObjectSegment(STRUCTURE_TYPE_RADIO);
+    u16* palette = common_data.clip.structureClip->getPalSegment(STRUCTURE_PALETTE_RADIO);
+    Mtx* mtx = _Matrix_to_Mtx_new(gfxCtx);
+    if (mtx != NULL) {
+        _texture_z_light_fog_prim_npc(gfxCtx);
+        OPEN_POLY_OPA_DISP(gfxCtx);
+        gSPSegment(__polyOpa++, 0x08, palette);
+        gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(object);
+        gSPSegment(__polyOpa++, 0x06, object);
+        gSPMatrix(__polyOpa++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+        gSPDisplayList(__polyOpa++, &aRAD_model);
+        CLOSE_POLY_OPA_DISP(gfxCtx);
+        // this function draws shadows only at the moment across several actors
+        common_data.clip.unk_074->unk_04(game_play, &aRAD_shadow_data, 0x1C);
+    }
+}
