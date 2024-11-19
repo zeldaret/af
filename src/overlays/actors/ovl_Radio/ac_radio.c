@@ -15,8 +15,8 @@ void aRAD_actor_dt(Actor* thisx, Game_Play* game_play);
 void aRAD_actor_init(Actor* thisx, Game_Play* game_play);
 void aRAD_actor_draw(Actor* thisx, Game_Play* game_play);
 
-void func_80A76A30_jp(Radio* this, Game_Play* game_play);
-void func_80A76B2C_jp(Radio* this, s32 arg1);
+void aRAD_animate(Radio* this, Game_Play* game_play);
+void aRAD_setup_action(Radio* this, s32 processId);
 void func_80A769E4_jp(Radio* this, s32 arg1);
 void func_80A76B4C_jp(Actor* thisx, Game_Play* game_play);
 
@@ -51,8 +51,8 @@ static ShadowData aRAD_shadow_data = { 0x00000008, aRAD_shadow_vtx_fix_flg_table
 
 void aRAD_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
     Radio* this = (Radio*)thisx;
-    func_80A76B2C_jp(this, 0);
-    this->unk_2B8 = 0;
+    aRAD_setup_action(this, RADIO_PROCESS_ANIMATE);
+    this->timer = 0;
     func_80A769E4_jp(this, 1);
 }
 
@@ -75,25 +75,34 @@ void func_80A769E4_jp(Radio* this, s32 arg1) {
     mCoBG_SetPlussOffset(this->actor.home.pos, 3, 100);
 }
 
-void func_80A76A30_jp(Radio* this, Game_Play* game_play) {
+void aRAD_animate(Radio* this, Game_Play* game_play) {
+    // come to think of it
+    // - it's a morning aerobics radio
+    // - that does something every 18 frames
+    // looks like a notes particles emitter
     static xyz_t aRAD_clip_offset = { 2.0f, 0.0f, -10.0f };
-    xyz_t sp4C = aRAD_clip_offset;
-    xyz_t sp40;
-    if (this->unk_2B8 >= 0x12) {
-        this->unk_2B8 = 0;
+    xyz_t offsetLocal = aRAD_clip_offset;
+    xyz_t clipPos;
+    if (this->timer >= 18) {
+        this->timer = 0;
         Matrix_push();
-        Matrix_translate(this->actor.world.pos.x, this->actor.world.pos.y, this->actor.world.pos.z, 0U);
-        Matrix_Position(&sp4C, &sp40);
+        Matrix_translate(this->actor.world.pos.x, this->actor.world.pos.y, this->actor.world.pos.z, 0);
+        Matrix_Position(&offsetLocal, &clipPos);
         Matrix_pull();
-        common_data.clip.unk_090->unk_00(0x20, sp40, 1, 0x6000, game_play, 0x582B, 1, 0);
+        // according to other call sites:
+        // - `135 degrees` is a y-axis rotation
+        // - `0x582B` is an "fgName"
+        //   - it is the same value as `ActorProfile.unk_08`
+        //   - should they be named the same?
+        common_data.clip.unk_090->unk_00(0x20, clipPos, 1, DEG_TO_BINANG(135), game_play, 0x582B, 1, 0);
     }
-    this->unk_2B8 += 1;
+    this->timer += 1;
 }
 
-void func_80A76B2C_jp(Radio* this, s32 arg1) {
-    static RadioActionFunc aRAD_processes[] = { func_80A76A30_jp };
-    this->unk_2A0 = aRAD_processes[arg1];
-    this->unk_2B4 = arg1;
+void aRAD_setup_action(Radio* this, s32 processId) {
+    static RadioActionFunc aRAD_processes[] = { aRAD_animate };
+    this->process = aRAD_processes[processId];
+    this->processId = processId;
 }
 
 void func_80A76B4C_jp(Actor* thisx, Game_Play* game_play) {
@@ -113,7 +122,7 @@ void func_80A76B4C_jp(Actor* thisx, Game_Play* game_play) {
         Actor_delete(thisx);
         return;
     }
-    this->unk_2A0(this, game_play);
+    this->process(this, game_play);
 }
 
 void aRAD_actor_init(Actor* thisx, Game_Play* game_play) {
