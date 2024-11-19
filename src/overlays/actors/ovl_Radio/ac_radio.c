@@ -2,6 +2,7 @@
 #include "m_actor_dlftbls.h"
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
+#include "m_field_info.h"
 
 void aRAD_actor_ct(Actor* thisx, Game_Play* game_play);
 void func_80A76958_jp(Actor* thisx, Game_Play* game_play);
@@ -11,6 +12,7 @@ void aRAD_actor_draw(Actor* thisx, Game_Play* game_play);
 void func_80A76A30_jp(Radio* this, Game_Play* game_play);
 void func_80A76B2C_jp(Radio* this, s32 arg1);
 void func_80A769E4_jp(Radio* this, s32 arg1);
+void func_80A76B4C_jp(Actor* thisx, Game_Play* game_play);
 
 /* original `.data` order:
  * - Radio_Profile
@@ -73,6 +75,11 @@ void func_80A76B2C_jp(Radio* this, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A76B4C_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/aRAD_actor_init.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/aRAD_actor_init.s")
+void aRAD_actor_init(Actor* thisx, Game_Play* game_play) {
+    mFI_SetFG_common(0xF0F5, thisx->home.pos, 0);
+    func_80A76B4C_jp(thisx, game_play);
+    thisx->update = func_80A76B4C_jp;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/aRAD_actor_draw.s")
