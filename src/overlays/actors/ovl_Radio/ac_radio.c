@@ -55,7 +55,12 @@ void aRAD_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A76958_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A769E4_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A769E4_jp.s")
+void func_80A769E4_jp(Radio* this, s32 arg1) {
+    // @note: dropping arg1 gets this function matching by itself too, but would break `aRAD_actor_ct`
+    if (arg1) {} //! FAKE; just like in `aKAG_set_bgOffset`
+    mCoBG_SetPlussOffset(this->actor.home.pos, 3, 100);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A76A30_jp.s")
 
