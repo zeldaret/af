@@ -46,8 +46,6 @@ static ShadowData aRAD_shadow_data = { 0x00000008, aRAD_shadow_vtx_fix_flg_table
 
 extern Gfx aRAD_model[];
 
-static xyz_t aRAD_clip_offset = { 2.0f, 0.0f, -10.0f };
-
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/aRAD_actor_ct.s")
 void aRAD_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
     Radio* this = (Radio*)thisx;
@@ -77,7 +75,21 @@ void func_80A769E4_jp(Radio* this, s32 arg1) {
     mCoBG_SetPlussOffset(this->actor.home.pos, 3, 100);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A76A30_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A76A30_jp.s")
+void func_80A76A30_jp(Radio* this, Game_Play* game_play) {
+    static xyz_t aRAD_clip_offset = { 2.0f, 0.0f, -10.0f };
+    xyz_t sp4C = aRAD_clip_offset;
+    xyz_t sp40;
+    if (this->unk_2B8 >= 0x12) {
+        this->unk_2B8 = 0;
+        Matrix_push();
+        Matrix_translate(this->actor.world.pos.x, this->actor.world.pos.y, this->actor.world.pos.z, 0U);
+        Matrix_Position(&sp4C, &sp40);
+        Matrix_pull();
+        common_data.clip.unk_090->unk_00(0x20, sp40, 1, 0x6000, game_play, 0x582B, 1, 0);
+    }
+    this->unk_2B8 += 1;
+}
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A76B2C_jp.s")
 void func_80A76B2C_jp(Radio* this, s32 arg1) {
