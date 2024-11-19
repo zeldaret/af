@@ -15,7 +15,7 @@ void aHM0_actor_dt(Actor* thisx, Game_Play* game_play);
 void aHM0_actor_init(Actor* thisx, Game_Play* game_play);
 void aHM0_actor_save(Actor* thisx, Game_Play* game_play);
 void aHM0_actor_move(void);
-void func_809DE5DC_jp(Actor* thisx, s32 index);
+void func_809DE5DC_jp(Hanami_Npc0* this, s32 index);
 void func_809DE830_jp(Hanami_Npc0* this, Game_Play* game_play);
 void func_809DE800_jp(Actor* thisx, Game_Play* game_play, s32 index);
 void func_809DE948_jp(Hanami_Npc0* this, Game_Play* game_play, s32 index);
@@ -143,64 +143,38 @@ void func_809DE5BC_jp(Actor* thisx) {
     }
 }
 
-extern void* D_809DEB0C_jp[];
+extern Hanami_Npc0_unk_93C D_809DEB0C_jp[];
 extern UNK_TYPE D_809DEB18_jp[];
 extern u8 D_809DEB30_jp[];
 extern f32 D_FLT_809DEB24_jp[];
-#ifdef NON_MATCHING
-void func_809DE5DC_jp(Actor* thisx, s32 index) {
-    // TODO: import data
-    // TODO: create new typedef for these function pointers. Although I initially thought I could
-    // just use Hanami_Npc0ActionFunc and give the function unused second arguments, none of them
-    // match that way, so they appear to have a distinct function signature of only an Actor*
-    // or a HanamiNpc0*
+void func_809DE5DC_jp(Hanami_Npc0* this, s32 index) {
     // static void* D_809DEB0C_jp[] = { func_809DE538_jp, func_809DE56C_jp, func_809DE5BC_jp };
     // static UNK_TYPE D_809DEB18_jp[] = { 0x00000001, 0x00000002, 0x00000001 };
     // static u8 D_809DEB30_jp[] = { 0x2F, 0x31, 0x32, 0x33 };
     // static f32 D_FLT_809DEB24_jp[] = { 2.0f, 3.0f, 1.0f };
-    Hanami_Npc0* this = THIS;
 
     this->unk_7C6 = 0;
     this->unk_938 = index;
     this->unk_93C = D_809DEB0C_jp[index];
     this->unk_72B = (u8) (D_809DEB18_jp[index] + ((s32) (fqrand() * D_FLT_809DEB24_jp[index])));
-    func_809DE434_jp(thisx, index);
+    func_809DE434_jp(&this->actor, index);
 
-
-    // D_809DEB18_jp[] and D_809DEB1C_jp are right next to each other in memory and look like this:
-    //
-    // dlabel D_809DEB18_jp
-    // 8C2308 809DEB18 00000001 */ .word 0x00000001
-    //
-    // dlabel D_809DEB1C_jp
-    // 8C230C 809DEB1C 00000002 */ .word 0x00000002
-    // 8C2310 809DEB20 00000001 */ .word 0x00000001
-    //
-    // (the surrounding data is clearly different--function pointers above, and floats below)
-    //
-    // so it seems plausible it's a single array. Seems strange that this comparison
-    // would be done with fully-specified pointers rather than a simple index
-    // comparison, though (I assume this is why the data got parsed that way in the first place).
-    if (&D_809DEB18_jp[index] == &D_809DEB18_jp[1])
+    if (index == 1)
     {
         this->unk_944 = (u8) D_809DEB30_jp[(s32) (fqrand() * 4.0f)];
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0/func_809DE5DC_jp.s")
-#endif
 
 void func_809DE6B4_jp(Hanami_Npc0* this, Game_Play* game_play UNUSED) {
     this->unk_7C9 = 1;
 }
 
 void func_809DE6C8_jp(Hanami_Npc0* this, Game_Play* game_play UNUSED) {
-    func_809DE5DC_jp(&this->actor, 0);
+    func_809DE5DC_jp(this, 0);
 }
 
 void func_809DE6EC_jp(Hanami_Npc0* this, Game_Play* game_play UNUSED) {
-    // TODO: Figure out if this takes arguments (could be up to two based on assembly, which would fit with signature)    
-    this->unk_93C();
+    this->unk_93C(&this->actor);
 }
 
 extern Hanami_Npc0ActionFunc D_809DEB34_jp[];
@@ -224,7 +198,7 @@ void func_809DE744_jp(Hanami_Npc0* this, Game_Play* game_play UNUSED) {
         if (this->unk_7C5 == 0x12) {
             s32 index = ((s32) (2.0f * fqrand())) << (this->unk_940 & 1);
 
-            func_809DE5DC_jp(&this->actor, D_809DEB40_jp[index]);
+            func_809DE5DC_jp(this, D_809DEB40_jp[index]);
         }
         this->unk_80C = 0x137;
         this->unk_911 = 1;
@@ -232,7 +206,7 @@ void func_809DE744_jp(Hanami_Npc0* this, Game_Play* game_play UNUSED) {
     }
 }
 
-void func_809DE7D0_jp(Hanami_Npc0* this, Game_Play* game_play) {
+void func_809DE7D0_jp(Hanami_Npc0* this, Game_Play* game_play UNUSED) {
     this->unk_7A8 = 0;
     this->unk_7D0 = func_809DE714_jp;
     func_809DE4A0_jp(&this->actor);

@@ -10,7 +10,7 @@ struct Game_Play;
 struct Hanami_Npc0;
 
 typedef void (*Hanami_Npc0ActionFunc)(struct Hanami_Npc0*, struct Game_Play*);
-typedef UNK_RET (*Hanami_Npc0_unk_93C)(void); // Could take up to two args
+typedef void (*Hanami_Npc0_unk_93C)(struct Actor*); // Could take up to two args
 
 typedef struct Hanami_Npc0 {
     /* 0x000 */ Actor actor; // TODO: determine whether this should be a ToolActor
