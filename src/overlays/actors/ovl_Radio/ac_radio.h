@@ -4,6 +4,7 @@
 #include "ultra64.h"
 #include "m_actor.h"
 #include "unk.h"
+#include "overlays/actors/ovl_Structure/ac_structure.h"
 
 struct Game_Play;
 struct Radio;

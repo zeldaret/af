@@ -2,10 +2,11 @@
 #include "m_actor_dlftbls.h"
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
+#include "macros.h"
 #include "m_field_info.h"
 
 void aRAD_actor_ct(Actor* thisx, Game_Play* game_play);
-void func_80A76958_jp(Actor* thisx, Game_Play* game_play);
+void aRAD_actor_dt(Actor* thisx, Game_Play* game_play);
 void aRAD_actor_init(Actor* thisx, Game_Play* game_play);
 void aRAD_actor_draw(Actor* thisx, Game_Play* game_play);
 
@@ -30,7 +31,7 @@ ActorProfile Radio_Profile = {
     /* */ GAMEPLAY_KEEP,
     /* */ sizeof(Radio),
     /* */ aRAD_actor_ct,
-    /* */ func_80A76958_jp,
+    /* */ aRAD_actor_dt,
     /* */ aRAD_actor_init,
     /* */ aRAD_actor_draw,
     /* */ NULL,
@@ -55,7 +56,19 @@ void aRAD_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
     func_80A769E4_jp(this, 1);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A76958_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A76958_jp.s")
+void aRAD_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
+    // TODO: macro these calls as `*_REMOVE_*(type, actor)`
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->objectSegmentTable,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->objectSegmentTable),
+                                                       STRUCTURE_TYPE_RADIO, thisx);
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->paletteSegmentTable,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->paletteSegmentTable),
+                                                       STRUCTURE_PALETTE_RADIO, thisx);
+    common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->shadowSegmentTable,
+                                                       ARRAY_COUNT(common_data.clip.structureClip->shadowSegmentTable),
+                                                       STRUCTURE_TYPE_RADIO, thisx);
+}
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Radio/ac_radio/func_80A769E4_jp.s")
 void func_80A769E4_jp(Radio* this, s32 arg1) {
