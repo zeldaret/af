@@ -33,52 +33,52 @@ ActorProfile Hanami_Npc1_Profile = {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_actor_init.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DED84_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_set_animation.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DEDC4_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_actor_move.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DEDF0_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_set_request_act.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DEE10_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_check_moveRange.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DEE60_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_check_inBlock.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DEEEC_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_revise_moveRange.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DF028_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_turn.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DF074_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_walk.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DF0EC_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_set_spd_info.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DF134_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_setupAction.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DF180_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_act_chg_data_proc.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DF194_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_act_init_proc.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DF1B8_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_act_main_proc.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DF1E0_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_act_proc.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DF210_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_think_main_proc.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DF30C_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_think_init_proc.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DF33C_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_think_proc.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DF36C_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_schedule_init_proc.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DF3FC_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_schedule_main_proc.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DF468_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_schedule_proc.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DF498_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_set_talk_info.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DF4F0_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_talk_request.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DF524_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_talk_init.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DF550_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_talk_end_chk.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/func_809DF590_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_actor_draw.s")
