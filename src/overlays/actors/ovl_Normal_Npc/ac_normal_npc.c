@@ -26,7 +26,7 @@ ActorProfile Normal_Npc_Profile = {
 };
 
 struct_809AEFA4 aNOR_ct_data = {
-    aNOR_actor_move, aNOR_actor_draw, 1, NULL, NULL, NULL,
+    aNOR_actor_move, aNOR_actor_draw, 1, NULL, NULL, NULL, NULL,
 };
 
 void aNOR_actor_ct(Actor* thisx, Game_Play* game_play) {

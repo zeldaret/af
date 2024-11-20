@@ -46,6 +46,7 @@ struct_809AEFA4 aHM0_ct_data = {
     aHM0_talk_request,
     func_809DEA20_jp,
     aHM0_talk_end_chk,
+    NULL,
 };
 
 void aHM0_actor_ct(Actor* thisx, Game_Play* game_play) {

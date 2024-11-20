@@ -29,7 +29,7 @@ ActorProfile Kamakura_Npc0_Profile = {
 };
 
 struct_809AEFA4 aKM0_ct_data = {
-    aKM0_actor_move, aKM0_actor_draw, 3, aKM0_talk_request, aKM0_talk_init, aKM0_talk_end_chk,
+    aKM0_actor_move, aKM0_actor_draw, 3, aKM0_talk_request, aKM0_talk_init, aKM0_talk_end_chk, NULL,
 };
 
 void aKM0_actor_ct(Actor* thisx, Game_Play* game_play) {
