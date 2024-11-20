@@ -17,7 +17,7 @@ void aRAD_actor_draw(Actor* thisx, Game_Play* game_play);
 
 void aRAD_animate(Radio* this, Game_Play* game_play);
 void aRAD_setup_action(Radio* this, s32 processId);
-void func_80A769E4_jp(Radio* this, s32 arg1);
+void aRAD_set_bgOffset(Radio* this, s32 arg1);
 void func_80A76B4C_jp(Actor* thisx, Game_Play* game_play);
 
 /* original `.data` order:
@@ -53,7 +53,7 @@ void aRAD_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
     Radio* this = (Radio*)thisx;
     aRAD_setup_action(this, RADIO_PROCESS_ANIMATE);
     this->timer = 0;
-    func_80A769E4_jp(this, 1);
+    aRAD_set_bgOffset(this, 1);
 }
 
 void aRAD_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
@@ -69,7 +69,7 @@ void aRAD_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
                                                        STRUCTURE_TYPE_RADIO, thisx);
 }
 
-void func_80A769E4_jp(Radio* this, s32 arg1) {
+void aRAD_set_bgOffset(Radio* this, s32 arg1) {
     // @note: dropping arg1 gets this function matching by itself too, but would break `aRAD_actor_ct`
     if (arg1) {} //! FAKE; just like in `aKAG_set_bgOffset`
     mCoBG_SetPlussOffset(this->actor.home.pos, 3, 100);
