@@ -18,7 +18,7 @@ void aRAD_actor_draw(Actor* thisx, Game_Play* game_play);
 void aRAD_animate(Radio* this, Game_Play* game_play);
 void aRAD_setup_action(Radio* this, s32 processId);
 void aRAD_set_bgOffset(Radio* this, s32 arg1);
-void func_80A76B4C_jp(Actor* thisx, Game_Play* game_play);
+void aRAD_actor_move(Actor* thisx, Game_Play* game_play);
 
 /* original `.data` order:
  * - Radio_Profile
@@ -105,7 +105,7 @@ void aRAD_setup_action(Radio* this, s32 processId) {
     this->processId = processId;
 }
 
-void func_80A76B4C_jp(Actor* thisx, Game_Play* game_play) {
+void aRAD_actor_move(Actor* thisx, Game_Play* game_play) {
     Radio* this = (Radio*)thisx;
     UNUSED s32 pad;
     Player* player = get_player_actor_withoutCheck(game_play);
@@ -127,8 +127,8 @@ void func_80A76B4C_jp(Actor* thisx, Game_Play* game_play) {
 
 void aRAD_actor_init(Actor* thisx, Game_Play* game_play) {
     mFI_SetFG_common(0xF0F5, thisx->home.pos, 0);
-    func_80A76B4C_jp(thisx, game_play);
-    thisx->update = func_80A76B4C_jp;
+    aRAD_actor_move(thisx, game_play);
+    thisx->update = aRAD_actor_move;
 }
 
 void aRAD_actor_draw(UNUSED Actor* thisx, Game_Play* game_play) {
