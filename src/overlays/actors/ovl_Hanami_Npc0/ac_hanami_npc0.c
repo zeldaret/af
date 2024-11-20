@@ -15,7 +15,7 @@ void aHM0_actor_dt(Actor* thisx, Game_Play* game_play);
 void aHM0_actor_init(Actor* thisx, Game_Play* game_play);
 void aHM0_actor_save(Actor* thisx, Game_Play* game_play);
 void aHM0_actor_move(void);
-void aHM0_schedule_proc(Hanami_Npc0* this, Game_Play* game_play, s32 index);
+void aHM0_schedule_proc(Actor* thisx, Game_Play* game_play, s32 index);
 void aHM0_talk_request(Actor* thisx, UNK_TYPE arg1 UNUSED);
 s32 aHM0_talk_init(UNK_TYPE arg0 UNUSED, UNK_TYPE arg1 UNUSED);
 s32 aHM0_talk_end_chk(Actor* thisx, UNK_TYPE arg1 UNUSED);
@@ -49,7 +49,7 @@ void aHM0_actor_ct(Actor* thisx, Game_Play* game_play) {
     Hanami_Npc0* this = THIS;
 
     if (common_data.clip.unk_040->unk_BC(thisx, game_play) == 1) {
-        this->unk_7C0 = &aHM0_schedule_proc;
+        this->unk_7C0 = aHM0_schedule_proc;
         common_data.clip.unk_040->unk_C0(thisx, game_play, &aHM0_ct_data);
     }
 }
@@ -163,8 +163,6 @@ void aHM0_act_main_proc(Hanami_Npc0* this, Game_Play* game_play UNUSED) {
 }
 
 void aHM0_act_proc(Actor* thisx, Game_Play* game_play, s32 processIndex) {
-    // TODO: confirm whether this is appropriate function type
-    // act_proc
     static Hanami_Npc0ActionFunc act_proc[] = { aHM0_act_init_proc, aHM0_act_chg_data_proc, aHM0_act_main_proc };
     Hanami_Npc0* this = THIS;
 
@@ -204,7 +202,7 @@ void aHM0_schedule_init_proc(Hanami_Npc0* this, Game_Play* game_play) {
     static s16 def_angle[4] = { 0x2000, 0xC000, 0xE000, 0x4000 };
     s32 angleIndex = this->actor.fgName + 0xFFFF2FCE;
 
-    this->unk_7A4 = &aHM0_think_proc;
+    this->unk_7A4 = aHM0_think_proc;
     this->unk_7FD = 0;
     this->unk_8AC = -1;
     this->unk_92B = 1;
@@ -231,8 +229,9 @@ void aHM0_schedule_main_proc(Hanami_Npc0* this, Game_Play* game_play) {
     aHM0_make_tumbler(&this->actor, game_play);
 }
 
-void aHM0_schedule_proc(Hanami_Npc0* this, Game_Play* game_play, s32 processIndex) {
+void aHM0_schedule_proc(Actor* thisx, Game_Play* game_play, s32 processIndex) {
     static Hanami_Npc0ActionFunc sche_proc[] = { aHM0_schedule_init_proc, aHM0_schedule_main_proc };
+    Hanami_Npc0* this = THIS;
 
     (*sche_proc[processIndex])(this, game_play);
 }
