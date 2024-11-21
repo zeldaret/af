@@ -14,12 +14,12 @@ void aHM0_actor_ct(Actor* thisx, Game_Play* game_play);
 void aHM0_actor_dt(Actor* thisx, Game_Play* game_play);
 void aHM0_actor_init(Actor* thisx, Game_Play* game_play);
 void aHM0_actor_save(Actor* thisx, Game_Play* game_play);
-void aHM0_actor_move(void);
+void aHM0_actor_move(Actor* thisx, Game_Play* game_play);
 void aHM0_schedule_proc(Actor* thisx, Game_Play* game_play, s32 index);
 void aHM0_talk_request(Actor* thisx, UNK_TYPE arg1 UNUSED);
 s32 aHM0_talk_init(UNK_TYPE arg0 UNUSED, UNK_TYPE arg1 UNUSED);
 s32 aHM0_talk_end_chk(Actor* thisx, UNK_TYPE arg1 UNUSED);
-void aHM0_actor_draw(void);
+void aHM0_actor_draw(Actor* thisx, Game_Play* game_play);
 
 ActorProfile Hanami_Npc0_Profile = {
     /* */ ACTOR_HANAMI_NPC0,
@@ -72,8 +72,8 @@ void aHM0_set_animation(Actor* thisx, s32 index) {
     common_data.clip.unk_040->unk_104(thisx, D_809DEB00_jp[index], 0, index);
 }
 
-void aHM0_actor_move(void) {
-    common_data.clip.unk_040->unk_D0();
+void aHM0_actor_move(Actor* thisx, Game_Play* game_play) {
+    common_data.clip.unk_040->unk_D0(thisx, game_play);
 }
 
 void aHM0_set_request_act(Actor* thisx) {
@@ -270,6 +270,6 @@ s32 aHM0_talk_end_chk(Actor* thisx, UNK_TYPE arg1 UNUSED) {
 // This still matches if given that signature and both arguments are passed to
 // unk_E4, or if given a signature of (Actor*) and passed that argument, but
 // it does not match if one or both arguments are omitted in either case.
-void aHM0_actor_draw(void) {
-    common_data.clip.unk_040->unk_E4();
+void aHM0_actor_draw(Actor* thisx, Game_Play* game_play) {
+    common_data.clip.unk_040->unk_E4(thisx, game_play);
 }
