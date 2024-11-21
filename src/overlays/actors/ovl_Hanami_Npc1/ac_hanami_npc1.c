@@ -16,7 +16,7 @@ void aHM1_schedule_proc(Actor* thisx, Game_Play* game_play, s32 index);
 void aHM1_talk_request(Actor* thisx, UNK_TYPE arg1 UNUSED);
 s32 aHM1_talk_init(UNK_TYPE arg0 UNUSED, UNK_TYPE arg1 UNUSED);
 s32 aHM1_talk_end_chk(Actor* thisx, UNK_TYPE arg1 UNUSED);
-void aHM1_actor_draw(void);
+void aHM1_actor_draw(Actor* thisx, Game_Play* game_play);
 
 #if 0
 ActorProfile Hanami_Npc1_Profile = {
@@ -115,6 +115,8 @@ void aHM1_actor_init(Actor* thisx, Game_Play* game_play) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_talk_end_chk.s")
 
-void aHM1_actor_draw(void) {
-    common_data.clip.unk_040->unk_E4();
+// void arguments for both this function and unk_E4 also match,
+// but an ActorFunc signature for both seems more plausible.
+void aHM1_actor_draw(Actor* thisx, Game_Play* game_play) {
+    common_data.clip.unk_040->unk_E4(thisx, game_play);
 }

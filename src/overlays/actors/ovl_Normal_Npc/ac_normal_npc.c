@@ -9,7 +9,7 @@ void aNOR_actor_dt(Actor* thisx, Game_Play* game_play);
 void aNOR_actor_init(Actor* thisx, Game_Play* game_play);
 void aNOR_actor_save(Actor* thisx, Game_Play* game_play);
 void aNOR_actor_move(void);
-void aNOR_actor_draw(void);
+void aNOR_actor_draw(Actor* thisx, Game_Play* game_play);
 
 ActorProfile Normal_Npc_Profile = {
     /* */ ACTOR_NORMAL_NPC,
@@ -51,6 +51,6 @@ void aNOR_actor_move(void) {
     common_data.clip.unk_040->unk_D0();
 }
 
-void aNOR_actor_draw(void) {
-    common_data.clip.unk_040->unk_E4();
+void aNOR_actor_draw(Actor* thisx, Game_Play* game_play) {
+    common_data.clip.unk_040->unk_E4(thisx, game_play);
 }
