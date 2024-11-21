@@ -6,8 +6,6 @@
 #include "m_field_info.h"
 #include "src/overlays/actors/player_actor/m_player.h"
 #include "m_player_lib.h"
-#include "overlays/actors/ovl_Structure/ac_structure.h"
-#include "gfx.h"
 #include "m_rcp.h"
 
 void aRAD_actor_ct(Actor* thisx, Game_Play* game_play);
@@ -16,7 +14,7 @@ void aRAD_actor_init(Actor* thisx, Game_Play* game_play);
 void aRAD_actor_draw(Actor* thisx, Game_Play* game_play);
 
 void aRAD_animate(Radio* this, Game_Play* game_play);
-void aRAD_setup_action(Radio* this, s32 processId);
+void aRAD_setup_action(Radio* this, s32 processIndex);
 void aRAD_set_bgOffset(Radio* this, s32 arg1);
 void aRAD_actor_move(Actor* thisx, Game_Play* game_play);
 
@@ -52,7 +50,7 @@ static ShadowData aRAD_shadow_data = { 0x00000008, aRAD_shadow_vtx_fix_flg_table
 void aRAD_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
     Radio* this = (Radio*)thisx;
     aRAD_setup_action(this, RADIO_PROCESS_ANIMATE);
-    this->timer = 0;
+    RADIO_TIMER(this) = 0;
     aRAD_set_bgOffset(this, 1);
 }
 
@@ -72,7 +70,7 @@ void aRAD_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
 void aRAD_set_bgOffset(Radio* this, s32 arg1) {
     // @note: dropping arg1 gets this function matching by itself too, but would break `aRAD_actor_ct`
     if (arg1) {} //! FAKE; just like in `aKAG_set_bgOffset`
-    mCoBG_SetPlussOffset(this->actor.home.pos, 3, 100);
+    mCoBG_SetPlussOffset(RADIO_HOME(this).pos, 3, 100);
 }
 
 void aRAD_animate(Radio* this, Game_Play* game_play) {
@@ -83,10 +81,10 @@ void aRAD_animate(Radio* this, Game_Play* game_play) {
     static xyz_t aRAD_clip_offset = { 2.0f, 0.0f, -10.0f };
     xyz_t offsetLocal = aRAD_clip_offset;
     xyz_t clipPos;
-    if (this->timer >= 18) {
-        this->timer = 0;
+    if (RADIO_TIMER(this) >= 18) {
+        RADIO_TIMER(this) = 0;
         Matrix_push();
-        Matrix_translate(this->actor.world.pos.x, this->actor.world.pos.y, this->actor.world.pos.z, 0);
+        Matrix_translate(RADIO_WORLD(this).pos.x, RADIO_WORLD(this).pos.y, RADIO_WORLD(this).pos.z, 0);
         Matrix_Position(&offsetLocal, &clipPos);
         Matrix_pull();
         // according to other call sites:
@@ -96,13 +94,13 @@ void aRAD_animate(Radio* this, Game_Play* game_play) {
         //   - should they be named the same?
         common_data.clip.unk_090->unk_00(0x20, clipPos, 1, DEG_TO_BINANG(135), game_play, 0x582B, 1, 0);
     }
-    this->timer += 1;
+    RADIO_TIMER(this) += 1;
 }
 
-void aRAD_setup_action(Radio* this, s32 processId) {
+void aRAD_setup_action(Radio* this, s32 processIndex) {
     static RadioActionFunc aRAD_processes[] = { aRAD_animate };
-    this->process = aRAD_processes[processId];
-    this->processId = processId;
+    RADIO_PROCESS(this) = aRAD_processes[processIndex];
+    RADIO_PROCESS_INDEX(this) = processIndex;
 }
 
 void aRAD_actor_move(Actor* thisx, Game_Play* game_play) {
@@ -122,7 +120,7 @@ void aRAD_actor_move(Actor* thisx, Game_Play* game_play) {
         Actor_delete(thisx);
         return;
     }
-    this->process(this, game_play);
+    ((RadioActionFunc)RADIO_PROCESS(this))(this, game_play);
 }
 
 void aRAD_actor_init(Actor* thisx, Game_Play* game_play) {

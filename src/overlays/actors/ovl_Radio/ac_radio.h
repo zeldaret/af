@@ -1,9 +1,7 @@
 #ifndef AC_RADIO_H
 #define AC_RADIO_H
 
-#include "ultra64.h"
 #include "m_actor.h"
-#include "unk.h"
 #include "overlays/actors/ovl_Structure/ac_structure.h"
 
 struct Game_Play;
@@ -15,19 +13,20 @@ typedef enum RadioProcess {
 
 typedef void (*RadioActionFunc)(struct Radio*, struct Game_Play*);
 
-/* it can use `struct StructureActor`, but only a handfull of fields actually make sense
- * - 0x2A0: an action / process function
- * - 0x2B4: corresponding action / process id
- * - 0x2B8: timer
+/* only a handfull of `StructureActor`'s fields are actually employed:
+ * - 0x2A0, process: an action / process function
+ * - 0x2B4, unk_2B4: corresponding action / process index
+ * - 0x2B8, unk_2B8: timer
  */
 typedef struct Radio {
-    /* 0x000 */ Actor actor;
-    /* 0x174 */ UNK_TYPE1 unk_174[0x2A0 - 0x174];
-    /* 0x2A0 */ RadioActionFunc process;
-    /* 0x174 */ UNK_TYPE1 unk_2A4[0x2B4 - 0x2A4];
-    /* 0x2B4 */ s32 processId;
-    /* 0x2B8 */ s32 timer;
-    /* 0x2BC */ UNK_TYPE1 unk_2BC[0x2D8 - 0x2BC];
+    /* 0x000 */ StructureActor structureActor;
 } Radio; // size = 0x2D8
+
+#define RADIO_HOME(this) (this->structureActor.actor.home)
+#define RADIO_WORLD(this) (this->structureActor.actor.world)
+
+#define RADIO_PROCESS(this) (this->structureActor.process)
+#define RADIO_PROCESS_INDEX(this) (this->structureActor.unk_2B4)
+#define RADIO_TIMER(this) (this->structureActor.unk_2B8)
 
 #endif
