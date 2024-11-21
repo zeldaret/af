@@ -76,7 +76,13 @@ void aHM1_actor_init(Actor* thisx, Game_Play* game_play) {
     common_data.clip.unk_040->unk_CC(thisx, game_play);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_set_animation.s")
+extern UNK_TYPE4 animeSeqNo[];
+void aHM1_set_animation(Hanami_Npc1* this, s32 processIndex) {
+    // TODO: import data
+    // static UNK_TYPE4 animeSeqNo[] = { 0x0000004B, 0x0000004B };
+
+    common_data.clip.unk_040->unk_104(&this->actor, animeSeqNo[processIndex], 0, processIndex);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_actor_move.s")
 
@@ -220,8 +226,6 @@ s32 aHM1_talk_end_chk(Actor* thisx, UNK_TYPE arg1 UNUSED) {
     return result;
 }
 
-// void arguments for both this function and unk_E4 also match,
-// but an ActorFunc signature for both seems more plausible.
 void aHM1_actor_draw(Actor* thisx, Game_Play* game_play) {
     common_data.clip.unk_040->unk_E4(thisx, game_play);
 }
