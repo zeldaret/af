@@ -12,7 +12,7 @@ void aHM1_actor_dt(Actor* thisx, Game_Play* game_play);
 void aHM1_actor_init(Actor* thisx, Game_Play* game_play);
 void aHM1_actor_save(Actor* thisx, Game_Play* game_play);
 // TODO: below are copy-pasted from ac_hanami_npc0--verify signatures!!
-void aHM1_actor_move(void);
+void aHM1_actor_move(Actor* thisx, Game_Play* game_play);
 void aHM1_schedule_proc(Actor* thisx, Game_Play* game_play, s32 index);
 void aHM1_talk_request(Actor* thisx, UNK_TYPE arg1 UNUSED);
 s32 aHM1_talk_init(UNK_TYPE arg0 UNUSED, UNK_TYPE arg1 UNUSED);
@@ -84,7 +84,9 @@ void aHM1_set_animation(Hanami_Npc1* this, s32 processIndex) {
     common_data.clip.unk_040->unk_104(&this->actor, animeSeqNo[processIndex], 0, processIndex);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_actor_move.s")
+void aHM1_actor_move(Actor* thisx, Game_Play* game_play) {
+    common_data.clip.unk_040->unk_D0(thisx, game_play);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_set_request_act.s")
 

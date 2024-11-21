@@ -11,7 +11,7 @@ void aKM0_actor_save(Actor* thisx, Game_Play* game_play);
 void aKM0_talk_request(UNK_TYPE arg0, UNK_TYPE arg1);
 void aKM0_talk_init(UNK_TYPE arg0, UNK_TYPE arg1);
 s32 aKM0_talk_end_chk(UNK_TYPE arg0, UNK_TYPE arg1);
-void aKM0_actor_move(void);
+void aKM0_actor_move(Actor* thisx, Game_Play* game_play);
 void aKM0_actor_draw(Actor* thisx, Game_Play* game_play);
 
 ActorProfile Kamakura_Npc0_Profile = {
@@ -69,8 +69,8 @@ s32 aKM0_talk_end_chk(UNK_TYPE arg0, UNK_TYPE arg1 UNUSED) {
     return var_v1;
 }
 
-void aKM0_actor_move(void) {
-    common_data.clip.unk_040->unk_D0();
+void aKM0_actor_move(Actor* thisx, Game_Play* game_play) {
+    common_data.clip.unk_040->unk_D0(thisx, game_play);
 }
 
 void aKM0_actor_draw(Actor* thisx, Game_Play* game_play) {

@@ -9,7 +9,7 @@ void aNEG_actor_ct(Actor* thisx, Game_Play* game_play);
 void aNEG_actor_dt(Actor* thisx, Game_Play* game_play);
 void aNEG_actor_init(Actor* thisx, Game_Play* game_play);
 void aNEG_actor_save(Actor* thisx, Game_Play* game_play);
-void aNEG_actor_move(void);
+void aNEG_actor_move(Actor* thisx, Game_Play* game_play);
 void aNEG_actor_draw(Actor* thisx, Game_Play* game_play);
 
 ActorProfile Npc_Engineer_Profile = {
@@ -61,8 +61,8 @@ void aNEG_actor_init(Actor* thisx, Game_Play* game_play) {
     common_data.clip.unk_040->unk_CC(thisx, game_play);
 }
 
-void aNEG_actor_move(void) {
-    common_data.clip.unk_040->unk_D0();
+void aNEG_actor_move(Actor* thisx, Game_Play* game_play) {
+    common_data.clip.unk_040->unk_D0(thisx, game_play);
 }
 
 void aNEG_actor_draw(Actor* thisx, Game_Play* game_play) {
