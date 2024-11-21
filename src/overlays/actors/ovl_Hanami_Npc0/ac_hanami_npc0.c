@@ -15,7 +15,7 @@ void aHM0_actor_dt(Actor* thisx, Game_Play* game_play);
 void aHM0_actor_init(Actor* thisx, Game_Play* game_play);
 void aHM0_actor_save(Actor* thisx, Game_Play* game_play);
 void aHM0_actor_move(Actor* thisx, Game_Play* game_play);
-void aHM0_schedule_proc(Actor* thisx, Game_Play* game_play, s32 index);
+void aHM0_schedule_proc(Actor* thisx, Game_Play* game_play, s32 processIndex);
 void aHM0_talk_request(Actor* thisx, UNK_TYPE arg1 UNUSED);
 s32 aHM0_talk_init(UNK_TYPE arg0 UNUSED, UNK_TYPE arg1 UNUSED);
 s32 aHM0_talk_end_chk(Actor* thisx, UNK_TYPE arg1 UNUSED);
@@ -89,10 +89,7 @@ void aHM0_make_tumbler(Actor* thisx, Game_Play* game_play) {
     ToolActor* tool;
 
     if (((this->unk_940 & 1) == 1) && (this->unk_860 == 0)) {
-        // TODO: resolve warning; aTOL_birth_proc takes a *ToolActor as the third argument, which
-        // would require a cast here, but ac-decomp uses a plain *Actor. Not sure which is more
-        // appropriate.
-        tool = common_data.clip.toolClip->aTOL_birth_proc(TOOL_TUMBLER, 3, this, game_play, -1, 0);
+        tool = common_data.clip.toolClip->aTOL_birth_proc(TOOL_TUMBLER, 3, (ToolActor*)this, game_play, -1, 0);
         if (tool != 0) {
             this->unk_860 = tool;
         }
@@ -190,7 +187,6 @@ void aHM0_think_init_proc(Hanami_Npc0* this, Game_Play* game_play UNUSED) {
     aHM0_set_request_act(&this->actor);
 }
 
-// TODO: verify signatures of this and of functions in array
 void aHM0_think_proc(Actor* thisx, Game_Play* game_play, s32 processIndex) {
     static Hanami_Npc0ActionFunc think_proc[] = { aHM0_think_init_proc, aHM0_think_main_proc };
     Hanami_Npc0* this = THIS;
@@ -248,8 +244,6 @@ void aHM0_talk_request(Actor* thisx, UNK_TYPE arg1 UNUSED) {
     mDemo_Request(7, thisx, aHM0_set_talk_info);
 }
 
-// NOTE: return type is different from function of same suffix as found in
-// ac_kamakura_npc0.c and ac_npc_engineer.c (both are void)
 s32 aHM0_talk_init(UNK_TYPE arg0 UNUSED, UNK_TYPE arg1 UNUSED) {
     mDemo_Set_ListenAble();
 
@@ -266,10 +260,6 @@ s32 aHM0_talk_end_chk(Actor* thisx, UNK_TYPE arg1 UNUSED) {
     return result;
 }
 
-// TODO: decide whether to use signature (Actor* thisx , Game_Play* game_play)
-// This still matches if given that signature and both arguments are passed to
-// unk_E4, or if given a signature of (Actor*) and passed that argument, but
-// it does not match if one or both arguments are omitted in either case.
 void aHM0_actor_draw(Actor* thisx, Game_Play* game_play) {
     common_data.clip.unk_040->unk_E4(thisx, game_play);
 }

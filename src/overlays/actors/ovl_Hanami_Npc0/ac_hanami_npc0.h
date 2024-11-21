@@ -13,21 +13,21 @@ typedef void (*Hanami_Npc0ActionFunc)(struct Hanami_Npc0*, struct Game_Play*);
 typedef void (*Hanami_Npc0_unk_93C)(struct Actor*);
 
 typedef struct Hanami_Npc0 {
-    /* 0x000 */ Actor actor; // TODO: determine whether this should be a ToolActor
+    /* 0x000 */ Actor actor;
     /* 0x174 */ UNK_TYPE1 unk_174[0x14];
     /* 0x188 */ UNK_TYPE unk_188;
     /* 0x18C */ UNK_TYPE1 unk_18C[0x59E];
     /* 0x72A */ UNK_TYPE1 unk_72A; // inferred from alignment
-    /* 0x72B */ u8 unk_72B; // unsigned
+    /* 0x72B */ u8 unk_72B;
     /* 0x72C */ UNK_TYPE1 unk_72C[0x78]; // unreferenced in actor file
     /* 0x7A4 */ UNK_PTR unk_7A4;
     /* 0x7A8 */ UNK_TYPE unk_7A8;
     /* 0x7AC */ UNK_TYPE1 unk_7AC[0x14]; // unreferenced in actor file
     /* 0x7C0 */ UNK_PTR unk_7C0;
     /* 0x7C4 */ UNK_TYPE1 unk_7C4; // inferred from alignment
-    /* 0x7C5 */ u8 unk_7C5; // unsigned
-    /* 0x7C6 */ u8 unk_7C6; // unsigned
-    /* 0x7C7 */ UNK_TYPE1 unk_7C7; // inferred from alignment (could be auto padding)
+    /* 0x7C5 */ u8 unk_7C5;
+    /* 0x7C6 */ u8 unk_7C6;
+    /* 0x7C7 */ UNK_TYPE1 unk_7C7; // unreferenced in actor file
     /* 0x7C8 */ UNK_TYPE1 unk_7C8; // inferred from alignment
     /* 0x7C9 */ UNK_TYPE1 unk_7C9;
     /* 0x7CA */ UNK_TYPE1 unk_7CA[6]; // unreferenced in actor file
@@ -35,7 +35,7 @@ typedef struct Hanami_Npc0 {
     /* 0x7D4 */ UNK_TYPE1 unk_7D4;
     /* 0x7D5 */ UNK_TYPE1 unk_7D5;
     /* 0x7D6 */ UNK_TYPE1 unk_7D6;
-    /* 0x7D7 */ UNK_TYPE1 unk_7D7; // inferred from alignment (could be auto padding)
+    /* 0x7D7 */ UNK_TYPE1 unk_7D7; // inferred from alignment (could be padding)
     /* 0x7D8 */ UNK_TYPE1 unk_7D8[0x24]; // unreferenced in actor file
     /* 0x7FC */ UNK_TYPE1 unk_7FC; // inferred from alignment
     /* 0x7FD */ UNK_TYPE1 unk_7FD;
@@ -57,7 +57,7 @@ typedef struct Hanami_Npc0 {
     /* 0x938 */ UNK_TYPE unk_938;
     /* 0x93C */ Hanami_Npc0_unk_93C unk_93C;
     /* 0x940 */ UNK_TYPE unk_940;
-    /* 0x944 */ u8 unk_944; // unsigned
+    /* 0x944 */ u8 unk_944;
 } Hanami_Npc0; // size = 0x948
 
 #endif
