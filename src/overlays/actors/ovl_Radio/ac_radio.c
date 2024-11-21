@@ -13,18 +13,10 @@ void aRAD_actor_dt(Actor* thisx, Game_Play* game_play);
 void aRAD_actor_init(Actor* thisx, Game_Play* game_play);
 void aRAD_actor_draw(Actor* thisx, Game_Play* game_play);
 
-void aRAD_animate(Radio* this, Game_Play* game_play);
+void aRAD_wait(Radio* this, Game_Play* game_play);
 void aRAD_setup_action(Radio* this, s32 processIndex);
 void aRAD_set_bgOffset(Radio* this, s32 arg1);
 void aRAD_actor_move(Actor* thisx, Game_Play* game_play);
-
-/* original `.data` order:
- * - Radio_Profile
- * - aRAD_shadow_vtx_fix_flg_table
- * - aRAD_shadow_data
- * - aRAD_clip_offset
- * - aRAD_processes
- */
 
 ActorProfile Radio_Profile = {
     /* */ ACTOR_RADIO,
@@ -44,18 +36,17 @@ extern Vtx aRAD_shadow_vertices[];
 extern Gfx aRAD_shadow_model[];
 
 static u8 aRAD_shadow_vtx_fix_flg_table[] = { 1, 0, 0, 1, 0, 1, 1, 0 };
-static ShadowData aRAD_shadow_data = { 0x00000008, aRAD_shadow_vtx_fix_flg_table, 60.0f, aRAD_shadow_vertices,
+static ShadowData aRAD_shadow_data = { 8, aRAD_shadow_vtx_fix_flg_table, 60.0f, aRAD_shadow_vertices,
                                        aRAD_shadow_model };
 
 void aRAD_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
     Radio* this = (Radio*)thisx;
-    aRAD_setup_action(this, RADIO_PROCESS_ANIMATE);
-    RADIO_TIMER(this) = 0;
+    aRAD_setup_action(this, RADIO_PROCESS_WAIT);
+    this->structureActor.unk_2B8 = 0;
     aRAD_set_bgOffset(this, 1);
 }
 
 void aRAD_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
-    // TODO: macro these calls as `*_REMOVE_*(type, actor)`
     common_data.clip.structureClip->removeInstanceProc(common_data.clip.structureClip->objectSegmentTable,
                                                        ARRAY_COUNT(common_data.clip.structureClip->objectSegmentTable),
                                                        STRUCTURE_TYPE_RADIO, thisx);
@@ -70,37 +61,29 @@ void aRAD_actor_dt(Actor* thisx, Game_Play* game_play UNUSED) {
 void aRAD_set_bgOffset(Radio* this, s32 arg1) {
     // @note: dropping arg1 gets this function matching by itself too, but would break `aRAD_actor_ct`
     if (arg1) {} //! FAKE; just like in `aKAG_set_bgOffset`
-    mCoBG_SetPlussOffset(RADIO_HOME(this).pos, 3, 100);
+    mCoBG_SetPlussOffset(this->structureActor.actor.home.pos, 3, 100);
 }
 
-void aRAD_animate(Radio* this, Game_Play* game_play) {
-    // come to think of it
-    // - it's a morning aerobics radio
-    // - that does something every 18 frames
-    // looks like a notes particles emitter
-    static xyz_t aRAD_clip_offset = { 2.0f, 0.0f, -10.0f };
-    xyz_t offsetLocal = aRAD_clip_offset;
-    xyz_t clipPos;
-    if (RADIO_TIMER(this) >= 18) {
-        RADIO_TIMER(this) = 0;
+void aRAD_wait(Radio* this, Game_Play* game_play) {
+    static xyz_t D_80A76E10_jp = { 2.0f, 0.0f, -10.0f };
+    xyz_t offsetLocal = D_80A76E10_jp;
+    xyz_t offsetWorld;
+    if (this->structureActor.unk_2B8 >= 18) {
+        this->structureActor.unk_2B8 = 0;
         Matrix_push();
-        Matrix_translate(RADIO_WORLD(this).pos.x, RADIO_WORLD(this).pos.y, RADIO_WORLD(this).pos.z, 0);
-        Matrix_Position(&offsetLocal, &clipPos);
+        Matrix_translate(this->structureActor.actor.world.pos.x, this->structureActor.actor.world.pos.y,
+                         this->structureActor.actor.world.pos.z, 0);
+        Matrix_Position(&offsetLocal, &offsetWorld);
         Matrix_pull();
-        // according to other call sites:
-        // - `135 degrees` is a y-axis rotation
-        // - `0x582B` is an "fgName"
-        //   - it is the same value as `ActorProfile.unk_08`
-        //   - should they be named the same?
-        common_data.clip.unk_090->unk_00(0x20, clipPos, 1, DEG_TO_BINANG(135), game_play, 0x582B, 1, 0);
+        common_data.clip.unk_090->unk_00(0x20, offsetWorld, 1, DEG_TO_BINANG(135), game_play, 0x582B, 1, 0);
     }
-    RADIO_TIMER(this) += 1;
+    this->structureActor.unk_2B8 += 1;
 }
 
 void aRAD_setup_action(Radio* this, s32 processIndex) {
-    static RadioActionFunc aRAD_processes[] = { aRAD_animate };
-    RADIO_PROCESS(this) = aRAD_processes[processIndex];
-    RADIO_PROCESS_INDEX(this) = processIndex;
+    static RadioActionFunc process[] = { aRAD_wait };
+    this->structureActor.process = process[processIndex];
+    this->structureActor.unk_2B4 = processIndex;
 }
 
 void aRAD_actor_move(Actor* thisx, Game_Play* game_play) {
@@ -120,7 +103,7 @@ void aRAD_actor_move(Actor* thisx, Game_Play* game_play) {
         Actor_delete(thisx);
         return;
     }
-    ((RadioActionFunc)RADIO_PROCESS(this))(this, game_play);
+    ((RadioActionFunc)this->structureActor.process)(this, game_play);
 }
 
 void aRAD_actor_init(Actor* thisx, Game_Play* game_play) {
@@ -144,7 +127,6 @@ void aRAD_actor_draw(UNUSED Actor* thisx, Game_Play* game_play) {
         gSPMatrix(__polyOpa++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
         gSPDisplayList(__polyOpa++, &aRAD_model);
         CLOSE_POLY_OPA_DISP(gfxCtx);
-        // this function draws shadows only at the moment across several actors
         common_data.clip.unk_074->unk_04(game_play, &aRAD_shadow_data, 0x1C);
     }
 }
