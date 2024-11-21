@@ -9,7 +9,7 @@ struct Game_Play;
 struct Hanami_Npc1;
 
 typedef void (*Hanami_Npc1ActionFunc)(struct Hanami_Npc1*, struct Game_Play*);
-typedef void (*Hanami_Npc1_unk_93C)(struct Actor*); // verify type signature
+typedef void (*Hanami_Npc1_unk_940)(struct Actor*);
 
 typedef struct Hanami_Npc1 {
     /* 0x000 */ Actor actor;
@@ -42,14 +42,14 @@ typedef struct Hanami_Npc1 {
     /* 0x8B8 */ f32 unk_8B8;
     /* 0x8BC */ UNK_TYPE1 unk_8BC[0x10]; // unreferenced in actor file
     /* 0x8CC */ UNK_TYPE2 unk_8CC;
-    /* 0X8D0 */ UNK_TYPE1 unk_8D0[0x4]; // unreferenced in actor file
+    /* 0X8CE */ UNK_TYPE1 unk_8CE[0xE]; // unreferenced in actor file
     /* 0x8DC */ UNK_TYPE2 unk_8DC;
     /* 0x8DE */ UNK_TYPE1 unk_8DE[0x32]; // unreferenced in actor file
     /* 0x910 */ u8 unk_910;
     /* 0x911 */ UNK_TYPE1 unk_911[0x27];  // unreferenced in actor file
     /* 0x938 */ UNK_TYPE4 unk_938;
-    /* 0x93C */ Hanami_Npc1_unk_93C unk_93C;
-    /* 0x940 */ UNK_TYPE4 unk_940;
+    /* 0x93C */ UNK_TYPE unk_93C;
+    /* 0x940 */ Hanami_Npc1_unk_940 unk_940;
 } Hanami_Npc1; // size = 0x944
 
 #endif

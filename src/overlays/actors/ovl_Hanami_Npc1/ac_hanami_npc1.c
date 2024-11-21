@@ -18,6 +18,14 @@ s32 aHM1_talk_init(UNK_TYPE arg0 UNUSED, UNK_TYPE arg1 UNUSED);
 s32 aHM1_talk_end_chk(Actor* thisx, UNK_TYPE arg1 UNUSED);
 void aHM1_actor_draw(Actor* thisx, Game_Play* game_play);
 
+void aHM1_set_request_act(Actor* thisx);
+
+// verify these signatures!!
+void aHM1_turn(Actor*);
+void aHM1_walk(Actor*);
+void aHM1_set_animation(Hanami_Npc1* this, s32 processIndex);
+void aHM1_set_spd_info(Hanami_Npc1* this, s32 processIndex);
+
 #if 0
 ActorProfile Hanami_Npc1_Profile = {
     /* */ ACTOR_HANAMI_NPC1,
@@ -85,35 +93,132 @@ void aHM1_actor_init(Actor* thisx, Game_Play* game_play) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_set_spd_info.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_setupAction.s")
+extern Hanami_Npc1_unk_940 process[];
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_act_chg_data_proc.s")
+void aHM1_setupAction(Hanami_Npc1* this, s32 processIndex) {
+    // TODO: import data
+    // static Hanami_Npc1_unk_940 process[] = { aHM1_turn, aHM1_walk };
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_act_init_proc.s")
+    this->unk_7C6 = 0;
+    this->unk_938 = processIndex;
+    this->unk_940 = process[processIndex];
+    aHM1_set_animation(this, processIndex);
+    aHM1_set_spd_info(this, processIndex);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_act_main_proc.s")
+void aHM1_act_chg_data_proc(Hanami_Npc1* this, Game_Play* game_play UNUSED) {
+    this->unk_7C9 = 1;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_act_proc.s")
+void aHM1_act_init_proc(Hanami_Npc1* this, Game_Play* game_play UNUSED) {
+    aHM1_setupAction(this, 1);
+}
+
+void aHM1_act_main_proc(Hanami_Npc1* this, Game_Play* game_play UNUSED) {
+    this->unk_940(&this->actor);
+}
+
+extern Hanami_Npc1ActionFunc act_proc[];
+
+void aHM1_act_proc(Actor* thisx, Game_Play* game_play, s32 processIndex) {
+    // TODO: import data
+    // static Hanami_Npc1ActionFunc act_proc[] = { aHM1_act_init_proc, aHM1_act_chg_data_proc, aHM1_act_main_proc };
+    Hanami_Npc1* this = THIS;
+
+    (*act_proc[processIndex])(this, game_play);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_think_main_proc.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_think_init_proc.s")
+void aHM1_think_init_proc(Hanami_Npc1* this, Game_Play* game_play UNUSED) {
+    this->unk_7A8 = 0;
+    this->unk_7D0 = aHM1_act_proc;
+    aHM1_set_request_act(&this->actor);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_think_proc.s")
+extern Hanami_Npc1ActionFunc think_proc[];
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_schedule_init_proc.s")
+void aHM1_think_proc(Actor* thisx, Game_Play* game_play, s32 processIndex) {
+    // TODO: import data
+    // static Hanami_Npc1ActionFunc think_proc[] = { aHM1_think_init_proc, aHM1_think_main_proc };
+    Hanami_Npc1* this = THIS;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_schedule_main_proc.s")
+    (*think_proc[processIndex])(this, game_play);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_schedule_proc.s")
+extern s32 func_8008930C(void); // mFI_GetPuleIdx in m_field_info.h
+extern s16 def_angle[];
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_set_talk_info.s")
+void aHM1_schedule_init_proc(Hanami_Npc1* this, Game_Play* game_play) {
+    // TODO: import data
+    // static s16 def_angle[] = {0x2000, 0x2000, 0xE000, 0xC000, 0x0000, 0xE000, 0xE000};
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_talk_request.s")
+    this->unk_7A4 = aHM1_think_proc;
+    this->unk_7FD = 0;
+    this->unk_8AC = -1;
+    this->unk_93C = -1;
+    this->unk_80C = 3;
+    this->actor.colStatus.mass = MASS_HEAVY;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_talk_init.s")
+    {
+        s32 angleIndex = func_8008930C_jp();
+        s16 tempAngle = def_angle[angleIndex];
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_talk_end_chk.s")
+        this->actor.shape.rot.y = tempAngle;
+        this->actor.world.rot.y = tempAngle;
+        this->unk_8DC = tempAngle;
+    }
+
+    common_data.clip.unk_040->unk_110(&this->actor, game_play, 8, 0);
+}
+
+void aHM1_schedule_main_proc(Hanami_Npc1* this, Game_Play* game_play) {
+    if (common_data.clip.unk_040->unk_110(&this->actor, game_play, -1, 1) == 0) {
+        common_data.clip.unk_040->unk_110(&this->actor, game_play, -1, 2);
+    }
+}
+
+extern Hanami_Npc1ActionFunc sche_proc[];
+
+void aHM1_schedule_proc(Actor* thisx, Game_Play* game_play, s32 processIndex) {
+    // TODO: import data
+    // static Hanami_Npc1ActionFunc sche_proc[] = { aHM1_schedule_init_proc, aHM1_schedule_main_proc };
+    Hanami_Npc1* this = THIS;
+
+    (*sche_proc[processIndex])(this, game_play);
+}
+
+extern u32 msg_base[];
+
+void aHM1_set_talk_info(Actor* thisx) {
+    // TODO: import data
+    // static u32 msg_base[] = { 0x00001939, 0x00001948, 0x0000192A, 0x00001957, 0x00001966, 0x00001975 };
+    enum NpcLooks looks = mNpc_GetNpcLooks(thisx);
+
+    mDemo_Set_msg_num(msg_base[looks] + ((s32)(fqrand() * 3.0f)));
+}
+
+void aHM1_talk_request(Actor* thisx, UNK_TYPE arg1 UNUSED) {
+    mDemo_Request(7, thisx, aHM1_set_talk_info);
+}
+
+// NOTE: return type is different from function of same suffix as found in
+// ac_kamakura_npc0.c and ac_npc_engineer.c (both are void)
+s32 aHM1_talk_init(UNK_TYPE arg0 UNUSED, UNK_TYPE arg1 UNUSED) {
+    mDemo_Set_ListenAble();
+
+    return 1;
+}
+
+s32 aHM1_talk_end_chk(Actor* thisx, UNK_TYPE arg1 UNUSED) {
+    s32 result = FALSE;
+
+    if (!mDemo_Check(7, thisx)) {
+        result = TRUE;
+    }
+
+    return result;
+}
 
 // void arguments for both this function and unk_E4 also match,
 // but an ActorFunc signature for both seems more plausible.
