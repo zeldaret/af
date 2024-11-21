@@ -3,6 +3,7 @@
 #include "m_actor_dlftbls.h"
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
+#include "m_field_info.h"
 
 #define THIS ((Hanami_Npc1*)thisx)
 
@@ -146,7 +147,6 @@ void aHM1_think_proc(Actor* thisx, Game_Play* game_play, s32 processIndex) {
     (*think_proc[processIndex])(this, game_play);
 }
 
-extern s32 func_8008930C(void); // mFI_GetPuleIdx in m_field_info.h
 extern s16 def_angle[];
 
 void aHM1_schedule_init_proc(Hanami_Npc1* this, Game_Play* game_play) {
@@ -161,7 +161,7 @@ void aHM1_schedule_init_proc(Hanami_Npc1* this, Game_Play* game_play) {
     this->actor.colStatus.mass = MASS_HEAVY;
 
     {
-        s32 angleIndex = func_8008930C_jp();
+        s32 angleIndex = mFI_GetPuleIdx();
         s16 tempAngle = def_angle[angleIndex];
 
         this->actor.shape.rot.y = tempAngle;
