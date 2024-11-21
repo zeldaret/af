@@ -89,7 +89,9 @@ void aHM0_make_tumbler(Actor* thisx, Game_Play* game_play) {
     ToolActor* tool;
 
     if (((this->unk_940 & 1) == 1) && (this->unk_860 == 0)) {
-        // TODO: resolve warning, possibly by having Hanami_Npc0 struct start with ToolActor
+        // TODO: resolve warning; aTOL_birth_proc takes a *ToolActor as the third argument, which
+        // would require a cast here, but ac-decomp uses a plain *Actor. Not sure which is more
+        // appropriate.
         tool = common_data.clip.toolClip->aTOL_birth_proc(TOOL_TUMBLER, 3, this, game_play, -1, 0);
         if (tool != 0) {
             this->unk_860 = tool;
@@ -120,9 +122,7 @@ void aHM0_merry(Actor* thisx) {
         }
     }
 
-    // TODO: resolve warning by either casting &this->actor to (s32) or by changing signatures of both
-    // sAdo_OngenPos and Na_OngenPos
-    sAdo_OngenPos(&this->actor, this->unk_944, &this->actor.world.pos);
+    sAdo_OngenPos((s32) &this->actor, this->unk_944, &this->actor.world.pos);
 }
 
 void aHM0_drink(Actor* thisx) {
