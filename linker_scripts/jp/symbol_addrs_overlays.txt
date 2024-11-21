@@ -18821,7 +18821,6 @@ aRAD_actor_draw = 0x80A76C9C; // type:func
 Radio_Profile = 0x80A76DD0; //
 aRAD_shadow_vtx_fix_flg_table = 0x80A76DF4; //
 aRAD_shadow_data = 0x80A76DFC; //
-D_80A76E10_jp = 0x80A76E10; //
 process = 0x80A76E1C; // allow_duplicated:true
 
 // .text

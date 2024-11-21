@@ -65,8 +65,7 @@ void aRAD_set_bgOffset(Radio* this, s32 arg1) {
 }
 
 void aRAD_wait(Radio* this, Game_Play* game_play) {
-    static xyz_t D_80A76E10_jp = { 2.0f, 0.0f, -10.0f };
-    xyz_t offsetLocal = D_80A76E10_jp;
+    xyz_t offsetLocal = { 2.0f, 0.0f, -10.0f };
     xyz_t offsetWorld;
     if (this->structureActor.unk_2B8 >= 18) {
         this->structureActor.unk_2B8 = 0;
