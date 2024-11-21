@@ -43,6 +43,7 @@ extern struct_809AEFA4 aHM1_ct_data;
 //     /* */ aHM1_talk_request,
 //     /* */ aHM1_talk_init,
 //     /* */ aHM1_talk_end_chk,
+//     /* */ NULL,
 // };
 
 void aHM1_actor_ct(Actor* thisx, Game_Play* game_play) {
