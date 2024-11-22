@@ -1,7 +1,6 @@
 #ifndef AC_HOUSE_GOKI_H
 #define AC_HOUSE_GOKI_H
 
-#include "ultra64.h"
 #include "m_actor.h"
 #include "unk.h"
 
