@@ -5,7 +5,7 @@
 #include "m_actor_shadow.h"
 
 void aHG_actor_ct(Actor* thisx, Game_Play* game_play);
-void func_80A83770_jp(Actor* thisx, Game_Play* game_play);
+void aHG_actor_dt(Actor* thisx, Game_Play* game_play);
 void aHG_actor_move(Actor* thisx, Game_Play* game_play);
 void aHG_actor_draw(Actor* thisx, Game_Play* game_play);
 
@@ -27,7 +27,7 @@ ActorProfile House_Goki_Profile = {
     /* */ OBJECT_369,
     /* */ sizeof(House_Goki),
     /* */ aHG_actor_ct,
-    /* */ func_80A83770_jp,
+    /* */ aHG_actor_dt,
     /* */ aHG_actor_move,
     /* */ aHG_actor_draw,
     /* */ NULL,
@@ -55,7 +55,9 @@ void aHG_actor_ct(Actor* thisx, Game_Play* game_play) {
     func_80A8409C_jp(this, 1, game_play);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A83770_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A83770_jp.s")
+void aHG_actor_dt(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A83780_jp.s")
 

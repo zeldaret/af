@@ -19475,7 +19475,7 @@ D_80A8365C_jp = 0x80A8365C; //
 // .text
 
 aHG_actor_ct = 0x80A836C0; // type:func
-func_80A83770_jp = 0x80A83770; // type:func
+aHG_actor_dt = 0x80A83770; // type:func
 func_80A83780_jp = 0x80A83780; // type:func
 func_80A837C4_jp = 0x80A837C4; // type:func
 func_80A83930_jp = 0x80A83930; // type:func
