@@ -8,7 +8,14 @@ void func_80A83770_jp(Actor* thisx, Game_Play* game_play);
 void aHG_actor_move(Actor* thisx, Game_Play* game_play);
 void aHG_actor_draw(Actor* thisx, Game_Play* game_play);
 
-#if 0
+void func_80A83930_jp(House_Goki* this, Game_Play* game_play);
+void func_80A83994_jp(House_Goki* this, Game_Play* game_play);
+void func_80A83A00_jp(House_Goki* this, Game_Play* game_play);
+
+void func_80A83A24_jp(House_Goki* this, Game_Play* game_play);
+void func_80A83D4C_jp(House_Goki* this, Game_Play* game_play);
+void func_80A8401C_jp(House_Goki* this, Game_Play* game_play);
+
 ActorProfile House_Goki_Profile = {
     /* */ ACTOR_HOUSE_GOKI,
     /* */ ACTOR_PART_4,
@@ -22,7 +29,10 @@ ActorProfile House_Goki_Profile = {
     /* */ aHG_actor_draw,
     /* */ NULL,
 };
-#endif
+
+static House_GokiActionFunc init_process[] = { func_80A83930_jp, func_80A83994_jp, func_80A83A00_jp };
+static House_GokiActionFunc process[] = { func_80A83A24_jp, func_80A83D4C_jp, func_80A8401C_jp };
+static s32 D_80A845DC_jp[] = { 0x060000C0, 0x06000188 };
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/aHG_actor_ct.s")
 
