@@ -532,7 +532,7 @@ asm/jp/data/overlays/actors/ovl_Radio/ac_radio.data.s-/* 937074 80A76DD4 */ .wor
 asm/jp/data/overlays/actors/ovl_Radio/ac_radio.data.s-/* 937078 80A76DD8 */ .word 0x582B0003
 asm/jp/data/overlays/actors/ovl_Radio/ac_radio.data.s-/* 93707C 80A76DDC */ .word 0x000002D8
 asm/jp/data/overlays/actors/ovl_Radio/ac_radio.data.s-/* 937080 80A76DE0 */ .word aRAD_actor_ct
-asm/jp/data/overlays/actors/ovl_Radio/ac_radio.data.s-/* 937084 80A76DE4 */ .word func_80A76958_jp
+asm/jp/data/overlays/actors/ovl_Radio/ac_radio.data.s-/* 937084 80A76DE4 */ .word aRAD_actor_dt
 asm/jp/data/overlays/actors/ovl_Radio/ac_radio.data.s-/* 937088 80A76DE8 */ .word aRAD_actor_init
 asm/jp/data/overlays/actors/ovl_Radio/ac_radio.data.s-/* 93708C 80A76DEC */ .word aRAD_actor_draw
 asm/jp/data/overlays/actors/ovl_Radio/ac_radio.data.s-/* 937090 80A76DF0 */ .word 0x00000000
