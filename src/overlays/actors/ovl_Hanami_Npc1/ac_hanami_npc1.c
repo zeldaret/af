@@ -88,9 +88,31 @@ void aHM1_actor_move(Actor* thisx, Game_Play* game_play) {
     common_data.clip.unk_040->unk_D0(thisx, game_play);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_set_request_act.s")
+void aHM1_set_request_act(Actor* thisx) {
+    Hanami_Npc1* this = THIS;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_check_moveRange.s")
+    this->unk_7D4 = 4;
+    this->unk_7D5 = 0x12;
+    this->unk_7D6 = 2;
+}
+
+s32 aHM1_check_moveRange(Actor* thisx, xyz_t* destination) {
+    f32 posDiffX;
+    f32 posDiffZ;
+    f32 magnitudeSquared;
+    s32 result;
+
+    posDiffX = thisx->home.pos.x - destination->x;
+    posDiffZ = thisx->home.pos.z - destination->z;
+    result = FALSE;
+    magnitudeSquared = (posDiffX * posDiffX) + (posDiffZ * posDiffZ);
+
+    if (magnitudeSquared > 10000.0f) {
+        result = TRUE;
+    }
+
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_check_inBlock.s")
 
