@@ -22,10 +22,11 @@ void aHM1_actor_draw(Actor* thisx, Game_Play* game_play);
 void aHM1_set_request_act(Actor* thisx);
 
 // verify these signatures!!
-void aHM1_turn(Actor*);
-void aHM1_walk(Actor*);
+void aHM1_turn(Actor* thisx);
+void aHM1_walk(Actor* thisx);
 void aHM1_set_animation(Hanami_Npc1* this, s32 processIndex);
 void aHM1_set_spd_info(Hanami_Npc1* this, s32 processIndex);
+void aHM1_revise_moveRange(Actor* thisx);
 
 #if 0
 ActorProfile Hanami_Npc1_Profile = {
@@ -126,11 +127,48 @@ s32 aHM1_check_inBlock(Actor* thisx, xyz_t* pos, s32* blockX, s32* blockZ) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_revise_moveRange.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_turn.s")
+void aHM1_turn(Actor* thisx) {
+    Hanami_Npc1* this = THIS;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_walk.s")
+    if (chase_angle(&thisx->shape.rot.y, this->unk_8DC, 0x800) == 1) {
+        this->unk_93C = 1;
+        this->unk_7C6 = 0xFF;
+    }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_set_spd_info.s")
+    thisx->world.rot.y = thisx->shape.rot.y;
+}
+
+void aHM1_walk(Actor* thisx) {
+    Hanami_Npc1* this = THIS;
+
+    aHM1_revise_moveRange(thisx);
+
+    if (this->unk_910 != 0) {
+        this->unk_7C6 = 0xFF;
+    } else if (this->unk_8CC >= 0x1F) {
+        this->unk_7C6 = 0xFF;
+    }
+
+    chase_angle(&thisx->shape.rot.y, this->unk_8DC, 0x400);
+    thisx->world.rot.y = thisx->shape.rot.y;
+}
+
+// TODO: Once you determine how processIndex is derived when calling, see if
+// there's a more specific and appropriate name for it
+void aHM1_set_spd_info(Hanami_Npc1* this, s32 processIndex) {
+    if (processIndex == 1) {
+        this->unk_8B4 = 0.1f;
+        this->unk_8B8 = 0.1f;
+        this->unk_8B0 = 1.0f;
+        return;
+    }
+
+    this->actor.speed = 0.0f;
+    this->unk_8B0 = 0.0f;
+    this->unk_8B4 = 0.0f;
+    this->unk_8B8 = 0.0f;
+}
+
 
 extern Hanami_Npc1_unk_940 process[];
 
