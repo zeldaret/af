@@ -3,6 +3,11 @@
 #include "m_object.h"
 #include "overlays/gamestates/ovl_play/m_play.h"
 #include "m_actor_shadow.h"
+#include "src/overlays/actors/player_actor/m_player.h"
+#include "m_player_lib.h"
+#include "audio.h"
+#include "m_cockroach.h"
+#include "m_collision_bg.h"
 
 void aHG_actor_ct(Actor* thisx, Game_Play* game_play);
 void aHG_actor_dt(Actor* thisx, Game_Play* game_play);
@@ -77,6 +82,66 @@ void aHG_actor_dt(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A8409C_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/aHG_actor_move.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/aHG_actor_move.s")
+void aHG_actor_move(Actor* thisx, Game_Play* game_play) {
+    House_Goki* this = (House_Goki*)thisx;
+    Player* player = get_player_actor_withoutCheck(game_play);
+
+    if (this->unk_17C != 2 && this->unk_190 != 0xFF) {
+        this->unk_190 += 7;
+        if (this->unk_190 >= 0x100) {
+            this->unk_190 = 0xFF;
+        }
+        goto block_9;
+    }
+
+    if (common_data.clip.myRoomClip != NULL) {
+        if (this->unk_17C != 2 && this->unk_190 == 0xFF) {
+            if (common_data.clip.myRoomClip->unk_68(&this->actor.world.pos)) {
+                common_data.clip.unk_090->unk_00(0x5F, this->actor.world.pos, 1, 0, game_play, 0, 0, 0);
+                mCkRh_CalcCanLookGokiCount(-1);
+                sAdo_OngenTrgStart(0x5B, &this->actor.world.pos);
+                func_80A8409C_jp(this, 2, game_play);
+                return;
+            }
+        }
+    }
+
+block_9:
+    this->actor.velocity.x = sin_s(this->actor.world.rot.y) * this->actor.speed;
+    this->actor.velocity.z = cos_s(this->actor.world.rot.y) * this->actor.speed;
+    this->actor.velocity.y += this->actor.gravity;
+    Actor_position_move(&this->actor);
+    func_80076778_jp(0, &this->actor, 15.0f, 0.0f, 0, 0);
+    if (this->actor.world.pos.y < this->actor.home.pos.y) {
+        this->actor.world.pos.y = this->actor.home.pos.y;
+    }
+
+    if (this->unk_190 == 0xFF && this->unk_17C != 2) {
+        if (this->actor.colCheck.colResult.unk9 || this->actor.colCheck.colResult.unk10) {
+            common_data.clip.unk_090->unk_00(0x5F, this->actor.world.pos, 1, 0, game_play, 0, 0, 0);
+            mCkRh_CalcCanLookGokiCount(-1);
+            sAdo_OngenTrgStart(0x5B, &this->actor.world.pos);
+            func_80A8409C_jp(this, 2, game_play);
+            return;
+        }
+    }
+
+    if (this->unk_190 != 0xFF && this->actor.params == 2) {
+        this->actor.params = 1;
+    }
+
+    if (this->unk_17C != 2) {
+        if (this->actor.params == 2 ||
+            (this->unk_190 == 0xFF && player->actor.speed != 0.0f && this->actor.xzDistToPlayer < 9.0f &&
+             this->actor.world.pos.y == this->actor.home.pos.y)) {
+            common_data.clip.unk_090->unk_00(0x5F, this->actor.world.pos, 1, 0, game_play, 0, 0, 0);
+            mCkRh_CalcCanLookGokiCount(-1);
+            sAdo_OngenTrgStart(0x5B, &this->actor.world.pos);
+            func_80A8409C_jp(this, 2, game_play);
+        }
+    }
+    this->unk_174(this, game_play);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/aHG_actor_draw.s")
