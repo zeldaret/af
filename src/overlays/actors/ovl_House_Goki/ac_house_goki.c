@@ -94,7 +94,12 @@ void func_80A83994_jp(House_Goki* this, Game_Play* game_play UNUSED) {
     this->unk_180 = (s32)fqrand() * 20 + 20;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A83A00_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A83A00_jp.s")
+void func_80A83A00_jp(House_Goki* this, Game_Play* game_play UNUSED) {
+    this->unk_188 = 0xFF;
+    this->unk_180 = 40;
+    this->actor.speed = 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A83A24_jp.s")
 
