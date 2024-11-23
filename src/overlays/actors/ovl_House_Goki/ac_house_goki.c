@@ -64,7 +64,13 @@ void aHG_actor_ct(Actor* thisx, Game_Play* game_play) {
 void aHG_actor_dt(Actor* thisx UNUSED, Game_Play* game_play UNUSED) {
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A83780_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A83780_jp.s")
+void func_80A83780_jp(House_Goki* this) {
+    this->unk_198 += 1.0f;
+    if (this->unk_198 >= 2.0f) {
+        this->unk_198 -= 2.0f;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A837C4_jp.s")
 

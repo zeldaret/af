@@ -16,7 +16,8 @@ typedef struct House_Goki {
     /* 0x17C */ s32 unk_17C;
     /* 0x180 */ UNK_TYPE1 unk_180[0x190 - 0x180];
     /* 0x190 */ u32 unk_190;
-    /* 0x194 */ UNK_TYPE1 unk_194[0x19C - 0x194];
+    /* 0x194 */ UNK_TYPE4 unk_194;
+    /* 0x198 */ f32 unk_198;
 } House_Goki; // size = 0x19C
 
 #endif
