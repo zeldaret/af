@@ -19484,7 +19484,7 @@ func_80A83A00_jp = 0x80A83A00; // type:func
 func_80A83A24_jp = 0x80A83A24; // type:func
 func_80A83D4C_jp = 0x80A83D4C; // type:func
 func_80A8401C_jp = 0x80A8401C; // type:func
-func_80A8409C_jp = 0x80A8409C; // type:func
+aHG_setup_action = 0x80A8409C; // type:func
 aHG_actor_move = 0x80A840E8; // type:func
 aHG_actor_draw = 0x80A84480; // type:func
 

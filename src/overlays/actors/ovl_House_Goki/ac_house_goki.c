@@ -22,7 +22,7 @@ void func_80A83A24_jp(House_Goki* this, Game_Play* game_play);
 void func_80A83D4C_jp(House_Goki* this, Game_Play* game_play);
 void func_80A8401C_jp(House_Goki* this, Game_Play* game_play);
 
-void func_80A8409C_jp(House_Goki* this, s32 arg1, Game_Play* game_play);
+void aHG_setup_action(House_Goki* this, s32 processIndex, Game_Play* game_play);
 
 ActorProfile House_Goki_Profile = {
     /* */ ACTOR_HOUSE_GOKI,
@@ -57,7 +57,7 @@ void aHG_actor_ct(Actor* thisx, Game_Play* game_play) {
     xyz_t_move(&this->actor.home.pos, &this->actor.world.pos);
     this->actor.update = aHG_actor_move;
     this->actor.gravity = -2.0f;
-    func_80A8409C_jp(this, 1, game_play);
+    aHG_setup_action(this, 1, game_play);
 }
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A83770_jp.s")
@@ -125,14 +125,19 @@ void func_80A8401C_jp(House_Goki* this, Game_Play* game_play UNUSED) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A8409C_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A8409C_jp.s")
+void aHG_setup_action(House_Goki* this, s32 processIndex, Game_Play* game_play) {
+    this->processIndex = processIndex;
+    this->process = process[processIndex];
+    init_process[processIndex](this, game_play);
+}
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/aHG_actor_move.s")
 void aHG_actor_move(Actor* thisx, Game_Play* game_play) {
     House_Goki* this = (House_Goki*)thisx;
     Player* player = get_player_actor_withoutCheck(game_play);
 
-    if (this->unk_17C != 2 && this->unk_190 != 0xFF) {
+    if (this->processIndex != 2 && this->unk_190 != 0xFF) {
         this->unk_190 += 7;
         if (this->unk_190 >= 0x100) {
             this->unk_190 = 0xFF;
@@ -141,12 +146,12 @@ void aHG_actor_move(Actor* thisx, Game_Play* game_play) {
     }
 
     if (common_data.clip.myRoomClip != NULL) {
-        if (this->unk_17C != 2 && this->unk_190 == 0xFF) {
+        if (this->processIndex != 2 && this->unk_190 == 0xFF) {
             if (common_data.clip.myRoomClip->unk_68(&this->actor.world.pos)) {
                 common_data.clip.unk_090->unk_00(0x5F, this->actor.world.pos, 1, 0, game_play, 0, 0, 0);
                 mCkRh_CalcCanLookGokiCount(-1);
                 sAdo_OngenTrgStart(0x5B, &this->actor.world.pos);
-                func_80A8409C_jp(this, 2, game_play);
+                aHG_setup_action(this, 2, game_play);
                 return;
             }
         }
@@ -162,12 +167,12 @@ block_9:
         this->actor.world.pos.y = this->actor.home.pos.y;
     }
 
-    if (this->unk_190 == 0xFF && this->unk_17C != 2) {
+    if (this->unk_190 == 0xFF && this->processIndex != 2) {
         if (this->actor.colCheck.colResult.unk9 || this->actor.colCheck.colResult.unk10) {
             common_data.clip.unk_090->unk_00(0x5F, this->actor.world.pos, 1, 0, game_play, 0, 0, 0);
             mCkRh_CalcCanLookGokiCount(-1);
             sAdo_OngenTrgStart(0x5B, &this->actor.world.pos);
-            func_80A8409C_jp(this, 2, game_play);
+            aHG_setup_action(this, 2, game_play);
             return;
         }
     }
@@ -176,17 +181,17 @@ block_9:
         this->actor.params = 1;
     }
 
-    if (this->unk_17C != 2) {
+    if (this->processIndex != 2) {
         if (this->actor.params == 2 ||
             (this->unk_190 == 0xFF && player->actor.speed != 0.0f && this->actor.xzDistToPlayer < 9.0f &&
              this->actor.world.pos.y == this->actor.home.pos.y)) {
             common_data.clip.unk_090->unk_00(0x5F, this->actor.world.pos, 1, 0, game_play, 0, 0, 0);
             mCkRh_CalcCanLookGokiCount(-1);
             sAdo_OngenTrgStart(0x5B, &this->actor.world.pos);
-            func_80A8409C_jp(this, 2, game_play);
+            aHG_setup_action(this, 2, game_play);
         }
     }
-    this->unk_174(this, game_play);
+    this->process(this, game_play);
 }
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/aHG_actor_draw.s")

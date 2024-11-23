@@ -11,9 +11,9 @@ typedef void (*House_GokiActionFunc)(struct House_Goki*, struct Game_Play*);
 
 typedef struct House_Goki {
     /* 0x000 */ Actor actor;
-    /* 0x174 */ House_GokiActionFunc unk_174;
+    /* 0x174 */ House_GokiActionFunc process;
     /* 0x178 */ UNK_TYPE1 unk_1742[0x17C - 0x178];
-    /* 0x17C */ s32 unk_17C;
+    /* 0x17C */ s32 processIndex;
     /* 0x180 */ UNK_TYPE4 unk_180;
     /* 0x184 */ u32 unk_184;
     /* 0x188 */ s32 unk_188;
