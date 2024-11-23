@@ -105,7 +105,25 @@ void func_80A83A00_jp(House_Goki* this, Game_Play* game_play UNUSED) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A83D4C_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A8401C_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A8401C_jp.s")
+void func_80A8401C_jp(House_Goki* this, Game_Play* game_play UNUSED) {
+    this->unk_190 = this->unk_188;
+
+    this->unk_180 -= 1;
+    if ((this->unk_180 & 2) == 0) {
+        this->unk_190 = 0;
+    }
+
+    this->unk_188 -= 5;
+    if (this->unk_188 < 0) {
+        this->unk_188 = 0;
+    }
+
+    this->actor.shape.shadowAlphaRate = (f32)this->unk_188 * 0.0015f;
+    if (this->unk_180 <= 0) {
+        Actor_delete(&this->actor);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A8409C_jp.s")
 
