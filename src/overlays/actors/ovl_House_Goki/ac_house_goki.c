@@ -84,7 +84,15 @@ void func_80A83930_jp(House_Goki* this, Game_Play* game_play UNUSED) {
     this->actor.speed = 8.0f;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A83994_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A83994_jp.s")
+void func_80A83994_jp(House_Goki* this, Game_Play* game_play UNUSED) {
+    this->actor.speed = 0.0f;
+    this->actor.shape.rot.y = this->actor.yawTowardsPlayer + 0x8000;
+    this->unk_198 = 0.0f;
+    this->unk_188 = 0;
+    this->actor.world.rot.y = this->actor.shape.rot.y;
+    this->unk_180 = (s32)fqrand() * 20 + 20;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A83A00_jp.s")
 
