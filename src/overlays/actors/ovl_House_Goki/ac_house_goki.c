@@ -74,7 +74,15 @@ void func_80A83780_jp(House_Goki* this) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A837C4_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A83930_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A83930_jp.s")
+void func_80A83930_jp(House_Goki* this, Game_Play* game_play UNUSED) {
+    this->unk_180 = (s32)fqrand() * 20 + 20;
+    this->unk_184 = 0;
+    this->unk_188 = 0;
+    this->unk_195 = 0;
+    this->unk_198 = 0.0f;
+    this->actor.speed = 8.0f;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A83994_jp.s")
 
