@@ -205,7 +205,49 @@ void aHM1_act_proc(Actor* thisx, Game_Play* game_play, s32 processIndex) {
     (*act_proc[processIndex])(this, game_play);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_think_main_proc.s")
+void aHM1_think_main_proc(Actor* thisx, Game_Play* game_play UNUSED) {
+    Hanami_Npc1* this = THIS;
+    s16 modRotY;
+    s32 modRotYAbsValue;
+    f32 randS16AsFloat;
+    s32 processIndex;
+
+    if (this->unk_7C6 == 0xFF) {
+        if (this->unk_7C5 == 0x12) {
+            if (this->unk_93C != -1) {
+                processIndex = this->unk_93C;
+            } else {
+                randS16AsFloat = (fqrand() - 0.5f) * 65536.0f;
+                modRotY = ((s16)randS16AsFloat) - thisx->shape.rot.y;
+                this->unk_8DC = randS16AsFloat;
+
+                if (modRotY >= 0) {
+                    modRotYAbsValue = modRotY;
+                } else {
+                    modRotYAbsValue = -modRotY;
+                }
+
+                if (modRotYAbsValue >= 0x6001) {
+                    processIndex = 0;
+                } else {
+
+                    if (!(this->unk_910 & 3)) {
+                        processIndex = 1;
+                    } else {
+                        processIndex = 0;
+                    }
+                }
+            }
+
+            this->unk_8CC = 0;
+            aHM1_setupAction(this, processIndex);
+        }
+
+        this->unk_93C = -1;
+        this->unk_80C = 3;
+        aHM1_set_request_act(thisx);
+    }
+}
 
 void aHM1_think_init_proc(Hanami_Npc1* this, Game_Play* game_play UNUSED) {
     this->unk_7A8 = 0;
