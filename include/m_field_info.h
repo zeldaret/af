@@ -5,6 +5,7 @@
 #include "z64math.h"
 #include "m_collision_bg.h"
 #include "unk.h"
+#include "m_field_make.h"
 
 struct Actor;
 struct Game_Play;
@@ -12,12 +13,24 @@ struct FieldMakeBlockInfo;
 struct FieldMakeMoveActor;
 struct Game;
 
-#define FI_UT_WORLDSIZE_Z 40
-#define FI_UT_WORLDSIZE_Z_F (f32)FI_UT_WORLDSIZE_Z
-#define FI_UT_WORLDSIZE_X 40
-#define FI_UT_WORLDSIZE_X_F (f32)FI_UT_WORLDSIZE_Z
 #define FI_UT_BASE_SIZE 40
 #define FI_UT_BASE_SIZE_F ((f32)FI_UT_BASE_SIZE)
+
+#define FI_UT_WORLDSIZE_X FI_UT_BASE_SIZE
+#define FI_UT_WORLDSIZE_X_F (f32)FI_UT_WORLDSIZE_X
+
+#define FI_UT_WORLDSIZE_Z FI_UT_BASE_SIZE
+#define FI_UT_WORLDSIZE_Z_F (f32)FI_UT_WORLDSIZE_Z
+
+#define FI_BK_WORLDSIZE_BASE (FI_UT_BASE_SIZE * UT_BASE_NUM)
+#define FI_BK_WORLDSIZE_BASE_F ((f32)FI_BK_WORLDSIZE_BASE)
+
+#define FI_BK_WORLDSIZE_X FI_BK_WORLDSIZE_BASE
+#define FI_BK_WORLDSIZE_Z FI_BK_WORLDSIZE_BASE
+
+#define FI_BK_WORLDSIZE_X_F FI_BK_WORLDSIZE_BASE_F
+#define FI_BK_WORLDSIZE_Z_F FI_BK_WORLDSIZE_BASE_F
+
 
 typedef enum FieldType {
   /* 0 */ FI_FIELDTYPE_FG,

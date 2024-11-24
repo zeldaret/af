@@ -69,8 +69,8 @@ s32 mFI_BlockCheck(s32 blockX, s32 blockZ);
 s32 mFI_BkNum2WposXZ(f32* worldPosX, f32* worldPosZ, s32 blockX, s32 blockZ) {
     s32 result;
 
-    *worldPosX = (f32)(blockX * 0x280);
-    *worldPosZ = (f32)(blockZ * 0x280);
+    *worldPosX = (f32)(blockX * FI_BK_WORLDSIZE_X);
+    *worldPosZ = (f32)(blockZ * FI_BK_WORLDSIZE_Z);
     result = FALSE;
 
     if (mFI_CheckFieldData() == TRUE) {
