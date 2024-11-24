@@ -18807,21 +18807,20 @@ RO_STR_80A76860_jp = 0x80A76860; // type:asciz
 // .text
 
 aRAD_actor_ct = 0x80A76920; // type:func
-func_80A76958_jp = 0x80A76958; // type:func
-func_80A769E4_jp = 0x80A769E4; // type:func
-func_80A76A30_jp = 0x80A76A30; // type:func
-func_80A76B2C_jp = 0x80A76B2C; // type:func
-func_80A76B4C_jp = 0x80A76B4C; // type:func
+aRAD_actor_dt = 0x80A76958; // type:func
+aRAD_set_bgOffset = 0x80A769E4; // type:func
+aRAD_wait = 0x80A76A30; // type:func
+aRAD_setup_action = 0x80A76B2C; // type:func
+aRAD_actor_move = 0x80A76B4C; // type:func
 aRAD_actor_init = 0x80A76C34; // type:func
 aRAD_actor_draw = 0x80A76C9C; // type:func
 
 // .data
 
 Radio_Profile = 0x80A76DD0; //
-D_80A76DF4_jp = 0x80A76DF4; //
-D_80A76DFC_jp = 0x80A76DFC; //
-D_80A76E10_jp = 0x80A76E10; //
-D_80A76E1C_jp = 0x80A76E1C; //
+aRAD_shadow_vtx_fix_flg_table = 0x80A76DF4; //
+aRAD_shadow_data = 0x80A76DFC; //
+process = 0x80A76E1C; // allow_duplicated:true
 
 // .text
 

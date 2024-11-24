@@ -4280,7 +4280,9 @@ obj_e_goza_shadowT_model = 0x06001358;
 
 // ovl_Radio
 
-D_6054678 = 0x06054678;
+aRAD_shadow_vertices = 0x06005B18;
+aRAD_shadow_model = 0x06005B98;
+aRAD_model = 0x06054678;
 
 // ovl__00939090
 

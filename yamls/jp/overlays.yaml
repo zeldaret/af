@@ -13167,7 +13167,7 @@
     bss_size: 0x0
     subsegments:
       - [0x936BC0, c, overlays/actors/ovl_Radio/ac_radio]
-      - [0x937070, data, overlays/actors/ovl_Radio/ac_radio]
+      - [0x937070, .data, overlays/actors/ovl_Radio/ac_radio]
   - name: ovl_Radio_reloc
     type: code
     start: 0x9370C0
