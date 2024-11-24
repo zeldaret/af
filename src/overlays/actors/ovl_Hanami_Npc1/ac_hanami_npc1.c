@@ -86,7 +86,7 @@ s32 aHM1_check_moveRange(Actor* thisx, xyz_t* destination) {
     f32 posDiffX = thisx->home.pos.x - destination->x;
     f32 posDiffZ = thisx->home.pos.z - destination->z;
     f32 magnitudeSquared;
-    s32 notInRange = FALSE; // TODO: double-check polarity and change to inRange if necessary 
+    s32 notInRange = FALSE;
 
     magnitudeSquared = (posDiffX * posDiffX) + (posDiffZ * posDiffZ);
 
@@ -98,7 +98,7 @@ s32 aHM1_check_moveRange(Actor* thisx, xyz_t* destination) {
 }
 
 s32 aHM1_check_inBlock(Actor* thisx, xyz_t* pos, s32* blockX, s32* blockZ) {
-    s32 notInBlock = FALSE; // TODO: double-check polarity and change to inBlock if necessary
+    s32 notInBlock = FALSE;
 
     mFI_Wpos2BlockNum(blockX, blockZ, *pos);
 
@@ -326,8 +326,6 @@ void aHM1_talk_request(Actor* thisx, UNK_TYPE arg1 UNUSED) {
     mDemo_Request(7, thisx, aHM1_set_talk_info);
 }
 
-// NOTE: return type is different from function of same suffix as found in
-// ac_kamakura_npc0.c and ac_npc_engineer.c (both are void)
 s32 aHM1_talk_init(UNK_TYPE arg0 UNUSED, UNK_TYPE arg1 UNUSED) {
     mDemo_Set_ListenAble();
 

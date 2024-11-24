@@ -14,13 +14,13 @@ typedef void (*Hanami_Npc1_unk_940)(struct Actor*);
 typedef struct Hanami_Npc1 {
     /* 0x000 */ Actor actor;
     /* 0x174 */ UNK_TYPE1 unk_174[0x630]; // unreferenced in actor file
-    /* 0x7A4 */ UNK_PTR unk_7A4; // TODO: make typedef
+    /* 0x7A4 */ UNK_PTR unk_7A4;
     /* 0x7A8 */ UNK_TYPE4 unk_7A8;
     /* 0x7AC */ UNK_TYPE1 unk_7AC[0x14]; // unreferenced in actor file
     /* 0x7C0 */ UNK_PTR unk_7C0;
     /* 0x7C4 */ UNK_TYPE1 unk_7C4; // inferred from alignment
-    /* 0x7C5 */ u8 unk_7C5; // unsigned
-    /* 0x7C6 */ u8 unk_7C6; // unsigned
+    /* 0x7C5 */ u8 unk_7C5;
+    /* 0x7C6 */ u8 unk_7C6;
     /* 0x7C7 */ UNK_TYPE1 unk_7C7; // inferred from alignment (could be auto padding)
     /* 0x7C8 */ UNK_TYPE1 unk_7C8; // inferred from alignment
     /* 0x7C9 */ UNK_TYPE1 unk_7C9;
