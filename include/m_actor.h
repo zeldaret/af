@@ -252,7 +252,7 @@ void Actor_info_call_actor(struct Game_Play* game_play, ActorInfo* actorInfo);
 void Actor_info_draw_actor(struct Game_Play* game_play, ActorInfo* actorInfo);
 void Actor_free_overlay_area(struct ActorOverlay* overlayEntry);
 void Actor_get_overlay_area(struct ActorOverlay* overlayEntry, const u8* arg1, size_t overlaySize);
-void Actor_init_actor_class(Actor* actor, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct Game_Play* game_play, s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 argB, s8 argC, s16 argD, u16 fgName, s16 params);
+void Actor_init_actor_class(Actor* actor, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct Game_Play* game_play, s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 blockX, s8 blockZ, s16 argD, u16 fgName, s16 params);
 Actor* Actor_info_make_actor(ActorInfo* actorInfo, struct Game_Play* game_play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 arg9, s8 argA, s16 argB, u16 fgName, s16 params, s8 argE, s32 argF);
 Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, struct Game_Play* game_play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s16 argA, u16 fgName, s16 params, s32 argD);
 void restore_fgdata(Actor* actor, struct Game_Play* game_play);
