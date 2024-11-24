@@ -242,8 +242,7 @@ void aHM1_act_proc(Actor* thisx, Game_Play* game_play, s32 processIndex) {
     (*act_proc[processIndex])(this, game_play);
 }
 
-void aHM1_think_main_proc(Actor* thisx, Game_Play* game_play UNUSED) {
-    Hanami_Npc1* this = THIS;
+void aHM1_think_main_proc(Hanami_Npc1* this, Game_Play* game_play UNUSED) {
     s16 modRotY;
     s32 modRotYAbsValue;
     f32 randS16AsFloat;
@@ -255,7 +254,7 @@ void aHM1_think_main_proc(Actor* thisx, Game_Play* game_play UNUSED) {
                 processIndex = this->unk_93C;
             } else {
                 randS16AsFloat = (fqrand() - 0.5f) * 65536.0f;
-                modRotY = ((s16)randS16AsFloat) - thisx->shape.rot.y;
+                modRotY = ((s16)randS16AsFloat) - this->actor.shape.rot.y;
                 this->unk_8DC = randS16AsFloat;
 
                 if (modRotY >= 0) {
@@ -282,7 +281,7 @@ void aHM1_think_main_proc(Actor* thisx, Game_Play* game_play UNUSED) {
 
         this->unk_93C = -1;
         this->unk_80C = 3;
-        aHM1_set_request_act(thisx);
+        aHM1_set_request_act(&this->actor);
     }
 }
 
