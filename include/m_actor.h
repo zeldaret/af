@@ -97,9 +97,9 @@ typedef struct Actor {
     /* 0x003 */ u8 unk_003; // If set to 1 then fgdata will be restored independently of the actor's part
     /* 0x004 */ u16 unk_004;
     /* 0x006 */ u16 fgName;
-    /* 0x008 */ s8 unk_008;
-    /* 0x008 */ s8 unk_009;
-    /* 0x008 */ s16 unk_00A;
+    /* 0x008 */ s8 blockX;
+    /* 0x009 */ s8 blockZ;
+    /* 0x00A */ s16 unk_00A;
     /* 0x00C */ PosRot home;
     /* 0x020 */ u32 flags;
     /* 0x024 */ s16 params;

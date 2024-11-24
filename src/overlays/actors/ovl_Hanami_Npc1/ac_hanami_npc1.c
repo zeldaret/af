@@ -102,8 +102,7 @@ s32 aHM1_check_inBlock(Actor* thisx, xyz_t* pos, s32* blockX, s32* blockZ) {
 
     mFI_Wpos2BlockNum(blockX, blockZ, *pos);
 
-    // TODO: rename unk_008 to blockX and unk_009 to blockY in Actor struct
-    if ((thisx->unk_008 != *blockX) || (thisx->unk_009 != *blockZ)) {
+    if ((thisx->blockX != *blockX) || (thisx->blockZ != *blockZ)) {
         notInBlock = TRUE;
     }
 
@@ -131,19 +130,19 @@ void aHM1_revise_moveRange(Hanami_Npc1* this) {
             s32 hanamiBlock;
             s32 offsetIndex;
 
-            func_80088B3C_jp(&worldPosX, &worldPosZ, this->actor.unk_008, this->actor.unk_009);
+            func_80088B3C_jp(&worldPosX, &worldPosZ, this->actor.blockX, this->actor.blockZ);
 
             //! FAKE
             if (hanamiBlock) {}
 
-            hanamiBlock = this->actor.unk_008;
+            hanamiBlock = this->actor.blockX;
             offsetIndex = hanamiBlock < blockX;
 
             if (blockX != hanamiBlock) {
                 this->actor.world.pos.x = offset[offsetIndex] + worldPosX;
             }
 
-            hanamiBlock = this->actor.unk_009;
+            hanamiBlock = this->actor.blockZ;
             offsetIndex = hanamiBlock < blockZ;
 
             if (blockZ != hanamiBlock) {
