@@ -111,14 +111,14 @@ s32 aHM1_check_inBlock(Actor* thisx, xyz_t* pos, s32* blockX, s32* blockZ) {
 
 extern s32 func_80088B3C_jp(f32*, f32*, s32, s32);
 
-void aHM1_revise_moveRange(Actor* thisx) {
+void aHM1_revise_moveRange(Hanami_Npc1* this) {
     static f32 offset[] = { 0.0f, 319.0f };
     s32 mask = 0;
 
-    if (aHM1_check_moveRange(thisx, &thisx->world.pos) == TRUE) {
-        s16 searchAngle = search_position_angleY(&thisx->home.pos, &thisx->world.pos);
-        thisx->world.pos.x = (sin_s(searchAngle) * 100.0f) + thisx->home.pos.x;
-        thisx->world.pos.z = (cos_s(searchAngle) * 100.0f) + thisx->home.pos.z;
+    if (aHM1_check_moveRange(&this->actor, &this->actor.world.pos) == TRUE) {
+        s16 searchAngle = search_position_angleY(&this->actor.home.pos, &this->actor.world.pos);
+        this->actor.world.pos.x = (sin_s(searchAngle) * 100.0f) + this->actor.home.pos.x;
+        this->actor.world.pos.z = (cos_s(searchAngle) * 100.0f) + this->actor.home.pos.z;
         mask = 3;
     } else {
         s32 blockX;
@@ -126,34 +126,33 @@ void aHM1_revise_moveRange(Actor* thisx) {
         f32 worldPosX;
         f32 worldPosZ;
 
-        if (aHM1_check_inBlock(thisx, &thisx->world.pos, &blockX, &blockZ) == TRUE) {
+        if (aHM1_check_inBlock(&this->actor, &this->actor.world.pos, &blockX, &blockZ) == TRUE) {
             s32 hanamiBlock;
             s32 offsetIndex;
 
-            func_80088B3C_jp(&worldPosX, &worldPosZ, thisx->unk_008, thisx->unk_009);
+            func_80088B3C_jp(&worldPosX, &worldPosZ, this->actor.unk_008, this->actor.unk_009);
 
             //! FAKE
             if (hanamiBlock) {}
 
-            hanamiBlock = thisx->unk_008;
+            hanamiBlock = this->actor.unk_008;
             offsetIndex = hanamiBlock < blockX;
 
             if (blockX != hanamiBlock) {
-                thisx->world.pos.x = offset[offsetIndex] + worldPosX;
+                this->actor.world.pos.x = offset[offsetIndex] + worldPosX;
             }
 
-            hanamiBlock = thisx->unk_009;
+            hanamiBlock = this->actor.unk_009;
             offsetIndex = hanamiBlock < blockZ;
 
             if (blockZ != hanamiBlock) {
-                thisx->world.pos.z = offset[offsetIndex] + worldPosZ;
+                this->actor.world.pos.z = offset[offsetIndex] + worldPosZ;
             }
             mask = 3;
         }
     }
 
-    // The usual top-of-function actor cast had to be omitted in order to get the stack to match
-    THIS->unk_910 = (u8)(THIS->unk_910 | mask);
+    this->unk_910 = (u8)(this->unk_910 | mask);
 }
 
 void aHM1_turn(Actor* thisx) {
@@ -170,7 +169,7 @@ void aHM1_turn(Actor* thisx) {
 void aHM1_walk(Actor* thisx) {
     Hanami_Npc1* this = THIS;
 
-    aHM1_revise_moveRange(thisx);
+    aHM1_revise_moveRange(this);
 
     if (this->unk_910 != 0) {
         this->unk_7C6 = 0xFF;
