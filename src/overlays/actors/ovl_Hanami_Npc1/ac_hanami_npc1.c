@@ -125,7 +125,54 @@ s32 aHM1_check_inBlock(Actor* thisx, xyz_t* pos, s32* blockX, s32* blockZ) {
     return notInBlock;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_Hanami_Npc1/ac_hanami_npc1/aHM1_revise_moveRange.s")
+extern s32 func_80088B3C_jp(f32*, f32*, s32, s32);
+extern f32 offset[];
+
+void aHM1_revise_moveRange(Actor* thisx) {
+    // TODO: import data
+    // static f32 offset[] = { 0.0f, 319.0f };
+    s32 mask = 0;
+
+    if (aHM1_check_moveRange(thisx, &thisx->world.pos) == TRUE) {
+        s16 searchAngle = search_position_angleY(&thisx->home.pos, &thisx->world.pos);
+        thisx->world.pos.x = (sin_s(searchAngle) * 100.0f) + thisx->home.pos.x;
+        thisx->world.pos.z = (cos_s(searchAngle) * 100.0f) + thisx->home.pos.z;
+        mask = 3;
+    } else {
+        s32 blockX;
+        s32 blockZ;
+        f32 worldPosX;
+        f32 worldPosZ;
+
+        if (aHM1_check_inBlock(thisx, &thisx->world.pos, &blockX, &blockZ) == TRUE) {
+            s32 hanamiBlock;
+            s32 offsetIndex;
+
+            func_80088B3C_jp(&worldPosX, &worldPosZ, thisx->unk_008, thisx->unk_009);
+
+            //! FAKE
+            if (hanamiBlock) {}
+
+            hanamiBlock = thisx->unk_008;
+            offsetIndex = hanamiBlock < blockX;
+
+            if (blockX != hanamiBlock) {
+                thisx->world.pos.x = offset[offsetIndex] + worldPosX;
+            }
+
+            hanamiBlock = thisx->unk_009;
+            offsetIndex = hanamiBlock < blockZ;
+
+            if (blockZ != hanamiBlock) {
+                thisx->world.pos.z = offset[offsetIndex] + worldPosZ;
+            }
+            mask = 3;
+        }
+    }
+
+    // The usual top-of-function actor cast had to be omitted in order to get the stack to match
+    THIS->unk_910 = (u8)(THIS->unk_910 | mask);
+}
 
 void aHM1_turn(Actor* thisx) {
     Hanami_Npc1* this = THIS;
