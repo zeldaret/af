@@ -8,6 +8,7 @@
 #include "audio.h"
 #include "m_cockroach.h"
 #include "m_collision_bg.h"
+#include "m_rcp.h"
 
 void aHG_actor_ct(Actor* thisx, Game_Play* game_play);
 void aHG_actor_dt(Actor* thisx, Game_Play* game_play);
@@ -194,4 +195,23 @@ block_9:
     this->process(this, game_play);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/aHG_actor_draw.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/aHG_actor_draw.s")
+void aHG_actor_draw(Actor* thisx, Game_Play* game_play) {
+    GraphicsContext* gfxCtx = game_play->state.gfxCtx;
+    House_Goki* this = (House_Goki*)thisx;
+
+    Matrix_push();
+    _texture_z_light_fog_prim_xlu(gfxCtx);
+    Matrix_translate(this->actor.world.pos.x, this->actor.world.pos.y + 2.0f, this->actor.world.pos.z, 0U);
+    Matrix_scale(this->actor.scale.x, this->actor.scale.y, this->actor.scale.z, 1U);
+    Matrix_RotateX(this->actor.shape.rot.x, MTXMODE_APPLY);
+    Matrix_RotateY(this->actor.shape.rot.y, MTXMODE_APPLY);
+
+    OPEN_POLY_XLU_DISP(gfxCtx);
+    gSPMatrix(__polyXlu++, _Matrix_to_Mtx_new(gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    gDPSetEnvColor(__polyXlu++, 0xFF, 0xFF, 0xFF, this->unk_190);
+    gSPDisplayList(__polyXlu++, (s32)D_80A845DC_jp[(s32)this->unk_198]);
+    CLOSE_POLY_XLU_DISP(sp3C);
+
+    Matrix_pull();
+}
