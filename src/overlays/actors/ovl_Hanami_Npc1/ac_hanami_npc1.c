@@ -109,8 +109,6 @@ s32 aHM1_check_inBlock(Actor* thisx, xyz_t* pos, s32* blockX, s32* blockZ) {
     return notInBlock;
 }
 
-extern s32 func_80088B3C_jp(f32*, f32*, s32, s32);
-
 void aHM1_revise_moveRange(Hanami_Npc1* this) {
     static f32 offset[] = { 0.0f, 319.0f };
     s32 mask = 0;
@@ -130,7 +128,7 @@ void aHM1_revise_moveRange(Hanami_Npc1* this) {
             s32 hanamiBlock;
             s32 offsetIndex;
 
-            func_80088B3C_jp(&worldPosX, &worldPosZ, this->actor.blockX, this->actor.blockZ);
+            mFI_BkNum2WposXZ(&worldPosX, &worldPosZ, this->actor.blockX, this->actor.blockZ);
 
             //! FAKE
             if (hanamiBlock) {}
@@ -186,6 +184,7 @@ void aHM1_set_spd_info(Hanami_Npc1* this, s32 action) {
         this->unk_8B4 = 0.1f;
         this->unk_8B8 = 0.1f;
         this->unk_8B0 = 1.0f;
+
         return;
     }
 

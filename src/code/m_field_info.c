@@ -4,6 +4,7 @@
 #include "libc64/qrand.h"
 
 s32 mFI_GetPuleTypeIdx(u8 type);
+s32 mFI_BlockCheck(s32 blockX, s32 blockZ);
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_ClearFieldData.s")
 
@@ -33,7 +34,7 @@ s32 mFI_GetPuleTypeIdx(u8 type);
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008819C_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_800881AC_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_BlockCheck.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80088270_jp.s")
 
@@ -65,7 +66,19 @@ s32 mFI_GetPuleTypeIdx(u8 type);
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80088A58_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80088B3C_jp.s")
+s32 mFI_BkNum2WposXZ(f32* worldPosX, f32* worldPosZ, s32 blockX, s32 blockZ) {
+    s32 result;
+
+    *worldPosX = (f32)(blockX * 0x280);
+    *worldPosZ = (f32)(blockZ * 0x280);
+    result = FALSE;
+
+    if (mFI_CheckFieldData() == TRUE) {
+        result = mFI_BlockCheck(blockX, blockZ);
+    }
+
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_UtNum2PosXZInBk.s")
 
