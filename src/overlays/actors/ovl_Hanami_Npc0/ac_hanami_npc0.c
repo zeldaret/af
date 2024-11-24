@@ -119,7 +119,7 @@ void aHM0_merry(Actor* thisx) {
         }
     }
 
-    sAdo_OngenPos((s32) &this->actor, this->unk_944, &this->actor.world.pos);
+    sAdo_OngenPos((s32)(&this->actor), this->unk_944, &this->actor.world.pos);
 }
 
 void aHM0_drink(Actor* thisx) {
