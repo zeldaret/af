@@ -158,12 +158,12 @@ void aHM1_revise_moveRange(Hanami_Npc1* this) {
 void aHM1_turn(Actor* thisx) {
     Hanami_Npc1* this = THIS;
 
-    if (chase_angle(&thisx->shape.rot.y, this->unk_8DC, 0x800) == 1) {
+    if (chase_angle(&this->actor.shape.rot.y, this->unk_8DC, 0x800) == 1) {
         this->unk_93C = 1;
         this->unk_7C6 = 0xFF;
     }
 
-    thisx->world.rot.y = thisx->shape.rot.y;
+    this->actor.world.rot.y = this->actor.shape.rot.y;
 }
 
 void aHM1_walk(Actor* thisx) {
@@ -177,8 +177,8 @@ void aHM1_walk(Actor* thisx) {
         this->unk_7C6 = 0xFF;
     }
 
-    chase_angle(&thisx->shape.rot.y, this->unk_8DC, 0x400);
-    thisx->world.rot.y = thisx->shape.rot.y;
+    chase_angle(&this->actor.shape.rot.y, this->unk_8DC, 0x400);
+    this->actor.world.rot.y = this->actor.shape.rot.y;
 }
 
 // TODO: Once you determine how processIndex is derived when calling, see if
