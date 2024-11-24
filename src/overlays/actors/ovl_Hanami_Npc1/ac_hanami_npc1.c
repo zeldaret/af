@@ -6,6 +6,7 @@
 #include "m_field_info.h"
 
 #define THIS ((Hanami_Npc1*)thisx)
+#define ACTION_WALK 1
 
 void aHM1_actor_ct(Actor* thisx, Game_Play* game_play);
 void aHM1_actor_dt(Actor* thisx, Game_Play* game_play);
@@ -103,7 +104,7 @@ s32 aHM1_check_inBlock(Actor* thisx, xyz_t* pos, s32* blockX, s32* blockZ) {
 
     // TODO: rename unk_008 to blockX and unk_009 to blockY in Actor struct
     if ((thisx->unk_008 != *blockX) || (thisx->unk_009 != *blockZ)) {
-        notInBlock = 1;
+        notInBlock = TRUE;
     }
 
     return notInBlock;
@@ -158,7 +159,7 @@ void aHM1_revise_moveRange(Hanami_Npc1* this) {
 void aHM1_turn(Actor* thisx) {
     Hanami_Npc1* this = THIS;
 
-    if (chase_angle(&this->actor.shape.rot.y, this->unk_8DC, 0x800) == 1) {
+    if (chase_angle(&this->actor.shape.rot.y, this->unk_8DC, 0x800) == TRUE) {
         this->unk_93C = 1;
         this->unk_7C6 = 0xFF;
     }
@@ -181,10 +182,8 @@ void aHM1_walk(Actor* thisx) {
     this->actor.world.rot.y = this->actor.shape.rot.y;
 }
 
-// TODO: Once you determine how processIndex is derived when calling, see if
-// there's a more specific and appropriate name for it
-void aHM1_set_spd_info(Hanami_Npc1* this, s32 processIndex) {
-    if (processIndex == 1) {
+void aHM1_set_spd_info(Hanami_Npc1* this, s32 action) {
+    if (action == ACTION_WALK) {
         this->unk_8B4 = 0.1f;
         this->unk_8B8 = 0.1f;
         this->unk_8B0 = 1.0f;
