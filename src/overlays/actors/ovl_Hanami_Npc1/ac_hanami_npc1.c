@@ -11,22 +11,12 @@ void aHM1_actor_ct(Actor* thisx, Game_Play* game_play);
 void aHM1_actor_dt(Actor* thisx, Game_Play* game_play);
 void aHM1_actor_init(Actor* thisx, Game_Play* game_play);
 void aHM1_actor_save(Actor* thisx, Game_Play* game_play);
-// TODO: below are copy-pasted from ac_hanami_npc0--verify signatures!!
 void aHM1_actor_move(Actor* thisx, Game_Play* game_play);
-void aHM1_schedule_proc(Actor* thisx, Game_Play* game_play, s32 index);
+void aHM1_actor_draw(Actor* thisx, Game_Play* game_play);
+void aHM1_schedule_proc(Actor* thisx, Game_Play* game_play, s32 processIndex);
 void aHM1_talk_request(Actor* thisx, UNK_TYPE arg1 UNUSED);
 s32 aHM1_talk_init(UNK_TYPE arg0 UNUSED, UNK_TYPE arg1 UNUSED);
 s32 aHM1_talk_end_chk(Actor* thisx, UNK_TYPE arg1 UNUSED);
-void aHM1_actor_draw(Actor* thisx, Game_Play* game_play);
-
-void aHM1_set_request_act(Actor* thisx);
-
-// verify these signatures!!
-void aHM1_turn(Actor* thisx);
-void aHM1_walk(Actor* thisx);
-void aHM1_set_animation(Hanami_Npc1* this, s32 processIndex);
-void aHM1_set_spd_info(Hanami_Npc1* this, s32 processIndex);
-void aHM1_revise_moveRange(Actor* thisx);
 
 #if 0
 ActorProfile Hanami_Npc1_Profile = {
