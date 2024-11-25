@@ -9,6 +9,7 @@
 #include "m_cockroach.h"
 #include "m_collision_bg.h"
 #include "m_rcp.h"
+#include "m_field_info.h"
 
 void aHG_actor_ct(Actor* thisx, Game_Play* game_play);
 void aHG_actor_dt(Actor* thisx, Game_Play* game_play);
@@ -104,7 +105,61 @@ void func_80A83A00_jp(House_Goki* this, Game_Play* game_play UNUSED) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A83A24_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A83D4C_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A83D4C_jp.s")
+void func_80A83D4C_jp(House_Goki* this, Game_Play* game_play) {
+    Player* player = get_player_actor_withoutCheck(game_play);
+    u16* unitFG;
+    UNUSED s32 pad[2];
+    xyz_t pos;
+
+    if (this->unk_194 == 0 || (player->actor.speed != 0.0f && this->actor.xzDistToPlayer < 60.0f)) {
+        this->unk_194 = 1;
+        aHG_setup_action(this, 0, game_play);
+        return;
+    }
+
+    if (this->actor.speed != 0.0f) {
+        sAdo_OngenPos((uintptr_t)this, 0x28, &this->actor.world.pos);
+        if ((this->actor.colCheck.colResult.hitWall & 2) || (this->actor.colCheck.colResult.unk1 & 2) ||
+            (this->actor.colCheck.colResult.hitWall & 4) || (this->actor.colCheck.colResult.unk1 & 4) ||
+            (this->actor.colCheck.colResult.hitWall & 8) || (this->actor.colCheck.colResult.unk1 & 8)) {
+            if (this->unk_188 == 0) {
+                this->actor.shape.rot.y += 0x8000;
+                this->actor.world.rot.y = this->actor.shape.rot.y;
+                this->unk_188 = 1;
+            }
+        } else {
+            unitFG = mFI_GetUnitFG(this->actor.world.pos);
+            if ((unitFG != NULL) && (*unitFG == 0x1F3F)) {
+                this->unk_188 = 0;
+                this->unk_180 = (s32)(fqrand() * 5.0f) + 5;
+                this->actor.shape.rot.y = -0x8000;
+                this->actor.world.rot.y = this->actor.shape.rot.y;
+            } else {
+                this->unk_188 = 0;
+            }
+        }
+    }
+
+    if (this->unk_180 > 0) {
+        this->unk_180 -= 1;
+        return;
+    }
+
+    this->unk_180 = (s32)(fqrand() * 5.0f) + 5;
+    this->actor.speed = 0;
+    if (((game_play->unk_1EA0 % 100) < 0x15) && !(fqrand() < 0.5f)) {
+        if (!(this->actor.xzDistToPlayer < 60.0f)) {
+            xyz_t_move(&pos, &this->actor.world.pos);
+            pos.x += 80.0f - (fqrand() * 160.0f);
+            pos.z += 80.0f - (fqrand() * 160.0f);
+            this->actor.shape.rot.y = search_position_angleY(&this->actor.world.pos, &pos);
+            this->unk_195 = 0;
+            this->actor.world.rot.y = this->actor.shape.rot.y;
+            this->actor.speed = 4;
+        }
+    }
+}
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A8401C_jp.s")
 void func_80A8401C_jp(House_Goki* this, Game_Play* game_play UNUSED) {
