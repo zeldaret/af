@@ -40,8 +40,8 @@ typedef UNK_RET (*Clip_unk_040_unk_E8)(void);
 typedef UNK_RET (*Clip_unk_040_unk_EC)(struct ObjectStatus*, s16, s16);
 typedef UNK_RET (*Clip_unk_040_unk_F0)(struct ObjectStatus*, struct Actor*);
 typedef s32 (*Clip_unk_040_unk_F4)(struct ObjectStatus*, struct Actor*);
-typedef UNK_RET (*Clip_unk_040_unk_110)(struct Actor*, struct Game_Play*, UNK_TYPE, UNK_TYPE);
 typedef UNK_RET (*Clip_unk_040_unk_104)(struct Actor*, UNK_TYPE4, UNK_TYPE, s32);
+typedef UNK_RET (*Clip_unk_040_unk_110)(struct Actor*, struct Game_Play*, UNK_TYPE, UNK_TYPE);
 typedef UNK_RET (*Clip_unk_040_unk_118)(struct Actor*);
 
 typedef struct Clip_unk_040 {
