@@ -28,7 +28,7 @@ typedef struct struct_809AEFA4 {
     /* 0x0C */ UNK_PTR unk_0C;
     /* 0x10 */ UNK_PTR unk_10;
     /* 0x14 */ UNK_PTR unk_14;
-    /* 0x18 */ UNK_PTR unk_18;
+    /* 0x18 */ UNK_TYPE unk_18;
 } struct_809AEFA4; // size = 0x1C
 
 // Maybe same struct as mMl?
