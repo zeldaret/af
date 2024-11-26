@@ -40,13 +40,6 @@ ActorProfile House_Goki_Profile = {
     /* */ NULL,
 };
 
-static House_GokiActionFunc init_process[] = { func_80A83930_jp, func_80A83994_jp, func_80A83A00_jp };
-static House_GokiActionFunc process[] = { func_80A83A24_jp, func_80A83D4C_jp, func_80A8401C_jp };
-
-extern Gfx aHG_model_1[];
-extern Gfx aHG_model_2[];
-static Gfx* aHG_models[] = { aHG_model_1, aHG_model_2 };
-
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/aHG_actor_ct.s")
 void aHG_actor_ct(Actor* thisx, Game_Play* game_play) {
     House_Goki* this = (House_Goki*)thisx;
@@ -259,6 +252,8 @@ void func_80A8401C_jp(House_Goki* this, Game_Play* game_play UNUSED) {
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A8409C_jp.s")
 void aHG_setup_action(House_Goki* this, s32 processIndex, Game_Play* game_play) {
+    static House_GokiActionFunc init_process[] = { func_80A83930_jp, func_80A83994_jp, func_80A83A00_jp };
+    static House_GokiActionFunc process[] = { func_80A83A24_jp, func_80A83D4C_jp, func_80A8401C_jp };
     this->processIndex = processIndex;
     this->process = process[processIndex];
     init_process[processIndex](this, game_play);
@@ -328,6 +323,10 @@ block_9:
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/aHG_actor_draw.s")
 void aHG_actor_draw(Actor* thisx, Game_Play* game_play) {
+    extern Gfx aHG_model_1[];
+    extern Gfx aHG_model_2[];
+    static Gfx* aHG_models[] = { aHG_model_1, aHG_model_2 };
+
     GraphicsContext* gfxCtx = game_play->state.gfxCtx;
     House_Goki* this = (House_Goki*)thisx;
 
