@@ -19493,7 +19493,7 @@ aHG_actor_draw = 0x80A84480; // type:func
 House_Goki_Profile = 0x80A845A0; //
 init_process = 0x80A845C4; //
 process = 0x80A845D0; // allow_duplicated:true
-D_80A845DC_jp = 0x80A845DC; //
+aHG_models = 0x80A845DC; //
 
 // .rodata
 

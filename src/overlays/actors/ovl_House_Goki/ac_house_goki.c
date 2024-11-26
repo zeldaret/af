@@ -42,7 +42,10 @@ ActorProfile House_Goki_Profile = {
 
 static House_GokiActionFunc init_process[] = { func_80A83930_jp, func_80A83994_jp, func_80A83A00_jp };
 static House_GokiActionFunc process[] = { func_80A83A24_jp, func_80A83D4C_jp, func_80A8401C_jp };
-static s32 D_80A845DC_jp[] = { 0x060000C0, 0x06000188 };
+
+extern Gfx aHG_model_1[];
+extern Gfx aHG_model_2[];
+static Gfx* aHG_models[] = { aHG_model_1, aHG_model_2 };
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/aHG_actor_ct.s")
 void aHG_actor_ct(Actor* thisx, Game_Play* game_play) {
@@ -338,7 +341,7 @@ void aHG_actor_draw(Actor* thisx, Game_Play* game_play) {
     OPEN_POLY_XLU_DISP(gfxCtx);
     gSPMatrix(__polyXlu++, _Matrix_to_Mtx_new(gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     gDPSetEnvColor(__polyXlu++, 0xFF, 0xFF, 0xFF, this->unk_190);
-    gSPDisplayList(__polyXlu++, (s32)D_80A845DC_jp[(s32)this->unk_198]);
+    gSPDisplayList(__polyXlu++, aHG_models[(s32)this->unk_198]);
     CLOSE_POLY_XLU_DISP(sp3C);
 
     Matrix_pull();
