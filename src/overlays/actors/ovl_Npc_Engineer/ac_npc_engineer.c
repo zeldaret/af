@@ -9,8 +9,8 @@ void aNEG_actor_ct(Actor* thisx, Game_Play* game_play);
 void aNEG_actor_dt(Actor* thisx, Game_Play* game_play);
 void aNEG_actor_init(Actor* thisx, Game_Play* game_play);
 void aNEG_actor_save(Actor* thisx, Game_Play* game_play);
-void aNEG_actor_move(void);
-void aNEG_actor_draw(void);
+void aNEG_actor_move(Actor* thisx, Game_Play* game_play);
+void aNEG_actor_draw(Actor* thisx, Game_Play* game_play);
 
 ActorProfile Npc_Engineer_Profile = {
     /* */ ACTOR_NPC_ENGINEER,
@@ -27,7 +27,7 @@ ActorProfile Npc_Engineer_Profile = {
 };
 
 struct_809AEFA4 aNEG_ct_data = {
-    aNEG_actor_move, aNEG_actor_draw, 4, NULL, NULL, NULL,
+    aNEG_actor_move, aNEG_actor_draw, 4, NULL, NULL, NULL, NULL,
 };
 
 void aNEG_actor_ct(Actor* thisx, Game_Play* game_play) {
@@ -61,10 +61,10 @@ void aNEG_actor_init(Actor* thisx, Game_Play* game_play) {
     common_data.clip.unk_040->unk_CC(thisx, game_play);
 }
 
-void aNEG_actor_move(void) {
-    common_data.clip.unk_040->unk_D0();
+void aNEG_actor_move(Actor* thisx, Game_Play* game_play) {
+    common_data.clip.unk_040->unk_D0(thisx, game_play);
 }
 
-void aNEG_actor_draw(void) {
-    common_data.clip.unk_040->unk_E4();
+void aNEG_actor_draw(Actor* thisx, Game_Play* game_play) {
+    common_data.clip.unk_040->unk_E4(thisx, game_play);
 }

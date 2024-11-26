@@ -34,12 +34,14 @@ typedef void (*Clip_unk_040_unk_C0)(struct Actor*, struct Game_Play*, struct str
 typedef UNK_RET (*Clip_unk_040_unk_C4)(struct Actor*, struct Game_Play*);
 typedef UNK_RET (*Clip_unk_040_unk_C8)(struct Actor*, struct Game_Play*);
 typedef UNK_RET (*Clip_unk_040_unk_CC)(struct Actor*, struct Game_Play*);
-typedef UNK_RET (*Clip_unk_040_unk_D0)(void);
-typedef UNK_RET (*Clip_unk_040_unk_E4)(void);
+typedef void (*Clip_unk_040_unk_D0)(struct Actor*, struct Game_Play*);
+typedef void (*Clip_unk_040_unk_E4)(struct Actor*, struct Game_Play*);
 typedef UNK_RET (*Clip_unk_040_unk_E8)(void);
 typedef UNK_RET (*Clip_unk_040_unk_EC)(struct ObjectStatus*, s16, s16);
 typedef UNK_RET (*Clip_unk_040_unk_F0)(struct ObjectStatus*, struct Actor*);
 typedef s32 (*Clip_unk_040_unk_F4)(struct ObjectStatus*, struct Actor*);
+typedef UNK_RET (*Clip_unk_040_unk_104)(struct Actor*, UNK_TYPE4, UNK_TYPE, s32);
+typedef UNK_RET (*Clip_unk_040_unk_110)(struct Actor*, struct Game_Play*, UNK_TYPE, UNK_TYPE);
 typedef UNK_RET (*Clip_unk_040_unk_118)(struct Actor*);
 
 typedef struct Clip_unk_040 {
@@ -62,7 +64,11 @@ typedef struct Clip_unk_040 {
     /* 0x0EC */ Clip_unk_040_unk_EC unk_EC;
     /* 0x0F0 */ Clip_unk_040_unk_F0 unk_F0;
     /* 0x0F4 */ Clip_unk_040_unk_F4 unk_F4;
-    /* 0x0F8 */ UNK_TYPE1 unk_F8[0x20];
+    /* 0x0F8 */ UNK_TYPE1 unk_F8[0xC];
+    /* 0x104 */ Clip_unk_040_unk_104 unk_104;
+    /* 0x108 */ UNK_TYPE1 unk_108[0x8];
+    /* 0x110 */ Clip_unk_040_unk_110 unk_110;
+    /* 0x114 */ UNK_TYPE1 unk_114[0x4];
     /* 0x118 */ Clip_unk_040_unk_118 unk_118;
 } Clip_unk_040; // size >= 0x11C
 

@@ -28,7 +28,8 @@ typedef struct struct_809AEFA4 {
     /* 0x0C */ UNK_PTR unk_0C;
     /* 0x10 */ UNK_PTR unk_10;
     /* 0x14 */ UNK_PTR unk_14;
-} struct_809AEFA4; // size >= 0x18
+    /* 0x18 */ UNK_TYPE unk_18;
+} struct_809AEFA4; // size = 0x1C
 
 // Maybe same struct as mMl?
 typedef struct struct_func_8085CE18_jp_arg4 {

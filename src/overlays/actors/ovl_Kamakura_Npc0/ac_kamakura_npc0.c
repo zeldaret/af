@@ -11,8 +11,8 @@ void aKM0_actor_save(Actor* thisx, Game_Play* game_play);
 void aKM0_talk_request(UNK_TYPE arg0, UNK_TYPE arg1);
 void aKM0_talk_init(UNK_TYPE arg0, UNK_TYPE arg1);
 s32 aKM0_talk_end_chk(UNK_TYPE arg0, UNK_TYPE arg1);
-void aKM0_actor_move(void);
-void aKM0_actor_draw(void);
+void aKM0_actor_move(Actor* thisx, Game_Play* game_play);
+void aKM0_actor_draw(Actor* thisx, Game_Play* game_play);
 
 ActorProfile Kamakura_Npc0_Profile = {
     /* */ ACTOR_KAMAKURA_NPC0,
@@ -29,7 +29,7 @@ ActorProfile Kamakura_Npc0_Profile = {
 };
 
 struct_809AEFA4 aKM0_ct_data = {
-    aKM0_actor_move, aKM0_actor_draw, 3, aKM0_talk_request, aKM0_talk_init, aKM0_talk_end_chk,
+    aKM0_actor_move, aKM0_actor_draw, 3, aKM0_talk_request, aKM0_talk_init, aKM0_talk_end_chk, NULL,
 };
 
 void aKM0_actor_ct(Actor* thisx, Game_Play* game_play) {
@@ -69,10 +69,10 @@ s32 aKM0_talk_end_chk(UNK_TYPE arg0, UNK_TYPE arg1 UNUSED) {
     return var_v1;
 }
 
-void aKM0_actor_move(void) {
-    common_data.clip.unk_040->unk_D0();
+void aKM0_actor_move(Actor* thisx, Game_Play* game_play) {
+    common_data.clip.unk_040->unk_D0(thisx, game_play);
 }
 
-void aKM0_actor_draw(void) {
-    common_data.clip.unk_040->unk_E4();
+void aKM0_actor_draw(Actor* thisx, Game_Play* game_play) {
+    common_data.clip.unk_040->unk_E4(thisx, game_play);
 }
