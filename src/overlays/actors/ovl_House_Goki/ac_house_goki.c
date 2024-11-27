@@ -10,6 +10,7 @@
 #include "m_collision_bg.h"
 #include "m_rcp.h"
 #include "m_field_info.h"
+#include "macros.h"
 
 void aHG_actor_ct(Actor* thisx, Game_Play* game_play);
 void aHG_actor_dt(Actor* thisx, Game_Play* game_play);
@@ -70,8 +71,52 @@ void func_80A83780_jp(House_Goki* this) {
     }
 }
 
-s16 func_80A837C4_jp(Actor* this);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A837C4_jp.s")
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A837C4_jp.s")
+s16 func_80A837C4_jp(Actor* thisx) {
+    House_Goki* this = (House_Goki*)thisx;
+    s16 var_v1 = 0x309;
+    this->unk_184 = 0;
+
+    if (this->actor.xzDistToPlayer > 20.0f) {
+        s16 sp[2];
+
+        sp[0] = 0x309;
+        sp[1] = 0x309;
+        if (this->actor.colCheck.colResult.hitWall & 2) {
+            sp[0] = -0x4000;
+            sp[1] = 0x4000;
+        }
+
+        if ((this->actor.colCheck.colResult.hitWall & 4) || (this->actor.colCheck.colResult.hitWall & 8)) {
+            if (sp[0] == 0x309) {
+                sp[0] = 0x8000 - this->actor.world.rot.y;
+                if (sp[0] > 0) {
+                    sp[0] = 0x10000 - this->actor.world.rot.y;
+                }
+            } else {
+                sp[0] = this->actor.colCheck.colResult.hitWall & 4 ? 0x4000 : -0x4000;
+            }
+            return sp[0];
+        }
+
+        {
+            s16 var_v0_2 = 0;
+            if (1) {} // FAKE
+            if (sp[0] != 0x309) {
+                var_v1 = ABS((s16)(sp[0] - this->actor.yawTowardsPlayer));
+            }
+            if (sp[1] != 0x309) {
+                s16 var_a1 = (s32)ABS((s16)(sp[1] - this->actor.yawTowardsPlayer));
+                if (var_v1 < var_a1) {
+                    var_v0_2 = 1;
+                }
+            }
+            var_v1 = sp[var_v0_2];
+        }
+    }
+
+    return var_v1;
+}
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A83930_jp.s")
 void func_80A83930_jp(House_Goki* this, Game_Play* game_play UNUSED) {
