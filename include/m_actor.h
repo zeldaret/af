@@ -97,9 +97,9 @@ typedef struct Actor {
     /* 0x003 */ u8 unk_003; // If set to 1 then fgdata will be restored independently of the actor's part
     /* 0x004 */ u16 unk_004;
     /* 0x006 */ u16 fgName;
-    /* 0x008 */ s8 unk_008;
-    /* 0x008 */ s8 unk_009;
-    /* 0x008 */ s16 unk_00A;
+    /* 0x008 */ s8 blockX;
+    /* 0x009 */ s8 blockZ;
+    /* 0x00A */ s16 unk_00A;
     /* 0x00C */ PosRot home;
     /* 0x020 */ u32 flags;
     /* 0x024 */ s16 params;
@@ -252,7 +252,7 @@ void Actor_info_call_actor(struct Game_Play* game_play, ActorInfo* actorInfo);
 void Actor_info_draw_actor(struct Game_Play* game_play, ActorInfo* actorInfo);
 void Actor_free_overlay_area(struct ActorOverlay* overlayEntry);
 void Actor_get_overlay_area(struct ActorOverlay* overlayEntry, const u8* arg1, size_t overlaySize);
-void Actor_init_actor_class(Actor* actor, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct Game_Play* game_play, s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 argB, s8 argC, s16 argD, u16 fgName, s16 params);
+void Actor_init_actor_class(Actor* actor, ActorProfile* profile, struct ActorOverlay* overlayEntry, struct Game_Play* game_play, s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 blockX, s8 blockZ, s16 argD, u16 fgName, s16 params);
 Actor* Actor_info_make_actor(ActorInfo* actorInfo, struct Game_Play* game_play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 arg9, s8 argA, s16 argB, u16 fgName, s16 params, s8 argE, s32 argF);
 Actor* Actor_info_make_child_actor(ActorInfo* actorInfo, Actor* arg1, struct Game_Play* game_play, s16 actorId, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s16 argA, u16 fgName, s16 params, s32 argD);
 void restore_fgdata(Actor* actor, struct Game_Play* game_play);

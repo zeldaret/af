@@ -5,6 +5,7 @@
 #include "z64math.h"
 #include "m_collision_bg.h"
 #include "unk.h"
+#include "m_field_make.h"
 
 struct Actor;
 struct Game_Play;
@@ -12,12 +13,24 @@ struct FieldMakeBlockInfo;
 struct FieldMakeMoveActor;
 struct Game;
 
-#define FI_UT_WORLDSIZE_Z 40
-#define FI_UT_WORLDSIZE_Z_F (f32)FI_UT_WORLDSIZE_Z
-#define FI_UT_WORLDSIZE_X 40
-#define FI_UT_WORLDSIZE_X_F (f32)FI_UT_WORLDSIZE_Z
 #define FI_UT_BASE_SIZE 40
 #define FI_UT_BASE_SIZE_F ((f32)FI_UT_BASE_SIZE)
+
+#define FI_UT_WORLDSIZE_X FI_UT_BASE_SIZE
+#define FI_UT_WORLDSIZE_X_F (f32)FI_UT_WORLDSIZE_X
+
+#define FI_UT_WORLDSIZE_Z FI_UT_BASE_SIZE
+#define FI_UT_WORLDSIZE_Z_F (f32)FI_UT_WORLDSIZE_Z
+
+#define FI_BK_WORLDSIZE_BASE (FI_UT_BASE_SIZE * UT_BASE_NUM)
+#define FI_BK_WORLDSIZE_BASE_F ((f32)FI_BK_WORLDSIZE_BASE)
+
+#define FI_BK_WORLDSIZE_X FI_BK_WORLDSIZE_BASE
+#define FI_BK_WORLDSIZE_Z FI_BK_WORLDSIZE_BASE
+
+#define FI_BK_WORLDSIZE_X_F FI_BK_WORLDSIZE_BASE_F
+#define FI_BK_WORLDSIZE_Z_F FI_BK_WORLDSIZE_BASE_F
+
 
 typedef enum FieldType {
   /* 0 */ FI_FIELDTYPE_FG,
@@ -61,7 +74,7 @@ s32 mFI_GetBlockZMax(void);
 // void func_80088018_jp();
 // void func_80088160_jp();
 // void func_8008819C_jp();
-// void func_800881AC_jp();
+// s32 mFI_BlockCheck(s32 blockX, s32 blockZ);
 // void func_80088270_jp();
 // void func_800882AC_jp();
 // void func_800882FC_jp();
@@ -77,8 +90,8 @@ s32 mFI_Wpos2BkandUtNuminBlock(s32*,s32*, s32* ,s32* ,xyz_t);
 // void func_80088938_jp();
 // void func_800889D8_jp();
 // void func_80088A58_jp();
-// void func_80088B3C_jp();
-void mFI_UtNum2PosXZInBk(f32*, f32*, s32,s32);
+s32 mFI_BkNum2WposXZ(f32* worldPosX, f32* worldPosZ, s32 blockX, s32 blockZ);
+void mFI_UtNum2PosXZInBk(f32*, f32*, s32, s32);
 // void func_80088BFC_jp();
 void mFI_BkandUtNum2CenterWpos(xyz_t*, s32, s32, s32, s32);
 // void func_80088CBC_jp();
@@ -98,8 +111,8 @@ void mFI_BkandUtNum2CenterWpos(xyz_t*, s32, s32, s32, s32);
 // void func_80089114_jp();
 // void func_800891AC_jp();
 u8 mFI_BkNum2BlockType(s32,s32);
-// void func_800892CC_jp();
-// void func_8008930C_jp();
+// s32 mFI_GetPuleTypeIdx(u8 type);
+s32 mFI_GetPuleIdx(void);
 // void func_80089348_jp();
 // void func_800893C8_jp();
 s32 mFI_CheckBlockKind_OR(s32, s32, s32);

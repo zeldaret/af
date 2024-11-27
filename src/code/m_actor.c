@@ -322,11 +322,11 @@ void Actor_delete_check(Actor* actor, Game_Play* game_play) {
         return;
     }
 
-    if ((actor->unk_008 < 0) || (actor->unk_009 < 0)) {
+    if ((actor->blockX < 0) || (actor->blockZ < 0)) {
         return;
     }
 
-    if ((actor->unk_008 == game_play->unk_00E4) && (actor->unk_009 == game_play->unk_00E5)) {
+    if ((actor->blockX == game_play->unk_00E4) && (actor->blockZ == game_play->unk_00E5)) {
         return;
     }
 
@@ -761,7 +761,7 @@ s32 Actor_malloc_actor_class(Actor** actorP, ActorProfile* profile, ActorOverlay
 }
 
 void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* overlayEntry, Game_Play* game_play,
-                            s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 argB, s8 argC, s16 argD,
+                            s32 arg4, f32 x, f32 y, f32 z, s16 rotX, s16 rotY, s16 rotZ, s8 blockX, s8 blockZ, s16 argD,
                             u16 fgName, s16 params) {
     mem_clear((u8*)actor, profile->instanceSize, 0);
 
@@ -789,8 +789,8 @@ void Actor_init_actor_class(Actor* actor, ActorProfile* profile, ActorOverlay* o
     actor->home.rot.y = rotY;
     actor->home.rot.z = rotZ;
 
-    actor->unk_008 = argB;
-    actor->unk_009 = argC;
+    actor->blockX = blockX;
+    actor->blockZ = blockZ;
     actor->unk_00A = argD;
     actor->fgName = fgName;
 }
@@ -861,7 +861,7 @@ void restore_fgdata(Actor* actor, Game_Play* game_play UNUSED) {
         return;
     }
 
-    if ((actor->unk_008 < 0) || (actor->unk_009 < 0)) {
+    if ((actor->blockX < 0) || (actor->blockZ < 0)) {
         return;
     }
 
