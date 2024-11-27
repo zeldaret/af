@@ -2645,7 +2645,7 @@
     bss_size: 0x0
     subsegments:
       - [0x8C1B30, c, overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0]
-      - [0x8C22B0, data, overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0]
+      - [0x8C22B0, .data, overlays/actors/ovl_Hanami_Npc0/ac_hanami_npc0]
   - name: ovl_Hanami_Npc0_reloc
     type: code
     start: 0x8C2370
