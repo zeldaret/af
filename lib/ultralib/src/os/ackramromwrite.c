@@ -11,5 +11,5 @@
 #ident "$Revision: 1.3 $"
 #endif
 
-void osAckRamromWrite() {
+void osAckRamromWrite(void) {
 }

@@ -1,6 +1,16 @@
+/**
+ * @file vimodefpallpn2.c
+ *
+ * FPAL LPN2 Video Mode
+ *
+ * L = Low Resolution
+ * P = Point Sampled
+ * N = Non-Interlaced
+ * 2 = 32-bit Framebuffer
+ */
 #include "PR/os.h"
 #include "PR/rcp.h"
-#include "../io/viint.h"
+#include "PRinternal/viint.h"
 
 OSViMode osViModeFpalLpn2 = {
     OS_VI_FPAL_LPN2, // type

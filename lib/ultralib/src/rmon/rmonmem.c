@@ -10,21 +10,21 @@
 
 #ifndef _FINALROM
 
-#include "dbgproto.h"
+#include "PRinternal/dbgproto.h"
 #include "PR/os_internal.h"
 #include "PR/rcp.h"
 #include "PR/sptask.h"
-#include "rmonint.h"
+#include "PRinternal/rmonint.h"
 #include "PR/rdb.h"
 
-#include "macros.h"
+#include "PRinternal/macros.h"
 
 // TODO: this comes from a header
 #if BUILD_VERSION >= VERSION_J
 #ident "$Revision: 1.4 $"
 #endif
 
-u8 __rmonUtilityBuffer[256] ALIGNED(8);
+u8 __rmonUtilityBuffer[256] ALIGNED(0x8);
 
 void __rmonWriteWordTo(u32* addr, u32 val) {
     while (__osSpRawWriteIo((u32)addr, val) != 0) {

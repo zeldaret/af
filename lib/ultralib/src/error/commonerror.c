@@ -3,14 +3,14 @@
 #include "PR/sptask.h"
 #include "PR/ultraerror.h"
 #include "PR/ultralog.h"
-#include "macros.h"
+#include "PRinternal/macros.h"
 #include "stdarg.h"
 
 #ifndef _FINALROM
 
 void __osSyncVPrintf(const char* fmt, va_list args);
 
-static u32 errorLogData[19] ALIGNED(8);
+static u32 errorLogData[19] ALIGNED(0x8);
 static OSLog errorLog = {
     OS_ERROR_MAGIC, // magic
     sizeof(errorLogData), // len
@@ -22,7 +22,7 @@ static OSLog errorLog = {
 static void __commonErrorHandler(s16 code, s16 numArgs, ...);
 OSErrorHandler __osCommonHandler = __commonErrorHandler;
 
-char NULSTR[] = { '\0' };
+char NULSTR[] = "";
 
 const char* __os_error_message[] = {
     NULSTR,

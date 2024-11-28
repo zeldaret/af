@@ -2,7 +2,7 @@
 
 #include "PR/os_internal.h"
 #include "PR/rdb.h"
-#include "osint.h"
+#include "PRinternal/osint.h"
 
 typedef struct {
     /* 0x0 */ unsigned int inst1;

@@ -1,5 +1,5 @@
 #include "PR/os_internal.h"
-#include "piint.h"
+#include "PRinternal/piint.h"
 
 OSMesgQueue* osPiGetCmdQueue(void) {
     if (!__osPiDevMgr.active) {

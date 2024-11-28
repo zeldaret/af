@@ -1,6 +1,16 @@
+/**
+ * @file vimodepallpn2.c
+ *
+ * PAL LPN2 Video Mode
+ *
+ * L = Low Resolution
+ * P = Point Sampled
+ * N = Non-Interlaced
+ * 2 = 32-bit Framebuffer
+ */
 #include "PR/os.h"
 #include "PR/rcp.h"
-#include "../io/viint.h"
+#include "PRinternal/viint.h"
 
 OSViMode osViModePalLpn2 = {
     OS_VI_PAL_LPN2, // type

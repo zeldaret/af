@@ -1,4 +1,4 @@
-#include "macros.h"
+#include "PRinternal/macros.h"
 #include "string.h"
 #include "stdarg.h"
 #include "xstdio.h"
@@ -32,7 +32,7 @@
 #define PUT(s, n)                                \
     if (0 < (n))                                 \
     {                                            \
-        if ((arg = (*prout)(arg, s, n)) != NULL) \
+        if ((arg = (*pfn)(arg, s, n)) != NULL) \
             x.nchar += (n);                      \
         else                                     \
             return x.nchar;                      \
@@ -40,19 +40,19 @@
 static char spaces[] = "                                ";
 static char zeroes[] = "00000000000000000000000000000000";
 
-static void _Putfld(_Pft *pf, va_list *pap, char code, char *ac);
+static void _Putfld(_Pft *px, va_list *pap, char code, char *ac);
 
-int _Printf(outfun prout, char *arg, const char *fmt, va_list args) {
+int _Printf(void* pfn(void*,const char*,size_t), void *arg, const char *fmt, va_list ap) {
     _Pft x;
     
     x.nchar = 0;
 
-    while (TRUE) {
+    while (1) {
         const char *s;
         char c;
         const char *t;
         static const char fchar[] = {' ', '+', '-', '#', '0', '\0'};
-        static const int fbit[] = {FLAGS_SPACE, FLAGS_PLUS, FLAGS_MINUS, FLAGS_HASH, FLAGS_ZERO, 0};
+        static const unsigned int fbit[] = {FLAGS_SPACE, FLAGS_PLUS, FLAGS_MINUS, FLAGS_HASH, FLAGS_ZERO, 0};
         char ac[32];
         s = fmt;
 
@@ -73,7 +73,7 @@ int _Printf(outfun prout, char *arg, const char *fmt, va_list args) {
         }
 
         if (*s == '*') {
-            x.width = va_arg(args, int);
+            x.width = va_arg(ap, int);
 
             if (x.width < 0) {
                 x.width = -x.width;
@@ -87,7 +87,7 @@ int _Printf(outfun prout, char *arg, const char *fmt, va_list args) {
         if (*s != '.') {
             x.prec = -1;
         } else if (*++s == '*') {
-            x.prec = va_arg(args, int);
+            x.prec = va_arg(ap, int);
             ++s;
         } else 
             for (x.prec = 0; isdigit(*s); s++) { 
@@ -103,7 +103,7 @@ int _Printf(outfun prout, char *arg, const char *fmt, va_list args) {
             ++s;
         }
 
-        _Putfld(&x, &args, *s, ac);
+        _Putfld(&x, &ap, *s, ac);
         x.width -= x.n0 + x.nz0 + x.n1 + x.nz1 + x.n2 + x.nz2;
 
        {
@@ -139,119 +139,118 @@ int _Printf(outfun prout, char *arg, const char *fmt, va_list args) {
     return 0;
 }
 
-static void _Putfld(_Pft *x, va_list *args, char type, char *buff) {
-    x->n0 = x->nz0 = x->n1 = x->nz1 = x->n2 =
-        x->nz2 = 0;
+static void _Putfld(_Pft *px, va_list *pap, char code, char *ac) {
+    px->n0 = px->nz0 = px->n1 = px->nz1 = px->n2 =
+        px->nz2 = 0;
 
-    switch (type) {
+    switch (code) {
         case 'c':
-            buff[x->n0++] = va_arg(*args, int);
+            ac[px->n0++] = va_arg(*pap, int);
             break;
         case 'd':
         case 'i':
-            if (x->qual == 'l') {
-                x->v.ll = va_arg(*args, int);
-            } else if (x->qual == 'L') {
-                x->v.ll = va_arg(*args, s64);
+            if (px->qual == 'l') {
+                px->v.ll = va_arg(*pap, long);
+            } else if (px->qual == 'L') {
+                px->v.ll = va_arg(*pap, long long);
             } else {
-                x->v.ll = va_arg(*args, int);
+                px->v.ll = va_arg(*pap, int);
             }
 
-            if (x->qual == 'h') {
-                x->v.ll = (s16)x->v.ll;
+            if (px->qual == 'h') {
+                px->v.ll = (short)px->v.ll;
             }
 
-            if (x->v.ll < 0) {
-                buff[x->n0++] = '-';
-            } else if (x->flags & FLAGS_PLUS) {
-                buff[x->n0++] = '+';
-            } else if (x->flags & FLAGS_SPACE) {
-                buff[x->n0++] = ' ';
+            if (px->v.ll < 0) {
+                ac[px->n0++] = '-';
+            } else if (px->flags & FLAGS_PLUS) {
+                ac[px->n0++] = '+';
+            } else if (px->flags & FLAGS_SPACE) {
+                ac[px->n0++] = ' ';
             }
 
-            x->s = (char *)&buff[x->n0];
+            px->s = (char *)&ac[px->n0];
 
-            _Litob(x, type);
+            _Litob(px, code);
             break;
         case 'x':
         case 'X':
         case 'u':
         case 'o':
-            if (x->qual == 'l') {
-                x->v.ll = va_arg(*args, int);
-            } else if (x->qual == 'L') {
-                x->v.ll = va_arg(*args, s64);
+            if (px->qual == 'l') {
+                px->v.ll = va_arg(*pap, long);
+            } else if (px->qual == 'L') {
+                px->v.ll = va_arg(*pap, long long);
             } else {
-                x->v.ll = va_arg(*args, int);
+                px->v.ll = va_arg(*pap, int);
             }
 
-            if (x->qual == 'h') {
-                x->v.ll = (u16)x->v.ll;
-            } else if (x->qual == 0) {
-                x->v.ll = (unsigned int)x->v.ll;
+            if (px->qual == 'h') {
+                px->v.ll = (unsigned short)px->v.ll;
+            } else if (px->qual == 0) {
+                px->v.ll = (unsigned int)px->v.ll;
             }
 
-            if (x->flags & FLAGS_HASH) {
-                buff[x->n0++] = '0';
+            if (px->flags & FLAGS_HASH) {
+                ac[px->n0++] = '0';
 
-                if (type == 'x' || type == 'X') {
-                    buff[x->n0++] = type;
+                if (code == 'x' || code == 'X') {
+                    ac[px->n0++] = code;
                 }
             }
 
-            x->s = (char *)&buff[x->n0];
-            _Litob(x, type);
+            px->s = (char *)&ac[px->n0];
+            _Litob(px, code);
             break;
         case 'e':
         case 'f':
         case 'g':
         case 'E':
         case 'G':
-            //... okay?
-            x->v.ld = x->qual == 'L' ? va_arg(*args, f64) : va_arg(*args, f64);
+            px->v.ld = px->qual == 'L' ? va_arg(*pap, ldouble) : va_arg(*pap, double);
 
-            if (LDSIGN(x->v.ld))
-                buff[x->n0++] = '-';
-            else if (x->flags & FLAGS_PLUS)
-                buff[x->n0++] = '+';
-            else if (x->flags & FLAGS_SPACE)
-                buff[x->n0++] = ' ';
+            if (LDSIGN(px->v.ld))
+                ac[px->n0++] = '-';
+            else if (px->flags & FLAGS_PLUS)
+                ac[px->n0++] = '+';
+            else if (px->flags & FLAGS_SPACE)
+                ac[px->n0++] = ' ';
 
-            x->s = (char *)&buff[x->n0];
-            _Ldtob(x, type);
+            px->s = (char *)&ac[px->n0];
+            _Ldtob(px, code);
             break;
 
         case 'n':
-            if (x->qual == 'h') {
-                *(va_arg(*args, u16 *)) = x->nchar;
-            } else if (x->qual == 'l') {
-                *va_arg(*args, unsigned int *) = x->nchar;
-            } else if (x->qual == 'L') {
-                *va_arg(*args, u64 *) = x->nchar;
+            if (px->qual == 'h') {
+                *va_arg(*pap, unsigned short *) = px->nchar;
+            } else if (px->qual == 'l') {
+                *va_arg(*pap, unsigned long *) = px->nchar;
+            } else if (px->qual == 'L') {
+                *va_arg(*pap, unsigned long long *) = px->nchar;
             } else {
-                *va_arg(*args, unsigned int *) = x->nchar;
+                *va_arg(*pap, unsigned int *) = px->nchar;
             }
 
             break;
         case 'p':
-            x->v.ll = (long)va_arg(*args, void *);
-            x->s = (char *)&buff[x->n0];
-            _Litob(x, 'x');
+            px->v.ll = (long)va_arg(*pap, void *);
+            px->s = (char *)&ac[px->n0];
+            _Litob(px, 'x');
             break;
         case 's':
-            x->s = va_arg(*args, char *);
-            x->n1 = strlen(x->s);
+            px->s = va_arg(*pap, char *);
+            px->n1 = strlen(px->s);
             
-            if (x->prec >= 0 && x->prec < x->n1) {
-                x->n1 = x->prec;
+            if (px->prec >= 0 && px->prec < px->n1) {
+                px->n1 = px->prec;
             }
             
             break;
         case '%':
-            buff[x->n0++] = '%';
+            ac[px->n0++] = '%';
             break;
         default:
-            buff[x->n0++] = type;
+            ac[px->n0++] = code;
             break;
     }
 }

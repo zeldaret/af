@@ -1,5 +1,5 @@
 #include "PR/os_internal.h"
-#include "controller.h"
+#include "PRinternal/controller.h"
 
 s32 osEepromLongRead(OSMesgQueue* mq, u8 address, u8* buffer, int length) {
     s32 ret = 0;

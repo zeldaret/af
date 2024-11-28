@@ -1,9 +1,9 @@
-#include "macros.h"
+#include "PRinternal/macros.h"
 #include "PR/os_internal.h"
 #include "PR/ultraerror.h"
-#include "osint.h"
+#include "PRinternal/osint.h"
 
-__OSEventState __osEventStateTab[OS_NUM_EVENTS] ALIGNED(8);
+__OSEventState __osEventStateTab[OS_NUM_EVENTS] ALIGNED(0x8);
 #if BUILD_VERSION >= VERSION_J
 u32 __osPreNMI = FALSE;
 #endif

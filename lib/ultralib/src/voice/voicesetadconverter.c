@@ -1,9 +1,13 @@
+/**
+ * File: voicesetadconverter.c
+ */
+
 #include "PR/os_internal.h"
-#include "io/controller.h"
+#include "PRinternal/controller.h"
 #include "PR/os_voice.h"
 #include "voiceinternal.h"
-#include "io/controller_voice.h"
-#include "io/siint.h"
+#include "PRinternal/controller_voice.h"
+#include "PRinternal/siint.h"
 
 #define SWRITEFORMAT(ptr) ((__OSVoiceSWriteFormat*)(ptr))
 

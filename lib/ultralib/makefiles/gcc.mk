@@ -1,16 +1,14 @@
-COMPILER := gcc
-AS := tools/gcc/as
-CC := tools/gcc/gcc
-AR_OLD := tools/gcc/ar
+COMPILER_DIR := $(WORKING_DIR)/tools/gcc
+AS := $(COMPILER_DIR)/gcc -x assembler-with-cpp
+CC := $(COMPILER_DIR)/gcc
+AR_OLD := $(COMPILER_DIR)/ar
 PATCH_AR_FLAGS := 0 0 37777700
 STRIP =
 
-export COMPILER_PATH := $(WORKING_DIR)/tools/gcc
-
 CFLAGS := -w -nostdinc -c -G 0 -mgp32 -mfp32 -D_LANGUAGE_C
-ASFLAGS := -w -nostdinc -c -G 0 -mgp32 -mfp32 -DMIPSEB -D_LANGUAGE_ASSEMBLY -D_MIPS_SIM=1 -D_ULTRA64 -x assembler-with-cpp
+ASFLAGS := -w -nostdinc -c -G 0 -mgp32 -mfp32 -DMIPSEB -D_LANGUAGE_ASSEMBLY -D_MIPS_SIM=1 -D_ULTRA64
 CPPFLAGS = -D_MIPS_SZLONG=32 -D__USE_ISOC99 $(GBIDEFINE) $(VERSION_DEFINE) $(DEBUGFLAG)
-IINC = -I . -I $(WORKING_DIR)/include -I $(WORKING_DIR)/include/gcc -I $(WORKING_DIR)/include/PR
+IINC = -I . -I $(WORKING_DIR)/include -I $(WORKING_DIR)/include/compiler/gcc -I $(WORKING_DIR)/include/PR
 MIPS_VERSION := -mips3
 ASOPTFLAGS :=
 
@@ -46,7 +44,7 @@ endif
 export VR4300MUL := ON
 
 $(BUILD_DIR)/src/os/initialize_isv.marker: OPTFLAGS := -O2
-$(BUILD_DIR)/src/os/initialize_isv.marker: STRIP = && tools/gcc/strip-2.7 -N initialize_isv.c $(WORKING_DIR)/$(@:.marker=.o)
+$(BUILD_DIR)/src/os/initialize_isv.marker: STRIP = && $(COMPILER_DIR)/strip-2.7 -N initialize_isv.c $(WORKING_DIR)/$(@:.marker=.o)
 $(BUILD_DIR)/src/os/assert.marker: OPTFLAGS := -O0
 ifeq ($(filter $(VERSION),D E F G H I),)
 $(BUILD_DIR)/src/os/seterrorhandler.marker: OPTFLAGS := -O0
@@ -63,5 +61,6 @@ $(BUILD_DIR)/src/rmon/%.marker: ASFLAGS += -P
 $(BUILD_DIR)/src/host/host_ptn64.marker: CFLAGS += -fno-builtin # Probably a better way to solve this
 
 MDEBUG_FILES := $(BUILD_DIR)/src/monutil.marker
-$(BUILD_DIR)/src/monutil.marker: CC := tools/ido/cc
-$(BUILD_DIR)/src/monutil.marker: ASFLAGS := -non_shared -mips2 -fullwarn -verbose -Xcpluscomm -G 0 -woff 516,649,838,712 -Wab,-r4300_mul -nostdinc -o32 -c
+MDEBUG_COMPILER_DIR := $(WORKING_DIR)/tools/ido
+$(MDEBUG_FILES): AS := $(MDEBUG_COMPILER_DIR)/cc
+$(MDEBUG_FILES): ASFLAGS := -non_shared -mips2 -fullwarn -verbose -Xcpluscomm -G 0 -woff 516,649,838,712 -Wab,-r4300_mul -nostdinc -o32 -c

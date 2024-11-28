@@ -4,7 +4,7 @@
 
 .text
 LEAF(__osSetSR)
-    STAY2(mtc0 a0, C0_SR)
+    MTC0(   a0, C0_SR)
     NOP
-    jr ra
+    jr      ra
 END(__osSetSR)

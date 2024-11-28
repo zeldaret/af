@@ -16,7 +16,7 @@
 #include "guint.h"
 #include <stdio.h>
 #include "ultra64.h"
-#include "macros.h"
+#include "PRinternal/macros.h"
 
 // TODO: this comes from a header
 #ident "$Revision: 1.49 $"
@@ -44,7 +44,7 @@ struct Tile
 };
 
 /* tram mipmaps */
-static struct Tile mipmap[MM_MAX_LEVEL+1] ALIGNED(8);
+static struct Tile mipmap[MM_MAX_LEVEL+1] ALIGNED(0x8);
 static struct texelSizeParams sizeParams[4] =
 					{ 16, 3, 1, 0,
 					   8, 2, 2, 1,

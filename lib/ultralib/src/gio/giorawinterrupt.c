@@ -1,6 +1,6 @@
 #include "PR/os_internal.h"
 #include "PR/rcp.h"
-#include "../io/piint.h"
+#include "PRinternal/piint.h"
 
 void __osGIORawInterrupt(s32 value) {
     register u32 stat;

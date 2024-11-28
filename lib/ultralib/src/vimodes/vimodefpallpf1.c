@@ -1,6 +1,16 @@
+/**
+ * @file vimodefpallpf1.c
+ *
+ * FPAL LPF1 Video Mode
+ *
+ * L = Low Resolution
+ * P = Point Sampled
+ * F = Interlaced
+ * 1 = 16-bit Framebuffer
+ */
 #include "PR/os.h"
 #include "PR/rcp.h"
-#include "../io/viint.h"
+#include "PRinternal/viint.h"
 
 OSViMode osViModeFpalLpf1 = {
     OS_VI_FPAL_LPF1, // type

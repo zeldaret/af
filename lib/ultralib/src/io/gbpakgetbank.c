@@ -1,5 +1,5 @@
 #include "PR/os_internal.h"
-#include "controller.h"
+#include "PRinternal/controller.h"
 
 s32 __osGbpakGetBank(OSPfs* pfs, u8* bank) {
     s32 ret;
