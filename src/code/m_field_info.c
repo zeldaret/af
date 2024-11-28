@@ -96,6 +96,7 @@ u8 mFI_GetBlockZMax() {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008819C_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_BlockCheck.s")
+<<<<<<< HEAD
 
 s32 mFI_UtNumCheck(int utX, int utZ, int blockXMax, int blockZMax) {
     int result = TRUE;
@@ -112,6 +113,8 @@ s32 mFI_UtNumCheck(int utX, int utZ, int blockXMax, int blockZMax) {
 s32 mFI_WposCheck(xyz_t wpos) {
     s32 blockX UNUSED;
     s32 blockZ;
+=======
+>>>>>>> refs/remotes/upstream/main
 
     // Passing &blockZ twice is required to match.
     // Since only the return value is used and not
@@ -171,6 +174,7 @@ s32 mFI_Wpos2UtNum_inBlock(s32* utX, s32* utZ, xyz_t wpos) {
         *utX = (s32)(wpos.x / FI_UT_WORLDSIZE_X_F);
         *utZ = (s32)(wpos.z / FI_UT_WORLDSIZE_Z_F);
 
+<<<<<<< HEAD
         *utX &= 0xF;
         *utZ &= 0xF;
 
@@ -279,6 +283,8 @@ s32 mFI_ScrollCheck(xyz_t wpos, u8 dir) {
     return mFI_BlockCheck(blockX, blockZ);
 }
 
+=======
+>>>>>>> refs/remotes/upstream/main
 s32 mFI_BkNum2WposXZ(f32* worldPosX, f32* worldPosZ, s32 blockX, s32 blockZ) {
     s32 result;
 
