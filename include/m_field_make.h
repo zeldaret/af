@@ -48,6 +48,15 @@ typedef struct FieldMakeBlockInfo {
     /* 0x580 */ FieldMakeFGInfo fgInfo;
 } FieldMakeBlockInfo; // size = 0x614
 
+typedef struct FieldMakeInfo {
+    /* 0x000 */ u16 fieldId;
+    /* 0x002 */ UNK_TYPE1 unk_000[0x146];
+    /* 0x148 */ FieldMakeBlockInfo* blockInfo;
+    /* 0x14C */ UNK_TYPE1 unk_14C[0x1A];
+    /* 0x166 */ u8 blockXMax;
+    /* 0x167 */ u8 blockZMax;
+} FieldMakeInfo; // size >= 0x168
+
 // void func_80084ED0_jp();
 // void func_80084FAC_jp();
 // void func_800850E4_jp();
@@ -78,7 +87,7 @@ typedef struct FieldMakeBlockInfo {
 // void func_80086E30_jp();
 // void func_80086F08_jp();
 // void func_80086FA8_jp();
-void mFM_SetFieldInitData(s32,s32);
+void mFM_SetFieldInitData(s32, s32);
 void func_80087004_jp(void);
 void func_80087280_jp(void);
 // void func_80087380_jp();
