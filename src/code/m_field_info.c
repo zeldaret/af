@@ -1,10 +1,13 @@
 #include "global.h"
 #include "m_field_info.h"
+#include "m_random_field.h"
 #include "m_collision_bg.h"
 #include "libc64/qrand.h"
 
-s32 mFI_GetPuleTypeIdx(u8 type);
 s32 mFI_BlockCheck(s32 blockX, s32 blockZ);
+
+// static mCoBG_unkStructUnion l_edge_ut = { { 0, 31, 31, 31, 31, 31, mCoBG_ATTRIBUTE_0 } };
+extern mCoBG_unkStructUnion l_edge_ut;
 
 extern FieldMakeInfo* g_fdinfo;
 
@@ -91,12 +94,17 @@ u8 mFI_GetBlockZMax() {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80088018_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80088160_jp.s")
+s32 mFI_GetBlockNum(s32 blockX, s32 blockZ) {
+    s32 blockNum = blockX + blockZ * mFI_GetBlockXMax();
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_8008819C_jp.s")
+    return blockNum;
+}
+
+s32 mFI_GetUtNum(s32 utX, s32 utZ) {
+    return utX + utZ * UT_X_NUM;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_BlockCheck.s")
-<<<<<<< HEAD
 
 s32 mFI_UtNumCheck(int utX, int utZ, int blockXMax, int blockZMax) {
     int result = TRUE;
@@ -113,8 +121,6 @@ s32 mFI_UtNumCheck(int utX, int utZ, int blockXMax, int blockZMax) {
 s32 mFI_WposCheck(xyz_t wpos) {
     s32 blockX UNUSED;
     s32 blockZ;
-=======
->>>>>>> refs/remotes/upstream/main
 
     // Passing &blockZ twice is required to match.
     // Since only the return value is used and not
@@ -174,7 +180,6 @@ s32 mFI_Wpos2UtNum_inBlock(s32* utX, s32* utZ, xyz_t wpos) {
         *utX = (s32)(wpos.x / FI_UT_WORLDSIZE_X_F);
         *utZ = (s32)(wpos.z / FI_UT_WORLDSIZE_Z_F);
 
-<<<<<<< HEAD
         *utX &= 0xF;
         *utZ &= 0xF;
 
@@ -283,8 +288,6 @@ s32 mFI_ScrollCheck(xyz_t wpos, u8 dir) {
     return mFI_BlockCheck(blockX, blockZ);
 }
 
-=======
->>>>>>> refs/remotes/upstream/main
 s32 mFI_BkNum2WposXZ(f32* worldPosX, f32* worldPosZ, s32 blockX, s32 blockZ) {
     s32 result;
 
@@ -299,11 +302,31 @@ s32 mFI_BkNum2WposXZ(f32* worldPosX, f32* worldPosZ, s32 blockX, s32 blockZ) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_UtNum2PosXZInBk.s")
+void mFI_UtNum2PosXZInBk(f32* posX, f32* posZ, s32 utX, s32 utZ) {
+    *posX = (f32)(utX * FI_UT_WORLDSIZE_X);
+    *posZ = (f32)(utZ * FI_UT_WORLDSIZE_Z);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80088BFC_jp.s")
+void mFI_BkandUtNum2Wpos(xyz_t* wpos, s32 blockX, s32 blockZ, s32 utX, s32 utZ) {
+    f32 wposX;
+    f32 wposZ;
+    f32 bposX;
+    f32 bposZ;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_BkandUtNum2CenterWpos.s")
+    mFI_BkNum2WposXZ(&wposX, &wposZ, blockX, blockZ);
+    mFI_UtNum2PosXZInBk(&bposX, &bposZ, utX, utZ);
+
+    wpos->x = wposX + bposX;
+    wpos->y = 0.0f;
+    wpos->z = wposZ + bposZ;
+}
+
+void mFI_BkandUtNum2CenterWpos(xyz_t* wpos, s32 blockX, s32 blockZ, s32 utX, s32 utZ) {
+    mFI_BkandUtNum2Wpos(wpos, blockX, blockZ, utX, utZ);
+
+    wpos->x += FI_UT_WORLDSIZE_HALF_X_F;
+    wpos->z += FI_UT_WORLDSIZE_HALF_Z_F;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80088CBC_jp.s")
 
@@ -337,9 +360,28 @@ s32 mFI_BkNum2WposXZ(f32* worldPosX, f32* worldPosZ, s32 blockX, s32 blockZ) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_800891AC_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_BkNum2BlockType.s")
+u8 mFI_BkNum2BlockType(s32 blockX, s32 blockZ) {
+    s32 blockNum;
+    u8 type = 39;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_GetPuleTypeIdx.s")
+    if (mFI_CheckFieldData() && mFI_BlockCheck(blockX, blockZ)) {
+        blockNum = mFI_GetBlockNum(blockX, blockZ);
+        type = g_block_type_p[blockNum];
+    }
+
+    return type;
+}
+
+s32 mFI_GetPuleTypeIdx(u8 type) {
+    u32 kind = mRF_Type2BlockInfo(type);
+    s32 idx = -1;
+
+    if ((kind & mRF_BLOCKKIND_16) == mRF_BLOCKKIND_16) {
+        idx = type - 69;
+    }
+
+    return idx;
+}
 
 s32 mFI_GetPuleIdx(void) {
     u32 mask = (1 << 15); // TODO: make an enum/define
@@ -355,19 +397,116 @@ s32 mFI_GetPuleIdx(void) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80089348_jp.s")
+u32 mFI_BkNum2BlockKind(s32 blockX, s32 blockZ) {
+    s32 blockNum;
+    u32 kind = mRF_BLOCKKIND_NONE;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_800893C8_jp.s")
+    if (mFI_CheckFieldData() && mFI_BlockCheck(blockX, blockZ)) {
+        blockNum = mFI_GetBlockNum(blockX, blockZ);
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_CheckBlockKind_OR.s")
+        kind = g_fdinfo->blockInfo[blockNum].bgInfo.blockKind;
+    }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_BlockKind2BkNum.s")
+    return kind;
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_800894D0_jp.s")
+s32 mFI_CheckBlockKind(s32 blockX, s32 blockZ, u32 blockKind) {
+    s32 isBlockKind = FALSE;
+    u32 kind = mFI_BkNum2BlockKind(blockX, blockZ);
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_GetBkNum2ColTop.s")
+    kind &= blockKind;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_800895B8_jp.s")
+    if (blockKind == kind) {
+        isBlockKind = TRUE;
+    }
+
+    return isBlockKind;
+}
+
+s32 mFI_CheckBlockKind_OR(s32 blockX, s32 blockZ, u32 blockKindOr) {
+    s32 result = FALSE;
+    u32 kind = mFI_BkNum2BlockKind(blockX, blockZ);
+
+    kind &= blockKindOr;
+
+    if (kind != mRF_BLOCKKIND_NONE) {
+        result = TRUE;
+    }
+
+    return result;
+}
+
+s32 mFI_BlockKind2BkNum(s32* blockX, s32* blockZ, u32 kind) {
+    s32 i;
+    s32 succeeded = FALSE;
+    u32* kindP = g_block_kind_p;
+
+    *blockX = 0;
+    *blockZ = 0;
+
+    if (kindP != NULL) {
+        // In ac-decomp 0x38 is BLOCK_TOTAL_NUM (7 * 10 = 70)
+        // but here it's only 56 (7 * 8 = 56 due to there being no island)
+        for (i = 0; i < BLOCK_TOTAL_NUM; i++) {
+            if (kind == (*kindP & kind)) {
+                *blockX = i % 7;
+                *blockZ = i / 7;
+                succeeded = TRUE;
+
+                break;
+            } else {
+                kindP++;
+            }
+        }
+    }
+
+    return succeeded;
+}
+
+void mFI_GetSpecialBlockNum(s32* blockPos, u32* kinds, s32 count) {
+    s32 i;
+
+    for (i = 0; i < count; i++) {
+        mFI_BlockKind2BkNum(blockPos + 0, blockPos + 1, *kinds);
+        kinds++;
+        blockPos += 2;
+    }
+}
+
+mCoBG_unkStructUnion* mFI_GetBkNum2ColTop(s32 blockX, s32 blockZ) {
+    mCoBG_unkStructUnion* col = NULL;
+
+    if (mFI_CheckFieldData() && mFI_BlockCheck(blockX, blockZ)) {
+        s32 blockNum = mFI_GetBlockNum(blockX, blockZ);
+
+        col = (mCoBG_unkStructUnion*)g_fdinfo->blockInfo[blockNum].bgInfo.collision;
+    }
+
+    return col;
+}
+
+mCoBG_unkStructUnion* mFI_UtNum2UtCol(s32 utX, s32 utZ) {
+    mCoBG_unkStructUnion* collision;
+    s32 blockUtX;
+    s32 blockUtZ;
+    s32 blockX;
+    s32 blockZ;
+
+    if (mFI_UtNumCheck(utX, utZ, mFI_GetBlockXMax(), mFI_GetBlockZMax()) == FALSE) {
+        return &l_edge_ut;
+    } else if (mFI_UtNum2BlockNum(&blockX, &blockZ, utX, utZ) == FALSE) {
+        return &l_edge_ut;
+    } else {
+        s32 blockNum;
+
+        mFI_GetUtNumInBK(&blockUtX, &blockUtZ, utX, utZ);
+        blockNum = mFI_GetBlockNum(blockX, blockZ);
+        collision = (mCoBG_unkStructUnion*)g_fdinfo->blockInfo[blockNum].bgInfo.collision;
+        collision += blockUtZ * UT_X_NUM + blockUtX;
+
+        return collision;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80089698_jp.s")
 

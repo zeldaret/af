@@ -8,6 +8,8 @@
 struct Actor;
 struct PosRot;
 
+enum BackgroundAttribute { mCoBG_ATTRIBUTE_0, mCOBG_ATTRIBUTE_NONE = 100 };
+
 // offset table
 typedef struct mCoBG_unkStruct2 {
     /* 0x00 */ u8 unk0;
