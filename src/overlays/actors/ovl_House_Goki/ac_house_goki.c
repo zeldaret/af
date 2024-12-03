@@ -73,49 +73,53 @@ void func_80A83780_jp(House_Goki* this) {
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A837C4_jp.s")
 s16 func_80A837C4_jp(Actor* thisx) {
+    // a bit odd, but matches better with an aliased `this`
     House_Goki* this = (House_Goki*)thisx;
-    s16 var_v1 = 0x309;
+
+    s16 result = 777;
     this->unk_184 = 0;
 
     if (this->actor.xzDistToPlayer > 20.0f) {
-        s16 sp[2];
+        s16 angles[2];
 
-        sp[0] = 0x309;
-        sp[1] = 0x309;
+        angles[0] = 777;
+        angles[1] = 777;
         if (this->actor.colCheck.colResult.hitWall & 2) {
-            sp[0] = -0x4000;
-            sp[1] = 0x4000;
+            angles[0] = DEG_TO_BINANG(-90);
+            angles[1] = DEG_TO_BINANG(90);
         }
 
         if ((this->actor.colCheck.colResult.hitWall & 4) || (this->actor.colCheck.colResult.hitWall & 8)) {
-            if (sp[0] == 0x309) {
-                sp[0] = 0x8000 - this->actor.world.rot.y;
-                if (sp[0] > 0) {
-                    sp[0] = 0x10000 - this->actor.world.rot.y;
+            if (angles[0] == 777) {
+                angles[0] = 0x8000 - this->actor.world.rot.y;
+                if (angles[0] > 0) {
+                    angles[0] = 0x10000 - this->actor.world.rot.y;
                 }
             } else {
-                sp[0] = this->actor.colCheck.colResult.hitWall & 4 ? 0x4000 : -0x4000;
+                angles[0] = this->actor.colCheck.colResult.hitWall & 4 ? DEG_TO_BINANG(90) : DEG_TO_BINANG(-90);
             }
-            return sp[0];
+            return angles[0];
         }
 
         {
             s16 var_v0_2 = 0;
             if (1) {} // FAKE
-            if (sp[0] != 0x309) {
-                var_v1 = ABS((s16)(sp[0] - this->actor.yawTowardsPlayer));
+
+            if (angles[0] != 777) {
+                result = ABS((s16)(angles[0] - this->actor.yawTowardsPlayer));
             }
-            if (sp[1] != 0x309) {
-                s16 var_a1 = (s32)ABS((s16)(sp[1] - this->actor.yawTowardsPlayer));
-                if (var_v1 < var_a1) {
+            if (angles[1] != 777) {
+                // `(s32)` is to match with `... << 16 >> 16`
+                s16 var_a1 = (s32)ABS((s16)(angles[1] - this->actor.yawTowardsPlayer));
+                if (result < var_a1) {
                     var_v0_2 = 1;
                 }
             }
-            var_v1 = sp[var_v0_2];
+            result = angles[var_v0_2];
         }
     }
 
-    return var_v1;
+    return result;
 }
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A83930_jp.s")
@@ -191,7 +195,7 @@ void func_80A83A24_jp(House_Goki* this, Game_Play* game_play) {
         if ((this->unk_184 == 0) && (this->actor.colCheck.colResult.hitWall != 0)) {
             rotY = func_80A837C4_jp(&this->actor);
             chance = 20;
-            if (rotY != 0x309) {
+            if (rotY != 777) {
                 this->actor.world.rot.y += rotY;
                 this->actor.world.rot.y &= 0xC000;
                 this->actor.shape.rot.y = this->actor.world.rot.y;
@@ -314,10 +318,7 @@ void aHG_actor_move(Actor* thisx, Game_Play* game_play) {
         if (this->unk_190 >= 0x100) {
             this->unk_190 = 0xFF;
         }
-        goto block_9;
-    }
-
-    if (common_data.clip.myRoomClip != NULL) {
+    } else if (common_data.clip.myRoomClip != NULL) {
         if (this->processIndex != 2 && this->unk_190 == 0xFF) {
             if (common_data.clip.myRoomClip->unk_68(&this->actor.world.pos)) {
                 common_data.clip.unk_090->unk_00(0x5F, this->actor.world.pos, 1, 0, game_play, 0, 0, 0);
@@ -329,7 +330,6 @@ void aHG_actor_move(Actor* thisx, Game_Play* game_play) {
         }
     }
 
-block_9:
     this->actor.velocity.x = sin_s(this->actor.world.rot.y) * this->actor.speed;
     this->actor.velocity.z = cos_s(this->actor.world.rot.y) * this->actor.speed;
     this->actor.velocity.y += this->actor.gravity;
