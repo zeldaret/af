@@ -72,51 +72,44 @@ void func_80A83780_jp(House_Goki* this) {
 }
 
 // #pragma GLOBAL_ASM("asm/jp/nonmatchings/overlays/actors/ovl_House_Goki/ac_house_goki/func_80A837C4_jp.s")
-s16 func_80A837C4_jp(Actor* thisx) {
-    // a bit odd, but matches better with an aliased `this`
-    House_Goki* this = (House_Goki*)thisx;
-
+s16 func_80A837C4_jp(House_Goki* this) {
+    Actor* thisx = &this->actor;
     s16 result = 777;
+    s16 angles[2];
+    s16 index;
+
     this->unk_184 = 0;
 
-    if (this->actor.xzDistToPlayer > 20.0f) {
-        s16 angles[2];
-
+    if (thisx->xzDistToPlayer > 20.0f) {
         angles[0] = 777;
         angles[1] = 777;
-        if (this->actor.colCheck.colResult.hitWall & 2) {
+        if (thisx->colCheck.colResult.hitWall & 2) {
             angles[0] = DEG_TO_BINANG(-90);
             angles[1] = DEG_TO_BINANG(90);
         }
 
-        if ((this->actor.colCheck.colResult.hitWall & 4) || (this->actor.colCheck.colResult.hitWall & 8)) {
+        if ((thisx->colCheck.colResult.hitWall & 4) || (thisx->colCheck.colResult.hitWall & 8)) {
             if (angles[0] == 777) {
-                angles[0] = 0x8000 - this->actor.world.rot.y;
+                angles[0] = 0x8000 - thisx->world.rot.y;
                 if (angles[0] > 0) {
-                    angles[0] = 0x10000 - this->actor.world.rot.y;
+                    angles[0] = 0x10000 - thisx->world.rot.y;
                 }
             } else {
-                angles[0] = this->actor.colCheck.colResult.hitWall & 4 ? DEG_TO_BINANG(90) : DEG_TO_BINANG(-90);
+                angles[0] = thisx->colCheck.colResult.hitWall & 4 ? DEG_TO_BINANG(90) : DEG_TO_BINANG(-90);
             }
             return angles[0];
         }
 
-        {
-            s16 var_v0_2 = 0;
-            if (1) {} // FAKE
-
-            if (angles[0] != 777) {
-                result = ABS((s16)(angles[0] - this->actor.yawTowardsPlayer));
-            }
-            if (angles[1] != 777) {
-                // `(s32)` is to match with `... << 16 >> 16`
-                s16 var_a1 = (s32)ABS((s16)(angles[1] - this->actor.yawTowardsPlayer));
-                if (result < var_a1) {
-                    var_v0_2 = 1;
-                }
-            }
-            result = angles[var_v0_2];
+        index = 0;
+        if (angles[0] != 777) {
+            result = (s16)ABS((s16)(angles[0] - thisx->yawTowardsPlayer));
         }
+        if (angles[1] != 777) {
+            if (result < (s16)ABS((s16)(angles[1] - thisx->yawTowardsPlayer))) {
+                index = 1;
+            }
+        }
+        result = angles[index];
     }
 
     return result;
@@ -193,7 +186,7 @@ void func_80A83A24_jp(House_Goki* this, Game_Play* game_play) {
     } else {
         this->unk_18C = 0;
         if ((this->unk_184 == 0) && (this->actor.colCheck.colResult.hitWall != 0)) {
-            rotY = func_80A837C4_jp(&this->actor);
+            rotY = func_80A837C4_jp(this);
             chance = 20;
             if (rotY != 777) {
                 this->actor.world.rot.y += rotY;
