@@ -6979,16 +6979,27 @@
     #   - [0x113D000, data, assets/objects/object_0113D000/object_0113D000]
   - [0x1146950]
 
-  - name: object_01147000
-    dir: objects
-    type: bin # code
+  - name: act_house_goki
+    dir: objects/act_house_goki
+    type: code
     start: 0x1147000
     vram: 0x06000000
     exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
-    # subsegments:
-    #   - [0x1147000, data, assets/objects/object_01147000/object_01147000]
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, act_house_goki]
+      - start: 0x1147000
+        type: .data
+        name: act_house_goki
+        subsegments:
+          - [0x1147000, vtx, act_house_goki_vtx_1]
+          - [0x1147060, vtx, act_house_goki_vtx_2]
+          - [0x11470C0, af_gfx, act_house_goki_model_1]
+          - [0x1147188, af_gfx, act_house_goki_model_2]
+          - [0x1147250, af_palette, act_house_goki_pal]
+          - [0x1147270, ci4, act_house_goki_tex, 16, 64, act_house_goki_pal]
   - [0x1147470]
 
   - name: segment_01148000

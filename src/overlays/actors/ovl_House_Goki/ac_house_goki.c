@@ -12,6 +12,8 @@
 #include "m_field_info.h"
 #include "macros.h"
 
+#include "objects/act_house_goki/act_house_goki.h"
+
 void aHG_actor_ct(Actor* thisx, Game_Play* game_play);
 void aHG_actor_dt(Actor* thisx, Game_Play* game_play);
 void aHG_actor_move(Actor* thisx, Game_Play* game_play);
@@ -32,7 +34,7 @@ ActorProfile House_Goki_Profile = {
     /* */ ACTOR_PART_4,
     /* */ ACTOR_FLAG_10,
     /* */ 0x0000,
-    /* */ OBJECT_369,
+    /* */ OBJECT_ACT_HOUSE_GOKI,
     /* */ sizeof(House_Goki),
     /* */ aHG_actor_ct,
     /* */ aHG_actor_dt,
@@ -348,9 +350,7 @@ void aHG_actor_move(Actor* thisx, Game_Play* game_play) {
 }
 
 void aHG_actor_draw(Actor* thisx, Game_Play* game_play) {
-    extern Gfx aHG_model_1[];
-    extern Gfx aHG_model_2[];
-    static Gfx* aHG_models[] = { aHG_model_1, aHG_model_2 };
+    static Gfx* aHG_models[] = { act_house_goki_model_1, act_house_goki_model_2 };
 
     GraphicsContext* gfxCtx = game_play->state.gfxCtx;
     House_Goki* this = (House_Goki*)thisx;
