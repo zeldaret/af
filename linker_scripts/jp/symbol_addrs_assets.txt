@@ -1263,6 +1263,13 @@ tol_hata_01_evw_anime = 0x60003F0; // segment:tol_hata_01 rom:0x11303F0
 glider_v = 0x6000000; // segment:glider rom:0x113C000 size:0xB0
 glider_model = 0x60000B0; // segment:glider rom:0x113C0B0
 
+act_house_goki_vtx_1 = 0x6000000; // segment:act_house_goki rom:0x1147000 size:0x60
+act_house_goki_vtx_2 = 0x6000060; // segment:act_house_goki rom:0x1147060 size:0x60
+act_house_goki_model_1 = 0x60000C0; // segment:act_house_goki rom:0x11470C0
+act_house_goki_model_2 = 0x6000188; // segment:act_house_goki rom:0x1147188
+act_house_goki_pal = 0x6000250; // segment:act_house_goki rom:0x1147250
+act_house_goki_tex = 0x6000270; // segment:act_house_goki rom:0x1147270
+
 act_bee_v = 0x6000000; // segment:act_bee rom:0x11F4000 size:0x3A0
 act_bee_C_model = 0x60003A0; // segment:act_bee rom:0x11F43A0
 act_bee_B_model = 0x60004B8; // segment:act_bee rom:0x11F44B8

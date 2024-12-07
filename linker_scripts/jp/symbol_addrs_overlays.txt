@@ -19474,7 +19474,7 @@ D_80A8365C_jp = 0x80A8365C; //
 // .text
 
 aHG_actor_ct = 0x80A836C0; // type:func
-func_80A83770_jp = 0x80A83770; // type:func
+aHG_actor_dt = 0x80A83770; // type:func
 func_80A83780_jp = 0x80A83780; // type:func
 func_80A837C4_jp = 0x80A837C4; // type:func
 func_80A83930_jp = 0x80A83930; // type:func
@@ -19483,16 +19483,16 @@ func_80A83A00_jp = 0x80A83A00; // type:func
 func_80A83A24_jp = 0x80A83A24; // type:func
 func_80A83D4C_jp = 0x80A83D4C; // type:func
 func_80A8401C_jp = 0x80A8401C; // type:func
-func_80A8409C_jp = 0x80A8409C; // type:func
+aHG_setup_action = 0x80A8409C; // type:func
 aHG_actor_move = 0x80A840E8; // type:func
 aHG_actor_draw = 0x80A84480; // type:func
 
 // .data
 
 House_Goki_Profile = 0x80A845A0; //
-D_80A845C4_jp = 0x80A845C4; //
-D_80A845D0_jp = 0x80A845D0; //
-D_80A845DC_jp = 0x80A845DC; //
+init_process = 0x80A845C4; //
+process = 0x80A845D0; // allow_duplicated:true
+aHG_models = 0x80A845DC; //
 
 // .rodata
 

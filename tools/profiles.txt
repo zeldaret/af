@@ -994,7 +994,7 @@ asm/jp/data/overlays/actors/ovl_House_Goki/ac_house_goki.data.s-/* 944844 80A845
 asm/jp/data/overlays/actors/ovl_House_Goki/ac_house_goki.data.s-/* 944848 80A845A8 */ .word 0x00000171
 asm/jp/data/overlays/actors/ovl_House_Goki/ac_house_goki.data.s-/* 94484C 80A845AC */ .word 0x0000019C
 asm/jp/data/overlays/actors/ovl_House_Goki/ac_house_goki.data.s-/* 944850 80A845B0 */ .word aHG_actor_ct
-asm/jp/data/overlays/actors/ovl_House_Goki/ac_house_goki.data.s-/* 944854 80A845B4 */ .word func_80A83770_jp
+asm/jp/data/overlays/actors/ovl_House_Goki/ac_house_goki.data.s-/* 944854 80A845B4 */ .word aHG_actor_dt
 asm/jp/data/overlays/actors/ovl_House_Goki/ac_house_goki.data.s-/* 944858 80A845B8 */ .word aHG_actor_move
 asm/jp/data/overlays/actors/ovl_House_Goki/ac_house_goki.data.s-/* 94485C 80A845BC */ .word aHG_actor_draw
 asm/jp/data/overlays/actors/ovl_House_Goki/ac_house_goki.data.s-/* 944860 80A845C0 */ .word 0x00000000

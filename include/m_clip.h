@@ -121,18 +121,21 @@ typedef void (*Clip_unk_080_unk_24)(void);
 typedef s32 (*Clip_unk_080_unk_28)(struct Game* game, u16 ftr, s32 res,s32 utX, s32 utZ, u16 rotation,
                                             s32 squareOffs, s32 layer);
 typedef UNK_RET (*Clip_unk_080_unk_34)(struct FurnitureActor* furnitureActor, struct Actor* myHouseActor, struct Game_Play* game_play, f32 arg0, f32 arg1);
-typedef s32 (*Clip_unk_080_unk_54)(struct xyz_t* pos);
+typedef s32 (*Clip_unk_080_unk_5C)(struct xyz_t* pos);
+typedef s32 (*Clip_unk_080_unk_68)(struct xyz_t* pos);
 typedef struct MyRoomClip {
     /* 0x00 */ UNK_TYPE1 unk_00[0x4];
     /* 0x04 */ Clip_unk_080_unk_04 unk_04;
-    /* 0x08 */ UNK_TYPE1 unk_08[0x1C];
+    /* 0x08 */ UNK_TYPE1 unk_08[0x24 - 0x08];
     /* 0x24 */ Clip_unk_080_unk_24 unk_24;
     /* 0x28 */ Clip_unk_080_unk_28 unk_28;
-    /* 0x2C */ UNK_TYPE1 unk_2C[0x8]; 
+    /* 0x2C */ UNK_TYPE1 unk_2C[0x34 - 0x2C];
     /* 0x34 */ Clip_unk_080_unk_34 unk_34; // open close proc
-    /* 0x38 */ s8 unk_38[0x24];
-    /* 0x54 */ Clip_unk_080_unk_54 unk_54;
-} MyRoomClip; // size >= 0x54
+    /* 0x38 */ s8 unk_38[0x5C - 0x38];
+    /* 0x5C */ Clip_unk_080_unk_5C unk_5C;
+    /* 0x60 */ UNK_TYPE1 unk_60[0x68 - 0x60];
+    /* 0x68 */ Clip_unk_080_unk_68 unk_68;
+} MyRoomClip; // size >= 0x6C
 
 typedef struct StructureClipOverlayInfo {
     /* 0x00 */ s8* overlayPointer;
