@@ -1015,7 +1015,7 @@ void Player_actor_main_Wade_other_func1(UNUSED Actor* actor, UNUSED Game* game) 
 
 void Player_actor_main_Sitdown_wait_other_func2(Actor* actor, UNUSED Game* game) {
     if (common_data.clip.myRoomClip != NULL) {
-        common_data.clip.myRoomClip->unk_54(&actor->world.pos);
+        common_data.clip.myRoomClip->unk_5C(&actor->world.pos);
     }
 }
 

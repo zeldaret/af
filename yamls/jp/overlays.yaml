@@ -14567,7 +14567,7 @@
     bss_size: 0x0
     subsegments:
       - [0x943960, c, overlays/actors/ovl_House_Goki/ac_house_goki]
-      - [0x944840, data, overlays/actors/ovl_House_Goki/ac_house_goki]
+      - [0x944840, .data, overlays/actors/ovl_House_Goki/ac_house_goki]
       - [0x944890, .rodata, overlays/actors/ovl_House_Goki/ac_house_goki]
   - name: ovl_House_Goki_reloc
     type: code

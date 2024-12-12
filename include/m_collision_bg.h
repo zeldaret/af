@@ -43,30 +43,48 @@ typedef struct mCoBG_WallInfo {
     /* 0x2 */ s16 type;
 } mCoBG_WallInfo; // size = 0x4
 
-// collision bg result data
+/* collision bg result data
+ *
+ * bits allocation:
+ * | 0x0      0x1      0x2      0x3      | offset | name
+ * | X_______ ________ ________ ________ | 0x00   | onGround
+ * | _XXXXX__ ________ ________ ________ | 0x01   | unk1
+ * | ______XX XXX_____ ________ ________ | 0x06   | hitWall
+ * | ________ ___XXX__ ________ ________ | 0x0B   | unk3
+ * | ________ ______X_ ________ ________ | 0x0E   | unk4
+ * | ________ _______X XXXXX___ ________ | 0x0F   | unk5
+ * | ________ ________ _____X__ ________ | 0x15   | unk6
+ * | ________ ________ ______X_ ________ | 0x16   | inWater
+ * | ________ ________ _______X ________ | 0x17   | unk8
+ * | ________ ________ ________ X_______ | 0x18   | unk9
+ * | ________ ________ ________ _X______ | 0x19   | unk10
+ * | ________ ________ ________ __X_____ | 0x1A   | unk11
+ * | ________ ________ ________ ___X____ | 0x1B   | unk12
+ * | ________ ________ ________ ____XXXX | 0x1C   | unk13
+ */
 typedef struct mCoBG_CheckResult {
-  u32 onGround:1; // [31] on_ground
-  u32 unk1:5; // [30:25] hit_attribute_wall
-  u32 hitWall:5; // [25:20] hit_wall
-  u32 unk3:3; // [20:17] hit_wall_count
-  u32 unk4:1; // [17:16] unk_flag0
-  u32 unk5:6; // [16:10] unit_attribute
-  u32 unk6:1; // [10] is_on_move_bg_obj
-  u32 inWater:1; // [9] is_in_water
-  u32 unk8:1; // [8] unk_flag1
-  u32 unk9:1; // [7] unk_flag2
-  u32 unk10:1; // [6] unk_flag3
-  u32 unk11:1; // [5] unk_flag4
-  u32 unk12:1; // [4] unk_flag5
-  u32 unk13:4; // [3:0] unk_flag6
+  u32 onGround : 1; // on_ground
+  u32 unk1     : 5; // hit_attribute_wall
+  u32 hitWall  : 5; // hit_wall
+  u32 unk3     : 3; // hit_wall_count
+  u32 unk4     : 1; // unk_flag0
+  u32 unk5     : 6; // unit_attribute
+  u32 unk6     : 1; // is_on_move_bg_obj
+  u32 inWater  : 1; // is_in_water
+  u32 unk8     : 1; // unk_flag1
+  u32 unk9     : 1; // unk_flag2
+  u32 unk10    : 1; // unk_flag3
+  u32 unk11    : 1; // unk_flag4
+  u32 unk12    : 1; // unk_flag5
+  u32 unk13    : 4; // unk_flag6
 } mCoBG_CheckResult;
 
 typedef struct mCoBG_Check{
     /* 0x00 */ u8 unk0[0x11];
-    /* 0x11 */ mCoBG_CheckResult colResult;
-    /* 0x14 */ u8 unk14[0xC];
-    /* 0x20 */ mCoBG_WallInfo wallInfo[2];
-    /* 0x2C */ s16 unk20;
+    /* 0x14 */ mCoBG_CheckResult colResult;
+    /* 0x18 */ u8 unk18[0xC];
+    /* 0x24 */ mCoBG_WallInfo wallInfo[2];
+    /* 0x2C */ s16 unk2C;
 }mCoBG_Check; // size = 0x30
 
 // void func_80067430_jp();
@@ -316,7 +334,7 @@ s32 func_80076358_jp(u32 attribute);
 // void func_8007648C_jp();
 // void func_800764CC_jp();
 void mCoBG_BgCheckControll(xyz_t*, struct Actor*, f32, f32, s32, s32, s32);
-// void func_80076778_jp();
+void func_80076778_jp(s32, struct Actor*, f32, f32, s32, s32);
 // void func_800768C8_jp();
 // void func_80076A04_jp();
 
