@@ -6,7 +6,7 @@
 
 s32 mFI_BlockCheck(s32 blockX, s32 blockZ);
 
-// static mCoBG_unkStructUnion l_edge_ut = { { 0, 31, 31, 31, 31, 31, mCoBG_ATTRIBUTE_0 } };
+// mCoBG_unkStructUnion l_edge_ut = { { 0, 31, 31, 31, 31, 31, mCoBG_ATTRIBUTE_0 } };
 extern mCoBG_unkStructUnion l_edge_ut;
 
 extern FieldMakeInfo* g_fdinfo;
@@ -36,6 +36,7 @@ FieldMakeBlockInfo* mFI_GetBlockTopP() {
 }
 
 u16 mFI_GetFieldId(void) {
+    /* @BUG - check for null pointer omitted (fixed by AC at latest) */
     return g_fdinfo->fieldId;
 }
 
@@ -122,10 +123,8 @@ s32 mFI_WposCheck(xyz_t wpos) {
     s32 blockX UNUSED;
     s32 blockZ;
 
-    // Passing &blockZ twice is required to match.
-    // Since only the return value is used and not
-    // the block numbers, there is no practical difference.
-
+    // Passing &blockZ twice is required to match. Since only the return value
+    // is used and not the block numbers, there is no practical difference.
     return mFI_Wpos2BlockNum(&blockZ, &blockZ, wpos);
 }
 
@@ -376,7 +375,7 @@ s32 mFI_GetPuleTypeIdx(u8 type) {
     u32 kind = mRF_Type2BlockInfo(type);
     s32 idx = -1;
 
-    if ((kind & mRF_BLOCKKIND_16) == mRF_BLOCKKIND_16) {
+    if ((kind & mRF_BLOCKKIND_POOL) == mRF_BLOCKKIND_POOL) {
         idx = type - 69;
     }
 
@@ -384,13 +383,13 @@ s32 mFI_GetPuleTypeIdx(u8 type) {
 }
 
 s32 mFI_GetPuleIdx(void) {
-    u32 mask = (1 << 15); // TODO: make an enum/define
+    u32 kindPool = mRF_BLOCKKIND_POOL;
     s32 blockX;
     s32 blockZ;
     u8 type;
     s32 result;
 
-    mFI_BlockKind2BkNum(&blockX, &blockZ, mask);
+    mFI_BlockKind2BkNum(&blockX, &blockZ, kindPool);
     type = mFI_BkNum2BlockType(blockX, blockZ);
     result = mFI_GetPuleTypeIdx(type);
 
@@ -445,8 +444,6 @@ s32 mFI_BlockKind2BkNum(s32* blockX, s32* blockZ, u32 kind) {
     *blockZ = 0;
 
     if (kindP != NULL) {
-        // In ac-decomp 0x38 is BLOCK_TOTAL_NUM (7 * 10 = 70)
-        // but here it's only 56 (7 * 8 = 56 due to there being no island)
         for (i = 0; i < BLOCK_TOTAL_NUM; i++) {
             if (kind == (*kindP & kind)) {
                 *blockX = i % 7;
