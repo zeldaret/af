@@ -22,6 +22,9 @@ struct Game;
 #define FI_UT_WORLDSIZE_Z FI_UT_BASE_SIZE
 #define FI_UT_WORLDSIZE_Z_F (f32)FI_UT_WORLDSIZE_Z
 
+#define FI_UT_WORLDSIZE_HALF_X_F (FI_UT_WORLDSIZE_X_F / 2.0f)
+#define FI_UT_WORLDSIZE_HALF_Z_F (FI_UT_WORLDSIZE_X_F / 2.0f)
+
 #define FI_BK_WORLDSIZE_BASE (FI_UT_BASE_SIZE * UT_BASE_NUM)
 #define FI_BK_WORLDSIZE_BASE_F ((f32)FI_BK_WORLDSIZE_BASE)
 
@@ -30,6 +33,12 @@ struct Game;
 
 #define FI_BK_WORLDSIZE_X_F FI_BK_WORLDSIZE_BASE_F
 #define FI_BK_WORLDSIZE_Z_F FI_BK_WORLDSIZE_BASE_F
+
+#define FI_BK_WORLDSIZE_HALF_X (FI_BK_WORLDSIZE_X / 2)
+#define FI_BK_WORLDSIZE_HALF_Z (FI_BK_WORLDSIZE_Z / 2)
+
+#define FI_BK_WORLDSIZE_HALF_X_F (FI_BK_WORLDSIZE_X_F / 2.0f)
+#define FI_BK_WORLDSIZE_HALF_Z_F (FI_BK_WORLDSIZE_Z_F / 2.0f)
 
 
 typedef enum FieldType {
@@ -48,12 +57,31 @@ typedef enum FieldType {
 #define FI_GET_TYPE(id) ((id) & 0xF000)
 
 typedef enum FieldRoom {
+  /* 0x3000 */ FI_FIELD_ROOM0 = FI_TO_FIELD_ID(FI_FIELDTYPE_ROOM, 0),
+  /* 0x3001 */ FI_FIELD_ROOM_SHOP0,
+  /* 0x3002 */ FI_FIELD_ROOM_UNK_3002,
+  /* 0x3003 */ FI_FIELD_ROOM_UNK_3003,
+  /* 0x3004 */ FI_FIELD_ROOM_UNK_3004,
+  /* 0x3005 */ FI_FIELD_ROOM_UNK_3005,
+  /* 0x3006 */ FI_FIELD_ROOM_SHOP1,
+  /* 0x3007 */ FI_FIELD_ROOM_SHOP2,
+  /* 0x3008 */ FI_FIELD_ROOM_SHOP3_1,
+  /* 0x3009 */ FI_FIELD_ROOM_SHOP3_2,
   /* 0x6000 */ FI_FIELD_PLAYER0_ROOM = FI_TO_FIELD_ID(FI_FIELDTYPE_PLAYER_ROOM, 0),
   /* 0x6001 */ FI_FIELD_PLAYER1_ROOM,
   /* 0x6002 */ FI_FIELD_PLAYER2_ROOM,
   /* 0x6003 */ FI_FIELD_PLAYER3_ROOM
 } FieldRoom;
 
+typedef enum FieldDirection {
+  /* 0 */ FI_MOVEDIR_NONE,
+  /* 1 */ FI_MOVEDIR_RIGHT,
+  /* 2 */ FI_MOVEDIR_LEFT,
+  /* 3 */ FI_MOVEDIR_UP,
+  /* 4 */ FI_MOVEDIR_DOWN,
+
+  /* 5 */ FI_MOVEDIR_MAX
+} FieldDirection;
 
 #define FI_GET_PLAYER_ROOM_NO(fieldId) (((fieldId)-FI_FIELD_PLAYER0_ROOM) & 3)
 #define FI_IS_PLAYER_ROOM(fieldId) \
@@ -66,34 +94,34 @@ struct FieldMakeBlockInfo* mFI_GetBlockTopP(void);
 u16 mFI_GetFieldId(void);
 // void func_80087C9C_jp();
 // void func_80087D30_jp();
-// void func_80087DC8_jp();
-// void func_80087E14_jp();
-s32 mFI_GetBlockXMax(void);
-s32 mFI_GetBlockZMax(void);
+s32 mFI_CheckShopFieldName(u16 fieldName);
+s32 mFI_CheckShop(void);
+u8 mFI_GetBlockXMax(void);
+u8 mFI_GetBlockZMax(void);
 // void func_80087ED0_jp();
 // void func_80088018_jp();
-// void func_80088160_jp();
+// s32 mFI_GetBlockNum(s32 blockX, s32 blockZ);
 // void func_8008819C_jp();
 // s32 mFI_BlockCheck(s32 blockX, s32 blockZ);
-// void func_80088270_jp();
-// void func_800882AC_jp();
-// void func_800882FC_jp();
-// void func_80088320_jp();
-s32 mFI_Wpos2UtNum(s32*, s32*, xyz_t);
-// void func_80088458_jp();
-s32 mFI_Wpos2UtCenterWpos(xyz_t*, xyz_t);
-// void func_800885A8_jp();
-s32 mFI_Wpos2BlockNum(s32*, s32*, xyz_t);
-s32 mFI_Wpos2BkandUtNuminBlock(s32*,s32*, s32* ,s32* ,xyz_t);
-// void func_8008883C_jp();
-// void func_800888AC_jp();
-// void func_80088938_jp();
-// void func_800889D8_jp();
-// void func_80088A58_jp();
+// s32 mFI_UtNumCheck(int utX, int utZ, int blockXMax, int blockZMax);
+// s32 mFI_WposCheck(xyz_t wpos);
+s32 mFI_WposX2UtNumX(f32 wposX);
+s32 mFI_WposZ2UtNumZ(f32 wposZ);
+s32 mFI_Wpos2UtNum(s32* utX, s32* utZ, xyz_t wpos);
+s32 mFI_UtNum2CenterWpos(xyz_t* wpos, int utX, int utZ);
+s32 mFI_Wpos2UtCenterWpos(xyz_t* wpos, xyz_t sourcePos);
+// s32 mFI_Wpos2UtNum_inBlock(s32* utX, s32* utZ, xyz_t wpos);
+s32 mFI_Wpos2BlockNum(s32* blockX, s32* blockZ, xyz_t wpos);
+s32 mFI_Wpos2BkandUtNuminBlock(s32* blockX, s32* blockZ, s32* utX, s32* utZ, xyz_t wpos);
+// s32 mFI_UtNum2BlockNum(s32* blockX, s32* blockZ, s32 utX, s32 utZ);
+// s32 mFI_GetUtNumInBK(s32* blockUtX, s32* blockUtZ, s32 utX, s32 utZ);
+// s32 mFI_WpostoLposInBK(xyz_t* lpos, xyz_t wpos);
+// s32 mFI_LposInBKtoWpos(xyz_t* wpos, xyz_t lpos, s32 blockX, s32 blockZ);
+// s32 mFI_ScrollCheck(xyz_t wpos, u8 dir);
 s32 mFI_BkNum2WposXZ(f32* worldPosX, f32* worldPosZ, s32 blockX, s32 blockZ);
-void mFI_UtNum2PosXZInBk(f32*, f32*, s32, s32);
-// void func_80088BFC_jp();
-void mFI_BkandUtNum2CenterWpos(xyz_t*, s32, s32, s32, s32);
+void mFI_UtNum2PosXZInBk(f32* posX, f32* posZ, s32 utX, s32 utZ);
+// void mFI_BkandUtNum2Wpos(xyz_t* wpos, s32 blockX, s32 blockZ, s32 utX, s32 utZ);
+void mFI_BkandUtNum2CenterWpos(xyz_t* wpos, s32 blockX, s32 blockZ, s32 utX, s32 utZ);
 // void func_80088CBC_jp();
 // void func_80088CD0_jp();
 // void func_80088CE4_jp();
@@ -110,16 +138,16 @@ void mFI_BkandUtNum2CenterWpos(xyz_t*, s32, s32, s32, s32);
 // void func_8008907C_jp();
 // void func_80089114_jp();
 // void func_800891AC_jp();
-u8 mFI_BkNum2BlockType(s32,s32);
+u8 mFI_BkNum2BlockType(s32 blockX, s32 blockZ);
 // s32 mFI_GetPuleTypeIdx(u8 type);
 s32 mFI_GetPuleIdx(void);
-// void func_80089348_jp();
-// void func_800893C8_jp();
-s32 mFI_CheckBlockKind_OR(s32, s32, s32);
-s32 mFI_BlockKind2BkNum(s32*,s32*,s32);
-// void func_800894D0_jp();
-mCoBG_unkStructUnion* mFI_GetBkNum2ColTop(s32 arg0, s32 arg1);
-// void func_800895B8_jp();
+u32 mFI_BkNum2BlockKind(s32 blockX, s32 blockZ);
+s32 mFI_CheckBlockKind(s32 blockX, s32 blockZ, u32 blockKind);
+s32 mFI_CheckBlockKind_OR(s32 blockX, s32 blockZ, u32 blockKindOr);
+s32 mFI_BlockKind2BkNum(s32* blockX, s32* blockZ, u32 kind);
+void mFI_GetSpecialBlockNum(s32* blockPos, u32* kinds, s32 count);
+mCoBG_unkStructUnion* mFI_GetBkNum2ColTop(s32 blockX, s32 blockZ);
+mCoBG_unkStructUnion* mFI_UtNum2UtCol(s32 utX, s32 utZ);
 // void func_80089698_jp();
 // void func_80089704_jp();
 // void func_800897D0_jp();

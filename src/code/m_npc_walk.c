@@ -328,7 +328,7 @@ s32 mNpcW_GetAloneBlock(u8* goalBlockX, u8* goalBlockZ) {
 
     z = 1;
     selected = RANDOM(FG_BLOCK_TOTAL_NUM - count);
-    for (i = 1; i < BLOCK_Z_NUM - 3; i++) {
+    for (i = 1; i < BLOCK_Z_NUM - 1; i++) {
         for (j = 1; j < BLOCK_X_NUM - 1; j++) {
             if (((block_field[z] >> j) & 1) == 0) {
                 if (selected <= 0) {
