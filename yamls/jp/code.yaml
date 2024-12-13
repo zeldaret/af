@@ -71,7 +71,7 @@
       - [0x6DA460, asm, code/6DA460]
       - [0x6DB420, c, code/m_private]
       - [0x6DE300, asm, code/6DE300]
-      - [0x6E08E0, asm, code/m_random_field]
+      - [0x6E08E0, c, code/m_random_field]
       - [0x6E0F50, c, code/m_rcp]
       - [0x6E2300, c, code/m_room_type]
       - [0x6E30B0, c, code/m_scene_ftr]

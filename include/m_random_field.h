@@ -2,6 +2,7 @@
 #define M_RANDOM_FIELD_H
 
 #include "ultra64.h"
+#include "m_collision_bg.h"
 
 #define RANDOM_FIELD_DIRECT_ERROR 100
 
@@ -61,12 +62,12 @@ typedef struct RandomFieldGate {
 // void func_800BCCFC_jp();
 s32 mRF_Type2BlockInfo(u8 type);
 // void func_800BCDFC_jp();
-// void func_800BCE80_jp();
-// void func_800BCEA4_jp();
-// void func_800BCF64_jp();
-// void func_800BCFA4_jp();
+s32 mRF_GateType2GateCount(s32 gateType); // TODO: comment back out after decomp
+s32 mRF_SearchPond(s32* utX, s32* utZ, s32 blockX, s32 blockZ);
+s32 mRF_Attr2BeastRoadAttr(s32 attr); // TODO: comment back out after decomp
+s32 mRF_BlockTypeDirect2GateType(u8 blockType, s32 direct); // TODO: comment back out after decomp
 RandomFieldGate* mRF_BlockTypeDirect2GateData(s32*, u8, s32);
-// void func_800BD02C_jp();
-// void func_800BD1E4_jp();
+s32 mRF_BlockInf2CheckBeastRoad(u8 blockType, mCoBG_unkStructUnion* collisionData);  // TODO: comment back out after decomp
+void mRF_CheckBeastRoad();
 
 #endif

@@ -154,7 +154,7 @@ mCoBG_unkStructUnion* mFI_UtNum2UtCol(s32 utX, s32 utZ);
 // void func_80089888_jp();
 // void func_800898F4_jp();
 // void func_800899CC_jp();
-// void func_80089A34_jp();
+UNK_TYPE mFI_GetSoundSourcePBlockNum(s32 blockX, s32 blockZ);
 // void func_80089AAC_jp();
 // void func_80089B1C_jp();
 // void func_80089B94_jp();

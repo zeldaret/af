@@ -517,7 +517,7 @@ mCoBG_unkStructUnion* mFI_UtNum2UtCol(s32 utX, s32 utZ) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_800899CC_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80089A34_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_GetSoundSourcePBlockNum.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80089AAC_jp.s")
 
