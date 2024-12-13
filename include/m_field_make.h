@@ -211,6 +211,6 @@ void mFM_InitFgCombiSaveData(struct Game* game);
 // void func_80087788_jp();
 // void func_800877CC_jp();
 void mFM_RenewalReserve(void);
-u16 mFM_GetReseveName(s32,s32); 
+u16 mFM_GetReseveName(s32,s32);
 
 #endif

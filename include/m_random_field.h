@@ -3,10 +3,6 @@
 
 #include "ultra64.h"
 
-
-#define RANDOM_FIELD_BLOCKKIND_SHRINE (1 << 2)
-
-#define RANDOM_FIELD_BLOCK_TYPE_MAX 108 
 #define RANDOM_FIELD_DIRECT_ERROR 100
 
 typedef enum RandomFieldDirection {
