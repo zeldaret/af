@@ -15,6 +15,17 @@ typedef enum RandomFieldDirection {
   /* 4 */ RANDOM_FIELD_DIRECT_NUM
 } RandomFieldDirection;
 
+typedef enum RandomFieldGateType {
+    /* 0 */ mRF_GATE_NONE,
+    /* 1 */ mRF_GATE1_TYPE0,
+    /* 2 */ mRF_GATE1_TYPE1,
+    /* 3 */ mRF_GATE2_TYPE0,
+    /* 4 */ mRF_GATE2_TYPE1,
+    /* 5 */ mRF_GATE3_TYPE0,
+
+    /* 6 */ mRF_GATE_TYPE_NUM
+} RandomFieldGateType;
+
 typedef struct RandomFieldGate {
   /* 0x00 */ s32 ut0;
   /* 0x04 */ s32 ut1;
@@ -65,8 +76,8 @@ s32 mRF_Type2BlockInfo(u8 type);
 s32 mRF_GateType2GateCount(s32 gateType); // TODO: comment back out after decomp
 s32 mRF_SearchPond(s32* utX, s32* utZ, s32 blockX, s32 blockZ);
 s32 mRF_Attr2BeastRoadAttr(s32 attr); // TODO: comment back out after decomp
-s32 mRF_BlockTypeDirect2GateType(u8 blockType, s32 direct); // TODO: comment back out after decomp
-RandomFieldGate* mRF_BlockTypeDirect2GateData(s32*, u8, s32);
+// s32 mRF_BlockTypeDirect2GateType(u8 blockType, s32 direct);
+RandomFieldGate* mRF_BlockTypeDirect2GateData(s32* gateCount, u8 block_type, s32 direct);
 s32 mRF_BlockInf2CheckBeastRoad(u8 blockType, mCoBG_unkStructUnion* collisionData);  // TODO: comment back out after decomp
 void mRF_CheckBeastRoad();
 
