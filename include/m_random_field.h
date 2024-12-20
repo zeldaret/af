@@ -69,7 +69,7 @@ typedef struct RandomFieldGate {
 // void func_800BCBDC_jp();
 // void func_800BCC20_jp();
 // void func_800BCC30_jp();
-// void func_800BCC40_jp();
+// void mRF_PrintDebug(gfxprint* gfxprint);
 // void func_800BCCFC_jp();
 u32 mRF_Type2BlockInfo(u8 blockType);
 // u8 mRF_Info2BlockType(u32 blockInfo);

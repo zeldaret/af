@@ -162,7 +162,7 @@ mCoBG_unkStructUnion* mFI_UtNum2UtCol(s32 utX, s32 utZ);
 // void func_80089698_jp();
 // void func_80089704_jp();
 // void func_800897D0_jp();
-// void func_80089888_jp();
+mCoBG_unkStructUnion* mFI_GetUnitCol(xyz_t wpos);
 // void func_800898F4_jp();
 // void func_800899CC_jp();
 FieldMakeBGSoundSource* mFI_GetSoundSourcePBlockNum(s32 blockX, s32 blockZ);

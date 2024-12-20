@@ -269,7 +269,7 @@ void mCoBG_GetBgNorm_FromWpos(xyz_t*, xyz_t);
 // void func_800721C8_jp();
 // void func_800721E4_jp();
 // void func_80072238_jp();
-// void func_80072264_jp();
+s32 mCoBG_Attribute2CheckPlant(u32 attribute, const xyz_t* wpos); // void func_80072264_jp();
 // void func_80072340_jp();
 // void func_80072398_jp();
 // void func_800723C4_jp();

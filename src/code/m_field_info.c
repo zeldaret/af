@@ -511,7 +511,17 @@ mCoBG_unkStructUnion* mFI_UtNum2UtCol(s32 utX, s32 utZ) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_800897D0_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80089888_jp.s")
+mCoBG_unkStructUnion* mFI_GetUnitCol(xyz_t wpos) {
+    s32 utX;
+    s32 utZ;
+    s32 validWpos = mFI_Wpos2UtNum(&utX, &utZ, wpos);
+
+    if (!validWpos) {
+        return &l_edge_ut;
+    } else {
+        return mFI_UtNum2UtCol(utX, utZ);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_800898F4_jp.s")
 
