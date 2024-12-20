@@ -19,6 +19,14 @@
 #include "m_scene.h"
 #include "m_demo.h"
 
+#define COMMON_GET(name) (common_data.name)
+#define COMMON_GET_POINTER(name) (&common_data.name)
+#define COMMON_SET(name, value) (common_data.name = (value))
+
+#define SAVE_GET(name) (COMMON_GET(save.name))
+#define SAVE_GET_POINTER(name) (COMMON_GET_POINTER(save.name))
+#define SAVE_SET(name, value) (COMMON_SET(save.name, value))
+
 typedef enum Season {
     /* 0 */ SPRING,
     /* 1 */ SUMMER,

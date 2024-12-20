@@ -142,6 +142,12 @@ typedef struct FieldMakeFGData {
     /* 0x202 */ UNK_TYPE1 unk_202[4];
 } FieldMakeFGData; // size = 0x206
 
+// TODO: verify struct layout
+typedef struct FieldMakeBGSoundSource {
+    /* 0x0 */ s16 kind;
+    /* 0x2 */ xyz_t pos;
+} FieldMakeBGSoundSource; // size = 0xE
+
 typedef struct FieldMakeFGInfo {
     /* 0x00 */ u16 fgId;
     /* 0x04 */ u16* itemsPtr;

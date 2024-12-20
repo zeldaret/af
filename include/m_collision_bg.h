@@ -8,7 +8,17 @@
 struct Actor;
 struct PosRot;
 
-enum BackgroundAttribute { mCoBG_ATTRIBUTE_0, mCOBG_ATTRIBUTE_NONE = 100 };
+enum BackgroundAttribute {
+    /* 000 */ mCoBG_ATTRIBUTE_0,
+    /* 001 */ mCoBG_ATTRIBUTE_1,
+    /* 002 */ mCoBG_ATTRIBUTE_2,
+    /* 003 */ mCoBG_ATTRIBUTE_3,
+    /* 004 */ mCoBG_ATTRIBUTE_4,
+    /* 005 */ mCoBG_ATTRIBUTE_5,
+    /* 006 */ mCoBG_ATTRIBUTE_6,
+
+    /* 100 */ mCOBG_ATTRIBUTE_NONE = 100
+};
 
 // offset table
 typedef struct mCoBG_unkStruct2 {
