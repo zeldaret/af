@@ -9,14 +9,12 @@
 #include "game.h"
 
 // Original name unknown.
-void mRF_Malloc(Game* game, size_t size) {
+void* mRF_Malloc(Game* game, size_t size) {
     if (game != NULL) {
-        gamealloc_malloc(&game->alloc, size);
-
-        return;
+        return gamealloc_malloc(&game->alloc, size);
     }
 
-    zelda_malloc(size);
+    return zelda_malloc(size);
 }
 
 // Original name unknown.
@@ -142,9 +140,9 @@ u32 mRF_block_info[mFM_BLOCK_TYPE_NUM] = {
     /* 0x53 */ mRF_BLOCKKIND_NONE,
 };
 
-
-#define GATE_UT(z, x) ((((z) & 0xF) << 4) | ((x) & 0xF))
-#define GATE(z0, x0, z1, x1) { GATE_UT(z0, x0), GATE_UT(z1, x1) }
+#define GATE_UT(z, x) ((((z)&0xF) << 4) | ((x)&0xF))
+#define GATE(z0, x0, z1, x1) \
+    { GATE_UT(z0, x0), GATE_UT(z1, x1) }
 
 RandomFieldGate gate1_type0_up[1] = { GATE(0, 7, 1, 7) };
 RandomFieldGate gate1_type0_lt[1] = { GATE(7, 0, 7, 1) };
@@ -744,11 +742,11 @@ void mRF_PrintDebug(gfxprint* gfxprint) {
 extern u32 mRF_block_info[];
 
 u32 mRF_Type2BlockInfo(u8 blockType) {
-  if (blockType < mFM_BLOCK_TYPE_NUM) {
-    return mRF_block_info[blockType];
-  }
+    if (blockType < mFM_BLOCK_TYPE_NUM) {
+        return mRF_block_info[blockType];
+    }
 
-  return mRF_BLOCKKIND_NONE;
+    return mRF_BLOCKKIND_NONE;
 }
 
 /* @unused */
@@ -757,7 +755,7 @@ u8 mRF_Info2BlockType(u32 blockInfo) {
 
     for (blockType = 0; blockType < mFM_BLOCK_TYPE_NUM; blockType += 1) {
         if (blockInfo == mRF_block_info[blockType]) {
-            return (u8) blockType;
+            return (u8)blockType;
         }
     }
 
@@ -779,52 +777,52 @@ s32 mRF_GateType2GateCount(s32 gateType) {
 }
 
 s32 mRF_SearchPond(s32* utX, s32* utZ, s32 blockX, s32 blockZ) {
-  FieldMakeBGSoundSource* soundSourceInfo = mFI_GetSoundSourcePBlockNum(blockX, blockZ);
+    FieldMakeBGSoundSource* soundSourceInfo = mFI_GetSoundSourcePBlockNum(blockX, blockZ);
 
-  if (soundSourceInfo != NULL) {
-    s32 i;
+    if (soundSourceInfo != NULL) {
+        s32 i;
 
-    for (i = 0; i < mFI_NUM_SOUND_SOURCES; i++, soundSourceInfo++) {
-      if (soundSourceInfo->kind == mFI_SOUND_SOURCE_POND) {
-        if (mFI_Wpos2UtNum(utX, utZ, soundSourceInfo->pos)) {
-          return TRUE;
+        for (i = 0; i < mFI_NUM_SOUND_SOURCES; i++, soundSourceInfo++) {
+            if (soundSourceInfo->kind == mFI_SOUND_SOURCE_POND) {
+                if (mFI_Wpos2UtNum(utX, utZ, soundSourceInfo->pos)) {
+                    return TRUE;
+                }
+            }
         }
-      }
     }
-  }
 
-  return FALSE;
+    return FALSE;
 }
 
 s32 mRF_Attr2BeastRoadAttr(s32 attribute) {
-  switch (attribute) {
-    case mCoBG_ATTRIBUTE_0:
-    case mCoBG_ATTRIBUTE_1:
-      return mCoBG_ATTRIBUTE_2;
+    switch (attribute) {
+        case mCoBG_ATTRIBUTE_0:
+        case mCoBG_ATTRIBUTE_1:
+            return mCoBG_ATTRIBUTE_2;
 
-    case mCoBG_ATTRIBUTE_4:
-    case mCoBG_ATTRIBUTE_5:
-      return mCoBG_ATTRIBUTE_6;
+        case mCoBG_ATTRIBUTE_4:
+        case mCoBG_ATTRIBUTE_5:
+            return mCoBG_ATTRIBUTE_6;
 
-    default:
-      return attribute;
-  }
+        default:
+            return attribute;
+    }
 }
 
 extern u8 mRF_gate_info2[mFM_BLOCK_TYPE_NUM][RANDOM_FIELD_DIRECT_NUM];
 
 s32 mRF_BlockTypeDirect2GateType(u8 block_type, s32 direct) {
-  return mRF_gate_info2[block_type][direct];
+    return mRF_gate_info2[block_type][direct];
 }
 
 extern RandomFieldGate* mRF_gate_correct_info[mRF_GATE_TYPE_NUM][RANDOM_FIELD_DIRECT_NUM];
 
 RandomFieldGate* mRF_BlockTypeDirect2GateData(s32* gateCount, u8 blockType, s32 direct) {
-  s32 type = mRF_BlockTypeDirect2GateType(blockType, direct);
-  s32 count = mRF_GateType2GateCount(type);
+    s32 type = mRF_BlockTypeDirect2GateType(blockType, direct);
+    s32 count = mRF_GateType2GateCount(type);
 
-  *gateCount = count;
-  return mRF_gate_correct_info[type][direct];
+    *gateCount = count;
+    return mRF_gate_correct_info[type][direct];
 }
 
 #if 0
@@ -893,19 +891,19 @@ s32 mRF_BlockInf2CheckBeastRoad(u8 blockType, mCoBG_unkStructUnion* collisionDat
 #endif
 
 void mRF_CheckBeastRoad() {
-  if (SAVE_GET(sceneNo) == SCENE_FG) {
-    s32 blockXMax = mFI_GetBlockXMax() - 1;
-    s32 blockZMax = mFI_GetBlockZMax() - 1;
-    s32 blockX;
-    s32 blockZ;
+    if (SAVE_GET(sceneNo) == SCENE_FG) {
+        s32 blockXMax = mFI_GetBlockXMax() - 1;
+        s32 blockZMax = mFI_GetBlockZMax() - 1;
+        s32 blockX;
+        s32 blockZ;
 
-    for (blockZ = 1; blockZ < blockZMax; blockZ++) {
-      for (blockX = 1; blockX < blockXMax; blockX++) {
-        mCoBG_unkStructUnion* collisionData = mFI_GetBkNum2ColTop(blockX, blockZ);
-        u8 type = mFI_BkNum2BlockType(blockX, blockZ);
+        for (blockZ = 1; blockZ < blockZMax; blockZ++) {
+            for (blockX = 1; blockX < blockXMax; blockX++) {
+                mCoBG_unkStructUnion* collisionData = mFI_GetBkNum2ColTop(blockX, blockZ);
+                u8 type = mFI_BkNum2BlockType(blockX, blockZ);
 
-        mRF_BlockInf2CheckBeastRoad(type, collisionData);
-      }
+                mRF_BlockInf2CheckBeastRoad(type, collisionData);
+            }
+        }
     }
-  }
 }

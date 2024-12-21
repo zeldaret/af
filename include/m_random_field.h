@@ -65,7 +65,7 @@ typedef struct RandomFieldGate {
 #define mRF_BLOCKKIND_CLIFF6 (1 << 30) // Bottom part of cliff that juts out, valley on left
 #define mRF_BLOCKKIND_31 (1 << 31) // Not used in `mRF_block_info`
 
-// void mRF_Malloc(Game* game, size_t size);
+// void* mRF_Malloc(Game* game, size_t size);
 // void mRF_Free(Game* game, void* ptr);
 s32* func_800BCC20_jp(void);
 s32* func_800BCC30_jp(void);
@@ -75,7 +75,7 @@ u32 mRF_Type2BlockInfo(u8 blockType);
 // u8 mRF_Info2BlockType(u32 blockInfo);
 s32 mRF_GateType2GateCount(s32 gateType); // TODO: comment back out after decomp
 s32 mRF_SearchPond(s32* utX, s32* utZ, s32 blockX, s32 blockZ);
-s32 mRF_Attr2BeastRoadAttr(s32 attr); // TODO: comment back out after decomp
+s32 mRF_Attr2BeastRoadAttr(s32 attribute); // TODO: comment back out after decomp
 // s32 mRF_BlockTypeDirect2GateType(u8 blockType, s32 direct);
 RandomFieldGate* mRF_BlockTypeDirect2GateData(s32* gateCount, u8 blockType, s32 direct);
 s32 mRF_BlockInf2CheckBeastRoad(u8 blockType, mCoBG_unkStructUnion* collisionData);  // TODO: comment back out after decomp
