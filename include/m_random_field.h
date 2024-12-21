@@ -65,10 +65,10 @@ typedef struct RandomFieldGate {
 #define mRF_BLOCKKIND_CLIFF6 (1 << 30) // Bottom part of cliff that juts out, valley on left
 #define mRF_BLOCKKIND_31 (1 << 31) // Not used in `mRF_block_info`
 
-// void func_800BCBA0_jp();
-// void func_800BCBDC_jp();
-// void func_800BCC20_jp();
-// void func_800BCC30_jp();
+// void mRF_Malloc(Game* game, size_t size);
+// void mRF_Free(Game* game, void* ptr);
+s32* func_800BCC20_jp(void);
+s32* func_800BCC30_jp(void);
 // void mRF_PrintDebug(gfxprint* gfxprint);
 // void func_800BCCFC_jp();
 u32 mRF_Type2BlockInfo(u8 blockType);

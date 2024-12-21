@@ -4,6 +4,47 @@
 #include "m_field_make.h"
 #include "m_field_info.h"
 #include "m_scene_table.h"
+#include "m_malloc.h"
+#include "gamealloc.h"
+#include "game.h"
+
+// Original name unknown.
+void mRF_Malloc(Game* game, size_t size) {
+    if (game != NULL) {
+        gamealloc_malloc(&game->alloc, size);
+
+        return;
+    }
+
+    zelda_malloc(size);
+}
+
+// Original name unknown.
+void mRF_Free(Game* game, void* ptr) {
+    if (ptr != NULL) {
+        if (game != NULL) {
+            gamealloc_free(&game->alloc, ptr);
+
+            return;
+        }
+
+        zelda_free(ptr);
+    }
+}
+
+extern s32 D_8010C6C4_jp;
+
+// Original name unknown.
+s32* func_800BCC20_jp(void) {
+    return &D_8010C6C4_jp;
+}
+
+extern s32 D_8010C6C8_jp;
+
+// Original name unknown.
+s32* func_800BCC30_jp(void) {
+    return &D_8010C6C8_jp;
+}
 
 // TODO: import data
 #if 0
@@ -695,7 +736,7 @@ void mRF_PrintDebug(gfxprint* gfxprint) {
     gfxprint_printf(gfxprint, &RO_STR_801176A4_jp, D_8010C6CC_jp[D_8010C6C4_jp]);
 }
 #else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_random_field/func_800BCC40_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_random_field/mRF_PrintDebug.s")
 #endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_random_field/func_800BCCFC_jp.s")
