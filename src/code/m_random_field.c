@@ -8,6 +8,9 @@
 #include "gamealloc.h"
 #include "game.h"
 
+// Original name unknown. Pointer to malloc'd memory in mRF_MakeRandomField
+extern UNK_PTR D_8010C6C0_jp;
+
 // Original name unknown.
 void* mRF_Malloc(Game* game, size_t size) {
     if (game != NULL) {
@@ -30,18 +33,20 @@ void mRF_Free(Game* game, void* ptr) {
     }
 }
 
-extern s32 D_8010C6C4_jp;
+// Original name unknown
+extern s32 stepNo;
 
-// Original name unknown.
-s32* func_800BCC20_jp(void) {
-    return &D_8010C6C4_jp;
+// Get pointer to stepNo
+s32* mRF_StepNo(void) {
+    return &stepNo;
 }
 
-extern s32 D_8010C6C8_jp;
+// Original name unknown
+extern s32 tryCnt;
 
-// Original name unknown.
-s32* func_800BCC30_jp(void) {
-    return &D_8010C6C8_jp;
+// Get pointer to tryCnt
+s32* mRF_TryCnt(void) {
+    return &tryCnt;
 }
 
 // TODO: import data
@@ -690,7 +695,8 @@ u8 mRF_gate_info2[mFM_BLOCK_TYPE_NUM][RANDOM_FIELD_DIRECT_NUM] = {
 
 // TODO: import data
 #if 0
-const char* D_8010C6CC_jp[] = {
+// Original name unknown
+const char* mRF_DebugMsg[] = {
   "BGFGｼｮｷｶ",
   "ｶﾜｶﾞｹｾｲｾｲ",
   "ｳﾐｾｲｾｲ",
@@ -706,38 +712,35 @@ const char* D_8010C6CC_jp[] = {
 #endif
 
 #if 0
-extern s32 D_8010C6C4_jp;
-extern s32 D_8010C6C8_jp;
-extern char* D_8010C6CC_jp[];
+// Original name unknown
+extern char* mRF_DebugMsg[];
 
 void mRF_PrintDebug(gfxprint* gfxprint) {
     gfxprint_color(gfxprint, 200, 200, 250, 255);
     gfxprint_locate8x8(gfxprint, 3, 21);
-    gfxprint_printf(gfxprint, "RandomTry %d", D_8010C6C8_jp);
+    gfxprint_printf(gfxprint, "RandomTry %d", tryCnt);
     gfxprint_color(gfxprint, 200, 200, 250, 255);
     gfxprint_locate8x8(gfxprint, 3, 22);
-    gfxprint_printf(gfxprint, "RandomStep %s", D_8010C6CC_jp[D_8010C6C4_jp]);
+    gfxprint_printf(gfxprint, "RandomStep %s", mRF_DebugMsg[stepNo]);
 }
 #elif 0
-extern s32 D_8010C6C4_jp;
-extern s32 D_8010C6C8_jp;
-extern u8* D_8010C6CC_jp[];
+extern u8* mRF_DebugMsg[];
 extern s8 RO_STR_80117694_jp;
 extern s8 RO_STR_801176A4_jp;
 
 void mRF_PrintDebug(gfxprint* gfxprint) {
     gfxprint_color(gfxprint, 200, 200, 250, 255);
     gfxprint_locate8x8(gfxprint, 3, 21);
-    gfxprint_printf(gfxprint, &RO_STR_80117694_jp, D_8010C6C8_jp);
+    gfxprint_printf(gfxprint, &RO_STR_80117694_jp, tryCnt);
     gfxprint_color(gfxprint, 200, 200, 250, 255);
     gfxprint_locate8x8(gfxprint, 3, 22);
-    gfxprint_printf(gfxprint, &RO_STR_801176A4_jp, D_8010C6CC_jp[D_8010C6C4_jp]);
+    gfxprint_printf(gfxprint, &RO_STR_801176A4_jp, mRF_DebugMsg[stepNo]);
 }
 #else
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_random_field/mRF_PrintDebug.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_random_field/func_800BCCFC_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_random_field/mRF_MakeRandomField.s")
 
 extern u32 mRF_block_info[];
 
