@@ -288,9 +288,11 @@ gfxprint_font = 0x8003BD58; // type:u8 size:0x800
 
 sInitFuncs = 0x8003C560; //
 sNew = 0x8003C564; //
-D_8003C568_jp = 0x8003C568; //
 
-
+gPositiveInfinity = 0x8003C570; // type:f32 size:0x4
+gNegativeInfinity = 0x8003C574; // type:f32 size:0x4
+gPositiveZero = 0x8003C578; // type:f32 size:0x4
+gNegativeZero = 0x8003C57C; // type:f32 size:0x4
 qNaN0x3FFFFF = 0x8003C580; // type:f32 size:0x4
 qNaN0x10000 = 0x8003C584; // type:f32 size:0x4
 sNaN0x3FFFFF = 0x8003C588; // type:f32 size:0x4

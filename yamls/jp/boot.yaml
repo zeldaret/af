@@ -231,7 +231,7 @@
       - [0x017960, .data, boot/O2/system_heap]
 
       # libc64
-      - [0x017980, data, boot/libc64/fp]
+      - [0x017970, data, boot/libc64/fp]
       - [0x017990, .data, boot/libc64/qrand]
 
       # libultra
