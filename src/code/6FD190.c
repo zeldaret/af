@@ -101,7 +101,9 @@ s32 func_800D9700_jp(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/6FD190/func_800D9750_jp.s")
+void* func_800D9750_jp(void) {
+    return B_8014606C_jp;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/6FD190/func_800D9760_jp.s")
 
