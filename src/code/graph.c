@@ -3,6 +3,7 @@
 
 #include "6FB340.h"
 #include "6FD190.h"
+#include "6FD410.h"
 #include "audio.h"
 #include "fault.h"
 #include "game.h"
@@ -44,9 +45,44 @@ void func_800D38E0_jp(void) {
         }
     }
 }
+extern GfxPool D_801540C0_jp[2];
 
-void graph_setup_double_buffer(GraphicsContext* gfxCtx);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/graph_setup_double_buffer.s")
+void graph_setup_double_buffer(GraphicsContext* gfxCtx) {
+    GfxPool* pool = &D_801540C0_jp[gfxCtx->unk_2E0 % 2];
+
+    pool->headMagic = GFXPOOL_HEAD_MAGIC;
+    pool->tailMagic = GFXPOOL_TAIL_MAGIC;
+
+    THA_GA_ct(&gfxCtx->polyOpa, pool->polyOpaBuffer, sizeof(pool->polyOpaBuffer));
+    THA_GA_ct(&gfxCtx->polyXlu, pool->polyXluBuffer, sizeof(pool->polyXluBuffer));
+    THA_GA_ct(&gfxCtx->overlay, pool->overlayBuffer, sizeof(pool->overlayBuffer));
+    THA_GA_ct(&gfxCtx->unk18C, pool->unk18CBuffer, sizeof(pool->unk18CBuffer));
+    THA_GA_ct(&gfxCtx->font, pool->fontBuffer, sizeof(pool->fontBuffer));
+    THA_GA_ct(&gfxCtx->shadow, pool->shadowBuffer, sizeof(pool->shadowBuffer));
+    THA_GA_ct(&gfxCtx->light, pool->lightBuffer, sizeof(pool->lightBuffer));
+
+    gfxCtx->polyOpaBuffer = pool->polyOpaBuffer;
+    gfxCtx->polyXluBuffer = pool->polyXluBuffer;
+    gfxCtx->overlayBuffer = pool->overlayBuffer;
+    gfxCtx->unk18CBuffer = pool->unk18CBuffer;
+    gfxCtx->fontBuffer = pool->fontBuffer;
+    gfxCtx->shadowBuffer = pool->shadowBuffer;
+    gfxCtx->lightBuffer = pool->lightBuffer;
+
+    while (gfxCtx->unk_2E4 == NULL) {
+        s32 temp_s1_2 = func_800D9700_jp();
+
+        gfxCtx->unk_2E4 = func_800D96E8_jp(gfxCtx->unk_2F3);
+        if (gfxCtx->unk_2E4 == B_80146084_jp) {
+            gfxCtx->unk_2E4 = NULL;
+        }
+
+        gfxCtx->unk_2F3 = ((gfxCtx->unk_2F3 + 1) < temp_s1_2) ? gfxCtx->unk_2F3 + 1 : 0;
+    }
+
+    gfxCtx->unk_008 = func_800D9750_jp();
+    gfxCtx->unk_20 = 0;
+}
 
 GameStateOverlay* game_get_next_game_dlftbl(Game* game) {
     GameStateFunc init = game_get_next_game_init(game);
