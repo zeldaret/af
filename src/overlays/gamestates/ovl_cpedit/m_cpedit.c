@@ -34,7 +34,7 @@ void func_80804930_jp(Game_CPEdit* edit) {
         SET_NEXT_GAMESTATE((Game*)edit, trademark_init, sizeof(Game_Trademark));
     }
 
-    gSegments[4] = OS_K0_TO_PHYSICAL(segment);
+    SegmentBaseAddress[4] = OS_K0_TO_PHYSICAL(segment);
 
     OPEN_DISPS(graph);
 

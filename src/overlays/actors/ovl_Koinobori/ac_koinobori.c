@@ -44,7 +44,8 @@ ShadowData aKOI_shadow_data = { 8, aKOI_shadow_vtx_fix_flg_table, 60.0f, obj_e_k
 void aKOI_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
     Koinobori* this = THIS;
 
-    gSegments[6] = OS_K0_TO_PHYSICAL(common_data.clip.structureClip->getObjectSegment(STRUCTURE_TYPE_KOINOBORI));
+    SegmentBaseAddress[6] =
+        OS_K0_TO_PHYSICAL(common_data.clip.structureClip->getObjectSegment(STRUCTURE_TYPE_KOINOBORI));
     cKF_SkeletonInfo_R_ct(&this->structureActor.skeletonInfo, &cKF_bs_r_obj_e_koinobori, 0,
                           this->structureActor.jointTable, this->structureActor.morphTable);
     aKOI_set_bgOffset(this, 1);
@@ -101,7 +102,8 @@ void aKOI_actor_move(Actor* thisx, Game_Play* game_play) {
         return;
     }
 
-    gSegments[6] = OS_K0_TO_PHYSICAL(common_data.clip.structureClip->getObjectSegment(STRUCTURE_TYPE_KOINOBORI));
+    SegmentBaseAddress[6] =
+        OS_K0_TO_PHYSICAL(common_data.clip.structureClip->getObjectSegment(STRUCTURE_TYPE_KOINOBORI));
     cKF_SkeletonInfo_R_play(&this->structureActor.skeletonInfo);
     ((KoinoboriActionFunc)this->structureActor.process)(this, game_play);
     sAdo_OngenPos((uintptr_t)this, 0x35, &this->structureActor.actor.world.pos);
@@ -137,7 +139,7 @@ void aKOI_actor_draw(Actor* thisx, Game_Play* game_play) {
         gSPSegment(__polyOpa++, 0x08, palette);
         gSPSegment(__polyOpa++, 0x09, Lib_SegmentedToVirtual(&obj_e_koinobori_b_pal));
         gSPSegment(__polyOpa++, 0x0A, Lib_SegmentedToVirtual(&aKOI_obj_e_koinobori_a_pal));
-        gSegments[6] = OS_K0_TO_PHYSICAL(object);
+        SegmentBaseAddress[6] = OS_K0_TO_PHYSICAL(object);
         gSPSegment(__polyOpa++, 0x06, object);
         CLOSE_POLY_OPA_DISP(gfxCtx);
         cKF_Si3_draw_R_SV(game_play, &this->structureActor.skeletonInfo, mtx, NULL, NULL, this);

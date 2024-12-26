@@ -328,9 +328,10 @@
       - { start: 0x73F4D0, type: bss, vram: 0x80145060, name: code/80145060 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80145390, name: code/irqmgr }
       - { start: 0x73F4D0, type: .bss, vram: 0x80145620, name: code/lb_rtc}
-      - { start: 0x73F4D0, type: bss, vram: 0x80145630, name: code/80145630}
+      - { start: 0x73F4D0, type: .bss, vram: 0x80145630, name: code/main}
+      - { start: 0x73F4D0, type: bss, vram: 0x801458E0, name: code/801458E0}
       - { start: 0x73F4D0, type: .bss, vram: 0x801462B0, name: code/sys_matrix }
-      - { start: 0x73F4D0, type: bss, vram: 0x801462C0, name: code/801462C0 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x801462C0, name: code/sys_stacks }
       - { start: 0x73F4D0, type: .bss, vram: 0x801492C0, name: code/zurumode }
       - { start: 0x73F4D0, type: bss, vram: 0x801492D0, name: code/801492D0 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80152480, name: code/lbrtc/722570}

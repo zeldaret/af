@@ -192,7 +192,7 @@ void Actor_ct(Actor* actor, Game_Play* game_play) {
     Shape_Info_init(actor, 0.0f, NULL, 0.0f, 0.0f);
 
     if (Actor_data_bank_dma_end_check(actor, game_play) == 1) {
-        gSegments[6] = (uintptr_t)OS_K0_TO_PHYSICAL(temp_a0->status[actor->unk_026].segment);
+        SegmentBaseAddress[6] = (uintptr_t)OS_K0_TO_PHYSICAL(temp_a0->status[actor->unk_026].segment);
         actor->ct(actor, game_play);
         actor->ct = NULL;
     }
@@ -263,7 +263,7 @@ void Actor_draw(Game_Play* game_play, Actor* actor) {
     {
         void* segment = game_play->objectExchangeBank.status[(void)0, actor->unk_026].segment;
 
-        gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(segment);
+        SegmentBaseAddress[6] = (uintptr_t)OS_PHYSICAL_TO_K0(segment);
 
         gSPSegment(POLY_OPA_DISP++, 0x06, segment);
         gSPSegment(POLY_XLU_DISP++, 0x06, segment);
@@ -441,7 +441,7 @@ void Actor_info_call_actor(Game_Play* game_play, ActorInfo* actorInfo) {
 
             if (actor->ct != NULL) {
                 if (Actor_data_bank_dma_end_check(actor, game_play) == 1) {
-                    gSegments[6] =
+                    SegmentBaseAddress[6] =
                         (uintptr_t)OS_K0_TO_PHYSICAL(game_play->objectExchangeBank.status[actor->unk_026].segment);
 
                     game_play->state.unk_9D = 0x98;
@@ -478,7 +478,7 @@ void Actor_info_call_actor(Game_Play* game_play, ActorInfo* actorInfo) {
 
                 actor->flags &= ~ACTOR_FLAG_1000000;
                 if ((actor->flags & (ACTOR_FLAG_40 | ACTOR_FLAG_10)) || (actor->part == ACTOR_PART_NPC)) {
-                    gSegments[6] =
+                    SegmentBaseAddress[6] =
                         (uintptr_t)OS_K0_TO_PHYSICAL(game_play->objectExchangeBank.status[actor->unk_026].segment);
                     game_play->state.unk_9D = 0xA1;
                     actor->update(actor, game_play);
@@ -833,9 +833,9 @@ Actor* Actor_info_make_actor(ActorInfo* actorInfo, Game_Play* game_play, s16 act
     {
         uintptr_t segmentTemp;
 
-        segmentTemp = gSegments[6];
+        segmentTemp = SegmentBaseAddress[6];
         Actor_ct(sp68, game_play);
-        gSegments[6] = segmentTemp;
+        SegmentBaseAddress[6] = segmentTemp;
     }
 
     return sp68;

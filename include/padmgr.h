@@ -49,7 +49,7 @@ void padmgr_UnlockSerialMesgQ(OSMesgQueue*);
 void padmgr_RequestPadData(Input inputs[4], s32 arg1);
 void padmgr_ClearPadData(Input inputs[4]);
 // void padmgr_MainProc();
-// void padmgr_Init();
+void padmgr_Init(OSMesgQueue*, OSId, OSPri, void*);
 // void func_800D763C_jp();
 // void func_800D765C_jp();
 s32 padmgr_isConnectedAnyPak(s32 arg0);

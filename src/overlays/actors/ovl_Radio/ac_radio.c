@@ -121,7 +121,7 @@ void aRAD_actor_draw(UNUSED Actor* thisx, Game_Play* game_play) {
         _texture_z_light_fog_prim_npc(gfxCtx);
         OPEN_POLY_OPA_DISP(gfxCtx);
         gSPSegment(__polyOpa++, 0x08, palette);
-        gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(object);
+        SegmentBaseAddress[6] = (uintptr_t)OS_PHYSICAL_TO_K0(object);
         gSPSegment(__polyOpa++, 0x06, object);
         gSPMatrix(__polyOpa++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
         gSPDisplayList(__polyOpa++, &aRAD_model);

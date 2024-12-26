@@ -291,7 +291,14 @@ setup:
 
 extract:
 	$(RM) -r asm/$(VERSION) assets/$(VERSION)
-	$(CAT) yamls/$(VERSION)/header.yaml yamls/$(VERSION)/makerom.yaml yamls/$(VERSION)/boot.yaml yamls/$(VERSION)/code.yaml yamls/$(VERSION)/overlays.yaml yamls/$(VERSION)/assets.yaml > $(SPLAT_YAML)
+	$(CAT) yamls/$(VERSION)/header.yaml \
+			yamls/$(VERSION)/makerom.yaml \
+			yamls/$(VERSION)/boot.yaml \
+			yamls/$(VERSION)/code.yaml \
+			yamls/$(VERSION)/buffers.yaml \
+			yamls/$(VERSION)/overlays.yaml \
+			yamls/$(VERSION)/assets.yaml \
+		> $(SPLAT_YAML)
 	$(SPLAT) $(SPLAT_FLAGS) $(SPLAT_YAML)
 
 lib: $(ULTRALIB_LIB)

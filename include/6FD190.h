@@ -2,11 +2,12 @@
 #define C_6FD190_H
 
 #include "ultra64.h"
+#include "libc/stdint.h"
 
-// void func_800D94F0_jp();
+uintptr_t func_800D94F0_jp(void);
 // void func_800D9514_jp();
-// void func_800D9524_jp();
-// void func_800D955C_jp();
+void func_800D9524_jp(void);
+void func_800D955C_jp(s32);
 // void func_800D9618_jp();
 // void func_800D96A8_jp();
 // void func_800D96E8_jp();
