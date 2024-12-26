@@ -2,10 +2,12 @@
 #include "global.h"
 
 #include "6FB340.h"
+#include "6FD190.h"
 #include "fault.h"
 #include "game.h"
 #include "getcurrentms.h"
 #include "gfx.h"
+#include "idle.h"
 #include "m_debug.h"
 #include "m_DLF.h"
 #include "zurumode.h"
@@ -21,8 +23,24 @@
 #include "overlays/gamestates/ovl_famicom_emu/famicom_emu.h"
 #include "overlays/gamestates/ovl_prenmi/m_prenmi.h"
 
-void func_800D38E0_jp(void* arg0, void* arg1);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/func_800D38E0_jp.s")
+void func_800D38E0_jp(void) {
+    s32 i;
+    void* fb;
+
+    FaultDrawer_DrawText(30, 100, "ShowFrameBuffer PAGE 0/1/2");
+
+    for (i = 0; i < 3; i++) {
+        fb = func_800D96E8_jp(i);
+        if (fb != NULL) {
+            osViSwapBuffer(fb);
+            osViSetMode(&gViConfigMode);
+            osViSetSpecialFeatures(gViConfigFeatures);
+            osViSetXScale(gViConfigXScale);
+            osViSetYScale(gViConfigYScale);
+            fault_WaitForInput();
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/graph_setup_double_buffer.s")
 
@@ -78,7 +96,7 @@ void graph_ct(GraphicsContext* gfxCtx) {
     SREG(33) &= ~2;
     SREG(33) &= ~1;
     zurumode_init();
-    fault_AddClient(&sGraphFaultClient, func_800D38E0_jp, NULL, NULL);
+    fault_AddClient(&sGraphFaultClient, (void*)func_800D38E0_jp, NULL, NULL);
     fault_AddressConverterAddClient(&sGraphFaultAddrConvClient, func_800D3C94_jp, NULL);
     gfxCtx->unk_2F0 = 1;
 }
