@@ -131,6 +131,20 @@ s32 func_800D97A0_jp(u32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/6FD190/func_800D97F8_jp.s")
+s32 func_800D97F8_jp(u32 arg0) {
+    s32 ret;
+    u32 start = osGetCount();
+
+    while (true) {
+        if ((osGetCount() - start) > ((s32)(OS_NSEC_TO_CYCLES(1333333334)))) {
+            return 0;
+        }
+
+        ret = func_800D97A0_jp(arg0);
+        if (ret != 0) {
+            return ret;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/6FD190/func_800D986C_jp.s")
