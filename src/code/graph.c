@@ -3,13 +3,16 @@
 
 #include "6FB340.h"
 #include "6FD190.h"
+#include "audio.h"
 #include "fault.h"
 #include "game.h"
 #include "getcurrentms.h"
 #include "gfx.h"
 #include "idle.h"
+#include "irqmgr.h"
 #include "m_debug.h"
 #include "m_DLF.h"
+#include "speed_meter.h"
 #include "zurumode.h"
 
 #include "overlays/gamestates/ovl_first_game/first_game.h"
@@ -42,6 +45,7 @@ void func_800D38E0_jp(void) {
     }
 }
 
+void graph_setup_double_buffer(GraphicsContext* gfxCtx);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/graph_setup_double_buffer.s")
 
 GameStateOverlay* game_get_next_game_dlftbl(Game* game) {
@@ -131,12 +135,50 @@ void graph_dt(GraphicsContext* gfxCtx) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/func_800D3E40_jp.s")
 
+void graph_task_set00(GraphicsContext* gfxCtx);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/graph_task_set00.s")
 
+s32 graph_draw_finish(GraphicsContext* gfxCtx);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/graph_draw_finish.s")
 
-void graph_main(GraphicsContext* gfxCtx, Game* game);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/graph_main.s")
+void graph_main(GraphicsContext* gfxCtx, Game* game) {
+    game->unk_A4 = false;
+    graph_setup_double_buffer(gfxCtx);
+    game_get_controller(game);
+    game->unk_9E = false;
+    gfxCtx->unk_2F0 = 4;
+
+    game_main(game);
+
+    gfxCtx->unk_2F0 = 0xB;
+
+    if ((ResetStatus < 2) && !game->unk_9E && !graph_draw_finish(gfxCtx)) {
+        gfxCtx->unk_2F0 = 0xC;
+
+        graph_task_set00(gfxCtx);
+        gfxCtx->unk_2F0 = 0xF;
+
+        gfxCtx->unk_2E0++;
+        if (SREG(33) & 1) {
+            SREG(33) &= ~1;
+        } else {
+            gfxCtx->unk_2E4 = NULL;
+        }
+    }
+    if (SREG(20) < 2) {
+        gfxCtx->unk_2F0 = 0x10;
+
+        sAdo_GameFrame();
+        gfxCtx->unk_2F0 = 0x11;
+    }
+
+    func_800D93F4_jp();
+
+    if ((ResetStatus == 1) && !game->unk_A4) {
+        STOP_GAMESTATE(game);
+        SET_NEXT_GAMESTATE(game, prenmi_init, sizeof(Game_Prenmi));
+    }
+}
 
 void graph_proc(UNUSED void* arg) {
     s32 state;

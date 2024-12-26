@@ -1,4 +1,5 @@
 #include "m_prenmi.h"
+#include "libc/stdbool.h"
 #include "irqmgr.h"
 #include "viconfig.h"
 #include "gfx.h"
@@ -54,7 +55,7 @@ void prenmi_main(Game* game) {
     prenmi_move(prenmi);
     prenmi_draw(prenmi);
 
-    prenmi->state.unk_A4 = 1;
+    prenmi->state.unk_A4 = true;
     { UNUSED s32 scopedTemp; }
     graph = game->gfxCtx;
 
