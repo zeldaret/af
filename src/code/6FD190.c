@@ -81,7 +81,9 @@ void func_800D96A8_jp(void) {
     func_800D9618_jp(3);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/6FD190/func_800D96E8_jp.s")
+void* func_800D96E8_jp(s32 arg0) {
+    return B_80146060_jp[arg0];
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/6FD190/func_800D9700_jp.s")
 
