@@ -120,8 +120,12 @@ void graph_ct(GraphicsContext* gfxCtx) {
     gfxCtx->unk_2F0 = 1;
 }
 
-void graph_dt(GraphicsContext* gfxCtx);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/graph_dt.s")
+void graph_dt(GraphicsContext* gfxCtx) {
+    gfxCtx->unk_2F0 = 0x15;
+    zurumode_cleanup();
+    fault_RemoveClient(&sGraphFaultClient);
+    fault_AddressConverterRemoveClient(&sGraphFaultAddrConvClient);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/func_800D3E14_jp.s")
 
