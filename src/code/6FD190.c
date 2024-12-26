@@ -147,4 +147,9 @@ s32 func_800D97F8_jp(u32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/6FD190/func_800D986C_jp.s")
+void func_800D986C_jp(s32 arg0) {
+    if (arg0) {
+        B_80146084_jp = 0;
+        B_80146080_jp = 0;
+    }
+}
