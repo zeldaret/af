@@ -8,7 +8,7 @@
 // void func_800D78F4_jp();
 // void func_800D7948_jp();
 // void func_800D79BC_jp();
-// void func_800D79F4_jp();
+void func_800D79F4_jp(void);
 // void func_800D7AE0_jp();
 // void func_800D7B60_jp();
 // void func_800D7BAC_jp();

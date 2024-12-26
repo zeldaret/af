@@ -1929,8 +1929,7 @@ extern u16 D_80000400[];
 
 // extern UNK_TYPE B_80145060_jp;
 // extern UNK_TYPE B_80145070_jp;
-// extern UNK_TYPE B_80145080_jp;
-extern u8 B_80145370_jp;
+extern struct GraphicsContext graph_class;
 // extern UNK_TYPE B_80145390_jp;
 // extern UNK_TYPE B_80145610_jp;
 extern OSThread graphThread;

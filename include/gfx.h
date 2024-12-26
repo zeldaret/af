@@ -36,7 +36,8 @@ typedef struct GraphicsContext {
     /* 0x2F8 */ s32 unk_2F8;
     /* 0x2FC */ f32 unk_2FC;
     /* 0x300 */ f32 unk_300;
-} GraphicsContext; // size >= 0x304
+    /* 0x304 */ UNK_TYPE1 unk_304[0x4];
+} GraphicsContext; // size = 0x308
 
 #define OVERLAY_DISP __gfxCtx->overlay.p
 #define POLY_OPA_DISP __gfxCtx->polyOpa.p
