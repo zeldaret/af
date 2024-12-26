@@ -119,7 +119,17 @@ void func_800D9788_jp(void) {
     B_80146084_jp = 0;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/6FD190/func_800D97A0_jp.s")
+s32 func_800D97A0_jp(u32 arg0) {
+    if (arg0 < 0x25800) {
+        if (B_80146080_jp == 0) {
+            B_80146080_jp = 1;
+        } else if (B_80146080_jp == 3) {
+            B_80146080_jp = 4;
+            return B_80146084_jp;
+        }
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/6FD190/func_800D97F8_jp.s")
 
