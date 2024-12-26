@@ -10,7 +10,7 @@ struct CommonData;
 // void func_8008ECC8_jp();
 // void func_8008ECF0_jp();
 // void func_8008ED14_jp();
-// void func_8008EE24_jp();
+void func_8008EE24_jp(void);
 // void func_8008EE5C_jp();
 // void func_8008EE6C_jp();
 // void func_8008EE7C_jp();

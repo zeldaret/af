@@ -60,10 +60,9 @@ DECLARE_SEGMENT(segment_027130);
 
 DECLARE_SEGMENT(segment_13D9A0); 
 
-// DECLARE_SEGMENT();
-
 DECLARE_SEGMENT(code);
 
+DECLARE_SEGMENT(buffers);
 
 // TODO: the rest of segments
 

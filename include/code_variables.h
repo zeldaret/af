@@ -2,6 +2,8 @@
 #define CODE_VARIABLES_H
 
 #include "ultra64.h"
+#include "libu64/stackcheck.h"
+#include "stack.h"
 #include "unknown_structs.h"
 #include "z64math.h"
 
@@ -1930,15 +1932,15 @@ extern u8 D_80113854_jp;
 extern u8 B_80145370_jp;
 // extern UNK_TYPE B_80145390_jp;
 // extern UNK_TYPE B_80145610_jp;
-// extern UNK_TYPE graphThread;
-// extern UNK_TYPE B_801457E0_jp;
-// extern UNK_TYPE B_80145800_jp;
-// extern UNK_TYPE B_80145820_jp;
-// extern UNK_TYPE B_80145840_jp;
-// extern UNK_TYPE B_80145860_jp;
-// extern UNK_TYPE B_80145880_jp;
-// extern UNK_TYPE B_80145898_jp;
-// extern UNK_TYPE B_8014589C_jp;
+extern OSThread graphThread;
+extern StackEntry graphStackInfo;
+extern StackEntry schedStackInfo;
+extern StackEntry audioStackInfo;
+extern StackEntry padmgrStackInfo;
+extern StackEntry irqmgrStackInfo;
+extern OSMesgQueue l_serialMsgQ;
+extern OSMesg serialMsgBuf[1];
+extern size_t gSystemHeapSize;
 
 extern uintptr_t gSegments[NUM_SEGMENTS];
 
@@ -2070,11 +2072,6 @@ extern UNK_TYPE B_80145FFC_jp;
 // extern UNK_TYPE B_FLT_801462A0_jp;
 // extern UNK_TYPE Matrix_stack;
 // extern UNK_TYPE Matrix_now;
-// extern UNK_TYPE B_801462C0_jp;
-// extern UNK_TYPE B_80147AC0_jp;
-// extern UNK_TYPE B_801480C0_jp;
-// extern UNK_TYPE B_801488C0_jp;
-// extern UNK_TYPE B_80148DC0_jp;
 // extern UNK_TYPE B_80149310_jp;
 // extern UNK_TYPE B_80149328_jp;
 // extern UNK_TYPE B_80149368_jp;

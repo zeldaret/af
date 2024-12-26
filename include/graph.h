@@ -17,6 +17,6 @@ void func_800D3E40_jp(struct GraphicsContext *gfxCtx);
 // void graph_task_set00();
 // void graph_draw_finish();
 // void graph_main();
-// void graph_proc();
+void graph_proc(void* arg);
 
 #endif
