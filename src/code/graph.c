@@ -8,12 +8,58 @@
 #include "getcurrentms.h"
 #include "m_DLF.h"
 
+#include "overlays/gamestates/ovl_first_game/first_game.h"
+#include "overlays/gamestates/ovl_select/m_select.h"
+#include "overlays/gamestates/ovl_play/m_play.h"
+#include "overlays/gamestates/ovl_second_game/second_game.h"
+#include "overlays/gamestates/ovl_cpedit/m_cpedit.h"
+#include "overlays/gamestates/ovl_trademark/m_trademark.h"
+#include "overlays/gamestates/ovl_player_select/player_select.h"
+#include "overlays/gamestates/ovl_save_menu/save_menu.h"
+#include "overlays/gamestates/ovl_famicom_emu/famicom_emu.h"
+#include "overlays/gamestates/ovl_prenmi/m_prenmi.h"
+
+
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/func_800D38E0_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/graph_setup_double_buffer.s")
 
-GameStateOverlay* game_get_next_game_dlftbl(Game*);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/game_get_next_game_dlftbl.s")
+GameStateOverlay* game_get_next_game_dlftbl(Game* game) {
+    GameStateFunc init = game_get_next_game_init(game);;
+
+    if (init == first_game_init) {
+        return &game_dlftbls[0];
+    }
+    if (init == select_init) {
+        return &game_dlftbls[1];
+    }
+    if (init == play_init) {
+        return &game_dlftbls[2];
+    }
+    if (init == second_game_init) {
+        return &game_dlftbls[3];
+    }
+    if (init == cpedit_init) {
+        return &game_dlftbls[4];
+    }
+    if (init == trademark_init) {
+        return &game_dlftbls[5];
+    }
+    if (init == player_select_init) {
+        return &game_dlftbls[6];
+    }
+    if (init == save_menu_init) {
+        return &game_dlftbls[7];
+    }
+    if (init == famicom_emu_init) {
+        return &game_dlftbls[8];
+    }
+    if (init == prenmi_init) {
+        return &game_dlftbls[9];
+    }
+
+    return NULL;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/func_800D3C94_jp.s")
 
