@@ -186,7 +186,7 @@ void aDUM_actor_draw(UNUSED Actor* thisx, Game_Play* game_play) {
 
     OPEN_POLY_OPA_DISP(gfxCtx);
     gSPSegment(__polyOpa++, 0x08, palette);
-    gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(object);
+    SegmentBaseAddress[6] = (uintptr_t)OS_PHYSICAL_TO_K0(object);
     gSPSegment(__polyOpa++, 0x06, object);
 
     Matrix_translate(-6000.0f, 0.0f, -10000.0f, 1);

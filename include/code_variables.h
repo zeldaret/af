@@ -1942,7 +1942,7 @@ extern OSMesgQueue l_serialMsgQ;
 extern OSMesg serialMsgBuf[1];
 extern size_t gSystemHeapSize;
 
-extern uintptr_t gSegments[NUM_SEGMENTS];
+extern uintptr_t SegmentBaseAddress[NUM_SEGMENTS];
 
 // extern UNK_TYPE B_80145D70_jp;
 // extern UNK_TYPE B_80145D80_jp;

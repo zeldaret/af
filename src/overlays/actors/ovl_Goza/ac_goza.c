@@ -150,7 +150,7 @@ void aGOZ_actor_draw(Actor* thisx UNUSED, Game_Play* game_play) {
 
     OPEN_SHADOW_DISP(gfxCtx);
     gSPSegment(__shadow_gfx++, G_MWO_SEGMENT_8, palette);
-    gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(object);
+    SegmentBaseAddress[6] = (uintptr_t)OS_PHYSICAL_TO_K0(object);
     gSPSegment(__shadow_gfx++, G_MWO_SEGMENT_6, object);
     gDPSetPrimColor(__shadow_gfx++, 0, 0x80, 255, 255, 255, 255);
 

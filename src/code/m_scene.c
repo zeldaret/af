@@ -448,7 +448,7 @@ void mSc_data_bank_ct(Game_Play* game_play, ObjectExchangeBank* objectExchangeBa
     objectExchangeBank->unk1810[0] = temp_v0;
     objectExchangeBank->unk1810[1] = temp_v0;
     func_800C5B74_jp(objectExchangeBank, GAMEPLAY_KEEP);
-    gSegments[4] = (uintptr_t)OS_PHYSICAL_TO_K0(objectExchangeBank->status[0].segment);
+    SegmentBaseAddress[4] = (uintptr_t)OS_PHYSICAL_TO_K0(objectExchangeBank->status[0].segment);
 }
 
 void mSc_decide_exchange_bank(ObjectExchangeBank* objectExchangeBank) {

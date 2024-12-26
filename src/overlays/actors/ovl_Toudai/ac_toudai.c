@@ -52,7 +52,7 @@ void aTOU_actor_ct(Actor* thisx, Game_Play* game_play UNUSED) {
     static BaseSkeletonR* skl[] = { &cKF_bs_r_obj_s_toudai, &cKF_bs_r_obj_w_toudai };
     s32 type = (common_data.time.season == WINTER);
 
-    gSegments[6] = OS_K0_TO_PHYSICAL(common_data.clip.structureClip->getObjectSegment(STRUCTURE_TYPE_TOUDAI));
+    SegmentBaseAddress[6] = OS_K0_TO_PHYSICAL(common_data.clip.structureClip->getObjectSegment(STRUCTURE_TYPE_TOUDAI));
     cKF_SkeletonInfo_R_ct(&this->structureActor.skeletonInfo, skl[type], NULL, this->structureActor.jointTable,
                           this->structureActor.morphTable);
     aTOU_set_bgOffset(this, 1);
@@ -190,7 +190,7 @@ void aTOU_setup_action(Toudai* this, s32 processIndex) {
 void aTOU_actor_move(Actor* thisx, Game_Play* game_play) {
     Toudai* this = THIS;
 
-    gSegments[6] = OS_K0_TO_PHYSICAL(common_data.clip.structureClip->getObjectSegment(STRUCTURE_TYPE_TOUDAI));
+    SegmentBaseAddress[6] = OS_K0_TO_PHYSICAL(common_data.clip.structureClip->getObjectSegment(STRUCTURE_TYPE_TOUDAI));
     this->structureActor.unk_174 = cKF_SkeletonInfo_R_play(&this->structureActor.skeletonInfo);
     this->structureActor.unk_1E8 = this->structureActor.skeletonInfo.frameControl.currentFrame;
     ((ToudaiActionFunc)this->structureActor.process)(this, game_play);
@@ -276,7 +276,7 @@ void aTOU_actor_draw(Actor* thisx, Game_Play* game_play) {
         _texture_z_light_fog_prim_npc(gfxCtx);
         OPEN_POLY_OPA_DISP(gfxCtx);
         gSPSegment(__polyOpa++, 0x8, palette);
-        gSegments[6] = OS_K0_TO_PHYSICAL(object);
+        SegmentBaseAddress[6] = OS_K0_TO_PHYSICAL(object);
         gSPSegment(__polyOpa++, 0x6, object);
         CLOSE_POLY_OPA_DISP(gfxCtx);
 

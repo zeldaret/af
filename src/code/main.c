@@ -30,7 +30,7 @@ OSMesgQueue l_serialMsgQ;
 OSMesg serialMsgBuf[1];
 size_t gSystemHeapSize;
 
-uintptr_t gSegments[NUM_SEGMENTS];
+uintptr_t SegmentBaseAddress[NUM_SEGMENTS];
 
 void func_800D64E0_jp(void) {
     u32 baseTime;
