@@ -15,7 +15,7 @@ void func_800D955C_jp(s32);
 // void func_800D9750_jp();
 // void func_800D9760_jp();
 void func_800D9770_jp(void);
-// void func_800D9788_jp();
+void func_800D9788_jp(void);
 // void func_800D97A0_jp();
 // void func_800D97F8_jp();
 // void func_800D986C_jp();
