@@ -1972,8 +1972,6 @@ extern UNK_TYPE B_80145FFC_jp;
 // extern UNK_TYPE B_80146044_jp;
 // extern UNK_TYPE B_80146050_jp;
 // extern UNK_TYPE B_80146058_jp;
-extern s32 B_80146080_jp;
-extern s32 B_80146084_jp;
 // extern UNK_TYPE B_FLT_80146090_jp;
 // extern UNK_TYPE B_FLT_80146094_jp;
 // extern UNK_TYPE B_FLT_80146098_jp;

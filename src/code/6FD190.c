@@ -1,8 +1,9 @@
-#include "global.h"
-
 #include "6FD190.h"
+
 #include "alignment.h"
 #include "libc64/malloc.h"
+#include "6FD410.h"
+#include "unk.h"
 
 void* B_80146060_jp[3];
 void* B_8014606C_jp;

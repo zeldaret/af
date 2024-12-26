@@ -1,8 +1,9 @@
-#include "global.h"
+#include "6FD410.h"
+
+#include "libc/stdbool.h"
 
 s32 B_80146080_jp;
 s32 B_80146084_jp;
-
 
 void func_800D9770_jp(void) {
     B_80146080_jp = 0;
