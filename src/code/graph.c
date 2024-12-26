@@ -81,8 +81,27 @@ GameStateOverlay* game_get_next_game_dlftbl(Game* game) {
     return NULL;
 }
 
-uintptr_t func_800D3C94_jp(uintptr_t arg0, void* arg1);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/func_800D3C94_jp.s")
+uintptr_t func_800D3C94_jp(uintptr_t address, UNUSED void* param) {
+    uintptr_t addr = address;
+    GameStateOverlay* gameStateOvl = &game_dlftbls[0];
+    uintptr_t ramConv;
+    void* ramStart;
+    size_t diff;
+    s32 i;
+
+    for (i = 0; i < game_dlftbls_num; i++, gameStateOvl++) {
+        diff = (uintptr_t)gameStateOvl->vramEnd - (uintptr_t)gameStateOvl->vramStart;
+        ramStart = gameStateOvl->loadedRamAddr;
+        ramConv = (uintptr_t)gameStateOvl->vramStart - (uintptr_t)ramStart;
+
+        if (ramStart != NULL) {
+            if ((addr >= (uintptr_t)ramStart) && (addr < (uintptr_t)ramStart + diff)) {
+                return addr + ramConv;
+            }
+        }
+    }
+    return 0;
+}
 
 void graph_ct(GraphicsContext* gfxCtx) {
     bzero(gfxCtx, sizeof(GraphicsContext));
