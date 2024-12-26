@@ -12,7 +12,13 @@ void func_800D9514_jp(void) {
     B_80146070_jp = 0;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/6FD190/func_800D9524_jp.s")
+void func_800D9524_jp(void) {
+    B_80146060_jp[0] = 0;
+    B_80146060_jp[1] = 0;
+    B_80146060_jp[2] = 0;
+    B_8014606C_jp = 0;
+    func_800D9770_jp();
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/6FD190/func_800D955C_jp.s")
 
