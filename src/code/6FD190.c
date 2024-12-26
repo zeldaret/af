@@ -26,7 +26,7 @@ void func_800D9524_jp(void) {
     func_800D9770_jp();
 }
 
-extern UNK_TYPE D_80000400; // linker segment?
+extern UNK_TYPE D_80000400; // TODO: linker segment?
 
 void func_800D955C_jp(s32 arg0) {
     switch (arg0) {
