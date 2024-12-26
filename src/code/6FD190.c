@@ -105,7 +105,9 @@ void* func_800D9750_jp(void) {
     return B_8014606C_jp;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/6FD190/func_800D9760_jp.s")
+uintptr_t func_800D9760_jp(void) {
+    return B_80146070_jp;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/6FD190/func_800D9770_jp.s")
 
