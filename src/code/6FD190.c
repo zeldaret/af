@@ -109,7 +109,10 @@ uintptr_t func_800D9760_jp(void) {
     return B_80146070_jp;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/6FD190/func_800D9770_jp.s")
+void func_800D9770_jp(void) {
+    B_80146080_jp = 0;
+    B_80146084_jp = 0;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/6FD190/func_800D9788_jp.s")
 
