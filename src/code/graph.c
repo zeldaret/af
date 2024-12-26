@@ -1,12 +1,14 @@
+#include "graph.h"
 #include "global.h"
-
-#include "gfx.h"
 
 #include "6FB340.h"
 #include "fault.h"
 #include "game.h"
 #include "getcurrentms.h"
+#include "gfx.h"
+#include "m_debug.h"
 #include "m_DLF.h"
+#include "zurumode.h"
 
 #include "overlays/gamestates/ovl_first_game/first_game.h"
 #include "overlays/gamestates/ovl_select/m_select.h"
@@ -19,13 +21,13 @@
 #include "overlays/gamestates/ovl_famicom_emu/famicom_emu.h"
 #include "overlays/gamestates/ovl_prenmi/m_prenmi.h"
 
-
+void func_800D38E0_jp(void* arg0, void* arg1);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/func_800D38E0_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/graph_setup_double_buffer.s")
 
 GameStateOverlay* game_get_next_game_dlftbl(Game* game) {
-    GameStateFunc init = game_get_next_game_init(game);;
+    GameStateFunc init = game_get_next_game_init(game);
 
     if (init == first_game_init) {
         return &game_dlftbls[0];
@@ -61,10 +63,25 @@ GameStateOverlay* game_get_next_game_dlftbl(Game* game) {
     return NULL;
 }
 
+uintptr_t func_800D3C94_jp(uintptr_t arg0, void* arg1);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/func_800D3C94_jp.s")
 
-void graph_ct(GraphicsContext* gfxCtx);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/graph_ct.s")
+void graph_ct(GraphicsContext* gfxCtx) {
+    bzero(gfxCtx, sizeof(GraphicsContext));
+    gfxCtx->unk_2E0 = 0;
+    gfxCtx->unk_2F3 = 0;
+    gfxCtx->unk_25C = &osViModeNtscLan1;
+    gfxCtx->unk_2EC = 66;
+    gfxCtx->unk_2FC = 1.0f;
+    gfxCtx->unk_300 = 1.0f;
+    osCreateMesgQueue(&gfxCtx->queue, gfxCtx->msgBuff, ARRAY_COUNT(gfxCtx->msgBuff));
+    SREG(33) &= ~2;
+    SREG(33) &= ~1;
+    zurumode_init();
+    fault_AddClient(&sGraphFaultClient, func_800D38E0_jp, NULL, NULL);
+    fault_AddressConverterAddClient(&sGraphFaultAddrConvClient, func_800D3C94_jp, NULL);
+    gfxCtx->unk_2F0 = 1;
+}
 
 void graph_dt(GraphicsContext* gfxCtx);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/graph_dt.s")

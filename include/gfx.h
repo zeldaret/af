@@ -15,7 +15,11 @@
 typedef struct GraphicsContext {
     /* 0x000 */ UNK_TYPE1 unk_000[0x8];
     /* 0x008 */ UNK_PTR unk_008;
-    /* 0x00C */ UNK_TYPE1 unk_00C[0x250];
+    /* 0x00C */ UNK_TYPE1 unk_00C[0x38];
+    /* 0x044 */ OSMesg msgBuff[8];
+    /* 0x064 */ UNK_TYPE1 unk_064[0x4];
+    /* 0x068 */ OSMesgQueue queue;
+    /* 0x080 */ UNK_TYPE1 unk_080[0x1DC];
     /* 0x25C */ OSViMode* unk_25C;
     /* 0x260 */ UNK_TYPE1 unk_260[0x20];
     /* 0x280 */ TwoHeadGfxArena overlay;
@@ -24,14 +28,14 @@ typedef struct GraphicsContext {
     /* 0x2B0 */ TwoHeadGfxArena font;
     /* 0x2C0 */ TwoHeadGfxArena shadow;
     /* 0x2D0 */ TwoHeadGfxArena light;
-    /* 0x2E0 */ UNK_TYPE1 unk_2E0[0x4];
+    /* 0x2E0 */ s32 unk_2E0;
     /* 0x2E4 */ UNK_PTR unk_2E4;
     /* 0x2E8 */ UNK_TYPE1 unk_2E8[0x4];
     /* 0x2EC */ s32 unk_2EC;
     /* 0x2F0 */ u8 unk_2F0;
     /* 0x2F1 */ UNK_TYPE1 unk_2F1[0x1];
     /* 0x2F2 */ u8 unk_2F2;
-    /* 0x2F3 */ UNK_TYPE1 unk_2F3[0x1];
+    /* 0x2F3 */ u8 unk_2F3;
     /* 0x2F4 */ s32 unk_2F4;
     /* 0x2F8 */ s32 unk_2F8;
     /* 0x2FC */ f32 unk_2FC;
