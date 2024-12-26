@@ -789,7 +789,6 @@ extern u8 D_8010F3E8_jp;
 // extern UNK_TYPE D_8010FCD0_jp;
 extern MtxF MtxF_clear;
 // extern UNK_TYPE D_8010FD70_jp;
-// extern UNK_TYPE D_80110000_jp;
 // extern UNK_TYPE D_80110D70_jp;
 // extern UNK_TYPE D_80110E70_jp;
 // extern UNK_TYPE D_80110F60_jp;

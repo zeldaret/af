@@ -208,7 +208,8 @@
       - [0x733970, .data, code/sys_matrix]
       - [0x7339F0, .data, code/sys_ucode]
       - [0x733A00, .data, code/zurumode]
-      - [0x733A10, data, code/733A10]
+      - [0x733A10, data, code/audio_data]
+      - [0x736D40, data, code/736D40]
       - [0x739D60, .data, code/lbrtc/lbrtc_init]
 
       - [0x739DB0, .rodata, code/c_keyframe]
