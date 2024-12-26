@@ -332,8 +332,8 @@
       - { start: 0x73F4D0, type: .bss, vram: 0x80145620, name: code/lb_rtc}
       - { start: 0x73F4D0, type: .bss, vram: 0x80145630, name: code/main}
       - { start: 0x73F4D0, type: bss, vram: 0x801458E0, name: code/801458E0}
-      - { start: 0x73F4D0, type: bss, vram: 0x80146060, name: code/6FD190}
-      - { start: 0x73F4D0, type: bss, vram: 0x80146080, name: code/6FD410}
+      - { start: 0x73F4D0, type: .bss, vram: 0x80146060, name: code/6FD190}
+      - { start: 0x73F4D0, type: .bss, vram: 0x80146080, name: code/6FD410}
       - { start: 0x73F4D0, type: bss, vram: 0x80146090, name: code/80146090}
       - { start: 0x73F4D0, type: .bss, vram: 0x801462B0, name: code/sys_matrix }
       - { start: 0x73F4D0, type: .bss, vram: 0x801462C0, name: code/sys_stacks }

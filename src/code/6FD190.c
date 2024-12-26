@@ -4,6 +4,10 @@
 #include "alignment.h"
 #include "libc64/malloc.h"
 
+void* B_80146060_jp[3];
+void* B_8014606C_jp;
+uintptr_t B_80146070_jp;
+
 uintptr_t func_800D94F0_jp(void) {
     B_80146070_jp = 0x80400000;
     B_80146070_jp &= ~0x3F;
