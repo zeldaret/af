@@ -6654,7 +6654,7 @@ B_80921EB8_jp = 0x80921EB8; // type:s8
 
 // .text
 
-func_80922800_jp = 0x80922800; // type:func
+mRF_GetRandom = 0x80922800; // type:func
 func_80922840_jp = 0x80922840; // type:func
 func_80922854_jp = 0x80922854; // type:func
 func_8092288C_jp = 0x8092288C; // type:func
@@ -6698,7 +6698,7 @@ func_80924C9C_jp = 0x80924C9C; // type:func
 func_80924DB0_jp = 0x80924DB0; // type:func
 func_80924DF4_jp = 0x80924DF4; // type:func
 func_80924E6C_jp = 0x80924E6C; // type:func
-func_80924EEC_jp = 0x80924EEC; // type:func
+mRF_MakeRandomField_ovl = 0x80924EEC; // type:func
 
 // .data
 
