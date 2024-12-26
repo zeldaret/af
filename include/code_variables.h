@@ -1976,7 +1976,7 @@ extern UNK_TYPE B_80145FFC_jp;
 // extern UNK_TYPE B_80146064_jp;
 // extern UNK_TYPE B_80146068_jp;
 // extern UNK_TYPE B_8014606C_jp;
-// extern UNK_TYPE B_80146070_jp;
+extern uintptr_t B_80146070_jp;
 // extern UNK_TYPE B_80146080_jp;
 // extern UNK_TYPE B_80146084_jp;
 // extern UNK_TYPE B_FLT_80146090_jp;
