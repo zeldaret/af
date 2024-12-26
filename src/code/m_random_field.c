@@ -9,7 +9,7 @@
 #include "game.h"
 
 // Original name unknown. Pointer to malloc'd memory in mRF_MakeRandomField
-extern UNK_PTR D_8010C6C0_jp;
+UNK_PTR D_8010C6C0_jp = NULL;
 
 // Original name unknown.
 void* mRF_Malloc(Game* game, size_t size) {
@@ -34,7 +34,7 @@ void mRF_Free(Game* game, void* ptr) {
 }
 
 // Original name unknown
-extern s32 stepNo;
+s32 stepNo = 0;
 
 // Get pointer to stepNo
 s32* mRF_StepNo(void) {
@@ -42,15 +42,37 @@ s32* mRF_StepNo(void) {
 }
 
 // Original name unknown
-extern s32 tryCnt;
+s32 tryCnt = 0;
 
 // Get pointer to tryCnt
 s32* mRF_TryCnt(void) {
     return &tryCnt;
 }
 
-// TODO: import data
-#if 0
+// Original name unknown
+const char* mRF_DebugMsg[] = {
+  "BGFGｼｮｷｶ",
+  "ｶﾜｶﾞｹｾｲｾｲ",
+  "ｳﾐｾｲｾｲ",
+  "ﾊｼｻｶｾｲｾｲ",
+  "ｺｳﾊﾞﾝﾋﾛﾊﾞｾｲｾｲ",
+  "ﾐｾﾕｳﾋﾞﾝｷｮｸｾｲｾｲ",
+  "ｲｹｾｲｾ",
+  "ﾍﾞｰｽｾｯﾃｲ",
+  "ｳﾐﾆｶﾜｾｲｾｲ",
+  "ﾌﾞﾛｯｸｾﾝﾀｸ",
+  "ﾗﾝﾀﾞﾑｶﾝﾘｮｳ"
+};
+
+void mRF_PrintDebug(gfxprint* gfxprint) {
+    gfxprint_color(gfxprint, 200, 200, 250, 255);
+    gfxprint_locate8x8(gfxprint, 3, 21);
+    gfxprint_printf(gfxprint, "RandomTry %d", tryCnt);
+    gfxprint_color(gfxprint, 200, 200, 250, 255);
+    gfxprint_locate8x8(gfxprint, 3, 22);
+    gfxprint_printf(gfxprint, "RandomStep %s", mRF_DebugMsg[stepNo]);
+}
+
 u32 mRF_block_info[mFM_BLOCK_TYPE_NUM] = {
     /* 0x00 */ mRF_BLOCKKIND_BORDER,
     /* 0x01 */ mRF_BLOCKKIND_BORDER,
@@ -62,51 +84,44 @@ u32 mRF_block_info[mFM_BLOCK_TYPE_NUM] = {
     /* 0x07 */ mRF_BLOCKKIND_BORDER,
     /* 0x08 */ mRF_BLOCKKIND_BORDER,
     /* 0x09 */ mRF_BLOCKKIND_RAILROAD | mRF_BLOCKKIND_TUNNEL,
-    /* 0x0a */ mRF_BLOCKKIND_RAILROAD | mRF_BLOCKKIND_TUNNEL,
-    /* 0x0b */ mRF_BLOCKKIND_STATION | mRF_BLOCKKIND_RAILROAD,
-    /* 0x0c */ mRF_BLOCKKIND_RAILROAD | mRF_BLOCKKIND_DUMP,
-    /* 0x0d */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RAILROAD,
-    /* 0x0e */ mRF_BLOCKKIND_PLAYER,
-    /* 0x0f */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_CLIFF0,
+    /* 0x0A */ mRF_BLOCKKIND_RAILROAD | mRF_BLOCKKIND_TUNNEL,
+    /* 0x0B */ mRF_BLOCKKIND_STATION | mRF_BLOCKKIND_RAILROAD,
+    /* 0x0C */ mRF_BLOCKKIND_RAILROAD | mRF_BLOCKKIND_DUMP,
+    /* 0x0D */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RAILROAD,
+    /* 0x0E */ mRF_BLOCKKIND_PLAYER,
+    /* 0x0F */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_CLIFF0,
     /* 0x10 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_CLIFF1,
     /* 0x11 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_CLIFF2,
     /* 0x12 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_CLIFF3,
     /* 0x13 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_CLIFF4,
     /* 0x14 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_CLIFF5,
     /* 0x15 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_CLIFF6,
-    /* 0x16 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_WATERFALL | mRF_BLOCKKIND_RIVER0 |
-        mRF_BLOCKKIND_CLIFF0,
-    /* 0x17 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_WATERFALL | mRF_BLOCKKIND_RIVER1 |
-        mRF_BLOCKKIND_CLIFF0,
+    /* 0x16 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_WATERFALL | mRF_BLOCKKIND_RIVER0 | mRF_BLOCKKIND_CLIFF0,
+    /* 0x17 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_WATERFALL | mRF_BLOCKKIND_RIVER1 | mRF_BLOCKKIND_CLIFF0,
     /* 0x18 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER0 | mRF_BLOCKKIND_CLIFF2,
     /* 0x19 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER0 | mRF_BLOCKKIND_CLIFF3,
-    /* 0x1a */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_WATERFALL | mRF_BLOCKKIND_RIVER0 |
-        mRF_BLOCKKIND_CLIFF4,
-    /* 0x1b */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER0 | mRF_BLOCKKIND_CLIFF5,
-    /* 0x1c */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER0 | mRF_BLOCKKIND_CLIFF6,
-    /* 0x1d */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER1 | mRF_BLOCKKIND_CLIFF0,
-    /* 0x1e */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_WATERFALL | mRF_BLOCKKIND_RIVER1 |
-        mRF_BLOCKKIND_CLIFF1,
-    /* 0x1f */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_WATERFALL | mRF_BLOCKKIND_RIVER1 |
-        mRF_BLOCKKIND_CLIFF2,
+    /* 0x1A */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_WATERFALL | mRF_BLOCKKIND_RIVER0 | mRF_BLOCKKIND_CLIFF4,
+    /* 0x1B */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER0 | mRF_BLOCKKIND_CLIFF5,
+    /* 0x1C */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER0 | mRF_BLOCKKIND_CLIFF6,
+    /* 0x1D */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER1 | mRF_BLOCKKIND_CLIFF0,
+    /* 0x1E */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_WATERFALL | mRF_BLOCKKIND_RIVER1 | mRF_BLOCKKIND_CLIFF1,
+    /* 0x1F */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_WATERFALL | mRF_BLOCKKIND_RIVER1 | mRF_BLOCKKIND_CLIFF2,
     /* 0x20 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER1 | mRF_BLOCKKIND_CLIFF3,
     /* 0x21 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER1 | mRF_BLOCKKIND_CLIFF4,
     /* 0x22 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER2 | mRF_BLOCKKIND_CLIFF0,
     /* 0x23 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER2 | mRF_BLOCKKIND_CLIFF3,
     /* 0x24 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER2 | mRF_BLOCKKIND_CLIFF4,
-    /* 0x25 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_WATERFALL | mRF_BLOCKKIND_RIVER2 |
-        mRF_BLOCKKIND_CLIFF5,
-    /* 0x26 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_WATERFALL | mRF_BLOCKKIND_RIVER2 |
-        mRF_BLOCKKIND_CLIFF6,
+    /* 0x25 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_WATERFALL | mRF_BLOCKKIND_RIVER2 | mRF_BLOCKKIND_CLIFF5,
+    /* 0x26 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_WATERFALL | mRF_BLOCKKIND_RIVER2 | mRF_BLOCKKIND_CLIFF6,
     /* 0x27 */ mRF_BLOCKKIND_NONE,
     /* 0x28 */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER0,
     /* 0x29 */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER1,
-    /* 0x2a */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER2,
-    /* 0x2b */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER3,
-    /* 0x2c */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER4,
-    /* 0x2d */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER5,
-    /* 0x2e */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER6,
-    /* 0x2f */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_BRIDGE | mRF_BLOCKKIND_RIVER0,
+    /* 0x2A */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER2,
+    /* 0x2B */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER3,
+    /* 0x2C */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER4,
+    /* 0x2D */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER5,
+    /* 0x2E */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_RIVER6,
+    /* 0x2F */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_BRIDGE | mRF_BLOCKKIND_RIVER0,
     /* 0x30 */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_BRIDGE | mRF_BLOCKKIND_RIVER1,
     /* 0x31 */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_BRIDGE | mRF_BLOCKKIND_RIVER2,
     /* 0x32 */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_BRIDGE | mRF_BLOCKKIND_RIVER3,
@@ -117,12 +132,12 @@ u32 mRF_block_info[mFM_BLOCK_TYPE_NUM] = {
     /* 0x37 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_SLOPE | mRF_BLOCKKIND_CLIFF1,
     /* 0x38 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_SLOPE | mRF_BLOCKKIND_CLIFF2,
     /* 0x39 */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_SLOPE | mRF_BLOCKKIND_CLIFF3,
-    /* 0x3a */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_SLOPE | mRF_BLOCKKIND_CLIFF4,
-    /* 0x3b */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_SLOPE | mRF_BLOCKKIND_CLIFF5,
-    /* 0x3c */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_SLOPE | mRF_BLOCKKIND_CLIFF6,
-    /* 0x3d */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_BORDER,
-    /* 0x3e */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_BORDER,
-    /* 0x3f */ mRF_BLOCKKIND_MARINE,
+    /* 0x3A */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_SLOPE | mRF_BLOCKKIND_CLIFF4,
+    /* 0x3B */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_SLOPE | mRF_BLOCKKIND_CLIFF5,
+    /* 0x3C */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_SLOPE | mRF_BLOCKKIND_CLIFF6,
+    /* 0x3D */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_BORDER,
+    /* 0x3E */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_BORDER,
+    /* 0x3F */ mRF_BLOCKKIND_MARINE,
     /* 0x40 */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_MARINE | mRF_BLOCKKIND_CLIFF0,
     /* 0x41 */ mRF_BLOCKKIND_SHOP,
     /* 0x42 */ mRF_BLOCKKIND_SHRINE,
@@ -133,16 +148,20 @@ u32 mRF_block_info[mFM_BLOCK_TYPE_NUM] = {
     /* 0x47 */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_POOL | mRF_BLOCKKIND_RIVER2,
     /* 0x48 */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_POOL | mRF_BLOCKKIND_RIVER3,
     /* 0x49 */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_POOL | mRF_BLOCKKIND_RIVER4,
-    /* 0x4a */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_POOL | mRF_BLOCKKIND_RIVER5,
-    /* 0x4b */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_POOL | mRF_BLOCKKIND_RIVER6,
-    /* 0x4c */ mRF_BLOCKKIND_BORDER,
-    /* 0x4d */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_BORDER | mRF_BLOCKKIND_RIVER0,
-    /* 0x4e */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_BORDER | mRF_BLOCKKIND_CLIFF0,
-    /* 0x4f */ mRF_BLOCKKIND_RAILROAD | mRF_BLOCKKIND_BORDER,
+    /* 0x4A */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_POOL | mRF_BLOCKKIND_RIVER5,
+    /* 0x4B */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_POOL | mRF_BLOCKKIND_RIVER6,
+    /* 0x4C */ mRF_BLOCKKIND_BORDER,
+    /* 0x4D */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_BORDER | mRF_BLOCKKIND_RIVER0,
+    /* 0x4E */ mRF_BLOCKKIND_CLIFF | mRF_BLOCKKIND_BORDER | mRF_BLOCKKIND_CLIFF0,
+    /* 0x4F */ mRF_BLOCKKIND_RAILROAD | mRF_BLOCKKIND_BORDER,
     /* 0x50 */ mRF_BLOCKKIND_MARINE | mRF_BLOCKKIND_BORDER,
     /* 0x51 */ mRF_BLOCKKIND_MARINE | mRF_BLOCKKIND_BORDER,
     /* 0x52 */ mRF_BLOCKKIND_RIVER | mRF_BLOCKKIND_BRIDGE | mRF_BLOCKKIND_MARINE | mRF_BLOCKKIND_RIVER0,
     /* 0x53 */ mRF_BLOCKKIND_NONE,
+};
+
+u8 gate_count_table[mRF_GATE_TYPE_NUM] = {
+      0, 1, 1, 2, 2, 3
 };
 
 #define GATE_UT(z, x) ((((z)&0xF) << 4) | ((x)&0xF))
@@ -174,7 +193,7 @@ RandomFieldGate gate3_type0_lt[3] = { GATE(2, 0, 2, 1), GATE(8, 0, 8, 1), GATE(1
 RandomFieldGate gate3_type0_dn[3] = { GATE(15, 2, 14, 2), GATE(15, 8, 14, 8), GATE(15, 12, 14, 12) };
 RandomFieldGate gate3_type0_rt[3] = { GATE(2, 15, 2, 14), GATE(8, 15, 8, 14), GATE(12, 15, 12, 14) };
 
-RandomFieldGate* RandomFieldGateorrect_info[mRF_GATE_TYPE_NUM][RANDOM_FIELD_DIRECT_NUM] = {
+RandomFieldGate* mRF_gate_correct_info[mRF_GATE_TYPE_NUM][RANDOM_FIELD_DIRECT_NUM] = {
   { NULL, NULL, NULL, NULL },
   { gate1_type0_up, gate1_type0_lt, gate1_type0_dn, gate1_type0_rt },
   { gate1_type1_up, gate1_type1_lt, gate1_type1_dn, gate1_type1_rt },
@@ -246,37 +265,37 @@ u8 mRF_gate_info2[mFM_BLOCK_TYPE_NUM][RANDOM_FIELD_DIRECT_NUM] = {
         mRF_GATE_NONE,
         mRF_GATE_NONE
     },
-    /* 0x0a */ {
+    /* 0x0A */ {
         mRF_GATE_NONE,
         mRF_GATE_NONE,
         mRF_GATE_NONE,
         mRF_GATE_NONE
     },
-    /* 0x0b */ {
+    /* 0x0B */ {
         mRF_GATE_NONE,
         mRF_GATE1_TYPE1,
         mRF_GATE1_TYPE0,
         mRF_GATE1_TYPE1
     },
-    /* 0x0c */ {
+    /* 0x0C */ {
         mRF_GATE_NONE,
         mRF_GATE1_TYPE1,
         mRF_GATE1_TYPE0,
         mRF_GATE1_TYPE1
     },
-    /* 0x0d */ {
+    /* 0x0D */ {
         mRF_GATE_NONE,
         mRF_GATE1_TYPE1,
         mRF_GATE2_TYPE1,
         mRF_GATE1_TYPE1
     },
-    /* 0x0e */ {
+    /* 0x0E */ {
         mRF_GATE1_TYPE0,
         mRF_GATE1_TYPE0,
         mRF_GATE1_TYPE0,
         mRF_GATE1_TYPE0
     },
-    /* 0x0f */ {
+    /* 0x0F */ {
         mRF_GATE1_TYPE0,
         mRF_GATE2_TYPE0,
         mRF_GATE1_TYPE0,
@@ -342,37 +361,37 @@ u8 mRF_gate_info2[mFM_BLOCK_TYPE_NUM][RANDOM_FIELD_DIRECT_NUM] = {
         mRF_GATE3_TYPE0,
         mRF_GATE2_TYPE0
     },
-    /* 0x1a */ {
+    /* 0x1A */ {
         mRF_GATE2_TYPE1,
         mRF_GATE2_TYPE0,
         mRF_GATE3_TYPE0,
         mRF_GATE1_TYPE0
     },
-    /* 0x1b */ {
+    /* 0x1B */ {
         mRF_GATE3_TYPE0,
         mRF_GATE1_TYPE0,
         mRF_GATE3_TYPE0,
         mRF_GATE1_TYPE0
     },
-    /* 0x1c */ {
+    /* 0x1C */ {
         mRF_GATE3_TYPE0,
         mRF_GATE1_TYPE0,
         mRF_GATE2_TYPE1,
         mRF_GATE2_TYPE0
     },
-    /* 0x1d */ {
+    /* 0x1D */ {
         mRF_GATE1_TYPE0,
         mRF_GATE3_TYPE0,
         mRF_GATE1_TYPE0,
         mRF_GATE3_TYPE0
     },
-    /* 0x1e */ {
+    /* 0x1E */ {
         mRF_GATE2_TYPE0,
         mRF_GATE3_TYPE0,
         mRF_GATE1_TYPE0,
         mRF_GATE2_TYPE1
     },
-    /* 0x1f */ {
+    /* 0x1F */ {
         mRF_GATE2_TYPE0,
         mRF_GATE2_TYPE1,
         mRF_GATE2_TYPE0,
@@ -438,37 +457,37 @@ u8 mRF_gate_info2[mFM_BLOCK_TYPE_NUM][RANDOM_FIELD_DIRECT_NUM] = {
         mRF_GATE1_TYPE0,
         mRF_GATE2_TYPE1
     },
-    /* 0x2a */ {
+    /* 0x2A */ {
         mRF_GATE1_TYPE0,
         mRF_GATE2_TYPE1,
         mRF_GATE1_TYPE0,
         mRF_GATE2_TYPE1
     },
-    /* 0x2b */ {
+    /* 0x2B */ {
         mRF_GATE2_TYPE1,
         mRF_GATE1_TYPE0,
         mRF_GATE1_TYPE0,
         mRF_GATE2_TYPE1
     },
-    /* 0x2c */ {
+    /* 0x2C */ {
         mRF_GATE1_TYPE0,
         mRF_GATE2_TYPE1,
         mRF_GATE2_TYPE1,
         mRF_GATE1_TYPE0
     },
-    /* 0x2d */ {
+    /* 0x2D */ {
         mRF_GATE2_TYPE1,
         mRF_GATE2_TYPE1,
         mRF_GATE1_TYPE0,
         mRF_GATE1_TYPE0
     },
-    /* 0x2e */ {
+    /* 0x2E */ {
         mRF_GATE1_TYPE0,
         mRF_GATE1_TYPE0,
         mRF_GATE2_TYPE1,
         mRF_GATE2_TYPE1
     },
-    /* 0x2f */ {
+    /* 0x2F */ {
         mRF_GATE2_TYPE1,
         mRF_GATE1_TYPE0,
         mRF_GATE2_TYPE1,
@@ -534,37 +553,37 @@ u8 mRF_gate_info2[mFM_BLOCK_TYPE_NUM][RANDOM_FIELD_DIRECT_NUM] = {
         mRF_GATE2_TYPE0,
         mRF_GATE2_TYPE0
     },
-    /* 0x3a */ {
+    /* 0x3A */ {
         mRF_GATE1_TYPE0,
         mRF_GATE2_TYPE0,
         mRF_GATE2_TYPE0,
         mRF_GATE1_TYPE0
     },
-    /* 0x3b */ {
+    /* 0x3B */ {
         mRF_GATE2_TYPE0,
         mRF_GATE1_TYPE0,
         mRF_GATE2_TYPE0,
         mRF_GATE1_TYPE0
     },
-    /* 0x3c */ {
+    /* 0x3C */ {
         mRF_GATE2_TYPE0,
         mRF_GATE1_TYPE0,
         mRF_GATE1_TYPE0,
         mRF_GATE2_TYPE0
     },
-    /* 0x3d */ {
+    /* 0x3D */ {
         mRF_GATE_NONE,
         mRF_GATE_NONE,
         mRF_GATE_NONE,
         mRF_GATE_NONE
     },
-    /* 0x3e */ {
+    /* 0x3E */ {
         mRF_GATE_NONE,
         mRF_GATE_NONE,
         mRF_GATE_NONE,
         mRF_GATE_NONE
     },
-    /* 0x3f */ {
+    /* 0x3F */ {
         mRF_GATE1_TYPE0,
         mRF_GATE1_TYPE0,
         mRF_GATE_NONE,
@@ -630,37 +649,37 @@ u8 mRF_gate_info2[mFM_BLOCK_TYPE_NUM][RANDOM_FIELD_DIRECT_NUM] = {
         mRF_GATE2_TYPE1,
         mRF_GATE1_TYPE0
     },
-    /* 0x4a */ {
+    /* 0x4A */ {
         mRF_GATE2_TYPE1,
         mRF_GATE2_TYPE1,
         mRF_GATE1_TYPE0,
         mRF_GATE1_TYPE0
     },
-    /* 0x4b */ {
+    /* 0x4B */ {
         mRF_GATE1_TYPE0,
         mRF_GATE1_TYPE0,
         mRF_GATE2_TYPE1,
         mRF_GATE2_TYPE1
     },
-    /* 0x4c */ {
+    /* 0x4C */ {
         mRF_GATE_NONE,
         mRF_GATE_NONE,
         mRF_GATE_NONE,
         mRF_GATE_NONE
     },
-    /* 0x4d */ {
+    /* 0x4D */ {
         mRF_GATE_NONE,
         mRF_GATE_NONE,
         mRF_GATE_NONE,
         mRF_GATE_NONE
     },
-    /* 0x4e */ {
+    /* 0x4E */ {
         mRF_GATE_NONE,
         mRF_GATE_NONE,
         mRF_GATE_NONE,
         mRF_GATE_NONE
     },
-    /* 0x4f */ {
+    /* 0x4F */ {
         mRF_GATE_NONE,
         mRF_GATE_NONE,
         mRF_GATE_NONE,
@@ -691,58 +710,8 @@ u8 mRF_gate_info2[mFM_BLOCK_TYPE_NUM][RANDOM_FIELD_DIRECT_NUM] = {
         mRF_GATE_NONE
     }
 };
-#endif
-
-// TODO: import data
-#if 0
-// Original name unknown
-const char* mRF_DebugMsg[] = {
-  "BGFGｼｮｷｶ",
-  "ｶﾜｶﾞｹｾｲｾｲ",
-  "ｳﾐｾｲｾｲ",
-  "ﾊｼｻｶｾｲｾｲ",
-  "ｺｳﾊﾞﾝﾋﾛﾊﾞｾｲｾｲ",
-  "ﾐｾﾕｳﾋﾞﾝｷｮｸｾｲｾｲ",
-  "ｲｹｾｲｾ",
-  "ﾍﾞｰｽｾｯﾃｲ",
-  "ｳﾐﾆｶﾜｾｲｾｲ",
-  "ﾌﾞﾛｯｸｾﾝﾀｸ",
-  "ﾗﾝﾀﾞﾑｶﾝﾘｮｳ"
-}
-#endif
-
-#if 0
-// Original name unknown
-extern char* mRF_DebugMsg[];
-
-void mRF_PrintDebug(gfxprint* gfxprint) {
-    gfxprint_color(gfxprint, 200, 200, 250, 255);
-    gfxprint_locate8x8(gfxprint, 3, 21);
-    gfxprint_printf(gfxprint, "RandomTry %d", tryCnt);
-    gfxprint_color(gfxprint, 200, 200, 250, 255);
-    gfxprint_locate8x8(gfxprint, 3, 22);
-    gfxprint_printf(gfxprint, "RandomStep %s", mRF_DebugMsg[stepNo]);
-}
-#elif 0
-extern u8* mRF_DebugMsg[];
-extern s8 RO_STR_80117694_jp;
-extern s8 RO_STR_801176A4_jp;
-
-void mRF_PrintDebug(gfxprint* gfxprint) {
-    gfxprint_color(gfxprint, 200, 200, 250, 255);
-    gfxprint_locate8x8(gfxprint, 3, 21);
-    gfxprint_printf(gfxprint, &RO_STR_80117694_jp, tryCnt);
-    gfxprint_color(gfxprint, 200, 200, 250, 255);
-    gfxprint_locate8x8(gfxprint, 3, 22);
-    gfxprint_printf(gfxprint, &RO_STR_801176A4_jp, mRF_DebugMsg[stepNo]);
-}
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_random_field/mRF_PrintDebug.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_random_field/mRF_MakeRandomField.s")
-
-extern u32 mRF_block_info[];
 
 u32 mRF_Type2BlockInfo(u8 blockType) {
     if (blockType < mFM_BLOCK_TYPE_NUM) {
@@ -765,12 +734,7 @@ u8 mRF_Info2BlockType(u32 blockInfo) {
     return mFM_BLOCK_TYPE_NONE;
 }
 
-extern u8 gate_count_table[];
 s32 mRF_GateType2GateCount(s32 gateType) {
-    // TODO: import data
-    // static u8 gate_count_table[mRF_GATE_TYPE_NUM] = {
-    //   0, 1, 1, 2, 2, 3
-    // };
 
     if (gateType < mRF_GATE_TYPE_NUM) {
         return gate_count_table[gateType];
@@ -812,13 +776,9 @@ s32 mRF_Attr2BeastRoadAttr(s32 attribute) {
     }
 }
 
-extern u8 mRF_gate_info2[mFM_BLOCK_TYPE_NUM][RANDOM_FIELD_DIRECT_NUM];
-
 s32 mRF_BlockTypeDirect2GateType(u8 block_type, s32 direct) {
     return mRF_gate_info2[block_type][direct];
 }
-
-extern RandomFieldGate* mRF_gate_correct_info[mRF_GATE_TYPE_NUM][RANDOM_FIELD_DIRECT_NUM];
 
 RandomFieldGate* mRF_BlockTypeDirect2GateData(s32* gateCount, u8 blockType, s32 direct) {
     s32 type = mRF_BlockTypeDirect2GateType(blockType, direct);
@@ -828,70 +788,63 @@ RandomFieldGate* mRF_BlockTypeDirect2GateData(s32* gateCount, u8 blockType, s32 
     return mRF_gate_correct_info[type][direct];
 }
 
-#if 0
-// TODO: rename unk6 in mCoBG_unkStructUnion to unitAttribute
-extern xyz_t wpos;
 s32 mRF_BlockInf2CheckBeastRoad(u8 blockType, mCoBG_unkStructUnion* collisionData) {
-  // fairly specific variable declaration order required for match
-  s32 colUt;
-  s32 gateCount; 
-  s32 i;
-  s32 j;
-  u32 attrib;
-  mCoBG_unkStructUnion* col;
-  RandomFieldGate* gateP;
+    // fairly specific variable declaration order required for match
+    s32 colUt;
+    s32 gateCount;
+    s32 i;
+    s32 j;
+    u32 attrib;
+    mCoBG_unkStructUnion* col;
+    RandomFieldGate* gateP;
 
-  s32 changedAttributeCount = 0;
-  // TODO: import data
-  // xyz_t wpos = { 0.0f, 0.0f, 0.0f };
+    s32 changedAttributeCount = 0;
+    xyz_t wpos = { 0.0f, 0.0f, 0.0f };
 
-  for (i = 0; i < RANDOM_FIELD_DIRECT_NUM; i++) {
-    gateP = mRF_BlockTypeDirect2GateData(&gateCount, blockType, i);
+    for (i = 0; i < RANDOM_FIELD_DIRECT_NUM; i++) {
+        gateP = mRF_BlockTypeDirect2GateData(&gateCount, blockType, i);
 
-    if (gateP != NULL) {
-      for (j = 0; j < gateCount; j++) {
-        /* process first unit */
-        {
-          colUt = gateP[j].ut0;
-          col = collisionData + (u8)colUt;
-          attrib = col->data.unk6;
-          
-          mFI_UtNum2CenterWpos(&wpos, colUt & 0xF, (colUt >> 4) & 0xF);
+        if (gateP != NULL) {
+            for (j = 0; j < gateCount; j++) {
+                /* process first unit */
+                {
+                    colUt = gateP[j].ut0;
+                    col = collisionData + (u8)colUt;
+                    attrib = col->data.unk6;
 
-          /* only bother updating the unit attribute if the unit can grow collideable plants in it */
-          if (mCoBG_Attribute2CheckPlant(attrib, &wpos) > 0) {
-            col->data.unk6 = mRF_Attr2BeastRoadAttr(attrib);
-            changedAttributeCount++;
-          }
+                    mFI_UtNum2CenterWpos(&wpos, colUt & 0xF, (colUt >> 4) & 0xF);
+
+                    /* only bother updating the unit attribute if the unit can grow collideable plants in it */
+                    if (mCoBG_Attribute2CheckPlant(attrib, &wpos) > 0) {
+                        col->data.unk6 = mRF_Attr2BeastRoadAttr(attrib);
+                        changedAttributeCount++;
+                    }
+                }
+
+                /* process second unit */
+                {
+                    colUt = gateP[j].ut1;
+                    col = collisionData + (u8)colUt;
+                    attrib = col->data.unk6;
+
+                    mFI_UtNum2CenterWpos(&wpos, colUt & 0xF, (colUt >> 4) & 0xF);
+
+                    /* only bother updating the unit attribute if the unit can grow collideable plants in it */
+                    if (mCoBG_Attribute2CheckPlant(attrib, &wpos) > 0) {
+                        col->data.unk6 = mRF_Attr2BeastRoadAttr(attrib);
+                        changedAttributeCount++;
+                    }
+                }
+            }
         }
-
-        /* process second unit */
-        {
-          colUt = gateP[j].ut1;
-          col = collisionData + (u8)colUt;
-          attrib = col->data.unk6;
-          
-          mFI_UtNum2CenterWpos(&wpos, colUt & 0xF, (colUt >> 4) & 0xF);
-
-          /* only bother updating the unit attribute if the unit can grow collideable plants in it */
-          if (mCoBG_Attribute2CheckPlant(attrib, &wpos) > 0) {
-            col->data.unk6 = mRF_Attr2BeastRoadAttr(attrib);
-            changedAttributeCount++;
-          }
-        }
-      }
     }
-  }
 
-  if (changedAttributeCount != 0) {
-      return 0;
-  }
+    if (changedAttributeCount != 0) {
+        return 0;
+    }
 
-  return 1;
+    return 1;
 }
-#else
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_random_field/mRF_BlockInf2CheckBeastRoad.s")
-#endif
 
 void mRF_CheckBeastRoad() {
     if (SAVE_GET(sceneNo) == SCENE_FG) {

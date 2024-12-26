@@ -67,10 +67,10 @@ typedef struct RandomFieldGate {
 
 // void* mRF_Malloc(Game* game, size_t size);
 // void mRF_Free(Game* game, void* ptr);
-s32* func_800BCC20_jp(void);
-s32* func_800BCC30_jp(void);
+s32* mRF_StepNo(void);
+s32* mRF_TryCnt(void);
 // void mRF_PrintDebug(gfxprint* gfxprint);
-// void func_800BCCFC_jp();
+// void mRF_MakeRandomField();
 u32 mRF_Type2BlockInfo(u8 blockType);
 // u8 mRF_Info2BlockType(u32 blockInfo);
 s32 mRF_GateType2GateCount(s32 gateType); // TODO: comment back out after decomp
