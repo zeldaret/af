@@ -292,6 +292,7 @@ setup:
 extract:
 	$(RM) -r asm/$(VERSION) assets/$(VERSION)
 	$(CAT) yamls/$(VERSION)/header.yaml \
+			yamls/$(VERSION)/framebuffer.yaml \
 			yamls/$(VERSION)/makerom.yaml \
 			yamls/$(VERSION)/boot.yaml \
 			yamls/$(VERSION)/code.yaml \

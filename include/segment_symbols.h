@@ -45,6 +45,7 @@
 #define SEGMENT_BSS_END(segment)   (segment ## _BSS_END)
 #define SEGMENT_BSS_SIZE(segment)  ((uintptr_t)SEGMENT_BSS_END(segment) - (uintptr_t)SEGMENT_BSS_START(segment))
 
+DECLARE_SEGMENT(framebuffer);
 
 DECLARE_SEGMENT(header);
 

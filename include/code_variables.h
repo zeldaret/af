@@ -1674,6 +1674,8 @@ extern u8 D_80113854_jp;
 
 // .bss
 
+extern u16 D_80000400[];
+
 // extern UNK_TYPE B_8011B830_jp;
 // extern UNK_TYPE B_8011B83C_jp;
 

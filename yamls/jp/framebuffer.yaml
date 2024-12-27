@@ -1,0 +1,8 @@
+  - name: framebuffer
+    type: code
+    start: 0x000000
+    vram: 0x80000400
+    notdma: True
+    bss_size: 0x24800
+    subsegments:
+      - { start: 0x000000, type: bss, vram: 0x80000400, name: buffers/80000400}

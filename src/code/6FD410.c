@@ -28,7 +28,7 @@ UNK_PTR func_800D97A0_jp(u32 arg0) {
 }
 
 UNK_PTR func_800D97F8_jp(u32 arg0) {
-    s32 ret;
+    UNK_PTR ret;
     u32 start = osGetCount();
 
     while (true) {
@@ -37,7 +37,7 @@ UNK_PTR func_800D97F8_jp(u32 arg0) {
         }
 
         ret = func_800D97A0_jp(arg0);
-        if (ret != 0) {
+        if (ret != NULL) {
             return ret;
         }
     }
@@ -45,7 +45,7 @@ UNK_PTR func_800D97F8_jp(u32 arg0) {
 
 void func_800D986C_jp(s32 arg0) {
     if (arg0) {
-        B_80146080_jp = 0;
         B_80146084_jp = NULL;
+        B_80146080_jp = 0;
     }
 }
