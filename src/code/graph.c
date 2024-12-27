@@ -5,6 +5,7 @@
 #include "6FD190.h"
 #include "6FD410.h"
 #include "audio.h"
+#include "buffers.h"
 #include "cfbinfo.h"
 #include "fault.h"
 #include "game.h"
@@ -29,7 +30,7 @@
 #include "overlays/gamestates/ovl_famicom_emu/famicom_emu.h"
 #include "overlays/gamestates/ovl_prenmi/m_prenmi.h"
 
-void func_800D38E0_jp(void) {
+void graph_FaultClient(void) {
     s32 i;
     void* fb;
 
@@ -47,10 +48,9 @@ void func_800D38E0_jp(void) {
         }
     }
 }
-extern GfxPool D_801540C0_jp[2];
 
 void graph_setup_double_buffer(GraphicsContext* gfxCtx) {
-    GfxPool* pool = &D_801540C0_jp[gfxCtx->unk_2E0 % 2];
+    GfxPool* pool = &gGfxPools[gfxCtx->gfxPoolIndex % 2];
 
     pool->headMagic = GFXPOOL_HEAD_MAGIC;
     pool->tailMagic = GFXPOOL_TAIL_MAGIC;
@@ -123,7 +123,7 @@ GameStateOverlay* game_get_next_game_dlftbl(Game* game) {
     return NULL;
 }
 
-uintptr_t func_800D3C94_jp(uintptr_t address, UNUSED void* param) {
+uintptr_t graph_FaultAddrConv(uintptr_t address, UNUSED void* param) {
     uintptr_t addr = address;
     GameStateOverlay* gameStateOvl = &game_dlftbls[0];
     uintptr_t ramConv;
@@ -147,7 +147,7 @@ uintptr_t func_800D3C94_jp(uintptr_t address, UNUSED void* param) {
 
 void graph_ct(GraphicsContext* gfxCtx) {
     bzero(gfxCtx, sizeof(GraphicsContext));
-    gfxCtx->unk_2E0 = 0;
+    gfxCtx->gfxPoolIndex = 0;
     gfxCtx->unk_2F3 = 0;
     gfxCtx->unk_25C = &osViModeNtscLan1;
     gfxCtx->unk_2EC = 66;
@@ -157,8 +157,8 @@ void graph_ct(GraphicsContext* gfxCtx) {
     SREG(33) &= ~2;
     SREG(33) &= ~1;
     zurumode_init();
-    fault_AddClient(&sGraphFaultClient, (void*)func_800D38E0_jp, NULL, NULL);
-    fault_AddressConverterAddClient(&sGraphFaultAddrConvClient, func_800D3C94_jp, NULL);
+    fault_AddClient(&sGraphFaultClient, (void*)graph_FaultClient, NULL, NULL);
+    fault_AddressConverterAddClient(&sGraphFaultAddrConvClient, graph_FaultAddrConv, NULL);
     gfxCtx->unk_2F0 = 1;
 }
 
@@ -194,10 +194,6 @@ retry:
         fault_AddHungupAndCrashImpl("RCP is HUNG UP!!", "Oh! MY GOD!!");
     }
 }
-
-extern STACK(D_80153CC0_jp, 0x400);
-extern STACK(D_801530C0_jp, 0xC00);
-extern STACK(D_801524C0_jp, 0xC00);
 
 #ifdef NON_MATCHING
 void graph_task_set00(GraphicsContext* gfxCtx) {
@@ -329,7 +325,7 @@ u32 graph_draw_finish(GraphicsContext* gfxCtx) {
 
     err = false;
     {
-        GfxPool* pool = &D_801540C0_jp[gfxCtx->unk_2E0 & 1];
+        GfxPool* pool = &gGfxPools[gfxCtx->gfxPoolIndex & 1];
 
         if (pool->headMagic != GFXPOOL_HEAD_MAGIC) {
             fault_AddHungupAndCrash("../graph.c", 606);
@@ -379,7 +375,7 @@ void graph_main(GraphicsContext* gfxCtx, Game* game) {
         graph_task_set00(gfxCtx);
         gfxCtx->unk_2F0 = 0xF;
 
-        gfxCtx->unk_2E0++;
+        gfxCtx->gfxPoolIndex++;
         if (SREG(33) & 1) {
             SREG(33) &= ~1;
         } else {

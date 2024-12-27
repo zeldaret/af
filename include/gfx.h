@@ -57,7 +57,7 @@ typedef struct GraphicsContext {
     /* 0x2B0 */ TwoHeadGfxArena font;
     /* 0x2C0 */ TwoHeadGfxArena shadow;
     /* 0x2D0 */ TwoHeadGfxArena light;
-    /* 0x2E0 */ u32 unk_2E0;
+    /* 0x2E0 */ u32 gfxPoolIndex;
     /* 0x2E4 */ UNK_PTR unk_2E4;
     /* 0x2E8 */ UNK_TYPE1 unk_2E8[0x4];
     /* 0x2EC */ s32 unk_2EC;
