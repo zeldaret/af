@@ -286,8 +286,59 @@ void graph_task_set00(GraphicsContext* gfxCtx);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/graph_task_set00.s")
 #endif
 
-s32 graph_draw_finish(GraphicsContext* gfxCtx);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/graph_draw_finish.s")
+u32 graph_draw_finish(GraphicsContext* gfxCtx) {
+    u32 err;
+    UNUSED s32 pad[2];
+
+    OPEN_DISPS(gfxCtx);
+
+    gSPBranchList(WORK_DISP++, gfxCtx->polyOpaBuffer);
+    gSPBranchList(POLY_OPA_DISP++, gfxCtx->shadowBuffer);
+    gSPBranchList(SHADOW_DISP++, gfxCtx->polyXluBuffer);
+    gSPBranchList(POLY_XLU_DISP++, gfxCtx->lightBuffer);
+    gSPBranchList(LIGHT_DISP++, gfxCtx->fontBuffer);
+    gSPBranchList(FONT_DISP++, gfxCtx->overlayBuffer);
+
+    gDPPipeSync(OVERLAY_DISP++);
+    gDPFullSync(OVERLAY_DISP++);
+    gSPEndDisplayList(OVERLAY_DISP++);
+
+    CLOSE_DISPS(gfxCtx);
+
+    err = false;
+    {
+        GfxPool* pool = &D_801540C0_jp[gfxCtx->unk_2E0 & 1];
+
+        if (pool->headMagic != GFXPOOL_HEAD_MAGIC) {
+            fault_AddHungupAndCrash("../graph.c", 606);
+        }
+        if (pool->tailMagic != GFXPOOL_TAIL_MAGIC) {
+            err = true;
+            fault_AddHungupAndCrash("../graph.c", 614);
+        }
+    }
+
+    if (THA_GA_isCrash(&gfxCtx->polyOpa)) {
+        err = true;
+    }
+    if (THA_GA_isCrash(&gfxCtx->polyXlu)) {
+        err = true;
+    }
+    if (THA_GA_isCrash(&gfxCtx->overlay)) {
+        err = true;
+    }
+    if (THA_GA_isCrash(&gfxCtx->font)) {
+        err = true;
+    }
+    if (THA_GA_isCrash(&gfxCtx->shadow)) {
+        err = true;
+    }
+    if (THA_GA_isCrash(&gfxCtx->light)) {
+        err = true;
+    }
+
+    return err;
+}
 
 void graph_main(GraphicsContext* gfxCtx, Game* game) {
     game->unk_A4 = false;
