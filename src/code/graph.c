@@ -169,7 +169,9 @@ void graph_dt(GraphicsContext* gfxCtx) {
     fault_AddressConverterRemoveClient(&sGraphFaultAddrConvClient);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/func_800D3E14_jp.s")
+void func_800D3E14_jp(GraphicsContext* gfxCtx) {
+    osSendMesg(&gfxCtx->queue, NULL, OS_MESG_BLOCK);
+}
 
 void func_800D3E40_jp(GraphicsContext* gfxCtx) {
     static s32 sRetryCount = 100;
