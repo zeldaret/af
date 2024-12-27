@@ -198,7 +198,7 @@
       - [0x732BB0, data, code/732BB0]
       - [0x732C20, .data, code/audio]
       - [0x732C30, .data, code/game]
-      - [0x732C40, data, code/732C40]
+      - [0x732C40, .data, code/main]
       - [0x732C50, .data, code/irqmgr]
       - [0x732C70, .data, code/lb_rtc]
       - [0x732C80, .data, code/lb_reki]

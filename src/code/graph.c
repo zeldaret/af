@@ -171,7 +171,27 @@ void graph_dt(GraphicsContext* gfxCtx) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/func_800D3E14_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/func_800D3E40_jp.s")
+void func_800D3E40_jp(GraphicsContext* gfxCtx) {
+    static s32 sRetryCount = 100;
+    UNUSED s32 pad;
+    OSTimer timer;
+    OSMesg msg;
+
+retry:
+    osSetTimer(&timer, OS_USEC_TO_CYCLES(1000000), 0, &gfxCtx->queue, (OSMesg)666);
+    osRecvMesg(&gfxCtx->queue, &msg, OS_MESG_BLOCK);
+    osStopTimer(&timer);
+    if ((ResetStatus < 2) && (msg == (OSMesg)666)) {
+        if (sRetryCount >= 0) {
+            if (1) {
+                sRetryCount--;
+                func_800D8644_jp();
+            }
+            goto retry;
+        }
+        fault_AddHungupAndCrashImpl("RCP is HUNG UP!!", "Oh! MY GOD!!");
+    }
+}
 
 extern STACK(D_80153CC0_jp, 0x400);
 extern STACK(D_801530C0_jp, 0xC00);
