@@ -337,8 +337,8 @@ void play_cleanup(Game* game) {
     Game_Play* game_play = (Game_Play*)game;
 
     func_800A3304_jp(game_play);
-    game_play->state.gfxCtx->unk_2F4 = 0;
-    game_play->state.gfxCtx->unk_2F8 = 0;
+    game_play->state.gfxCtx->callback = NULL;
+    game_play->state.gfxCtx->callbackArg = NULL;
     game_play->submenu.unk_00 = 0;
     PreRender_cleanup(&game_play->unk_1DC0);
     CollisionCheck_dt(game_play, &game_play->unk_2138);

@@ -2,6 +2,7 @@
 #define GFX_H
 
 #include "ultra64.h"
+#include "PR/sched.h"
 #include "attributes.h"
 #include "alignment.h"
 #include "THA_GA.h"
@@ -21,7 +22,7 @@ typedef struct GfxPool {
     /* 0x00008 */ Gfx polyOpaBuffer[0x29E0];
     /* 0x14F08 */ Gfx polyXluBuffer[0x800];
     /* 0x18F08 */ Gfx overlayBuffer[0x400];
-    /* 0x1AF08 */ Gfx unk18CBuffer[0x80];
+    /* 0x1AF08 */ Gfx workBuffer[0x80];
     /* 0x1B308 */ UNK_TYPE1 unk1B308[0x100];
     /* 0x1B408 */ Gfx fontBuffer[0x700];
     /* 0x1EC08 */ Gfx shadowBuffer[0x200];
@@ -41,11 +42,12 @@ typedef struct GraphicsContext {
     /* 0x020 */ s32 unk_20;
     /* 0x024 */ UNK_TYPE1 unk_024[0x20];
     /* 0x044 */ OSMesg msgBuff[8];
-    /* 0x064 */ UNK_TYPE1 unk_064[0x4];
+    /* 0x064 */ OSMesgQueue* unk_064;
     /* 0x068 */ OSMesgQueue queue;
-    /* 0x080 */ UNK_TYPE1 unk_080[0x108];
-    /* 0x188 */ Gfx* unk18CBuffer;
-    /* 0x18C */ TwoHeadGfxArena unk18C;
+    /* 0x080 */ OSScTask task;
+    /* 0x0D8 */ UNK_TYPE1 unk_0E8[0x188 - 0xD8];
+    /* 0x188 */ Gfx* workBuffer;
+    /* 0x18C */ TwoHeadGfxArena work;
     /* 0x19C */ UNK_TYPE1 unk_19C[0xC0];
     /* 0x25C */ OSViMode* unk_25C;
     /* 0x260 */ UNK_TYPE1 unk_260[0x20];
@@ -63,11 +65,11 @@ typedef struct GraphicsContext {
     /* 0x2F1 */ UNK_TYPE1 unk_2F1[0x1];
     /* 0x2F2 */ u8 unk_2F2;
     /* 0x2F3 */ u8 unk_2F3;
-    /* 0x2F4 */ s32 unk_2F4;
-    /* 0x2F8 */ s32 unk_2F8;
+    /* 0x2F4 */ void (*callback)(struct GraphicsContext*, void*);
+    /* 0x2F8 */ void* callbackArg;
     /* 0x2FC */ f32 unk_2FC;
     /* 0x300 */ f32 unk_300;
-    /* 0x304 */ UNK_TYPE1 unk_304[0x4];
+    /* 0x304 */ Gfx* unk_304;
 } GraphicsContext; // size = 0x308
 
 #define OVERLAY_DISP __gfxCtx->overlay.p
@@ -76,6 +78,7 @@ typedef struct GraphicsContext {
 #define FONT_DISP __gfxCtx->font.p
 #define SHADOW_DISP __gfxCtx->shadow.p
 #define LIGHT_DISP __gfxCtx->light.p
+#define WORK_DISP __gfxCtx->work.p
 
 // __gfxCtx shouldn't be used directly.
 // Use the DISP macros defined above when writing to display buffers.
