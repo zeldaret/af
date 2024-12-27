@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "m_collision_bg.h"
+#include "game.h"
 
 #define RANDOM_FIELD_DIRECT_ERROR 100
 
@@ -70,15 +71,15 @@ typedef struct RandomFieldGate {
 s32* mRF_StepNo(void);
 s32* mRF_TryCnt(void);
 // void mRF_PrintDebug(gfxprint* gfxprint);
-// void mRF_MakeRandomField();
+void mRF_MakeRandomField(UNK_PTR combi_table, UNK_PTR combi_info, s32 combi_count, Game* game);
 u32 mRF_Type2BlockInfo(u8 blockType);
 // u8 mRF_Info2BlockType(u32 blockInfo);
-s32 mRF_GateType2GateCount(s32 gateType); // TODO: comment back out after decomp
+// s32 mRF_GateType2GateCount(s32 gateType);
 s32 mRF_SearchPond(s32* utX, s32* utZ, s32 blockX, s32 blockZ);
-s32 mRF_Attr2BeastRoadAttr(s32 attribute); // TODO: comment back out after decomp
+// s32 mRF_Attr2BeastRoadAttr(s32 attribute);
 // s32 mRF_BlockTypeDirect2GateType(u8 blockType, s32 direct);
 RandomFieldGate* mRF_BlockTypeDirect2GateData(s32* gateCount, u8 blockType, s32 direct);
-s32 mRF_BlockInf2CheckBeastRoad(u8 blockType, mCoBG_unkStructUnion* collisionData);  // TODO: comment back out after decomp
+// s32 mRF_BlockInf2CheckBeastRoad(u8 blockType, mCoBG_unkStructUnion* collisionData);
 void mRF_CheckBeastRoad();
 
 #endif

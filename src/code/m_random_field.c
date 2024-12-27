@@ -7,9 +7,11 @@
 #include "m_malloc.h"
 #include "gamealloc.h"
 #include "game.h"
+#include "ovlmgr.h"
+#include "segment_symbols.h"
 
 // Original name unknown. Pointer to malloc'd memory in mRF_MakeRandomField
-UNK_PTR D_8010C6C0_jp = NULL;
+UNK_PTR mRF_AllocatedBuf = NULL;
 
 // Original name unknown.
 void* mRF_Malloc(Game* game, size_t size) {
@@ -711,7 +713,33 @@ u8 mRF_gate_info2[mFM_BLOCK_TYPE_NUM][RANDOM_FIELD_DIRECT_NUM] = {
     }
 };
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_random_field/mRF_MakeRandomField.s")
+#if 0
+extern RomOffset D_81AA60;
+extern RomOffset D_81D540;
+extern s32 D_80925550_jp;
+#endif
+extern void mRF_MakeRandomField_ovl(UNK_PTR combi_table, UNK_PTR combi_info, s32 combi_count, Game* game);
+extern s32 mRF_GetRandom(s32 max);
+// s32 mRF_GetRandom(s32 max) {
+//     return RANDOM(max);
+// }
+typedef void (*MakeRandomFieldOvlFunc)(UNK_PTR combi_table, UNK_PTR combi_info, s32 combi_count);
+
+void mRF_MakeRandomField(UNK_PTR combi_table, UNK_PTR combi_info, s32 combi_count, Game* game) {
+    MakeRandomFieldOvlFunc functionPtr;
+    size_t bufferSize = SEGMENT_VRAM_SIZE(m_random_field_ovl);
+
+    mRF_AllocatedBuf = mRF_Malloc(game, bufferSize);
+    stepNo = 0;
+    tryCnt = 0;
+
+    if (mRF_AllocatedBuf != NULL) {
+        ovlmgr_Load(SEGMENT_ROM_START(m_random_field_ovl), SEGMENT_ROM_END(m_random_field_ovl), SEGMENT_VRAM_START(m_random_field_ovl), SEGMENT_VRAM_END(m_random_field_ovl), mRF_AllocatedBuf);
+        functionPtr = (MakeRandomFieldOvlFunc)SEGMENT_VRAM_RESOLVE_ADDR(m_random_field_ovl, mRF_AllocatedBuf, mRF_MakeRandomField_ovl);
+        functionPtr(combi_table, combi_info, combi_count);
+        mRF_Free(game, mRF_AllocatedBuf);
+    }
+}
 
 u32 mRF_Type2BlockInfo(u8 blockType) {
     if (blockType < mFM_BLOCK_TYPE_NUM) {
@@ -788,6 +816,7 @@ RandomFieldGate* mRF_BlockTypeDirect2GateData(s32* gateCount, u8 blockType, s32 
     return mRF_gate_correct_info[type][direct];
 }
 
+// TODO: rename unk6 in mCoBG_unkStructUnion to unitAttribute
 s32 mRF_BlockInf2CheckBeastRoad(u8 blockType, mCoBG_unkStructUnion* collisionData) {
     // fairly specific variable declaration order required for match
     s32 colUt;
