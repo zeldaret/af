@@ -1674,6 +1674,8 @@ extern u8 D_80113854_jp;
 
 // .bss
 
+extern u16 D_80000400[];
+
 // extern UNK_TYPE B_8011B830_jp;
 // extern UNK_TYPE B_8011B83C_jp;
 
@@ -1972,13 +1974,6 @@ extern UNK_TYPE B_80145FFC_jp;
 // extern UNK_TYPE B_80146044_jp;
 // extern UNK_TYPE B_80146050_jp;
 // extern UNK_TYPE B_80146058_jp;
-// extern UNK_TYPE B_80146060_jp;
-// extern UNK_TYPE B_80146064_jp;
-// extern UNK_TYPE B_80146068_jp;
-// extern UNK_TYPE B_8014606C_jp;
-// extern UNK_TYPE B_80146070_jp;
-// extern UNK_TYPE B_80146080_jp;
-// extern UNK_TYPE B_80146084_jp;
 // extern UNK_TYPE B_FLT_80146090_jp;
 // extern UNK_TYPE B_FLT_80146094_jp;
 // extern UNK_TYPE B_FLT_80146098_jp;
