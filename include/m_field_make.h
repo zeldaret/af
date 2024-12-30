@@ -128,6 +128,12 @@ typedef struct Foreground {
     /* 0x000 */ u16 items[UT_Z_NUM][UT_X_NUM];
 } Foreground; // size = 0x200
 
+typedef struct FieldMakeComboInfo {
+    /* 0x00 */ u16 bgId;
+    /* 0x02 */ u16 fgId;
+    /* 0x05 */ u8 blockType;
+} FieldMakeComboInfo; // size = 0x6
+
 typedef struct FieldMakeMoveActor {
     /* 0x0 */ u16 nameId;
     /* 0x2 */ s8 utX;

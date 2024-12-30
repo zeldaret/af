@@ -7034,12 +7034,23 @@
     align: 0x1000
   - [0x11E1A20]
 
-  - name: segment_011E2000
-    type: bin
+  - name: data_combi
+    dir: combi
+    type: code
     start: 0x11E2000
-    # vram:
+    vram: 0x06000000
+    exclusive_ram_id: segment_06
     compress: True
     align: 0x1000
+    symbol_name_format: $VRAM_$ROM
+    subsegments:
+      - [auto, c, data_combi]
+      - start: 0x11E2000
+        type: .data
+        name: data_combi
+        subsegments:
+          - [0x11E2000, combi, data_combi_table]
+          - [0x11E2684]
   - [0x11E2690]
 
   - name: segment_011E3000

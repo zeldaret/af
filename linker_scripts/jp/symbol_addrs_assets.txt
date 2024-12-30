@@ -1270,6 +1270,8 @@ act_house_goki_model_2 = 0x6000188; // segment:act_house_goki rom:0x1147188
 act_house_goki_pal = 0x6000250; // segment:act_house_goki rom:0x1147250
 act_house_goki_tex = 0x6000270; // segment:act_house_goki rom:0x1147270
 
+data_combi_table = 0x6000000; // segment:data_combi rom:0x11E2000 size:0x684
+
 act_bee_v = 0x6000000; // segment:act_bee rom:0x11F4000 size:0x3A0
 act_bee_C_model = 0x60003A0; // segment:act_bee rom:0x11F43A0
 act_bee_B_model = 0x60004B8; // segment:act_bee rom:0x11F44B8
@@ -1350,3 +1352,4 @@ int_sum_clchest03_door_model = 0x6000D30; // segment:int_sum_clchest03 rom:0x15D
 int_sum_clchest03_base_model = 0x6000DF0; // segment:int_sum_clchest03 rom:0x15D0DF0
 cKF_je_r_int_sum_clchest03_tbl = 0x6000F38; // segment:int_sum_clchest03 rom:0x15D0F38
 cKF_bs_r_int_sum_clchest03 = 0x6000F5C; // segment:int_sum_clchest03 rom:0x15D0F5C
+
