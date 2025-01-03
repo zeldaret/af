@@ -94,7 +94,7 @@
       - [0x6F5390, c, code/TwoHeadArena]
       - [0x6F5550, c, code/audio]
       - [0x6F6230, c, code/audioMgr]
-      - [0x6F68B0, asm, code/cfbinfo]
+      - [0x6F68B0, c, code/cfbinfo]
       - [0x6F6AA0, c, code/game]
       - [0x6F73C0, c, code/gamealloc]
       - [0x6F7500, c, code/gfxalloc]
