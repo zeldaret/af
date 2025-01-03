@@ -15,7 +15,7 @@ typedef struct cfbStruct {
     /* 0x10 */ s32 unk_10;
     /* 0x14 */ f32 unk_14;
     /* 0x18 */ f32 unk_18;
-} cfbStruct; // size >= 0x1C
+} cfbStruct; // size = 0x1C
 
 
 cfbStruct* func_800D2C10_jp(void);

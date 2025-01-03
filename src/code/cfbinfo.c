@@ -1,11 +1,12 @@
 #include "cfbinfo.h"
-#include "global.h"
 
+#include "libc/stdbool.h"
 #include "libc64/sleep.h"
 #include "libu64/debug.h"
 
 #include "idle.h"
 #include "irqmgr.h"
+#include "macros.h"
 #include "viconfig.h"
 #include "6FD410.h"
 
@@ -18,7 +19,7 @@ cfbStruct* func_800D2C10_jp(void) {
 
 retry:
     i = 0;
-    while(true) {
+    while (true) {
         cfb = &B_80144FC0_jp[i];
         if (cfb->unk_08 == 0) {
             break;
@@ -37,6 +38,7 @@ retry:
     bzero(cfb, sizeof(cfbStruct));
     cfb->unk_08 = 1;
 
+    // (reservation)
     (void)"(予約)";
     return cfb;
 }
