@@ -1,9 +1,6 @@
 #include "graph.h"
 #include "global.h"
 
-#include "6FB340.h"
-#include "6FD190.h"
-#include "6FD410.h"
 #include "audio.h"
 #include "buffers.h"
 #include "cfbinfo.h"
@@ -18,6 +15,9 @@
 #include "speed_meter.h"
 #include "sys_ucode.h"
 #include "zurumode.h"
+#include "6FB340.h"
+#include "6FD190.h"
+#include "6FD410.h"
 
 #include "overlays/gamestates/ovl_first_game/first_game.h"
 #include "overlays/gamestates/ovl_select/m_select.h"
@@ -195,7 +195,6 @@ retry:
     }
 }
 
-#ifdef NON_MATCHING
 void graph_task_set00(GraphicsContext* gfxCtx) {
     UNUSED s32 pad;
     OSTask* task = &gfxCtx->task.list;
@@ -220,6 +219,9 @@ void graph_task_set00(GraphicsContext* gfxCtx) {
         } else {
             task->t.type = M_GFXTASK;
             task->t.flags = OS_SC_DRAM_DLIST;
+
+            OPEN_DISPS(gfxCtx);
+
             task->t.ucode_boot = ucode_GetRspBootTextStart();
             task->t.ucode_boot_size = ucode_GetRspBootTextSize();
             task->t.ucode = ucode_GetPolyTextStart();
@@ -229,10 +231,9 @@ void graph_task_set00(GraphicsContext* gfxCtx) {
             task->t.dram_stack = D_80153CC0_jp;
             task->t.dram_stack_size = sizeof(D_80153CC0_jp);
 
-            OPEN_DISPS(gfxCtx);
             temp_a1 = (uintptr_t)POLY_OPA_DISP;
             temp_a0 = ALIGN16(temp_a1);
-            temp_a2 = ((THA_GA_getFreeBytes(&gfxCtx->polyOpa) - temp_a0) + temp_a1) & ~0xF;
+            temp_a2 = ALIGN16(THA_GA_getFreeBytes(&gfxCtx->polyOpa) - temp_a0 + temp_a1 - 0xF);
 
             if (((uintptr_t)(D_801524C0_jp + ARRAY_COUNT(D_801524C0_jp)) - (uintptr_t)D_801524C0_jp) < temp_a2) {
                 task->t.output_buff = (u64*)temp_a0;
@@ -263,29 +264,29 @@ void graph_task_set00(GraphicsContext* gfxCtx) {
         scTask->msg = NULL;
 
         {
-            cfbStruct* temp_v0_3 = func_800D2C10_jp();
+            cfbStruct* cfb = func_800D2C10_jp();
 
-            temp_v0_3->unk_00 = gfxCtx->unk_2E4;
-            temp_v0_3->unk_04 = NULL;
-            temp_v0_3->unk_09 = game_GameFrame;
-            temp_v0_3->unk_0C = NULL;
+            cfb->unk_00 = gfxCtx->unk_2E4;
+            cfb->unk_04 = NULL;
+            cfb->unk_09 = game_GameFrame;
+            cfb->unk_0C = NULL;
             if (scTask->flags & OS_SC_SWAPBUFFER) {
-                temp_v0_3->unk_04 = gfxCtx->unk_2E4;
+                cfb->unk_04 = gfxCtx->unk_2E4;
                 if (gfxCtx->unk_2F2 != 0) {
                     gfxCtx->unk_2F2 = 0;
-                    temp_v0_3->unk_0C = gfxCtx->unk_25C;
-                    temp_v0_3->unk_10 = gfxCtx->unk_2EC;
-                    temp_v0_3->unk_14 = gfxCtx->unk_2FC;
-                    temp_v0_3->unk_18 = gfxCtx->unk_300;
+                    cfb->unk_0C = gfxCtx->unk_25C;
+                    cfb->unk_10 = gfxCtx->unk_2EC;
+                    cfb->unk_14 = gfxCtx->unk_2FC;
+                    cfb->unk_18 = gfxCtx->unk_300;
                 }
                 if (B_80146080_jp == 1) {
-                    B_80146084_jp = temp_v0_3->unk_04;
-                    temp_v0_3->unk_0B = 1;
+                    B_80146084_jp = cfb->unk_04;
+                    cfb->unk_0B = 1;
                     B_80146080_jp = 2;
                 }
             }
 
-            scTask->framebuffer = temp_v0_3;
+            scTask->framebuffer = cfb;
         }
 
         while (gfxCtx->queue.validCount != 0) {
@@ -299,10 +300,6 @@ void graph_task_set00(GraphicsContext* gfxCtx) {
         }
     }
 }
-#else
-void graph_task_set00(GraphicsContext* gfxCtx);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/graph/graph_task_set00.s")
-#endif
 
 u32 graph_draw_finish(GraphicsContext* gfxCtx) {
     u32 err;

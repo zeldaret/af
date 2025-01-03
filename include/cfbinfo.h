@@ -10,7 +10,7 @@ typedef struct cfbStruct {
     /* 0x08 */ UNK_TYPE1 unk_08[0x1];
     /* 0x09 */ u8 unk_09;
     /* 0x0A */ u8 unk_0A;
-    /* 0x0B */ u8 unk_0B;
+    /* 0x0B */ s8 unk_0B;
     /* 0x0C */ OSViMode* unk_0C;
     /* 0x10 */ s32 unk_10;
     /* 0x14 */ f32 unk_14;
