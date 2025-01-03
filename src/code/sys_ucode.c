@@ -2,23 +2,23 @@
 
 #include "sys_ucode.h"
 
-s64* poly_tbl[] = { gspF3DZEX2_NoN_PosLight_fifoTextStart, gspF3DZEX2_NoN_PosLight_fifoDataStart };
+u64* poly_tbl[] = { gspF3DZEX2_NoN_PosLight_fifoTextStart, gspF3DZEX2_NoN_PosLight_fifoDataStart };
 
 u64* sprite_tbl[] = { gspS2DEX2_fifoTextStart, gspS2DEX2_fifoDataStart };
 
-s64* ucode_GetRspBootTextStart() {
-    return rspbootTextStart;
+u64* ucode_GetRspBootTextStart() {
+    return (u64*)rspbootTextStart;
 }
 
 size_t ucode_GetRspBootTextSize() {
     return ((uintptr_t)rspbootTextEnd - (uintptr_t)rspbootTextStart);
 }
 
-s64* ucode_GetPolyTextStart() {
+u64* ucode_GetPolyTextStart() {
     return poly_tbl[0];
 }
 
-s64* ucode_GetPolyDataStart() {
+u64* ucode_GetPolyDataStart() {
     return poly_tbl[1];
 }
 

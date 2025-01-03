@@ -1,4 +1,5 @@
 #include "second_game.h"
+#include "libc/stdbool.h"
 #include "overlays/gamestates/ovl_trademark/m_trademark.h"
 #include "overlays/gamestates/ovl_cpedit/m_cpedit.h"
 #include "69CB30.h"
@@ -30,7 +31,7 @@ void second_game_main(Game* game) {
         SET_NEXT_GAMESTATE(&secondGame->state, trademark_init, sizeof(Game_Trademark));
     }
 
-    secondGame->state.unk9E = 1;
+    secondGame->state.unk_9E = true;
 }
 
 void second_game_cleanup(UNUSED Game* game) {

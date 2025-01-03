@@ -8,7 +8,7 @@
 // void func_800D78F4_jp();
 // void func_800D7948_jp();
 // void func_800D79BC_jp();
-// void func_800D79F4_jp();
+void func_800D79F4_jp(void);
 // void func_800D7AE0_jp();
 // void func_800D7B60_jp();
 // void func_800D7BAC_jp();
@@ -22,7 +22,7 @@
 // void func_800D8500_jp();
 void func_800D85EC_jp(void);
 void func_800D8618_jp(void);
-// void func_800D8644_jp();
+void func_800D8644_jp(void);
 // void func_800D8670_jp();
 void func_800D87C0_jp(void*, OSPri);
 
