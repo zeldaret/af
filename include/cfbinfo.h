@@ -18,7 +18,7 @@ typedef struct cfbStruct {
 } cfbStruct; // size >= 0x1C
 
 
-void func_800D2C10_jp(void);
+cfbStruct* func_800D2C10_jp(void);
 void func_800D2CB4_jp(cfbStruct* cfb);
 void func_800D2CDC_jp(cfbStruct* cfb);
 

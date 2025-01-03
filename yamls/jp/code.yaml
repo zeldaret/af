@@ -271,7 +271,7 @@
       - [0x73B880, .rodata, code/m_roll_lib]
       - [0x73B890, .rodata, code/audio]
       - [0x73B920, .rodata, code/audioMgr]
-      - [0x73B960, rodata, code/73B960]
+      - [0x73B960, .rodata, code/cfbinfo]
       - [0x73B980, .rodata, code/game]
       - [0x73B9C0, rodata, code/73B9C0]
       - [0x73BA50, .rodata, code/irqmgr]
@@ -325,7 +325,7 @@
       - { start: 0x73F4D0, type: .bss, vram: 0x80144670, name: code/m_submenu }
       - { start: 0x73F4D0, type: bss, vram: 0x80144690, name: code/80144690 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80144D20, name: code/audioMgr }
-      - { start: 0x73F4D0, type: bss, vram: 0x80144FC0, name: code/80144FC0 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x80144FC0, name: code/cfbinfo }
       - { start: 0x73F4D0, type: .bss, vram: 0x80145020, name: code/game }
       - { start: 0x73F4D0, type: bss, vram: 0x80145060, name: code/80145060 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80145390, name: code/irqmgr }

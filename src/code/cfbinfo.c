@@ -1,12 +1,45 @@
 #include "cfbinfo.h"
 #include "global.h"
 
+#include "libc64/sleep.h"
+#include "libu64/debug.h"
+
 #include "idle.h"
 #include "irqmgr.h"
 #include "viconfig.h"
 #include "6FD410.h"
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/cfbinfo/func_800D2C10_jp.s")
+cfbStruct B_80144FC0_jp[3];
+
+cfbStruct* func_800D2C10_jp(void) {
+    s32 i;
+    cfbStruct* cfb;
+    s32 attempts = 0;
+
+retry:
+    i = 0;
+    while(true) {
+        cfb = &B_80144FC0_jp[i];
+        if (cfb->unk_08 == 0) {
+            break;
+        }
+
+        i++;
+        if (i == ARRAY_COUNT(B_80144FC0_jp)) {
+            if (attempts++ > 10000) {
+                _dbg_hungup("../cfbinfo.c", 0x27);
+            }
+            usleep(100);
+            (void)"";
+            goto retry;
+        }
+    }
+    bzero(cfb, sizeof(cfbStruct));
+    cfb->unk_08 = 1;
+
+    (void)"(予約)";
+    return cfb;
+}
 
 void func_800D2CB4_jp(cfbStruct* cfb) {
     if (cfb->unk_0B != 0) {
