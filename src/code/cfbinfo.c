@@ -10,23 +10,23 @@
 #include "viconfig.h"
 #include "6FD410.h"
 
-cfbStruct B_80144FC0_jp[3];
+CfbInfo sCfbInfos[3];
 
-cfbStruct* func_800D2C10_jp(void) {
+CfbInfo* func_800D2C10_jp(void) {
     s32 i;
-    cfbStruct* cfb;
+    CfbInfo* cfb;
     s32 attempts = 0;
 
 retry:
     i = 0;
     while (true) {
-        cfb = &B_80144FC0_jp[i];
-        if (cfb->unk_08 == 0) {
+        cfb = &sCfbInfos[i];
+        if (cfb->state == 0) {
             break;
         }
 
         i++;
-        if (i == ARRAY_COUNT(B_80144FC0_jp)) {
+        if (i == ARRAY_COUNT(sCfbInfos)) {
             if (attempts++ > 10000) {
                 _dbg_hungup("../cfbinfo.c", 0x27);
             }
@@ -35,39 +35,39 @@ retry:
             goto retry;
         }
     }
-    bzero(cfb, sizeof(cfbStruct));
-    cfb->unk_08 = 1;
+    bzero(cfb, sizeof(CfbInfo));
+    cfb->state = 1;
 
     // (reservation)
     (void)"(予約)";
     return cfb;
 }
 
-void func_800D2CB4_jp(cfbStruct* cfb) {
+void func_800D2CB4_jp(CfbInfo* cfb) {
     if (cfb->unk_0B != 0) {
         cfb->unk_0B = 0;
         B_80146080_jp = 3;
     }
-    cfb->unk_08 = 0;
+    cfb->state = 0;
 }
 
-void func_800D2CDC_jp(cfbStruct* cfb) {
-    if ((ResetStatus < 2) && (cfb->unk_04 != NULL)) {
-        osViSwapBuffer(cfb->unk_04);
+void func_800D2CDC_jp(CfbInfo* cfb) {
+    if ((ResetStatus < 2) && (cfb->swapBuffer != NULL)) {
+        osViSwapBuffer(cfb->swapBuffer);
         cfb->unk_0A = cfb->unk_09;
-        cfb->unk_08 = 4;
-        if (cfb->unk_0C != NULL) {
-            gViConfigMode = *cfb->unk_0C;
-            gViConfigFeatures = cfb->unk_10;
-            gViConfigXScale = cfb->unk_14;
-            gViConfigYScale = cfb->unk_18;
-            if (gViConfigBlack == 0) {
-                osViSetMode(cfb->unk_0C);
-                osViSetSpecialFeatures(cfb->unk_10);
-                osViSetXScale(cfb->unk_14);
-                osViSetYScale(cfb->unk_18);
+        cfb->state = 4;
+        if (cfb->viMode != NULL) {
+            gViConfigMode = *cfb->viMode;
+            gViConfigFeatures = cfb->viFeatures;
+            gViConfigXScale = cfb->xScale;
+            gViConfigYScale = cfb->yScale;
+            if (!gViConfigBlack) {
+                osViSetMode(cfb->viMode);
+                osViSetSpecialFeatures(cfb->viFeatures);
+                osViSetXScale(cfb->xScale);
+                osViSetYScale(cfb->yScale);
             }
-            if (gViConfigBlack == 0) {}
+            if (!gViConfigBlack) {}
         }
     } else {
         func_800D2CB4_jp(cfb);
