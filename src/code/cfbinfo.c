@@ -4,10 +4,17 @@
 #include "idle.h"
 #include "irqmgr.h"
 #include "viconfig.h"
+#include "6FD410.h"
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/cfbinfo/func_800D2C10_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/cfbinfo/func_800D2CB4_jp.s")
+void func_800D2CB4_jp(cfbStruct* cfb) {
+    if (cfb->unk_0B != 0) {
+        cfb->unk_0B = 0;
+        B_80146080_jp = 3;
+    }
+    cfb->unk_08 = 0;
+}
 
 void func_800D2CDC_jp(cfbStruct* cfb) {
     if ((ResetStatus < 2) && (cfb->unk_04 != NULL)) {
