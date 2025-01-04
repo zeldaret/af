@@ -5,8 +5,11 @@
 
 extern UNK_TYPE2 D_80104790_jp;
 extern UNK_TYPE D_80104794_jp;
-
 extern D80104798Struct* D_80104798_jp;
+
+extern PakInfo* D_801047A4_jp;
+
+extern PakInfo B_80137960_jp;
 extern B80137C40Struct B_80137C40_jp;
 
 
@@ -105,7 +108,9 @@ UNK_RET mCPk_InitPak(UNK_TYPE arg0) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_8007A008_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/mCPk_get_pkinfo.s")
+PakInfo* mCPk_get_pkinfo(void) {
+    return D_801047A4_jp;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_8007A080_jp.s")
 
