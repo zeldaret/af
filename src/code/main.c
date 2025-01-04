@@ -1,11 +1,11 @@
 #include "main.h"
-#include "6FB340.h"
-#include "6FD190.h"
+
 #include "audioMgr.h"
 #include "code_variables.h"
 #include "fault.h"
 #include "game.h"
 #include "getcurrentms.h"
+#include "gfx.h"
 #include "graph.h"
 #include "irqmgr.h"
 #include "libu64/stackcheck.h"
@@ -19,6 +19,8 @@
 #include "sys_stacks.h"
 #include "system_heap.h"
 #include "zurumode.h"
+#include "6FB340.h"
+#include "6FD190.h"
 
 OSThread graphThread;
 StackEntry graphStackInfo;
@@ -66,7 +68,8 @@ void func_800D64E0_jp(void) {
 
                 unk9C = (game_class_p != NULL) ? game_class_p->unk_9C : 0;
 
-                FaultDrawer_DrawText(24, 16, "GRAPH INF.LOOP %2d %3d %3d %6lu", B_80145370_jp, unk9D, unk9C, graphTime);
+                FaultDrawer_DrawText(24, 16, "GRAPH INF.LOOP %2d %3d %3d %6lu", graph_class.unk_2F0, unk9D, unk9C,
+                                     graphTime);
                 fault_DrawStackTrace(&graphThread, 32, 26, 10);
             }
             if (audioReg != 0) {

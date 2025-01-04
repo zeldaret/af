@@ -98,7 +98,7 @@
       - [0x6F6AA0, c, code/game]
       - [0x6F73C0, c, code/gamealloc]
       - [0x6F7500, c, code/gfxalloc]
-      - [0x6F7580, asm, code/graph]
+      - [0x6F7580, c, code/graph]
       - [0x6F83B0, c, code/irqmgr]
       - [0x6F8A60, c, code/lb_rtc]
       - [0x6F9B10, c, code/lb_reki]
@@ -198,7 +198,7 @@
       - [0x732BB0, data, code/732BB0]
       - [0x732C20, .data, code/audio]
       - [0x732C30, .data, code/game]
-      - [0x732C40, data, code/732C40]
+      - [0x732C40, .data, code/main]
       - [0x732C50, .data, code/irqmgr]
       - [0x732C70, .data, code/lb_rtc]
       - [0x732C80, .data, code/lb_reki]
@@ -273,7 +273,7 @@
       - [0x73B920, .rodata, code/audioMgr]
       - [0x73B960, .rodata, code/cfbinfo]
       - [0x73B980, .rodata, code/game]
-      - [0x73B9C0, rodata, code/73B9C0]
+      - [0x73B9C0, .rodata, code/graph]
       - [0x73BA50, .rodata, code/irqmgr]
       - [0x73BA70, .rodata, code/lb_rtc]
       - [0x73BB10, .rodata, code/main]
@@ -327,7 +327,7 @@
       - { start: 0x73F4D0, type: .bss, vram: 0x80144D20, name: code/audioMgr }
       - { start: 0x73F4D0, type: .bss, vram: 0x80144FC0, name: code/cfbinfo }
       - { start: 0x73F4D0, type: .bss, vram: 0x80145020, name: code/game }
-      - { start: 0x73F4D0, type: bss, vram: 0x80145060, name: code/80145060 }
+      - { start: 0x73F4D0, type: bss, vram: 0x80145060, name: code/graph }
       - { start: 0x73F4D0, type: .bss, vram: 0x80145390, name: code/irqmgr }
       - { start: 0x73F4D0, type: .bss, vram: 0x80145620, name: code/lb_rtc}
       - { start: 0x73F4D0, type: .bss, vram: 0x80145630, name: code/main}

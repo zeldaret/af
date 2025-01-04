@@ -10,7 +10,7 @@ UNK_PTR func_800D97A0_jp(u32 arg0);
 UNK_PTR func_800D97F8_jp(u32 arg0);
 void func_800D986C_jp(s32 arg0);
 
-extern u32 B_80146080_jp;
+extern s32 B_80146080_jp;
 extern UNK_PTR B_80146084_jp;
 
 #endif
