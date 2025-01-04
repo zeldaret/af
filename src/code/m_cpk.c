@@ -84,8 +84,11 @@ UNK_RET func_8007920C_jp(PakInfo* info, B80137C40Struct* arg1);
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_800792FC_jp.s")
 
-void func_80079378_jp(PrivateInfo* priv);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079378_jp.s")
+void func_80079378_jp(PrivateInfo* priv) {
+    if (priv != NULL) {
+        mem_copy((void*)&B_80137C40_jp.unk_0000.priv, (void*)priv, sizeof(PrivateInfo));
+    }
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_800793A8_jp.s")
 
