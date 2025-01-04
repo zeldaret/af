@@ -12,8 +12,9 @@ extern PakInfo* D_801047A4_jp;
 extern PakInfo B_80137960_jp;
 extern B80137C40Struct B_80137C40_jp;
 
-
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/mCPk_PakOpen.s")
+UNK_RET mCPk_PakOpen(PakInfo* info, s32 arg1) {
+    return func_800CD68C_jp(&info->pfs, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80078EB4_jp.s")
 
@@ -38,7 +39,7 @@ UNK_RET mCPk_InitPak(UNK_TYPE arg0) {
 
     sp2C = mCPk_get_pkinfo();
     sp2C->unk_00 = 0;
-    
+
     sp28 = &sp2C->unk_74;
     bzero(sp28, sizeof(PakInfo74Struct));
 

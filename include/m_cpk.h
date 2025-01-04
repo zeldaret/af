@@ -32,13 +32,14 @@ typedef struct B80137C40Struct {
 
 typedef struct PakInfo {
     /* 0x00 */ UNK_TYPE unk_00;
-    /* 0x04 */ UNK_TYPE1 unk_04[0x6C];
+    /* 0x04 */ OSPfs pfs;
+    /* 0x6C */ UNK_TYPE1 unk_6C[0x4];
     /* 0x70 */ s32 unk_70;
     /* 0x74 */ PakInfo74Struct unk_74;
     /* 0x90 */ PakInfo94Struct unk_94[16];
 } PakInfo; // size >= 0x294
 
-s32 mCPk_PakOpen(PakInfo* info, s32 arg1);
+UNK_RET mCPk_PakOpen(PakInfo* info, s32 arg1);
 // void func_80078EB4_jp();
 // void func_80078EE0_jp();
 // void func_80078F08_jp();
