@@ -110,6 +110,7 @@ UNK_RET func_8007920C_jp(PakInfo* info, B80137C40Struct* arg1) {
     return var_v0;
 }
 
+UNK_RET func_800792FC_jp(PakInfo* info, B80137C40Struct* arg1);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_800792FC_jp.s")
 
 void func_80079378_jp(PrivateInfo* priv) {
@@ -130,7 +131,29 @@ s32 mCPk_SavePak(PrivateInfo* priv, Animal_c* animal, PakInfo* info) {
     return func_8007920C_jp(info, &B_80137C40_jp);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_8007942C_jp.s")
+s32 func_8007942C_jp(PrivateInfo* priv, Animal_c* animal, PakInfo* info) {
+    s32 sp1C;
+
+    func_8007919C_jp(info, 0);
+    sp1C = func_800792FC_jp(info, &B_80137C40_jp);
+
+    if (sp1C == 1) {
+        B_80137C40_jp.unk_1204 = 1;
+    }
+
+    if (sp1C == 1) {
+        if (mPr_CheckPrivate(&B_80137C40_jp.unk_0000.priv) == TRUE) {
+            mem_copy((void*)priv, (void*)&B_80137C40_jp.unk_0000.priv, sizeof(PrivateInfo));
+            mem_copy((void*)animal, (void*)&B_80137C40_jp.unk_0000.animal, sizeof(Animal_c));
+        } else {
+            sp1C = 0;
+        }
+    } else {
+        sp1C = 0;
+    }
+
+    return sp1C;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_800794E4_jp.s")
 
