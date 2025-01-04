@@ -13,7 +13,9 @@ typedef struct D80104798Struct {
 } D80104798Struct; // size 0x10
 
 typedef struct PakInfo74Struct {
-    /* 0x00 */ UNK_TYPE1 unk_00[0xE];
+    /* 0x00 */ s32 unk_00;
+    /* 0x04 */ UNK_TYPE1 unk_04[0x6];
+    /* 0x0A */ char unk_0A[4];
     /* 0x0E */ D80104798Struct unk_0E;
     /* 0x1E */ UNK_TYPE1 unk_1E[0x2];
 } PakInfo74Struct; // size = 0x20

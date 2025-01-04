@@ -184,8 +184,6 @@ extern s32 CanLookGokiCount;
 // extern UNK_TYPE D_80104688_jp;
 // extern UNK_TYPE D_80104690_jp;
 
-// extern UNK_TYPE D_8010479C_jp;
-
 // extern UNK_TYPE D_801047A8_jp;
 // extern UNK_TYPE D_801047B0_jp;
 // extern UNK_TYPE D_801047B8_jp;
@@ -1117,9 +1115,6 @@ extern u8 D_80113854_jp;
 // extern UNK_TYPE RO_FLT_801167EC_jp;
 // extern UNK_TYPE RO_FLT_801167F0_jp;
 // extern UNK_TYPE RO_FLT_801167F4_jp;
-// extern UNK_TYPE RO_80116800_jp;
-// extern UNK_TYPE RO_STR_80116804_jp;
-// extern UNK_TYPE RO_80116808_jp;
 // extern UNK_TYPE jtbl_80116810_jp;
 // extern UNK_TYPE RO_FLT_80116828_jp;
 // extern UNK_TYPE RO_STR_80116830_jp;

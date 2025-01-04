@@ -9,8 +9,11 @@
 extern UNK_TYPE2 D_80104790_jp;
 extern UNK_TYPE D_80104794_jp;
 extern D80104798Struct* D_80104798_jp;
+extern char* D_8010479C_jp[2];
 
 extern PakInfo* D_801047A4_jp;
+
+extern s32 RO_80116808_jp[2];
 
 extern PakInfo B_80137960_jp;
 extern B80137C40Struct B_80137C40_jp;
@@ -67,8 +70,14 @@ UNK_RET mCPk_InitPak(UNK_TYPE arg0) {
     return temp_s1;
 }
 
-void func_8007919C_jp(PakInfo* info, UNK_TYPE arg1);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_8007919C_jp.s")
+void func_8007919C_jp(PakInfo* info, u8 arg1) {
+    PakInfo74Struct* sp20 = &info->unk_74;
+
+    if (arg1 < 2) {
+        bcopy(D_8010479C_jp[arg1], sp20->unk_0A, sizeof(sp20->unk_0A));
+        sp20->unk_00 = RO_80116808_jp[arg1];
+    }
+}
 
 UNK_RET func_8007920C_jp(PakInfo* info, B80137C40Struct* arg1);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_8007920C_jp.s")
@@ -134,7 +143,7 @@ PakInfo* mCPk_get_pkinfo(void) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_8007A080_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/RO_80116800_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/RO_STR_80116800_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/RO_STR_80116804_jp.s")
 
