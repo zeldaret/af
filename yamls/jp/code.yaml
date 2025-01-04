@@ -24,7 +24,7 @@
       - [0x69A7E0, c, code/m_collision_obj]
       - [0x69C6B0, c, code/m_common_data]
       - [0x69C770, c, code/m_controller]
-      - [0x69CB30, asm, code/69CB30]
+      - [0x69CB30, c, code/m_cpk]
       - [0x69DD60, c, code/m_debug]
       - [0x69DDF0, c, code/m_debug_display]
       - [0x69E2C0, asm, code/69E2C0]
@@ -159,7 +159,7 @@
           - [0x727908]
       - [0x7279F0, data, code/7279F0]
       - [0x728340, .data, code/m_collision_obj]
-      - [0x728430, data, code/69CB30]
+      - [0x728430, data, code/m_cpk]
       - [0x728460, .data, code/m_debug_display]
       - [0x7284B0, data, code/69E2C0]
       - [0x7286C0, .data, code/m_demo]
@@ -225,7 +225,7 @@
       - [0x73A0F0, rodata, code/73A0F0]
       - [0x73A480, .rodata, code/m_collision_obj]
       - [0x73A490, .rodata, code/m_controller]
-      - [0x73A4A0, rodata, code/73A4A0]
+      - [0x73A4A0, .rodata, code/m_cpk]
       - [0x73A4D0, rodata, code/73A4D0]
       - [0x73A6A0, .rodata, code/m_demo]
       - [0x73A730, rodata, code/73A730]
@@ -304,7 +304,7 @@
       - { start: 0x74AB40, type: bss, vram: 0x80123F80, name: code/80123F80}
       - { start: 0x73F4D0, type: .bss, vram: 0x80126E70, name: code/m_collision_obj }
       - { start: 0x74AB40, type: .bss, vram: 0x80126EA0, name: code/m_common_data }
-      - { start: 0x75B600, type: bss, vram: 0x80137960, name: code/80137960 }
+      - { start: 0x75B600, type: bss, vram: 0x80137960, name: code/m_cpk }
       - { start: 0x73F4D0, type: .bss, vram: 0x80138E50, name: code/m_debug}
       - { start: 0x73F4D0, type: .bss, vram: 0x80138E60, name: code/m_debug_display}
       - { start: 0x73F4D0, type: bss, vram: 0x80138E70, name: code/80138E70 }

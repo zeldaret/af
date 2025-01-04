@@ -7,7 +7,7 @@
 #include "m_room_type.h"
 #include "m_field_info.h"
 #include "6E3240.h"
-#include "69CB30.h"
+#include "m_cpk.h"
 #include "m_handbill.h"
 #include "m_house.h"
 #include "6DA460.h"

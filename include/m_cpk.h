@@ -1,5 +1,5 @@
-#ifndef C_69CB30_H
-#define C_69CB30_H
+#ifndef M_CPK_H
+#define M_CPK_H
 
 #include "ultra64.h"
 #include "unk.h"

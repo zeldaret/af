@@ -5,7 +5,7 @@
 #include "m_common_data.h"
 #include "macros.h"
 #include "m_flashrom.h"
-#include "69CB30.h"
+#include "m_cpk.h"
 #include "6B3DC0.h"
 #include "m_rcp.h"
 #include "sys_matrix.h"
