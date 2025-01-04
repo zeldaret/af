@@ -264,23 +264,23 @@ void graph_task_set00(GraphicsContext* gfxCtx) {
         scTask->msg = NULL;
 
         {
-            cfbStruct* cfb = func_800D2C10_jp();
+            CfbInfo* cfb = func_800D2C10_jp();
 
             cfb->unk_00 = gfxCtx->unk_2E4;
-            cfb->unk_04 = NULL;
+            cfb->swapBuffer = NULL;
             cfb->unk_09 = game_GameFrame;
-            cfb->unk_0C = NULL;
+            cfb->viMode = NULL;
             if (scTask->flags & OS_SC_SWAPBUFFER) {
-                cfb->unk_04 = gfxCtx->unk_2E4;
+                cfb->swapBuffer = gfxCtx->unk_2E4;
                 if (gfxCtx->unk_2F2 != 0) {
                     gfxCtx->unk_2F2 = 0;
-                    cfb->unk_0C = gfxCtx->unk_25C;
-                    cfb->unk_10 = gfxCtx->unk_2EC;
-                    cfb->unk_14 = gfxCtx->unk_2FC;
-                    cfb->unk_18 = gfxCtx->unk_300;
+                    cfb->viMode = gfxCtx->unk_25C;
+                    cfb->viFeatures = gfxCtx->unk_2EC;
+                    cfb->xScale = gfxCtx->unk_2FC;
+                    cfb->yScale = gfxCtx->unk_300;
                 }
                 if (B_80146080_jp == 1) {
-                    B_80146084_jp = cfb->unk_04;
+                    B_80146084_jp = cfb->swapBuffer;
                     cfb->unk_0B = 1;
                     B_80146080_jp = 2;
                 }

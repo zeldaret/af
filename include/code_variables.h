@@ -1923,8 +1923,6 @@ extern u16 D_80000400[];
 // extern UNK_TYPE B_80144D04_jp;
 // extern UNK_TYPE B_80144D0C_jp;
 // extern UNK_TYPE B_80144D14_jp;
-// extern UNK_TYPE B_80144FC0_jp;
-// extern UNK_TYPE B_80145014_jp;
 
 // extern UNK_TYPE B_80145390_jp;
 // extern UNK_TYPE B_80145610_jp;
