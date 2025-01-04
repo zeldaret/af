@@ -136,7 +136,9 @@ void func_80079378_jp(PrivateInfo* priv) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_800793A8_jp.s")
+PrivateInfo* func_800793A8_jp(void) {
+    return &B_80137C40_jp.unk_0000.priv;
+}
 
 s32 mCPk_SavePak(PrivateInfo* priv, Animal_c* animal, PakInfo* info) {
     func_8007919C_jp(info, 0);

@@ -68,7 +68,7 @@ UNK_RET mCPk_InitPak(UNK_TYPE arg0);
 // void func_8007920C_jp();
 // void func_800792FC_jp();
 // void func_80079378_jp();
-// void func_800793A8_jp();
+PrivateInfo* func_800793A8_jp(void);
 s32 mCPk_SavePak(PrivateInfo* priv, Animal_c* animal, PakInfo* info);
 s32 func_8007942C_jp(PrivateInfo* priv, Animal_c* animal, PakInfo* info);
 // void func_800794E4_jp();
