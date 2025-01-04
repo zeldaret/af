@@ -1,6 +1,6 @@
 #include "PR/os_internal.h"
 #include "PR/ultraerror.h"
-#include "viint.h"
+#include "PRinternal/viint.h"
 
 void osViExtendVStart(u32 value) {
 #ifdef _DEBUG

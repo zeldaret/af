@@ -83,22 +83,6 @@ extern "C" {
 #endif
 
 
-
-#define STAY1(stmnt)    \
-    .set noreorder     ;\
-        stmnt          ;\
-    .set reorder
-
-#define STAY2(stmnt, arg1)  \
-    .set noreorder         ;\
-        stmnt, arg1        ;\
-    .set reorder
-
-#define STAY3(stmnt, arg1, arg2)    \
-    .set noreorder                 ;\
-        stmnt, arg1, arg2          ;\
-    .set reorder
-
 #define NOP         \
     .set noreorder ;\
         nop        ;\
@@ -108,6 +92,27 @@ extern "C" {
     .set noreorder     ;\
         cache op, reg  ;\
     .set reorder
+
+#define MFC0(reg, op)  \
+    .set noreorder     ;\
+        mfc0 reg, op  ;\
+    .set reorder
+
+#define MTC0(reg, op)  \
+    .set noreorder     ;\
+        mtc0 reg, op  ;\
+    .set reorder
+
+#define CFC1(reg, op)  \
+    .set noreorder     ;\
+        cfc1 reg, op  ;\
+    .set reorder
+
+#define CTC1(reg, op)  \
+    .set noreorder     ;\
+        ctc1 reg, op  ;\
+    .set reorder
+
 
 #ifdef __cplusplus
 }

@@ -185,7 +185,7 @@ void gfxprint_putc(gfxprint* this, char c) {
     }
 }
 
-void gfxprint_write(gfxprint* this, const void* buffer, s32 size, s32 n) {
+void gfxprint_write(gfxprint* this, const void* buffer, size_t size, size_t n) {
     const char* buf = (const char*)buffer;
     s32 i;
 
@@ -200,14 +200,14 @@ void gfxprint_puts(gfxprint* this, const char* buffer) {
     }
 }
 
-void* gfxprint_prout(void* this, const char* buffer, s32 n) {
+void* gfxprint_prout(void* this, const char* buffer, size_t n) {
     gfxprint_write(this, buffer, sizeof(char), n);
     return this;
 }
 
 void gfxprint_init(gfxprint* this) {
     gfxprint_clrOpened(this);
-    this->proutFunc = (PrintCallback)gfxprint_prout;
+    this->proutFunc = gfxprint_prout;
     this->gListp = NULL;
     this->positionX = 0;
     this->positionY = 0;

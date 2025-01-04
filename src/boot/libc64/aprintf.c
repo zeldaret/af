@@ -1,7 +1,7 @@
 #include "libc64/aprintf.h"
 
 s32 vaprintf(PrintCallback* func, const char* fmt, va_list ap) {
-    return _Printf((outfun*)*func, (char*)func, fmt, ap);
+    return _Printf(*func, func, fmt, ap);
 }
 
 s32 aprintf(PrintCallback* func, const char* fmt, ...) {

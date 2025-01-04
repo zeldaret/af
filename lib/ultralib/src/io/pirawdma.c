@@ -1,4 +1,4 @@
-#include "piint.h"
+#include "PRinternal/piint.h"
 #include "PR/ultraerror.h"
 
 // TODO: this comes from a header

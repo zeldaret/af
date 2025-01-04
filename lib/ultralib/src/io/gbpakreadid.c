@@ -1,6 +1,6 @@
-#include "macros.h"
+#include "PRinternal/macros.h"
 #include "PR/os_internal.h"
-#include "controller.h"
+#include "PRinternal/controller.h"
 #include "os_version.h"
 
 s32 osGbpakReadId(OSPfs* pfs, OSGbpakId* id, u8* status) {

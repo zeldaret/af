@@ -1,11 +1,11 @@
 #ifndef _FINALROM
 
-#include "dbgproto.h"
+#include "PRinternal/dbgproto.h"
 #include "PR/os_internal.h"
 #include "PR/sptask.h"
-#include "rmonint.h"
+#include "PRinternal/rmonint.h"
 
-#include "macros.h"
+#include "PRinternal/macros.h"
 
 // TODO: this comes from a header
 #if BUILD_VERSION >= VERSION_J
@@ -32,12 +32,12 @@ int __rmonSetFault(KKHeader* req) {
     return TV_ERROR_NO_ERROR;
 }
 
-OSMesgQueue __rmonMQ ALIGNED(8);
-static OSThread rmonIOThread ALIGNED(8);
-static OSMesg rmonMsgs[8] ALIGNED(8);
-static u64 rmonIOStack[2048] ALIGNED(16);
-static OSMesg rmonPiMsgs[8] ALIGNED(8);
-static OSMesgQueue rmonPiMQ ALIGNED(8);
+OSMesgQueue __rmonMQ ALIGNED(0x8);
+static OSThread rmonIOThread ALIGNED(0x8);
+static OSMesg rmonMsgs[8] ALIGNED(0x8);
+static STACK(rmonIOStack, 0x4000) ALIGNED(0x10);
+static OSMesg rmonPiMsgs[8] ALIGNED(0x8);
+static OSMesgQueue rmonPiMQ ALIGNED(0x8);
 
 void __rmonInit(void) {
     osCreateMesgQueue(&__rmonMQ, rmonMsgs, ARRLEN(rmonMsgs));
@@ -45,7 +45,7 @@ void __rmonInit(void) {
     osSetEventMesg(OS_EVENT_SP_BREAK, &__rmonMQ, (OSMesg)RMON_MESG_SP_BREAK);
     osSetEventMesg(OS_EVENT_FAULT, &__rmonMQ, (OSMesg)RMON_MESG_FAULT);
     osSetEventMesg(OS_EVENT_THREADSTATUS, &__rmonMQ, NULL);
-    osCreateThread(&rmonIOThread, 0, (void (*)(void*))__rmonIOhandler, NULL, rmonIOStack + ARRLEN(rmonIOStack),
+    osCreateThread(&rmonIOThread, 0, (void (*)(void*))__rmonIOhandler, NULL, STACK_START(rmonIOStack),
                    OS_PRIORITY_MAX);
     osCreatePiManager(OS_PRIORITY_PIMGR, &rmonPiMQ, rmonPiMsgs, ARRLEN(rmonPiMsgs));
     osStartThread(&rmonIOThread);

@@ -14,20 +14,20 @@
 #include "PR/ultraerror.h"
 #include "PR/ultralog.h"
 #include "PR/sptask.h"
-#include "dbgproto.h"
-#include "rmonint.h"
+#include "PRinternal/dbgproto.h"
+#include "PRinternal/rmonint.h"
 #include "PR/ramrom.h"
 #include "PR/rdb.h"
 #include "PR/rmon.h"
 
-#include "macros.h"
+#include "PRinternal/macros.h"
 
 // TODO: this comes from a header
 #if BUILD_VERSION >= VERSION_J
 #ident "$Revision: 1.4 $"
 #endif
 
-static OSMesgQueue IOmq ALIGNED(8);
+static OSMesgQueue IOmq ALIGNED(0x8);
 static OSMesg IOmsgs;
 
 void* __osRdb_DbgRead_Buf;

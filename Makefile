@@ -63,6 +63,8 @@ MIPS_BINUTILS_PREFIX ?= mips-linux-gnu-
 
 TARGET  := animalforest
 
+PROJECT_DIR   := $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
+
 BASEROM_DIR := baseroms/$(VERSION)
 BASEROM     := $(BASEROM_DIR)/baserom.z64
 BASEROMD    := $(BASEROM_DIR)/baserom-decompressed.z64
@@ -116,6 +118,7 @@ endif
 
 CC              := tools/ido/$(DETECTED_OS)/7.1/cc
 CC_OLD          := tools/ido/$(DETECTED_OS)/5.3/cc
+CC_ULTRALIB 	:= $(PROJECT_DIR)/$(CC_OLD)
 
 AS              := $(MIPS_BINUTILS_PREFIX)as
 LD              := $(MIPS_BINUTILS_PREFIX)ld
@@ -137,7 +140,7 @@ PIGMENT         := tools/pigment64/pigment64
 
 
 IINC := -Iinclude -Isrc -Iassets/$(VERSION) -I. -I$(BUILD_DIR)
-IINC += -Ilib/ultralib/include -Ilib/ultralib/include/PR -Ilib/ultralib/include/ido
+IINC += -Ilib/ultralib/include -Ilib/ultralib/include/PR -Ilib/ultralib/include/compiler/ido
 
 ifeq ($(KEEP_MDEBUG),0)
   RM_MDEBUG = $(OBJCOPY) --remove-section .mdebug $@
@@ -360,7 +363,7 @@ $(LIBULTRA_LIB): $(ULTRALIB_LIB)
 	$(LIBDUMP_CMD)
 
 $(ULTRALIB_LIB):
-	$(MAKE) -C lib/ultralib VERSION=$(ULTRALIB_VERSION) TARGET=$(ULTRALIB_TARGET) FIXUPS=1 CROSS=$(MIPS_BINUTILS_PREFIX) CC=../../$(CC_OLD) AR=$(AR)
+	$(MAKE) -C lib/ultralib VERSION=$(ULTRALIB_VERSION) TARGET=$(ULTRALIB_TARGET) MODERN_LD=1 CROSS=$(MIPS_BINUTILS_PREFIX) COMPILER_DIR=$(dir $(CC_ULTRALIB)) AR=$(AR)
 
 $(BUILD_DIR)/%.o: %.bin
 	$(OBJCOPY) -I binary -O elf32-big $< $@

@@ -4,6 +4,6 @@
 
 .text
 LEAF(__osGetWatchLo)
-    STAY2(mfc0 v0, C0_WATCHLO)
-    jr ra
+    MFC0(   v0, C0_WATCHLO)
+    jr      ra
 END(__osGetWatchLo)

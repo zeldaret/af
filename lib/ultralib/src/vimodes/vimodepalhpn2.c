@@ -1,6 +1,16 @@
+/**
+ * @file vimodepalhpn2.c
+ *
+ * PAL HPN2 Video Mode
+ *
+ * H = High Resolution
+ * P = Point Sampled
+ * N = Normal Interlaced
+ * 2 = 32-bit Framebuffer
+ */
 #include "PR/os.h"
 #include "PR/rcp.h"
-#include "../io/viint.h"
+#include "PRinternal/viint.h"
 
 OSViMode osViModePalHpn2 = {
     OS_VI_PAL_HPN2, // type

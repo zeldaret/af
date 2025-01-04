@@ -1,7 +1,7 @@
 #include "PR/os_internal.h"
 #include "PR/ultraerror.h"
-#include "osint.h"
-#include "../io/viint.h"
+#include "PRinternal/osint.h"
+#include "PRinternal/viint.h"
 
 int osStopTimer(OSTimer* t) {
     register u32 savedMask;

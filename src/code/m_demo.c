@@ -3,7 +3,7 @@
 #include "overlays/actors/player_actor/m_player.h"
 #include "m_msg_main.h"
 #include "m_player_lib.h"
-#include "lib/ultralib/include/ido/memory.h"
+#include "memory.h"
 #include "libc/math.h"
 #include "m_field_info.h"
 #include "audio.h"

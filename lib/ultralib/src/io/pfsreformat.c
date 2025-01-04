@@ -1,6 +1,7 @@
+#include "PRinternal/macros.h"
 #include "PR/os_internal.h"
-#include "controller.h"
-#include "siint.h"
+#include "PRinternal/controller.h"
+#include "PRinternal/siint.h"
 
 s32 osPfsReFormat(OSPfs* pfs, OSMesgQueue* queue, int channel) {
     int j;

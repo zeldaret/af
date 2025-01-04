@@ -1,10 +1,14 @@
+/**
+ * File: voicecountsyllables.c
+ */
+
 #include "PR/os_internal.h"
-#include "io/controller.h"
+#include "PRinternal/controller.h"
 #include "PR/os_voice.h"
 
 // The VRU can store only 880 semisyllables of words in its dictionary.
 // Use this function to determine the semisyllable count before adding a word with osVoiceSetWord,
-//  to properly see whether it will fit.
+// to properly see whether it will fit.
 
 void osVoiceCountSyllables(u8* data, u32* syllable) {
     s32 k;

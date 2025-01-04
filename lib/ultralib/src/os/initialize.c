@@ -1,7 +1,7 @@
 #include "PR/os_internal.h"
 #include "PR/rcp.h"
 #include "PR/os_version.h"
-#include "../io/piint.h"
+#include "PRinternal/piint.h"
 
 typedef struct {
     /* 0x0 */ unsigned int inst1;
@@ -70,7 +70,7 @@ void INITIALIZE_FUNC() {
 #endif
 
     __osSetSR(__osGetSR() | SR_CU1);    // enable fpu
-    __osSetFpcCsr(FPCSR_FS | FPCSR_EV); // flush denorm to zero, enable invalid operation
+    __osSetFpcCsr(FPCSR_FS | FPCSR_EV | FPCSR_RM_RN); // flush denorm to zero, enable invalid operation
 #if BUILD_VERSION >= VERSION_K
     __osSetWatchLo(0x4900000);
 #endif
@@ -184,17 +184,17 @@ void INITIALIZE_FUNC() {
 }
 
 #if !defined(_FINALROM) && BUILD_VERSION < VERSION_J
-void ptstart() {
+void ptstart(void) {
 
 }
 #elif !defined(_FINALROM) && BUILD_VERSION < VERSION_K
-static void ptstart() {
+static void ptstart(void) {
 
 }
 #endif
 
 #if BUILD_VERSION >= VERSION_K
-void __osInitialize_autodetect() {
+void __osInitialize_autodetect(void) {
 #ifndef _FINALROM
     if (__checkHardware_msp()) {
         __osInitialize_msp();

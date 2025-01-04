@@ -1,6 +1,16 @@
+/**
+ * @file vimodempalhpf2.c
+ *
+ * MPAL HPF2 Video Mode
+ *
+ * H = High Resolution
+ * P = Point Sampled
+ * F = Deflickered Interlaced
+ * 2 = 32-bit Framebuffer
+ */
 #include "PR/os.h"
 #include "PR/rcp.h"
-#include "../io/viint.h"
+#include "PRinternal/viint.h"
 
 OSViMode osViModeMpalHpf2 = {
     OS_VI_MPAL_HPF2, // type

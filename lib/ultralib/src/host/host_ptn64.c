@@ -3,7 +3,7 @@
 #include "PR/rcp.h"
 #include "memory.h"
 
-#include "macros.h"
+#include "PRinternal/macros.h"
 
 #if BUILD_VERSION >= VERSION_J || !defined(_FINALROM)
 
@@ -12,7 +12,7 @@ static volatile unsigned int* ptstat = (unsigned*)0xbff08004;
 static volatile unsigned int* ptport = (unsigned*)0xbff08000;
 static volatile unsigned int* n64piok = (unsigned*)PHYS_TO_K1(PI_STATUS_REG);
 
-static OSMesgQueue waitPtQueue ALIGNED(8);
+static OSMesgQueue waitPtQueue ALIGNED(0x8);
 static OSMesg waitPtQueueBuf;
 static u32 isWaitPtQueueCreated = FALSE;
 
