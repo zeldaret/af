@@ -24,8 +24,9 @@ UNK_RET mCPk_PakOpen(PakInfo* info, s32 arg1) {
     return func_800CD68C_jp(&info->unk_04, arg1);
 }
 
-UNK_RET func_80078EB4_jp(PakInfo* info);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80078EB4_jp.s")
+UNK_RET func_80078EB4_jp(PakInfo* info) {
+    return func_800CD8F8_jp(&info->unk_04, &info->unk_74, info->unk_74.unk_00);
+}
 
 UNK_RET func_80078EE0_jp(PakInfo* info) {
     return func_800CD990_jp(&info->unk_04, &info->unk_74);
