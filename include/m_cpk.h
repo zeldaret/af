@@ -7,10 +7,36 @@
 struct Animal_c;
 struct PrivateInfo;
 
+// For alignment this can only have members of size 1 or 2
+typedef struct D80104798Struct {
+    /* 0x0 */ UNK_TYPE1 unk0[0x10];
+} D80104798Struct; // size 0x10
+
+typedef struct PakInfo74Struct {
+    /* 0x00 */ UNK_TYPE1 unk_00[0xE];
+    /* 0x0E */ D80104798Struct unk_0E;
+    /* 0x1E */ UNK_TYPE1 unk_1E[0x2];
+} PakInfo74Struct; // size = 0x20
+
+// Same as PakInfo74Struct?
+typedef struct PakInfo94Struct {
+    /* 0x00 */ UNK_TYPE1 unk_00[0x20];
+} PakInfo94Struct; // size = 0x20
+
+typedef struct B80137C40Struct {
+    /* 0x0000 */ UNK_TYPE1 unk_0000[0x1200];
+    /* 0x1200 */ UNK_TYPE unk_1200;
+    /* 0x1204 */ UNK_TYPE unk_1204;
+    /* 0x1208 */ u16 unk_1208;
+} B80137C40Struct; // size = 0x1208
+
 typedef struct PakInfo {
-    /* 0x00 */ UNK_TYPE1 unk_00[0x70];
+    /* 0x00 */ UNK_TYPE unk_00;
+    /* 0x04 */ UNK_TYPE1 unk_04[0x6C];
     /* 0x70 */ s32 unk_70;
-} PakInfo; // size >= 0x70
+    /* 0x74 */ PakInfo74Struct unk_74;
+    /* 0x90 */ PakInfo94Struct unk_94[16];
+} PakInfo; // size >= 0x294
 
 s32 mCPk_PakOpen(PakInfo* info, s32 arg1);
 // void func_80078EB4_jp();
@@ -19,7 +45,7 @@ s32 mCPk_PakOpen(PakInfo* info, s32 arg1);
 // void func_80078F34_jp();
 // void func_80078FE8_jp();
 // void func_80079030_jp();
-// void func_80079080_jp();
+void func_80079080_jp(B80137C40Struct* arg0);
 UNK_RET mCPk_InitPak(UNK_TYPE arg0);
 // void func_8007919C_jp();
 // void func_8007920C_jp();

@@ -4362,7 +4362,7 @@ oc_collision_function = 0x8010471C; // size:0x24
 occ_collision_function = 0x80104740; //
 OCCClearFunctionTable = 0x80104764; //
 status_org = 0x80104770; //
-D_80104790_jp = 0x80104790; //
+D_80104790_jp = 0x80104790; // type:s32
 D_80104794_jp = 0x80104794; //
 D_80104798_jp = 0x80104798; //
 D_8010479C_jp = 0x8010479C; //
@@ -5997,11 +5997,8 @@ B_80126E9C_jp = 0x80126E9C; //
 common_data = 0x80126EA0; // size:0x10AB8
 
 B_80137960_jp = 0x80137960; //
-B_80137C40_jp = 0x80137C40; //
-B_80137C48_jp = 0x80137C48; //
-B_80138818_jp = 0x80138818; //
-B_80138E40_jp = 0x80138E40; //
-B_80138E44_jp = 0x80138E44; //
+B_80137C40_jp = 0x80137C40; // size:0x1208
+
 debug_mode = 0x80138E50; //
 debug_display = 0x80138E60; //
 B_80138E70_jp = 0x80138E70; // type:s8

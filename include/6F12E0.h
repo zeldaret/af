@@ -3,7 +3,9 @@
 
 #include "ultra64.h"
 
-// void func_800CD640_jp();
+#include "m_cpk.h"
+
+void func_800CD640_jp(PakInfo74Struct* arg0, void*, void*);
 // void func_800CD68C_jp();
 // void func_800CD730_jp();
 // void func_800CD760_jp();
