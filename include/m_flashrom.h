@@ -14,7 +14,7 @@ void func_8008EE24_jp(void);
 // void func_8008EE5C_jp();
 // void func_8008EE6C_jp();
 // void func_8008EE7C_jp();
-// void func_8008EEB4_jp();
+u16 func_8008EEB4_jp(void*, UNK_TYPE, u16);
 // void func_8008EEE8_jp();
 // void func_8008EF0C_jp();
 s32 mFRm_CheckSaveData(void);

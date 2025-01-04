@@ -1,6 +1,9 @@
 #include "m_cpk.h"
 #include "global.h"
 
+#include "m_flashrom.h"
+#include "m_lib.h"
+
 #include "6F12E0.h"
 
 extern UNK_TYPE2 D_80104790_jp;
@@ -29,10 +32,10 @@ UNK_RET mCPk_PakOpen(PakInfo* info, s32 arg1) {
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079030_jp.s")
 
 void func_80079080_jp(B80137C40Struct* arg0) {
-    arg0->unk_0000 = 0;
-    mPr_ClearPrivateInfo(&arg0->priv);
-    mNpc_ClearAnimalInfo(&arg0->animal);
-    arg0->unk_1100 = 0xFFFF;
+    arg0->unk_0000.unk_0000 = 0;
+    mPr_ClearPrivateInfo(&arg0->unk_0000.priv);
+    mNpc_ClearAnimalInfo(&arg0->unk_0000.animal);
+    arg0->unk_0000.unk_1100 = 0xFFFF;
 }
 
 UNK_RET mCPk_InitPak(UNK_TYPE arg0) {
@@ -64,17 +67,28 @@ UNK_RET mCPk_InitPak(UNK_TYPE arg0) {
     return temp_s1;
 }
 
+void func_8007919C_jp(PakInfo* info, UNK_TYPE arg1);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_8007919C_jp.s")
 
+UNK_RET func_8007920C_jp(PakInfo* info, B80137C40Struct* arg1);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_8007920C_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_800792FC_jp.s")
 
+void func_80079378_jp(PrivateInfo* priv);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079378_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_800793A8_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/mCPk_SavePak.s")
+s32 mCPk_SavePak(PrivateInfo* priv, Animal_c* animal, PakInfo* info) {
+    func_8007919C_jp(info, 0);
+    func_80079378_jp(priv);
+    mem_copy((void*)&B_80137C40_jp.unk_0000.animal, (void*)animal, sizeof(Animal_c));
+    B_80137C40_jp.unk_0000.unk_0000 =
+        func_8008EEB4_jp(&B_80137C40_jp.unk_0000, sizeof(B80137C40Unk0000Struct), B_80137C40_jp.unk_0000.unk_0000);
+
+    return func_8007920C_jp(info, &B_80137C40_jp);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_8007942C_jp.s")
 
