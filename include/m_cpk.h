@@ -4,8 +4,8 @@
 #include "ultra64.h"
 #include "unk.h"
 
-struct Animal_c;
-struct PrivateInfo;
+#include "m_npc.h"
+#include "m_private.h"
 
 // For alignment this can only have members of size 1 or 2
 typedef struct D80104798Struct {
@@ -24,7 +24,12 @@ typedef struct PakInfo94Struct {
 } PakInfo94Struct; // size = 0x20
 
 typedef struct B80137C40Struct {
-    /* 0x0000 */ UNK_TYPE1 unk_0000[0x1200];
+    /* 0x0000 */ UNK_TYPE2 unk_0000;
+    /* 0x0002 */ UNK_TYPE1 unk_0002[0x0006];
+    /* 0x0008 */ PrivateInfo priv;
+    /* 0x0BD8 */ Animal_c animal;
+    /* 0x1100 */ u16 unk_1100;
+    /* 0x1102 */ UNK_TYPE1 unk_1102[0x00FE];
     /* 0x1200 */ UNK_TYPE unk_1200;
     /* 0x1204 */ UNK_TYPE unk_1204;
     /* 0x1208 */ u16 unk_1208;
@@ -53,8 +58,8 @@ UNK_RET mCPk_InitPak(UNK_TYPE arg0);
 // void func_800792FC_jp();
 // void func_80079378_jp();
 // void func_800793A8_jp();
-s32 mCPk_SavePak(struct PrivateInfo*, struct Animal_c*, PakInfo*);
-s32 func_8007942C_jp(struct PrivateInfo*, struct Animal_c*, PakInfo*);
+s32 mCPk_SavePak(PrivateInfo*, Animal_c*, PakInfo*);
+s32 func_8007942C_jp(PrivateInfo*, Animal_c*, PakInfo*);
 // void func_800794E4_jp();
 // void func_8007967C_jp();
 // void func_80079708_jp();

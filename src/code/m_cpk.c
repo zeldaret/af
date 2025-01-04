@@ -28,7 +28,12 @@ UNK_RET mCPk_PakOpen(PakInfo* info, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079030_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079080_jp.s")
+void func_80079080_jp(B80137C40Struct* arg0) {
+    arg0->unk_0000 = 0;
+    mPr_ClearPrivateInfo(&arg0->priv);
+    mNpc_ClearAnimalInfo(&arg0->animal);
+    arg0->unk_1100 = 0xFFFF;
+}
 
 UNK_RET mCPk_InitPak(UNK_TYPE arg0) {
     PakInfo* sp2C;
