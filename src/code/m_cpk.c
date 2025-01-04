@@ -110,8 +110,25 @@ UNK_RET func_8007920C_jp(PakInfo* info, B80137C40Struct* arg1) {
     return var_v0;
 }
 
-UNK_RET func_800792FC_jp(PakInfo* info, B80137C40Struct* arg1);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_800792FC_jp.s")
+UNK_RET func_800792FC_jp(PakInfo* info, B80137C40Struct* arg1) {
+    s32 sp1C;
+    s32 tmp;
+
+    B_80137C40_jp.unk_1200 = padmgr_LockSerialMesgQ();
+    sp1C = func_80078EE0_jp(info);
+
+    if (sp1C == 1) {
+        tmp = info->unk_74.unk_00;
+        sp1C = func_800CD82C_jp(&info->unk_04, 0, tmp, arg1);
+        if (sp1C == 0) {
+            sp1C = -1;
+        }
+    }
+
+    padmgr_UnlockSerialMesgQ(B_80137C40_jp.unk_1200);
+
+    return sp1C;
+}
 
 void func_80079378_jp(PrivateInfo* priv) {
     if (priv != NULL) {
