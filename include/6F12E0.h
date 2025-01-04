@@ -6,9 +6,9 @@
 #include "m_cpk.h"
 
 void func_800CD640_jp(PakInfo74Struct* arg0, void*, void*);
-UNK_RET func_800CD68C_jp(OSPfs* pfs, UNK_TYPE arg1);
+UNK_RET func_800CD68C_jp(PakInfo04Struct* arg0, UNK_TYPE arg1);
 // void func_800CD730_jp();
-// void func_800CD760_jp();
+UNK_RET func_800CD760_jp(PakInfo04Struct* arg0, UNK_TYPE arg1, s32 arg2, B80137C40Struct* arg3);
 // void func_800CD82C_jp();
 // void func_800CD8F8_jp();
 // void func_800CD990_jp();

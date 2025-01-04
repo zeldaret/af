@@ -4,6 +4,8 @@
 #include "m_flashrom.h"
 #include "m_lib.h"
 
+#include "padmgr.h"
+
 #include "6F12E0.h"
 
 extern UNK_TYPE2 D_80104790_jp;
@@ -19,11 +21,13 @@ extern PakInfo B_80137960_jp;
 extern B80137C40Struct B_80137C40_jp;
 
 UNK_RET mCPk_PakOpen(PakInfo* info, s32 arg1) {
-    return func_800CD68C_jp(&info->pfs, arg1);
+    return func_800CD68C_jp(&info->unk_04, arg1);
 }
 
+UNK_RET func_80078EB4_jp(PakInfo* info);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80078EB4_jp.s")
 
+UNK_RET func_80078EE0_jp(PakInfo* info);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80078EE0_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80078F08_jp.s")
@@ -64,7 +68,7 @@ UNK_RET mCPk_InitPak(UNK_TYPE arg0) {
     bcopy(D_80104798_jp, &sp28->unk_0E, sizeof(D80104798Struct));
     temp_s1 = mCPk_PakOpen(sp2C, arg0);
     func_80079080_jp(&B_80137C40_jp);
-    B_80137C40_jp.unk_1200 = 0;
+    B_80137C40_jp.unk_1200 = NULL;
     B_80137C40_jp.unk_1204 = 0;
     B_80137C40_jp.unk_1208 = 0xFFFF;
     return temp_s1;
@@ -79,8 +83,30 @@ void func_8007919C_jp(PakInfo* info, u8 arg1) {
     }
 }
 
-UNK_RET func_8007920C_jp(PakInfo* info, B80137C40Struct* arg1);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_8007920C_jp.s")
+UNK_RET func_8007920C_jp(PakInfo* info, B80137C40Struct* arg1) {
+    s32 var_v0;
+    s32 var_s1;
+    s32 tmp;
+
+    for (var_s1 = 0; var_s1 < 1; var_s1++) {
+        PakInfo04Struct* temp_s3 = &info->unk_04;
+
+        B_80137C40_jp.unk_1200 = padmgr_LockSerialMesgQ();
+        var_v0 = func_80078EE0_jp(info);
+
+        if (temp_s3->unk_6C == 5) {
+            var_v0 = func_80078EB4_jp(info);
+        }
+
+        if ((var_v0 == 1) || (temp_s3->unk_6C == 9)) {
+            tmp = info->unk_74.unk_00;
+            var_v0 = func_800CD760_jp(temp_s3, 0, tmp, arg1);
+        }
+        padmgr_UnlockSerialMesgQ(B_80137C40_jp.unk_1200);
+    }
+
+    return var_v0;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_800792FC_jp.s")
 

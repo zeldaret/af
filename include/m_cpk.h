@@ -7,6 +7,23 @@
 #include "m_npc.h"
 #include "m_private.h"
 
+typedef struct B80137C40Unk0000Struct {
+    /* 0x0000 */ u16 unk_0000;
+    /* 0x0002 */ UNK_TYPE1 unk_0002[0x0006];
+    /* 0x0008 */ PrivateInfo priv;
+    /* 0x0BD8 */ Animal_c animal;
+    /* 0x1100 */ u16 unk_1100;
+    /* 0x1102 */ UNK_TYPE1 unk_1102[0x00FE];
+} B80137C40Unk0000Struct; // size = 0x1200
+
+typedef struct B80137C40Struct {
+    /* 0x0000 */ B80137C40Unk0000Struct unk_0000;
+    /* 0x1200 */ OSMesgQueue* unk_1200;
+    /* 0x1204 */ UNK_TYPE unk_1204;
+    /* 0x1208 */ u16 unk_1208;
+} B80137C40Struct; // size = 0x1208
+
+
 // For alignment this can only have members of size 1 or 2
 typedef struct D80104798Struct {
     /* 0x0 */ UNK_TYPE1 unk0[0x10];
@@ -25,27 +42,15 @@ typedef struct PakInfo94Struct {
     /* 0x00 */ UNK_TYPE1 unk_00[0x20];
 } PakInfo94Struct; // size = 0x20
 
-typedef struct B80137C40Unk0000Struct {
-    /* 0x0000 */ u16 unk_0000;
-    /* 0x0002 */ UNK_TYPE1 unk_0002[0x0006];
-    /* 0x0008 */ PrivateInfo priv;
-    /* 0x0BD8 */ Animal_c animal;
-    /* 0x1100 */ u16 unk_1100;
-    /* 0x1102 */ UNK_TYPE1 unk_1102[0x00FE];
-} B80137C40Unk0000Struct; // size = 0x1200
-
-typedef struct B80137C40Struct {
-    /* 0x0000 */ B80137C40Unk0000Struct unk_0000;
-    /* 0x1200 */ UNK_TYPE unk_1200;
-    /* 0x1204 */ UNK_TYPE unk_1204;
-    /* 0x1208 */ u16 unk_1208;
-} B80137C40Struct; // size = 0x1208
+typedef struct PakInfo04Struct {
+    /* 0x00 */ OSPfs pfs;
+    /* 0x68 */ s32 unk_68;
+    /* 0x6C */ s32 unk_6C;
+} PakInfo04Struct; // size = 0x70
 
 typedef struct PakInfo {
     /* 0x00 */ UNK_TYPE unk_00;
-    /* 0x04 */ OSPfs pfs;
-    /* 0x6C */ UNK_TYPE1 unk_6C[0x4];
-    /* 0x70 */ s32 unk_70;
+    /* 0x04 */ PakInfo04Struct unk_04;
     /* 0x74 */ PakInfo74Struct unk_74;
     /* 0x90 */ PakInfo94Struct unk_94[16];
 } PakInfo; // size >= 0x294
