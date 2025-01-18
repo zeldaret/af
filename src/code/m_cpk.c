@@ -40,7 +40,29 @@ UNK_RET func_80078F08_jp(PakInfo* info) {
     return func_800CDA90_jp(&info->unk_04, &info->unk_2D8, &info->unk_2DC);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80078F34_jp.s")
+s32 func_80078F34_jp(PakInfo* info) {
+    PakInfo04Struct* var_s2 = &info->unk_04;
+    PakInfo94Struct* var_s3 = info->unk_94;
+    s32* var_s1 = info->unk_294;
+    s32 i;
+    s32 temp_v0;
+
+    for (i = 0; i < ARRAY_COUNT(info->unk_94); i++) {
+        var_s1[i] = 0;
+        var_s2->unk_68 = i;
+        temp_v0 = func_800CDA4C_jp(var_s2, &var_s3[i]);
+        if (temp_v0 == 0) {
+            if (var_s2->unk_6C == 5) {
+                var_s1[i] = -1;
+                continue;
+            }
+
+            return temp_v0;
+        }
+    }
+
+    return temp_v0;
+}
 
 s32 func_80078FE8_jp(PakInfo* info) {
     s32 sp1C = FALSE;

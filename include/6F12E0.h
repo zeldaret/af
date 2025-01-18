@@ -13,7 +13,7 @@ UNK_RET func_800CD82C_jp(PakInfo04Struct* arg0, UNK_TYPE arg1, u32 arg2, void* a
 UNK_RET func_800CD8F8_jp(PakInfo04Struct* arg0, PakInfo74Struct* arg1, u32 arg2);
 UNK_RET func_800CD990_jp(PakInfo04Struct* arg0, PakInfo74Struct* arg1);
 void func_800CD9F0_jp(PakInfo04Struct* arg0, PakInfo74Struct* arg1);
-// void func_800CDA4C_jp();
+UNK_RET func_800CDA4C_jp(PakInfo04Struct* arg0, PakInfo94Struct* arg1);
 UNK_RET func_800CDA90_jp(PakInfo04Struct* arg0, UNK_PTR, UNK_PTR);
 // void func_800CDAD0_jp();
 // void func_800CDB10_jp();
