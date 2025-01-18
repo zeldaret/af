@@ -23,11 +23,14 @@ typedef struct B80137C40Struct {
     /* 0x1208 */ u16 unk_1208;
 } B80137C40Struct; // size = 0x1208
 
-
 // For alignment this can only have members of size 1 or 2
 typedef struct D80104798Struct {
     /* 0x0 */ UNK_TYPE1 unk0[0x10];
 } D80104798Struct; // size 0x10
+
+typedef struct D801047A8Struct {
+    /* 0x0 */ UNK_TYPE1 unk_0[0x08];
+} D801047A8Struct; // size <= 0x8
 
 typedef struct PakInfo74Struct {
     /* 0x00 */ size_t unk_00;
@@ -88,7 +91,7 @@ UNK_RET func_80079AAC_jp(void);
 UNK_RET func_80079D00_jp(void);
 // void func_80079D50_jp();
 // void func_80079E14_jp();
-// void func_80079E54_jp();
+s32 func_80079E54_jp(void* arg0, PakInfo* arg1);
 UNK_RET func_80079EA4_jp(UNK_PTR, PakInfo* info);
 // void func_80079EDC_jp();
 // void func_80079F44_jp();

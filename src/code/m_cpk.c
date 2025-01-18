@@ -10,18 +10,19 @@
 #include "6B8F20.h"
 #include "6F12E0.h"
 
-extern UNK_TYPE2 D_80104790_jp;
-extern UNK_TYPE D_80104794_jp;
-extern D80104798Struct* D_80104798_jp;
-extern char* D_8010479C_jp[2];
-extern UNK_TYPE D_801047A8_jp;
-
-extern PakInfo* D_801047A4_jp;
-
-extern s32 RO_80116808_jp[2];
-
 extern PakInfo B_80137960_jp;
 extern B80137C40Struct B_80137C40_jp;
+
+extern D80104798Struct D_8010EF70_jp;
+
+UNK_TYPE2 D_80104790_jp = 0x3031;
+UNK_TYPE D_80104794_jp = 0x4E41464A;
+D80104798Struct* D_80104798_jp = &D_8010EF70_jp;
+char* D_8010479C_jp[2] = { "\x1A", "\x1B" };
+PakInfo* D_801047A4_jp = &B_80137960_jp;
+D801047A8Struct D_801047A8_jp = { { 0xD4, 0x8E, 0xA6, 0x90, 0x85, 0x42, 0x00, 0x00 } };
+
+const size_t RO_80116808_jp[2] = { 0x1200, 0x6700 };
 
 UNK_RET mCPk_PakOpen(PakInfo* info, s32 arg1) {
     return func_800CD68C_jp(&info->unk_04, arg1);
@@ -463,11 +464,24 @@ UNK_RET func_80079D00_jp(void) {
     return sp18;
 }
 
+s32 func_80079D50_jp(void*, PakInfo* info, u8*);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079D50_jp.s")
 
+s32 func_80079E14_jp(void*, PakInfo* info, u8*);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079E14_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079E54_jp.s")
+typedef s32 (*D801047B0Func)(void*, PakInfo*, u8*);
+D801047B0Func D_801047B0_jp[2] = { func_80079D50_jp, func_80079E14_jp };
+
+s32 func_80079E54_jp(void* arg0, PakInfo* arg1) {
+    static u8 D_801047B8_jp = 0;
+
+    if (D_801047B8_jp >= ARRAY_COUNT(D_801047B0_jp)) {
+        D_801047B8_jp = 0;
+    }
+
+    return D_801047B0_jp[D_801047B8_jp](arg0, arg1, &D_801047B8_jp);
+}
 
 s32 func_80079EA4_jp(UNK_PTR arg0, PakInfo* info) {
     func_8007919C_jp(info, 1);
@@ -485,9 +499,3 @@ PakInfo* mCPk_get_pkinfo(void) {
 }
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_8007A080_jp.s")
-
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/RO_STR_80116800_jp.s")
-
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/RO_STR_80116804_jp.s")
-
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/RO_80116808_jp.s")

@@ -159,7 +159,7 @@
           - [0x727908]
       - [0x7279F0, data, code/7279F0]
       - [0x728340, .data, code/m_collision_obj]
-      - [0x728430, data, code/m_cpk]
+      - [0x728430, .data, code/m_cpk]
       - [0x728460, .data, code/m_debug_display]
       - [0x7284B0, data, code/69E2C0]
       - [0x7286C0, .data, code/m_demo]
