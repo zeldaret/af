@@ -7,7 +7,7 @@
 
 void func_800CD640_jp(PakInfo74Struct* arg0, void*, void*);
 UNK_RET func_800CD68C_jp(PakInfo04Struct* arg0, UNK_TYPE arg1);
-// void func_800CD730_jp();
+size_t func_800CD730_jp(PakInfo04Struct* arg0);
 UNK_RET func_800CD760_jp(PakInfo04Struct* arg0, UNK_TYPE arg1, u32 arg2, B80137C40Struct* arg3);
 UNK_RET func_800CD82C_jp(PakInfo04Struct* arg0, UNK_TYPE arg1, u32 arg2, void* arg3);
 UNK_RET func_800CD8F8_jp(PakInfo04Struct* arg0, PakInfo74Struct* arg1, u32 arg2);

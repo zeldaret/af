@@ -40,20 +40,24 @@ UNK_RET func_80078F08_jp(PakInfo* info) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80078F34_jp.s")
 
-UNK_RET func_80078FE8_jp(PakInfo* info);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80078FE8_jp.s")
-
-s32 func_80079030_jp(PakInfo* info) {
+s32 func_80078FE8_jp(PakInfo* info) {
     s32 sp1C = FALSE;
 
-    if ((func_80078FE8_jp(info) == 1) && (info->unk_2D4 >= info->unk_74.unk_00)) {
+    info->unk_2D4 = func_800CD730_jp(&info->unk_04);
+    if (info->unk_04.unk_6C == 0) {
         sp1C = TRUE;
     }
     return sp1C;
 }
 
-// UNK_RET func_80079030_jp(PakInfo* info);
-// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079030_jp.s")
+s32 func_80079030_jp(PakInfo* info) {
+    s32 sp1C = FALSE;
+
+    if ((func_80078FE8_jp(info) == TRUE) && (info->unk_2D4 >= info->unk_74.unk_00)) {
+        sp1C = TRUE;
+    }
+    return sp1C;
+}
 
 void func_80079080_jp(B80137C40Struct* arg0) {
     arg0->unk_0000.unk_0000 = 0;
