@@ -46,7 +46,7 @@ void func_8008FA50_jp(void);
 // void func_8008FDD4_jp();
 // void func_8008FE74_jp();
 // void func_8008FF60_jp();
-// void func_80090044_jp();
+s32 func_80090044_jp(void);
 // void func_800900B0_jp();
 
 #endif

@@ -484,8 +484,15 @@ s32 func_80079D50_jp(D801047B0Struct* arg0, PakInfo* info, u8* index) {
     return -1;
 }
 
-s32 func_80079E14_jp(D801047B0Struct*, PakInfo* info, u8*);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079E14_jp.s")
+s32 func_80079E14_jp(UNUSED D801047B0Struct* arg0, UNUSED PakInfo* info, u8* arg2) {
+    s32 temp_v0 = func_80090044_jp();
+
+    if (temp_v0 != 0) {
+        *arg2 = 0;
+    }
+
+    return temp_v0;
+}
 
 typedef s32 (*D801047B0Func)(D801047B0Struct*, PakInfo*, u8*);
 D801047B0Func D_801047B0_jp[2] = { func_80079D50_jp, func_80079E14_jp };
