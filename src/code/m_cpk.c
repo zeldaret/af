@@ -192,9 +192,19 @@ s32 func_8007942C_jp(PrivateInfo* priv, Animal_c* animal, PakInfo* info) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079B28_jp.s")
 
+UNK_RET func_80079BF8_jp(PakInfo* info);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079BF8_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079D00_jp.s")
+UNK_RET func_80079D00_jp(void) {
+    PakInfo* sp1C = mCPk_get_pkinfo();
+    s32 sp18 = 0;
+
+    if (mCPk_PakOpen(sp1C, 0) == 1) {
+        sp18 = func_80079BF8_jp(sp1C);
+    }
+
+    return sp18;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079D50_jp.s")
 

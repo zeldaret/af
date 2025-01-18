@@ -81,7 +81,7 @@ s32 func_8007942C_jp(PrivateInfo* priv, Animal_c* animal, PakInfo* info);
 // void func_80079AAC_jp();
 // void func_80079B28_jp();
 // void func_80079BF8_jp();
-// void func_80079D00_jp();
+UNK_RET func_80079D00_jp(void);
 // void func_80079D50_jp();
 // void func_80079E14_jp();
 // void func_80079E54_jp();
