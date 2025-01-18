@@ -169,7 +169,7 @@ s32 mCPk_SavePak(PrivateInfo* priv, Animal_c* animal, PakInfo* info) {
     return func_8007920C_jp(info, &B_80137C40_jp);
 }
 
-s32 func_8007942C_jp(PrivateInfo* priv, Animal_c* animal, PakInfo* info) {
+UNK_RET func_8007942C_jp(PrivateInfo* priv, Animal_c* animal, PakInfo* info) {
     s32 sp1C;
 
     func_8007919C_jp(info, 0);
@@ -193,7 +193,7 @@ s32 func_8007942C_jp(PrivateInfo* priv, Animal_c* animal, PakInfo* info) {
     return sp1C;
 }
 
-s32 func_800794E4_jp(s32* arg0, s32 arg1, PakInfo* arg2, void* arg3) {
+UNK_RET func_800794E4_jp(s32* arg0, s32 arg1, PakInfo* arg2, void* arg3) {
     PakInfo04Struct* unkStruct = &arg2->unk_04;
     void* var_a3;
     s32 sp24 = 0;
@@ -232,10 +232,26 @@ s32 func_800794E4_jp(s32* arg0, s32 arg1, PakInfo* arg2, void* arg3) {
     return sp24;
 }
 
-s32 func_8007967C_jp(s32*, s32, PakInfo*);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_8007967C_jp.s")
+UNK_RET func_8007967C_jp(s32* arg0, s32 arg1, PakInfo* arg2) {
+    UNUSED s32 pad;
+    s32 sp20;
+    void* sp1C;
 
-s32 func_80079708_jp(s32);
+    if (arg1 == 0) {
+        sp1C = &B_80137C40_jp;
+    } else {
+        sp1C = zelda_malloc(arg2->unk_74.unk_00);
+    }
+
+    sp20 = func_800794E4_jp(arg0, arg1, arg2, sp1C);
+    if ((arg1 != 0) && (sp1C != NULL)) {
+        zelda_free(sp1C);
+    }
+
+    return sp20;
+}
+
+UNK_RET func_80079708_jp(s32);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079708_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079760_jp.s")
@@ -272,7 +288,7 @@ void func_80079B28_jp(UNK_PTR arg0, u32 arg1, PakInfo* arg2) {
     }
 }
 
-s32 func_80079BF8_jp(PakInfo* info) {
+UNK_RET func_80079BF8_jp(PakInfo* info) {
     UNUSED s32 pad;
     s32 sp28;
     s32 sp24 = 0;
