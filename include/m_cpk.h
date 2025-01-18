@@ -82,7 +82,7 @@ s32 func_80079760_jp(void);
 void* func_80079838_jp(void);
 s32 func_800798DC_jp(PakInfo* info);
 // void func_80079A24_jp();
-// void func_80079AAC_jp();
+UNK_RET func_80079AAC_jp(void);
 // void func_80079B28_jp();
 // void func_80079BF8_jp();
 UNK_RET func_80079D00_jp(void);

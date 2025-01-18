@@ -379,7 +379,23 @@ s32 func_80079A24_jp(PakInfo* info) {
     return sp1C;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079AAC_jp.s")
+UNK_RET func_80079AAC_jp(void) {
+    PakInfo* info = mCPk_get_pkinfo();
+    s32 sp20 = 0;
+    s32 sp1C;
+
+    func_8007919C_jp(info, 0);
+
+    if (func_80079A24_jp(info) == 1) {
+        if (func_8007967C_jp(&sp1C, 0, info) == 1) {
+            sp20 = func_80079708_jp(sp1C);
+        }
+    } else {
+        sp20 = 1;
+    }
+
+    return sp20;
+}
 
 void func_80079B28_jp(UNK_PTR arg0, u32 arg1, PakInfo* arg2) {
     UNUSED s32 pad[2];
