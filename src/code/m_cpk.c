@@ -14,6 +14,7 @@ extern UNK_TYPE2 D_80104790_jp;
 extern UNK_TYPE D_80104794_jp;
 extern D80104798Struct* D_80104798_jp;
 extern char* D_8010479C_jp[2];
+extern UNK_TYPE D_801047A8_jp;
 
 extern PakInfo* D_801047A4_jp;
 
@@ -285,16 +286,11 @@ UNK_RET func_80079708_jp(s32 arg0) {
 }
 
 s32 func_80079760_jp(void) {
-    UNUSED s32 pad[2];
-    s32 sp34;
-    PakInfo* info;
-    PrivateInfo* iter;
+    PakInfo* info = mCPk_get_pkinfo();
+    PrivateInfo* iter = &common_data.save.saveFilePrivateInfo[0];
+    s32 sp34 = -1;
     s32 temp_v0_2;
     s32 i;
-
-    info = mCPk_get_pkinfo();
-    iter = &common_data.save.saveFilePrivateInfo[0];
-    sp34 = -1;
 
     func_8007919C_jp(info, 0);
 
@@ -318,7 +314,27 @@ s32 func_80079760_jp(void) {
     return sp34;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079838_jp.s")
+void* func_80079838_jp(void) {
+    PersonalID_c* var_s0 = NULL;
+    PakInfo* info = mCPk_get_pkinfo();
+    void* sp24 = &D_801047A8_jp;
+
+    if (B_80137C40_jp.unk_1204 == 0) {
+        func_8007919C_jp(info, 0);
+        if (func_800792FC_jp(info, &B_80137C40_jp) == 1) {
+            B_80137C40_jp.unk_1204 = 1;
+            var_s0 = &B_80137C40_jp.unk_0000.priv.playerId;
+        }
+    } else {
+        var_s0 = &B_80137C40_jp.unk_0000.priv.playerId;
+    }
+
+    if ((var_s0 != NULL) && !mPr_NullCheckPersonalID(var_s0)) {
+        sp24 = var_s0;
+    }
+
+    return sp24;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_800798DC_jp.s")
 
