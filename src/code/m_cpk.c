@@ -130,7 +130,7 @@ UNK_RET func_8007920C_jp(PakInfo* info, B80137C40Struct* arg1) {
     return var_v0;
 }
 
-UNK_RET func_800792FC_jp(PakInfo* info, void* arg1) {
+s32 func_800792FC_jp(PakInfo* info, void* arg1) {
     s32 sp1C;
     u32 tmp;
 
@@ -170,7 +170,7 @@ s32 mCPk_SavePak(PrivateInfo* priv, Animal_c* animal, PakInfo* info) {
     return func_8007920C_jp(info, &B_80137C40_jp);
 }
 
-UNK_RET func_8007942C_jp(PrivateInfo* priv, Animal_c* animal, PakInfo* info) {
+s32 func_8007942C_jp(PrivateInfo* priv, Animal_c* animal, PakInfo* info) {
     s32 sp1C;
 
     func_8007919C_jp(info, 0);
@@ -336,7 +336,30 @@ void* func_80079838_jp(void) {
     return sp24;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_800798DC_jp.s")
+s32 func_800798DC_jp(PakInfo* info) {
+    UNUSED s32 pad;
+    u32 temp_v0;
+    s32 sp24 = FALSE;
+
+    if (B_80137C40_jp.unk_1204 == 0) {
+        func_8007919C_jp(info, 0);
+        if (func_800792FC_jp(info, &B_80137C40_jp) == 1) {
+            B_80137C40_jp.unk_1204 = 1;
+        }
+    }
+    if (B_80137C40_jp.unk_1204 == 1) {
+        temp_v0 = fqrand() * 65534.0f;
+        B_80137C40_jp.unk_1208 = temp_v0;
+        B_80137C40_jp.unk_0000.unk_1100 = temp_v0;
+        B_80137C40_jp.unk_0000.unk_0000 =
+            func_8008EEB4_jp(&B_80137C40_jp, sizeof(B80137C40Unk0000Struct), B_80137C40_jp.unk_0000.unk_0000);
+
+        if (func_8007920C_jp(info, &B_80137C40_jp) == 1) {
+            sp24 = TRUE;
+        }
+    }
+    return sp24;
+}
 
 UNK_RET func_80079A24_jp(PakInfo* info);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079A24_jp.s")
