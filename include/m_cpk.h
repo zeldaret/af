@@ -49,11 +49,13 @@ typedef struct PakInfo04Struct {
 } PakInfo04Struct; // size = 0x70
 
 typedef struct PakInfo {
-    /* 0x00 */ UNK_TYPE unk_00;
-    /* 0x04 */ PakInfo04Struct unk_04;
-    /* 0x74 */ PakInfo74Struct unk_74;
-    /* 0x90 */ PakInfo94Struct unk_94[16];
-} PakInfo; // size >= 0x294
+    /* 0x000 */ UNK_TYPE unk_00;
+    /* 0x004 */ PakInfo04Struct unk_04;
+    /* 0x074 */ PakInfo74Struct unk_74;
+    /* 0x090 */ PakInfo94Struct unk_94[16];
+    /* 0x294 */ UNK_TYPE1 unk_294[0x2DC - 0x294];
+    /* 0x2DC */ s32 unk_2DC;
+} PakInfo; // size >= 0x2DC
 
 UNK_RET mCPk_PakOpen(PakInfo* info, s32 arg1);
 // void func_80078EB4_jp();

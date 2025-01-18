@@ -34,12 +34,14 @@ UNK_RET func_80078EE0_jp(PakInfo* info) {
     return func_800CD990_jp(&info->unk_04, &info->unk_74);
 }
 
+UNK_RET func_80078F08_jp(PakInfo* info);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80078F08_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80078F34_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80078FE8_jp.s")
 
+UNK_RET func_80079030_jp(PakInfo* info);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079030_jp.s")
 
 void func_80079080_jp(B80137C40Struct* arg0) {
@@ -176,8 +178,44 @@ s32 func_8007942C_jp(PrivateInfo* priv, Animal_c* animal, PakInfo* info) {
     return sp1C;
 }
 
-s32 func_800794E4_jp(s32*, s32, PakInfo*, void*);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_800794E4_jp.s")
+s32 func_800794E4_jp(s32* arg0, s32 arg1, PakInfo* arg2, void* arg3) {
+    PakInfo04Struct* unkStruct = &arg2->unk_04;
+    void* var_a3;
+    s32 sp24 = 0;
+    UNUSED s32 pad[2];
+
+    *arg0 = 5;
+    B_80137C40_jp.unk_1200 = padmgr_LockSerialMesgQ();
+    if ((func_80078EE0_jp(arg2) == 1) || (unkStruct->unk_6C == 9)) {
+        var_a3 = (arg1 == 0) ? &B_80137C40_jp : arg3;
+        if ((var_a3 != NULL) && (func_800CD82C_jp(unkStruct, 0, arg2->unk_74.unk_00, var_a3) == 1)) {
+            if (arg1 == 0) {
+                if (!mPr_NullCheckPersonalID(&B_80137C40_jp.unk_0000.priv.playerId)) {
+                    B_80137C40_jp.unk_1204 = 1;
+                    *arg0 = 0;
+                } else {
+                    *arg0 = 2;
+                }
+            } else {
+                *arg0 = 2;
+            }
+            sp24 = 1;
+        }
+    } else if (unkStruct->unk_6C == 5) {
+        if ((func_80078F08_jp(arg2) == 1) && (arg2->unk_2DC >= 0x10)) {
+            *arg0 = 4;
+            sp24 = 1;
+        } else if (func_80079030_jp(arg2) == 1) {
+            *arg0 = 1;
+            sp24 = 1;
+        } else if (unkStruct->unk_6C == 0) {
+            *arg0 = 3;
+            sp24 = 1;
+        }
+    }
+    padmgr_UnlockSerialMesgQ(B_80137C40_jp.unk_1200);
+    return sp24;
+}
 
 s32 func_8007967C_jp(s32*, s32, PakInfo*);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_8007967C_jp.s")
