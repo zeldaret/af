@@ -106,7 +106,7 @@ void func_8007919C_jp(PakInfo* info, u8 arg1) {
     }
 }
 
-UNK_RET func_8007920C_jp(PakInfo* info, B80137C40Struct* arg1) {
+UNK_RET func_8007920C_jp(PakInfo* info, void* arg1) {
     s32 var_v0;
     s32 var_s1;
     u32 tmp;
@@ -464,16 +464,33 @@ UNK_RET func_80079D00_jp(void) {
     return sp18;
 }
 
-s32 func_80079D50_jp(void*, PakInfo* info, u8*);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079D50_jp.s")
+s32 func_80079D50_jp(D801047B0Struct* arg0, PakInfo* info, u8* index) {
+    func_8007919C_jp(info, 1);
+    arg0->unk_0000 = func_8008EEB4_jp(arg0, sizeof(D801047B0Struct), arg0->unk_0000);
+    if (func_8007920C_jp(info, arg0) == 1) {
+        if (mLd_PlayerManKindCheck()) {
+            if (mCPk_SavePak(common_data.privateInfo, mNpc_GetInAnimalP(), info) == 1) {
+                *index = 1;
+                return 0;
+            }
+            return -1;
+        }
 
-s32 func_80079E14_jp(void*, PakInfo* info, u8*);
+        *index = 1;
+        return 0;
+    }
+
+    *index = 0;
+    return -1;
+}
+
+s32 func_80079E14_jp(D801047B0Struct*, PakInfo* info, u8*);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079E14_jp.s")
 
-typedef s32 (*D801047B0Func)(void*, PakInfo*, u8*);
+typedef s32 (*D801047B0Func)(D801047B0Struct*, PakInfo*, u8*);
 D801047B0Func D_801047B0_jp[2] = { func_80079D50_jp, func_80079E14_jp };
 
-s32 func_80079E54_jp(void* arg0, PakInfo* arg1) {
+s32 func_80079E54_jp(D801047B0Struct* arg0, PakInfo* arg1) {
     static u8 D_801047B8_jp = 0;
 
     if (D_801047B8_jp >= ARRAY_COUNT(D_801047B0_jp)) {

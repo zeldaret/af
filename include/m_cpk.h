@@ -32,6 +32,11 @@ typedef struct D801047A8Struct {
     /* 0x0 */ UNK_TYPE1 unk_0[0x08];
 } D801047A8Struct; // size <= 0x8
 
+typedef struct D801047B0Struct {
+    /* 0x0000 */ u16 unk_0000;
+    /* 0x0002 */ UNK_TYPE1 unk_0002[0x66FE];
+} D801047B0Struct; // size = 0x6700;
+
 typedef struct PakInfo74Struct {
     /* 0x00 */ size_t unk_00;
     /* 0x04 */ UNK_TYPE1 unk_04[0x6];
@@ -91,7 +96,7 @@ UNK_RET func_80079AAC_jp(void);
 UNK_RET func_80079D00_jp(void);
 // void func_80079D50_jp();
 // void func_80079E14_jp();
-s32 func_80079E54_jp(void* arg0, PakInfo* arg1);
+s32 func_80079E54_jp(D801047B0Struct* arg0, PakInfo* arg1);
 UNK_RET func_80079EA4_jp(UNK_PTR, PakInfo* info);
 // void func_80079EDC_jp();
 // void func_80079F44_jp();
