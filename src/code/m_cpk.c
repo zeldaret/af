@@ -522,8 +522,34 @@ void func_80079EDC_jp(void) {
     func_8007920C_jp(info, &B_80137C40_jp);
 }
 
-s32 func_80079F44_jp(void);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079F44_jp.s")
+s32 func_80079F44_jp(void) {
+    PakInfo* info = mCPk_get_pkinfo();
+    u16 sp2A = 0;
+    s32 sp24;
+    s32 var_s0 = 0;
+
+    func_8007919C_jp(info, 0);
+
+    sp24 = func_800792FC_jp(info, &B_80137C40_jp);
+
+    if (sp24 == 1) {
+        B_80137C40_jp.unk_1204 = 1;
+        sp2A = func_8008EE7C_jp(&B_80137C40_jp, sizeof(B80137C40Unk0000Struct));
+    } else if (sp24 == -1) {
+        var_s0 = -2;
+    } else {
+        var_s0 = -1;
+    }
+
+    if ((sp24 == 1) && (sp2A == 0)) {
+        var_s0 = 1;
+    } else {
+        B_80137C40_jp.unk_1204 = 0;
+        func_80079080_jp(&B_80137C40_jp);
+    }
+
+    return var_s0;
+}
 
 void func_8007A008_jp(void) {
     PakInfo* info = mCPk_get_pkinfo();
