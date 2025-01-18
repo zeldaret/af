@@ -361,8 +361,23 @@ s32 func_800798DC_jp(PakInfo* info) {
     return sp24;
 }
 
-UNK_RET func_80079A24_jp(PakInfo* info);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079A24_jp.s")
+s32 func_80079A24_jp(PakInfo* info) {
+    s32 sp1C;
+
+    if (B_80137C40_jp.unk_1208 != 0xFFFF) {
+        sp1C = FALSE;
+        func_8007919C_jp(info, 0);
+        if (func_800792FC_jp(info, &B_80137C40_jp) == 1) {
+            B_80137C40_jp.unk_1204 = 1;
+            if (B_80137C40_jp.unk_1208 == B_80137C40_jp.unk_0000.unk_1100) {
+                sp1C = TRUE;
+            }
+        }
+    } else {
+        sp1C = TRUE;
+    }
+    return sp1C;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079AAC_jp.s")
 
@@ -438,7 +453,7 @@ UNK_RET func_80079D00_jp(void) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079E54_jp.s")
 
-UNK_RET func_80079EA4_jp(UNK_PTR arg0, PakInfo* info) {
+s32 func_80079EA4_jp(UNK_PTR arg0, PakInfo* info) {
     func_8007919C_jp(info, 1);
     return func_800792FC_jp(info, arg0);
 }
