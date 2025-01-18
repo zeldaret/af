@@ -34,8 +34,9 @@ UNK_RET func_80078EE0_jp(PakInfo* info) {
     return func_800CD990_jp(&info->unk_04, &info->unk_74);
 }
 
-UNK_RET func_80078F08_jp(PakInfo* info);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80078F08_jp.s")
+UNK_RET func_80078F08_jp(PakInfo* info) {
+    return func_800CDA90_jp(&info->unk_04, &info->unk_2D8, &info->unk_2DC);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80078F34_jp.s")
 

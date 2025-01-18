@@ -53,7 +53,8 @@ typedef struct PakInfo {
     /* 0x004 */ PakInfo04Struct unk_04;
     /* 0x074 */ PakInfo74Struct unk_74;
     /* 0x090 */ PakInfo94Struct unk_94[16];
-    /* 0x294 */ UNK_TYPE1 unk_294[0x2DC - 0x294];
+    /* 0x294 */ UNK_TYPE1 unk_294[0x2D8 - 0x294];
+    /* 0x2D8 */ s32 unk_2D8;
     /* 0x2DC */ s32 unk_2DC;
 } PakInfo; // size >= 0x2DC
 
