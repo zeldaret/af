@@ -112,7 +112,7 @@ UNK_RET func_8007920C_jp(PakInfo* info, B80137C40Struct* arg1) {
     return var_v0;
 }
 
-UNK_RET func_800792FC_jp(PakInfo* info, B80137C40Struct* arg1) {
+UNK_RET func_800792FC_jp(PakInfo* info, void* arg1) {
     s32 sp1C;
     s32 tmp;
 
@@ -268,7 +268,10 @@ UNK_RET func_80079D00_jp(void) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079E54_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079EA4_jp.s")
+UNK_RET func_80079EA4_jp(UNK_PTR arg0, PakInfo* info) {
+    func_8007919C_jp(info, 1);
+    return func_800792FC_jp(info, arg0);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079EDC_jp.s")
 
