@@ -22,7 +22,7 @@ char* D_8010479C_jp[2] = { "\x1A", "\x1B" };
 PakInfo* D_801047A4_jp = &B_80137960_jp;
 D801047A8Struct D_801047A8_jp = { { 0xD4, 0x8E, 0xA6, 0x90, 0x85, 0x42, 0x00, 0x00 } };
 
-const size_t RO_80116808_jp[2] = { 0x1200, 0x6700 };
+const size_t RO_80116808_jp[2] = { sizeof(B80137C40Unk0000Struct), sizeof(D801047B0Struct) };
 
 UNK_RET mCPk_PakOpen(PakInfo* info, s32 arg1) {
     return func_800CD68C_jp(&info->unk_04, arg1);
@@ -217,10 +217,10 @@ s32 func_8007942C_jp(PrivateInfo* priv, Animal_c* animal, PakInfo* info) {
     return sp1C;
 }
 
-UNK_RET func_800794E4_jp(s32* arg0, s32 arg1, PakInfo* arg2, void* arg3) {
+s32 func_800794E4_jp(s32* arg0, s32 arg1, PakInfo* arg2, void* arg3) {
     PakInfo04Struct* unkStruct = &arg2->unk_04;
     void* var_a3;
-    s32 sp24 = 0;
+    s32 sp24 = FALSE;
     UNUSED s32 pad[2];
 
     *arg0 = 5;
@@ -238,25 +238,25 @@ UNK_RET func_800794E4_jp(s32* arg0, s32 arg1, PakInfo* arg2, void* arg3) {
             } else {
                 *arg0 = 2;
             }
-            sp24 = 1;
+            sp24 = TRUE;
         }
     } else if (unkStruct->unk_6C == 5) {
         if ((func_80078F08_jp(arg2) == 1) && (arg2->unk_2DC >= 0x10)) {
             *arg0 = 4;
-            sp24 = 1;
+            sp24 = TRUE;
         } else if (func_80079030_jp(arg2) == TRUE) {
             *arg0 = 1;
-            sp24 = 1;
+            sp24 = TRUE;
         } else if (unkStruct->unk_6C == 0) {
             *arg0 = 3;
-            sp24 = 1;
+            sp24 = TRUE;
         }
     }
     padmgr_UnlockSerialMesgQ(B_80137C40_jp.unk_1200);
     return sp24;
 }
 
-UNK_RET func_8007967C_jp(s32* arg0, s32 arg1, PakInfo* arg2) {
+s32 func_8007967C_jp(s32* arg0, s32 arg1, PakInfo* arg2) {
     UNUSED s32 pad;
     s32 sp20;
     void* sp1C;
@@ -338,7 +338,7 @@ s32 func_80079760_jp(void) {
 }
 
 void* func_80079838_jp(void) {
-    PersonalID_c* var_s0 = NULL;
+    PersonalID_c* id = NULL;
     PakInfo* info = mCPk_get_pkinfo();
     void* sp24 = &D_801047A8_jp;
 
@@ -346,14 +346,14 @@ void* func_80079838_jp(void) {
         func_8007919C_jp(info, 0);
         if (func_800792FC_jp(info, &B_80137C40_jp) == 1) {
             B_80137C40_jp.unk_1204 = 1;
-            var_s0 = &B_80137C40_jp.unk_0000.priv.playerId;
+            id = &B_80137C40_jp.unk_0000.priv.playerId;
         }
     } else {
-        var_s0 = &B_80137C40_jp.unk_0000.priv.playerId;
+        id = &B_80137C40_jp.unk_0000.priv.playerId;
     }
 
-    if ((var_s0 != NULL) && !mPr_NullCheckPersonalID(var_s0)) {
-        sp24 = var_s0;
+    if ((id != NULL) && !mPr_NullCheckPersonalID(id)) {
+        sp24 = id;
     }
 
     return sp24;
@@ -420,25 +420,24 @@ UNK_RET func_80079AAC_jp(void) {
     return sp20;
 }
 
-void func_80079B28_jp(UNK_PTR arg0, u32 arg1, PakInfo* arg2) {
+void func_80079B28_jp(UNK_PTR arg0, u32 arg1, PakInfo* info) {
     UNUSED s32 pad[2];
-    s32 temp_v0;
-    OSMesgQueue* sp20;
-    PakInfo* sp1C;
+    s32 temp_v0 = func_80079EA4_jp(arg0, info);
+    OSMesgQueue* queue;
+    PakInfo* info2;
 
-    temp_v0 = func_80079EA4_jp(arg0, arg2);
     if (temp_v0 == 1) {
         if (func_8008EE7C_jp(arg0, arg1) != 0) {
-            func_8007919C_jp(arg2, 1);
-            sp20 = padmgr_LockSerialMesgQ();
-            func_800CD9F0_jp(&arg2->unk_04, &arg2->unk_74);
-            padmgr_UnlockSerialMesgQ(sp20);
+            func_8007919C_jp(info, 1);
+            queue = padmgr_LockSerialMesgQ();
+            func_800CD9F0_jp(&info->unk_04, &info->unk_74);
+            padmgr_UnlockSerialMesgQ(queue);
         }
     } else if (temp_v0 == -1) {
-        sp1C = mCPk_get_pkinfo();
-        func_8007919C_jp(sp1C, 1);
+        info2 = mCPk_get_pkinfo();
+        func_8007919C_jp(info2, 1);
         B_80137C40_jp.unk_1200 = padmgr_LockSerialMesgQ();
-        func_800CD9F0_jp(&sp1C->unk_04, &sp1C->unk_74);
+        func_800CD9F0_jp(&info2->unk_04, &info2->unk_74);
         padmgr_UnlockSerialMesgQ(B_80137C40_jp.unk_1200);
     }
 }
@@ -455,7 +454,7 @@ UNK_RET func_80079BF8_jp(PakInfo* info) {
         if (sp20 != NULL) {
             func_80079B28_jp(sp20, info->unk_74.unk_00, info);
         }
-        if (func_800794E4_jp(&sp28, 1, info, sp20) == 1) {
+        if (func_800794E4_jp(&sp28, 1, info, sp20) == TRUE) {
             sp24 = func_80079708_jp(sp28);
         }
         if (sp20 != NULL) {
@@ -476,11 +475,11 @@ UNK_RET func_80079BF8_jp(PakInfo* info) {
 }
 
 UNK_RET func_80079D00_jp(void) {
-    PakInfo* sp1C = mCPk_get_pkinfo();
+    PakInfo* info = mCPk_get_pkinfo();
     s32 sp18 = 0;
 
-    if (mCPk_PakOpen(sp1C, 0) == 1) {
-        sp18 = func_80079BF8_jp(sp1C);
+    if (mCPk_PakOpen(info, 0) == 1) {
+        sp18 = func_80079BF8_jp(info);
     }
 
     return sp18;
@@ -576,13 +575,13 @@ s32 func_80079F44_jp(void) {
 void func_8007A008_jp(void) {
     PakInfo* info = mCPk_get_pkinfo();
     s32 temp_v0 = func_80079F44_jp();
-    OSMesgQueue* sp1C;
+    OSMesgQueue* queue;
 
     if ((temp_v0 == 0) || (temp_v0 == -2)) {
         func_8007919C_jp(info, 0);
-        sp1C = padmgr_LockSerialMesgQ();
+        queue = padmgr_LockSerialMesgQ();
         func_800CD9F0_jp(&info->unk_04, &info->unk_74);
-        padmgr_UnlockSerialMesgQ(sp1C);
+        padmgr_UnlockSerialMesgQ(queue);
     }
 }
 

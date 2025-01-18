@@ -45,7 +45,6 @@ typedef struct PakInfo74Struct {
     /* 0x1E */ UNK_TYPE1 unk_1E[0x2];
 } PakInfo74Struct; // size = 0x20
 
-// Same as PakInfo74Struct?
 typedef struct PakInfo94Struct {
     /* 0x00 */ UNK_TYPE1 unk_00[0x20];
 } PakInfo94Struct; // size = 0x20
@@ -68,38 +67,22 @@ typedef struct PakInfo {
 } PakInfo; // size >= 0x2DC
 
 UNK_RET mCPk_PakOpen(PakInfo* info, s32 arg1);
-// void func_80078EB4_jp();
-// void func_80078EE0_jp();
-// void func_80078F08_jp();
-// void func_80078F34_jp();
-// void func_80078FE8_jp();
-// void func_80079030_jp();
+UNK_RET func_80078F08_jp(PakInfo* info);
+s32 func_80078FE8_jp(PakInfo* info);
 void func_80079080_jp(B80137C40Struct* arg0);
 UNK_RET mCPk_InitPak(UNK_TYPE arg0);
-// void func_8007919C_jp();
-// void func_8007920C_jp();
-// void func_800792FC_jp();
-// void func_80079378_jp();
 PrivateInfo* func_800793A8_jp(void);
 s32 mCPk_SavePak(PrivateInfo* priv, Animal_c* animal, PakInfo* info);
 s32 func_8007942C_jp(PrivateInfo* priv, Animal_c* animal, PakInfo* info);
-// void func_800794E4_jp();
-// void func_8007967C_jp();
-// void func_80079708_jp();
 s32 func_80079760_jp(void);
 void* func_80079838_jp(void);
 s32 func_800798DC_jp(PakInfo* info);
-// void func_80079A24_jp();
 UNK_RET func_80079AAC_jp(void);
-// void func_80079B28_jp();
-// void func_80079BF8_jp();
 UNK_RET func_80079D00_jp(void);
-// void func_80079D50_jp();
-// void func_80079E14_jp();
 s32 func_80079E54_jp(D801047B0Struct* arg0, PakInfo* arg1);
 UNK_RET func_80079EA4_jp(UNK_PTR, PakInfo* info);
 void func_80079EDC_jp(void);
-// void func_80079F44_jp();
+s32 func_80079F44_jp(void);
 void func_8007A008_jp(void);
 PakInfo* mCPk_get_pkinfo(void);
 s32 func_8007A080_jp(void);
