@@ -284,7 +284,39 @@ UNK_RET func_80079708_jp(s32 arg0) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079760_jp.s")
+s32 func_80079760_jp(void) {
+    UNUSED s32 pad[2];
+    s32 sp34;
+    PakInfo* info;
+    PrivateInfo* iter;
+    s32 temp_v0_2;
+    s32 i;
+
+    info = mCPk_get_pkinfo();
+    iter = &common_data.save.saveFilePrivateInfo[0];
+    sp34 = -1;
+
+    func_8007919C_jp(info, 0);
+
+    temp_v0_2 = func_800792FC_jp(info, &B_80137C40_jp);
+
+    if (temp_v0_2 == 1) {
+        B_80137C40_jp.unk_1204 = 1;
+    }
+
+    if ((temp_v0_2 == 1) && !mPr_NullCheckPersonalID(&B_80137C40_jp.unk_0000.priv.playerId)) {
+        sp34 = 4;
+        for (i = 0; i < ARRAY_COUNT(common_data.save.saveFilePrivateInfo); i++) {
+            if (mPr_CheckCmpPrivate(&B_80137C40_jp.unk_0000.priv, iter) == TRUE) {
+                sp34 = i;
+                break;
+            }
+            iter++;
+        }
+    }
+
+    return sp34;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079838_jp.s")
 
