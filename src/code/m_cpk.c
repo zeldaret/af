@@ -3,9 +3,11 @@
 
 #include "m_flashrom.h"
 #include "m_lib.h"
+#include "m_malloc.h"
 
 #include "padmgr.h"
 
+#include "6B8F20.h"
 #include "6F12E0.h"
 
 extern UNK_TYPE2 D_80104790_jp;
@@ -174,10 +176,13 @@ s32 func_8007942C_jp(PrivateInfo* priv, Animal_c* animal, PakInfo* info) {
     return sp1C;
 }
 
+s32 func_800794E4_jp(s32*, s32, PakInfo*, void*);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_800794E4_jp.s")
 
+s32 func_8007967C_jp(s32*, s32, PakInfo*);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_8007967C_jp.s")
 
+s32 func_80079708_jp(s32);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079708_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079760_jp.s")
@@ -186,14 +191,45 @@ s32 func_8007942C_jp(PrivateInfo* priv, Animal_c* animal, PakInfo* info) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_800798DC_jp.s")
 
+UNK_RET func_80079A24_jp(PakInfo* info);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079A24_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079AAC_jp.s")
 
+void func_80079B28_jp(void*, s32, PakInfo*);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079B28_jp.s")
 
-UNK_RET func_80079BF8_jp(PakInfo* info);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079BF8_jp.s")
+s32 func_80079BF8_jp(PakInfo* info) {
+    UNUSED s32 pad;
+    s32 sp28;
+    s32 sp24 = 0;
+    void* sp20;
+
+    if (!mLd_PlayerManKindCheck()) {
+        func_8007919C_jp(info, 1);
+        sp20 = zelda_malloc(info->unk_74.unk_00);
+        if (sp20 != NULL) {
+            func_80079B28_jp(sp20, info->unk_74.unk_00, info);
+        }
+        if (func_800794E4_jp(&sp28, 1, info, sp20) == 1) {
+            sp24 = func_80079708_jp(sp28);
+        }
+        if (sp20 != NULL) {
+            zelda_free(sp20);
+        }
+    } else if (func_800966E0_jp() == 1) {
+        func_8007919C_jp(info, 0);
+        if (func_80079A24_jp(info) == 1) {
+            if (func_8007967C_jp(&sp28, 0, info) == 1) {
+                sp24 = func_80079708_jp(sp28);
+            }
+        } else {
+            sp24 = 1;
+        }
+    }
+
+    return sp24;
+}
 
 UNK_RET func_80079D00_jp(void) {
     PakInfo* sp1C = mCPk_get_pkinfo();
