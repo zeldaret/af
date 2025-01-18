@@ -522,9 +522,21 @@ void func_80079EDC_jp(void) {
     func_8007920C_jp(info, &B_80137C40_jp);
 }
 
+s32 func_80079F44_jp(void);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079F44_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_8007A008_jp.s")
+void func_8007A008_jp(void) {
+    PakInfo* info = mCPk_get_pkinfo();
+    s32 temp_v0 = func_80079F44_jp();
+    OSMesgQueue* sp1C;
+
+    if ((temp_v0 == 0) || (temp_v0 == -2)) {
+        func_8007919C_jp(info, 0);
+        sp1C = padmgr_LockSerialMesgQ();
+        func_800CD9F0_jp(&info->unk_04, &info->unk_74);
+        padmgr_UnlockSerialMesgQ(sp1C);
+    }
+}
 
 PakInfo* mCPk_get_pkinfo(void) {
     return D_801047A4_jp;

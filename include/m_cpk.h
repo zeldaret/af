@@ -100,7 +100,7 @@ s32 func_80079E54_jp(D801047B0Struct* arg0, PakInfo* arg1);
 UNK_RET func_80079EA4_jp(UNK_PTR, PakInfo* info);
 void func_80079EDC_jp(void);
 // void func_80079F44_jp();
-// void func_8007A008_jp();
+void func_8007A008_jp(void);
 PakInfo* mCPk_get_pkinfo(void);
 // void func_8007A080_jp();
 
