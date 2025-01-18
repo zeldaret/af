@@ -512,7 +512,15 @@ s32 func_80079EA4_jp(UNK_PTR arg0, PakInfo* info) {
     return func_800792FC_jp(info, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079EDC_jp.s")
+void func_80079EDC_jp(void) {
+    PakInfo* info = mCPk_get_pkinfo();
+
+    func_80079080_jp(&B_80137C40_jp);
+    func_8007919C_jp(info, 0);
+    B_80137C40_jp.unk_0000.unk_0000 =
+        func_8008EEB4_jp(&B_80137C40_jp, sizeof(B80137C40Unk0000Struct), B_80137C40_jp.unk_0000.unk_0000);
+    func_8007920C_jp(info, &B_80137C40_jp);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079F44_jp.s")
 
