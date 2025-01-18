@@ -102,6 +102,6 @@ void func_80079EDC_jp(void);
 // void func_80079F44_jp();
 void func_8007A008_jp(void);
 PakInfo* mCPk_get_pkinfo(void);
-// void func_8007A080_jp();
+s32 func_8007A080_jp(void);
 
 #endif

@@ -568,4 +568,13 @@ PakInfo* mCPk_get_pkinfo(void) {
     return D_801047A4_jp;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_8007A080_jp.s")
+s32 func_8007A080_jp(void) {
+    PakInfo* info = mCPk_get_pkinfo();
+    s32 var_v1 = TRUE;
+
+    if ((info != NULL) && (info->unk_04.unk_6C == 10)) {
+        var_v1 = FALSE;
+    }
+
+    return var_v1;
+}
