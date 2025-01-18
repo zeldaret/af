@@ -196,14 +196,34 @@ UNK_RET func_80079A24_jp(PakInfo* info);
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079AAC_jp.s")
 
-void func_80079B28_jp(void*, s32, PakInfo*);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079B28_jp.s")
+void func_80079B28_jp(UNK_PTR arg0, s32 arg1, PakInfo* arg2) {
+    UNUSED s32 pad[2];
+    s32 temp_v0;
+    OSMesgQueue* sp20;
+    PakInfo* sp1C;
+
+    temp_v0 = func_80079EA4_jp(arg0, arg2);
+    if (temp_v0 == 1) {
+        if (func_8008EE7C_jp(arg0, arg1) != 0) {
+            func_8007919C_jp(arg2, 1);
+            sp20 = padmgr_LockSerialMesgQ();
+            func_800CD9F0_jp(&arg2->unk_04, &arg2->unk_74);
+            padmgr_UnlockSerialMesgQ(sp20);
+        }
+    } else if (temp_v0 == -1) {
+        sp1C = mCPk_get_pkinfo();
+        func_8007919C_jp(sp1C, 1);
+        B_80137C40_jp.unk_1200 = padmgr_LockSerialMesgQ();
+        func_800CD9F0_jp(&sp1C->unk_04, &sp1C->unk_74);
+        padmgr_UnlockSerialMesgQ(B_80137C40_jp.unk_1200);
+    }
+}
 
 s32 func_80079BF8_jp(PakInfo* info) {
     UNUSED s32 pad;
     s32 sp28;
     s32 sp24 = 0;
-    void* sp20;
+    UNK_PTR sp20;
 
     if (!mLd_PlayerManKindCheck()) {
         func_8007919C_jp(info, 1);
