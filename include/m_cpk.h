@@ -30,7 +30,7 @@ typedef struct D80104798Struct {
 } D80104798Struct; // size 0x10
 
 typedef struct PakInfo74Struct {
-    /* 0x00 */ s32 unk_00;
+    /* 0x00 */ size_t unk_00;
     /* 0x04 */ UNK_TYPE1 unk_04[0x6];
     /* 0x0A */ char unk_0A[4];
     /* 0x0E */ D80104798Struct unk_0E;
@@ -53,7 +53,8 @@ typedef struct PakInfo {
     /* 0x004 */ PakInfo04Struct unk_04;
     /* 0x074 */ PakInfo74Struct unk_74;
     /* 0x090 */ PakInfo94Struct unk_94[16];
-    /* 0x294 */ UNK_TYPE1 unk_294[0x2D8 - 0x294];
+    /* 0x294 */ UNK_TYPE1 unk_294[0x2D4 - 0x294];
+    /* 0x2D4 */ size_t unk_2D4;
     /* 0x2D8 */ s32 unk_2D8;
     /* 0x2DC */ s32 unk_2DC;
 } PakInfo; // size >= 0x2DC

@@ -40,10 +40,20 @@ UNK_RET func_80078F08_jp(PakInfo* info) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80078F34_jp.s")
 
+UNK_RET func_80078FE8_jp(PakInfo* info);
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80078FE8_jp.s")
 
-UNK_RET func_80079030_jp(PakInfo* info);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079030_jp.s")
+s32 func_80079030_jp(PakInfo* info) {
+    s32 sp1C = FALSE;
+
+    if ((func_80078FE8_jp(info) == 1) && (info->unk_2D4 >= info->unk_74.unk_00)) {
+        sp1C = TRUE;
+    }
+    return sp1C;
+}
+
+// UNK_RET func_80079030_jp(PakInfo* info);
+// #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079030_jp.s")
 
 void func_80079080_jp(B80137C40Struct* arg0) {
     arg0->unk_0000.unk_0000 = 0;
@@ -93,7 +103,7 @@ void func_8007919C_jp(PakInfo* info, u8 arg1) {
 UNK_RET func_8007920C_jp(PakInfo* info, B80137C40Struct* arg1) {
     s32 var_v0;
     s32 var_s1;
-    s32 tmp;
+    u32 tmp;
 
     for (var_s1 = 0; var_s1 < 1; var_s1++) {
         PakInfo04Struct* temp_s3 = &info->unk_04;
@@ -117,7 +127,7 @@ UNK_RET func_8007920C_jp(PakInfo* info, B80137C40Struct* arg1) {
 
 UNK_RET func_800792FC_jp(PakInfo* info, void* arg1) {
     s32 sp1C;
-    s32 tmp;
+    u32 tmp;
 
     B_80137C40_jp.unk_1200 = padmgr_LockSerialMesgQ();
     sp1C = func_80078EE0_jp(info);
@@ -206,7 +216,7 @@ s32 func_800794E4_jp(s32* arg0, s32 arg1, PakInfo* arg2, void* arg3) {
         if ((func_80078F08_jp(arg2) == 1) && (arg2->unk_2DC >= 0x10)) {
             *arg0 = 4;
             sp24 = 1;
-        } else if (func_80079030_jp(arg2) == 1) {
+        } else if (func_80079030_jp(arg2) == TRUE) {
             *arg0 = 1;
             sp24 = 1;
         } else if (unkStruct->unk_6C == 0) {
@@ -235,7 +245,7 @@ UNK_RET func_80079A24_jp(PakInfo* info);
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079AAC_jp.s")
 
-void func_80079B28_jp(UNK_PTR arg0, s32 arg1, PakInfo* arg2) {
+void func_80079B28_jp(UNK_PTR arg0, u32 arg1, PakInfo* arg2) {
     UNUSED s32 pad[2];
     s32 temp_v0;
     OSMesgQueue* sp20;
