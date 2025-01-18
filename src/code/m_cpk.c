@@ -251,8 +251,38 @@ UNK_RET func_8007967C_jp(s32* arg0, s32 arg1, PakInfo* arg2) {
     return sp20;
 }
 
-UNK_RET func_80079708_jp(s32);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079708_jp.s")
+UNK_RET func_80079708_jp(s32 arg0) {
+    s32 var_v1;
+
+    switch (arg0) {
+        case 0:
+            var_v1 = 4;
+            break;
+
+        case 1:
+        case 2:
+            var_v1 = 3;
+            break;
+
+        case 3:
+            var_v1 = 2;
+            break;
+
+        case 4:
+            var_v1 = 6;
+            break;
+
+        case 5:
+            var_v1 = 5;
+            break;
+
+        default:
+            var_v1 = 5;
+            break;
+    }
+
+    return var_v1;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_cpk/func_80079760_jp.s")
 
