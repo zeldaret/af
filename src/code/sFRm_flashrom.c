@@ -118,7 +118,15 @@ s32 func_800CDCC0_jp(void* addr, u32 pageNum, u32 pageCount) {
     return ret;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/sFRm_flashrom/func_800CDDE0_jp.s")
+s32 func_800CDDE0_jp(void* addr, u32 pageNum) {
+    s32 ret;
+
+    osInvalDCache(addr, FLASH_BLOCK_SIZE);
+    ret = osFlashReadArray(&B_80144700_jp, 0, pageNum, addr, 1, &B_801446E0_jp);
+    osRecvMesg(&B_801446E0_jp, NULL, OS_MESG_BLOCK);
+
+    return ret;
+}
 
 s32 func_800CDE54_jp(void* addr, u32 pageNum, u32 pageCount) {
     s32 ret;
