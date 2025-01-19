@@ -1,5 +1,5 @@
-#ifndef C_6F17B0_H
-#define C_6F17B0_H
+#ifndef SFRM_FLASHROM_H
+#define SFRM_FLASHROM_H
 
 #include "ultra64.h"
 
