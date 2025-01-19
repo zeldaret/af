@@ -1,29 +1,31 @@
 #include "sFRm_flashrom.h"
-#include "global.h"
 
+#include "libu64/stackcheck.h"
 #include "os_internal_flash.h"
 
+#include "macros.h"
 #include "m_thread.h"
+#include "stack.h"
 
-OSMesgQueue B_801446E0_jp;
-OSMesg B_801446F8_jp[1];
-OSIoMesg B_80144700_jp;
+OSMesgQueue sFlashromMsgQueue;
+OSMesg sFlashromMsgBuf[1];
+OSIoMesg sFlashromIOMsg;
 
-STACK(B_80144718_jp, 0x400);
-StackEntry B_80144B18_jp;
-OSThread B_80144B38_jp;
-FlashromRequest B_80144CE8_jp;
+STACK(sFlashromStack, 0x400);
+StackEntry sFlashromStackInfo;
+OSThread sFlashromThread;
+FlashromRequest sFlashromRequest;
 
-s32 D_8010EF60_jp = 0;
+s32 sFlashromIsInit = FALSE;
 
-s32 func_800CDB10_jp(void) {
-    s32 ret = 1;
+s32 sFRm_Init(void) {
+    s32 ret = TRUE;
     u32 type;
     u32 maker;
 
     osFlashInit();
-    func_800CDECC_jp();
-    osCreateMesgQueue(&B_801446E0_jp, B_801446F8_jp, ARRAY_COUNT(B_801446F8_jp));
+    sFRm_InitRequest();
+    osCreateMesgQueue(&sFlashromMsgQueue, sFlashromMsgBuf, ARRAY_COUNT(sFlashromMsgBuf));
     osFlashReadId(&type, &maker);
 
     switch (maker) {
@@ -43,45 +45,45 @@ s32 func_800CDB10_jp(void) {
             break;
 
         default:
-            ret = 0;
+            ret = FALSE;
             break;
     }
 
-    if (ret == 1) {
-        D_8010EF60_jp = 1;
+    if (ret == TRUE) {
+        sFlashromIsInit = TRUE;
     }
 
     return ret;
 }
 
-s32 func_800CDBE0_jp(void) {
-    return D_8010EF60_jp;
+s32 sFRm_IsInit(void) {
+    return sFlashromIsInit;
 }
 
-s32 func_800CDBF0_jp(u32 pageNum) {
+s32 sFRm_EraseSector(u32 pageNum) {
     return osFlashSectorErase(pageNum);
 }
 
-s32 func_800CDC10_jp(void) {
+s32 sFRm_EraseAll(void) {
     return osFlashAllErase();
 }
 
-s32 func_800CDC30_jp(void* addr, u32 pageNum) {
+s32 sFRm_WritePage(void* addr, u32 pageNum) {
     s32 ret = -1;
-    s32 sp18;
+    s32 err;
 
     osWritebackDCache(addr, FLASH_BLOCK_SIZE);
-    sp18 = osFlashWriteBuffer(&B_80144700_jp, OS_MESG_PRI_NORMAL, addr, &B_801446E0_jp);
-    osRecvMesg(&B_801446E0_jp, NULL, OS_MESG_BLOCK);
+    err = osFlashWriteBuffer(&sFlashromIOMsg, OS_MESG_PRI_NORMAL, addr, &sFlashromMsgQueue);
+    osRecvMesg(&sFlashromMsgQueue, NULL, OS_MESG_BLOCK);
 
-    if ((sp18 != -1) && (sp18 == 0)) {
+    if ((err != -1) && (err == 0)) {
         ret = osFlashWriteArray(pageNum);
     }
 
     return ret;
 }
 
-s32 func_800CDCC0_jp(void* addr, u32 pageNum, u32 pageCount) {
+s32 sFRm_Write(void* addr, u32 pageNum, u32 pageCount) {
     s32 ret;
     s32 retries;
     u32 i;
@@ -100,9 +102,9 @@ s32 func_800CDCC0_jp(void* addr, u32 pageNum, u32 pageCount) {
         }
 
         for (i = 0; i < pageCount; i++) {
-            ret = osFlashWriteBuffer(&B_80144700_jp, OS_MESG_PRI_NORMAL, (u8*)addr + i * FLASH_BLOCK_SIZE,
-                                     &B_801446E0_jp);
-            osRecvMesg(&B_801446E0_jp, NULL, OS_MESG_BLOCK);
+            ret = osFlashWriteBuffer(&sFlashromIOMsg, OS_MESG_PRI_NORMAL, (u8*)addr + i * FLASH_BLOCK_SIZE,
+                                     &sFlashromMsgQueue);
+            osRecvMesg(&sFlashromMsgQueue, NULL, OS_MESG_BLOCK);
             if (ret == -1) {
                 break;
             }
@@ -118,50 +120,50 @@ s32 func_800CDCC0_jp(void* addr, u32 pageNum, u32 pageCount) {
     return ret;
 }
 
-s32 func_800CDDE0_jp(void* addr, u32 pageNum) {
+s32 sFRm_ReadPage(void* addr, u32 pageNum) {
     s32 ret;
 
     osInvalDCache(addr, FLASH_BLOCK_SIZE);
-    ret = osFlashReadArray(&B_80144700_jp, 0, pageNum, addr, 1, &B_801446E0_jp);
-    osRecvMesg(&B_801446E0_jp, NULL, OS_MESG_BLOCK);
+    ret = osFlashReadArray(&sFlashromIOMsg, 0, pageNum, addr, 1, &sFlashromMsgQueue);
+    osRecvMesg(&sFlashromMsgQueue, NULL, OS_MESG_BLOCK);
 
     return ret;
 }
 
-s32 func_800CDE54_jp(void* addr, u32 pageNum, u32 pageCount) {
+s32 sFRm_Read(void* addr, u32 pageNum, u32 pageCount) {
     s32 ret;
     OSIoMesg msg;
 
     osInvalDCache(addr, pageCount * FLASH_BLOCK_SIZE);
-    ret = osFlashReadArray(&msg, OS_MESG_PRI_NORMAL, pageNum, addr, pageCount, &B_801446E0_jp);
-    osRecvMesg(&B_801446E0_jp, NULL, OS_MESG_BLOCK);
+    ret = osFlashReadArray(&msg, OS_MESG_PRI_NORMAL, pageNum, addr, pageCount, &sFlashromMsgQueue);
+    osRecvMesg(&sFlashromMsgQueue, NULL, OS_MESG_BLOCK);
     return ret;
 }
 
-void func_800CDECC_jp(void) {
-    FlashromRequest* req = &B_80144CE8_jp;
+void sFRm_InitRequest(void) {
+    FlashromRequest* req = &sFlashromRequest;
 
     req->type = 0;
 }
 
-void func_800CDEDC_jp(void* arg) {
+void sFRm_proc(void* arg) {
     FlashromRequest* req = (FlashromRequest*)arg;
 
     switch (req->type) {
         case FLASHROM_REQUEST_WRITE:
-            req->response = func_800CDCC0_jp(req->addr, req->pageNum, req->pageCount);
+            req->response = sFRm_Write(req->addr, req->pageNum, req->pageCount);
             osSendMesg(&req->queue, (OSMesg)req->response, OS_MESG_BLOCK);
             break;
 
         case FLASHROM_REQUEST_READ:
-            req->response = func_800CDE54_jp(req->addr, req->pageNum, req->pageCount);
+            req->response = sFRm_Read(req->addr, req->pageNum, req->pageCount);
             osSendMesg(&req->queue, (OSMesg)req->response, OS_MESG_BLOCK);
             break;
     }
 }
 
-void func_800CDF78_jp(void* addr, u32 pageNum, u32 pageCount) {
-    FlashromRequest* req = &B_80144CE8_jp;
+void sFRm_WriteAsync(void* addr, u32 pageNum, u32 pageCount) {
+    FlashromRequest* req = &sFlashromRequest;
 
     req->type = FLASHROM_REQUEST_WRITE;
     req->addr = addr;
@@ -169,39 +171,39 @@ void func_800CDF78_jp(void* addr, u32 pageNum, u32 pageCount) {
     req->pageCount = pageCount;
 
     osCreateMesgQueue(&req->queue, req->msgBuf, ARRAY_COUNT(req->msgBuf));
-    StackCheck_Init(&B_80144B18_jp, B_80144718_jp, STACK_TOP(B_80144718_jp), 0, 0x100, "sFRm_flashrom");
-    osCreateThread(&B_80144B38_jp, M_THREAD_ID_FLASHROM, func_800CDEDC_jp, &B_80144CE8_jp, STACK_TOP(B_80144718_jp),
+    StackCheck_Init(&sFlashromStackInfo, sFlashromStack, STACK_TOP(sFlashromStack), 0, 0x100, "sFRm_flashrom");
+    osCreateThread(&sFlashromThread, M_THREAD_ID_FLASHROM, sFRm_proc, &sFlashromRequest, STACK_TOP(sFlashromStack),
                    M_PRIORITY_FLASHROM);
-    osStartThread(&B_80144B38_jp);
+    osStartThread(&sFlashromThread);
 }
 
-s32 func_800CE04C_jp(void) {
-    FlashromRequest* req = &B_80144CE8_jp;
+s32 sFRm_IsBusy(void) {
+    FlashromRequest* req = &sFlashromRequest;
 
-    if (func_800CDBE0_jp() != 1) {
+    if (sFRm_IsInit() != 1) {
         return -1;
     }
 
     return MQ_IS_FULL(&req->queue);
 }
 
-s32 func_800CE090_jp(void) {
-    FlashromRequest* req = &B_80144CE8_jp;
+s32 sFRm_AwaitResult(void) {
+    FlashromRequest* req = &sFlashromRequest;
 
     osRecvMesg(&req->queue, NULL, OS_MESG_BLOCK);
-    osDestroyThread(&B_80144B38_jp);
-    StackCheck_Check(&B_80144B18_jp);
-    StackCheck_Cleanup(&B_80144B18_jp);
+    osDestroyThread(&sFlashromThread);
+    StackCheck_Check(&sFlashromStackInfo);
+    StackCheck_Cleanup(&sFlashromStackInfo);
     return req->response;
 }
 
-void func_800CE0E8_jp(void* addr, u32 pageNum, u32 pageCount) {
-    func_800CDF78_jp(addr, pageNum, pageCount);
-    func_800CE090_jp();
+void sFRm_WriteSync(void* addr, u32 pageNum, u32 pageCount) {
+    sFRm_WriteAsync(addr, pageNum, pageCount);
+    sFRm_AwaitResult();
 }
 
-s32 func_800CE110_jp(void) {
-    FlashromRequest* req = &B_80144CE8_jp;
+s32 sFRm_GetResult(void) {
+    FlashromRequest* req = &sFlashromRequest;
 
     return req->response;
 }

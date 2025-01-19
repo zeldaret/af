@@ -17,16 +17,16 @@ typedef struct FlashromRequest {
 #define FLASHROM_REQUEST_WRITE 1
 #define FLASHROM_REQUEST_READ 2
 
-s32 func_800CDB10_jp(void);
-s32 func_800CDBE0_jp(void);
-s32 func_800CDC10_jp(void);
-s32 func_800CDC30_jp(void* addr, u32 pageNum);
-s32 func_800CDDE0_jp(void* addr, u32 pageNum);
-void func_800CDECC_jp(void);
-void func_800CDF78_jp(void* addr, u32 pageNum, u32 pageCount);
-s32 func_800CE04C_jp(void);
-s32 func_800CE090_jp(void);
-void func_800CE0E8_jp(void* addr, u32 pageNum, u32 pageCount);
-s32 func_800CE110_jp(void);
+s32 sFRm_Init(void);
+s32 sFRm_IsInit(void);
+s32 sFRm_EraseAll(void);
+s32 sFRm_WritePage(void* addr, u32 pageNum);
+s32 sFRm_ReadPage(void* addr, u32 pageNum);
+void sFRm_InitRequest(void);
+void sFRm_WriteAsync(void* addr, u32 pageNum, u32 pageCount);
+s32 sFRm_IsBusy(void);
+s32 sFRm_AwaitResult(void);
+void sFRm_WriteSync(void* addr, u32 pageNum, u32 pageCount);
+s32 sFRm_GetResult(void);
 
 #endif
