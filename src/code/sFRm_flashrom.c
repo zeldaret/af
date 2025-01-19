@@ -111,7 +111,11 @@ s32 func_800CDE54_jp(void* addr, u32 pageNum, u32 pageCount) {
     return ret;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/sFRm_flashrom/func_800CDECC_jp.s")
+void func_800CDECC_jp(void) {
+    FlashromRequest* req = &B_80144CE8_jp;
+
+    req->type = 0;
+}
 
 void func_800CDEDC_jp(void* arg) {
     FlashromRequest* req = (FlashromRequest*)arg;
