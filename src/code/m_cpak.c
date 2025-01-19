@@ -28,16 +28,16 @@ s32 mCPk_PakOpen(PakInfo* info, s32 channel) {
     return func_800CD68C_jp(&info->pfsInfo, channel);
 }
 
-UNK_RET func_80078EB4_jp(PakInfo* info) {
+s32 func_80078EB4_jp(PakInfo* info) {
     return func_800CD8F8_jp(&info->pfsInfo, &info->pfsState, info->pfsState.file_size);
 }
 
-UNK_RET func_80078EE0_jp(PakInfo* info) {
+s32 func_80078EE0_jp(PakInfo* info) {
     return func_800CD990_jp(&info->pfsInfo, &info->pfsState);
 }
 
-UNK_RET func_80078F08_jp(PakInfo* info) {
-    return func_800CDA90_jp(&info->pfsInfo, &info->unk_2D8, &info->unk_2DC);
+s32 func_80078F08_jp(PakInfo* info) {
+    return func_800CDA90_jp(&info->pfsInfo, &info->max_files, &info->files_used);
 }
 
 s32 func_80078F34_jp(PakInfo* info) {
@@ -90,14 +90,13 @@ void func_80079080_jp(B80137C40Struct* arg0) {
     arg0->unk_0000.unk_1100 = 0xFFFF;
 }
 
-UNK_RET mCPk_InitPak(UNK_TYPE arg0) {
-    PakInfo* info;
+s32 mCPk_InitPak(s32 channel) {
+    PakInfo* info = mCPk_get_pkinfo();
     OSPfsState* pfsState;
     OSPfsState* iter;
     s32 i;
-    s32 temp_s1;
+    s32 ret;
 
-    info = mCPk_get_pkinfo();
     info->unk_00 = 0;
 
     pfsState = &info->pfsState;
@@ -110,19 +109,24 @@ UNK_RET mCPk_InitPak(UNK_TYPE arg0) {
     }
 
     func_800CD640_jp(pfsState, &D_80104790_jp, &D_80104794_jp);
+
     bcopy(D_80104798_jp, &pfsState->game_name, sizeof(pfsState->game_name));
-    temp_s1 = mCPk_PakOpen(info, arg0);
+
+    ret = mCPk_PakOpen(info, channel);
+
     func_80079080_jp(&B_80137C40_jp);
+
     B_80137C40_jp.unk_1200 = NULL;
     B_80137C40_jp.unk_1204 = 0;
     B_80137C40_jp.unk_1208 = 0xFFFF;
-    return temp_s1;
+
+    return ret;
 }
 
 void func_8007919C_jp(PakInfo* info, u8 arg1) {
     OSPfsState* pfsState = &info->pfsState;
 
-    if (arg1 < 2) {
+    if (arg1 < ARRAY_COUNT(D_8010479C_jp)) {
         bcopy(D_8010479C_jp[arg1], pfsState->ext_name, sizeof(pfsState->ext_name));
         pfsState->file_size = RO_80116808_jp[arg1];
     }
@@ -241,7 +245,7 @@ s32 func_800794E4_jp(s32* arg0, s32 arg1, PakInfo* info, void* arg3) {
             sp24 = TRUE;
         }
     } else if (pfsInfo->err == PFS_ERR_INVALID) {
-        if ((func_80078F08_jp(info) == 1) && (info->unk_2DC >= 0x10)) {
+        if ((func_80078F08_jp(info) == 1) && (info->files_used >= 0x10)) {
             *arg0 = 4;
             sp24 = TRUE;
         } else if (func_80079030_jp(info) == TRUE) {
@@ -518,14 +522,14 @@ s32 func_80079E14_jp(UNUSED D801047B0Struct* arg0, UNUSED PakInfo* info, u8* arg
 typedef s32 (*D801047B0Func)(D801047B0Struct*, PakInfo*, u8*);
 D801047B0Func D_801047B0_jp[2] = { func_80079D50_jp, func_80079E14_jp };
 
-s32 func_80079E54_jp(D801047B0Struct* arg0, PakInfo* arg1) {
+s32 func_80079E54_jp(D801047B0Struct* arg0, PakInfo* info) {
     static u8 D_801047B8_jp = 0;
 
     if (D_801047B8_jp >= ARRAY_COUNT(D_801047B0_jp)) {
         D_801047B8_jp = 0;
     }
 
-    return D_801047B0_jp[D_801047B8_jp](arg0, arg1, &D_801047B8_jp);
+    return D_801047B0_jp[D_801047B8_jp](arg0, info, &D_801047B8_jp);
 }
 
 s32 func_80079EA4_jp(UNK_PTR arg0, PakInfo* info) {

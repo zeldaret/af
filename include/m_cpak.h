@@ -45,15 +45,15 @@ typedef struct PakInfo {
     /* 0x094 */ OSPfsState unk_94[16];
     /* 0x294 */ s32 unk_294[16];
     /* 0x2D4 */ s32 unk_2D4;
-    /* 0x2D8 */ s32 unk_2D8;
-    /* 0x2DC */ s32 unk_2DC;
+    /* 0x2D8 */ s32 max_files;
+    /* 0x2DC */ s32 files_used;
 } PakInfo; // size >= 0x2DC
 
 s32 mCPk_PakOpen(PakInfo* info, s32 channel);
-UNK_RET func_80078F08_jp(PakInfo* info);
+s32 func_80078F08_jp(PakInfo* info);
 s32 func_80078FE8_jp(PakInfo* info);
 void func_80079080_jp(B80137C40Struct* arg0);
-UNK_RET mCPk_InitPak(UNK_TYPE arg0);
+s32 mCPk_InitPak(s32 channel);
 PrivateInfo* func_800793A8_jp(void);
 s32 mCPk_SavePak(PrivateInfo* priv, Animal_c* animal, PakInfo* info);
 s32 func_8007942C_jp(PrivateInfo* priv, Animal_c* animal, PakInfo* info);
@@ -62,7 +62,7 @@ void* func_80079838_jp(void);
 s32 func_800798DC_jp(PakInfo* info);
 UNK_RET func_80079AAC_jp(void);
 UNK_RET func_80079D00_jp(void);
-s32 func_80079E54_jp(D801047B0Struct* arg0, PakInfo* arg1);
+s32 func_80079E54_jp(D801047B0Struct* arg0, PakInfo* info);
 UNK_RET func_80079EA4_jp(UNK_PTR, PakInfo* info);
 void func_80079EDC_jp(void);
 s32 func_80079F44_jp(void);

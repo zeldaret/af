@@ -106,6 +106,18 @@ u32 func_800CDA4C_jp(OSPfsInfo* pfsInfo, OSPfsState* pfsState) {
     return pfsState->file_size;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/s_cpak/func_800CDA90_jp.s")
+s32 func_800CDA90_jp(OSPfsInfo* pfsInfo, s32* max_files, s32* files_used) {
+    s32 err;
+    s32 ret = FALSE;
+
+    err = osPfsNumFiles(&pfsInfo->pfs, max_files, files_used);
+
+    if (err == 0) {
+        ret = TRUE;
+    }
+
+    pfsInfo->err = err;
+    return ret;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/s_cpak/func_800CDAD0_jp.s")
