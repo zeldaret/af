@@ -18,14 +18,14 @@ typedef struct FlashromRequest {
 #define FLASHROM_REQUEST_READ 2
 
 // void func_800CDB10_jp();
-// void func_800CDBE0_jp();
+s32 func_800CDBE0_jp(void);
 // void func_800CDBF0_jp();
 // void func_800CDC10_jp();
 // void func_800CDC30_jp();
 // void func_800CDDE0_jp();
 void func_800CDECC_jp(void);
 void func_800CDF78_jp(void* addr, u32 pageNum, u32 pageCount);
-// void func_800CE04C_jp();
+s32 func_800CE04C_jp(void);
 // void func_800CE090_jp();
 // void func_800CE0E8_jp();
 // void func_800CE110_jp();

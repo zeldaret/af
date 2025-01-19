@@ -148,7 +148,15 @@ void func_800CDF78_jp(void* addr, u32 pageNum, u32 pageCount) {
     osStartThread(&B_80144B38_jp);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/sFRm_flashrom/func_800CE04C_jp.s")
+s32 func_800CE04C_jp(void) {
+    FlashromRequest* req = &B_80144CE8_jp;
+
+    if (func_800CDBE0_jp() != 1) {
+        return -1;
+    }
+
+    return MQ_IS_FULL(&req->queue);
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/sFRm_flashrom/func_800CE090_jp.s")
 
