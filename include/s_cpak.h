@@ -12,7 +12,7 @@ UNK_RET func_800CD760_jp(OSPfsInfo* pfsInfo, UNK_TYPE arg1, u32 arg2, void* arg3
 UNK_RET func_800CD82C_jp(OSPfsInfo* pfsInfo, UNK_TYPE arg1, u32 arg2, void* arg3);
 s32 func_800CD8F8_jp(OSPfsInfo* pfsInfo, OSPfsState* pfsState, size_t size);
 s32 func_800CD990_jp(OSPfsInfo* pfsInfo, OSPfsState* pfsState);
-void func_800CD9F0_jp(OSPfsInfo* pfsInfo, OSPfsState* pfsState);
+s32 func_800CD9F0_jp(OSPfsInfo* pfsInfo, OSPfsState* pfsState);
 UNK_RET func_800CDA4C_jp(OSPfsInfo* pfsInfo, PakInfo94Struct* arg1);
 UNK_RET func_800CDA90_jp(OSPfsInfo* pfsInfo, UNK_PTR, UNK_PTR);
 UNK_RET func_800CDAD0_jp(OSPfsInfo* pfsInfo);

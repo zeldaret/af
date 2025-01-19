@@ -68,10 +68,9 @@ s32 func_800CD8F8_jp(OSPfsInfo* pfsInfo, OSPfsState* pfsState, size_t size) {
 s32 func_800CD990_jp(OSPfsInfo* pfsInfo, OSPfsState* pfsState) {
     s32 err;
     s32 ret = FALSE;
-    
-    
+
     err = osPfsFindFile(&pfsInfo->pfs, pfsState->company_code, pfsState->game_code, (u8*)pfsState->game_name,
-                            (u8*)pfsState->ext_name, &pfsInfo->file_no);
+                        (u8*)pfsState->ext_name, &pfsInfo->file_no);
 
     pfsInfo->err = err;
     if (err == 0) {
@@ -81,7 +80,20 @@ s32 func_800CD990_jp(OSPfsInfo* pfsInfo, OSPfsState* pfsState) {
     return ret;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/s_cpak/func_800CD9F0_jp.s")
+s32 func_800CD9F0_jp(OSPfsInfo* pfsInfo, OSPfsState* pfsState) {
+    s32 err;
+    s32 ret = FALSE;
+
+    err = osPfsDeleteFile(&pfsInfo->pfs, pfsState->company_code, pfsState->game_code, (u8*)pfsState->game_name,
+                          (u8*)pfsState->ext_name);
+    if (err == 0) {
+        ret = TRUE;
+    }
+
+    pfsInfo->err = err;
+
+    return ret;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/s_cpak/func_800CDA4C_jp.s")
 
