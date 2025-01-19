@@ -35,7 +35,12 @@ s32 func_800CD68C_jp(PakInfo04Struct* arg0, s32 channel) {
     return sp1C;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/s_cpak/func_800CD730_jp.s")
+size_t func_800CD730_jp(PakInfo04Struct* arg0) {
+    s32 bytes;
+
+    arg0->unk_6C = osPfsFreeBlocks(&arg0->pfs, &bytes);
+    return bytes;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/s_cpak/func_800CD760_jp.s")
 
