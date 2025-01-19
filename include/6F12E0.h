@@ -3,7 +3,7 @@
 
 #include "ultra64.h"
 
-#include "m_cpk.h"
+#include "m_cpak.h"
 
 void func_800CD640_jp(PakInfo74Struct* arg0, void*, void*);
 UNK_RET func_800CD68C_jp(PakInfo04Struct* arg0, UNK_TYPE arg1);

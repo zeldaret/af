@@ -16,7 +16,7 @@
 #include "m_all_grow.h"
 #include "m_cockroach.h"
 #include "m_common_data.h"
-#include "m_cpk.h"
+#include "m_cpak.h"
 #include "m_event.h"
 #include "m_field_info.h"
 #include "m_field_make.h"

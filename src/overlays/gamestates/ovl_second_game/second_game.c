@@ -3,7 +3,7 @@
 #include "overlays/gamestates/ovl_trademark/m_trademark.h"
 #include "overlays/gamestates/ovl_cpedit/m_cpedit.h"
 #include "m_common_data.h"
-#include "m_cpk.h"
+#include "m_cpak.h"
 #include "padmgr.h"
 #include "sys_math.h"
 #include "attributes.h"

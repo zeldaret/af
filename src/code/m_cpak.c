@@ -1,4 +1,4 @@
-#include "m_cpk.h"
+#include "m_cpak.h"
 #include "global.h"
 
 #include "m_flashrom.h"
@@ -10,7 +10,7 @@
 #include "6B8F20.h"
 #include "6F12E0.h"
 
-extern PakInfo B_80137960_jp;
+extern PakInfo l_paks_info;
 extern B80137C40Struct B_80137C40_jp;
 
 extern D80104798Struct D_8010EF70_jp;
@@ -19,7 +19,7 @@ UNK_TYPE2 D_80104790_jp = 0x3031;
 UNK_TYPE D_80104794_jp = 0x4E41464A;
 D80104798Struct* D_80104798_jp = &D_8010EF70_jp;
 char* D_8010479C_jp[2] = { "\x1A", "\x1B" };
-PakInfo* D_801047A4_jp = &B_80137960_jp;
+PakInfo* g_paks_info_p = &l_paks_info;
 D801047A8Struct D_801047A8_jp = { { 0xD4, 0x8E, 0xA6, 0x90, 0x85, 0x42, 0x00, 0x00 } };
 
 const size_t RO_80116808_jp[2] = { sizeof(B80137C40Unk0000Struct), sizeof(D801047B0Struct) };
@@ -586,7 +586,7 @@ void func_8007A008_jp(void) {
 }
 
 PakInfo* mCPk_get_pkinfo(void) {
-    return D_801047A4_jp;
+    return g_paks_info_p;
 }
 
 s32 func_8007A080_jp(void) {
