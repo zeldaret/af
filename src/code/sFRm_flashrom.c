@@ -185,7 +185,15 @@ s32 func_800CE04C_jp(void) {
     return MQ_IS_FULL(&req->queue);
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/sFRm_flashrom/func_800CE090_jp.s")
+s32 func_800CE090_jp(void) {
+    FlashromRequest* req = &B_80144CE8_jp;
+
+    osRecvMesg(&req->queue, NULL, OS_MESG_BLOCK);
+    osDestroyThread(&B_80144B38_jp);
+    StackCheck_Check(&B_80144B18_jp);
+    StackCheck_Cleanup(&B_80144B18_jp);
+    return req->response;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/sFRm_flashrom/func_800CE0E8_jp.s")
 

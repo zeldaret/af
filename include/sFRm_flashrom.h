@@ -25,11 +25,8 @@ s32 func_800CDDE0_jp(void* addr, u32 pageNum);
 void func_800CDECC_jp(void);
 void func_800CDF78_jp(void* addr, u32 pageNum, u32 pageCount);
 s32 func_800CE04C_jp(void);
-// void func_800CE090_jp();
+s32 func_800CE090_jp(void);
 // void func_800CE0E8_jp();
 // void func_800CE110_jp();
-// void func_800CE120_jp();
-// void func_800CE1CC_jp();
-// void func_800CE328_jp();
 
 #endif
