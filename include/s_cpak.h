@@ -15,6 +15,6 @@ s32 func_800CD990_jp(OSPfsInfo* pfsInfo, OSPfsState* pfsState);
 s32 func_800CD9F0_jp(OSPfsInfo* pfsInfo, OSPfsState* pfsState);
 u32 func_800CDA4C_jp(OSPfsInfo* pfsInfo, OSPfsState* pfsState);
 s32 func_800CDA90_jp(OSPfsInfo* pfsInfo, s32* max_files, s32* files_used);
-UNK_RET func_800CDAD0_jp(OSPfsInfo* pfsInfo);
+s32 func_800CDAD0_jp(OSPfsInfo* pfsInfo);
 
 #endif
