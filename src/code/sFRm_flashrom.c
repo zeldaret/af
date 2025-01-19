@@ -200,4 +200,8 @@ void func_800CE0E8_jp(void* addr, u32 pageNum, u32 pageCount) {
     func_800CE090_jp();
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/sFRm_flashrom/func_800CE110_jp.s")
+s32 func_800CE110_jp(void) {
+    FlashromRequest* req = &B_80144CE8_jp;
+
+    return req->response;
+}
