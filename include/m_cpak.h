@@ -67,7 +67,7 @@ typedef struct PakInfo {
     /* 0x2DC */ s32 unk_2DC;
 } PakInfo; // size >= 0x2DC
 
-UNK_RET mCPk_PakOpen(PakInfo* info, s32 arg1);
+s32 mCPk_PakOpen(PakInfo* info, s32 channel);
 UNK_RET func_80078F08_jp(PakInfo* info);
 s32 func_80078FE8_jp(PakInfo* info);
 void func_80079080_jp(B80137C40Struct* arg0);

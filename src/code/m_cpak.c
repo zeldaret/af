@@ -24,8 +24,8 @@ D801047A8Struct D_801047A8_jp = { { 0xD4, 0x8E, 0xA6, 0x90, 0x85, 0x42, 0x00, 0x
 
 const size_t RO_80116808_jp[2] = { sizeof(B80137C40Unk0000Struct), sizeof(D801047B0Struct) };
 
-UNK_RET mCPk_PakOpen(PakInfo* info, s32 arg1) {
-    return func_800CD68C_jp(&info->unk_04, arg1);
+s32 mCPk_PakOpen(PakInfo* info, s32 channel) {
+    return func_800CD68C_jp(&info->unk_04, channel);
 }
 
 UNK_RET func_80078EB4_jp(PakInfo* info) {
@@ -478,7 +478,7 @@ UNK_RET func_80079D00_jp(void) {
     PakInfo* info = mCPk_get_pkinfo();
     s32 sp18 = 0;
 
-    if (mCPk_PakOpen(info, 0) == 1) {
+    if (mCPk_PakOpen(info, 0) == TRUE) {
         sp18 = func_80079BF8_jp(info);
     }
 
