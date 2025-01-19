@@ -5,16 +5,54 @@
 
 #include "m_thread.h"
 
-extern OSMesgQueue B_801446E0_jp;
+OSMesgQueue B_801446E0_jp;
+OSMesg B_801446F8_jp[1];
+OSIoMesg B_80144700_jp;
 
-extern OSIoMesg B_80144700_jp;
+STACK(B_80144718_jp, 0x400);
+StackEntry B_80144B18_jp;
+OSThread B_80144B38_jp;
+FlashromRequest B_80144CE8_jp;
 
-extern STACK(B_80144718_jp, 0x400);
-extern StackEntry B_80144B18_jp;
-extern OSThread B_80144B38_jp;
-extern FlashromRequest B_80144CE8_jp;
+s32 D_8010EF60_jp = 0;
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/sFRm_flashrom/func_800CDB10_jp.s")
+s32 func_800CDB10_jp(void) {
+    s32 ret = 1;
+    u32 type;
+    u32 maker;
+
+    osFlashInit();
+    func_800CDECC_jp();
+    osCreateMesgQueue(&B_801446E0_jp, B_801446F8_jp, ARRAY_COUNT(B_801446F8_jp));
+    osFlashReadId(&type, &maker);
+
+    switch (maker) {
+        case FLASH_VERSION_MX_PROTO_A:
+            break;
+
+        case FLASH_VERSION_MX_A:
+            break;
+
+        case FLASH_VERSION_MX_C:
+            break;
+
+        case FLASH_VERSION_MX_B_AND_D:
+            break;
+
+        case FLASH_VERSION_MEI:
+            break;
+
+        default:
+            ret = 0;
+            break;
+    }
+
+    if (ret == 1) {
+        D_8010EF60_jp = 1;
+    }
+
+    return ret;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/sFRm_flashrom/func_800CDBE0_jp.s")
 

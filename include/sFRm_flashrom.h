@@ -23,7 +23,7 @@ typedef struct FlashromRequest {
 // void func_800CDC10_jp();
 // void func_800CDC30_jp();
 // void func_800CDDE0_jp();
-// void func_800CDECC_jp();
+void func_800CDECC_jp(void);
 void func_800CDF78_jp(void* addr, u32 pageNum, u32 pageCount);
 // void func_800CE04C_jp();
 // void func_800CE090_jp();
