@@ -68,7 +68,30 @@ s32 func_800CD760_jp(OSPfsInfo* pfsInfo, s32 offset, s32 size, u8* buffer) {
     return ret;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/s_cpak/func_800CD82C_jp.s")
+s32 func_800CD82C_jp(OSPfsInfo* pfsInfo, s32 offset, s32 size, u8* buffer) {
+    UNUSED s32 pad;
+    s32 err;
+    s32 ret = FALSE;
+    s32 writeSize = 0x2300;
+
+    do {
+        if (size < writeSize) {
+            writeSize = size;
+        }
+        err = osPfsReadWriteFile(&pfsInfo->pfs, pfsInfo->file_no, PFS_READ, offset, writeSize, buffer);
+        offset += writeSize;
+        buffer += writeSize;
+        size -= writeSize;
+        B_80145FF8_jp = GetCurrentMilliseconds();
+    } while ((size > 0) && (err == 0));
+
+    if (err == 0) {
+        ret = TRUE;
+    }
+
+    pfsInfo->err = err;
+    return ret;
+}
 
 s32 func_800CD8F8_jp(OSPfsInfo* pfsInfo, OSPfsState* pfsState, size_t size) {
     s32 alignedSize = ALIGN256(size);
