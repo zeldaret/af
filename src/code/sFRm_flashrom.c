@@ -58,9 +58,13 @@ s32 func_800CDBE0_jp(void) {
     return D_8010EF60_jp;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/sFRm_flashrom/func_800CDBF0_jp.s")
+s32 func_800CDBF0_jp(u32 pageNum) {
+    return osFlashSectorErase(pageNum);
+}
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/sFRm_flashrom/func_800CDC10_jp.s")
+s32 func_800CDC10_jp(void) {
+    return osFlashAllErase();
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/sFRm_flashrom/func_800CDC30_jp.s")
 
