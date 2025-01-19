@@ -195,6 +195,9 @@ s32 func_800CE090_jp(void) {
     return req->response;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/sFRm_flashrom/func_800CE0E8_jp.s")
+void func_800CE0E8_jp(void* addr, u32 pageNum, u32 pageCount) {
+    func_800CDF78_jp(addr, pageNum, pageCount);
+    func_800CE090_jp();
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/sFRm_flashrom/func_800CE110_jp.s")
