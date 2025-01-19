@@ -95,7 +95,16 @@ s32 func_800CD9F0_jp(OSPfsInfo* pfsInfo, OSPfsState* pfsState) {
     return ret;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/s_cpak/func_800CDA4C_jp.s")
+u32 func_800CDA4C_jp(OSPfsInfo* pfsInfo, OSPfsState* pfsState) {
+    s32 err = osPfsFileState(&pfsInfo->pfs, pfsInfo->file_no, pfsState);
+
+    pfsInfo->err = err;
+    if (err != 0) {
+        return 0;
+    }
+
+    return pfsState->file_size;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/s_cpak/func_800CDA90_jp.s")
 

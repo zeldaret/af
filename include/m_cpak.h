@@ -32,10 +32,6 @@ typedef struct D801047B0Struct {
     /* 0x0002 */ UNK_TYPE1 unk_0002[0x66FE];
 } D801047B0Struct; // size = 0x6700;
 
-typedef struct PakInfo94Struct {
-    /* 0x00 */ UNK_TYPE1 unk_00[0x20];
-} PakInfo94Struct; // size = 0x20
-
 typedef struct OSPfsInfo {
     /* 0x00 */ OSPfs pfs;
     /* 0x68 */ s32 file_no;
@@ -46,7 +42,7 @@ typedef struct PakInfo {
     /* 0x000 */ UNK_TYPE unk_00;
     /* 0x004 */ OSPfsInfo pfsInfo;
     /* 0x074 */ OSPfsState pfsState;
-    /* 0x090 */ PakInfo94Struct unk_94[16];
+    /* 0x094 */ OSPfsState unk_94[16];
     /* 0x294 */ s32 unk_294[16];
     /* 0x2D4 */ s32 unk_2D4;
     /* 0x2D8 */ s32 unk_2D8;

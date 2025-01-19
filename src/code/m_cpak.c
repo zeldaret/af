@@ -42,26 +42,26 @@ UNK_RET func_80078F08_jp(PakInfo* info) {
 
 s32 func_80078F34_jp(PakInfo* info) {
     OSPfsInfo* pfsInfo = &info->pfsInfo;
-    PakInfo94Struct* var_s3 = info->unk_94;
+    OSPfsState* pfsStates = info->unk_94;
     s32* var_s1 = info->unk_294;
     s32 i;
-    s32 temp_v0;
+    u32 file_size;
 
     for (i = 0; i < ARRAY_COUNT(info->unk_94); i++) {
         var_s1[i] = 0;
         pfsInfo->file_no = i;
-        temp_v0 = func_800CDA4C_jp(pfsInfo, &var_s3[i]);
-        if (temp_v0 == 0) {
+        file_size = func_800CDA4C_jp(pfsInfo, &pfsStates[i]);
+        if (file_size == 0) {
             if (pfsInfo->err == PFS_ERR_INVALID) {
                 var_s1[i] = -1;
                 continue;
             }
 
-            return temp_v0;
+            return file_size;
         }
     }
 
-    return temp_v0;
+    return file_size;
 }
 
 s32 func_80078FE8_jp(PakInfo* info) {
@@ -93,7 +93,7 @@ void func_80079080_jp(B80137C40Struct* arg0) {
 UNK_RET mCPk_InitPak(UNK_TYPE arg0) {
     PakInfo* info;
     OSPfsState* pfsState;
-    PakInfo94Struct* tmp;
+    OSPfsState* iter;
     s32 i;
     s32 temp_s1;
 
@@ -103,10 +103,10 @@ UNK_RET mCPk_InitPak(UNK_TYPE arg0) {
     pfsState = &info->pfsState;
     bzero(pfsState, sizeof(OSPfsState));
 
-    tmp = info->unk_94;
+    iter = info->unk_94;
     for (i = 0; i < ARRAY_COUNT(info->unk_94); i++) {
-        bzero(tmp, sizeof(PakInfo94Struct));
-        tmp++;
+        bzero(iter, sizeof(OSPfsState));
+        iter++;
     }
 
     func_800CD640_jp(pfsState, &D_80104790_jp, &D_80104794_jp);
