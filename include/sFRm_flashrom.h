@@ -2,6 +2,15 @@
 #define SFRM_FLASHROM_H
 
 #include "ultra64.h"
+#include "unk.h"
+
+typedef struct FlashromRequest {
+    /* 0x00 */ s32 unk_00;
+    /* 0x04 */ UNK_TYPE1 unk_04[0x4];
+    /* 0x08 */ s32 unk_08;
+    /* 0x0C */ s32 unk_0C;
+    /* 0x10 */ s32 unk_10;
+} FlashromRequest; // size >= 0x14
 
 // void func_800CDB10_jp();
 // void func_800CDBE0_jp();

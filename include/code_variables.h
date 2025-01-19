@@ -1908,10 +1908,7 @@ extern u16 D_80000400[];
 // extern UNK_TYPE B_80144B18_jp;
 // extern UNK_TYPE B_80144B38_jp;
 // extern UNK_TYPE B_80144CE8_jp;
-// extern UNK_TYPE B_80144CEC_jp;
 // extern UNK_TYPE B_80144CFC_jp;
-// extern UNK_TYPE B_80144D04_jp;
-// extern UNK_TYPE B_80144D0C_jp;
 // extern UNK_TYPE B_80144D14_jp;
 
 // extern UNK_TYPE B_80145390_jp;
