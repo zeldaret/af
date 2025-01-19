@@ -19,7 +19,7 @@ typedef struct FlashromRequest {
 
 s32 func_800CDB10_jp(void);
 s32 func_800CDBE0_jp(void);
-// void func_800CDBF0_jp();
+
 // void func_800CDC10_jp();
 // void func_800CDC30_jp();
 // void func_800CDDE0_jp();
