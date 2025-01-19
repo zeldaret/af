@@ -1,5 +1,4 @@
 #include "m_start_data_init.h"
-#include "69CB30.h"
 #include "6A83A0.h"
 #include "6B81C0.h"
 #include "6BA500.h"
@@ -17,6 +16,7 @@
 #include "m_all_grow.h"
 #include "m_cockroach.h"
 #include "m_common_data.h"
+#include "m_cpak.h"
 #include "m_event.h"
 #include "m_field_info.h"
 #include "m_field_make.h"

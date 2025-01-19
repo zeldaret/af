@@ -2,8 +2,8 @@
 #include "libc/stdbool.h"
 #include "overlays/gamestates/ovl_trademark/m_trademark.h"
 #include "overlays/gamestates/ovl_cpedit/m_cpedit.h"
-#include "69CB30.h"
 #include "m_common_data.h"
+#include "m_cpak.h"
 #include "padmgr.h"
 #include "sys_math.h"
 #include "attributes.h"
@@ -14,7 +14,7 @@ void second_game_main(Game* game) {
     Game_SecondGame* secondGame = (Game_SecondGame*)game;
 
     if (mCPk_PakOpen(info, 0) == 0) {
-        if (info->unk_70 == 1 || info->unk_70 == 11) {
+        if (info->unk_04.unk_6C == 1 || info->unk_04.unk_6C == 11) {
             mempak = 0;
         } else {
             mempak = 1;

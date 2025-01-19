@@ -36,6 +36,6 @@ void func_80095414_jp(void);
 // void func_800965A8_jp();
 // void func_800965F4_jp();
 // void func_800966D8_jp();
-// void func_800966E0_jp();
+UNK_RET func_800966E0_jp(void);
 
 #endif
