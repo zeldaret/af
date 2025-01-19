@@ -5,12 +5,14 @@
 #include "unk.h"
 
 typedef struct FlashromRequest {
-    /* 0x00 */ s32 unk_00;
-    /* 0x04 */ UNK_TYPE1 unk_04[0x4];
-    /* 0x08 */ s32 unk_08;
-    /* 0x0C */ s32 unk_0C;
-    /* 0x10 */ s32 unk_10;
-} FlashromRequest; // size >= 0x14
+    /* 0x00 */ s32 type;
+    /* 0x04 */ s32 response;
+    /* 0x08 */ void* addr;
+    /* 0x0C */ u32 pageNum;
+    /* 0x10 */ u32 pageCount;
+    /* 0x14 */ OSMesgQueue queue;
+    /* 0x2C */ OSMesg msgBuf[1];
+} FlashromRequest; // size = 0x30
 
 // void func_800CDB10_jp();
 // void func_800CDBE0_jp();
@@ -21,8 +23,7 @@ typedef struct FlashromRequest {
 // void func_800CDDE0_jp();
 // void func_800CDE54_jp();
 // void func_800CDECC_jp();
-// void func_800CDEDC_jp();
-// void func_800CDF78_jp();
+void func_800CDF78_jp(void* addr, u32 pageNum, u32 pageCount);
 // void func_800CE04C_jp();
 // void func_800CE090_jp();
 // void func_800CE0E8_jp();
