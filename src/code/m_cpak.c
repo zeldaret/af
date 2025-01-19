@@ -13,11 +13,11 @@
 extern PakInfo l_paks_info;
 extern B80137C40Struct B_80137C40_jp;
 
-extern D80104798Struct D_8010EF70_jp;
+extern char D_8010EF70_jp[];
 
-UNK_TYPE2 D_80104790_jp = 0x3031;
-UNK_TYPE D_80104794_jp = 0x4E41464A;
-D80104798Struct* D_80104798_jp = &D_8010EF70_jp;
+u16 D_80104790_jp = 0x3031;
+u32 D_80104794_jp = 0x4E41464A;
+char* D_80104798_jp = D_8010EF70_jp;
 char* D_8010479C_jp[2] = { "\x1A", "\x1B" };
 PakInfo* g_paks_info_p = &l_paks_info;
 D801047A8Struct D_801047A8_jp = { { 0xD4, 0x8E, 0xA6, 0x90, 0x85, 0x42, 0x00, 0x00 } };
@@ -25,23 +25,23 @@ D801047A8Struct D_801047A8_jp = { { 0xD4, 0x8E, 0xA6, 0x90, 0x85, 0x42, 0x00, 0x
 const size_t RO_80116808_jp[2] = { sizeof(B80137C40Unk0000Struct), sizeof(D801047B0Struct) };
 
 s32 mCPk_PakOpen(PakInfo* info, s32 channel) {
-    return func_800CD68C_jp(&info->unk_04, channel);
+    return func_800CD68C_jp(&info->pfsInfo, channel);
 }
 
 UNK_RET func_80078EB4_jp(PakInfo* info) {
-    return func_800CD8F8_jp(&info->unk_04, &info->unk_74, info->unk_74.unk_00);
+    return func_800CD8F8_jp(&info->pfsInfo, &info->pfsState, info->pfsState.file_size);
 }
 
 UNK_RET func_80078EE0_jp(PakInfo* info) {
-    return func_800CD990_jp(&info->unk_04, &info->unk_74);
+    return func_800CD990_jp(&info->pfsInfo, &info->pfsState);
 }
 
 UNK_RET func_80078F08_jp(PakInfo* info) {
-    return func_800CDA90_jp(&info->unk_04, &info->unk_2D8, &info->unk_2DC);
+    return func_800CDA90_jp(&info->pfsInfo, &info->unk_2D8, &info->unk_2DC);
 }
 
 s32 func_80078F34_jp(PakInfo* info) {
-    PakInfo04Struct* var_s2 = &info->unk_04;
+    OSPfsInfo* pfsInfo = &info->pfsInfo;
     PakInfo94Struct* var_s3 = info->unk_94;
     s32* var_s1 = info->unk_294;
     s32 i;
@@ -49,10 +49,10 @@ s32 func_80078F34_jp(PakInfo* info) {
 
     for (i = 0; i < ARRAY_COUNT(info->unk_94); i++) {
         var_s1[i] = 0;
-        var_s2->unk_68 = i;
-        temp_v0 = func_800CDA4C_jp(var_s2, &var_s3[i]);
+        pfsInfo->file_no = i;
+        temp_v0 = func_800CDA4C_jp(pfsInfo, &var_s3[i]);
         if (temp_v0 == 0) {
-            if (var_s2->unk_6C == 5) {
+            if (pfsInfo->err == PFS_ERR_INVALID) {
                 var_s1[i] = -1;
                 continue;
             }
@@ -67,8 +67,8 @@ s32 func_80078F34_jp(PakInfo* info) {
 s32 func_80078FE8_jp(PakInfo* info) {
     s32 sp1C = FALSE;
 
-    info->unk_2D4 = func_800CD730_jp(&info->unk_04);
-    if (info->unk_04.unk_6C == 0) {
+    info->unk_2D4 = func_800CD730_jp(&info->pfsInfo);
+    if (info->pfsInfo.err == 0) {
         sp1C = TRUE;
     }
     return sp1C;
@@ -77,7 +77,7 @@ s32 func_80078FE8_jp(PakInfo* info) {
 s32 func_80079030_jp(PakInfo* info) {
     s32 sp1C = FALSE;
 
-    if ((func_80078FE8_jp(info) == TRUE) && (info->unk_2D4 >= info->unk_74.unk_00)) {
+    if ((func_80078FE8_jp(info) == TRUE) && (info->unk_2D4 >= info->pfsState.file_size)) {
         sp1C = TRUE;
     }
     return sp1C;
@@ -91,27 +91,27 @@ void func_80079080_jp(B80137C40Struct* arg0) {
 }
 
 UNK_RET mCPk_InitPak(UNK_TYPE arg0) {
-    PakInfo* sp2C;
-    PakInfo74Struct* sp28;
+    PakInfo* info;
+    OSPfsState* pfsState;
     PakInfo94Struct* tmp;
     s32 i;
     s32 temp_s1;
 
-    sp2C = mCPk_get_pkinfo();
-    sp2C->unk_00 = 0;
+    info = mCPk_get_pkinfo();
+    info->unk_00 = 0;
 
-    sp28 = &sp2C->unk_74;
-    bzero(sp28, sizeof(PakInfo74Struct));
+    pfsState = &info->pfsState;
+    bzero(pfsState, sizeof(OSPfsState));
 
-    tmp = sp2C->unk_94;
-    for (i = 0; i < ARRAY_COUNT(sp2C->unk_94); i++) {
+    tmp = info->unk_94;
+    for (i = 0; i < ARRAY_COUNT(info->unk_94); i++) {
         bzero(tmp, sizeof(PakInfo94Struct));
         tmp++;
     }
 
-    func_800CD640_jp(sp28, &D_80104790_jp, &D_80104794_jp);
-    bcopy(D_80104798_jp, &sp28->unk_0E, sizeof(D80104798Struct));
-    temp_s1 = mCPk_PakOpen(sp2C, arg0);
+    func_800CD640_jp(pfsState, &D_80104790_jp, &D_80104794_jp);
+    bcopy(D_80104798_jp, &pfsState->game_name, sizeof(pfsState->game_name));
+    temp_s1 = mCPk_PakOpen(info, arg0);
     func_80079080_jp(&B_80137C40_jp);
     B_80137C40_jp.unk_1200 = NULL;
     B_80137C40_jp.unk_1204 = 0;
@@ -120,32 +120,32 @@ UNK_RET mCPk_InitPak(UNK_TYPE arg0) {
 }
 
 void func_8007919C_jp(PakInfo* info, u8 arg1) {
-    PakInfo74Struct* sp20 = &info->unk_74;
+    OSPfsState* pfsState = &info->pfsState;
 
     if (arg1 < 2) {
-        bcopy(D_8010479C_jp[arg1], sp20->unk_0A, sizeof(sp20->unk_0A));
-        sp20->unk_00 = RO_80116808_jp[arg1];
+        bcopy(D_8010479C_jp[arg1], pfsState->ext_name, sizeof(pfsState->ext_name));
+        pfsState->file_size = RO_80116808_jp[arg1];
     }
 }
 
 UNK_RET func_8007920C_jp(PakInfo* info, void* arg1) {
     s32 var_v0;
     s32 var_s1;
-    u32 tmp;
+    u32 file_size;
 
     for (var_s1 = 0; var_s1 < 1; var_s1++) {
-        PakInfo04Struct* temp_s3 = &info->unk_04;
+        OSPfsInfo* pfsInfo = &info->pfsInfo;
 
         B_80137C40_jp.unk_1200 = padmgr_LockSerialMesgQ();
         var_v0 = func_80078EE0_jp(info);
 
-        if (temp_s3->unk_6C == 5) {
+        if (pfsInfo->err == PFS_ERR_INVALID) {
             var_v0 = func_80078EB4_jp(info);
         }
 
-        if ((var_v0 == 1) || (temp_s3->unk_6C == 9)) {
-            tmp = info->unk_74.unk_00;
-            var_v0 = func_800CD760_jp(temp_s3, 0, tmp, arg1);
+        if ((var_v0 == 1) || (pfsInfo->err == PFS_ERR_EXIST)) {
+            file_size = info->pfsState.file_size;
+            var_v0 = func_800CD760_jp(pfsInfo, 0, file_size, arg1);
         }
         padmgr_UnlockSerialMesgQ(B_80137C40_jp.unk_1200);
     }
@@ -155,14 +155,14 @@ UNK_RET func_8007920C_jp(PakInfo* info, void* arg1) {
 
 s32 func_800792FC_jp(PakInfo* info, void* arg1) {
     s32 sp1C;
-    u32 tmp;
+    u32 file_size;
 
     B_80137C40_jp.unk_1200 = padmgr_LockSerialMesgQ();
     sp1C = func_80078EE0_jp(info);
 
     if (sp1C == 1) {
-        tmp = info->unk_74.unk_00;
-        sp1C = func_800CD82C_jp(&info->unk_04, 0, tmp, arg1);
+        file_size = info->pfsState.file_size;
+        sp1C = func_800CD82C_jp(&info->pfsInfo, 0, file_size, arg1);
         if (sp1C == 0) {
             sp1C = -1;
         }
@@ -217,17 +217,17 @@ s32 func_8007942C_jp(PrivateInfo* priv, Animal_c* animal, PakInfo* info) {
     return sp1C;
 }
 
-s32 func_800794E4_jp(s32* arg0, s32 arg1, PakInfo* arg2, void* arg3) {
-    PakInfo04Struct* unkStruct = &arg2->unk_04;
+s32 func_800794E4_jp(s32* arg0, s32 arg1, PakInfo* info, void* arg3) {
+    OSPfsInfo* pfsInfo = &info->pfsInfo;
     void* var_a3;
     s32 sp24 = FALSE;
     UNUSED s32 pad[2];
 
     *arg0 = 5;
     B_80137C40_jp.unk_1200 = padmgr_LockSerialMesgQ();
-    if ((func_80078EE0_jp(arg2) == 1) || (unkStruct->unk_6C == 9)) {
+    if ((func_80078EE0_jp(info) == 1) || (pfsInfo->err == PFS_ERR_EXIST)) {
         var_a3 = (arg1 == 0) ? &B_80137C40_jp : arg3;
-        if ((var_a3 != NULL) && (func_800CD82C_jp(unkStruct, 0, arg2->unk_74.unk_00, var_a3) == 1)) {
+        if ((var_a3 != NULL) && (func_800CD82C_jp(pfsInfo, 0, info->pfsState.file_size, var_a3) == 1)) {
             if (arg1 == 0) {
                 if (!mPr_NullCheckPersonalID(&B_80137C40_jp.unk_0000.priv.playerId)) {
                     B_80137C40_jp.unk_1204 = 1;
@@ -240,14 +240,14 @@ s32 func_800794E4_jp(s32* arg0, s32 arg1, PakInfo* arg2, void* arg3) {
             }
             sp24 = TRUE;
         }
-    } else if (unkStruct->unk_6C == 5) {
-        if ((func_80078F08_jp(arg2) == 1) && (arg2->unk_2DC >= 0x10)) {
+    } else if (pfsInfo->err == PFS_ERR_INVALID) {
+        if ((func_80078F08_jp(info) == 1) && (info->unk_2DC >= 0x10)) {
             *arg0 = 4;
             sp24 = TRUE;
-        } else if (func_80079030_jp(arg2) == TRUE) {
+        } else if (func_80079030_jp(info) == TRUE) {
             *arg0 = 1;
             sp24 = TRUE;
-        } else if (unkStruct->unk_6C == 0) {
+        } else if (pfsInfo->err == 0) {
             *arg0 = 3;
             sp24 = TRUE;
         }
@@ -256,7 +256,7 @@ s32 func_800794E4_jp(s32* arg0, s32 arg1, PakInfo* arg2, void* arg3) {
     return sp24;
 }
 
-s32 func_8007967C_jp(s32* arg0, s32 arg1, PakInfo* arg2) {
+s32 func_8007967C_jp(s32* arg0, s32 arg1, PakInfo* info) {
     UNUSED s32 pad;
     s32 sp20;
     void* sp1C;
@@ -264,10 +264,10 @@ s32 func_8007967C_jp(s32* arg0, s32 arg1, PakInfo* arg2) {
     if (arg1 == 0) {
         sp1C = &B_80137C40_jp;
     } else {
-        sp1C = zelda_malloc(arg2->unk_74.unk_00);
+        sp1C = zelda_malloc(info->pfsState.file_size);
     }
 
-    sp20 = func_800794E4_jp(arg0, arg1, arg2, sp1C);
+    sp20 = func_800794E4_jp(arg0, arg1, info, sp1C);
     if ((arg1 != 0) && (sp1C != NULL)) {
         zelda_free(sp1C);
     }
@@ -430,14 +430,14 @@ void func_80079B28_jp(UNK_PTR arg0, u32 arg1, PakInfo* info) {
         if (func_8008EE7C_jp(arg0, arg1) != 0) {
             func_8007919C_jp(info, 1);
             queue = padmgr_LockSerialMesgQ();
-            func_800CD9F0_jp(&info->unk_04, &info->unk_74);
+            func_800CD9F0_jp(&info->pfsInfo, &info->pfsState);
             padmgr_UnlockSerialMesgQ(queue);
         }
     } else if (temp_v0 == -1) {
         info2 = mCPk_get_pkinfo();
         func_8007919C_jp(info2, 1);
         B_80137C40_jp.unk_1200 = padmgr_LockSerialMesgQ();
-        func_800CD9F0_jp(&info2->unk_04, &info2->unk_74);
+        func_800CD9F0_jp(&info2->pfsInfo, &info2->pfsState);
         padmgr_UnlockSerialMesgQ(B_80137C40_jp.unk_1200);
     }
 }
@@ -450,9 +450,9 @@ UNK_RET func_80079BF8_jp(PakInfo* info) {
 
     if (!mLd_PlayerManKindCheck()) {
         func_8007919C_jp(info, 1);
-        sp20 = zelda_malloc(info->unk_74.unk_00);
+        sp20 = zelda_malloc(info->pfsState.file_size);
         if (sp20 != NULL) {
-            func_80079B28_jp(sp20, info->unk_74.unk_00, info);
+            func_80079B28_jp(sp20, info->pfsState.file_size, info);
         }
         if (func_800794E4_jp(&sp28, 1, info, sp20) == TRUE) {
             sp24 = func_80079708_jp(sp28);
@@ -580,7 +580,7 @@ void func_8007A008_jp(void) {
     if ((temp_v0 == 0) || (temp_v0 == -2)) {
         func_8007919C_jp(info, 0);
         queue = padmgr_LockSerialMesgQ();
-        func_800CD9F0_jp(&info->unk_04, &info->unk_74);
+        func_800CD9F0_jp(&info->pfsInfo, &info->pfsState);
         padmgr_UnlockSerialMesgQ(queue);
     }
 }
@@ -593,7 +593,7 @@ s32 func_8007A080_jp(void) {
     PakInfo* info = mCPk_get_pkinfo();
     s32 var_v1 = TRUE;
 
-    if ((info != NULL) && (info->unk_04.unk_6C == 10)) {
+    if ((info != NULL) && (info->pfsInfo.err == PFS_ERR_ID_FATAL)) {
         var_v1 = FALSE;
     }
 

@@ -14,7 +14,7 @@ void second_game_main(Game* game) {
     Game_SecondGame* secondGame = (Game_SecondGame*)game;
 
     if (mCPk_PakOpen(info, 0) == 0) {
-        if (info->unk_04.unk_6C == 1 || info->unk_04.unk_6C == 11) {
+        if (info->pfsInfo.err == PFS_ERR_NOPACK || info->pfsInfo.err == PFS_ERR_DEVICE) {
             mempak = 0;
         } else {
             mempak = 1;

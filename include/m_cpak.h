@@ -23,11 +23,6 @@ typedef struct B80137C40Struct {
     /* 0x1208 */ u16 unk_1208;
 } B80137C40Struct; // size = 0x1208
 
-// For alignment this can only have members of size 1 or 2
-typedef struct D80104798Struct {
-    /* 0x0 */ UNK_TYPE1 unk0[0x10];
-} D80104798Struct; // size 0x10
-
 typedef struct D801047A8Struct {
     /* 0x0 */ UNK_TYPE1 unk_0[0x08];
 } D801047A8Struct; // size <= 0x8
@@ -37,32 +32,23 @@ typedef struct D801047B0Struct {
     /* 0x0002 */ UNK_TYPE1 unk_0002[0x66FE];
 } D801047B0Struct; // size = 0x6700;
 
-typedef struct PakInfo74Struct {
-    /* 0x00 */ size_t unk_00;
-    /* 0x04 */ s32 unk_04;
-    /* 0x08 */ s16 unk_08;
-    /* 0x0A */ char unk_0A[4];
-    /* 0x0E */ D80104798Struct unk_0E;
-    /* 0x1E */ UNK_TYPE1 unk_1E[0x2];
-} PakInfo74Struct; // size = 0x20
-
 typedef struct PakInfo94Struct {
     /* 0x00 */ UNK_TYPE1 unk_00[0x20];
 } PakInfo94Struct; // size = 0x20
 
-typedef struct PakInfo04Struct {
+typedef struct OSPfsInfo {
     /* 0x00 */ OSPfs pfs;
-    /* 0x68 */ s32 unk_68;
-    /* 0x6C */ s32 unk_6C;
-} PakInfo04Struct; // size = 0x70
+    /* 0x68 */ s32 file_no;
+    /* 0x6C */ s32 err;
+} OSPfsInfo; // size = 0x70
 
 typedef struct PakInfo {
     /* 0x000 */ UNK_TYPE unk_00;
-    /* 0x004 */ PakInfo04Struct unk_04;
-    /* 0x074 */ PakInfo74Struct unk_74;
+    /* 0x004 */ OSPfsInfo pfsInfo;
+    /* 0x074 */ OSPfsState pfsState;
     /* 0x090 */ PakInfo94Struct unk_94[16];
     /* 0x294 */ s32 unk_294[16];
-    /* 0x2D4 */ size_t unk_2D4;
+    /* 0x2D4 */ s32 unk_2D4;
     /* 0x2D8 */ s32 unk_2D8;
     /* 0x2DC */ s32 unk_2DC;
 } PakInfo; // size >= 0x2DC

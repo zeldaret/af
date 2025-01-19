@@ -4,41 +4,41 @@
 
 #include "padmgr.h"
 
-void func_800CD640_jp(PakInfo74Struct* arg0, s16* arg1, s32* arg2) {
-    bcopy(arg1, &arg0->unk_08, 2);
-    bcopy(arg2, &arg0->unk_04, 4);
+void func_800CD640_jp(OSPfsState* pfsState, u16* company_code, u32* game_code) {
+    bcopy(company_code, &pfsState->company_code, sizeof(pfsState->company_code));
+    bcopy(game_code, &pfsState->game_code, sizeof(pfsState->game_code));
 }
 
-s32 func_800CD68C_jp(PakInfo04Struct* arg0, s32 channel) {
+s32 func_800CD68C_jp(OSPfsInfo* pfsInfo, s32 channel) {
     OSMesgQueue* queue;
-    s32 sp20;
-    s32 sp1C = FALSE;
+    s32 err;
+    s32 ret = FALSE;
 
     queue = padmgr_LockSerialMesgQ();
-    sp20 = osPfsInitPak(queue, &arg0->pfs, channel);
+    err = osPfsInitPak(queue, &pfsInfo->pfs, channel);
 
-    if (sp20 == 0) {
-        sp1C = TRUE;
+    if (err == 0) {
+        ret = TRUE;
     }
 
-    if (sp20 == PFS_ERR_DEVICE) {
-        if (osMotorInit(queue, &arg0->pfs, channel) != 0) {
-            if (osGbpakInit(queue, &arg0->pfs, channel) != 0) {
-                sp20 = PFS_ERR_ID_FATAL;
+    if (err == PFS_ERR_DEVICE) {
+        if (osMotorInit(queue, &pfsInfo->pfs, channel) != 0) {
+            if (osGbpakInit(queue, &pfsInfo->pfs, channel) != 0) {
+                err = PFS_ERR_ID_FATAL;
             }
         }
     }
 
-    arg0->unk_6C = sp20;
+    pfsInfo->err = err;
     padmgr_UnlockSerialMesgQ(queue);
 
-    return sp1C;
+    return ret;
 }
 
-size_t func_800CD730_jp(PakInfo04Struct* arg0) {
+s32 func_800CD730_jp(OSPfsInfo* pfsInfo) {
     s32 bytes;
 
-    arg0->unk_6C = osPfsFreeBlocks(&arg0->pfs, &bytes);
+    pfsInfo->err = osPfsFreeBlocks(&pfsInfo->pfs, &bytes);
     return bytes;
 }
 
@@ -46,7 +46,24 @@ size_t func_800CD730_jp(PakInfo04Struct* arg0) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/s_cpak/func_800CD82C_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/s_cpak/func_800CD8F8_jp.s")
+s32 func_800CD8F8_jp(OSPfsInfo* pfsInfo, OSPfsState* pfsState, size_t size) {
+    s32 alignedSize = ALIGN256(size);
+    s32 ret = FALSE;
+    s32 err;
+
+    if (func_800CD730_jp(pfsInfo) < alignedSize) {
+        return FALSE;
+    }
+
+    err = osPfsAllocateFile(&pfsInfo->pfs, pfsState->company_code, pfsState->game_code, (u8*)pfsState->game_name,
+                            (u8*)pfsState->ext_name, alignedSize, &pfsInfo->file_no);
+    if (err == 0) {
+        ret = TRUE;
+    }
+
+    pfsInfo->err = err;
+    return ret;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/s_cpak/func_800CD990_jp.s")
 
