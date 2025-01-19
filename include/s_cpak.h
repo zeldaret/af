@@ -5,7 +5,7 @@
 
 #include "m_cpak.h"
 
-void func_800CD640_jp(PakInfo74Struct* arg0, void*, void*);
+void func_800CD640_jp(PakInfo74Struct* arg0, s16*, s32*);
 UNK_RET func_800CD68C_jp(PakInfo04Struct* arg0, UNK_TYPE arg1);
 size_t func_800CD730_jp(PakInfo04Struct* arg0);
 UNK_RET func_800CD760_jp(PakInfo04Struct* arg0, UNK_TYPE arg1, u32 arg2, void* arg3);

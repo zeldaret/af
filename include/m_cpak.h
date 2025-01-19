@@ -39,7 +39,8 @@ typedef struct D801047B0Struct {
 
 typedef struct PakInfo74Struct {
     /* 0x00 */ size_t unk_00;
-    /* 0x04 */ UNK_TYPE1 unk_04[0x6];
+    /* 0x04 */ s32 unk_04;
+    /* 0x08 */ s16 unk_08;
     /* 0x0A */ char unk_0A[4];
     /* 0x0E */ D80104798Struct unk_0E;
     /* 0x1E */ UNK_TYPE1 unk_1E[0x2];
