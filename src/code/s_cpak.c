@@ -2,6 +2,7 @@
 
 #include "s_cpak.h"
 
+#include "getcurrentms.h"
 #include "padmgr.h"
 
 void func_800CD640_jp(OSPfsState* pfsState, u16* company_code, u32* game_code) {
@@ -42,7 +43,30 @@ s32 func_800CD730_jp(OSPfsInfo* pfsInfo) {
     return bytes;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/s_cpak/func_800CD760_jp.s")
+s32 func_800CD760_jp(OSPfsInfo* pfsInfo, s32 offset, s32 size, u8* buffer) {
+    UNUSED s32 pad;
+    s32 err;
+    s32 ret = FALSE;
+    s32 writeSize = 0x2300;
+
+    do {
+        if (size < writeSize) {
+            writeSize = size;
+        }
+        err = osPfsReadWriteFile(&pfsInfo->pfs, pfsInfo->file_no, PFS_WRITE, offset, writeSize, buffer);
+        offset += writeSize;
+        buffer += writeSize;
+        size -= writeSize;
+        B_80145FF8_jp = GetCurrentMilliseconds();
+    } while ((size > 0) && (err == 0));
+
+    if (err == 0) {
+        ret = TRUE;
+    }
+
+    pfsInfo->err = err;
+    return ret;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/s_cpak/func_800CD82C_jp.s")
 
