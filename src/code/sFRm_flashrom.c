@@ -63,8 +63,15 @@ s32 func_800CDCC0_jp(void* addr, u32 pageNum, u32 pageCount) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/sFRm_flashrom/func_800CDDE0_jp.s")
 
-s32 func_800CDE54_jp(void* addr, u32 pageNum, u32 pageCount);
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/sFRm_flashrom/func_800CDE54_jp.s")
+s32 func_800CDE54_jp(void* addr, u32 pageNum, u32 pageCount) {
+    s32 ret;
+    OSIoMesg msg;
+
+    osInvalDCache(addr, pageCount * FLASH_BLOCK_SIZE);
+    ret = osFlashReadArray(&msg, OS_MESG_PRI_NORMAL, pageNum, addr, pageCount, &B_801446E0_jp);
+    osRecvMesg(&B_801446E0_jp, NULL, OS_MESG_BLOCK);
+    return ret;
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/sFRm_flashrom/func_800CDECC_jp.s")
 
@@ -72,12 +79,12 @@ void func_800CDEDC_jp(void* arg) {
     FlashromRequest* req = (FlashromRequest*)arg;
 
     switch (req->type) {
-        case 0x1:
+        case FLASHROM_REQUEST_WRITE:
             req->response = func_800CDCC0_jp(req->addr, req->pageNum, req->pageCount);
             osSendMesg(&req->queue, (OSMesg)req->response, OS_MESG_BLOCK);
             break;
 
-        case 0x2:
+        case FLASHROM_REQUEST_READ:
             req->response = func_800CDE54_jp(req->addr, req->pageNum, req->pageCount);
             osSendMesg(&req->queue, (OSMesg)req->response, OS_MESG_BLOCK);
             break;
@@ -87,7 +94,7 @@ void func_800CDEDC_jp(void* arg) {
 void func_800CDF78_jp(void* addr, u32 pageNum, u32 pageCount) {
     FlashromRequest* req = &B_80144CE8_jp;
 
-    req->type = 1;
+    req->type = FLASHROM_REQUEST_WRITE;
     req->addr = addr;
     req->pageNum = pageNum;
     req->pageCount = pageCount;
