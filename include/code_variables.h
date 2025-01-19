@@ -759,7 +759,7 @@ extern s32 fuusen_DEBUG_mode_flag;
 // extern UNK_TYPE D_8010EF48_jp;
 // extern UNK_TYPE D_8010EF50_jp;
 // extern UNK_TYPE D_8010EF60_jp;
-// extern UNK_TYPE D_8010EF70_jp;
+extern char D_8010EF70_jp[];
 
 extern vs32 D_8010EFB0_jp; // TODO: Determine where this goes
 // extern UNK_TYPE D_8010EFB8_jp;

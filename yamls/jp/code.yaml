@@ -305,7 +305,7 @@
       - { start: 0x74AB40, type: bss, vram: 0x80123F80, name: code/80123F80}
       - { start: 0x73F4D0, type: .bss, vram: 0x80126E70, name: code/m_collision_obj }
       - { start: 0x74AB40, type: .bss, vram: 0x80126EA0, name: code/m_common_data }
-      - { start: 0x75B600, type: bss, vram: 0x80137960, name: code/m_cpak }
+      - { start: 0x75B600, type: .bss, vram: 0x80137960, name: code/m_cpak }
       - { start: 0x73F4D0, type: .bss, vram: 0x80138E50, name: code/m_debug}
       - { start: 0x73F4D0, type: .bss, vram: 0x80138E60, name: code/m_debug_display}
       - { start: 0x73F4D0, type: bss, vram: 0x80138E70, name: code/80138E70 }
