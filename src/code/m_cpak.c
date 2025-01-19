@@ -8,7 +8,7 @@
 #include "padmgr.h"
 
 #include "6B8F20.h"
-#include "6F12E0.h"
+#include "s_cpak.h"
 
 extern PakInfo l_paks_info;
 extern B80137C40Struct B_80137C40_jp;
