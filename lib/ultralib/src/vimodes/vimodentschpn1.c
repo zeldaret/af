@@ -1,6 +1,16 @@
+/**
+ * @file vimodentschpn1.c
+ *
+ * NTSC HPN1 Video Mode
+ *
+ * H = High Resolution
+ * P = Point Sampled
+ * N = Normal Interlaced
+ * 1 = 16-bit Framebuffer
+ */
 #include "PR/os.h"
 #include "PR/rcp.h"
-#include "../io/viint.h"
+#include "PRinternal/viint.h"
 
 OSViMode osViModeNtscHpn1 = {
     OS_VI_NTSC_HPN1, // type

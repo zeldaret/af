@@ -1,7 +1,11 @@
 #include "PR/os_internal.h"
-#include "controller.h"
-#include "siint.h"
+#include "PRinternal/controller.h"
+#include "PRinternal/siint.h"
 
+/*
+ * This function specifies the number of devices for the functions to access when those functions access to multiple
+ * direct SI devices.
+ */
 s32 osContSetCh(u8 ch) {
     s32 ret = 0;
 

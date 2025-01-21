@@ -1,7 +1,7 @@
 #include "os_version.h"
 #if !defined(_FINALROM) || BUILD_VERSION < VERSION_J
 
-#include "../os/osint.h"
+#include "PRinternal/osint.h"
 #include "PR/rmon.h"
 #include "PR/region.h"
 

@@ -1,6 +1,6 @@
 #include "PR/os_internal.h"
 #include "PR/ultraerror.h"
-#include "osint.h"
+#include "PRinternal/osint.h"
 
 void osSetThreadPri(OSThread* t, OSPri pri) {
     register u32 saveMask;

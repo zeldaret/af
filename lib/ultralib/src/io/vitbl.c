@@ -1,6 +1,6 @@
 #include "PR/os.h"
 #include "PR/rcp.h"
-#include "../io/viint.h"
+#include "PRinternal/viint.h"
 
 OSViMode osViModeTable[] = {
     { OS_VI_NTSC_LPN1, // type
@@ -100,15 +100,15 @@ OSViMode osViModeTable[] = {
       {
           // comRegs
           VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_SERRATE_ON |
-              VI_CTRL_PIXEL_ADV_3, // ctrl
-          WIDTH(320),              // width
-          BURST(57, 34, 5, 62),    // burst
-          VSYNC(524),              // vSync
-          HSYNC(3093, 0),          // hSync
-          LEAP(3093, 3093),        // leap
-          HSTART(108, 748),        // hStart
-          SCALE(2, 0),             // xScale
-          VCURRENT(0),             // vCurrent
+              VI_CTRL_ANTIALIAS_MODE_0 | VI_CTRL_PIXEL_ADV_3, // ctrl
+          WIDTH(320),                                         // width
+          BURST(57, 34, 5, 62),                               // burst
+          VSYNC(524),                                         // vSync
+          HSYNC(3093, 0),                                     // hSync
+          LEAP(3093, 3093),                                   // leap
+          HSTART(108, 748),                                   // hStart
+          SCALE(2, 0),                                        // xScale
+          VCURRENT(0),                                        // vCurrent
       },
       { // fldRegs
         {
@@ -192,15 +192,16 @@ OSViMode osViModeTable[] = {
     { OS_VI_NTSC_LAN2, // type
       {
           // comRegs
-          VI_CTRL_TYPE_32 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_PIXEL_ADV_3, // ctrl
-          WIDTH(320),           // width
-          BURST(57, 34, 5, 62), // burst
-          VSYNC(525),           // vSync
-          HSYNC(3093, 0),       // hSync
-          LEAP(3093, 3093),     // leap
-          HSTART(108, 748),     // hStart
-          SCALE(2, 0),          // xScale
-          VCURRENT(0),          // vCurrent
+          VI_CTRL_TYPE_32 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_ANTIALIAS_MODE_0 |
+              VI_CTRL_PIXEL_ADV_3, // ctrl
+          WIDTH(320),              // width
+          BURST(57, 34, 5, 62),    // burst
+          VSYNC(525),              // vSync
+          HSYNC(3093, 0),          // hSync
+          LEAP(3093, 3093),        // leap
+          HSTART(108, 748),        // hStart
+          SCALE(2, 0),             // xScale
+          VCURRENT(0),             // vCurrent
       },
       { // fldRegs
         {
@@ -223,15 +224,15 @@ OSViMode osViModeTable[] = {
       {
           // comRegs
           VI_CTRL_TYPE_32 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_SERRATE_ON |
-              VI_CTRL_PIXEL_ADV_3, // ctrl
-          WIDTH(320),              // width
-          BURST(57, 34, 5, 62),    // burst
-          VSYNC(524),              // vSync
-          HSYNC(3093, 0),          // hSync
-          LEAP(3093, 3093),        // leap
-          HSTART(108, 748),        // hStart
-          SCALE(2, 0),             // xScale
-          VCURRENT(0),             // vCurrent
+              VI_CTRL_ANTIALIAS_MODE_0 | VI_CTRL_PIXEL_ADV_3, // ctrl
+          WIDTH(320),                                         // width
+          BURST(57, 34, 5, 62),                               // burst
+          VSYNC(524),                                         // vSync
+          HSYNC(3093, 0),                                     // hSync
+          LEAP(3093, 3093),                                   // leap
+          HSTART(108, 748),                                   // hStart
+          SCALE(2, 0),                                        // xScale
+          VCURRENT(0),                                        // vCurrent
       },
       { // fldRegs
         {
@@ -316,15 +317,15 @@ OSViMode osViModeTable[] = {
       {
           // comRegs
           VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_SERRATE_ON |
-              VI_CTRL_PIXEL_ADV_3, // ctrl
-          WIDTH(1280),             // width
-          BURST(57, 34, 5, 62),    // burst
-          VSYNC(524),              // vSync
-          HSYNC(3093, 0),          // hSync
-          LEAP(3093, 3093),        // leap
-          HSTART(108, 748),        // hStart
-          SCALE(1, 0),             // xScale
-          VCURRENT(0),             // vCurrent
+              VI_CTRL_ANTIALIAS_MODE_0 | VI_CTRL_PIXEL_ADV_3, // ctrl
+          WIDTH(1280),                                        // width
+          BURST(57, 34, 5, 62),                               // burst
+          VSYNC(524),                                         // vSync
+          HSYNC(3093, 0),                                     // hSync
+          LEAP(3093, 3093),                                   // leap
+          HSTART(108, 748),                                   // hStart
+          SCALE(1, 0),                                        // xScale
+          VCURRENT(0),                                        // vCurrent
       },
       { // fldRegs
         {
@@ -347,15 +348,15 @@ OSViMode osViModeTable[] = {
       {
           // comRegs
           VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_SERRATE_ON |
-              VI_CTRL_PIXEL_ADV_3, // ctrl
-          WIDTH(640),              // width
-          BURST(57, 34, 5, 62),    // burst
-          VSYNC(524),              // vSync
-          HSYNC(3093, 0),          // hSync
-          LEAP(3093, 3093),        // leap
-          HSTART(108, 748),        // hStart
-          SCALE(1, 0),             // xScale
-          VCURRENT(0),             // vCurrent
+              VI_CTRL_ANTIALIAS_MODE_0 | VI_CTRL_PIXEL_ADV_3, // ctrl
+          WIDTH(640),                                         // width
+          BURST(57, 34, 5, 62),                               // burst
+          VSYNC(524),                                         // vSync
+          HSYNC(3093, 0),                                     // hSync
+          LEAP(3093, 3093),                                   // leap
+          HSTART(108, 748),                                   // hStart
+          SCALE(1, 0),                                        // xScale
+          VCURRENT(0),                                        // vCurrent
       },
       { // fldRegs
         {
@@ -533,15 +534,15 @@ OSViMode osViModeTable[] = {
       {
           // comRegs
           VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_SERRATE_ON |
-              VI_CTRL_PIXEL_ADV_3, // ctrl
-          WIDTH(320),              // width
-          BURST(58, 30, 4, 69),    // burst
-          VSYNC(624),              // vSync
-          HSYNC(3177, 23),         // hSync
-          LEAP(3183, 3181),        // leap
-          HSTART(128, 768),        // hStart
-          SCALE(2, 0),             // xScale
-          VCURRENT(0),             // vCurrent
+              VI_CTRL_ANTIALIAS_MODE_0 | VI_CTRL_PIXEL_ADV_3, // ctrl
+          WIDTH(320),                                         // width
+          BURST(58, 30, 4, 69),                               // burst
+          VSYNC(624),                                         // vSync
+          HSYNC(3177, 23),                                    // hSync
+          LEAP(3183, 3181),                                   // leap
+          HSTART(128, 768),                                   // hStart
+          SCALE(2, 0),                                        // xScale
+          VCURRENT(0),                                        // vCurrent
       },
       { // fldRegs
         {
@@ -625,15 +626,16 @@ OSViMode osViModeTable[] = {
     { OS_VI_PAL_LAN2, // type
       {
           // comRegs
-          VI_CTRL_TYPE_32 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_PIXEL_ADV_3, // ctrl
-          WIDTH(320),           // width
-          BURST(58, 30, 4, 69), // burst
-          VSYNC(625),           // vSync
-          HSYNC(3177, 23),      // hSync
-          LEAP(3183, 3181),     // leap
-          HSTART(128, 768),     // hStart
-          SCALE(2, 0),          // xScale
-          VCURRENT(0),          // vCurrent
+          VI_CTRL_TYPE_32 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_ANTIALIAS_MODE_0 |
+              VI_CTRL_PIXEL_ADV_3, // ctrl
+          WIDTH(320),              // width
+          BURST(58, 30, 4, 69),    // burst
+          VSYNC(625),              // vSync
+          HSYNC(3177, 23),         // hSync
+          LEAP(3183, 3181),        // leap
+          HSTART(128, 768),        // hStart
+          SCALE(2, 0),             // xScale
+          VCURRENT(0),             // vCurrent
       },
       { // fldRegs
         {
@@ -656,15 +658,15 @@ OSViMode osViModeTable[] = {
       {
           // comRegs
           VI_CTRL_TYPE_32 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_SERRATE_ON |
-              VI_CTRL_PIXEL_ADV_3, // ctrl
-          WIDTH(320),              // width
-          BURST(58, 30, 4, 69),    // burst
-          VSYNC(624),              // vSync
-          HSYNC(3177, 23),         // hSync
-          LEAP(3183, 3181),        // leap
-          HSTART(128, 768),        // hStart
-          SCALE(2, 0),             // xScale
-          VCURRENT(0),             // vCurrent
+              VI_CTRL_ANTIALIAS_MODE_0 | VI_CTRL_PIXEL_ADV_3, // ctrl
+          WIDTH(320),                                         // width
+          BURST(58, 30, 4, 69),                               // burst
+          VSYNC(624),                                         // vSync
+          HSYNC(3177, 23),                                    // hSync
+          LEAP(3183, 3181),                                   // leap
+          HSTART(128, 768),                                   // hStart
+          SCALE(2, 0),                                        // xScale
+          VCURRENT(0),                                        // vCurrent
       },
       { // fldRegs
         {
@@ -749,15 +751,15 @@ OSViMode osViModeTable[] = {
       {
           // comRegs
           VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_SERRATE_ON |
-              VI_CTRL_PIXEL_ADV_3, // ctrl
-          WIDTH(1280),             // width
-          BURST(58, 30, 4, 69),    // burst
-          VSYNC(624),              // vSync
-          HSYNC(3177, 23),         // hSync
-          LEAP(3183, 3181),        // leap
-          HSTART(128, 768),        // hStart
-          SCALE(1, 0),             // xScale
-          VCURRENT(0),             // vCurrent
+              VI_CTRL_ANTIALIAS_MODE_0 | VI_CTRL_PIXEL_ADV_3, // ctrl
+          WIDTH(1280),                                        // width
+          BURST(58, 30, 4, 69),                               // burst
+          VSYNC(624),                                         // vSync
+          HSYNC(3177, 23),                                    // hSync
+          LEAP(3183, 3181),                                   // leap
+          HSTART(128, 768),                                   // hStart
+          SCALE(1, 0),                                        // xScale
+          VCURRENT(0),                                        // vCurrent
       },
       { // fldRegs
         {
@@ -780,15 +782,15 @@ OSViMode osViModeTable[] = {
       {
           // comRegs
           VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_SERRATE_ON |
-              VI_CTRL_PIXEL_ADV_3, // ctrl
-          WIDTH(640),              // width
-          BURST(58, 30, 4, 69),    // burst
-          VSYNC(624),              // vSync
-          HSYNC(3177, 23),         // hSync
-          LEAP(3183, 3181),        // leap
-          HSTART(128, 768),        // hStart
-          SCALE(1, 0),             // xScale
-          VCURRENT(0),             // vCurrent
+              VI_CTRL_ANTIALIAS_MODE_0 | VI_CTRL_PIXEL_ADV_3, // ctrl
+          WIDTH(640),                                         // width
+          BURST(58, 30, 4, 69),                               // burst
+          VSYNC(624),                                         // vSync
+          HSYNC(3177, 23),                                    // hSync
+          LEAP(3183, 3181),                                   // leap
+          HSTART(128, 768),                                   // hStart
+          SCALE(1, 0),                                        // xScale
+          VCURRENT(0),                                        // vCurrent
       },
       { // fldRegs
         {
@@ -966,15 +968,15 @@ OSViMode osViModeTable[] = {
       {
           // comRegs
           VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_SERRATE_ON |
-              VI_CTRL_PIXEL_ADV_3, // ctrl
-          WIDTH(320),              // width
-          BURST(57, 30, 5, 70),    // burst
-          VSYNC(524),              // vSync
-          HSYNC(3088, 0),          // hSync
-          LEAP(3100, 3100),        // leap
-          HSTART(108, 748),        // hStart
-          SCALE(2, 0),             // xScale
-          VCURRENT(0),             // vCurrent
+              VI_CTRL_ANTIALIAS_MODE_0 | VI_CTRL_PIXEL_ADV_3, // ctrl
+          WIDTH(320),                                         // width
+          BURST(57, 30, 5, 70),                               // burst
+          VSYNC(524),                                         // vSync
+          HSYNC(3088, 0),                                     // hSync
+          LEAP(3100, 3100),                                   // leap
+          HSTART(108, 748),                                   // hStart
+          SCALE(2, 0),                                        // xScale
+          VCURRENT(0),                                        // vCurrent
       },
       { // fldRegs
         {
@@ -1058,15 +1060,16 @@ OSViMode osViModeTable[] = {
     { OS_VI_MPAL_LAN2, // type
       {
           // comRegs
-          VI_CTRL_TYPE_32 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_PIXEL_ADV_3, // ctrl
-          WIDTH(320),           // width
-          BURST(57, 30, 5, 70), // burst
-          VSYNC(525),           // vSync
-          HSYNC(3089, 4),       // hSync
-          LEAP(3097, 3098),     // leap
-          HSTART(108, 748),     // hStart
-          SCALE(2, 0),          // xScale
-          VCURRENT(0),          // vCurrent
+          VI_CTRL_TYPE_32 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_ANTIALIAS_MODE_0 |
+              VI_CTRL_PIXEL_ADV_3, // ctrl
+          WIDTH(320),              // width
+          BURST(57, 30, 5, 70),    // burst
+          VSYNC(525),              // vSync
+          HSYNC(3089, 4),          // hSync
+          LEAP(3097, 3098),        // leap
+          HSTART(108, 748),        // hStart
+          SCALE(2, 0),             // xScale
+          VCURRENT(0),             // vCurrent
       },
       { // fldRegs
         {
@@ -1089,15 +1092,15 @@ OSViMode osViModeTable[] = {
       {
           // comRegs
           VI_CTRL_TYPE_32 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_SERRATE_ON |
-              VI_CTRL_PIXEL_ADV_3, // ctrl
-          WIDTH(320),              // width
-          BURST(57, 30, 5, 70),    // burst
-          VSYNC(524),              // vSync
-          HSYNC(3088, 0),          // hSync
-          LEAP(3100, 3100),        // leap
-          HSTART(108, 748),        // hStart
-          SCALE(2, 0),             // xScale
-          VCURRENT(0),             // vCurrent
+              VI_CTRL_ANTIALIAS_MODE_0 | VI_CTRL_PIXEL_ADV_3, // ctrl
+          WIDTH(320),                                         // width
+          BURST(57, 30, 5, 70),                               // burst
+          VSYNC(524),                                         // vSync
+          HSYNC(3088, 0),                                     // hSync
+          LEAP(3100, 3100),                                   // leap
+          HSTART(108, 748),                                   // hStart
+          SCALE(2, 0),                                        // xScale
+          VCURRENT(0),                                        // vCurrent
       },
       { // fldRegs
         {
@@ -1182,15 +1185,15 @@ OSViMode osViModeTable[] = {
       {
           // comRegs
           VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_SERRATE_ON |
-              VI_CTRL_PIXEL_ADV_3, // ctrl
-          WIDTH(1280),             // width
-          BURST(57, 30, 5, 70),    // burst
-          VSYNC(524),              // vSync
-          HSYNC(3088, 0),          // hSync
-          LEAP(3100, 3100),        // leap
-          HSTART(108, 748),        // hStart
-          SCALE(1, 0),             // xScale
-          VCURRENT(0),             // vCurrent
+              VI_CTRL_ANTIALIAS_MODE_0 | VI_CTRL_PIXEL_ADV_3, // ctrl
+          WIDTH(1280),                                        // width
+          BURST(57, 30, 5, 70),                               // burst
+          VSYNC(524),                                         // vSync
+          HSYNC(3088, 0),                                     // hSync
+          LEAP(3100, 3100),                                   // leap
+          HSTART(108, 748),                                   // hStart
+          SCALE(1, 0),                                        // xScale
+          VCURRENT(0),                                        // vCurrent
       },
       { // fldRegs
         {
@@ -1213,15 +1216,15 @@ OSViMode osViModeTable[] = {
       {
           // comRegs
           VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_SERRATE_ON |
-              VI_CTRL_PIXEL_ADV_3, // ctrl
-          WIDTH(640),              // width
-          BURST(57, 30, 5, 70),    // burst
-          VSYNC(524),              // vSync
-          HSYNC(3088, 0),          // hSync
-          LEAP(3100, 3100),        // leap
-          HSTART(108, 748),        // hStart
-          SCALE(1, 0),             // xScale
-          VCURRENT(0),             // vCurrent
+              VI_CTRL_ANTIALIAS_MODE_0 | VI_CTRL_PIXEL_ADV_3, // ctrl
+          WIDTH(640),                                         // width
+          BURST(57, 30, 5, 70),                               // burst
+          VSYNC(524),                                         // vSync
+          HSYNC(3088, 0),                                     // hSync
+          LEAP(3100, 3100),                                   // leap
+          HSTART(108, 748),                                   // hStart
+          SCALE(1, 0),                                        // xScale
+          VCURRENT(0),                                        // vCurrent
       },
       { // fldRegs
         {
@@ -1400,15 +1403,15 @@ OSViMode osViModeTable[] = {
       {
           // comRegs
           VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_SERRATE_ON |
-              VI_CTRL_PIXEL_ADV_3, // ctrl
-          WIDTH(320),              // width
-          BURST(58, 30, 4, 69),    // burst
-          VSYNC(624),              // vSync
-          HSYNC(3177, 23),         // hSync
-          LEAP(3183, 3181),        // leap
-          HSTART(128, 768),        // hStart
-          SCALE(2, 0),             // xScale
-          VCURRENT(0),             // vCurrent
+              VI_CTRL_ANTIALIAS_MODE_0 | VI_CTRL_PIXEL_ADV_3, // ctrl
+          WIDTH(320),                                         // width
+          BURST(58, 30, 4, 69),                               // burst
+          VSYNC(624),                                         // vSync
+          HSYNC(3177, 23),                                    // hSync
+          LEAP(3183, 3181),                                   // leap
+          HSTART(128, 768),                                   // hStart
+          SCALE(2, 0),                                        // xScale
+          VCURRENT(0),                                        // vCurrent
       },
       { // fldRegs
         {
@@ -1492,15 +1495,16 @@ OSViMode osViModeTable[] = {
     { OS_VI_FPAL_LAN2, // type
       {
           // comRegs
-          VI_CTRL_TYPE_32 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_PIXEL_ADV_3, // ctrl
-          WIDTH(320),           // width
-          BURST(58, 30, 4, 69), // burst
-          VSYNC(625),           // vSync
-          HSYNC(3177, 23),      // hSync
-          LEAP(3183, 3181),     // leap
-          HSTART(128, 768),     // hStart
-          SCALE(2, 0),          // xScale
-          VCURRENT(0),          // vCurrent
+          VI_CTRL_TYPE_32 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_ANTIALIAS_MODE_0 |
+              VI_CTRL_PIXEL_ADV_3, // ctrl
+          WIDTH(320),              // width
+          BURST(58, 30, 4, 69),    // burst
+          VSYNC(625),              // vSync
+          HSYNC(3177, 23),         // hSync
+          LEAP(3183, 3181),        // leap
+          HSTART(128, 768),        // hStart
+          SCALE(2, 0),             // xScale
+          VCURRENT(0),             // vCurrent
       },
       { // fldRegs
         {
@@ -1523,15 +1527,15 @@ OSViMode osViModeTable[] = {
       {
           // comRegs
           VI_CTRL_TYPE_32 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_SERRATE_ON |
-              VI_CTRL_PIXEL_ADV_3, // ctrl
-          WIDTH(320),              // width
-          BURST(58, 30, 4, 69),    // burst
-          VSYNC(624),              // vSync
-          HSYNC(3177, 23),         // hSync
-          LEAP(3183, 3181),        // leap
-          HSTART(128, 768),        // hStart
-          SCALE(2, 0),             // xScale
-          VCURRENT(0),             // vCurrent
+              VI_CTRL_ANTIALIAS_MODE_0 | VI_CTRL_PIXEL_ADV_3, // ctrl
+          WIDTH(320),                                         // width
+          BURST(58, 30, 4, 69),                               // burst
+          VSYNC(624),                                         // vSync
+          HSYNC(3177, 23),                                    // hSync
+          LEAP(3183, 3181),                                   // leap
+          HSTART(128, 768),                                   // hStart
+          SCALE(2, 0),                                        // xScale
+          VCURRENT(0),                                        // vCurrent
       },
       { // fldRegs
         {
@@ -1616,15 +1620,15 @@ OSViMode osViModeTable[] = {
       {
           // comRegs
           VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_SERRATE_ON |
-              VI_CTRL_PIXEL_ADV_3, // ctrl
-          WIDTH(1280),             // width
-          BURST(58, 30, 4, 69),    // burst
-          VSYNC(624),              // vSync
-          HSYNC(3177, 23),         // hSync
-          LEAP(3183, 3181),        // leap
-          HSTART(128, 768),        // hStart
-          SCALE(1, 0),             // xScale
-          VCURRENT(0),             // vCurrent
+              VI_CTRL_ANTIALIAS_MODE_0 | VI_CTRL_PIXEL_ADV_3, // ctrl
+          WIDTH(1280),                                        // width
+          BURST(58, 30, 4, 69),                               // burst
+          VSYNC(624),                                         // vSync
+          HSYNC(3177, 23),                                    // hSync
+          LEAP(3183, 3181),                                   // leap
+          HSTART(128, 768),                                   // hStart
+          SCALE(1, 0),                                        // xScale
+          VCURRENT(0),                                        // vCurrent
       },
       { // fldRegs
         {
@@ -1647,15 +1651,15 @@ OSViMode osViModeTable[] = {
       {
           // comRegs
           VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_SERRATE_ON |
-              VI_CTRL_PIXEL_ADV_3, // ctrl
-          WIDTH(640),              // width
-          BURST(58, 30, 4, 69),    // burst
-          VSYNC(624),              // vSync
-          HSYNC(3177, 23),         // hSync
-          LEAP(3183, 3181),        // leap
-          HSTART(128, 768),        // hStart
-          SCALE(1, 0),             // xScale
-          VCURRENT(0),             // vCurrent
+              VI_CTRL_ANTIALIAS_MODE_0 | VI_CTRL_PIXEL_ADV_3, // ctrl
+          WIDTH(640),                                         // width
+          BURST(58, 30, 4, 69),                               // burst
+          VSYNC(624),                                         // vSync
+          HSYNC(3177, 23),                                    // hSync
+          LEAP(3183, 3181),                                   // leap
+          HSTART(128, 768),                                   // hStart
+          SCALE(1, 0),                                        // xScale
+          VCURRENT(0),                                        // vCurrent
       },
       { // fldRegs
         {
@@ -1735,6 +1739,6 @@ OSViMode osViModeTable[] = {
             HSTART(47, 617),      // vStart
             BURST(105, 2, 13, 0), // vBurst
             VINTR(2),             // vIntr
-        } } }
+        } } },
 #endif
 };

@@ -1,7 +1,7 @@
 #include "lbrtc.h"
 #include "lb_rtc.h"
-#include "lib/ultralib/src/io/siint.h"
-#include "lib/ultralib/src/io/controller.h"
+#include "PRinternal/siint.h"
+#include "PRinternal/controller.h"
 
 u16 total_days_internal[2][lbRTC_MONTHS_MAX + 1] = {
     // Standard year

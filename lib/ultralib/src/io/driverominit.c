@@ -1,10 +1,10 @@
 #include "PR/os_internal.h"
 #include "PR/rcp.h"
-#include "macros.h"
+#include "PRinternal/macros.h"
 
-OSPiHandle DriveRomHandle ALIGNED(8);
+OSPiHandle DriveRomHandle ALIGNED(0x8);
 
-OSPiHandle *osDriveRomInit() {
+OSPiHandle *osDriveRomInit(void) {
     u32 saveMask;
 
     if (DriveRomHandle.baseAddress == PHYS_TO_K1(PI_DOM1_ADDR1)) {

@@ -1,5 +1,6 @@
 #include "stdarg.h"
 #include "PR/os.h"
+#include "PR/os_internal.h"
 #include "PR/rdb.h"
 #include "xstdio.h"
 #include "PR/rcp.h"
@@ -12,7 +13,7 @@ extern void* __printfunc;
 extern u32 __kmc_pt_mode;
 
 static void* proutSyncPrintf(void* str, const char* buf, size_t n) {
-    size_t sent = 0;
+    u32 sent = 0;
 
     while (sent < n) {
         sent += __osRdbSend(buf + sent, n - sent, RDB_TYPE_GtoH_PRINT);
@@ -25,8 +26,6 @@ static volatile unsigned int* wport = (unsigned*)0xbff08000;
 static volatile unsigned int* piok = (unsigned*)PHYS_TO_K1(PI_STATUS_REG);
 
 static void rmonPutchar(char c) {
-    u32 data;
-    
     while (*piok & (PI_STATUS_DMA_BUSY | PI_STATUS_IO_BUSY)) {
     }
 
@@ -44,7 +43,7 @@ static void* kmc_proutSyncPrintf(void* str, const char* buf, int n) {
     char xbuf[128];
     static int column = 0;
 
-    p = &xbuf;
+    p = xbuf;
 
     for (i = 0; i < n; i++) {
         c = *buf++;
@@ -117,12 +116,12 @@ void rmonPrintf(const char* fmt, ...) {
 
 #else
 
-void __osSyncVPrintf(const char* fmt, va_list args) {
+void __osSyncVPrintf(const char* fmt, va_list ap) {
 
     int ans;
 #ifndef _FINALROM
     if (__printfunc != NULL) {
-        ans = _Printf(__printfunc, NULL, fmt, args);
+        ans = _Printf(__printfunc, NULL, fmt, ap);
     }
 #endif
 }

@@ -1,11 +1,11 @@
 #include "ultra64.h"
 #include "PR/os_internal_flash.h"
-#include "macros.h"
+#include "PRinternal/macros.h"
 
-u32 __osFlashID[4] ALIGNED(8);
-OSIoMesg __osFlashMsg ALIGNED(8);
-OSMesgQueue __osFlashMessageQ ALIGNED(8);
-OSPiHandle __osFlashHandler ALIGNED(8);
+u32 __osFlashID[4] ALIGNED(0x8);
+OSIoMesg __osFlashMsg ALIGNED(0x8);
+OSMesgQueue __osFlashMessageQ ALIGNED(0x8);
+OSPiHandle __osFlashHandler ALIGNED(0x8);
 OSMesg __osFlashMsgBuf[1];
 s32 __osFlashVersion;
 

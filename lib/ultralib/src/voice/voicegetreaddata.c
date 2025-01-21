@@ -1,5 +1,11 @@
+/**
+ * File: voicegetreaddata.c
+ *
+ * Gets voice recognition result from the Voice Recognition System
+ */
+
 #include "PR/os_internal.h"
-#include "io/controller.h"
+#include "PRinternal/controller.h"
 #include "PR/os_voice.h"
 #include "voiceinternal.h"
 

@@ -18,7 +18,7 @@ CPP_FLAGS = [
     "-Ibuild",
     "-Ilib/ultralib/include",
     "-Ilib/ultralib/include/PR",
-    "-Ilib/ultralib/include/ido",
+    "-Ilib/ultralib/include/compiler/ido",
 
     "-D_LANGUAGE_C",
     "-DF3DEX_GBI_2",

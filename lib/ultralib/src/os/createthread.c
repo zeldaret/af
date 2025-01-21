@@ -1,7 +1,7 @@
 #include "PR/os_internal.h"
 #include "PR/R4300.h"
 #include "PR/ultraerror.h"
-#include "osint.h"
+#include "PRinternal/osint.h"
 
 extern __OSThreadprofile_s thprof[];
 
@@ -28,11 +28,11 @@ void osCreateThread(OSThread* t, OSId id, void (*entry)(void*), void* arg, void*
     t->context.pc = (u32)entry;
     t->context.a0 = (s64)(s32)arg; // Double cast gets rid of compiler warning
     t->context.sp = (s64)(s32)sp - 16;
-    t->context.ra = (u64)__osCleanupThread;
+    t->context.ra = (s64)(s32)__osCleanupThread;
     mask = OS_IM_ALL;
     t->context.sr = (mask & (SR_IMASK | SR_IE)) | SR_EXL;
     t->context.rcp = (mask & RCP_IMASK) >> RCP_IMASKSHIFT;
-    t->context.fpcsr = (u32)(FPCSR_FS | FPCSR_EV);
+    t->context.fpcsr = FPCSR_FS | FPCSR_EV | FPCSR_RM_RN;
     t->fp = 0;
     t->state = OS_STATE_STOPPED;
     t->flags = 0;

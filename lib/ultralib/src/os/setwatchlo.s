@@ -4,7 +4,7 @@
 
 .text
 LEAF(__osSetWatchLo)
-    STAY2(mtc0 a0, C0_WATCHLO)
+    MTC0(   a0, C0_WATCHLO)
     NOP
-    jr ra
+    jr      ra
 END(__osSetWatchLo)

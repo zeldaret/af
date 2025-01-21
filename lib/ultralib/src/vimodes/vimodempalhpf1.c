@@ -1,6 +1,16 @@
+/**
+ * @file vimodempalhpf1.c
+ *
+ * MPAL HPF1 Video Mode
+ *
+ * H = High Resolution
+ * P = Point Sampled
+ * F = Deflickered Interlaced
+ * 1 = 16-bit Framebuffer
+ */
 #include "PR/os.h"
 #include "PR/rcp.h"
-#include "../io/viint.h"
+#include "PRinternal/viint.h"
 
 OSViMode osViModeMpalHpf1 = {
     OS_VI_MPAL_HPF1, // type

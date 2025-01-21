@@ -1,7 +1,8 @@
+#include "PRinternal/macros.h"
 #include "PR/os_internal.h"
 #include "PR/rcp.h"
-#include "controller.h"
-#include "siint.h"
+#include "PRinternal/controller.h"
+#include "PRinternal/siint.h"
 
 static void __osPackEepWriteData(u8 address, u8* buffer);
 s32 osEepromWrite(OSMesgQueue* mq, u8 address, u8* buffer) {

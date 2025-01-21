@@ -15,10 +15,6 @@
 #define VI_STATE_REPEATLINE 0x40     // repeat line?
 #define VI_STATE_FADE 0x80           // fade
 
-#define VI_CTRL_ANTIALIAS_MODE_3 0x00300 /* Bit [9:8] anti-alias mode */
-#define VI_CTRL_ANTIALIAS_MODE_2 0x00200 /* Bit [9:8] anti-alias mode */
-#define VI_CTRL_ANTIALIAS_MODE_1 0x00100 /* Bit [9:8] anti-alias mode */
-
 #define VI_SCALE_MASK 0xfff //see rcp scale_x/scale_y
 #define VI_2_10_FPART_MASK 0x3ff
 #define VI_SUBPIXEL_SH 0x10
@@ -67,5 +63,5 @@ extern __OSViContext *__osViNext;
 extern u32 __additional_scanline;
 __OSViContext *__osViGetCurrentContext(void);
 void __osViInit(void);
-extern	OSDevMgr	__osViDevMgr;
+extern OSDevMgr __osViDevMgr;
 #endif
