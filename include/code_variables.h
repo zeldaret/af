@@ -758,7 +758,7 @@ extern s32 fuusen_DEBUG_mode_flag;
 // extern UNK_TYPE D_8010EF30_jp;
 // extern UNK_TYPE D_8010EF48_jp;
 // extern UNK_TYPE D_8010EF50_jp;
-// extern UNK_TYPE D_8010EF60_jp;
+
 extern char D_8010EF70_jp[];
 
 extern vs32 D_8010EFB0_jp; // TODO: Determine where this goes
@@ -1901,18 +1901,6 @@ extern u16 D_80000400[];
 // extern UNK_TYPE B_FLT_801446D0_jp;
 // extern UNK_TYPE B_801446D4_jp;
 // extern UNK_TYPE B_801446DB_jp;
-// extern UNK_TYPE B_801446E0_jp;
-// extern UNK_TYPE B_801446F8_jp;
-// extern UNK_TYPE B_80144700_jp;
-// extern UNK_TYPE B_80144718_jp;
-// extern UNK_TYPE B_80144B18_jp;
-// extern UNK_TYPE B_80144B38_jp;
-// extern UNK_TYPE B_80144CE8_jp;
-// extern UNK_TYPE B_80144CEC_jp;
-// extern UNK_TYPE B_80144CFC_jp;
-// extern UNK_TYPE B_80144D04_jp;
-// extern UNK_TYPE B_80144D0C_jp;
-// extern UNK_TYPE B_80144D14_jp;
 
 // extern UNK_TYPE B_80145390_jp;
 // extern UNK_TYPE B_80145610_jp;

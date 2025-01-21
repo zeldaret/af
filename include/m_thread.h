@@ -9,8 +9,10 @@
 #define M_THREAD_ID_DMAMGR    8
 #define M_THREAD_ID_IRQMGR    9
 #define M_THREAD_ID_AUDIOMGR 10
+#define M_THREAD_ID_FLASHROM 13
 
 #define M_PRIORITY_GRAPH         8
+#define M_PRIORITY_FLASHROM      9
 #define M_PRIORITY_DMAMGR_LOW   10  // Used when decompressing files
 #define M_PRIORITY_AUDIOMGR     11
 #define M_PRIORITY_IDLE         12
