@@ -5,7 +5,7 @@
 .set noreorder
 .text
 LEAF(__osGetTLBASID)
-    mfc0 v0, C0_ENTRYHI
-    jr ra
-    nop
+    mfc0    v0, C0_ENTRYHI
+    jr      ra
+     nop
 END(__osGetTLBASID)

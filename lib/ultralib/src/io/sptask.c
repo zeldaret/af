@@ -2,7 +2,7 @@
 #include "PR/ultraerror.h"
 #include "PR/sptask.h"
 #include "PR/rcp.h"
-#include "../os/osint.h"
+#include "PRinternal/osint.h"
 
 #if BUILD_VERSION < VERSION_J
 #ident "$Revision: 1.4 $"
@@ -11,7 +11,7 @@
 #define _osVirtualToPhysical(ptr)              \
     if (ptr != NULL) {                         \
         ptr = (void*)osVirtualToPhysical(ptr); \
-    }
+    } (void)0
 
 static OSTask tmp_task;
 

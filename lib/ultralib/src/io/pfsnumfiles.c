@@ -1,5 +1,5 @@
 #include "PR/os_internal.h"
-#include "controller.h"
+#include "PRinternal/controller.h"
 
 s32 osPfsNumFiles(OSPfs* pfs, s32* max_files, s32* files_used) {
     int j;

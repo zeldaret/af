@@ -1,10 +1,20 @@
+/**
+ * File: voicecrc.c
+ * Description: CRC check used by the voice files
+ *
+ * For general information about CRC, see the crc.c file
+ */
 #include "PR/os_internal.h"
-#include "io/controller.h"
+#include "PRinternal/controller.h"
 #include "PR/os_voice.h"
 
 #define VOICE_CRC_LENGTH 8
 #define VOICE_CRC_GENERATOR 0x85
 
+/**
+ * This function is essentially the same as __osContDataCrc, but allows for a variable message length, specified by
+ * `numBytes`.
+ */
 u8 __osVoiceContDataCrc(u8* data, u32 length) {
     s32 temp = 0;
     u32 i;

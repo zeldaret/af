@@ -1,6 +1,16 @@
+/**
+ * @file vimodentsclan1.c
+ *
+ * NTSC LAN1 Video Mode
+ *
+ * L = Low Resolution
+ * A = Anti-Aliased
+ * N = Non-Interlaced
+ * 1 = 16-bit Framebuffer
+ */
 #include "PR/os.h"
 #include "PR/rcp.h"
-#include "../io/viint.h"
+#include "PRinternal/viint.h"
 
 OSViMode osViModeNtscLan1 = {
     OS_VI_NTSC_LAN1, // type

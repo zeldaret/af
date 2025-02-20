@@ -209,7 +209,7 @@ void FaultDrawer_FillScreen(void) {
     FaultDrawer_SetCursor(sFaultDrawer.xStart, sFaultDrawer.yStart);
 }
 
-char* FaultDrawer_PrintCallback(char* arg, const char* str, size_t count) {
+void* FaultDrawer_PrintCallback(void* arg, const char* str, size_t count) {
     for (; count != 0; count--, str++) {
         s32 curXStart;
         s32 curXEnd;
@@ -274,7 +274,7 @@ char* FaultDrawer_PrintCallback(char* arg, const char* str, size_t count) {
 const char D_8003E280[] = "(null)";
 
 s32 FaultDrawer_VPrintf(const char* fmt, va_list args) {
-    return _Printf(FaultDrawer_PrintCallback, (void*)&sFaultDrawer, fmt, args);
+    return _Printf(FaultDrawer_PrintCallback, &sFaultDrawer, fmt, args);
 }
 
 s32 FaultDrawer_Printf(const char* fmt, ...) {

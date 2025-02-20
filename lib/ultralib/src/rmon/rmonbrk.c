@@ -1,12 +1,12 @@
 #ifndef _FINALROM
 
 #include "PR/os_internal.h"
-#include "dbgproto.h"
+#include "PRinternal/dbgproto.h"
 #include "PR/rcp.h"
 #include "PR/sptask.h"
-#include "rmonint.h"
+#include "PRinternal/rmonint.h"
 
-#include "macros.h"
+#include "PRinternal/macros.h"
 
 // TODO: this comes from a header
 #if BUILD_VERSION >= VERSION_J
@@ -35,11 +35,11 @@ typedef struct {
 } BREAKINFO;
 
 /* first breakpoint is reserved for implementing single-stepping */
-static BREAKINFO breakpoints[NUM_BREAKPOINTS] ALIGNED(8);
+static BREAKINFO breakpoints[NUM_BREAKPOINTS] ALIGNED(0x8);
 /* breakpoint for alternate branch target */
 static BREAKINFO altBreak;
 
-static BREAKINFO RCPbreakpoints[NUM_BREAKPOINTS] ALIGNED(8);
+static BREAKINFO RCPbreakpoints[NUM_BREAKPOINTS] ALIGNED(0x8);
 
 u8 __rmonRcpAtBreak;
 

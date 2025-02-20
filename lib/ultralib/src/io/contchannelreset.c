@@ -1,6 +1,6 @@
 #include "PR/os_internal.h"
-#include "controller.h"
-#include "siint.h"
+#include "PRinternal/controller.h"
+#include "PRinternal/siint.h"
 
 s32 __osContChannelReset(OSMesgQueue* mq, int channel) {
     s32 i;

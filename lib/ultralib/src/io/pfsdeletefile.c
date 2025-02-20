@@ -1,5 +1,6 @@
+#include "PRinternal/macros.h"
 #include "PR/os_internal.h"
-#include "controller.h"
+#include "PRinternal/controller.h"
 
 s32 osPfsDeleteFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name, u8* ext_name) {
     s32 file_no;
@@ -38,13 +39,13 @@ s32 osPfsDeleteFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name, 
     startpage = dir.start_page.inode_t.page;
 
     for (bank = dir.start_page.inode_t.bank; bank < pfs->banks;) {
-        ERRCK(__osPfsRWInode(pfs, &inode, OS_READ, bank));
+        ERRCK(__osPfsRWInode(pfs, &inode, PFS_READ, bank));
 #if BUILD_VERSION >= VERSION_J
         ERRCK(__osPfsReleasePages(pfs, &inode, startpage, bank, &last_page));
 #else
         ERRCK(__osPfsReleasePages(pfs, &inode, startpage, &sum, bank, &last_page, TRUE));
 #endif
-        ERRCK(__osPfsRWInode(pfs, &inode, OS_WRITE, bank));
+        ERRCK(__osPfsRWInode(pfs, &inode, PFS_WRITE, bank));
 
         if (last_page.ipage == PFS_EOF) {
             break;

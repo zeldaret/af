@@ -1,7 +1,7 @@
 #ifndef _RMONINT_H
 #define _RMONINT_H
 
-#include "dbgproto.h"
+#include "PRinternal/dbgproto.h"
 #include "PR/os_internal.h"
 
 /* mips */

@@ -1,6 +1,6 @@
 #include "lbrtc.h"
-#include "lib/ultralib/src/io/siint.h"
-#include "lib/ultralib/src/io/controller.h"
+#include "PRinternal/siint.h"
+#include "PRinternal/controller.h"
 
 OSTimer __contRTCTimer;
 OSMesgQueue __contRTCMesgQ;

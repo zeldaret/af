@@ -1,11 +1,11 @@
-#include "macros.h"
+#include "PRinternal/macros.h"
 #include "PR/os_internal.h"
 #include "PR/os_version.h"
-#include "controller.h"
-#include "siint.h"
+#include "PRinternal/controller.h"
+#include "PRinternal/siint.h"
 
 #if BUILD_VERSION >= VERSION_J
-static OSPifRam __MotorDataBuf[MAXCONTROLLERS] ALIGNED(8);
+static OSPifRam __MotorDataBuf[MAXCONTROLLERS];
 
 #define READFORMAT(ptr) ((__OSContRamReadFormat*)(ptr))
 
@@ -134,10 +134,10 @@ s32 osMotorInit(OSMesgQueue* mq, OSPfs* pfs, int channel) {
 
 #else
 
-OSPifRam _MotorStopData[MAXCONTROLLERS] ALIGNED(8);
-OSPifRam _MotorStartData[MAXCONTROLLERS] ALIGNED(8);
-u8 _motorstopbuf[32] ALIGNED(8);
-u8 _motorstartbuf[32] ALIGNED(8);
+OSPifRam _MotorStopData[MAXCONTROLLERS] ALIGNED(0x8);
+OSPifRam _MotorStartData[MAXCONTROLLERS] ALIGNED(0x8);
+u8 _motorstopbuf[32] ALIGNED(0x8);
+u8 _motorstartbuf[32] ALIGNED(0x8);
 u32 __osMotorinitialized[MAXCONTROLLERS] = {0, 0, 0, 0};
 
 s32 osMotorStop(OSPfs *pfs) {

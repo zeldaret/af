@@ -23,7 +23,7 @@ jobs:
         ref: ${{ github.event.pull_request.head.sha }}
 
     - name: Install package requirements
-      run: sudo apt-get install -y build-essential python3
+      run: sudo apt-get install -y binutils-mips-linux-gnu build-essential python3
 
     - name: Get extra dependencies
       uses: actions/checkout@v3

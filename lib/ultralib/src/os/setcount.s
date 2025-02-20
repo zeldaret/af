@@ -4,6 +4,6 @@
 
 .text
 LEAF(__osSetCount)
-    STAY2(mtc0 a0, C0_COUNT)
-    jr ra
+    MTC0(   a0, C0_COUNT)
+    jr      ra
 END(__osSetCount)

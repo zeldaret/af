@@ -1,9 +1,9 @@
 #ifndef _FINALROM
 
-#include "dbgproto.h"
-#include "rmonint.h"
+#include "PRinternal/dbgproto.h"
+#include "PRinternal/rmonint.h"
 
-#include "macros.h"
+#include "PRinternal/macros.h"
 
 // TODO: this comes from a header
 #if BUILD_VERSION >= VERSION_J
