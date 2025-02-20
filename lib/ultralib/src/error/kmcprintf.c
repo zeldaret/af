@@ -6,6 +6,8 @@
 #include "ultraerror.h"
 #include "../libc/xstdio.h"
 
+#ifndef _FINALROM
+
 extern u32 __kmc_pt_mode;
 
 static void* proutSyncPrintf(void* str, const char* buf, size_t n) {
@@ -244,3 +246,5 @@ static void kmcErrorHandler(s16 code, s16 numArgs, ...) {
 
     va_end(ap);
 }
+
+#endif
