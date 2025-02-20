@@ -2,5 +2,5 @@ cc: Warning: -mips3 should not be used for ucode 32-bit compiles
 cc: Warning: -mips3 should not be used for ucode 32-bit compiles
 cc: Warning: -mips3 should not be used for ucode 32-bit compiles
 cc: Warning: -mips3 should not be used for ucode 32-bit compiles
-as1: Warning: getintmask.s, line 21: Macro instruction used in branch delay slot
-as1: Warning: interrupt.s, line 20: Macro instruction used in branch delay slot
+as1: Warning: getintmask.s, line 20: Macro instruction used in branch delay slot
+as1: Warning: interrupt.s, line 23: Macro instruction used in branch delay slot
