@@ -1,7 +1,7 @@
 #include "PR/os_internal.h"
 #include "PR/ultraerror.h"
-#include "osint.h"
-#include "../io/viint.h"
+#include "PRinternal/osint.h"
+#include "PRinternal/viint.h"
 
 int osSetTimer(OSTimer* t, OSTime countdown, OSTime interval, OSMesgQueue* mq, OSMesg msg) {
     OSTime time;

@@ -1,6 +1,6 @@
 #include "PR/os_internal.h"
 #include "PR/R4300.h"
-#include "osint.h"
+#include "PRinternal/osint.h"
 
 u32 osVirtualToPhysical(void* addr) {
     if (IS_KSEG0(addr)) {

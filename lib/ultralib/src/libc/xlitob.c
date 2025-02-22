@@ -12,47 +12,47 @@
 static char ldigs[] = "0123456789abcdef";
 static char udigs[] = "0123456789ABCDEF";
 
-void _Litob(_Pft *args, char type) {
+void _Litob(_Pft *px, char code) {
     char buff[BUFF_LEN];
     const char *digs;
-    s32 base;
-    s32 i;
+    int base;
+    int i;
     unsigned long long ullval;
 
-    digs = (type == 'X') ? udigs : ldigs;
+    digs = (code == 'X') ? udigs : ldigs;
 
-    base = (type == 'o') ? 8 : ((type != 'x' && type != 'X') ? 10 : 16);
+    base = (code == 'o') ? 8 : ((code != 'x' && code != 'X') ? 10 : 16);
     i = BUFF_LEN;
-    ullval = args->v.ll;
+    ullval = px->v.ll;
 
-    if ((type == 'd' || type == 'i') && args->v.ll < 0) {
+    if ((code == 'd' || code == 'i') && px->v.ll < 0) {
         ullval = -ullval;
     }
 
-    if (ullval != 0 || args->prec != 0) {
+    if (ullval != 0 || px->prec != 0) {
         buff[--i] = digs[ullval % base];
     }
 
-    args->v.ll = ullval / base;
+    px->v.ll = ullval / base;
 
-    while (args->v.ll > 0 && i > 0) {
-        lldiv_t qr = lldiv(args->v.ll, base);
+    while (px->v.ll > 0 && i > 0) {
+        lldiv_t qr = lldiv(px->v.ll, base);
         
-        args->v.ll = qr.quot;
+        px->v.ll = qr.quot;
         buff[--i] = digs[qr.rem];
     }
 
-    args->n1 = BUFF_LEN - i;
+    px->n1 = BUFF_LEN - i;
 
-    memcpy(args->s, buff + i, args->n1);
+    memcpy(px->s, buff + i, px->n1);
 
-    if (args->n1 < args->prec) {
-        args->nz0 = args->prec - args->n1;
+    if (px->n1 < px->prec) {
+        px->nz0 = px->prec - px->n1;
     }
 
-    if (args->prec < 0 && (args->flags & (FLAGS_ZERO | FLAGS_MINUS)) == FLAGS_ZERO) {
-        if ((i = args->width - args->n0 - args->nz0 - args->n1) > 0) {
-            args->nz0 += i;
+    if (px->prec < 0 && (px->flags & (FLAGS_ZERO | FLAGS_MINUS)) == FLAGS_ZERO) {
+        if ((i = px->width - px->n0 - px->nz0 - px->n1) > 0) {
+            px->nz0 += i;
         }
     }
 }

@@ -9,10 +9,10 @@
 
 #define BUFF_LEN 0x20
 
-static s16 _Ldunscale(s16* pex, _Pft* px);
-static void _Genld(_Pft* px, char code, u8* p, s16 nsig, s16 xexp);
+static short _Ldunscale(short* pex, ldouble* px);
+static void _Genld(_Pft* px, char code, unsigned char* p, short nsig, short xexp);
 
-static const double pows[] = {10e0L, 10e1L, 10e3L, 10e7L, 10e15L, 10e31L, 10e63L, 10e127L, 10e255L};
+static const ldouble pows[] = {10e0L, 10e1L, 10e3L, 10e7L, 10e15L, 10e31L, 10e63L, 10e127L, 10e255L};
 
 // float properties
 #define _D0 0
@@ -41,17 +41,16 @@ static const double pows[] = {10e0L, 10e1L, 10e3L, 10e7L, 10e15L, 10e31L, 10e63L
 #define _D2 2
 #define _D3 3
 
-#define	ALIGN(s, align)	(((u32)(s) + ((align)-1)) & ~((align)-1))
+#define ALIGN(s, align) (((unsigned int)(s) + ((align)-1)) & ~((align)-1))
 
 void _Ldtob(_Pft* px, char code) {
     char buff[BUFF_LEN];
     char *p;
-    f64 ldval;
-    s16 err;
-    s16 nsig;
-    s16 xexp;
+    ldouble ldval;
+    short err;
+    short nsig;
+    short xexp;
 
-    // char unused[0x4];
     p = buff;
     ldval = px->v.ld;
 
@@ -61,7 +60,7 @@ void _Ldtob(_Pft* px, char code) {
         px->prec = 1;
     }
 
-    err = _Ldunscale(&xexp, px);
+    err = _Ldunscale(&xexp, &px->v.ld);
     if (err > 0) {
         memcpy(px->s, err == 2 ? "NaN" : "Inf", px->n1 = 3);
         return;
@@ -87,7 +86,7 @@ void _Ldtob(_Pft* px, char code) {
                     }
                 }
             } else if (xexp > 0) {
-                f64 factor = 1;
+                ldouble factor = 1;
                 
                 xexp &= ~3;
                 
@@ -160,9 +159,9 @@ void _Ldtob(_Pft* px, char code) {
     _Genld(px, code, p, nsig, xexp);
 }
 
-s16 _Ldunscale(s16* pex, _Pft* px) {
-    u16* ps = (u16*)px;
-    s16 xchar = (ps[_D0] & _DMASK) >> _DOFF;
+short _Ldunscale(short* pex, ldouble* px) {
+    unsigned short* ps = (unsigned short*)px;
+    short xchar = (ps[_D0] & _DMASK) >> _DOFF;
 
 
     if (xchar == _DMAX) {
@@ -181,7 +180,7 @@ s16 _Ldunscale(s16* pex, _Pft* px) {
     }
 }
 
-void _Genld(_Pft* px, char code, u8* p, s16 nsig, s16 xexp) {
+void _Genld(_Pft* px, char code, unsigned char* p, short nsig, short xexp) {
     const unsigned char point = '.';
 
     if (nsig <= 0) {
@@ -299,7 +298,7 @@ void _Genld(_Pft* px, char code, u8* p, s16 nsig, s16 xexp) {
     }
 
     if ((px->flags & 0x14) == 0x10) {
-        s32 n = px->n0 + px->n1 + px->nz1 + px->n2 + px->nz2;
+        int n = px->n0 + px->n1 + px->nz1 + px->n2 + px->nz2;
 
         if (n < px->width) {
             px->nz0 = px->width - n;

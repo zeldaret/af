@@ -1,14 +1,14 @@
 #ifndef _FINALROM
 
-#include "dbgproto.h"
+#include "PRinternal/dbgproto.h"
 #include "PR/os_internal.h"
 #include "PR/rcp.h"
 #include "PR/sptask.h"
-#include "rmonint.h"
+#include "PRinternal/rmonint.h"
 #include "PR/rdb.h"
 #include "PR/os_version.h"
 
-#include "macros.h"
+#include "PRinternal/macros.h"
 
 // TODO: these come from headers
 #if BUILD_VERSION >= VERSION_K
@@ -34,7 +34,7 @@
 
 static u32 RCPpc;
 static u32 oldIMEMvalue;
-static u32 DMEMbuffer[4] ALIGNED(8);
+static u32 DMEMbuffer[4] ALIGNED(0x8);
 
 typedef union {
     u32 everything;

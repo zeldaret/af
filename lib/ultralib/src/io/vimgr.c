@@ -1,20 +1,20 @@
-#include "macros.h"
+#include "PRinternal/macros.h"
 #include "PR/os_internal.h"
 #include "PR/ultraerror.h"
 #include "PR/rcp.h"
-#include "viint.h"
-#include "../os/osint.h"
+#include "PRinternal/viint.h"
+#include "PRinternal/osint.h"
 
 OSDevMgr __osViDevMgr = { 0 };
 #if BUILD_VERSION >= VERSION_J
 u32 __additional_scanline = 0;
 #endif
 static OSThread viThread;
-static unsigned char viThreadStack[OS_VIM_STACKSIZE] ALIGNED(16);
-static OSMesgQueue viEventQueue ALIGNED(8);
-static OSMesg viEventBuf[5] ALIGNED(8);
-static OSIoMesg viRetraceMsg ALIGNED(8);
-static OSIoMesg viCounterMsg ALIGNED(8);
+static STACK(viThreadStack, OS_VIM_STACKSIZE) ALIGNED(0x10);
+static OSMesgQueue viEventQueue ALIGNED(0x8);
+static OSMesg viEventBuf[5] ALIGNED(0x8);
+static OSIoMesg viRetraceMsg ALIGNED(0x8);
+static OSIoMesg viCounterMsg ALIGNED(0x8);
 
 static void viMgrMain(void* arg);
 void osCreateViManager(OSPri pri) {
@@ -61,7 +61,7 @@ void osCreateViManager(OSPri pri) {
     __osViDevMgr.acsQueue = NULL;
     __osViDevMgr.dma = NULL;
     __osViDevMgr.edma = NULL;
-    osCreateThread(&viThread, 0, viMgrMain, &__osViDevMgr, &viThreadStack[OS_VIM_STACKSIZE], pri);
+    osCreateThread(&viThread, 0, viMgrMain, &__osViDevMgr, STACK_START(viThreadStack), pri);
     __osViInit();
     osStartThread(&viThread);
     __osRestoreInt(savedMask);

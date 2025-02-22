@@ -4,6 +4,6 @@
 
 .text
 LEAF(__osSetCause)
-    STAY2(mtc0 a0, C0_CAUSE)
-    jr ra
+    MTC0(   a0, C0_CAUSE)
+    jr      ra
 END(__osSetCause)

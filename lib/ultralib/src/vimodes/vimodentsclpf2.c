@@ -1,6 +1,16 @@
+/**
+ * @file vimodentsclpf2.c
+ *
+ * NTSC LPF2 Video Mode
+ *
+ * L = Low Resolution
+ * P = Point Sampled
+ * F = Interlaced
+ * 2 = 32-bit Framebuffer
+ */
 #include "PR/os.h"
 #include "PR/rcp.h"
-#include "../io/viint.h"
+#include "PRinternal/viint.h"
 
 OSViMode osViModeNtscLpf2 = {
     OS_VI_NTSC_LPF2, // type

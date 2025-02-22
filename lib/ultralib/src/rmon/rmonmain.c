@@ -10,14 +10,14 @@
 
 #ifndef _FINALROM
 
-#include "dbgproto.h"
+#include "PRinternal/dbgproto.h"
 #include "PR/os_internal.h"
-#include "rmonint.h"
+#include "PRinternal/rmonint.h"
 #include "PR/rcp.h"
-#include "sptask.h"
+#include "PR/sptask.h"
 #include "PR/rdb.h"
 
-#include "macros.h"
+#include "PRinternal/macros.h"
 
 // TODO: this comes from a header
 #if BUILD_VERSION >= VERSION_J

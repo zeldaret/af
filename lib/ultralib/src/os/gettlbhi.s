@@ -5,13 +5,13 @@
 .set noreorder
 .text
 LEAF(__osGetTLBHi)
-    mtc0 a0, C0_INX
+    mtc0    a0, C0_INX
     nop
     tlbr
     nop
     nop
     nop
-    mfc0 v0, C0_ENTRYHI
-    jr ra
-    nop
+    mfc0    v0, C0_ENTRYHI
+    jr      ra
+     nop
 END(__osGetTLBHi)

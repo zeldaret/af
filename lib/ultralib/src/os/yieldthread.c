@@ -1,5 +1,5 @@
 #include "PR/os_internal.h"
-#include "osint.h"
+#include "PRinternal/osint.h"
 
 void osYieldThread(void) {
     register u32 saveMask = __osDisableInt();

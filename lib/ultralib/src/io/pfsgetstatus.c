@@ -1,6 +1,6 @@
 #include "PR/os_internal.h"
-#include "controller.h"
-#include "siint.h"
+#include "PRinternal/controller.h"
+#include "PRinternal/siint.h"
 
 #if BUILD_VERSION >= VERSION_J
 void __osPfsRequestOneChannel(int channel, u8 cmd);

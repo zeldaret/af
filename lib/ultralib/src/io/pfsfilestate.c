@@ -1,5 +1,6 @@
+#include "PRinternal/macros.h"
 #include "PR/os_internal.h"
-#include "controller.h"
+#include "PRinternal/controller.h"
 
 s32 osPfsFileState(OSPfs* pfs, s32 file_no, OSPfsState* state) {
     s32 ret;
@@ -72,7 +73,7 @@ s32 osPfsFileState(OSPfs* pfs, s32 file_no, OSPfsState* state) {
     bank = dir.start_page.inode_t.bank;
 
     while (bank < pfs->banks) {
-        ERRCK(__osPfsRWInode(pfs, &inode, OS_READ, bank));
+        ERRCK(__osPfsRWInode(pfs, &inode, PFS_READ, bank));
         next_page = inode.inode_page[start_page];
         pages++;
 
