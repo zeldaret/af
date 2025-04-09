@@ -4,6 +4,7 @@
 #include "ultra64.h"
 #include "m_collision_bg.h"
 #include "game.h"
+#include "m_field_make.h"
 
 #define RANDOM_FIELD_DIRECT_ERROR 100
 
@@ -71,7 +72,7 @@ typedef struct RandomFieldGate {
 s32* mRF_StepNo(void);
 s32* mRF_TryCnt(void);
 // void mRF_PrintDebug(gfxprint* gfxprint);
-void mRF_MakeRandomField(UNK_PTR combi_table, UNK_PTR combi_info, s32 combi_count, Game* game);
+void mRF_MakeRandomField(FieldMakeCombination* combi_table, FieldMakeComboInfo* combi_info, s32 combi_count, Game* game);
 u32 mRF_Type2BlockInfo(u8 blockType);
 // u8 mRF_Info2BlockType(u32 blockInfo);
 // s32 mRF_GateType2GateCount(s32 gateType);

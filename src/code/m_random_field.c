@@ -713,19 +713,10 @@ u8 mRF_gate_info2[mFM_BLOCK_TYPE_NUM][RANDOM_FIELD_DIRECT_NUM] = {
     }
 };
 
-#if 0
-extern RomOffset D_81AA60;
-extern RomOffset D_81D540;
-extern s32 D_80925550_jp;
-#endif
-extern void mRF_MakeRandomField_ovl(UNK_PTR combi_table, UNK_PTR combi_info, s32 combi_count, Game* game);
-extern s32 mRF_GetRandom(s32 max);
-// s32 mRF_GetRandom(s32 max) {
-//     return RANDOM(max);
-// }
-typedef void (*MakeRandomFieldOvlFunc)(UNK_PTR combi_table, UNK_PTR combi_info, s32 combi_count);
+extern void mRF_MakeRandomField_ovl(FieldMakeCombination* combi_table, FieldMakeComboInfo* combi_info, s32 combi_count, Game* game);
+typedef void (*MakeRandomFieldOvlFunc)(FieldMakeCombination* combi_table, FieldMakeComboInfo* combi_info, s32 combi_count);
 
-void mRF_MakeRandomField(UNK_PTR combi_table, UNK_PTR combi_info, s32 combi_count, Game* game) {
+void mRF_MakeRandomField(FieldMakeCombination* combi_table, FieldMakeComboInfo* combi_info, s32 combi_count, Game* game) {
     MakeRandomFieldOvlFunc functionPtr;
     size_t bufferSize = SEGMENT_VRAM_SIZE(m_random_field_ovl);
 
