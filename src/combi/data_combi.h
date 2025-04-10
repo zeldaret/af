@@ -4,6 +4,5 @@
 #include "m_field_make.h"
 
 extern FieldMakeComboInfo data_combi_table[];
-// extern s32 data_combi_table_number;
 
 #endif

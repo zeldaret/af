@@ -3563,7 +3563,8 @@ s32 mNpc_CheckNpcSet(s32 bx, s32 bz, s32 ut_x, s32 ut_z) {
     s32 res = FALSE;
 
     if (collision != NULL && items != NULL) {
-        res = mNpc_CheckNpcSet_fgcol(items[ut_z * UT_X_NUM + ut_x], collision[ut_z * UT_X_NUM + ut_x].data.unitAttribute);
+        res =
+            mNpc_CheckNpcSet_fgcol(items[ut_z * UT_X_NUM + ut_x], collision[ut_z * UT_X_NUM + ut_x].data.unitAttribute);
     }
 
     return res;
