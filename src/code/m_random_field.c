@@ -807,7 +807,6 @@ RandomFieldGate* mRF_BlockTypeDirect2GateData(s32* gateCount, u8 blockType, s32 
     return mRF_gate_correct_info[type][direct];
 }
 
-// TODO: rename unk6 in mCoBG_unkStructUnion to unitAttribute
 s32 mRF_BlockInf2CheckBeastRoad(u8 blockType, mCoBG_unkStructUnion* collisionData) {
     // fairly specific variable declaration order required for match
     s32 colUt;
@@ -830,13 +829,13 @@ s32 mRF_BlockInf2CheckBeastRoad(u8 blockType, mCoBG_unkStructUnion* collisionDat
                 {
                     colUt = gateP[j].ut0;
                     col = collisionData + (u8)colUt;
-                    attrib = col->data.unk6;
+                    attrib = col->data.unitAttribute;
 
                     mFI_UtNum2CenterWpos(&wpos, colUt & 0xF, (colUt >> 4) & 0xF);
 
                     /* only bother updating the unit attribute if the unit can grow collideable plants in it */
                     if (mCoBG_Attribute2CheckPlant(attrib, &wpos) > 0) {
-                        col->data.unk6 = mRF_Attr2BeastRoadAttr(attrib);
+                        col->data.unitAttribute = mRF_Attr2BeastRoadAttr(attrib);
                         changedAttributeCount++;
                     }
                 }
@@ -845,13 +844,13 @@ s32 mRF_BlockInf2CheckBeastRoad(u8 blockType, mCoBG_unkStructUnion* collisionDat
                 {
                     colUt = gateP[j].ut1;
                     col = collisionData + (u8)colUt;
-                    attrib = col->data.unk6;
+                    attrib = col->data.unitAttribute;
 
                     mFI_UtNum2CenterWpos(&wpos, colUt & 0xF, (colUt >> 4) & 0xF);
 
                     /* only bother updating the unit attribute if the unit can grow collideable plants in it */
                     if (mCoBG_Attribute2CheckPlant(attrib, &wpos) > 0) {
-                        col->data.unk6 = mRF_Attr2BeastRoadAttr(attrib);
+                        col->data.unitAttribute = mRF_Attr2BeastRoadAttr(attrib);
                         changedAttributeCount++;
                     }
                 }
@@ -859,6 +858,8 @@ s32 mRF_BlockInf2CheckBeastRoad(u8 blockType, mCoBG_unkStructUnion* collisionDat
         }
     }
 
+    // Note that although these return values are required to match,
+    // they don't appear to be used by calling code.
     if (changedAttributeCount != 0) {
         return 0;
     }

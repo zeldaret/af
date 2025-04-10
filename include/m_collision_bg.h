@@ -39,7 +39,7 @@ typedef struct mCoBG_unkStruct {
     /* 0x0 */ u32 unk3:5; // [20:15] bot_left
     /* 0x0 */ u32 unk4:5; // [15:10] top_right
     /* 0x0 */ u32 unk5:5; // [10:5] bot_right
-    /* 0x0 */ u32 unk6:6; // [5:0] unit_attribute
+    /* 0x0 */ u32 unitAttribute:6; // [5:0] unit_attribute
 } mCoBG_unkStruct; // size = 0x4
 
 typedef union mCoBG_unkStructUnion {
