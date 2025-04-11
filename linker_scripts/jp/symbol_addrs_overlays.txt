@@ -6703,11 +6703,11 @@ mRF_MakeRandomField_ovl = 0x80924EEC; // type:func
 // .data
 
 l_base_blocks = 0x80925080; // type:u8
-l_cliff_startA_factor = 0x809250B8; //
+l_cliff_startA_factor = 0x809250B8; // type:u8 size:0x2
 l_cliff_startA = 0x809250BC; //
-l_cliff_startB_factor = 0x809250C4; //
+l_cliff_startB_factor = 0x809250C4; // type:u8 size:0x3
 l_cliff_startB = 0x809250C8; //
-l_cliff_startC_factor = 0x809250D0; //
+l_cliff_startC_factor = 0x809250D0; // type:u8 size:0x2
 l_cliff_startC = 0x809250D4; //
 l_cliff_start_table = 0x809250DC; //
 l_cliff_next_direct = 0x809250E8; // type:u8 size:0x7
@@ -6768,8 +6768,7 @@ B_809253C0_jp = 0x809253C0; // type:s16
 B_80925430_jp = 0x80925430; //
 B_80925468_jp = 0x80925468; //
 B_809254A0_jp = 0x809254A0; //
-l_use_data = 0x809254D8; // type:s16
-B_80925548_jp = 0x80925548; //
+l_use_data = 0x809254D8; // type:s16 size:0x70
 D_80925550_jp = 0x80925550; //
 
 // .text
