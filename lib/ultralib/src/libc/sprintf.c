@@ -5,18 +5,18 @@
 // TODO: this comes from a header
 #ident "$Revision: 1.23 $"
 
-static char* proutSprintf(char* dst, const char* src, size_t count);
+static void* proutSprintf(void* s, const char* buf, size_t n);
 
-int sprintf(char* dst, const char* fmt, ...) {
-    s32 ans;
+int sprintf(char* s, const char* fmt, ...) {
+    int ans;
     va_list ap;
     va_start(ap, fmt);
-    ans = _Printf(proutSprintf, dst, fmt, ap);
+    ans = _Printf(proutSprintf, s, fmt, ap);
     if (ans >= 0) {
-        dst[ans] = 0;
+        s[ans] = 0;
     }
     return ans;
 }
-static char* proutSprintf(char* dst, const char* src, size_t count) {
-    return (char*)memcpy((u8*)dst, (u8*)src, count) + count;
+static void* proutSprintf(void* s, const char* buf, size_t n) {
+    return (char*)memcpy(s, buf, n) + n;
 }

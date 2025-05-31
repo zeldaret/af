@@ -1,35 +1,35 @@
-#include "macros.h"
+#include "PRinternal/macros.h"
 #include "PR/os_internal.h"
 #include "PR/ultraerror.h"
-#include "piint.h"
+#include "PRinternal/piint.h"
 #include "PR/rdb.h"
 
-static OSThread piThread ALIGNED(8);
-static char piThreadStack[OS_PIM_STACKSIZE] ALIGNED(16);
+static OSThread piThread ALIGNED(0x8);
+static STACK(piThreadStack, OS_PIM_STACKSIZE) ALIGNED(0x10);
 
 #ifndef _FINALROM
-static OSThread ramromThread ALIGNED(8);
-static char ramromThreadStack[1024] ALIGNED(16);
-static OSMesgQueue getRamromQ ALIGNED(8);
+static OSThread ramromThread ALIGNED(0x8);
+static STACK(ramromThreadStack, 0x400) ALIGNED(0x10);
+static OSMesgQueue getRamromQ ALIGNED(0x8);
 static OSMesg getRamromBuf[1];
-static OSMesgQueue freeRamromQ ALIGNED(8);
+static OSMesgQueue freeRamromQ ALIGNED(0x8);
 static OSMesg freeRamromBuf[1];
 static void ramromMain(void*);
 #endif
 
-static OSMesgQueue piEventQueue ALIGNED(8);
+static OSMesgQueue piEventQueue ALIGNED(0x8);
 static OSMesg piEventBuf[1];
 
 OSDevMgr __osPiDevMgr = { 0 };
 OSPiHandle* __osPiTable = NULL;
 #if BUILD_VERSION >= VERSION_J
-OSPiHandle __Dom1SpeedParam ALIGNED(8);
-OSPiHandle __Dom2SpeedParam ALIGNED(8);
-OSPiHandle* __osCurrentHandle[2] ALIGNED(8) = { &__Dom1SpeedParam, &__Dom2SpeedParam };
+OSPiHandle __Dom1SpeedParam ALIGNED(0x8);
+OSPiHandle __Dom2SpeedParam ALIGNED(0x8);
+OSPiHandle* __osCurrentHandle[2] ALIGNED(0x8) = { &__Dom1SpeedParam, &__Dom2SpeedParam };
 #else
 extern OSPiHandle CartRomHandle;
 extern OSPiHandle LeoDiskHandle;
-OSPiHandle* __osCurrentHandle[2] ALIGNED(8) = { &CartRomHandle, &LeoDiskHandle };
+OSPiHandle* __osCurrentHandle[2] ALIGNED(0x8) = { &CartRomHandle, &LeoDiskHandle };
 #endif
 
 void osCreatePiManager(OSPri pri, OSMesgQueue* cmdQ, OSMesg* cmdBuf, s32 cmdMsgCnt) {
@@ -71,11 +71,11 @@ void osCreatePiManager(OSPri pri, OSMesgQueue* cmdQ, OSMesg* cmdBuf, s32 cmdMsgC
     __osPiDevMgr.acsQueue = &__osPiAccessQueue;
     __osPiDevMgr.dma = __osPiRawStartDma;
     __osPiDevMgr.edma = __osEPiRawStartDma;
-    osCreateThread(&piThread, 0, __osDevMgrMain, &__osPiDevMgr, &piThreadStack[OS_PIM_STACKSIZE], pri);
+    osCreateThread(&piThread, 0, __osDevMgrMain, &__osPiDevMgr, STACK_START(piThreadStack), pri);
     osStartThread(&piThread);
 
 #ifndef _FINALROM
-    osCreateThread(&ramromThread, 0, ramromMain, NULL, ramromThreadStack + 1024, (OSPri)pri - 1);
+    osCreateThread(&ramromThread, 0, ramromMain, NULL, STACK_START(ramromThreadStack), (OSPri)pri - 1);
     osStartThread(&ramromThread);
 #endif
     __osRestoreInt(savedMask);

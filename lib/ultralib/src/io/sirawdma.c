@@ -1,8 +1,6 @@
 #include "PR/os_internal.h"
 #include "assert.h"
-#include "siint.h"
-
-
+#include "PRinternal/siint.h"
 
 
 
@@ -46,8 +44,10 @@
 
 // Adjust line numbers to match assert
 #if BUILD_VERSION < VERSION_J
-#line 49
+#line 47
 #endif
+
+#define PIF_RAM_SIZE (PIF_RAM_END + 1 - PIF_RAM_START)
 
 // TODO: this comes from a header
 #ident "$Revision: 1.17 $"
@@ -66,7 +66,7 @@ s32 __osSiRawStartDma(s32 direction, void* dramAddr) {
 #endif
 
     if (direction == OS_WRITE) {
-        osWritebackDCache(dramAddr, 64);
+        osWritebackDCache(dramAddr, PIF_RAM_SIZE);
     }
 
     IO_WRITE(SI_DRAM_ADDR_REG, osVirtualToPhysical(dramAddr));
@@ -78,7 +78,7 @@ s32 __osSiRawStartDma(s32 direction, void* dramAddr) {
     }
 
     if (direction == OS_READ) {
-        osInvalDCache(dramAddr, 64);
+        osInvalDCache(dramAddr, PIF_RAM_SIZE);
     }
 
     return 0;

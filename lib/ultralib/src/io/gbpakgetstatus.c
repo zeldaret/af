@@ -1,5 +1,5 @@
 #include "PR/os_internal.h"
-#include "controller.h"
+#include "PRinternal/controller.h"
 
 s32 osGbpakGetStatus(OSPfs* pfs, u8* status) {
     s32 ret;

@@ -1,6 +1,6 @@
 #include "lbrtc.h"
-#include "lib/ultralib/src/io/siint.h"
-#include "lib/ultralib/src/io/controller.h"
+#include "PRinternal/siint.h"
+#include "PRinternal/controller.h"
 
 s32 func_800FE420_jp(OSMesgQueue* mq, OSRTCTime* time) {
     u8 status;

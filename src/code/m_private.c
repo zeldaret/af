@@ -7,7 +7,7 @@
 #include "m_room_type.h"
 #include "m_field_info.h"
 #include "6E3240.h"
-#include "69CB30.h"
+#include "m_cpak.h"
 #include "m_handbill.h"
 #include "m_house.h"
 #include "6DA460.h"
@@ -666,7 +666,7 @@ s32 mPr_CheckMuseumInfoMail(PrivateInfo* priv) {
 s32 mPr_LoadPak_and_SetPrivateInfo2(u8 player, PakInfo* pak) {
     PrivateInfo* priv;
     s32 res = FALSE;
-    s32 save = func_8007942C_jp(&g_foreigner_private, mNpc_GetInAnimalP(), pak);
+    s32 save = mCPk_PakPrivateLoad(&g_foreigner_private, mNpc_GetInAnimalP(), pak);
 
     if (save == TRUE) {
         if (player < 4) {

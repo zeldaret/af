@@ -1,11 +1,11 @@
-#include "macros.h"
+#include "PRinternal/macros.h"
 #include "PR/os_internal.h"
 #include "PR/os_version.h"
-#include "controller.h"
+#include "PRinternal/controller.h"
 #include "PR/rmon.h"
 
 #if BUILD_VERSION >= VERSION_J
-__OSInode __osPfsInodeCache ALIGNED(8);
+__OSInode __osPfsInodeCache ALIGNED(0x8);
 s32 __osPfsInodeCacheChannel = -1;
 u8 __osPfsInodeCacheBank = 250;
 #endif

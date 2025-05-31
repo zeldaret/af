@@ -1,5 +1,6 @@
+#include "PRinternal/macros.h"
 #include "PR/os_internal.h"
-#include "controller.h"
+#include "PRinternal/controller.h"
 
 s32 osPfsSetLabel(OSPfs* pfs, u8* label) {
     int i;

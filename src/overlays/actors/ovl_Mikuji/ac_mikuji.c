@@ -145,7 +145,7 @@ void aMIK_actor_draw(UNUSED Actor* actor, Game_Play* play) {
         _texture_z_light_fog_prim_npc(graph);
         OPEN_POLY_OPA_DISP(graph);
         gSPSegment(__polyOpa++, G_MWO_SEGMENT_8, pal);
-        gSegments[6] = OS_K0_TO_PHYSICAL(obj);
+        SegmentBaseAddress[6] = OS_K0_TO_PHYSICAL(obj);
         gSPSegment(__polyOpa++, G_MWO_SEGMENT_6, obj);
 
         gSPMatrix(__polyOpa++, cur, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);

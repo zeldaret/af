@@ -13,4 +13,12 @@
 #define __attribute__(x)
 #endif
 
+#define ALIGN8(val) (((val) + 7) & ~7)
+
+#define STACK(stack, size) \
+    u64 stack[ALIGN8(size) / sizeof(u64)]
+
+#define STACK_START(stack) \
+    ((u8*)(stack) + sizeof(stack))
+
 #endif

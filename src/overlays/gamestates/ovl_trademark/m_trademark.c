@@ -18,7 +18,7 @@
 #include "libc64/qrand.h"
 #include "m_std_dma.h"
 #include "m_bgm.h"
-#include "69CB30.h"
+#include "m_cpak.h"
 #include "6B3DC0.h"
 #include "6B8F20.h"
 #include "6EC9E0.h"

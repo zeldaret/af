@@ -1,7 +1,8 @@
 COMPARE ?= 1
-FIXUPS ?= 0
+MODERN_LD ?= 0
+MODERN_GCC ?= 0
 
-ifneq ($(FIXUPS),0)
+ifneq ($(MODERN_LD),0)
 COMPARE := 0
 endif
 
@@ -12,6 +13,20 @@ TARGET ?= libgultra_rom
 VERSION ?= L
 CROSS ?= mips-linux-gnu-
 
+ifeq ($(findstring libgultra,$(TARGET)),libgultra)
+COMPILER := gcc
+else ifeq ($(findstring libultra,$(TARGET)),libultra)
+COMPILER := ido
+else
+$(error Invalid Target)
+endif
+
+ifneq ($(MODERN_GCC),0)
+COMPILER := modern_gcc
+COMPARE := 0
+MODERN_LD := 0
+endif
+
 BASE_DIR := extracted/$(VERSION)/$(TARGET)
 BASE_AR := base/$(VERSION)/$(TARGET).a
 BUILD_ROOT := build
@@ -21,19 +36,9 @@ BUILD_AR := $(BUILD_DIR)/$(TARGET).a
 WORKING_DIR := $(shell pwd)
 
 CPP := cpp -P
-AR := ar
+AR := $(CROSS)ar
 
-VERSION_D := 1
-VERSION_E := 2
-VERSION_F := 3
-VERSION_G := 4
-VERSION_H := 5
-VERSION_I := 6
-VERSION_J := 7
-VERSION_K := 8
-VERSION_L := 9
-
-VERSION_DEFINE := -DBUILD_VERSION=$(VERSION_$(VERSION)) -DBUILD_VERSION_STRING=\"2.0$(VERSION)\"
+VERSION_DEFINE := -DBUILD_VERSION=VERSION_$(VERSION) -DBUILD_VERSION_STRING=\"2.0$(VERSION)\"
 
 ifeq ($(findstring _d,$(TARGET)),_d)
 DEBUGFLAG := -D_DEBUG
@@ -41,13 +46,17 @@ else
 DEBUGFLAG := -DNDEBUG
 endif
 
-ifeq ($(findstring libgultra,$(TARGET)),libgultra)
--include Makefile.gcc
-else ifeq ($(findstring libultra,$(TARGET)),libultra)
--include Makefile.ido
+ifeq ($(COMPILER),gcc)
+-include makefiles/gcc.mk
+else ifeq ($(COMPILER),ido)
+-include makefiles/ido.mk
+else ifeq ($(COMPILER),modern_gcc)
+-include makefiles/modern_gcc.mk
 else
-$(error Invalid Target)
+$(error Invalid Compiler)
 endif
+
+export COMPILER_PATH := $(COMPILER_DIR)
 
 ifeq ($(findstring _rom,$(TARGET)),_rom)
 CPPFLAGS += -D_FINALROM
@@ -166,10 +175,10 @@ $(BUILD_DIR)/src/sp/sprite.marker: GBIDEFINE := -DF3D_GBI
 $(BUILD_DIR)/src/sp/spriteex.marker: GBIDEFINE :=
 $(BUILD_DIR)/src/sp/spriteex2.marker: GBIDEFINE :=
 $(BUILD_DIR)/src/voice/%.marker: OPTFLAGS += -DLANG_JAPANESE -I$(WORKING_DIR)/src -I$(WORKING_DIR)/src/voice
-$(BUILD_DIR)/src/voice/%.marker: CC := tools/compile_sjis.py -D__CC=$(WORKING_DIR)/$(CC) -D__BUILD_DIR=$(BUILD_DIR)
+$(BUILD_DIR)/src/voice/%.marker: CC := $(WORKING_DIR)/tools/compile_sjis.py -D__CC=$(CC) -D__BUILD_DIR=$(BUILD_DIR)
 
 $(C_MARKER_FILES): $(BUILD_DIR)/%.marker: %.c
-	cd $(<D) && $(WORKING_DIR)/$(CC) $(CFLAGS) $(MIPS_VERSION) $(CPPFLAGS) $(OPTFLAGS) $(<F) $(IINC) -o $(WORKING_DIR)/$(@:.marker=.o)
+	cd $(<D) && $(CC) $(CFLAGS) $(MIPS_VERSION) $(CPPFLAGS) $(OPTFLAGS) $(<F) $(IINC) -o $(WORKING_DIR)/$(@:.marker=.o)
 ifneq ($(COMPARE),0)
 # check if this file is in the archive; patch corrupted bytes and change file timestamps to match original if so
 	@$(if $(findstring $(BASE_DIR)/$(@F:.marker=.o), $(BASE_OBJS)), \
@@ -179,7 +188,7 @@ ifneq ($(COMPARE),0)
 	 echo "Object file $(@F:.marker=.o) is not in the current archive" \
 	)
 endif
-ifneq ($(FIXUPS),0)
+ifneq ($(MODERN_LD),0)
 	tools/set_o32abi_bit.py $(WORKING_DIR)/$(@:.marker=.o)
 	$(CROSS)strip $(WORKING_DIR)/$(@:.marker=.o) -N asdasdasdasd
 	$(CROSS)objcopy --remove-section .mdebug $(WORKING_DIR)/$(@:.marker=.o)
@@ -188,7 +197,7 @@ endif
 	@touch $@
 
 $(S_MARKER_FILES): $(BUILD_DIR)/%.marker: %.s
-	cd $(<D) && $(WORKING_DIR)/$(CC) $(ASFLAGS) $(MIPS_VERSION) $(CPPFLAGS) $(ASOPTFLAGS) $(<F) $(IINC) -o $(WORKING_DIR)/$(@:.marker=.o)
+	cd $(<D) && $(AS) $(ASFLAGS) $(MIPS_VERSION) $(CPPFLAGS) $(ASOPTFLAGS) $(<F) $(IINC) -o $(WORKING_DIR)/$(@:.marker=.o)
 ifneq ($(COMPARE),0)
 # check if this file is in the archive; patch corrupted bytes and change file timestamps to match original if so
 	@$(if $(findstring $(BASE_DIR)/$(@F:.marker=.o), $(BASE_OBJS)), \
@@ -198,7 +207,7 @@ ifneq ($(COMPARE),0)
 	 echo "Object file $(@F:.marker=.o) is not in the current archive" \
 	)
 endif
-ifneq ($(FIXUPS),0)
+ifneq ($(MODERN_LD),0)
 	tools/set_o32abi_bit.py $(WORKING_DIR)/$(@:.marker=.o)
 	$(CROSS)strip $(WORKING_DIR)/$(@:.marker=.o) -N asdasdasdasd
 	$(CROSS)objcopy --remove-section .mdebug $(WORKING_DIR)/$(@:.marker=.o)
@@ -210,7 +219,7 @@ endif
 $(MDEBUG_FILES): $(BUILD_DIR)/src/%.marker: src/%.s
 	cp $(<:.marker=.s) $(dir $@)
 	mkdir -p $(@:.marker=)
-	export USR_INCLUDE=$(WORKING_DIR)/include && cd $(@:.marker=) && $(WORKING_DIR)/$(CC) $(ASFLAGS) $(CPPFLAGS) ../$(<F) -I/usr/include -o $(notdir $(<:.s=.o))
+	export USR_INCLUDE=$(WORKING_DIR)/include && cd $(@:.marker=) && $(AS) $(ASFLAGS) $(CPPFLAGS) ../$(<F) -I/usr/include -o $(notdir $(<:.s=.o))
 	mv $(@:.marker=)/$(<F:.s=.o) $(@:.marker=)/..
 ifneq ($(COMPARE),0)
 # check if this file is in the archive; patch corrupted bytes and change file timestamps to match original if so
@@ -221,7 +230,7 @@ ifneq ($(COMPARE),0)
 	 echo "Object file $(@F:.marker=.o) is not in the current archive" \
 	)
 endif
-ifneq ($(FIXUPS),0)
+ifneq ($(MODERN_LD),0)
 	tools/set_o32abi_bit.py $(WORKING_DIR)/$(@:.marker=.o)
 	$(CROSS)strip $(WORKING_DIR)/$(@:.marker=.o) -N asdasdasdasd
 	$(CROSS)objcopy --remove-section .mdebug $(WORKING_DIR)/$(@:.marker=.o)

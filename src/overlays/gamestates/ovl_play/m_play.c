@@ -337,8 +337,8 @@ void play_cleanup(Game* game) {
     Game_Play* game_play = (Game_Play*)game;
 
     func_800A3304_jp(game_play);
-    game_play->state.gfxCtx->unk_2F4 = 0;
-    game_play->state.gfxCtx->unk_2F8 = 0;
+    game_play->state.gfxCtx->callback = NULL;
+    game_play->state.gfxCtx->callbackArg = NULL;
     game_play->submenu.unk_00 = 0;
     PreRender_cleanup(&game_play->unk_1DC0);
     CollisionCheck_dt(game_play, &game_play->unk_2138);
@@ -482,8 +482,8 @@ void Game_play_move(Game_Play* game_play) {
     game_play->state.unk_9D = 0x8D;
     game_play->state.unk_9C = 1;
     Game_play_Reset_destiny();
-    gSegments[4] = (uintptr_t)OS_K0_TO_PHYSICAL(p->status[0].segment);
-    gSegments[2] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_010C);
+    SegmentBaseAddress[4] = (uintptr_t)OS_K0_TO_PHYSICAL(p->status[0].segment);
+    SegmentBaseAddress[2] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_010C);
     game_play->state.unk_9C = 2;
 
     if (zurumode_flag >= 2) {
@@ -536,8 +536,8 @@ void Game_play_move(Game_Play* game_play) {
 void func_80803810_jp(Game_Play* game_play, GraphicsContext* gfxCtx) {
     void* temp_v0 = game_play->objectExchangeBank.status[0].segment;
 
-    gSegments[4] = (uintptr_t)OS_K0_TO_PHYSICAL(temp_v0);
-    gSegments[2] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_010C);
+    SegmentBaseAddress[4] = (uintptr_t)OS_K0_TO_PHYSICAL(temp_v0);
+    SegmentBaseAddress[2] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_010C);
 
     OPEN_DISPS(gfxCtx);
 
@@ -861,7 +861,7 @@ void Gameplay_Scene_Read(Game_Play* game_play, s16 arg1) {
     game_play->unk_00E0 = arg1;
     game_play->unk_010C = func_80804138_jp(game_play, sp1C);
     sp1C->unk_13 = 0;
-    gSegments[2] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_010C);
+    SegmentBaseAddress[2] = (uintptr_t)OS_K0_TO_PHYSICAL(game_play->unk_010C);
     Gameplay_Scene_Init(game_play);
     sAdo_RoomType(mPl_SceneNo2SoundRoomType(common_data.save.sceneNo));
 }

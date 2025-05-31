@@ -1,6 +1,6 @@
 #include "PR/os_internal.h"
 #include "PR/ultraerror.h"
-#include "viint.h"
+#include "PRinternal/viint.h"
 
 u32 osViGetCurrentMode(void) {
     register u32 saveMask;

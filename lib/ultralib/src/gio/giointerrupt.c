@@ -1,5 +1,5 @@
 #include "PR/os_internal.h"
-#include "../io/piint.h"
+#include "PRinternal/piint.h"
 
 void __osGIOInterrupt(s32 value) {
     __osPiGetAccess();

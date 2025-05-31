@@ -494,7 +494,7 @@ void aWeather_DrawWeatherPrv(Actor* thisx, Game_Play* play) {
     s32 i;
 
     _texture_z_light_fog_prim_xlu(play->state.gfxCtx);
-    gSegments[6] = OS_K0_TO_PHYSICAL(this->segment);
+    SegmentBaseAddress[6] = OS_K0_TO_PHYSICAL(this->segment);
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -537,7 +537,7 @@ void aWeather_MoveWeatherPrv(Weather* this, Game_Play* play) {
     s32 i;
 
     if ((this->currentProfile != NULL) && (priv != NULL) && (this->currentProfile->mv != NULL)) {
-        gSegments[6] = OS_K0_TO_PHYSICAL(this->segment);
+        SegmentBaseAddress[6] = OS_K0_TO_PHYSICAL(this->segment);
 
         OPEN_DISPS(play->state.gfxCtx);
 

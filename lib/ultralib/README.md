@@ -64,9 +64,15 @@ If building without an target archive, than you can use `COMPARE=0` like the the
 note that running setup without `COMPARE=0` and no archive will result in an error,
 and only needs to be run once instead of per target flag combination
 
-If building for use with modern linkers, than you can use `FIXUPS=1` like the the following:
+If building for use with modern linkers, than you can use `MODERN_LD=1` like the following:
 
-- `make VERSION=L TARGET=libgultra_rom FIXUPS=1 setup`
-- `make VERSION=L TARGET=libgultra_rom FIXUPS=1`
+- `make VERSION=L TARGET=libgultra_rom MODERN_LD=1 setup`
+- `make VERSION=L TARGET=libgultra_rom MODERN_LD=1`
 
-note that running with `FIXUPS=1` will automatically set `COMPARE=0`.
+note that running with `MODERN_LD=1` will automatically set `COMPARE=0`.
+
+It is also possible to build archives using modern gcc by using `MODERN_GCC=1` like the following:
+
+- `make VERSION=L TARGET=libgultra_rom MODERN_GCC=1`
+
+note that running with `MODERN_GCC=1` will automatically set `COMPARE=0` and `MODERN_LD=0`.

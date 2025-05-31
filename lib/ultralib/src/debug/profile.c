@@ -4,8 +4,8 @@
 #include "PR/ultraerror.h"
 #include "PR/ultralog.h"
 #include "PR/sptask.h"
-#include "../os/osint.h"
-#include "macros.h"
+#include "PRinternal/osint.h"
+#include "PRinternal/macros.h"
 #include "osint_debug.h"
 
 #ifndef _FINALROM
@@ -13,10 +13,10 @@
 OSTimer __osProfTimer;
 OSMesg __osProfTimerMsg;
 
-OSMesgQueue __osProfFlushMQ ALIGNED(8);
+OSMesgQueue __osProfFlushMQ ALIGNED(0x8);
 OSMesg __osProfFlushMesg;
 
-OSMesgQueue __osProfAckMQ ALIGNED(8);
+OSMesgQueue __osProfAckMQ ALIGNED(0x8);
 OSMesg __osProfAckMesg;
 
 u32 __osProfTimerPeriod;
@@ -26,7 +26,7 @@ u32 __osProfNumSections;
 static u32 __osProfileActive = FALSE;
 static u32 __osProfileIOActive = FALSE;
 
-unsigned char __osProfileIOStack[2400] ALIGNED(16);
+STACK(__osProfileIOStack, 0x960) ALIGNED(0x10);
 
 static OSThread __osProfileIOThread;
 
@@ -130,7 +130,7 @@ void osProfileInit(OSProf* profp, u32 profcnt) {
         osSetEventMesg(OS_EVENT_RDB_FLUSH_PROF, &__osProfFlushMQ, 0);
         osCreateMesgQueue(&__osProfAckMQ, &__osProfAckMesg, 1);
         osSetEventMesg(OS_EVENT_RDB_ACK_PROF, &__osProfAckMQ, 0);
-        osCreateThread(&__osProfileIOThread, 0, __osProfileIO, NULL, &__osProfileIOStack[2400], 0x81);
+        osCreateThread(&__osProfileIOThread, 0, __osProfileIO, NULL, STACK_START(__osProfileIOStack), 0x81);
         osStartThread(&__osProfileIOThread);
         __osProfileIOActive = TRUE;
     }

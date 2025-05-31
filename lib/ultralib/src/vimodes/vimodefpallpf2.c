@@ -1,6 +1,16 @@
+/**
+ * @file vimodefpallpf2.c
+ *
+ * FPAL LPF2 Video Mode
+ *
+ * L = Low Resolution
+ * P = Point Sampled
+ * F = Interlaced
+ * 2 = 32-bit Framebuffer
+ */
 #include "PR/os.h"
 #include "PR/rcp.h"
-#include "../io/viint.h"
+#include "PRinternal/viint.h"
 
 OSViMode osViModeFpalLpf2 = {
     OS_VI_FPAL_LPF2, // type

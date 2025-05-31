@@ -1,0 +1,9 @@
+  - name: buffers
+    type: code
+    start: 0x73F4D0
+    vram: 0x801524C0
+    follows_vram: code
+    notdma: True
+    bss_size: 0x42420
+    subsegments:
+      - { start: 0x73F4D0, type: bss, vram: 0x801524C0, name: buffers/801524C0}

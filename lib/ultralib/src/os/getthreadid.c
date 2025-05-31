@@ -1,5 +1,5 @@
 #include "PR/os_internal.h"
-#include "osint.h"
+#include "PRinternal/osint.h"
 
 OSId osGetThreadId(OSThread* thread) {
     if (thread == NULL) {

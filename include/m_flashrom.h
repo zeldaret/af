@@ -10,11 +10,11 @@ struct CommonData;
 // void func_8008ECC8_jp();
 // void func_8008ECF0_jp();
 // void func_8008ED14_jp();
-// void func_8008EE24_jp();
+void func_8008EE24_jp(void);
 // void func_8008EE5C_jp();
 // void func_8008EE6C_jp();
-// void func_8008EE7C_jp();
-// void func_8008EEB4_jp();
+u16 func_8008EE7C_jp(UNK_PTR, s32);
+u16 func_8008EEB4_jp(void*, UNK_TYPE, u16);
 // void func_8008EEE8_jp();
 // void func_8008EF0C_jp();
 s32 mFRm_CheckSaveData(void);
@@ -46,7 +46,7 @@ void func_8008FA50_jp(void);
 // void func_8008FDD4_jp();
 // void func_8008FE74_jp();
 // void func_8008FF60_jp();
-// void func_80090044_jp();
+s32 func_80090044_jp(void);
 // void func_800900B0_jp();
 
 #endif

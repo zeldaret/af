@@ -1,10 +1,10 @@
-#include "macros.h"
+#include "PRinternal/macros.h"
 #include "PR/os_internal.h"
-#include "controller.h"
-#include "controller_gbpak.h"
+#include "PRinternal/controller.h"
+#include "PRinternal/controller_gbpak.h"
 
 OSTimer __osGbpakTimer;
-OSMesgQueue __osGbpakTimerQ ALIGNED(8);
+OSMesgQueue __osGbpakTimerQ ALIGNED(0x8);
 OSMesg __osGbpakTimerMsg;
 
 s32 osGbpakInit(OSMesgQueue* mq, OSPfs* pfs, int channel) {

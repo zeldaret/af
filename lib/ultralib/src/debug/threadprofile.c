@@ -1,6 +1,6 @@
 #include "osint_debug.h"
 
-#include "macros.h"
+#include "PRinternal/macros.h"
 
 s32 __osThprofFlag = 0;
 void (*__osThprofFunc)(OSThread*) = NULL;

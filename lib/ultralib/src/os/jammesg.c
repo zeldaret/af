@@ -1,6 +1,6 @@
 #include "PR/os_internal.h"
 #include "PR/ultraerror.h"
-#include "osint.h"
+#include "PRinternal/osint.h"
 
 s32 osJamMesg(OSMesgQueue* mq, OSMesg msg, s32 flag) {
     register u32 saveMask;

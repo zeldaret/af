@@ -1,6 +1,16 @@
+/**
+ * @file vimodempallpn1.c
+ *
+ * MPAL LPN1 Video Mode
+ *
+ * L = Low Resolution
+ * P = Point Sampled
+ * N = Non-Interlaced
+ * 1 = 16-bit Framebuffer
+ */
 #include "PR/os.h"
 #include "PR/rcp.h"
-#include "../io/viint.h"
+#include "PRinternal/viint.h"
 
 OSViMode osViModeMpalLpn1 = {
     OS_VI_MPAL_LPN1, // type

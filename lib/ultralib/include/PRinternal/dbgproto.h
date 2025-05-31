@@ -1,7 +1,7 @@
 #ifndef _DBGPROTO_H__
 #define _DBGPROTO_H__
 
-#include "dbgdefs.h"
+#include "PRinternal/dbgdefs.h"
 
 #define KK_REV 2
 

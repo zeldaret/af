@@ -24,7 +24,7 @@
       - [0x69A7E0, c, code/m_collision_obj]
       - [0x69C6B0, c, code/m_common_data]
       - [0x69C770, c, code/m_controller]
-      - [0x69CB30, asm, code/69CB30]
+      - [0x69CB30, c, code/m_cpak]
       - [0x69DD60, c, code/m_debug]
       - [0x69DDF0, c, code/m_debug_display]
       - [0x69E2C0, asm, code/69E2C0]
@@ -87,18 +87,20 @@
       - [0x6EDD10, c, code/m_time]
       - [0x6EE540, c, code/m_view]
       - [0x6EFC20, asm, code/6EFC20]
-      - [0x6F12E0, asm, code/6F12E0]
+      - [0x6F12E0, c, code/s_cpak]
+      - [0x6F17B0, c, code/sFRm_flashrom]
+      - [0x6F1DC0, asm, code/6F1DC0]
       - [0x6F2150, c, code/m_roll_lib]
       - [0x6F2EE0, c, code/PreRender]
       - [0x6F5180, c, code/THA_GA]
       - [0x6F5390, c, code/TwoHeadArena]
       - [0x6F5550, c, code/audio]
       - [0x6F6230, c, code/audioMgr]
-      - [0x6F68B0, asm, code/cfbinfo]
+      - [0x6F68B0, c, code/cfbinfo]
       - [0x6F6AA0, c, code/game]
       - [0x6F73C0, c, code/gamealloc]
       - [0x6F7500, c, code/gfxalloc]
-      - [0x6F7580, asm, code/graph]
+      - [0x6F7580, c, code/graph]
       - [0x6F83B0, c, code/irqmgr]
       - [0x6F8A60, c, code/lb_rtc]
       - [0x6F9B10, c, code/lb_reki]
@@ -107,7 +109,8 @@
       - [0x6FA6B0, asm, code/padmgr]
       - [0x6FB340, asm, code/6FB340]
       - [0x6FC540, asm, code/speed_meter]
-      - [0x6FD190, asm, code/6FD190]
+      - [0x6FD190, c, code/6FD190]
+      - [0x6FD410, c, code/6FD410]
       - [0x6FD530, c, code/sys_initial_check]
       - [0x6FD840, asm, code/sys_math]
       - [0x6FDC40, asm, code/sys_math3d]
@@ -158,7 +161,7 @@
           - [0x727908]
       - [0x7279F0, data, code/7279F0]
       - [0x728340, .data, code/m_collision_obj]
-      - [0x728430, data, code/69CB30]
+      - [0x728430, .data, code/m_cpak]
       - [0x728460, .data, code/m_debug_display]
       - [0x7284B0, data, code/69E2C0]
       - [0x7286C0, .data, code/m_demo]
@@ -196,9 +199,11 @@
       - [0x732AF0, .data, code/m_time]
       - [0x732BA0, .data, code/m_view]
       - [0x732BB0, data, code/732BB0]
+      - [0x732C00, .data, code/sFRm_flashrom]
+      - [0x732C10, data, code/732C10]
       - [0x732C20, .data, code/audio]
       - [0x732C30, .data, code/game]
-      - [0x732C40, data, code/732C40]
+      - [0x732C40, .data, code/main]
       - [0x732C50, .data, code/irqmgr]
       - [0x732C70, .data, code/lb_rtc]
       - [0x732C80, .data, code/lb_reki]
@@ -209,7 +214,8 @@
       - [0x733970, .data, code/sys_matrix]
       - [0x7339F0, .data, code/sys_ucode]
       - [0x733A00, .data, code/zurumode]
-      - [0x733A10, data, code/733A10]
+      - [0x733A10, data, code/audio_data]
+      - [0x736D40, data, code/736D40]
       - [0x739D60, .data, code/lbrtc/lbrtc_init]
 
       - [0x739DB0, .rodata, code/c_keyframe]
@@ -224,7 +230,7 @@
       - [0x73A0F0, rodata, code/73A0F0]
       - [0x73A480, .rodata, code/m_collision_obj]
       - [0x73A490, .rodata, code/m_controller]
-      - [0x73A4A0, rodata, code/73A4A0]
+      - [0x73A4A0, .rodata, code/m_cpak]
       - [0x73A4D0, rodata, code/73A4D0]
       - [0x73A6A0, .rodata, code/m_demo]
       - [0x73A730, rodata, code/73A730]
@@ -266,13 +272,14 @@
       - [0x73B780, .rodata, code/m_time]
       - [0x73B7D0, .rodata, code/m_view]
       - [0x73B7E0, rodata, code/73B7E0]
-      - [0x73B830, rodata, code/73B830]
+      - [0x73B830, .rodata, code/sFRm_flashrom]
+      - [0x73B840, rodata, code/6F1DC0]
       - [0x73B880, .rodata, code/m_roll_lib]
       - [0x73B890, .rodata, code/audio]
       - [0x73B920, .rodata, code/audioMgr]
-      - [0x73B960, rodata, code/73B960]
+      - [0x73B960, .rodata, code/cfbinfo]
       - [0x73B980, .rodata, code/game]
-      - [0x73B9C0, rodata, code/73B9C0]
+      - [0x73B9C0, .rodata, code/graph]
       - [0x73BA50, .rodata, code/irqmgr]
       - [0x73BA70, .rodata, code/lb_rtc]
       - [0x73BB10, .rodata, code/main]
@@ -303,7 +310,7 @@
       - { start: 0x74AB40, type: bss, vram: 0x80123F80, name: code/80123F80}
       - { start: 0x73F4D0, type: .bss, vram: 0x80126E70, name: code/m_collision_obj }
       - { start: 0x74AB40, type: .bss, vram: 0x80126EA0, name: code/m_common_data }
-      - { start: 0x75B600, type: bss, vram: 0x80137960, name: code/80137960 }
+      - { start: 0x75B600, type: .bss, vram: 0x80137960, name: code/m_cpak }
       - { start: 0x73F4D0, type: .bss, vram: 0x80138E50, name: code/m_debug}
       - { start: 0x73F4D0, type: .bss, vram: 0x80138E60, name: code/m_debug_display}
       - { start: 0x73F4D0, type: bss, vram: 0x80138E70, name: code/80138E70 }
@@ -323,15 +330,20 @@
       - { start: 0x73F4D0, type: .bss, vram: 0x80144660, name: code/m_room_type }
       - { start: 0x73F4D0, type: .bss, vram: 0x80144670, name: code/m_submenu }
       - { start: 0x73F4D0, type: bss, vram: 0x80144690, name: code/80144690 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x801446E0, name: code/sFRm_flashrom }
       - { start: 0x73F4D0, type: .bss, vram: 0x80144D20, name: code/audioMgr }
-      - { start: 0x73F4D0, type: bss, vram: 0x80144FC0, name: code/80144FC0 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x80144FC0, name: code/cfbinfo }
       - { start: 0x73F4D0, type: .bss, vram: 0x80145020, name: code/game }
-      - { start: 0x73F4D0, type: bss, vram: 0x80145060, name: code/80145060 }
+      - { start: 0x73F4D0, type: bss, vram: 0x80145060, name: code/graph }
       - { start: 0x73F4D0, type: .bss, vram: 0x80145390, name: code/irqmgr }
       - { start: 0x73F4D0, type: .bss, vram: 0x80145620, name: code/lb_rtc}
-      - { start: 0x73F4D0, type: bss, vram: 0x80145630, name: code/80145630}
+      - { start: 0x73F4D0, type: .bss, vram: 0x80145630, name: code/main}
+      - { start: 0x73F4D0, type: bss, vram: 0x801458E0, name: code/801458E0}
+      - { start: 0x73F4D0, type: .bss, vram: 0x80146060, name: code/6FD190}
+      - { start: 0x73F4D0, type: .bss, vram: 0x80146080, name: code/6FD410}
+      - { start: 0x73F4D0, type: bss, vram: 0x80146090, name: code/80146090}
       - { start: 0x73F4D0, type: .bss, vram: 0x801462B0, name: code/sys_matrix }
-      - { start: 0x73F4D0, type: bss, vram: 0x801462C0, name: code/801462C0 }
+      - { start: 0x73F4D0, type: .bss, vram: 0x801462C0, name: code/sys_stacks }
       - { start: 0x73F4D0, type: .bss, vram: 0x801492C0, name: code/zurumode }
       - { start: 0x73F4D0, type: bss, vram: 0x801492D0, name: code/801492D0 }
       - { start: 0x73F4D0, type: .bss, vram: 0x80152480, name: code/lbrtc/722570}

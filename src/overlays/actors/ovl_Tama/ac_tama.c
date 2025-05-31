@@ -110,7 +110,7 @@ void aTAM_actor_draw(Actor* thisx, Game_Play* game_play) {
 
     OPEN_POLY_OPA_DISP(gfxCtx);
     gSPSegment(__polyOpa++, 0x08, palette);
-    gSegments[6] = (uintptr_t)OS_PHYSICAL_TO_K0(object);
+    SegmentBaseAddress[6] = (uintptr_t)OS_PHYSICAL_TO_K0(object);
     gSPSegment(__polyOpa++, 0x06, object);
     Matrix_translate(0.0f, 0.0f, 4000.0f, 1);
     mtx = _Matrix_to_Mtx_new(gfxCtx);

@@ -1,6 +1,16 @@
+/**
+ * @file vimodempallan1.c
+ *
+ * MPAL LAN1 Video Mode
+ *
+ * L = Low Resolution
+ * A = Anti-Aliased
+ * N = Non-Interlaced
+ * 1 = 16-bit Framebuffer
+ */
 #include "PR/os.h"
 #include "PR/rcp.h"
-#include "../io/viint.h"
+#include "PRinternal/viint.h"
 
 OSViMode osViModeMpalLan1 = {
     OS_VI_MPAL_LAN1, // type

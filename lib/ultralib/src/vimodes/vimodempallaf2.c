@@ -1,21 +1,31 @@
+/**
+ * @file vimodempallaf2.c
+ *
+ * MPAL LAF2 Video Mode
+ *
+ * L = Low Resolution
+ * A = Anti-Aliased
+ * F = Interlaced
+ * 2 = 32-bit Framebuffer
+ */
 #include "PR/os.h"
 #include "PR/rcp.h"
-#include "../io/viint.h"
+#include "PRinternal/viint.h"
 
 OSViMode osViModeMpalLaf2 = {
     OS_VI_MPAL_LAF2, // type
     {
         // comRegs
         VI_CTRL_TYPE_32 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | VI_CTRL_SERRATE_ON |
-            VI_CTRL_PIXEL_ADV_3, // ctrl
-        WIDTH(320),              // width
-        BURST(57, 30, 5, 70),    // burst
-        VSYNC(524),              // vSync
-        HSYNC(3088, 0),          // hSync
-        LEAP(3100, 3100),        // leap
-        HSTART(108, 748),        // hStart
-        SCALE(2, 0),             // xScale
-        VCURRENT(0),             // vCurrent
+            VI_CTRL_ANTIALIAS_MODE_0 | VI_CTRL_PIXEL_ADV_3, // ctrl
+        WIDTH(320),                                         // width
+        BURST(57, 30, 5, 70),                               // burst
+        VSYNC(524),                                         // vSync
+        HSYNC(3088, 0),                                     // hSync
+        LEAP(3100, 3100),                                   // leap
+        HSTART(108, 748),                                   // hStart
+        SCALE(2, 0),                                        // xScale
+        VCURRENT(0),                                        // vCurrent
     },
     { // fldRegs
       {
