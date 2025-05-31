@@ -52,19 +52,8 @@ s32* mRF_TryCnt(void) {
 }
 
 // Original name unknown
-const char* mRF_DebugMsg[] = {
-  "BGFGｼｮｷｶ",
-  "ｶﾜｶﾞｹｾｲｾｲ",
-  "ｳﾐｾｲｾｲ",
-  "ﾊｼｻｶｾｲｾｲ",
-  "ｺｳﾊﾞﾝﾋﾛﾊﾞｾｲｾｲ",
-  "ﾐｾﾕｳﾋﾞﾝｷｮｸｾｲｾｲ",
-  "ｲｹｾｲｾ",
-  "ﾍﾞｰｽｾｯﾃｲ",
-  "ｳﾐﾆｶﾜｾｲｾｲ",
-  "ﾌﾞﾛｯｸｾﾝﾀｸ",
-  "ﾗﾝﾀﾞﾑｶﾝﾘｮｳ"
-};
+const char* mRF_DebugMsg[] = { "BGFGｼｮｷｶ", "ｶﾜｶﾞｹｾｲｾｲ", "ｳﾐｾｲｾｲ",    "ﾊｼｻｶｾｲｾｲ",  "ｺｳﾊﾞﾝﾋﾛﾊﾞｾｲｾｲ", "ﾐｾﾕｳﾋﾞﾝｷｮｸｾｲｾｲ",
+                               "ｲｹｾｲｾ",    "ﾍﾞｰｽｾｯﾃｲ",  "ｳﾐﾆｶﾜｾｲｾｲ", "ﾌﾞﾛｯｸｾﾝﾀｸ", "ﾗﾝﾀﾞﾑｶﾝﾘｮｳ" };
 
 void mRF_PrintDebug(gfxprint* gfxprint) {
     gfxprint_color(gfxprint, 200, 200, 250, 255);
@@ -75,6 +64,9 @@ void mRF_PrintDebug(gfxprint* gfxprint) {
     gfxprint_printf(gfxprint, "RandomStep %s", mRF_DebugMsg[stepNo]);
 }
 
+#if 1
+// clang-format off
+// Provided indices correspond to block type, not struct size
 u32 mRF_block_info[mFM_BLOCK_TYPE_NUM] = {
     /* 0x00 */ mRF_BLOCKKIND_BORDER,
     /* 0x01 */ mRF_BLOCKKIND_BORDER,
@@ -162,9 +154,7 @@ u32 mRF_block_info[mFM_BLOCK_TYPE_NUM] = {
     /* 0x53 */ mRF_BLOCKKIND_NONE,
 };
 
-u8 gate_count_table[mRF_GATE_TYPE_NUM] = {
-      0, 1, 1, 2, 2, 3
-};
+u8 gate_count_table[mRF_GATE_TYPE_NUM] = { 0, 1, 1, 2, 2, 3 };
 
 #define GATE_UT(z, x) ((((z)&0xF) << 4) | ((x)&0xF))
 #define GATE(z0, x0, z1, x1) \
@@ -712,11 +702,16 @@ u8 mRF_gate_info2[mFM_BLOCK_TYPE_NUM][RANDOM_FIELD_DIRECT_NUM] = {
         mRF_GATE_NONE
     }
 };
+// clang-format on
+#endif
 
-extern void mRF_MakeRandomField_ovl(FieldMakeCombination* combi_table, FieldMakeComboInfo* combi_info, s32 combi_count, Game* game);
-typedef void (*MakeRandomFieldOvlFunc)(FieldMakeCombination* combi_table, FieldMakeComboInfo* combi_info, s32 combi_count);
+extern void mRF_MakeRandomField_ovl(FieldMakeCombination* combi_table, FieldMakeComboInfo* combi_info, s32 combi_count,
+                                    Game* game);
+typedef void (*MakeRandomFieldOvlFunc)(FieldMakeCombination* combi_table, FieldMakeComboInfo* combi_info,
+                                       s32 combi_count);
 
-void mRF_MakeRandomField(FieldMakeCombination* combi_table, FieldMakeComboInfo* combi_info, s32 combi_count, Game* game) {
+void mRF_MakeRandomField(FieldMakeCombination* combi_table, FieldMakeComboInfo* combi_info, s32 combi_count,
+                         Game* game) {
     MakeRandomFieldOvlFunc functionPtr;
     size_t bufferSize = SEGMENT_VRAM_SIZE(m_random_field_ovl);
 
@@ -725,8 +720,10 @@ void mRF_MakeRandomField(FieldMakeCombination* combi_table, FieldMakeComboInfo* 
     tryCnt = 0;
 
     if (mRF_AllocatedBuf != NULL) {
-        ovlmgr_Load(SEGMENT_ROM_START(m_random_field_ovl), SEGMENT_ROM_END(m_random_field_ovl), SEGMENT_VRAM_START(m_random_field_ovl), SEGMENT_VRAM_END(m_random_field_ovl), mRF_AllocatedBuf);
-        functionPtr = (MakeRandomFieldOvlFunc)SEGMENT_VRAM_RESOLVE_ADDR(m_random_field_ovl, mRF_AllocatedBuf, mRF_MakeRandomField_ovl);
+        ovlmgr_Load(SEGMENT_ROM_START(m_random_field_ovl), SEGMENT_ROM_END(m_random_field_ovl),
+                    SEGMENT_VRAM_START(m_random_field_ovl), SEGMENT_VRAM_END(m_random_field_ovl), mRF_AllocatedBuf);
+        functionPtr = (MakeRandomFieldOvlFunc)SEGMENT_VRAM_RESOLVE_ADDR(m_random_field_ovl, mRF_AllocatedBuf,
+                                                                        mRF_MakeRandomField_ovl);
         functionPtr(combi_table, combi_info, combi_count);
         mRF_Free(game, mRF_AllocatedBuf);
     }
