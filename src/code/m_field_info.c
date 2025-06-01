@@ -6,7 +6,7 @@
 
 s32 mFI_BlockCheck(s32 blockX, s32 blockZ);
 
-// mCoBG_unkStructUnion l_edge_ut = { { 0, 31, 31, 31, 31, 31, mCoBG_ATTRIBUTE_0 } };
+// mCoBG_unkStructUnion l_edge_ut = { { 0, 31, 31, 31, 31, 31, mCoBG_ATTRIBUTE_GRASS0 } };
 extern mCoBG_unkStructUnion l_edge_ut;
 
 extern FieldMakeInfo* g_fdinfo;

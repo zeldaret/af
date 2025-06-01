@@ -779,13 +779,13 @@ s32 mRF_SearchPond(s32* utX, s32* utZ, s32 blockX, s32 blockZ) {
 
 s32 mRF_Attr2BeastRoadAttr(s32 attribute) {
     switch (attribute) {
-        case mCoBG_ATTRIBUTE_0:
-        case mCoBG_ATTRIBUTE_1:
-            return mCoBG_ATTRIBUTE_2;
+        case mCoBG_ATTRIBUTE_GRASS0:
+        case mCoBG_ATTRIBUTE_GRASS1:
+            return mCoBG_ATTRIBUTE_GRASS2;
 
-        case mCoBG_ATTRIBUTE_4:
-        case mCoBG_ATTRIBUTE_5:
-            return mCoBG_ATTRIBUTE_6;
+        case mCoBG_ATTRIBUTE_SOIL0:
+        case mCoBG_ATTRIBUTE_SOIL1:
+            return mCoBG_ATTRIBUTE_SOIL2;
 
         default:
             return attribute;

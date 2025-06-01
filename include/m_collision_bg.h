@@ -8,16 +8,85 @@
 struct Actor;
 struct PosRot;
 
+// TODO: focus further investigation on attributes WATER, 30, HOLE, WAVE, 59-63, and NONE
 enum BackgroundAttribute {
-    /* 000 */ mCoBG_ATTRIBUTE_0,
-    /* 001 */ mCoBG_ATTRIBUTE_1,
-    /* 002 */ mCoBG_ATTRIBUTE_2,
-    /* 003 */ mCoBG_ATTRIBUTE_3,
-    /* 004 */ mCoBG_ATTRIBUTE_4,
-    /* 005 */ mCoBG_ATTRIBUTE_5,
-    /* 006 */ mCoBG_ATTRIBUTE_6,
+    /* 000*/ mCoBG_ATTRIBUTE_GRASS0,
+    /* 001*/ mCoBG_ATTRIBUTE_GRASS1,
+    /* 002*/ mCoBG_ATTRIBUTE_GRASS2,
+    /* 003*/ mCoBG_ATTRIBUTE_GRASS3,
+    /* 004*/ mCoBG_ATTRIBUTE_SOIL0,
+    /* 005*/ mCoBG_ATTRIBUTE_SOIL1,
+    /* 006*/ mCoBG_ATTRIBUTE_SOIL2,
+    /* 007*/ mCoBG_ATTRIBUTE_STONE,
+    /* 009*/ mCoBG_ATTRIBUTE_BUSH,
 
-    /* 100 */ mCOBG_ATTRIBUTE_NONE = 100
+    /* 010*/ mCoBG_ATTRIBUTE_HOLE, // unconfirmed
+    /* 011*/ mCoBG_ATTRIBUTE_WAVE, // unconfirmed
+
+    /* 012*/ mCoBG_ATTRIBUTE_WATER, // only used in small pond?
+    /* 013*/ mCoBG_ATTRIBUTE_WATERFALL,
+    /* 014*/ mCoBG_ATTRIBUTE_RIVER_N,
+    /* 015*/ mCoBG_ATTRIBUTE_RIVER_NW,
+    /* 016*/ mCoBG_ATTRIBUTE_RIVER_W,
+    /* 017*/ mCoBG_ATTRIBUTE_RIVER_SW,
+    /* 018*/ mCoBG_ATTRIBUTE_RIVER_S,
+    /* 019*/ mCoBG_ATTRIBUTE_RIVER_SE,
+    /* 020*/ mCoBG_ATTRIBUTE_RIVER_E,
+    /* 021*/ mCoBG_ATTRIBUTE_RIVER_NE,
+
+    /* 022*/ mCoBG_ATTRIBUTE_SAND,
+    /* 023*/ mCoBG_ATTRIBUTE_WOOD, // fences (train tracks/dump), large signs, bridge edges
+    /* 024*/ mCoBG_ATTRIBUTE_SEA,
+    /* 025*/ mCoBG_ATTRIBUTE_SHALLOW0_NW, // shallower diagonal sea shallows, sea to SE
+    /* 026*/ mCoBG_ATTRIBUTE_SHALLOW0_NE, // shallower diagonal sea shallows, sea to SW
+
+    /* 027*/ mCoBG_ATTRIBUTE_BRIDGE_NW,  // diagonal bridge, river to NW
+    /* 028*/ mCoBG_ATTRIBUTE_BRIDGE_END, // "bridge" unit that ends above water (i.e. a pier)
+    /* 029*/ mCoBG_ATTRIBUTE_BRIDGE_SE,  // diagonal bridge, river to SE
+    /* 030*/ mCoBG_ATTRIBUTE_30,
+    /* 031*/ mCoBG_ATTRIBUTE_BRIDGE_C, // diagonal bridge's central unit
+    /* 032*/ mCoBG_ATTRIBUTE_BRIDGE_N, // horizontal bridge, river/tracks to north (stone?)
+    /* 033*/ mCoBG_ATTRIBUTE_BRIDGE_E, // vertical bridge/steps, river/grass to east
+    /* 034*/ mCoBG_ATTRIBUTE_BRIDGE_W, // vertical bridge/steps, river/grass to west
+    /* 035*/ mCoBG_ATTRIBUTE_BRIDGE_S, // horizontal bridge, river to south
+
+    /* 036*/ mCoBG_ATTRIBUTE_SHALLOW1_S,  // deeper horizontal sea shallows, sea to south
+    /* 037*/ mCoBG_ATTRIBUTE_SHALLOW1_NW, // deeper diagonal sea shallows, sea to SE
+    /* 038*/ mCoBG_ATTRIBUTE_SHALLOW1_NE, // deeper diagonal sea shallows, sea to SW
+
+    /* 039*/ mCoBG_ATTRIBUTE_BANK_SE, // diagonal riverbank, river to NW
+    /* 040*/ mCoBG_ATTRIBUTE_BANK_NE, // diagonal riverbank, river to SW
+    /* 041*/ mCoBG_ATTRIBUTE_BANK_NW, // diagonal riverbank, river to SE
+    /* 042*/ mCoBG_ATTRIBUTE_BANK_SW, // diagonal riverbank, river to NE
+    /* 043*/ mCoBG_ATTRIBUTE_BANK_N,  // horizontal riverbank, river to north
+    /* 044*/ mCoBG_ATTRIBUTE_BANK_W,  // vertical riverbank, river to east
+    /* 045*/ mCoBG_ATTRIBUTE_BANK_E,  // vertical riverbank, river to west
+    /* 046*/ mCoBG_ATTRIBUTE_BANK_S,  // horizontal riverbank, river to south
+
+    /* 047*/ mCoBG_ATTRIBUTE_CLIFF_S, // vertical cliff edge, valley to north (only in south tunnel wall?)
+    /* 048*/ mCoBG_ATTRIBUTE_CLIFF_W, // vertical cliff edge, valley to west
+    /* 049*/ mCoBG_ATTRIBUTE_CLIFF_E, // vertical cliff edge, valley to west
+    /* 050*/ mCoBG_ATTRIBUTE_CLIFF_N, // horizontal cliff edge, valley to south (also appears in north tunnel wall)
+
+    /* 051*/ mCoBG_ATTRIBUTE_TUNNEL_E_S, // east tunnel entrance, south corner
+    /* 052*/ mCoBG_ATTRIBUTE_TUNNEL_E_N, // east tunnel entrance, north corner
+    /* 053*/ mCoBG_ATTRIBUTE_TUNNEL_W_N, // west tunnel entrance, north corner
+    /* 054*/ mCoBG_ATTRIBUTE_TUNNEL_W_S, // west tunnel entrance, south corner
+
+    /* 055*/ mCoBG_ATTRIBUTE_CLIFF_SE, // diagonal cliff edge, valley to NW
+    /* 056*/ mCoBG_ATTRIBUTE_CLIFF_NE, // diagonal cliff edge, valley to SW
+    /* 057*/ mCoBG_ATTRIBUTE_CLIFF_NW, // diagonal cliff edge, valley to SE
+    /* 058*/ mCoBG_ATTRIBUTE_CLIFF_SW, // diagonal cliff edge, valley to NE
+
+    /* 059*/ mCoBG_ATTRIBUTE_BANK_WN,  // corner riverbank, river/pond to north and west (need more data)
+    /* 060*/ mCoBG_ATTRIBUTE_BANK_UNK, // corner riverbank, unsure (found at beach on mini cliff with SAND to west,
+                                       // BANK_NE to east, BANK_E to north, SHALLOW1_NW to south)
+
+    /* 061*/ mCoBG_ATTRIBUTE_61,
+    /* 062*/ mCoBG_ATTRIBUTE_62,
+    /* 063*/ mCoBG_ATTRIBUTE_63, // appears very sparingly at soil-grass boundaries
+
+    /* 100*/ mCoBG_ATTRIBUTE_NONE = 100, // unconfirmed
 };
 
 // offset table
