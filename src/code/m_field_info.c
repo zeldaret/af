@@ -6,7 +6,7 @@
 
 s32 mFI_BlockCheck(s32 blockX, s32 blockZ);
 
-// mCoBG_unkStructUnion l_edge_ut = { { 0, 31, 31, 31, 31, 31, mCoBG_ATTRIBUTE_0 } };
+// mCoBG_unkStructUnion l_edge_ut = { { 0, 31, 31, 31, 31, 31, mCoBG_ATTRIBUTE_GRASS0 } };
 extern mCoBG_unkStructUnion l_edge_ut;
 
 extern FieldMakeInfo* g_fdinfo;
@@ -511,13 +511,23 @@ mCoBG_unkStructUnion* mFI_UtNum2UtCol(s32 utX, s32 utZ) {
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_800897D0_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80089888_jp.s")
+mCoBG_unkStructUnion* mFI_GetUnitCol(xyz_t wpos) {
+    s32 utX;
+    s32 utZ;
+    s32 validWpos = mFI_Wpos2UtNum(&utX, &utZ, wpos);
+
+    if (!validWpos) {
+        return &l_edge_ut;
+    } else {
+        return mFI_UtNum2UtCol(utX, utZ);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_800898F4_jp.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_800899CC_jp.s")
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80089A34_jp.s")
+#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/mFI_GetSoundSourcePBlockNum.s")
 
 #pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_field_info/func_80089AAC_jp.s")
 
@@ -749,7 +759,7 @@ s32 mFI_GetWaveUtinBlock(s32* arg0, s32* arg1, s32 arg2, s32 arg3) {
 
         for (i = 0; i < 0x100; i++) {
 
-            if (func_80076358_jp(var_s1->data.unk6) == 1) {
+            if (func_80076358_jp(var_s1->data.unitAttribute) == 1) {
                 var_s3 += 1;
             }
 
@@ -762,7 +772,7 @@ s32 mFI_GetWaveUtinBlock(s32* arg0, s32* arg1, s32 arg2, s32 arg3) {
 
             for (i = 0; i < 0x100; i++) {
 
-                if (func_80076358_jp(var_s1->data.unk6) == 1) {
+                if (func_80076358_jp(var_s1->data.unitAttribute) == 1) {
 
                     if (var_s2 <= 0) {
                         arg0[0] = i & 0xF;

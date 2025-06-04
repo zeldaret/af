@@ -3563,7 +3563,8 @@ s32 mNpc_CheckNpcSet(s32 bx, s32 bz, s32 ut_x, s32 ut_z) {
     s32 res = FALSE;
 
     if (collision != NULL && items != NULL) {
-        res = mNpc_CheckNpcSet_fgcol(items[ut_z * UT_X_NUM + ut_x], collision[ut_z * UT_X_NUM + ut_x].data.unk6);
+        res =
+            mNpc_CheckNpcSet_fgcol(items[ut_z * UT_X_NUM + ut_x], collision[ut_z * UT_X_NUM + ut_x].data.unitAttribute);
     }
 
     return res;
@@ -3595,7 +3596,7 @@ s32 mNpc_GetMakeUtNuminBlock_hard_area(s32* utX, s32* utZ, s32 bx, s32 bz, s32 r
         for (i = restrictArea; i < UT_Z_NUM - restrictArea; i++) {
             for (j = restrictArea; j < UT_X_NUM - restrictArea; j++) {
                 idx = i * UT_X_NUM + j;
-                if (mNpc_CheckNpcSet_fgcol_hard(items[idx], col[idx].data.unk6) == TRUE) {
+                if (mNpc_CheckNpcSet_fgcol_hard(items[idx], col[idx].data.unitAttribute) == TRUE) {
                     if (col[idx].data.unk1 == col[idx].data.unk2 && col[idx].data.unk1 == col[idx].data.unk3 &&
                         col[idx].data.unk1 == col[idx].data.unk4 && col[idx].data.unk1 == col[idx].data.unk5) {
                         nowUtX = 8 - j;
@@ -3645,7 +3646,7 @@ s32 mNpc_GetMakeUtNuminBlock_area(s32* utX, s32* utZ, s32 bx, s32 bz, s32 restri
     if (fgTop != NULL && col != NULL) {
         for (i = restrictArea; i < UT_Z_NUM - restrictArea; i++) {
             for (j = restrictArea; j < UT_X_NUM - restrictArea; j++) {
-                if (mNpc_CheckNpcSet_fgcol(fgTop[i * UT_X_NUM + j], col[i * UT_X_NUM + j].data.unk6) == TRUE) {
+                if (mNpc_CheckNpcSet_fgcol(fgTop[i * UT_X_NUM + j], col[i * UT_X_NUM + j].data.unitAttribute) == TRUE) {
                     *fgPtr |= 1 << j;
                     candidates++;
                 }

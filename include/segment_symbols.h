@@ -96,6 +96,8 @@ DECLARE_SEGMENT(ovl__0079F810);
 DECLARE_SEGMENT(ovl__007A10E0);
 DECLARE_SEGMENT(catalog_ovl);
 
+DECLARE_SEGMENT(m_random_field_ovl);
+
 DECLARE_SEGMENT(ac_set_ovl_insect);
 DECLARE_SEGMENT(ac_set_ovl_gyoei);
 

@@ -8,7 +8,87 @@
 struct Actor;
 struct PosRot;
 
-enum BackgroundAttribute { mCoBG_ATTRIBUTE_0, mCOBG_ATTRIBUTE_NONE = 100 };
+// TODO: focus further investigation on attributes WATER, 30, HOLE, WAVE, 59-63, and NONE
+enum BackgroundAttribute {
+    /* 000 */ mCoBG_ATTRIBUTE_GRASS0,
+    /* 001 */ mCoBG_ATTRIBUTE_GRASS1,
+    /* 002 */ mCoBG_ATTRIBUTE_GRASS2,
+    /* 003 */ mCoBG_ATTRIBUTE_GRASS3,
+    /* 004 */ mCoBG_ATTRIBUTE_SOIL0,
+    /* 005 */ mCoBG_ATTRIBUTE_SOIL1,
+    /* 006 */ mCoBG_ATTRIBUTE_SOIL2,
+    /* 007 */ mCoBG_ATTRIBUTE_STONE, // stone path (not individual rocks)
+    /* 008 */ mCoBG_ATTRIBUTE_FLOOR, // seems to occupy all units in bottom row
+    /* 009 */ mCoBG_ATTRIBUTE_BUSH,
+
+    /* 010 */ mCoBG_ATTRIBUTE_HOLE, // unconfirmed (from ac-decomp)
+    /* 011 */ mCoBG_ATTRIBUTE_WAVE, // unconfirmed (from ac-decomp)
+
+    /* 012 */ mCoBG_ATTRIBUTE_WATER, // only used in small pond?
+    /* 013 */ mCoBG_ATTRIBUTE_WATERFALL,
+    /* 014 */ mCoBG_ATTRIBUTE_RIVER_N,
+    /* 015 */ mCoBG_ATTRIBUTE_RIVER_NW,
+    /* 016 */ mCoBG_ATTRIBUTE_RIVER_W,
+    /* 017 */ mCoBG_ATTRIBUTE_RIVER_SW,
+    /* 018 */ mCoBG_ATTRIBUTE_RIVER_S,
+    /* 019 */ mCoBG_ATTRIBUTE_RIVER_SE,
+    /* 020 */ mCoBG_ATTRIBUTE_RIVER_E,
+    /* 021 */ mCoBG_ATTRIBUTE_RIVER_NE,
+
+    /* 022 */ mCoBG_ATTRIBUTE_SAND,
+    /* 023 */ mCoBG_ATTRIBUTE_WOOD,        // fences (train tracks/dump), large signs, bridge edges
+    /* 024 */ mCoBG_ATTRIBUTE_SEA,         // only seems to appear in row with beach
+    /* 025 */ mCoBG_ATTRIBUTE_SHALLOW0_NW, // shallower diagonal sea shallows, sea to SE
+    /* 026 */ mCoBG_ATTRIBUTE_SHALLOW0_NE, // shallower diagonal sea shallows, sea to SW
+
+    /* 027 */ mCoBG_ATTRIBUTE_BRIDGE_NW,  // diagonal bridge, river to NW
+    /* 028 */ mCoBG_ATTRIBUTE_BRIDGE_END, // "bridge" unit that ends above water (i.e. a pier)
+    /* 029 */ mCoBG_ATTRIBUTE_BRIDGE_SE,  // diagonal bridge, river to SE
+    /* 030 */ mCoBG_ATTRIBUTE_30,
+    /* 031 */ mCoBG_ATTRIBUTE_BRIDGE_C, // diagonal bridge's central unit
+    /* 032 */ mCoBG_ATTRIBUTE_BRIDGE_N, // horizontal bridge, river/tracks to north (stone?)
+    /* 033 */ mCoBG_ATTRIBUTE_BRIDGE_E, // vertical bridge/steps, river/grass to east
+    /* 034 */ mCoBG_ATTRIBUTE_BRIDGE_W, // vertical bridge/steps, river/grass to west
+    /* 035 */ mCoBG_ATTRIBUTE_BRIDGE_S, // horizontal bridge, river to south
+
+    /* 036 */ mCoBG_ATTRIBUTE_SHALLOW1_S,  // deeper horizontal sea shallows, sea to south
+    /* 037 */ mCoBG_ATTRIBUTE_SHALLOW1_NW, // deeper diagonal sea shallows, sea to SE
+    /* 038 */ mCoBG_ATTRIBUTE_SHALLOW1_NE, // deeper diagonal sea shallows, sea to SW
+
+    /* 039 */ mCoBG_ATTRIBUTE_BANK_SE, // diagonal riverbank, river to NW
+    /* 040 */ mCoBG_ATTRIBUTE_BANK_NE, // diagonal riverbank, river to SW
+    /* 041 */ mCoBG_ATTRIBUTE_BANK_NW, // diagonal riverbank, river to SE
+    /* 042 */ mCoBG_ATTRIBUTE_BANK_SW, // diagonal riverbank, river to NE
+    /* 043 */ mCoBG_ATTRIBUTE_BANK_N,  // horizontal riverbank, river to north
+    /* 044 */ mCoBG_ATTRIBUTE_BANK_W,  // vertical riverbank, river to east
+    /* 045 */ mCoBG_ATTRIBUTE_BANK_E,  // vertical riverbank, river to west
+    /* 046 */ mCoBG_ATTRIBUTE_BANK_S,  // horizontal riverbank, river to south
+
+    /* 047 */ mCoBG_ATTRIBUTE_CLIFF_S, // vertical cliff edge, valley to north (only in south tunnel wall?)
+    /* 048 */ mCoBG_ATTRIBUTE_CLIFF_W, // vertical cliff edge, valley to west
+    /* 049 */ mCoBG_ATTRIBUTE_CLIFF_E, // vertical cliff edge, valley to west
+    /* 050 */ mCoBG_ATTRIBUTE_CLIFF_N, // horizontal cliff edge, valley to south (also appears in north tunnel wall)
+
+    /* 051 */ mCoBG_ATTRIBUTE_TUNNEL_E_S, // east tunnel entrance, south corner
+    /* 052 */ mCoBG_ATTRIBUTE_TUNNEL_E_N, // east tunnel entrance, north corner
+    /* 053 */ mCoBG_ATTRIBUTE_TUNNEL_W_N, // west tunnel entrance, north corner
+    /* 054 */ mCoBG_ATTRIBUTE_TUNNEL_W_S, // west tunnel entrance, south corner
+
+    /* 055 */ mCoBG_ATTRIBUTE_CLIFF_SE, // diagonal cliff edge, valley to NW
+    /* 056 */ mCoBG_ATTRIBUTE_CLIFF_NE, // diagonal cliff edge, valley to SW
+    /* 057 */ mCoBG_ATTRIBUTE_CLIFF_NW, // diagonal cliff edge, valley to SE
+    /* 058 */ mCoBG_ATTRIBUTE_CLIFF_SW, // diagonal cliff edge, valley to NE
+
+    /* 059 */ mCoBG_ATTRIBUTE_BANK_WN,  // corner riverbank, river/pond to north and west (need more data)
+    /* 060 */ mCoBG_ATTRIBUTE_BANK_UNK, // corner riverbank, unsure (found at beach on mini cliff with SAND to west,
+                                        // BANK_NE to east, BANK_E to north, SHALLOW1_NW to south)
+
+    /* 061 */ mCoBG_ATTRIBUTE_61,
+    /* 062 */ mCoBG_ATTRIBUTE_62,
+    /* 063 */ mCoBG_ATTRIBUTE_63, // appears very sparingly at soil-grass boundaries
+
+    /* 100 */ mCoBG_ATTRIBUTE_NONE = 100, // unconfirmed (from ac-decomp)
+};
 
 // offset table
 typedef struct mCoBG_unkStruct2 {
@@ -21,16 +101,18 @@ typedef struct mCoBG_unkStruct2 {
     /* 0x06 */ s8 unk6;
 } mCoBG_unkStruct2; // size = 0x7
 
+// clang-format off
 // collision bg data
 typedef struct mCoBG_unkStruct {
-    /* 0x0 */ u32 unk0:1; // [31] shape
-    /* 0x0 */ u32 unk1:5; // [30:25] center
-    /* 0x0 */ u32 unk2:5; // [25:20] top_left
-    /* 0x0 */ u32 unk3:5; // [20:15] bot_left
-    /* 0x0 */ u32 unk4:5; // [15:10] top_right
-    /* 0x0 */ u32 unk5:5; // [10:5] bot_right
-    /* 0x0 */ u32 unk6:6; // [5:0] unit_attribute
+    /* 0x0 */ u32 unk0 : 1; // [31] shape
+    /* 0x0 */ u32 unk1 : 5; // [30:25] center
+    /* 0x0 */ u32 unk2 : 5; // [25:20] top_left
+    /* 0x0 */ u32 unk3 : 5; // [20:15] bot_left
+    /* 0x0 */ u32 unk4 : 5; // [15:10] top_right
+    /* 0x0 */ u32 unk5 : 5; // [10:5] bot_right
+    /* 0x0 */ u32 unitAttribute : 6; // [5:0] unit_attribute
 } mCoBG_unkStruct; // size = 0x4
+// clang-format on
 
 typedef union mCoBG_unkStructUnion {
     mCoBG_unkStruct data;
@@ -62,30 +144,32 @@ typedef struct mCoBG_WallInfo {
  * | ________ ________ ________ ___X____ | 0x1B   | unk12
  * | ________ ________ ________ ____XXXX | 0x1C   | unk13
  */
+// clang-format off
 typedef struct mCoBG_CheckResult {
-  u32 onGround : 1; // on_ground
-  u32 unk1     : 5; // hit_attribute_wall
-  u32 hitWall  : 5; // hit_wall
-  u32 unk3     : 3; // hit_wall_count
-  u32 unk4     : 1; // unk_flag0
-  u32 unk5     : 6; // unit_attribute
-  u32 unk6     : 1; // is_on_move_bg_obj
-  u32 inWater  : 1; // is_in_water
-  u32 unk8     : 1; // unk_flag1
-  u32 unk9     : 1; // unk_flag2
-  u32 unk10    : 1; // unk_flag3
-  u32 unk11    : 1; // unk_flag4
-  u32 unk12    : 1; // unk_flag5
-  u32 unk13    : 4; // unk_flag6
+    u32 onGround : 1; // on_ground
+    u32 unk1     : 5; // hit_attribute_wall
+    u32 hitWall  : 5; // hit_wall
+    u32 unk3     : 3; // hit_wall_count
+    u32 unk4     : 1; // unk_flag0
+    u32 unk5     : 6; // unit_attribute
+    u32 unk6     : 1; // is_on_move_bg_obj
+    u32 inWater  : 1; // is_in_water
+    u32 unk8     : 1; // unk_flag1
+    u32 unk9     : 1; // unk_flag2
+    u32 unk10    : 1; // unk_flag3
+    u32 unk11    : 1; // unk_flag4
+    u32 unk12    : 1; // unk_flag5
+    u32 unk13    : 4; // unk_flag6
 } mCoBG_CheckResult;
+// clang-format on
 
-typedef struct mCoBG_Check{
+typedef struct mCoBG_Check {
     /* 0x00 */ u8 unk0[0x11];
     /* 0x14 */ mCoBG_CheckResult colResult;
     /* 0x18 */ u8 unk18[0xC];
     /* 0x24 */ mCoBG_WallInfo wallInfo[2];
     /* 0x2C */ s16 unk2C;
-}mCoBG_Check; // size = 0x30
+} mCoBG_Check; // size = 0x30
 
 // void func_80067430_jp();
 // void func_800674B0_jp();
@@ -172,9 +256,10 @@ typedef struct mCoBG_Check{
 // void func_8006B5C0_jp();
 // void func_8006B664_jp();
 // void func_8006B92C_jp();
-s32 mCoBG_RegistMoveBg(s8 *arg0, struct PosRot *arg1, xyz_t *arg2, s16 *arg3, f32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8, s32 arg9, s32 argA, f32 argB);
+s32 mCoBG_RegistMoveBg(s8* arg0, struct PosRot* arg1, xyz_t* arg2, s16* arg3, f32 arg4, s32 arg5, s32 arg6, s32 arg7,
+                       s32 arg8, s32 arg9, s32 argA, f32 argB);
 // void func_8006BAA8_jp();
-void mCoBG_CrossOffMoveBg(s32 arg0, struct Actor *actor);  
+void mCoBG_CrossOffMoveBg(s32 arg0, struct Actor* actor);
 void func_8006BB64_jp(void);
 // void func_8006BB9C_jp();
 // void func_8006BBE8_jp();
@@ -245,7 +330,7 @@ void func_8006C8D0_jp(void);
 // void func_80071064_jp();
 // void func_800713CC_jp();
 // void func_80071460_jp();
-f32 mCoBG_GetShadowBgY_AngleS_FromWpos(s_xyz*, xyz_t,f32);
+f32 mCoBG_GetShadowBgY_AngleS_FromWpos(s_xyz*, xyz_t, f32);
 // void func_800715B4_jp();
 // void func_80071604_jp();
 // void func_80071728_jp();
@@ -259,7 +344,7 @@ void mCoBG_GetBgNorm_FromWpos(xyz_t*, xyz_t);
 // void func_800721C8_jp();
 // void func_800721E4_jp();
 // void func_80072238_jp();
-// void func_80072264_jp();
+s32 mCoBG_Attribute2CheckPlant(u32 attribute, const xyz_t* wpos); // void func_80072264_jp();
 // void func_80072340_jp();
 // void func_80072398_jp();
 // void func_800723C4_jp();

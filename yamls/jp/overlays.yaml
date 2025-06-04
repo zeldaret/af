@@ -1070,7 +1070,7 @@
     subsegments:
       - [0x81A1A0, data, overlays/other_ovl/ovl__00815B70/ovl__00815B70_reloc]
 
-  - name: ovl__0081AA60
+  - name: m_random_field_ovl
     type: code
     start: 0x81AA60
     vram: 0x80922800
@@ -1078,24 +1078,24 @@
     compress: True
     bss_size: 0x270
     subsegments:
-      - [0x81AA60, asm, overlays/other_ovl/ovl__0081AA60/ovl__0081AA60]
-      - [0x81D2E0, data, overlays/other_ovl/ovl__0081AA60/ovl__0081AA60]
-      - [0x81D500, rodata, overlays/other_ovl/ovl__0081AA60/ovl__0081AA60]
-      - { start: 0x81D540, type: bss, vram: 0x809252E0, name: overlays/other_ovl/ovl__0081AA60/ovl__0081AA60 }
-  - name: ovl__0081AA60_reloc
+      - [0x81AA60, asm, overlays/other_ovl/m_random_field_ovl/m_random_field_ovl]
+      - [0x81D2E0, data, overlays/other_ovl/m_random_field_ovl/m_random_field_ovl]
+      - [0x81D500, rodata, overlays/other_ovl/m_random_field_ovl/m_random_field_ovl]
+      - { start: 0x81D540, type: bss, vram: 0x809252E0, name: overlays/other_ovl/m_random_field_ovl/m_random_field_ovl }
+  - name: m_random_field_ovl_reloc
     type: code
     start: 0x81D540
     vram: 0x80925550
-    follows_vram: ovl__0081AA60
+    follows_vram: m_random_field_ovl
     compress: True
     subsegments:
-      - [0x81D540, data, overlays/other_ovl/ovl__0081AA60/ovl__0081AA60_reloc]
+      - [0x81D540, data, overlays/other_ovl/m_random_field_ovl/m_random_field_ovl_reloc]
 
   - name: ovl__0081D9D0
     type: code
     start: 0x81D9D0
     vram: 0x809259E0
-    follows_vram: ovl__0081AA60_reloc
+    follows_vram: m_random_field_ovl_reloc
     compress: True
     bss_size: 0x4E0
     subsegments:

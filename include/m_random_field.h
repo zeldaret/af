@@ -2,6 +2,9 @@
 #define M_RANDOM_FIELD_H
 
 #include "ultra64.h"
+#include "m_collision_bg.h"
+#include "game.h"
+#include "m_field_make.h"
 
 #define RANDOM_FIELD_DIRECT_ERROR 100
 
@@ -13,6 +16,17 @@ typedef enum RandomFieldDirection {
 
   /* 4 */ RANDOM_FIELD_DIRECT_NUM
 } RandomFieldDirection;
+
+typedef enum RandomFieldGateType {
+  /* 0 */ mRF_GATE_NONE,
+  /* 1 */ mRF_GATE1_TYPE0,
+  /* 2 */ mRF_GATE1_TYPE1,
+  /* 3 */ mRF_GATE2_TYPE0,
+  /* 4 */ mRF_GATE2_TYPE1,
+  /* 5 */ mRF_GATE3_TYPE0,
+
+  /* 6 */ mRF_GATE_TYPE_NUM
+} RandomFieldGateType;
 
 typedef struct RandomFieldGate {
   /* 0x00 */ s32 ut0;
@@ -53,20 +67,20 @@ typedef struct RandomFieldGate {
 #define mRF_BLOCKKIND_CLIFF6 (1 << 30) // Bottom part of cliff that juts out, valley on left
 #define mRF_BLOCKKIND_31 (1 << 31) // Not used in `mRF_block_info`
 
-// void func_800BCBA0_jp();
-// void func_800BCBDC_jp();
-// void func_800BCC20_jp();
-// void func_800BCC30_jp();
-// void func_800BCC40_jp();
-// void func_800BCCFC_jp();
-s32 mRF_Type2BlockInfo(u8 type);
-// void func_800BCDFC_jp();
-// void func_800BCE80_jp();
-// void func_800BCEA4_jp();
-// void func_800BCF64_jp();
-// void func_800BCFA4_jp();
-RandomFieldGate* mRF_BlockTypeDirect2GateData(s32*, u8, s32);
-// void func_800BD02C_jp();
-// void func_800BD1E4_jp();
+// void* mRF_Malloc(Game* game, size_t size);
+// void mRF_Free(Game* game, void* ptr);
+s32* mRF_StepNo(void);
+s32* mRF_TryCnt(void);
+// void mRF_PrintDebug(gfxprint* gfxprint);
+void mRF_MakeRandomField(FieldMakeCombination* combi_table, FieldMakeComboInfo* combi_info, s32 combi_count, Game* game);
+u32 mRF_Type2BlockInfo(u8 blockType);
+// u8 mRF_Info2BlockType(u32 blockInfo);
+// s32 mRF_GateType2GateCount(s32 gateType);
+s32 mRF_SearchPond(s32* utX, s32* utZ, s32 blockX, s32 blockZ);
+// s32 mRF_Attr2BeastRoadAttr(s32 attribute);
+// s32 mRF_BlockTypeDirect2GateType(u8 blockType, s32 direct);
+RandomFieldGate* mRF_BlockTypeDirect2GateData(s32* gateCount, u8 blockType, s32 direct);
+// s32 mRF_BlockInf2CheckBeastRoad(u8 blockType, mCoBG_unkStructUnion* collisionData);
+void mRF_CheckBeastRoad();
 
 #endif

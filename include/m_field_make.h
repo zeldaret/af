@@ -4,6 +4,8 @@
 #include "ultra64.h"
 #include "unk.h"
 #include "m_collision_bg.h"
+#include "m_field_info.h"
+#include "other_types.h"
 
 struct Game;
 
@@ -19,6 +21,10 @@ struct Game;
 #define UT_X_NUM UT_BASE_NUM /* Spaces per block (acre) in x direction */
 #define UT_Z_NUM UT_BASE_NUM /* Spaces per block (acre) in z direction */
 #define UT_TOTAL_NUM (UT_X_NUM * UT_Z_NUM)
+
+#define mFM_SOUND_SOURCE_NUM 6
+#define mFM_MOVE_ACTOR_NUM 16
+#define mFM_HANIWA_STEP_NUM 4
 
 /*
  * Naming convention for `RIVER`/`POOL`: directions indicated are flow of river
@@ -124,9 +130,20 @@ typedef enum FieldMakeBlockType {
 extern u8* g_block_type_p;
 extern u32* g_block_kind_p; // s32 in ac-decomp--if problems arise, try changing type
 
+typedef struct FieldMakeCombination {
+    /* 0x0 */ u16 combinationType : 14;  /* acre type index into `data_combi_table` */
+    /* 0x0 */ u16 height : 2;            /* 0, 1, 2, or 3 (unused) */
+} FieldMakeCombination; // size = 0x2
+
 typedef struct Foreground {
     /* 0x000 */ u16 items[UT_Z_NUM][UT_X_NUM];
 } Foreground; // size = 0x200
+
+typedef struct FieldMakeComboInfo {
+    /* 0x00 */ u16 bgId; // perhaps should be `bgName`?
+    /* 0x02 */ u16 fgId; // perhaps should be `fgName`?
+    /* 0x05 */ u8 blockType;
+} FieldMakeComboInfo; // size = 0x6
 
 typedef struct FieldMakeMoveActor {
     /* 0x0 */ u16 nameId;
@@ -142,19 +159,36 @@ typedef struct FieldMakeFGData {
     /* 0x202 */ UNK_TYPE1 unk_202[4];
 } FieldMakeFGData; // size = 0x206
 
+typedef struct FieldMakeBGSoundSource {
+    /* 0x0 */ s16 kind;
+    /* 0x4 */ xyz_t pos;
+} FieldMakeBGSoundSource; // size = 0x10
+
 typedef struct FieldMakeFGInfo {
     /* 0x00 */ u16 fgId;
     /* 0x04 */ u16* itemsPtr;
-    /* 0x08 */ UNK_TYPE1 unk_08[0x8C];
+    /* 0x08 */ UNK_PTR unk_08; // ac-decomp: u16* deposit_p
+    /* 0x0C */ FieldMakeMoveActor moveActors[mFM_MOVE_ACTOR_NUM];
+    /* 0x8C */ UNK_TYPE2 unk_08C; // ac-decomp: u16 move_actor_bit_data
+    /* 0x8E */ u8 haniwaStep[mFM_HANIWA_STEP_NUM];
 } FieldMakeFGInfo; // size = 0x94
 
+// TODO: come up with better names to disambiguate the union `bgId` (which contains height data)
+// from the plain u16 `bgId` used in `FieldMakeComboInfo`
 typedef struct FieldMakeBGInfo {
-    /* 0x000 */ UNK_TYPE1 unk_000[0x14];
+    /* 0x000 */ FieldMakeCombination bgId; // stores `bgName` + height of corresponding block type from `data_combi_table`
+    /* 0x004 */ UNK_PTR unk_004; // ac-decomp: Gfx* opaque_gfx
+    /* 0x008 */ UNK_PTR unk_008; // ac-decomp: Gfx* translucent_gfx
+    /* 0x00C */ UNK_PTR unk_00C; // ac-decomp: EvwAnimeData* animation
+    /* 0x010 */ UNK_TYPE1 unk_010; // ac-decomp: s8 animation_count
+    /* 0x011 */ u8 blockType;
     /* 0x014 */ u32 blockKind;
-    /* 0x018 */ UNK_TYPE1 unk_018[0x08];
+    /* 0x018 */ RomOffset romStartAddr;
+    /* 0x01C */ s32 romSize;
     /* 0x020 */ mCoBG_unkStructUnion collision[UT_Z_NUM][UT_X_NUM];
-    /* 0x420 */ UNK_TYPE1 unk_024[0x160];
-} FieldMakeBGInfo; // size >= 0x57d
+    /* 0x420 */ u8 unk_420[UT_Z_NUM][UT_X_NUM]; // ac-decomp: u8 keep_h (holds `center` bitfield from corresponding `collision` entries)
+    /* 0x520 */ FieldMakeBGSoundSource soundSource[mFM_SOUND_SOURCE_NUM];
+} FieldMakeBGInfo; // size = 0x580
 
 typedef struct FieldMakeBlockInfo {
     /* 0x000 */ FieldMakeBGInfo bgInfo;
@@ -164,7 +198,7 @@ typedef struct FieldMakeBlockInfo {
 typedef struct FieldMakeInfo {
     /* 0x000 */ u16 fieldId;
     /* 0x002 */ UNK_TYPE1 unk_000[0x146];
-    /* 0x148 */ FieldMakeBlockInfo* blockInfo;
+    /* 0x148 */ FieldMakeBlockInfo* blockInfo; // length: BLOCK_TOTAL_NUM
     /* 0x14C */ UNK_TYPE1 unk_14C[0x1A];
     /* 0x166 */ u8 blockXMax;
     /* 0x167 */ u8 blockZMax;

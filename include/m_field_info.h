@@ -40,6 +40,7 @@ struct Game;
 #define FI_BK_WORLDSIZE_HALF_X_F (FI_BK_WORLDSIZE_X_F / 2.0f)
 #define FI_BK_WORLDSIZE_HALF_Z_F (FI_BK_WORLDSIZE_Z_F / 2.0f)
 
+#define mFI_NUM_SOUND_SOURCES 6
 
 typedef enum FieldType {
   /* 0 */ FI_FIELDTYPE_FG,
@@ -49,9 +50,9 @@ typedef enum FieldType {
   /* 4 */ FI_FIELDTYPE_NPC_ROOM,
   /* 5 */ FI_FIELDTYPE_DEMO,
   /* 6 */ FI_FIELDTYPE_PLAYER_ROOM,
+
   /* 7 */ FI_FIELDTYPE_NUM
 } FieldType;
-
 
 #define FI_TO_FIELD_ID(type, index) (((type) << 12) | (index))
 #define FI_GET_TYPE(id) ((id) & 0xF000)
@@ -82,6 +83,16 @@ typedef enum FieldDirection {
 
   /* 5 */ FI_MOVEDIR_MAX
 } FieldDirection;
+
+// TODO: confirm 0 through 2 (POND and NUM confirmed)
+typedef enum FieldSoundSource {
+  /* 0 */ mFI_SOUND_SOURCE_NONE,
+  /* 1 */ mFI_SOUND_SOURCE_RIVER,
+  /* 2 */ mFI_SOUND_SOURCE_OCEAN,
+  /* 3 */ mFI_SOUND_SOURCE_POND,
+
+  /* 4 */ mFI_SOUND_SOURCE_NUM
+} FieldSoundSource;
 
 #define FI_GET_PLAYER_ROOM_NO(fieldId) (((fieldId)-FI_FIELD_PLAYER0_ROOM) & 3)
 #define FI_IS_PLAYER_ROOM(fieldId) \
@@ -151,10 +162,10 @@ mCoBG_unkStructUnion* mFI_UtNum2UtCol(s32 utX, s32 utZ);
 // void func_80089698_jp();
 // void func_80089704_jp();
 // void func_800897D0_jp();
-// void func_80089888_jp();
+mCoBG_unkStructUnion* mFI_GetUnitCol(xyz_t wpos);
 // void func_800898F4_jp();
 // void func_800899CC_jp();
-// void func_80089A34_jp();
+struct FieldMakeBGSoundSource* mFI_GetSoundSourcePBlockNum(s32 blockX, s32 blockZ);
 // void func_80089AAC_jp();
 // void func_80089B1C_jp();
 // void func_80089B94_jp();
