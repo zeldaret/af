@@ -2,7 +2,32 @@
 
 Pre-process .c files and post-process .o files to enable embedding MIPS assembly into IDO-compiled C.
 
+This repository contains both the original Python implementation and rewrite in Rust that is designed to be 1:1 behavorially equivalent with the existing Python version, but faster.
+
+## Installation
+
+Most projects traditionally have included the `asm-processor` repo as a [submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules),  [subrepo](https://github.com/ingydotnet/git-subrepo), or plain copy inside their project.
+This is recommended, as it ensures consistency for all project users.
+
+### Rust
+After vendoring this repo into your repository, you will want to add a step to your project setup procedure that builds the asm-processor binary with the [Rust toolchain](https://www.rust-lang.org/tools/install).
+Presuming this repo is available at `tools/asm-processor/`, the following command can be run to build the project:
+
+```
+cargo build --release --manifest-path tools/asm-processor/rust/Cargo.toml
+```
+
+This will generate the executable at `tools/asm-processor/rust/target/release/asm-processor`. The build system for your project can then be configured to run `asm-processor` from this location.
+
+If you prefer not to build the project yourself or require downstream users to do so, we also provide release binaries that can either be downloaded at build time or included directly in your project's repo.
+
+### Python
+Simply vendor this repo into your repository as described above and use `build.py`.
+
+
 ## Usage
+
+The Python `build.py` script and Rust `asm-processor` binary accept the same syntax and command line flags. If using the Rust implementation, substitute `build.py` with `asm-processor` in the below guide.
 
 Let's say you have a file compiled with `-g` on the IDO compiler, that looks like this:
 ```c
@@ -35,12 +60,14 @@ nop
 )
 ```
 
-To compile the file, run `python3 build.py $CC -- $AS $ASFLAGS -- $CFLAGS -o out.o in.c`, where $CC points to an IDO binary (5.3/7.1 and recomp/qemu all supported), $AS is e.g. `mips-linux-gnu-as`, $ASFLAGS e.g. `-march=vr4300 -mabi=32` and $CFLAGS e.g. `-Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -g`. build.py may be customized as needed.
+To compile the file, run `build.py $CC -- $AS $ASFLAGS -- $CFLAGS -o out.o in.c`, where $CC points to an IDO binary (5.3/7.1 and recomp/qemu all supported), $AS is e.g. `mips-linux-gnu-as`, $ASFLAGS e.g. `-march=vr4300 -mabi=32` and $CFLAGS e.g. `-Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -g`.
 
-In addition to an .o file, build.py also generates a .d file with Makefile dependencies for .s files referenced by the input .c file.
-This functionality may be removed if not needed.
+In addition to an .o file, asm-processor also generates a .d file with Makefile dependencies for .s files referenced by the input .c file.
+This functionality can be disabled by passing the `--no-dep-file` flag.
 
 Reading assembly from file is also supported, by either `GLOBAL_ASM("file.s")` or `#pragma GLOBAL_ASM("file.s")`.
+
+For compatibility with common GCC macros, `INCLUDE_ASM("folder", functionname);` and `INCLUDE_RODATA("folder", functionname);` are also allowed, and equivalent to `GLOBAL_ASM("folder/functionname.s")`.
 
 ### What is supported?
 
@@ -103,7 +130,7 @@ For example if asm-processor is cloned in the same directory as [ido static reco
 MIPS_CC=../ido-static-recomp/build/7.1/out/cc ./run-tests.sh
 ```
 
-Or using [qemu-irix](https://github.com/zeldaret/oot/releases/tag/0.1q) (don't forget `chmod u+x qemu-irix`) to emulate IDO:
+Or using qemu-irix (don't forget `chmod u+x qemu-irix`) to emulate IDO:
 
 ```sh
 MIPS_CC='./qemu-irix -silent -L ../ido-static-recomp/ido/7.1/ ../ido-static-recomp/ido/7.1/usr/bin/cc' ./run-tests.sh

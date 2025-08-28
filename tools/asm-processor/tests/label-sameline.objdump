@@ -8,7 +8,7 @@ SYMBOL TABLE:
 
 
 RELOCATION RECORDS FOR [.rodata]:
-OFFSET   TYPE              VALUE 
+OFFSET   TYPE              VALUE
 00000004 R_MIPS_32         
 00000008 R_MIPS_32         blah
 

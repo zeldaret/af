@@ -12,13 +12,13 @@ SYMBOL TABLE:
 0000003c g     F .text	0000003c f
 00000000 g     F .text	0000003c test
 0000000c g       .rodata	00000000 some_rodata
-00000078 g     F .text	00000004 g
+00000078 g     F .text	00000034 g
 00000000         *UND*	00000000 D_410100
 00000000         *UND*	00000000 func_004000B0
 
 
 RELOCATION RECORDS FOR [.text]:
-OFFSET   TYPE              VALUE 
+OFFSET   TYPE              VALUE
 00000044 R_MIPS_HI16       .rodata
 00000054 R_MIPS_LO16       .rodata
 00000048 R_MIPS_HI16       some_rodata

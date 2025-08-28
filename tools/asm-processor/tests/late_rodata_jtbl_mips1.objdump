@@ -16,7 +16,7 @@ SYMBOL TABLE:
 
 
 RELOCATION RECORDS FOR [.text]:
-OFFSET   TYPE              VALUE 
+OFFSET   TYPE              VALUE
 0000005c R_MIPS_HI16       .rodata
 00000060 R_MIPS_LO16       .rodata
 00000190 R_MIPS_HI16       .rodata
@@ -26,7 +26,7 @@ OFFSET   TYPE              VALUE
 
 
 RELOCATION RECORDS FOR [.rodata]:
-OFFSET   TYPE              VALUE 
+OFFSET   TYPE              VALUE
 0000008c R_MIPS_32         
 00000090 R_MIPS_32         
 00000094 R_MIPS_32         

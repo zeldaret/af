@@ -1,2 +1,4 @@
 *.o
 *.py[cod]
+rust/target/
+.vscode/

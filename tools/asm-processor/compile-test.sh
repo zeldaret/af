@@ -1,8 +1,12 @@
 #!/bin/bash
 set -o pipefail
-INPUT="$1"
-OUTPUT="${INPUT%.*}.o"
+INPUT=$(readlink -f "$1")
 
+cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
+WD=$(pwd)
+INPUT=${INPUT#"$WD"/}
+
+OUTPUT="${INPUT%.*}.o"
 rm -f "$OUTPUT"
 
 CC="$MIPS_CC"  # ido 7.1 via recomp or qemu-irix
@@ -23,4 +27,15 @@ if [[ "$OPTFLAGS" != *-KPIC* ]]; then
 fi
 
 set -e
-python3 build.py --drop-mdebug-gptab $ASMPFLAGS $CC -- $AS $ASFLAGS -- $CFLAGS $OPTFLAGS $ISET -o "$OUTPUT" "$INPUT"
+
+if [[ "$2" == "python" ]]; then
+    PROG="python3 ./build.py"
+elif [[ "$2" == "rust-release" ]]; then
+    PROG="./rust/target/release/asm-processor"
+elif [[ "$2" == "rust-debug" ]]; then
+    PROG="./rust/target/debug/asm-processor"
+else
+	echo "Usage: $0 input.c (python|rust-release|rust-debug)"
+fi
+
+$PROG --drop-mdebug-gptab $ASMPFLAGS $CC -- $AS $ASFLAGS -- $CFLAGS $OPTFLAGS $ISET -o "$OUTPUT" "$INPUT"

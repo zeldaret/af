@@ -9,8 +9,8 @@ SYMBOL TABLE:
 00000000 l     O .bss	00000000 $dat
 00000000 g     F .text	0000000c foo
 000000d0 g     F .text	0000000c bar
-0000000c g     F .text	00000004 test
-00000048 g     F .text	00000004 test2
+0000000c g     F .text	0000003c test
+00000048 g     F .text	00000044 test2
 0000008c g     F .text	00000044 test3
 00000000         *UND*	00000000 get
 00000000         *UND*	00000000 put

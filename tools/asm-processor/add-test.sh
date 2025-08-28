@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
+WD=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+
 for A in "$@"; do
     OBJDUMPFLAGS="-srt"
-    ./compile-test.sh "$A" && mips-linux-gnu-objdump $OBJDUMPFLAGS "${A%.*}.o" > "${A%.*}.objdump"
+    "$WD/compile-test.sh" "$A" python && mips-linux-gnu-objdump $OBJDUMPFLAGS "${A%.*}.o" > "${A%.*}.objdump"
 done
