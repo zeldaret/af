@@ -46,6 +46,7 @@ options:
   use_legacy_include_asm: False
   create_asm_dependencies: True
   asm_function_macro: glabel
+  asm_end_label: endlabel
   asm_jtbl_label_macro: jlabel
   asm_data_macro: dlabel
   include_macro_inc: False
