@@ -7,34 +7,67 @@ import tempfile
 import uuid
 import asm_processor
 
-# Boolean for debugging purposes
-# Preprocessed files are temporary, set to True to keep a copy
-keep_preprocessed_files = False
+# Preprocessed files are temporary. For debugging purposes, you can set this
+# variable or pass --keep-preprocessed path/to/dir/ to keep a copy.
+keep_output_dir = None
+# keep_output_dir = Path("./asm_processor_preprocessed")
 
-dir_path = Path(__file__).resolve().parent
-asm_prelude_path = dir_path / "prelude.inc"
-
+progname = sys.argv[0]
 all_args = sys.argv[1:]
-sep0 = next(index for index, arg in enumerate(all_args) if not arg.startswith("-"))
-sep1 = all_args.index("--")
-sep2 = all_args.index("--", sep1 + 1)
 
-asmproc_flags = all_args[:sep0]
+i = 0
+asmproc_flags = []
+while i < len(all_args):
+    arg = all_args[i]
+    if arg == "--":
+        i += 1
+        break
+    if not arg.startswith("-"):
+        break
+    i += 1
+    asmproc_flags.append(arg)
+    if arg in ("--input-enc", "--output-enc", "--asm-prelude", "--convert-statics", "--keep-preprocessed", "--no-dep-file") and i < len(all_args):
+        asmproc_flags.append(all_args[i])
+        i += 1
+
+sep0 = i
+try:
+    sep1 = all_args.index("--", sep0)
+    sep2 = all_args.index("--", sep1 + 1)
+except ValueError:
+    print(f"Usage: {progname} [options] <compiler...> -- <assembler...> -- <compiler flags...>")
+    sys.exit(1)
+
 compiler = all_args[sep0:sep1]
-
 assembler_args = all_args[sep1 + 1 : sep2]
+compile_args = all_args[sep2 + 1 :]
+
 assembler_sh = " ".join(shlex.quote(x) for x in assembler_args)
 
 
-compile_args = all_args[sep2 + 1 :]
+def fail_parse(msg):
+    print(f"Failed to parse compiler flags: {msg}")
+    sys.exit(1)
 
-in_file = Path(compile_args[-1])
-del compile_args[-1]
+try:
+    out_ind = compile_args.index("-o")
+except ValueError:
+    fail_parse("missing -o argument")
 
-out_ind = compile_args.index("-o")
-out_file = Path(compile_args[out_ind + 1])
+try:
+    out_file = Path(compile_args[out_ind + 1])
+except IndexError:
+    fail_parse("missing argument after -o")
+
 del compile_args[out_ind + 1]
 del compile_args[out_ind]
+
+try:
+    in_file = Path(compile_args[-1])
+except IndexError:
+    fail_parse("missing input file argument")
+
+del compile_args[-1]
 
 
 in_dir = in_file.resolve().parent
@@ -59,13 +92,13 @@ with tempfile.TemporaryDirectory(prefix="asm_processor") as tmpdirname:
     preprocessed_filename = "preprocessed_" + uuid.uuid4().hex + in_file.suffix
     preprocessed_path = tmpdir_path / preprocessed_filename
 
-    with preprocessed_path.open("wb") as f:
-        functions, deps = asm_processor.run(asmproc_flags, outfile=f)
+    with preprocessed_path.open("wb") as outfile:
+        functions, deps, keep_output_dir2 = asm_processor.run(asmproc_flags, outfile=outfile)
 
-    if keep_preprocessed_files:
+    keep_output_dir = keep_output_dir or keep_output_dir2
+    if keep_output_dir:
         import shutil
 
-        keep_output_dir = Path("./asm_processor_preprocessed")
         keep_output_dir.mkdir(parents=True, exist_ok=True)
 
         shutil.copy(
@@ -95,14 +128,12 @@ with tempfile.TemporaryDirectory(prefix="asm_processor") as tmpdirname:
             str(out_file),
             "--assembler",
             assembler_sh,
-            "--asm-prelude",
-            str(asm_prelude_path),
         ],
         functions=functions,
     )
 
     deps_file = out_file.with_suffix(".asmproc.d")
-    if deps:
+    if deps and "--no-dep-file" not in asmproc_flags:
         with deps_file.open("w") as f:
             f.write(str(out_file) + ": " + " \\\n    ".join(deps) + "\n")
             for dep in deps:

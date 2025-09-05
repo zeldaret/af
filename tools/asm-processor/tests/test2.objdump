@@ -11,12 +11,12 @@ SYMBOL TABLE:
 00000010 g     O .rodata	00000001 buf3
 00000044 g     F .text	0000007c func3
 000000c4 g     F .text	00000000 jumptarget
-000000c0 g     F .text	0000000c func4
+000000c0 g     F .text	0000002c func4
 0000004c g       .rodata	00000000 rv
 
 
 RELOCATION RECORDS FOR [.text]:
-OFFSET   TYPE              VALUE 
+OFFSET   TYPE              VALUE
 00000000 R_MIPS_HI16       .rodata
 00000008 R_MIPS_LO16       .rodata
 0000001c R_MIPS_HI16       .rodata
@@ -30,7 +30,7 @@ OFFSET   TYPE              VALUE
 
 
 RELOCATION RECORDS FOR [.rodata]:
-OFFSET   TYPE              VALUE 
+OFFSET   TYPE              VALUE
 0000002c R_MIPS_32         .text
 00000030 R_MIPS_32         .text
 00000034 R_MIPS_32         .text

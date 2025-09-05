@@ -2,20 +2,50 @@
 .set noreorder
 .set gp=64
 
-.macro glabel label
-    .global \label
+# A function symbol (but some projects use it for everything).
+.macro glabel label, visibility=global
+    .\visibility \label
     \label:
 .endm
 
-.macro dlabel label
-    .global \label
+# The end of a function symbol.
+.macro endlabel label
+    .size \label, . - \label
+.endm
+
+# An alternative entry to a function.
+.macro alabel label, visibility=global
+    .\visibility \label
+    .type \label, @function
     \label:
 .endm
 
+
+# A data symbol.
+.macro dlabel label, visibility=global
+    .\visibility \label
+    \label:
+.endm
+
+# End of a data symbol.
+.macro enddlabel label
+    .size \label, . - \label
+.endm
+
+
+# A label referenced by a jumptable.
 .macro jlabel label
     \label:
 .endm
 
+
+# Label to signal the symbol haven't been matched yet.
+.macro nonmatching label, size=1
+    .global \label\().NON_MATCHING
+    .type \label\().NON_MATCHING, @object
+    .size \label\().NON_MATCHING, \size
+    \label\().NON_MATCHING:
+.endm
 
 # Float register aliases (o32 ABI, odd ones are rarely used)
 

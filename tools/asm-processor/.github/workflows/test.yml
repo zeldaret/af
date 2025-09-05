@@ -1,0 +1,31 @@
+name: Build, Lint, and Test
+on:
+    push:
+    pull_request:
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Install dependencies
+              run: sudo apt-get install binutils-mips-linux-gnu -y
+            - uses: actions/checkout@v4
+            - name: Install Rust
+              uses: actions-rs/toolchain@v1
+              with:
+                  toolchain: stable
+                  override: true
+            - name: Build
+              run: cargo build --release
+              working-directory: rust
+            - name: Format
+              run: cargo fmt -- --check
+              working-directory: rust
+            - name: Check
+              run: cargo check
+              working-directory: rust
+            - name: Test
+              run: |
+                wget https://github.com/decompals/ido-static-recomp/releases/download/v1.2/ido-7.1-recomp-linux.tar.gz
+                tar -xf ido-7.1-recomp-linux.tar.gz
+                export MIPS_CC=./cc
+                ./run-tests.sh
