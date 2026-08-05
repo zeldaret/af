@@ -1,7 +1,7 @@
-# Animal Forest [![Build Status][jenkins-badge]][jenkins] ![Code jp Progress] [![Discord Channel][discord-badge]][discord]
+# Animal Forest [![Build Status][gha-badge]][gha] ![Code jp Progress] [![Discord Channel][discord-badge]][discord]
 
-[jenkins]: https://jenkins.deco.mp/job/AF/job/main
-[jenkins-badge]: https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fjenkins.deco.mp%2Fjob%2FAF%2Fjob%2Fmain
+[gha]: https://github.com/zeldaret/af/actions/workflows/ci.yml?query=branch%3Amain+event%3Apush
+[gha-badge]: https://img.shields.io/github/actions/workflow/status/zeldaret/af/ci.yml
 
 [Code jp Progress]: https://img.shields.io/endpoint?label=Code%20jp&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fanimalforest%2Fjp%2Fcode%2F%3Fmode%3Dshield%26measure%3Dall
 
