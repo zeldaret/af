@@ -19,6 +19,8 @@ ifneq ($(WARNINGS_CHECK), 0)
 endif
 
 
+IDO_RECOMP_VERSION := v1.2
+PIGMENT64_VERSION := 0.6.3
 
 IDO_5_3_DIR := ido/$(DETECTED_OS)/5.3
 IDO_5_3     := $(IDO_5_3_DIR)/cc
@@ -41,20 +43,26 @@ distclean: clean
 .PHONY: all clean distclean
 
 
-$(IDO_5_3): | $(IDO_5_3_DIR)
-	wget $(WGET_FLAGS) https://github.com/decompals/ido-static-recomp/releases/latest/download/ido-5.3-recomp-$(DETECTED_OS).tar.gz
-	tar xf ido-5.3-recomp-$(DETECTED_OS).tar.gz -C $(IDO_5_3_DIR)
-	$(RM) ido-5.3-recomp-$(DETECTED_OS).tar.gz
+tool_archives/archives/ido-5.3-recomp-$(DETECTED_OS).tar.gz:
+	mkdir -p $(@D)
+	wget $(WGET_FLAGS) https://github.com/decompals/ido-static-recomp/releases/download/$(IDO_RECOMP_VERSION)/ido-5.3-recomp-$(DETECTED_OS).tar.gz
 
-$(IDO_7_1): | $(IDO_7_1_DIR)
-	wget $(WGET_FLAGS) https://github.com/decompals/ido-static-recomp/releases/latest/download/ido-7.1-recomp-$(DETECTED_OS).tar.gz
-	tar xf ido-7.1-recomp-$(DETECTED_OS).tar.gz -C $(IDO_7_1_DIR)
-	$(RM) ido-7.1-recomp-$(DETECTED_OS).tar.gz
+$(IDO_5_3): tool_archives/archives/ido-5.3-recomp-$(DETECTED_OS).tar.gz | $(IDO_5_3_DIR)
+	tar xzf $< -C $(IDO_5_3_DIR)
 
-$(PIGMENT64): | $(PIGMENT64_DIR)
-	wget $(WGET_FLAGS) https://github.com/decompals/pigment64/releases/download/0.4.3/pigment64_0.4.3_$(PIGMENT64_OS).tar.gz
-	tar xf pigment64_0.4.3_$(PIGMENT64_OS).tar.gz -C $(PIGMENT64_DIR)
-	$(RM) pigment64_0.4.3_$(PIGMENT64_OS).tar.gz
+tool_archives/archives/ido-7.1-recomp-$(DETECTED_OS).tar.gz:
+	mkdir -p $(@D)
+	wget $(WGET_FLAGS) https://github.com/decompals/ido-static-recomp/releases/download/$(IDO_RECOMP_VERSION)/ido-7.1-recomp-$(DETECTED_OS).tar.gz
+
+$(IDO_7_1): tool_archives/archives/ido-7.1-recomp-$(DETECTED_OS).tar.gz | $(IDO_7_1_DIR)
+	tar xzf $< -C $(IDO_7_1_DIR)
+
+tool_archives/archives/pigment64-$(PIGMENT64_OS).tar.gz:
+	mkdir -p $(@D)
+	wget $(WGET_FLAGS) https://github.com/decompals/pigment64/releases/download/$(PIGMENT64_VERSION)/pigment64-$(PIGMENT64_OS).tar.gz
+
+$(PIGMENT64): tool_archives/archives/pigment64-$(PIGMENT64_OS).tar.gz | $(PIGMENT64_DIR)
+	tar xzf $< -C $(PIGMENT64_DIR)
 
 $(IDO_5_3_DIR):
 	mkdir -p $@
@@ -66,3 +74,6 @@ $(PIGMENT64_DIR):
 	mkdir -p $@
 
 distclean: clean
+	rm -rf tool_archives/archives/ido-5.3-recomp-$(DETECTED_OS).tar.gz
+	rm -rf tool_archives/archives/ido-7.1-recomp-$(DETECTED_OS).tar.gz
+	rm -rf tool_archives/archives/pigment64-$(PIGMENT64_OS).tar.gz
