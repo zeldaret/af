@@ -25,6 +25,9 @@ jobs:
         version:
           - jp             # N64 Japan
 
+    env:
+      WARNINGS_CHECK: 1
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
