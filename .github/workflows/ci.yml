@@ -89,8 +89,9 @@ jobs:
       - name: Upload map
         uses: actions/upload-artifact@v7
         with:
-          name: af-${{ matrix.version }}.map
-          path: build/af-${{ matrix.version }}.map
+          name: animalforest-${{ matrix.version }}.map
+          path: build/animalforest-${{ matrix.version }}.map
+          if-no-files-found: error
 
   # This job does not do anything, its purpose is to be used as a status check in GitHub rules.
   all_versions_built:
