@@ -1,132 +1,87 @@
 #!/usr/bin/env python3
 
-# SPDX-FileCopyrightText: © 2023 ZeldaRET
+# SPDX-FileCopyrightText: © 2023-2025 ZeldaRET
 # SPDX-License-Identifier: MIT
 
 from __future__ import annotations
 
 import argparse
-import mapfile_parser
+import sys
 from pathlib import Path
 
-
-ASMPATH = Path("asm")
-NONMATCHINGS = "nonmatchings"
-
-
-def getProgressFromMapFile(mapFile: mapfile_parser.MapFile, asmPath: Path, nonmatchings: Path, aliases: dict[str, str]=dict(), pathIndex: int=2) -> tuple[mapfile_parser.ProgressStats, dict[str, mapfile_parser.ProgressStats]]:
-    totalStats = mapfile_parser.ProgressStats()
-    progressPerFolder: dict[str, mapfile_parser.ProgressStats] = dict()
-
-    for segment in mapFile:
-        for file in segment:
-            if len(file) == 0:
-                continue
-
-            folder = file.filepath.parts[pathIndex]
-
-            if folder in aliases:
-                folder = aliases[folder]
-
-            if folder not in progressPerFolder:
-                progressPerFolder[folder] = mapfile_parser.ProgressStats()
-
-            originalFilePath = Path(*file.filepath.parts[pathIndex:])
-
-            extensionlessFilePath = originalFilePath
-            while extensionlessFilePath.suffix:
-                extensionlessFilePath = extensionlessFilePath.with_suffix("")
-
-            fullAsmFile = asmPath / extensionlessFilePath.with_suffix(".s")
-
-            handwrittenAsmFiles = [Path("boot/libc64/fp.o"), Path("makerom/entry.o")]
-            
-            if originalFilePath in handwrittenAsmFiles:
-                wholeFileIsUndecomped = False
-            else:
-                wholeFileIsUndecomped = fullAsmFile.exists()
+import decomp_settings
+import mapfile_parser
 
 
-            for func in file:
-                funcAsmPath = nonmatchings / extensionlessFilePath / f"{func.name}.s"
+def doThing(
+    version: str,
+    settings: decomp_settings.Config,
+    units: bool,
+    sort: bool,
+    remaining: bool,
+):
+    selectedVersion = settings.get_version_by_name(version)
+    assert selectedVersion is not None
+    mapPath = Path(selectedVersion.paths.map)
+    outputPath = Path(selectedVersion.paths.build_dir) / "report.json"
 
-                symSize = 0
-                if func.size is not None:
-                    symSize = func.size
+    specificSettings = mapfile_parser.frontends.objdiff_report.SpecificSettings.fromDecompConfig(settings)
+    assert specificSettings is not None
+    prefixesToTrim = specificSettings.prefixesToTrim
+    pathIndex = specificSettings.pathIndex
+    assert pathIndex is not None
 
-                if wholeFileIsUndecomped:
-                    totalStats.undecompedSize += symSize
-                    progressPerFolder[folder].undecompedSize += symSize
-                elif funcAsmPath.exists():
-                    totalStats.undecompedSize += symSize
-                    progressPerFolder[folder].undecompedSize += symSize
-                else:
-                    totalStats.decompedSize += symSize
-                    progressPerFolder[folder].decompedSize += symSize
+    reportCategories = mapfile_parser.ReportCategories()
+    for cat in specificSettings.categories:
+        reportCategories.push(cat.ide, cat.name, cat.paths)
 
-    return totalStats, progressPerFolder
+    if specificSettings.checkAsmPaths:
+        assert selectedVersion.paths.asm is not None
+        asmPath = Path(selectedVersion.paths.asm)
+    else:
+        asmPath = None
 
+    summaryTableConfig = mapfile_parser.frontends.objdiff_report.SummaryTableConfig(
+        doUnits=units,
+        sort=sort,
+        remaining=remaining,
+    )
 
-def getProgress(mapPath: Path, version: str) -> tuple[mapfile_parser.ProgressStats, dict[str, mapfile_parser.ProgressStats]]:
-    mapFile = mapfile_parser.MapFile()
-    mapFile.readMapFile(mapPath)
-
-    for segment in mapFile:
-        for file in segment:
-            if len(file) == 0:
-                continue
-
-            filepathParts = list(file.filepath.parts)
-            if version in filepathParts:
-                filepathParts.remove(version)
-            file.filepath = Path(*filepathParts)
-
-    nonMatchingsPath = ASMPATH / version / NONMATCHINGS
-
-    return getProgressFromMapFile(mapFile.filterBySectionType(".text"), ASMPATH / version, nonMatchingsPath, aliases={"ultralib": "libultra"})
-
-def getAssetProgress(mapPath: Path, version: str):
-    totalStats = mapfile_parser.ProgressStats()
-    progressPerFolder: dict[str, mapfile_parser.ProgressStats] = dict()
-    progressPerFolder["objects"] = mapfile_parser.ProgressStats()
-    progressPerFolder["unidentified"] = mapfile_parser.ProgressStats()
-
-    mapFile = mapfile_parser.MapFile()
-    mapFile.readMapFile(mapPath)
-    mapFile = mapFile.filterBySectionType(".data")
-
-    for segment in mapFile:
-        for file in segment:
-
-            if len(file) == 0:
-                continue
-
-            if str(file.filepath).startswith("build/src/objects"):
-                totalStats.decompedSize += file.size
-                progressPerFolder["objects"].decompedSize += file.size
-            elif str(file.filepath).startswith("build/assets/" + version + "/objects"):
-                totalStats.undecompedSize += file.size
-                progressPerFolder["objects"].undecompedSize += file.size
-            elif str(file.filepath).startswith("build/assets/" + version):
-                progressPerFolder["unidentified"].undecompedSize += file.size
-                totalStats.undecompedSize += file.size
-    
-    return totalStats, progressPerFolder
+    exitcode = mapfile_parser.frontends.objdiff_report.doObjdiffReport(
+        mapPath,
+        outputPath,
+        prefixesToTrim,
+        reportCategories,
+        pathIndex=pathIndex,
+        asmPath=asmPath,
+        summaryTableConfig=summaryTableConfig,
+    )
+    sys.exit(exitcode)
 
 def progressMain():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-v", "--version", help="version to process", default="jp")
+    settings = decomp_settings.scan_for_config()
+    versionsChoices = [x.name for x in settings.versions]
+
+    parser = argparse.ArgumentParser(description="Print the progress for each category in your terminal.")
+    parser.add_argument("-v", "--version", help="version to process", choices=versionsChoices, default=versionsChoices[0])
+    parser.add_argument("-u", "--units", help="Print units instead of categories", action="store_true")
+    parser.add_argument("-s", "--sort", help="Sort by decomped size", action="store_true")
+    parser.add_argument("-r", "--remaining", help="Print an extra column indicating the remaining percentage to match of each entry", action="store_true")
 
     args = parser.parse_args()
+    version: str = args.version
+    units: bool = args.units
+    sort: bool = args.sort
+    remaining: bool = args.remaining
 
-    mapPath = Path("build") / f"animalforest-{args.version}.map"
+    doThing(
+        version,
+        settings,
+        units,
+        sort,
+        remaining,
+    )
 
-    codeTotalStats, codeProgressPerFolder = getProgress(mapPath, args.version)
-    assetTotalStats, assetProgressPerFolder = getAssetProgress(mapPath, args.version)
-    print("code:")
-    mapfile_parser.progress_stats.printStats(codeTotalStats, codeProgressPerFolder)
-    print("\n\nassets:")
-    mapfile_parser.progress_stats.printStats(assetTotalStats, assetProgressPerFolder)
 
 if __name__ == "__main__":
     progressMain()

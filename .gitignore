@@ -26,3 +26,5 @@ ctx.c.m2c
 
 .vscode/*
 !.vscode/c_cpp_properties.json
+
+report.json

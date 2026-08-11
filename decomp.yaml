@@ -1,0 +1,114 @@
+name: Animal Forest
+repo: https://github.com/zeldaret/af
+platform: n64
+build_system: make
+versions:
+  - name: jp
+    fullname: jp
+    sha1: 3ee1f866eb08c0ce57a30e09f0c8b0a16a760c8f
+    paths:
+      target: "baseroms/jp/baserom-decompressed.z64"
+
+      build_dir: "build"
+      map: "build/animalforest-jp.map"
+      compiled_target: "build/animalforest-jp.map"
+      elf: "build/animalforest-jp.elf"
+
+      expected_dir: "expected/"
+
+      asm: "asm/jp"
+      nonmatchings: "asm/jp/nonmatchings"
+
+      compressed_target: "baseroms/jp/baserom.z64"
+      compressed_compiled_target: "build/animalforest-jp-compressed.z64"
+
+tools:
+  mapfile_parser:
+    progress_report:
+      check_asm_paths: False
+      report_data: True
+      prefixes_to_trim:
+        - build/assets/jp/
+        - build/assets/
+        - build/lib/
+        - build/src/
+        - build/asm/jp/data/
+        - build/asm/jp/
+        - build/asm/data/
+        - build/asm/
+        - build/
+
+      # List of categories. `id`s must be unique, but each path may be
+      # duplicated across categories.
+      categories:
+        - id: boot
+          name: Segment boot
+          paths:
+            - boot/
+        - id: dmadata
+          name: Segment dmadata
+          paths:
+            - dmadata/
+        - id: code
+          name: Segment code
+          paths:
+            - code/
+        - id: overlays
+          name: All Overlays
+          paths:
+            - overlays/
+        - id: objects
+          name: All objects
+          paths:
+            - objects/
+
+        - id: assets
+          name: All assets
+          paths:
+            - assets/
+            - misc/
+            - combi/
+
+        - id: buffers
+          name: Buffers
+          paths:
+            - buffers/
+
+        - id: libraries
+          name: Libraries
+          paths:
+            - boot/libc/
+            - boot/libc64/
+            - boot/libm/
+            - boot/libu64/
+            - libultra/
+
+        - id: overlays_actors
+          name: Overlays actors
+          paths:
+            - overlays/actors/
+
+        - id: overlays_furniture
+          name: Overlays furniture
+          paths:
+            - overlays/furniture/
+
+        - id: overlays_gamestates
+          name: Overlays gamestates
+          paths:
+            - overlays/gamestates/
+
+        - id: overlays_managers
+          name: Overlays managers
+          paths:
+            - overlays/managers/
+
+        - id: overlays_submenu
+          name: Overlays submenu
+          paths:
+            - overlays/submenu/
+
+        - id: overlays_weather
+          name: Overlays weather
+          paths:
+            - overlays/weather/
