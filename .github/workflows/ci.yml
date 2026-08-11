@@ -87,7 +87,9 @@ jobs:
         run: cat tools/warnings_count/warnings_setup_new.txt tools/warnings_count/warnings_assets_new.txt tools/warnings_count/warnings_disasm_new.txt tools/warnings_count/warnings_build_new.txt tools/warnings_count/warnings_compress_new.txt
 
       - name: Generate objdiff report
-        run: python3 -m mapfile_parser objdiff_report report.json --version ${{ matrix.version }}
+        run: |
+          . .venv/bin/activate
+          python3 -m mapfile_parser objdiff_report report.json --version ${{ matrix.version }}
 
       - name: Upload progress report artifact
         uses: actions/upload-artifact@v7
