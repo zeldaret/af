@@ -82,7 +82,7 @@
       - [0x6E9650, c, code/m_scene]
       - [0x6EAB20, c, code/m_skin_matrix]
       - [0x6EC430, c, code/m_snowman]
-      - [0x6EC9E0, asm, code/6EC9E0]
+      - [0x6EC9E0, c, code/m_titledemo]
       - [0x6ECD90, asm, code/6ECD90]
       - [0x6EDD10, c, code/m_time]
       - [0x6EE540, c, code/m_view]
