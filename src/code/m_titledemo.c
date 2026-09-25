@@ -5,6 +5,7 @@
 #include "m_bgm.h"
 #include "m_lib.h"
 #include "m_event.h"
+#include "overlays/actors/player_actor/m_player.h"
 
 u16 func_800C8D40_jp(s32 titledemo_no, s32 key) {
     extern void* B_80144690_jp;
@@ -31,9 +32,40 @@ UNK_RET mTD_demono_get(void) {
     return D_8010EDA4_jp;
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_titledemo/mTD_player_keydata_init.s")
+void mTD_player_keydata_init(Game_Play* game_play) {
+    extern void func_800C8D98_jp(void);
+    extern void func_800B5AA0_jp(u16 tool);
+    extern s32 D_8010EDA0_jp;
+    u16 angle;
+    Player* player = get_player_actor_withoutCheck(game_play);
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_titledemo/func_800C8ECC_jp.s")
+    if (mEv_CheckTitleDemo() > 0) {
+        func_800C8D98_jp();
+        func_800B5AA0_jp(func_800C8D40_jp(mEv_CheckTitleDemo() - 1, 4));
+        angle = func_800C8D40_jp(mEv_CheckTitleDemo() - 1, 3);
+        player->actor.shape.rot.y = angle;
+        player->actor.world.rot.y = angle;
+    }
+
+    D_8010EDA0_jp = 0;
+}
+
+u16 func_800C8ECC_jp(void) {
+    typedef struct {
+        u16* data[5];
+    } TitleDemoKeyTable;
+    extern TitleDemoKeyTable D_8010EDBC_jp;
+    extern void* B_80144690_jp;
+    extern s32 D_8010EDA0_jp;
+    u16* data;
+    TitleDemoKeyTable keydata = D_8010EDBC_jp;
+
+    SegmentBaseAddress[6] = (uintptr_t)B_80144690_jp - K0BASE;
+    mEv_CheckTitleDemo();
+    data = Lib_SegmentedToVirtual(keydata.data[mEv_CheckTitleDemo() - 1]);
+    data += D_8010EDA0_jp;
+    return *data;
+}
 
 void func_800C8F5C_jp(void) {
     extern u16 func_800C8ECC_jp(void);
