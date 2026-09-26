@@ -6,6 +6,8 @@
 #include "m_lib.h"
 #include "m_event.h"
 #include "overlays/actors/player_actor/m_player.h"
+#include "m_common_data.h"
+#include "m_time.h"
 
 u16 func_800C8D40_jp(s32 titledemo_no, s32 key) {
     extern void* B_80144690_jp;
@@ -93,7 +95,20 @@ void title_demo_move(Game_Play* game_play) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/jp/nonmatchings/code/m_titledemo/func_800C9010_jp.s")
+void func_800C9010_jp(void) {
+    extern u16 D_8010EDD0_jp;
+
+    if (D_8010EDD0_jp == 1) {
+        D_8010EDD0_jp = 0;
+        if (common_data.time.rtcCrashed == 1) {
+            lbRTC_TimeCopy(&common_data.time.rtcTime, &common_data.newlySetTime);
+        } else {
+            lbRTC_GetTime(&common_data.time.rtcTime);
+        }
+        common_data.time.rtcEnabled = 1;
+        mTM_set_season();
+    }
+}
 
 void func_800C9088_jp(void) {
     extern u16 D_8010EDD0_jp;

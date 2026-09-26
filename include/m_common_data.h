@@ -195,7 +195,8 @@ typedef struct CommonData {
     /* 0x10A79 */ UNK_TYPE1 unk_10A79[0x7];
     /* 0x10A80 */ UNK_TYPE1 unk_10A80[0x2];
     /* 0x10A82 */ s16 unk_10A82;
-    /* 0x10A84 */ UNK_TYPE1 unk_10A84[0x2C];
+    /* 0x10A84 */ lbRTC_time_c newlySetTime;
+    /* 0x10A8C */ UNK_TYPE1 unk_10A8C[0x24];
     /* 0x10AB0 */ u8 unk_10AB0; // named "pad_connected" in AC GCN decomp
     /* 0x10AB1 */ UNK_TYPE1 unk_10AB1;
     /* 0x10AB2 */ s16 currentSoundEffect;
