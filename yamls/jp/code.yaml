@@ -112,7 +112,7 @@
       - [0x6FD190, c, code/6FD190]
       - [0x6FD410, c, code/6FD410]
       - [0x6FD530, c, code/sys_initial_check]
-      - [0x6FD840, asm, code/sys_math]
+      - [0x6FD840, c, code/sys_math]
       - [0x6FDC40, asm, code/sys_math3d]
       - [0x703C30, c, code/sys_math_atan]
       - [0x703E70, c, code/sys_matrix]
