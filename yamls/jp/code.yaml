@@ -267,7 +267,7 @@
       - [0x73B6D0, .rodata, code/m_scene]
       - [0x73B700, .rodata, code/m_skin_matrix]
       - [0x73B710, .rodata, code/m_snowman]
-      - [0x73B720, rodata, code/m_titledemo]
+      - [0x73B720, .rodata, code/m_titledemo]
       - [0x73B740, rodata, code/73B740]
       - [0x73B780, .rodata, code/m_time]
       - [0x73B7D0, .rodata, code/m_view]
